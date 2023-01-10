@@ -27,6 +27,22 @@
       </tags>
   </entry>
   <entry>
+    <title>latex学习</title>
+    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p> latex使用感悟</p>
+<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
+<span id="more"></span>     
+
+<p>每次都要重新设置标题，标签啥的，就很烦。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>latex技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>科目三的一些注意问题</title>
     <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
@@ -50,19 +66,42 @@
       </tags>
   </entry>
   <entry>
-    <title>latex学习</title>
-    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p> latex使用感悟</p>
-<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
-<span id="more"></span>     
-
-<p>每次都要重新设置标题，标签啥的，就很烦。</p>
+    <title>科目三考试流程</title>
+    <url>/2023/01/10/%E7%A7%91%E7%9B%AE%E4%B8%89%E8%80%83%E8%AF%95%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h5 id="科目三考试的全过程以及相关注意事项"><a href="#科目三考试的全过程以及相关注意事项" class="headerlink" title="科目三考试的全过程以及相关注意事项"></a>科目三考试的全过程以及相关注意事项</h5><h3 id="上车准备："><a href="#上车准备：" class="headerlink" title="上车准备："></a>上车准备：</h3><ol>
+<li>交身份证</li>
+<li>下车触摸感应器</li>
+<li>上车后检查灯光等</li>
+<li>点火<span id="more"></span></li>
+</ol>
+<h3 id="模拟灯光"><a href="#模拟灯光" class="headerlink" title="模拟灯光"></a>模拟灯光</h3><p>等语音说完再去操作<br>本质是白给</p>
+<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>左转向-挂1挡-松手刹-50m内加速二档</p>
+<h3 id="直线行驶"><a href="#直线行驶" class="headerlink" title="直线行驶"></a>直线行驶</h3><p>直接一脚油门到35码</p>
+<h3 id="路口右转"><a href="#路口右转" class="headerlink" title="路口右转"></a>路口右转</h3><ol>
+<li>开启转向灯</li>
+<li>踩刹车减速</li>
+<li>过了斑马线才能动方向盘</li>
+</ol>
+<h3 id="公交车站"><a href="#公交车站" class="headerlink" title="公交车站"></a>公交车站</h3><ol>
+<li>没有语音播报</li>
+<li>踩点刹</li>
+</ol>
+<h3 id="前方会车"><a href="#前方会车" class="headerlink" title="前方会车"></a>前方会车</h3><p>踩点刹</p>
+<h3 id="前方直行通过路口"><a href="#前方直行通过路口" class="headerlink" title="前方直行通过路口"></a>前方直行通过路口</h3><p>踩点刹</p>
+<h3 id="人行横道"><a href="#人行横道" class="headerlink" title="人行横道"></a>人行横道</h3><p>踩点刹</p>
+<h3 id="加减档"><a href="#加减档" class="headerlink" title="加减档"></a>加减档</h3><p>45码跑6秒</p>
+<h3 id="调头"><a href="#调头" class="headerlink" title="调头"></a>调头</h3><p>左转向-踩刹车-别压线</p>
+<h3 id="变换车道"><a href="#变换车道" class="headerlink" title="变换车道"></a>变换车道</h3><p>开启转向灯后等3s</p>
+<h3 id="路口左转"><a href="#路口左转" class="headerlink" title="路口左转"></a>路口左转</h3><p>开灯-减速</p>
+<h3 id="学校区域"><a href="#学校区域" class="headerlink" title="学校区域"></a>学校区域</h3><p>20码过去 踩个点刹</p>
+<h3 id="超车"><a href="#超车" class="headerlink" title="超车"></a>超车</h3><p>等3s</p>
+<h3 id="靠边停车"><a href="#靠边停车" class="headerlink" title="靠边停车"></a>靠边停车</h3><p>右转向灯-减速踩离合-30cm<br>关闭转向-空挡-手刹-熄火-确认安全-解安全带-下车</p>
 ]]></content>
       <categories>
-        <category>技术</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>latex技术</tag>
+        <tag>学车感悟</tag>
       </tags>
   </entry>
 </search>
