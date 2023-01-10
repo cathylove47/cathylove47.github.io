@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo自带的使用文档</title>
+    <url>/2023/01/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>     
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>hexo技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我在用hexo搭建个人博客时遇到的问题</title>
+    <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
+    <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
+<span id="more"></span>     
+
+<h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p>
+<h3 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h3><p>出的问题在URL上，导致自己的网站无法正常加载出来</p>
+<p>正确的做法见这个：</p>
+<p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p>
+<h3 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h3><p>推荐使用next主题，非常带有简约美</p>
+<p>next的网站配置如下</p>
+<p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>科目三的一些注意问题</title>
+    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
+<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
+<p>是的 生活很美好。</p>
+<span id="more"></span>
+<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
+<ol>
+<li>系好安全带</li>
+<li>档位与灯光是否正确位置</li>
+<li>转向灯以及一档起步</li>
+</ol>
+<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
+<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>学车感悟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>latex学习</title>
     <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p> latex使用感悟</p>
@@ -53,76 +123,6 @@
       </categories>
       <tags>
         <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>科目三的一些注意问题</title>
-    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
-<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
-<p>是的 生活很美好。</p>
-<span id="more"></span>
-<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
-<ol>
-<li>系好安全带</li>
-<li>档位与灯光是否正确位置</li>
-<li>转向灯以及一档起步</li>
-</ol>
-<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
-<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo自带的使用文档</title>
-    <url>/2023/01/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>     
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我在用hexo搭建个人博客时遇到的问题</title>
-    <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
-    <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
-<span id="more"></span>     
-
-<h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p>
-<h3 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h3><p>出的问题在URL上，导致自己的网站无法正常加载出来</p>
-<p>正确的做法见这个：</p>
-<p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p>
-<h3 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h3><p>推荐使用next主题，非常带有简约美</p>
-<p>next的网站配置如下</p>
-<p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
       </tags>
   </entry>
 </search>
