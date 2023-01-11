@@ -4,25 +4,13 @@
   
     
     <entry>
-      <title>我在用hexo搭建个人博客时遇到的问题</title>
+      <title></title>
       <link href="/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/"/>
       <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
       
-        <content type="html"><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p><span id="more"></span>     <h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p><h3 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h3><p>出的问题在URL上，导致自己的网站无法正常加载出来</p><p>正确的做法见这个：</p><p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p><h3 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h3><p>推荐使用next主题，非常带有简约美</p><p>next的网站配置如下</p><p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p>]]></content>
+        <content type="html"><![CDATA[<p>title: 我在用hexo搭建个人博客时遇到的问题<br>date: 2023-01-10 19:17:45<br>tags: ‘博客搭建’<br>categories: ‘技术’</p><p>一切的想法都是因为在b站上刷到了codesheep讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p><span id="more"></span><h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p><h2 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h2><p>出的问题在URL上，导致自己的网站无法正常加载出来</p><p>正确的做法见这个：</p><p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p><h2 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h2><p>推荐使用next主题，非常带有简约美</p><p>next的网站配置如下</p><p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p><h1 id="关于我在添加gitalk评论系统时候遇到的bug"><a href="#关于我在添加gitalk评论系统时候遇到的bug" class="headerlink" title="关于我在添加gitalk评论系统时候遇到的bug"></a>关于我在添加gitalk评论系统时候遇到的bug</h1><p>大部分都是 error not found<br>查询了相关博客后发现自己的配置里repo好像弄错了， 但是当时我是配置了两次， 一次是在主题配置文件，一次是在留言板的md文件里，没有找到最根本的问题，于是我直接删掉了md文件里的代码，直接对主题配置文件进行试错，最终实现了评论功能</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我的主题配置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">enable: true</span><br><span class="line">github_id: cathylove47</span><br><span class="line">repo: blog_comment # Repository name to store issues</span><br><span class="line">client_id: 96a1eba53da42e58a***</span><br><span class="line">client_secret: 7d22092e071c8c0a6e8a03881dc1b6e83***d4c7 # GitHub Application Client Secret</span><br><span class="line">admin_user: cathylove47 # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line"># When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">language: zh-CN</span><br></pre></td></tr></table></figure><p><strong>最重要的地方是那个repo</strong></p>]]></content>
       
       
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客搭建 </tag>
-            
-        </tags>
       
     </entry>
     
