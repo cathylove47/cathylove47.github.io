@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -181,6 +181,116 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cathylove47.github.io/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%93%88%E5%BC%97%E8%8C%A8%E5%9B%BE%E7%89%87.jpeg">
+      <meta itemprop="name" content="cathy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凯鑫的博客">
+      <meta itemprop="description" content="夕阳无限好，只是近黄昏">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 凯鑫的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">数据结构与算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-01-13 18:13:44 / 修改时间：18:14:22" itemprop="dateCreated datePublished" datetime="2023-01-13T18:13:44+08:00">2023-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>244</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数据结构与算法B"><a href="#数据结构与算法B" class="headerlink" title="数据结构与算法B"></a>数据结构与算法B</h1><h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="顺序表的典型例题"><a href="#顺序表的典型例题" class="headerlink" title="顺序表的典型例题"></a>顺序表的典型例题</h3><h4 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h4><p>已知长度为n的线性表L采用顺序存储结构<br>设计一个算法删除线性表中所有值为x的数据元素<br>要求时间复杂度为O(n),空间复杂度为O(1)</p>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>有两种错误的方法：</p>
+<ol>
+<li>借助一个新的顺序表存储需要的元素</li>
+<li>每当删除一个元素后所有元素前移</li>
+</ol>
+<p>有两种正确的方法：</p>
+<ul>
+<li>重建法</li>
+<li>前移法</li>
+</ul>
+<h5 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h5><h6 id="重建法"><a href="#重建法" class="headerlink" title="重建法"></a>重建法</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (L-&gt;data[i] !=  x)</span><br><span class="line"> L-&gt;data[k]=L-&gt;data[i]</span><br></pre></td></tr></table></figure>
+<p> 相当于一个一个对比，如果符合要求就拉入重建的表中，重点在于K的运用</p>
+<blockquote>
+<p>k++</p>
+</blockquote>
+<h6 id="前移法"><a href="#前移法" class="headerlink" title="前移法"></a>前移法</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>  (L-&gt;data[i] = x)</span><br><span class="line">	k++;</span><br><span class="line">	data[i-k]=data[i]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h4><h4 id="例题3"><a href="#例题3" class="headerlink" title="例题3"></a>例题3</h4><h3 id="单链表的典型例题"><a href="#单链表的典型例题" class="headerlink" title="单链表的典型例题"></a>单链表的典型例题</h3><h4 id="例题1-1"><a href="#例题1-1" class="headerlink" title="例题1"></a>例题1</h4><h4 id="例题2-1"><a href="#例题2-1" class="headerlink" title="例题2"></a>例题2</h4><h4 id="例题3-1"><a href="#例题3-1" class="headerlink" title="例题3"></a>例题3</h4><h4 id="例题4"><a href="#例题4" class="headerlink" title="例题4"></a>例题4</h4><h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -218,9 +328,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-01-11 11:19:39 / 修改时间：11:22:27" itemprop="dateCreated datePublished" datetime="2023-01-11T11:19:39+08:00">2023-01-11</time>
+      <time title="创建时间：2023-01-11 11:19:39" itemprop="dateCreated datePublished" datetime="2023-01-11T11:19:39+08:00">2023-01-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-13 18:14:34" itemprop="dateModified" datetime="2023-01-13T18:14:34+08:00">2023-01-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -834,13 +950,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">1k</span>
+    <span title="站点总字数">2k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">6 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
