@@ -85,6 +85,22 @@
       </tags>
   </entry>
   <entry>
+    <title>latex学习</title>
+    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p> latex使用感悟</p>
+<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
+<span id="more"></span>     
+
+<p>每次都要重新设置标题，标签啥的，就很烦。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>latex技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ODE</title>
     <url>/2023/02/12/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.<br>$$<br>x&#x3D;c_1(t)cost+c_2(t)sint<br>$$<br>然后再列出两个方程求解即可.</p>
@@ -108,50 +124,6 @@
       </tags>
   </entry>
   <entry>
-    <title>latex学习</title>
-    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p> latex使用感悟</p>
-<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
-<span id="more"></span>     
-
-<p>每次都要重新设置标题，标签啥的，就很烦。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>latex技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我在用hexo搭建个人博客时遇到的问题</title>
-    <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
-    <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
-<span id="more"></span>
-
-<h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p>
-<h2 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h2><p>出的问题在URL上，导致自己的网站无法正常加载出来</p>
-<p>正确的做法见这个：</p>
-<p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p>
-<h2 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h2><p>推荐使用next主题，非常带有简约美</p>
-<p>next的网站配置如下</p>
-<p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p>
-<h1 id="关于我在添加gitalk评论系统时候遇到的bug"><a href="#关于我在添加gitalk评论系统时候遇到的bug" class="headerlink" title="关于我在添加gitalk评论系统时候遇到的bug"></a>关于我在添加gitalk评论系统时候遇到的bug</h1><p>大部分都是 error not found<br>查询了相关博客后发现自己的配置里repo好像弄错了， 但是当时我是配置了两次， 一次是在主题配置文件，一次是在留言板的md文件里，没有找到最根本的问题，于是我直接删掉了md文件里的代码，直接对主题配置文件进行试错，最终实现了评论功能</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我的主题配置如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">enable: true</span><br><span class="line">github_id: cathylove47</span><br><span class="line">repo: blog_comment # Repository name to store issues</span><br><span class="line">client_id: 96a1eba53da42e58a***</span><br><span class="line">client_secret: 7d22092e071c8c0a6e8a03881dc1b6e83***d4c7 # GitHub Application Client Secret</span><br><span class="line">admin_user: cathylove47 # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line"># When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">language: zh-CN</span><br></pre></td></tr></table></figure>
-<p><strong>最重要的地方是那个repo</strong></p>
-<hr>
-<p>最近在思考一个问题,既然我是通过把文件部署到GitHub上来更新我的博客的,那么为什么我不直接在vscode里面直接克隆仓库,在仓库里面直接修改呢</p>
-<p>不然每次都要用git来进行部署,显得多此一举.</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大二下的规划</title>
     <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<p>​	现在是二月十一号,距离考试周只有两天时间了,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔<span id="more"></span>     </p>
@@ -165,6 +137,31 @@
       </categories>
       <tags>
         <tag>闲谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>曼城</title>
+    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
+<span id="more"></span>     
+
+<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
+<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
+<hr>
+<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​	自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
+<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 —–</p>
+<p>​	作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
+<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
+<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
+<p>​	在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
+<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
+<p>​	anyway, once a blue, always blue!!!</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>足球</tag>
       </tags>
   </entry>
   <entry>
@@ -224,6 +221,34 @@
       </tags>
   </entry>
   <entry>
+    <title>我在用hexo搭建个人博客时遇到的问题</title>
+    <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
+    <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
+<span id="more"></span>
+
+<h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p>
+<h2 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h2><p>出的问题在URL上，导致自己的网站无法正常加载出来</p>
+<p>正确的做法见这个：</p>
+<p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p>
+<h2 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h2><p>推荐使用next主题，非常带有简约美</p>
+<p>next的网站配置如下</p>
+<p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p>
+<h1 id="关于我在添加gitalk评论系统时候遇到的bug"><a href="#关于我在添加gitalk评论系统时候遇到的bug" class="headerlink" title="关于我在添加gitalk评论系统时候遇到的bug"></a>关于我在添加gitalk评论系统时候遇到的bug</h1><p>大部分都是 error not found<br>查询了相关博客后发现自己的配置里repo好像弄错了， 但是当时我是配置了两次， 一次是在主题配置文件，一次是在留言板的md文件里，没有找到最根本的问题，于是我直接删掉了md文件里的代码，直接对主题配置文件进行试错，最终实现了评论功能</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我的主题配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">enable: true</span><br><span class="line">github_id: cathylove47</span><br><span class="line">repo: blog_comment # Repository name to store issues</span><br><span class="line">client_id: 96a1eba53da42e58a***</span><br><span class="line">client_secret: 7d22092e071c8c0a6e8a03881dc1b6e83***d4c7 # GitHub Application Client Secret</span><br><span class="line">admin_user: cathylove47 # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line"># When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">language: zh-CN</span><br></pre></td></tr></table></figure>
+<p><strong>最重要的地方是那个repo</strong></p>
+<hr>
+<p>最近在思考一个问题,既然我是通过把文件部署到GitHub上来更新我的博客的,那么为什么我不直接在vscode里面直接克隆仓库,在仓库里面直接修改呢</p>
+<p>不然每次都要用git来进行部署,显得多此一举.</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>科目三的一些注意问题</title>
     <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
@@ -244,31 +269,6 @@
       </categories>
       <tags>
         <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>曼城</title>
-    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
-<span id="more"></span>     
-
-<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
-<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
-<hr>
-<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​	自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
-<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 —–</p>
-<p>​	作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
-<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
-<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
-<p>​	在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
-<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
-<p>​	anyway, once a blue, always blue!!!</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>足球</tag>
       </tags>
   </entry>
   <entry>

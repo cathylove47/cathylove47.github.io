@@ -2725,3 +2725,128 @@ mark.search-keyword {
     padding: 10px 12px;
   }
 }
+body {
+  background: url("https://cdn.pixabay.com/photo/2019/10/29/09/20/summer-4586497_960_720.jpg");
+  height: 100%;
+  width: 100%;
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+blockquote p {
+  font-size: 16px;
+}
+.post-button .btn {
+  color: #555 !important;
+  background-color: #fff;
+  border-radius: 3px;
+  font-size: 15px;
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
+  border: none !important;
+  transition-property: unset;
+  padding: 0px 15px;
+}
+.post-button .btn:hover {
+  color: #fff !important;
+  border-radius: 3px;
+  font-size: 15px;
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.35);
+  background-image: linear-gradient(90deg, #5587ce 0%, #21487a 25%, #3537a5 50%, #21487a 75%, #5587ce 100%);
+}
+a,
+span.exturl {
+  border-bottom: none;
+}
+a:hover,
+span.exturl:hover {
+  color: #ff106c;
+}
+::selection {
+  background: #26a69a;
+  color: #fff;
+  font-weight: 900;
+  font-size: 32px;
+}
+::-moz-selection {
+  background: #26a69a;
+  color: #fff;
+  font-weight: 900;
+  font-size: 32px;
+}
+.headband {
+  display: none;
+}
+::selection {
+  background: #26a69a;
+  color: #fff;
+  font-weight: 900;
+  font-size: 32px;
+}
+::-moz-selection {
+  background: #26a69a;
+  color: #fff;
+  font-weight: 900;
+  font-size: 32px;
+}
+.header .header-inner {
+  background: rgba(255,255,255,0.85);
+  margin-top: 20px;
+  overflow: hidden;
+}
+.main-inner {
+  opacity: 0.9;
+}
+.sidebar {
+  background: rgba(255,255,255,0);
+}
+.sidebar-inner {
+  background: rgba(255,255,255,0.85);
+}
+.site-brand-container {
+  opacity: 0.8;
+}
+.post-block {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.posts-expand .post-meta {
+  margin-bottom: 10px;
+}
+.back-to-top {
+  background: rgba(255,255,255,0);
+}
+.tag-cloud a {
+  box-shadow: 0 1px 3px #5587ce, 0 1px 2px #5587ce;
+  padding: 2px 10px;
+  margin: 8px;
+  background: rgba(193,66,92,0);
+  border-bottom: none;
+  border-radius: 20px;
+}
+.post-block.page {
+  margin-top: 40px;
+}
+.category-list {
+  overflow: auto;
+}
+.category-list li {
+  height: 100%;
+  float: left;
+  border-right: 3px solid #222;
+  padding: 0 20px;
+}
+.category-list li a:hover {
+  color: #000;
+}
+.category-list li.active a {
+  font-weight: bold;
+  color: #000;
+}
+.footer-inner {
+  color: #fff;
+}
