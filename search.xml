@@ -1,344 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>chatgpt的使用</title>
-    <url>/2023/01/26/chatgpt%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<blockquote>
-<p>本文需要具备梯子等相关工具</p>
-</blockquote>
-<h1 id="chatgpt能干什么"><a href="#chatgpt能干什么" class="headerlink" title="chatgpt能干什么"></a>chatgpt能干什么</h1><p>这是我用vscode的中文插件上面问它得到的答案</p>
-<blockquote>
-<p>我可以做很多事情，比如：</p>
-<ol>
-<li>写作：我可以写文章、故事、诗歌、报告等。</li>
-<li>编程：我可以编写网页、移动应用程序和游戏。</li>
-<li>绘画：我可以画画，比如油画、水彩画、漫画等。</li>
-<li>设计：我可以设计网页、标志、海报等。<span id="more"></span> </li>
-<li>语言：我可以学习和教授外语，例如英语、法语、德语等。</li>
-<li>创业：我可以创造新的事物，比如产品、服务、企业等。</li>
-<li>投资：我可以投资股票、基金、外汇等。</li>
-<li>工程：我可以设计和建造大型建筑物、桥梁、港口等。</li>
-<li>技术：我可以编写程序、设计硬件、操作系统等。</li>
-<li>音乐：我可以创作和演奏乐曲，比如古典音乐、流行音乐等。</li>
-</ol>
-</blockquote>
-<h1 id="如何使用chatgpt"><a href="#如何使用chatgpt" class="headerlink" title="如何使用chatgpt"></a>如何使用chatgpt</h1><h2 id="购买账号"><a href="#购买账号" class="headerlink" title="购买账号"></a>购买账号</h2><p>这里有一个插件作者提供的链接，价格为五元，鉴于自己注册的繁琐，可以买一个直接用</p>
-<p><a href="https://pay.sbaliyun.com/#/1/detail">购买链接</a></p>
-<h2 id="登录网站"><a href="#登录网站" class="headerlink" title="登录网站"></a>登录网站</h2><p><strong>官方网站为</strong></p>
-<p><a href="https://beta.openai.com/login/">OpenAI API</a></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>如果显示网站不支持这个国家，那么就是自己的vpn不对，我建议你连接日本的服务器</p>
-<h2 id="关于一些插件"><a href="#关于一些插件" class="headerlink" title="关于一些插件"></a>关于一些插件</h2><p>我用的插件有三个</p>
-<table>
-<thead>
-<tr>
-<th>ChatGPT Chrome Extension</th>
-<th>ChatGPT for Google</th>
-<th>ChatGPT中文版</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>可以直接在浏览器中打开交流（需要梯子）</td>
-<td>搜索引擎结果中同时显示ChatGPT的回答（需要梯子）</td>
-<td>写代码时候最佳</td>
-</tr>
-</tbody></table>
-<p>其中第一个和第二个都是谷歌chorme自带的插件，搜索下载即可</p>
-<hr>
-<p>第三个插件是内置在VS里面的，使用的时候需要参考作者写的文档，其中需要用到API</p>
-<p><a href="https://beta.openai.com/account/api-keys">API获取网站</a></p>
-<h2 id="实在不会直接用淘宝客服解决问题！"><a href="#实在不会直接用淘宝客服解决问题！" class="headerlink" title="实在不会直接用淘宝客服解决问题！"></a>实在不会直接用淘宝客服解决问题！</h2><h2 id="考前更新"><a href="#考前更新" class="headerlink" title="考前更新"></a>考前更新</h2><p>真是吐了，chatgpt大概一月二十多号就火遍全球了，大陆消息闭塞肯定不知道，毕竟是美丽国的技术不是自家的技术肯定不会对民众宣传。</p>
-<p>但是这次不一样，等到全球火完之后，中国短视频平台不约而同地开始宣传chatgpt，弄得好像这个技术就在刚刚才发布一样，许多企业也开始</p>
-<p>进入到这个赛道，对于我来说，真正想掌握一门技术就得自己不断地去关注，而不是等别人发视频来告诉你，不要等全球都知道了之后，才知道</p>
-<p>这门技术！</p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>ODE</title>
+      <link href="/2023/02/12/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/"/>
+      <url>/2023/02/12/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.<br>$$<br>x&#x3D;c_1(t)cost+c_2(t)sint<br>$$<br>然后再列出两个方程求解即可.</p><h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     <h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p><img src="C:\Users\真开心的凯鑫\AppData\Roaming\Typora\typora-user-images\image-20230212150834736.png" alt="image-20230212150834736" style="zoom: 80%;" /><p>如果存在<strong>复根,<strong>那么需要用到</strong>欧拉公式</strong></p><img src="C:\Users\真开心的凯鑫\AppData\Roaming\Typora\typora-user-images\image-20230212151026091.png" alt="image-20230212151026091" style="zoom:80%;" /><h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p><p><img src="C:\Users\真开心的凯鑫\AppData\Roaming\Typora\typora-user-images\image-20230212152026853.png" alt="image-20230212152026853"></p><h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>]]></content>
+      
+      
       <categories>
-        <category>技术</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>chatgpt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>latex学习</title>
-    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p> latex使用感悟</p>
-<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
-<span id="more"></span>     
-
-<p>每次都要重新设置标题，标签啥的，就很烦。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 闲谈 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>大二下的规划</title>
+      <link href="/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/"/>
+      <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
+      
+        <content type="html"><![CDATA[<p>​现在是二月十一号,距离考试周只有两天时间了,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔<span id="more"></span>     </p><p>​至于大二下的规划嘛,这倒是一个问题,这个学期好像有四五月的校赛选拔,到时候得认认真真做并且参加国赛培训.然后就是自己的编程技术,之前我像是一个在csdn的井底之蛙一样,没有认真系统地学习这一门工程,代码是要自己去慢慢体会与敲击的.正好这个学期有这样一门Cpp的课,自己得好好把握,做的出彩!</p><p>​在足球方面,自己要克制出勤的次数,很多时候是没必要组局去的,能去踢就去踢,以锻炼为主,这个学期也买了公路车,能骑行就直接去骑呀!</p><p>​在生活方面,最为重要的就是减重增肌,虽然具体我不知道怎么去做,但一定要多出去运动,多看看武汉的风光.其次,不要一直想着去谈对象,你已经有过这样的经历了,没必要为了满足自己的虚荣心而鬼鬼祟祟,认认真真爱自己就够了.</p><p>​最后,希望自己在新的一年里学业进步,身体健康,家人朋友万事如意!</p>]]></content>
+      
+      
       <categories>
-        <category>技术</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>latex技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo自带的使用文档</title>
-    <url>/2023/01/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>     
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 闲谈 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>chatgpt的使用</title>
+      <link href="/2023/01/26/chatgpt%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2023/01/26/chatgpt%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文需要具备梯子等相关工具</p></blockquote><h1 id="chatgpt能干什么"><a href="#chatgpt能干什么" class="headerlink" title="chatgpt能干什么"></a>chatgpt能干什么</h1><p>这是我用vscode的中文插件上面问它得到的答案</p><blockquote><p>我可以做很多事情，比如：</p><ol><li>写作：我可以写文章、故事、诗歌、报告等。</li><li>编程：我可以编写网页、移动应用程序和游戏。</li><li>绘画：我可以画画，比如油画、水彩画、漫画等。</li><li>设计：我可以设计网页、标志、海报等。<span id="more"></span> </li><li>语言：我可以学习和教授外语，例如英语、法语、德语等。</li><li>创业：我可以创造新的事物，比如产品、服务、企业等。</li><li>投资：我可以投资股票、基金、外汇等。</li><li>工程：我可以设计和建造大型建筑物、桥梁、港口等。</li><li>技术：我可以编写程序、设计硬件、操作系统等。</li><li>音乐：我可以创作和演奏乐曲，比如古典音乐、流行音乐等。</li></ol></blockquote><h1 id="如何使用chatgpt"><a href="#如何使用chatgpt" class="headerlink" title="如何使用chatgpt"></a>如何使用chatgpt</h1><h2 id="购买账号"><a href="#购买账号" class="headerlink" title="购买账号"></a>购买账号</h2><p>这里有一个插件作者提供的链接，价格为五元，鉴于自己注册的繁琐，可以买一个直接用</p><p><a href="https://pay.sbaliyun.com/#/1/detail">购买链接</a></p><h2 id="登录网站"><a href="#登录网站" class="headerlink" title="登录网站"></a>登录网站</h2><p><strong>官方网站为</strong></p><p><a href="https://beta.openai.com/login/">OpenAI API</a></p><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>如果显示网站不支持这个国家，那么就是自己的vpn不对，我建议你连接日本的服务器</p><h2 id="关于一些插件"><a href="#关于一些插件" class="headerlink" title="关于一些插件"></a>关于一些插件</h2><p>我用的插件有三个</p><table><thead><tr><th>ChatGPT Chrome Extension</th><th>ChatGPT for Google</th><th>ChatGPT中文版</th></tr></thead><tbody><tr><td>可以直接在浏览器中打开交流（需要梯子）</td><td>搜索引擎结果中同时显示ChatGPT的回答（需要梯子）</td><td>写代码时候最佳</td></tr></tbody></table><p>其中第一个和第二个都是谷歌chorme自带的插件，搜索下载即可</p><hr><p>第三个插件是内置在VS里面的，使用的时候需要参考作者写的文档，其中需要用到API</p><p><a href="https://beta.openai.com/account/api-keys">API获取网站</a></p><h2 id="实在不会直接用淘宝客服解决问题！"><a href="#实在不会直接用淘宝客服解决问题！" class="headerlink" title="实在不会直接用淘宝客服解决问题！"></a>实在不会直接用淘宝客服解决问题！</h2><h2 id="考前更新"><a href="#考前更新" class="headerlink" title="考前更新"></a>考前更新</h2><p>真是吐了，chatgpt大概一月二十多号就火遍全球了，大陆消息闭塞肯定不知道，毕竟是美丽国的技术不是自家的技术肯定不会对民众宣传。</p><p>但是这次不一样，等到全球火完之后，中国短视频平台不约而同地开始宣传chatgpt，弄得好像这个技术就在刚刚才发布一样，许多企业也开始</p><p>进入到这个赛道，对于我来说，真正想掌握一门技术就得自己不断地去关注，而不是等别人发视频来告诉你，不要等全球都知道了之后，才知道</p><p>这门技术！</p>]]></content>
+      
+      
       <categories>
-        <category>技术</category>
+          
+          <category> 技术 </category>
+          
       </categories>
-      <tags>
-        <tag>hexo技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大二下的规划</title>
-    <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
-    <content><![CDATA[<p>​	现在是二月十一号,距离考试周只有两天时间了,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔.</p>
-<p>​	至于大二下的规划嘛,这倒是一个问题,这个学期好像有四五月的校赛选拔,到时候得认认真真做并且参加国赛培训.然后就是自己的编程技术,之前我像是一个在csdn的井底之蛙一样,没有认真系统地学习这一门工程,代码是要自己去慢慢体会与敲击的.正好这个学期有这样一门Cpp的课,自己得好好把握,做的出彩!</p>
-<p>​	在足球方面,自己要克制出勤的次数,很多时候是没必要组局去的,能去踢就去踢,以锻炼为主,这个学期也买了公路车,能骑行就直接去骑呀!</p>
-<p>​	在生活方面,最为重要的就是减重增肌,虽然具体我不知道怎么去做,但一定要多出去运动,多看看武汉的风光.其次,不要一直想着去谈对象,你已经有过这样的经历了,没必要为了满足自己的虚荣心而鬼鬼祟祟,认认真真爱自己就够了.</p>
-<p>​	最后,希望自己在新的一年里学业进步,身体健康,家人朋友万事如意!</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> chatgpt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>曼城</title>
+      <link href="/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/"/>
+      <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p><span id="more"></span>     <h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p><h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p><hr><h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p><p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 —–</p><p>​作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p><p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p><p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p><p>​在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p><p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p><p>​anyway, once a blue, always blue!!!</p>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>闲谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/02/12/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.<br>$$<br>x&#x3D;c_1(t)cost+c_2(t)sint<br>$$<br>然后再列出两个方程求解即可.</p>
-<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
-<img src="C:\Users\真开心的凯鑫\AppData\Roaming\Typora\typora-user-images\image-20230212150834736.png" alt="image-20230212150834736" style="zoom: 80%;" />
-
-<p>如果存在<strong>复根,<strong>那么需要用到</strong>欧拉公式</strong></p>
-<img src="C:\Users\真开心的凯鑫\AppData\Roaming\Typora\typora-user-images\image-20230212151026091.png" alt="image-20230212151026091" style="zoom:80%;" />
-
-<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
-<p><img src="C:\Users\真开心的凯鑫\AppData\Roaming\Typora\typora-user-images\image-20230212152026853.png" alt="image-20230212152026853"></p>
-<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>数据结构与算法</title>
-    <url>/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="数据结构与算法B"><a href="#数据结构与算法B" class="headerlink" title="数据结构与算法B"></a>数据结构与算法B</h1><h1 id="一些概念性的东西"><a href="#一些概念性的东西" class="headerlink" title="一些概念性的东西"></a>一些概念性的东西</h1><p>算法的五个重要特性和4个基本标准<br>一个算法必须满足5大特性：<br>1、有穷性：一个算法必须执行有穷步后结束、<br>2、确定性：对于每种情况下所应执行的操作，在算法中都应该有确切的规定，不会产生二义性，使得算法的执行者和阅读者都能明确其含义以及如何执行。<br>3、可行性：算法中的所有操作都可以通过已经实现的基本操作运算执行有限次来实现<span id="more"></span><br>4、输入：一个算法应该有0个、一个或多个输入。<br>5、输出：一个算法应该有一个或多个输出。</p>
-<p>评价算法的优劣应该从以下几个方面：<br>1、正确性：你的算法一定是正确的。<br>2、可读性：你的算法一定易于让别人读懂<br>3、健壮性：对于非法输入，你的算法一定可以做出判断做出争取的处理，比如打印出：“您的输入非法”等。<br>4、高效性：你的算法要尽可能的跑的快，占用的空间小。</p>
-<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="顺序表的典型例题"><a href="#顺序表的典型例题" class="headerlink" title="顺序表的典型例题"></a>顺序表的典型例题</h3><h4 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h4><p>已知长度为n的线性表L采用顺序存储结构<br>设计一个算法删除线性表中所有值为x的数据元素<br>要求时间复杂度为O(n),空间复杂度为O(1)</p>
-<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>有两种错误的方法：</p>
-<ol>
-<li>借助一个新的顺序表存储需要的元素</li>
-<li>每当删除一个元素后所有元素前移</li>
-</ol>
-<p>有两种正确的方法：</p>
-<ul>
-<li>重建法</li>
-<li>前移法</li>
-</ul>
-<h6 id="重建法"><a href="#重建法" class="headerlink" title="重建法"></a>重建法</h6><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (L-&gt;data[i] !=  x)</span><br><span class="line"> L-&gt;data[k]=L-&gt;data[i]</span><br></pre></td></tr></table></figure>
-<p> 相当于一个一个对比，如果符合要求就拉入重建的表中，重点在于K的运用</p>
-<blockquote>
-<p>k++</p>
-</blockquote>
-<h6 id="前移法"><a href="#前移法" class="headerlink" title="前移法"></a>前移法</h6><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>  (L-&gt;data[i] = x)</span><br><span class="line">	k++;</span><br><span class="line">	data[i-k]=data[i]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="快速排序中用到的左右分边的算法"><a href="#快速排序中用到的左右分边的算法" class="headerlink" title="快速排序中用到的左右分边的算法"></a>快速排序中用到的左右分边的算法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="comment">// 以 nums[left] 作为基准数</span></span><br><span class="line">    <span class="type">int</span> i = left, j = right;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt;= nums[left])</span><br><span class="line">            j--;          <span class="comment">// 从右向左找首个小于基准数的元素</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[left])</span><br><span class="line">            i++;          <span class="comment">// 从左向右找首个大于基准数的元素</span></span><br><span class="line">        swap(nums, i, j); <span class="comment">// 交换这两个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i, left);  <span class="comment">// 将基准数交换至两子数组的分界线</span></span><br><span class="line">    <span class="keyword">return</span> i;             <span class="comment">// 返回基准数的索引</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="单链表的典型例题"><a href="#单链表的典型例题" class="headerlink" title="单链表的典型例题"></a>单链表的典型例题</h3><h4 id="头插法与尾插法"><a href="#头插法与尾插法" class="headerlink" title="头插法与尾插法"></a>头插法与尾插法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">#头插法</span><br><span class="line">s-&gt;next=L-&gt;next;</span><br><span class="line">L-&gt;next=s;</span><br><span class="line">#尾插法</span><br><span class="line">r=L;</span><br><span class="line">r-&gt;next=s;</span><br><span class="line">r=s</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="例题1-1"><a href="#例题1-1" class="headerlink" title="例题1"></a>例题1</h4><p>写一高效算法，删除值大于mink，小于maxk的元素</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">delete</span><span class="params">(Linknode*&amp;L,<span class="type">int</span> mink, <span class="type">int</span> maxk)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&lt;=mink) 			<span class="comment">//寻找mink所在的指针</span></span><br><span class="line">   &#123;pre=p;p=p-&gt;next&#125;     			<span class="comment">//这里的pre就是了</span></span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&gt;=maxk)    		<span class="comment">//寻找maxk所在的指针</span></span><br><span class="line">   &#123;p=p-&gt;next&#125;</span><br><span class="line">	q=pre-&gt;next;</span><br><span class="line">    pre-&gt;next=p;					<span class="comment">//q指向mink，p指向maxk</span></span><br><span class="line">   <span class="keyword">while</span>(p!=q)</span><br><span class="line">   &#123;</span><br><span class="line">       s=q-&gt;next;</span><br><span class="line">       <span class="built_in">free</span>(q);</span><br><span class="line">       q=s;</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h4><p>设计一个算法将一个线性表L分为两个表L1和L2,其中L2是倒置的</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(LinkNode*&amp;L)</span></span><br><span class="line">&#123;</span><br><span class="line">    L1=L;	<span class="comment">//L1利用原来L的头结点</span></span><br><span class="line">    rl=L1;	<span class="comment">//rl始终指向L的尾结点</span></span><br><span class="line">    p=L-&gt;next;	<span class="comment">//p指向第一个数据结点</span></span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        rl-&gt;next=p;</span><br><span class="line">        rl=p;				<span class="comment">//尾插法将P插入到L1中</span></span><br><span class="line">        p=p-&gt;next;			</span><br><span class="line">        q=p-&gt;next;			<span class="comment">//用q保存p的后继结点</span></span><br><span class="line">        p-&gt;next=L2-&gt;next;</span><br><span class="line">        L2-&gt;next=p;			<span class="comment">//头插法将p插入到L2中</span></span><br><span class="line">        p=q;				<span class="comment">//重新进入下一轮</span></span><br><span class="line">    &#125;</span><br><span class="line">    rl-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><p>求二叉树第K层的叶子结点树的算法额</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">count</span><span class="params">(BTNode *&amp;b, <span class="type">int</span> k, <span class="type">int</span> h)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num1, num2, num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(h==k&amp;&amp;b-&gt;lchild==<span class="literal">NULL</span>&amp;&amp;b-&gt;rchild==<span class="literal">NULL</span>)<span class="comment">//是否为叶子结点</span></span><br><span class="line">        &#123;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        num1=count(b-&gt;lchild, k, h=h+<span class="number">1</span>)</span><br><span class="line">        num2=count(b-&gt;rchild, k ,h=h+<span class="number">1</span>)</span><br><span class="line">        num=num1+num2+num</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p><code>广度优先遍历用到的是栈，类似于先序遍历</code></p>
-<p><code>深度优先遍历用到的是队列，类似于层次遍历</code></p>
-<p>😊😊</p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h4 id="哈希查找"><a href="#哈希查找" class="headerlink" title="哈希查找"></a>哈希查找</h4><p>哈希表冲突的处理办法一般是线性探测法</p>
-<p>查找成功的平均查找长度往往就是考察这个.</p>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 足球 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据结构与算法</title>
+      <link href="/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <url>/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据结构与算法B"><a href="#数据结构与算法B" class="headerlink" title="数据结构与算法B"></a>数据结构与算法B</h1><h1 id="一些概念性的东西"><a href="#一些概念性的东西" class="headerlink" title="一些概念性的东西"></a>一些概念性的东西</h1><p>算法的五个重要特性和4个基本标准<br>一个算法必须满足5大特性：<br>1、有穷性：一个算法必须执行有穷步后结束、<br>2、确定性：对于每种情况下所应执行的操作，在算法中都应该有确切的规定，不会产生二义性，使得算法的执行者和阅读者都能明确其含义以及如何执行。<br>3、可行性：算法中的所有操作都可以通过已经实现的基本操作运算执行有限次来实现<span id="more"></span><br>4、输入：一个算法应该有0个、一个或多个输入。<br>5、输出：一个算法应该有一个或多个输出。</p><p>评价算法的优劣应该从以下几个方面：<br>1、正确性：你的算法一定是正确的。<br>2、可读性：你的算法一定易于让别人读懂<br>3、健壮性：对于非法输入，你的算法一定可以做出判断做出争取的处理，比如打印出：“您的输入非法”等。<br>4、高效性：你的算法要尽可能的跑的快，占用的空间小。</p><h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="顺序表的典型例题"><a href="#顺序表的典型例题" class="headerlink" title="顺序表的典型例题"></a>顺序表的典型例题</h3><h4 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h4><p>已知长度为n的线性表L采用顺序存储结构<br>设计一个算法删除线性表中所有值为x的数据元素<br>要求时间复杂度为O(n),空间复杂度为O(1)</p><h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>有两种错误的方法：</p><ol><li>借助一个新的顺序表存储需要的元素</li><li>每当删除一个元素后所有元素前移</li></ol><p>有两种正确的方法：</p><ul><li>重建法</li><li>前移法</li></ul><h6 id="重建法"><a href="#重建法" class="headerlink" title="重建法"></a>重建法</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (L-&gt;data[i] !=  x)</span><br><span class="line"> L-&gt;data[k]=L-&gt;data[i]</span><br></pre></td></tr></table></figure><p> 相当于一个一个对比，如果符合要求就拉入重建的表中，重点在于K的运用</p><blockquote><p>k++</p></blockquote><h6 id="前移法"><a href="#前移法" class="headerlink" title="前移法"></a>前移法</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>  (L-&gt;data[i] = x)</span><br><span class="line">k++;</span><br><span class="line">data[i-k]=data[i]</span><br><span class="line"></span><br></pre></td></tr></table></figure><h4 id="快速排序中用到的左右分边的算法"><a href="#快速排序中用到的左右分边的算法" class="headerlink" title="快速排序中用到的左右分边的算法"></a>快速排序中用到的左右分边的算法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="comment">// 以 nums[left] 作为基准数</span></span><br><span class="line">    <span class="type">int</span> i = left, j = right;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt;= nums[left])</span><br><span class="line">            j--;          <span class="comment">// 从右向左找首个小于基准数的元素</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[left])</span><br><span class="line">            i++;          <span class="comment">// 从左向右找首个大于基准数的元素</span></span><br><span class="line">        swap(nums, i, j); <span class="comment">// 交换这两个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i, left);  <span class="comment">// 将基准数交换至两子数组的分界线</span></span><br><span class="line">    <span class="keyword">return</span> i;             <span class="comment">// 返回基准数的索引</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="单链表的典型例题"><a href="#单链表的典型例题" class="headerlink" title="单链表的典型例题"></a>单链表的典型例题</h3><h4 id="头插法与尾插法"><a href="#头插法与尾插法" class="headerlink" title="头插法与尾插法"></a>头插法与尾插法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#头插法</span><br><span class="line">s-&gt;next=L-&gt;next;</span><br><span class="line">L-&gt;next=s;</span><br><span class="line">#尾插法</span><br><span class="line">r=L;</span><br><span class="line">r-&gt;next=s;</span><br><span class="line">r=s</span><br></pre></td></tr></table></figure><h4 id="例题1-1"><a href="#例题1-1" class="headerlink" title="例题1"></a>例题1</h4><p>写一高效算法，删除值大于mink，小于maxk的元素</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">delete</span><span class="params">(Linknode*&amp;L,<span class="type">int</span> mink, <span class="type">int</span> maxk)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&lt;=mink) <span class="comment">//寻找mink所在的指针</span></span><br><span class="line">   &#123;pre=p;p=p-&gt;next&#125;     <span class="comment">//这里的pre就是了</span></span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&gt;=maxk)    <span class="comment">//寻找maxk所在的指针</span></span><br><span class="line">   &#123;p=p-&gt;next&#125;</span><br><span class="line">q=pre-&gt;next;</span><br><span class="line">    pre-&gt;next=p;<span class="comment">//q指向mink，p指向maxk</span></span><br><span class="line">   <span class="keyword">while</span>(p!=q)</span><br><span class="line">   &#123;</span><br><span class="line">       s=q-&gt;next;</span><br><span class="line">       <span class="built_in">free</span>(q);</span><br><span class="line">       q=s;</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h4><p>设计一个算法将一个线性表L分为两个表L1和L2,其中L2是倒置的</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(LinkNode*&amp;L)</span></span><br><span class="line">&#123;</span><br><span class="line">    L1=L;<span class="comment">//L1利用原来L的头结点</span></span><br><span class="line">    rl=L1;<span class="comment">//rl始终指向L的尾结点</span></span><br><span class="line">    p=L-&gt;next;<span class="comment">//p指向第一个数据结点</span></span><br><span class="line"><span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        rl-&gt;next=p;</span><br><span class="line">        rl=p;<span class="comment">//尾插法将P插入到L1中</span></span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">        q=p-&gt;next;<span class="comment">//用q保存p的后继结点</span></span><br><span class="line">        p-&gt;next=L2-&gt;next;</span><br><span class="line">        L2-&gt;next=p;<span class="comment">//头插法将p插入到L2中</span></span><br><span class="line">        p=q;<span class="comment">//重新进入下一轮</span></span><br><span class="line">    &#125;</span><br><span class="line">    rl-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><p>求二叉树第K层的叶子结点树的算法额</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">count</span><span class="params">(BTNode *&amp;b, <span class="type">int</span> k, <span class="type">int</span> h)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num1, num2, num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(h==k&amp;&amp;b-&gt;lchild==<span class="literal">NULL</span>&amp;&amp;b-&gt;rchild==<span class="literal">NULL</span>)<span class="comment">//是否为叶子结点</span></span><br><span class="line">        &#123;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        num1=count(b-&gt;lchild, k, h=h+<span class="number">1</span>)</span><br><span class="line">        num2=count(b-&gt;rchild, k ,h=h+<span class="number">1</span>)</span><br><span class="line">        num=num1+num2+num</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p><code>广度优先遍历用到的是栈，类似于先序遍历</code></p><p><code>深度优先遍历用到的是队列，类似于层次遍历</code></p><p>😊😊</p><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h4 id="哈希查找"><a href="#哈希查找" class="headerlink" title="哈希查找"></a>哈希查找</h4><p>哈希表冲突的处理办法一般是线性探测法</p><p>查找成功的平均查找长度往往就是考察这个.</p><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2>]]></content>
+      
+      
       <categories>
-        <category>技术</category>
+          
+          <category> 技术 </category>
+          
       </categories>
-      <tags>
-        <tag>数据结构与算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>科目三的一些注意问题</title>
-    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
-<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
-<p>是的 生活很美好。</p>
-<span id="more"></span>
-<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
-<ol>
-<li>系好安全带</li>
-<li>档位与灯光是否正确位置</li>
-<li>转向灯以及一档起步</li>
-</ol>
-<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
-<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 数据结构与算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>考试安排</title>
+      <link href="/2023/01/11/%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/"/>
+      <url>/2023/01/11/%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2023第一学期考试安排"><a href="#2023第一学期考试安排" class="headerlink" title="2023第一学期考试安排"></a>2023第一学期考试安排</h1><p>祝愿考试顺利！</p><h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><p>2月13日 （19点）</p><span id="more"></span>     <h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><p>2月14日 （14点半）</p><h2 id="常微分"><a href="#常微分" class="headerlink" title="常微分"></a>常微分</h2><p>2月14日（19点）</p><h2 id="马原"><a href="#马原" class="headerlink" title="马原"></a>马原</h2><p>2月15日 （8.30）</p><h2 id="大物"><a href="#大物" class="headerlink" title="大物"></a>大物</h2><p>2月18日    （8.30-10.30）</p><h2 id="高等代数"><a href="#高等代数" class="headerlink" title="高等代数"></a>高等代数</h2><p>2月18日 （19点）</p><h2 id="数学分析"><a href="#数学分析" class="headerlink" title="数学分析"></a>数学分析</h2><p>2月20日（19.00-21.00）</p><blockquote><p>复习了不一定能考好，但是不复习一定考不好，加油</p></blockquote>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我在用hexo搭建个人博客时遇到的问题</title>
-    <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
-    <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
-<span id="more"></span>
-
-<h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p>
-<h2 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h2><p>出的问题在URL上，导致自己的网站无法正常加载出来</p>
-<p>正确的做法见这个：</p>
-<p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p>
-<h2 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h2><p>推荐使用next主题，非常带有简约美</p>
-<p>next的网站配置如下</p>
-<p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p>
-<h1 id="关于我在添加gitalk评论系统时候遇到的bug"><a href="#关于我在添加gitalk评论系统时候遇到的bug" class="headerlink" title="关于我在添加gitalk评论系统时候遇到的bug"></a>关于我在添加gitalk评论系统时候遇到的bug</h1><p>大部分都是 error not found<br>查询了相关博客后发现自己的配置里repo好像弄错了， 但是当时我是配置了两次， 一次是在主题配置文件，一次是在留言板的md文件里，没有找到最根本的问题，于是我直接删掉了md文件里的代码，直接对主题配置文件进行试错，最终实现了评论功能</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我的主题配置如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">enable: true</span><br><span class="line">github_id: cathylove47</span><br><span class="line">repo: blog_comment # Repository name to store issues</span><br><span class="line">client_id: 96a1eba53da42e58a***</span><br><span class="line">client_secret: 7d22092e071c8c0a6e8a03881dc1b6e83***d4c7 # GitHub Application Client Secret</span><br><span class="line">admin_user: cathylove47 # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line"># When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">language: zh-CN</span><br></pre></td></tr></table></figure>
-<p><strong>最重要的地方是那个repo</strong></p>
-<hr>
-<p>最近在思考一个问题,既然我是通过把文件部署到GitHub上来更新我的博客的,那么为什么我不直接在vscode里面直接克隆仓库,在仓库里面直接修改呢</p>
-<p>不然每次都要用git来进行部署,显得多此一举.</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 考试安排 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我在用hexo搭建个人博客时遇到的问题</title>
+      <link href="/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/"/>
+      <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
+      
+        <content type="html"><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p><span id="more"></span><h1 id="关于最初的博客网站创建"><a href="#关于最初的博客网站创建" class="headerlink" title="关于最初的博客网站创建"></a>关于最初的博客网站创建</h1><h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p><a href="https://blog.csdn.net/weixin_45019350/article/details/121901433">(221条消息) Hexo-零基础搭建个人博客(详解)_〆清峰ㄟ的博客-CSDN博客_hexo</a></p><h2 id="部署在github上时无法加载"><a href="#部署在github上时无法加载" class="headerlink" title="部署在github上时无法加载"></a>部署在github上时无法加载</h2><p>出的问题在URL上，导致自己的网站无法正常加载出来</p><p>正确的做法见这个：</p><p><a href="https://blog.csdn.net/m0_60930579/article/details/126312041">(221条消息) 使用Hexo部署静态网站或博客到github(gitee)时css或js样式无法显示的问题原因以及解决方案_DoublePeach-的博客-CSDN博客_hexo s没有css样式</a></p><h2 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h2><p>推荐使用next主题，非常带有简约美</p><p>next的网站配置如下</p><p><a href="https://blog.csdn.net/Bennnnnnn/article/details/128000842">(221条消息) Hexo-Next主题搭建个人博客最新配置教程！_Bennnnnnn的博客-CSDN博客</a></p><h1 id="关于我在添加gitalk评论系统时候遇到的bug"><a href="#关于我在添加gitalk评论系统时候遇到的bug" class="headerlink" title="关于我在添加gitalk评论系统时候遇到的bug"></a>关于我在添加gitalk评论系统时候遇到的bug</h1><p>大部分都是 error not found<br>查询了相关博客后发现自己的配置里repo好像弄错了， 但是当时我是配置了两次， 一次是在主题配置文件，一次是在留言板的md文件里，没有找到最根本的问题，于是我直接删掉了md文件里的代码，直接对主题配置文件进行试错，最终实现了评论功能</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我的主题配置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">enable: true</span><br><span class="line">github_id: cathylove47</span><br><span class="line">repo: blog_comment # Repository name to store issues</span><br><span class="line">client_id: 96a1eba53da42e58a***</span><br><span class="line">client_secret: 7d22092e071c8c0a6e8a03881dc1b6e83***d4c7 # GitHub Application Client Secret</span><br><span class="line">admin_user: cathylove47 # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line"># When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line"># Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">language: zh-CN</span><br></pre></td></tr></table></figure><p><strong>最重要的地方是那个repo</strong></p><hr><p>最近在思考一个问题,既然我是通过把文件部署到GitHub上来更新我的博客的,那么为什么我不直接在vscode里面直接克隆仓库,在仓库里面直接修改呢</p><p>不然每次都要用git来进行部署,显得多此一举.</p>]]></content>
+      
+      
       <categories>
-        <category>技术</category>
+          
+          <category> 技术 </category>
+          
       </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>曼城</title>
-    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
-<span id="more"></span>     
-
-<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
-<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
-<hr>
-<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​	自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
-<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 —–</p>
-<p>​	作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
-<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
-<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
-<p>​	在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
-<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
-<p>​	anyway, once a blue, always blue!!!</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 博客搭建 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>学车</title>
+      <link href="/2023/01/10/%E7%A7%91%E7%9B%AE%E4%B8%89%E8%80%83%E8%AF%95%E6%B5%81%E7%A8%8B/"/>
+      <url>/2023/01/10/%E7%A7%91%E7%9B%AE%E4%B8%89%E8%80%83%E8%AF%95%E6%B5%81%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="科目三"><a href="#科目三" class="headerlink" title="科目三"></a>科目三<span id="more"></span></h2><h3 id="上车准备："><a href="#上车准备：" class="headerlink" title="上车准备："></a>上车准备：</h3><ol><li><p>交身份证</p></li><li><p>下车触摸感应器</p></li><li><p>上车后检查灯光等</p></li><li><p>点火</p></li></ol><h3 id="模拟灯光"><a href="#模拟灯光" class="headerlink" title="模拟灯光"></a>模拟灯光</h3><p>等语音说完再去操作 本质是白给</p><h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>左转向-挂1挡-松手刹-50m内加速二档</p><h3 id="直线行驶"><a href="#直线行驶" class="headerlink" title="直线行驶"></a>直线行驶</h3><p>直接一脚油门到35码</p><h3 id="路口右转"><a href="#路口右转" class="headerlink" title="路口右转"></a>路口右转</h3><ol><li><p>开启转向灯</p></li><li><p>踩刹车减速</p></li><li><p>过了斑马线才能动方向盘</p></li></ol><h3 id="公交车站"><a href="#公交车站" class="headerlink" title="公交车站"></a>公交车站</h3><ol><li><p>没有语音播报</p></li><li><p>踩点刹</p></li></ol><h3 id="前方会车"><a href="#前方会车" class="headerlink" title="前方会车"></a>前方会车</h3><p>踩点刹</p><h3 id="前方直行通过路口"><a href="#前方直行通过路口" class="headerlink" title="前方直行通过路口"></a>前方直行通过路口</h3><p>踩点刹</p><h3 id="人行横道"><a href="#人行横道" class="headerlink" title="人行横道"></a>人行横道</h3><p>踩点刹</p><h3 id="加减档"><a href="#加减档" class="headerlink" title="加减档"></a>加减档</h3><p>45码跑6秒</p><h3 id="调头"><a href="#调头" class="headerlink" title="调头"></a>调头</h3><p>左转向-踩刹车-别压线</p><h3 id="变换车道"><a href="#变换车道" class="headerlink" title="变换车道"></a>变换车道</h3><p>开启转向灯后等3s</p><h3 id="路口左转"><a href="#路口左转" class="headerlink" title="路口左转"></a>路口左转</h3><p>开灯-减速</p><h3 id="学校区域"><a href="#学校区域" class="headerlink" title="学校区域"></a>学校区域</h3><p>20码过去 踩个点刹</p><h3 id="超车"><a href="#超车" class="headerlink" title="超车"></a>超车</h3><p>等3s</p><h3 id="靠边停车"><a href="#靠边停车" class="headerlink" title="靠边停车"></a>靠边停车</h3><p>右转向灯-减速踩离合-30cm 关闭转向-空挡-手刹-熄火-确认安全-解安全带-下车</p><h2 id="从新化往返大熊山心得"><a href="#从新化往返大熊山心得" class="headerlink" title="从新化往返大熊山心得"></a>从新化往返大熊山心得</h2><p>总共开了两百公里左右，从第一次轻踩油门保持三十码被后面的车疯狂超车到最后可以保持五十码稳定行驶，不得不感慨‘无它，但手熟尔！’<br><strong>三个问题</strong></p><ol><li>就是当其他车突然从岔路口冲出时，自己喜欢先动方向盘再刹车，这是极其不靠谱的，因为你这样方便了别人（因为是你让出了自己的道路行使权），自己面临被后面车与前面的车包夹的局势，最简单的办法就是减速但是不变道，撞了也是他的全责</li><li>弯道不能把别人路给占了，可以减速慢行，但是弯路实在太多了如果太慢把别人都堵在后面也不好</li><li>把别人水泥盖子压下去了，自己的轮胎也陷了进去，多亏动力足爬了出来，属于是难蚌，特地花了两百块钱的红包才解决这个问题。</li></ol>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>足球</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学车</title>
-    <url>/2023/01/10/%E7%A7%91%E7%9B%AE%E4%B8%89%E8%80%83%E8%AF%95%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="科目三"><a href="#科目三" class="headerlink" title="科目三"></a>科目三<span id="more"></span></h2><h3 id="上车准备："><a href="#上车准备：" class="headerlink" title="上车准备："></a>上车准备：</h3><ol>
-<li><p>交身份证</p>
-</li>
-<li><p>下车触摸感应器</p>
-</li>
-<li><p>上车后检查灯光等</p>
-</li>
-<li><p>点火</p>
-</li>
-</ol>
-<h3 id="模拟灯光"><a href="#模拟灯光" class="headerlink" title="模拟灯光"></a>模拟灯光</h3><p>等语音说完再去操作 本质是白给</p>
-<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><p>左转向-挂1挡-松手刹-50m内加速二档</p>
-<h3 id="直线行驶"><a href="#直线行驶" class="headerlink" title="直线行驶"></a>直线行驶</h3><p>直接一脚油门到35码</p>
-<h3 id="路口右转"><a href="#路口右转" class="headerlink" title="路口右转"></a>路口右转</h3><ol>
-<li><p>开启转向灯</p>
-</li>
-<li><p>踩刹车减速</p>
-</li>
-<li><p>过了斑马线才能动方向盘</p>
-</li>
-</ol>
-<h3 id="公交车站"><a href="#公交车站" class="headerlink" title="公交车站"></a>公交车站</h3><ol>
-<li><p>没有语音播报</p>
-</li>
-<li><p>踩点刹</p>
-</li>
-</ol>
-<h3 id="前方会车"><a href="#前方会车" class="headerlink" title="前方会车"></a>前方会车</h3><p>踩点刹</p>
-<h3 id="前方直行通过路口"><a href="#前方直行通过路口" class="headerlink" title="前方直行通过路口"></a>前方直行通过路口</h3><p>踩点刹</p>
-<h3 id="人行横道"><a href="#人行横道" class="headerlink" title="人行横道"></a>人行横道</h3><p>踩点刹</p>
-<h3 id="加减档"><a href="#加减档" class="headerlink" title="加减档"></a>加减档</h3><p>45码跑6秒</p>
-<h3 id="调头"><a href="#调头" class="headerlink" title="调头"></a>调头</h3><p>左转向-踩刹车-别压线</p>
-<h3 id="变换车道"><a href="#变换车道" class="headerlink" title="变换车道"></a>变换车道</h3><p>开启转向灯后等3s</p>
-<h3 id="路口左转"><a href="#路口左转" class="headerlink" title="路口左转"></a>路口左转</h3><p>开灯-减速</p>
-<h3 id="学校区域"><a href="#学校区域" class="headerlink" title="学校区域"></a>学校区域</h3><p>20码过去 踩个点刹</p>
-<h3 id="超车"><a href="#超车" class="headerlink" title="超车"></a>超车</h3><p>等3s</p>
-<h3 id="靠边停车"><a href="#靠边停车" class="headerlink" title="靠边停车"></a>靠边停车</h3><p>右转向灯-减速踩离合-30cm 关闭转向-空挡-手刹-熄火-确认安全-解安全带-下车</p>
-<h2 id="从新化往返大熊山心得"><a href="#从新化往返大熊山心得" class="headerlink" title="从新化往返大熊山心得"></a>从新化往返大熊山心得</h2><p>总共开了两百公里左右，从第一次轻踩油门保持三十码被后面的车疯狂超车到最后可以保持五十码稳定行驶，不得不感慨‘无它，但手熟尔！’<br><strong>三个问题</strong></p>
-<ol>
-<li>就是当其他车突然从岔路口冲出时，自己喜欢先动方向盘再刹车，这是极其不靠谱的，因为你这样方便了别人（因为是你让出了自己的道路行使权），自己面临被后面车与前面的车包夹的局势，最简单的办法就是减速但是不变道，撞了也是他的全责</li>
-<li>弯道不能把别人路给占了，可以减速慢行，但是弯路实在太多了如果太慢把别人都堵在后面也不好</li>
-<li>把别人水泥盖子压下去了，自己的轮胎也陷了进去，多亏动力足爬了出来，属于是难蚌，特地花了两百块钱的红包才解决这个问题。</li>
-</ol>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 学车感悟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>latex学习</title>
+      <link href="/2023/01/09/latex%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<p> latex使用感悟</p><p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p><span id="more"></span>     <p>每次都要重新设置标题，标签啥的，就很烦。</p>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 技术 </category>
+          
       </categories>
-      <tags>
-        <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>考试安排</title>
-    <url>/2023/01/11/%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/</url>
-    <content><![CDATA[<h1 id="2023第一学期考试安排"><a href="#2023第一学期考试安排" class="headerlink" title="2023第一学期考试安排"></a>2023第一学期考试安排</h1><p>祝愿考试顺利！</p>
-<h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><p>2月13日 （19点）</p>
-<span id="more"></span>     
-
-<h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><p>2月14日 （14点半）</p>
-<h2 id="常微分"><a href="#常微分" class="headerlink" title="常微分"></a>常微分</h2><p>2月14日（19点）</p>
-<h2 id="马原"><a href="#马原" class="headerlink" title="马原"></a>马原</h2><p>2月15日 （8.30）</p>
-<h2 id="大物"><a href="#大物" class="headerlink" title="大物"></a>大物</h2><p>2月18日    （8.30-10.30）</p>
-<h2 id="高等代数"><a href="#高等代数" class="headerlink" title="高等代数"></a>高等代数</h2><p>2月18日 （19点）</p>
-<h2 id="数学分析"><a href="#数学分析" class="headerlink" title="数学分析"></a>数学分析</h2><p>2月20日（19.00-21.00）</p>
-<blockquote>
-<p>复习了不一定能考好，但是不复习一定考不好，加油</p>
-</blockquote>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> latex技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>科目三的一些注意问题</title>
+      <link href="/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/"/>
+      <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p><p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p><p>是的 生活很美好。</p><span id="more"></span><h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p><ol><li>系好安全带</li><li>档位与灯光是否正确位置</li><li>转向灯以及一档起步</li></ol><p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p><h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>考试安排</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> 学车感悟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo自带的使用文档</title>
+      <link href="/2023/01/06/hello-world/"/>
+      <url>/2023/01/06/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span>     <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
