@@ -24,42 +24,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>hexo自带的使用文档</title>
-    <url>/2023/01/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大二下的规划</title>
-    <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
-    <content><![CDATA[<p>​    现在是二月十一号,距离考试周只有两天时间了,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔<span id="more"></span>     </p>
-<p>​    至于大二下的规划嘛,这倒是一个问题,这个学期好像有四五月的校赛选拔,到时候得认认真真做并且参加国赛培训.然后就是自己的编程技术,之前我像是一个在csdn的井底之蛙一样,没有认真系统地学习这一门工程,代码是要自己去慢慢体会与敲击的.正好这个学期有这样一门Cpp的课,自己得好好把握,做的出彩!</p>
-<p>​    在足球方面,自己要克制出勤的次数,很多时候是没必要组局去的,能去踢就去踢,以锻炼为主,这个学期也买了公路车,能骑行就直接去骑呀!</p>
-<p>​    在生活方面,最为重要的就是减重增肌,虽然具体我不知道怎么去做,但一定要多出去运动,多看看武汉的风光.其次,不要一直想着去谈对象,你已经有过这样的经历了,没必要为了满足自己的虚荣心而鬼鬼祟祟,认认真真爱自己就够了.</p>
-<p>​    最后,希望自己在新的一年里学业进步,身体健康,家人朋友万事如意!</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>闲谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>chatgpt的使用</title>
     <url>/2023/01/26/chatgpt%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<blockquote>
@@ -137,46 +101,39 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>数据结构与算法</title>
-    <url>/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="数据结构与算法B"><a href="#数据结构与算法B" class="headerlink" title="数据结构与算法B"></a>数据结构与算法B</h1><h1 id="一些概念性的东西"><a href="#一些概念性的东西" class="headerlink" title="一些概念性的东西"></a>一些概念性的东西</h1><p>算法的五个重要特性和4个基本标准<br>一个算法必须满足5大特性：<br>1、有穷性：一个算法必须执行有穷步后结束、<br>2、确定性：对于每种情况下所应执行的操作，在算法中都应该有确切的规定，不会产生二义性，使得算法的执行者和阅读者都能明确其含义以及如何执行。<br>3、可行性：算法中的所有操作都可以通过已经实现的基本操作运算执行有限次来实现<span id="more"></span><br>4、输入：一个算法应该有0个、一个或多个输入。<br>5、输出：一个算法应该有一个或多个输出。</p>
-<p>评价算法的优劣应该从以下几个方面：<br>1、正确性：你的算法一定是正确的。<br>2、可读性：你的算法一定易于让别人读懂<br>3、健壮性：对于非法输入，你的算法一定可以做出判断做出争取的处理，比如打印出：“您的输入非法”等。<br>4、高效性：你的算法要尽可能的跑的快，占用的空间小。</p>
-<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="顺序表的典型例题"><a href="#顺序表的典型例题" class="headerlink" title="顺序表的典型例题"></a>顺序表的典型例题</h3><h4 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h4><p>已知长度为n的线性表L采用顺序存储结构<br>设计一个算法删除线性表中所有值为x的数据元素<br>要求时间复杂度为O(n),空间复杂度为O(1)</p>
-<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>有两种错误的方法：</p>
-<ol>
-<li>借助一个新的顺序表存储需要的元素</li>
-<li>每当删除一个元素后所有元素前移</li>
-</ol>
-<p>有两种正确的方法：</p>
-<ul>
-<li>重建法</li>
-<li>前移法 </li>
-</ul>
-<h6 id="重建法"><a href="#重建法" class="headerlink" title="重建法"></a>重建法</h6><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (L-&gt;data[i] !=  x)</span><br><span class="line"> L-&gt;data[k]=L-&gt;data[i]</span><br></pre></td></tr></table></figure>
-<p> 相当于一个一个对比，如果符合要求就拉入重建的表中，重点在于K的运用</p>
-<blockquote>
-<p>k++</p>
-</blockquote>
-<h6 id="前移法"><a href="#前移法" class="headerlink" title="前移法"></a>前移法</h6><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>  (L-&gt;data[i] = x)</span><br><span class="line">	k++;</span><br><span class="line">	data[i-k]=data[i]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="快速排序中用到的左右分边的算法"><a href="#快速排序中用到的左右分边的算法" class="headerlink" title="快速排序中用到的左右分边的算法"></a>快速排序中用到的左右分边的算法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="comment">// 以 nums[left] 作为基准数</span></span><br><span class="line">    <span class="type">int</span> i = left, j = right;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt;= nums[left])</span><br><span class="line">            j--;          <span class="comment">// 从右向左找首个小于基准数的元素</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[left])</span><br><span class="line">            i++;          <span class="comment">// 从左向右找首个大于基准数的元素</span></span><br><span class="line">        swap(nums, i, j); <span class="comment">// 交换这两个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i, left);  <span class="comment">// 将基准数交换至两子数组的分界线</span></span><br><span class="line">    <span class="keyword">return</span> i;             <span class="comment">// 返回基准数的索引</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="单链表的典型例题"><a href="#单链表的典型例题" class="headerlink" title="单链表的典型例题"></a>单链表的典型例题</h3><h4 id="头插法与尾插法"><a href="#头插法与尾插法" class="headerlink" title="头插法与尾插法"></a>头插法与尾插法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">#头插法</span><br><span class="line">s-&gt;next=L-&gt;next;</span><br><span class="line">L-&gt;next=s;</span><br><span class="line">#尾插法</span><br><span class="line">r=L;</span><br><span class="line">r-&gt;next=s;</span><br><span class="line">r=s</span><br></pre></td></tr></table></figure>
-<h4 id="例题1-1"><a href="#例题1-1" class="headerlink" title="例题1"></a>例题1</h4><p>写一高效算法，删除值大于mink，小于maxk的元素</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">delete</span><span class="params">(Linknode*&amp;L,<span class="type">int</span> mink, <span class="type">int</span> maxk)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&lt;=mink) 			<span class="comment">//寻找mink所在的指针</span></span><br><span class="line">   &#123;pre=p;p=p-&gt;next&#125;     			<span class="comment">//这里的pre就是了</span></span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&gt;=maxk)    		<span class="comment">//寻找maxk所在的指针</span></span><br><span class="line">   &#123;p=p-&gt;next&#125;</span><br><span class="line">	q=pre-&gt;next;</span><br><span class="line">    pre-&gt;next=p;					<span class="comment">//q指向mink，p指向maxk</span></span><br><span class="line">   <span class="keyword">while</span>(p!=q)</span><br><span class="line">   &#123;</span><br><span class="line">       s=q-&gt;next;</span><br><span class="line">       <span class="built_in">free</span>(q);</span><br><span class="line">       q=s;</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h4><p>设计一个算法将一个线性表L分为两个表L1和L2,其中L2是倒置的</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(LinkNode*&amp;L)</span></span><br><span class="line">&#123;</span><br><span class="line">    L1=L;	<span class="comment">//L1利用原来L的头结点</span></span><br><span class="line">    rl=L1;	<span class="comment">//rl始终指向L的尾结点</span></span><br><span class="line">    p=L-&gt;next;	<span class="comment">//p指向第一个数据结点</span></span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        rl-&gt;next=p;</span><br><span class="line">        rl=p;				<span class="comment">//尾插法将P插入到L1中</span></span><br><span class="line">        p=p-&gt;next;			</span><br><span class="line">        q=p-&gt;next;			<span class="comment">//用q保存p的后继结点</span></span><br><span class="line">        p-&gt;next=L2-&gt;next;</span><br><span class="line">        L2-&gt;next=p;			<span class="comment">//头插法将p插入到L2中</span></span><br><span class="line">        p=q;				<span class="comment">//重新进入下一轮</span></span><br><span class="line">    &#125;</span><br><span class="line">    rl-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><p>求二叉树第K层的叶子结点树的算法额</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">count</span><span class="params">(BTNode *&amp;b, <span class="type">int</span> k, <span class="type">int</span> h)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num1, num2, num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(h==k&amp;&amp;b-&gt;lchild==<span class="literal">NULL</span>&amp;&amp;b-&gt;rchild==<span class="literal">NULL</span>)<span class="comment">//是否为叶子结点</span></span><br><span class="line">        &#123;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        num1=count(b-&gt;lchild, k, h=h+<span class="number">1</span>)</span><br><span class="line">        num2=count(b-&gt;rchild, k ,h=h+<span class="number">1</span>)</span><br><span class="line">        num=num1+num2+num</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p><code>广度优先遍历用到的是栈，类似于先序遍历</code></p>
-<p><code>深度优先遍历用到的是队列，类似于层次遍历</code></p>
-<p>😊😊</p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h4 id="哈希查找"><a href="#哈希查找" class="headerlink" title="哈希查找"></a>哈希查找</h4><p>哈希表冲突的处理办法一般是线性探测法</p>
-<p>查找成功的平均查找长度往往就是考察这个.</p>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2>]]></content>
+    <title>hexo自带的使用文档</title>
+    <url>/2023/01/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>数据结构与算法</tag>
+        <tag>hexo技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大二下的规划</title>
+    <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
+    <content><![CDATA[<p>​    现在是二月十一号,距离考试周只有两天时间了,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔<span id="more"></span>     </p>
+<p>​    至于大二下的规划嘛,这倒是一个问题,这个学期好像有四五月的校赛选拔,到时候得认认真真做并且参加国赛培训.然后就是自己的编程技术,之前我像是一个在csdn的井底之蛙一样,没有认真系统地学习这一门工程,代码是要自己去慢慢体会与敲击的.正好这个学期有这样一门Cpp的课,自己得好好把握,做的出彩!</p>
+<p>​    在足球方面,自己要克制出勤的次数,很多时候是没必要组局去的,能去踢就去踢,以锻炼为主,这个学期也买了公路车,能骑行就直接去骑呀!</p>
+<p>​    在生活方面,最为重要的就是减重增肌,虽然具体我不知道怎么去做,但一定要多出去运动,多看看武汉的风光.其次,不要一直想着去谈对象,你已经有过这样的经历了,没必要为了满足自己的虚荣心而鬼鬼祟祟,认认真真爱自己就够了.</p>
+<p>​    最后,希望自己在新的一年里学业进步,身体健康,家人朋友万事如意!</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>闲谈</tag>
       </tags>
   </entry>
   <entry>
@@ -219,6 +176,49 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法</title>
+    <url>/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="数据结构与算法B"><a href="#数据结构与算法B" class="headerlink" title="数据结构与算法B"></a>数据结构与算法B</h1><h1 id="一些概念性的东西"><a href="#一些概念性的东西" class="headerlink" title="一些概念性的东西"></a>一些概念性的东西</h1><p>算法的五个重要特性和4个基本标准<br>一个算法必须满足5大特性：<br>1、有穷性：一个算法必须执行有穷步后结束、<br>2、确定性：对于每种情况下所应执行的操作，在算法中都应该有确切的规定，不会产生二义性，使得算法的执行者和阅读者都能明确其含义以及如何执行。<br>3、可行性：算法中的所有操作都可以通过已经实现的基本操作运算执行有限次来实现<span id="more"></span><br>4、输入：一个算法应该有0个、一个或多个输入。<br>5、输出：一个算法应该有一个或多个输出。</p>
+<p>评价算法的优劣应该从以下几个方面：<br>1、正确性：你的算法一定是正确的。<br>2、可读性：你的算法一定易于让别人读懂<br>3、健壮性：对于非法输入，你的算法一定可以做出判断做出争取的处理，比如打印出：“您的输入非法”等。<br>4、高效性：你的算法要尽可能的跑的快，占用的空间小。</p>
+<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="顺序表的典型例题"><a href="#顺序表的典型例题" class="headerlink" title="顺序表的典型例题"></a>顺序表的典型例题</h3><h4 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h4><p>已知长度为n的线性表L采用顺序存储结构<br>设计一个算法删除线性表中所有值为x的数据元素<br>要求时间复杂度为O(n),空间复杂度为O(1)</p>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>有两种错误的方法：</p>
+<ol>
+<li>借助一个新的顺序表存储需要的元素</li>
+<li>每当删除一个元素后所有元素前移</li>
+</ol>
+<p>有两种正确的方法：</p>
+<ul>
+<li>重建法</li>
+<li>前移法 </li>
+</ul>
+<h6 id="重建法"><a href="#重建法" class="headerlink" title="重建法"></a>重建法</h6><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (L-&gt;data[i] !=  x)</span><br><span class="line"> L-&gt;data[k]=L-&gt;data[i]</span><br></pre></td></tr></table></figure>
+<p> 相当于一个一个对比，如果符合要求就拉入重建的表中，重点在于K的运用</p>
+<blockquote>
+<p>k++</p>
+</blockquote>
+<h6 id="前移法"><a href="#前移法" class="headerlink" title="前移法"></a>前移法</h6><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>  (L-&gt;data[i] = x)</span><br><span class="line">	k++;</span><br><span class="line">	data[i-k]=data[i]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="快速排序中用到的左右分边的算法"><a href="#快速排序中用到的左右分边的算法" class="headerlink" title="快速排序中用到的左右分边的算法"></a>快速排序中用到的左右分边的算法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="comment">// 以 nums[left] 作为基准数</span></span><br><span class="line">    <span class="type">int</span> i = left, j = right;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt;= nums[left])</span><br><span class="line">            j--;          <span class="comment">// 从右向左找首个小于基准数的元素</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[left])</span><br><span class="line">            i++;          <span class="comment">// 从左向右找首个大于基准数的元素</span></span><br><span class="line">        swap(nums, i, j); <span class="comment">// 交换这两个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i, left);  <span class="comment">// 将基准数交换至两子数组的分界线</span></span><br><span class="line">    <span class="keyword">return</span> i;             <span class="comment">// 返回基准数的索引</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="单链表的典型例题"><a href="#单链表的典型例题" class="headerlink" title="单链表的典型例题"></a>单链表的典型例题</h3><h4 id="头插法与尾插法"><a href="#头插法与尾插法" class="headerlink" title="头插法与尾插法"></a>头插法与尾插法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">#头插法</span><br><span class="line">s-&gt;next=L-&gt;next;</span><br><span class="line">L-&gt;next=s;</span><br><span class="line">#尾插法</span><br><span class="line">r=L;</span><br><span class="line">r-&gt;next=s;</span><br><span class="line">r=s</span><br></pre></td></tr></table></figure>
+<h4 id="例题1-1"><a href="#例题1-1" class="headerlink" title="例题1"></a>例题1</h4><p>写一高效算法，删除值大于mink，小于maxk的元素</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">delete</span><span class="params">(Linknode*&amp;L,<span class="type">int</span> mink, <span class="type">int</span> maxk)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&lt;=mink) 			<span class="comment">//寻找mink所在的指针</span></span><br><span class="line">   &#123;pre=p;p=p-&gt;next&#125;     			<span class="comment">//这里的pre就是了</span></span><br><span class="line">   <span class="keyword">while</span>(p&amp;&amp;p-&gt;data&gt;=maxk)    		<span class="comment">//寻找maxk所在的指针</span></span><br><span class="line">   &#123;p=p-&gt;next&#125;</span><br><span class="line">	q=pre-&gt;next;</span><br><span class="line">    pre-&gt;next=p;					<span class="comment">//q指向mink，p指向maxk</span></span><br><span class="line">   <span class="keyword">while</span>(p!=q)</span><br><span class="line">   &#123;</span><br><span class="line">       s=q-&gt;next;</span><br><span class="line">       <span class="built_in">free</span>(q);</span><br><span class="line">       q=s;</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h4><p>设计一个算法将一个线性表L分为两个表L1和L2,其中L2是倒置的</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(LinkNode*&amp;L)</span></span><br><span class="line">&#123;</span><br><span class="line">    L1=L;	<span class="comment">//L1利用原来L的头结点</span></span><br><span class="line">    rl=L1;	<span class="comment">//rl始终指向L的尾结点</span></span><br><span class="line">    p=L-&gt;next;	<span class="comment">//p指向第一个数据结点</span></span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        rl-&gt;next=p;</span><br><span class="line">        rl=p;				<span class="comment">//尾插法将P插入到L1中</span></span><br><span class="line">        p=p-&gt;next;			</span><br><span class="line">        q=p-&gt;next;			<span class="comment">//用q保存p的后继结点</span></span><br><span class="line">        p-&gt;next=L2-&gt;next;</span><br><span class="line">        L2-&gt;next=p;			<span class="comment">//头插法将p插入到L2中</span></span><br><span class="line">        p=q;				<span class="comment">//重新进入下一轮</span></span><br><span class="line">    &#125;</span><br><span class="line">    rl-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><p>求二叉树第K层的叶子结点树的算法额</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">count</span><span class="params">(BTNode *&amp;b, <span class="type">int</span> k, <span class="type">int</span> h)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num1, num2, num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(h==k&amp;&amp;b-&gt;lchild==<span class="literal">NULL</span>&amp;&amp;b-&gt;rchild==<span class="literal">NULL</span>)<span class="comment">//是否为叶子结点</span></span><br><span class="line">        &#123;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">        num1=count(b-&gt;lchild, k, h=h+<span class="number">1</span>)</span><br><span class="line">        num2=count(b-&gt;rchild, k ,h=h+<span class="number">1</span>)</span><br><span class="line">        num=num1+num2+num</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p><code>广度优先遍历用到的是栈，类似于先序遍历</code></p>
+<p><code>深度优先遍历用到的是队列，类似于层次遍历</code></p>
+<p>😊😊</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h4 id="哈希查找"><a href="#哈希查找" class="headerlink" title="哈希查找"></a>哈希查找</h4><p>哈希表冲突的处理办法一般是线性探测法</p>
+<p>查找成功的平均查找长度往往就是考察这个.</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
