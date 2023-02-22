@@ -85,6 +85,26 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
+    <title>hexo自带的使用文档</title>
+    <url>/2023/01/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>hexo技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>latex学习</title>
     <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p> latex使用感悟</p>
@@ -130,31 +150,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>hexo自带的使用文档</title>
-    <url>/2023/01/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>复变函数</title>
-    <url>/2023/02/21/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>大二下的规划</title>
     <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<p>​    现在是二月十一号,距离考试周只有两天时间了<span id="more"></span>     ,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔</p>
@@ -169,6 +164,11 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       <tags>
         <tag>闲谈</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>复变函数</title>
+    <url>/2023/02/21/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>如何解决git无法推送等问题</title>
@@ -190,6 +190,11 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       <tags>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>数学模型</title>
+    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>我在用hexo搭建个人博客时遇到的问题</title>
@@ -217,20 +222,28 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>数值分析</title>
-    <url>/2023/02/21/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="数值分析的基本内容"><a href="#数值分析的基本内容" class="headerlink" title="数值分析的基本内容"></a>数值分析的基本内容</h1><h2 id="数值逼近"><a href="#数值逼近" class="headerlink" title="数值逼近"></a>数值逼近</h2><h3 id="插值法"><a href="#插值法" class="headerlink" title="插值法"></a>插值法</h3><h3 id="函数逼近和曲线拟合"><a href="#函数逼近和曲线拟合" class="headerlink" title="函数逼近和曲线拟合"></a>函数逼近和曲线拟合</h3><h3 id="数值积分与数值微分"><a href="#数值积分与数值微分" class="headerlink" title="数值积分与数值微分"></a>数值积分与数值微分</h3><h2 id="数值代数"><a href="#数值代数" class="headerlink" title="数值代数"></a>数值代数</h2><h3 id="线性代数问题"><a href="#线性代数问题" class="headerlink" title="线性代数问题"></a>线性代数问题</h3><h3 id="非线性方程组数值解法"><a href="#非线性方程组数值解法" class="headerlink" title="非线性方程组数值解法"></a>非线性方程组数值解法</h3><h2 id="常微分方程数值解法和偏微分方程数值解法"><a href="#常微分方程数值解法和偏微分方程数值解法" class="headerlink" title="常微分方程数值解法和偏微分方程数值解法"></a>常微分方程数值解法和偏微分方程数值解法</h2>]]></content>
+    <title>曼城</title>
+    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
+<span id="more"></span>     
+<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
+<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
+<hr>
+<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
+<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
+<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
+<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
+<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
+<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
+<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
+<p>​    anyway, once a blue, always blue!!!</p>
+]]></content>
       <categories>
-        <category>技术</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>数值分析</tag>
+        <tag>足球</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>数学模型</title>
-    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数据结构与算法</title>
@@ -276,27 +289,14 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>曼城</title>
-    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
-<span id="more"></span>     
-<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
-<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
-<hr>
-<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
-<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
-<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
-<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
-<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
-<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
-<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
-<p>​    anyway, once a blue, always blue!!!</p>
-]]></content>
+    <title>数值分析</title>
+    <url>/2023/02/21/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="数值分析的基本内容"><a href="#数值分析的基本内容" class="headerlink" title="数值分析的基本内容"></a>数值分析的基本内容</h1><h2 id="数值逼近"><a href="#数值逼近" class="headerlink" title="数值逼近"></a>数值逼近</h2><h3 id="插值法"><a href="#插值法" class="headerlink" title="插值法"></a>插值法</h3><h3 id="函数逼近和曲线拟合"><a href="#函数逼近和曲线拟合" class="headerlink" title="函数逼近和曲线拟合"></a>函数逼近和曲线拟合</h3><h3 id="数值积分与数值微分"><a href="#数值积分与数值微分" class="headerlink" title="数值积分与数值微分"></a>数值积分与数值微分</h3><h2 id="数值代数"><a href="#数值代数" class="headerlink" title="数值代数"></a>数值代数</h2><h3 id="线性代数问题"><a href="#线性代数问题" class="headerlink" title="线性代数问题"></a>线性代数问题</h3><h3 id="非线性方程组数值解法"><a href="#非线性方程组数值解法" class="headerlink" title="非线性方程组数值解法"></a>非线性方程组数值解法</h3><h2 id="常微分方程数值解法和偏微分方程数值解法"><a href="#常微分方程数值解法和偏微分方程数值解法" class="headerlink" title="常微分方程数值解法和偏微分方程数值解法"></a>常微分方程数值解法和偏微分方程数值解法</h2>]]></content>
       <categories>
-        <category>生活</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>足球</tag>
+        <tag>数值分析</tag>
       </tags>
   </entry>
   <entry>
@@ -358,6 +358,11 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </tags>
   </entry>
   <entry>
+    <title>运筹学</title>
+    <url>/2023/02/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>学车</title>
     <url>/2023/01/10/%E7%A7%91%E7%9B%AE%E4%B8%89%E8%80%83%E8%AF%95%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="科目三"><a href="#科目三" class="headerlink" title="科目三"></a>科目三<span id="more"></span></h2><h3 id="上车准备："><a href="#上车准备：" class="headerlink" title="上车准备："></a>上车准备：</h3><ol>
@@ -412,6 +417,11 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </tags>
   </entry>
   <entry>
+    <title>面向对象程序设计方法</title>
+    <url>/2023/02/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>考试安排</title>
     <url>/2023/01/11/%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/</url>
     <content><![CDATA[<h1 id="2023第一学期考试安排"><a href="#2023第一学期考试安排" class="headerlink" title="2023第一学期考试安排"></a>2023第一学期考试安排</h1><p>祝愿考试顺利！</p>
@@ -433,15 +443,5 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       <tags>
         <tag>考试安排</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>运筹学</title>
-    <url>/2023/02/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>面向对象程序设计方法</title>
-    <url>/2023/02/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
