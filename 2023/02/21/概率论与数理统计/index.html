@@ -27,7 +27,7 @@
 <meta property="og:description" content="概率为0的事件一定不会发生吗?答案显示是不一定. 概率论里说了不可能事件的发生概率是0，但0概率事件可能发生。比如在大海中选一滴水，恰好选到某一滴的概率为0。随机变量分连续和离散两种，它们各自的分布描述是不同的。对于连续性随机变量，单个具体点的概率密度值为一有界常数，这个值可以是任意的（包括0和1），但因为点是没有长度的，所以该点的概率密度积分为0（因为该点概率密度值有界），即该点所对应的事件发生">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-21T15:05:56.000Z">
-<meta property="article:modified_time" content="2023-02-22T09:18:47.821Z">
+<meta property="article:modified_time" content="2023-02-22T13:53:23.187Z">
 <meta property="article:author" content="cathy">
 <meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
@@ -262,7 +262,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-22 17:18:47" itemprop="dateModified" datetime="2023-02-22T17:18:47+08:00">2023-02-22</time>
+      <time title="修改时间：2023-02-22 21:53:23" itemprop="dateModified" datetime="2023-02-22T21:53:23+08:00">2023-02-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,13 +301,13 @@
     <div class="post-body" itemprop="articleBody">
         <h3 id="概率为0的事件一定不会发生吗"><a href="#概率为0的事件一定不会发生吗" class="headerlink" title="概率为0的事件一定不会发生吗?"></a>概率为0的事件一定不会发生吗?</h3><p>答案显示是不一定.</p>
 <p>概率论里说了<strong>不可能事件的发生概率是0，但0概率事件可能发生</strong>。比如在大海中选一滴水，恰好选到某一滴的概率为0。<br>随机变量分<strong>连续和离散</strong>两种，它们各自的分布描述是不同的。对于连续性随机变量，单个具体<br>点的概率密度值为一有界常数，这个值可以是任意的（包括0和1），但因为点是没有长度的，<br>所以该点的<strong>概率密度积分</strong>为0（因为该点概率密度值有界），即该点所对应的事件发生的概率为<br>0，但这个事件仍然是可能发生的，因为这个事件在事件域内。也就是说，概率为0的事件并不<br>一定不会发生。同理，某个点的概率密度值为1，但该点的概率密度积分仍为0，所以概率为1<br>的事件也不一定必然发生。<strong>总之，对于连续性随机变量，讨论单个点的概率是没有意义的（都</strong><br><strong>为0），我们讨论的是，这个随机变量落在一个区间内的概率。</strong></p>
+<span id="more"></span>     
 <h3 id="贝叶斯原理与狼来了"><a href="#贝叶斯原理与狼来了" class="headerlink" title="贝叶斯原理与狼来了"></a>贝叶斯原理与狼来了</h3><blockquote>
 <p><strong>狼来了概率论原理摘自网络</strong></p>
 </blockquote>
 <p><em>贝叶斯分析作为一个统计学的基本流派，对机器学习及各种用概率决策的领域具有重大影响，甚至作为理解人类智能的一种基本框架。总的来讲，贝叶斯定律通过先验和条件概率的结合，可以综合已有过往人类对一个领域的知识和更新的数据，来不停改进人类的认知。简单说就是，<strong>某人的行为会不断修正其他人对他的看法</strong>，贝叶斯不仅是一种方法论，更是一种世界观.</em></p>
 <p>记A事件为’这个小孩撒谎’ ,B事件为’小孩是可信的’</p>
 <p>不妨设可信的孩子说谎的可能性为0.1,不可信的孩子说谎的概率为0.5</p>
-<span id="more"></span>     
 <p>第一次村民上山打狼,发现狼没有来,这说明<strong>事件A发生了</strong>,这个小孩的<strong>可信程度</strong>变为:</p>
 <script type="math/tex; mode=display">
 P(B|A)=\frac {P(B)P(A|B)}{P(B)P(A|B)+P(\overline B)P(A|\overline B)}={0.8*0.1\over0.8*0.1+0.2*0.5}=0.444</script><blockquote>
@@ -478,7 +478,7 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
