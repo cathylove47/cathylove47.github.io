@@ -23,6 +23,26 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
+    <title>hexo自带的使用文档</title>
+    <url>/2023/01/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>hexo技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>chatgpt的使用</title>
     <url>/2023/01/26/chatgpt%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<blockquote>
@@ -82,26 +102,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>chatgpt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo自带的使用文档</title>
-    <url>/2023/01/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo技术</tag>
       </tags>
   </entry>
   <entry>
@@ -192,11 +192,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>数学模型</title>
-    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>我在用hexo搭建个人博客时遇到的问题</title>
     <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
     <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
@@ -222,28 +217,20 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>曼城</title>
-    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
-<span id="more"></span>     
-<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
-<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
-<hr>
-<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
-<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
-<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
-<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
-<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
-<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
-<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
-<p>​    anyway, once a blue, always blue!!!</p>
-]]></content>
+    <title>数值分析</title>
+    <url>/2023/02/21/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="数值分析的基本内容"><a href="#数值分析的基本内容" class="headerlink" title="数值分析的基本内容"></a>数值分析的基本内容</h1><h2 id="数值逼近"><a href="#数值逼近" class="headerlink" title="数值逼近"></a>数值逼近</h2><h3 id="插值法"><a href="#插值法" class="headerlink" title="插值法"></a>插值法</h3><h3 id="函数逼近和曲线拟合"><a href="#函数逼近和曲线拟合" class="headerlink" title="函数逼近和曲线拟合"></a>函数逼近和曲线拟合</h3><h3 id="数值积分与数值微分"><a href="#数值积分与数值微分" class="headerlink" title="数值积分与数值微分"></a>数值积分与数值微分</h3><h2 id="数值代数"><a href="#数值代数" class="headerlink" title="数值代数"></a>数值代数</h2><h3 id="线性代数问题"><a href="#线性代数问题" class="headerlink" title="线性代数问题"></a>线性代数问题</h3><h3 id="非线性方程组数值解法"><a href="#非线性方程组数值解法" class="headerlink" title="非线性方程组数值解法"></a>非线性方程组数值解法</h3><h2 id="常微分方程数值解法和偏微分方程数值解法"><a href="#常微分方程数值解法和偏微分方程数值解法" class="headerlink" title="常微分方程数值解法和偏微分方程数值解法"></a>常微分方程数值解法和偏微分方程数值解法</h2>]]></content>
       <categories>
-        <category>生活</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>足球</tag>
+        <tag>数值分析</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>数学模型</title>
+    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数据结构与算法</title>
@@ -289,14 +276,49 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>数值分析</title>
-    <url>/2023/02/21/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="数值分析的基本内容"><a href="#数值分析的基本内容" class="headerlink" title="数值分析的基本内容"></a>数值分析的基本内容</h1><h2 id="数值逼近"><a href="#数值逼近" class="headerlink" title="数值逼近"></a>数值逼近</h2><h3 id="插值法"><a href="#插值法" class="headerlink" title="插值法"></a>插值法</h3><h3 id="函数逼近和曲线拟合"><a href="#函数逼近和曲线拟合" class="headerlink" title="函数逼近和曲线拟合"></a>函数逼近和曲线拟合</h3><h3 id="数值积分与数值微分"><a href="#数值积分与数值微分" class="headerlink" title="数值积分与数值微分"></a>数值积分与数值微分</h3><h2 id="数值代数"><a href="#数值代数" class="headerlink" title="数值代数"></a>数值代数</h2><h3 id="线性代数问题"><a href="#线性代数问题" class="headerlink" title="线性代数问题"></a>线性代数问题</h3><h3 id="非线性方程组数值解法"><a href="#非线性方程组数值解法" class="headerlink" title="非线性方程组数值解法"></a>非线性方程组数值解法</h3><h2 id="常微分方程数值解法和偏微分方程数值解法"><a href="#常微分方程数值解法和偏微分方程数值解法" class="headerlink" title="常微分方程数值解法和偏微分方程数值解法"></a>常微分方程数值解法和偏微分方程数值解法</h2>]]></content>
+    <title>曼城</title>
+    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
+<span id="more"></span>     
+<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
+<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
+<hr>
+<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
+<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
+<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
+<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
+<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
+<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
+<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
+<p>​    anyway, once a blue, always blue!!!</p>
+]]></content>
       <categories>
-        <category>技术</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>数值分析</tag>
+        <tag>足球</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>科目三的一些注意问题</title>
+    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
+<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
+<p>是的 生活很美好。<br><span id="more"></span></p>
+<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
+<ol>
+<li>系好安全带</li>
+<li>档位与灯光是否正确位置</li>
+<li>转向灯以及一档起步</li>
+</ol>
+<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
+<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>学车感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -334,33 +356,6 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       <tags>
         <tag>概率论</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>科目三的一些注意问题</title>
-    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
-<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
-<p>是的 生活很美好。<br><span id="more"></span></p>
-<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
-<ol>
-<li>系好安全带</li>
-<li>档位与灯光是否正确位置</li>
-<li>转向灯以及一档起步</li>
-</ol>
-<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
-<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>运筹学</title>
-    <url>/2023/02/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>学车</title>
@@ -417,8 +412,8 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </tags>
   </entry>
   <entry>
-    <title>面向对象程序设计方法</title>
-    <url>/2023/02/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/</url>
+    <title>运筹学</title>
+    <url>/2023/02/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -443,5 +438,10 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       <tags>
         <tag>考试安排</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>面向对象程序设计方法</title>
+    <url>/2023/02/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
