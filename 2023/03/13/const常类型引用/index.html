@@ -20,25 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"cathylove47.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="夕阳无限好，只是近黄昏">
-<meta property="og:type" content="website">
-<meta property="og:title" content="凯鑫的博客">
-<meta property="og:url" content="https://cathylove47.github.io/tags/C/index.html">
+    <meta name="description" content="const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值 引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.  调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破">
+<meta property="og:type" content="article">
+<meta property="og:title" content="const常类型引用">
+<meta property="og:url" content="https://cathylove47.github.io/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/index.html">
 <meta property="og:site_name" content="凯鑫的博客">
-<meta property="og:description" content="夕阳无限好，只是近黄昏">
+<meta property="og:description" content="const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值 引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.  调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-13T13:40:09.000Z">
+<meta property="article:modified_time" content="2023-03-13T13:46:32.270Z">
 <meta property="article:author" content="cathy">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://cathylove47.github.io/tags/C/">
+<link rel="canonical" href="https://cathylove47.github.io/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/C/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cathylove47.github.io/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/","path":"2023/03/13/const常类型引用/","title":"const常类型引用"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: C++ | 凯鑫的博客</title>
+<title>const常类型引用 | 凯鑫的博客</title>
   
 
 
@@ -212,91 +215,178 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">C++
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cathylove47.github.io/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/cute.jpg">
+      <meta itemprop="name" content="cathy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凯鑫的博客">
+      <meta itemprop="description" content="夕阳无限好，只是近黄昏">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="const常类型引用 | 凯鑫的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          const常类型引用
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-03-13 21:40:09 / 修改时间：21:46:32" itemprop="dateCreated datePublished" datetime="2023-03-13T21:40:09+08:00">2023-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>177</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值</p>
+<p>引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.</p>
+<blockquote>
+<p>调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破坏常类型的作用。</p>
+</blockquote>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-03-13T21:40:09+08:00"
-              content="2023-03-13">
-          03-13
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/" itemprop="url">
-            <span itemprop="name">const常类型引用</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
 
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-03-10T22:15:17+08:00"
-              content="2023-03-10">
-          03-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="url">
-            <span itemprop="name">C++中的字符串</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-21T23:06:18+08:00"
-              content="2023-02-21">
-          02-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/21/C++%E4%B8%AD%E7%9A%84const%E7%94%A8%E6%B3%95/" itemprop="url">
-            <span itemprop="name">C++中的const用法</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
   </div>
-  
-  
-  
+</div>
 
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>cathy
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cathylove47.github.io/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/" title="const常类型引用">https://cathylove47.github.io/2023/03/13/const常类型引用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/cathy_love47">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_on.jpg">
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="C++中的字符串">
+                  <i class="fa fa-chevron-left"></i> C++中的字符串
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -369,11 +459,11 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://cathylove47.github.io/tags/C/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://cathylove47.github.io/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"cathylove47","repo":"blog_comment","client_id":"96a1eba53da42e58a845","client_secret":"4aae68ff31741ae87126ecd5cb6fa6c6704581c2","admin_user":"cathylove47","distraction_free_mode":true,"proxy":"https://cors-server-ecru.vercel.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"b3cd0707211782ce58ed0d23486cd00f"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"cathylove47","repo":"blog_comment","client_id":"96a1eba53da42e58a845","client_secret":"4aae68ff31741ae87126ecd5cb6fa6c6704581c2","admin_user":"cathylove47","distraction_free_mode":true,"proxy":"https://cors-server-ecru.vercel.app/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4df160c83f3c66f596fcecdbe5ea0192"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right"},"mobile":{"show":true}});</script></body>
