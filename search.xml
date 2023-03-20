@@ -18,24 +18,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++中的字符串</title>
-    <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
-<p>并且发出waring:”从int  到 char截断” 现在也没怎么搞懂这个问题,但我觉得大概率是我自己用错了类型,对于name这应该是个字符串所以应该用std::string</p>
-<blockquote>
-<p>但是奇怪的东西就来了</p>
-</blockquote>
-<p>但我用 string 作为形参的时候 <strong>报错显示与函数原型不符合</strong></p>
-<p>我找了很久才发现,原来string类型不能用单引号,<em>只能用双引号</em></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++中的const用法</title>
     <url>/2023/02/21/C++%E4%B8%AD%E7%9A%84const%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<blockquote>
@@ -61,6 +43,46 @@
 </li>
 </ol>
 <p>.</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ODE</title>
+    <url>/2023/02/12/ODE/</url>
+    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
+<script type="math/tex; mode=display">
+x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
+<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
+<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
+<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
+<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
+<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
+<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
+<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
+<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中的字符串</title>
+    <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
+<p>并且发出waring:”从int  到 char截断” 现在也没怎么搞懂这个问题,但我觉得大概率是我自己用错了类型,对于name这应该是个字符串所以应该用std::string</p>
+<blockquote>
+<p>但是奇怪的东西就来了</p>
+</blockquote>
+<p>但我用 string 作为形参的时候 <strong>报错显示与函数原型不符合</strong></p>
+<p>我找了很久才发现,原来string类型不能用单引号,<em>只能用双引号</em></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -132,44 +154,6 @@
       </tags>
   </entry>
   <entry>
-    <title>const常类型引用</title>
-    <url>/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<p>const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值</p>
-<p>引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.</p>
-<blockquote>
-<p>调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破坏常类型的作用。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ODE</title>
-    <url>/2023/02/12/ODE/</url>
-    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
-<script type="math/tex; mode=display">
-x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
-<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
-<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
-<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
-<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
-<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
-<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
-<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
-<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo自带的使用文档</title>
     <url>/2023/01/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
@@ -190,6 +174,22 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
+    <title>const常类型引用</title>
+    <url>/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<p>const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值</p>
+<p>引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.</p>
+<blockquote>
+<p>调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破坏常类型的作用。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>latex学习</title>
     <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p> latex使用感悟</p>
@@ -202,6 +202,18 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>latex技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树的镜像</title>
+    <url>/2023/03/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">TreeNode* <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = <span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">		p_root-&gt;right = <span class="built_in">Mirror</span>(temp);</span><br><span class="line">		<span class="keyword">return</span> p_root;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root = = <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = p_root-&gt;right;</span><br><span class="line">		p_root-&gt;right = temp;</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;left);</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -232,18 +244,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二叉树的镜像</title>
-    <url>/2023/03/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">TreeNode* <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = <span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">		p_root-&gt;right = <span class="built_in">Mirror</span>(temp);</span><br><span class="line">		<span class="keyword">return</span> p_root;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root = = <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = p_root-&gt;right;</span><br><span class="line">		p_root-&gt;right = temp;</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;left);</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -287,27 +287,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>如何解决git无法推送等问题</title>
-    <url>/2023/02/13/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3git%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81%E7%AD%89%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>问题在于用VPN的时候占用的端口</p>
-<p>此时应当关闭代理</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line">git config --global http.postBuffer 524288000</span><br><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>     
-<p>查看代理:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
-<p>设置代理:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line">git config --global https.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>如何让google搜索到自己的博客</p>
-<p><a href="https://blog.51cto.com/menglanglang/5946985">让 Google 搜索到自己的博客_51CTO博客_google博客搜索</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我在用hexo搭建个人博客时遇到的问题</title>
     <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
     <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
@@ -344,6 +323,27 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>数值分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何解决git无法推送等问题</title>
+    <url>/2023/02/13/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3git%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81%E7%AD%89%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>问题在于用VPN的时候占用的端口</p>
+<p>此时应当关闭代理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line">git config --global http.postBuffer 524288000</span><br><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>     
+<p>查看代理:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
+<p>设置代理:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line">git config --global https.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如何让google搜索到自己的博客</p>
+<p><a href="https://blog.51cto.com/menglanglang/5946985">让 Google 搜索到自己的博客_51CTO博客_google博客搜索</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -419,64 +419,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>概率论与数理统计</title>
-    <url>/2023/02/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
-    <content><![CDATA[<h3 id="概率为0的事件一定不会发生吗"><a href="#概率为0的事件一定不会发生吗" class="headerlink" title="概率为0的事件一定不会发生吗?"></a>概率为0的事件一定不会发生吗?</h3><p>答案显示是不一定.</p>
-<p>概率论里说了<strong>不可能事件的发生概率是0，但0概率事件可能发生</strong>。比如在大海中选一滴水，恰好选到某一滴的概率为0。<br>随机变量分<strong>连续和离散</strong>两种，它们各自的分布描述是不同的。对于连续性随机变量，单个具体<br>点的概率密度值为一有界常数，这个值可以是任意的（包括0和1），但因为点是没有长度的，<br>所以该点的<strong>概率密度积分</strong>为0（因为该点概率密度值有界），即该点所对应的事件发生的概率为<br>0，但这个事件仍然是可能发生的，因为这个事件在事件域内。也就是说，概率为0的事件并不<br>一定不会发生。同理，某个点的概率密度值为1，但该点的概率密度积分仍为0，所以概率为1<br>的事件也不一定必然发生。<strong>总之，对于连续性随机变量，讨论单个点的概率是没有意义的（都</strong><br><strong>为0），我们讨论的是，这个随机变量落在一个区间内的概率。</strong></p>
-<span id="more"></span>     
-<h3 id="贝叶斯原理与狼来了"><a href="#贝叶斯原理与狼来了" class="headerlink" title="贝叶斯原理与狼来了"></a>贝叶斯原理与狼来了</h3><blockquote>
-<p><strong>狼来了概率论原理摘自网络</strong></p>
-</blockquote>
-<p><em>贝叶斯分析作为一个统计学的基本流派，对机器学习及各种用概率决策的领域具有重大影响，甚至作为理解人类智能的一种基本框架。总的来讲，贝叶斯定律通过先验和条件概率的结合，可以综合已有过往人类对一个领域的知识和更新的数据，来不停改进人类的认知。简单说就是，<strong>某人的行为会不断修正其他人对他的看法</strong>，贝叶斯不仅是一种方法论，更是一种世界观.</em></p>
-<p>记A事件为’这个小孩撒谎’ ,B事件为’小孩是可信的’</p>
-<p>不妨设可信的孩子说谎的可能性为0.1,不可信的孩子说谎的概率为0.5</p>
-<p>第一次村民上山打狼,发现狼没有来,这说明<strong>事件A发生了</strong>,这个小孩的<strong>可信程度</strong>变为:</p>
-<script type="math/tex; mode=display">
-P(B|A)=\frac {P(B)P(A|B)}{P(B)P(A|B)+P(\overline B)P(A|\overline B)}={0.8*0.1\over0.8*0.1+0.2*0.5}=0.444</script><blockquote>
-<p>这表明村民上了一次当后，对这个小孩可信程度由原来的0.8调整为0.444</p>
-</blockquote>
-<p>在这个基础上,我们再用贝叶斯公式计算小孩第二次撒谎之后,村民对他的信任程度改变为:</p>
-<script type="math/tex; mode=display">
-P(B|A)=\frac {0.444*0.1}{0.444*0.1+0.556*0.5}=0.138</script><blockquote>
-<p> 这表明村民经过两次上当后，对这个小孩的信任程度已经由最初的0.8下降到了0.138，如此低的可信度，村民听到第三次呼叫时，怎么再会上山去打狼呢？</p>
-</blockquote>
-<p>这个例子对人也有很大的启发:<strong>“某人的行为会不断修正其他人对他的看法”</strong></p>
-<h3 id="贝叶斯原理与患病阳性检测"><a href="#贝叶斯原理与患病阳性检测" class="headerlink" title="贝叶斯原理与患病阳性检测"></a>贝叶斯原理与患病阳性检测</h3><p>引言:今天上课时老师说到,无论核酸检测的精准度如何提高,对于全员核酸检测并没有什么大的帮助,无法起到完全排查的作用.</p>
-<p>下面直接给出公式:</p>
-<script type="math/tex; mode=display">
-P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病)+P(阳性|未患病)P(未患病)}</script><p>由于在当时中国,新冠患病率极低,因此分子部分基本上可以看做极小的量,分母也明显大于分子,所以你阳性了患病的可能性也并不是很大.</p>
-<p>所以当患病率极低时,检测阳性并不代表患病的可能性就很高.在这里,<strong>患病率是先验概率,阳性下的患病率是后验概率</strong></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>概率论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>科目三的一些注意问题</title>
-    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
-<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
-<p>是的 生活很美好。<br><span id="more"></span></p>
-<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
-<ol>
-<li>系好安全带</li>
-<li>档位与灯光是否正确位置</li>
-<li>转向灯以及一档起步</li>
-</ol>
-<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
-<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>学车感悟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>某日的小感悟</title>
     <url>/2023/03/20/%E6%9F%90%E6%97%A5%E7%9A%84%E5%B0%8F%E6%84%9F%E6%82%9F/</url>
     <content><![CDATA[<p>今天周一,因为第一次想在早晨喝黑咖啡,于是我起得很早,便去上了早八的毛概.</p>
@@ -510,6 +452,42 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
 ]]></content>
       <tags>
         <tag>山高水长</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>概率论与数理统计</title>
+    <url>/2023/02/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
+    <content><![CDATA[<h3 id="概率为0的事件一定不会发生吗"><a href="#概率为0的事件一定不会发生吗" class="headerlink" title="概率为0的事件一定不会发生吗?"></a>概率为0的事件一定不会发生吗?</h3><p>答案显示是不一定.</p>
+<p>概率论里说了<strong>不可能事件的发生概率是0，但0概率事件可能发生</strong>。比如在大海中选一滴水，恰好选到某一滴的概率为0。<br>随机变量分<strong>连续和离散</strong>两种，它们各自的分布描述是不同的。对于连续性随机变量，单个具体<br>点的概率密度值为一有界常数，这个值可以是任意的（包括0和1），但因为点是没有长度的，<br>所以该点的<strong>概率密度积分</strong>为0（因为该点概率密度值有界），即该点所对应的事件发生的概率为<br>0，但这个事件仍然是可能发生的，因为这个事件在事件域内。也就是说，概率为0的事件并不<br>一定不会发生。同理，某个点的概率密度值为1，但该点的概率密度积分仍为0，所以概率为1<br>的事件也不一定必然发生。<strong>总之，对于连续性随机变量，讨论单个点的概率是没有意义的（都</strong><br><strong>为0），我们讨论的是，这个随机变量落在一个区间内的概率。</strong></p>
+<span id="more"></span>     
+<h3 id="贝叶斯原理与狼来了"><a href="#贝叶斯原理与狼来了" class="headerlink" title="贝叶斯原理与狼来了"></a>贝叶斯原理与狼来了</h3><blockquote>
+<p><strong>狼来了概率论原理摘自网络</strong></p>
+</blockquote>
+<p><em>贝叶斯分析作为一个统计学的基本流派，对机器学习及各种用概率决策的领域具有重大影响，甚至作为理解人类智能的一种基本框架。总的来讲，贝叶斯定律通过先验和条件概率的结合，可以综合已有过往人类对一个领域的知识和更新的数据，来不停改进人类的认知。简单说就是，<strong>某人的行为会不断修正其他人对他的看法</strong>，贝叶斯不仅是一种方法论，更是一种世界观.</em></p>
+<p>记A事件为’这个小孩撒谎’ ,B事件为’小孩是可信的’</p>
+<p>不妨设可信的孩子说谎的可能性为0.1,不可信的孩子说谎的概率为0.5</p>
+<p>第一次村民上山打狼,发现狼没有来,这说明<strong>事件A发生了</strong>,这个小孩的<strong>可信程度</strong>变为:</p>
+<script type="math/tex; mode=display">
+P(B|A)=\frac {P(B)P(A|B)}{P(B)P(A|B)+P(\overline B)P(A|\overline B)}={0.8*0.1\over0.8*0.1+0.2*0.5}=0.444</script><blockquote>
+<p>这表明村民上了一次当后，对这个小孩可信程度由原来的0.8调整为0.444</p>
+</blockquote>
+<p>在这个基础上,我们再用贝叶斯公式计算小孩第二次撒谎之后,村民对他的信任程度改变为:</p>
+<script type="math/tex; mode=display">
+P(B|A)=\frac {0.444*0.1}{0.444*0.1+0.556*0.5}=0.138</script><blockquote>
+<p> 这表明村民经过两次上当后，对这个小孩的信任程度已经由最初的0.8下降到了0.138，如此低的可信度，村民听到第三次呼叫时，怎么再会上山去打狼呢？</p>
+</blockquote>
+<p>这个例子对人也有很大的启发:<strong>“某人的行为会不断修正其他人对他的看法”</strong></p>
+<h3 id="贝叶斯原理与患病阳性检测"><a href="#贝叶斯原理与患病阳性检测" class="headerlink" title="贝叶斯原理与患病阳性检测"></a>贝叶斯原理与患病阳性检测</h3><p>引言:今天上课时老师说到,无论核酸检测的精准度如何提高,对于全员核酸检测并没有什么大的帮助,无法起到完全排查的作用.</p>
+<p>下面直接给出公式:</p>
+<script type="math/tex; mode=display">
+P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病)+P(阳性|未患病)P(未患病)}</script><p>由于在当时中国,新冠患病率极低,因此分子部分基本上可以看做极小的量,分母也明显大于分子,所以你阳性了患病的可能性也并不是很大.</p>
+<p>所以当患病率极低时,检测阳性并不代表患病的可能性就很高.在这里,<strong>患病率是先验概率,阳性下的患病率是后验概率</strong></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>概率论</tag>
       </tags>
   </entry>
   <entry>
@@ -558,6 +536,28 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
 <li>弯道不能把别人路给占了，可以减速慢行，但是弯路实在太多了如果太慢把别人都堵在后面也不好</li>
 <li>把别人水泥盖子压下去了，自己的轮胎也陷了进去，多亏动力足爬了出来，属于是难蚌，特地花了两百块钱的红包才解决这个问题。  </li>
 </ol>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>学车感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>科目三的一些注意问题</title>
+    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
+<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
+<p>是的 生活很美好。<br><span id="more"></span></p>
+<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
+<ol>
+<li>系好安全带</li>
+<li>档位与灯光是否正确位置</li>
+<li>转向灯以及一档起步</li>
+</ol>
+<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
+<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
 ]]></content>
       <categories>
         <category>生活</category>
