@@ -3,11 +3,36 @@
   <entry>
     <title>AE做的开头动画</title>
     <url>/2023/03/20/AE%E5%81%9A%E7%9A%84%E5%BC%80%E5%A4%B4%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<video src="D:\github_hexo\source\_posts\AE做的开头动画\cathyvideo.mp" position="absolute" width="100%" height="100%" controls="controls"></video>
+    <content><![CDATA[<p>好像是上周五的时候上课刷视频刷到了制作视频特效的教学视频</p>
+<p>于是依样画葫芦画了一个出来</p>
+<p>加上了一些足球元素在里面</p>
+<p>很佩服这些有创意并且能够将其实现的人</p>
+<video src="D:\github_hexo\source\_posts\AE做的开头动画\cathyvideo.mp4" position="absolute" width="100%" height="100%" controls="controls"></video>
 
 ]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
       <tags>
         <tag>AE特效</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中的字符串</title>
+    <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
+<p>并且发出waring:”从int  到 char截断” 现在也没怎么搞懂这个问题,但我觉得大概率是我自己用错了类型,对于name这应该是个字符串所以应该用std::string</p>
+<blockquote>
+<p>但是奇怪的东西就来了</p>
+</blockquote>
+<p>但我用 string 作为形参的时候 <strong>报错显示与函数原型不符合</strong></p>
+<p>我找了很久才发现,原来string类型不能用单引号,<em>只能用双引号</em></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -42,46 +67,6 @@
       </categories>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中的字符串</title>
-    <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
-<p>并且发出waring:”从int  到 char截断” 现在也没怎么搞懂这个问题,但我觉得大概率是我自己用错了类型,对于name这应该是个字符串所以应该用std::string</p>
-<blockquote>
-<p>但是奇怪的东西就来了</p>
-</blockquote>
-<p>但我用 string 作为形参的时候 <strong>报错显示与函数原型不符合</strong></p>
-<p>我找了很久才发现,原来string类型不能用单引号,<em>只能用双引号</em></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ODE</title>
-    <url>/2023/02/12/ODE/</url>
-    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
-<script type="math/tex; mode=display">
-x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
-<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
-<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
-<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
-<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
-<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
-<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
-<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
-<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
       </tags>
   </entry>
   <entry>
@@ -163,6 +148,28 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
+    <title>ODE</title>
+    <url>/2023/02/12/ODE/</url>
+    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
+<script type="math/tex; mode=display">
+x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
+<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
+<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
+<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
+<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
+<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
+<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
+<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
+<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo自带的使用文档</title>
     <url>/2023/01/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
@@ -180,18 +187,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>hexo技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二叉树的镜像</title>
-    <url>/2023/03/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">TreeNode* <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = <span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">		p_root-&gt;right = <span class="built_in">Mirror</span>(temp);</span><br><span class="line">		<span class="keyword">return</span> p_root;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root = = <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = p_root-&gt;right;</span><br><span class="line">		p_root-&gt;right = temp;</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;left);</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -240,19 +235,15 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>大二下的规划</title>
-    <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
-    <content><![CDATA[<p>​    现在是二月十一号,距离考试周只有两天时间了<span id="more"></span>     ,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔</p>
-<p>​    至于大二下的规划嘛,这倒是一个问题,这个学期好像有四五月的校赛选拔,到时候得认认真真做并且参加国赛培训.然后就是自己的编程技术,之前我像是一个在csdn的井底之蛙一样,没有认真系统地学习这一门工程,代码是要自己去慢慢体会与敲击的.正好这个学期有这样一门Cpp的课,自己得好好把握,做的出彩!</p>
-<p>​    在足球方面,自己要克制出勤的次数,很多时候是没必要组局去的,能去踢就去踢,以锻炼为主,这个学期也买了公路车,能骑行就直接去骑呀!</p>
-<p>​    在生活方面,最为重要的就是减重增肌,虽然具体我不知道怎么去做,但一定要多出去运动,多看看武汉的风光.其次,不要一直想着去谈对象,你已经有过这样的经历了,没必要为了满足自己的虚荣心而鬼鬼祟祟,认认真真爱自己就够了.</p>
-<p>​    最后,希望自己在新的一年里学业进步,身体健康,家人朋友万事如意!</p>
+    <title>二叉树的镜像</title>
+    <url>/2023/03/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">TreeNode* <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = <span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">		p_root-&gt;right = <span class="built_in">Mirror</span>(temp);</span><br><span class="line">		<span class="keyword">return</span> p_root;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root = = <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = p_root-&gt;right;</span><br><span class="line">		p_root-&gt;right = temp;</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;left);</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>闲谈</tag>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -277,6 +268,22 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>复变函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大二下的规划</title>
+    <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
+    <content><![CDATA[<p>​    现在是二月十一号,距离考试周只有两天时间了<span id="more"></span>     ,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔</p>
+<p>​    至于大二下的规划嘛,这倒是一个问题,这个学期好像有四五月的校赛选拔,到时候得认认真真做并且参加国赛培训.然后就是自己的编程技术,之前我像是一个在csdn的井底之蛙一样,没有认真系统地学习这一门工程,代码是要自己去慢慢体会与敲击的.正好这个学期有这样一门Cpp的课,自己得好好把握,做的出彩!</p>
+<p>​    在足球方面,自己要克制出勤的次数,很多时候是没必要组局去的,能去踢就去踢,以锻炼为主,这个学期也买了公路车,能骑行就直接去骑呀!</p>
+<p>​    在生活方面,最为重要的就是减重增肌,虽然具体我不知道怎么去做,但一定要多出去运动,多看看武汉的风光.其次,不要一直想着去谈对象,你已经有过这样的经历了,没必要为了满足自己的虚荣心而鬼鬼祟祟,认认真真爱自己就够了.</p>
+<p>​    最后,希望自己在新的一年里学业进步,身体健康,家人朋友万事如意!</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>闲谈</tag>
       </tags>
   </entry>
   <entry>
@@ -345,30 +352,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>曼城</title>
-    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
-<span id="more"></span>     
-<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
-<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
-<hr>
-<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
-<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
-<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
-<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
-<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
-<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
-<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
-<p>​    anyway, once a blue, always blue!!!</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>足球</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构与算法</title>
     <url>/2023/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="数据结构与算法B"><a href="#数据结构与算法B" class="headerlink" title="数据结构与算法B"></a>数据结构与算法B</h1><h1 id="一些概念性的东西"><a href="#一些概念性的东西" class="headerlink" title="一些概念性的东西"></a>一些概念性的东西</h1><p>算法的五个重要特性和4个基本标准<br>一个算法必须满足5大特性：<br>1、有穷性：一个算法必须执行有穷步后结束、<br>2、确定性：对于每种情况下所应执行的操作，在算法中都应该有确切的规定，不会产生二义性，使得算法的执行者和阅读者都能明确其含义以及如何执行。<br>3、可行性：算法中的所有操作都可以通过已经实现的基本操作运算执行有限次来实现<span id="more"></span><br>4、输入：一个算法应该有0个、一个或多个输入。<br>5、输出：一个算法应该有一个或多个输出。</p>
@@ -412,39 +395,27 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>某日的小感悟</title>
-    <url>/2023/03/20/%E6%9F%90%E6%97%A5%E7%9A%84%E5%B0%8F%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>今天周一,因为第一次想在早晨喝黑咖啡,于是我起得很早,便去上了早八的毛概.</p>
-<p>毛概老师是一个非常和蔼友善的老师,尽管在课堂里的人只有大约第一次课的四分之一,也没有人愿意做在前排,他也和第一次课那样侃侃而谈,充满精神.</p>
-<p>当我在刚开始上课的时候,我给我的朋友真真发了条信息,’这次课只来了一点点人,小心老师突然就点名了’.</p>
-<p>然而,现在想想看来是我多虑了.</p>
-<p>期间老师讲到了切尔西足球俱乐部的前任老板阿布拉希莫维奇,谈到他是如何成为俄罗斯寡头的,我回答出了阿布的名字,老师也开始将目光移向我</p>
-<p>因为没人愿意抬头听,我想大多数大学生都是这样的,包括我.</p>
-<p>下节课是概率论,我不想去上了,因为我想到了人生中很悲伤的事情,是关于我感情的,</p>
+    <title>曼城</title>
+    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
 <span id="more"></span>     
-<p>我是一个原生家庭一般的人,不能说父母对我寄予很高期望,但我知道我在他们心中是一直让他们骄傲的.</p>
-<p>我初中谈了恋爱,虽然现在看来那是畸形的,是青春期的愚昧无知以及自私自利.</p>
-<p>那个女生对我很好,好到什么程度呢,几乎任何事情她都能够和我沟通然后帮助我.</p>
-<p>有一次我入团申请书的报告因为我中午去网吧玩累了不想写了,便跟她开个玩笑说你帮我写吧,于是她直接就帮我写了.</p>
-<p>在每天晚上她总是会和我聊天聊很久然后发一句晚安.</p>
-<p>我一直珍藏着的在高中冬天送给我的生日礼物里面那封信,尽管那条围巾在搬家的时候已经弄丢了.</p>
-<p>当我放假天天和朋友玩英雄联盟的时候,她也不会因为我没及时回信息而抱怨,尽管我每次都会切屏出去回复她.</p>
-<p>在她搭乘高铁去北京的时候,我在想象高铁上是什么样子,北京又是什么样子,我想象不出来,</p>
-<p>但我知道,她一直都用手机在和我沟通交流自己的感受,然而我确只是当做习以为常.</p>
-<p>读书的时候我知道家境不如她,所以我会努力学习以后成为现在所谓的富人给她好的生活.</p>
-<p>其实现在想想这就是我自卑罢了,尽管现在过去这么多年,我还是感觉自己很愚昧和自私自利.</p>
-<p>上了高中,发生了更多的事,也懒得去理清这个脉络,我只知道当初我没有好好珍惜别人.</p>
-<p>很多个夜里我都会想起很多人,很多事,有一些会让我感到胸口一闷,难受无比</p>
-<p>包括这件事,但是过了两秒我就会开怀,因为我知道我爱过她.</p>
-<blockquote>
-<p>当时轻别意中人,山高水长知何处</p>
-</blockquote>
-<p>这是我很久很久很久就想说出来的话,今天逛github的时候发现了别人写的博客,记录了自己从2017到2022的一些生活记录</p>
-<p>别人可以放心的说,我为什么就不可以呢?</p>
-<p>我就是做错了事,我也很后悔,如果有机会,我一定会去弥补别人.</p>
+<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
+<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
+<hr>
+<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
+<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
+<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
+<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
+<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
+<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
+<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
+<p>​    anyway, once a blue, always blue!!!</p>
 ]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
       <tags>
-        <tag>山高水长</tag>
+        <tag>足球</tag>
       </tags>
   </entry>
   <entry>
@@ -503,6 +474,42 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </categories>
       <tags>
         <tag>学车感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>某日的小感悟</title>
+    <url>/2023/03/20/%E6%9F%90%E6%97%A5%E7%9A%84%E5%B0%8F%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>今天周一,因为第一次想在早晨喝黑咖啡,于是我起得很早,便去上了早八的毛概.</p>
+<p>毛概老师是一个非常和蔼友善的老师,尽管在课堂里的人只有大约第一次课的四分之一,也没有人愿意做在前排,他也和第一次课那样侃侃而谈,充满精神.</p>
+<p>当我在刚开始上课的时候,我给我的朋友真真发了条信息,’这次课只来了一点点人,小心老师突然就点名了’.</p>
+<p>然而,现在想想看来是我多虑了.</p>
+<p>期间老师讲到了切尔西足球俱乐部的前任老板阿布拉希莫维奇,谈到他是如何成为俄罗斯寡头的,我回答出了阿布的名字,老师也开始将目光移向我</p>
+<p>因为没人愿意抬头听,我想大多数大学生都是这样的,包括我.</p>
+<p>下节课是概率论,我不想去上了,因为我想到了人生中很悲伤的事情,是关于我感情的,</p>
+<span id="more"></span>     
+<p>我是一个原生家庭一般的人,不能说父母对我寄予很高期望,但我知道我在他们心中是一直让他们骄傲的.</p>
+<p>我初中谈了恋爱,虽然现在看来那是畸形的,是青春期的愚昧无知以及自私自利.</p>
+<p>那个女生对我很好,好到什么程度呢,几乎任何事情她都能够和我沟通然后帮助我.</p>
+<p>有一次我入团申请书的报告因为我中午去网吧玩累了不想写了,便跟她开个玩笑说你帮我写吧,于是她直接就帮我写了.</p>
+<p>在每天晚上她总是会和我聊天聊很久然后发一句晚安.</p>
+<p>我一直珍藏着的在高中冬天送给我的生日礼物里面那封信,尽管那条围巾在搬家的时候已经弄丢了.</p>
+<p>当我放假天天和朋友玩英雄联盟的时候,她也不会因为我没及时回信息而抱怨,尽管我每次都会切屏出去回复她.</p>
+<p>在她搭乘高铁去北京的时候,我在想象高铁上是什么样子,北京又是什么样子,我想象不出来,</p>
+<p>但我知道,她一直都用手机在和我沟通交流自己的感受,然而我确只是当做习以为常.</p>
+<p>读书的时候我知道家境不如她,所以我会努力学习以后成为现在所谓的富人给她好的生活.</p>
+<p>其实现在想想这就是我自卑罢了,尽管现在过去这么多年,我还是感觉自己很愚昧和自私自利.</p>
+<p>上了高中,发生了更多的事,也懒得去理清这个脉络,我只知道当初我没有好好珍惜别人.</p>
+<p>很多个夜里我都会想起很多人,很多事,有一些会让我感到胸口一闷,难受无比</p>
+<p>包括这件事,但是过了两秒我就会开怀,因为我知道我爱过她.</p>
+<blockquote>
+<p>当时轻别意中人,山高水长知何处</p>
+</blockquote>
+<p>这是我很久很久很久就想说出来的话,今天逛github的时候发现了别人写的博客,记录了自己从2017到2022的一些生活记录</p>
+<p>别人可以放心的说,我为什么就不可以呢?</p>
+<p>我就是做错了事,我也很后悔,如果有机会,我一定会去弥补别人.</p>
+]]></content>
+      <tags>
+        <tag>山高水长</tag>
       </tags>
   </entry>
   <entry>
