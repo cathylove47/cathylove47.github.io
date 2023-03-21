@@ -17,6 +17,24 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的字符串</title>
+    <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
+<p>并且发出waring:”从int  到 char截断” 现在也没怎么搞懂这个问题,但我觉得大概率是我自己用错了类型,对于name这应该是个字符串所以应该用std::string</p>
+<blockquote>
+<p>但是奇怪的东西就来了</p>
+</blockquote>
+<p>但我用 string 作为形参的时候 <strong>报错显示与函数原型不符合</strong></p>
+<p>我找了很久才发现,原来string类型不能用单引号,<em>只能用双引号</em></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的const用法</title>
     <url>/2023/02/21/C++%E4%B8%AD%E7%9A%84const%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<blockquote>
@@ -42,24 +60,6 @@
 </li>
 </ol>
 <p>.</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中的字符串</title>
-    <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
-<p>并且发出waring:”从int  到 char截断” 现在也没怎么搞懂这个问题,但我觉得大概率是我自己用错了类型,对于name这应该是个字符串所以应该用std::string</p>
-<blockquote>
-<p>但是奇怪的东西就来了</p>
-</blockquote>
-<p>但我用 string 作为形参的时候 <strong>报错显示与函数原型不符合</strong></p>
-<p>我找了很久才发现,原来string类型不能用单引号,<em>只能用双引号</em></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -131,28 +131,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ODE</title>
-    <url>/2023/02/12/ODE/</url>
-    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
-<script type="math/tex; mode=display">
-x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
-<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
-<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
-<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
-<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
-<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
-<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
-<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
-<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>const常类型引用</title>
     <url>/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值</p>
@@ -189,18 +167,25 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>latex学习</title>
-    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p> latex使用感悟</p>
-<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
-<span id="more"></span>     
-<p>每次都要重新设置标题，标签啥的，就很烦。</p>
+    <title>ODE</title>
+    <url>/2023/02/12/ODE/</url>
+    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
+<script type="math/tex; mode=display">
+x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
+<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
+<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
+<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
+<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
+<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
+<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
+<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
+<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>latex技术</tag>
+        <tag>常微分方程</tag>
       </tags>
   </entry>
   <entry>
@@ -213,6 +198,21 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>latex学习</title>
+    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p> latex使用感悟</p>
+<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
+<span id="more"></span>     
+<p>每次都要重新设置标题，标签啥的，就很烦。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>latex技术</tag>
       </tags>
   </entry>
   <entry>
@@ -270,6 +270,21 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
+    <title>如何在博客上部署视频</title>
+    <url>/2023/03/21/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%8A%E9%83%A8%E7%BD%B2%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>通过这个网站查询视频的aid与bid</p>
+<p><a href="https://api.bilibili.com/x/web-interface/view?bvid=1Bo4y1q7Ru">https://api.bilibili.com/x/web-interface/view?bvid=1Bo4y1q7Ru</a></p>
+<p>然后代入到下面就行了</p>
+<p><strong><iframe src="//player.bilibili.com/player.html?aid=!!!!&bvid=!!!!&cid=1679315171&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe></strong></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大二下的规划</title>
     <url>/2023/02/11/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E7%9A%84%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<p>​    现在是二月十一号,距离考试周只有两天时间了<span id="more"></span>     ,但是心里仿佛感觉不是那么着急.也许是我已经明白在cn,无脑的卷只会给自己带来越来越多的焦虑,不如好好享受现在,做自己力所能及的事情就足够了,考试什么的,只要自己问心无愧就好,不要因为自己没有好好复习拿高分而感到懊悔</p>
@@ -286,18 +301,24 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>如何在博客上部署视频</title>
-    <url>/2023/03/21/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%8A%E9%83%A8%E7%BD%B2%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<p>通过这个网站查询视频的aid与bid</p>
-<p><a href="https://api.bilibili.com/x/web-interface/view?bvid=1Bo4y1q7Ru">https://api.bilibili.com/x/web-interface/view?bvid=1Bo4y1q7Ru</a></p>
-<p>然后代入到下面就行了</p>
-<p><strong><iframe src="//player.bilibili.com/player.html?aid=!!!!&bvid=!!!!&cid=1679315171&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe></strong></p>
+    <title>如何解决git无法推送等问题</title>
+    <url>/2023/02/13/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3git%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81%E7%AD%89%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>问题在于用VPN的时候占用的端口</p>
+<p>此时应当关闭代理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line">git config --global http.postBuffer 524288000</span><br><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>     
+<p>查看代理:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
+<p>设置代理:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line">git config --global https.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如何让google搜索到自己的博客</p>
+<p><a href="https://blog.51cto.com/menglanglang/5946985">让 Google 搜索到自己的博客_51CTO博客_google博客搜索</a></p>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>博客搭建</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -326,25 +347,9 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>如何解决git无法推送等问题</title>
-    <url>/2023/02/13/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3git%E6%97%A0%E6%B3%95%E6%8E%A8%E9%80%81%E7%AD%89%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>问题在于用VPN的时候占用的端口</p>
-<p>此时应当关闭代理</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line">git config --global http.postBuffer 524288000</span><br><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>     
-<p>查看代理:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure>
-<p>设置代理:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line">git config --global https.proxy &#x27;127.0.0.1.1080&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>如何让google搜索到自己的博客</p>
-<p><a href="https://blog.51cto.com/menglanglang/5946985">让 Google 搜索到自己的博客_51CTO博客_google博客搜索</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
+    <title>数学模型</title>
+    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数值分析</title>
@@ -359,11 +364,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       <tags>
         <tag>数值分析</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>数学模型</title>
-    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>曼城</title>
@@ -469,42 +469,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>概率论与数理统计</title>
-    <url>/2023/02/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
-    <content><![CDATA[<h3 id="概率为0的事件一定不会发生吗"><a href="#概率为0的事件一定不会发生吗" class="headerlink" title="概率为0的事件一定不会发生吗?"></a>概率为0的事件一定不会发生吗?</h3><p>答案显示是不一定.</p>
-<p>概率论里说了<strong>不可能事件的发生概率是0，但0概率事件可能发生</strong>。比如在大海中选一滴水，恰好选到某一滴的概率为0。<br>随机变量分<strong>连续和离散</strong>两种，它们各自的分布描述是不同的。对于连续性随机变量，单个具体<br>点的概率密度值为一有界常数，这个值可以是任意的（包括0和1），但因为点是没有长度的，<br>所以该点的<strong>概率密度积分</strong>为0（因为该点概率密度值有界），即该点所对应的事件发生的概率为<br>0，但这个事件仍然是可能发生的，因为这个事件在事件域内。也就是说，概率为0的事件并不<br>一定不会发生。同理，某个点的概率密度值为1，但该点的概率密度积分仍为0，所以概率为1<br>的事件也不一定必然发生。<strong>总之，对于连续性随机变量，讨论单个点的概率是没有意义的（都</strong><br><strong>为0），我们讨论的是，这个随机变量落在一个区间内的概率。</strong></p>
-<span id="more"></span>     
-<h3 id="贝叶斯原理与狼来了"><a href="#贝叶斯原理与狼来了" class="headerlink" title="贝叶斯原理与狼来了"></a>贝叶斯原理与狼来了</h3><blockquote>
-<p><strong>狼来了概率论原理摘自网络</strong></p>
-</blockquote>
-<p><em>贝叶斯分析作为一个统计学的基本流派，对机器学习及各种用概率决策的领域具有重大影响，甚至作为理解人类智能的一种基本框架。总的来讲，贝叶斯定律通过先验和条件概率的结合，可以综合已有过往人类对一个领域的知识和更新的数据，来不停改进人类的认知。简单说就是，<strong>某人的行为会不断修正其他人对他的看法</strong>，贝叶斯不仅是一种方法论，更是一种世界观.</em></p>
-<p>记A事件为’这个小孩撒谎’ ,B事件为’小孩是可信的’</p>
-<p>不妨设可信的孩子说谎的可能性为0.1,不可信的孩子说谎的概率为0.5</p>
-<p>第一次村民上山打狼,发现狼没有来,这说明<strong>事件A发生了</strong>,这个小孩的<strong>可信程度</strong>变为:</p>
-<script type="math/tex; mode=display">
-P(B|A)=\frac {P(B)P(A|B)}{P(B)P(A|B)+P(\overline B)P(A|\overline B)}={0.8*0.1\over0.8*0.1+0.2*0.5}=0.444</script><blockquote>
-<p>这表明村民上了一次当后，对这个小孩可信程度由原来的0.8调整为0.444</p>
-</blockquote>
-<p>在这个基础上,我们再用贝叶斯公式计算小孩第二次撒谎之后,村民对他的信任程度改变为:</p>
-<script type="math/tex; mode=display">
-P(B|A)=\frac {0.444*0.1}{0.444*0.1+0.556*0.5}=0.138</script><blockquote>
-<p> 这表明村民经过两次上当后，对这个小孩的信任程度已经由最初的0.8下降到了0.138，如此低的可信度，村民听到第三次呼叫时，怎么再会上山去打狼呢？</p>
-</blockquote>
-<p>这个例子对人也有很大的启发:<strong>“某人的行为会不断修正其他人对他的看法”</strong></p>
-<h3 id="贝叶斯原理与患病阳性检测"><a href="#贝叶斯原理与患病阳性检测" class="headerlink" title="贝叶斯原理与患病阳性检测"></a>贝叶斯原理与患病阳性检测</h3><p>引言:今天上课时老师说到,无论核酸检测的精准度如何提高,对于全员核酸检测并没有什么大的帮助,无法起到完全排查的作用.</p>
-<p>下面直接给出公式:</p>
-<script type="math/tex; mode=display">
-P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病)+P(阳性|未患病)P(未患病)}</script><p>由于在当时中国,新冠患病率极低,因此分子部分基本上可以看做极小的量,分母也明显大于分子,所以你阳性了患病的可能性也并不是很大.</p>
-<p>所以当患病率极低时,检测阳性并不代表患病的可能性就很高.在这里,<strong>患病率是先验概率,阳性下的患病率是后验概率</strong></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>概率论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>科目三的一些注意问题</title>
     <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
@@ -581,6 +545,47 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </tags>
   </entry>
   <entry>
+    <title>概率论与数理统计</title>
+    <url>/2023/02/21/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
+    <content><![CDATA[<h3 id="概率为0的事件一定不会发生吗"><a href="#概率为0的事件一定不会发生吗" class="headerlink" title="概率为0的事件一定不会发生吗?"></a>概率为0的事件一定不会发生吗?</h3><p>答案显示是不一定.</p>
+<p>概率论里说了<strong>不可能事件的发生概率是0，但0概率事件可能发生</strong>。比如在大海中选一滴水，恰好选到某一滴的概率为0。<br>随机变量分<strong>连续和离散</strong>两种，它们各自的分布描述是不同的。对于连续性随机变量，单个具体<br>点的概率密度值为一有界常数，这个值可以是任意的（包括0和1），但因为点是没有长度的，<br>所以该点的<strong>概率密度积分</strong>为0（因为该点概率密度值有界），即该点所对应的事件发生的概率为<br>0，但这个事件仍然是可能发生的，因为这个事件在事件域内。也就是说，概率为0的事件并不<br>一定不会发生。同理，某个点的概率密度值为1，但该点的概率密度积分仍为0，所以概率为1<br>的事件也不一定必然发生。<strong>总之，对于连续性随机变量，讨论单个点的概率是没有意义的（都</strong><br><strong>为0），我们讨论的是，这个随机变量落在一个区间内的概率。</strong></p>
+<span id="more"></span>     
+<h3 id="贝叶斯原理与狼来了"><a href="#贝叶斯原理与狼来了" class="headerlink" title="贝叶斯原理与狼来了"></a>贝叶斯原理与狼来了</h3><blockquote>
+<p><strong>狼来了概率论原理摘自网络</strong></p>
+</blockquote>
+<p><em>贝叶斯分析作为一个统计学的基本流派，对机器学习及各种用概率决策的领域具有重大影响，甚至作为理解人类智能的一种基本框架。总的来讲，贝叶斯定律通过先验和条件概率的结合，可以综合已有过往人类对一个领域的知识和更新的数据，来不停改进人类的认知。简单说就是，<strong>某人的行为会不断修正其他人对他的看法</strong>，贝叶斯不仅是一种方法论，更是一种世界观.</em></p>
+<p>记A事件为’这个小孩撒谎’ ,B事件为’小孩是可信的’</p>
+<p>不妨设可信的孩子说谎的可能性为0.1,不可信的孩子说谎的概率为0.5</p>
+<p>第一次村民上山打狼,发现狼没有来,这说明<strong>事件A发生了</strong>,这个小孩的<strong>可信程度</strong>变为:</p>
+<script type="math/tex; mode=display">
+P(B|A)=\frac {P(B)P(A|B)}{P(B)P(A|B)+P(\overline B)P(A|\overline B)}={0.8*0.1\over0.8*0.1+0.2*0.5}=0.444</script><blockquote>
+<p>这表明村民上了一次当后，对这个小孩可信程度由原来的0.8调整为0.444</p>
+</blockquote>
+<p>在这个基础上,我们再用贝叶斯公式计算小孩第二次撒谎之后,村民对他的信任程度改变为:</p>
+<script type="math/tex; mode=display">
+P(B|A)=\frac {0.444*0.1}{0.444*0.1+0.556*0.5}=0.138</script><blockquote>
+<p> 这表明村民经过两次上当后，对这个小孩的信任程度已经由最初的0.8下降到了0.138，如此低的可信度，村民听到第三次呼叫时，怎么再会上山去打狼呢？</p>
+</blockquote>
+<p>这个例子对人也有很大的启发:<strong>“某人的行为会不断修正其他人对他的看法”</strong></p>
+<h3 id="贝叶斯原理与患病阳性检测"><a href="#贝叶斯原理与患病阳性检测" class="headerlink" title="贝叶斯原理与患病阳性检测"></a>贝叶斯原理与患病阳性检测</h3><p>引言:今天上课时老师说到,无论核酸检测的精准度如何提高,对于全员核酸检测并没有什么大的帮助,无法起到完全排查的作用.</p>
+<p>下面直接给出公式:</p>
+<script type="math/tex; mode=display">
+P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病)+P(阳性|未患病)P(未患病)}</script><p>由于在当时中国,新冠患病率极低,因此分子部分基本上可以看做极小的量,分母也明显大于分子,所以你阳性了患病的可能性也并不是很大.</p>
+<p>所以当患病率极低时,检测阳性并不代表患病的可能性就很高.在这里,<strong>患病率是先验概率,阳性下的患病率是后验概率</strong></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>概率论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运筹学</title>
+    <url>/2023/02/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>考试安排</title>
     <url>/2023/01/11/%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/</url>
     <content><![CDATA[<h1 id="2023第一学期考试安排"><a href="#2023第一学期考试安排" class="headerlink" title="2023第一学期考试安排"></a>2023第一学期考试安排</h1><p>祝愿考试顺利！</p>
@@ -602,10 +607,5 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       <tags>
         <tag>考试安排</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>运筹学</title>
-    <url>/2023/02/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
