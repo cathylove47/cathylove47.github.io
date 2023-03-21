@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AE做的开头动画</title>
+    <url>/2023/03/20/AE%E5%81%9A%E7%9A%84%E5%BC%80%E5%A4%B4%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<p>好像是上周五的时候上课刷视频刷到了制作视频特效的教学视频</p>
+<p>于是依样画葫芦画了一个出来</p>
+<p>加上了一些足球元素在里面</p>
+<p>很佩服这些有创意并且能够将其实现的人</p>
+<iframe src="//player.bilibili.com/player.html?aid=396262772&bvid=BV1Bo4y1q7Ru&cid=1679315171&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>AE特效</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的const用法</title>
     <url>/2023/02/21/C++%E4%B8%AD%E7%9A%84const%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<blockquote>
@@ -35,22 +51,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AE做的开头动画</title>
-    <url>/2023/03/20/AE%E5%81%9A%E7%9A%84%E5%BC%80%E5%A4%B4%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<p>好像是上周五的时候上课刷视频刷到了制作视频特效的教学视频</p>
-<p>于是依样画葫芦画了一个出来</p>
-<p>加上了一些足球元素在里面</p>
-<p>很佩服这些有创意并且能够将其实现的人</p>
-<iframe src="//player.bilibili.com/player.html?aid=396262772&bvid=BV1Bo4y1q7Ru&cid=1679315171&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>AE特效</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++中的字符串</title>
     <url>/2023/03/10/C-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
     <content><![CDATA[<p>今天在写一个Dog类的时候给他取名一开始用的是char,发现一个很奇怪的事情,在vs中显示它是一个int变量</p>
@@ -66,91 +66,6 @@
       </categories>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>const常类型引用</title>
-    <url>/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<p>const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值</p>
-<p>引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.</p>
-<blockquote>
-<p>调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破坏常类型的作用。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ODE</title>
-    <url>/2023/02/12/ODE/</url>
-    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
-<script type="math/tex; mode=display">
-x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
-<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
-<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
-<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
-<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
-<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
-<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
-<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
-<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二叉树的镜像</title>
-    <url>/2023/03/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">TreeNode* <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = <span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">		p_root-&gt;right = <span class="built_in">Mirror</span>(temp);</span><br><span class="line">		<span class="keyword">return</span> p_root;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root = = <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = p_root-&gt;right;</span><br><span class="line">		p_root-&gt;right = temp;</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;left);</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>数据结构与算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo自带的使用文档</title>
-    <url>/2023/01/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>hexo技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>latex学习</title>
-    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p> latex使用感悟</p>
-<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
-<span id="more"></span>     
-<p>每次都要重新设置标题，标签啥的，就很烦。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>latex技术</tag>
       </tags>
   </entry>
   <entry>
@@ -216,6 +131,91 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
+    <title>ODE</title>
+    <url>/2023/02/12/ODE/</url>
+    <content><![CDATA[<h2 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h2><h3 id="非线性方程与常数异变法"><a href="#非线性方程与常数异变法" class="headerlink" title="非线性方程与常数异变法"></a>非线性方程与常数异变法</h3><p>已知一个非线性方程的的基本解组,那么就可以将通解用他们的<strong>线性组合</strong>表示出来,然后代入方程求出常数变易.</p>
+<script type="math/tex; mode=display">
+x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
+<h3 id="常系数线性方程"><a href="#常系数线性方程" class="headerlink" title="常系数线性方程"></a>常系数线性方程</h3><span id="more"></span>     
+<h4 id="特征根是单根的情形"><a href="#特征根是单根的情形" class="headerlink" title="特征根是单根的情形:"></a>特征根是单根的情形:</h4><p>如果没有复根,那么很简单,就是</p>
+<img src="/2023/02/12/ODE/image-20230212150834736.png" class title="This is an example image">
+<p>如果存在<strong>复根,</strong>那么需要用到<strong>欧拉公式</strong></p>
+<img src="/2023/02/12/ODE/image-20230212151026091.png" class title="This is an example image">
+<h4 id="特征根有重根的情形"><a href="#特征根有重根的情形" class="headerlink" title="特征根有重根的情形:"></a>特征根有重根的情形:</h4><p>很简单,相当于又多了一层线性无关的条件</p>
+<img src="/2023/02/12/ODE/image-20230212152026853.png" class title="This is an example image">
+<h4 id="不是常系数的线性方程"><a href="#不是常系数的线性方程" class="headerlink" title="不是常系数的线性方程:"></a>不是常系数的线性方程:</h4><p>用待定系数法就行了</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>latex学习</title>
+    <url>/2023/01/09/latex%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p> latex使用感悟</p>
+<p>最大的问题在于需要花费大量的时间<br>比如添加图片，子图要怎么设置，这些都没有一个基本的模板</p>
+<span id="more"></span>     
+<p>每次都要重新设置标题，标签啥的，就很烦。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>latex技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>const常类型引用</title>
+    <url>/2023/03/13/const%E5%B8%B8%E7%B1%BB%E5%9E%8B%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<p>const常类型的作用:使得形参在子函数中作为一个常量被调用,既无法成为左值,又无法修改形参的值</p>
+<p>引用的作用: 本来加了&amp;表示传入地址,会改变形参的值,但是前面有const修饰的条件下反而形成了保护,优点是这种参数传递其实是一种指针的形式,不需要i进行复制操作.</p>
+<blockquote>
+<p>调用函数中并没有申请一个空间来存放形参b，也不用将实参a的值传给形参b，因此使程序运行更简化。此时的b也是不可改变的，并没有破坏常类型的作用。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo自带的使用文档</title>
+    <url>/2023/01/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br><span id="more"></span>     </p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>hexo技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树的镜像</title>
+    <url>/2023/03/16/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">TreeNode* <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = <span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">		p_root-&gt;right = <span class="built_in">Mirror</span>(temp);</span><br><span class="line">		<span class="keyword">return</span> p_root;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Mirror</span><span class="params">(TreeNode* p_root)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (p_root = = <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		TreeNode* temp = p_root-&gt;left;</span><br><span class="line">		p_root-&gt;left = p_root-&gt;right;</span><br><span class="line">		p_root-&gt;right = temp;</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;left);</span><br><span class="line">		<span class="built_in">Mirror</span>(p_root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于博客不显示图片</title>
     <url>/2023/02/13/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87/</url>
     <content><![CDATA[<blockquote>
@@ -243,6 +243,45 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复变函数</title>
+    <url>/2023/02/21/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="复数与复变函数"><a href="#复数与复变函数" class="headerlink" title="复数与复变函数"></a>复数与复变函数</h2><h3 id="复数的几何表示"><a href="#复数的几何表示" class="headerlink" title="复数的几何表示"></a>复数的几何表示</h3><h4 id="复平面"><a href="#复平面" class="headerlink" title="复平面"></a>复平面</h4><blockquote>
+<p>辐角</p>
+<p>模</p>
+<p>三角表达式和指数表达式</p>
+</blockquote>
+<span id="more"></span>     
+<h4 id="复球面"><a href="#复球面" class="headerlink" title="复球面"></a>复球面</h4><h3 id="复数的乘幂与方根"><a href="#复数的乘幂与方根" class="headerlink" title="复数的乘幂与方根"></a>复数的乘幂与方根</h3><h4 id="乘积与商"><a href="#乘积与商" class="headerlink" title="乘积与商"></a>乘积与商</h4><blockquote>
+<p>定理1:乘积的模等于模的乘积,辐角等于它们辐角之和</p>
+<p>定理2:商的模等于模的商;辐角等于辐角差</p>
+</blockquote>
+<h4 id="幂与根"><a href="#幂与根" class="headerlink" title="幂与根"></a>幂与根</h4><blockquote>
+<p>De Moivere公式</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>复变函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在博客上部署视频</title>
+    <url>/2023/03/21/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%8A%E9%83%A8%E7%BD%B2%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>通过这个网站查询视频的aid与bid</p>
+<p><a href="https://api.bilibili.com/x/web-interface/view?bvid=1Bo4y1q7Ru">https://api.bilibili.com/x/web-interface/view?bvid=1Bo4y1q7Ru</a></p>
+<p>然后代入到下面就行了</p>
+<p><strong><iframe src="//player.bilibili.com/player.html?aid=!!!!&bvid=!!!!&cid=1679315171&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe></strong></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -283,30 +322,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>复变函数</title>
-    <url>/2023/02/21/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="复数与复变函数"><a href="#复数与复变函数" class="headerlink" title="复数与复变函数"></a>复数与复变函数</h2><h3 id="复数的几何表示"><a href="#复数的几何表示" class="headerlink" title="复数的几何表示"></a>复数的几何表示</h3><h4 id="复平面"><a href="#复平面" class="headerlink" title="复平面"></a>复平面</h4><blockquote>
-<p>辐角</p>
-<p>模</p>
-<p>三角表达式和指数表达式</p>
-</blockquote>
-<span id="more"></span>     
-<h4 id="复球面"><a href="#复球面" class="headerlink" title="复球面"></a>复球面</h4><h3 id="复数的乘幂与方根"><a href="#复数的乘幂与方根" class="headerlink" title="复数的乘幂与方根"></a>复数的乘幂与方根</h3><h4 id="乘积与商"><a href="#乘积与商" class="headerlink" title="乘积与商"></a>乘积与商</h4><blockquote>
-<p>定理1:乘积的模等于模的乘积,辐角等于它们辐角之和</p>
-<p>定理2:商的模等于模的商;辐角等于辐角差</p>
-</blockquote>
-<h4 id="幂与根"><a href="#幂与根" class="headerlink" title="幂与根"></a>幂与根</h4><blockquote>
-<p>De Moivere公式</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>复变函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我在用hexo搭建个人博客时遇到的问题</title>
     <url>/2023/01/10/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo-github%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84/</url>
     <content><![CDATA[<p>一切的想法都是因为在b站上刷到了codesheep羊哥讲述的关于如何搭建个人博客的视频，然后鼓弄鼓弄了差不多一个下午（大部分时间都是删文件夹重来造成的）自己总结了一些易错的地方。</p>
@@ -332,11 +347,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>数学模型</title>
-    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>数值分析</title>
     <url>/2023/02/21/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<h2 id="拉格朗日插值法"><a href="#拉格朗日插值法" class="headerlink" title="拉格朗日插值法"></a>拉格朗日插值法</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment">author:凯鑫</span></span><br><span class="line"><span class="comment">date:2023-03-01</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">input_point</span><span class="params">(<span class="type">int</span> n, <span class="type">double</span> a[], <span class="type">double</span> b[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n+<span class="number">1</span> ; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; a[i] &gt;&gt; b[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">Lagrange</span><span class="params">(<span class="type">double</span> a[], <span class="type">double</span> b[], <span class="type">int</span> n, <span class="type">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">double</span> sum = <span class="number">0.</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; n + <span class="number">1</span>; k++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> L = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n + <span class="number">1</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (j == k)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			L *= (x - a[j]) / (a[k] - a[j]);</span><br><span class="line">		&#125;</span><br><span class="line">		sum += b[k] * L;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	<span class="type">double</span> L = <span class="number">0.</span>, sum = <span class="number">0.</span>, x;</span><br><span class="line">	<span class="type">double</span> a[<span class="number">100</span>], b[<span class="number">100</span>];</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;请输入结点数n+1: &quot;</span>;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;请依次输入各个结点(x,y)&quot;</span>;</span><br><span class="line">	<span class="built_in">input_point</span>(n, a, b);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;请输入插值x1: &quot;</span>;</span><br><span class="line">	cin &gt;&gt; x;</span><br><span class="line">	sum = <span class="built_in">Lagrange</span>(a, b, n, x);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;插值结果为:  &quot;</span> &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -349,6 +359,11 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       <tags>
         <tag>数值分析</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>数学模型</title>
+    <url>/2023/02/21/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数据结构与算法</title>
@@ -394,39 +409,15 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>曼城</title>
-    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
-<span id="more"></span>     
-<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
-<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
-<hr>
-<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
-<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
-<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
-<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
-<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
-<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
-<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
-<p>​    anyway, once a blue, always blue!!!</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>足球</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>某日的小感悟</title>
-    <url>/2023/03/20/%E6%9F%90%E6%97%A5%E7%9A%84%E5%B0%8F%E6%84%9F%E6%82%9F/</url>
+    <url>/2023/02/20/%E6%9F%90%E6%97%A5%E7%9A%84%E5%B0%8F%E6%84%9F%E6%82%9F/</url>
     <content><![CDATA[<p>今天周一,因为第一次想在早晨喝黑咖啡,于是我起得很早,便去上了早八的毛概.</p>
 <p>毛概老师是一个非常和蔼友善的老师,尽管在课堂里的人只有大约第一次课的四分之一,也没有人愿意做在前排,他也和第一次课那样侃侃而谈,充满精神.</p>
 <p>当我在刚开始上课的时候,我给我的朋友真真发了条信息,’这次课只来了一点点人,小心老师突然就点名了’.</p>
 <p>然而,现在想想看来是我多虑了.</p>
 <p>期间老师讲到了切尔西足球俱乐部的前任老板阿布拉希莫维奇,谈到他是如何成为俄罗斯寡头的,我回答出了阿布的名字,老师也开始将目光移向我</p>
 <p>因为没人愿意抬头听,我想大多数大学生都是这样的,包括我.</p>
-<p>下节课是概率论,我不想去上了,因为我想到了人生中很悲伤的事情,是关于我感情的,</p>
+<p>下节课是概率论,我不想去上了,因为我突然想到了人生中很悲伤的事情,是关于我感情的,</p>
 <span id="more"></span>     
 <p>我是一个原生家庭一般的人,不能说父母对我寄予很高期望,但我知道我在他们心中是一直让他们骄傲的.</p>
 <p>我初中谈了恋爱,虽然现在看来那是畸形的,是青春期的愚昧无知以及自私自利.</p>
@@ -451,6 +442,30 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
 ]]></content>
       <tags>
         <tag>山高水长</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>曼城</title>
+    <url>/2023/01/26/%E6%9B%BC%E5%9F%8E%E5%A4%BA%E5%86%A0%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="英超联赛"><a href="#英超联赛" class="headerlink" title="英超联赛"></a>英超联赛</h2><h3 id="目前局势"><a href="#目前局势" class="headerlink" title="目前局势"></a>目前局势</h3><p>现在已经赛了20场，阿森纳少赛一场领先5分，下一轮的对手是埃弗顿，但是埃弗顿主教练兰帕德刚刚下课，新帅上任肯定球员更卖力一点，最好的估计是平局，这样的话相当于曼城落后6分。</p>
+<span id="more"></span>     
+<h3 id="展望接下来18轮"><a href="#展望接下来18轮" class="headerlink" title="展望接下来18轮"></a>展望接下来18轮</h3><p>首先这6分的差距是可以通过自身两回合与阿森纳的天王山之战弄到的，其次的是从踢狼队的那场比赛可以看到曼城的进攻太依赖某个球员的灵光一现了，希望瓜迪奥拉把哈兰德用好的同时也激活一下其他球员。</p>
+<h3 id="关于引援"><a href="#关于引援" class="headerlink" title="关于引援"></a>关于引援</h3><p>没有什么其他的要求，留住京多安再踢一个赛季，然后签下贝林厄姆或者边锋妖人。</p>
+<hr>
+<h2 id="（更新）写在考试之前"><a href="#（更新）写在考试之前" class="headerlink" title="（更新）写在考试之前"></a>（更新）写在考试之前</h2><p>​    自从世界杯结束以后，曼城的状态可以说是低谷中的低谷，本来世界杯开打之前就被小蜜蜂给绝杀，一开局又输给了南安普顿这种保级球队。</p>
+<p>现在好了球队还被英超发起了一百多起财政公平的指控，瓜迪奥拉可能也要离开曼城，哈兰德也要，坎塞洛已经走了 ——-</p>
+<p>​    作为一名曼城球迷，我心目中最深刻的只有两个画面吧，第一个是曼城在伯纳乌被皇马上演奇迹逆转，我还记得当时懂球帝的标题是“奇迹之夜”</p>
+<p>第二个是曼城逆转阿斯顿维拉夺得英超冠军那一幕，当时利物浦和曼城仅有一分之差，京多安替补奇兵打入第一粒头球，罗德里紧随其后的世界波！</p>
+<p>德布劳内精彩的助攻——绝杀！！京多安作为队长完成了绝杀，而当时的时间定格在八十分钟，曼城如愿以偿得到了英超冠军！五年四冠！！！</p>
+<p>​    在中国，这个对足球不怎么敏感的国家，（当然大多都是对骂人敏感），我要深深地感谢懂球帝这一个平台，它让我知道原来足球是这么吸引人的一项运动</p>
+<p>而曼城满足了我对足球主队的所有幻想——强大有魅力的球员，喜欢整活的主教练，还有太子福登，他们都是曼城的宝藏。</p>
+<p>​    anyway, once a blue, always blue!!!</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>足球</tag>
       </tags>
   </entry>
   <entry>
@@ -487,6 +502,28 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </categories>
       <tags>
         <tag>概率论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>科目三的一些注意问题</title>
+    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
+<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
+<p>是的 生活很美好。<br><span id="more"></span></p>
+<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
+<ol>
+<li>系好安全带</li>
+<li>档位与灯光是否正确位置</li>
+<li>转向灯以及一档起步</li>
+</ol>
+<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
+<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>学车感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -564,28 +601,6 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </categories>
       <tags>
         <tag>考试安排</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>科目三的一些注意问题</title>
-    <url>/2023/01/08/%E7%A7%91%E7%9B%AE%E4%B8%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>1.7号——时隔半年以来第一次接触方向盘就直接进行科目三上路环节</p>
-<p>遇上了许久不见的朋友，和他们絮絮叨叨口罩放开以来的种种事情</p>
-<p>是的 生活很美好。<br><span id="more"></span></p>
-<h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><p>首先是起步阶段需要做的事情:</p>
-<ol>
-<li>系好安全带</li>
-<li>档位与灯光是否正确位置</li>
-<li>转向灯以及一档起步</li>
-</ol>
-<p>到了中间就是加减档，个人认为加减档算是最容易的一个项目了，因为没有任何坑，只需要把心里已经演算过的东西重新运用就行了</p>
-<h3 id="关于遇上特殊情况时候的处理方法"><a href="#关于遇上特殊情况时候的处理方法" class="headerlink" title="关于遇上特殊情况时候的处理方法"></a>关于遇上特殊情况时候的处理方法</h3><p><strong>第一种：前面有车</strong><br>这种情况下 首先应该踩刹车降速<br>然后挂二档 继续降速<br>然后离合器踩死 踩刹车<br>问题解决后准备起步<br><strong>第二种：后面超车</strong><br>这种情况的处理也很容易，超车就让他超车呗对吧<br>自己在自己的道路上开好就行了<br><strong>第三种： 关于别踩线</strong><br>我觉得最大的问题在于换挡时整个身体动导致了踩线</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>学车感悟</tag>
       </tags>
   </entry>
   <entry>
