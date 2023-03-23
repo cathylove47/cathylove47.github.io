@@ -216,30 +216,6 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </tags>
   </entry>
   <entry>
-    <title>复变函数</title>
-    <url>/2023/02/21/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="复数与复变函数"><a href="#复数与复变函数" class="headerlink" title="复数与复变函数"></a>复数与复变函数</h2><h3 id="复数的几何表示"><a href="#复数的几何表示" class="headerlink" title="复数的几何表示"></a>复数的几何表示</h3><h4 id="复平面"><a href="#复平面" class="headerlink" title="复平面"></a>复平面</h4><blockquote>
-<p>辐角</p>
-<p>模</p>
-<p>三角表达式和指数表达式</p>
-</blockquote>
-<span id="more"></span>     
-<h4 id="复球面"><a href="#复球面" class="headerlink" title="复球面"></a>复球面</h4><h3 id="复数的乘幂与方根"><a href="#复数的乘幂与方根" class="headerlink" title="复数的乘幂与方根"></a>复数的乘幂与方根</h3><h4 id="乘积与商"><a href="#乘积与商" class="headerlink" title="乘积与商"></a>乘积与商</h4><blockquote>
-<p>定理1:乘积的模等于模的乘积,辐角等于它们辐角之和</p>
-<p>定理2:商的模等于模的商;辐角等于辐角差</p>
-</blockquote>
-<h4 id="幂与根"><a href="#幂与根" class="headerlink" title="幂与根"></a>幂与根</h4><blockquote>
-<p>De Moivere公式</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>复变函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于博客不显示图片</title>
     <url>/2023/02/13/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87/</url>
     <content><![CDATA[<blockquote>
@@ -267,6 +243,30 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复变函数</title>
+    <url>/2023/02/21/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="复数与复变函数"><a href="#复数与复变函数" class="headerlink" title="复数与复变函数"></a>复数与复变函数</h2><h3 id="复数的几何表示"><a href="#复数的几何表示" class="headerlink" title="复数的几何表示"></a>复数的几何表示</h3><h4 id="复平面"><a href="#复平面" class="headerlink" title="复平面"></a>复平面</h4><blockquote>
+<p>辐角</p>
+<p>模</p>
+<p>三角表达式和指数表达式</p>
+</blockquote>
+<span id="more"></span>     
+<h4 id="复球面"><a href="#复球面" class="headerlink" title="复球面"></a>复球面</h4><h3 id="复数的乘幂与方根"><a href="#复数的乘幂与方根" class="headerlink" title="复数的乘幂与方根"></a>复数的乘幂与方根</h3><h4 id="乘积与商"><a href="#乘积与商" class="headerlink" title="乘积与商"></a>乘积与商</h4><blockquote>
+<p>定理1:乘积的模等于模的乘积,辐角等于它们辐角之和</p>
+<p>定理2:商的模等于模的商;辐角等于辐角差</p>
+</blockquote>
+<h4 id="幂与根"><a href="#幂与根" class="headerlink" title="幂与根"></a>幂与根</h4><blockquote>
+<p>De Moivere公式</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>复变函数</tag>
       </tags>
   </entry>
   <entry>
@@ -423,6 +423,54 @@ x=c_1(t)cost+c_2(t)sint</script><p>然后再列出两个方程求解即可.</p>
       </categories>
       <tags>
         <tag>电影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>春日小游记</title>
+    <url>/2023/03/22/%E6%98%A5%E6%97%A5%E5%B0%8F%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<blockquote>
+<p>没有什么比在东湖骑车更自由了</p>
+</blockquote>
+<p>最近的武汉一直是下雨天,给人呐心情整的恍恍惚惚的.</p>
+<p>记得电视剧&lt;唐朝诡事录&gt;里面有有一回就是这么写的,</p>
+<p>好像是江南地区的雨季导致一个书生误以为自己妻子红杏出墙等等</p>
+<p>现在想想虽然电视剧有夸大的成分,但确实下雨会导致大部分人神情恍惚.</p>
+<p>但是今天中午的时候,我观天色尚明,于是发了个朋友圈说’希望今天下午不要下雨’</p>
+<p><strong>因为我要去东湖看樱花了</strong></p>
+<p>老天确实听到了我的话了,没有下雨,在怀着忐忑的心情我便出发了华科</p>
+<p>我是和华科同学约好一起去的,让他在华科东北门等我</p>
+<p>不知道骑了多久,大概一个多小时,终于跟他汇合了</p>
+<p>于是我们便骑车去东湖樱花园,在此期间我很悠闲</p>
+<p>因为他骑的是辆共享单车 于是我就可以慢慢悠悠的看风景骑</p>
+<p>东湖旁边都是很美的,美不胜收.</p>
+<p>一眼绿色的高尔夫球场,</p>
+<p>停在马路中间的麻雀,</p>
+<p>郁郁葱葱的树木,</p>
+<p>闲来垂钓的人们,</p>
+<p>简直太哇塞了!</p>
+<p><strong>锐评东湖樱花</strong></p>
+<p>大抵是我这性格欣赏不来这么多人共存的景区吧,没有那种幽静的赏花意境</p>
+<p>都是一些老太太组团来看的,虽然说一部分人素质都很高,</p>
+<p>但另一部分可以用个词语来形容—聒噪</p>
+<blockquote>
+<p>热闹是他们的,我什么也没有</p>
+</blockquote>
+<p><strong>华科之行</strong></p>
+<p>华科没有减速带!!!</p>
+<p>这是最好的一个地方,在武汉理工减速带到处都是</p>
+<p>这导致我骑车屁股都点屁颠屁颠的</p>
+<p>华科很大,食堂不叫食堂叫餐厅</p>
+<p>感觉有一种真正大学的氛围</p>
+<p>也从同学那里听到了华科很多奇闻异事哈哈哈</p>
+<p>顺便蹭了一次湘菜馆</p>
+<p><strong>ok接下来上图</strong></p>
+<img src="/2023/03/22/%E6%98%A5%E6%97%A5%E5%B0%8F%E6%B8%B8%E8%AE%B0/2023_03_22_20_03_IMG_2249.JPG" class title="sakura">
+]]></content>
+      <categories>
+        <category>游玩</category>
+      </categories>
+      <tags>
+        <tag>武汉出行</tag>
       </tags>
   </entry>
   <entry>
@@ -598,11 +646,6 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       </tags>
   </entry>
   <entry>
-    <title>运筹学</title>
-    <url>/2023/01/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>考试安排</title>
     <url>/2023/01/11/%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/</url>
     <content><![CDATA[<h1 id="2023第一学期考试安排"><a href="#2023第一学期考试安排" class="headerlink" title="2023第一学期考试安排"></a>2023第一学期考试安排</h1><p>祝愿考试顺利！</p>
@@ -624,5 +667,10 @@ P(患病|阳性)=\frac{P(检验阳性|患病)P(患病)}{P(阳性|患病)P(患病
       <tags>
         <tag>考试安排</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>运筹学</title>
+    <url>/2023/01/21/%E8%BF%90%E7%AD%B9%E5%AD%A6/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
