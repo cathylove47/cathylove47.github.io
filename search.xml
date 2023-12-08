@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/12/07/hello-world/"/>
+      <url>/2023/12/07/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我讨厌受伤</title>
+      <link href="/2023/11/24/%E6%88%91%E8%AE%A8%E5%8E%8C%E5%8F%97%E4%BC%A4/"/>
+      <url>/2023/11/24/%E6%88%91%E8%AE%A8%E5%8E%8C%E5%8F%97%E4%BC%A4/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>从放暑假开始,我的左腿就没有健康过</p></blockquote><p>很久没踢球后跟南湖大爷踢了一次,于是遇到了一个千古奇观</p><p>明明是青少年时期会得的病,我却有了</p><blockquote><p>髌骨结节软骨炎</p></blockquote><p>膝盖下方的髌骨突出了一块,一碰就痛</p><p>据说得了这个病的人不能跪 :joy:</p><p>印象最深刻的就是那次在华科踢球,每冲刺一下就来的刺痛感</p><p>当时真的又快乐又难受</p><hr><p>好不容易熬过了髌骨的伤势,</p><p>有一天打算在西院练球,虽然练长传一直变成射门 :dagger:</p><p>然后就有几个大一的不会踢的喊我们去踢</p><p><strong>成功的被垫脚然后崴了</strong></p><p>第二天脚肿得我自己都害怕</p><p>还好过了个星期就是国庆节了</p><p>赶紧回去养伤,顺便看看家里人</p><hr><p>这么多天过去了,其实自己的伤根本就没有好全</p><p>但是自己每次都是带伤踢球</p><p>导致现在脚踝留下了暗伤,基本一蹲下来就会明显赶紧无法支撑</p><p>其次就是小腿腿筋出了问题,这个是不知道咋回事,</p><p>那天踢完球晚上疼的睡不着觉</p><p>现在又是一个暗伤</p><p>哎!我讨厌受伤</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 足球 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>足彩分析</title>
+      <link href="/2023/11/12/%E8%B6%B3%E5%BD%A9%E5%88%86%E6%9E%90/"/>
+      <url>/2023/11/12/%E8%B6%B3%E5%BD%A9%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="竞彩规则"><a href="#竞彩规则" class="headerlink" title="竞彩规则"></a>竞彩规则</h1><h2 id="足球彩票"><a href="#足球彩票" class="headerlink" title="足球彩票"></a>足球彩票</h2><p>共有6种玩法，<em>胜平负</em>，<em>让球胜平负</em>，<em>比分</em>，<em>半全场</em>，<em>总进球</em>，<em>混合过关</em>。不同玩法规则下每场比赛的投注选项不一样：</p><ul><li>胜平负</li></ul><p>​每场比赛有三个投注选项。</p><blockquote><p>  [‘胜’，’平’，’负’]</p></blockquote><ul><li>让球胜平负</li></ul><blockquote><p> [‘让胜’，’让平’，’让负’]</p></blockquote><ul><li>比分</li></ul><blockquote><p>最难的一种玩法  </p></blockquote><ul><li>半全场</li></ul><blockquote><p>半场结果+全场结果</p></blockquote><ul><li>总进球</li></ul><blockquote><p>大小球类型</p></blockquote><ul><li>混合过关</li></ul><blockquote><p>字面意思</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲暇分析 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 体育彩票 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>25考研记录</title>
+      <link href="/2023/10/01/25%E8%80%83%E7%A0%94%E8%AE%B0%E5%BD%95/"/>
+      <url>/2023/10/01/25%E8%80%83%E7%A0%94%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="计算机考研记录"><a href="#计算机考研记录" class="headerlink" title="计算机考研记录"></a>计算机考研记录</h1><h2 id="经验贴"><a href="#经验贴" class="headerlink" title="经验贴"></a>经验贴</h2><p>[华科390知乎](<a href="https://zhuanlan.zhihu.com/p/617072204">华科计算机专硕390+经验贴 - 知乎 (zhihu.com)</a>)</p><p>华科的复试github上也有分享</p><h2 id="各个985院校23年录取情况"><a href="#各个985院校23年录取情况" class="headerlink" title="各个985院校23年录取情况"></a>各个985院校23年录取情况</h2><h3 id="浙大"><a href="#浙大" class="headerlink" title="浙大"></a>浙大</h3><p><img src="/img/%E6%B5%99%E5%A4%A7.png" class="lazyload placeholder" data-srcset="/img/%E6%B5%99%E5%A4%A7.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><p>计院进面试均分在380左右 <em>不建议报考</em></p><p>软件学院377,复试25进17 也就是说就算考了380依然有可能在复试out</p><h3 id="上海交大"><a href="#上海交大" class="headerlink" title="上海交大"></a>上海交大</h3><p><img src="/img/%E4%B8%8A%E6%B5%B7%E4%BA%A4%E5%A4%A7.png" class="lazyload placeholder" data-srcset="/img/%E4%B8%8A%E6%B5%B7%E4%BA%A4%E5%A4%A7.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><p>相比于浙大而言复试均分以及复试线不是那么离谱</p><p>现在找不到具体数据</p><h3 id="华科"><a href="#华科" class="headerlink" title="华科"></a>华科</h3><p><img src="/img/%E5%8D%8E%E7%A7%91.png" class="lazyload placeholder" data-srcset="/img/%E5%8D%8E%E7%A7%91.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><p>计院均分为:378(42进33)  <strong>24年招31个</strong></p><p>378(211进125)  <strong>24年招95个</strong></p><p>软件学院为:373(97进79)  <strong>24年招55个</strong></p><p>网安:362(64进47)  <strong>24年招42个</strong></p><p>370(38进24) <strong>24年招28个</strong></p><h3 id="南京大学"><a href="#南京大学" class="headerlink" title="南京大学"></a>南京大学</h3><p><img src="/img/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="北京理工大学"><a href="#北京理工大学" class="headerlink" title="北京理工大学"></a>北京理工大学</h3><p><img src="/img/%E5%8C%97%E4%BA%AC%E7%90%86%E5%B7%A5.png" class="lazyload placeholder" data-srcset="/img/%E5%8C%97%E4%BA%AC%E7%90%86%E5%B7%A5.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="同济大学"><a href="#同济大学" class="headerlink" title="同济大学"></a>同济大学</h3><p><img src="/img/%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="中科大"><a href="#中科大" class="headerlink" title="中科大"></a>中科大</h3><p><img src="/img/%E4%B8%AD%E7%A7%91%E5%A4%A7.png" class="lazyload placeholder" data-srcset="/img/%E4%B8%AD%E7%A7%91%E5%A4%A7.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="武大"><a href="#武大" class="headerlink" title="武大"></a>武大</h3><p><img src="/img/%E6%AD%A6%E5%A4%A7.png" class="lazyload placeholder" data-srcset="/img/%E6%AD%A6%E5%A4%A7.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="中国人民大学"><a href="#中国人民大学" class="headerlink" title="中国人民大学"></a>中国人民大学</h3><p><img src="/img/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="南开大学"><a href="#南开大学" class="headerlink" title="南开大学"></a>南开大学</h3><p><img src="/img/%E5%8D%97%E5%BC%80%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E5%8D%97%E5%BC%80%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="复旦大学"><a href="#复旦大学" class="headerlink" title="复旦大学"></a>复旦大学</h3><p><img src="/img/%E5%A4%8D%E6%97%A6%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E5%A4%8D%E6%97%A6%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="厦门大学"><a href="#厦门大学" class="headerlink" title="厦门大学"></a>厦门大学</h3><p><img src="/img/%E5%8E%A6%E9%97%A8%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E5%8E%A6%E9%97%A8%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="中山大学"><a href="#中山大学" class="headerlink" title="中山大学"></a>中山大学</h3><p><img src="/img/%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6.png" class="lazyload placeholder" data-srcset="/img/%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h3 id="华南理工"><a href="#华南理工" class="headerlink" title="华南理工"></a>华南理工</h3><p><img src="/img/%E5%8D%8E%E5%8D%97%E7%90%86%E5%B7%A5.png" class="lazyload placeholder" data-srcset="/img/%E5%8D%8E%E5%8D%97%E7%90%86%E5%B7%A5.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><h2 id="数一学习记录"><a href="#数一学习记录" class="headerlink" title="数一学习记录"></a>数一学习记录</h2><p><em><strong>2023.10-2023.5</strong></em> </p><p><strong>复习用书:</strong></p><p><em>张宇考研数学基础30讲</em> 高等数学,线性代数,概率论与数理统计</p><p><em>张宇1000题</em></p><p><em><strong>2023.3-2023.8</strong></em></p><p>刷题＋强化</p><p>18+9+9 </p><p><em><strong>2023.7-2023.10</strong></em></p><p>真题阶段</p><p><strong>2023.10-2023.12</strong></p><p>冲刺阶段</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 考研 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>车子被找到了!</title>
+      <link href="/2023/09/24/%E8%BD%A6%E5%AD%90%E8%A2%AB%E6%89%BE%E5%88%B0%E4%BA%86/"/>
+      <url>/2023/09/24/%E8%BD%A6%E5%AD%90%E8%A2%AB%E6%89%BE%E5%88%B0%E4%BA%86/</url>
+      
+        <content type="html"><![CDATA[<p>很开心,车子时隔四个月被找回来!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 开心 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>写在亚冠比赛前</title>
+      <link href="/2023/09/19/%E5%86%99%E5%9C%A8%E4%BA%9A%E5%86%A0%E6%AF%94%E8%B5%9B%E5%89%8D/"/>
+      <url>/2023/09/19/%E5%86%99%E5%9C%A8%E4%BA%9A%E5%86%A0%E6%AF%94%E8%B5%9B%E5%89%8D/</url>
+      
+        <content type="html"><![CDATA[<h1 id="新的学期"><a href="#新的学期" class="headerlink" title="新的学期"></a>新的学期</h1><p>其实我也没怎么感觉到新学期,</p><p>因为校赛集训的缘故,感觉两个学期是连着的</p><h2 id="回首上个学期"><a href="#回首上个学期" class="headerlink" title="回首上个学期"></a>回首上个学期</h2><p>上个学期,可谓是平静的令人害怕,</p><p>不知道自己做了什么,好像开学来了就是考试?</p><p>刚开学就”耗费重资”买了第一辆公路车rc200</p><p>当时真的好轻松,但是当时沉迷吃鸡买了一个台式机</p><p>现在觉得有点多余,虽然确实有点用处</p><p>课基本没怎么去上的,因为确实没啥好上的,b站都有</p><h3 id="期中周旅游"><a href="#期中周旅游" class="headerlink" title="期中周旅游"></a>期中周旅游</h3><p>可以说过的真的是浑浑噩噩,除了期中周出发去旅游</p><p>自己开车五百公里在神农架游玩,</p><p>在双手握住方向盘的时候,</p><p>我才感觉人生就把握在我手中.</p><h3 id="车子被偷"><a href="#车子被偷" class="headerlink" title="车子被偷"></a>车子被偷</h3><p>这是最难忘的也是最气愤的一件事情,自那之后我对police失望了</p><p>当时也是六月份快期末了,事情很多很难受</p><h3 id="绝望的期末考试"><a href="#绝望的期末考试" class="headerlink" title="绝望的期末考试"></a>绝望的期末考试</h3><p>真的很绝望,每门课都是速成,但好像结果还不错</p><h3 id="数模"><a href="#数模" class="headerlink" title="数模"></a>数模</h3><p>开始二十天倒没什么,到了后面八月份选拔的时候,</p><p>开始逐渐麻木起来,现在又得担心国赛成绩</p><h2 id="展望这个学期"><a href="#展望这个学期" class="headerlink" title="展望这个学期"></a>展望这个学期</h2><p>首先一定要认真规划自己的未来了</p><p>能获得国奖保研,那自然最好</p><p>如果不能就争取美赛</p><p>同时在美赛的时候也要留心一手考研准备</p><h3 id="上课"><a href="#上课" class="headerlink" title="上课"></a>上课</h3><p>必修课也就三门吧,其中还有一门八周结课的,</p><p>偏微分是一定要重视的,不然肯定寄</p><h3 id="业余生活"><a href="#业余生活" class="headerlink" title="业余生活"></a>业余生活</h3><p>这两个月可谓是伤病不断,</p><p>从胫骨结节软骨炎到崴脚</p><p>然后涂药还过敏</p><p>真的折磨!</p><p>希望早点过去</p><p>我想拥有快乐的生活,</p><p>和好朋友踢足球,看比赛</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 感悟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2023-2024学年文件</title>
+      <link href="/2023/09/15/2023-2024%E5%AD%A6%E5%B9%B4%E6%96%87%E4%BB%B6/"/>
+      <url>/2023/09/15/2023-2024%E5%AD%A6%E5%B9%B4%E6%96%87%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h3 id="获取pdf"><a href="#获取pdf" class="headerlink" title="获取pdf"></a>获取pdf</h3><div class="link-group"><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="数学物理方程教案-王征平 (2023年9月).pdf" href="/2023-2024/数学物理方程教案-王征平 (2023年9月).pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">数学物理方程教案-王征平 (2023年9月).pdf</p><p class="url">/2023-2024/数学物理方程教案-王征平 (2023年9月).pdf</p></div></a></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大三上 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Adult数据集分析</title>
+      <link href="/2023/09/06/Adult%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/"/>
+      <url>/2023/09/06/Adult%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>阿西吧 去年退选的模式识别在这学期是逃不掉咯</p></blockquote><p>第一次训练要求做一个关于UCI的数据集的可视化分析</p><p>但是我在网站上面选取数据的时候发现数据格式是<code>.data</code>类型,当时没怎么弄清楚还谷歌了很久</p><p>其实只要在后面加个csv就可以用pandas导入了</p><p>然后就是数据集的列名是单独给你一个文件的,所以在读取的时候要加列名</p><hr><p>不过说实话这个数据集挺眼熟的,之前好像在autogluon里面的tabular类里面的样例就是关于</p><p>判断一个人的收入是否超过50k,当时用autogluon跑的话准确率还挺高,就是模型占内存大了点</p><hr><p>然后我在写代码的时候,原本是打算自己写的,后面还是发现别人写好的真香,下面附上链接</p><div class="tagLink"><a class="link-card" title="点击跳转到解决方案" href="https://blog.51cto.com/u_15521344/5061694"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg" class="lazyload placeholder" data-srcset="https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">点击跳转到解决方案</p><p class="url">https://blog.51cto.com/u_15521344/5061694</p></div></a></div><p>明天看能不能把代码复现一下,然后就准备国赛了</p><p>good luck!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>bamboo主题学习</title>
+      <link href="/2023/09/05/bamboo%E4%B8%BB%E9%A2%98%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2023/09/05/bamboo%E4%B8%BB%E9%A2%98%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Github用户卡片"><a href="#Github用户卡片" class="headerlink" title="Github用户卡片"></a>Github用户卡片</h3><a class="ghcard" rel="external nofollow noopener noreferrer" href="https://github.com/cathylove47/hello-algo"><img src="https://github-readme-stats.vercel.app/api/pin/?username=cathylove47&repo=hello-algo&show_owner=true" class="lazyload placeholder" data-srcset="https://github-readme-stats.vercel.app/api/pin/?username=cathylove47&repo=hello-algo&show_owner=true" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></a><h3 id="video"><a href="#video" class="headerlink" title="video"></a>video</h3><div class="video"><video controls preload><source src='https://assets.mixkit.co/videos/preview/mixkit-down-the-river-in-a-bamboo-canoe-6804-large.mp4' type='video/mp4'>Your browser does not support the video tag.</video></div><h3 id="有趣的链接"><a href="#有趣的链接" class="headerlink" title="有趣的链接"></a>有趣的链接</h3><div class="tagLink"><a class="link-card" title="点击跳转到百度" href="http://www.baidu.com"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg" class="lazyload placeholder" data-srcset="https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">点击跳转到百度</p><p class="url">http://www.baidu.com</p></div></a></div><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><div class="img-wrap"><div class="img-bg"><img class="img lazyload placeholder" src="https://pic1.zhimg.com/80/v2-5fe6be356ddda4afe6063b0682edfead_1440w.jpg?source=1940ef5c" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-5fe6be356ddda4afe6063b0682edfead_1440w.jpg?source=1940ef5c" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="自定义图片"/></div><span class="image-caption">自定义图片</span></div><h3 id="timeline"><a href="#timeline" class="headerlink" title="timeline"></a>timeline</h3><div class="timeline"><div class="timenode"><div class="meta"><p><p>2021-01-01 <a href="https://github.com/yuang01/hexo-theme-bamboo">1.0.3 -&gt; 1.0.3</a></p></p></div><div class="body"><ol><li>我是一个测试文字<code>ghghgh</code>。</li><li>我是一个测试问题二’qweqw’，请问企鹅请问请问佛挡杀<code>fgfgf</code>佛第三节课。</li><li>我是一个测试问题三’fgfgfg’，请问企鹅请问请问佛挡杀<code>trtrtr</code>佛第三节课。</li></ol></div></div><div class="timenode"><div class="meta"><p><p>2020-08-15 <a href="https://github.com/yuang01/hexo-theme-bamboo">1.0.2 -&gt; 1.0.2</a></p></p></div><div class="body"><p>这是一段测试文字</p></div></div><div class="timenode"><div class="meta"><p><p>2020-08-08 <a href="https://github.com/yuang01/hexo-theme-bamboo">1.0.0 -&gt; 1.0.0</a></p></p></div><div class="body"><ol><li>我是一个测试文字<code>ghghgh</code>。</li><li>我是一个测试问题二’qweqw’，请问企鹅请问请问佛挡杀<code>fgfgf</code>佛第三节课。</li><li>我是一个测试问题三’fgfgfg’，请问企鹅请问请问佛挡杀<code>trtrtr</code>佛第三节课。</li></ol></div></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>未来销量预测kaggle</title>
+      <link href="/2023/09/04/%E6%9C%AA%E6%9D%A5%E9%94%80%E9%87%8F%E9%A2%84%E6%B5%8Bkaggle/"/>
+      <url>/2023/09/04/%E6%9C%AA%E6%9D%A5%E9%94%80%E9%87%8F%E9%A2%84%E6%B5%8Bkaggle/</url>
+      
+        <content type="html"><![CDATA[<h2 id="总体概况"><a href="#总体概况" class="headerlink" title="总体概况"></a>总体概况</h2><p>predict future sales</p><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>这次比赛是“如何赢得数据科学竞赛”Coursera 课程的期末项目。</p><p>在这次比赛中您将使用包含每日销售数据的具有挑战性的时间序列数据集</p><p>由俄罗斯最大的软件公司提供-[1C](<a href="https://1c.ru/eng/title.htm">English (1c.ru)</a>)</p><p>我们要求您<strong>预测下个月每种产品和商店的总销售额</strong>。</p><p><em>通过完成本次竞赛，您将能够应用和增强您的数据科学技能。</em></p><h3 id="评估结果"><a href="#评估结果" class="headerlink" title="评估结果"></a>评估结果</h3><p>提交内容通过均方根误差 (RMSE) 进行评估</p><p>真实目标值被限制在 [0,20] 范围内。</p><p>对于测试集中的每个 id，您必须预测销售总数。该文件应包含标头并具有以下格式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ID,item_cnt_month</span><br><span class="line">0,0.5</span><br><span class="line">1,0.5</span><br><span class="line">2,0.5</span><br><span class="line">3,0.5</span><br><span class="line">etc.</span><br></pre></td></tr></table></figure><h2 id="数据集描述"><a href="#数据集描述" class="headerlink" title="数据集描述"></a>数据集描述</h2><p>为您提供每日历史销售数据,</p><p>任务是预测测试集每家商店销售的产品总量</p><p>请注意，商店和产品列表每个月都会略有变化</p><p>创建一个可以处理此类情况的强大模型是挑战的一部分。</p><h3 id="文件说明"><a href="#文件说明" class="headerlink" title="文件说明"></a>文件说明</h3><ul><li><code>sales_train.csv</code>-训练集,记录从2013.1-2015.10的历史每日销量数据</li><li><code>test.csv</code> -测试集,你需要预测这些商店以及商品在2015.11的销售数据</li><li><code>sample_submission.csv</code> -一个正确的答案提交格式文件</li><li><code>items.csv</code> -有关商品&#x2F;产品的补充信息</li><li><code>shops.csv</code> -商店的补充信息</li></ul><h3 id="数据说明"><a href="#数据说明" class="headerlink" title="数据说明"></a>数据说明</h3><ul><li><code>ID</code> 表示测试集中的(shop,item)编号</li><li><code>shop_id</code> - 一个商店独特的id</li><li><code>item_id</code> - 一个产品独特的id</li><li><code>item_category_id</code> - 产品类型独特id</li><li><code>item_cnt_day</code> -  产品的销售数量,这也是你需要预测的东西</li><li><code>item_price</code> - 产品的价格</li><li><code>date</code> - 日期格式为 <em>dd&#x2F;mm&#x2F;yyyy</em></li><li><code>date_block_num</code> - 用于方便的连续月份,比如2013.1表示0, 2013.2表示1 (这个倒是挺人性化的)</li><li><code>item_name</code> - 产品名称</li><li><code>shop_name</code> 商店名称</li><li><code>item_category_name</code> - 产品类型的名称</li></ul><blockquote><p>该数据集允许用于任何目的，包括商业用途。</p></blockquote><h2 id="大佬解决方案"><a href="#大佬解决方案" class="headerlink" title="大佬解决方案"></a>大佬解决方案</h2><p>(<a href="https://www.kaggle.com/competitions/competitive-data-science-predict-future-sales/discussion/374500">Predict Future Sales | Kaggle</a>)</p><h3 id="翻译一下"><a href="#翻译一下" class="headerlink" title="翻译一下"></a>翻译一下</h3><p>终于在经过三个月的数据分析以及写代码过后,我在这次<code>预测未来销量</code>的kaggles比赛中取得了榜首的名次</p><p>因此,我打算开源我的这次比赛notebook.</p><p>在分享notebook之前,我想简短的向你们介绍一下我的方法</p><h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><p>对于时间序列的竞赛而言,选取好的特征是极其重要的</p><p>在这次比赛中,PS4卖的很多,因此拥有一个能够满足这一需求的功能确实很有帮助</p><p>这里有很多东西要讲,但我建议你们先阅读这两个discussion</p><p><a href="https://www.kaggle.com/competitions/competitive-data-science-predict-future-sales/discussion/190784">讨论1</a></p><p><a href="https://www.kaggle.com/competitions/competitive-data-science-predict-future-sales/discussion/74835">讨论2</a></p><p>这两个讨论抓住了特征工程和其他方面的要点</p><h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>你的模型应该结合数据. 如果是垃圾数据那么就会有垃圾产出</p><p>在应用机器学习模型之前,认真去理解数据,理解你机器学习算法是如何工作的</p><p>比如 LGBM,XGB这些梯度增强算法在趋势的感知方面很差,但是它们很擅长感知季节性,</p><p>商品打折等等.您可以添加一些特征来帮助梯度增强树捕捉趋势。</p><p>在kaggle中写了很多这样的文章</p><p><a href="https://www.kaggle.com/c/web-traffic-time-series-forecasting/discussion/38352">链接</a></p><p>所以我使用了两个LGBM模型和一个Xgboost模型，使用堆叠方法得到了很好的结果。</p><p>下图显示了我的结果</p><p><img src="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F3593933%2Fc251a7cfa2b2a60b89a594bd5a9857fd%2Fcomplete%20model.PNG?generation=1672158451351001&alt=media" class="lazyload placeholder" data-srcset="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F3593933%2Fc251a7cfa2b2a60b89a594bd5a9857fd%2Fcomplete%20model.PNG?generation=1672158451351001&alt=media" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="结果图"></p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>balabla一大堆</p><p><a href="https://www.kaggle.com/code/abubakar624/first-place-solution-kaggle-predict-future-sales">代码链接</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> kaggle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>泰坦尼克kaggle比赛</title>
+      <link href="/2023/09/03/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8Bkaggle%E6%AF%94%E8%B5%9B/"/>
+      <url>/2023/09/03/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8Bkaggle%E6%AF%94%E8%B5%9B/</url>
+      
+        <content type="html"><![CDATA[<iframe src="https://nbviewer.org/github/cathylove47/ML_for_kaggle/blob/master/code/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B.ipynb" width="800" height="2000"></iframe> ]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> kaggle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何在博客中插入jupyter</title>
+      <link href="/2023/09/02/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5jupyter/"/>
+      <url>/2023/09/02/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5jupyter/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>文章转载自其他人博客</p></blockquote><p>[原文章]: <a href="https://coding.f10.org/Python/Jupyterlab/%E5%9C%A8Hexo%E5%8D%9A%E6%96%87%E4%B8%AD%E5%B5%8C%E5%85%A5Jupyter%20notebook/">https://coding.f10.org/Python/Jupyterlab/%E5%9C%A8Hexo%E5%8D%9A%E6%96%87%E4%B8%AD%E5%B5%8C%E5%85%A5Jupyter%20notebook/</a>“”link””</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-jupyter-notebook --save</span><br><span class="line">npm install co</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdn.bootcss.com/jquery/2.0.1/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&#123;% asset_jupyter python ../jupyter/xxxxxxxxxxxxx.ipynb %&#125;</span><br></pre></td></tr></table></figure><p>[新的地址](<a href="https://blog.csdn.net/The_last_knight/article/details/109391184">向 Hexo 博客中插入 Jupyter Notebook-CSDN博客</a>)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>scikit-learn学习</title>
+      <link href="/2023/08/27/scikit-learn%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2023/08/27/scikit-learn%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="scikit机器学习"><a href="#scikit机器学习" class="headerlink" title="scikit机器学习"></a>scikit机器学习</h1><p>sklearn (scikit-learn) 是基于 Python 语言的机器学习工具</p><ol><li>简单高效的数据挖掘和数据分析工具</li><li>可供大家在各种环境中重复使用</li><li>建立在 NumPy ，SciPy 和 matplotlib 上</li><li>开源，可商业使用 - BSD许可证</li></ol><p>[TOC]</p><h2 id="classification"><a href="#classification" class="headerlink" title="classification"></a>classification</h2><h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><h4 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h4><p>当我们需要预测的 <strong>target_value</strong>期望是一个线性拟合的时候,数学公式表达为:<br>$$<br>\hat{y}(w, x) &#x3D; w_0 + w_1 x_1 + … + w_p x_p<br>$$<br>其中 向量 <strong>w</strong> 表示 <strong>coef_</strong> ,这大概是斜率的意思</p><p>w_0表示 <strong>intercept</strong> 表示截距</p><p><strong>线性回归</strong>的含义是用一个线性函数去拟合向量w,使得预测值和真实值的残差平方和最小</p><p><img src="/./../img/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%AE%8B%E5%B7%AE%E5%B9%B3%E6%96%B9%E5%92%8C.png" class="lazyload placeholder" data-srcset="/./../img/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%AE%8B%E5%B7%AE%E5%B9%B3%E6%96%B9%E5%92%8C.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><p><img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_ols_001.png" class="lazyload placeholder" data-srcset="https://scikit-learn.org/stable/_images/sphx_glr_plot_ols_001.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="最小二乘法"></p><p>线性回归会用 <strong>fit</strong>函数去接收数组X,Y  ,并且会自动计算出斜率以及截距</p><p>以下是示例代码:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import linear_model</span><br><span class="line">reg = linear_model.LinearRegression()</span><br><span class="line">reg.fit([[0, 0], [1, 1], [2, 2]], [0, 1, 2])</span><br><span class="line">reg.coef_</span><br></pre></td></tr></table></figure><p>注意:最小二乘法来计算回归系数的时候非常依赖变量(feature)之间的独立性</p><p>当features之间是相关的,并且X的矩阵大概率也是线性相关的,在这种情况下,</p><p>通常会发生:</p><p>我们的最小二乘法拟合函数会对随机误差非常敏感,从而产生很大的方差</p><p>所以变量之间尽量是相互独立的,避免引发多重共线性</p><p><a href="https://zhuanlan.zhihu.com/p/355241680">知乎文章链接</a></p><blockquote><p>官方代码样例见github仓库</p></blockquote><h3 id="岭回归与分类-Ridge-regression-and-classfication"><a href="#岭回归与分类-Ridge-regression-and-classfication" class="headerlink" title="岭回归与分类(Ridge regression and classfication)"></a>岭回归与分类(Ridge regression and classfication)</h3><p>类似于最小二乘法,岭回归增加了对于回归系数的惩罚</p><p>具体公式是这样的:</p><p><img src="/./../img/%E5%B2%AD%E5%9B%9E%E5%BD%92%E7%9A%84%E5%85%AC%E5%BC%8F%E8%A1%A8%E7%A4%BA.png" class="lazyload placeholder" data-srcset="/./../img/%E5%B2%AD%E5%9B%9E%E5%BD%92%E7%9A%84%E5%85%AC%E5%BC%8F%E8%A1%A8%E7%A4%BA.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"><br>$$<br>\alpha 控制着收缩的变化程度,当\alpha越大的时候,收缩的程度越大,因此回归系数会变得对共线性具有鲁棒性<br>$$</p><p>同时我也查阅了岭回归出现的原因</p><p><img src="/./../img/%E5%B2%AD%E5%9B%9E%E5%BD%92%E5%87%BA%E7%8E%B0%E7%9A%84%E8%BF%9C%E5%91%80.png" class="lazyload placeholder" data-srcset="/./../img/%E5%B2%AD%E5%9B%9E%E5%BD%92%E5%87%BA%E7%8E%B0%E7%9A%84%E8%BF%9C%E5%91%80.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="线性回归存在的问题"></p><p>对于多重共线性的数据，其loss函数求偏导后分母近似奇异矩阵，解得的ω \omegaω误差大；我们对loss函数加上ω \omegaω的2范数，使得求偏导后分母变为满秩矩阵，和普通最小二乘相类似，可以很好的计算出相对稳定的结果。</p><h4 id="岭分类"><a href="#岭分类" class="headerlink" title="岭分类"></a>岭分类</h4><p>本质上还是将分类问题转化为回归问题,然后用岭回归去解决</p><p>官方文档中提到: The <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier"><code>RidgeClassifier</code></a> can be significantly faster than e.g. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression"><code>LogisticRegression</code></a> with a high number of classes because it can compute the projection matrixonly once.</p><p>该分类器有时被称为具有线性内核的最小二乘支持向量机</p><h4 id="岭回归的优势与劣势"><a href="#岭回归的优势与劣势" class="headerlink" title="岭回归的优势与劣势"></a>岭回归的优势与劣势</h4><p>以岭回归为例，它为了解决一些普通最小二乘遇到的问题，对系数ω 的大小施加惩罚。</p><p>这样做虽然增强了稳定性，但是同时也牺牲了保真性（就是从我们所求的系数ω 并不是真正意义上向最优系数ω </p><p>Ridge回归在不抛弃任何一个变量的情况下，缩小了回归系数，使得模型相对而言比较的稳定，但这会使得模型的变量特别多，模型解释性差。</p><p>当然，既然存在这种方法，那么证明在处理这些问题的时候，Ridge Regression 能取得比普通最小二乘更好的性能。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>日记本</title>
+      <link href="/2023/08/25/%E6%97%A5%E8%AE%B0%E6%9C%AC/"/>
+      <url>/2023/08/25/%E6%97%A5%E8%AE%B0%E6%9C%AC/</url>
+      
+        <content type="html"><![CDATA[<h1 id="8-24"><a href="#8-24" class="headerlink" title="8.24"></a>8.24</h1><p>今天是校队选拔比赛的第一天，<br>主要还是对题目里面的电子信号序列进行了深入分析<br>最终学了 py 库里面的那啥 tsfresh 进行数据挖掘<br>然后选取相关度高的特征进行聚类<br>我觉得整体思路是没什么问题的<br>但就是不知道电子信号是如何从中提取出有用的信息<br>我试过了傅立叶变换将时域转化为频域<br>但是得到的结果是一个奇怪的图像，看不出任何信息<br>我真的很像努力求解一次建模，但是每次都让我感觉到学习的痛苦<br>我在学习探索知识的时候不开心<br>我喜欢快乐 在探索知识的同时收集快乐<br>这不是我喜欢的学习方式也不是我理解的保研方式<br>我讨厌这种为了一个资格去应付<br>真是无聊啊，也许之前的学长也有人和我这样想吧</p><h1 id="8-25"><a href="#8-25" class="headerlink" title="8.25"></a>8.25</h1><p>今天是校队选拔比赛的第二天<br>郭老师今天给的信号分解帮了很大的忙<br>似乎为这次建模重新指了一个方向<br>让本就单薄的论文变得丰满起来<br>这次打完比赛也得去做一次血常规了<br>天气干燥还是上火什么的，鼻子一碰就流血<br>顺便烫个头发 释放掉这两个月的压抑<br>新赛季开始了 come！！！</p><h1 id="8-26"><a href="#8-26" class="headerlink" title="8.26"></a>8.26</h1><p>快乐，愤怒，无奈的一天<br>两杯奶茶被偷</p><p>终于结束这鬼数学建模了</p><p>顺便美美吃了顿火锅</p><p>但是结果仍然是一把悬在头上的达摩克利斯之剑<br>我扪心自问 还是觉得国赛这种东西<br>我抱着太过于功利的性质去参与<br>注定取得不了什么成绩<br>不快乐的过程让我倍受煎熬<br>也许将来有一天我会明白这一切<br>其实只是一个小山丘罢了考研也要开始准备了<br>加油！</p><h1 id="8-27"><a href="#8-27" class="headerlink" title="8.27"></a>8.27</h1><p>今天上午烫了个头发,感觉人精神了很多</p><p>下午参加面试的过程真是比想象的简单多了</p><p>顺便去陆军总医院做了个血常规</p><p>have a nice day</p><p>have a great day</p><h1 id="8-28"><a href="#8-28" class="headerlink" title="8.28"></a>8.28</h1><p>休息的一天因为自己想踢球而变得累了起来</p><p>什么时候这个软骨炎才能康复啊</p><p>真的好想用劲奔跑</p><p>其次是明天又要建模了 好折磨</p><p>有很多队伍练了两个月却被筛掉了  </p><p>让我觉得有点可惜，但是武理就喜欢干这种事情</p><p>还是要注意好身体吧，期待开学！</p><p>期待国赛！！！</p><h1 id="9-4"><a href="#9-4" class="headerlink" title="9.4"></a>9.4</h1><p>好久没写了啊</p><p>我这膝盖大概率是一个学期都好不了了</p><p>难受啊啊啊啊啊!!!!</p><p>控制运动一个月试试看</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>利用 autogluon 进行时间序列预测</title>
+      <link href="/2023/08/22/%E5%88%A9%E7%94%A8autogluon%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B/"/>
+      <url>/2023/08/22/%E5%88%A9%E7%94%A8autogluon%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="autogluon-是一个非常方便的机器学习库"><a href="#autogluon-是一个非常方便的机器学习库" class="headerlink" title="autogluon 是一个非常方便的机器学习库"></a>autogluon 是一个非常方便的机器学习库</h2><p>它可以只用三行代码就解决了复杂的机器学习问题</p><p>下面附上我在官网文档看到的时间序列预测的样例</p><p>[机器学习]: <a href="https://auto.gluon.ai/stable/tutorials/timeseries/forecasting-indepth.html">https://auto.gluon.ai/stable/tutorials/timeseries/forecasting-indepth.html</a>“”title””</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> autogluon.timeseries <span class="keyword">import</span> TimeSeriesDataFrame, TimeSeriesPredictor</span><br></pre></td></tr></table></figure><p>这个是进行库的导入,注意autogluon库可以通过pycharm直接安装,我开VPN的时候安装失败了</p><h2 id="带静态特征的时间序列"><a href="#带静态特征的时间序列" class="headerlink" title="带静态特征的时间序列"></a>带静态特征的时间序列</h2><blockquote><p>导入数据</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">train_data = TimeSeriesDataFrame.from_path(</span><br><span class="line">    <span class="string">&quot;https://autogluon.s3.amazonaws.com/datasets/timeseries/m4_daily_subset/train.csv&quot;</span>,</span><br><span class="line">)</span><br><span class="line">train_data.head()</span><br></pre></td></tr></table></figure><blockquote><p>autogluon期望将静态特征作为dataframe对象,其中索引应该包括item_ids</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">static_features = pd.read_csv(</span><br><span class="line">    &quot;https://autogluon.s3.amazonaws.com/datasets/timeseries/m4_daily_subset/metadata.csv&quot;,</span><br><span class="line">    index_col=&quot;item_id&quot;,</span><br><span class="line">)</span><br><span class="line">static_features.head()</span><br></pre></td></tr></table></figure><blockquote><p>将静态特征附着到时间序列中的dataframe来</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_data.static_features = static_features</span><br></pre></td></tr></table></figure><blockquote><p>domain:表示分类特征</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">predictor = TimeSeriesPredictor(prediction_length=<span class="number">14</span>).fit(train_data)</span><br><span class="line">...</span><br><span class="line">Following types of static features have been inferred:</span><br><span class="line">categorical: [<span class="string">&#x27;domain&#x27;</span>]</span><br><span class="line">continuous (<span class="built_in">float</span>): []</span><br><span class="line">...</span><br><span class="line"><span class="comment">#train_data.static_features[&quot;store_id&quot;] = list(range(len(train_data.item_ids)))</span></span><br><span class="line"><span class="comment">#train_data.static_features[&quot;store_id&quot;] = train_data.static_features[&quot;store_id&quot;].astype(&quot;category&quot;)</span></span><br></pre></td></tr></table></figure><h2 id="带变化的时间序列"><a href="#带变化的时间序列" class="headerlink" title="带变化的时间序列"></a>带变化的时间序列</h2><p><img src="https://autogluon-timeseries-datasets.s3.us-west-2.amazonaws.com/public/figures/forecasting-indepth5.png" class="lazyload placeholder" data-srcset="https://autogluon-timeseries-datasets.s3.us-west-2.amazonaws.com/public/figures/forecasting-indepth5.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="时间序列"></p><blockquote><p>生成covariates</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">train_data[<span class="string">&quot;log_target&quot;</span>] = np.log(train_data[<span class="string">&quot;target&quot;</span>])</span><br><span class="line"></span><br><span class="line">WEEKEND_INDICES = [<span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">timestamps = train_data.index.get_level_values(<span class="string">&quot;timestamp&quot;</span>)</span><br><span class="line">train_data[<span class="string">&quot;weekend&quot;</span>] = timestamps.weekday.isin(WEEKEND_INDICES).astype(<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">train_data.head()</span><br></pre></td></tr></table></figure><p>注意代码中的weekend,这就代表了它的”季节性”</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Provided dataset contains following columns:</span><br><span class="line">target:           <span class="string">&#x27;target&#x27;</span></span><br><span class="line">known covariates: [<span class="string">&#x27;weekend&#x27;</span>]</span><br><span class="line">past covariates:  [<span class="string">&#x27;log_target&#x27;</span>]</span><br><span class="line">...</span><br></pre></td></tr></table></figure><blockquote><p>最后，为了进行预测，我们生成预测范围的已知协变量</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> autogluon.timeseries.utils.forecast <span class="keyword">import</span> get_forecast_horizon_index_ts_dataframe</span><br><span class="line"></span><br><span class="line">future_index = get_forecast_horizon_index_ts_dataframe(train_data, prediction_length=<span class="number">14</span>)</span><br><span class="line">future_timestamps = future_index.get_level_values(<span class="string">&quot;timestamp&quot;</span>)</span><br><span class="line">known_covariates = pd.DataFrame(index=future_index)</span><br><span class="line">known_covariates[<span class="string">&quot;weekend&quot;</span>] = future_timestamps.weekday.isin(WEEKEND_INDICES).astype(<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">known_covariates.head()</span><br></pre></td></tr></table></figure><h2 id="What-data-format-is-expected-by-TimeSeriesPredictor"><a href="#What-data-format-is-expected-by-TimeSeriesPredictor" class="headerlink" title="What data format is expected by TimeSeriesPredictor?"></a>What data format is expected by <code>TimeSeriesPredictor</code>?</h2><ul><li>训练数据必须至少包含一些长度 ≥ 2 * Prediction_length + 1 的时间序列。这是确保有一些数据可用作内部验证集所必需的。</li><li>所有时间序列都必须定期采样</li><li>数据中不存在缺失值</li></ul><h2 id="如何处理不规则数据和缺失数据"><a href="#如何处理不规则数据和缺失数据" class="headerlink" title="如何处理不规则数据和缺失数据"></a>如何处理不规则数据和缺失数据</h2><p>以下是具有不规则时间索引的数据集的示例：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">df_irregular = TimeSeriesDataFrame(</span><br><span class="line">    pd.DataFrame(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;item_id&quot;</span>: [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">            <span class="string">&quot;timestamp&quot;</span>: [<span class="string">&quot;2022-01-01&quot;</span>, <span class="string">&quot;2022-01-02&quot;</span>, <span class="string">&quot;2022-01-04&quot;</span>, <span class="string">&quot;2022-01-01&quot;</span>, <span class="string">&quot;2022-01-04&quot;</span>],</span><br><span class="line">            <span class="string">&quot;target&quot;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">df_irregular</span><br></pre></td></tr></table></figure><p>显然在时间戳缺失了</p><p>我们可以验证该索引现在是有规律的并且具有每日频率</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Data has frequency &#x27;<span class="subst">&#123;df_regular.freq&#125;</span>&#x27;&quot;</span>)</span><br></pre></td></tr></table></figure><p>这里的结果显示为D,表示时间戳具有每日规律</p><p>但是，现在数据包含用 NaN 表示的缺失值。为了填充 NaN，我们使用 TimeSeriesDataFrame.fill_missing_values() 方法来实现各种插补策略。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_filled = df_regular.fill_missing_values()</span><br><span class="line">df_filled</span><br></pre></td></tr></table></figure><h2 id="How-to-evaluate-forecast-accuracy"><a href="#How-to-evaluate-forecast-accuracy" class="headerlink" title="How to evaluate forecast accuracy?"></a>How to evaluate forecast accuracy?</h2><blockquote><p>数据集的划分很重要</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prediction_length = <span class="number">48</span></span><br><span class="line">data = TimeSeriesDataFrame.from_path(<span class="string">&quot;https://autogluon.s3.amazonaws.com/datasets/timeseries/m4_hourly_subset/train.csv&quot;</span>)</span><br><span class="line">train_data, test_data = data.train_test_split(prediction_length)</span><br></pre></td></tr></table></figure><blockquote><p>进行绘图</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">item_id = <span class="string">&quot;H1&quot;</span></span><br><span class="line">fig, (ax1, ax2) = plt.subplots(nrows=<span class="number">2</span>, figsize=[<span class="number">10</span>, <span class="number">4</span>], sharex=<span class="literal">True</span>)</span><br><span class="line">train_ts = train_data.loc[item_id]</span><br><span class="line">test_ts = test_data.loc[item_id]</span><br><span class="line">ax1.set_title(<span class="string">&quot;Train data (past time series values)&quot;</span>)</span><br><span class="line">ax1.plot(train_ts)</span><br><span class="line">ax2.set_title(<span class="string">&quot;Test data (past + future time series values)&quot;</span>)</span><br><span class="line">ax2.plot(test_ts)</span><br><span class="line"><span class="keyword">for</span> ax <span class="keyword">in</span> (ax1, ax2):</span><br><span class="line">    ax.fill_between(np.array([train_ts.index[-<span class="number">1</span>], test_ts.index[-<span class="number">1</span>]]), test_ts.<span class="built_in">min</span>(), test_ts.<span class="built_in">max</span>(), color=<span class="string">&quot;C1&quot;</span>, alpha=<span class="number">0.3</span>, label=<span class="string">&quot;Forecast horizon&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><blockquote><p>模型评估 </p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predictor = TimeSeriesPredictor(prediction_length=prediction_length, eval_metric=<span class="string">&quot;MASE&quot;</span>).fit(train_data)</span><br><span class="line">predictor.evaluate(test_data)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>这些建模的日子</title>
+      <link href="/2023/08/14/%E8%BF%99%E4%BA%9B%E5%BB%BA%E6%A8%A1%E7%9A%84%E6%97%A5%E5%AD%90/"/>
+      <url>/2023/08/14/%E8%BF%99%E4%BA%9B%E5%BB%BA%E6%A8%A1%E7%9A%84%E6%97%A5%E5%AD%90/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>好久没写博客了吧</p></blockquote><p>看了一下,上次的博客’群智能算法’还是在七月五号写的,距离现在已经一个多月了</p><p>这一个多月可以说是过的痛苦,也过的充实吧</p><p>本来当我得知自己获得校一等奖的时候以为建模之路会很简单</p><p>没想到往往事情不如人愿</p><p>我看到的只有艰苦和hopeless</p><p>为了一个几率很小的国奖,耗费时间就算了,关键还要耗费自己的精力</p><p>我想陪陪家人,但我也想获得这个虚无缥缈的保研机会</p><p>矛盾充斥着我的内心,最起码整个八月都是这样的</p><p>我不知道未来会怎样,就比如我在高三时候站在走廊思考未来的时候</p><p>我又在想些什么呢</p><p>时间滴答滴答的流逝了,剩下了什么呢</p><p>我只觉得累</p><hr><p>2023.8.19更新</p><p>刚刚结束了第五次训练,还有最后一次训练赛加选拔赛就确定了正式比赛名单了</p><p>也就是说只有到8.27就彻底结束了,只需要全心准备国赛就完事了</p><p>说句实话,我觉得国奖还是可以去拼一拼的,毕竟这是个运气成分多的比赛</p><p>一旦拿了国奖,在直推不会被砍的情况下大三大四就可以慢慢准备其他方面的技能了</p><p>但现在还是要注重当下,进入最后的100m冲刺阶段,更需要打起十二分精神</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学建模 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>群智能算法</title>
+      <link href="/2023/07/05/%E7%BE%A4%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+      <url>/2023/07/05/%E7%BE%A4%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="智能优化算法"><a href="#智能优化算法" class="headerlink" title="智能优化算法"></a>智能优化算法</h1><h2 id="讲在前面"><a href="#讲在前面" class="headerlink" title="讲在前面"></a>讲在前面</h2><blockquote><p> 基于蚁群算法的共享快递盒配送回收网络优化研究</p></blockquote><blockquote><p>基于改进马群算法的进场航班规划</p><p>粒子群算法PSOGA</p></blockquote><p>这些群智能算法可用于机器学习中的参数调节</p><p>或者是为了找到全局最优点</p><h3 id="非凸函数的选择"><a href="#非凸函数的选择" class="headerlink" title="非凸函数的选择"></a>非凸函数的选择</h3><ol><li>连续变量_<strong>粒子群算法</strong></li><li>离散变量_<strong>遗传算法</strong></li><li>维度低_<strong>模拟退火算法</strong></li></ol><p><strong>这些都是比较老的算法,不建议使用</strong></p><h2 id="人工免疫算法"><a href="#人工免疫算法" class="headerlink" title="人工免疫算法"></a>人工免疫算法</h2><p>1986年首次提出<br>借鉴了生物免疫功能,在原有进化算法理论框架的基础上引入了免疫系统</p><p><strong>求解过程</strong></p><ol><li>初始抗体群的产生</li></ol><p>每个选址方案形成一个长度为P的抗体</p><p>例如抗体[5 16 30]表示需求点5 16 30被选为配送中心</p><ol start="2"><li>抗体与抗原间的亲和力：抗体与抗原的亲和力用于表示抗体对于抗原的识别程度</li></ol><p>$$<br>A(a) &#x3D; 1&#x2F;F(a)<br>$$</p><p>亲和力变小就意味着会受到惩罚</p><ol start="3"><li><p>抗体与抗体之间的亲和力：反映了抗体间的相似程度</p></li><li><p>抗体浓度：群里中相似抗体所占的比例</p></li></ol><p>这个是相对于 <strong>3</strong>而言的，比如我们规定S(a)&gt;0.5就意味着相似</p><p>那么C(a)就等于1，否则等于0，其中0.5是一个阈值</p><ol start="5"><li>期望繁殖概率：由抗体抗原间亲和力与抗体浓度两部分共同决定</li></ol><p>只需要排序关系</p><p><strong>精英保留策略</strong></p><p>每次更新记忆库时候保留最优解</p><p><strong>免疫操作</strong></p><ol><li>选择</li></ol><p>按照轮盘赌选择机制进行选择，个体被选择的概率即为上述期望繁殖概率</p><p>在真正的运行时候，我们是在0-1的区间上，某个数字随机落在区间上的个体，并不是赌盘</p><ol><li>交叉</li></ol><p>类似于染色体交叉，互换一部分</p><ol><li>变异</li></ol><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">G = <span class="number">100</span>    <span class="comment">#迭代次数</span></span><br><span class="line">fun = <span class="string">&#x27;5 * sin(x * y) + x ** 2 + y ** 2&#x27;</span>   <span class="comment">#目标函数</span></span><br><span class="line">choice = <span class="string">&#x27;max&#x27;</span></span><br><span class="line">dim = <span class="number">2</span>                    <span class="comment">#维度</span></span><br><span class="line">limit_x = [-<span class="number">4</span>,<span class="number">4</span>]           <span class="comment">#x取值范围</span></span><br><span class="line">limit_y = [-<span class="number">4</span>,<span class="number">4</span>]           <span class="comment">#y取值范围</span></span><br><span class="line">pop_size = <span class="number">10</span>              <span class="comment">#种群规模</span></span><br><span class="line">mutate_rate = <span class="number">0.7</span>          <span class="comment">#变异概率</span></span><br><span class="line">delta = <span class="number">0.2</span>                <span class="comment">#相似度阈值</span></span><br><span class="line">beta = <span class="number">1</span>                   <span class="comment">#激励度系数</span></span><br><span class="line">colone_num = <span class="number">10</span>            <span class="comment">#克隆份数</span></span><br><span class="line"><span class="keyword">if</span> choice == <span class="string">&#x27;max&#x27;</span>:</span><br><span class="line">    alpha = <span class="number">2</span>              <span class="comment">#激励度系数,求最大值为正,最小值为负</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    alpha = -<span class="number">2</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">fun,x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(fun)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#初始化种群</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_pop</span>(<span class="params">dim,pop_size,*limit</span>):</span><br><span class="line">    pop = np.random.rand(dim,pop_size)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(dim):</span><br><span class="line">        pop[i,:] *= (limit[i][<span class="number">1</span>] - limit[i][<span class="number">0</span>])</span><br><span class="line">        pop[i,:] += limit[i][<span class="number">0</span>]</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> pop</span><br><span class="line"> </span><br><span class="line"><span class="comment">#计算浓度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc_density</span>(<span class="params">pop,delta</span>):</span><br><span class="line">    density = np.zeros([pop.shape[<span class="number">1</span>],])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pop.shape[<span class="number">1</span>]):</span><br><span class="line">        density[i] = np.<span class="built_in">sum</span>(<span class="built_in">len</span>(np.ones([pop.shape[<span class="number">1</span>],])[np.sqrt(np.<span class="built_in">sum</span>((pop - pop[:,i].reshape([<span class="number">2</span>,<span class="number">1</span>])) ** <span class="number">2</span>,axis = <span class="number">0</span>)) &lt; delta]))</span><br><span class="line">    <span class="keyword">return</span> density / pop.shape[<span class="number">1</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment">#计算激励度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc_simulation</span>(<span class="params">simulation,density</span>):</span><br><span class="line">        <span class="keyword">return</span> (alpha * simulation - beta * density)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#变异，随着代数增加变异范围逐渐减小</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mutate</span>(<span class="params">x,gen,mutata_rate,dim,*limit</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(dim):</span><br><span class="line">        <span class="keyword">if</span> np.random.rand() &lt;= mutata_rate:</span><br><span class="line">            x[i] += (np.random.rand() - <span class="number">0.5</span>) * (limit[i][<span class="number">1</span>] - limit[i][<span class="number">0</span>]) / (gen + <span class="number">1</span>)    <span class="comment">#加上随机数产生变异</span></span><br><span class="line">            <span class="keyword">if</span> (x[i] &gt; limit[i][<span class="number">1</span>]) <span class="keyword">or</span> (x[i] &lt; limit[i][<span class="number">0</span>]):      <span class="comment">#边界检测</span></span><br><span class="line">                x[i] = np.random.rand() * (limit[i][<span class="number">1</span>] - limit[i][<span class="number">0</span>]) + limit[i][<span class="number">0</span>]</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">pop = init_pop(dim,pop_size,limit_x,limit_y)</span><br><span class="line">init_simulation = f(fun,pop[<span class="number">0</span>,:],pop[<span class="number">1</span>,:])</span><br><span class="line">density = calc_density(pop,delta)</span><br><span class="line">simulation = calc_simulation(init_simulation,density)</span><br><span class="line"><span class="comment"># print(pop)</span></span><br><span class="line"><span class="comment"># print(init_simulation)</span></span><br><span class="line"><span class="comment"># print(calc_density(pop,delta))</span></span><br><span class="line"><span class="comment">#进行激励度排序</span></span><br><span class="line">index = np.argsort(-simulation)</span><br><span class="line">pop = pop[:,index]</span><br><span class="line">new_pop = pop.copy()    <span class="comment">#浅拷贝</span></span><br><span class="line">simulation = simulation[index]</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#免疫循环</span></span><br><span class="line"><span class="keyword">for</span> gen <span class="keyword">in</span> <span class="built_in">range</span>(G):</span><br><span class="line">    best_a = np.zeros([dim,<span class="built_in">int</span>(pop_size / <span class="number">2</span>)])   <span class="comment">#用于保留每次克隆后亲和度最高的个体</span></span><br><span class="line">    best_a_simulation = np.zeros([<span class="built_in">int</span>(pop_size / <span class="number">2</span>),]) <span class="comment">#保存激励度</span></span><br><span class="line">    <span class="comment">#选出激励度前50%的个体进行免疫</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(pop_size / <span class="number">2</span>)):</span><br><span class="line">        a = new_pop[:,i].reshape([<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line">        b = np.tile(a,(<span class="number">1</span>,colone_num))   <span class="comment">#克隆10份</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(colone_num):</span><br><span class="line">            mutate(a,gen,mutate_rate,dim,limit_x,limit_y)</span><br><span class="line">        b[:,<span class="number">0</span>] = pop[:,i]       <span class="comment">#保留克隆源个体</span></span><br><span class="line">        <span class="comment">#保留亲和度最高的个体</span></span><br><span class="line">        b_simulation = f(fun,b[<span class="number">0</span>,:],b[<span class="number">1</span>,:])</span><br><span class="line">        index = np.argsort(-b_simulation)</span><br><span class="line">        best_a_simulation = b_simulation[index][<span class="number">0</span>]    <span class="comment">#最佳个体亲和度</span></span><br><span class="line">        best_a[:,i] = b[:,index][:,<span class="number">0</span>]                 <span class="comment">#最佳个体</span></span><br><span class="line">    <span class="comment">#计算免疫种群的激励度</span></span><br><span class="line">    a_density = calc_density(best_a,delta)</span><br><span class="line">    best_a_simulation = calc_simulation(best_a_simulation,a_density)</span><br><span class="line">    <span class="comment">#种群刷新</span></span><br><span class="line">    new_a = init_pop(<span class="number">2</span>,<span class="built_in">int</span>(pop_size / <span class="number">2</span>),limit_x,limit_y)</span><br><span class="line">    <span class="comment">#新生种群激励度</span></span><br><span class="line">    new_a_simulation = f(fun,new_a[<span class="number">0</span>,:],new_a[<span class="number">1</span>,:])</span><br><span class="line">    new_a_density = calc_density(new_a,delta)</span><br><span class="line">    new_a_simulation = calc_simulation(new_a_simulation,new_a_density)</span><br><span class="line">    <span class="comment">#免疫种群与新生种群合并</span></span><br><span class="line">    pop = np.hstack([best_a,new_a])</span><br><span class="line">    simulation = np.hstack([best_a_simulation,new_a_simulation])</span><br><span class="line">    index = np.argsort(-simulation)</span><br><span class="line">    pop = pop[:,index]</span><br><span class="line">    simulation = simulation[index]</span><br><span class="line">    new_pop = pop.copy()</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 新建一个画布</span></span><br><span class="line">figure = plt.figure(figsize = (<span class="number">10</span>,<span class="number">8</span>),dpi = <span class="number">80</span>)</span><br><span class="line"><span class="comment"># 新建一个3d绘图对象</span></span><br><span class="line">ax = Axes3D(figure)</span><br><span class="line"><span class="comment"># 定义x,y 轴名称</span></span><br><span class="line">plt.xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(pop_size / <span class="number">2</span>)):</span><br><span class="line">    ax.scatter(pop[<span class="number">0</span>,i],pop[<span class="number">1</span>,i],f(fun,pop[<span class="number">0</span>,i],pop[<span class="number">1</span>,i]),color = <span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;最优解:&#x27;</span>,<span class="string">&#x27;x = &#x27;</span>,pop[<span class="number">0</span>,i],<span class="string">&#x27;y = &#x27;</span>,pop[<span class="number">1</span>,i],end = <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;结果:&#x27;</span>,<span class="string">&#x27;z = &#x27;</span>,f(fun,pop[<span class="number">0</span>,i],pop[<span class="number">1</span>,i]))</span><br><span class="line">x = np.arange(limit_x[<span class="number">0</span>],limit_x[<span class="number">1</span>],(limit_x[<span class="number">1</span>] - limit_x[<span class="number">0</span>]) / <span class="number">50</span>)</span><br><span class="line">y = np.arange(limit_y[<span class="number">0</span>],limit_y[<span class="number">1</span>],(limit_y[<span class="number">1</span>] - limit_y[<span class="number">0</span>]) / <span class="number">50</span>)</span><br><span class="line">x,y = np.meshgrid(x,y)</span><br><span class="line">z = f(fun,x,y)</span><br><span class="line">ax.plot_surface(x,y,z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, color = <span class="string">&#x27;green&#x27;</span>,alpha = <span class="number">0.5</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><h2 id="人工鱼群算法"><a href="#人工鱼群算法" class="headerlink" title="人工鱼群算法"></a>人工鱼群算法</h2><ol><li>觅食行为</li><li>聚群行为</li><li>追尾行为</li><li>随机行为</li></ol><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x</span>):</span><br><span class="line">    x1, x2 = x</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> / x1 ** <span class="number">2</span> + x1 ** <span class="number">2</span> + <span class="number">1</span> / x2 ** <span class="number">2</span> + x2 ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sko.AFSA <span class="keyword">import</span> AFSA</span><br><span class="line"></span><br><span class="line">afsa = AFSA(func, n_dim=<span class="number">2</span>, size_pop=<span class="number">50</span>, max_iter=<span class="number">300</span>,</span><br><span class="line">            max_try_num=<span class="number">100</span>, step=<span class="number">0.5</span>, visual=<span class="number">0.3</span>,</span><br><span class="line">            q=<span class="number">0.98</span>, delta=<span class="number">0.5</span>)</span><br><span class="line">best_x, best_y = afsa.run()</span><br><span class="line"><span class="built_in">print</span>(best_x, best_y)</span><br></pre></td></tr></table></figure><h2 id="帝国竞争算法"><a href="#帝国竞争算法" class="headerlink" title="帝国竞争算法"></a>帝国竞争算法</h2><h2 id="灰狼算法"><a href="#灰狼算法" class="headerlink" title="灰狼算法"></a>灰狼算法</h2><h2 id="多元宇宙算法"><a href="#多元宇宙算法" class="headerlink" title="多元宇宙算法"></a>多元宇宙算法</h2><h2 id="启发式算法的本质"><a href="#启发式算法的本质" class="headerlink" title="启发式算法的本质"></a>启发式算法的本质</h2><p>尽量快尽量多的遍历,但是没办法同时满足</p><p>过度追求广度,那是枚举法</p><p>过度追求深度,容易陷入局部最优</p><p>我们需要在搜索的时候保持一个平衡!</p><h1 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h1><p>matlab智能算法30个案例分析</p><p>智能优化算法及其matlab实例</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学建模 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>六月总结与展望</title>
+      <link href="/2023/07/01/%E5%85%AD%E6%9C%88%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B/"/>
+      <url>/2023/07/01/%E5%85%AD%E6%9C%88%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B/</url>
+      
+        <content type="html"><![CDATA[<p>六月最大的一件事情应该就是自己的车被偷走了吧</p><p>现在想起来还是很伤心</p><p>自己还被迫花钱买了辆二手的小电驴</p><p>总结下来还是自己没有实现经济独立吧 </p><p>结合现在的就业形势,也为自己的未来担忧</p><p>这次期末考试可以说给了我很大的安慰吧</p><p>基本上平时都没怎么上的课考的都还行</p><p>接下来还要迎接七月八月的暑期培训了</p><p>首先我觉得自己入选校队是肯定没啥问题的</p><p>主要是国赛获奖太需要运气了</p><p>是的 我也需要运气</p><p>然后美赛才是自己最有希望的</p><p>希望自己明年这个时候可以开始安然休息一年</p><p>加油!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生活总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>纪念喜德盛rc200</title>
+      <link href="/2023/06/05/%E7%BA%AA%E5%BF%B5%E5%96%9C%E5%BE%B7%E7%9B%9Brc200/"/>
+      <url>/2023/06/05/%E7%BA%AA%E5%BF%B5%E5%96%9C%E5%BE%B7%E7%9B%9Brc200/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>看到你被别人偷走的时候,我心如针扎</p></blockquote><p>嘿老伙计,首先要感谢你陪伴了我这一个学期,尽管在期末你就不见了</p><p>我在学期开始的第一天就买下了你,当时是个雨天,我还不知道怎么骑弯把的车</p><p>之后你陪伴我骑行了几百公里吧</p><p>说实话,我挺想你的,希望你能被警察找回来</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 公路车 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数学建模优秀论文选</title>
+      <link href="/2023/06/03/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87%E9%80%89/"/>
+      <url>/2023/06/03/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87%E9%80%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="校赛选拔的论文以及其他"><a href="#校赛选拔的论文以及其他" class="headerlink" title="校赛选拔的论文以及其他"></a>校赛选拔的论文以及其他</h2><div class="link-group"><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="2020国一论文.pdf" href="/document/2020国一论文.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">2020国一论文.pdf</p><p class="url">/document/2020国一论文.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="校赛论文.pdf" href="/document/校赛论文.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">校赛论文.pdf</p><p class="url">/document/校赛论文.pdf</p></div></a></div></div><h2 id="2018国赛优秀论文"><a href="#2018国赛优秀论文" class="headerlink" title="2018国赛优秀论文"></a>2018国赛优秀论文</h2><div class="link-group"><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="RGV 的动态调度优化问题.pdf" href="/2018/RGV 的动态调度优化问题.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">RGV 的动态调度优化问题.pdf</p><p class="url">/2018/RGV 的动态调度优化问题.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="基于 0-1 规划的单 RGV 动态调度模型.pdf" href="/2018/基于 0-1 规划的单 RGV 动态调度模型.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">基于 0-1 规划的单 RGV 动态调度模型.pdf</p><p class="url">/2018/基于 0-1 规划的单 RGV 动态调度模型.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="基于 RFMS 指标的大型百货商场会员画像数据挖掘.pdf" href="/2018/基于 RFMS 指标的大型百货商场会员画像数据挖掘.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">基于 RFMS 指标的大型百货商场会员画像数据挖掘.pdf</p><p class="url">/2018/基于 RFMS 指标的大型百货商场会员画像数据挖掘.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="基于 RFMT 模型的百货商场会员画像描绘.pdf" href="/2018/基于 RFMT 模型的百货商场会员画像描绘.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">基于 RFMT 模型的百货商场会员画像描绘.pdf</p><p class="url">/2018/基于 RFMT 模型的百货商场会员画像描绘.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="基于多原则比较和蒙特卡洛模拟的 RGV 动态调度模型.pdf" href="/2018/基于多原则比较和蒙特卡洛模拟的 RGV 动态调度模型.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">基于多原则比较和蒙特卡洛模拟的 RGV 动态调度模型.pdf</p><p class="url">/2018/基于多原则比较和蒙特卡洛模拟的 RGV 动态调度模型.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="基于非稳态导热的高温作业专用服装设计.pdf" href="/2018/基于非稳态导热的高温作业专用服装设计.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">基于非稳态导热的高温作业专用服装设计.pdf</p><p class="url">/2018/基于非稳态导热的高温作业专用服装设计.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="大型百货商场会员画像描述.pdf" href="/2018/大型百货商场会员画像描述.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">大型百货商场会员画像描述.pdf</p><p class="url">/2018/大型百货商场会员画像描述.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="智能 RGV 的动态调度策略.pdf" href="/2018/智能 RGV 的动态调度策略.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">智能 RGV 的动态调度策略.pdf</p><p class="url">/2018/智能 RGV 的动态调度策略.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="汽车总装线配置方案.pdf" href="/2018/汽车总装线配置方案.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">汽车总装线配置方案.pdf</p><p class="url">/2018/汽车总装线配置方案.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="汽车总装线配置的优化模型研究.pdf" href="/2018/汽车总装线配置的优化模型研究.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">汽车总装线配置的优化模型研究.pdf</p><p class="url">/2018/汽车总装线配置的优化模型研究.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="确定汽车装配顺序问题的算法.pdf" href="/2018/确定汽车装配顺序问题的算法.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">确定汽车装配顺序问题的算法.pdf</p><p class="url">/2018/确定汽车装配顺序问题的算法.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="高温作业专用服装设计.pdf" href="/2018/高温作业专用服装设计.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">高温作业专用服装设计.pdf</p><p class="url">/2018/高温作业专用服装设计.pdf</p></div></a></div><div class="tagLink"><a class="link-card" no-pjax target="_blank" title="高温作业服设计.pdf" href="/2018/高温作业服设计.pdf"><span class="link-card-backdrop" style="background-image: url(https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg)"></span><div class="left"><img src="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" class="lazyload placeholder" data-srcset="https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"/></div><div class="right"><p class="text">高温作业服设计.pdf</p><p class="url">/2018/高温作业服设计.pdf</p></div></a></div></div>10  ]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学建模 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>6月展望</title>
+      <link href="/2023/06/02/6%E6%9C%88%E5%B1%95%E6%9C%9B/"/>
+      <url>/2023/06/02/6%E6%9C%88%E5%B1%95%E6%9C%9B/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>不知不觉六月已经过去两天了,距离自己上次写随写估计也过去很久了吧</p></blockquote><p>六月的事情有点多</p><p>数学建模实验</p><p>C++实验</p><p>数值分析实验</p><p>还有期末考试马上就要来临</p><p>希望自己能进入国赛培训</p><p>也希望自己能拿奖</p><p>加油 cathy!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随写 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>期末考试安排</title>
+      <link href="/2023/05/30/%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/"/>
+      <url>/2023/05/30/%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E5%AE%89%E6%8E%92/</url>
+      
+        <content type="html"><![CDATA[<h1 id="考试安排-时间"><a href="#考试安排-时间" class="headerlink" title="考试安排(时间)"></a>考试安排(时间)</h1><h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><p>6月18日 早上八点半到十点半</p><p>选择 填空 大题</p><h2 id="运筹学"><a href="#运筹学" class="headerlink" title="运筹学"></a>运筹学</h2><p>6月19日 晚上七点到晚上九点</p><p>5选择 10判断 5填空 4大题</p><p>目标规划,对偶理论应用,动态规划,线性规划及灵敏度分析</p><h2 id="毛泽东思想"><a href="#毛泽东思想" class="headerlink" title="毛泽东思想"></a>毛泽东思想</h2><p>6月21日 早上八点半到十点半</p><h2 id="复变函数"><a href="#复变函数" class="headerlink" title="复变函数"></a>复变函数</h2><p>6月25日 下午二点半到四点半</p><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><p>6月25日 晚上七点到九点</p><h2 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h2><p>6月26日 下午二点半到四点半</p><h2 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h2><p>6月29日 早上八点半到十点半</p><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p>事件的关系和运算</p><p>概率的性质</p><p>古典概型</p><p>条件概率</p><p>全概率与贝叶斯公式</p><p>事件的独立</p><h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>离散型随机变量的分布</p><p>随机变量的分布函数</p><p>连续型随机变量的概率分布</p><p>随机变量的函数的分布</p><p>几种重要分布</p><h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><p>二维随机变量的边缘分布</p><p>函数的分布</p><p>事件的概率</p><p>随机变量的独立与不相关</p><h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><p>期望 方差 协方差与相关系数的性质和计算</p><p>切比雪夫不等式</p><h3 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h3><p>中心极限定理</p><h3 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h3><p>三个重要分布</p><p>单个正态总体的抽样分布</p><h3 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h3><p>矩估计和极大似然估计</p><p>无偏估计</p><p>单个正态总体参数的区间估计</p><h3 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h3><p>单个正态总体参数的假设检验</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 考试日程安排 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第十四周周记</title>
+      <link href="/2023/05/24/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%91%A8%E5%91%A8%E8%AE%B0/"/>
+      <url>/2023/05/24/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%91%A8%E5%91%A8%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p>不知不觉已经快到期末了,还有一个月的书读吧</p><p>不免感叹一句时间过得真快啊</p><p>仿佛现在还在经历开学考试一样</p><p>现在就要迎来期末考试</p><p>不过这次是周记 就来回顾一下这个星期吧</p><p>周一,好像早晨又是一次课没去,然后去踢了一次球</p><p>期间泽立来了  但是不想去吃自助聚餐就没去了</p><p>周二 昨天是图了的,就是闹了个乌龙,没把真子哥搞到西门去</p><p>周三也是图了的,但是腿有点小伤,踢得不舒服.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 周记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>曼城欧冠看球记录</title>
+      <link href="/2023/05/18/%E6%9B%BC%E5%9F%8E%E6%AC%A7%E5%86%A0%E7%9C%8B%E7%90%83%E8%AE%B0%E5%BD%95/"/>
+      <url>/2023/05/18/%E6%9B%BC%E5%9F%8E%E6%AC%A7%E5%86%A0%E7%9C%8B%E7%90%83%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<p>依稀记得,去年在308的宿舍,我当时是睡在上铺</p><p>仿佛是冥冥之中的号召</p><p>我在五点钟就醒了过来</p><p>摸了摸手机,当时还是一加9R</p><p>潜意识地打开了懂球帝,发现曼城与皇马的欧冠比赛还没结束</p><p>我觉得很奇怪,因为这几乎是一场没有悬念的比赛</p><p>苦于没有直播信号源,我打开了懂球帝的动画直播</p><p>我一打开就傻眼了</p><p>怎么皇马获得了点球机会!</p><p>怎么现在是加时时间!</p><p>我懵了</p><p>我找了找网站来看直播</p><p>当时的心情是极其复杂的</p><p>我没想到强大的曼城会倒在这个地方</p><p>我也没想到皇马会在最后的时间里一直抽筋加卧草</p><h3 id="但是今年"><a href="#但是今年" class="headerlink" title="但是今年"></a>但是今年</h3><p>我们成功复仇了,我和朋友们在全季的酒店里观看了这场比赛</p><p>这应该比上次泽立选的那家别墅要好很多</p><p>清晰的屏幕 舒适的位置</p><p>当然还有美味可口的夜宵</p><p>但是最重要的还是比赛本身</p><p>作为这个赛季完完整整看了曼城比赛的我</p><p>今天这次比赛上半场的进攻就跟踢保级队一样</p><p>皇马几乎毫无还手之力</p><p>当B席打破僵局的时候 我们疯狂庆祝</p><p>当梅开二度的时候 我们也疯狂庆祝</p><p>但是我们心里也没底 因为我们怕像去年一样</p><p>直到阿坎吉头球加米利唐折射直接进球!</p><p>我们三比零了,比赛基本已经结束了</p><p>上了福登,伙伴们都称呼为凯鑫哈哈</p><p>最后时刻一脚传球从对方两名中卫中间的缝隙塞了过去</p><p>阿尔瓦雷斯直接推角度</p><p>这是一场惨案了</p><p>开心 激动 复仇成功的喜悦!</p><p>一觉醒来,又是去学校的一天,吃了肯德基</p><p>也踢了球</p><p>我觉得这就是大学生活,自由并且快乐</p><p>至于我以后的前途</p><p>就把答案交给时间吧</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 足球 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 曼城欧冠 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>大二下概率论与数理统计</title>
+      <link href="/2023/05/15/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
+      <url>/2023/05/15/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="概率论与数理统计"><a href="#概率论与数理统计" class="headerlink" title="概率论与数理统计"></a>概率论与数理统计</h1><p>这本书的封面很有意思,我记得当时还发了个时刻</p><blockquote><p>谨以此书纪念魏宗舒教授</p></blockquote><p>这本书不是华东师范大学出版的,是高等教育出版社</p><p>但我觉得摸起来,看起来,学起来都差不多.</p><p>教这门课的老师叫彭凯,一位非常年轻,很受我们喜爱的老师</p><p>他不会点名,他也解释了这么做的原因:无为而治</p><p>他上课喜欢东扯西拉,喜欢评论女权,也喜欢提一些社会上的重大事件</p><p>虽然他有时候说话都会急了点</p><p>但他是位非常好的老师,我从他的人生哲学中学到了很多东西</p><p>我十分尊重他.</p><h2 id="随机事件与概率"><a href="#随机事件与概率" class="headerlink" title="随机事件与概率"></a>随机事件与概率</h2><p>这个部分大概就是高中的内容了吧,</p><p>但是老师讲的时候我觉得又刷新了我对概率的理解,</p><p>我有点茫然,但还是选择了接受自己高中那一套说法,避免混淆</p><h3 id="样本空间"><a href="#样本空间" class="headerlink" title="样本空间"></a>样本空间</h3><p>有这样一些专业术语:</p><p>**随机试验    样本点   样本空间(离散or连续)   **</p><p>**随机事件基本事件必然事件不可能事件随机变量**</p><h3 id="概率的定义及其确定方法"><a href="#概率的定义及其确定方法" class="headerlink" title="概率的定义及其确定方法"></a>概率的定义及其确定方法</h3><p>分为三种</p><p>直观定义: 事件A出现的可能性大小</p><p>统计定义: 在大量重复试验下出现的频率的稳定值</p><p>古典定义: 几何定义</p><h4 id="概率的公理化定义"><a href="#概率的公理化定义" class="headerlink" title="概率的公理化定义"></a>概率的公理化定义</h4><p><strong>非负性公理, 正则性公理, 可列可加性公理</strong></p><blockquote><p>例题：六根草，头两两相接，尾两两相接，求成环的概率</p><p>解：用乘法原则直接计算，所求概率为：</p><p>6<em>4</em>4<em>2</em>21&#x2F;654321</p></blockquote><p>$$<br>E&#x3D;mc^2<br>$$</p><h4 id="条件概率"><a href="#条件概率" class="headerlink" title="条件概率"></a>条件概率</h4><p>定义：对于事件A,B,若 P（B）&gt; 0 ,<br>$$<br>P(A|B) &#x3D; P(AB)&#x2F;P(B)<br>$$<br>为在B出现的条件下 A出现的条件概率</p><h5 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h5><ol><li>缩减样本空间</li><li>用定义</li></ol><h5 id="三大公式"><a href="#三大公式" class="headerlink" title="三大公式"></a>三大公式</h5><p><strong>乘法公式 全概率 贝叶斯</strong></p><p>全概率公式用于求复杂事件的概率</p><p>使用全概率公式关键在于寻找另一组事件来分割样本空间</p><p>全概率公式的最简单表达方式就是：</p><blockquote><p>在B事件发生的情况下A发生的概率 + B事件不发生的情况下A发生的概率</p></blockquote><h4 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h4><p>这个公式又称为 <strong>后验概率公式</strong></p><p>B1，B2….可以看作导致A发生的原因，</p><p>在事件A发生条件下，某个原因B发生的概率，称为“后验概率”</p><h3 id="事件的独立性"><a href="#事件的独立性" class="headerlink" title="事件的独立性"></a>事件的独立性</h3><p>两个事件的独立一般在实践中通过经验来判断</p><p>多个事件的相互独立性，也有相对于的公式</p><h2 id="随机变量及其分布"><a href="#随机变量及其分布" class="headerlink" title="随机变量及其分布"></a>随机变量及其分布</h2><blockquote><p>掷色子出现的点数X是一个随机变量</p><p>每天进入商场的顾客数Y</p><p>电视机的寿命T</p><p>测量的误差 e</p></blockquote><p>在随机现象中还有不少样本点本身不是数字，这时可以根据需要进行设置</p><table><thead><tr><th>样本点</th><th>X的取值</th></tr></thead><tbody><tr><td>合格品</td><td>0</td></tr><tr><td>不合格平</td><td>1</td></tr></tbody></table><p>则X取各种值及其概率可列表</p><table><thead><tr><th>X</th><th>0</th><th>1</th></tr></thead><tbody><tr><td>P</td><td>1-p</td><td>p</td></tr></tbody></table><blockquote><p>定义：在样本空间上的实值函数X称为随机变量</p></blockquote><h4 id="随机变量X的分布函数"><a href="#随机变量X的分布函数" class="headerlink" title="随机变量X的分布函数"></a>随机变量X的分布函数</h4><p>F(x) &#x3D; P(X&lt;x)</p><p><strong>性质</strong></p><p>单调非减</p><p>有界</p><p>右连续</p><blockquote><p>这三条性质是判别是否能成为分布函数的充要条件</p></blockquote><p><strong>柯西分布函数</strong><br>$$<br>F(x) &#x3D; (arctanx + Pi&#x2F;2) \frac {1}{Pi}<br>$$<br>其中：<br>$$<br>P(-1&lt;&#x3D; X &lt;&#x3D; 1 ) &#x3D; 1&#x2F;2<br>$$</p><h4 id="根据分布列求出X的分布函数"><a href="#根据分布列求出X的分布函数" class="headerlink" title="根据分布列求出X的分布函数"></a>根据分布列求出X的分布函数</h4><p>离散型的分布函数是梯形，有着右连续的跳跃点</p><h4 id="连续随机变量的概率密度函数"><a href="#连续随机变量的概率密度函数" class="headerlink" title="连续随机变量的概率密度函数"></a>连续随机变量的概率密度函数</h4><p>$$<br>\int_{a}^b p(x) &#x3D; P(a&lt;X&lt;b)<br>$$</p><h3 id="随机变量的数学期望"><a href="#随机变量的数学期望" class="headerlink" title="随机变量的数学期望"></a>随机变量的数学期望</h3><p>在概率论中，数学期望源于历史上一个著名的分赌本问题</p><p>1654年, 职业赌徒德·梅累（De Mere）向法国数学家帕斯卡（B.Pascal,1623-1662）提出一个使他苦恼很久的分赌本问题：甲、乙两赌徒赌技相同，各出赌注50法郎，每局中无平局。他们约定，<strong>谁先赢三局则得到全部100法郎的赌本</strong>。<strong>当甲赢了两局，乙赢了一局时，因故要中止赌博。现问这100法郎如何分才算公平？</strong></p><h4 id="数学期望的性质"><a href="#数学期望的性质" class="headerlink" title="数学期望的性质"></a>数学期望的性质</h4><p>首先它的本质就是均值，也就是类似于平均值，所以性质也不会有什么难的</p><p>需要记住的就是如果将X用另外一个函数g(x)代替后，</p><p>在离散场合，连续场合，数学期望的计算公式</p><h3 id="随机变量的方差和标准差"><a href="#随机变量的方差和标准差" class="headerlink" title="随机变量的方差和标准差"></a>随机变量的方差和标准差</h3><p>这个就更加不需要多言，还是公式直接套入</p><h4 id="方差的性质"><a href="#方差的性质" class="headerlink" title="方差的性质"></a>方差的性质</h4><p>这个就类似于高中 记得要a的平方</p><h3 id="切比雪夫不等式"><a href="#切比雪夫不等式" class="headerlink" title="切比雪夫不等式"></a>切比雪夫不等式</h3><p>这个不等式给出大偏差发生概率的上界，方差越大，上界越大<br>如果方差为0就意味着随机变量的取值几乎集中在一点上<br>书上有证明过程</p><h3 id="常用的离散分布"><a href="#常用的离散分布" class="headerlink" title="常用的离散分布"></a>常用的离散分布</h3><h4 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h4><p>这个是高中学的很精的了 无需多言</p><h4 id="二点分布"><a href="#二点分布" class="headerlink" title="二点分布"></a>二点分布</h4><p>同二项分布</p><h4 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h4><p>这个是大学知识，泊松分布是一种常用的离散分布<br>它常与单位时间的计数过程相联系</p><p><img src="/img/bosong.JPG" class="lazyload placeholder" data-srcset="/img/bosong.JPG" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><p>泊松分布的数学期望由累加公式可以推出</p><p>就是参数 ，同时他也是方差<br>$$<br>\lambda<br>$$<br><strong>二项分布的泊松近似</strong>‘</p><p>当n很大的时候，二项分布就可以转化为泊松分布的公式</p><h4 id="超几何分布"><a href="#超几何分布" class="headerlink" title="超几何分布"></a>超几何分布</h4><p>还是和高中差不都，当时觉得很厉害的名字<br>现在还是不理解哈哈，有点想斌哥了<br>同样的，超几何分布也有二项近似</p><h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>类似于掷色子</p><h3 id="常用的连续分布"><a href="#常用的连续分布" class="headerlink" title="常用的连续分布"></a>常用的连续分布</h3><p>在连续分布场合，密度函数和分布函数是可以相互推导的<br>但是人们对密度函数更为注意，尤其是在图像方面</p><h4 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h4><p>有两个参数，瑟格玛越大，曲线呈现出矮而胖</p><h5 id="正态分布的顺序额期望与方差"><a href="#正态分布的顺序额期望与方差" class="headerlink" title="正态分布的顺序额期望与方差"></a>正态分布的顺序额期望与方差</h5><p>也是与两个参数有关，这里懒得写公式了</p><h4 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h4><p>密度分布函数很有意思，它的曲线符合对寿命的分布<br>同时它的数学期望与方差也是与参数有关</p><h4 id="伽马分布"><a href="#伽马分布" class="headerlink" title="伽马分布"></a>伽马分布</h4><h4 id="β分布"><a href="#β分布" class="headerlink" title="β分布"></a>β分布</h4><h3 id="随机变量函数的分布"><a href="#随机变量函数的分布" class="headerlink" title="随机变量函数的分布"></a>随机变量函数的分布</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 期末考试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大二期末 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>形式主义</title>
+      <link href="/2023/05/14/%E5%BD%A2%E5%BC%8F%E4%B8%BB%E4%B9%89/"/>
+      <url>/2023/05/14/%E5%BD%A2%E5%BC%8F%E4%B8%BB%E4%B9%89/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>今天被赌徒心理给干扰了</p></blockquote><p>本来不打算参加这次入dang培训,但是想到我爸对我的殷切期望</p><p>还是违背本心参加了这次</p><p>会议上有一句内容让我记忆深刻:</p><p>‘当代杠杆年轻人,开着奥迪去摆摊’</p><p>我当时就绷不住了,这就是深入体验人民群众?</p><p>然后结业考试,都是搜题目嘛,心知肚明</p><p>可是主观题没给我一分,导致我还不能结业?</p><p>我直接红温了啊,这事还没人负责</p><p>找到别人解决问题也很难为情</p><p>长了个教训,形式主义的东西少参与</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 人生感悟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>曼城~皇马首回合</title>
+      <link href="/2023/05/11/%E6%9B%BC%E5%9F%8E-%E7%9A%87%E9%A9%AC%E9%A6%96%E5%9B%9E%E5%90%88/"/>
+      <url>/2023/05/11/%E6%9B%BC%E5%9F%8E-%E7%9A%87%E9%A9%AC%E9%A6%96%E5%9B%9E%E5%90%88/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>曼城球员在庆幸自己躲过黄牌的时候,皇马球员都在不断上强度试探裁判尺度了.大概这就是经验吧</p></blockquote><p>维尼修斯和丁丁互彪世界波!</p><p><img src="https://bdimg6.qunliao.info/fastdfs6/M00/39/EC/rBUCgGRaoiOAICyHAORh41pRfP8302.gif" class="lazyload placeholder" data-srcset="https://bdimg6.qunliao.info/fastdfs6/M00/39/EC/rBUCgGRaoiOAICyHAORh41pRfP8302.gif" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="维尼修斯远射"></p><p><img src="https://bdimg6.qunliao.info/fastdfs6/M00/3A/54/rBUESWRarZmAA-GcAQEvRkFTK38047.gif" class="lazyload placeholder" data-srcset="https://bdimg6.qunliao.info/fastdfs6/M00/3A/54/rBUESWRarZmAA-GcAQEvRkFTK38047.gif" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="丁丁远射"></p><p><img src="/img/city_1.jpg" class="lazyload placeholder" data-srcset="/img/city_1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p><p><img src="https://bdimg6.qunliao.info/fastdfs6/M00/3A/75/rBUCgGRar7qAPXIqAEKe64ibNTU782.gif" class="lazyload placeholder" data-srcset="https://bdimg6.qunliao.info/fastdfs6/M00/3A/75/rBUCgGRar7qAPXIqAEKe64ibNTU782.gif" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="庆祝动作"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 足球 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 曼城 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>正脚背长传球</title>
+      <link href="/2023/05/10/%E6%AD%A3%E8%84%9A%E8%83%8C%E9%95%BF%E4%BC%A0%E7%90%83/"/>
+      <url>/2023/05/10/%E6%AD%A3%E8%84%9A%E8%83%8C%E9%95%BF%E4%BC%A0%E7%90%83/</url>
+      
+        <content type="html"><![CDATA[<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=548560812&bvid=BV1Aq4y157E6&cid=425322162&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 足球 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 足球技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>修电脑</title>
+      <link href="/2023/05/08/%E4%BF%AE%E7%94%B5%E8%84%91/"/>
+      <url>/2023/05/08/%E4%BF%AE%E7%94%B5%E8%84%91/</url>
+      
+        <content type="html"><![CDATA[<p><strong>我再也不给内存条超频了!!!</strong></p><p>事情是这样的:</p><p>今天上午起床给电脑开个机,</p><p>想起来上次给主板打完鸡血之后,内存条频率变低了</p><p>于是就想着再把频率调回来</p><p>但是我1600的频率活生生被我调成了3200</p><p>于是直接开机红灯闪烁,全部寄了</p><p>赶紧询问店家如何解决,还好店家比较靠谱</p><p>告诉我把主板电池搞下来等重置就行</p><p>期间出了个小插曲,</p><p>显卡的固定螺丝掉机箱里面找不到了</p><p>直接红温了!!!</p><p>后来直接裸机开机,现在感觉还不错!</p><p>2023-5-8</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 修电脑 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>git推送问题以及足球心得</title>
+      <link href="/2023/05/07/git%E6%8E%A8%E9%80%81%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%B6%B3%E7%90%83%E5%BF%83%E5%BE%97/"/>
+      <url>/2023/05/07/git%E6%8E%A8%E9%80%81%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%B6%B3%E7%90%83%E5%BF%83%E5%BE%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="今天完成了新博客的部署-值得纪念哈"><a href="#今天完成了新博客的部署-值得纪念哈" class="headerlink" title="今天完成了新博客的部署,值得纪念哈"></a>今天完成了新博客的部署,值得纪念哈</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:33210</span><br><span class="line">git config --global https.proxy http://127.0.0.1:33210</span><br></pre></td></tr></table></figure><p>这个可以解决无法连接github的问题</p><h2 id="足球"><a href="#足球" class="headerlink" title="足球"></a>足球</h2><p>今天踢的对手不是很强,自己进了好几个球,踢的也很舒服</p><p>主要原因还是自己越来越自信了,</p><p>现在会自己去要球而不是一味的跑位</p><p>同时直传高空球以及传中都学会了一点,希望以后能用上</p><p>今天过的很充实,很快乐!</p><p>2023-5-7</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>曼城与利兹联比赛</title>
+      <link href="/2023/05/06/%E6%9B%BC%E5%9F%8E%E4%B8%8E%E5%88%A9%E5%85%B9%E8%81%94%E6%AF%94%E8%B5%9B/"/>
+      <url>/2023/05/06/%E6%9B%BC%E5%9F%8E%E4%B8%8E%E5%88%A9%E5%85%B9%E8%81%94%E6%AF%94%E8%B5%9B/</url>
+      
+        <content type="html"><![CDATA[<p>英超第35轮比赛</p><p>曼城主场迎战保级球队利兹联</p><p>在比赛开始前我脑子里回响着一句话</p><p>“英超后四轮的保级队是不好惹的”</p><p>确实如此,比赛进行了十多分钟曼城很焦灼</p><p>福登那边一直没有突破,几次接球也是越位</p><p>马球王停球不错 但是之后就没有后续了</p><p>但是利兹联防线有个问题 每次弧顶都是空的</p><p>所以郭老师发现了这个位置 冲到这个地方接马球王传球</p><p>轻松推射死角</p><p>Goal!!!</p><p>随后八分钟又是一个同样的进球,</p><p>比赛悬念也随之结束,下半场进入经典的曼城时间</p><p>本轮比赛结束后,曼城与阿森纳同赛34轮领先四分</p><p>希望接下来比赛好运,拿下英超!</p><p><img src="/img/mancity.png" class="lazyload placeholder" data-srcset="/img/mancity.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 足球 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 英超曼城 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第一篇文章</title>
+      <link href="/2023/05/06/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+      <url>/2023/05/06/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
