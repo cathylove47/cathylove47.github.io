@@ -4,11 +4,49 @@
   
     
     <entry>
+      <title>胫骨结节软骨炎</title>
+      <link href="/2023/12/21/%E8%83%AB%E9%AA%A8%E7%BB%93%E8%8A%82%E8%BD%AF%E9%AA%A8%E7%82%8E/"/>
+      <url>/2023/12/21/%E8%83%AB%E9%AA%A8%E7%BB%93%E8%8A%82%E8%BD%AF%E9%AA%A8%E7%82%8E/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>今天学习一下胫骨结节软骨炎</p></blockquote><p>[知乎讲解](<a href="https://zhuanlan.zhihu.com/p/38298445">【系统讲解】胫骨结节骨软骨炎 Osgood–Schlatter disease - 知乎 (zhihu.com)</a>)</p><h2 id="第一章-病因"><a href="#第一章-病因" class="headerlink" title="第一章   病因"></a>第一章   病因</h2><p><strong>股四头肌</strong>的长期、反复、猛烈的收缩暴力，通过髌骨和髌韧带集中于胫骨结节骨骺，使其发生<strong>慢性损伤</strong>，以致骨骺缺血坏死而引起的临床症状。</p><p>这种病通常见于青春期的男生,但是也不一定</p><p>因为我成年之后才得了这个东西</p><p>我是因为很久没运动之后突然剧烈的踢足球导致,当时就有痛感</p><h2 id="第二章-治疗"><a href="#第二章-治疗" class="headerlink" title="第二章 治疗"></a>第二章 治疗</h2><p>不治<strong>可自愈</strong>，骨骺骨化后，症状自消，但时间较长。</p><p>对症治疗，常能奏效。治疗无效或明显畸形者，可行手术治疗，疗效良好。</p><p><em>对我而言</em></p><p>大概从第一次痛到最后基本上无大碍大概花了三个月左右</p><p>八月中旬受伤,到了十一月中旬基本上就不痛了</p><p>期间我也曾多次运动,这应该也是拖慢我康复的主要原因</p><p>如果纯粹的静养的话 大概一个月足矣</p><p>但是康复后要进行训练,防止复发</p><h2 id="第三章-流行病学"><a href="#第三章-流行病学" class="headerlink" title="第三章 流行病学"></a>第三章 流行病学</h2><p>胫骨结节软骨病好发于10～15岁的爱好剧烈运动特别是跑跳类运动的少年，患者男多于女，一侧发病者多见，双侧发病的约占30%。</p><h2 id="第四章-科学的原因"><a href="#第四章-科学的原因" class="headerlink" title="第四章 科学的原因"></a>第四章 科学的原因</h2><p>股四头肌是人体最强大的肌肉，但它的附着点-胫骨结节甚小。</p><p>在该点上经常受到较强烈的张力。这样导致：</p><p>①胫骨结节撕脱性骨折；②股四头肌腱炎，常伴有新生骨形成。强有力的股四头肌收缩可致胫骨结节软骨病。</p><h2 id="第五章-预防"><a href="#第五章-预防" class="headerlink" title="第五章 预防"></a>第五章 预防</h2><p>科学锻炼身体，做好练前准备，不要过度地跑、跳、蹲，循序渐进，避免损伤。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运动康复学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 运动康复 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2023/12/08/%E7%BE%8E%E8%B5%9B%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
+      <url>/2023/12/08/%E7%BE%8E%E8%B5%9B%E8%AF%BB%E5%90%8E%E6%84%9F/</url>
+      
+        <content type="html"><![CDATA[<p>This week I studied the 2021 MCM B paper, which won the O Award</p><p>His author is from Xi ‘an Jiaotong University</p><p>I found its github repository and read it in detail</p><p>Warehouse site is <a href="https://github.com/HilbertRonAnju/MCM_2021_Problem_B">https://github.com/HilbertRonAnju/MCM_2021_Problem_B</a></p><p>Its matlab program is written a lot, packaging is not particularly good, but the function is complete, can solve the problem</p><p>What impressed me the most was the topsis method he used, which could fit the topic so perfectly when he was programming</p><p>However, when I read the code, I found that his code was not written during the competition, but was prepared at ordinary times</p><p>This inspired me and made me understand that I should learn and save other people’s excellent code more extensively, so that I can use it easily when I play games</p><p>His images are also outstanding in data visualization, which is incredibly what matlab can do and not python</p><p>At the end of the day, my understanding is that Masai doesn’t really care about the source of the code but your result, so I think I should read and reproduce the code more widely</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>期末复习以及美赛安排</title>
       <link href="/2023/12/08/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E4%BB%A5%E5%8F%8A%E7%BE%8E%E8%B5%9B%E5%AE%89%E6%8E%92/"/>
       <url>/2023/12/08/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E4%BB%A5%E5%8F%8A%E7%BE%8E%E8%B5%9B%E5%AE%89%E6%8E%92/</url>
       
-        <content type="html"><![CDATA[<h4 id="期末考试安排"><a href="#期末考试安排" class="headerlink" title="期末考试安排"></a>期末考试安排</h4><ol><li><strong>模式识别</strong>  12.30考试</li></ol><p>​好像是开卷考试* 完全不慌张</p><ol start="2"><li>微分几何 12.31考试</li></ol><p>​难度好像不是特别大的那种,感觉可以复习充分</p><p>​大概安排就是12.8每天看看学学这样子吧</p><ol start="3"><li>数据分析 1.6考试</li></ol><p>​这个老师太抽象了 到时候还是好好准备吧</p><pre><code>4. 实变函数 1.7考试</code></pre><p>​最难的一门课了 , 得花很多时间才行</p><h4 id="美赛安排"><a href="#美赛安排" class="headerlink" title="美赛安排"></a>美赛安排</h4><p>每周六有一次培训</p><p>一篇读后感</p><p>1.11考核</p><p><strong>1.12 1.19两次模拟训练</strong></p><p><strong>2.2就开始正式比赛了</strong></p><p>大年27回到家里面,休息个20天又得开学</p>]]></content>
+        <content type="html"><![CDATA[<h4 id="期末考试安排"><a href="#期末考试安排" class="headerlink" title="期末考试安排"></a>期末考试安排</h4><ol><li><strong>模式识别</strong>  12.30考试</li><li>微分几何 12.31考试 </li><li>数据分析 1.6考试</li><li>实变函数 1.7考试</li></ol><p><strong>数据分析</strong>   要在考试之前完成一篇小论文(可以提前部署好texstduio)</p><p>**实变函数** 最难的一门课,等复习资料吧 or 把平时的作业再复刻一下咯</p><p><strong>模式识别</strong> 开卷考试 不是很慌张</p><hr><p>12.21更新</p><p>微分几何前三章已经基本复习完了,相对应的公式基本上也有了了解</p><p>其中老师在最后一节课中讲的重点大概已经复习了60分</p><p>接下来的重点主要是在第四章的复习</p><p>复习完第四章之后就是练习自己的做题能力</p><p>大概周六就能结束</p><h4 id="美赛安排"><a href="#美赛安排" class="headerlink" title="美赛安排"></a>美赛安排</h4><p>每周六有一次培训</p><p>一篇读后感</p><p>1.11考核</p><p><strong>1.12 1.19两次模拟训练</strong></p><p><strong>2.2就开始正式比赛了</strong></p><p>大年27回到家里面,休息个20天又得开学</p>]]></content>
       
       
       <categories>
