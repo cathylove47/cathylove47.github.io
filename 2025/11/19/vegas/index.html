@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 核心思路：把“时间”变成“空间” (Time as Depth)普通的 3DGS 是把 $x, y, z$ 三维空间里的物体变成高斯球。而 VeGaS 处理的是一段 2D 视频。视频本来是 $(x, y)$ 的图像随时间 $t$ 变化。 VeGaS 做了一个很有趣的转换：  它把视频看作一个 3D 空间-时间体积 (Space-Time Volume)。 X 轴 &amp; Y 轴：还是图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vegas">
+<meta property="og:url" content="http://cathylove47.github.io/2025/11/19/vegas/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="1. 核心思路：把“时间”变成“空间” (Time as Depth)普通的 3DGS 是把 $x, y, z$ 三维空间里的物体变成高斯球。而 VeGaS 处理的是一段 2D 视频。视频本来是 $(x, y)$ 的图像随时间 $t$ 变化。 VeGaS 做了一个很有趣的转换：  它把视频看作一个 3D 空间-时间体积 (Space-Time Volume)。 X 轴 &amp; Y 轴：还是图像">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-19T11:25:47.000Z">
+<meta property="article:modified_time" content="2025-11-19T11:56:09.489Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="vegas">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>vegas - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">vegas</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-19 19:25" pubdate>
+          2025年11月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">vegas</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="1-核心思路：把“时间”变成“空间”-Time-as-Depth"><a href="#1-核心思路：把“时间”变成“空间”-Time-as-Depth" class="headerlink" title="1. 核心思路：把“时间”变成“空间” (Time as Depth)"></a>1. 核心思路：把“时间”变成“空间” (Time as Depth)</h3><p>普通的 3DGS 是把 $x, y, z$ 三维空间里的物体变成高斯球。<br>而 <strong>VeGaS</strong> 处理的是一段 2D 视频。视频本来是 $(x, y)$ 的图像随时间 $t$ 变化。</p>
+<p>VeGaS 做了一个很有趣的转换：</p>
+<ul>
+<li>它把视频看作一个 <strong>3D 空间-时间体积 (Space-Time Volume)</strong>。</li>
+<li><strong>X 轴 &amp; Y 轴</strong>：还是图像的宽和高。</li>
+<li><strong>Z 轴</strong>：变成了<strong>时间 (Time)</strong>。</li>
+</ul>
+<p>你可以想象把视频的每一帧画面打印出来，像一摞纸一样叠在一起。这就变成了一个长方体。VeGaS 就在这个“长方体”里扔高斯球，用来拟合这摞纸上的像素颜色。</p>
+<h3 id="2-VeGaS-解决的痛点：非线性动态-Non-linear-Dynamics"><a href="#2-VeGaS-解决的痛点：非线性动态-Non-linear-Dynamics" class="headerlink" title="2. VeGaS 解决的痛点：非线性动态 (Non-linear Dynamics)"></a>2. VeGaS 解决的痛点：非线性动态 (Non-linear Dynamics)</h3><p>如果只是简单地把视频叠成 3D 空间，用普通的 3D 高斯球去拟合，会遇到一个大问题：<strong>动作通常不是直线的。</strong></p>
+<ul>
+<li><strong>普通高斯球的局限：</strong> 标准的 3D 高斯球是椭球体，它的形状是线性的（直的）。</li>
+<li><strong>视频里的问题：</strong> 比如视频里一个人在挥手，手的轨迹是<strong>弧线</strong>。如果你用一个长长的直条形椭球去代表这只手在几秒内的轨迹，它根本对不上（手是弯着动的，球是直的）。</li>
+<li><strong>之前的笨办法：</strong> 之前的算法（如 VGR）只能把手切成无数个极短的小球，或者强行用变形场去扭，效果不好且难以编辑。</li>
+</ul>
+<h3 id="3-核心魔法：折叠高斯-Folded-Gaussians"><a href="#3-核心魔法：折叠高斯-Folded-Gaussians" class="headerlink" title="3. 核心魔法：折叠高斯 (Folded-Gaussians)"></a>3. 核心魔法：折叠高斯 (Folded-Gaussians)</h3><p>这是 VeGaS 这篇论文最大的创新点。</p>
+<p>为了解决“动作是弯的，球是直的”这个问题，作者发明了一种新的数学工具——<strong>Folded-Gaussian Distribution（折叠高斯分布）</strong>。</p>
+<ul>
+<li><strong>原理：</strong> 这种新型高斯球不再是死板的椭球。它引入了一个多项式函数，允许高斯球在“时间轴”方向上发生<strong>非线性的弯曲</strong>。</li>
+<li><strong>通俗理解：</strong> 想象你有一根这就好比一根直香肠（普通高斯），现在你可以把它<strong>掰弯</strong>（Folded Gaussian），让它完美贴合视频里那个挥手动作的弧线轨迹。</li>
+<li><strong>条件概率：</strong> 当我们需要渲染某一帧（比如第 5 秒）时，VeGaS 会在这个弯曲的高斯管上“切一刀”（Conditioning），切出来的截面就是一个 2D 的高斯斑点，正好对应那一帧图像里的物体。</li>
+</ul>
+<h3 id="4-VeGaS-的训练与渲染过程"><a href="#4-VeGaS-的训练与渲染过程" class="headerlink" title="4. VeGaS 的训练与渲染过程"></a>4. VeGaS 的训练与渲染过程</h3><h4 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h4><ol>
+<li><strong>输入：</strong> 一段普通的 2D 视频（不需要多视角，就普通手机拍的视频）。</li>
+<li><strong>初始化：</strong> 在这个“视频立方体”里撒入 3D 高斯球。</li>
+<li><strong>优化：</strong><ul>
+<li>调整这些球的位置、颜色。</li>
+<li><strong>关键：</strong> 调整“折叠参数”，让高斯球弯曲，去追踪视频里物体的运动轨迹。</li>
+<li>利用对比原始视频帧的 Loss 来更新参数。</li>
+</ul>
+</li>
+</ol>
+<h4 id="渲染与编辑过程"><a href="#渲染与编辑过程" class="headerlink" title="渲染与编辑过程"></a>渲染与编辑过程</h4><p>VeGaS 的主要目的不是为了“到处看”（像 3D 漫游），而是为了<strong>编辑视频</strong>。</p>
+<ul>
+<li><strong>视频重建：</strong> 在任意时间点 $t$ 切片，都能还原出清晰的图像。</li>
+<li><strong>视频编辑（亮点）：</strong><ul>
+<li>因为视频里的一个物体（比如一只猫）被表示成了一组连贯的“弯曲高斯球”。</li>
+<li>你可以直接选中这组高斯球，进行<strong>移动、缩放、复制</strong>。</li>
+<li><strong>效果：</strong> 你可以在视频里把这只猫变大一倍，或者把猫从左边移到右边，或者复制出两只猫。由于高斯球记录了猫随时间的所有动作，<strong>修改后的猫依然会保持原本的动作连贯性</strong>，看起来非常真实。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-总结：VeGaS-的意义"><a href="#5-总结：VeGaS-的意义" class="headerlink" title="5. 总结：VeGaS 的意义"></a>5. 总结：VeGaS 的意义</h3><p><strong>VeGaS</strong> 不是用来做 VR 里的 3D 场景漫游的（那是 4DGS 或 Dynamic 3DGS 做的事），它是用来做 <strong>AIGC 视频编辑</strong>的。</p>
+<ul>
+<li><strong>以前的视频编辑：</strong> 想把视频里的人P掉或移动，需要一帧一帧修（Rotoscoping），非常痛苦。</li>
+<li><strong>VeGaS 的编辑：</strong> 把视频变成一堆“有时间属性的球”。想改哪里，直接拖动那些球，整个视频的动作就自动跟着改了。</li>
+</ul>
+<p><strong>一句话概括：</strong><br>VeGaS 是一种利用**“折叠高斯”<strong>技术，将 2D 视频转化为</strong>可编辑的 3D 时空表示**的技术，它让视频内容的修改变得像编辑 PPT 里的图片一样简单。</p>
+<p>这是一个非常敏锐的发现！你把 <strong>MRI（医学图像）</strong> 和 <strong>Video（视频）</strong> 联系起来是非常准确的直觉，因为从数学和数据结构上看，它们本质上是一回事。</p>
+<p>在 MedGS（或者类似的医学 3DGS 论文）中，借鉴 <strong>VeGaS</strong>（或 Video-based 3DGS）的思路是非常自然的。</p>
+<p>让我们来拆解一下 MedGS 是如何“魔改” VeGaS 的原理，把 20 张 MRI 切片变成一个连续的 3D 器官模型的。</p>
+<h3 id="1-核心映射：时间-t-vs-空间-z"><a href="#1-核心映射：时间-t-vs-空间-z" class="headerlink" title="1. 核心映射：时间 $t$ vs. 空间 $z$"></a>1. 核心映射：时间 $t$ vs. 空间 $z$</h3><p>VeGaS 的核心是处理 $(x, y, t)$，而 MRI 数据是 $(x, y, z)$。</p>
+<ul>
+<li><strong>在 VeGaS 中：</strong> 第 3 维度是<strong>时间</strong>。第 1 帧和第 2 帧之间，代表物体“动”了一点点。</li>
+<li><strong>在 MedGS 中：</strong> 第 3 维度是<strong>深度（层）</strong>。第 1 张切片和第 2 张切片之间，代表人体组织结构“变”了一点点。</li>
+</ul>
+<p><strong>魔改的第一步</strong>就是直接把 MRI 的第 $i$ 张切片，当成视频的第 $i$ 帧喂给网络。网络以为它在学一个“变形的动画”，其实它在学一个“静态的 3D 结构”。</p>
+<h3 id="2-渲染方式的魔改：从“拍照”变成“切片”"><a href="#2-渲染方式的魔改：从“拍照”变成“切片”" class="headerlink" title="2. 渲染方式的魔改：从“拍照”变成“切片”"></a>2. 渲染方式的魔改：从“拍照”变成“切片”</h3><p>这是最关键的区别。普通的 3DGS（包括 VeGaS）是模拟<strong>摄像机（Camera）</strong>，有近大远小的透视效果。但 MRI 不需要透视。</p>
+<p>MedGS 对渲染管线做了如下修改：</p>
+<ul>
+<li><strong>原版 VeGaS&#x2F;3DGS：</strong><ul>
+<li>我在 3D 空间放一个摄像机。</li>
+<li>把高斯球投影到屏幕上（Perspective Projection）。</li>
+<li>计算颜色叠加。</li>
+</ul>
+</li>
+<li><strong>魔改后的 MedGS：</strong><ul>
+<li><strong>正交投影 (Orthographic Projection)：</strong> 取消“近大远小”，模拟医学扫描仪的射线平行穿过。</li>
+<li><strong>条件切片 (Conditional Slicing)：</strong><br>当训练第 5 张 PNG（假设它对应 $z&#x3D;10mm$ 处）时，算法<strong>只激活</strong>和渲染 z 轴坐标在 $10mm$ 附近的高斯球。<br>它就像一把<strong>数字手术刀</strong>，只横切这一层，计算这一层截面的颜色，然后跟第 5 张 PNG 去算 Loss。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-从“运动轨迹”到“组织连续性”"><a href="#3-从“运动轨迹”到“组织连续性”" class="headerlink" title="3. 从“运动轨迹”到“组织连续性”"></a>3. 从“运动轨迹”到“组织连续性”</h3><p>你提到只有 20 张 PNG，这在医学上属于<strong>稀疏采样 (Sparse Sampling)</strong>（通常 MRI 可能需要上百张才清晰）。如果直接堆叠，层与层之间会有很大的缝隙。</p>
+<p>利用 VeGaS 的逻辑，MedGS 实现了<strong>超分辨率（Super-resolution）</strong>：</p>
+<ul>
+<li><strong>VeGaS 的逻辑：</strong> 视频只有 24 帧，但我想要 60 帧。利用高斯球的变形能力，我可以算出第 1.5 帧长什么样（插帧）。</li>
+<li><strong>MedGS 的逻辑：</strong> MRI 只有 20 层（z&#x3D;1, z&#x3D;2…），层间距很大。利用高斯球在空间中的连续分布，我可以渲染出 <strong>z&#x3D;1.5</strong> 处的切片。</li>
+<li><strong>结果：</strong> 哪怕原始数据像“百叶窗”一样有缝隙，训练好的 MedGS 模型能生成一个像“果冻”一样内部完全连续的 3D 器官。医生可以随意查看任意深度的切面，而不仅限于那 20 张原图。</li>
+</ul>
+<h3 id="4-颜色的重新定义"><a href="#4-颜色的重新定义" class="headerlink" title="4. 颜色的重新定义"></a>4. 颜色的重新定义</h3><ul>
+<li><strong>VeGaS：</strong> 优化的是 RGB 颜色（红绿蓝）。</li>
+<li><strong>MedGS：</strong> 优化的是<strong>灰度值</strong>或<strong>辐射密度</strong>。<br>医学图像（如 CT&#x2F;MRI）的像素值不仅是颜色，还代表物理意义（比如 Hounsfield Unit，代表组织密度）。MedGS 会把高斯球的属性从“发光颜色”魔改为“组织密度&#x2F;信号强度”。</li>
+</ul>
+<h3 id="总结：MedGS-到底做了什么？"><a href="#总结：MedGS-到底做了什么？" class="headerlink" title="总结：MedGS 到底做了什么？"></a>总结：MedGS 到底做了什么？</h3><p>它把那 20 张 PNG 不当作“照片”，而是当作 <strong>20 个路标（Checkpoints）</strong>。</p>
+<ol>
+<li><strong>初始化：</strong> 在 3D 空间撒一把高斯球。</li>
+<li><strong>训练：</strong><ul>
+<li>切到 $z&#x3D;1$ 的位置，渲染出一张图，跟第 1 张 PNG 比对，调整高斯球让它们长得像肝脏&#x2F;肿瘤。</li>
+<li>切到 $z&#x3D;2$ 的位置，跟第 2 张 PNG 比对…</li>
+</ul>
+</li>
+<li><strong>魔改点（VeGaS 思想）：</strong><br>它利用高斯球的体积特性，<strong>自动脑补</strong>了第 1 张和第 2 张图片之间没拍到的那些组织结构（就像 VeGaS 脑补帧与帧之间的动作一样）。</li>
+</ol>
+<p>最终，你得到的不只是 20 张图片，而是一个<strong>可任意旋转、任意切片、分辨率无限放大</strong>的 3D 数字人体模型。这就是 3DGS 技术在医学重建上的核心意义。</p>
+<hr>
+<p>这是一个非常棒的质疑！你的直觉很敏锐：<strong>“凭什么3DGS在没数据的空白区域（两张切片之间）瞎猜，会比数学上老实巴交的线性插值（Linear Interpolation）更好？”</strong></p>
+<p>事实上，在早期的NeRF和3DGS研究中，大家也有这个怀疑。但经过实验证明，在医学图像（特别是像MRI&#x2F;CT这种层间距较大的情况）重建上，<strong>3DGS（或基于隐式神经表示的方法）通常完爆线性插值</strong>。</p>
+<p>核心原因在于：<strong>线性插值不懂“结构”，而3DGS自带“几何先验”。</strong></p>
+<p>我们可以通过三个具体的维度来对比：<strong>“斜向结构”、“边缘锐度”和“伪影问题”</strong>。</p>
+<hr>
+<h3 id="1-“斜向结构”难题（最直观的差异）"><a href="#1-“斜向结构”难题（最直观的差异）" class="headerlink" title="1. “斜向结构”难题（最直观的差异）"></a>1. “斜向结构”难题（最直观的差异）</h3><p>假设有一个<strong>血管</strong>，它不是垂直生长的，而是<strong>斜着</strong>穿过人体。</p>
+<ul>
+<li><p><strong>MRI切片情况：</strong></p>
+<ul>
+<li>切片 A（z&#x3D;0）：血管在坐标 (10, 10)。</li>
+<li>切片 B（z&#x3D;1）：血管在坐标 (12, 12)。</li>
+<li><strong>真实情况</strong>：在 z&#x3D;0.5 的中间位置，血管应该在 (11, 11)。</li>
+</ul>
+</li>
+<li><p><strong>线性插值 (Linear Interpolation) 的做法：</strong></p>
+<ul>
+<li>它只会在像素层面对齐。它会把切片A的(10,10)和切片B的(10,10)混合，把切片A的(12,12)和切片B的(12,12)混合。</li>
+<li><strong>结果：</strong> 在 z&#x3D;0.5 处，你会看到<strong>两个半透明的模糊影子</strong>（Ghosting），一个在(10,10)，一个在(12,12)，而真正的中心(11,11)反而是空的或者灰蒙蒙的。</li>
+<li><strong>后果：</strong> 血管断了，变成了两个虚影。</li>
+</ul>
+</li>
+<li><p><strong>3DGS 的做法：</strong></p>
+<ul>
+<li>高斯球是 3D 的椭球体，它可以<strong>旋转</strong>。</li>
+<li>为了同时拟合切片A的(10,10)和切片B的(12,12)，优化算法会自动把一个长条形的高斯球<strong>斜着摆放</strong>。</li>
+<li><strong>结果：</strong> 在 z&#x3D;0.5 处，如果你去切这个高斯球，截面正好就在 (11,11)。</li>
+<li><strong>优势：</strong> 它保留了血管的<strong>连续性和拓扑结构</strong>。它“猜”到了这两点之间应该连着一根管子，而不是两个孤立的点。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-边缘锐度-Sharpness-vs-模糊"><a href="#2-边缘锐度-Sharpness-vs-模糊" class="headerlink" title="2. 边缘锐度 (Sharpness) vs. 模糊"></a>2. 边缘锐度 (Sharpness) vs. 模糊</h3><ul>
+<li><p><strong>线性插值：</strong></p>
+<ul>
+<li>本质上是一个<strong>低通滤波器</strong>。当你对两张图片进行加权平均时，图像的高频信息（锐利的边缘、纹理）会被抹平。</li>
+<li>重建出来的 3D 模型，侧面看会像是一层层堆叠的阶梯（Staircase artifacts），或者整体像被磨皮了一样糊。</li>
+</ul>
+</li>
+<li><p><strong>3DGS：</strong></p>
+<ul>
+<li>高斯函数本身虽然是平滑的，但多个高斯球叠加可以通过调整 $\alpha$（不透明度）和 Scale（大小）来拟合非常锐利的边缘（Step Function）。</li>
+<li>它不是在混合像素，而是在<strong>拟合边界</strong>。即使在两层切片之间，高斯球定义的边界依然是清晰确定的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3DGS-的“脑补”逻辑：几何先验-Geometric-Priors"><a href="#3-3DGS-的“脑补”逻辑：几何先验-Geometric-Priors" class="headerlink" title="3. 3DGS 的“脑补”逻辑：几何先验 (Geometric Priors)"></a>3. 3DGS 的“脑补”逻辑：几何先验 (Geometric Priors)</h3><p>你担心的“3DGS不适合对空白区域插值”，其实是因为你把它看作是“填空”。但实际上，3DGS 把它看作是**“放置积木”**。</p>
+<ul>
+<li><strong>生物学特性：</strong> 人体组织（器官、肿瘤、血管）在物理上通常是<strong>连续的团块</strong>或<strong>管道</strong>。</li>
+<li><strong>高斯球特性：</strong> 高斯球正好就是<strong>团块状</strong>的。</li>
+<li><strong>原理：</strong> 当你强迫一堆高斯球去适配 z&#x3D;0 和 z&#x3D;1 的切片时，由于高斯球本身有体积（Scale），它的“肚子”填满了 z&#x3D;0 和 z&#x3D;1 之间的空隙。</li>
+<li>这相当于给插值过程加了一个约束：<strong>“中间补出来的东西，必须看起来像是一团连续的物质，而不能是杂乱的噪点。”</strong></li>
+</ul>
+<h3 id="总结：为什么-3DGS-更强？"><a href="#总结：为什么-3DGS-更强？" class="headerlink" title="总结：为什么 3DGS 更强？"></a>总结：为什么 3DGS 更强？</h3><table>
+<thead>
+<tr>
+<th align="left">对比维度</th>
+<th align="left">线性插值 (Linear Interpolation)</th>
+<th align="left">3DGS &#x2F; MedGS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>处理逻辑</strong></td>
+<td align="left">纯数学计算，像素对像素混合</td>
+<td align="left">几何拟合，用 3D 形状去逼近数据</td>
+</tr>
+<tr>
+<td align="left"><strong>斜向物体</strong></td>
+<td align="left">产生重影 (Ghosting)，结构断裂</td>
+<td align="left"><strong>自动对齐</strong>，保持管状&#x2F;块状连续性</td>
+</tr>
+<tr>
+<td align="left"><strong>层间空隙</strong></td>
+<td align="left">模糊过渡，丢失细节</td>
+<td align="left"><strong>利用椭球体积填充</strong>，保持边缘清晰</td>
+</tr>
+<tr>
+<td align="left"><strong>数据依赖</strong></td>
+<td align="left">极度依赖采样率，层距大就完蛋</td>
+<td align="left">对稀疏数据鲁棒性更强（能脑补）</td>
+</tr>
+</tbody></table>
+<p><strong>结论：</strong><br>如果你的 MRI 切片非常密集（比如 z 轴分辨率极高），线性插值够快也够用。<br>但正如你所说，只有 <strong>20 张切片</strong>（稀疏数据），线性插值会导致严重的<strong>层间断裂</strong>和<strong>阶梯效应</strong>。这时候，3DGS 利用其<strong>几何连续性</strong>的特性，能“猜”出比线性插值更符合人体生理结构的中间层。</p>
+<p>它不是在瞎猜，它是假设“人体是连续的 3D 实体”来进行拟合，这在医学上是一个非常合理的假设。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vegas/" class="print-no-link">#vegas</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vegas</div>
+      <div>http://cathylove47.github.io/2025/11/19/vegas/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/19/%E8%AE%BA%E6%96%87%E7%9A%84%E6%9E%84%E6%80%9D/" title="论文的构思">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">论文的构思</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/19/3dgs%E9%9A%8F%E6%83%B3/" title="3dgs的技术原理">
+                        <span class="hidden-mobile">3dgs的技术原理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

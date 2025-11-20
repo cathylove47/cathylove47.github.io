@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="3D Gaussian Splatting (3DGS) 是近年来计算机图形学和计算机视觉领域的一项突破性技术。它结合了显式几何表示（点云&#x2F;粒子）和体积渲染的优点，实现了实时的渲染速度和照片级的重建质量。 下面我将分两部分为你详细拆解：3DGS的训练与渲染流程，以及3D重建的深层意义。  第一部分：3DGS 的技术原理简单来说，3DGS 不使用网格（Mesh）或神经网络（如 NeRF 中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3dgs的技术原理">
+<meta property="og:url" content="http://cathylove47.github.io/2025/11/19/3dgs%E9%9A%8F%E6%83%B3/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="3D Gaussian Splatting (3DGS) 是近年来计算机图形学和计算机视觉领域的一项突破性技术。它结合了显式几何表示（点云&#x2F;粒子）和体积渲染的优点，实现了实时的渲染速度和照片级的重建质量。 下面我将分两部分为你详细拆解：3DGS的训练与渲染流程，以及3D重建的深层意义。  第一部分：3DGS 的技术原理简单来说，3DGS 不使用网格（Mesh）或神经网络（如 NeRF 中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-19T11:04:15.000Z">
+<meta property="article:modified_time" content="2025-11-19T11:13:02.228Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="3dgs">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>3dgs的技术原理 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">3dgs的技术原理</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-19 19:04" pubdate>
+          2025年11月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">3dgs的技术原理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>3D Gaussian Splatting (3DGS)</strong> 是近年来计算机图形学和计算机视觉领域的一项突破性技术。它结合了显式几何表示（点云&#x2F;粒子）和体积渲染的优点，实现了<strong>实时的渲染速度</strong>和<strong>照片级的重建质量</strong>。</p>
+<p>下面我将分两部分为你详细拆解：3DGS的<strong>训练与渲染流程</strong>，以及<strong>3D重建的深层意义</strong>。</p>
+<hr>
+<h3 id="第一部分：3DGS-的技术原理"><a href="#第一部分：3DGS-的技术原理" class="headerlink" title="第一部分：3DGS 的技术原理"></a>第一部分：3DGS 的技术原理</h3><p>简单来说，3DGS 不使用网格（Mesh）或神经网络（如 NeRF 中的 MLP）来表示物体，而是使用成千上万个<strong>3D 高斯椭球（3D Gaussians）</strong>。你可以把它们想象成无数个<strong>半透明的发光小云团</strong>，它们叠加在一起就组成了物体。</p>
+<h4 id="1-渲染过程-Rendering-Process-前向传播"><a href="#1-渲染过程-Rendering-Process-前向传播" class="headerlink" title="1. 渲染过程 (Rendering Process) - 前向传播"></a>1. 渲染过程 (Rendering Process) - 前向传播</h4><p>这是展示结果的过程，也是训练中计算 Loss 的基础。3DGS 的渲染速度之所以极快（100+ FPS），是因为它采用了类似传统图形学的**光栅化（Rasterization）**管线。</p>
+<ul>
+<li><strong>输入：</strong> 一组 3D 高斯球。每个球包含属性：<ul>
+<li><strong>位置 (Position):</strong> $x, y, z$</li>
+<li><strong>形状 (Covariance):</strong> 由缩放 (Scale) 和旋转 (Rotation&#x2F;Quaternion) 决定。</li>
+<li><strong>颜色 (Color):</strong> 使用球谐函数 (Spherical Harmonics) 表示，支持随视角变化的反射光泽。</li>
+<li><strong>不透明度 (Opacity):</strong> $\alpha$，决定这个球有多“实”。</li>
+</ul>
+</li>
+<li><strong>步骤 1：投影 (Projection)</strong><ul>
+<li>将 3D 空间中的椭球投影到 2D 屏幕（摄像机平面）。</li>
+<li>这个过程就像把一个气球压扁在纸上，3D 椭球变成了 2D 平面上的高斯分布（类似于一个模糊的圆斑）。</li>
+</ul>
+</li>
+<li><strong>步骤 2：排序 (Sorting)</strong><ul>
+<li><strong>关键步骤</strong>：将屏幕上所有的 2D 高斯斑点按照<strong>深度</strong>（离摄像机的距离）进行排序。通常是从远到近（Back-to-Front）。</li>
+<li>3DGS 使用了非常高效的 GPU 基数排序（Radix Sort）。</li>
+</ul>
+</li>
+<li><strong>步骤 3：基于图块的光栅化 (Tile-based Rasterization)</strong><ul>
+<li>为了并行加速，屏幕被划分成 $16 \times 16$ 的小方块（Tiles）。</li>
+<li>对每个像素，按顺序叠加高斯斑点的颜色。使用<strong>Alpha Blending</strong> 公式：<br>$$C &#x3D; \sum_{i} c_i \alpha_i T_i$$<br>（$T_i$ 代表前面所有层剩余的透明度，即“还没被挡住的光”）。</li>
+<li>当不透明度累积到饱和（完全不透光）时，该像素停止计算，节省资源。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-训练过程-Training-Process-优化与自适应"><a href="#2-训练过程-Training-Process-优化与自适应" class="headerlink" title="2. 训练过程 (Training Process) - 优化与自适应"></a>2. 训练过程 (Training Process) - 优化与自适应</h4><p>训练的目标是：调整这几百万个高斯球的属性，使得它们渲染出来的图和真实照片一模一样。</p>
+<ul>
+<li><strong>初始化 (Initialization):</strong><ul>
+<li>通常从<strong>稀疏点云</strong>（SfM，如 COLMAP 生成的点）开始。每个点初始化为一个小的 3D 高斯球。</li>
+</ul>
+</li>
+<li><strong>迭代优化循环 (Optimization Loop):</strong><ol>
+<li><strong>渲染</strong>：从当前视角渲染图像。</li>
+<li><strong>计算 Loss</strong>：对比渲染图和真实照片（L1 Loss + D-SSIM），计算误差。</li>
+<li><strong>反向传播 (Backpropagation)</strong>：计算梯度，更新每个高斯球的位置、形状、颜色和不透明度。</li>
+</ol>
+</li>
+<li><strong>自适应密度控制 (Adaptive Density Control) - 3DGS 的核心魔法:</strong><br>单纯的梯度下降是不够的，3DGS 会动态地<strong>增加</strong>或<strong>删除</strong>高斯球：<ul>
+<li><strong>克隆 (Clone):</strong> 如果一个高斯球很小，但梯度很大（说明这里细节不够），就把它复制一份，填补空缺（用于填充细节）。</li>
+<li><strong>分裂 (Split):</strong> 如果一个高斯球很大，且梯度很大（说明它试图覆盖形状复杂的区域，导致甚至出现了伪影），就把它切分成两个小球（用于精细化几何）。</li>
+<li><strong>剪枝 (Prune):</strong> 如果一个高斯球的不透明度 $\alpha$ 变得非常低（几乎透明），或者形状变得极其巨大&#x2F;极其细长（异常值），直接删除。</li>
+</ul>
+</li>
+<li><strong>结果：</strong> 经过几万次迭代，从最初稀疏的点云，演变成数百万个精细分布的高斯球，完美拟合场景。</li>
+</ul>
+<hr>
+<h3 id="第二部分：如何理解-3D-重建的意义"><a href="#第二部分：如何理解-3D-重建的意义" class="headerlink" title="第二部分：如何理解 3D 重建的意义"></a>第二部分：如何理解 3D 重建的意义</h3><p>3D 重建（3D Reconstruction）不仅仅是“把照片变成模型”，它是<strong>连接物理世界与数字世界的桥梁</strong>。我们可以从以下四个维度来理解它的意义：</p>
+<h4 id="1-数字化存档与文化传承-Preservation"><a href="#1-数字化存档与文化传承-Preservation" class="headerlink" title="1. 数字化存档与文化传承 (Preservation)"></a>1. 数字化存档与文化传承 (Preservation)</h4><ul>
+<li><strong>超越照片的维度：</strong> 照片是二维的切片，丢失了深度和空间感。3D 重建是对物理空间的完整“克隆”。</li>
+<li><strong>应用：</strong> 巴黎圣母院大火后，正是依靠之前的激光扫描和 3D 重建数据，修复工作才有了精确的蓝图。文物的数字化让后人即使在实物损毁后，也能在数字世界永恒地观察其细节。</li>
+</ul>
+<h4 id="2-沉浸式交互的基石-Interaction-Spatial-Computing"><a href="#2-沉浸式交互的基石-Interaction-Spatial-Computing" class="headerlink" title="2. 沉浸式交互的基石 (Interaction &amp; Spatial Computing)"></a>2. 沉浸式交互的基石 (Interaction &amp; Spatial Computing)</h4><ul>
+<li><strong>6DoF (六自由度) 体验：</strong> 看视频是被动的（摄像机怎么动你就怎么看）。但有了 3D 重建，用户可以在场景中自由行走（VR&#x2F;AR）。</li>
+<li><strong>空间计算时代：</strong> 随着 Apple Vision Pro 等设备的出现，屏幕不再局限于显示器，而是整个空间。3DGS 这种技术让<strong>把现实世界搬进头显</strong>成为可能，实现了远程旅游、远程看房的真实感（Telepresence）。</li>
+</ul>
+<h4 id="3-机器感知与人工智能-AI-Robotics"><a href="#3-机器感知与人工智能-AI-Robotics" class="headerlink" title="3. 机器感知与人工智能 (AI &amp; Robotics)"></a>3. 机器感知与人工智能 (AI &amp; Robotics)</h4><ul>
+<li><strong>机器的眼睛：</strong> 自动驾驶汽车和机器人不仅需要看到“图片”，更需要理解“空间”。</li>
+<li><strong>SLAM 与 导航：</strong> 3D 重建帮助机器人理解“我在哪里”、“前面有什么障碍物”、“这个物体的形状是什么”。</li>
+<li><strong>具身智能 (Embodied AI)：</strong> 如果我们要训练一个机器人去拿杯子，它必须在一个物理准确的 3D 环境中模拟训练。3DGS 可以快速构建这种高保真的模拟环境。</li>
+</ul>
+<h4 id="4-内容创作的民主化-Democratization-of-Creation"><a href="#4-内容创作的民主化-Democratization-of-Creation" class="headerlink" title="4. 内容创作的民主化 (Democratization of Creation)"></a>4. 内容创作的民主化 (Democratization of Creation)</h4><ul>
+<li><strong>降低门槛：</strong> 以前做 3D 场景需要专业的建模师用 Maya&#x2F;Blender 耗时数周。</li>
+<li><strong>AIGC 3D：</strong> 现在的技术（如 3DGS）允许普通人用手机拍一段视频，几分钟内就生成电影级的 3D 场景。这极大地解放了游戏开发、电影特效（VFX）和元宇宙内容的生产力。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>3DGS</strong> 是一种<strong>显式、高效、可微</strong>的渲染技术，它通过“泼溅”数百万个微小的椭球来欺骗我们的眼睛，让我们看到连续的物体。</p>
+<p>而 <strong>3D 重建</strong> 的意义在于**“空间化”**信息。它将人类对世界的感知从 2D 图像升级为 3D 空间，不仅让人类能更真实地回溯记忆，也让 AI 能够真正地理解和操作物理世界。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/3dgs/" class="print-no-link">#3dgs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>3dgs的技术原理</div>
+      <div>http://cathylove47.github.io/2025/11/19/3dgs随想/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/19/vegas/" title="vegas">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vegas</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/19/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="我的第一篇文章">
+                        <span class="hidden-mobile">我的第一篇文章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这是一个非常棒的研究切入点！心脏 MRI 重建（Cardiac MRI Reconstruction）一直是 MICCAI（医学影像顶会）的热门赛道。 你目前的做法是“利用 VEGAS（Gaussian Splatting 的变体）做短轴（SAX）切片的 Z 轴插值&#x2F;超分”。这算是一个不错的 Baseline。 为了发一篇高质量的论文，单纯的插值确实不够，引入“长轴（LAX）监督”和“扩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文的构思">
+<meta property="og:url" content="http://cathylove47.github.io/2025/11/19/%E8%AE%BA%E6%96%87%E7%9A%84%E6%9E%84%E6%80%9D/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="这是一个非常棒的研究切入点！心脏 MRI 重建（Cardiac MRI Reconstruction）一直是 MICCAI（医学影像顶会）的热门赛道。 你目前的做法是“利用 VEGAS（Gaussian Splatting 的变体）做短轴（SAX）切片的 Z 轴插值&#x2F;超分”。这算是一个不错的 Baseline。 为了发一篇高质量的论文，单纯的插值确实不够，引入“长轴（LAX）监督”和“扩">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-19T14:09:45.000Z">
+<meta property="article:modified_time" content="2025-11-19T14:24:28.780Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="写论文">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>论文的构思 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">论文的构思</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-19 22:09" pubdate>
+          2025年11月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文的构思</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这是一个非常棒的研究切入点！心脏 MRI 重建（Cardiac MRI Reconstruction）一直是 <strong>MICCAI</strong>（医学影像顶会）的热门赛道。</p>
+<p>你目前的做法是“利用 VEGAS（Gaussian Splatting 的变体）做短轴（SAX）切片的 Z 轴插值&#x2F;超分”。这算是一个不错的 <strong>Baseline</strong>。</p>
+<p>为了发一篇高质量的论文，单纯的插值确实不够，<strong>引入“长轴（LAX）监督”和“扩散模型（Diffusion Prior）”绝对是两个非常有价值的加分项</strong>。</p>
+<p>我们可以把你的工作包装成一个**“多视角一致性 + 生成式先验辅助的 4D 心脏高保真重建”**系统。</p>
+<p>以下我为你构思的三个具体的创新点方案，你可以根据实现的难易程度选择：</p>
+<hr>
+<h3 id="创新点一：引入长轴（LAX）作为“硬几何约束”-Geometric-Constraint"><a href="#创新点一：引入长轴（LAX）作为“硬几何约束”-Geometric-Constraint" class="headerlink" title="创新点一：引入长轴（LAX）作为“硬几何约束” (Geometric Constraint)"></a>创新点一：引入长轴（LAX）作为“硬几何约束” (Geometric Constraint)</h3><p><strong>核心逻辑：</strong> 短轴（SAX）切片虽然多（20张），但在 Z 轴依然是稀疏的。而长轴（LAX）切片虽然少（5张），但它们在空间上与 SAX 是<strong>正交或呈一定角度</strong>的。<br><strong>价值：</strong> 利用 LAX 数据不仅仅是“辅助”，而是构建**“多视角一致性（Cross-view Consistency）”**。这是 3DGS 的强项。</p>
+<ul>
+<li><strong>怎么做（How）：</strong><ol>
+<li><strong>统一坐标系</strong>：首先利用 DICOM 头文件里的位置信息，将 SAX 和 LAX 的切片统一转换到同一个世界坐标系下。</li>
+<li><strong>联合训练</strong>：不要只用 SAX 训练 Gaussian。在训练时，随机采样视角，既包括 SAX 的视角，也包括 LAX 的视角。</li>
+<li><strong>相交区域约束</strong>：在 SAX 和 LAX 图像在空间中相交的区域（Intersection Line），它们的像素值（MRI 强度）理论上应该是一样的。<ul>
+<li>你可以设计一个 <strong>Intersection Loss</strong>：强制 3DGS 在渲染这两个不同视角时，在相交线上的预测值保持一致。</li>
+</ul>
+</li>
+<li><strong>效果</strong>：LAX 切片会像“钉子”一样，把 SAX 插值产生的模糊 Z 轴结构“钉实”，修正心脏壁的几何形状，防止插值出现变形。</li>
+</ol>
+</li>
+</ul>
+<h3 id="创新点二：引入扩散模型作为“软解剖先验”-Anatomical-Prior"><a href="#创新点二：引入扩散模型作为“软解剖先验”-Anatomical-Prior" class="headerlink" title="创新点二：引入扩散模型作为“软解剖先验” (Anatomical Prior)"></a>创新点二：引入扩散模型作为“软解剖先验” (Anatomical Prior)</h3><p><strong>核心逻辑：</strong> 3DGS 善于拟合数据，但在没有数据的空隙（Z轴间隙），它可能会产生伪影。扩散模型（Diffusion Model）“看过”成千上万张心脏 MRI，它知道正常的心脏肌肉纹理是什么样的。<br><strong>价值：</strong> 这是你提到的“Generative”，用于解决<strong>Ill-posed（病态）问题</strong>，即填补缺失的高频细节。</p>
+<ul>
+<li><strong>怎么做（How）：</strong><ul>
+<li><strong>方案 A（2D 先验指导 3D）：</strong> 类似于 <strong>Score Distillation Sampling (SDS)</strong> 的思路，但不需要文本引导。<ol>
+<li>训练一个无条件（Unconditional）或以切片位置为条件的 2D 心脏 MRI Diffusion 模型。</li>
+<li>在优化 3DGS 时，渲染出一个<strong>未见过的切片位置</strong>（插值位置）。</li>
+<li>把这张渲染图喂给 Diffusion 模型，加噪去噪，计算梯度，告诉 3DGS：“你这里生成的纹理不像真实的心脏组织，改一下”。</li>
+</ol>
+</li>
+<li><strong>方案 B（生成伪切片）：</strong> 这是一个更稳妥的“两阶段”方法。<ol>
+<li>先利用 Diffusion 模型（如基于 Latent Diffusion 的 Inpainting 模型），根据相邻的 SAX 切片，<strong>生成</strong>中间缺失的切片。</li>
+<li>将这些生成的切片作为**伪标签（Pseudo-ground truth）**加入到 3DGS 的训练集中。</li>
+<li>这样 3DGS 就不需要自己瞎猜，而是去拟合 Diffusion 生成的高质量解剖结构。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="创新点三：利用时间维度（Time）做“时空联合超分”-Spatiotemporal-Super-resolution"><a href="#创新点三：利用时间维度（Time）做“时空联合超分”-Spatiotemporal-Super-resolution" class="headerlink" title="创新点三：利用时间维度（Time）做“时空联合超分” (Spatiotemporal Super-resolution)"></a>创新点三：利用时间维度（Time）做“时空联合超分” (Spatiotemporal Super-resolution)</h3><p><strong>核心逻辑：</strong> 你提到数据带有<strong>时间维度</strong>。心脏在跳动，T0 时刻的第 5 层切片，可能在 T1 时刻心脏收缩后，对应的是 T0 时刻第 5.5 层的解剖结构。<br><strong>价值：</strong> 利用运动信息，让不同时间点的信息互补。</p>
+<ul>
+<li><strong>怎么做（How）：</strong><ul>
+<li>使用 <strong>Deformable 3DGS（可变形高斯）</strong>。</li>
+<li>不要对每个时间点单独建模。建立一个<strong>Canonical Space（标准空间）</strong>（比如舒张末期），然后学习一个**变形场（Deformation Field）**来表示心脏的跳动。</li>
+<li><strong>创新点</strong>：当 Gaussian 随时间移动时，它们会“扫过”原本没有数据的空隙。利用这种<strong>时空相关性</strong>，T1 时刻的数据可以帮助重建 T0 时刻缺失的 Z 轴信息。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="💡-综合建议：如何组合成一篇好论文？"><a href="#💡-综合建议：如何组合成一篇好论文？" class="headerlink" title="💡 综合建议：如何组合成一篇好论文？"></a>💡 综合建议：如何组合成一篇好论文？</h3><p>我建议你采用 <strong>“3DGS + LAX Constraint + Diffusion Refinement”</strong> 的组合拳。</p>
+<p><strong>论文 Storyline (故事线) 参考：</strong></p>
+<ol>
+<li><strong>Problem</strong>: 现有的心脏 MRI Z轴分辨率低，传统插值模糊，且单纯的生成模型缺乏 3D 一致性。</li>
+<li><strong>Method (你的模型名字，比如 HeartGaussian)</strong>:<ul>
+<li><strong>Base</strong>: 使用 <strong>Deformable 3DGS</strong> 建模动态心脏（利用了时间维度）。</li>
+<li><strong>Contribution 1 (几何)</strong>: 提出 <strong>“Orthogonal Plane Guidance” (正交平面引导)</strong>，利用 5 张 LAX 切片作为稀疏视角监督，锁定心脏的整体几何结构。</li>
+<li><strong>Contribution 2 (纹理)</strong>: 引入 <strong>“Diffusion-based Slice Refinement”</strong>，利用预训练的 2D Diffusion 模型作为正则化项，优化插值区域的纹理细节，使其符合解剖学特征。</li>
+</ul>
+</li>
+<li><strong>Result</strong>: 相比于单纯的插值（Bicubic&#x2F;Spline）和单纯的 3DGS（Vegas），你的方法在 PSNR 上更高（因为有 LAX 修正），且在 LPIPS（感知指标）上更好（因为有 Diffusion 加持）。</li>
+</ol>
+<p><strong>总结：</strong><br>你的想法完全可行！<strong>长轴监督</strong>是必须加的（因为它就在你手里，不用白不用，且非常符合 3DGS 的多视角特性）。<strong>扩散模型</strong>可以作为一个提升画质的模块加入，这样你的论文既有传统的几何约束（Rigorous），又有生成式 AI 的前沿技术（Fancy），非常适合投 MICCAI 或 IEEE TMI。</p>
+<hr>
+<p>这是两个非常具体且关键的问题。只要解决了这两个顾虑，你的论文逻辑就通了。</p>
+<p>我来分两部分回答你：一是<strong>长短轴结合的“含金量”与潜在坑点</strong>，二是<strong>针对你目前的背景，最高效的扩散模型（Diffusion）上手路线</strong>。</p>
+<hr>
+<h3 id="第一部分：长轴（LAX）监督到底强不强？"><a href="#第一部分：长轴（LAX）监督到底强不强？" class="headerlink" title="第一部分：长轴（LAX）监督到底强不强？"></a>第一部分：长轴（LAX）监督到底强不强？</h3><p><strong>结论：非常强，而且是医学影像重建里的“黄金标准”。但有一个前提——配准（Registration）。</strong></p>
+<h4 id="1-为什么强？（从几何角度看）"><a href="#1-为什么强？（从几何角度看）" class="headerlink" title="1. 为什么强？（从几何角度看）"></a>1. 为什么强？（从几何角度看）</h4><p>想象你在切一块面包（心脏）。</p>
+<ul>
+<li><strong>SAX（短轴）</strong>：是你横着切了 20 刀，每一片面包内部很清晰，但两片面包之间（Z轴）是空的，或者是你插值“猜”出来的。</li>
+<li><strong>LAX（长轴）</strong>：是你竖着切了 5 刀。</li>
+<li><strong>关键点</strong>：这 5 刀竖着切下去，会<strong>垂直穿过</strong>你所有的 20 片横切面。</li>
+<li><strong>监督信号</strong>：在长轴和短轴的<strong>交界线</strong>上，像素值必须相等。<ul>
+<li>如果不加长轴：你的插值可能是“平滑但错误”的。</li>
+<li>加了长轴：这 5 个面就像 5 根钢筋，把松散的 SAX 切片“串”起来了。它直接约束了心脏壁在 Z 轴方向的曲率。对于 20 张 SAX 来说，5 张 LAX 提供的交叉约束已经非常密集了。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-难点与创新机会（Paper的卖点）"><a href="#2-难点与创新机会（Paper的卖点）" class="headerlink" title="2. 难点与创新机会（Paper的卖点）"></a>2. 难点与创新机会（Paper的卖点）</h4><p>你担心的“不强”，通常是因为**“对不齐”**。</p>
+<ul>
+<li><strong>问题</strong>：MRI 扫描 SAX 和 LAX 通常是分次扫描的。病人可能会呼吸、移动，或者心跳周期没完全对上。这会导致 SAX 和 LAX 在空间上对应不起来（比如长轴显示这里是血池，短轴对应位置却是心肌）。</li>
+<li><strong>如果直接强行监督</strong>：模型会糊，因为它不知道该听谁的。</li>
+<li><strong>你的创新点（Contribution）</strong>：<ul>
+<li><strong>不要假设它们是对齐的</strong>。</li>
+<li>在 3DGS 的训练过程中，加入一个**微小的位姿优化（Pose Refinement）**模块。让 Gaussian 在训练几何结构的同时，自动微调 LAX 切片的 6DoF（位置和旋转），使其与 SAX 数据最吻合。</li>
+<li><strong>写法</strong>：这叫 <em>“Joint Optimization of Geometry and Slice Misalignment”</em>（几何与切片错位的联合优化）。这比单纯用数据监督高级得多，是 MICCAI 很喜欢的点。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第二部分：零基础如何快速上手-Diffusion-并结合到你的论文？"><a href="#第二部分：零基础如何快速上手-Diffusion-并结合到你的论文？" class="headerlink" title="第二部分：零基础如何快速上手 Diffusion 并结合到你的论文？"></a>第二部分：零基础如何快速上手 Diffusion 并结合到你的论文？</h3><p>既然你是为了发论文，<strong>不要去学深奥的数学推导</strong>（什么变分下界、马尔可夫链先放一边）。你需要的是**“能跑通，能生成图，能当正则项用”**。</p>
+<h4 id="学习路线图（预计耗时：1-2周）"><a href="#学习路线图（预计耗时：1-2周）" class="headerlink" title="学习路线图（预计耗时：1-2周）"></a>学习路线图（预计耗时：1-2周）</h4><h4 id="第-1-步：理解核心逻辑（1天）"><a href="#第-1-步：理解核心逻辑（1天）" class="headerlink" title="第 1 步：理解核心逻辑（1天）"></a>第 1 步：理解核心逻辑（1天）</h4><p>不要看公式，看图解。</p>
+<ul>
+<li><strong>核心</strong>：Diffusion 就是一个“去噪器”。给它一张全是噪点的图，它能还原出清晰的心脏图。</li>
+<li><strong>应用</strong>：你的 3DGS 插值出来的切片，可能带有模糊或伪影（这可以被视为一种“噪声”）。你可以用训练好的 Diffusion 模型把这个“模糊切片”修成“清晰切片”。</li>
+</ul>
+<h4 id="第-2-步：跑通代码（3-4天）"><a href="#第-2-步：跑通代码（3-4天）" class="headerlink" title="第 2 步：跑通代码（3-4天）"></a>第 2 步：跑通代码（3-4天）</h4><p>不要自己写模型，使用 <strong>Hugging Face Diffusers</strong> 库，或者医学影像专用的 <strong>MONAI Generative Models</strong>。</p>
+<ul>
+<li><strong>推荐工具</strong>：MONAI (Project MONAI)。它是专门做医学影像 AI 的，里面有现成的 <code>DiffusionModelUNet</code>。</li>
+<li><strong>任务</strong>：<ol>
+<li>把你的 20 张 SAX 和 5 张 LAX 数据整理好（归一化到 0-1）。</li>
+<li>用这些 2D 切片训练一个简单的 <strong>DDPM (Denoising Diffusion Probabilistic Model)</strong>。</li>
+<li>因为你数据量小（如果是单病人数据），模型很容易过拟合，但这对你来说反而是好事（Overfitting to the patient），因为你就是想重建这个特定的病人。</li>
+</ol>
+</li>
+</ul>
+<h4 id="第-3-步：集成到-3DGS（最关键的一步）"><a href="#第-3-步：集成到-3DGS（最关键的一步）" class="headerlink" title="第 3 步：集成到 3DGS（最关键的一步）"></a>第 3 步：集成到 3DGS（最关键的一步）</h4><p>怎么把上面练好的模型加到 3DGS 里？有两种方案，推荐<strong>方案 B</strong>（更简单，易落地）。</p>
+<ul>
+<li><p><strong>方案 A (高难度，类似 DreamFusion&#x2F;SDS)</strong>：</p>
+<ul>
+<li>在 3DGS 训练 loss 里加一项梯度，这需要深入改写 PyTorch 的反向传播，坑很多，容易不收敛。</li>
+</ul>
+</li>
+<li><p><strong>方案 B (低难度，伪标签法 - Pseudo Labeling)</strong>：</p>
+<ul>
+<li><strong>流程</strong>：<ol>
+<li>用你现有的 Vegas&#x2F;插值方法，先生成一个粗糙的密集 Z 轴切片（比如插值出 100 张）。</li>
+<li>把这 100 张粗糙图，扔给你刚训练好的 Diffusion 模型，运行 <strong>“Image-to-Image” (Img2Img)</strong> 模式。</li>
+<li>Diffusion 会把粗糙图“修”得像真的 MRI。</li>
+<li><strong>把修好的图当作 Ground Truth（真值）</strong>，再重新训练一遍 3DGS。</li>
+</ol>
+</li>
+<li><strong>好处</strong>：完全解耦。你不需要改 3DGS 的底层 CUDA 代码，只需要处理图片。</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结你的论文“配方”"><a href="#总结你的论文“配方”" class="headerlink" title="总结你的论文“配方”"></a>总结你的论文“配方”</h3><p>如果你觉得 Diffusion 实在太难啃，我建议你保留 <strong>长轴监督</strong>，并将重心放在 <strong>“解决呼吸运动导致的长短轴未对齐问题”</strong> 上。</p>
+<p><strong>推荐的论文配置（如果不加 Diffusion）：</strong></p>
+<ol>
+<li><strong>Title</strong>: Robust 4D Cardiac Reconstruction via 3D Gaussian Splatting with <strong>Misalignment-Aware</strong> Orthogonal Views.</li>
+<li><strong>Method</strong>:<ul>
+<li><strong>Base</strong>: 4D Gaussian Splatting (处理时间维度).</li>
+<li><strong>Key Module</strong>: Learnable Slice Pose (在训练中自动修正长轴切片的轻微位移).</li>
+<li><strong>Loss</strong>: Orthogonal Consistency Loss (在长短轴交界处强制一致).</li>
+</ul>
+</li>
+</ol>
+<p><strong>推荐的论文配置（如果加 Diffusion）：</strong></p>
+<ol>
+<li><strong>Title</strong>: <strong>Generative</strong> 4D Cardiac MRI Reconstruction: Combining Gaussian Splatting with Diffusion Priors.</li>
+<li><strong>Method</strong>:<ul>
+<li>先用长轴+短轴训练粗糙 3DGS。</li>
+<li>导出插值切片，用 Diffusion 模型进行 <strong>Inpainting&#x2F;Refinement</strong>。</li>
+<li>将 Refine 后的数据回填，微调 3DGS。</li>
+</ul>
+</li>
+</ol>
+<p>我的建议：先做长轴监督（加上位姿修正）。如果效果已经很好（SSIM&#x2F;PSNR 提升明显），其实已经够一篇不错的会议论文了。Diffusion 可以作为锦上添花，如果时间来不及可以不加，或者作为 Future Work。</p>
+<hr>
+<h1 id="一些思考"><a href="#一些思考" class="headerlink" title="一些思考"></a>一些思考</h1><ol>
+<li>首先LAX图像和SAX到底是不是完全对齐的，也就是每一帧的切片是否是同一时刻采集的，如果不是完全对齐的，就需要考虑到配准，要把SAX和LAX放到同一个空间里面来</li>
+<li>方法的话可以设置一个3dgs的微小的位姿优化模块，让高斯核在训练几何结构的时候同时自动微调lAX切片的旋转和和平移</li>
+<li></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%99%E8%AE%BA%E6%96%87/" class="print-no-link">#写论文</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文的构思</div>
+      <div>http://cathylove47.github.io/2025/11/19/论文的构思/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/19/vegas/" title="vegas">
+                        <span class="hidden-mobile">vegas</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
