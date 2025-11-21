@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>论文的一些前置问题</title>
+    <link href="/2025/11/21/%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%80%E4%BA%9B%E5%89%8D%E7%BD%AE%E9%97%AE%E9%A2%98/"/>
+    <url>/2025/11/21/%E8%AE%BA%E6%96%87%E7%9A%84%E4%B8%80%E4%BA%9B%E5%89%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>MEDGS利用了VEGAS（Gaussian Splatting 的变体）在短轴图像上进行了插值，<br>这算是一个不错的baseline<br>接下来我介绍一下medgs的来源，并且提出新的改进目标</p><h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><h3 id="vegas"><a href="#vegas" class="headerlink" title="vegas"></a>vegas</h3><p>普通的 3DGS 是把 $x, y, z$ 三维空间里的物体变成高斯球。<br>而 <strong>VeGaS</strong> 处理的是一段 2D 视频。视频本来是 $(x, y)$ 的图像随时间 $t$ 变化。</p><p>VeGaS 做了一个很有趣的转换：</p><ul><li>它把视频看作一个 <strong>3D 空间-时间体积 (Space-Time Volume)</strong>。</li><li><strong>X 轴 &amp; Y 轴</strong>：还是图像的宽和高。</li><li><strong>Z 轴</strong>：变成了<strong>时间 (Time)</strong>。</li></ul><h4 id="vegas解决的痛点"><a href="#vegas解决的痛点" class="headerlink" title="vegas解决的痛点"></a>vegas解决的痛点</h4><p>如果只是简单地把视频叠成 3D 空间，用普通的 3D 高斯球去拟合，会遇到一个大问题：<strong>动作通常不是直线的。</strong></p><ul><li><strong>普通高斯球的局限：</strong> 标准的 3D 高斯球是椭球体，它的形状是线性的（直的）。</li><li><strong>视频里的问题：</strong> 比如视频里一个人在挥手，手的轨迹是<strong>弧线</strong>。如果你用一个长长的直条形椭球去代表这只手在几秒内的轨迹，它根本对不上（手是弯着动的，球是直的）。</li><li><strong>之前的笨办法：</strong> 之前的算法（如 VGR）只能把手切成无数个极短的小球，或者强行用变形场去扭，效果不好且难以编辑。</li></ul><p><strong>折叠高斯的引入</strong><br>为了解决“动作是弯的，球是直的”这个问题，作者发明了一种新的数学工具——<strong>Folded-Gaussian Distribution（折叠高斯分布）</strong>。</p><ul><li><strong>原理：</strong> 这种新型高斯球不再是死板的椭球。它引入了一个多项式函数，允许高斯球在“时间轴”方向上发生<strong>非线性的弯曲</strong>。</li><li><strong>通俗理解：</strong> 想象你有一根这就好比一根直香肠（普通高斯），现在你可以把它<strong>掰弯</strong>（Folded Gaussian），让它完美贴合视频里那个挥手动作的弧线轨迹。</li><li><strong>条件概率：</strong> 当我们需要渲染某一帧（比如第 5 秒）时，VeGaS 会在这个弯曲的高斯管上“切一刀”（Conditioning），切出来的截面就是一个 2D 的高斯斑点，正好对应那一帧图像里的物体。</li></ul><p>具体的输入输出：</p><ol><li><strong>输入：</strong> 一段普通的 2D 视频（不需要多视角，就普通手机拍的视频）。</li><li><strong>初始化：</strong> 在这个“视频立方体”里撒入 3D 高斯球。</li><li><strong>优化：</strong><ul><li>调整这些球的位置、颜色。</li><li><strong>关键：</strong> 调整“折叠参数”，让高斯球弯曲，去追踪视频里物体的运动轨迹。</li><li>利用对比原始视频帧的 Loss 来更新参数。</li></ul></li></ol><h3 id="medgs是如何借鉴vegas的"><a href="#medgs是如何借鉴vegas的" class="headerlink" title="medgs是如何借鉴vegas的"></a>medgs是如何借鉴vegas的</h3><p>VeGaS 的核心是处理 $(x, y, t)$，而 MRI 数据是 $(x, y, z)$。</p><ul><li><strong>在 VeGaS 中：</strong> 第 3 维度是<strong>时间</strong>。第 1 帧和第 2 帧之间，代表物体“动”了一点点。</li><li><strong>在 MedGS 中：</strong> 第 3 维度是<strong>深度（层）</strong>。第 1 张切片和第 2 张切片之间，代表人体组织结构“变”了一点点。</li></ul><p><strong>魔改的第一步</strong>就是直接把 MRI 的第 $i$ 张切片，当成视频的第 $i$ 帧喂给网络。网络以为它在学一个“变形的动画”，其实它在学一个“静态的 3D 结构”。</p><p>渲染方式的魔改：从“拍照”变成“切片”</p><p>这是最关键的区别。普通的 3DGS（包括 VeGaS）是模拟<strong>摄像机（Camera）</strong>，有近大远小的透视效果。但 MRI 不需要透视。</p><p>MedGS 对渲染管线做了如下修改：</p><ul><li><strong>原版 VeGaS&#x2F;3DGS：</strong><ul><li>我在 3D 空间放一个摄像机。</li><li>把高斯球投影到屏幕上（Perspective Projection）。</li><li>计算颜色叠加。</li></ul></li><li><strong>魔改后的 MedGS：</strong><ul><li><strong>正交投影 (Orthographic Projection)：</strong> 取消“近大远小”，模拟医学扫描仪的射线平行穿过。</li><li><strong>条件切片 (Conditional Slicing)：</strong><br>当训练第 5 张 PNG（假设它对应 $z&#x3D;10mm$ 处）时，算法<strong>只激活</strong>和渲染 z 轴坐标在 $10mm$ 附近的高斯球。<br>它就像一把<strong>数字手术刀</strong>，只横切这一层，计算这一层截面的颜色，然后跟第 5 张 PNG 去算 Loss。</li></ul></li></ul><blockquote><p>因为MRI是只有20层，这在医学上属于稀疏采样，如果直接堆叠，层与层之间会有间隙，这会导致信息丢失。所以medgs利用了vegas的折叠高斯分布，在层与层之间进行插值，实现了超分辨率</p></blockquote><h4 id="为什么3dgs能够应用于心脏MRI插值，对比线性插值"><a href="#为什么3dgs能够应用于心脏MRI插值，对比线性插值" class="headerlink" title="为什么3dgs能够应用于心脏MRI插值，对比线性插值"></a>为什么3dgs能够应用于心脏MRI插值，对比线性插值</h4><table><thead><tr><th align="left">对比维度</th><th align="left">线性插值 (Linear Interpolation)</th><th align="left">3DGS &#x2F; MedGS</th></tr></thead><tbody><tr><td align="left"><strong>处理逻辑</strong></td><td align="left">纯数学计算，像素对像素混合</td><td align="left">几何拟合，用 3D 形状去逼近数据</td></tr><tr><td align="left"><strong>斜向物体</strong></td><td align="left">产生重影 (Ghosting)，结构断裂</td><td align="left"><strong>自动对齐</strong>，保持管状&#x2F;块状连续性</td></tr><tr><td align="left"><strong>层间空隙</strong></td><td align="left">模糊过渡，丢失细节</td><td align="left"><strong>利用椭球体积填充</strong>，保持边缘清晰</td></tr><tr><td align="left"><strong>数据依赖</strong></td><td align="left">极度依赖采样率，层距大就完蛋</td><td align="left">对稀疏数据鲁棒性更强（能脑补）</td></tr></tbody></table><p><strong>结论：</strong><br>如果你的 MRI 切片非常密集（比如 z 轴分辨率极高），线性插值够快也够用。<br>但正如你所说，只有 <strong>20 张切片</strong>（稀疏数据），线性插值会导致严重的<strong>层间断裂</strong>和<strong>阶梯效应</strong>。这时候，3DGS 利用其<strong>几何连续性</strong>的特性，能“猜”出比线性插值更符合人体生理结构的中间层。</p><p>它不是在瞎猜，它是假设“人体是连续的 3D 实体”来进行拟合，这在医学上是一个非常合理的假设。</p><h2 id="我的一些想法"><a href="#我的一些想法" class="headerlink" title="我的一些想法"></a>我的一些想法</h2><ol><li>引入长轴LAX图像作为硬性几何约束</li><li>引入扩散模型，指导3dgs的拟合</li><li>时间维度的引导，比如T0时刻的第五层，可能因为心脏运动变成了T1时刻的第六层？（猜想）</li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>论文</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文的构思</title>
     <link href="/2025/11/19/%E8%AE%BA%E6%96%87%E7%9A%84%E6%9E%84%E6%80%9D/"/>
     <url>/2025/11/19/%E8%AE%BA%E6%96%87%E7%9A%84%E6%9E%84%E6%80%9D/</url>
