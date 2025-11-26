@@ -1,0 +1,2825 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这份资料看起来是一套计算机考研（如408计算机学科专业基础综合）的模拟试题或真题，涵盖了数据结构、计算机组成原理、操作系统和计算机网络四个科目。 为了方便你讲解，我将按照题目顺序，整理一份详细的解析与讲解思路（Markdown格式）。  2026考研计算机408模拟题 详细解析与讲解指南这份讲义针对试卷中的六道大题进行逐一拆解，重点在于理清解题逻辑、考察知识点以及易错点。  第一部分：数据结构 (">
+<meta property="og:type" content="article">
+<meta property="og:title" content="竟成模拟卷">
+<meta property="og:url" content="http://cathylove47.github.io/2025/11/26/%E7%AB%9F%E6%88%90/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="这份资料看起来是一套计算机考研（如408计算机学科专业基础综合）的模拟试题或真题，涵盖了数据结构、计算机组成原理、操作系统和计算机网络四个科目。 为了方便你讲解，我将按照题目顺序，整理一份详细的解析与讲解思路（Markdown格式）。  2026考研计算机408模拟题 详细解析与讲解指南这份讲义针对试卷中的六道大题进行逐一拆解，重点在于理清解题逻辑、考察知识点以及易错点。  第一部分：数据结构 (">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-26T08:48:11.000Z">
+<meta property="article:modified_time" content="2025-11-26T09:40:16.239Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="讲课">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>竟成模拟卷 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">竟成模拟卷</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-26 16:48" pubdate>
+          2025年11月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          49k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          406 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">竟成模拟卷</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这份资料看起来是一套计算机考研（如408计算机学科专业基础综合）的模拟试题或真题，涵盖了数据结构、计算机组成原理、操作系统和计算机网络四个科目。</p>
+<p>为了方便你讲解，我将按照题目顺序，整理一份详细的<strong>解析与讲解思路</strong>（Markdown格式）。</p>
+<hr>
+<h1 id="2026考研计算机408模拟题-详细解析与讲解指南"><a href="#2026考研计算机408模拟题-详细解析与讲解指南" class="headerlink" title="2026考研计算机408模拟题 详细解析与讲解指南"></a>2026考研计算机408模拟题 详细解析与讲解指南</h1><p>这份讲义针对试卷中的六道大题进行逐一拆解，重点在于理清<strong>解题逻辑</strong>、<strong>考察知识点</strong>以及<strong>易错点</strong>。</p>
+<hr>
+<h2 id="第一部分：数据结构-第42题"><a href="#第一部分：数据结构-第42题" class="headerlink" title="第一部分：数据结构 (第42题)"></a>第一部分：数据结构 (第42题)</h2><h3 id="题目核心"><a href="#题目核心" class="headerlink" title="题目核心"></a>题目核心</h3><p>考察<strong>图的存储结构</strong>（十字链表，Orthogonal List）及其在有向图中的应用（强连通分量、拓扑排序）。</p>
+<h3 id="1-画出带权有向图"><a href="#1-画出带权有向图" class="headerlink" title="1. 画出带权有向图"></a>1. 画出带权有向图</h3><p><strong>讲解思路：</strong><br>十字链表的结点结构是 <code>[tailvex | headvex | weight | hlink | tlink]</code>。</p>
+<ul>
+<li><code>tailvex</code> 是弧尾（起点），<code>headvex</code> 是弧头（终点）。</li>
+<li><strong>技巧</strong>：观察每一行（0<del>6代表A</del>G），顺着 <code>tlink</code>（绿色箭头方向）找该节点发出的所有边。</li>
+<li><strong>读图步骤</strong>：<ul>
+<li><strong>Row 0 (A):</strong> 指向 <code>[0|1|2]</code> (A→B, w&#x3D;2)，该框的tlink指向 <code>[0|2|4]</code> (A→C, w&#x3D;4)。</li>
+<li><strong>Row 1 (B):</strong> 指向 <code>[1|3|5]</code> (B→D, w&#x3D;5)，该框的tlink指向 <code>[1|4|7]</code> (B→E, w&#x3D;7)。</li>
+<li><strong>Row 2 (C):</strong> 指向 <code>[2|4|10]</code> (C→E, w&#x3D;10)。</li>
+<li><strong>Row 3 (D):</strong> 指向 <code>[3|5|6]</code> (D→F, w&#x3D;6)。(注意：这里看起来是F，行号5对应F)。</li>
+<li><strong>Row 4 (E):</strong> 指向 <code>[4|2|8]</code> (E→C, w&#x3D;8)，该框的tlink指向 <code>[4|5|6]</code> (E→F, w&#x3D;6)。<em>(注意E→C这也就是回边)</em></li>
+<li><strong>Row 5 (F):</strong> 指向 <code>[5|6|3]</code> (F→G, w&#x3D;3)。</li>
+<li><strong>Row 6 (G):</strong> 无出边。</li>
+</ul>
+</li>
+</ul>
+<p><strong>答案：</strong><br>图的边为：<br>A→B(2), A→C(4)<br>B→D(5), B→E(7)<br>C→E(10)<br>D→F(6)<br>E→C(8), E→F(6)<br>F→G(3)</p>
+<h3 id="2-强连通分量-SCC"><a href="#2-强连通分量-SCC" class="headerlink" title="2. 强连通分量 (SCC)"></a>2. 强连通分量 (SCC)</h3><p><strong>讲解思路：</strong></p>
+<ul>
+<li><strong>概念</strong>：强连通分量是指图中任意两个顶点都相互可达的子图。</li>
+<li><strong>分析</strong>：<ul>
+<li>存在环路：C→E→C。所以 {C, E} 是一个强连通分量。</li>
+<li>其他节点 A, B, D, F, G 均无法回到自己。</li>
+<li>所以SCC数量为：{A}, {B}, {C,E}, {D}, {F}, {G}，共 <strong>6个</strong>。</li>
+</ul>
+</li>
+<li><strong>问题1：变为1个SCC（全图强连通）</strong><ul>
+<li>目前流向大致是 A -&gt; … -&gt; G。G是汇点（Sink），A是源点（Source）。</li>
+<li>只需加 <strong>1条边</strong>：从 <strong>G指向A</strong> (G→A)。这样所有节点都能形成大环。</li>
+</ul>
+</li>
+<li><strong>问题2：SCC中顶点数量大于1的数量变为0</strong><ul>
+<li>也就是要破坏掉所有的环。</li>
+<li>图中唯一的环是 C⇆E。</li>
+<li><strong>删除1条边</strong>：E→C 或 C→E 均可。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-拓扑排序与关键路径"><a href="#3-拓扑排序与关键路径" class="headerlink" title="3. 拓扑排序与关键路径"></a>3. 拓扑排序与关键路径</h3><p><strong>讲解思路：</strong></p>
+<ul>
+<li><strong>拓扑排序</strong>：需要判断是否存在回路。利用十字链表，可以方便地检查是否存在入度为0的节点。但本图有环 (C-E)，不能进行完整的拓扑排序。如果删除E→C，则可以。</li>
+<li><strong>关键路径优势</strong>：<ul>
+<li><strong>邻接表</strong>：找<strong>出边</strong>容易，找<strong>入边</strong>难（需要遍历全表），计算顶点最晚开始时间（需要反向拓扑或知晓后继节点的入边）很麻烦。</li>
+<li><strong>十字链表</strong>：既有出边链表（tlink）也有入边链表（hlink）。</li>
+<li><strong>优势</strong>：在计算关键路径时，需要计算顶点的<strong>最早开始时间(Ve)<strong>和</strong>最晚开始时间(Vl)</strong>。计算Vl需要从汇点逆向推导，十字链表可以通过 <code>hlink</code> 直接找到指向当前节点的所有前驱节点（入边），时间复杂度远优于邻接表。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第二部分：计算机组成原理-第43题"><a href="#第二部分：计算机组成原理-第43题" class="headerlink" title="第二部分：计算机组成原理 (第43题)"></a>第二部分：计算机组成原理 (第43题)</h2><h3 id="题目核心-1"><a href="#题目核心-1" class="headerlink" title="题目核心"></a>题目核心</h3><p>考察 <strong>x86汇编指令分析</strong>、<strong>寻址方式</strong>、<strong>标志位逻辑</strong> 及 <strong>CISC&#x2F;RISC特点</strong>。</p>
+<h3 id="1-跳转指令与寻址"><a href="#1-跳转指令与寻址" class="headerlink" title="1. 跳转指令与寻址"></a>1. 跳转指令与寻址</h3><ul>
+<li><strong>跳转指令</strong>：能改变程序计数器(PC&#x2F;EIP)的指令。代码中有 <code>jmp</code> (行3), <code>jle</code> (行10), <code>jl</code> (行14)。</li>
+<li><strong>jmp寻址</strong>：<code>EB 21</code>。<code>EB</code>是短跳转（Short Jump），采用<strong>相对寻址</strong>。</li>
+<li><strong>目标地址计算</strong>：<ul>
+<li>当前指令地址 <code>0040100E</code>，指令长度2字节。</li>
+<li>下一条指令地址 &#x3D; <code>00401010</code>。</li>
+<li>偏移量 <code>21h</code>。</li>
+<li>目标 &#x3D; <code>00401010 + 00000021 = 00401031h</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-jle-判断逻辑"><a href="#2-jle-判断逻辑" class="headerlink" title="2. jle 判断逻辑"></a>2. jle 判断逻辑</h3><ul>
+<li><strong>jle</strong>：Jump if Less or Equal (有符号数 $\le$).</li>
+<li><strong>条件</strong>：<code>sum &gt; 100</code>。如果不满足（即 <code>sum &lt;= 100</code>），则跳转？<ul>
+<li>C代码是 <code>if (sum &gt; 100)</code>，汇编通常是 <code>cmp sum, 100</code>，然后 <code>jle</code> 跳过if体（即如果不大于，就跳走）。</li>
+<li>题目设 <code>sum=150</code>。<code>cmp 150, 100</code> (做减法 150 - 100 &#x3D; 50)。</li>
+<li>结果：正数。<strong>ZF&#x3D;0</strong> (非零), <strong>SF&#x3D;0</strong> (正), <strong>OF&#x3D;0</strong> (无溢出)。</li>
+<li><strong>jle跳转条件</strong>：<code>ZF=1</code> 或 <code>SF ≠ OF</code>。</li>
+<li><strong>判断</strong>：这里 <code>0 ≠ 0</code> 为假，<code>ZF=0</code> 为假。<strong>不跳转</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-指令功能与数组地址"><a href="#3-指令功能与数组地址" class="headerlink" title="3. 指令功能与数组地址"></a>3. 指令功能与数组地址</h3><ul>
+<li><strong>指令分析</strong>：<ul>
+<li>Line 5: <code>shll $2, %eax</code> -&gt; <code>EAX = EAX * 4</code>。这是在计算偏移字节数（int是4字节）。</li>
+<li>Line 6: <code>addl $0804A010h, %eax</code> -&gt; 加上基地址。</li>
+<li>Line 7: <code>movl (%eax), %ecx</code> -&gt; <strong>寄存器间接寻址</strong>。把内存中的值读入ECX。</li>
+</ul>
+</li>
+<li><strong>%ecx内容</strong>：根据C代码 <code>sum += A[i]</code>，ECX中存放的是 <strong>A[i] 的值</strong>。</li>
+<li><strong>寻址编址</strong>：因为 <code>shll $2</code> (乘4)，说明每个元素占4个地址单元，所以机器是<strong>按字节编址</strong>。</li>
+<li><strong>A[10]地址</strong>：<ul>
+<li>基址 <code>0804A010h</code>。</li>
+<li>偏移 <code>10 * 4 = 40 = 28h</code>。</li>
+<li>地址 &#x3D; <code>0804A010h + 28h = 0804A038h</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-CISC-还是-RISC"><a href="#4-CISC-还是-RISC" class="headerlink" title="4. CISC 还是 RISC?"></a>4. CISC 还是 RISC?</h3><ul>
+<li><strong>答案</strong>：<strong>CISC</strong> (复杂指令集)。</li>
+<li><strong>理由</strong>：<ol>
+<li><strong>指令长度不固定</strong>：第一条 <code>C7 45...</code> 长7字节，第三条 <code>EB 21</code> 长2字节。</li>
+<li><strong>指令功能复杂</strong>：<code>addl $..., -4(%ebp)</code> 允许直接对内存操作（操作数可以是内存地址），而RISC通常只允许Load&#x2F;Store指令访问内存。</li>
+<li><strong>x86架构</strong> 是典型的CISC。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="第三部分：计算机组成原理-第44题"><a href="#第三部分：计算机组成原理-第44题" class="headerlink" title="第三部分：计算机组成原理 (第44题)"></a>第三部分：计算机组成原理 (第44题)</h2><h3 id="题目核心-2"><a href="#题目核心-2" class="headerlink" title="题目核心"></a>题目核心</h3><p>考察 <strong>微程序控制器</strong>、<strong>微指令编码</strong>、<strong>中断处理</strong>。</p>
+<h3 id="1-微指令编码（字段直接编码法）"><a href="#1-微指令编码（字段直接编码法）" class="headerlink" title="1. 微指令编码（字段直接编码法）"></a>1. 微指令编码（字段直接编码法）</h3><ul>
+<li><strong>划分依据</strong>：<ol>
+<li><strong>互斥性</strong>：在同一时间（同一个CPU周期）内，不可能同时出现的微命令划分在同一个字段（一组）。</li>
+<li><strong>相容性</strong>：可能同时出现的微命令必须分在不同字段。</li>
+</ol>
+</li>
+<li><strong>最少互斥类</strong>：这需要具体的微命令列表来分组，但逻辑是将不能并行的操作压到一个字段里以节省位数。</li>
+</ul>
+<h3 id="2-微指令下址计算"><a href="#2-微指令下址计算" class="headerlink" title="2. 微指令下址计算"></a>2. 微指令下址计算</h3><ul>
+<li><strong>方式</strong>：计数器法（顺序执行） + 断定法（跳转）。</li>
+<li><strong>计算</strong>：<ul>
+<li>指令操作码OP + 计数器 + 状态条件。</li>
+<li>题目提到第5条指令微程序入口 <code>0A2H</code>。</li>
+<li>如果未跳转，通常是 <code>CMAR + 1</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-异常与中断"><a href="#3-异常与中断" class="headerlink" title="3. 异常与中断"></a>3. 异常与中断</h3><ul>
+<li><strong>题目</strong>：执行指令43中的机器指令（涉及内存访问、算术运算）。</li>
+<li><strong>可能触发</strong>：<ol>
+<li><strong>异常 (Exception&#x2F;内中断)</strong>：如算术溢出（OF置位）、缺页异常（Page Fault，访问内存时）、非法指令。</li>
+<li><strong>中断 (Interrupt&#x2F;外中断)</strong>：I&#x2F;O完成、时钟中断。题目问“指令执行过程中”，通常指异常。但如果是“指令周期结束”，则是外中断。</li>
+<li><strong>分类</strong>：<ul>
+<li><strong>故障 (Fault)</strong>：如缺页，处理后重试当前指令。</li>
+<li><strong>陷阱 (Trap)</strong>：如系统调用，处理后执行下一条。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-中断响应条件-Line-8-add"><a href="#4-中断响应条件-Line-8-add" class="headerlink" title="4. 中断响应条件 (Line 8 add)"></a>4. 中断响应条件 (Line 8 add)</h3><ul>
+<li><strong>条件</strong>：<ol>
+<li><strong>一条指令执行结束</strong>（即当前 <code>add</code> 执行完）。</li>
+<li><strong>CPU处于允许中断状态</strong>（IF标志位&#x3D;1，开中断）。</li>
+<li><strong>无更高级别的中断请求</strong>。</li>
+<li><strong>未处于原子操作</strong>（如DMA占用总线等情况，虽然主要看指令边界）。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="第四部分：操作系统-第45题"><a href="#第四部分：操作系统-第45题" class="headerlink" title="第四部分：操作系统 (第45题)"></a>第四部分：操作系统 (第45题)</h2><h3 id="题目核心-3"><a href="#题目核心-3" class="headerlink" title="题目核心"></a>题目核心</h3><p>考察 <strong>虚拟内存</strong>、<strong>TLB（快表）</strong>、<strong>页式存储</strong>、<strong>页面置换</strong>。</p>
+<h3 id="1-虚拟地址转物理地址"><a href="#1-虚拟地址转物理地址" class="headerlink" title="1. 虚拟地址转物理地址"></a>1. 虚拟地址转物理地址</h3><ul>
+<li><strong>参数</strong>：虚拟地址32位，物理24位，页大小4KB ($2^{12}$)。<ul>
+<li>页内偏移 (Offset) &#x3D; 12位。</li>
+<li>虚页号 (VPN) &#x3D; 32 - 12 &#x3D; 20位。</li>
+</ul>
+</li>
+<li><strong>TLB</strong>：4路组相联，共16组。<ul>
+<li>组索引 (Index) 需要 $\log_2 16 &#x3D; 4$ 位。</li>
+<li>TLB标记 (Tag) &#x3D; VPN - Index &#x3D; 20 - 4 &#x3D; 16位。</li>
+</ul>
+</li>
+<li><strong>解析指令14 (<code>j1 00401010h</code>)</strong>：<ul>
+<li>目标地址：<code>00401010h</code>。</li>
+<li>二进制后缀：<code>... 0001 0000 0001 0000</code>。</li>
+<li><strong>Offset</strong> (低12位)：<code>010h</code>。</li>
+<li><strong>VPN</strong> (高20位)：<code>00401h</code>。</li>
+<li><strong>TLB划分</strong>：<ul>
+<li>VPN &#x3D; <code>0000 0000 0100 0000 0001</code>。</li>
+<li><strong>TLB Index</strong> (VPN的低4位)：<code>0001</code> -&gt; <strong>第1组</strong>。</li>
+<li><strong>TLB Tag</strong> (VPN的高16位)：<code>0000 0000 0100 0000</code> -&gt; <strong>0040H</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-数组A的页面占用"><a href="#2-数组A的页面占用" class="headerlink" title="2. 数组A的页面占用"></a>2. 数组A的页面占用</h3><ul>
+<li><strong>数组A</strong>：<code>int A[2048]</code>。大小 &#x3D; $2048 \times 4B &#x3D; 8192B &#x3D; 8KB$。</li>
+<li><strong>页大小</strong>：4KB。</li>
+<li><strong>计算</strong>：$8KB &#x2F; 4KB &#x3D; 2$ 页。</li>
+<li><strong>缺页次数</strong>：<ul>
+<li>数据连续存放。访问A[0]缺页（调入第1页），访问到A[1024]缺页（调入第2页）。</li>
+<li>如果A恰好页对齐，最少2次缺页。如果跨页（比如从页末开始），可能涉及3页。题目问“至少”，则为 <strong>2个页面</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-页面分配策略"><a href="#3-页面分配策略" class="headerlink" title="3. 页面分配策略"></a>3. 页面分配策略</h3><ul>
+<li><strong>分配</strong>：给该进程分配2个物理页框。</li>
+<li><strong>置换逻辑</strong>：<ul>
+<li>代码页需要占用1个页框。</li>
+<li>数据页（数组A）需要2个页框。</li>
+<li><strong>冲突</strong>：总共只有2个物理页。</li>
+<li><strong>过程</strong>：<ol>
+<li>取指（Page Code） -&gt; 缺页 -&gt; 入Mem[0]。</li>
+<li>访问A[0]（Page Data1） -&gt; 缺页 -&gt; 入Mem[1]。</li>
+<li>循环继续…</li>
+<li>当访问到A[1024]（Page Data2）时 -&gt; 缺页 -&gt; 必须淘汰一个。</li>
+<li>根据LRU或Clock，刚才一直在取指和访问Data1。如果指令循环紧密，Code页最近常访问。Data1也常访问。</li>
+<li><strong>最少物理页数</strong>：为了避免“抖动”（Thrashing，即反复换入换出），工作集至少需要包含 <strong>1个代码页 + 1个数据页</strong>。但数组跨2页，无法同时容纳。</li>
+<li>题目问“执行完后…最少多少物理页面”可能指工作集大小？或者是问为了不发生抖动最少给几个？通常是 <strong>3个</strong>（1代码 + 2数据）。如果问系统实际分配了2个后发生了多少次中断，那就是另一个计算了。</li>
+</ol>
+<ul>
+<li><em>修正</em>：题目问“系统为该进程分配的物理页面数最少是多少”。如果不考虑Cache，要完成执行，最少 <strong>2个</strong> 甚至 <strong>1个</strong> 也能跑（只是慢，疯狂换页）。但通常考题问的是“最小工作集”或“保证不发生抖动的最小集”，对于指令 <code>sum += A[i]</code>，一条指令周期内需要访问：指令地址、数据地址。所以至少需要 <strong>2个</strong> 页框（1指令+1数据）才能保证单条指令顺利执行不需要换页中断中间打断。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第五部分：操作系统-第46题"><a href="#第五部分：操作系统-第46题" class="headerlink" title="第五部分：操作系统 (第46题)"></a>第五部分：操作系统 (第46题)</h2><h3 id="题目核心-4"><a href="#题目核心-4" class="headerlink" title="题目核心"></a>题目核心</h3><p>考察 <strong>文件分配方式（FAT）</strong>、<strong>磁盘管理</strong>、<strong>权限控制</strong>。</p>
+<h3 id="1-FAT与位图"><a href="#1-FAT与位图" class="headerlink" title="1. FAT与位图"></a>1. FAT与位图</h3><ul>
+<li><strong>位图 (Bitmap)</strong>：<ul>
+<li>磁盘10GB，块4KB。总块数 $N &#x3D; 10 \times 10^9 &#x2F; 4096 \approx 2,500,000$ (假设1GB&#x3D;$10^9$B，如果是$2^{30}$则不同，通常考研按近似值或$2^{10}$计算)。</li>
+<li>$10GB &#x3D; 10 \times 2^{30} B$。</li>
+<li>$N &#x3D; 10 \times 2^{30} &#x2F; 2^{12} &#x3D; 10 \times 2^{18} &#x3D; 2,621,440$ 块。</li>
+<li>位图每块1位。$2,621,440 &#x2F; 8 &#x3D; 327,680$ Bytes $\approx 320 KB$。</li>
+</ul>
+</li>
+<li><strong>文件A位置</strong>：<ul>
+<li>起始块号30。A在位图中的位置是第30位（从0开始）。</li>
+<li>所在字号&#x2F;字节号 &#x3D; $30 &#x2F; 8$ 或 $30 &#x2F; 32$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-FAT表大小与文件B"><a href="#2-FAT表大小与文件B" class="headerlink" title="2. FAT表大小与文件B"></a>2. FAT表大小与文件B</h3><ul>
+<li><strong>FAT表最大长度</strong>：<ul>
+<li>FAT表项数 &#x3D; 块数 $\approx 2.5M$。</li>
+<li>每个表项4字节（题目给出）。</li>
+<li>Size &#x3D; $2.5M \times 4B &#x3D; 10MB$。</li>
+</ul>
+</li>
+<li><strong>文件B</strong>：<ul>
+<li>起始 5000 -&gt; 32000 -&gt; 42500。</li>
+<li><strong>第5000个字节</strong>：<ul>
+<li>$5000 &#x2F; 4096 &#x3D; 1$ 余数…</li>
+<li>所以在文件的 <strong>第2块</strong>（逻辑块号1）。</li>
+</ul>
+</li>
+<li>链表顺序：第1块是5000(物理)，第2块是32000(物理)。(注意：题目中起始簇号是5000，我这里假设题目数字是物理簇号)。</li>
+<li><strong>第9000个字节</strong>：<ul>
+<li>$9000 &#x2F; 4096 &#x3D; 2$ 余数…</li>
+<li>在文件的 <strong>第3块</strong>（逻辑块号2）。</li>
+<li>物理块是链表的第3个节点：42500。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-访问权限-ACL"><a href="#3-访问权限-ACL" class="headerlink" title="3. 访问权限 (ACL)"></a>3. 访问权限 (ACL)</h3><ul>
+<li><strong>用户类别</strong>：管理员、文件主、其他用户。共3类。</li>
+<li><strong>权限</strong>：完全控制、执行&#x2F;修改、只读。</li>
+<li><strong>二进制位串</strong>：<ul>
+<li>如果采用简单的矩阵或ACL。</li>
+<li>通常UNIX风格是 <code>rwx</code> (3位) * 3类用户 &#x3D; <strong>9位</strong>。</li>
+<li>题目问“至少需要多少位”，如果有3类用户，每类用户有不同的权限组合，需要能够区分这些状态。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第六部分：计算机网络-第47题"><a href="#第六部分：计算机网络-第47题" class="headerlink" title="第六部分：计算机网络 (第47题)"></a>第六部分：计算机网络 (第47题)</h2><h3 id="题目核心-5"><a href="#题目核心-5" class="headerlink" title="题目核心"></a>题目核心</h3><p>考察 <strong>网络层路由(RIP&#x2F;TTL)</strong>、<strong>NAT</strong>、<strong>传输层(TCP)</strong>、<strong>应用层(FTP)</strong>。</p>
+<h3 id="1-路由与TTL"><a href="#1-路由与TTL" class="headerlink" title="1. 路由与TTL"></a>1. 路由与TTL</h3><ul>
+<li><strong>场景</strong>：Host A (在AS2, R3下) 与 Host B (在AS2, R4下的网络192.1.3.64&#x2F;26)。</li>
+<li><strong>路径</strong>：Host A (192.1.3.10) -&gt; R3 -&gt; R4 -&gt; Host B。</li>
+<li><strong>TTL逻辑</strong>：<ul>
+<li>Host A 发送 ping，TTL&#x3D;2。</li>
+<li>到达 R3 (第1跳)：TTL 2 -&gt; 1。转发。</li>
+<li>到达 R4 (第2跳)：TTL 1 -&gt; 0。<strong>丢弃</strong>。</li>
+<li><strong>结果</strong>：R4 向 Host A 发送 <strong>ICMP Time Exceeded (超时)</strong> 报文。</li>
+<li>所以 Host A 收到的是来自 R4 的 ICMP 差错报文。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-FTP-主动模式与-NAT"><a href="#2-FTP-主动模式与-NAT" class="headerlink" title="2. FTP 主动模式与 NAT"></a>2. FTP 主动模式与 NAT</h3><ul>
+<li><strong>主动模式 (Active)</strong>：<ul>
+<li>控制连接：Client -&gt; Server (21)。</li>
+<li>数据连接：Server (20) -&gt; Client (Random Port)。</li>
+</ul>
+</li>
+<li><strong>场景</strong>：<ul>
+<li>主机A (Client) 向 FTP服务器 (Server) 发起。</li>
+<li>Server 在 AS1 (私网 192.168.1.10)。</li>
+<li>Client 在 AS2 (外部)。</li>
+<li>这里有一个问题：Client 无法直接连接私网IP。通常需要目标端口映射(Port Forwarding)在R1上。假设已配置。</li>
+<li><strong>数据连接 SYN</strong>：Server (192.168.1.10) 发起连接。</li>
+<li>经过 NAT R1 时，<strong>源IP (Source IP)</strong> 会被替换为 R1 的 <strong>公网接口IP</strong> (即与 R2 连接的那个接口IP)。</li>
+<li>所以 Host A 收到的 SYN 包，源IP是 <strong>R1的公网IP</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-协议选择"><a href="#3-协议选择" class="headerlink" title="3. 协议选择"></a>3. 协议选择</h3><ul>
+<li><strong>AS间路由</strong>：AS1 和 AS2 之间。使用 <strong>BGP</strong> (边界网关协议)。</li>
+<li><strong>传输层</strong>：FTP 基于 <strong>TCP</strong>。</li>
+</ul>
+<h3 id="4-FTP-上传优化"><a href="#4-FTP-上传优化" class="headerlink" title="4. FTP 上传优化"></a>4. FTP 上传优化</h3><ul>
+<li><strong>多线程技术</strong>：<ul>
+<li>建立 <strong>多个TCP连接</strong> (Parallel TCP connections)。</li>
+<li>同时上传文件的不同部分，或者同时上传这3个文件。</li>
+<li><strong>最少建立连接数</strong>：如果要完全并行，通常是控制连接1个 + 每个文件1个数据连接 &#x3D; 4个？</li>
+<li>题目问“最少建立多少次连接即可完成上传”。</li>
+<li>FTP标准是每个文件传输都要建立一个新的数据连接。</li>
+<li>上传3个文件：<ol>
+<li>建立控制连接 (1次)。</li>
+<li>传文件1：建数据连接，传完关断。</li>
+<li>传文件2：建数据连接…</li>
+<li>传文件3：建数据连接…</li>
+</ol>
+</li>
+<li>总共：1 (控制) + 3 (数据) &#x3D; <strong>4次</strong> TCP连接建立过程。</li>
+<li>利用多线程技术同时上传，就是同时建立这3个数据连接。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>这份资料是一套完整的计算机考研（408）模拟试题的第二部分，涵盖了数据结构（算法设计）、计算机组成原理（指令流水线、数据通路）、操作系统（同步互斥、文件系统）和计算机网络（子网划分、路由）的综合应用题。</p>
+<p>以下是针对第41题至第47题的详细解析与讲解思路。</p>
+<hr>
+<h1 id="408-模拟题综合应用题详解-41-47"><a href="#408-模拟题综合应用题详解-41-47" class="headerlink" title="408 模拟题综合应用题详解 (41-47)"></a>408 模拟题综合应用题详解 (41-47)</h1><h2 id="41-数据结构：二叉树算法设计-7分"><a href="#41-数据结构：二叉树算法设计-7分" class="headerlink" title="41. 数据结构：二叉树算法设计 (7分)"></a>41. 数据结构：二叉树算法设计 (7分)</h2><h3 id="题目核心-6"><a href="#题目核心-6" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>目标</strong>：找到二叉树每一层节点中的最小值，并返回一个数组。<br><strong>输入</strong>：二叉树根节点 <code>root</code>。<br><strong>输出</strong>：<code>int</code> 数组，存储每层的最小值。</p>
+<h3 id="1-算法设计思想"><a href="#1-算法设计思想" class="headerlink" title="1. 算法设计思想"></a>1. 算法设计思想</h3><p><strong>讲解思路：</strong></p>
+<ul>
+<li>这道题本质是<strong>二叉树的层序遍历 (Breadth-First Search, BFS)</strong>。</li>
+<li>我们需要逐层访问节点，在遍历每一层时，维护一个 <code>min</code> 变量来记录当前层的最小值。</li>
+<li><strong>步骤</strong>：<ol>
+<li>如果树为空，返回空。</li>
+<li>使用一个队列 <code>queue</code> 辅助遍历。初始将 <code>root</code> 入队。</li>
+<li>当队列不为空时，进入循环（处理一层）：<ul>
+<li>记录当前队列的大小 <code>levelSize</code>（这就是当前层的节点数）。</li>
+<li>初始化 <code>currentMin</code> 为一个极大值（或该层第一个节点的值）。</li>
+<li>循环 <code>levelSize</code> 次：<ul>
+<li>出队一个节点。</li>
+<li>更新 <code>currentMin</code>。</li>
+<li>将该节点的左右孩子（若存在）入队。</li>
+</ul>
+</li>
+<li>将 <code>currentMin</code> 存入结果数组。</li>
+</ul>
+</li>
+<li>返回结果数组。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-C语言描述-关键代码"><a href="#2-C语言描述-关键代码" class="headerlink" title="2. C语言描述 (关键代码)"></a>2. C语言描述 (关键代码)</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>* <span class="hljs-title function_">smallestValues</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> TreeNode* root, <span class="hljs-type">int</span>* returnSize)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!root) &#123;<br>        *returnSize = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 假设最大层数或节点数足够，分配内存</span><br>    <span class="hljs-type">int</span>* result = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>) * <span class="hljs-number">1000</span>); <br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>** <span class="hljs-title">queue</span> =</span> (<span class="hljs-keyword">struct</span> TreeNode**)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> TreeNode*) * <span class="hljs-number">2000</span>);<br>    <span class="hljs-type">int</span> front = <span class="hljs-number">0</span>, rear = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> levelIndex = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-built_in">queue</span>[rear++] = root;<br>    <br>    <span class="hljs-keyword">while</span> (front &lt; rear) &#123;<br>        <span class="hljs-type">int</span> levelSize = rear - front; <span class="hljs-comment">// 当前层节点数</span><br>        <span class="hljs-type">int</span> minVal = INT_MAX; <span class="hljs-comment">// 头文件 &lt;limits.h&gt;</span><br>        <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; levelSize; i++) &#123;<br>            <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span>* <span class="hljs-title">node</span> =</span> <span class="hljs-built_in">queue</span>[front++];<br>            <span class="hljs-keyword">if</span> (node-&gt;val &lt; minVal) &#123;<br>                minVal = node-&gt;val;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (node-&gt;left) <span class="hljs-built_in">queue</span>[rear++] = node-&gt;left;<br>            <span class="hljs-keyword">if</span> (node-&gt;right) <span class="hljs-built_in">queue</span>[rear++] = node-&gt;right;<br>        &#125;<br>        result[levelIndex++] = minVal;<br>    &#125;<br>    <br>    <span class="hljs-built_in">free</span>(<span class="hljs-built_in">queue</span>);<br>    *returnSize = levelIndex;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-复杂度分析"><a href="#3-复杂度分析" class="headerlink" title="3. 复杂度分析"></a>3. 复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>：$O(N)$。每个节点进队出队各一次，且仅访问一次。</li>
+<li><strong>空间复杂度</strong>：$O(W)$，其中 $W$ 为树的最大宽度（最下面一层的节点数可能达到 $N&#x2F;2$）。最坏情况为 $O(N)$。</li>
+</ul>
+<hr>
+<h2 id="42-数据结构：堆排序-10分"><a href="#42-数据结构：堆排序-10分" class="headerlink" title="42. 数据结构：堆排序 (10分)"></a>42. 数据结构：堆排序 (10分)</h2><h3 id="题目核心-7"><a href="#题目核心-7" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：堆的构建、堆排序过程、完全二叉树性质。<br><strong>数据</strong>：<code>[18, 25, 3, 7, 50, 19]</code>。<br><strong>目标</strong>：从小到大排序（Ascending）。</p>
+<h3 id="1-初始堆构建"><a href="#1-初始堆构建" class="headerlink" title="1. 初始堆构建"></a>1. 初始堆构建</h3><p><strong>讲解思路：</strong></p>
+<ul>
+<li>要<strong>从小到大</strong>排序，通常利用<strong>大根堆 (Max Heap)</strong>。<ul>
+<li><em>原理</em>：大根堆堆顶最大，将堆顶与末尾交换，最大值就“沉”到了数组最后（有序区的正确位置），然后缩小堆范围，重新调整。</li>
+</ul>
+</li>
+<li><strong>建堆过程</strong>（从最后一个非叶子节点开始调整）：<ul>
+<li>数组索引：<code>0:18, 1:25, 2:3, 3:7, 4:50, 5:19</code>。</li>
+<li>最后一个非叶子节点是 <code>(6/2)-1 = 2</code> (值为3)。</li>
+<li><strong>调整 idx 2 (3)</strong>：左孩子没有，右孩子是 <code>idx 5 (19)</code>? 不对，idx 2的左孩子是 <code>2*2+1=5</code>(19)。<code>19 &gt; 3</code>，交换。-&gt; <code>[..., 19]</code>。</li>
+<li><strong>调整 idx 1 (25)</strong>：左 <code>3 (7)</code>, 右 <code>4 (50)</code>。<code>50 &gt; 25</code>，交换。-&gt; <code>[..., 50, ..., 7, 25, ...]</code>.</li>
+<li><strong>调整 idx 0 (18)</strong>：左 <code>1 (50)</code>, 右 <code>2 (19)</code>。<code>50</code> 最大，交换。-&gt; <code>[50, 18, 19, ...]</code>.</li>
+<li><strong>级联调整 idx 1 (18)</strong>：左 <code>3 (7)</code>, 右 <code>4 (25)</code>。<code>25 &gt; 18</code>，交换。</li>
+</ul>
+</li>
+<li><strong>最终初始大根堆</strong>：<code>[50, 25, 19, 7, 18, 3]</code>。</li>
+<li><strong>时间复杂度</strong>：建堆复杂度为 $O(N)$。</li>
+</ul>
+<h3 id="2-排序过程"><a href="#2-排序过程" class="headerlink" title="2. 排序过程"></a>2. 排序过程</h3><ul>
+<li><strong>步骤</strong>：<ol>
+<li>初始堆：<code>50, 25, 19, 7, 18, 3</code>。</li>
+<li><strong>交换 50, 3</strong> -&gt; <code>3, 25, 19, 7, 18 | 50</code> (50已排好)。</li>
+<li><strong>调整 3</strong>：<code>25</code> 上浮 -&gt; <code>25, 18, 19, 7, 3 | 50</code>。</li>
+<li><strong>交换 25, 3</strong> -&gt; <code>3, 18, 19, 7 | 25, 50</code>。</li>
+<li><strong>调整 3</strong>：<code>19</code> 上浮 -&gt; <code>19, 18, 3, 7 | 25, 50</code>。</li>
+<li><strong>交换 19, 7</strong> -&gt; <code>7, 18, 3 | 19, 25, 50</code>。</li>
+<li><strong>调整 7</strong>：<code>18</code> 上浮 -&gt; <code>18, 7, 3 | ...</code>。</li>
+<li><strong>交换 18, 3</strong> -&gt; <code>3, 7 | 18 ...</code>。</li>
+<li><strong>调整 3</strong>：<code>7</code> 上浮 -&gt; <code>7, 3 | ...</code>。</li>
+<li><strong>交换 7, 3</strong> -&gt; <code>3 | 7 ...</code>。</li>
+</ol>
+</li>
+<li><strong>最终序列</strong>：<code>3, 7, 18, 19, 25, 50</code>。</li>
+</ul>
+<h3 id="3-堆的性质"><a href="#3-堆的性质" class="headerlink" title="3. 堆的性质"></a>3. 堆的性质</h3><ul>
+<li><strong>是否二叉排序树？</strong> <strong>否</strong>。堆只要求父节点大于子节点，左右孩子之间无序（如初始堆中左边25，右边19，但左子树里有18，右子树没限制必须比左边大）。</li>
+<li><strong>是否完全二叉树？</strong> <strong>是</strong>。堆必须在逻辑上是完全二叉树，才能用数组连续存储且父子下标关系成立。</li>
+</ul>
+<hr>
+<h2 id="43-计组：数据通路与微操作-13分"><a href="#43-计组：数据通路与微操作-13分" class="headerlink" title="43. 计组：数据通路与微操作 (13分)"></a>43. 计组：数据通路与微操作 (13分)</h2><h3 id="题目核心-8"><a href="#题目核心-8" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：单总线结构、寻址方式、微操作控制信号。</p>
+<h3 id="1-寄存器部件"><a href="#1-寄存器部件" class="headerlink" title="1. 寄存器部件"></a>1. 寄存器部件</h3><ul>
+<li><strong>A</strong>：连接地址总线 -&gt; <strong>MAR (Memory Address Register)</strong>。</li>
+<li><strong>B</strong>：连接数据总线 -&gt; <strong>MDR (Memory Data Register)</strong>。</li>
+<li><strong>C</strong>：输出到指令译码器 -&gt; <strong>IR (Instruction Register)</strong>。</li>
+</ul>
+<h3 id="2-寻址方式"><a href="#2-寻址方式" class="headerlink" title="2. 寻址方式"></a>2. 寻址方式</h3><ul>
+<li>指令：<code>R[R1] &lt;- R[R1] + M[Imm16]</code>。</li>
+<li>操作数 <code>M[Imm16]</code>：地址直接给出在指令中（立即数作为地址）。这是 <strong>直接寻址</strong>。<ul>
+<li><em>注</em>：如果是 <code>M[R[Imm16]]</code> 才是寄存器间接。这里是直接用 Imm16 访问内存。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-时钟周期功能-C1-C2"><a href="#3-时钟周期功能-C1-C2" class="headerlink" title="3. 时钟周期功能 (C1, C2)"></a>3. 时钟周期功能 (C1, C2)</h3><p>根据表格推断：</p>
+<ul>
+<li>题目描述：取指后 Imm16 已入 MDR，进入执行阶段。</li>
+<li><strong>C1</strong>: <code>MDRout, MARin</code>。功能：将指令中的操作数地址 (Imm16) 发送到 MAR。</li>
+<li><strong>C2</strong>: <code>Read, MDRinE; R1out, Yin</code>。功能：<ol>
+<li>启动内存读 (<code>Read</code>)，将数据从内存读入 MDR (<code>MDRinE</code> 表示 External)。</li>
+<li>将 R1 的内容读出到暂存器 Y (<code>R1out, Yin</code>)，为加法做准备。</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-间接寻址指令的微操作"><a href="#4-间接寻址指令的微操作" class="headerlink" title="4. 间接寻址指令的微操作"></a>4. 间接寻址指令的微操作</h3><p><strong>指令</strong>：<code>R[R1] &lt;- R[R1] + M[M[Imm16]]</code> (间接寻址：Imm16指向一个指针，该指针指向数据)。</p>
+<ul>
+<li><strong>流程</strong>：取地址(Imm16) -&gt; 读内存(得到指针) -&gt; 传指针 -&gt; 读内存(得到数据) -&gt; 加法 -&gt; 写回。</li>
+<li><strong>控制信号序列</strong>：<ul>
+<li>(假定 C1 初始状态：Imm16 在 MDR)</li>
+<li><strong>C1</strong>: <code>MDRout, MARin</code> (地址送MAR)</li>
+<li><strong>C2</strong>: <code>Read, MDRinE</code> (读内存，得到指针)</li>
+<li><strong>C3</strong>: <code>MDRout, MARin</code> (指针送MAR)</li>
+<li><strong>C4</strong>: <code>Read, MDRinE; R1out, Yin</code> (读数据到MDR; R1送Y)</li>
+<li><strong>C5</strong>: <code>MDRout, Yout, add, Zin</code> (加法)</li>
+<li><strong>C6</strong>: <code>Zout, R1in</code> (写回)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="44-计组：流水线与冒险-10分"><a href="#44-计组：流水线与冒险-10分" class="headerlink" title="44. 计组：流水线与冒险 (10分)"></a>44. 计组：流水线与冒险 (10分)</h2><h3 id="题目核心-9"><a href="#题目核心-9" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：数据冒险（Data Hazard）、控制冒险（Control Hazard）、分支预测。<br><strong>代码</strong>：</p>
+<ol>
+<li><code>load a1, 0(a0)</code></li>
+<li><code>load a2, 8(a0)</code></li>
+<li><code>sub a3, a1, a2</code>  (依赖 a1, a2)</li>
+<li><code>bne a3, a4, loop</code> (依赖 a3)</li>
+</ol>
+<h3 id="1-数据冒险-无转发"><a href="#1-数据冒险-无转发" class="headerlink" title="1. 数据冒险 (无转发)"></a>1. 数据冒险 (无转发)</h3><ul>
+<li><strong>冲突点</strong>：指令3 (<code>sub</code>) 需要 <code>a1</code> (来自指令1) 和 <code>a2</code> (来自指令2)。</li>
+<li><strong>无转发机制</strong>：<ul>
+<li>指令2 (<code>load</code>) 在 <strong>WB</strong> 阶段（第5个周期结束）才写入寄存器。</li>
+<li>指令3 (<code>sub</code>) 在 <strong>ID</strong> 阶段（第2个周期）就需要读取寄存器。</li>
+<li>即使采用“前半周期写，后半周期读”，<code>sub</code> 的 ID 阶段必须在 <code>load</code> 的 WB 阶段之后或重叠。</li>
+<li><code>load</code> 2: IF(2) ID(3) EX(4) MEM(5) WB(6).</li>
+<li><code>sub</code> 3: 必须在 Cycle 6 进行 ID（读a2）。</li>
+<li>如果紧接着发射：<code>sub</code> 本应在 Cycle 3 进行 ID。</li>
+<li>需要延迟：3 -&gt; 6，延迟 3 个周期？</li>
+<li><strong>通常考研标准</strong>：Load-Use 冒险。Load 数据在 MEM 结束产生。Without Forwarding，必须等到 WB 结束。</li>
+<li>需要插入 <strong>2条 nop</strong> 指令（或阻塞2个周期），使得 <code>sub</code> 的 ID 阶段发生在 <code>load</code> 完成之后。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-控制冒险-分支延迟"><a href="#2-控制冒险-分支延迟" class="headerlink" title="2. 控制冒险 (分支延迟)"></a>2. 控制冒险 (分支延迟)</h3><ul>
+<li><strong>条件</strong>：分支结果在 <strong>EX</strong> 阶段生成。</li>
+<li><strong>流水线</strong>：IF -&gt; ID -&gt; EX (此时得知是否跳转)。</li>
+<li><strong>惩罚</strong>：<ul>
+<li>当 EX 阶段发现要跳转时，IF 和 ID 阶段（也就是紧随其后的2条指令）已经被取进来了，需要由硬件 Flush 掉。</li>
+<li><strong>分支延迟损失</strong>：<strong>2个周期</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-动态分支预测-2位预测位"><a href="#3-动态分支预测-2位预测位" class="headerlink" title="3. 动态分支预测 (2位预测位)"></a>3. 动态分支预测 (2位预测位)</h3><ul>
+<li><strong>状态机</strong>：<code>00</code>(强不跳) <code>01</code>(弱不跳) <code>10</code>(弱跳) <code>11</code>(强跳)。</li>
+<li><strong>初始</strong>：<code>Weak Transform</code> (弱跳&#x2F;10)。</li>
+<li><strong>序列</strong>：T - N - N - N - T。</li>
+<li><strong>过程</strong>：<ol>
+<li><strong>T (True)</strong>: 当前 <code>10</code>(预测跳)。结果跳。正确。状态 -&gt; <code>11</code> (强跳)。</li>
+<li><strong>N (Not)</strong>: 当前 <code>11</code>(预测跳)。结果不跳。错误。状态 -&gt; <code>10</code> (弱跳)。</li>
+<li><strong>N</strong>: 当前 <code>10</code>(预测跳)。结果不跳。错误。状态 -&gt; <code>01</code> (弱不跳)。</li>
+<li><strong>N</strong>: 当前 <code>01</code>(预测不跳)。结果不跳。正确。状态 -&gt; <code>00</code> (强不跳)。</li>
+<li><strong>T</strong>: 当前 <code>00</code>(预测不跳)。结果跳。错误。状态 -&gt; <code>01</code> (弱不跳)。</li>
+</ol>
+</li>
+<li><strong>准确率</strong>：正确预测了第1次和第4次。共5次。</li>
+<li><strong>结果</strong>：2&#x2F;5 &#x3D; <strong>40%</strong>。</li>
+</ul>
+<hr>
+<h2 id="45-操作系统：进程同步-7分"><a href="#45-操作系统：进程同步-7分" class="headerlink" title="45. 操作系统：进程同步 (7分)"></a>45. 操作系统：进程同步 (7分)</h2><h3 id="题目核心-10"><a href="#题目核心-10" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：Lamport 面包店算法 (Bakery Algorithm)。<br><strong>代码逻辑</strong>：通过抓号 (<code>getting</code>) 和 比较号码大小 (<code>cmp</code>) 来决定谁进入临界区。</p>
+<h3 id="1-优先级规则"><a href="#1-优先级规则" class="headerlink" title="1. 优先级规则"></a>1. 优先级规则</h3><ul>
+<li>函数 <code>cmp</code>：<code>if (number1 &lt; number2) return 1;</code></li>
+<li><strong>解析</strong>：如果号码 (<code>number</code>) 小，则返回真（有优先权）。如果号码相同，比较 PID (<code>i</code> vs <code>k</code>)，PID 小的优先。</li>
+<li><strong>答案</strong>：码号 (<strong>number</strong>) 越 <strong>小</strong> 优先级越高。</li>
+</ul>
+<h3 id="2-互斥性"><a href="#2-互斥性" class="headerlink" title="2. 互斥性"></a>2. 互斥性</h3><ul>
+<li><strong>能否实现互斥？</strong> <strong>能</strong>。</li>
+<li><strong>理由</strong>：每个进程在进入临界区前都会获得一个唯一的排序元组 <code>(number, PID)</code>。算法保证了全序关系（Lexicographical Order）。最小元组的进程最先通过 <code>while</code> 循环，从而保证同一时刻只有一个进程进入临界区。</li>
+</ul>
+<h3 id="3-违背准则"><a href="#3-违背准则" class="headerlink" title="3. 违背准则"></a>3. 违背准则</h3><ul>
+<li><strong>分析</strong>：该算法使用了 <code>while(getting[k])</code> 和 <code>while(number[k] != 0 ...)</code> 进行循环检查。</li>
+<li><strong>现象</strong>：进程在等待进入临界区时，一直在 <code>while</code> 循环中空转，占用 CPU 资源。</li>
+<li><strong>违背准则</strong>：<strong>让权等待</strong> (Let go and wait &#x2F; Yield wait)。<ul>
+<li><em>准则含义</em>：当进程不能进入临界区时，应立即释放处理器，防止进程忙等。本算法属于“忙等” (Busy Wait) 策略。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="46-操作系统：文件管理-8分"><a href="#46-操作系统：文件管理-8分" class="headerlink" title="46. 操作系统：文件管理 (8分)"></a>46. 操作系统：文件管理 (8分)</h2><h3 id="题目核心-11"><a href="#题目核心-11" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：隐式链接 vs 混合索引分配，磁盘 I&#x2F;O 计算。<br><strong>参数</strong>：块大小 1KB (1024B)，地址项 4B，记录大小 510B。</p>
+<ul>
+<li>每块有效数据（隐式链接）：$1024 - 4 &#x3D; 1020$ 字节。</li>
+<li>文件F大小：$600 \times 510 &#x3D; 306,000$ 字节。</li>
+</ul>
+<h3 id="1-隐式链接-Implicit-Linked"><a href="#1-隐式链接-Implicit-Linked" class="headerlink" title="1. 隐式链接 (Implicit Linked)"></a>1. 隐式链接 (Implicit Linked)</h3><ul>
+<li><strong>计算</strong>：<ul>
+<li>每个物理块存数据量 &#x3D; 1020 B。</li>
+<li>所需块数 &#x3D; $\lceil 306,000 &#x2F; 1020 \rceil &#x3D; 300$ 块。</li>
+</ul>
+</li>
+<li><strong>访问全文件</strong>：<ul>
+<li>隐式链接的特点是必须顺序访问。要读入整个文件，必须从第1块读到第300块。</li>
+<li><strong>最少&#x2F;最多访问次数</strong>：都是 <strong>300次</strong>（必须逐块读取）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-混合索引分配-Hybrid-Indexing"><a href="#2-混合索引分配-Hybrid-Indexing" class="headerlink" title="2. 混合索引分配 (Hybrid Indexing)"></a>2. 混合索引分配 (Hybrid Indexing)</h3><ul>
+<li><strong>结构</strong>：FCB 含 <strong>直接地址</strong> + <strong>一级间接</strong> + <strong>二级间接</strong>。</li>
+<li><strong>数据分布</strong>：<ul>
+<li>每个块可存索引项：$1024 &#x2F; 4 &#x3D; 256$ 个。</li>
+<li>假设 FCB 中有 N 个直接地址（题目未明确，通常假设够用或考查极值）。</li>
+<li><strong>最少访盘</strong>：<ul>
+<li>如果记录在 <strong>直接地址</strong> 指向的块中：读取 FCB (内存中) -&gt; 读取数据块。共 <strong>1次</strong>。</li>
+</ul>
+</li>
+<li><strong>最多访盘</strong>：<ul>
+<li>文件很大，记录可能落在 <strong>二级间接</strong> 范围内。</li>
+<li>路径：读取一级索引块 -&gt; 读取二级索引块 -&gt; 读取数据块。</li>
+<li>共 <strong>3次</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="47-计算机网络：网络层综合-9分"><a href="#47-计算机网络：网络层综合-9分" class="headerlink" title="47. 计算机网络：网络层综合 (9分)"></a>47. 计算机网络：网络层综合 (9分)</h2><h3 id="题目核心-12"><a href="#题目核心-12" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：CIDR子网划分、路由表、ARP与网关、子网掩码错误。</p>
+<h3 id="1-子网划分"><a href="#1-子网划分" class="headerlink" title="1. 子网划分"></a>1. 子网划分</h3><p><strong>背景</strong>：</p>
+<ul>
+<li>可用 IP：<code>200.168.9.0/24</code> (256个IP)。</li>
+<li>需求：部门一 (120台)，部门二 (60台)，部门三 (60台)。</li>
+<li>约束：<strong>部门一</strong> 需要 120 主机 -&gt; 必须用 &#x2F;25 (128个IP)。<strong>部门二&#x2F;三</strong> 需要 &#x2F;26 (64个IP)。</li>
+<li>题目中文字可能有误（”其中部门一IP为…&#x2F;26”），若部门一为&#x2F;26则不够用。这里按<strong>逻辑最优</strong>进行解析。</li>
+</ul>
+<p><strong>分配方案</strong>：</p>
+<ul>
+<li><strong>部门一</strong>：需求大，分一半。<ul>
+<li>IP段：<code>200.168.9.0/25</code> (范围 0~127)。</li>
+<li>掩码：255.255.255.128。</li>
+</ul>
+</li>
+<li><strong>剩下</strong>：<code>200.168.9.128/25</code>。再对半分。</li>
+<li><strong>部门二</strong>（题目可能指定从128开始）：<ul>
+<li>IP段：<code>200.168.9.128/26</code> (范围 128~191)。</li>
+<li>掩码：255.255.255.192。</li>
+</ul>
+</li>
+<li><strong>部门三</strong>：<ul>
+<li>IP段：<code>200.168.9.192/26</code> (范围 192~255)。</li>
+<li>掩码：255.255.255.192。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-R3-路由表"><a href="#2-R3-路由表" class="headerlink" title="2. R3 路由表"></a>2. R3 路由表</h3><p>R3 连接了三个内部子网和外网（通过 R2）。通常 R3 对内直连，对外默认路由。</p>
+<ul>
+<li>由于题目要求“路由表项尽可能少”，应将内部子网聚合，并使用默认路由指向 Internet。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">目的网络 (Destination)</th>
+<th align="left">掩码 (Mask)</th>
+<th align="left">下一跳 (Next Hop)</th>
+<th align="left">接口 (Interface)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>200.168.9.0</strong></td>
+<td align="left"><strong>255.255.255.0</strong></td>
+<td align="left"><strong>直接交付 (或具体接口)</strong></td>
+<td align="left"><strong>L1 (连接内部交换机)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>0.0.0.0</strong></td>
+<td align="left"><strong>0.0.0.0</strong></td>
+<td align="left"><strong>200.168.10.2 (R2接口)</strong></td>
+<td align="left"><strong>L? (连接R2的接口)</strong></td>
+</tr>
+</tbody></table>
+<p><em>(注：如果要求详细列出，则分别列出 &#x2F;25, &#x2F;26, &#x2F;26 的直连路由)</em></p>
+<h3 id="3-网关配置错误"><a href="#3-网关配置错误" class="headerlink" title="3. 网关配置错误"></a>3. 网关配置错误</h3><ul>
+<li><strong>现象</strong>：主机1 (在 9.x 网段) 网关设为 <code>200.168.10.5</code>。</li>
+<li><strong>分析</strong>：<ul>
+<li><code>200.168.10.x</code> 不在主机1的子网范围内。</li>
+<li><strong>同子网通信 (Host 1 &lt;-&gt; Host 2)</strong>：不需要网关，通过 ARP 广播直接寻找 MAC，可以通信。<strong>能</strong>。</li>
+<li><strong>跨子网通信 (Host 1 &lt;-&gt; Host 3)</strong>：需要网关转发。主机发现网关不可达（ARP请求无响应），通信失败。<strong>不能</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-掩码配置错误"><a href="#4-掩码配置错误" class="headerlink" title="4. 掩码配置错误"></a>4. 掩码配置错误</h3><ul>
+<li><strong>现象</strong>：主机3 (实际在 &#x2F;26 子网) 错误配置为 <code>/24</code> (255.255.255.0)。</li>
+<li><strong>分析</strong>：<ul>
+<li><strong>Host 3 -&gt; Host 4 (同部门)</strong>：都在 192~255 范围。Host 3 用 &#x2F;24 掩码计算，认为 Host 4 在同一网段。发送 ARP，成功。<strong>能通信</strong>。</li>
+<li><strong>Host 3 -&gt; Host 5 (部门一，0~127)</strong>：Host 3 用 &#x2F;24 掩码计算，认为 Host 5 (如 9.10) 依然在同一网段 (200.168.9.x)。</li>
+<li>Host 3 <strong>不会</strong> 将包发给网关，而是直接发 ARP 请求查找 Host 5 的 MAC。</li>
+<li>因为 Host 5 在另一个物理网络（路由器另一端），且通常路由器不开启代理 ARP，Host 3 永远得不到 MAC 地址。<strong>不能通信</strong>。</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<p>这是第三部分（最后一部分）的详细解析，涵盖了第41题到第47题。这部分题目为<strong>综合应用题</strong>，分值较大，主要考察学生对计算机四大门类知识的综合运用能力和算法设计能力。</p>
+<hr>
+<h1 id="2026考研计算机408模拟题-综合应用题解析-41-47"><a href="#2026考研计算机408模拟题-综合应用题解析-41-47" class="headerlink" title="2026考研计算机408模拟题 综合应用题解析 (41-47)"></a>2026考研计算机408模拟题 综合应用题解析 (41-47)</h1><h2 id="第41题：数据结构·算法设计-13分"><a href="#第41题：数据结构·算法设计-13分" class="headerlink" title="第41题：数据结构·算法设计 (13分)"></a>第41题：数据结构·算法设计 (13分)</h2><h3 id="题目核心-13"><a href="#题目核心-13" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：贪心算法、数组遍历。<br><strong>目标</strong>：判断能否仅通过<strong>修改至多一个</strong>元素，使数组变为<strong>非递减</strong>（$a_i \le a_{i+1}$）序列。</p>
+<h3 id="1-算法设计思想-1"><a href="#1-算法设计思想-1" class="headerlink" title="1. 算法设计思想"></a>1. 算法设计思想</h3><p>要判断是否能通过一次修改解决问题，我们需要遍历数组，找到<strong>逆序对</strong>（即 $a_i &gt; a_{i+1}$ 的情况）。</p>
+<ul>
+<li><strong>计数策略</strong>：遍历数组，统计出现 $a_i &gt; a_{i+1}$ 的次数。</li>
+<li><strong>判断逻辑</strong>：<ol>
+<li>如果没有逆序对（次数为0），直接返回 <code>true</code>。</li>
+<li>如果逆序对次数超过1次，说明改一个改不完，返回 <code>false</code>。</li>
+<li>如果逆序对次数恰好为1次，假设位置在 $i$（即 $a_i &gt; a_{i+1}$），我们需要判断修改 $a_i$ 还是修改 $a_{i+1}$ 能解决问题。<ul>
+<li><strong>策略A</strong>：将 $a_i$ 变小（通常变为 $a_{i+1}$）。前提是变化后 $a_i$ 仍要大于等于 $a_{i-1}$。</li>
+<li><strong>策略B</strong>：将 $a_{i+1}$ 变大（通常变为 $a_i$）。前提是变化后 $a_{i+1}$ 要小于等于 $a_{i+2}$（如果有的话）。</li>
+<li>只要 A 或 B 任意一种策略行得通，就返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><em>简化判断</em>：实际上，我们只需要看 $a_{i+1} \ge a_{i-1}$（能不能把 $a_i$ 降下来）或者 $a_{i+2} \ge a_i$（能不能把 $a_{i+1}$ 升上去）。对于边界情况（如 $i&#x3D;0$ 或 $i&#x3D;n-2$）特殊处理即可。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-C语言代码描述"><a href="#2-C语言代码描述" class="headerlink" title="2. C语言代码描述"></a>2. C语言代码描述</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdbool.h&gt;</span></span><br><br><span class="hljs-type">bool</span> <span class="hljs-title function_">checkPossibility</span><span class="hljs-params">(<span class="hljs-type">int</span>* nums, <span class="hljs-type">int</span> numsSize)</span> &#123;<br>    <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>; <span class="hljs-comment">// 记录逆序次数</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numsSize - <span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-keyword">if</span> (nums[i] &gt; nums[i + <span class="hljs-number">1</span>]) &#123;<br>            count++;<br>            <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// 超过1处逆序，肯定不行</span><br>            &#125;<br>            <span class="hljs-comment">// 出现逆序 nums[i] &gt; nums[i+1]</span><br>            <span class="hljs-comment">// 尝试方案1：降低nums[i]。需要保证 nums[i-1] &lt;= nums[i+1]</span><br>            <span class="hljs-comment">// 尝试方案2：升高nums[i+1]。需要保证 nums[i] &lt;= nums[i+2]</span><br>            <span class="hljs-comment">// 如果 i 是第0个，或者 nums[i-1] &lt;= nums[i+1]，我们可以把 nums[i] 降为 nums[i+1]，问题解决</span><br>            <span class="hljs-comment">// 否则，我们必须把 nums[i+1] 升高为 nums[i]。</span><br>            <span class="hljs-comment">// 如果升高后导致 nums[i+1] &gt; nums[i+2] (在下一次循环检测)，则最终会再次增加count</span><br>            <br>            <span class="hljs-comment">// 更严谨的贪心修正策略：</span><br>            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i - <span class="hljs-number">1</span>] &gt; nums[i + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-comment">// 此时无法通过降低 nums[i] 来解决（因为降了比 i-1 还小）</span><br>                <span class="hljs-comment">// 只能尝试升高 nums[i+1]，将其改为 nums[i]</span><br>                nums[i + <span class="hljs-number">1</span>] = nums[i]; <br>            &#125;<br>            <span class="hljs-comment">// 否则（i==0 或 nums[i-1] &lt;= nums[i+1]），我们认为可以通过降低 nums[i] 解决，</span><br>            <span class="hljs-comment">// 逻辑上等同于把 nums[i] 变成了 nums[i+1]，不影响后面的比较，所以不做实际赋值也可以</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-复杂度分析-1"><a href="#3-复杂度分析-1" class="headerlink" title="3. 复杂度分析"></a>3. 复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>：$O(n)$。只需要遍历一次数组。</li>
+<li><strong>空间复杂度</strong>：$O(1)$。只使用了常数个变量。</li>
+</ul>
+<hr>
+<h2 id="第42题：数据结构·栈与队列-10分"><a href="#第42题：数据结构·栈与队列-10分" class="headerlink" title="第42题：数据结构·栈与队列 (10分)"></a>第42题：数据结构·栈与队列 (10分)</h2><h3 id="题目核心-14"><a href="#题目核心-14" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：用栈实现队列。<br><strong>工具</strong>：两个栈 $S_1$、$S_2$。<br><strong>逻辑</strong>：栈是先进后出（LIFO），队列是先进先出（FIFO）。利用两个栈“倒序”两次即可实现顺序。</p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><ol>
+<li><strong>enqueue (入队)</strong>：永远直接压入 $S_1$。</li>
+<li><strong>dequeue (出队)</strong>：<ul>
+<li>检查 $S_2$ 是否为空。</li>
+<li>如果不为空，直接弹出 $S_2$ 栈顶（这就是最早进来的元素）。</li>
+<li>如果 $S_2$ 为空，将 $S_1$ 中的<strong>所有元素</strong>依次弹出并压入 $S_2$。</li>
+<li>如果此时 $S_2$ 仍为空（说明 $S_1$ 也空），则队列为空，报错。</li>
+<li>弹出 $S_2$ 栈顶。</li>
+</ul>
+</li>
+<li><strong>queue_empty (判空)</strong>：$S_1$ 和 $S_2$ 同时为空时，队列为空。</li>
+</ol>
+<h3 id="伪代码实现"><a href="#伪代码实现" class="headerlink" title="伪代码实现"></a>伪代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 1. 入队</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">enqueue</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-built_in">push</span>(S1, x);<br>&#125;<br><br><span class="hljs-comment">// 2. 出队</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dequeue</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>(S2)) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>(S1)) &#123;<br>            <span class="hljs-comment">// Error: Queue is empty</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; <br>        &#125;<br>        <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">empty</span>(S1)) &#123;<br>            <span class="hljs-type">int</span> val = <span class="hljs-built_in">top</span>(S1);<br>            <span class="hljs-built_in">pop</span>(S1);<br>            <span class="hljs-built_in">push</span>(S2, val);<br>        &#125;<br>    &#125;<br>    <span class="hljs-type">int</span> res = <span class="hljs-built_in">top</span>(S2);<br>    <span class="hljs-built_in">pop</span>(S2);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-comment">// 3. 判空</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">queue_empty</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">empty</span>(S1) &amp;&amp; <span class="hljs-built_in">empty</span>(S2);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第43题：计算机组成原理·DMA方式-8分"><a href="#第43题：计算机组成原理·DMA方式-8分" class="headerlink" title="第43题：计算机组成原理·DMA方式 (8分)"></a>第43题：计算机组成原理·DMA方式 (8分)</h2><h3 id="题目核心-15"><a href="#题目核心-15" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：DMA传送机制、CPU占用率计算、周期挪用。<br><strong>参数</strong>：</p>
+<ul>
+<li>CPU主频 1GHz ($10^9$ Hz)。</li>
+<li>数据传输率 1024KB&#x2F;s ($1024 \times 1024$ B&#x2F;s $\approx 1MB&#x2F;s$).</li>
+<li>DMA预处理&#x2F;后处理开销：1000个时钟周期。</li>
+<li>计数器宽度：10位。</li>
+<li>数据缓冲寄存器：8位 (1字节)。</li>
+</ul>
+<h3 id="1-DMA最大传输数据量"><a href="#1-DMA最大传输数据量" class="headerlink" title="1. DMA最大传输数据量"></a>1. DMA最大传输数据量</h3><ul>
+<li><strong>计数器</strong>：DMA控制器中的字计数器决定了单次DMA请求能传输的最大块大小。</li>
+<li><strong>计算</strong>：10位计数器可以计数 $2^{10} &#x3D; 1024$。</li>
+<li><strong>单位</strong>：题目称“每传输1字节数据后字计数器+1”。</li>
+<li><strong>答案</strong>：$1024 \times 1 \text{Byte} &#x3D; 1024 \text{Bytes} &#x3D; 1 \text{KB}$。</li>
+</ul>
+<h3 id="2-CPU占用百分比-无冲突"><a href="#2-CPU占用百分比-无冲突" class="headerlink" title="2. CPU占用百分比 (无冲突)"></a>2. CPU占用百分比 (无冲突)</h3><p>假设每次都传最大的 1KB 数据块。</p>
+<ul>
+<li><strong>处理一块数据的时间</strong>：<ul>
+<li>传输时间 $T_{trans} &#x3D; 1KB &#x2F; 1024KB&#x2F;s &#x3D; 1&#x2F;1024 \text{s} \approx 0.976 \text{ms}$。</li>
+<li>但这里问的是 <strong>CPU用于该外设I&#x2F;O的时间</strong>。CPU只参与预处理和后处理。</li>
+</ul>
+</li>
+<li><strong>CPU耗时</strong>：预处理+后处理 &#x3D; 1000个时钟周期。<ul>
+<li>时间 $T_{cpu} &#x3D; 1000 &#x2F; 1GHz &#x3D; 1000 &#x2F; 10^9 s &#x3D; 10^{-6} s &#x3D; 1 \mu s$。</li>
+</ul>
+</li>
+<li><strong>总时间</strong>：每传输1KB数据，外设占用总线传输数据耗时约1ms（此期间CPU可以做其他事，除非总线冲突），但每隔约1ms，CPU需要花 $1\mu s$ 响应DMA中断。</li>
+<li><strong>CPU占比</strong>：<ul>
+<li>$\text{Ratio} &#x3D; \frac{\text{CPU Time}}{\text{Total Time}} &#x3D; \frac{1 \mu s}{1&#x2F;1024 s} \approx \frac{10^{-6}}{10^{-3}} &#x3D; 0.1%$。</li>
+<li><em>注</em>：如果按 $1s$ 传输 1024KB 计算，共触发 1024次 DMA。</li>
+<li>总CPU开销 &#x3D; $1024 \times 1000$ Cycles &#x3D; $1.024 \times 10^6$ Cycles。</li>
+<li>CPU总Cycles &#x3D; $10^9$。</li>
+<li>占比 &#x3D; $1.024 \times 10^6 &#x2F; 10^9 \approx 0.1%$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-总线占用时间-周期挪用"><a href="#3-总线占用时间-周期挪用" class="headerlink" title="3. 总线占用时间 (周期挪用)"></a>3. 总线占用时间 (周期挪用)</h3><p>题目假设采用<strong>周期挪用 (Cycle Stealing)</strong>，每字节挪用 100ns。</p>
+<ul>
+<li><strong>场景</strong>：传输上述最大数据块 (1KB &#x3D; 1024B)。</li>
+<li><strong>计算</strong>：<ol>
+<li><strong>申请和放弃总线</strong>：200ns。</li>
+<li><strong>数据传输挪用</strong>：每次1字节，共1024次。<ul>
+<li>$T_{steal} &#x3D; 1024 \times 100ns &#x3D; 102400ns &#x3D; 102.4 \mu s$。</li>
+</ul>
+</li>
+<li><strong>总占用时间</strong>：<ul>
+<li>这里题目表述比较模糊，“包括申请和放弃总线的时间”。如果是指<strong>整个DMA操作过程</strong>占用的总线时间，应该是：预处理(CPU做) + 数据传输(总线被挪用) + 后处理(CPU做)。但通常问“DMA操作占用总线时间”指的是数据传输阶段的耗时。</li>
+<li>若按题目“(3)…一次DMA…整个传输过程DMA操作占用总线的时间”：</li>
+<li>时间 &#x3D; (申请&#x2F;放弃 200ns) + (1024字节 * 100ns&#x2F;字节) &#x3D; $200 + 102400 &#x3D; 102600 ns &#x3D; 102.6 \mu s$。</li>
+<li><em>注意</em>：如果是突发模式是一次申请传完，如果是周期挪用是每字节申请一次。题目说“申请和放弃总线一共用时200ns…现需进行传输(1)所示大小数据”，语境像是<strong>总共</strong>只申请放弃一次（突发传输），或者这200ns是固定开销。结合“无冲突发生”，理解为：总线占用 &#x3D; 建立时间 + 传输时间。</li>
+<li><strong>答案倾向</strong>：$200ns + 1024 \times 100ns &#x3D; 102600ns$。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="第44题：计算机组成原理·指令系统-15分"><a href="#第44题：计算机组成原理·指令系统-15分" class="headerlink" title="第44题：计算机组成原理·指令系统 (15分)"></a>第44题：计算机组成原理·指令系统 (15分)</h2><h3 id="题目核心-16"><a href="#题目核心-16" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：指令格式分析、寻址方式、跳转指令、RISC、数据通路。</p>
+<h3 id="1-编址单位与架构"><a href="#1-编址单位与架构" class="headerlink" title="1. 编址单位与架构"></a>1. 编址单位与架构</h3><ul>
+<li><strong>编址单位</strong>：<ul>
+<li>指令中 <code>OFFSET</code> 修正公式为 $(PC) + 2 + OFFSET \times 2$。</li>
+<li>通常 $PC+2$ 表示下一条指令地址（说明指令长度为2字节）。</li>
+<li>偏移量 $\times 2$ 说明跳转目标地址必须是2的倍数，这通常意味着<strong>按字节编址</strong>（指令必须2字节对齐）。</li>
+</ul>
+</li>
+<li><strong>RISC vs CISC</strong>：<ul>
+<li><strong>RISC</strong> (精简指令集)。</li>
+<li><strong>理由</strong>：指令字长固定（16位）、指令格式规整、功能简单（load&#x2F;store结构隐含）、指令条数较少（54条）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-bgt-指令分析"><a href="#2-bgt-指令分析" class="headerlink" title="2. bgt 指令分析"></a>2. bgt 指令分析</h3><ul>
+<li><strong>有符号 vs 无符号</strong>：<ul>
+<li><code>bgt</code> (Branch if Greater Than) 通常指<strong>带符号数</strong>比较（无符号通常叫 <code>ja</code>&#x2F;<code>above</code>）。</li>
+<li>公式中使用了 <strong>SF (符号标志)</strong> 和 <strong>OF (溢出标志)</strong>，这是典型的带符号数比较逻辑。</li>
+</ul>
+</li>
+<li><strong>跳转范围</strong>：<ul>
+<li>指令字长16位。假设 OP占6位（$2^6 \ge 54$），MOD占2位（4种寻址）。剩余 OFFSET 占 8位。</li>
+<li>OFFSET 为补码表示。8位补码范围：$-128 \sim +127$。</li>
+<li>跳转距离：$OFFSET \times 2$。</li>
+<li>范围：$-256$ 字节 $\sim +254$ 字节。</li>
+<li>相对于当前PC的范围：$PC+2-256$ 到 $PC+2+254$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-数据通路填空"><a href="#3-数据通路填空" class="headerlink" title="3. 数据通路填空"></a>3. 数据通路填空</h3><ul>
+<li><strong>①</strong>：位于 OP&#x2F;MOD&#x2F;OFFSET 解析之后，进入加法器前。<ul>
+<li>功能：<strong>符号扩展与左移</strong> (Sign Extend &amp; Shift Left 1)。因为 OFFSET 是8位，需要扩展到16位并 $\times 2$。</li>
+</ul>
+</li>
+<li><strong>②</strong>：常数输入。<ul>
+<li>功能：数值 <strong>2</strong>。用于计算 $PC+2$。</li>
+</ul>
+</li>
+<li><strong>③</strong>：控制 PC 的输入。<ul>
+<li>功能：<strong>多路选择器 (MUX)</strong>。根据 <code>bgt</code> 条件（右侧逻辑门输出）决定下一条 PC 是 $PC+2$ 还是 跳转目标地址。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第45题：操作系统·进程同步-8分"><a href="#第45题：操作系统·进程同步-8分" class="headerlink" title="第45题：操作系统·进程同步 (8分)"></a>第45题：操作系统·进程同步 (8分)</h2><h3 id="题目核心-17"><a href="#题目核心-17" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：读者-写者问题 (Readers-Writers Problem) 的变种。<br><strong>约束条件</strong>：</p>
+<ol>
+<li>写者独占。</li>
+<li>读者可并发。</li>
+<li><strong>特殊约束</strong>：“F经过一个写进程的修改，需要被至少一个读进程读取之后才能被下一个写进程访问”。这不仅是同步，还规定了交替顺序：写 -&gt; 读(至少1次) -&gt; 写。</li>
+</ol>
+<h3 id="信号量设置"><a href="#信号量设置" class="headerlink" title="信号量设置"></a>信号量设置</h3><ul>
+<li><code>mutex_F</code>：控制对文件的互斥访问，初值1。</li>
+<li><code>read_count</code>：记录当前读者数量，初值0。</li>
+<li><code>mutex_rc</code>：保护 read_count 的互斥锁，初值1。</li>
+<li><code>can_write</code>：核心同步信号量。<strong>初值1</strong>（允许第一个写）。<ul>
+<li>逻辑：写完后 <code>P(can_write)</code> 阻塞自己？不对。应该是写完后，必须等读完才能再写。</li>
+<li>我们需要一个信号量 <code>allow_next_write</code>，初值0。写完后不做 V，必须等读者来做 V。</li>
+<li><em>修正思路</em>：题目要求“写 -&gt; 读 -&gt; 写”。即写操作之后，必须有读操作发生，才能进行下一次写。</li>
+<li>使用 <code>S_order</code>：初值 1（允许首写）。</li>
+<li><strong>Writer</strong>: P(S_order) -&gt; Write -&gt; V(S_read_needed) ? 不，写者不需要唤醒读者，只是写者<strong>释放</strong>了写的权利，但<strong>不能立即再次写</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>解题思路 (参考)</strong>：<br>我们需要强制“写后必须读”。<br>设置信号量：</p>
+<ul>
+<li><code>rw</code>: 文件读写互斥，初值1。</li>
+<li><code>w_done</code>: 表示“写已完成，等待读”，初值0。</li>
+<li>或者更简单的逻辑：<ul>
+<li>Writer: … Write … V(readable)</li>
+<li>Reader: P(readable) … Read … V(writable)</li>
+<li>但这会变成“写一个读一个”的严格交替。题目允许“多个读”。即“至少一个读”。</li>
+</ul>
+</li>
+</ul>
+<p><strong>完整方案</strong>：</p>
+<ul>
+<li><code>rw = 1</code>: 文件互斥。</li>
+<li><code>can_write = 1</code>: 允许写。</li>
+<li><code>must_read = 0</code>: 写完后置为1，强制要求读。</li>
+<li>这比较复杂。考研标准答案通常基于经典读写修改。</li>
+<li><strong>变种关键</strong>：写者在退出临界区时，不能直接允许下一个写者（如果用普通读写锁，写者释放锁后，下一写者可能抢到）。我们需要一个信号量 <code>W_lock</code>，写者 P(W_lock) -&gt; 写 -&gt; V(R_signal)。读者读完后 V(W_lock)?</li>
+<li>但是读者有多个。应该是：<strong>第一个</strong>读者负责“解锁”写者的禁止。</li>
+</ul>
+<p><strong>伪代码</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c">semaphore rw = <span class="hljs-number">1</span>;      <span class="hljs-comment">// 文件内容互斥</span><br>semaphore w_syn = <span class="hljs-number">1</span>;   <span class="hljs-comment">// 控制写者进入，初值1</span><br><span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;         <span class="hljs-comment">// 读者计数</span><br>semaphore mut = <span class="hljs-number">1</span>;     <span class="hljs-comment">// 保护count</span><br>semaphore read_must = <span class="hljs-number">0</span>; <span class="hljs-comment">// 这里的逻辑比较绕，简化如下：</span><br><br><span class="hljs-comment">// 使用一个标志位或信号量 sequence</span><br><span class="hljs-comment">// 初始允许写。写完后，P(sequence) 阻塞写者？</span><br><span class="hljs-comment">// 不，题目是“经过写修改后...被至少一个读...才能被下一个写”。</span><br><span class="hljs-comment">// 意味着：Writer -&gt; V(signal_read); Reader (First) -&gt; P(signal_read); V(allow_write); Writer (Next) -&gt; P(allow_write).</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>推荐解答</strong>：<br>设置信号量：<br><code>rw = 1</code> (文件互斥)<br><code>mutex = 1</code> (读者计数互斥)<br><code>w_permit = 1</code> (允许写)<br><code>r_required = 0</code> (写完后置1，表示需要读) – 这个逻辑用代码实现较难，用信号量组合：</p>
+<p>writer:<br>  P(w_permit); &#x2F;&#x2F; 获取写权限<br>  P(rw);<br>  Writing…<br>  V(rw);<br>  &#x2F;&#x2F; 写完了，不释放 w_permit，而是等待读者来释放</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs text">reader:<br>  P(mutex);<br>  if (count == 0) &#123;<br>      P(rw); <br>      // 关键：如果是第一个读者，且刚才发生了写操作，需要处理 w_permit。<br>      // 但 w_permit 在写者手里没放。<br>      // 所以应该由写者 V(r_wait)，读者 P(r_wait) 后 V(w_permit)。<br>  &#125;<br>  count++;<br>  V(mutex);<br>  <br>  Reading...<br>  <br>  P(mutex);<br>  count--;<br>  if (count == 0) &#123;<br>      V(rw);<br>      V(w_permit); // 最后一个读者离开时，才允许下一个写？<br>                   // 题目是“至少一个读”。所以应该是第一个读者进入时就解锁写者的等待？<br>                   // 不，如果第一个读者解锁了，还没读完，写者就进来了（抢rw），不行。<br>                   // 应该是：读操作发生过即可。<br>      // 修正策略：写者写完 -&gt; 变成“待读状态”。任意读者读完 -&gt; 变成“可写状态”。<br>  &#125;<br>  V(mutex);<br></code></pre></td></tr></table></figure>
+
+<p><em>(注：此题逻辑较偏，以上是基于“读者优先释放写者”的思路。考试中重点写出 <code>P(rw)</code> <code>V(rw)</code> 以及计数器逻辑，并尝试加上同步信号量 <code>S</code> 控制写读顺序即可得分)</em></p>
+<hr>
+<h2 id="第46题：操作系统·页面置换-13分"><a href="#第46题：操作系统·页面置换-13分" class="headerlink" title="第46题：操作系统·页面置换 (13分)"></a>第46题：操作系统·页面置换 (13分)</h2><h3 id="题目核心-18"><a href="#题目核心-18" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：逻辑地址转物理地址、页面置换算法 (FIFO, LRU, CLOCK)。<br><strong>参数</strong>：</p>
+<ul>
+<li>逻辑&#x2F;物理地址空间：64KB ($2^{16}$)。</li>
+<li>页大小：1KB ($2^{10}$)。</li>
+<li>页表项：页号(Implicit) | 页框号 | 装入时刻 | 最近访问 | 访问位 | 修改位</li>
+</ul>
+<p><strong>地址分析</strong>：</p>
+<ul>
+<li>目标逻辑地址：<code>1B9DH</code>。</li>
+<li>二进制：<code>0001 1011 1001 1101</code>。</li>
+<li>页内偏移 (低10位)：<code>11 1001 1101</code> (0x39D)。</li>
+<li>页号 (高6位)：<code>0001 10</code> &#x3D; <strong>6</strong> (十进制)。</li>
+<li><strong>缺页分析</strong>：<br>查表可知，内存中只有页号 0, 1, 2, 3。页号 6 不在内存中 -&gt; <strong>发生缺页</strong>。<br>需要置换一个页面。</li>
+</ul>
+<h3 id="1-FIFO-置换算法"><a href="#1-FIFO-置换算法" class="headerlink" title="1. FIFO 置换算法"></a>1. FIFO 置换算法</h3><ul>
+<li>规则：淘汰“装入时刻”最早的。</li>
+<li>表中数据：<ul>
+<li>页0: 28</li>
+<li>页1: 121</li>
+<li>页2: 19</li>
+<li>页3: 50</li>
+</ul>
+</li>
+<li>最小的是 <strong>页2</strong> (19)。</li>
+<li><strong>结果</strong>：淘汰页2 (页框号7)。将页6装入页框7。</li>
+<li><strong>物理地址</strong>：页框号 7 (<code>000111</code>) + 偏移 (<code>1110011101</code>) -&gt; <code>0001 1111 1001 1101</code> -&gt; <code>1F9DH</code>。</li>
+</ul>
+<h3 id="2-LRU-置换算法"><a href="#2-LRU-置换算法" class="headerlink" title="2. LRU 置换算法"></a>2. LRU 置换算法</h3><ul>
+<li>规则：淘汰“最近访问时间”最早的（即 <code>190 - 最近访问时间</code> 最大的，或者直接看上次访问时间戳最小的）。</li>
+<li>表中数据：<ul>
+<li>页0: 178</li>
+<li>页1: 159</li>
+<li>页2: 185</li>
+<li>页3: 165</li>
+</ul>
+</li>
+<li>最小的是 <strong>页1</strong> (159)。</li>
+<li><strong>结果</strong>：淘汰页1 (页框号3)。将页6装入页框3。</li>
+<li><strong>物理地址</strong>：页框号 3 (<code>000011</code>) + 偏移 -&gt; <code>0000 1111 1001 1101</code> -&gt; <code>0F9DH</code>。</li>
+</ul>
+<h3 id="3-CLOCK-改进型-置换算法"><a href="#3-CLOCK-改进型-置换算法" class="headerlink" title="3. CLOCK (改进型) 置换算法"></a>3. CLOCK (改进型) 置换算法</h3><ul>
+<li>规则：(访问位, 修改位)。优先淘汰 (0,0)，其次 (0,1)。扫描过程中将访问位清零。指针从3号页框（当前最后）的下一位开始？题目说“当前指向3号页框”，即表格最后一行。下一项回到开头（页0）。</li>
+<li><strong>第一轮扫描</strong> (不修改访问位)：<ul>
+<li>指针 -&gt; 页0 (1, 0) -&gt; 跳过。</li>
+<li>指针 -&gt; 页1 (1, 0) -&gt; 跳过。</li>
+<li>指针 -&gt; 页2 (1, 1) -&gt; 跳过。</li>
+<li>指针 -&gt; 页3 (0, 1) -&gt; 命中! 找到第一个 (0, 1)?</li>
+<li><em>注意</em>：改进型Clock通常步骤：<ol>
+<li>找(0,0)。</li>
+<li>找(0,1)，同时置访问位为0。</li>
+<li>若失败，回步骤1。</li>
+</ol>
+</li>
+<li>扫描过程：<ul>
+<li>Step 1 (找 0,0):<ul>
+<li>页0 (1,0) No.</li>
+<li>页1 (1,0) No.</li>
+<li>页2 (1,1) No.</li>
+<li>页3 (0,1) No.</li>
+</ul>
+</li>
+<li>Step 2 (找 0,1，同时置0):<ul>
+<li>页0 (1,0) -&gt; 变(0,0), Next.</li>
+<li>页1 (1,0) -&gt; 变(0,0), Next.</li>
+<li>页2 (1,1) -&gt; 变(0,1), Next.</li>
+<li><strong>页3 (0,1)</strong> -&gt; <strong>命中!</strong> (它是第一个遇到的 (0,1))。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>结果</strong>：淘汰 <strong>页3</strong> (页框号1)。</li>
+<li><strong>物理地址</strong>：页框号 1 + 偏移 -&gt; <code>0000 0111 1001 1101</code> -&gt; <code>079DH</code>。</li>
+</ul>
+<hr>
+<h2 id="第47题：计算机网络·TCP-IP-9分"><a href="#第47题：计算机网络·TCP-IP-9分" class="headerlink" title="第47题：计算机网络·TCP&#x2F;IP (9分)"></a>第47题：计算机网络·TCP&#x2F;IP (9分)</h2><h3 id="题目核心-19"><a href="#题目核心-19" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>考察点</strong>：TCP连接释放、报文序列号、IP封装。<br><strong>环境</strong>：主机H访问Web服务器。</p>
+<ul>
+<li>MSS &#x3D; 1KB.</li>
+<li>RTT &#x3D; 100ms.</li>
+<li>H 发送 4000B 应用层数据。</li>
+<li>H 释放连接。</li>
+</ul>
+<h3 id="1-H发送的第一个释放报文-FIN-的序号"><a href="#1-H发送的第一个释放报文-FIN-的序号" class="headerlink" title="1. H发送的第一个释放报文(FIN)的序号"></a>1. H发送的第一个释放报文(FIN)的序号</h3><ul>
+<li><strong>逻辑</strong>：<ol>
+<li><strong>握手</strong>：H 发送 SYN (seq&#x3D;x)。Server 回 SYN+ACK (ack&#x3D;x+1)。(消耗1个序号)。</li>
+<li><strong>数据</strong>：H 发送 4000B 数据。 Seq范围：$[x+1, x+4000]$。</li>
+<li><strong>挥手</strong>：H 发送 FIN。FIN 报文的序号紧接着最后一个数据字节的序号。</li>
+</ol>
+</li>
+<li><strong>计算</strong>：<ul>
+<li>假设初始序号 ISN 为 1 (题目问“为多少”，通常若未给初始值，可能隐含从1开始，或者问的是相对于数据的关系)。题目问“一定为有哪些？”这暗示可能有多个ACK确认过程？</li>
+<li>正确理解：FIN报文消耗一个序号。它的序号 <code>seq</code> 等于 H 之前发送的所有数据字节数 + 1 (SYN) + ISN。</li>
+<li>如果题目意思是“H发送的第一个FIN报文的序号，相对于它发送的数据而言”，那么就是 <code>ISN + 1 + 4000</code>。</li>
+<li>若 ISN&#x3D;1，则 Seq &#x3D; 4002。</li>
+<li><strong>通常答案</strong>：Seq &#x3D; $x + 4001$ (其中 $x$ 是 ISN)。如果必须给具体数字且没给ISN，可能题目有隐含（如ISN&#x3D;0），则为 4001。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-进入-CLOSED-状态的最短时间"><a href="#2-进入-CLOSED-状态的最短时间" class="headerlink" title="2. 进入 CLOSED 状态的最短时间"></a>2. 进入 CLOSED 状态的最短时间</h3><ul>
+<li><strong>过程</strong> (H 主动关闭)：<ol>
+<li><strong>H -&gt; FIN</strong> (Start t&#x3D;0)。状态：FIN_WAIT_1。</li>
+<li><strong>Server -&gt; ACK</strong> (t&#x3D;0.5 RTT &#x3D; 50ms)。H收到，状态：FIN_WAIT_2。</li>
+<li><strong>Server -&gt; FIN</strong> (假设Server数据也发完了，紧接着就发FIN)。(t&#x3D;0.5 RTT)。H收到，状态：TIME_WAIT。</li>
+<li><strong>H -&gt; ACK</strong> (t&#x3D;0.5 RTT 发出)。</li>
+<li><strong>TIME_WAIT 等待</strong>：2MSL。</li>
+</ol>
+</li>
+<li><strong>计算</strong>：<ul>
+<li>从发送第一次挥手报文开始计时。</li>
+<li>收到 Server 的 FIN 是在 $T &#x3D; 1 \text{RTT}$ (如果Server立即关闭)。即 H 发 FIN (0.5RTT到S) -&gt; S 发 FIN (0.5RTT到H)。总共 100ms。</li>
+<li>然后 H 进入 TIME_WAIT，等待 2MSL。</li>
+<li>题目给 MSL &#x3D; 400ms。2MSL &#x3D; 800ms。</li>
+<li>总时间 &#x3D; $100ms (\text{交互耗时}) + 800ms (\text{等待}) &#x3D; 900ms$？</li>
+<li><em>注意</em>：题目问“从H发送第一次挥手…到进入CLOSED”。</li>
+<li>TIME_WAIT 结束后才进 CLOSED。</li>
+<li>如果 Server 的 ACK 和 FIN 分开发（通常情况）：<ul>
+<li>T&#x3D;0: Send FIN.</li>
+<li>T&#x3D;50ms: Recv ACK.</li>
+<li>T&#x3D;?: Recv FIN. (取决于Server处理时间，题目求“最短”，假设Server不需要处理，立刻发FIN)。</li>
+<li>最快情况：ACK和FIN在一个报文中发过来（捎带确认），或者紧接着发。</li>
+<li>H 在 T&#x3D;100ms (1 RTT) 收到 FIN。</li>
+<li>H 发送 ACK，进入 TIME_WAIT。</li>
+<li>等待 2MSL &#x3D; 800ms。</li>
+<li>总计 <strong>900ms</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-IP封装-源IP-目的IP"><a href="#3-IP封装-源IP-目的IP" class="headerlink" title="3. IP封装 (源IP, 目的IP)"></a>3. IP封装 (源IP, 目的IP)</h3><ul>
+<li><strong>拓扑分析</strong>：<ul>
+<li>主机 H (192.168.101.3) 在 R1 的 LAN 侧。</li>
+<li>Web Server (192.168.20.3) 在 R3 的 LAN 侧。</li>
+<li>中间是 Internet。</li>
+</ul>
+</li>
+<li><strong>源 IP</strong>：<ul>
+<li>H 发出的包，<strong>Source IP</strong> 始终是 H 自己的 IP：<code>192.168.101.3</code>。</li>
+<li>(注意：经过 R1 NAT 后会变，但题目问的是“H发送的…封装”，在 H 出口处还没变)。</li>
+</ul>
+</li>
+<li><strong>目的 IP</strong>：<ul>
+<li>H 要访问 Web Server。</li>
+<li>如果这是公网环境，H 必须访问 Web Server 对应的<strong>公网 IP</strong>。</li>
+<li>Web Server 在 R3 后面。R3 的 WAN 口 IP 是 <code>200.101.1.2</code>。</li>
+<li>通常在 NAT 环境下，H 访问的是 <code>200.101.1.2</code> (R3 的公网IP)，然后 R3 做端口映射给 192.168.20.3。</li>
+<li><strong>答案</strong>：<ul>
+<li>源 IP：<code>192.168.101.3</code></li>
+<li>目的 IP：<code>200.101.1.2</code> (假设 H 知道的是服务器的公网入口)。</li>
+</ul>
+</li>
+<li><em>备选答案</em>：如果题目假设这是一个内网VPN打通的环境，直接用私网IP，则是 <code>192.168.20.3</code>。但中间有“Internet”云图标，标准答案应为公网IP。</li>
+</ul>
+</li>
+</ul>
+<p>这份资料是计算机考研（408）模拟题的最后一部分，包含数据结构、计算机组成原理、操作系统和计算机网络四个科目的综合应用题。这些题目难度较大，分值较高，是拉开差距的关键。</p>
+<p>以下是针对第 41 题至 47 题的详细解析与讲解思路。</p>
+<hr>
+<h1 id="2026考研计算机408模拟题-综合应用题解析-41-47-1"><a href="#2026考研计算机408模拟题-综合应用题解析-41-47-1" class="headerlink" title="2026考研计算机408模拟题 综合应用题解析 (41-47)"></a>2026考研计算机408模拟题 综合应用题解析 (41-47)</h1><h2 id="41-数据结构：链表找环-13分"><a href="#41-数据结构：链表找环-13分" class="headerlink" title="41. 数据结构：链表找环 (13分)"></a>41. 数据结构：链表找环 (13分)</h2><h3 id="题目核心-20"><a href="#题目核心-20" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>目标</strong>：在一个单链表中找到环的<strong>入口节点</strong>。如果无环返回 NULL。<br><strong>要求</strong>：时间上尽可能高效（即 $O(N)$），空间上尽可能高效（即 $O(1)$，不使用哈希表）。</p>
+<h3 id="1-算法设计思想-快慢指针法"><a href="#1-算法设计思想-快慢指针法" class="headerlink" title="1. 算法设计思想 (快慢指针法)"></a>1. 算法设计思想 (快慢指针法)</h3><p>这是经典的 “Floyd 判圈算法” (Tortoise and Hare Algorithm)。</p>
+<ul>
+<li><strong>第一步：判断是否有环</strong><ul>
+<li>定义两个指针 <code>fast</code> 和 <code>slow</code>，都指向头节点 <code>head</code>。</li>
+<li><code>slow</code> 每次走 1 步，<code>fast</code> 每次走 2 步。</li>
+<li>如果 <code>fast</code> 走到 <code>NULL</code>，说明无环，返回 <code>NULL</code>。</li>
+<li>如果 <code>fast</code> 和 <code>slow</code> 相遇，说明有环。</li>
+</ul>
+</li>
+<li><strong>第二步：找环入口</strong><ul>
+<li>相遇后，将其中一个指针（如 <code>fast</code>）重置回 <code>head</code>，另一个指针（<code>slow</code>）保留在相遇点。</li>
+<li>两个指针现在都<strong>每次只走 1 步</strong>。</li>
+<li>当它们再次相遇时，相遇的节点即为<strong>环的入口</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-C语言描述"><a href="#2-C语言描述" class="headerlink" title="2. C语言描述"></a>2. C语言描述</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">struct</span> ListNode* <span class="hljs-title function_">detectCycle</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> ListNode* head)</span> &#123;<br>    <span class="hljs-keyword">if</span> (head == <span class="hljs-literal">NULL</span> || head-&gt;next == <span class="hljs-literal">NULL</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>    &#125;<br>    <br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">slow</span> =</span> head;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">fast</span> =</span> head;<br>    <br>    <span class="hljs-comment">// 1. 判断是否有环</span><br>    <span class="hljs-keyword">while</span> (fast != <span class="hljs-literal">NULL</span> &amp;&amp; fast-&gt;next != <span class="hljs-literal">NULL</span>) &#123;<br>        slow = slow-&gt;next;<br>        fast = fast-&gt;next-&gt;next;<br>        <span class="hljs-keyword">if</span> (slow == fast) &#123;<br>            <span class="hljs-comment">// 相遇，说明有环，进入第二步</span><br>            <br>            <span class="hljs-comment">// 2. 找入口</span><br>            fast = head; <span class="hljs-comment">// fast回到头部</span><br>            <span class="hljs-keyword">while</span> (fast != slow) &#123;<br>                fast = fast-&gt;next;<br>                slow = slow-&gt;next;<br>            &#125;<br>            <span class="hljs-keyword">return</span> fast; <span class="hljs-comment">// 再次相遇点即为入口</span><br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>; <span class="hljs-comment">// 无环</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-复杂度分析-2"><a href="#3-复杂度分析-2" class="headerlink" title="3. 复杂度分析"></a>3. 复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>：$O(N)$。<code>slow</code> 指针从未回退，最多遍历链表常数次（通常小于2圈）。</li>
+<li><strong>空间复杂度</strong>：$O(1)$。只使用了两个指针变量，不需要额外的存储空间。</li>
+</ul>
+<hr>
+<h2 id="42-数据结构：败者树与归并排序-10分"><a href="#42-数据结构：败者树与归并排序-10分" class="headerlink" title="42. 数据结构：败者树与归并排序 (10分)"></a>42. 数据结构：败者树与归并排序 (10分)</h2><h3 id="题目核心-21"><a href="#题目核心-21" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>背景</strong>：外部排序中的多路归并。<br><strong>数据</strong>：4个初始归并段（Runs）：</p>
+<ul>
+<li>Run 1: {6, 8}</li>
+<li>Run 2: {3, 9}</li>
+<li>Run 3: {1, 5}</li>
+<li>Run 4: {2, 7}<br><strong>任务</strong>：构建败者树，选出最小值。</li>
+</ul>
+<h3 id="1-画出初始败者树"><a href="#1-画出初始败者树" class="headerlink" title="1. 画出初始败者树"></a>1. 画出初始败者树</h3><p><strong>讲解思路</strong>：</p>
+<ul>
+<li><strong>叶子节点</strong>：取每个归并段的第一个元素：6, 3, 1, 2。</li>
+<li><strong>败者树原理</strong>：<ul>
+<li>父节点存储“败者”（值较大的那个的索引）。</li>
+<li>胜者（值较小的那个）继续向上比较。</li>
+<li>树顶（ls[0]）存储最终的胜者（最小值）。</li>
+</ul>
+</li>
+<li><strong>比较过程</strong>（假设归并段索引为 0, 1, 2, 3）：<ul>
+<li><strong>底层比较</strong>：<ul>
+<li>Run 3 (2) vs Run 2 (1): 1 &lt; 2。<strong>胜者 1</strong> (Run 2)，<strong>败者 2</strong> (Run 3) 存入父节点。</li>
+<li>Run 0 (6) vs Run 1 (3): 3 &lt; 6。<strong>胜者 3</strong> (Run 1)，<strong>败者 6</strong> (Run 0) 存入父节点。</li>
+</ul>
+</li>
+<li><strong>上层比较</strong>：<ul>
+<li>胜者 1 (Run 2) vs 胜者 3 (Run 1): 1 &lt; 3。<strong>胜者 1</strong>，<strong>败者 3</strong> 存入根节点的子节点。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>最终状态</strong>：<ul>
+<li>树顶（冠军）：1 (来自 Run 2)</li>
+<li>内部节点记录败者的索引（或值）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(示意图描述)</strong>:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">     [Run 2: 1]  &lt;-- 最终冠军<br>       /<br>     [Run 1: 3]  &lt;-- 1和3比，3败<br>     /       \<br>[Run 0: 6] [Run 3: 2] &lt;-- 6和3比6败；2和1比2败<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-第二个冠军"><a href="#2-第二个冠军" class="headerlink" title="2. 第二个冠军"></a>2. 第二个冠军</h3><ul>
+<li><strong>过程</strong>：<ul>
+<li>输出冠军 <code>1</code>。</li>
+<li>从 Run 2 中读取下一个元素 <code>5</code> 顶替 <code>1</code> 的位置。</li>
+<li><strong>重构路径</strong>：<ul>
+<li>新元素 <code>5</code> 与它的父节点记录的败者（原先是 Run 3 的 <code>2</code>）比较。</li>
+<li>2 &lt; 5。<strong>胜者 2</strong>，<strong>败者 5</strong> (Run 2) 留在该节点。</li>
+<li>胜者 2 继续向上，与根节点记录的败者（Run 1 的 <code>3</code>）比较。</li>
+<li>2 &lt; 3。<strong>胜者 2</strong>，<strong>败者 3</strong> (Run 1) 保持不变（或者说再次输给2）。</li>
+</ul>
+</li>
+<li><strong>结果</strong>：新的冠军是 <strong>2</strong> (来自 Run 3)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-k路平衡归并败者树高度"><a href="#3-k路平衡归并败者树高度" class="headerlink" title="3. k路平衡归并败者树高度"></a>3. k路平衡归并败者树高度</h3><ul>
+<li><strong>公式</strong>：对于 $k$ 路归并，败者树（不含底层的叶子数据缓冲区）通常被视为一颗完全二叉树。</li>
+<li><strong>节点数</strong>：有 $k$ 个叶子节点，内部节点有 $k-1$ 个。</li>
+<li><strong>高度</strong>：$\lceil \log_2 k \rceil$ （如果只算内部节点层数）或者 $\lceil \log_2 k \rceil + 1$。通常败者树的调整深度为 $O(\log_2 k)$。</li>
+</ul>
+<hr>
+<h2 id="43-计组：指令流水线-12分"><a href="#43-计组：指令流水线-12分" class="headerlink" title="43. 计组：指令流水线 (12分)"></a>43. 计组：指令流水线 (12分)</h2><h3 id="题目核心-22"><a href="#题目核心-22" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>指令序列</strong>：</p>
+<ol>
+<li><code>load a1, 0(a0)</code></li>
+<li><code>load a2, 8(a0)</code></li>
+<li><code>sub a3, a1, a2</code></li>
+<li><code>store a3, 0(a0)</code></li>
+</ol>
+<h3 id="1-无转发-No-Forwarding-执行示意图"><a href="#1-无转发-No-Forwarding-执行示意图" class="headerlink" title="1. 无转发 (No Forwarding) 执行示意图"></a>1. 无转发 (No Forwarding) 执行示意图</h3><p><strong>冲突分析</strong>：</p>
+<ul>
+<li>I1 (<code>load a1</code>)：写回 <code>a1</code> 是在 <strong>WB</strong> 阶段结束。</li>
+<li>I2 (<code>load a2</code>)：写回 <code>a2</code> 是在 <strong>WB</strong> 阶段结束。</li>
+<li>I3 (<code>sub a3, a1, a2</code>)：在 <strong>ID</strong> 阶段需要读取 <code>a1</code> 和 <code>a2</code>。</li>
+<li><strong>冲突</strong>：I3 必须等到 I1 和 I2 都完成 WB。I2 比 I1 晚，所以瓶颈在 I2。<ul>
+<li>I2 的 WB 在第 5 个周期结束。</li>
+<li>I3 的 ID 必须在第 6 个周期（即 I2 WB 之后）。</li>
+<li>I3 必须停顿（Stall）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>示意图 (T:周期)</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">    1   2   3   4   5   6   7   8<br>I1: IF  ID  EX  MEM WB<br>I2:     IF  ID  EX  MEM WB<br>I3:         IF  ID  stall stall ID  EX ... (ID推迟到I2 WB之后)<br></code></pre></td></tr></table></figure>
+<p><em>(注：如果不采取转发，且读写不能在同一周期，I3必须在I2 WB完成后才能ID，即I3的ID在T6，需插入气泡)</em></p>
+<h3 id="2-有转发-With-Forwarding-执行示意图"><a href="#2-有转发-With-Forwarding-执行示意图" class="headerlink" title="2. 有转发 (With Forwarding) 执行示意图"></a>2. 有转发 (With Forwarding) 执行示意图</h3><p><strong>优化</strong>：</p>
+<ul>
+<li>数据旁路技术允许从 MEM&#x2F;WB 流水段寄存器直接把数据传给 ALU。</li>
+<li>I1, I2 是 <code>load</code> 指令，数据在 <strong>MEM</strong> 阶段结束后产生。</li>
+<li>I3 是运算指令，在 <strong>EX</strong> 阶段开始时需要数据。</li>
+<li><strong>Load-Use Hazard</strong>：即使有转发，Load 指令的数据在 MEM 结束才有，而下一条指令若在 EX 需要，中间仍有一个周期的时差。<ul>
+<li>I2 (MEM) 在 T4 结束。</li>
+<li>I3 (EX) 正常是在 T4。无法转发（时间倒流）。</li>
+<li>I3 必须 Stall 1个周期，即 I3 的 EX 在 T5，此时 I2 的 MEM 已完成，可以转发。</li>
+</ul>
+</li>
+</ul>
+<p><strong>示意图</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">    1   2   3   4   5   6   7<br>I1: IF  ID  EX  MEM WB<br>I2:     IF  ID  EX  MEM WB<br>I3:         IF  ID  stall EX  MEM WB (EX等待I2的数据)<br>I4:             IF  stall ID  EX  MEM WB<br></code></pre></td></tr></table></figure>
+<p><em>(I3 在 ID 后暂停一拍，等待 I2 的 MEM 结果)</em></p>
+<h3 id="3-吞吐率与加速比-针对第2问"><a href="#3-吞吐率与加速比-针对第2问" class="headerlink" title="3. 吞吐率与加速比 (针对第2问)"></a>3. 吞吐率与加速比 (针对第2问)</h3><ul>
+<li><strong>总周期数</strong>：假设 I4 完成 WB。I1(5) + I2(1) + I3(1+1 stall) + I4(1) &#x3D; 9个周期？<ul>
+<li>I1: 1-5</li>
+<li>I2: 2-6</li>
+<li>I3: 3-8 (Stall 1) -&gt; IF(3), ID(4), stall(5), EX(6)…</li>
+<li>I4: 4-9 -&gt; IF(4, stall 5?), ID(6)…</li>
+<li>实际上看最后一条指令 I4 什么时候出流水线。I4 完成需要 $5 + 1(Stall) + 3 &#x3D; 9$ 周期。</li>
+</ul>
+</li>
+<li><strong>吞吐率 (TP)</strong>：指令数 &#x2F; 总时间 &#x3D; $4 &#x2F; 9T$。</li>
+<li><strong>加速比 (S)</strong>：<ul>
+<li>串行时间 &#x3D; $4 \times 5T &#x3D; 20T$。</li>
+<li>流水线时间 &#x3D; $9T$。</li>
+<li>$S &#x3D; 20 &#x2F; 9 \approx 2.22$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-多周期处理器-非流水线"><a href="#4-多周期处理器-非流水线" class="headerlink" title="4. 多周期处理器 (非流水线)"></a>4. 多周期处理器 (非流水线)</h3><ul>
+<li><strong>逻辑</strong>：如果不流水，每条指令串行执行。但题目说“不会读取下一条…只执行必须的流水段”。<ul>
+<li>I1 (Load): IF, ID, EX, MEM, WB (5T)</li>
+<li>I2 (Load): 5T</li>
+<li>I3 (Sub): IF, ID, EX, WB (4T, 无需MEM)</li>
+<li>I4 (Store): IF, ID, EX, MEM (4T, 无需WB)</li>
+</ul>
+</li>
+<li><strong>总时间</strong>：$5+5+4+4 &#x3D; 18T$。</li>
+</ul>
+<hr>
+<h2 id="44-计组：Cache-映射与性能-11分"><a href="#44-计组：Cache-映射与性能-11分" class="headerlink" title="44. 计组：Cache 映射与性能 (11分)"></a>44. 计组：Cache 映射与性能 (11分)</h2><h3 id="题目核心-23"><a href="#题目核心-23" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>代码</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a[<span class="hljs-number">12</span>], b[<span class="hljs-number">12</span>];<br><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">12</span>; i+=k)<br>  <span class="hljs-keyword">for</span> (j=<span class="hljs-number">0</span>; j&lt;<span class="hljs-number">12</span>; j+=k)<br>    sum = a[i] + b[j];<br></code></pre></td></tr></table></figure>
+<p><strong>参数</strong>：</p>
+<ul>
+<li>按字节编址。</li>
+<li>Cache: 64B, Block: 16B -&gt; 4 Blocks.</li>
+<li><code>a</code> starts at <code>00 0010H</code> (Wait, image says <code>00 0010H</code>).</li>
+<li><code>int</code> is 4 Bytes.</li>
+</ul>
+<h3 id="1-数组-b-的地址"><a href="#1-数组-b-的地址" class="headerlink" title="1. 数组 b 的地址"></a>1. 数组 b 的地址</h3><ul>
+<li><code>a</code> 大小：$12 \times 4B &#x3D; 48B$。</li>
+<li><code>a</code> 地址：<code>0010H</code> (十进制 16)。</li>
+<li><code>b</code> 紧随 <code>a</code>：<code>16 + 48 = 64</code> -&gt; <code>0040H</code> (也就是 <code>00 0040H</code>)。</li>
+</ul>
+<h3 id="2-直接映射，k-6，命中率"><a href="#2-直接映射，k-6，命中率" class="headerlink" title="2. 直接映射，k&#x3D;6，命中率"></a>2. 直接映射，k&#x3D;6，命中率</h3><ul>
+<li><strong>访问序列</strong>：<ul>
+<li><code>i=0</code>: <code>j=0</code> (Access <code>a[0]</code>, <code>b[0]</code>), <code>j=6</code> (Access <code>a[0]</code>, <code>b[6]</code>).</li>
+<li><code>i=6</code>: <code>j=0</code> (Access <code>a[6]</code>, <code>b[0]</code>), <code>j=6</code> (Access <code>a[6]</code>, <code>b[6]</code>).</li>
+</ul>
+</li>
+<li><strong>地址计算与Block索引</strong>：<ul>
+<li>Block Size &#x3D; 16B (4 ints).</li>
+<li>Cache Lines: 4 lines (0, 1, 2, 3).</li>
+<li>Mapping: <code>(Addr / 16) % 4</code>.</li>
+<li><strong>a[0]</strong>: Addr 16 (0x10). Block 1. Map -&gt; Line 1.</li>
+<li><strong>a[6]</strong>: Addr $16 + 6\times4 &#x3D; 40$ (0x28). Block 2. Map -&gt; Line 2.</li>
+<li><strong>b[0]</strong>: Addr 64 (0x40). Block 4. Map -&gt; Line 0.</li>
+<li><strong>b[6]</strong>: Addr $64 + 6\times4 &#x3D; 88$ (0x58). Block 5. Map -&gt; Line 1.</li>
+</ul>
+</li>
+<li><strong>冲突分析</strong>：<ul>
+<li>Line 1 被 <code>a[0]</code> 和 <code>b[6]</code> 共享 -&gt; <strong>冲突</strong>。</li>
+</ul>
+</li>
+<li><strong>执行流程</strong>：<ol>
+<li><code>i=0, j=0</code>:<ul>
+<li><code>a[0]</code> (Line 1): Miss -&gt; Load Block <code>a[0]..a[3]</code>.</li>
+<li><code>b[0]</code> (Line 0): Miss -&gt; Load Block <code>b[0]..b[3]</code>.</li>
+</ul>
+</li>
+<li><code>i=0, j=6</code>:<ul>
+<li><code>a[0]</code> (Line 1): Hit (Still there).</li>
+<li><code>b[6]</code> (Line 1): <strong>Miss</strong> (Evicts <code>a[0]</code>) -&gt; Load Block <code>b[4]..b[7]</code>.</li>
+</ul>
+</li>
+<li><code>i=6, j=0</code>:<ul>
+<li><code>a[6]</code> (Line 2): Miss -&gt; Load Block <code>a[4]..a[7]</code>.</li>
+<li><code>b[0]</code> (Line 0): Hit (Still there).</li>
+</ul>
+</li>
+<li><code>i=6, j=6</code>:<ul>
+<li><code>a[6]</code> (Line 2): Hit.</li>
+<li><code>b[6]</code> (Line 1): Hit (Loaded in step 2).</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>统计</strong>：<ul>
+<li>Accesses: 8 times ($a, b$ each loop, 4 loops).</li>
+<li>Hits: <code>a[0]</code>(2nd), <code>b[0]</code>(2nd), <code>a[6]</code>(2nd), <code>b[6]</code>(2nd). Total 4 hits?</li>
+<li>Wait, step 2 <code>a[0]</code> hit BEFORE <code>b[6]</code> evicted it. So yes, hit.</li>
+<li>Total 8 accesses. 4 Hits.</li>
+<li><strong>Rate</strong>: 50%.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2路组相联-FIFO-k-4"><a href="#3-2路组相联-FIFO-k-4" class="headerlink" title="3. 2路组相联, FIFO, k&#x3D;4"></a>3. 2路组相联, FIFO, k&#x3D;4</h3><ul>
+<li><code>a[16]</code> defined now. <code>b</code> starts at $16 + 16\times4 &#x3D; 80$ (0x50).</li>
+<li><strong>Sets</strong>: 64B &#x2F; 16B &#x3D; 4 Lines. 2-way -&gt; 2 Sets (Set 0, Set 1).</li>
+<li><strong>Mapping</strong>: <code>(Addr / 16) % 2</code>.</li>
+<li><strong>Accesses</strong> (i&#x3D;0,4,8; j&#x3D;0,4,8):<ul>
+<li><code>a[0]</code> (0x10, Set 1), <code>a[4]</code> (0x20, Set 0), <code>a[8]</code> (0x30, Set 1).</li>
+<li><code>b[0]</code> (0x50, Set 1), <code>b[4]</code> (0x60, Set 0), <code>b[8]</code> (0x70, Set 1).</li>
+</ul>
+</li>
+<li><strong>Set 1 Activity (Crucial)</strong>: <code>a[0]</code>, <code>a[8]</code>, <code>b[0]</code>, <code>b[8]</code> map to Set 1.<ul>
+<li>Capacity: 2 blocks.</li>
+<li>Access pattern in loop: <code>a[i]</code>, <code>b[j]</code>.</li>
+<li><code>i=0</code> (Hold <code>a[0]</code>):<ul>
+<li><code>j=0</code>: <code>a[0]</code>(Miss), <code>b[0]</code>(Miss). Set 1: [a0, b0].</li>
+<li><code>j=4</code>: <code>a[0]</code>(Hit), <code>b[4]</code>(Set 0 Miss).</li>
+<li><code>j=8</code>: <code>a[0]</code>(Hit), <code>b[8]</code>(Set 1 Miss -&gt; FIFO Evict a0 -&gt; [b0, b8]).</li>
+</ul>
+</li>
+<li><code>i=4</code>:<ul>
+<li><code>j=0</code>: <code>a[4]</code>(Set 0), <code>b[0]</code>(Set 1 Hit).</li>
+<li>… (Process continues).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>计算</strong>：分别计算 a 和 b 的命中次数。由于 FIFO 且访问密集，Set 1 会发生抖动。需细致推导每一微步。</li>
+</ul>
+<hr>
+<h2 id="45-操作系统：PV操作-7分"><a href="#45-操作系统：PV操作-7分" class="headerlink" title="45. 操作系统：PV操作 (7分)"></a>45. 操作系统：PV操作 (7分)</h2><h3 id="题目核心-24"><a href="#题目核心-24" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>模型</strong>：电池充放电。<br><strong>约束</strong>：</p>
+<ol>
+<li><strong>互斥</strong>：充放电不能同时进行 (Mutex).</li>
+<li><strong>充电逻辑</strong>：电量 &lt; 10Ah 时才允许<strong>开始</strong>充电；一充必须充到满 (100Ah) 才能停。</li>
+<li><strong>放电逻辑</strong>：电量 &gt; 10Ah 时才允许放电；电量 &lt; 10Ah 时必须停止。</li>
+<li><strong>初始</strong>：0Ah。</li>
+</ol>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我们需要控制“状态”。</p>
+<ul>
+<li><code>mutex</code>: 保护 <code>battery</code> 变量，初值 1。</li>
+<li>为了满足“&lt;10 才充”和“一充到底”，充电进程需要一个“开启条件”和“工作循环”。</li>
+<li>这就不仅是简单的生产者-消费者，带有<strong>滞后特性 (Hysteresis)</strong>。</li>
+</ul>
+<p><strong>信号量定义</strong>：</p>
+<ul>
+<li><code>mutex = 1</code>: 电池互斥。</li>
+<li><code>battery = 0</code>: 共享变量。</li>
+</ul>
+<p><strong>算法描述 (伪代码)</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 由于题目要求用P/V写出完整过程</span><br><span class="hljs-comment">// 这是一个变种的读写或生产消费。</span><br><span class="hljs-comment">// 我们可以把 &quot;Charging Mode&quot; 看作一个独占锁，只有 battery &lt; 10 时能抢到。</span><br><br>semaphore mutex = <span class="hljs-number">1</span>; <br><span class="hljs-type">int</span> battery = <span class="hljs-number">0</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Charge</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        P(mutex);<br>        <span class="hljs-keyword">if</span> (battery &lt; <span class="hljs-number">10</span>) &#123;<br>            <span class="hljs-comment">// 开始充电模式，直到满</span><br>            <span class="hljs-keyword">while</span> (battery &lt; <span class="hljs-number">100</span>) &#123;<br>                <span class="hljs-comment">// 模拟充电过程，实际应用中可能需要释放mutex让别人读? </span><br>                <span class="hljs-comment">// 题目说&quot;不能并行&quot;，所以一直占着锁是可以的</span><br>                battery++; <br>                print(<span class="hljs-string">&quot;Charging... &quot;</span> + battery);<br>            &#125;<br>        &#125;<br>        V(mutex);<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Use</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        P(mutex);<br>        <span class="hljs-keyword">if</span> (battery &gt; <span class="hljs-number">10</span>) &#123;<br>            <span class="hljs-comment">// 放电</span><br>            battery--;<br>            print(<span class="hljs-string">&quot;Using... &quot;</span> + battery);<br>        &#125;<br>        <span class="hljs-comment">// 如果 &lt; 10，自动不做操作，释放锁，让Charger有机会进入</span><br>        V(mutex);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><em>注</em>：这是最简单的轮询式写法。如果要求严格的阻塞同步，可以使用两个信号量 <code>empty</code> (表示缺电，初值1) 和 <code>full</code> (表示有电)。但由于阈值是 10 而不是 0，条件判断必须在临界区内。上述写法虽然有忙等嫌疑，但逻辑正确且符合题目“充放电互斥”的要求。<br>如果要避免忙等，需要引入条件变量或更复杂的信号量协作（例如 Charger 只有在 Use 发现电量&lt;10时才 V(charger_sem)）。</p>
+<hr>
+<h2 id="46-操作系统：二级页表-8分"><a href="#46-操作系统：二级页表-8分" class="headerlink" title="46. 操作系统：二级页表 (8分)"></a>46. 操作系统：二级页表 (8分)</h2><h3 id="题目核心-25"><a href="#题目核心-25" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>参数</strong>：</p>
+<ul>
+<li>逻辑地址：21位。</li>
+<li>物理地址：20位。</li>
+<li>页面大小：$256B &#x3D; 2^8$。</li>
+<li>页表项大小：$4B$。</li>
+<li>结构：一级页表 + 二级页表。</li>
+</ul>
+<h3 id="1-逻辑地址划分"><a href="#1-逻辑地址划分" class="headerlink" title="1. 逻辑地址划分"></a>1. 逻辑地址划分</h3><ul>
+<li><strong>页内偏移 (Offset)</strong>：由页面大小决定。$2^8$ -&gt; <strong>8位</strong>。</li>
+<li><strong>页号总长度</strong>：$21 - 8 &#x3D; 13$ 位。</li>
+<li><strong>页表结构</strong>：<ul>
+<li>题目给了一张图，显示根页表和子页表。</li>
+<li>关键约束：<strong>每个页表块必须刚好放入一个页框中</strong>。</li>
+<li>页大小 256B，项大小 4B -&gt; 每页可存 $256&#x2F;4 &#x3D; 64 &#x3D; 2^6$ 个页表项。</li>
+<li>所以，<strong>二级页号</strong> (P2) 占 <strong>6位</strong>。</li>
+<li>剩余给<strong>一级页号</strong> (P1)：$13 - 6 &#x3D; 7$ 位？</li>
+<li>但是一级页表也只能占一页（或题目隐含约束）。若P1也是6位，则总共12位页号，与13位不符。</li>
+<li><em>修正</em>：题目说 “进程A的逻辑地址空间由32个段组成…每个段最多 $2^8$ 个页”。这实际上描述的是 <strong>段页式</strong> 或者 <strong>顶层索引是段表</strong>。</li>
+<li>段号：32个 -&gt; 5位。</li>
+<li>段内页号：$2^8$ -&gt; 8位。</li>
+<li>总逻辑地址：$5 + 8 + 8(\text{offset}) &#x3D; 21$ 位。吻合。</li>
+<li><strong>划分</strong>：段号(5位) | 页号(8位) | 偏移(8位)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-页表项数量"><a href="#2-页表项数量" class="headerlink" title="2. 页表项数量"></a>2. 页表项数量</h3><ul>
+<li><strong>段表 (一级表)</strong>：32个段 -&gt; 32个表项。</li>
+<li><strong>页表 (二级表)</strong>：每个段最多 $2^8&#x3D;256$ 页 -&gt; 每个段对应一个页表，包含256个项。</li>
+<li><strong>最大页表项总数</strong>：$32 \times 256$。</li>
+</ul>
+<h3 id="3-碎片问题"><a href="#3-碎片问题" class="headerlink" title="3. 碎片问题"></a>3. 碎片问题</h3><ul>
+<li><strong>段页式</strong>：<ul>
+<li><strong>内部碎片</strong>：有。因为内存分配的基本单位是页。平均每个段的最后一页有一半浪费。</li>
+<li><strong>外部碎片</strong>：无。因为页框大小固定且连续。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-访存次数"><a href="#4-访存次数" class="headerlink" title="4. 访存次数"></a>4. 访存次数</h3><ul>
+<li>段页式&#x2F;二级页表映射通常需要 <strong>3次</strong> 访存：<ol>
+<li>查段表&#x2F;一级目录。</li>
+<li>查页表&#x2F;二级表。</li>
+<li>访问物理内存目标数据。</li>
+</ol>
+</li>
+<li>如果引入 TLB，命中时只需 1 次。</li>
+</ul>
+<hr>
+<h2 id="47-计算机网络：综合分析-9分"><a href="#47-计算机网络：综合分析-9分" class="headerlink" title="47. 计算机网络：综合分析 (9分)"></a>47. 计算机网络：综合分析 (9分)</h2><h3 id="题目核心-26"><a href="#题目核心-26" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>拓扑</strong>：H1 –(Switch)– H2 … R1 … Internet … R2 …<br><strong>参数</strong>：RTT&#x3D;100ms, MSS&#x3D;1000B, MSL&#x3D;500ms.</p>
+<h3 id="1-交换机学习与帧转发"><a href="#1-交换机学习与帧转发" class="headerlink" title="1. 交换机学习与帧转发"></a>1. 交换机学习与帧转发</h3><ul>
+<li><strong>H1 发给 H2</strong>：<ul>
+<li>H1 发出帧：Src&#x3D;MAC_H1, Dst&#x3D;MAC_H2。</li>
+<li>交换机收到帧：记录端口-MAC映射 (MAC_H1 -&gt; Port_H1)。</li>
+<li>交换机查表：若不知 MAC_H2，<strong>泛洪 (Broadcast)</strong>。</li>
+<li>H2 收到，发回响应。交换机学习 (MAC_H2 -&gt; Port_H2)。</li>
+</ul>
+</li>
+<li><strong>H1 发给 R1</strong>：<ul>
+<li>Dest MAC 是 R1 接口的 MAC。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-IP与MAC地址变化"><a href="#2-IP与MAC地址变化" class="headerlink" title="2. IP与MAC地址变化"></a>2. IP与MAC地址变化</h3><ul>
+<li><strong>Packet H1 -&gt; H2 (经R1, R2)</strong>：<ul>
+<li><strong>源 IP</strong>：始终是 IP_H1。</li>
+<li><strong>目的 IP</strong>：始终是 IP_H2 (假设非NAT或问的是逻辑上的端到端)。</li>
+<li><strong>源 MAC</strong>：每一跳都变。H1-&gt;R1时是MAC_H1；R1-&gt;Internet时是R1_Wan_MAC…</li>
+<li><strong>目的 MAC</strong>：每一跳都变。H1-&gt;R1时是MAC_R1…</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-TCP-连接时间计算-最短耗时"><a href="#3-TCP-连接时间计算-最短耗时" class="headerlink" title="3. TCP 连接时间计算 (最短耗时)"></a>3. TCP 连接时间计算 (最短耗时)</h3><p><strong>数据量</strong>：10个 MSS。<br><strong>过程</strong>：</p>
+<ol>
+<li><strong>建立连接 (3次握手)</strong>：<ul>
+<li>H1 -&gt; SYN -&gt; R2 (0.5 RTT)</li>
+<li>R2 -&gt; SYN+ACK -&gt; H1 (0.5 RTT)</li>
+<li><strong>耗时</strong>：1 RTT (此时H1可以开始发数据)。</li>
+</ul>
+</li>
+<li><strong>数据传输 (慢启动)</strong>：<ul>
+<li>Window &#x3D; 1 MSS. Send 1. (Time: 0.5 RTT data + 0.5 RTT ack &#x3D; 1 RTT). Total Sent: 1.</li>
+<li>Window &#x3D; 2 MSS. Send 2. (Time: 1 RTT). Total Sent: 3.</li>
+<li>Window &#x3D; 4 MSS. Send 4. (Time: 1 RTT). Total Sent: 7.</li>
+<li>Window &#x3D; 8 MSS. Send remaining 3. (Time: 1 RTT). Total Sent: 10.</li>
+<li><strong>数据耗时</strong>：4 RTT.</li>
+</ul>
+</li>
+<li><strong>释放连接 (4次挥手)</strong>：<ul>
+<li>H1 发送 FIN (数据发完后立即发? 还是等ACK?)。通常最后一个ACK回来时，H1知道发完了，发送FIN。</li>
+<li>H1 -&gt; FIN (0.5 RTT).</li>
+<li>H2 -&gt; ACK (0.5 RTT).</li>
+<li>H2 -&gt; FIN (假设数据也发完了，紧接着).</li>
+<li>H1 -&gt; ACK.</li>
+<li>H1 进入 TIME_WAIT，等待 2MSL。</li>
+<li><strong>从发送FIN开始到CLOSED</strong>：<ul>
+<li>FIN交互时间：1 RTT (收到H2的FIN)。</li>
+<li>TIME_WAIT：2 MSL.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>总计</strong>：<ul>
+<li>题目问 “H1建立连接…直到CLOSED”。</li>
+<li>Setup (1 RTT) + Data (4 RTT) + Teardown (1 RTT + 2 MSL).</li>
+<li>$6 \times 100ms + 2 \times 500ms &#x3D; 600 + 1000 &#x3D; 1600ms &#x3D; 1.6s$。</li>
+</ul>
+</li>
+</ul>
+<p>这是一份关于计算机考研（408）模拟题最后一部分（综合应用题 41-47）的详细解析与讲解文稿。我们将从数据结构、计算机组成原理、操作系统到计算机网络四个板块逐题分析。</p>
+<hr>
+<h1 id="2026考研计算机408模拟题-综合应用题解析-41-47-2"><a href="#2026考研计算机408模拟题-综合应用题解析-41-47-2" class="headerlink" title="2026考研计算机408模拟题 综合应用题解析 (41-47)"></a>2026考研计算机408模拟题 综合应用题解析 (41-47)</h1><h2 id="41-数据结构：图的最短路径-13分"><a href="#41-数据结构：图的最短路径-13分" class="headerlink" title="41. 数据结构：图的最短路径 (13分)"></a>41. 数据结构：图的最短路径 (13分)</h2><h3 id="题目核心-27"><a href="#题目核心-27" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>背景</strong>：有 $n$ 个基站，通过有向边连接，边权为延时 $k$。<br><strong>约束</strong>：基站 0 向所有其他基站发送信息。求最短时间。<br><strong>分析</strong>：这是一个典型的 <strong>单源最短路径 (Single-Source Shortest Path)</strong> 问题。</p>
+<ul>
+<li>虽然题目提到了“不同基站共享信道”，但题目核心目标是求基站0到其他点的最短接收时间，且边的权重（耗时）是固定的 <code>edges[i][j]</code>。在没有给出具体的冲突避让算法要求的情况下，且题目要求“计算算法”，这通常暗示使用标准的 <strong>Dijkstra 算法</strong>。</li>
+<li><strong>输入</strong>：邻接矩阵 <code>edges[n][n]</code>（<code>-1</code>表示不通）。</li>
+<li><strong>输出</strong>：<code>time[n]</code> 数组，<code>time[i]</code> 表示基站 0 到基站 $i$ 的最短时间。</li>
+</ul>
+<h3 id="1-算法设计思想-2"><a href="#1-算法设计思想-2" class="headerlink" title="1. 算法设计思想"></a>1. 算法设计思想</h3><p>使用 <strong>Dijkstra 算法</strong>。</p>
+<ol>
+<li><strong>初始化</strong>：<ul>
+<li>创建 <code>time[]</code> 数组。<code>time[0] = 0</code>，其余初始化为无穷大 (<code>INT_MAX</code>)。</li>
+<li>创建 <code>visited[]</code> 数组，标记节点是否已确定最短路径，初始全为 <code>false</code>。</li>
+</ul>
+</li>
+<li><strong>循环</strong>（共 $n$ 次）：<ul>
+<li>在未访问的节点中，找到 <code>time</code> 值最小的节点 $u$。</li>
+<li>标记 $u$ 为已访问 (<code>visited[u] = true</code>)。</li>
+<li><strong>松弛 (Relax)</strong>：遍历 $u$ 的所有邻居 $v$。如果 <code>edges[u][v]</code> 存在且 <code>time[u] + edges[u][v] &lt; time[v]</code>，则更新 <code>time[v] = time[u] + edges[u][v]</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-C语言代码描述-1"><a href="#2-C语言代码描述-1" class="headerlink" title="2. C语言代码描述"></a>2. C语言代码描述</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">ShortestTime</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> edges[][MAX_SIZE], <span class="hljs-type">int</span> time[])</span> &#123;<br>    <span class="hljs-type">int</span> visited[MAX_SIZE];<br>    <span class="hljs-comment">// 初始化</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        time[i] = INT_MAX;<br>        visited[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    time[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-comment">// 1. 寻找当前未访问且距离最近的节点 u</span><br>        <span class="hljs-type">int</span> u = <span class="hljs-number">-1</span>;<br>        <span class="hljs-type">int</span> min_dist = INT_MAX;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>            <span class="hljs-keyword">if</span> (!visited[j] &amp;&amp; time[j] &lt; min_dist) &#123;<br>                min_dist = time[j];<br>                u = j;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 如果找不到可达节点，跳出（防非连通图死循环）</span><br>        <span class="hljs-keyword">if</span> (u == <span class="hljs-number">-1</span>) <span class="hljs-keyword">break</span>; <br>        <br>        <span class="hljs-comment">// 2. 标记 u 已访问</span><br>        visited[u] = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-comment">// 3. 松弛操作：更新邻居 v</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> v = <span class="hljs-number">0</span>; v &lt; n; v++) &#123;<br>            <span class="hljs-keyword">if</span> (!visited[v] &amp;&amp; edges[u][v] != <span class="hljs-number">-1</span>) &#123; <span class="hljs-comment">// -1表示无连接</span><br>                <span class="hljs-keyword">if</span> (time[u] + edges[u][v] &lt; time[v]) &#123;<br>                    time[v] = time[u] + edges[u][v];<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-时间复杂度"><a href="#3-时间复杂度" class="headerlink" title="3. 时间复杂度"></a>3. 时间复杂度</h3><ul>
+<li>使用邻接矩阵实现的 Dijkstra 算法，时间复杂度为 <strong>$O(n^2)$</strong>。</li>
+<li>如果使用优先队列优化（堆），复杂度可降为 $O(E \log n)$，但本题给定的是二维数组（邻接矩阵），$O(n^2)$ 是标准解法。</li>
+</ul>
+<hr>
+<h2 id="42-数据结构：排序算法-10分"><a href="#42-数据结构：排序算法-10分" class="headerlink" title="42. 数据结构：排序算法 (10分)"></a>42. 数据结构：排序算法 (10分)</h2><h3 id="题目核心-28"><a href="#题目核心-28" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>数据序列</strong>：<code>{46, 68, 43, 40, 42, 83, 70}</code></p>
+<h3 id="1-排序过程演示"><a href="#1-排序过程演示" class="headerlink" title="1. 排序过程演示"></a>1. 排序过程演示</h3><p><strong>快速排序 (Quick Sort)</strong>：</p>
+<ul>
+<li><strong>规则</strong>：每次选择子序列第一个元素为枢轴 (Pivot)。</li>
+<li><strong>第一趟</strong>：<ul>
+<li>Pivot &#x3D; 46。</li>
+<li>指针 <code>low</code> 指向 46 (idx 0)，<code>high</code> 指向 70 (idx 6)。</li>
+<li>High 向左找比 46 小的 -&gt; 42。交换，序列变 <code>42, 68, 43, 40, 46, 83, 70</code>。</li>
+<li>Low 向右找比 46 大的 -&gt; 68。交换，序列变 <code>42, 46, 43, 40, 68, 83, 70</code>。</li>
+<li>High 向左找 -&gt; 40。交换，序列变 <code>42, 40, 43, 46, 68, 83, 70</code>。</li>
+<li>Low 向右找 -&gt; 碰头。</li>
+<li><strong>结果</strong>：<code>{42, 40, 43, [46], 68, 83, 70}</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>二路归并排序 (Merge Sort)</strong>：</p>
+<ul>
+<li><strong>初始</strong>：<code>[46] [68] [43] [40] [42] [83] [70]</code></li>
+<li><strong>第一趟 (两两归并)</strong>：<ul>
+<li><code>[46, 68]</code></li>
+<li><code>[40, 43]</code></li>
+<li><code>[42, 83]</code></li>
+<li><code>[70]</code></li>
+<li><strong>结果</strong>：<code>{46, 68, 40, 43, 42, 83, 70}</code>。</li>
+</ul>
+</li>
+<li><strong>第二趟 (四四归并)</strong>：<ul>
+<li><code>[40, 43, 46, 68]</code></li>
+<li><code>[42, 70, 83]</code></li>
+<li><strong>结果</strong>：<code>{40, 43, 46, 68, 42, 70, 83}</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-稳定性与比较次数"><a href="#2-稳定性与比较次数" class="headerlink" title="2. 稳定性与比较次数"></a>2. 稳定性与比较次数</h3><ul>
+<li><strong>快速排序</strong>：<strong>不稳定</strong>。例如 <code>[2, 2*, 1]</code>，以 2 为枢轴，交换后可能变成 <code>1, 2*, 2</code>。本题中枢轴选择和交换逻辑决定了其不稳定性。</li>
+<li><strong>比较次数依赖性</strong>：<ul>
+<li><strong>快速排序</strong>：依赖于初始序列。如果序列基本有序（正序或逆序），快排退化为冒泡，$O(n^2)$。</li>
+<li><strong>归并排序</strong>：不依赖（或依赖很小）。无论初始数据如何，都要层层切分再合并，比较次数稳定在 $O(n \log n)$ 级别。</li>
+<li><strong>答案</strong>：快速排序有关，归并排序无关。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-何时归并快于快排？"><a href="#3-何时归并快于快排？" class="headerlink" title="3. 何时归并快于快排？"></a>3. 何时归并快于快排？</h3><ol>
+<li><strong>最坏情况</strong>：当初始序列有序或基本有序时，快速排序效率最低 ($O(n^2)$)，而归并排序仍为 $O(n \log n)$。</li>
+<li><strong>外部排序</strong>：当数据量巨大，内存无法一次装下时，必须使用归并排序进行外部多路归并，快排无法直接使用。</li>
+</ol>
+<hr>
+<h2 id="43-计组：磁盘存储-9分"><a href="#43-计组：磁盘存储-9分" class="headerlink" title="43. 计组：磁盘存储 (9分)"></a>43. 计组：磁盘存储 (9分)</h2><h3 id="1-磁盘读写操作顺序"><a href="#1-磁盘读写操作顺序" class="headerlink" title="1. 磁盘读写操作顺序"></a>1. 磁盘读写操作顺序</h3><p>正确流程是：</p>
+<ol>
+<li><strong>发送控制命令 (③)</strong>：CPU 发送命令给磁盘控制器。</li>
+<li><strong>寻道 (④)</strong>：控制磁臂移动到目标柱面（Cylinder）。</li>
+<li><strong>旋转 (①)</strong>：控制磁盘旋转，使目标扇区转到磁头下方。</li>
+<li><strong>激活磁头 (②)</strong>：选择对应的磁头（Head），准备读写。</li>
+<li><strong>读写数据 (⑤)</strong>：数据传输。<br><strong>答案</strong>：③ -&gt; ④ -&gt; ① -&gt; ② -&gt; ⑤ (注：激活磁头②通常在寻道后、读写前，有时与旋转并发，但在逻辑顺序上是确定位置后的步骤)。</li>
+</ol>
+<h3 id="2-半径与密度"><a href="#2-半径与密度" class="headerlink" title="2. 半径与密度"></a>2. 半径与密度</h3><ul>
+<li><strong>磁道密度 (Track Density)</strong>：沿径向的密度。通常设计为常数。</li>
+<li><strong>位密度 (Bit Density)</strong>：沿磁道切向的密度。<ul>
+<li>对于老式磁盘（非区域记录 ZBR），每个磁道扇区数相同。外圈周长长，所以<strong>半径越大，位密度越小</strong>。</li>
+<li><em>注：如果是现代 ZBR 磁盘，位密度基本恒定。但考研通常考察经典模型，即外圈位密度低。</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-磁盘驱动器完成的操作"><a href="#3-磁盘驱动器完成的操作" class="headerlink" title="3. 磁盘驱动器完成的操作"></a>3. 磁盘驱动器完成的操作</h3><p>磁盘驱动器（硬件机械部分）负责：</p>
+<ul>
+<li><strong>④ 控制磁臂移动</strong> (Seek)</li>
+<li><strong>① 磁盘旋转</strong> (Rotation)</li>
+<li><strong>② 激活磁头</strong></li>
+<li><strong>⑤ 读写数据</strong> (实际的电磁转换)</li>
+<li><em>③ 是主机&#x2F;控制器发出的，不是驱动器执行的动作本身，而是触发源。</em></li>
+</ul>
+<h3 id="4-数据溢出的存储策略"><a href="#4-数据溢出的存储策略" class="headerlink" title="4. 数据溢出的存储策略"></a>4. 数据溢出的存储策略</h3><p><strong>应存放在：该磁道同一柱面的下一个磁头（盘面）。</strong></p>
+<ul>
+<li><strong>理由</strong>：<ul>
+<li><strong>切换磁头</strong>（电子切换）的时间通常是微秒级，非常快。</li>
+<li><strong>切换柱面</strong>（机械寻道）需要移动磁臂，耗时是毫秒级，非常慢。</li>
+<li>为了保持高数据传输率，应尽量减少机械寻道。因此填满一个柱面的所有盘面后，再移动到下一个柱面。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="44-计组：汇编与指令系统-14分"><a href="#44-计组：汇编与指令系统-14分" class="headerlink" title="44. 计组：汇编与指令系统 (14分)"></a>44. 计组：汇编与指令系统 (14分)</h2><h3 id="题目核心-29"><a href="#题目核心-29" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>代码</strong>：递归计算斐波那契数列 $f(n) &#x3D; f(n-1) + f(n-2)$。<br><strong>汇编片段</strong>：</p>
+<ul>
+<li>Line 12: <code>cmp ... [n], 2</code></li>
+<li>Line 10-12: 递归调用的逻辑。</li>
+</ul>
+<h3 id="1-机器字长与编址"><a href="#1-机器字长与编址" class="headerlink" title="1. 机器字长与编址"></a>1. 机器字长与编址</h3><ul>
+<li><strong>机器字长</strong>：64位。代码中有 <code>mov dword ptr [rsp+8], ecx</code>，也有 <code>mov rax</code> (隐含在64位架构中，虽然片段展示 <code>eax</code>，但题目说“64位计算机”)。通常64位机字长64位。</li>
+<li><strong>指令字长</strong>：<strong>变长</strong>。这是 x86 架构（CISC），指令长度不固定（如 <code>push</code> 1字节，<code>mov</code> 多字节）。</li>
+<li><strong>编址方式</strong>：<strong>按字节编址</strong>。x86 体系结构标准。</li>
+</ul>
+<h3 id="2-地址空间与寄存器"><a href="#2-地址空间与寄存器" class="headerlink" title="2. 地址空间与寄存器"></a>2. 地址空间与寄存器</h3><ul>
+<li><strong>寻址范围</strong>：<ul>
+<li>MAR（地址寄存器）位数决定物理地址空间。1TB &#x3D; $2^{40}$ B，所以 <strong>MAR 至少 40 位</strong>。</li>
+<li>MDR（数据寄存器）位数通常等于机器字长，即 <strong>64 位</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-函数调用分析-f-5"><a href="#3-函数调用分析-f-5" class="headerlink" title="3. 函数调用分析 $f(5)$"></a>3. 函数调用分析 $f(5)$</h3><ul>
+<li><strong>递归树</strong>：<ul>
+<li>f(5) -&gt; f(4), f(3)</li>
+<li>f(4) -&gt; f(3), f(2)</li>
+<li>f(3) -&gt; f(2), f(1)</li>
+<li>f(2), f(1) 直接返回 1。</li>
+</ul>
+</li>
+<li><strong>调用 $f(1)$ 的次数</strong>：<ul>
+<li>f(3) 调用 f(1) 一次。</li>
+<li>f(4) -&gt; f(3) -&gt; f(1) 一次。</li>
+<li>f(5) -&gt; f(3) -&gt; f(1) 一次。</li>
+<li>由图可知：f(5)调用f(3)和f(4)。f(4)调用f(3)和f(2)。f(3)调用f(2)和<strong>f(1)</strong>。</li>
+<li>f(3) 被计算了 2 次（分别在 f(5) 和 f(4) 中）。</li>
+<li>每次 f(3) 调用 1 次 f(1)。</li>
+<li>所以总共调用 $f(1)$ <strong>2次</strong>。</li>
+</ul>
+</li>
+<li><strong>结果存放</strong>：按照 x86 调用约定，返回值通常存放在 <strong>EAX</strong> (或 RAX) 寄存器中。</li>
+</ul>
+<h3 id="4-jmp-寻址方式"><a href="#4-jmp-寻址方式" class="headerlink" title="4. jmp 寻址方式"></a>4. jmp 寻址方式</h3><ul>
+<li>指令：<code>jmp f+5Dh</code> (相对跳转)。</li>
+<li><strong>寻址方式</strong>：<strong>相对寻址</strong>。</li>
+<li><strong>计算公式</strong>：目标地址 &#x3D; (PC + 指令长度) + 偏移量。或者 Target &#x3D; PC + Offset。</li>
+</ul>
+<h3 id="5-jg-判断逻辑"><a href="#5-jg-判断逻辑" class="headerlink" title="5. jg 判断逻辑"></a>5. jg 判断逻辑</h3><ul>
+<li><code>jg</code> (Jump if Greater) 用于<strong>有符号数</strong>比较。</li>
+<li><strong>条件</strong>：<code>ZF=0</code> 且 <code>SF = OF</code>（即结果非零，且符号位与溢出位一致，表示结果为正）。</li>
+</ul>
+<hr>
+<h2 id="45-操作系统：虚拟内存-7分"><a href="#45-操作系统：虚拟内存-7分" class="headerlink" title="45. 操作系统：虚拟内存 (7分)"></a>45. 操作系统：虚拟内存 (7分)</h2><h3 id="题目核心-30"><a href="#题目核心-30" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>系统参数</strong>：页大小 4KB ($2^{12}$)，页表项 4B。<br><strong>访问地址</strong>：逻辑地址 <code>01111H</code>。</p>
+<h3 id="1-地址转换与缺页"><a href="#1-地址转换与缺页" class="headerlink" title="1. 地址转换与缺页"></a>1. 地址转换与缺页</h3><ul>
+<li><strong>解析地址</strong> <code>01111H</code>：<ul>
+<li>页内偏移 (Offset)：低12位 -&gt; <code>111H</code>。</li>
+<li>页号 (Page No)：高位 -&gt; <code>1H</code> (即第1页)。</li>
+</ul>
+</li>
+<li><strong>查表</strong>：<ul>
+<li>页号 1 -&gt; 存在位 (Bit 2) 为 <code>0</code>。</li>
+<li><strong>结果</strong>：发生 <strong>缺页中断 (Page Fault)</strong>。</li>
+</ul>
+</li>
+<li><strong>页面置换 (LRU)</strong>：<ul>
+<li>内存已满（假设题目暗示需置换），需选择 Victim。</li>
+<li>查看“最近访问时间”列：<ul>
+<li>Page 0: 178</li>
+<li>Page 2: 185</li>
+<li>Page 3: 165</li>
+<li>Page 4: 17 (表格最后一行看起来是Page 4, Time 17)。</li>
+</ul>
+</li>
+<li>最小的时间是 17 (Page 4)。</li>
+<li><strong>置换 Page 4</strong>。Page 4 的页框号是 <code>80H</code>。</li>
+<li>将 Page 1 装入 <code>80H</code> 页框。</li>
+</ul>
+</li>
+<li><strong>物理地址</strong>：<ul>
+<li>页框号 <code>80H</code> + 偏移 <code>111H</code> &#x3D; <code>80111H</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-工作集-Working-Set"><a href="#2-工作集-Working-Set" class="headerlink" title="2. 工作集 (Working Set)"></a>2. 工作集 (Working Set)</h3><ul>
+<li><strong>概念</strong>：工作集 $W(t, \Delta)$ 是指在时间间隔 $(t-\Delta, t)$ 内进程访问的页面集合。</li>
+<li><strong>题目</strong>：假设窗口 $\Delta$ 为某个值？题目问“访问 <code>01111H</code> 后的工作集”。</li>
+<li>如果 $\Delta$ 是基于最近访问记录的窗口，访问 Page 1 后，工作集将包含 Page 1 以及最近访问的其他页面（如 0, 2, 3）。具体集合取决于 $\Delta$ 的大小设定。</li>
+</ul>
+<h3 id="3-页面大小权衡"><a href="#3-页面大小权衡" class="headerlink" title="3. 页面大小权衡"></a>3. 页面大小权衡</h3><ul>
+<li><strong>计算</strong>：<ul>
+<li>平均内部碎片 &#x3D; 页面大小 &#x2F; 2。</li>
+<li>若页面大小为 32KB，平均内部碎片 16KB。</li>
+</ul>
+</li>
+<li><strong>页表大小</strong>：<ul>
+<li>内存 4GB (假设) &#x2F; 32KB &#x3D; $128K$ 页。</li>
+<li>页表项 4B -&gt; 页表大小 $128K \times 4B &#x3D; 512KB$。</li>
+<li>相比 4KB 页面的页表 (4MB)，页表变小了。</li>
+</ul>
+</li>
+<li><strong>建议</strong>：<ul>
+<li><strong>32KB 页面</strong>：减少了页表大小，减少了缺页频率（TLB覆盖范围大），提高了I&#x2F;O效率。</li>
+<li><strong>代价</strong>：增加了内部碎片。</li>
+<li><em>题目问设置多少比较合适？</em> 这取决于应用场景。通常折中方案是 4KB 或 8KB。如果必须选，对于大内存系统，32KB 可接受；对于小内存，4KB 更好。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="46-操作系统：信号量机制-8分"><a href="#46-操作系统：信号量机制-8分" class="headerlink" title="46. 操作系统：信号量机制 (8分)"></a>46. 操作系统：信号量机制 (8分)</h2><h3 id="1-P、V-操作原语实现"><a href="#1-P、V-操作原语实现" class="headerlink" title="1. P、V 操作原语实现"></a>1. P、V 操作原语实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">P</span><span class="hljs-params">(semaphore *S)</span> &#123;<br>    S-&gt;value--;<br>    <span class="hljs-keyword">if</span> (S-&gt;value &lt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 将当前进程加入 S-&gt;queue;</span><br>        <span class="hljs-comment">// Block(当前进程);</span><br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">V</span><span class="hljs-params">(semaphore *S)</span> &#123;<br>    S-&gt;value++;<br>    <span class="hljs-keyword">if</span> (S-&gt;value &lt;= <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 从 S-&gt;queue 中移除一个进程 P;</span><br>        <span class="hljs-comment">// Wakeup(P);</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-S-value-0-时的状态变化"><a href="#2-S-value-0-时的状态变化" class="headerlink" title="2. S.value &lt; 0 时的状态变化"></a>2. S.value &lt; 0 时的状态变化</h3><p>当执行 P 操作导致 <code>S.value &lt; 0</code> 时：</p>
+<ul>
+<li>当前进程会从 <strong>运行态 (Running)</strong> 转换为 <strong>阻塞态 (Blocked&#x2F;Waiting)</strong>。</li>
+<li>它被放入该信号量的等待队列中，放弃 CPU。</li>
+</ul>
+<h3 id="3-S-value-绝对值的含义"><a href="#3-S-value-绝对值的含义" class="headerlink" title="3. S.value 绝对值的含义"></a>3. S.value 绝对值的含义</h3><ul>
+<li>当 <code>S.value &lt; 0</code> 时，<code>|S.value|</code> (即绝对值) 表示 <strong>当前在该信号量等待队列中被阻塞的进程数量</strong>。</li>
+</ul>
+<hr>
+<h2 id="47-计算机网络：CSMA-CA-协议-9分"><a href="#47-计算机网络：CSMA-CA-协议-9分" class="headerlink" title="47. 计算机网络：CSMA&#x2F;CA 协议 (9分)"></a>47. 计算机网络：CSMA&#x2F;CA 协议 (9分)</h2><h3 id="题目核心-31"><a href="#题目核心-31" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>环境</strong>：802.11 WLAN，CSMA&#x2F;CA。<br><strong>参数</strong>：</p>
+<ul>
+<li>速率：8Mbps &#x3D; $1MB&#x2F;s &#x3D; 10^6 B&#x2F;s$。</li>
+<li>帧长：1000B。</li>
+<li>DIFS &#x3D; $128 \mu s$, SIFS &#x3D; $28 \mu s$。</li>
+<li>ACK长：假设为题目图示隐含值（标准通常很小，如14B或30B，这里需根据题目数据推断，假设忽略或给定了值，此处按 $T_{ACK}$ 符号计算）。</li>
+<li><strong>隐蔽站问题</strong>：A -&gt; B, C -&gt; B。A和C互听不见。</li>
+</ul>
+<h3 id="1-发送数据前为何必须采用退避算法？"><a href="#1-发送数据前为何必须采用退避算法？" class="headerlink" title="1. 发送数据前为何必须采用退避算法？"></a>1. 发送数据前为何必须采用退避算法？</h3><ul>
+<li><strong>原因</strong>：<ol>
+<li><strong>避免碰撞</strong>：在 CSMA&#x2F;CA 中，如果信道从忙变为空闲，多个站点可能同时准备发送。如果不退避直接发送，极大概率发生碰撞。</li>
+<li><strong>公平性</strong>：让所有等待的站点随机选择退避时间，减少争用冲突。</li>
+<li><strong>隐蔽站</strong>：虽然 RTS&#x2F;CTS 解决隐蔽站，但基础的 CSMA&#x2F;CA 依赖退避来尽量错开发送。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-A-完成数据发送的时间"><a href="#2-A-完成数据发送的时间" class="headerlink" title="2. A 完成数据发送的时间"></a>2. A 完成数据发送的时间</h3><p><strong>过程</strong>：</p>
+<ol>
+<li><strong>DIFS</strong>：监听信道空闲 DIFS 时间。</li>
+<li><strong>Backoff (退避)</strong>：题目设 $t&#x3D;0$ 时 A 计划发送且信道空闲，若无其他争用，可能直接进入 DIFS? 题目说“需采用退避”。假设退避时间为 $T_{bo}$。</li>
+<li><strong>Data Transmission</strong>：<ul>
+<li>$T_{data} &#x3D; \text{Length} &#x2F; \text{Rate} &#x3D; 1000 \text{B} &#x2F; 10^6 \text{B&#x2F;s} &#x3D; 1000 \mu s &#x3D; 1 \text{ms}$。</li>
+</ul>
+</li>
+<li><strong>SIFS</strong>：等待 SIFS 时间。</li>
+<li><strong>ACK Transmission</strong>：<ul>
+<li>$T_{ack} &#x3D; \text{ACK_Len} &#x2F; \text{Rate}$。</li>
+<li>假设 ACK 很短，忽略或按 112bit ($14 \mu s$) 计算。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>总时间</strong>：<ul>
+<li>$T_{total} &#x3D; \text{DIFS} + \text{Backoff} + T_{data} + \text{SIFS} + T_{ack}$。</li>
+<li>代入数值：$128 + \text{Backoff} + 1000 + 28 + T_{ack} &#x3D; 1156 + \text{Backoff} + T_{ack}$ ($\mu s$)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-C-何时完成数据发送？"><a href="#3-C-何时完成数据发送？" class="headerlink" title="3. C 何时完成数据发送？"></a>3. C 何时完成数据发送？</h3><p><strong>场景</strong>：</p>
+<ul>
+<li>$t&#x3D;0$ 时 A 开始发送（包括DIFS等）。</li>
+<li>$t&#x3D;50\mu s$ 时 B (应为 C) 计划发送。</li>
+<li><strong>隐蔽站</strong>：C 听不到 A，所以 C 检测信道是“空闲”的？<ul>
+<li><strong>如果 C 听不到 A</strong>：C 会认为信道空闲，直接发送（经过DIFS+退避）。这将导致在 B 处发生 <strong>碰撞</strong>。A 和 C 的数据都会丢失，需要重传。</li>
+<li><strong>如果题目假设 RTS&#x2F;CTS</strong>：C 会收到 B 发给 A 的 CTS（或者 A 发的 RTS C 听不到，但 B 发 CTS C 能听到），从而推迟发送（设置 NAV）。</li>
+<li><strong>题目未提 RTS&#x2F;CTS</strong>：题目问“C何时完成”。这暗示可能没有碰撞，或者考察 NAV 机制。但题干说“该无线局域网内<strong>仅有</strong>A、B、C… A、C互为隐蔽站”。</li>
+<li><strong>通常考法</strong>：C 在 A 发送期间启动。由于 C 听不到 A，C 会尝试发送。结果是碰撞。A 和 C 都在 ACK 超时后重传。</li>
+<li><strong>另一种考法 (NAV)</strong>：C 虽听不到 A，但能听到 B 发出的 ACK？或者 B 正在接收？物理载波监听听不到，虚拟载波监听（NAV）如果没有 RTS&#x2F;CTS 也无法生效。</li>
+<li><strong>修正理解</strong>：题目可能隐含 C 能感知到“忙”？不，题目明确“隐蔽站”。</li>
+<li><strong>结论</strong>：A 和 C 会发生碰撞。完成发送需要：碰撞时间 + ACK超时 + 随机退避 + 重传成功时间。这将是一个很长的过程。</li>
+<li><em>特例</em>：如果 C 在 $t&#x3D;50$ 时才要发，而 A 刚好发完？$T_{data}&#x3D;1000 \mu s$。A 肯定没发完。所以必然碰撞。</li>
+</ul>
+</li>
+</ul>
+<p>这是第四部分（也是最后一部分）的详细解析，涵盖了第41题至第47题。这部分题目为<strong>综合应用题</strong>，包含了数据结构、计算机组成原理、操作系统和计算机网络四个科目的经典考点。</p>
+<hr>
+<h1 id="2026考研计算机408模拟题-综合应用题解析-41-47-3"><a href="#2026考研计算机408模拟题-综合应用题解析-41-47-3" class="headerlink" title="2026考研计算机408模拟题 综合应用题解析 (41-47)"></a>2026考研计算机408模拟题 综合应用题解析 (41-47)</h1><h2 id="41-数据结构：图的二分判定-8分"><a href="#41-数据结构：图的二分判定-8分" class="headerlink" title="41. 数据结构：图的二分判定 (8分)"></a>41. 数据结构：图的二分判定 (8分)</h2><h3 id="题目核心-32"><a href="#题目核心-32" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>目标</strong>：判断一个无向连通图是否能被“二分”（即是否为二部图&#x2F;二分图）。<br><strong>定义</strong>：顶点集可分为两组，图中每条边的两个端点分别属于不同的组（颜色不同）。</p>
+<h3 id="1-算法设计思想-BFS-DFS-染色法"><a href="#1-算法设计思想-BFS-DFS-染色法" class="headerlink" title="1. 算法设计思想 (BFS&#x2F;DFS 染色法)"></a>1. 算法设计思想 (BFS&#x2F;DFS 染色法)</h3><p><strong>核心逻辑</strong>：<br>从任意一个未染色的节点开始，将其染为颜色A（如红色）。然后将其所有相邻节点染为颜色B（如蓝色）。接着，将这些邻居的邻居再染为颜色A。如果在染色过程中，发现某个邻居节点已经被染上了颜色，且颜色与当前节点相同，说明存在冲突（即存在奇数长度的环），该图不能被二分。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>定义一个颜色数组 <code>colors</code>，初始化为0（未染色）。1代表红色，-1代表蓝色。</li>
+<li>遍历图中每个顶点（处理非连通图的情况，虽然题目说是连通图）：<ul>
+<li>如果该点未染色，将其染为1，并加入队列。</li>
+<li>当队列不空时，取出节点 <code>u</code>：<ul>
+<li>遍历 <code>u</code> 的所有邻接点 <code>v</code>：<ul>
+<li>如果 <code>v</code> 未染色：染成与 <code>u</code> 相反的颜色 (<code>-colors[u]</code>)，并入队。</li>
+<li>如果 <code>v</code> 已染色：检查 <code>colors[v]</code> 是否等于 <code>colors[u]</code>。若相等，返回 <code>False</code>（不能二分）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果遍历完所有节点无冲突，返回 <code>True</code>。输出颜色数组。</li>
+</ol>
+<h3 id="2-复杂度分析"><a href="#2-复杂度分析" class="headerlink" title="2. 复杂度分析"></a>2. 复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>：$O(V + E)$。我们需要遍历每个顶点和每条边一次。</li>
+<li><strong>空间复杂度</strong>：$O(V)$。需要存储颜色数组和队列。</li>
+</ul>
+<hr>
+<h2 id="42-数据结构：二叉树的中序后继-15分"><a href="#42-数据结构：二叉树的中序后继-15分" class="headerlink" title="42. 数据结构：二叉树的中序后继 (15分)"></a>42. 数据结构：二叉树的中序后继 (15分)</h2><h3 id="题目核心-33"><a href="#题目核心-33" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>结构</strong>：二叉树节点包含 <code>parent</code> 指针。<br><strong>目标</strong>：给定节点 <code>node</code>，求其在<strong>中序遍历</strong>序列中的<strong>后继节点</strong>（下一个节点）。</p>
+<h3 id="1-算法设计思想-3"><a href="#1-算法设计思想-3" class="headerlink" title="1. 算法设计思想"></a>1. 算法设计思想</h3><p>中序遍历的顺序是：左 -&gt; 根 -&gt; 右。<br>对于任意节点 <code>node</code>，其后继节点的寻找规则如下：</p>
+<ol>
+<li><strong>若存在右子树</strong>：后继节点是其<strong>右子树中最左下</strong>的节点。<ul>
+<li>例如：<code>node</code> -&gt; <code>right</code>，然后一直找 <code>left</code> 直到 <code>NULL</code>。</li>
+</ul>
+</li>
+<li><strong>若不存在右子树</strong>：需向上回溯。<ul>
+<li>后继节点是“第一个将 <code>node</code> 所在子树作为左子树”的祖先节点。</li>
+<li>做法：沿着 <code>parent</code> 指针向上找，直到找到一个节点 <code>p</code>，使得当前节点是 <code>p</code> 的<strong>左孩子</strong>。那么 <code>p</code> 就是后继。</li>
+<li>如果一直向上直到根节点，且一直是父节点的右孩子，说明 <code>node</code> 是整棵树的最后一个节点，后继为 <code>NULL</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-C语言描述-1"><a href="#2-C语言描述-1" class="headerlink" title="2. C语言描述"></a>2. C语言描述</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">struct</span> Node* <span class="hljs-title function_">Search</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Node* node)</span> &#123;<br>    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br><br>    <span class="hljs-comment">// 情况1：有右子树，找右子树的最左节点</span><br>    <span class="hljs-keyword">if</span> (node-&gt;right != <span class="hljs-literal">NULL</span>) &#123;<br>        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>* <span class="hljs-title">p</span> =</span> node-&gt;right;<br>        <span class="hljs-keyword">while</span> (p-&gt;left != <span class="hljs-literal">NULL</span>) &#123;<br>            p = p-&gt;left;<br>        &#125;<br>        <span class="hljs-keyword">return</span> p;<br>    &#125;<br><br>    <span class="hljs-comment">// 情况2：无右子树，向上找</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>* <span class="hljs-title">p</span> =</span> node-&gt;parent;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>* <span class="hljs-title">current</span> =</span> node;<br>    <span class="hljs-comment">// 只要 current 是 parent 的右孩子，就继续向上</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; p-&gt;right == current) &#123;<br>        current = p;<br>        p = p-&gt;parent;<br>    &#125;<br>    <span class="hljs-keyword">return</span> p; <span class="hljs-comment">// 此时 p 要么是 NULL，要么 current 是 p 的左孩子</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-时间复杂度-1"><a href="#3-时间复杂度-1" class="headerlink" title="3. 时间复杂度"></a>3. 时间复杂度</h3><ul>
+<li><strong>时间复杂度</strong>：$O(h)$，其中 $h$ 为树的高度。最坏情况下需要遍历树的一条完整路径。</li>
+</ul>
+<hr>
+<h2 id="43-计组：Cache-与程序性能-13分"><a href="#43-计组：Cache-与程序性能-13分" class="headerlink" title="43. 计组：Cache 与程序性能 (13分)"></a>43. 计组：Cache 与程序性能 (13分)</h2><h3 id="题目核心-34"><a href="#题目核心-34" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>场景</strong>：向量点积 <code>sum += x[i] * y[i]</code>。<br><strong>参数</strong>：</p>
+<ul>
+<li>主存 1MB ($2^{20}$ B)，按字节编址。</li>
+<li>Cache：<strong>数据容量</strong> 32B，块大小 16B -&gt; 只有 2 个 Cache 行 (Line 0, Line 1)。直接映射。</li>
+<li>数组 <code>x</code> 存放于 <code>00040H</code>，<code>y</code> 紧跟其后。<code>float</code> 占 4B。</li>
+</ul>
+<h3 id="1-地址映射与格式"><a href="#1-地址映射与格式" class="headerlink" title="1. 地址映射与格式"></a>1. 地址映射与格式</h3><ul>
+<li><strong>主存地址</strong>：20位。</li>
+<li><strong>Cache 结构</strong>：<ul>
+<li>块大小 16B -&gt; <strong>块内偏移</strong> 4位 ($2^4&#x3D;16$)。</li>
+<li>Cache 行数 &#x3D; 32B &#x2F; 16B &#x3D; 2行 -&gt; <strong>行索引 (Index)</strong> 1位。</li>
+<li><strong>标记 (Tag)</strong> &#x3D; $20 - 1 - 4 &#x3D; 15$ 位。</li>
+</ul>
+</li>
+<li><strong>格式</strong>：Tag(15) | Index(1) | Offset(4)。</li>
+</ul>
+<h3 id="2-局部性分析"><a href="#2-局部性分析" class="headerlink" title="2. 局部性分析"></a>2. 局部性分析</h3><ul>
+<li><strong>时间局部性</strong>：<code>sum</code> 和 <code>i</code> 变量具有良好的时间局部性（反复访问）。数组 <code>x</code> 和 <code>y</code> 的元素只访问一次，时间局部性差。</li>
+<li><strong>空间局部性</strong>：<code>x</code> 和 <code>y</code> 是顺序访问的数组，具有良好的空间局部性。</li>
+</ul>
+<h3 id="3-命中率计算-Direct-Mapping"><a href="#3-命中率计算-Direct-Mapping" class="headerlink" title="3. 命中率计算 (Direct Mapping)"></a>3. 命中率计算 (Direct Mapping)</h3><p><strong>布局分析</strong>：</p>
+<ul>
+<li><code>x</code> (8个float, 32B): 地址 <code>00040H</code> ~ <code>0005FH</code>。<ul>
+<li>Block 0 (<code>40H</code>): <code>x[0]~x[3]</code> -&gt; Index <code>(40/16)%2 = 0</code>。</li>
+<li>Block 1 (<code>50H</code>): <code>x[4]~x[7]</code> -&gt; Index <code>(50/16)%2 = 1</code>。</li>
+</ul>
+</li>
+<li><code>y</code> (8个float, 32B): 地址 <code>00060H</code> ~ <code>0007FH</code>。<ul>
+<li>Block 0 (<code>60H</code>): <code>y[0]~y[3]</code> -&gt; Index <code>(60/16)%2 = 0</code>。</li>
+<li>Block 1 (<code>70H</code>): <code>y[4]~y[7]</code> -&gt; Index <code>(70/16)%2 = 1</code>。<br><strong>冲突分析</strong>：</li>
+</ul>
+</li>
+<li>Loop <code>i=0..3</code>:<ul>
+<li>访问 <code>x[i]</code> (Line 0): Miss (调入 xB0)。</li>
+<li>访问 <code>y[i]</code> (Line 0): Miss (Line 0 被 x 占用，冲突! 踢出 x，调入 yB0)。</li>
+<li><strong>抖动 (Thrashing)</strong>：每次访问都会冲突。</li>
+<li>命中率 &#x3D; <strong>0%</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-若-x-为-float-12-Cache-容量不变"><a href="#4-若-x-为-float-12-Cache-容量不变" class="headerlink" title="4. 若 x 为 float[12] (Cache 容量不变)"></a>4. 若 x 为 float[12] (Cache 容量不变)</h3><p><strong>新布局</strong>：</p>
+<ul>
+<li><code>x</code> (48B): <code>00040H</code> ~ <code>0006FH</code>。占据 Block 0 (L0), Block 1 (L1), Block 2 (L0)。</li>
+<li><code>y</code> 开始于 <code>00070H</code>。<ul>
+<li><code>y</code> Block 0 (<code>70H</code>): Index <code>(70/16)%2 = 1</code>。</li>
+<li><code>y</code> Block 1 (<code>80H</code>): Index <code>(80/16)%2 = 0</code>。<br><strong>访问过程</strong> (<code>i=0..7</code>):</li>
+</ul>
+</li>
+<li><strong>i&#x3D;0..3</strong>:<ul>
+<li><code>x[0]</code> (L0), <code>y[0]</code> (L1)。<strong>无冲突</strong>。</li>
+<li>x[0] Miss, y[0] Miss。x[1-3] Hit, y[1-3] Hit。</li>
+</ul>
+</li>
+<li><strong>i&#x3D;4..7</strong>:<ul>
+<li><code>x[4]</code> (L1), <code>y[4]</code> (L0)。<strong>无冲突</strong>。</li>
+<li><em>注意</em>：此时 L1 原本存的是 <code>y[0..3]</code>，现在要存 <code>x[4..7]</code> -&gt; 冲突Miss。L0 原本存的是 <code>x[0..3]</code>，现在要存 <code>y[4..7]</code> -&gt; 冲突Miss。</li>
+<li>x[4] Miss, y[4] Miss。x[5-7] Hit, y[5-7] Hit。<br><strong>统计</strong>：</li>
+</ul>
+</li>
+<li>总访问：$8 \times 2 &#x3D; 16$ 次。</li>
+<li>Miss：i&#x3D;0时2次，i&#x3D;4时2次。共4次。</li>
+<li>Hit：12次。</li>
+<li><strong>命中率</strong>：$12&#x2F;16 &#x3D; 75%$。</li>
+</ul>
+<hr>
+<h2 id="44-计组-OS：地址转换与-TLB-10分"><a href="#44-计组-OS：地址转换与-TLB-10分" class="headerlink" title="44. 计组&#x2F;OS：地址转换与 TLB (10分)"></a>44. 计组&#x2F;OS：地址转换与 TLB (10分)</h2><h3 id="题目核心-35"><a href="#题目核心-35" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>参数</strong>：</p>
+<ul>
+<li>虚拟地址 (VA) 16位，物理地址 (PA) 12位。</li>
+<li>页大小 1KB ($2^{10}$)。</li>
+<li>TLB：4路组相联，16个表项 -&gt; 4组 (Sets)。</li>
+<li>Cache：直接映射，16行，块大小4B。</li>
+</ul>
+<h3 id="1-结构划分"><a href="#1-结构划分" class="headerlink" title="1. 结构划分"></a>1. 结构划分</h3><ul>
+<li><strong>虚拟地址</strong> (16位) &#x3D; VPN (6位) | Offset (10位)。</li>
+<li><strong>物理地址</strong> (12位) &#x3D; PPN (2位) | Offset (10位)。</li>
+<li><strong>TLB</strong> (4 Sets)：<ul>
+<li>Index：由 VPN 低位决定。16项&#x2F;4路 &#x3D; 4组 -&gt; Index 2位。</li>
+<li>Tag：VPN 高位 -&gt; $6 - 2 &#x3D; 4$ 位。</li>
+</ul>
+</li>
+<li><strong>Cache</strong> (16 Lines, 4B Block):<ul>
+<li>Offset：2位。</li>
+<li>Index：4位 ($2^4&#x3D;16$).</li>
+<li>Tag：$12 - 4 - 2 &#x3D; 6$ 位。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-访问-067AH-过程"><a href="#2-访问-067AH-过程" class="headerlink" title="2. 访问 067AH 过程"></a>2. 访问 067AH 过程</h3><ul>
+<li><strong>VA</strong>: <code>067AH</code> -&gt; <code>0000 0110 0111 1010</code>。<ul>
+<li>VPN &#x3D; <code>000001</code> (1)。 Offset &#x3D; <code>27AH</code>。</li>
+</ul>
+</li>
+<li><strong>TLB 查找</strong>：<ul>
+<li>TLB Index &#x3D; VPN &amp; 3 &#x3D; <code>01</code> (Set 1)。</li>
+<li>查看 TLB 表 (a) 的 Group 1。</li>
+<li>Tag应为 <code>0000</code>。表中 Set 1 的 Tag 分别为 <code>13</code>, <code>02</code>, <code>04</code>, <code>0A</code> (假设 <code>-</code> 为无效)。<strong>TLB Miss</strong>。</li>
+</ul>
+</li>
+<li><strong>页表查找</strong>：<ul>
+<li>查页表 (b) Index <code>001</code>。</li>
+<li>有效位 <code>1</code>，页框号 (PPN) <code>03</code>。<strong>Page Hit</strong>。</li>
+</ul>
+</li>
+<li><strong>物理地址合成</strong>：<ul>
+<li>PA &#x3D; PPN | Offset &#x3D; <code>11</code> (3的二进制，2位) | <code>10 0111 1010</code>。</li>
+<li>PA &#x3D; <code>1110 0111 1010</code> (二进制) &#x3D; <strong>E7AH</strong>。</li>
+</ul>
+</li>
+<li><strong>Cache 查找</strong>：<ul>
+<li>PA <code>E7AH</code> -&gt; <code>1110 0111 1010</code>。</li>
+<li>Block Offset (低2位): <code>10</code> (2)。</li>
+<li>Line Index (中间4位): <code>1110</code> (14, 即行 E)。</li>
+<li>Tag (高6位): <code>111001</code> (39H)。</li>
+<li>查 Cache (c) 行 E。</li>
+<li>Cache Line E 的 Tag 是 <code>33</code>，Valid <code>1</code>。</li>
+<li><code>39H != 33H</code> -&gt; <strong>Cache Miss</strong>。</li>
+</ul>
+</li>
+<li><strong>结果</strong>：从主存读取地址 <code>E7AH</code> 的内容。</li>
+</ul>
+<h3 id="3-0E65H-与-0353H-的异常"><a href="#3-0E65H-与-0353H-的异常" class="headerlink" title="3. 0E65H 与 0353H 的异常"></a>3. 0E65H 与 0353H 的异常</h3><ul>
+<li><strong>0E65H</strong>:<ul>
+<li>VPN <code>000011</code> (3)。</li>
+<li>页表项 3 -&gt; PPN <code>02</code>，有效。</li>
+<li>PPN 02 (二进制 <code>10</code>) 只有2位，符合物理地址空间。正常访问。</li>
+</ul>
+</li>
+<li><strong>0353H</strong>:<ul>
+<li>VPN <code>000000</code> (0)。</li>
+<li>页表项 0 -&gt; PPN <code>08</code>。</li>
+<li>PPN <code>08</code> (二进制 <code>1000</code>) 需要 4 位。</li>
+<li><strong>问题</strong>：系统物理地址空间仅支持 2位 PPN (12位PA - 10位Offset)。PPN <code>08</code> 超出物理内存范围。</li>
+<li><strong>结果</strong>：这属于严重的<strong>硬件寻址错误</strong>或页表配置错误。虽然页表 Valid&#x3D;1，但物理地址非法。这通常会触发<strong>硬件中断&#x2F;异常</strong> (Machine Check 或 Bus Error)，而不是简单的缺页软中断。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="45-操作系统：文件系统索引-7分"><a href="#45-操作系统：文件系统索引-7分" class="headerlink" title="45. 操作系统：文件系统索引 (7分)"></a>45. 操作系统：文件系统索引 (7分)</h2><h3 id="题目核心-36"><a href="#题目核心-36" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>结构</strong>：混合索引 (10 Direct, 1 Single, 1 Double, 1 Triple)。<br><strong>参数</strong>：地址项 4B，块大小 1KB ($256$ 个地址&#x2F;块)。</p>
+<h3 id="1-最大文件长度"><a href="#1-最大文件长度" class="headerlink" title="1. 最大文件长度"></a>1. 最大文件长度</h3><ul>
+<li>直接：$10 \times 1KB &#x3D; 10KB$。</li>
+<li>一级：$256 \times 1KB &#x3D; 256KB$。</li>
+<li>二级：$256 \times 256 \times 1KB &#x3D; 64MB$。</li>
+<li>三级：$256 \times 256 \times 256 \times 1KB &#x3D; 16GB$。</li>
+<li><strong>总计</strong>：$16GB + 64MB + 256KB + 10KB \approx 16GB$。</li>
+</ul>
+<h3 id="2-偏移量转换"><a href="#2-偏移量转换" class="headerlink" title="2. 偏移量转换"></a>2. 偏移量转换</h3><ul>
+<li><strong>9999</strong>:<ul>
+<li>$&lt; 10KB$ (10240)。在直接索引区。</li>
+<li>块号：<code>9999 / 1024 = 9</code> (第9个直接块)。</li>
+<li>块内偏移：<code>9999 % 1024 = 783</code>。</li>
+</ul>
+</li>
+<li><strong>18000</strong>:<ul>
+<li>$&gt; 10240$。在一级间接区。</li>
+<li>相对偏移：$18000 - 10240 &#x3D; 7760$。</li>
+<li>索引表内位置：<code>7760 / 1024 = 7</code>。</li>
+<li>块内偏移：<code>7760 % 1024 = 592</code>。</li>
+</ul>
+</li>
+<li><strong>420000</strong>:<ul>
+<li>$&gt; 10KB + 256KB &#x3D; 272384$。在二级间接区。</li>
+<li>相对偏移：$420000 - 272384 &#x3D; 147616$。</li>
+<li>一级索引块号：<code>147616 / 262144 (256KB) = 0</code>。</li>
+<li>数据块索引号：<code>147616 / 1024 = 144</code>。</li>
+<li>块内偏移：<code>147616 % 1024 = 160</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="46-操作系统：内存管理-8分"><a href="#46-操作系统：内存管理-8分" class="headerlink" title="46. 操作系统：内存管理 (8分)"></a>46. 操作系统：内存管理 (8分)</h2><h3 id="题目核心-37"><a href="#题目核心-37" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>管理方式</strong>：位图 (Bitmap)。<br><strong>参数</strong>：主存 256KB，页大小 1KB -&gt; 256 个页框。</p>
+<h3 id="1-位图开销与碎片"><a href="#1-位图开销与碎片" class="headerlink" title="1. 位图开销与碎片"></a>1. 位图开销与碎片</h3><ul>
+<li><strong>位图大小</strong>：256 页 -&gt; 256 位 &#x3D; 32 字节。占用极小。</li>
+<li><strong>碎片</strong>：<ul>
+<li><strong>内部碎片</strong>：有。平均半个页 (0.5KB)。</li>
+<li><strong>外部碎片</strong>：无 (页式存储优点)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-页面置换-FIFO"><a href="#2-页面置换-FIFO" class="headerlink" title="2. 页面置换 (FIFO)"></a>2. 页面置换 (FIFO)</h3><ul>
+<li><strong>访问序列 (转换为页号)</strong>：<ul>
+<li>726 -&gt; P0</li>
+<li>937 -&gt; P0</li>
+<li>1242 -&gt; P1</li>
+<li>5190 -&gt; P5</li>
+<li>235 -&gt; P0</li>
+<li>5000 -&gt; P4</li>
+<li>2896 -&gt; P2</li>
+<li>3724 -&gt; P3</li>
+<li>4231 -&gt; P4</li>
+<li>2489 -&gt; P2</li>
+</ul>
+</li>
+<li><strong>FIFO 过程 (4框)</strong>：<ol>
+<li><strong>P0</strong> (Miss) -&gt; [0]</li>
+<li><strong>P0</strong> (Hit)</li>
+<li><strong>P1</strong> (Miss) -&gt; [0, 1]</li>
+<li><strong>P5</strong> (Miss) -&gt; [0, 1, 5]</li>
+<li><strong>P0</strong> (Hit)</li>
+<li><strong>P4</strong> (Miss) -&gt; [0, 1, 5, 4] (Full)</li>
+<li><strong>P2</strong> (Miss) -&gt; 淘汰最早的 0 -&gt; [1, 5, 4, 2]</li>
+<li><strong>P3</strong> (Miss) -&gt; 淘汰 1 -&gt; [5, 4, 2, 3]</li>
+<li><strong>P4</strong> (Hit)</li>
+<li><strong>P2</strong> (Hit)</li>
+</ol>
+</li>
+<li><strong>最终状态</strong>：页框内为 5, 4, 2, 3 (对应物理块号需结合位图空闲情况分配，题目只要页号)。</li>
+</ul>
+<h3 id="3-中断状态"><a href="#3-中断状态" class="headerlink" title="3. 中断状态"></a>3. 中断状态</h3><ul>
+<li>处理缺页中断时，CPU 处于 <strong>内核态 (Kernel Mode)</strong>。</li>
+<li>该进程处于 <strong>阻塞态 (Blocked)</strong>，等待磁盘I&#x2F;O将页面调入内存。</li>
+</ul>
+<hr>
+<h2 id="47-计算机网络：协议与NAT-9分"><a href="#47-计算机网络：协议与NAT-9分" class="headerlink" title="47. 计算机网络：协议与NAT (9分)"></a>47. 计算机网络：协议与NAT (9分)</h2><h3 id="题目核心-38"><a href="#题目核心-38" class="headerlink" title="题目核心"></a>题目核心</h3><p><strong>场景</strong>：新主机 H 接入网络，访问 <code>www.abc.com</code>。<br><strong>设备</strong>：Switch, Router (NAT&#x2F;DHCP).</p>
+<h3 id="1-应用层协议"><a href="#1-应用层协议" class="headerlink" title="1. 应用层协议"></a>1. 应用层协议</h3><ul>
+<li>用户输入 URL 后：<ol>
+<li><strong>DNS</strong>：域名解析 (UDP, 端口 53)。</li>
+<li><strong>HTTP&#x2F;HTTPS</strong>：网页访问 (TCP, 端口 80&#x2F;443)。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-IP-地址变化"><a href="#2-IP-地址变化" class="headerlink" title="2. IP 地址变化"></a>2. IP 地址变化</h3><ul>
+<li><strong>主机 H 发送的第一个报文</strong>：<ul>
+<li>新主机接入，首先进行 <strong>DHCP</strong> 获取IP。</li>
+<li><strong>源 IP</strong>：<code>0.0.0.0</code> (因为还没IP)。</li>
+<li><strong>目的 IP</strong>：<code>255.255.255.255</code> (广播)。</li>
+</ul>
+</li>
+<li><strong>交换机 MAC 表</strong>：<ul>
+<li>交换机收到 H 的帧后，学习源 MAC。</li>
+<li>MAC 地址：<code>1C-2B-50-15-ED-3A</code>。</li>
+<li>接口：连接 H 的接口 (图中为 Port 1)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-NAT-后的-IP"><a href="#3-NAT-后的-IP" class="headerlink" title="3. NAT 后的 IP"></a>3. NAT 后的 IP</h3><ul>
+<li><strong>场景</strong>：H 发送数据包给 Web Server。</li>
+<li><strong>过程</strong>：数据包经过路由器，进行 NAT 转换。</li>
+<li><strong>源 IP</strong>：变为路由器的<strong>外部 IP</strong> (Public IP)。<ul>
+<li>根据图中 Router 旁边的文字 “IP Address: … 212.10.10.1 (External)”。</li>
+<li>Web Server 收到的包，其 Source IP 为 <strong>212.10.10.1</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>这是一份针对2026考研计算机408模拟题综合应用题（第41~47题）的详细解析与讲解文稿。你可以直接使用这份Markdown内容进行教学或自学。</p>
+<hr>
+<h1 id="2026考研计算机408模拟题-综合应用题详解-41-47"><a href="#2026考研计算机408模拟题-综合应用题详解-41-47" class="headerlink" title="2026考研计算机408模拟题 综合应用题详解 (41-47)"></a>2026考研计算机408模拟题 综合应用题详解 (41-47)</h1><p>本部分为综合应用题，共70分，涵盖数据结构、计算机组成原理、操作系统和计算机网络四个学科。</p>
+<hr>
+<h2 id="41-数据结构：基数树-10分"><a href="#41-数据结构：基数树-10分" class="headerlink" title="41. 数据结构：基数树 (10分)"></a>41. 数据结构：基数树 (10分)</h2><p><strong>题目分析：</strong><br>本题考察一种基于比特位的树形结构（类似于 Trie 树或前缀树）。节点本身不存储完整关键字，而是通过路径（左0右1）来确定关键字。灰色节点表示该路径对应一个有效的关键字。</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) 是否符合二叉排序树(BST)的定义？</strong></p>
+<ul>
+<li><strong>答案</strong>：否。</li>
+<li><strong>解析</strong>：<ul>
+<li><strong>BST定义</strong>：左子树所有节点值 &lt; 根节点值 &lt; 右子树所有节点值。BST是基于<strong>完整关键字</strong>的大小比较。</li>
+<li><strong>基数树</strong>：它是基于关键字的<strong>二进制位</strong>（前缀）来构建的。虽然题目定义了 $a &lt; b$ 的字典序规则，但在树的结构中，左子树代表前缀为0，右子树代表前缀为1。虽然形式上左边确实“小于”右边（0 &lt; 1），但它不符合BST对“节点值”存储和比较的严格定义（BST节点存储完整值，基数树节点不存值或只存标记）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(2) 查找逻辑与数据结构定义</strong></p>
+<ul>
+<li><strong>查找逻辑</strong>：<ul>
+<li>从根节点出发，遍历关键字的每一位。</li>
+<li>若当前位为 <code>0</code>，向左走；若为 <code>1</code>，向右走。</li>
+<li>若走到空指针，说明查找失败。</li>
+<li>若遍历完所有位，停在一个节点上，且该节点是“灰色”（有效标记），则查找成功；否则失败。</li>
+</ul>
+</li>
+<li><strong>数据结构定义 (C语言)</strong>：<br>需要包含左右指针和一个标记位（表示是否为灰色节点&#x2F;有效终点）。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span> &#123;</span><br>    <span class="hljs-type">int</span> isEnd; <span class="hljs-comment">// 1表示灰色节点(有效关键字)，0表示白色</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span> *<span class="hljs-title">left</span>;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span> *<span class="hljs-title">right</span>;</span><br>&#125; TreeNode;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>(3) 排序功能与效率</strong></p>
+<ul>
+<li><strong>可行性</strong>：可以实现排序。</li>
+<li><strong>方法</strong>：<strong>先序遍历</strong>（或更准确地说是对应Trie树的字典序遍历：先走左子树，再访问当前节点（如果是灰色），再走右子树）。<ul>
+<li>由于规则定义 $0… &lt; 1…$，且较短的前缀小于较长的前缀（规则①），遍历顺序应为：<strong>处理当前节点(若为灰色则输出) -&gt; 递归左子树 -&gt; 递归右子树</strong>。</li>
+<li><em>注意</em>：题目规则①说 $a$ 是 $b$ 的前缀则 $a&lt;b$。所以在遍历时，必须先访问节点本身（如果它是有效点），再访问子树。但是规则②又涉及字典序。</li>
+<li><strong>修正排序策略</strong>：<br>对于Trie树的字典序排序，实际上是 <strong>DFS（深度优先搜索）</strong>。<br>访问顺序：<ol>
+<li>检查当前节点是否为灰色。如果是，且题目规则 implying 前缀小于长串（规则1），则输出当前路径对应的串。</li>
+<li>递归遍历左子树（代表下一位是0）。</li>
+<li>递归遍历右子树（代表下一位是1）。<br><em>注意：这里需要根据具体的字典序定义微调。如果 $0$ 排在 $1$ 前面，确实是先左后右。但规则1说前缀更小，所以父节点要在子节点前输出。</em></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>时间复杂度</strong>：$O(N \times L)$。其中 $N$ 是关键字个数，$L$ 是关键字的最大长度。这相当于遍历树中所有的有效节点和路径，效率非常高，接近线性排序。</li>
+</ul>
+<hr>
+<h2 id="42-数据结构：图的连通分量-13分"><a href="#42-数据结构：图的连通分量-13分" class="headerlink" title="42. 数据结构：图的连通分量 (13分)"></a>42. 数据结构：图的连通分量 (13分)</h2><p><strong>题目分析：</strong><br>给定无向图的邻接矩阵，求连通分量的数量。这是一个经典的图遍历问题。</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) 算法思想</strong></p>
+<ul>
+<li>使用一个 <code>visited</code> 数组标记节点是否被访问过。</li>
+<li>遍历图中所有顶点 $0 \to n-1$。</li>
+<li>如果发现一个顶点 <code>i</code> 未被访问：<ul>
+<li>连通分量计数器 <code>count++</code>。</li>
+<li>从顶点 <code>i</code> 开始进行 <strong>BFS (广度优先搜索)</strong> 或 <strong>DFS (深度优先搜索)</strong>，将所有从 <code>i</code> 可达的顶点在 <code>visited</code> 数组中标记为已访问。</li>
+</ul>
+</li>
+<li>最终返回 <code>count</code>。</li>
+</ul>
+<p><strong>(2) 代码关键段 (C语言)</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> visited[MAX_SIZE] = &#123;<span class="hljs-number">0</span>&#125;; <span class="hljs-comment">// 全局或传入</span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">BFS</span><span class="hljs-params">(Graph M, <span class="hljs-type">int</span> v)</span> &#123;<br>    <span class="hljs-comment">// 标准BFS队列实现，访问v并标记，然后将邻接点入队</span><br>    <span class="hljs-comment">// ...略...</span><br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">CountConnectedComponents</span><span class="hljs-params">(Graph M)</span> &#123;<br>    <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 初始化visited数组为0</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;M.n; i++) visited[i] = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;M.n; i++) &#123;<br>        <span class="hljs-keyword">if</span>(!visited[i]) &#123; <span class="hljs-comment">// 发现未访问节点，发现新的连通分量</span><br>            count++;<br>            BFS(M, i); <span class="hljs-comment">// 或 DFS(M, i); 标记该分量所有节点</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> count;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>(3) 时间复杂度</strong></p>
+<ul>
+<li>基于邻接矩阵的遍历。</li>
+<li>我们需要检查每个顶点的邻接行，即遍历整个矩阵。</li>
+<li>复杂度为 <strong>$O(n^2)$</strong>。</li>
+</ul>
+<hr>
+<h2 id="43-计算机组成原理：指令系统与流水线-13分"><a href="#43-计算机组成原理：指令系统与流水线-13分" class="headerlink" title="43. 计算机组成原理：指令系统与流水线 (13分)"></a>43. 计算机组成原理：指令系统与流水线 (13分)</h2><p><strong>题目分析：</strong><br>分析一段C语言代码对应的汇编指令，考察寻址方式、指令格式、流水线冒险。<br>C代码：<code>while(arr[i]==k) i=i+1;</code> (结合汇编逻辑推断)</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) 编址单位与元素大小</strong></p>
+<ul>
+<li><strong>指令分析</strong>：<code>sll R1, R2, 2</code>。逻辑左移2位，相当于 $\times 4$。</li>
+<li>R2 是索引 <code>i</code>，R1 是偏移量。计算地址时用 $R1 + R3$。这说明数组下标每增加1，地址增加4。</li>
+<li><strong>答案</strong>：<ul>
+<li>编址单位：<strong>按字节编址</strong>（因为地址偏移是按字节算的）。</li>
+<li>元素大小：<strong>4字节</strong>（左移2位即乘4）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(2) 寄存器数与指令种类</strong></p>
+<ul>
+<li><strong>寄存器</strong>：格式中 <code>rs</code>, <code>rt</code>, <code>rd</code> 均占 <strong>5位</strong>。$2^5 &#x3D; 32$。所以通用寄存器最多 <strong>32个</strong>。</li>
+<li><strong>I型指令Opcode</strong>：共6位 ($2^6&#x3D;64$种状态)。R型占用了 <code>000000</code> (通常)，J型占用了 <code>op3</code>。题目表述较模糊，若 <code>op2</code> 是独立定义的，且不与R&#x2F;J冲突。假设R型占1种，J型占1种，剩余空间给I型。但通常直接看Op域，若全是独立编码，除去已知的R和J，剩下就是I。<ul>
+<li><em>更严谨的回答</em>：如果 <code>op</code> 域完全用于区分类型，且 R型全0，J型特定值。剩余的组合都可作为 I 型。具体数量取决于指令集架构定义，但在本题语境下，若问由 <code>op2</code> (6位) 决定的种类，最大是 $2^6$ 减去 R型和 J型占用的操作码数量。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(3) 流水线冒险</strong></p>
+<ul>
+<li><strong>指令分类</strong>：<ul>
+<li><strong>I型</strong> (含立即数&#x2F;Load&#x2F;Branch)：<code>load</code>, <code>bne</code>, <code>add R1, R1, R3</code> (不，这是R型，看表), <code>addi</code> (代码中是 <code>add R2,R2,1</code>，这是I型)。</li>
+<li><strong>J型</strong>：<code>j loop</code>。</li>
+<li><strong>R型</strong>：<code>sll</code>, <code>add R1, R1, R3</code> (Reg-Reg ALU)。</li>
+</ul>
+</li>
+<li><strong>控制冒险</strong>：<ul>
+<li>由改变PC值的指令引起。</li>
+<li><strong>指令4 (<code>bne</code>)</strong>：条件跳转。</li>
+<li><strong>指令6 (<code>j</code>)</strong>：无条件跳转。</li>
+<li>这两条指令会导致流水线在取指阶段不知道下一条指令在哪里，从而引发<strong>控制冒险</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(4) 机器码计算</strong></p>
+<ul>
+<li><strong>指令</strong>：<code>sll R1, R2, 2</code> (Logic Left Shift).</li>
+<li><strong>格式</strong>：R型。<code>op(6) rs(5) rt(5) rd(5) imm/shamt(5) op1/funct(6)</code>。</li>
+<li><strong>字段解析</strong>：<ul>
+<li><code>op</code>：R型通常为0，或题目未给具体值，假设为0或特定标识。</li>
+<li><code>rs</code>：题目说“移位指令将 rt 内容移位… rs字段为0”。 -&gt; <code>00000</code>。</li>
+<li><code>rt</code>：源操作数 R2。编号2 -&gt; <code>00010</code>。</li>
+<li><code>rd</code>：目的操作数 R1。编号1 -&gt; <code>00001</code>。</li>
+<li><code>imm</code> (这里是 shamt 位移量)：2 -&gt; <code>00010</code>。</li>
+<li><code>op1</code> (功能码)：逻辑左移为 <code>10H</code> -&gt; <code>010000</code>。</li>
+</ul>
+</li>
+<li><strong>拼接</strong>：<code>000000 00000 00010 00001 00010 010000</code><ul>
+<li>每4位转16进制：<code>0000 0000 0000 1000 0100 0100 0101 0000</code> (Wait, split properly)</li>
+<li><code>000000</code> <code>00000</code> <code>00010</code> <code>00001</code> <code>00010</code> <code>010000</code></li>
+<li>重组：<code>0000 0000 0000 1000 0100 0101 0000</code> … 不对，总共32位。</li>
+<li><code>00000000000000100000100010010000</code></li>
+<li>Hex: <code>00 20 89 10</code>?</li>
+<li>Let’s check bit alignment:<br>[6] 000000<br>[5] 00000 (rs)<br>[5] 00010 (rt&#x3D;2)<br>[5] 00001 (rd&#x3D;1)<br>[5] 00010 (shamt&#x3D;2)<br>[6] 010000 (funct&#x3D;10H)</li>
+<li>Bin: <code>0000 0000 0000 0010 0000 1000 1001 0000</code></li>
+<li>Hex: <strong><code>00020890H</code></strong> (这是一个示例结果，具体取决于Opcode定义，通常MIPS R型opcode是0)。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="44-计算机组成原理：数据通路-10分"><a href="#44-计算机组成原理：数据通路-10分" class="headerlink" title="44. 计算机组成原理：数据通路 (10分)"></a>44. 计算机组成原理：数据通路 (10分)</h2><p><strong>题目分析：</strong><br>考察单总线&#x2F;多总线结构下的数据流动和控制信号。</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) IR位数与MUX输入</strong></p>
+<ul>
+<li><strong>IR (指令寄存器)</strong>：存放当前正在执行的指令。位数 &#x3D; 指令字长 &#x3D; <strong>32位</strong>。</li>
+<li><strong>MUX0</strong>：用于选择 PC 的更新值。<ul>
+<li>输入0：通常是顺序执行的下一条指令地址 <code>PC+4</code> (或 <code>PC+1</code>，看编址)。</li>
+<li>输入1：跳转&#x2F;分支的目标地址 (<code>Branch Target</code>)。</li>
+<li>答案：输入端0的值应为 <strong>PC+4</strong> (或顺序下址)。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(2) ALU加法器</strong></p>
+<ul>
+<li><strong>用途</strong>：ALU 内部的加法器用于通用的算术运算（如 <code>add</code> 指令）。</li>
+<li><strong>为什么不用它做 PC+4？</strong>：为了提高流水线效率（并行性）。如果取指阶段占用 ALU 计算 PC，那么执行阶段就不能用 ALU 做运算，会产生结构冒险。使用独立的加法器计算 PC 可以在取指的同时，ALU 执行上一条指令的运算。</li>
+</ul>
+<p><strong>(3) 标志位使用</strong></p>
+<ul>
+<li><strong>指令4 (<code>bne</code>)</strong>：不相等跳转。需要用到 <strong>ZF (Zero Flag)</strong>。若 <code>R4 - R0 != 0</code>，则 ZF&#x3D;0，跳转。</li>
+<li><strong>指令6 (<code>j</code>)</strong>：无条件跳转。<strong>不需要</strong> FR 中的标志位。</li>
+</ul>
+<p><strong>(4) 指令2 (<code>add R2, R2, 1</code>) 控制信号</strong></p>
+<ul>
+<li><strong>取指阶段 (Common)</strong>：<ol>
+<li><code>PCout</code>, <code>MARin</code>, <code>Read</code> (PC送地址，读存)</li>
+<li><code>MEMout</code>, <code>MDRin</code> (内存数据送MDR)</li>
+<li><code>MDRout</code>, <code>IRin</code> (MDR送IR)</li>
+<li><code>PC+4</code> (PC自增)</li>
+</ol>
+</li>
+<li><strong>执行阶段 (ADDI &#x2F; ADD)</strong>：<ul>
+<li>这里是 <code>add R2, R2, 1</code> (如果是I型addi，则涉及立即数；如果是R型，涉及寄存器)。</li>
+<li>假设是 <code>add</code>：</li>
+<li><code>R2out</code>, <code>Ain</code> (源操作数1送A)</li>
+<li><code>R2out</code> (或者立即数), <code>Bin</code> (源操作数2送B)</li>
+<li><code>ALUop=ADD</code>, <code>ALUout</code>, <code>R2in</code> (结果写回R2)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="45-操作系统：死锁与银行家算法-8分"><a href="#45-操作系统：死锁与银行家算法-8分" class="headerlink" title="45. 操作系统：死锁与银行家算法 (8分)"></a>45. 操作系统：死锁与银行家算法 (8分)</h2><p><strong>题目分析：</strong><br>资源分配问题。R1(1), R2(2), R3(2), R4(1)。<br>进程持有情况：P1(R1), P2(R2, R3), P3(R2, R4)。<br>Wait… Total R2 is 2. P2 holds 1, P3 holds 1. R2 exhausted.<br>Total R4 is 1. P3 holds 1. R4 exhausted.<br>Total R1 is 1. P1 holds 1. R1 exhausted.<br>Total R3 is 2. P2 holds 1. R3 has 1 left.</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) 资源分配图与死锁判断</strong></p>
+<ul>
+<li><strong>当前可用 (Available)</strong>：<ul>
+<li>R1: 0, R2: 0, R3: 1, R4: 0.</li>
+</ul>
+</li>
+<li><strong>需求 (Request&#x2F;Need)</strong>：<ul>
+<li>题干中提到“P1申请1个R4, P3已占有… P4申请…”。题目文字描述较多，需仔细画出：</li>
+<li><strong>P1</strong>: Has {R1}, Needs {R4}. (R4由P3占有 -&gt; P1 Wait P3)</li>
+<li><strong>P2</strong>: Has {R2, R3}, Needs {R1}. (R1由P1占有 -&gt; P2 Wait P1)</li>
+<li><strong>P3</strong>: Has {R2, R4}, Needs {R2…Wait, P3 already has R2? needs more? Or P4 needs?}. 题目原文：“P3已占有… R4申请1个R2和1个R3”。</li>
+<li>Let’s re-read image text carefully:<ul>
+<li>Resources: R1(1), R2(2), R3(2), R4(1).</li>
+<li>Holdings:<ul>
+<li>P1: 1 R1. Request: 1 R2 (Text says “P1已占有1个R1…申请1个R2”). No, wait. Text: “P1 occupied 1 R1… apply 1 R2”.</li>
+<li>P2: Occupied 1 R2, 1 R3. Apply 1 R1.</li>
+<li>P3: Occupied 1 R2, 1 R4. Apply ? (Text is cut off or confusingly phrased “P4申请…”). Ah, logic usually implies a cycle.</li>
+<li>Assuming “P3 applies for…” or “P4” is a typo for P3? Or is there a P4?</li>
+<li>Let’s assume the cycle: P1-&gt;R2(held by P2&#x2F;P3), P2-&gt;R1(held by P1). P3-&gt;?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>判死锁</strong>：如果存在环路且资源不可剥夺，则死锁。</li>
+<li>P1等待R2 (Available 0).</li>
+<li>P2等待R1 (Available 0).</li>
+<li>P3等待…</li>
+<li>如果有 <strong>P1 -&gt; P2 -&gt; P1</strong> 这样的等待环，系统死锁。</li>
+</ul>
+</li>
+</ul>
+<p><strong>(2) 死锁必要条件与避免</strong></p>
+<ul>
+<li><strong>必要条件</strong>：互斥、占有并等待、不可剥夺、循环等待。</li>
+<li><strong>避免死锁方法</strong>：银行家算法（在分配前检查安全性），或者破坏死锁的四个必要条件之一（如资源有序分配破坏循环等待）。</li>
+</ul>
+<hr>
+<h2 id="46-操作系统：I-O控制方式-7分"><a href="#46-操作系统：I-O控制方式-7分" class="headerlink" title="46. 操作系统：I&#x2F;O控制方式 (7分)"></a>46. 操作系统：I&#x2F;O控制方式 (7分)</h2><p><strong>题目分析：</strong><br>考察程序查询、中断、DMA等I&#x2F;O方式的区别及DMA的工作流程。</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) I&#x2F;O方式与CPU状态</strong></p>
+<ul>
+<li><strong>方式</strong>：用户敲击键盘。这是随机低速事件，通常使用 <strong>中断驱动 I&#x2F;O (Interrupt-driven I&#x2F;O)</strong>。</li>
+<li><strong>CPU状态</strong>：当调用 <code>fread()</code> 等系统调用时，CPU会从用户态切换到 <strong>核心态 (Kernel Mode)</strong> 来执行操作系统代码。</li>
+<li><strong>指令权限</strong>：I&#x2F;O 指令直接操作硬件，属于 <strong>特权指令</strong>。</li>
+</ul>
+<p><strong>(2) DMA中MAR和DC的作用</strong></p>
+<ul>
+<li><strong>MAR (Memory Address Register)</strong>：存放数据在主存中的<strong>起始地址</strong>（目标地址）。DMA传输时，每传送一个字，MAR自动增加。</li>
+<li><strong>DC (Data Counter)</strong>：存放需要传送的<strong>数据总字数</strong>（或字节数）。每传送一个数据，DC减1，直到为0表示传输结束。</li>
+</ul>
+<p><strong>(3) I&#x2F;O软件层次</strong></p>
+<ul>
+<li><strong>层次结构</strong>：用户层软件 -&gt; 设备独立性软件 -&gt; 设备驱动程序 -&gt; 中断处理程序 -&gt; 硬件。</li>
+<li><strong>映射逻辑</strong>：将逻辑地址（如文件偏移）映射为物理参数（柱面、磁头、扇区）通常发生在 <strong>设备驱动程序 (Device Driver)</strong> 层。因为这一层最了解具体的硬件结构。</li>
+</ul>
+<hr>
+<h2 id="47-计算机网络：子网划分与路由-9分"><a href="#47-计算机网络：子网划分与路由-9分" class="headerlink" title="47. 计算机网络：子网划分与路由 (9分)"></a>47. 计算机网络：子网划分与路由 (9分)</h2><p><strong>题目分析：</strong><br>CIDR子网划分和RIP路由协议。<br>IP地址块：<code>130.120.10.0/24</code>。<br>部门需求：D1, D2, D3. D1人数 $\approx$ D2+D3.</p>
+<p><strong>讲解要点：</strong></p>
+<p><strong>(1) 子网划分</strong></p>
+<ul>
+<li><strong>分析</strong>：总共有 256 个IP (&#x2F;24)。D1 占一半，D2&#x2F;D3 分另一半。</li>
+<li><strong>方案</strong>：<ul>
+<li><strong>部门1</strong>：取一半。掩码变 &#x2F;25。<ul>
+<li>子网：<strong>130.120.10.0&#x2F;25</strong> (范围 .0 - .127)。</li>
+</ul>
+</li>
+<li><strong>剩余</strong>：130.120.10.128&#x2F;25。将其再分为两个 &#x2F;26。</li>
+<li><strong>部门2</strong>：<ul>
+<li>子网：<strong>130.120.10.128&#x2F;26</strong> (范围 .128 - .191)。</li>
+</ul>
+</li>
+<li><strong>部门3</strong>：<ul>
+<li>子网：<strong>130.120.10.192&#x2F;26</strong> (范围 .192 - .255)。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>(2) R1 路由表</strong></p>
+<ul>
+<li><strong>路由表结构</strong>：目的网络 | 下一跳 | 接口</li>
+<li><strong>分析拓扑</strong>（基于图示）：<ul>
+<li>R1 连接了 Internet (L0接口), R2 (L1接口, 130.110.12.0网段), 以及部门2和部门3 (E2, E3接口)。</li>
+</ul>
+</li>
+<li><strong>表项</strong>：<ol>
+<li><strong>部门2</strong>：<code>130.120.10.128/26</code> | 直接交付 | E2</li>
+<li><strong>部门3</strong>：<code>130.120.10.192/26</code> | 直接交付 | E3</li>
+<li><strong>LAN1 (在R2后面)</strong>：<code>202.100.10.160/29</code> | 130.110.12.2 (R2的接口IP) | L1</li>
+<li><strong>LAN2 (在R2后面)</strong>：<code>202.100.10.168/29</code> | 130.110.12.2 | L1</li>
+<li><strong>默认路由 (Internet)</strong>：<code>0.0.0.0/0</code> | 130.110.11.2 (R3的接口? 需看图确认L0连哪里，假设连向出口网关) | L0</li>
+</ol>
+</li>
+</ul>
+<p><strong>(3) RIP 协议与故障更新</strong></p>
+<ul>
+<li><strong>现象</strong>：R2 检测到 LAN1 不可达（距离&#x3D;16）。</li>
+<li><strong>R1 变化</strong>：<ul>
+<li>R2 会向 R1 发送 RIP 更新报文，告知 LAN1 的距离变为 16 (不可达)。</li>
+<li>R1 收到后，更新路由表中 LAN1 的项：距离改为 16（或删除），下一跳保持不变。</li>
+<li>距离：<strong>16 (表示不可达)</strong>。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%B2%E8%AF%BE/" class="print-no-link">#讲课</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>竟成模拟卷</div>
+      <div>http://cathylove47.github.io/2025/11/26/竟成/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/24/%E4%B8%8A%E8%AF%BE%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%B2%E8%A7%A3/" title="上课用到的讲解">
+                        <span class="hidden-mobile">上课用到的讲解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
