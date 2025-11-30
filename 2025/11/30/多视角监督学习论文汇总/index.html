@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关于医学图像分析中的“多视角监督”（Multi-view Supervision）或“多视角学习”（Multi-view Learning），这类方法通常分为两个主要流派：  几何多视角（Geometric Multi-view）：利用医学影像的三个解剖切面（横断、冠状、矢状）或不同拍摄角度来融合信息，常用于3D分割或重建。 一致性多视角（Consistency-based Multi-view）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多视角监督学习论文汇总">
+<meta property="og:url" content="http://cathylove47.github.io/2025/11/30/%E5%A4%9A%E8%A7%86%E8%A7%92%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="关于医学图像分析中的“多视角监督”（Multi-view Supervision）或“多视角学习”（Multi-view Learning），这类方法通常分为两个主要流派：  几何多视角（Geometric Multi-view）：利用医学影像的三个解剖切面（横断、冠状、矢状）或不同拍摄角度来融合信息，常用于3D分割或重建。 一致性多视角（Consistency-based Multi-view）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-30T02:45:43.000Z">
+<meta property="article:modified_time" content="2025-11-30T02:45:51.964Z">
+<meta property="article:author" content="cathy">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>多视角监督学习论文汇总 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">多视角监督学习论文汇总</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-30 10:45" pubdate>
+          2025年11月30日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">多视角监督学习论文汇总</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>关于医学图像分析中的“多视角监督”（Multi-view Supervision）或“多视角学习”（Multi-view Learning），这类方法通常分为两个主要流派：</p>
+<ol>
+<li><strong>几何多视角（Geometric Multi-view）</strong>：利用医学影像的三个解剖切面（横断、冠状、矢状）或不同拍摄角度来融合信息，常用于3D分割或重建。</li>
+<li><strong>一致性多视角（Consistency-based Multi-view）</strong>：主要用于半监督学习，通过构造不同的“视角”（如不同的数据增强、不同的网络结构）并强迫它们输出一致，来利用未标注数据。</li>
+</ol>
+<p>以下为您整理的GitHub上开源的高质量文章和项目，涵盖了这两个方向：</p>
+<h3 id="一、-几何多视角与3D建模-Geometric-Multi-Planar"><a href="#一、-几何多视角与3D建模-Geometric-Multi-Planar" class="headerlink" title="一、 几何多视角与3D建模 (Geometric &amp; Multi-Planar)"></a>一、 几何多视角与3D建模 (Geometric &amp; Multi-Planar)</h3><p>这类方法利用医学图像的3D特性，通过多平面（Multi-planar）或多角度融合来提升性能。</p>
+<h4 id="1-SwinMM-Masked-Multi-view-with-Swin-Transformers"><a href="#1-SwinMM-Masked-Multi-view-with-Swin-Transformers" class="headerlink" title="1. SwinMM: Masked Multi-view with Swin Transformers"></a>1. SwinMM: Masked Multi-view with Swin Transformers</h4><ul>
+<li><strong>简介</strong>：这是较新的工作（发表于2023&#x2F;2024左右），提出了一种基于掩码多视角编码器（Masked Multi-view Encoder）的自监督学习框架。它利用Swin Transformer处理不同视角的切片，并通过重建和旋转等代理任务来学习强大的3D表示。</li>
+<li><strong>核心点</strong>：利用多视角一致性（Consistency）作为自监督信号，不仅做分割，也能做预训练。</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/topics/medical-image-segmentation">SwinMM (需搜索确认具体repo，通常在官方或作者账号下)</a> <em>(注：如果直接搜不到SwinMM，可关注 <code>SwinUNETR</code> 等相关变体，它们常被结合使用)</em></li>
+</ul>
+<h4 id="2-MultiPlanarUNet"><a href="#2-MultiPlanarUNet" class="headerlink" title="2. MultiPlanarUNet"></a>2. MultiPlanarUNet</h4><ul>
+<li><strong>简介</strong>：一个非常经典的实战型项目。它不直接训练昂贵的3D网络，而是从多个不同的视角（切面）训练2D U-Net，在测试时将多个视角的预测结果融合回3D空间。</li>
+<li><strong>核心点</strong>：多视角融合（Multi-view Fusion）。在2018年Medical Segmentation Decathlon中表现优异，代码非常成熟易用。</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/perslev/MultiPlanarUNet">perslev&#x2F;MultiPlanarUNet</a></li>
+</ul>
+<h4 id="3-Cross-view-Transformers-for-Unregistered-Medical-Images"><a href="#3-Cross-view-Transformers-for-Unregistered-Medical-Images" class="headerlink" title="3. Cross-view Transformers for Unregistered Medical Images"></a>3. Cross-view Transformers for Unregistered Medical Images</h4><ul>
+<li><strong>简介</strong>：发表于 MICCAI 2021。针对未配准的医学图像，利用Transformer的注意力机制在不同视角间建立联系，进行联合分析。</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/gvtulder/cross-view-transformers">gvtulder&#x2F;cross-view-transformers</a></li>
+</ul>
+<h3 id="二、-半监督与一致性学习-Semi-Supervised-Consistency"><a href="#二、-半监督与一致性学习-Semi-Supervised-Consistency" class="headerlink" title="二、 半监督与一致性学习 (Semi-Supervised &amp; Consistency)"></a>二、 半监督与一致性学习 (Semi-Supervised &amp; Consistency)</h3><p>这是目前“多视角监督”最火热的领域，通常指利用“双模型”或“双扰动”产生的一致性损失（Consistency Loss）来监督未标注数据。</p>
+<h4 id="1-SSL4MIS-Semi-Supervised-Learning-for-Medical-Image-Segmentation"><a href="#1-SSL4MIS-Semi-Supervised-Learning-for-Medical-Image-Segmentation" class="headerlink" title="1. SSL4MIS (Semi-Supervised Learning for Medical Image Segmentation)"></a>1. SSL4MIS (Semi-Supervised Learning for Medical Image Segmentation)</h4><ul>
+<li><strong>简介</strong>：这是一个<strong>必看</strong>的仓库，汇总了大量半监督医学图像分割的SOTA方法。</li>
+<li><strong>包含的多视角方法</strong>：<ul>
+<li><strong>Cross Pseudo Supervision (CPS)</strong>: 使用两个结构相同但初始化不同的网络（可视作两个视角），互相用伪标签监督对方。</li>
+<li><strong>Cross Consistency Training (CCT)</strong>: 对编码器的输出进行不同的扰动（可视作不同特征视角），强迫解码器输出一致。</li>
+<li><strong>UAMT (Uncertainty-Aware Mean Teacher)</strong>: 教师模型和学生模型构成两种视角。</li>
+</ul>
+</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/HiLab-git/SSL4MIS">HiLab-git&#x2F;SSL4MIS</a></li>
+</ul>
+<h4 id="2-CMC-Cross-Modality-Collaboration-MICCAI-2024"><a href="#2-CMC-Cross-Modality-Collaboration-MICCAI-2024" class="headerlink" title="2. CMC (Cross Modality Collaboration) - MICCAI 2024"></a>2. CMC (Cross Modality Collaboration) - MICCAI 2024</h4><ul>
+<li><strong>文章</strong>：<em>Robust Semi-Supervised Multimodal Medical Image Segmentation via Cross Modality Collaboration</em></li>
+<li><strong>简介</strong>：虽然主要讲多模态，但其核心思想是“Cross-view Consistency”。它提出了一种跨模态协作策略，利用通道级语义一致性损失来对齐不同模态（视角）的信息，非常适合参考多视角监督的设计。</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/med-air/CMC">med-air&#x2F;CMC</a></li>
+</ul>
+<h4 id="3-Duo-SegNet-MICCAI-2021"><a href="#3-Duo-SegNet-MICCAI-2021" class="headerlink" title="3. Duo-SegNet (MICCAI 2021)"></a>3. Duo-SegNet (MICCAI 2021)</h4><ul>
+<li><strong>文章</strong>：<em>Adversarial Dual-Views for Semi-Supervised Medical Image Segmentation</em></li>
+<li><strong>简介</strong>：直接在标题中提出了“Dual-Views”。该方法在半监督设置下，利用对抗学习强制两个视角的预测保持一致，从而利用未标记数据。</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/himashi92/Duo-SegNet">himashi92&#x2F;Duo-SegNet</a></li>
+</ul>
+<h4 id="4-DyCON-CVPR-2024"><a href="#4-DyCON-CVPR-2024" class="headerlink" title="4. DyCON (CVPR 2024)"></a>4. DyCON (CVPR 2024)</h4><ul>
+<li><strong>文章</strong>：<em>Dynamic Uncertainty-aware Consistency and Contrastive Learning</em></li>
+<li><strong>简介</strong>：结合了对比学习和一致性学习，通过动态不确定性来加权不同视角（Augmentation views）之间的监督信号。</li>
+<li><strong>GitHub</strong>: 代码通常在 <a target="_blank" rel="noopener" href="https://github.com/MedAIerHHL/CVPR-MIA">MedAIerHHL&#x2F;CVPR-MIA</a> 列表中可以找到索引。</li>
+</ul>
+<h3 id="三、-稀疏视角重建-Sparse-View-Reconstruction"><a href="#三、-稀疏视角重建-Sparse-View-Reconstruction" class="headerlink" title="三、 稀疏视角重建 (Sparse-View Reconstruction)"></a>三、 稀疏视角重建 (Sparse-View Reconstruction)</h3><p>如果您的需求是从少量的2D X光片重建3D CT（即多视角重建），可以关注以下方向：</p>
+<ul>
+<li><strong>NeRF &#x2F; Gaussian Splatting in Medical</strong>: 最近很多工作将NeRF（神经辐射场）用于从稀疏视角重建医学3D场景。</li>
+<li><strong>QN-Mixer (CVPR 2024)</strong>: <em>A Quasi-Newton MLP-Mixer Model for Sparse-View CT Reconstruction</em>。</li>
+<li><strong>相关资源列表</strong>: <a target="_blank" rel="noopener" href="https://github.com/amirhossein-kz/Awesome-Diffusion-Models-in-Medical-Imaging">Awesome-Diffusion-Models-in-Medical-Imaging</a> 中包含了很多重建和生成模型，其中涉及多视角一致性的Diffusion Model是前沿热点。</li>
+</ul>
+<h3 id="建议阅读顺序"><a href="#建议阅读顺序" class="headerlink" title="建议阅读顺序"></a>建议阅读顺序</h3><ol>
+<li>如果您关注<strong>分割精度</strong>且数据量较少：直接看 <strong>SSL4MIS</strong> 仓库中的 <strong>CPS</strong> (Cross Pseudo Supervision) 代码，这是多视角一致性监督最直观的实现。</li>
+<li>如果您关注<strong>3D上下文信息融合</strong>：阅读 <strong>MultiPlanarUNet</strong> 或 <strong>SwinMM</strong>。</li>
+<li>如果您关注<strong>多模态&#x2F;多源数据</strong>：参考 <strong>CMC</strong> (MICCAI 2024) 的代码设计。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>多视角监督学习论文汇总</div>
+      <div>http://cathylove47.github.io/2025/11/30/多视角监督学习论文汇总/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/30/%E7%A7%91%E6%8A%80%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9Cai/" title="科技论文写作ai">
+                        <span class="hidden-mobile">科技论文写作ai</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
