@@ -1,0 +1,902 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一部分：基础选择题 (考察对定义的理解)1. 在“主机-终端模式”中，所有的计算任务和数据存储主要由哪里完成？A. 终端设备 (Terminal)B. 主机 (Mainframe)C. 路由器D. 终端与主机平均分配 2. 下列哪项是“浏览器-服务器 (B&#x2F;S)”模式相对于“客户机-服务器 (C&#x2F;S)”模式在维护上的最大优势？A. 数据传输速度更快B. 能够处理更复杂的图形计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统安全导论复习">
+<meta property="og:url" content="http://cathylove47.github.io/2025/12/23/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="第一部分：基础选择题 (考察对定义的理解)1. 在“主机-终端模式”中，所有的计算任务和数据存储主要由哪里完成？A. 终端设备 (Terminal)B. 主机 (Mainframe)C. 路由器D. 终端与主机平均分配 2. 下列哪项是“浏览器-服务器 (B&#x2F;S)”模式相对于“客户机-服务器 (C&#x2F;S)”模式在维护上的最大优势？A. 数据传输速度更快B. 能够处理更复杂的图形计">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cathylove47.github.io/image.png">
+<meta property="og:image" content="http://cathylove47.github.io/image-1.png">
+<meta property="og:image" content="http://cathylove47.github.io/image-2.png">
+<meta property="og:image" content="http://cathylove47.github.io/image-3.png">
+<meta property="og:image" content="http://cathylove47.github.io/image-4.png">
+<meta property="og:image" content="http://cathylove47.github.io/image-5.png">
+<meta property="article:published_time" content="2025-12-23T04:25:27.000Z">
+<meta property="article:modified_time" content="2025-12-24T05:02:14.835Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="期末复习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://cathylove47.github.io/image.png">
+  
+  
+  
+  <title>系统安全导论复习 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">系统安全导论复习</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-23 12:25" pubdate>
+          2025年12月23日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系统安全导论复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="第一部分：基础选择题-考察对定义的理解"><a href="#第一部分：基础选择题-考察对定义的理解" class="headerlink" title="第一部分：基础选择题 (考察对定义的理解)"></a>第一部分：基础选择题 (考察对定义的理解)</h3><p><strong>1. 在“主机-终端模式”中，所有的计算任务和数据存储主要由哪里完成？</strong><br>A. 终端设备 (Terminal)<br>B. 主机 (Mainframe)<br>C. 路由器<br>D. 终端与主机平均分配</p>
+<p><strong>2. 下列哪项是“浏览器-服务器 (B&#x2F;S)”模式相对于“客户机-服务器 (C&#x2F;S)”模式在维护上的最大优势？</strong><br>A. 数据传输速度更快<br>B. 能够处理更复杂的图形计算<br>C. 客户端无需安装专用软件，系统更新只需在服务器端进行<br>D. 安全性天生比 C&#x2F;S 高</p>
+<p><strong>3. 攻击者利用大量伪造的身份节点加入网络，从而控制或扰乱整个网络（即女巫攻击&#x2F;Sybil Attack），这种威胁最容易出现在哪种模式中？</strong><br>A. 主机-终端模式<br>B. B&#x2F;S 模式<br>C. 对等模式 (P2P)<br>D. 传统的 C&#x2F;S 模式</p>
+<p><strong>4. 关于“分布式系统”的安全特性，以下说法正确的是？</strong><br>A. 只要有一个节点被攻破，整个系统就会立刻停止运行<br>B. 相比于单机系统，它消除了“单点故障”，但也增加了攻击面（Attack Surface）<br>C. 分布式系统不需要进行身份认证<br>D. 数据在分布式系统中不需要加密传输</p>
+<hr>
+<h3 id="第二部分：判断题-考察对安全边界的理解"><a href="#第二部分：判断题-考察对安全边界的理解" class="headerlink" title="第二部分：判断题 (考察对安全边界的理解)"></a>第二部分：判断题 (考察对安全边界的理解)</h3><p><strong>5. (判断)</strong> 在 C&#x2F;S 模式（客户机-服务器）中，为了减轻服务器压力，开发者应该将关键的商业逻辑（如商品价格计算、游戏胜负判定）完全放在客户端进行，服务器只负责接收结果。<br>(提示：思考“胖客户端”的安全隐患)</p>
+<p><strong>6. (判断)</strong> 主机-终端模式虽然古老，但因为其高度集中的特性，只要做好了主机的物理安全和访问控制，内部数据很难被外部网络直接窃取。</p>
+<p><strong>7. (判断)</strong> 在 B&#x2F;S 模式中，因为使用的是标准的 HTTP&#x2F;HTTPS 协议，所以服务器端天然信任浏览器发来的所有请求，不需要再做输入验证。</p>
+<hr>
+<h3 id="第三部分：简答与分析题-考察综合理解"><a href="#第三部分：简答与分析题-考察综合理解" class="headerlink" title="第三部分：简答与分析题 (考察综合理解)"></a>第三部分：简答与分析题 (考察综合理解)</h3><p><strong>8. [场景对比]</strong><br>某银行要开发一套新的业务系统，系统分为两部分：</p>
+<ul>
+<li><p><strong>部分 A</strong>：供银行内部柜员使用，需连接专用外设（存折打印机、读卡器），对响应速度和操作快捷键有极高要求。</p>
+</li>
+<li><p><strong>部分 B</strong>：供普通用户在家里查询余额和转账使用。</p>
+</li>
+</ul>
+<p><strong>问题：</strong> 请分别建议 A 和 B 应采用 C&#x2F;S 模式还是 B&#x2F;S 模式？并从安全和功能的角度简述理由。</p>
+<p><strong>9. [概念辨析]</strong><br>为什么在 <strong>对等模式 (P2P)</strong> 中，”信任”是一个比 C&#x2F;S 模式更难解决的安全问题？</p>
+<hr>
+<h3 id="✅-答案与解析-建议先自己思考，再看这里"><a href="#✅-答案与解析-建议先自己思考，再看这里" class="headerlink" title="✅ 答案与解析 (建议先自己思考，再看这里)"></a>✅ 答案与解析 (建议先自己思考，再看这里)</h3><h4 id="第一部分答案"><a href="#第一部分答案" class="headerlink" title="第一部分答案"></a>第一部分答案</h4><ul>
+<li><p><strong>B</strong></p>
+<ul>
+<li>解析：终端通常是“哑终端”，只负责输入输出，不负责计算。</li>
+</ul>
+</li>
+<li><p><strong>C</strong></p>
+<ul>
+<li>解析：B&#x2F;S 的核心优势就是“零客户端维护”，改了服务器端代码，所有用户打开浏览器即更新。</li>
+</ul>
+</li>
+<li><p><strong>C</strong></p>
+<ul>
+<li>解析：P2P 没有中心服务器进行权威认证，容易被伪造节点攻击。</li>
+</ul>
+</li>
+<li><p><strong>B</strong></p>
+<ul>
+<li>解析：分布式系统通过冗余提高了可用性（消除单点故障），但因为节点多、通信多，攻击面反而变大了。</li>
+</ul>
+</li>
+</ul>
+<h4 id="第二部分答案"><a href="#第二部分答案" class="headerlink" title="第二部分答案"></a>第二部分答案</h4><ul>
+<li><p><strong>错误 (False)</strong></p>
+<ul>
+<li>解析：<strong>这是安全大忌！</strong> 在 C&#x2F;S 模式中，客户端完全在用户的控制下，用户可以逆向修改客户端代码。关键逻辑必须在服务器端校验，不能信任客户端。</li>
+</ul>
+</li>
+<li><p><strong>正确 (True)</strong></p>
+<ul>
+<li>解析：主机模式的封闭性是其最大的安全优势，通常用于军事或核心金融系统。</li>
+</ul>
+</li>
+<li><p><strong>错误 (False)</strong></p>
+<ul>
+<li>解析：<strong>Web 安全第一原则：永远不要信任客户端的输入。</strong> 即使是 B&#x2F;S，攻击者也可以通过抓包工具绕过浏览器直接发送恶意数据（如 SQL 注入攻击）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="第三部分答案"><a href="#第三部分答案" class="headerlink" title="第三部分答案"></a>第三部分答案</h4><p><strong>8. 参考答案：</strong></p>
+<ul>
+<li><p><strong>部分 A (内部柜员) 建议采用 C&#x2F;S 模式。</strong></p>
+<ul>
+<li>理由：C&#x2F;S 可以更好地调用本地硬件（打印机、读卡器），且响应速度快，交互体验好。因为是在银行内网，可以通过分发软件来控制客户端版本。</li>
+</ul>
+</li>
+<li><p><strong>部分 B (普通用户) 建议采用 B&#x2F;S 模式。</strong></p>
+<ul>
+<li>理由：用户分布在互联网各地，不可能要求用户下载特定软件（维护成本高）。B&#x2F;S 模式用户只需浏览器即可访问，方便且易于更新。</li>
+</ul>
+</li>
+</ul>
+<p><strong>9. 参考答案：</strong></p>
+<ul>
+<li><p>在 <strong>C&#x2F;S 模式</strong> 中，有一个绝对权威的中心服务器。客户端只需信任服务器，服务器验证客户端，关系简单明确。</p>
+</li>
+<li><p>在 <strong>P2P 模式</strong> 中，没有中心服务器。每个节点既是服务者也是使用者。你不知道从网络下载文件的那个节点是否是恶意的（可能提供带病毒的文件），也不知道与之通信的节点是否篡改了数据。因此建立分布式的信任机制（如信誉系统、区块链共识）非常困难。</p>
+</li>
+</ul>
+<h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><ol>
+<li>信息安全的代表性定义(Page 45)</li>
+<li>信息安全的基本目标：保密性、完整性、可用性、可控性(Page 45)</li>
+<li>信息安全的发展历程：物理安全、网络安全、应用安全、数据安全（P47）</li>
+</ol>
+<p><img src="/image.png" srcset="/img/loading.gif" lazyload alt="代表性定义"></p>
+<p>物理安全：机房门禁<br>网络安全：保护网络<br>应用安全：app认证<br>数据安全：数据加密</p>
+<p>3.2.1 信息安全的主要威胁（P49），安全威胁的主要表现特征<br>3.2.2 攻击者攻击的主要对象（全部要看）<br>3.2.3 社会工程学攻击：只看社会工程学攻击的定义和攻击形式。</p>
+<p>主要威胁：人为的失误，信息截取，内部窃密，黑客攻击，技术缺陷，病毒</p>
+<p>特征：窃听，重传，伪造，篡改，拒绝服务攻击，行为否认，非授权访问，传播病毒</p>
+<p><strong>攻击的主要对象</strong><br>针对网络基础设施的攻击<br>针对公共互联网的攻击<br>新兴信息技术带来的威胁</p>
+<p>社会工程学定义：利用欺骗获取信任，获取机密情报<br>简单来说就是电信诈骗</p>
+<p>除了IATF概念可以不看外，其他都要看，重点关注PDRR模型。<br>关注思考题1.2.3.4<br><img src="/image-1.png" srcset="/img/loading.gif" lazyload alt="PDBR"><br><img src="/image-2.png" srcset="/img/loading.gif" lazyload alt="思考题"></p>
+<p>1. 简述信息安全体系三个最基本的目标。</p>
+<p><strong>【考点分析】</strong><br>这是安全圈最著名的 <strong>CIA 三要素 (CIA Triad)</strong>。无论学多深，这三个词是根基。</p>
+<p><strong>【参考答案】</strong><br>信息安全的三个最基本目标（CIA）是：</p>
+<ul>
+<li><p><strong>机密性 (Confidentiality)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：确保信息不被未授权的个人、实体或过程访问或泄露。</p>
+</li>
+<li><p>通俗理解：<strong>不该看的人看不到</strong>。</p>
+</li>
+<li><p>技术手段：加密、访问控制。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>完整性 (Integrity)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：确保信息在存储或传输过程中保持真实、准确，未被未授权地篡改或破坏。</p>
+</li>
+<li><p>通俗理解：<strong>数据没有被偷偷改过</strong>。</p>
+</li>
+<li><p>技术手段：哈希算法（MD5&#x2F;SHA）、数字签名。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>可用性 (Availability)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：确保授权用户在需要时可以访问和使用信息及资源。</p>
+</li>
+<li><p>通俗理解：<strong>想用的时候系统没挂</strong>。</p>
+</li>
+<li><p>技术手段：备份、冗余设计、抗 DDoS 攻击。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>2. 信息安全 PDRR 模型包括哪些环节？每个工作环节的具体含义是什么？</p>
+<p><strong>【考点分析】</strong><br>PDRR 模型强调安全是一个<strong>动态的循环过程</strong>，而不是买个防火墙就万事大吉了。这个模型由美国国防部提出。</p>
+<p><strong>【参考答案】</strong><br>PDRR 模型包括 <strong>保护 (Protection)、检测 (Detection)、响应 (Response)、恢复 (Recovery)</strong> 四个环节。</p>
+<ul>
+<li><p><strong>保护 (Protection)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：预防安全事件发生。这是安全的第一道防线，通过部署安全机制来阻止潜在的攻击。</p>
+</li>
+<li><p>例子：防火墙、加密、打补丁。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>检测 (Detection)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：当保护措施失效或被绕过时，及时发现正在进行或已经发生的攻击。</p>
+</li>
+<li><p>例子：入侵检测系统 (IDS)、日志审计、杀毒软件扫描。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>响应 (Response)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：在检测到攻击后，采取紧急措施阻止攻击蔓延，将损失降到最低。</p>
+</li>
+<li><p>例子：切断网络连接、关闭受攻击的端口、封禁 IP。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>恢复 (Recovery)</strong>：</p>
+<ul>
+<li><p><strong>含义</strong>：在安全事件得到控制后，将系统和数据恢复到正常的运行状态。</p>
+</li>
+<li><p>例子：数据备份恢复、系统重装。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>3. 信息系统中有哪三个基本组成部分？面向应用的层次型信息安全技术体系中针对每个部分存在哪些安全层次？</p>
+<p><strong>【考点分析】</strong><br>这道题考察的是<strong>分层防御（纵深防御）<strong>的思想。不同的教材对“三个组成部分”的表述可能略有差异，但通常指</strong>硬件&#x2F;网络、软件&#x2F;系统、数据</strong>。而在国内通用的教材（如IATF框架衍生的）中，通常对应以下结构：</p>
+<p><strong>【参考答案】</strong><br><strong>三个基本组成部分：</strong></p>
+<ul>
+<li><p><strong>计算环境</strong>（或主机&#x2F;终端设备）</p>
+</li>
+<li><p><strong>通信网络</strong></p>
+</li>
+<li><p><strong>信息资源</strong>（或数据&#x2F;应用）</p>
+</li>
+</ul>
+<p><strong>面向应用的层次型安全体系（通常分为5层）：</strong><br>这三个组成部分衍生出了五个安全层次：</p>
+<ul>
+<li><p><strong>物理安全</strong>（针对硬件&#x2F;机房）：环境安全、设备防盗、防电磁泄露。</p>
+</li>
+<li><p><strong>网络安全</strong>（针对通信网络）：防火墙、VPN、入侵检测、网络隔离。</p>
+</li>
+<li><p><strong>系统安全</strong>（针对计算环境&#x2F;操作系统）：操作系统加固、身份认证、访问控制。</p>
+</li>
+<li><p><strong>应用安全</strong>（针对软件应用）：Web安全、恶意代码防范、软件漏洞修复。</p>
+</li>
+<li><p><strong>数据安全</strong>（针对信息资源）：数据加密、备份恢复、隐私保护。</p>
+</li>
+</ul>
+<p>(注：回答此题时，建议画一个从下到上的金字塔结构，底层是物理，顶层是数据)</p>
+<hr>
+<p>4. OSI 开放系统互连安全体系结构中定义了哪些安全服务和安全机制？</p>
+<p><strong>【考点分析】</strong><br>这是纯记忆题，来源于国际标准 <strong>ISO&#x2F;IEC 7498-2</strong>。这是一个非常硬核的知识点，考试常考“5类服务，8类机制”。</p>
+<p><strong>【参考答案】</strong></p>
+<p><strong>五类安全服务 (Security Services)：</strong><br>(记忆口诀：认、访、密、完、抗)</p>
+<ul>
+<li><p><strong>鉴别服务 (Authentication)</strong>：即身份认证（你是谁？）。</p>
+</li>
+<li><p><strong>访问控制服务 (Access Control)</strong>：限制对资源的访问（你能做什么？）。</p>
+</li>
+<li><p><strong>数据机密性服务 (Data Confidentiality)</strong>：数据加密（防偷看）。</p>
+</li>
+<li><p><strong>数据完整性服务 (Data Integrity)</strong>：防篡改。</p>
+</li>
+<li><p><strong>抗抵赖性服务 (Non-repudiation)</strong>：也叫不可否认性，防止发送方或接收方否认曾进行过的操作。</p>
+</li>
+</ul>
+<p><strong>八类安全机制 (Security Mechanisms)：</strong><br>(这些是实现上述服务的具体技术手段)</p>
+<ul>
+<li><p><strong>加密机制</strong> (Encipherment)</p>
+</li>
+<li><p><strong>数字签名机制</strong> (Digital Signature)</p>
+</li>
+<li><p><strong>访问控制机制</strong> (Access Control)</p>
+</li>
+<li><p><strong>数据完整性机制</strong> (Data Integrity)</p>
+</li>
+<li><p><strong>鉴别交换机制</strong> (Authentication Exchange)</p>
+</li>
+<li><p><strong>业务流填充机制</strong> (Traffic Padding) —— 为了防止流量分析，故意发一些假数据填满带宽。</p>
+</li>
+<li><p><strong>路由控制机制</strong> (Routing Control) —— 选择安全的路径传输数据。</p>
+</li>
+<li><p><strong>公证机制</strong> (Notarization) —— 找第三个可信方作证。</p>
+</li>
+</ul>
+<h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>第4章密码学<br>1.重点掌握4.4.1 HASH的基本概念和原理；<br>4.4.2 典型HASH算法只要知道MD5和SHA算法的特点即可；<br>重点掌握4.4.3 消息认证技术里图4-20、图4-21、图4-22的过程。<br>2.重点掌握4.5 数字签名技术（4.5.1和4.5.2），4.5.3只需要了解两种方案的名字，过程细节自行学习。</p>
+<p><img src="/image-3.png" srcset="/img/loading.gif" lazyload alt="消息认证码"><br><img src="/image-4.png" srcset="/img/loading.gif" lazyload alt="数据认证"><br><img src="/image-5.png" srcset="/img/loading.gif" lazyload alt="HMAC"></p>
+<h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>5.1 安全操作系统概述<br>5.2 安全策略的概念<br>116-118  模型的基本特点<br>5.4 操作系统的典型缺陷    130-132美国安全级别的含义</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" class="print-no-link">#期末复习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系统安全导论复习</div>
+      <div>http://cathylove47.github.io/2025/12/23/系统安全导论复习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/15/%E8%80%83%E7%A0%94%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%8B%E6%83%85/" title="考研需要注意的事情">
+                        <span class="hidden-mobile">考研需要注意的事情</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
