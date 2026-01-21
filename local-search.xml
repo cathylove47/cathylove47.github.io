@@ -8,7 +8,7 @@
     <link href="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/"/>
     <url>/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/</url>
     
-    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>2020年的一篇论文，Denoising Diffsion Probabilistic Models 去噪扩散概率模型，本文的主要贡献在于  </p><ul><li>将扩散模型仅限于简单玩具数据集的理论概念中解放出来</li><li>更简单的生成目标</li></ul><blockquote><p>对于人脸的概率分布，其实压根就无法用一个概率分布p(x)来表示</p></blockquote><p>扩散模型用一个看似不相关的流程来解决—从图像中去除高斯噪声<br>如果模型有效的话,那么它应当能够从随机噪声开始,逐步将其细化为有意义的图像</p><h1 id="数学公式部分"><a href="#数学公式部分" class="headerlink" title="数学公式部分"></a>数学公式部分</h1><img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image.png" class="">]]></content>
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>2020年的一篇论文，Denoising Diffsion Probabilistic Models 去噪扩散概率模型，本文的主要贡献在于  </p><ul><li>将扩散模型仅限于简单玩具数据集的理论概念中解放出来</li><li>更简单的生成目标</li></ul><blockquote><p>对于人脸的概率分布，其实压根就无法用一个概率分布p(x)来表示</p></blockquote><p>扩散模型用一个看似不相关的流程来解决—从图像中去除高斯噪声<br>如果模型有效的话,那么它应当能够从随机噪声开始,逐步将其细化为有意义的图像</p><h1 id="数学公式部分"><a href="#数学公式部分" class="headerlink" title="数学公式部分"></a>数学公式部分</h1><img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image.png" class=""><p>也就是说我们以 $x_0$  为中心 方差为 $\beta$ 的高斯分布中抽取一个样本<br>不断重复这一个过程,那么就可以直接从 $x_0$ 到 $x_2$</p><p>同样的道理,在时间步长为t的情况下,也可以得到一个概率分布</p><p>其中方差是 $t \cdot \beta$ 或 $\beta_t$<br>但是问题出现了,我们想要的分布的均值始终固定在 $x_0$,而方差无限的在增大 </p>]]></content>
     
     
     
