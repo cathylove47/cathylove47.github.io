@@ -27,8 +27,12 @@
 <meta property="og:description" content="引言2020年的一篇论文，Denoising Diffsion Probabilistic Models 去噪扩散概率模型，本文的主要贡献在于    将扩散模型仅限于简单玩具数据集的理论概念中解放出来 更简单的生成目标   对于人脸的概率分布，其实压根就无法用一个概率分布p(x)来表示  扩散模型用一个看似不相关的流程来解决—从图像中去除高斯噪声如果模型有效的话,那么它应当能够从随机噪声开始,逐步">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://cathylove47.github.io/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image.png">
+<meta property="og:image" content="http://cathylove47.github.io/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image2.png">
+<meta property="og:image" content="http://cathylove47.github.io/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image3.png">
+<meta property="og:image" content="http://cathylove47.github.io/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image4.png">
+<meta property="og:image" content="http://cathylove47.github.io/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/5.png">
 <meta property="article:published_time" content="2026-01-21T05:04:20.000Z">
-<meta property="article:modified_time" content="2026-01-21T08:05:10.454Z">
+<meta property="article:modified_time" content="2026-01-21T10:05:42.089Z">
 <meta property="article:author" content="cathy">
 <meta property="article:tag" content="科研">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          364 字
+          1.1k 字
         
       </span>
     
@@ -248,7 +252,7 @@
         
         
         
-          4 分钟
+          10 分钟
         
       </span>
     
@@ -299,11 +303,22 @@
 <p>对于人脸的概率分布，其实压根就无法用一个概率分布p(x)来表示</p>
 </blockquote>
 <p>扩散模型用一个看似不相关的流程来解决—从图像中去除高斯噪声<br>如果模型有效的话,那么它应当能够从随机噪声开始,逐步将其细化为有意义的图像</p>
-<h1 id="数学公式部分"><a href="#数学公式部分" class="headerlink" title="数学公式部分"></a>数学公式部分</h1><img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image.png" srcset="/img/loading.gif" lazyload class="">
+<h1 id="数学公式部分"><a href="#数学公式部分" class="headerlink" title="数学公式部分"></a>数学公式部分</h1><h2 id="前向过程"><a href="#前向过程" class="headerlink" title="前向过程"></a>前向过程</h2><img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image.png" srcset="/img/loading.gif" lazyload class="">
 <p>也就是说我们以 $x_0$  为中心 方差为 $\beta$ 的高斯分布中抽取一个样本<br>不断重复这一个过程,那么就可以直接从 $x_0$ 到 $x_2$</p>
 <p>同样的道理,在时间步长为t的情况下,也可以得到一个概率分布</p>
-
-<p>其中方差是 $t \cdot \beta$ 或 $\beta_t$<br>但是问题出现了,我们想要的分布的均值始终固定在 $x_0$,而方差无限的在增大 </p>
+<img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image2.png" srcset="/img/loading.gif" lazyload class="">
+<p>其中方差是 $t \cdot \beta$ 或 $\beta_t$<br>但是问题出现了,我们想要的分布的均值始终固定在 $x_0$,而方差无限的在增大<br><strong>此时的我们的扩散过程绝对不会收敛于正态分布</strong><br>这意味着我们需要重新设计我们的扩散过程</p>
+<img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image3.png" srcset="/img/loading.gif" lazyload class="">
+<p>一个能将我们的数据变成标准正态分布的过程</p>
+<ol>
+<li>均值必须收敛于0</li>
+<li>方差收敛于1</li>
+</ol>
+<img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/image4.png" srcset="/img/loading.gif" lazyload class="">
+<p>为什么选择 $\sqrt{1-\beta}$<br>DDPM的作者选择了这个系数,主要原因可能是简单性<br>当 $\beta \in [0,1]$ 时，$\sqrt{1-\beta} \in [0,1]$，这样可以确保均值逐渐收缩：$\mu_t &#x3D; \sqrt{1-\beta_t} \cdot \mu_{t-1}$,同理方差也会趋近于1</p>
+<p>这个公式可以让我们的原始数据分布变化为标准正态分布<br>实际上,扩散模型通常在每一步应用不同量的噪声,而非固定的 $\beta$ 值<br><strong>因此现在我们定义了扩散的方法,它可以将我们的数据分布转换为标准正态分布</strong></p>
+<h2 id="反向过程"><a href="#反向过程" class="headerlink" title="反向过程"></a>反向过程</h2><p>我们首先从联合分布定义反向过程<br>$$p_\theta(x_{t-1}|x_t) &#x3D; \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))$$<br>通过不断的累乘我们就可以得到x0的分布<br>所以我们需要做什么呢——让反向过程尽可能匹配前向的路径,这将通过最小化负对数似然来实现<br>但是积分下来几乎不可能,所以我们引入了一个ELBO下界<br>$$L &#x3D; E_q[-\log p_\theta(x_0)] \leq E_q\left[\underbrace{D_{KL}(q(x_T|x_0)||p(x_T))}<em>{L_T} + \sum</em>{t&gt;1}^T \underbrace{D_{KL}(q(x_{t-1}|x_t,x_0)||p_\theta(x_{t-1}|x_t))}<em>{L</em>{t-1}} + \underbrace{-\log p_\theta(x_0|x_1)}_{L_0}\right]$$</p>
+<img src="/2026/01/21/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/5.png" srcset="/img/loading.gif" lazyload class="">
 
                 
               </div>
