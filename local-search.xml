@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>vibe coding</title>
+    <link href="/2026/03/07/vibe-coding/"/>
+    <url>/2026/03/07/vibe-coding/</url>
+    
+    <content type="html"><![CDATA[<p>最近我开始认真实践 <strong>vibe coding</strong>：不是只追求“写得快”，而是让人和 AI 在同一个节奏里协作，把想法更快地落到可运行的代码上。</p><h2 id="什么是-vibe-coding"><a href="#什么是-vibe-coding" class="headerlink" title="什么是 vibe coding"></a>什么是 vibe coding</h2><p>对我来说，vibe coding 不是某个工具，而是一种工作方式：</p><ol><li>先明确目标，再让 AI 帮我拆步骤。  </li><li>我负责判断方向，AI 负责加速执行。  </li><li>小步提交、快速验证，持续纠偏。</li></ol><h2 id="我现在的工作流"><a href="#我现在的工作流" class="headerlink" title="我现在的工作流"></a>我现在的工作流</h2><h3 id="1-先写清楚需求"><a href="#1-先写清楚需求" class="headerlink" title="1) 先写清楚需求"></a>1) 先写清楚需求</h3><p>我会先用 3～5 句话描述：</p><ul><li>要解决什么问题</li><li>成功标准是什么</li><li>哪些地方不能改</li></ul><p>需求越清楚，AI 输出越稳定。</p><h3 id="2-让-AI-先做“草稿实现”"><a href="#2-让-AI-先做“草稿实现”" class="headerlink" title="2) 让 AI 先做“草稿实现”"></a>2) 让 AI 先做“草稿实现”</h3><p>我会先让 AI 给出一个能跑的版本，不要求一步到位。<br>核心目标是快速看到结果，再基于结果迭代。</p><h3 id="3-我来做关键决策"><a href="#3-我来做关键决策" class="headerlink" title="3) 我来做关键决策"></a>3) 我来做关键决策</h3><p>下面这些我一定会亲自把关：</p><ul><li>架构边界</li><li>命名与可读性</li><li>异常处理</li><li>性能与安全</li></ul><p>AI 可以帮我提速，但“取舍”仍然要由人来做。</p><h3 id="4-用测试和回归保证质量"><a href="#4-用测试和回归保证质量" class="headerlink" title="4) 用测试和回归保证质量"></a>4) 用测试和回归保证质量</h3><p>每完成一段，我都会：</p><ul><li>运行最小范围测试</li><li>验证关键路径</li><li>再扩大到整体检查</li></ul><p>这样能在保持速度的同时，避免后期大返工。</p><h2 id="目前的感受"><a href="#目前的感受" class="headerlink" title="目前的感受"></a>目前的感受</h2><p>vibe coding 最大的价值，不是“省掉思考”，而是把我从重复劳动里解放出来，让我把精力放在更重要的判断上。</p><p>写代码这件事，正在从“纯手工”变成“协作式创作”。我很喜欢这种状态。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术随笔</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>编程效率</tag>
+      
+      <tag>工作流</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MRI几何方向报告</title>
     <link href="/2026/03/02/MRI%E5%87%A0%E4%BD%95%E6%96%B9%E5%90%91%E6%8A%A5%E5%91%8A/"/>
     <url>/2026/03/02/MRI%E5%87%A0%E4%BD%95%E6%96%B9%E5%90%91%E6%8A%A5%E5%91%8A/</url>
