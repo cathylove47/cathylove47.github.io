@@ -19,24 +19,24 @@
   <meta name="author" content="cathy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录我第一次系统化实践 vibe coding 的方法、节奏与心得。">
+    <meta name="description" content="面向 3DGS 复现实验的改进计划，覆盖数据、训练、评估与消融设计。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vibe coding">
-<meta property="og:url" content="http://cathylove47.github.io/2026/03/07/vibe-coding/index.html">
+<meta property="og:title" content="3dgs论文实验改进方案">
+<meta property="og:url" content="http://cathylove47.github.io/2026/03/07/3dgs%E8%AE%BA%E6%96%87%E5%AE%9E%E9%AA%8C%E6%94%B9%E8%BF%9B%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="cathy">
-<meta property="og:description" content="记录我第一次系统化实践 vibe coding 的方法、节奏与心得。">
+<meta property="og:description" content="面向 3DGS 复现实验的改进计划，覆盖数据、训练、评估与消融设计。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-03-07T03:13:18.000Z">
-<meta property="article:modified_time" content="2026-03-07T03:14:01.190Z">
+<meta property="article:published_time" content="2026-03-07T03:24:59.000Z">
+<meta property="article:modified_time" content="2026-03-07T03:35:44.898Z">
 <meta property="article:author" content="cathy">
-<meta property="article:tag" content="AI">
-<meta property="article:tag" content="工作流">
-<meta property="article:tag" content="编程效率">
+<meta property="article:tag" content="3DGS">
+<meta property="article:tag" content="科研">
+<meta property="article:tag" content="论文实验">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>vibe coding - cathy</title>
+  <title>3dgs论文实验改进方案 - cathy</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">vibe coding</span>
+            <span id="subtitle">3dgs论文实验改进方案</span>
           
         </div>
 
@@ -225,7 +225,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-07 11:13" pubdate>
+        <time datetime="2026-03-07 11:24" pubdate>
           2026年3月7日 上午
         </time>
       </span>
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          496 字
+          0 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          5 分钟
+          1 分钟
         
       </span>
     
@@ -285,44 +285,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">vibe coding</h1>
+            <h1 id="seo-header">3dgs论文实验改进方案</h1>
             
             
               <div class="markdown-body">
                 
-                <p>最近我开始认真实践 <strong>vibe coding</strong>：不是只追求“写得快”，而是让人和 AI 在同一个节奏里协作，把想法更快地落到可运行的代码上。</p>
-<h2 id="什么是-vibe-coding"><a href="#什么是-vibe-coding" class="headerlink" title="什么是 vibe coding"></a>什么是 vibe coding</h2><p>对我来说，vibe coding 不是某个工具，而是一种工作方式：</p>
-<ol>
-<li>先明确目标，再让 AI 帮我拆步骤。  </li>
-<li>我负责判断方向，AI 负责加速执行。  </li>
-<li>小步提交、快速验证，持续纠偏。</li>
-</ol>
-<h2 id="我现在的工作流"><a href="#我现在的工作流" class="headerlink" title="我现在的工作流"></a>我现在的工作流</h2><h3 id="1-先写清楚需求"><a href="#1-先写清楚需求" class="headerlink" title="1) 先写清楚需求"></a>1) 先写清楚需求</h3><p>我会先用 3～5 句话描述：</p>
-<ul>
-<li>要解决什么问题</li>
-<li>成功标准是什么</li>
-<li>哪些地方不能改</li>
-</ul>
-<p>需求越清楚，AI 输出越稳定。</p>
-<h3 id="2-让-AI-先做“草稿实现”"><a href="#2-让-AI-先做“草稿实现”" class="headerlink" title="2) 让 AI 先做“草稿实现”"></a>2) 让 AI 先做“草稿实现”</h3><p>我会先让 AI 给出一个能跑的版本，不要求一步到位。<br>核心目标是快速看到结果，再基于结果迭代。</p>
-<h3 id="3-我来做关键决策"><a href="#3-我来做关键决策" class="headerlink" title="3) 我来做关键决策"></a>3) 我来做关键决策</h3><p>下面这些我一定会亲自把关：</p>
-<ul>
-<li>架构边界</li>
-<li>命名与可读性</li>
-<li>异常处理</li>
-<li>性能与安全</li>
-</ul>
-<p>AI 可以帮我提速，但“取舍”仍然要由人来做。</p>
-<h3 id="4-用测试和回归保证质量"><a href="#4-用测试和回归保证质量" class="headerlink" title="4) 用测试和回归保证质量"></a>4) 用测试和回归保证质量</h3><p>每完成一段，我都会：</p>
-<ul>
-<li>运行最小范围测试</li>
-<li>验证关键路径</li>
-<li>再扩大到整体检查</li>
-</ul>
-<p>这样能在保持速度的同时，避免后期大返工。</p>
-<h2 id="目前的感受"><a href="#目前的感受" class="headerlink" title="目前的感受"></a>目前的感受</h2><p>vibe coding 最大的价值，不是“省掉思考”，而是把我从重复劳动里解放出来，让我把精力放在更重要的判断上。</p>
-<p>写代码这件事，正在从“纯手工”变成“协作式创作”。我很喜欢这种状态。</p>
-
+                
                 
               </div>
             
@@ -355,11 +323,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI/" class="print-no-link">#AI</a>
+        <a href="/tags/3DGS/" class="print-no-link">#3DGS</a>
       
-        <a href="/tags/%E7%BC%96%E7%A8%8B%E6%95%88%E7%8E%87/" class="print-no-link">#编程效率</a>
+        <a href="/tags/%E8%AE%BA%E6%96%87%E5%AE%9E%E9%AA%8C/" class="print-no-link">#论文实验</a>
       
-        <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="print-no-link">#工作流</a>
+        <a href="/tags/%E7%A7%91%E7%A0%94/" class="print-no-link">#科研</a>
       
     </div>
   
@@ -371,8 +339,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vibe coding</div>
-      <div>http://cathylove47.github.io/2026/03/07/vibe-coding/</div>
+      <div>3dgs论文实验改进方案</div>
+      <div>http://cathylove47.github.io/2026/03/07/3dgs论文实验改进方案/</div>
     </div>
     <div class="license-meta">
       
@@ -416,9 +384,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/07/3dgs%E8%AE%BA%E6%96%87%E5%AE%9E%E9%AA%8C%E6%94%B9%E8%BF%9B%E6%96%B9%E6%A1%88/" title="3dgs论文实验改进方案">
+                      <a href="/2026/03/12/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C3dgs%E8%AE%BA%E6%96%87%E6%A3%80%E7%B4%A2/" title="扩散模型和3dgs论文检索">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">3dgs论文实验改进方案</span>
+                        <span class="hidden-mobile">扩散模型和3dgs论文检索</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -426,8 +394,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/03/02/MRI%E5%87%A0%E4%BD%95%E6%96%B9%E5%90%91%E6%8A%A5%E5%91%8A/" title="MRI几何方向报告">
-                        <span class="hidden-mobile">MRI几何方向报告</span>
+                      <a href="/2026/03/07/vibe-coding/" title="vibe coding">
+                        <span class="hidden-mobile">vibe coding</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
