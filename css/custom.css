@@ -1,0 +1,122 @@
+:root {
+  --reading-font: "Iowan Old Style", "Palatino Linotype", "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
+  --ui-font: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --reading-max-width: 78ch;
+}
+
+body {
+  font-family: var(--ui-font);
+}
+
+.post-content,
+post-custom {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.post-content .markdown-body {
+  font-family: var(--reading-font);
+  font-size: 1.06rem;
+  line-height: 1.95;
+  letter-spacing: 0.008em;
+  text-rendering: optimizeLegibility;
+  max-width: var(--reading-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-content .markdown-body p {
+  margin: 1.15em 0;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.post-content .markdown-body > h2,
+.post-content .markdown-body > h3,
+.post-content .markdown-body > h4 {
+  line-height: 1.5;
+}
+
+.post-content .markdown-body > h2 {
+  margin-top: 2.6em;
+  margin-bottom: 1em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.post-content .markdown-body > h3 {
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+}
+
+.post-content .markdown-body ul,
+.post-content .markdown-body ol {
+  margin-top: 0.9em;
+  margin-bottom: 1.2em;
+  padding-left: 1.4em;
+}
+
+.post-content .markdown-body li {
+  margin: 0.48em 0;
+}
+
+.post-content .markdown-body blockquote {
+  margin: 1.4em 0;
+  padding: 0.9em 1.1em;
+  border-left: 4px solid var(--post-link-color);
+  border-radius: 8px;
+  background-color: var(--board-bg-color);
+}
+
+.post-content .markdown-body table {
+  margin: 1.4em 0;
+  width: 100%;
+  font-size: 0.95em;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post-content .markdown-body th {
+  font-weight: 700;
+  background-color: var(--board-bg-color);
+}
+
+.post-content .markdown-body code {
+  border-radius: 4px;
+  padding: 0.12em 0.28em;
+}
+
+.post-content .markdown-body hr {
+  margin: 2.3em 0;
+}
+
+@media (max-width: 991px) {
+  .post-content,
+  post-custom {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .post-content .markdown-body {
+    font-size: 1.02rem;
+    line-height: 1.88;
+  }
+}
+
+@media (max-width: 767px) {
+  .post-content,
+  post-custom {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .post-content .markdown-body {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+
+  .post-content .markdown-body > h2 {
+    margin-top: 2.2em;
+  }
+}
