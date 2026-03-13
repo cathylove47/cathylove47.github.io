@@ -1,0 +1,1309 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计组1.2第一梯队：冯·诺依曼机的“老底子”（1~4题，23题）【第1题】 +1  导师视角：这题是在送分。完整的计算机系统就像一个人，有肉体（硬件）还得有灵魂（软件）。选项A、B全是硬件；选项C里的“应用程序”只是软件的一小部分（缺了操作系统这种系统软件），只有D把两边都包圆了。选D。  【第2题】 +1  导师视角：冯·诺依曼机的祖传规矩是什么？“提前把程序存进内存，然后CPU一步步按顺序读指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="408选择题解析">
+<meta property="og:url" content="http://cathylove47.github.io/2026/03/13/408%E9%80%89%E6%8B%A9%E9%A2%98%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="计组1.2第一梯队：冯·诺依曼机的“老底子”（1~4题，23题）【第1题】 +1  导师视角：这题是在送分。完整的计算机系统就像一个人，有肉体（硬件）还得有灵魂（软件）。选项A、B全是硬件；选项C里的“应用程序”只是软件的一小部分（缺了操作系统这种系统软件），只有D把两边都包圆了。选D。  【第2题】 +1  导师视角：冯·诺依曼机的祖传规矩是什么？“提前把程序存进内存，然后CPU一步步按顺序读指">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-13T05:06:41.000Z">
+<meta property="article:modified_time" content="2026-03-13T05:42:18.410Z">
+<meta property="article:author" content="cathy">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>408选择题解析 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">408选择题解析</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-13 13:06" pubdate>
+          2026年3月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          123 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">408选择题解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="计组"><a href="#计组" class="headerlink" title="计组"></a>计组</h1><h2 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h2><h3 id="第一梯队：冯·诺依曼机的“老底子”（1-4题，23题）"><a href="#第一梯队：冯·诺依曼机的“老底子”（1-4题，23题）" class="headerlink" title="第一梯队：冯·诺依曼机的“老底子”（1~4题，23题）"></a>第一梯队：冯·诺依曼机的“老底子”（1~4题，23题）</h3><p><strong>【第1题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：这题是在送分。完整的计算机系统就像一个人，有肉体（硬件）还得有灵魂（软件）。选项A、B全是硬件；选项C里的“应用程序”只是软件的一小部分（缺了操作系统这种系统软件），只有D把两边都包圆了。选D。</li>
+</ul>
+<p><strong>【第2题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：冯·诺依曼机的祖传规矩是什么？“提前把程序存进内存，然后CPU一步步按顺序读指令执行”。这叫什么？这就叫“控制流驱动”（顺着指令流走）。别跟现在AI芯片的“数据流驱动”搞混了。选A。</li>
+</ul>
+<p><strong>【第3题】</strong></p>
+<p>+1</p>
+<ul>
+<li><p><strong>导师视角</strong>：找特点，死盯“按地址访问并顺序执行” 。选项D说“按内容选择地址” ，同学们，那是相联存储器（Cache&#x2F;TLB）的VIP特权，普通主存没这本事，别给主存强行加戏。选B。</p>
+<p>+1</p>
+</li>
+</ul>
+<p><strong>【第4题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：这题考的是“软硬件逻辑等效性”。你能用C语言写出来的排序算法，我砸钱焊个专用芯片（硬件）一样能排。硬件快但成本高，软件慢但灵活。所以D选项说“软件功能不能用硬件取代” 纯属胡扯。选D。</li>
+</ul>
+<p><strong>【第23题（2019真题）】</strong></p>
+<ul>
+<li><strong>导师视角</strong>：这题极阴险！C选项说“数据都在指令中直接给出” 。我问你，如果几GB的数据全塞在指令里，那还要巨大的内存条干嘛？实际情况是，指令里给的通常是数据的<strong>地址</strong>，CPU得拿着地址去存储器里取本尊。选C。</li>
+</ul>
+<hr>
+<h3 id="🧠-第二梯队：CPU与存储的“内鬼”（5-10题，19题，20题）"><a href="#🧠-第二梯队：CPU与存储的“内鬼”（5-10题，19题，20题）" class="headerlink" title="🧠 第二梯队：CPU与存储的“内鬼”（5~10题，19题，20题）"></a>🧠 第二梯队：CPU与存储的“内鬼”（5~10题，19题，20题）</h3><p><strong>【第5题 &amp; 第6题】</strong></p>
+<p>+3</p>
+<ul>
+<li><strong>导师视角</strong>：这两道题绑在一起秒杀。IR（指令寄存器）手里端着的是<strong>当前</strong>正在吃的饭；PC（程序计数器）眼睛盯着的是<strong>下一口</strong>饭在哪。看清题目问“当前”还是“下一条”。5选D，6选A。</li>
+</ul>
+<p><strong>【第7题】</strong></p>
+<ul>
+<li><strong>导师视角</strong>：408老套路了！闭着眼睛背CPU三大件：运算器、控制器、通用寄存器。选项C的“地址译码器”是主存（内存）用来解析地址电信号的门卫大爷，它不属于经典CPU的内部结构（即便现代CPU把它集成进去了，逻辑上也不算）。选C。</li>
+</ul>
+<p><strong>【第8题】</strong></p>
+<p>+2</p>
+<ul>
+<li><strong>导师视角</strong>：MAR是“门牌号登记表”，大楼有几个房间它就要多长（对应地址码长度）；MDR是“运货小推车”，房间门有多宽（对应存储字长），推车就得有多宽。选A。</li>
+</ul>
+<p><strong>【第9题】</strong></p>
+<p>+2</p>
+<ul>
+<li><strong>导师视角</strong>：运算器只管算，ALU和状态寄存器（记算出来的正负溢出）都在里面。但地址寄存器（MAR）是管访存找地址的，不归运算器管。选D。</li>
+</ul>
+<p><strong>【第10题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：存储器金字塔，离CPU核心越近越快。寄存器就在CPU里，最快；Cache在中间；内存最远，最慢。选C。</li>
+</ul>
+<p><strong>【第19题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：CPU的组成不包括主存（存储器）。运算器、控制器、内部寄存器才是CPU的肉体。选B。</li>
+</ul>
+<p><strong>【第20题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：相联存储器的拿手绝活是“按内容寻址”，但它同时也保留了“按地址寻址”的能力。选C。</li>
+</ul>
+<hr>
+<h3 id="🕵️‍♂️-第三梯队：极易掉坑的“障眼法”（11题，12题）"><a href="#🕵️‍♂️-第三梯队：极易掉坑的“障眼法”（11题，12题）" class="headerlink" title="🕵️‍♂️ 第三梯队：极易掉坑的“障眼法”（11题，12题）"></a>🕵️‍♂️ 第三梯队：极易掉坑的“障眼法”（11题，12题）</h3><p><strong>【第11题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：拿笔把题干里的“8位的计算机系统”划掉！这是出题人故意放的烟雾弹。算地址空间<strong>只看地址线位数</strong>。16位地址线，寻址空间就是 216=65536 个。选C。</li>
+</ul>
+<p><strong>【第12题】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：程序运行前必须加载到哪里？主存！外存（硬盘）里的只是死文件，进了主存才叫“活着的进程”。选B。</li>
+</ul>
+<hr>
+<h3 id="🗣️-第四梯队：语言翻译的“鄙视链”（1318题，2122题，24题）"><a href="#🗣️-第四梯队：语言翻译的“鄙视链”（1318题，2122题，24题）" class="headerlink" title="🗣️ 第四梯队：语言翻译的“鄙视链”（1318题，2122题，24题）"></a>🗣️ 第四梯队：语言翻译的“鄙视链”（13<del>18题，21</del>22题，24题）</h3><p><strong>【第13题 &amp; 第15题】</strong></p>
+<p>+4</p>
+<ul>
+<li><strong>导师视角</strong>：跟我建立这个比喻：<strong>编译</strong>就是“把外文书全部翻译成中文印出来”，以后看中文版就特别快（一次翻译生成目标程序，运行快）；<strong>解释</strong>就是“请个同声传译”，边听边翻，不留存稿，所以运行速度慢得要死。因此第13题说解释程序运行快 是错的，选C。第15题“边翻译边执行”对应的就是解释（IV），选D。</li>
+</ul>
+<p><strong>【第14题 &amp; 第21题】</strong></p>
+<p>+4</p>
+<ul>
+<li><strong>导师视角</strong>：这俩题本质一样。计算机硬件是文盲，只认<strong>0和1</strong>（机器语言）。汇编语言只是给人看的“助记符”。所以硬件能直接执行的永远只有机器语言程序。14题选C，21题选A。</li>
+</ul>
+<p><strong>【第16题 &amp; 第17题】</strong></p>
+<ul>
+<li><p><strong>导师视角</strong>：D错在哪？汇编语言是机器指令的符号化，Intel的汇编和ARM芯片的汇编完全是两码事，所以它<strong>强烈依赖机器结构</strong> 。第17题B选项说汇编指令能被计算机直接执行 ，扯淡，必须通过汇编器翻译才行。16选D，17选B。</p>
+<p>+1</p>
+</li>
+</ul>
+<p><strong>【第18题】</strong></p>
+<p>+1</p>
+<ul>
+<li><p><strong>导师视角</strong>：I 错，测试程序（Benchmark）再好也只能反映某方面的性能，不能“全面”代表 。II 对，系列机必须向后兼容（老软件能在新机器上跑） 。III 软硬件逻辑等价，绝对正确 。选C。</p>
+<p>+2</p>
+</li>
+</ul>
+<p><strong>【第22题（2016真题）】</strong></p>
+<ul>
+<li><strong>导师视角</strong>：抓关键字！“高级语言”转换出“目标代码文件（.obj）” 。生成独立目标文件的，必须是“编译程序”。解释程序不生成文件。选C。</li>
+</ul>
+<p><strong>【第24题（2022真题）】</strong></p>
+<p>+1</p>
+<ul>
+<li><strong>导师视角</strong>：C语言编译的祖传流程，死记硬背四个字：“<strong>预、编、汇、链</strong>”。预处理（展开宏）→ 编译（转成汇编） → 汇编（转成机器码目标文件） → 链接（打包生成exe）。选A。</li>
+</ul>
+<h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><h3 id="第一梯队：“字长”家族的恩怨情仇（第1、4、5、9题）"><a href="#第一梯队：“字长”家族的恩怨情仇（第1、4、5、9题）" class="headerlink" title="第一梯队：“字长”家族的恩怨情仇（第1、4、5、9题）"></a>第一梯队：“字长”家族的恩怨情仇（第1、4、5、9题）</h3><p><strong>【第1题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：问你“机器字长”指什么。记住，机器字长就是CPU内部干活的“嘴巴大小”（ALU和通用寄存器的宽度），它决定了CPU<strong>一次能处理的定点整数的位数</strong>。选D。注意A选项，浮点数的位数跟机器字长无关，现在64位的机器照样能算80位的扩展双精度浮点数。</li>
+</ul>
+<p><strong>【第4题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：这题考三个字长的关系。我再说一遍：<strong>机器字长</strong>（CPU嘴巴多大）、<strong>指令字长</strong>（菜单上一道菜的名字多长）、<strong>存储字长</strong>（MDR的宽度，外卖盒多大），这三者<strong>没有任何必然的相等关系</strong>！它们可以相等，也可以成倍数，全看设计师怎么开心怎么来。所以II、III是对的。</li>
+</ul>
+<p><strong>【第5题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：找错误描述。D选项居然说“机器字长对硬件造价没影响”？同学们，寄存器从32位升级到64位，芯片面积要变大，引脚要翻倍，这全都是白花花的银子！违背常识的选项直接干掉。</li>
+</ul>
+<p><strong>【第9题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：跟第4题换汤不换药。问你单字长指令的长度。单字长指令的意思是“指令长度 &#x3D; 机器字长”。那它跟存储字长有关系吗？没有固定关系。所以选C，无法确定。</li>
+</ul>
+<hr>
+<h3 id="⏱️-第二梯队：速度、时间与吞吐量（第2、6、14题）"><a href="#⏱️-第二梯队：速度、时间与吞吐量（第2、6、14题）" class="headerlink" title="⏱️ 第二梯队：速度、时间与吞吐量（第2、6、14题）"></a>⏱️ 第二梯队：速度、时间与吞吐量（第2、6、14题）</h3><p><strong>【第2题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：计算机运算速度跟什么有关？这题用排除法。A（主存容量）、C（硬盘大小）、D（光盘读取）这些都是存储空间的属性。只有B（主频和CPU字长）才是真正决定运算速度的核心硬件指标。挥铲子越快（主频高），铲子越大（字长长），干活就越快。</li>
+</ul>
+<p><strong>【第6题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：考“吞吐量”和“响应时间”的区别。打个比方：<strong>响应时间</strong>是你点了一份外卖，从下单到送到你手里花了多久；<strong>吞吐量</strong>是这个饭店一天能送出多少份外卖。所以“处理单个问题的时间”叫响应时间，选C。</li>
+</ul>
+<p><strong>【第14题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：问你哪个不影响机器速度。A主频肯定影响；B指令字长影响取指令的访存次数；C主存存取周期决定了CPU等内存的时间。只有D“磁盘容量”纯属来搞笑的，你硬盘装1T还是2T，跟CPU算1+1有多快有半毛钱关系吗？</li>
+</ul>
+<hr>
+<h3 id="👻-第三梯队：程序员的“透视眼”（第10题）"><a href="#👻-第三梯队：程序员的“透视眼”（第10题）" class="headerlink" title="👻 第三梯队：程序员的“透视眼”（第10题）"></a>👻 第三梯队：程序员的“透视眼”（第10题）</h3><p><strong>【第10题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：这题是统考高频坑！“透明”在计组里的意思是**“看不见”**。汇编程序员能看到什么？他能看到PC（要控制跳转）、状态寄存器（要判断进位溢出）、通用寄存器（要存数据）。但他绝对看不到Cache的替换算法，也看不到乘法器是怎么连线的，因为硬件自动帮他做了。所以对程序员透明（看不见）的选B。</li>
+</ul>
+<hr>
+<h3 id="🧮-第四梯队：CPI、主频与MIPS的逻辑拉扯（第3、7、8、11、12、13、15题）"><a href="#🧮-第四梯队：CPI、主频与MIPS的逻辑拉扯（第3、7、8、11、12、13、15题）" class="headerlink" title="🧮 第四梯队：CPI、主频与MIPS的逻辑拉扯（第3、7、8、11、12、13、15题）"></a>🧮 第四梯队：CPI、主频与MIPS的逻辑拉扯（第3、7、8、11、12、13、15题）</h3><p><strong>【第3题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：MIPS是啥？Million Instructions Per Second，每秒执行几百万条指令。也就是 <strong>指令条数 &#x2F; (执行时间 × 10^6)</strong>。直接秒选C。</li>
+</ul>
+<p><strong>【第7题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：这题极其容易选B（主频高速度就快）。错！执行时间不仅看主频，还得看CPI（一条指令花几个周期）和指令条数。你主频是别人的两倍，但如果你执行一条指令花的周期是别人的三倍，你照样是个弟弟。所以选D，不能确定。</li>
+</ul>
+<p><strong>【第8题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：找正确的。A选项：CPI是执行一条指令所需的<strong>平均</strong>时钟周期数，不同指令的CPI绝对不一样（加法1个周期，乘法可能要10个），所以A错。B选项：MIPS算的是综合执行速度，跟具体程序有关，B错。C是对的：主频越高，CPU时钟周期越短（两者互为倒数）。</li>
+</ul>
+<p><strong>【第11题】</strong> 答案：A</p>
+<ul>
+<li><strong>导师视角</strong>：这题考**基准程序（Benchmark）**的弱点。基准程序包含了很多种类的代码，但它依然有侧重点（偏向整数还是浮点？偏向访存还是计算？）。由于你的真实程序和基准程序的行为不可能完全一样，所以基准程序的跑分不能完全代表你跑真实程序的时间。选A。</li>
+</ul>
+<p><strong>【第12题】</strong> 答案：A</p>
+<ul>
+<li><strong>导师视角</strong>：问你什么因素不影响<strong>平均CPI</strong>。平均CPI是由：指令集架构（硬件设计）、计算机组织（流水线怎么排）和编译器（怎么挑指令）共同决定的。它唯独跟<strong>时钟频率（主频）无关</strong>！主频只决定一个周期有多长，不决定你需要几个周期。这题是个死知识点，必须背下来，选A。</li>
+</ul>
+<p><strong>【第13题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：在性能公式 T=(N×CPI)&#x2F;f 里，微系统结构（比如有没有流水线）主要影响的是CPI；而指令集架构主要影响的是指令条数N和CPI；编译器影响的是N。选B。</li>
+</ul>
+<p><strong>【第15题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：这题是个小计算。机器A主频1GHz，CPI&#x3D;2；机器B主频1.5GHz，CPI&#x3D;2。A执行完要10秒，B要多久？ 因为跑的是“相同的高级语言程序”，我们假设编译出来的指令条数 N 一样。 A的时间：TA​=(N×2)&#x2F;1G=10s⟹N=5×109。 B的时间：TB​=(N×2)&#x2F;1.5G=(5×109×2)&#x2F;1.5G=10&#x2F;1.5=6.67s。选C。</li>
+</ul>
+<h3 id="⚔️-第一阵型：比例缩放与阿姆达尔（Amdahl）陷阱（第16、17、25、27、28题）"><a href="#⚔️-第一阵型：比例缩放与阿姆达尔（Amdahl）陷阱（第16、17、25、27、28题）" class="headerlink" title="⚔️ 第一阵型：比例缩放与阿姆达尔（Amdahl）陷阱（第16、17、25、27、28题）"></a>⚔️ 第一阵型：比例缩放与阿姆达尔（Amdahl）陷阱（第16、17、25、27、28题）</h3><p>这类题的共同点是：<strong>不让你老老实实算绝对值，非要你算倍数和比例。</strong></p>
+<p><strong>【第16题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：时间 A&#x3D;20s，B&#x3D;16s。问谁快，快多少。这题送分但容易选反。时间越短速度越快！速度比 &#x3D; 时间的反比。VB​&#x2F;VA​=TA​&#x2F;TB​=20&#x2F;16=1.25。秒选B。</li>
+</ul>
+<p><strong>【第17题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：这题前面讲过，再强调一次高分思维。时间要压缩到原来的 <strong>2&#x2F;3</strong>（12秒变8秒），意味着速度要提上来；但新机器的周期数（工作量）又变成了 <strong>1.5倍</strong>。所以主频必须提升 1.5×1.5=2.25 倍。800MHz×2.25=1800MHz=1.8GHz。列复杂的方程你就输了。</li>
+</ul>
+<p><strong>【第25题（2012真题）】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：<strong>超级巨坑！</strong> 100s的总时间里，CPU占90s，I&#x2F;O占10s。题目说CPU速度提升50%。</li>
+<li><strong>防坑雷达</strong>：很多同学直接 100÷1.5。大错特错！<strong>CPU换了，外设没换啊！</strong> I&#x2F;O的10秒是雷打不动的！</li>
+<li><strong>正确姿势</strong>：新CPU时间 &#x3D; 90÷1.5=60s。总时间 &#x3D; 60+10=70s。选D。</li>
+</ul>
+<p><strong>【第27题（2014真题）】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：同样考比例。原时间 T=20s。优化后，指令数变 0.7 倍，CPI 变 1.2 倍。主频没提，默认不变。</li>
+<li><strong>秒杀</strong>：新时间 T′=0.7×1.2×T原​=0.84×20=16.8s。就这么简单。</li>
+</ul>
+<p><strong>【第28题（2017真题）】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：直接列式相除。T1​=(N×2)&#x2F;1.5G；T2​=(N×1)&#x2F;1.2G。</li>
+<li>T1​&#x2F;T2​=(2&#x2F;1.5)÷(1&#x2F;1.2)=(4&#x2F;3)×(6&#x2F;5)=24&#x2F;15=1.6。别算错数就行。</li>
+</ul>
+<hr>
+<h3 id="🧮-第二阵型：CPI与MIPS的硬核计算（第20、21、26、31、32题）"><a href="#🧮-第二阵型：CPI与MIPS的硬核计算（第20、21、26、31、32题）" class="headerlink" title="🧮 第二阵型：CPI与MIPS的硬核计算（第20、21、26、31、32题）"></a>🧮 第二阵型：CPI与MIPS的硬核计算（第20、21、26、31、32题）</h3><p>这是大题第一问最爱的题型。公式必须刻在DNA里：<strong>执行时间 &#x3D; (指令数 × CPI) &#x2F; 主频</strong>。</p>
+<p><strong>【第20题】</strong> 答案：D</p>
+<ul>
+<li><p><strong>导师视角</strong>：别嫌烦，老老实实算两遍。周期都是 2ns（主频500MHz）。</p>
+<ul>
+<li>序列一：总时钟周期数 &#x3D; 1×1+1×2+4×3=15。时间 &#x3D; 15×2ns=30ns。MIPS=指令数6÷30ns×106=200。</li>
+<li>序列二：总时钟周期数 &#x3D; 2×1+1×2+2×3=10。时间 &#x3D; 10×2ns=20ns。MIPS=指令数5÷20ns×106=250。</li>
+<li>对比一下，序列二比一快10ns，MIPS多50。选D。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第21题 &amp; 26题】</strong> 答案：C &#x2F; C</p>
+<ul>
+<li><p><strong>导师视角</strong>：这两题一模一样，都是<strong>加权平均算CPI</strong>。</p>
+<ul>
+<li>21题 CPI &#x3D; 1×0.6+2×0.18+4×0.12+8×0.1=2.24。时间 &#x3D; 100条×2.24&#x2F;40M=5.6×10−6s。</li>
+<li>26题（2013真题） CPI &#x3D; 2×0.5+3×0.2+4×0.1+5×0.2=3。MIPS &#x3D; 主频 1.2G&#x2F;CPI3&#x2F;106=400。</li>
+</ul>
+</li>
+<li><p><strong>警告</strong>：第21题题目说“共包含<strong>100条</strong>指令”，不是100万条！算时间时千万别自作主张乘个 106。</p>
+</li>
+</ul>
+<p><strong>【第31题（2022真题）】</strong> 答案：A</p>
+<ul>
+<li><strong>导师视角</strong>：CPI &#x3D; 1×0.8+10×0.2=2.8。</li>
+<li>执行时间 &#x3D; (10000×2.8)&#x2F;109=28000×10−9s=28μs。</li>
+<li><strong>单位换算死穴</strong>：1ms=10−3s, 1μs=10−6s。这题要是选了C，出门别说是我带出来的！</li>
+</ul>
+<p><strong>【第32题（2023真题）】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：指令执行速度 GIPS &#x3D; 主频&#x2F;CPI=1.5G&#x2F;1.2=1.25GIPS（每秒 1.25G 条指令）。</li>
+<li>时间 &#x3D; 指令条数&#x2F;速度=5×105÷(1.25×109)=4×10−4s=0.4ms。</li>
+</ul>
+<hr>
+<h3 id="🧠-第三阵型：概念辨析与常识陷阱（第18、19、22-24、29、30题）"><a href="#🧠-第三阵型：概念辨析与常识陷阱（第18、19、22-24、29、30题）" class="headerlink" title="🧠 第三阵型：概念辨析与常识陷阱（第18、19、22~24、29、30题）"></a>🧠 第三阵型：概念辨析与常识陷阱（第18、19、22~24、29、30题）</h3><p>这部分不考计算，考你的硬件直觉。</p>
+<p><strong>【第18题 &amp; 19题】</strong> 答案：D &#x2F; D</p>
+<ul>
+<li><strong>导师视角</strong>：评价性能的指标，MIPS、CPI、IPC（每周期指令数，CPI的倒数）、字长全部都能用。第19题，机器字长（一次能算多少位）直接决定了你算浮点数或大整数的<strong>精确度</strong>。</li>
+</ul>
+<p><strong>【第22题 &amp; 23题】</strong> 答案：D &#x2F; D</p>
+<ul>
+<li><strong>导师视角</strong>：问什么能缩短执行时间？只要是从硬件（提升主频、并行处理器、优化数据通路）或软件（编译器优化）上下手，都能！全选。</li>
+</ul>
+<p><strong>【第24题（2011真题）】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：看到“浮点数操作速度”，不用看别的，秒选 <strong>MFLOPS</strong> (Million Floating-point Operations Per Second)。这是白给的。</li>
+</ul>
+<p><strong>【第29题（2020真题）】</strong> 答案：B</p>
+<ul>
+<li><p><strong>导师视角</strong>：<strong>这题含金量极高！</strong> 问哪些部件位数一定与机器字长相同？</p>
+</li>
+<li><p><strong>拆解</strong>：机器字长&#x3D;CPU内部数据通路的宽度。</p>
+<ul>
+<li>I. ALU（算术逻辑单元），干活的，必须同宽。</li>
+<li>III. 通用寄存器，存数据的，必须同宽。</li>
+<li>II. 指令寄存器（IR），它的宽度是由<strong>指令字长</strong>决定的，和机器字长没必然联系。</li>
+<li>IV. 浮点寄存器，它的宽度看遵循什么标准（比如IEEE754双精度是64位），现在32位的机器也能算64位浮点数，无关。选B。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第30题（2021真题）】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：这是个纯纯的“常识+数学”题。93.0146 PFLOPS，P 是多少？</li>
+<li>记好这些前缀：K(103),M(106),G(109),T(1012),P(1015),E(1018)。</li>
+<li>93×1015=9.3×1016。万亿是 1012，亿亿（一亿个一亿）是 1016。所以是9.3亿亿次。选D。</li>
+</ul>
+<h2 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h2><h3 id="🎭-第一阵型：“原、补、反、移”的真假美猴王（第4、6、12、18-23题）"><a href="#🎭-第一阵型：“原、补、反、移”的真假美猴王（第4、6、12、18-23题）" class="headerlink" title="🎭 第一阵型：“原、补、反、移”的真假美猴王（第4、6、12、18~23题）"></a>🎭 第一阵型：“原、补、反、移”的真假美猴王（第4、6、12、18~23题）</h3><p>这部分题目专门考你对各种码制特殊值的敏感度。遇到这种题，不要去推导，直接调用“肌肉记忆”！</p>
+<p><strong>【看第4题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：问你谁对“0”的表示唯一？记住，<strong>原码和反码都有 +0 和 −0 两个鬼面孔</strong>。只有<strong>补码</strong>（全是0）和<strong>移码</strong>（最高位1，其余全0）对“0”的表示是唯一的。这不仅是这道题的答案，更是补码能比原码多表示一个底限负数（比如-128）的根本原因！</li>
+</ul>
+<p><strong>【看第6题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：送分题，但也是极易错题。已知 X 的补码，怎么快速求 −X 的补码？<strong>连同符号位在内，全部取反，末位加1！</strong> 别去管什么符号位不变，那是原码求反码的规矩，求相反数的补码，统统给我全部取反加1！</li>
+</ul>
+<p><strong>【看第18、20、21、23题：机器数反推真值】</strong></p>
+<ul>
+<li><p><strong>导师视角</strong>：出题人最喜欢拿这几个特殊的二进制串搞你，跟我把这张**“统考VIP特权表”**刻在脑子里（以8位为例）：</p>
+<ul>
+<li><code>1000 0000</code>：在原码里是 −0（等于0，选A）；在补码里是神圣的 <strong>−128</strong>；在移码里是极小值 <strong>−128</strong>（选D，第21题）。</li>
+<li><code>0000 0000</code>：在移码里是 <strong>−128</strong>（第23题选B，求相反数+128溢出）。</li>
+<li><code>1111 1111</code>：在补码里永远是 <strong>−1</strong>（第20题选B）；在移码里是极大值 <strong>+127</strong>（第19题选D）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="⚖️-第二阵型：补码大小的“直觉判断”（第13、14、15题）"><a href="#⚖️-第二阵型：补码大小的“直觉判断”（第13、14、15题）" class="headerlink" title="⚖️ 第二阵型：补码大小的“直觉判断”（第13、14、15题）"></a>⚖️ 第二阵型：补码大小的“直觉判断”（第13、14、15题）</h3><p>这是 2.1 节里<strong>最能拉开分差</strong>的地方！很多同学看到这种带未知数 xi​ 的题直接就懵了。</p>
+<p><strong>👨‍🏫 导师绝招：补码的“负权值”思维</strong> 不要把补码当成“原码取反加1”，在比较大小时，直接把最高位（符号位）当成<strong>负权重</strong>，其余位当成<strong>正权重</strong>！ 比如7位补码 1,x1​x2​…x6​，它的真实数值就是：<strong>−64+x1​⋅32+x2​⋅16+…</strong></p>
+<p><strong>【看第13题】</strong> 答案：C</p>
+<ul>
+<li><p><strong>题目</strong>：[x]补​=1,x1​x2​x3​x4​x5​x6​，要求 x&gt;−32。</p>
+</li>
+<li><p><strong>导师视角</strong>：直接套用负权值！因为符号位是1，这数的基础值是 −64。</p>
+<ul>
+<li>如果 x1​=0，那后面全填1最多也就是 −64+15=−49。−49 显然不大于 −32。所以 <strong>x1​ 必须是 1</strong>。</li>
+<li>如果 x1​=1，现在的总和是 −64+32=−32。题目要求<strong>大于</strong> −32，所以后面 x2​∼x6​ <strong>至少得有一个是1</strong>，才能把数值往上拉（变成 -31, -30…）。直接秒选C！</li>
+</ul>
+</li>
+</ul>
+<p><strong>【看第14题】</strong> 答案：C</p>
+<ul>
+<li><p><strong>题目</strong>：[x]补​=1,x1​x2​x3​x4​x5​，要求 x&lt;−16。</p>
+</li>
+<li><p><strong>导师视角</strong>：同样套路！基础值是 −32。</p>
+<ul>
+<li>如果 x1​=1，那总和变成了 −32+16=−16。后面哪怕全是0，也是 −16，不满足<strong>小于</strong> −16。所以 <strong>x1​ 必须是 0</strong>。</li>
+<li>x1​ 是0了，基础值还是 −32。后面 x2​∼x5​ 就算全填1，加上去最大也就是 −32+15=−17。−17 永远小于 −16。所以后面各位<strong>任意填</strong>都没关系！选C。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【看第15题】</strong> 答案：D</p>
+<ul>
+<li><p><strong>题目</strong>：[−x∗]补​=[−x]补​，x∗ 是绝对值。什么时候成立？</p>
+</li>
+<li><p><strong>导师视角</strong>：这是极其阴险的陷阱题！一半人会选B（x为正数）。</p>
+<ul>
+<li>常规思维：x∗ 是绝对值，所以左边永远是负数的补码。既然两边相等，说明 −x 也是负数，所以 x≥0。</li>
+<li><strong>408高分防坑雷达</strong>：记住补码的“不对称性”！补码能表示的范围是 [−128,+127]。如果是 −128，它的绝对值超出了正数范围，计算机算出来的 ∣−128∣ 依然是 −128（溢出）！所以，如果 x=−128，−x∗ 是 −128 补码 <code>10000000</code>，−x 算出来溢出依然是 <code>10000000</code>。两边也相等！</li>
+<li>因为包含了这个<strong>极小值的特例</strong>，所以不能单纯说 x 是正数，选D（以上说法都不对）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="🎭-第三阵型：C语言的“画皮”游戏（第27、28、30、32、33题）"><a href="#🎭-第三阵型：C语言的“画皮”游戏（第27、28、30、32、33题）" class="headerlink" title="🎭 第三阵型：C语言的“画皮”游戏（第27、28、30、32、33题）"></a>🎭 第三阵型：C语言的“画皮”游戏（第27、28、30、32、33题）</h3><p>这部分是历年真题的最爱。你只需要记住老师总结的**“变脸两定律”**：</p>
+<ol>
+<li><strong>位扩展定律</strong>：短变长时，如果是无符号数（unsigned），高位统统<strong>补0</strong>；如果是有符号数，高位统统<strong>复制符号位</strong>。</li>
+<li><strong>强制转换定律</strong>：相同位数的 unsigned 和 signed 互相转换时，<strong>底层的 0&#x2F;1 机器码绝对不会改变，一根毫毛都不变！</strong> 变的只是你怎么去“翻译”它。</li>
+</ol>
+<p><strong>【看第27题 &amp; 28题（2012真题）】</strong> 答案：B &#x2F; B</p>
+<ul>
+<li><p><strong>导师视角</strong>：</p>
+<ul>
+<li>27题：16位 <code>0x8FA0</code> 变 32位。先看最高位，<code>8</code> 的二进制是 <code>1000</code>，符号位是 <code>1</code>！因为是补码扩展（有符号），高位必须全补 <code>1</code>，十六进制就是全补 <code>F</code>。变成 <code>0xFFFF 8FA0</code>，选B。</li>
+<li>28题：<code>unsigned short x = 65530</code> 变 <code>unsigned int</code>。因为是<strong>无符号数</strong>，不管最高位是啥，高位只配补 <code>0</code>！所以变成 <code>0000 FFFAH</code>，选B。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【看第30题（2016真题）】</strong> 答案：D</p>
+<ul>
+<li><p><strong>题目</strong>：<code>short si = -32767</code>，<code>unsigned short usi = si</code>。求 usi 的值。</p>
+</li>
+<li><p><strong>导师视角</strong>：</p>
+<ul>
+<li>第一步：写出底层机器码。<code>-32767</code> 怎么写？记住 −32768 是 <code>1000...0</code>，−32767 比它大 1，所以机器码是 <code>1000 0000 0000 0001</code>。</li>
+<li>第二步：戴上“无符号”的面具去读它。最高位的 <code>1</code> 不再是负号，而是 215=32768。</li>
+<li>第三步：算真值。32768+1=32769。一步到位，选D。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【看第33题（2021真题）】</strong> 答案：D</p>
+<ul>
+<li><p><strong>题目</strong>：机器数 FFFDH, FFDFH, 7FFCH，比较有符号&#x2F;无符号下的大小。</p>
+</li>
+<li><p><strong>导师视角</strong>：直接看最高位剥掉伪装！</p>
+<ul>
+<li>FFFD（最高位1，负数）；FFDF（最高位1，负数）；7FFC（最高位0，正数）。</li>
+<li>有符号数比较：7FFC 肯定是最大的，排除A、B。剩下俩负数怎么比？</li>
+<li>回忆第一阵型的诀窍：负数补码里，<strong>数值部分（1越多）越大，越靠近0</strong>。FFFD 的末尾是 D(13)，FFDF 的末尾是 F(15)，表面看 F 大，但注意倒数第二位，FFFD 是 F(1111)，FFDF 是 D(1101)。显然 FFFD 里面的1更多，更靠近0。</li>
+<li>所以真值：FFDF &lt; FFFD &lt; 7FFC。也就是 y &lt; x &lt; z。选D。</li>
+</ul>
+</li>
+</ul>
+<h3 id="第四梯队：基础定义与范围（送分必须拿稳）"><a href="#第四梯队：基础定义与范围（送分必须拿稳）" class="headerlink" title="第四梯队：基础定义与范围（送分必须拿稳）"></a>第四梯队：基础定义与范围（送分必须拿稳）</h3><p><strong>包含题号：2、7、8、9、11、25、26、31、34</strong></p>
+<p><strong>【第2题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：16位<strong>无符号数</strong>的范围。没有符号位拖后腿，16位全用来表示数值。最大值就是全1，也就是 216−1=65535。所以范围是 0∼65535。选B。</li>
+</ul>
+<p><strong>【第7题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：8位原码能表示“多少个”不同的数据？注意问的是“个数”！8位二进制本来有 28=256 种组合，但是在原码里，<code>00000000</code> 是 +0，<code>10000000</code> 是 −0，两个码表示同一个真值0。所以得扣掉一个重复的：256−1=255 个。选C。</li>
+</ul>
+<p><strong>【第8题 &amp; 第9题】</strong> 答案：B &#x2F; D</p>
+<ul>
+<li><strong>导师视角</strong>：公式死记题！n 位带符号整数的最大值永远是 2n−1−1（第9题选D）。至于 n+1 位的原码范围（第8题），最高位是符号位，剩下 n 位是数值。最大值是 2n−1，最小值是对称的 −(2n−1)，也就是 −2n+1。选B。</li>
+</ul>
+<p><strong>【第11题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：64位补码，1位符号位。问你绝对值最大的负数（其实就是问下限）。补码比原码牛的地方就在于它能多表示一个最小负数 −2n−1。总共64位，所以最小负数就是 −263。选C。</li>
+</ul>
+<p><strong>【第25题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：补码的特点。I 是对的（0表示唯一）。II 是对的（符号位直接参与运算，这是补码被发明的初衷）。IV 是对的（减法变加法）。III 错在哪？补码和真值的对应关系不直观，原码才是最直观的（直接看出来是多少）。所以选D（I, II, IV）。</li>
+</ul>
+<p><strong>【第26题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：主存地址（也就是内存地址，0x0000~0xFFFF）用什么码表示？地址不可能有负数！内存条里没有叫“-5号”的房间。所以地址<strong>一律使用无符号数</strong>。选D。</li>
+</ul>
+<p><strong>【第31题（2018真题）】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：为什么用二进制？I. 算术规则简单；II. 制造两个稳态（高低电平）的物理器件容易；III. 逻辑门（与或非）方便实现算术运算。全对，常识题，闭眼选D。</li>
+</ul>
+<p><strong>【第34题（2022真题）】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：考 32 位补码范围。下限是 −231，上限是 231−1。统考就喜欢这么直白地送分，选B。</li>
+</ul>
+<hr>
+<h3 id="🧮-第五梯队：编码转换与底层的数字游戏"><a href="#🧮-第五梯队：编码转换与底层的数字游戏" class="headerlink" title="🧮 第五梯队：编码转换与底层的数字游戏"></a>🧮 第五梯队：编码转换与底层的数字游戏</h3><p><strong>包含题号：1、3、5、10、16、17、24、29</strong></p>
+<p><strong>【第1题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：十进制 137.5 转八进制。整数部分 137÷8=17 余 1，17÷8=2 余 1，所以是 211。小数部分 0.5×8=4.0，所以是 .4。合起来 211.4。选B。</li>
+</ul>
+<p><strong>【第3题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：找错误的说法。这种题必考浮点数精度丢失的常识！<strong>任何二进制小数都能化成精确的十进制小数</strong>（因为 2−n 总是能被底数10整除，比如 0.5, 0.25, 0.125），<strong>但十进制小数未必能化成有限的二进制小数</strong>（比如 0.1 转二进制是无限循环的 <code>0.000110011...</code>）。所以D选项说“任何十进制小数都能用二进制表示”是极其荒谬的，选D。</li>
+</ul>
+<p><strong>【第5题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：已知 [X]原​=1.1101010，求补码。第一步看符号：最高位是 1，负数！所以除符号位外全部取反得反码：<code>1.0010101</code>。第二步末位加 1：<code>1.0010110</code>。选B。</li>
+</ul>
+<p><strong>【第10题】</strong> 答案：A</p>
+<ul>
+<li><strong>导师视角</strong>：这题是在考你数学。N位二进制能表示 2N 个数，N位十进制能表示 10N 个数。两者个数比值：2N&#x2F;10N=(2&#x2F;10)N=0.2N。选A。</li>
+</ul>
+<p><strong>【第16题】</strong> 答案：B</p>
+<ul>
+<li><p><strong>导师视角</strong>：十进制 −66 放进 8 位寄存器求十六进制。−66=−64−2。</p>
+<ul>
+<li>先写 +66 原码：<code>0100 0010</code>。</li>
+<li>求 −66 补码（连同符号位全部取反加1）：<code>1011 1101 + 1 = 1011 1110</code>。</li>
+<li>转十六进制：<code>1011</code> 是 B，<code>1110</code> 是 E。所以是 <code>BEH</code>。选B。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第17题】</strong> 答案：C</p>
+<ul>
+<li><p><strong>导师视角</strong>：寄存器里是 <code>9BH</code>，这是补码，求十进制真值。</p>
+<ul>
+<li>展开 <code>9BH</code>：<code>1001 1011</code>。最高位是1，说明是负数。</li>
+<li>用我的“负权值法”秒杀：−128+16+8+2+1=−101。选C。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第24题】</strong> 答案：A</p>
+<ul>
+<li><p><strong>导师视角</strong>：8位，2个”0”，6个”1”。怎么摆能得出最小或最大？</p>
+<ul>
+<li>选项 A：看移码（偏置值127）。移码越小，符号位（最高位）必须是0，且数值位尽量小。所以把两个”0”放在最高和次高位，机器码是 <code>0011 1111</code>（也就是 63）。真值 &#x3D; 机器码 - 偏置值 &#x3D; 63−127=−64。A说法正确！不用看BCD了。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第29题（2015真题）】</strong> 答案：B</p>
+<ul>
+<li><p><strong>导师视角</strong>：8位二进制补码，3个”1”，5个”0”。求<strong>最小整数</strong>。</p>
+<ul>
+<li>要求最小，必须是负数，所以最高位（符号位）<strong>必须是 1</strong>。</li>
+<li>剩下2个”1”和5个”0”怎么排？利用“负权值法”：最高位是 −128，你要让这个数尽可能小（也就是负得越多越好），那正权重部分加得越少越好。</li>
+<li>所以剩下的两个 “1” 要放在最低位！排成：<code>1000 0011</code>。</li>
+<li>算真值：−128+2+1=−125。选B。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h2><h3 id="第一梯队：运算器部件与-ALU-基础（第13题，910题）"><a href="#第一梯队：运算器部件与-ALU-基础（第13题，910题）" class="headerlink" title="第一梯队：运算器部件与 ALU 基础（第13题，910题）"></a>第一梯队：运算器部件与 ALU 基础（第1<del>3题，9</del>10题）</h3><p><strong>【第1题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：ALU 是干活的，里面全是门电路，没有记忆功能，所以纯粹是<strong>组合逻辑电路</strong>。时序逻辑电路是那些带触发器、能存状态的（比如寄存器）。</li>
+</ul>
+<p><strong>【第2题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：老生常谈的陷阱！运算器里有状态寄存器（PSW）、数据总线、ALU。但**地址寄存器（MAR）**是负责找内存要数据的，归存储&#x2F;控制逻辑管，不在运算器里。</li>
+</ul>
+<p><strong>【第3题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：ALU 全称 Arithmetic and Logic Unit。算术（加减乘除）和逻辑（与或非移位）它都包了。选C。</li>
+</ul>
+<p><strong>【第9题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：不管你是单符号位还是双符号位，只要做加减法，就一定可能超出范围。所以**溢出判断电路（通常用异或门实现）**是定点运算器必须标配的。</li>
+</ul>
+<p><strong>【第10题】</strong> 答案：A</p>
+<ul>
+<li><strong>导师视角</strong>：为什么会溢出？打个比方，你拿一个只能装 255 毫升水的小杯子，非要往里倒 300 毫升水，肯定溢出来。根本原因就是<strong>寄存器的位数（杯子大小）是有限的</strong>。</li>
+</ul>
+<hr>
+<h3 id="⏪-第二梯队：移位运算与溢出防坑（第4-6题，8题，16题，20题，31题）"><a href="#⏪-第二梯队：移位运算与溢出防坑（第4-6题，8题，16题，20题，31题）" class="headerlink" title="⏪ 第二梯队：移位运算与溢出防坑（第4~6题，8题，16题，20题，31题）"></a>⏪ 第二梯队：移位运算与溢出防坑（第4~6题，8题，16题，20题，31题）</h3><p><strong>【第4题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：<code>01010101</code> 算术左移两位。最高位是0（正数），左移低位补0。移两位后变成 <code>01010100</code>。虽然实际上它溢出了（顶部的01被挤掉了），但机器码就是老老实实这么截断的，选B。</li>
+</ul>
+<p><strong>【第5题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：补码左移<strong>不溢出</strong>的条件是什么？<strong>最高数值位必须和符号位一样！</strong> D选项 <code>C0H</code> 是 <code>1100 0000</code>。符号位是1，最高数值位也是1。左移一位变成 <code>1000 0000</code>，符号没变，所以不溢出！</li>
+</ul>
+<p><strong>【第6题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：<code>10010101</code> 算术右移一位。最高位是1（负数），算术右移的规矩是<strong>高位补符号位</strong>。所以右边挤掉一个1，左边补一个1，变成 <code>11001010</code>。</li>
+</ul>
+<p><strong>【第8题】</strong> 答案：C (<strong>⚠️ 导师抓虫：王道教材题目印刷有误！</strong>)</p>
+<ul>
+<li><p><strong>导师视角</strong>：题干说 <code>BAH</code> 为<strong>原码</strong>，如果是原码，左移一位应该变成 <code>F4H</code>，没有这个选项。<strong>这道题题干其实想说的是“补码”！</strong> 我们按补码算：<code>BAH</code> &#x3D; <code>1011 1010</code>。</p>
+<ul>
+<li>算术左移1位（低位补0）：<code>0111 0100</code> &#x3D; <code>74H</code>。</li>
+<li>算术右移1位（高位补符号位1）：<code>1101 1101</code> &#x3D; <code>DDH</code>。选C！把书上“原码”两个字划掉改补码！</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第16题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：这就是第5题的公式化表达。补码左移什么时候溢出？当你把与符号位不同的数挤到符号位上时。即 X0​=X1​。</li>
+</ul>
+<p><strong>【第20题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：I 左移前后符号变了就是溢出，对。II 无符号左移最高位移出1，说明丢了有效数据，溢出，对。III 逻辑左移和算术左移的“动作”确实一模一样（都是丢高位补低位0），只是算术移位会去查标志位。全对，选D。</li>
+</ul>
+<p><strong>【第31题（2018真题）】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：<code>1101 1000</code>。逻辑右移（无脑补0）：<code>0110 1100</code>。算术右移（看符号位补，它是1就补1）：<code>1110 1100</code>。一眼秒杀。</li>
+</ul>
+<hr>
+<h3 id="➕-第三梯队：加减法与双符号位（第7题，1115题，2729题）"><a href="#➕-第三梯队：加减法与双符号位（第7题，1115题，2729题）" class="headerlink" title="➕ 第三梯队：加减法与双符号位（第7题，1115题，2729题）"></a>➕ 第三梯队：加减法与双符号位（第7题，11<del>15题，27</del>29题）</h3><p><strong>【第7题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：纯十六进制加法 <code>7E5H + 4D3H</code>。<code>5+3=8</code>；<code>E+D</code> (14+13&#x3D;27)，27满16进1余11 (B)，写 B 进 1；<code>7+4+1=C</code>。连起来 <code>CB8H</code>。</li>
+</ul>
+<p><strong>【第11题】</strong> 答案：C</p>
+<ul>
+<li><p><strong>导师视角</strong>：8位补码范围 <code>[-128, 127]</code>。<code>r1 = F5H</code> (-11)，<code>r2 = EEH</code> (-18)。</p>
+<ul>
+<li>试一下乘法：-11 × -18 &#x3D; +198。198 直接干碎了上限 127，绝对溢出！选C。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第12题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：模4补码（双符号位）在存储器（内存）里存的时候，<strong>只存一个符号位</strong>，只有被调到 ALU 里计算时，才会复制出两个符号位来判断溢出。选B。</li>
+</ul>
+<p><strong>【第13题】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：双符号位判断法：<code>00</code> 正常正，<code>11</code> 正常负。<code>01</code> 正溢出（两个正数加出了负数），<code>10</code> 负溢出。问两个正数相加溢出，那肯定是 <code>01</code>。</li>
+</ul>
+<p><strong>【第14题】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：单符号位进位判断法：<strong>符号位进位 (C0​) ⊕ 最高数值位进位 (C1​) &#x3D; 1 时溢出</strong>。也就是说，要么 C0​ 进 C1​ 不进，要么 C0​ 不进 C1​ 进。对应 V 和 VI。</li>
+</ul>
+<p><strong>【第15题】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：跟 13 题呼应，<code>10</code> 代表两个负数加出了正数，叫做<strong>负溢出</strong>。</li>
+</ul>
+<p><strong>【第27题（2010真题）】</strong> 答案：B</p>
+<ul>
+<li><strong>导师视角</strong>：同第 11 题。<code>r2 = F2H</code> (-14)，<code>r3 = 90H</code> (-112)。相乘等于 +1568，远超 127，溢出。</li>
+</ul>
+<p><strong>【第28题（2013真题）】</strong> 答案：A</p>
+<ul>
+<li><p><strong>导师视角</strong>：x=11110100 (-12)，y=10110000 (-80)。求 2x+y&#x2F;2。</p>
+<ul>
+<li>2x=−24，补码是 <code>1110 1000</code>。</li>
+<li>y&#x2F;2=−40，补码是 <code>1101 1000</code>。</li>
+<li>两个补码相加：<code>1110 1000 + 1101 1000 = 1 1100 0000</code>。丢弃最高位溢出进位，剩下 <code>1100 0000</code>。其实算真值 −24−40=−64，-64 的补码就是 <code>11000000</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第29题（2014真题）】</strong> 答案：C</p>
+<ul>
+<li><strong>导师视角</strong>：x=103，y=−25。问哪个溢出。直接算真值！A&#x3D;78，B&#x3D;-128（刚好在下限，不溢出！极易踩坑），C &#x3D; 103 - (-25) &#x3D; 128（上限是127，超了！），D &#x3D; -78。选C。</li>
+</ul>
+<hr>
+<h3 id="✖️-第四梯队：原码乘法（第17-19题，35题）"><a href="#✖️-第四梯队：原码乘法（第17-19题，35题）" class="headerlink" title="✖️ 第四梯队：原码乘法（第17~19题，35题）"></a>✖️ 第四梯队：原码乘法（第17~19题，35题）</h3><p><strong>【第17题】</strong> 答案：A</p>
+<ul>
+<li><strong>导师视角</strong>：原码乘法就是人类最原始的习惯：<strong>符号不管，绝对值相乘，最后看正负</strong>。选A。</li>
+</ul>
+<p><strong>【第18题 &amp; 19题】</strong> 答案：B &#x2F; C</p>
+<ul>
+<li><strong>导师视角</strong>：紧接上题，18题原码乘法中符号位<strong>不参加运算</strong>（选B）。19题符号怎么定？正正得正，正负得负，这不就是同0异1吗？所以是用<strong>异或</strong>门（选C）。</li>
+</ul>
+<p><strong>【第35题（2024真题）】</strong> 答案：D</p>
+<ul>
+<li><strong>导师视角</strong>：常识题。不管是不是变量，乘法在底层都可以被编译器拆解成<strong>移位 + 加减法</strong>的循环来执行（早期的 CPU 连乘法器都没有，全靠这么算）。D 说无法转换，大错特错。</li>
+</ul>
+<hr>
+<h3 id="🚩-第五梯队：标志位（CF-OF）底层硬核计算（第2124题，30题，3233题）"><a href="#🚩-第五梯队：标志位（CF-OF）底层硬核计算（第2124题，30题，3233题）" class="headerlink" title="🚩 第五梯队：标志位（CF&#x2F;OF）底层硬核计算（第2124题，30题，3233题）"></a>🚩 第五梯队：标志位（CF&#x2F;OF）底层硬核计算（第21<del>24题，30题，32</del>33题）</h3><p><strong>（重点警告：408 大题第一问最爱考，看仔细！）</strong></p>
+<p><strong>【第21题】</strong> 答案：B</p>
+<ul>
+<li><p><strong>导师视角</strong>：计算 x−y。底层加法器怎么做？<strong>减法变加法：x+not(y)+1</strong>。</p>
+<ul>
+<li>x=01000101。</li>
+<li>y=00100110，not(y)=11011001。</li>
+<li>末位还要加一个 1，所以<strong>低位进位信息必定为 1</strong>（代表减法借位）。直接锁定 B！</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第22题】</strong> 答案：A</p>
+<ul>
+<li><p><strong>导师视角</strong>：x=F5H（负数），y=7EH（正数）。算 x−y。</p>
+<ul>
+<li>减法，低位进位肯定是 <strong>1</strong>。</li>
+<li>OF 溢出标志怎么看？看有符号数真值！负数减正数，等于两个负数相加。F5H(-11) 减 7EH(126) &#x3D; -137。下限是 -128，所以<strong>爆缸了，溢出！OF &#x3D; 1</strong>。选A。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第23题 &amp; 24题】</strong> 答案：C &#x2F; A</p>
+<ul>
+<li><p><strong>导师视角</strong>：x=44H(+68)，y=DCH(−36)。</p>
+<ul>
+<li>23题：x&#x2F;2+2y=34−72=−38。没超出 [-128, 127]，<strong>不溢出，OF&#x3D;0</strong>。选C。</li>
+<li>24题：x−2y=68−(−72)=140。超出了 127，<strong>溢出！OF&#x3D;1</strong>。选A。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第30题（2018真题）】</strong> 答案：C</p>
+<ul>
+<li><p><strong>导师视角</strong>：x=FFFFFFDFH(−33)，y=00000041H(65)。</p>
+<ul>
+<li>x−y=−33−65=−98。没有溢出（在32位里简直九牛一毛）。</li>
+<li>−98 怎么转十六进制？−98=−128+30。低8位是 <code>1001 1110</code> (9EH)，高位全补1 (F)。所以是 <code>FFFFFF9EH</code>。选C。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第32题（2018真题）】</strong> 答案：A</p>
+<ul>
+<li><p><strong>导师视角</strong>：<code>R1 = FFFFFFFFH (-1)</code>，<code>R2 = FFFFFFF0H (-16)</code>。</p>
+<ul>
+<li>算 R1 - R2。有符号看 OF：−1−(−16)=+15，没溢出，<strong>OF &#x3D; 0</strong>。</li>
+<li>无符号看 CF：比较 R1 和 R2 谁大。R1 全是 F 是最大的数，R2 比它小。大数减小数，不需要借位！所以 <strong>CF &#x3D; 0</strong>。选A。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第33题（2023真题）】</strong> 答案：B</p>
+<ul>
+<li><p><strong>导师视角</strong>：x=10，y=−20。执行 x−y。</p>
+<ul>
+<li>有符号看 OF：10−(−20)=30，没溢出，<strong>OF &#x3D; 0</strong>。</li>
+<li>无符号看 CF：注意！在无符号眼里，x=10 极小，而 y 的机器数最高位是 1，是个极大的数（接近 42 亿）。10 减去 42 亿，<strong>必然不够减，必须借位！所以 CF &#x3D; 1</strong>。选B。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="🧑‍💻-第六梯队：C语言强转与越界骗局（第25-26题，34题）"><a href="#🧑‍💻-第六梯队：C语言强转与越界骗局（第25-26题，34题）" class="headerlink" title="🧑‍💻 第六梯队：C语言强转与越界骗局（第25~26题，34题）"></a>🧑‍💻 第六梯队：C语言强转与越界骗局（第25~26题，34题）</h3><p><strong>【第25题】</strong> 答案：A</p>
+<ul>
+<li><p><strong>导师视角</strong>：<code>int si = 65536; short i = si;</code>。65536 的二进制是 <code>1 0000 0000 0000 0000</code> (17位)。截断成 16 位的 short，只剩下后面的全 0，所以 <strong>i=0</strong>。</p>
+<ul>
+<li><code>unsigned j = 0</code>。</li>
+<li><code>i &lt;= j-1</code>，即 <code>0 &lt;= 0 - 1</code>。因为 <code>j</code> 是无符号的，<code>0-1</code> 下溢变成了<strong>无符号最大值 UMAX</strong>。0 小于最大值，成立，打印“王道”。</li>
+<li>无符号比较看什么标志位？看 <strong>CF</strong> 标志位！选A。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第26题（2009真题）】</strong> 答案：D</p>
+<ul>
+<li><p><strong>导师视角</strong>：<code>int x = 127 (0x7F)</code>，<code>short y = -9</code>。</p>
+<ul>
+<li>-9 的 16 位补码是 <code>FFF7H</code>。</li>
+<li>相加时，short 自动转 int，高位符号位补全：<code>FFFF FFF7H</code>。</li>
+<li>z=127+(−9)=118。118 的十六进制是 <code>76H</code>，存为 int 就是 <code>0000 0076H</code>。选D。</li>
+</ul>
+</li>
+</ul>
+<p><strong>【第34题（2024真题）】</strong> 答案：B</p>
+<ul>
+<li><p><strong>导师视角</strong>：<code>int i = 32777; short si = i;</code>。</p>
+<ul>
+<li>32777 &#x3D; 32768 + 9 &#x3D; <code>0x8009</code>。截断给 short 还是 <code>0x8009</code>。</li>
+<li><code>0x8009</code> 戴上有符号 short 的帽子，最高位变成负号，真值是 −32768+9=−32759。</li>
+<li>再转回 int，符号位扩展，依然是 <code>-32759</code>。选B。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>408选择题解析</div>
+      <div>http://cathylove47.github.io/2026/03/13/408选择题解析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/12/27-408%E8%80%83%E7%A0%94/" title="27 408考研">
+                        <span class="hidden-mobile">27 408考研</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
