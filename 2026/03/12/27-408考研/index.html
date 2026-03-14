@@ -27,7 +27,7 @@
 <meta property="og:description" content="计算机组成原理part1: 计算机发展历程 硬件：指计算机系统中由电子元器件和机械装置构成的实体。根据冯·诺依曼结构，经典硬件包含五大部分：运算器、控制器、存储器、输入设备、输出设备。  软件：指为解决特定问题而编制的程序及其相关文档。分为：  系统软件：用于管理计算机资源（如操作系统、数据库管理系统、编译器）。 应用软件：解决用户具体需求的程序（如微信、Civilization VI）。   核">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-12T09:39:56.000Z">
-<meta property="article:modified_time" content="2026-03-13T06:14:43.854Z">
+<meta property="article:modified_time" content="2026-03-13T13:42:07.719Z">
 <meta property="article:author" content="cathy">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.4k 字
+          8.5k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          54 分钟
+          71 分钟
         
       </span>
     
@@ -589,6 +589,94 @@
 <h4 id="4-常识记忆：ASCII-与汉字编码的界限"><a href="#4-常识记忆：ASCII-与汉字编码的界限" class="headerlink" title="4. 常识记忆：ASCII 与汉字编码的界限"></a>4. 常识记忆：ASCII 与汉字编码的界限</h4><ul>
 <li><strong>死记硬背</strong>：数字 <code>&#39;0&#39;</code> 的 ASCII 是 <code>48</code>（<code>0x30</code>）；大写 <code>&#39;A&#39;</code> 是 <code>65</code>（<code>0x41</code>）；小写 <code>&#39;a&#39;</code> 是 <code>97</code>（<code>0x61</code>）。</li>
 <li><strong>界限</strong>：ASCII 码最高位是 0；汉字机内码每个字节最高位必须是 1（防冲突）。只要看到最高位是 1 的字符，大概率是汉字。</li>
+</ul>
+<h3 id="定点数的表示"><a href="#定点数的表示" class="headerlink" title="定点数的表示"></a>定点数的表示</h3><p><strong>定点数</strong>：小数点位置“固定”的数。在计算机中，小数点不占存储空间，是人为约定的（定点整数小数点在最低位之后，定点小数在符号位之后）。</p>
+<p>长度为 n（包含 1 位符号位）的四种编码定义：</p>
+<ol>
+<li><p><strong>原码（Sign-Magnitude）</strong>：</p>
+<ul>
+<li><strong>规则</strong>：最高位为符号位（0正，1负），其余各位为数值的绝对值。</li>
+<li><strong>范围</strong>：−(2n−1−1)∼2n−1−1。</li>
+</ul>
+</li>
+<li><p><strong>反码（Ones’ Complement）</strong>：</p>
+<ul>
+<li><strong>规则</strong>：正数同原码；负数符号位为 1，数值位<strong>全部按位取反</strong>。</li>
+<li><strong>范围</strong>：同原码。</li>
+</ul>
+</li>
+<li><p><strong>补码（Two’s Complement）</strong>（🌟 <strong>绝对核心</strong>）：</p>
+<ul>
+<li><strong>规则</strong>：正数同原码；负数符号位为 1，数值位<strong>反码加 1</strong>。</li>
+<li><strong>范围</strong>：<strong>−2n−1∼2n−1−1</strong>（注意！比原码多表示一个极小值）。</li>
+</ul>
+</li>
+<li><p><strong>移码（Offset Binary）</strong>：</p>
+<ul>
+<li><strong>规则</strong>：只用于表示整数！在真值上加上一个偏置值（通常是 2n−1）。<strong>捷径：将补码的符号位取反，即得移码</strong>。</li>
+<li><strong>范围</strong>：同补码。</li>
+</ul>
+</li>
+</ol>
+<h4 id="通俗解释"><a href="#通俗解释" class="headerlink" title="通俗解释"></a>通俗解释</h4><p>这四种码为什么会被发明出来？咱们从“进化论”的角度秒懂：</p>
+<ul>
+<li><strong>原码 &#x3D; 人类直觉</strong>： 就像我们平时写 +5 和 −5。人类看着最爽，但 <strong>ALU（运算器）看着想骂人</strong>。因为做加法时，如果两数符号不同，ALU 还得比较绝对值大小，再去用大数减小数。太复杂了！</li>
+<li><strong>反码 &#x3D; 失败的试验品</strong>： 为了把减法变成加法，科学家发明了反码。但它有个致命缺陷：<strong>有两个零（+0 和 -0）</strong>。这在数学上是不可忍受的。如今它只是求补码的垫脚石。</li>
+<li><strong>补码 &#x3D; 终极黑客科技</strong>： 借用“钟表”的直觉：现在是 10 点，你想拨到 8 点，可以往回拨 2 格（−2），也可以往前拨 10 格（+10），因为钟表一圈是 12（模）。 计算机的位宽也是有模的！<strong>用补码，ALU 就不需要减法器了，所有减法都可以转换成加法！</strong> 而且，它神奇地把 −0 变成了底限负数（比如 8 位下的 −128），完美利用了所有编码空间。</li>
+<li><strong>移码 &#x3D; 垫高底线的尺子</strong>： 补码虽然好算，但不利于比较大小（符号位是 1 的负数反而比 0 的正数小，硬件比对起来很麻烦）。<strong>移码就是强行给所有数加上一个很大的正数</strong>，把水面垫高，让所有数都变成“非负数”。这样硬件直接从高位到低位逐位比较，谁大谁就真大。所以它专门用来做浮点数的“阶码”（用来比对指数大小）。</li>
+</ul>
+<h4 id="考试怎么考-1"><a href="#考试怎么考-1" class="headerlink" title="考试怎么考"></a>考试怎么考</h4><h4 id="1-选择题陷阱：零的表示"><a href="#1-选择题陷阱：零的表示" class="headerlink" title="1. 选择题陷阱：零的表示"></a>1. 选择题陷阱：零的表示</h4><ul>
+<li><strong>考点</strong>：问你哪些码对 <code>0</code> 的表示是唯一的？</li>
+<li><strong>秒杀</strong>：原码有 <code>000...0</code> 和 <code>100...0</code>；反码有 <code>000...0</code> 和 <code>111...1</code>。<strong>只有补码和移码的 0 是唯一的！</strong></li>
+</ul>
+<h4 id="2-大题杀手：不对称的范围（极高频！）"><a href="#2-大题杀手：不对称的范围（极高频！）" class="headerlink" title="2. 大题杀手：不对称的范围（极高频！）"></a>2. 大题杀手：不对称的范围（极高频！）</h4><ul>
+<li><strong>陷阱</strong>：8 位补码的范围是 [−128,127]。408 极度喜欢拿 <strong>-128</strong> 搞事情。</li>
+<li><strong>真题套路</strong>：问你一个函数 <code>abs(x)</code> 求绝对值，如果传入 <code>x = -128</code> 会怎样？</li>
+<li><strong>导师纠错</strong>：−128 没有对应的正数（最大只有 127）！所以 −128 求绝对值，补码反转后<strong>依然是 -128 自身</strong>（引发溢出）。这就是补码的不对称性！</li>
+</ul>
+<h4 id="3-秒杀技巧：负数真值推导（导师独门绝招：负权值法）"><a href="#3-秒杀技巧：负数真值推导（导师独门绝招：负权值法）" class="headerlink" title="3. 秒杀技巧：负数真值推导（导师独门绝招：负权值法）"></a>3. 秒杀技巧：负数真值推导（导师独门绝招：负权值法）</h4><p>不要再去“减一取反”了，慢且容易错！ 对于补码 <code>1011 0000</code>，直接把<strong>符号位当成负权重，其余位当成正权重</strong>： 算式：−128+32+16=−80。三秒钟直接出真值！</p>
+<h4 id="4-常考动作：符号扩展"><a href="#4-常考动作：符号扩展" class="headerlink" title="4. 常考动作：符号扩展"></a>4. 常考动作：符号扩展</h4><ul>
+<li><p>短位变长位（如 8位 short 强转 16位 int）：</p>
+<ul>
+<li><strong>无符号数</strong>：高位无脑补 <code>0</code>。</li>
+<li><strong>有符号数（补码）</strong>：正数补 <code>0</code>，<strong>负数高位全部补 <code>1</code></strong>！（比如 <code>1011</code> 扩展成 8 位就是 <code>1111 1011</code>）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="定点数的移位运算"><a href="#定点数的移位运算" class="headerlink" title="定点数的移位运算"></a>定点数的移位运算</h3><p>把移位想象成**“传送带上的流水线作业”**：</p>
+<ul>
+<li><strong>逻辑移位（无情传送带）</strong>：传送带往前开（左移）或者往后退（右移），掉下边缘的货（比特位）直接扔进垃圾桶，空出来的位置全部放<strong>空箱子（补 0）</strong>。</li>
+<li><strong>算术右移（拉伸橡皮筋）</strong>：对于负数补码，最高位是 <code>1</code>（代表负号）。右移相当于把这个数变小（除以 2），但它<strong>必须还是个负数</strong>！所以你往右拉扯的时候，最高位的 <code>1</code> 就像粘住了一样，被拉出一长串的 <code>1</code> 来填补高位。这就叫“符号扩展”。</li>
+<li><strong>为什么负数补码左移补 0？</strong>：因为补码的构造法则是“从右往左数，遇到第一个 1 之前，跟原码一模一样（全是 0）”。既然尾巴跟原码一样，那左移时空出来的低位当然跟原码一样<strong>补 0</strong>。</li>
+</ul>
+<h4 id="考试怎么考-2"><a href="#考试怎么考-2" class="headerlink" title="考试怎么考"></a>考试怎么考</h4><h4 id="1-选择题陷阱：补码算术左移的“溢出”判定"><a href="#1-选择题陷阱：补码算术左移的“溢出”判定" class="headerlink" title="1. 选择题陷阱：补码算术左移的“溢出”判定"></a>1. 选择题陷阱：补码算术左移的“溢出”判定</h4><ul>
+<li><p><strong>考点</strong>：左移会把高位挤掉，如果挤掉的数包含了有效信息，就会导致数值面目全非（溢出）。</p>
+</li>
+<li><p><strong>秒杀判定</strong>：只要<strong>最高数值位和符号位不一致</strong>（即 X0​=X1​），左移就一定会溢出！</p>
+<ul>
+<li><em>例如</em>：<code>1011 0000</code>（补码，负数）。最高数值位是 <code>0</code>，符号位是 <code>1</code>。左移一位变成 <code>0110 0000</code>，符号变成正数了，<strong>严重溢出报错</strong>！</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-大题结合-C-语言：-的猫腻"><a href="#2-大题结合-C-语言：-的猫腻" class="headerlink" title="2. 大题结合 C 语言：&lt;&lt; 和 &gt;&gt; 的猫腻"></a>2. 大题结合 C 语言：<code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> 的猫腻</h4><ul>
+<li><p><strong>考点</strong>：C 语言代码翻译成底层机器语言。</p>
+</li>
+<li><p><strong>规则</strong>：</p>
+<ul>
+<li><p>C 语言的左移 <code>&lt;&lt;</code>：不管是 <code>int</code> 还是 <code>unsigned</code>，底层一律是丢高位，<strong>低位补 0</strong>。</p>
+</li>
+<li><p>C 语言的右移 <code>&gt;&gt;</code>：</p>
+<ul>
+<li>如果是 <code>unsigned</code>（无符号），底层调用<strong>逻辑右移（补 0）</strong>。</li>
+<li>如果是 <code>int/short</code>（有符号），底层调用<strong>算术右移（补符号位）</strong>。这是大题分析数据的死穴！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-容易丢分的地方：精度丢失与负数除法的区别"><a href="#3-容易丢分的地方：精度丢失与负数除法的区别" class="headerlink" title="3. 容易丢分的地方：精度丢失与负数除法的区别"></a>3. 容易丢分的地方：精度丢失与负数除法的区别</h4><ul>
+<li><strong>陷阱</strong>：算术右移 1 位完全等同于除以 2 吗？</li>
+<li><strong>纠正</strong>：不完全等同！对于负数奇数（如 -5，补码 <code>1111 1011</code>），算术右移 1 位变成 <code>1111 1101</code>（-3）。但在 C 语言里 <code>-5 / 2</code> 的结果是 <code>-2</code>。<strong>算术右移是向 −∞ 取整，而 C 语言除法是向 0 取整</strong>。遇到这种极品细节题，不要想当然</li>
 </ul>
 
                 
