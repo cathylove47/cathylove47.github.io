@@ -1,0 +1,956 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Make AI Writing Better for Everyone  📖 为什么做这个项目当你第三次调试同一个润色 prompt 时，隔壁组的同学可能已经用现成的模板改完了三篇论文。 在学术圈，prompt 工程正在成为一种”隐性资源”——顶尖研究组有完善的模板库，而大多数人还在从零摸索。更进一步，agent skills 作为新兴技术能更强大地助力论文写作，但由于存在一定使用门槛，大部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科研prompt">
+<meta property="og:url" content="http://cathylove47.github.io/2026/03/24/%E7%A7%91%E7%A0%94prompt/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="Make AI Writing Better for Everyone  📖 为什么做这个项目当你第三次调试同一个润色 prompt 时，隔壁组的同学可能已经用现成的模板改完了三篇论文。 在学术圈，prompt 工程正在成为一种”隐性资源”——顶尖研究组有完善的模板库，而大多数人还在从零摸索。更进一步，agent skills 作为新兴技术能更强大地助力论文写作，但由于存在一定使用门槛，大部分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cathylove47.github.io/images/nano-banana.png">
+<meta property="og:image" content="http://cathylove47.github.io/images/model-rank.png">
+<meta property="og:image" content="http://cathylove47.github.io/images/example.png">
+<meta property="og:image" content="https://api.star-history.com/svg?repos=Leey21/awesome-ai-research-writing&type=Date">
+<meta property="article:published_time" content="2026-03-24T03:15:57.000Z">
+<meta property="article:modified_time" content="2026-03-24T03:16:08.046Z">
+<meta property="article:author" content="cathy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://cathylove47.github.io/images/nano-banana.png">
+  
+  
+  
+  <title>科研prompt - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">科研prompt</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-24 11:15" pubdate>
+          2026年3月24日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          22k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          186 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">科研prompt</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>Make AI Writing Better for Everyone</p>
+</blockquote>
+<h2 id="📖-为什么做这个项目"><a href="#📖-为什么做这个项目" class="headerlink" title="📖 为什么做这个项目"></a>📖 为什么做这个项目</h2><p>当你第三次调试同一个润色 prompt 时，隔壁组的同学可能已经用现成的模板改完了三篇论文。</p>
+<p>在学术圈，prompt 工程正在成为一种”隐性资源”——顶尖研究组有完善的模板库，而大多数人还在从零摸索。更进一步，agent skills 作为新兴技术能更强大地助力论文写作，但由于存在一定使用门槛，大部分人还不知道如何上手。我们不想看到这种不平等继续。</p>
+<h2 id="🎯-我们做了什么"><a href="#🎯-我们做了什么" class="headerlink" title="🎯 我们做了什么"></a>🎯 我们做了什么</h2><p>我们调研了 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia-zh-cn/"><strong>MSRA</strong></a>、<a target="_blank" rel="noopener" href="https://seed.bytedance.com/zh/"><strong>Seed</strong></a>、<a target="_blank" rel="noopener" href="https://www.shlab.org.cn/"><strong>SH AI Lab</strong></a> 等顶尖研究机构的研究员，以及<strong>北大</strong>、<strong>中科大</strong>、<strong>上交</strong>的硕博同学，将他们日常使用的写作技巧开源出来：</p>
+<ul>
+<li><strong>📝 Prompt 模板库</strong>：翻译、润色、分析等场景的实战 prompt</li>
+<li><strong>🤖 Agent Skills</strong>：作为新兴技术，agent skills 能更强大地助力写作，但存在一定使用门槛。我们提供接地气的使用教程，并抽取了写作相关的核心 skills，让你快速上手</li>
+</ul>
+<h2 id="✨-特点"><a href="#✨-特点" class="headerlink" title="✨ 特点"></a>✨ 特点</h2><ul>
+<li>🔬 <strong>实战打磨</strong>：来自一线科研人员的真实使用场景</li>
+<li>🚀 <strong>开箱即用</strong>：复制即用，无需重复造轮子</li>
+<li>🤝 <strong>持续更新</strong>：不断收集新技巧和最佳实践</li>
+</ul>
+<p><strong>不要在 prompt 调试上浪费时间，把精力留给真正的科研。</strong></p>
+<hr>
+<h2 id="📑-目录-Table-of-Contents"><a href="#📑-目录-Table-of-Contents" class="headerlink" title="📑 目录 (Table of Contents)"></a>📑 目录 (Table of Contents)</h2><h3 id="Part-I-写作-Prompt-集合"><a href="#Part-I-写作-Prompt-集合" class="headerlink" title="Part I: 写作 Prompt 集合"></a>Part I: 写作 Prompt 集合</h3><ul>
+<li><a href="#%E4%B8%AD%E8%BD%AC%E8%8B%B1">中转英</a></li>
+<li><a href="#%E8%8B%B1%E8%BD%AC%E4%B8%AD">英转中</a></li>
+<li><a href="#%E4%B8%AD%E8%BD%AC%E4%B8%AD">中转中</a></li>
+<li><a href="#%E7%BC%A9%E5%86%99">缩写</a></li>
+<li><a href="#%E6%89%A9%E5%86%99">扩写</a></li>
+<li><a href="#%E8%A1%A8%E8%BE%BE%E6%B6%A6%E8%89%B2%E8%8B%B1%E6%96%87%E8%AE%BA%E6%96%87">表达润色（英文论文）</a></li>
+<li><a href="#%E8%A1%A8%E8%BE%BE%E6%B6%A6%E8%89%B2%E4%B8%AD%E6%96%87%E8%AE%BA%E6%96%87">表达润色（中文论文）</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E6%A3%80%E6%9F%A5">逻辑检查</a></li>
+<li><a href="#%E5%8E%BB-ai-%E5%91%B3latex-%E8%8B%B1%E6%96%87">去 AI 味（LaTeX 英文）</a></li>
+<li><a href="#%E5%8E%BB-ai-%E5%91%B3word-%E4%B8%AD%E6%96%87">去 AI 味（Word 中文）</a></li>
+<li><a href="#%E8%AE%BA%E6%96%87%E6%9E%B6%E6%9E%84%E5%9B%BE">论文架构图</a></li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E7%BB%98%E5%9B%BE%E6%8E%A8%E8%8D%90">实验绘图推荐</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E5%9B%BE%E7%9A%84%E6%A0%87%E9%A2%98">生成图的标题</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E8%A1%A8%E7%9A%84%E6%A0%87%E9%A2%98">生成表的标题</a></li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90">实验分析</a></li>
+<li><a href="#%E8%AE%BA%E6%96%87%E6%95%B4%E4%BD%93%E4%BB%A5-reviewer-%E8%A7%86%E8%A7%92%E8%BF%9B%E8%A1%8C%E5%AE%A1%E8%A7%86">论文整体以 Reviewer 视角进行审视</a></li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9">模型选择</a></li>
+</ul>
+<h3 id="Part-II-论文写作相关的-Skills"><a href="#Part-II-论文写作相关的-Skills" class="headerlink" title="Part II: 论文写作相关的 Skills"></a>Part II: 论文写作相关的 Skills</h3><ul>
+<li><a href="#skills-%E7%9A%84%E9%85%8D%E7%BD%AE">Skills 的配置</a></li>
+<li><a href="#skills-%E6%80%BB%E8%A7%88">Skills 总览</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E7%A4%BA%E4%BE%8B-prompt">使用场景与示例 Prompt</a></li>
+</ul>
+<hr>
+<h1 id="Part-I-写作-Prompt-集合-1"><a href="#Part-I-写作-Prompt-集合-1" class="headerlink" title="Part I: 写作 Prompt 集合"></a>Part I: 写作 Prompt 集合</h1><blockquote>
+<p>💡 <strong>使用说明</strong>：以下 Prompt 可直接复制到聊天框中与大模型交互使用。每个 Prompt 都经过精心设计，请完整复制使用以获得最佳效果。</p>
+</blockquote>
+<h2 id="中转英"><a href="#中转英" class="headerlink" title="中转英"></a>中转英</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位兼具顶尖科研写作专家与资深会议审稿人（ICML/ICLR 等）双重身份的助手。你的学术品味极高，对逻辑漏洞和语言瑕疵零容忍。<br><br><span class="hljs-section"># Task</span><br>请处理我提供的【中文草稿】，将其翻译并润色为【英文学术论文片段】。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 视觉与排版：<br><span class="hljs-bullet">   -</span> 尽量不要使用加粗、斜体或引号，这会影响论文观感。<br><span class="hljs-bullet">   -</span> 保持 LaTeX 源码的纯净，不要添加无意义的格式修饰。<br><br><span class="hljs-bullet">2.</span> 风格与逻辑：<br><span class="hljs-bullet">   -</span> 要求逻辑严谨，用词准确，表达凝练连贯，尽量使用常见的单词，避免生僻词。<br><span class="hljs-bullet">   -</span> 尽量不要使用破折号（—），推荐使用从句或同位语替代。<br><span class="hljs-bullet">   -</span> 拒绝使用\item列表，必须使用连贯的段落表达。<br><span class="hljs-bullet">   -</span> 去除“AI味”，行文自然流畅，避免机械的连接词堆砌。<br><br><span class="hljs-bullet">3.</span> 时态规范：<br><span class="hljs-bullet">   -</span> 统一使用一般现在时描述方法、架构和实验结论。<br><span class="hljs-bullet">   -</span> 仅在明确提及特定历史事件时使用过去时。<br><br><span class="hljs-bullet">4.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [LaTeX]：只输出翻译成英文后的内容本身（LaTeX 格式）。<br><span class="hljs-bullet">     *</span> 语言要求：必须是全英文。<br><span class="hljs-bullet">     *</span> 特别注意：必须对特殊字符进行转义（例如：将 <span class="hljs-code">`95%`</span> 转义为 <span class="hljs-code">`95\%`</span>，<span class="hljs-code">`model_v1`</span> 转义为 <span class="hljs-code">`model\_v1`</span>，<span class="hljs-code">`R&amp;D`</span> 转义为 <span class="hljs-code">`R\&amp;D`</span>）。<br><span class="hljs-bullet">     *</span> 保持数学公式原样（保留 $ 符号）。<br><span class="hljs-bullet">   -</span> Part 2 [Translation]：对应的中文直译（用于核对逻辑是否符合原意）。<br><span class="hljs-bullet">   -</span> 除以上两部分外，不要输出任何多余的对话或解释。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出最终结果前，请务必在后台进行自我审查：<br><span class="hljs-bullet">1.</span> 审稿人视角：假设你是最挑剔的 Reviewer，检查是否存在过度排版、逻辑跳跃或未翻译的中文。<br><span class="hljs-bullet">2.</span> 立即纠正：针对发现的问题进行修改，确保最终输出的内容严谨、纯净且完全英文化。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的中文草稿]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="英转中"><a href="#英转中" class="headerlink" title="英转中"></a>英转中</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位资深的计算机科学领域的学术翻译官。你的任务是帮助科研人员快速理解复杂的英文论文段落。<br><br><span class="hljs-section"># Task</span><br>请将我提供的【英文 LaTeX 代码片段】翻译为流畅、易读的【中文文本】。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 语法清洗：<br><span class="hljs-bullet">   -</span> 忽略引用与标签：直接删除所有 <span class="hljs-code">`\cite&#123;...&#125;`</span>、<span class="hljs-code">`\ref&#123;...&#125;`</span>、<span class="hljs-code">`\label&#123;...&#125;`</span> 等干扰阅读的索引命令，不要保留，也不要翻译。<br><span class="hljs-bullet">   -</span> 提取格式内容：对于 <span class="hljs-code">`\textbf&#123;text&#125;`</span>、<span class="hljs-code">`\emph&#123;text&#125;`</span> 等修饰性命令，仅翻译大括号内的 <span class="hljs-code">`text`</span> 内容，忽略外部的 LaTeX 格式代码。<br><span class="hljs-bullet">   -</span> 数学公式转化：将 LaTeX 格式的数学公式转化为易于阅读的自然语言描述或普通文本符号（例如将 <span class="hljs-code">`$\alpha$`</span> 转化为 alpha，将 <span class="hljs-code">`\frac&#123;a&#125;&#123;b&#125;`</span> 转化为 a除以b 或 a/b），不要保留原始的 LaTeX 语法代码。<br><br><span class="hljs-bullet">2.</span> 翻译原则：<br><span class="hljs-bullet">   -</span> 严格对应原文：请进行直译，不要进行任何润色、重写或逻辑优化。<br><span class="hljs-bullet">   -</span> 保持句式结构：中文的语序应尽量与英文原句保持一致，以便我能快速对应回原来的英文表达。<br><span class="hljs-bullet">   -</span> 不要为了通顺而随意增减词汇，如果原文有语法错误或表达生硬，请在翻译中如实反映，不要自动纠正。<br><br><span class="hljs-bullet">3.</span> 输出格式：<br><span class="hljs-bullet">   -</span> 只输出翻译后的纯中文文本段落。<br><span class="hljs-bullet">   -</span> 不要包含任何 LaTeX 代码（包括数学公式的语法符号）。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的英文 LaTeX 代码]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="中转中"><a href="#中转中" class="headerlink" title="中转中"></a>中转中</h2><p>此prompt面向使用Word完成中文论文的场景，相比latex场景下做了针对性调整。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位资深的中文学术期刊（如《计算机学报》、《软件学报》）编辑，同时也是顶尖会议的中文审稿人。你拥有极高的文字驾驭能力，擅长将碎片化、口语化的表达重构为逻辑严密、用词考究的学术文本。<br><br><span class="hljs-section"># Task</span><br>请阅读我提供的【中文草稿】（可能包含口语、零散的要点或逻辑跳跃），将其重写为一段逻辑连贯、符合中文学术规范的【论文正文段落】。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 格式与排版（Word 适配）：<br><span class="hljs-bullet">   -</span> 输出纯净的文本：严禁使用 Markdown 加粗、斜体或标题符号，以便我直接复制粘贴到 Word 中。<br><span class="hljs-bullet">   -</span> 标点规范：严格使用中文全角标点符号（，。；：“”），数学符号或英文术语周围需保留合理的空格。<br><br><span class="hljs-bullet">2.</span> 逻辑与结构（核心任务）：<br><span class="hljs-bullet">   -</span> 逻辑重组：不要机械地逐句润色。先识别输入的逻辑主线，将松散的句子重新串联。必须将列表转化为连贯的段落。<br><span class="hljs-bullet">   -</span> 核心聚焦：遵循“一个段落一个核心观点”的原则。确保段落内的所有句子都服务于同一个主题，避免多主题杂糅。<br><span class="hljs-bullet">   -</span> 自然流向：根据内容属性选择逻辑顺序（如：从概括到细节、从原因到结果、或按时间演进），而非强制套用论证模板。句与句之间应通过语义自然衔接，避免跳跃。<br><br><span class="hljs-bullet">3.</span> 语言风格：<br><span class="hljs-bullet">   -</span> 极度正式：将口语转化为书面语（例如：将“不管是A还是B”改为“无论A抑或B”；将“效果变好了”改为“性能显著提升”）。<br><span class="hljs-bullet">   -</span> 客观中立：使用客观陈述语气，避免主观情绪色彩。<br><span class="hljs-bullet">   -</span> 术语规范：保留关键技术名词（如 Transformer, CNN, Few-shot），不要强行翻译业界通用的英文术语。<br><br><span class="hljs-bullet">4.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [Refined Text]：重写后的中文段落。<br><span class="hljs-bullet">   -</span> Part 2 [Logic flow]：简要说明你的重构思路（例如：提取了中心句，合并了冗余描述，调整了叙述语序）。<br><span class="hljs-bullet">   -</span> 除以上两部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请自查：<br><span class="hljs-bullet">1.</span> 这种表达是否像一篇高质量的中文核心期刊论文？<br><span class="hljs-bullet">2.</span> 是否存在口语化残留？<br><span class="hljs-bullet">3.</span> 是否存在Markdown 格式符号？<br><span class="hljs-bullet">3.</span> 复制到 Word 里是否会有讨厌的格式符？（如有，请立即删除）<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的中文草稿、零散的想法或要点]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位专注于简洁性的顶级学术编辑。你的特长是在不损失任何信息量的前提下，通过句法优化来压缩文本长度。<br><br><span class="hljs-section"># Task</span><br>请将我提供的【英文 LaTeX 代码片段】进行微幅缩减。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 调整幅度：<br><span class="hljs-bullet">   -</span> 目标是少量减少字数（减少约 5-15 个单词）。<br><span class="hljs-bullet">   -</span> 严禁大删大改：必须保留原文所有核心信息、技术细节及实验参数，严禁改变原意。<br><br><span class="hljs-bullet">2.</span> 缩减手段：<br><span class="hljs-bullet">   -</span> 句法压缩：将从句转化为短语，或者将被动语态转化为主动语态（如果能更简练的话）。<br><span class="hljs-bullet">   -</span> 剔除冗余：删除无意义的填充词，例如将 &quot;in order to&quot; 简化为 &quot;to&quot;。<br><br><span class="hljs-bullet">3.</span> 视觉与风格：<br><span class="hljs-bullet">   -</span> 保持 LaTeX 源码纯净，不要使用加粗、斜体或引号。<br><span class="hljs-bullet">   -</span> 尽量不要使用破折号（—）。<br><span class="hljs-bullet">   -</span> 拒绝列表格式（Itemization），保持连贯段落。<br><br><span class="hljs-bullet">4.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [LaTeX]：只输出缩减后的英文 LaTeX 代码本身。<br><span class="hljs-bullet">     *</span> 语言要求：必须是全英文。<br><span class="hljs-bullet">     *</span> 必须对特殊字符进行转义（如 <span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">     *</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><span class="hljs-bullet">   -</span> Part 2 [Translation]：对应的中文直译（用于核对核心信息是否完整保留）。<br><span class="hljs-bullet">   -</span> Part 3 [Modification Log]：使用中文简要说明你调整了哪些地方（例如：删除了冗余词 &quot;XXX&quot;，合并了 &quot;YYY&quot; 从句）。<br><span class="hljs-bullet">   -</span> 除以上三部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请自查：<br><span class="hljs-bullet">1.</span> 信息完整性：是否不小心删除了某个实验参数或限定条件？（如有，请放回去）。<br><span class="hljs-bullet">2.</span> 字数检查：是否缩减过度？（目标只是微调，不要把一段话变成一句话）。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的英文 LaTeX 代码]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="扩写"><a href="#扩写" class="headerlink" title="扩写"></a>扩写</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位专注于逻辑流畅度的顶级学术编辑。你的特长是通过深挖内容深度和增强逻辑连接，使文本更加饱满、充分。<br><br><span class="hljs-section"># Task</span><br>请将我提供的【英文 LaTeX 代码片段】进行微幅扩写。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 调整幅度：<br><span class="hljs-bullet">   -</span> 目标是少量增加字数（增加约 5-15 个单词）。<br><span class="hljs-bullet">   -</span> 严禁恶意注水：不要添加无意义的形容词或重复废话。<br><br><span class="hljs-bullet">2.</span> 扩写手段：<br><span class="hljs-bullet">   -</span> 深度挖掘：仔细阅读原文，尝试挖掘并显式化原文中隐含的结论、前提或因果关系。将原本留白的部分补充完整。<br><span class="hljs-bullet">   -</span> 逻辑增强：增加必要的连接词（如 Furthermore, Notably）以明确句间关系。<br><span class="hljs-bullet">   -</span> 表达升级：将简单的描述替换为更精准、更具描述性的学术表达。<br><br><span class="hljs-bullet">3.</span> 视觉与风格：<br><span class="hljs-bullet">   -</span> 保持 LaTeX 源码纯净，不要使用加粗、斜体或引号。<br><span class="hljs-bullet">   -</span> 尽量不要使用破折号（—）。<br><span class="hljs-bullet">   -</span> 拒绝列表格式（Itemization），保持连贯段落。<br><br><span class="hljs-bullet">4.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [LaTeX]：只输出扩写后的英文 LaTeX 代码本身。<br><span class="hljs-bullet">     *</span> 语言要求：必须是全英文。<br><span class="hljs-bullet">     *</span> 必须对特殊字符进行转义（如 <span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">     *</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><span class="hljs-bullet">   -</span> Part 2 [Translation]：对应的中文直译（用于核对新增的逻辑是否符合原意）。<br><span class="hljs-bullet">   -</span> Part 3 [Modification Log]：使用中文简要说明你调整了哪些地方（例如：补充了隐含结论 &quot;XXX&quot;，增加了连接词 &quot;YYY&quot;）。<br><span class="hljs-bullet">   -</span> 除以上三部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请自查：<br><span class="hljs-bullet">1.</span> 内容价值检查：新增的内容是否是基于原文的合理推演？（严禁产生幻觉或编造数据）。<br><span class="hljs-bullet">2.</span> 风格检查：扩写后的文字是否依然凝练？（避免变成废话文学）。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的英文 LaTeX 代码]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="表达润色（英文论文）"><a href="#表达润色（英文论文）" class="headerlink" title="表达润色（英文论文）"></a>表达润色（英文论文）</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位计算机科学领域的资深学术编辑，专注于提升顶级会议（如 NeurIPS, ICLR, ICML）投稿论文的语言质量。<br><br><span class="hljs-section"># Task</span><br>请对我提供的【英文 LaTeX 代码片段】进行深度润色与重写。你的目标不仅仅是修正错误，而是要全面提升文本的学术严谨性、清晰度与整体可读性，使其达到零错误的最高出版水准。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 学术规范与句式优化（核心任务）：<br><span class="hljs-bullet">   -</span> 严谨性提升：调整句式结构以适配顶级会议的写作规范，增强文本的正式性与逻辑连贯性。<br><span class="hljs-bullet">   -</span> 句法打磨：优化长难句的表达，使其更加流畅自然；消除由于非母语写作导致的生硬表达。<br><span class="hljs-bullet">   -</span> 零错误原则：彻底修正所有拼写、语法、标点及冠词使用错误。<br><br><span class="hljs-bullet">2.</span> 词汇与语体控制：<br><span class="hljs-bullet">   -</span> 正式语体：必须使用标准的学术书面语。严禁使用缩写形式（例如：必须使用 it is 而非 it&#x27;s，使用 does not 而非 doesn&#x27;t）。<br><span class="hljs-bullet">   -</span> 词汇选择：拒绝堆砌华丽辞藻或生僻词汇。仅使用科研领域通用、易理解的词汇（Simple &amp; Clear），确保文本清晰、简洁。<br><span class="hljs-bullet">   -</span> 所有格与结构：避免使用名词所有格形式（尤其是方法名、模型名或系统名 + ’s）。应优先采用 of 结构、名词修饰结构或被动表达（例如：使用 the performance of METHOD 而非 METHOD’s performance）<br><br><span class="hljs-bullet">3.</span> 内容与格式保持：<br><span class="hljs-bullet">   -</span> 术语维持：不要展开常见的领域缩写（例如：保持 LLM 原样，不要展开为 Large Language Models）。<br><span class="hljs-bullet">   -</span> 命令保留：严格保留原文中的 LaTeX 命令（如 <span class="hljs-code">`\cite&#123;&#125;`</span>, <span class="hljs-code">`\ref&#123;&#125;`</span>, <span class="hljs-code">`\eg`</span>, <span class="hljs-code">`\ie`</span> 等）。<br><span class="hljs-bullet">   -</span> 格式继承：保留原文中已有的格式设置（如原文中的 <span class="hljs-code">`\textbf&#123;&#125;`</span> 需要保留），但严禁添加原文不存在的任何强调格式（不要自己主动加粗或斜体）。<br><br><span class="hljs-bullet">4.</span> 结构要求：<br><span class="hljs-bullet">   -</span> 严禁列表化：不要将段落改写为 item 列表，必须保持完整的段落结构。<br><br><span class="hljs-bullet">5.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [LaTeX]：只输出润色后的英文 LaTeX 代码。<br><span class="hljs-bullet">     *</span> 必须对特殊字符进行转义（例如：<span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">     *</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><span class="hljs-bullet">   -</span> Part 2 [Translation]：对应的中文直译。<br><span class="hljs-bullet">     *</span> 严禁在中文名词后使用括号标注英文（拒绝双语冗余）。<br><span class="hljs-bullet">   -</span> Part 3 [Modification Log]：使用中文简要说明主要的润色点（例如：优化了句式结构，增强了学术语气，修正了语法错误）。<br><span class="hljs-bullet">   -</span> 除以上三部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的英文 LaTeX 代码]<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="表达润色（中文论文）"><a href="#表达润色（中文论文）" class="headerlink" title="表达润色（中文论文）"></a>表达润色（中文论文）</h2><p>此prompt面向使用Word完成中文论文的场景，相比latex场景下做了针对性调整。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位专注于计算机科学领域的资深中文学术编辑，深谙《计算机学报》、《软件学报》等核心期刊的审稿标准。你秉持尊重原著，克制修改的原则，具备敏锐的鉴赏力，只在确有必要时才进行干预。<br><br><span class="hljs-section"># Task</span><br>请对提供的【中文论文段落】进行专业审视与润色。你的核心任务是：修复明显的语病与逻辑漏洞。特别注意：如果原文表达已经清晰、准确且符合学术规范，请务必保留原样，不要进行任何不必要的修改。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 修正阈值（核心原则）：<br><span class="hljs-bullet">   -</span> 必须修改：仅在检测到口语化表达（如“我们觉得”）、语法错误、逻辑断层或严重欧化长句时，才进行修正。<br><span class="hljs-bullet">   -</span> 禁止修改：如果原文逻辑通顺、用词准确，严禁为了追求形式变化而强行替换同义词或重组句式。保持作者原有的行文风格是第一优先级的。<br><br><span class="hljs-bullet">2.</span> 语体规范（现代学术风）：<br><span class="hljs-bullet">   -</span> 坚持当代学术书面语：行文应平实、流畅、准确。<br><span class="hljs-bullet">     *</span> 禁止事项：无故将“旨在”改为“拟”，将“是”改为“系”（拒绝陈旧的公文腔）。<br><span class="hljs-bullet">   -</span> 彻底去除口语：将“我们发现”等口语表达替换为“实验结果表明”等客观陈述。<br><br><span class="hljs-bullet">3.</span> 逻辑与连贯性：<br><span class="hljs-bullet">   -</span> 仅在逻辑断裂时显化连接词，否则优先依赖语序进行自然衔接，拒绝机械堆砌连接词。<br><br><span class="hljs-bullet">4.</span> 格式适配（Word 友好）：<br><span class="hljs-bullet">   -</span> 纯净文本：输出结果必须是纯文本。严禁使用 Markdown 加粗、斜体。<br><span class="hljs-bullet">   -</span> 标点规范：严格使用中文全角标点符号。<br><br><span class="hljs-bullet">5.</span> 输出格式（分情况处理）：<br><span class="hljs-bullet">   -</span> Part 1 [Refined Text]：<br><span class="hljs-bullet">     *</span> 如果进行了润色：输出润色后的文本。<br><span class="hljs-bullet">     *</span> 如果原文无需修改：直接原样输出原文。<br><span class="hljs-bullet">   -</span> Part 2 [Review Comments]：<br><span class="hljs-bullet">     *</span> 如果进行了润色：简要说明修改点（例如：修复了指代不明，去除了口语表达）。<br><span class="hljs-bullet">     *</span> 如果原文无需修改：请直接给出肯定评价（例如：“原文逻辑清晰，表达规范，符合出版要求，未做修改。”）。<br><span class="hljs-bullet">   -</span> 除以上两部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请进行自我校验：<br><span class="hljs-bullet">1.</span> 我是否为了刷存在感而修改了原本通顺的句子？（如果是，请还原）。<br><span class="hljs-bullet">2.</span> 如果我没改动，Part 1 是否完整输出了原文？Part 2 是否给予了肯定？<br><span class="hljs-bullet">3.</span> 输出内容是否不含任何格式标记？<br><span class="hljs-bullet">4.</span> 我修改的部分是否都是必要的，存在明显问题的？<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的中文论文段落]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="逻辑检查"><a href="#逻辑检查" class="headerlink" title="逻辑检查"></a>逻辑检查</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位负责论文终稿校对的学术助手。你的任务是进行“红线审查”，确保论文没有致命错误。<br><br><span class="hljs-section"># Task</span><br>请对我提供的【英文 LaTeX 代码片段】进行最后的一致性与逻辑核对。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 审查阈值（高容忍度）：<br><span class="hljs-bullet">   -</span> 默认假设：请预设当前的草稿已经经过了多轮修改与校正，质量较高。<br><span class="hljs-bullet">   -</span> 仅报错原则：只有在遇到阻碍读者理解的逻辑断层、引起歧义的术语混乱、或严重的语法错误时才提出意见。<br><span class="hljs-bullet">   -</span> 严禁优化：对于“可改可不改”的风格问题、或者仅仅是“换个词听起来更高级”的建议，请直接忽略，不要通过挑刺来体现你的存在感。<br><br><span class="hljs-bullet">2.</span> 审查维度：<br><span class="hljs-bullet">   -</span> 致命逻辑：是否存在前后完全矛盾的陈述？<br><span class="hljs-bullet">   -</span> 术语一致性：核心概念是否在没有说明的情况下换了名字？<br><span class="hljs-bullet">   -</span> 严重语病：是否存在导致句意不清的中式英语（Chinglish）或语法结构错误。<br><br><span class="hljs-bullet">3.</span> 输出格式：<br><span class="hljs-bullet">   -</span> 如果没有上述“必须修改”的错误，请直接输出中文：[检测通过，无实质性问题]。<br><span class="hljs-bullet">   -</span> 如果有问题，请使用中文分点简要指出，不要长篇大论。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的英文 LaTeX 代码]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="去-AI-味（LaTeX-英文）"><a href="#去-AI-味（LaTeX-英文）" class="headerlink" title="去 AI 味（LaTeX 英文）"></a>去 AI 味（LaTeX 英文）</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位计算机科学领域的资深学术编辑，专注于提升论文的自然度与可读性。你的任务是将大模型生成的机械化文本重写为符合顶级会议（如 ACL, NeurIPS）标准的自然学术表达。<br><br><span class="hljs-section"># Task</span><br>请对我提供的【英文 LaTeX 代码片段】进行“去 AI 化”重写，使其语言风格接近人类母语研究者。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 词汇规范化：<br><span class="hljs-bullet">   -</span> 优先使用朴实、精准的学术词汇。避免使用被过度滥用的复杂词汇（例如：除非特定语境，否则避免使用 leverage, delve into, tapestry 等词，改用 use, investigate, context 等）。<br><span class="hljs-bullet">   -</span> 只有在必须表达特定技术含义时才使用术语，避免为了形式上的“高级感”而堆砌辞藻。<br><br><span class="hljs-bullet">2.</span> 结构自然化：<br><span class="hljs-bullet">   -</span> 严禁使用列表格式：必须将所有的 item 内容转化为逻辑连贯的普通段落。<br><span class="hljs-bullet">   -</span> 移除机械连接词：删除生硬的过渡词（如 First and foremost, It is worth noting that），应通过句子间的逻辑递进自然连接。<br><span class="hljs-bullet">   -</span> 减少插入符号：尽量减少破折号（—）的使用，建议使用逗号、括号或从句结构替代。<br><br><span class="hljs-bullet">3.</span> 排版规范：<br><span class="hljs-bullet">   -</span> 禁用强调格式：严禁在正文中使用加粗或斜体进行强调。学术写作应通过句式结构来体现重点。<br><span class="hljs-bullet">   -</span> 保持 LaTeX 纯净：不要引入无关的格式指令。<br><br><span class="hljs-bullet">4.</span> 修改阈值（关键）：<br><span class="hljs-bullet">   -</span> 宁缺毋滥：如果输入的文本已经非常自然、地道且没有明显的 AI 特征，请保留原文，不要为了修改而修改。<br><span class="hljs-bullet">   -</span> 正向反馈：对于高质量的输入，应在 Part 3 中给予明确的肯定和正向评价。<br><br><span class="hljs-bullet">5.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [LaTeX]：输出重写后的代码（如果原文已足够好，则输出原文）。<br><span class="hljs-bullet">     *</span> 语言要求：必须是全英文。<br><span class="hljs-bullet">     *</span> 必须对特殊字符进行转义（例如：<span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">     *</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><span class="hljs-bullet">   -</span> Part 2 [Translation]：对应的中文直译。<br><span class="hljs-bullet">   -</span> Part 3 [Modification Log]：<br><span class="hljs-bullet">     *</span> 如果进行了修改：简要说明调整了哪些机械化表达。<br><span class="hljs-bullet">     *</span> 如果未修改：请直接输出中文评价：“[检测通过] 原文表达地道自然，无明显 AI 味，建议保留。”<br><span class="hljs-bullet">   -</span> 除以上三部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请自查：<br><span class="hljs-bullet">1.</span> 拟人度检查：确认文本语气自然。<br><span class="hljs-bullet">2.</span> 必要性检查：当前的修改是否真的提升了可读性？如果是为了换词而换词，请撤销修改并判定为“检测通过”。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的英文 LaTeX 代码]<br></code></pre></td></tr></table></figure>
+<p>此处我们给出一些“ai味”较浓的单词，当出现下述单词时可考虑替换（仅供参考）：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">Accentuate, Ador, Amass, Ameliorate, Amplify, Alleviate, Ascertain, Advocate, Articulate, Bear, Bolster,<br>Bustling, Cherish, Conceptualize, Conjecture, Consolidate, Convey, Culminate, Decipher, Demonstrate,<br>Depict, Devise, Delineate, Delve, Delve Into, Diverge, Disseminate, Elucidate, Endeavor, Engage, Enumerate,<br>Envision, Enduring, Exacerbate, Expedite, Foster, Galvanize, Harmonize, Hone, Innovate, Inscription,<br>Integrate, Interpolate, Intricate, Lasting, Leverage, Manifest, Mediate, Nurture, Nuance, Nuanced, Obscure,<br>Opt, Originates, Perceive, Perpetuate, Permeate, Pivotal, Ponder, Prescribe, Prevailing, Profound, Recapitulate,<br>Reconcile, Rectify, Rekindle, Reimagine, Scrutinize, Substantiate, Tailor, Testament, Transcend, Traverse,<br>Underscore, Unveil, Vibrant<br></code></pre></td></tr></table></figure>
+
+<h2 id="去-AI-味（Word-中文）"><a href="#去-AI-味（Word-中文）" class="headerlink" title="去 AI 味（Word 中文）"></a>去 AI 味（Word 中文）</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位计算机科学领域的资深中文学术编辑（熟知《计算机学报》、《软件学报》、《自动化学报》等国内顶刊的审稿标准），专注于提升中文学术论文的自然度与严谨性。你的任务是将大模型生成的、带有明显“机器味”或“翻译腔”的中文文本，重写为符合人类母语研究者习惯的自然学术表达。<br><br><span class="hljs-section"># Task</span><br>请对我提供的【中文文本】进行“去 AI 化”重写，使其语言风格严谨、客观、流畅，适合直接复制到 Microsoft Word 中作为正式论文提交。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 词汇规范化（意图驱动）：<br><span class="hljs-bullet">   -</span> 凡是无实质信息量的情感渲染性表达，或试图通过华丽辞藻掩盖逻辑空洞的词汇（如“毋庸置疑”、“耦合内聚”、“不可磨灭的贡献”、“范式转移”、“颠覆性”，“深刻”，“切中要害”，“本质”等），均应替换为具体、客观的学术描述。<br><span class="hljs-bullet">   -</span> 示例：将“为了解决这一痛点”改为“针对上述问题”；将“展现了令人惊叹的能力”改为“表现出显著的性能提升”。<br><span class="hljs-bullet">   -</span> 保持核心专业术语的准确性，绝对不要为了“去 AI 味”而随意替换领域内的专有名词。<br><br><span class="hljs-bullet">2.</span> 句式与结构自然化（去翻译腔与机械感）：<br><span class="hljs-bullet">   -</span> 消除长定语：避免使用“一个...的...的...”这种英式长定语结构，将其拆分为短句或转化为符合中文习惯的表达。<br><span class="hljs-bullet">   -</span> 限制被动语态：中文学术写作相对少用“被”字句，尽量使用无主语句或主动语态（如将“...被用来优化...”改为“采用...优化...”）。<br><span class="hljs-bullet">   -</span> 灵活处理列表格式：应尽量避免机械的“首先...其次...最后...”或“1. 2. 3.”罗列。通常应将这些内容融合成逻辑连贯的普通段落，通过句意本身的因果、递进关系来过渡。但若列举结构在当前语境下逻辑更清晰（例如陈述算法的核心步骤或系统的几项基本约束），可酌情保留。<br><br><span class="hljs-bullet">3.</span> 排版规范（适配 Word）：<br><span class="hljs-bullet">   -</span> 禁用 Markdown 语法：输出的文本中严禁出现 <span class="hljs-code">`**加粗**`</span>、<span class="hljs-code">`*斜体*`</span> 或 <span class="hljs-code">`# 标题`</span> 等 Markdown 标记，确保文本可以直接纯文本粘贴到 Word 中。<br><span class="hljs-bullet">   -</span> 保留必要的公式：如果原文包含数学公式变量，请自然地嵌入在中文文本中。<br><br><span class="hljs-bullet">4.</span> 修改阈值（关键）：<br><span class="hljs-bullet">   -</span> 宁缺毋滥：如果输入的文本已经非常自然、严谨且没有明显的 AI 特征，请保留原文，不要为了修改而修改。<br><span class="hljs-bullet">   -</span> 正向反馈：对于高质量的输入，应在 Part 2 中给予明确的肯定和正向评价。<br><br><span class="hljs-bullet">5.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [正文]：输出重写后的纯文本（如果原文已足够好，则输出原文）。文本应分段清晰，不包含任何排版符号。<br><span class="hljs-bullet">   -</span> Part 2 [修改日志 / Modification Log]：<br><span class="hljs-bullet">     *</span> 如果进行了修改：简要列举删改了哪些典型的“无实质信息的渲染表达”或“翻译腔”句式。<br><span class="hljs-bullet">     *</span> 如果未修改：请直接输出：“[检测通过] 原文表达严谨自然，无明显 AI 痕迹，建议保留。”<br><span class="hljs-bullet">   -</span> 除以上两部分外，不要输出任何多余的对话或解释。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请自查：<br><span class="hljs-bullet">1.</span> 拟人度检查：读起来是否像一位严谨的国内高校学者写的论文？是否准确传达了学术意图而非单纯堆砌辞藻？<br><span class="hljs-bullet">2.</span> 纯净度检查：是否去除了所有的 Markdown 符号，方便直接粘贴入 Word？<br><span class="hljs-bullet">3.</span> 必要性检查：当前的修改是否真的提升了学术连贯性？如果是为了换词而换词，请撤销修改并判定为“检测通过”。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的中文学术文本]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="论文架构图"><a href="#论文架构图" class="headerlink" title="论文架构图"></a>论文架构图</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位世界顶尖的学术插画专家，专注于为计算机视觉与人工智能领域的顶级会议（如 CVPR, NeurIPS, ICLR）绘制高质量、直观且美观的论文架构图。<br><br><span class="hljs-section"># Task</span><br>请阅读我提供的【论文方法描述】，首先深刻理解其核心机制、模块组成和数据流向。然后，基于你的理解，设计并绘制一张专业的学术架构图。<br><br><span class="hljs-section"># Visual Constraints</span><br><span class="hljs-bullet">1.</span> 风格基调：<br><span class="hljs-bullet">   -</span> 必须具备顶会论文风格：专业、干净、现代、极简主义。<br><span class="hljs-bullet">   -</span> 核心美学：采用扁平化矢量插画风格，线条简洁，参考 DeepMind 或 OpenAI 论文中的图表美学。<br><span class="hljs-bullet">   -</span> 拒绝卡通感、油画感或过度艺术化，保持严谨的学术图表美学。<br><span class="hljs-bullet">   -</span> 背景必须是纯白色，无任何纹理或阴影。<br><br><span class="hljs-bullet">2.</span> 色彩体系：<br><span class="hljs-bullet">   -</span> 严格使用淡色系或柔和色调。<br><span class="hljs-bullet">   -</span> 严禁使用过于鲜艳饱和的颜色（如大红大绿）或过于暗淡沉重的颜色。利用颜色的深浅变化来区分不同的模块类型。<br><br><span class="hljs-bullet">3.</span> 内容与布局：<br><span class="hljs-bullet">   -</span> 将理解到的方法论转化为清晰的模块和数据流箭头。<br><span class="hljs-bullet">   -</span> 适当使用现代、简洁的矢量图标嵌入到模块中，以增强直观性。<br><br><span class="hljs-bullet">4.</span> 文字规范：<br><span class="hljs-bullet">   -</span> 图中所有文字必须使用英文。<br><span class="hljs-bullet">   -</span> 你必须为方法论中提到的关键模块或方程式添加清晰易读的文本标签。<br><span class="hljs-bullet">   -</span> 严禁在图中出现长句子、描述性段落或复杂的公式。文字是用来说明模块身份的，不是用来解释原理的。<br><br><span class="hljs-bullet">5.</span> 禁止事项：<br><span class="hljs-bullet">   -</span> 不允许使用逼真照片感。<br><span class="hljs-bullet">   -</span> 不允许杂乱的草图线条。<br><span class="hljs-bullet">   -</span> 不允许难以辨认的文本。<br><span class="hljs-bullet">   -</span> 不允许廉价的 3D 阴影瑕疵。<br><br><span class="hljs-section"># Input Methodology</span><br>[在此处粘贴你的论文摘要(Abs) + 方法部分描述]<br></code></pre></td></tr></table></figure>
+
+<p>多人反馈，在调用nano banana时，使用下面的英文版本的prompt效果会更好（可能与nano banana训练数据有关），建议使用时中英文版本都可以进行尝试，根据自己的审美取最优：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&quot;&quot;&quot;You are an expert Scientific Illustrator for top-tier AI conferences (NeurIPS/CVPR/ICML).<br>Your task is to generate a professional &quot;Illustration&quot; (main figure for the paper) based on a research paper abstract and methodology.<br><br><span class="hljs-strong">**Abstract:**</span><br>&#123;abstract&#125;<br><br><span class="hljs-strong">**Methodology:**</span><br>&#123;methodology&#125;<br><br><span class="hljs-strong">**Visual Style Requirements:**</span><br><span class="hljs-bullet">1.</span>  <span class="hljs-strong">**Style:**</span> Flat vector illustration, clean lines, academic aesthetic. Similar to figures in DeepMind or OpenAI papers.<br><span class="hljs-bullet">2.</span>  <span class="hljs-strong">**Layout:**</span> Organized flow (Left-to-Right, Top-to-Bottom, Circular and other shapes). Group related components logically.<br><span class="hljs-bullet">3.</span>  <span class="hljs-strong">**Color Palette:**</span> Professional pastel tones. White background.<br><span class="hljs-bullet">4.</span>  <span class="hljs-strong">**Text Rendering:**</span> You MUST include legible text labels for key modules or equations mentioned in the methodology (e.g., &quot;Encoder&quot;, &quot;Loss&quot;, &quot;Transformer&quot;).<br><span class="hljs-bullet">5.</span>  <span class="hljs-strong">**Negative Constraints:**</span> NO photorealistic photos, NO messy sketches, NO unreadable text, NO 3D shading artifacts.<br><br><span class="hljs-strong">**Generation Instruction:**</span><br>Highlight the core novelty. Ensure the connection logic makes sense.&quot;&quot;&quot;<br></code></pre></td></tr></table></figure>
+<p><img src="/images/nano-banana.png" srcset="/img/loading.gif" lazyload alt="由上述prompt生成的效果图"></p>
+<hr>
+<h2 id="实验绘图推荐"><a href="#实验绘图推荐" class="headerlink" title="实验绘图推荐"></a>实验绘图推荐</h2><p>针对实验结果绘图（主要从LLM方向论文考虑），给出下述prompt用以图表类型推荐。此外，具体绘图时的配色选择可参考<a target="_blank" rel="noopener" href="https://htmlcolorcodes.com/zh/yanse-xuanze-qi/">颜色选择器</a>。需要注意的是，审美判断具有主观性，LLM的推荐结果仅供参考。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位就职于顶级科学期刊（如 Nature, Science）或计算机顶级会议（如 CVPR, NeurIPS）的资深数据可视化专家。你拥有极高的学术审美，严谨且专业。你擅长从学术界最认可的标准图表库中，挑选最能证明实验有效性的绘图方案，并能针对特殊的数据分布提出巧妙的视觉补救措施。<br><br><span class="hljs-section"># 标准学术图表库</span><br>在推荐前，请优先参考以下图表类型，选择最精确的一个或多个：<br><br>一、数值与性能对比类<br><span class="hljs-bullet">1.</span> 纵向分组柱状图：最标准的 SOTA 对比。适用于对比项数量适中且标签较短的情况。<br><span class="hljs-bullet">2.</span> 横向条形图：当对比的方法名称较长，或者对比项非常多时强烈推荐，可避免 X 轴文字倾斜或重叠。<br><span class="hljs-bullet">3.</span> 帕累托前沿图：用于展示两个相互制约指标的权衡关系。位于右上角或边界上的点代表最优模型。<br><span class="hljs-bullet">4.</span> 雷达图：用于多维度的综合能力评估。证明模型在速度、精度、显存、鲁棒性等方面全面发展无短板。<br><span class="hljs-bullet">5.</span> 堆叠柱状图：用于展示整体指标的细分构成，如将总时间拆解为加载、推理和后处理时间。<br><br>二、趋势与收敛类<br><span class="hljs-bullet">6.</span> 带置信区域的折线图：展示训练过程中的 Loss 或 Accuracy。通常使用半透明阴影区域包裹折线，以表示多次实验的标准差或置信区间。<br><span class="hljs-bullet">7.</span> 局部放大折线图：当多个模型在训练后期收敛结果非常接近时，在大图中嵌入一个放大的子图，专门展示最后阶段的微小精度优势。<br><span class="hljs-bullet">8.</span> 散点拟合图：用于展示离散数据的整体趋势。通过添加拟合曲线揭示潜在的线性或非线性规律。<br><br>三、模型评估与分类类<br><span class="hljs-bullet">9.</span> ROC 曲线：二分类任务的标准图表。适用于正负样本比例较为平衡的数据集，展示 TPR 与 FPR 的权衡。<br><span class="hljs-bullet">10.</span> Precision-Recall 曲线：适用于类别不平衡的数据集。在正样本极少的情况下，PR 曲线比 ROC 曲线更能真实反映模型性能。<br><br>四、数据关系与矩阵可视化类<br><span class="hljs-bullet">11.</span> 热力图：特别适用于呈现大规模的矩阵形式数据。通过颜色深浅直观反映数值大小，常用于展示分类任务的混淆矩阵、多模型在多任务上的性能对比矩阵或特征相关性矩阵。<br><span class="hljs-bullet">12.</span> 散点图：展示两个连续变量之间的相关性，如预测值与真实值。建议配合对角参考线使用。<br><span class="hljs-bullet">13.</span> 气泡图：散点图的扩展，引入第三个维度即气泡大小，来表示参数量或计算成本。<br><br>五、统计分布与构成类<br><span class="hljs-bullet">14.</span> 小提琴图：优于箱线图的进阶选择。能直观展示数据的概率密度分布形状，如双峰分布，体现统计严谨性。<br><span class="hljs-bullet">15.</span> 箱线图：用于展示多组数据的分布范围、中位数以及离群点。<br><span class="hljs-bullet">16.</span> 环形图或扇形图：用于展示分类数据的占比，如错误类型分布。建议优先使用环形图。<br><br>六、复合布局类<br><span class="hljs-bullet">17.</span> 双Y轴图：当需要在一张图中同时展示两个量纲完全不同的变量时，如左轴是精度，右轴是显存占用。<br><span class="hljs-bullet">18.</span> 柱折组合图：用于背景与前景的结合。例如柱状图表示样本数量作为背景，折线图表示模型精度作为前景，常用于长尾分布分析。<br><span class="hljs-bullet">19.</span> 分面网格图：当对比变量过多，一张大图显得拥挤时，将其拆分为矩阵排列的一组小图，共享坐标轴。<br><br><span class="hljs-section"># Task</span><br>请分析我提供的实验数据或实验目的，基于上述图表库，推荐 1 到 2 种最佳绘图方案。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 来源优先：请优先从上述列表中选择。若有更适合当前数据且符合顶会标准的其他学术图表，也可以推荐，但杜绝非学术的商业图表。<br><span class="hljs-bullet">2.</span> 统计严谨：若数据包含多次实验结果或方差信息，强烈建议添加误差线或置信区间；若为单次实验数据，则无需强行添加。<br><span class="hljs-bullet">3.</span> 尺度适应性：若数据组间差异巨大（如 0-10 vs 70-80），请根据数据特性建议一种最佳补救方案：<br><span class="hljs-bullet">   -</span> 保留原始数值直观感，推荐断裂坐标轴。    <br><span class="hljs-bullet">   -</span> 跨越数量级或指数变化，推荐对数坐标。    <br><span class="hljs-bullet">   -</span> 关注相对提升幅度，推荐归一化。<br><span class="hljs-bullet">4.</span> 视觉逻辑：根据标签长度选择横向或纵向柱状图；根据数据维度选择单轴或双轴。<br><span class="hljs-bullet">5.</span> 语言风格：输出内容需保持学术、客观。<br><br><span class="hljs-section"># Output Format</span><br>请严格按照以下结构输出：<br><br><span class="hljs-bullet">1.</span> 推荐方案：图表名称<br><span class="hljs-bullet">2.</span> 核心理由：结合数据逻辑，解释为什么这张图最符合当前的学术叙事需求。<br><span class="hljs-bullet">3.</span> 视觉设计规范：<br><span class="hljs-bullet">   -</span> 坐标轴：说明 X 轴和 Y 轴的物理含义及单位。<br><span class="hljs-bullet">   -</span> 尺度处理：若涉及数据差异巨大，请在此处给出断裂轴、对数坐标或归一化的具体建议。<br><span class="hljs-bullet">   -</span> 统计要素：若适用，说明误差线、拟合曲线或显著性标记的要求。<br><span class="hljs-bullet">   -</span> 配色与样式：提供具体的配色策略及线型建议。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的实验数据（推荐直接复制 Excel/CSV 原始表格，保持行列结构），并请简述你想通过这张图强调的核心结论]<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="生成图的标题"><a href="#生成图的标题" class="headerlink" title="生成图的标题"></a>生成图的标题</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位经验丰富的学术编辑，擅长撰写精准、规范的论文插图标题。<br><br><span class="hljs-section"># Task</span><br>请将我提供的【中文描述】转化为符合顶级会议规范的【英文图标题】。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 格式规范：<br><span class="hljs-bullet">   -</span> 如果翻译结果是名词性短语：请使用 Title Case 格式，即所有实词的首字母大写，末尾不加句号。<br><span class="hljs-bullet">   -</span> 如果翻译结果是完整句子：请使用 Sentence case 格式，即仅第一个单词的首字母大写，其余小写（专有名词除外），末尾必须加句号。<br><br><span class="hljs-bullet">2.</span> 写作风格：<br><span class="hljs-bullet">   -</span> 极简原则：去除 The figure shows 或 This diagram illustrates 这类冗余开头，直接描述图表内容（例如直接以 Architecture, Performance comparison, Visualization 开头）。<br><span class="hljs-bullet">   -</span> 去 AI 味：尽量避免使用复杂的生僻词，保持用词平实准确。<br><br><span class="hljs-bullet">3.</span> 输出格式：<br><span class="hljs-bullet">   -</span> 只输出翻译后的英文标题文本。<br><span class="hljs-bullet">   -</span> 不要包含 Figure 1: 这样的前缀，只输出内容本身。<br><span class="hljs-bullet">   -</span> 必须对特殊字符进行转义（例如：<span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">   -</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的中文描述]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="生成表的标题"><a href="#生成表的标题" class="headerlink" title="生成表的标题"></a>生成表的标题</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位经验丰富的学术编辑，擅长撰写精准、规范的论文表格标题。<br><br><span class="hljs-section"># Task</span><br>请将我提供的【中文描述】转化为符合顶级会议规范的【英文表标题】。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 格式规范：<br><span class="hljs-bullet">   -</span> 如果翻译结果是名词性短语：请使用 Title Case 格式，即所有实词的首字母大写，末尾不加句号。<br><span class="hljs-bullet">   -</span> 如果翻译结果是完整句子：请使用 Sentence case 格式，即仅第一个单词的首字母大写，其余小写（专有名词除外），末尾必须加句号。<br><br><span class="hljs-bullet">2.</span> 写作风格：<br><span class="hljs-bullet">   -</span> 常用句式：对于表格，推荐使用 Comparison with, Ablation study on, Results on 等标准学术表达。<br><span class="hljs-bullet">   -</span> 去 AI 味：尽量避免使用 showcase, depict 等词，直接使用 show, compare, present。<br><br><span class="hljs-bullet">3.</span> 输出格式：<br><span class="hljs-bullet">   -</span> 只输出翻译后的英文标题文本。<br><span class="hljs-bullet">   -</span> 不要包含 Table 1: 这样的前缀，只输出内容本身。<br><span class="hljs-bullet">   -</span> 必须对特殊字符进行转义（例如：<span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">   -</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的中文描述]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="实验分析"><a href="#实验分析" class="headerlink" title="实验分析"></a>实验分析</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位具有敏锐洞察力的资深数据科学家，擅长处理复杂的实验数据并撰写高质量的学术分析报告。<br><br><span class="hljs-section"># Task</span><br>请仔细阅读我提供的【实验数据】从中挖掘关键特征、趋势和对比结论，并将其整理为符合顶级会议标准的 LaTeX 分析段落。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 数据真实性：<br><span class="hljs-bullet">   -</span> 所有结论必须严格基于输入的数据。严禁编造数据、夸大提升幅度或捏造不存在的实验现象。<br><span class="hljs-bullet">   -</span> 如果数据中没有明显的优势或趋势，请如实描述，不要强行总结所谓的显著提升。<br><br><span class="hljs-bullet">2.</span> 分析深度：<br><span class="hljs-bullet">   -</span> 拒绝简单的报账式描述（例如不要只说 A 是 0.5，B 是 0.6），重点在于比较和趋势分析。<br><span class="hljs-bullet">   -</span> 关注点包括：方法的有效性（SOTA 比较）、参数的敏感性、性能与效率的权衡，以及消融实验中的关键模块贡献。<br><br><span class="hljs-bullet">3.</span> 排版与格式规范：<br><span class="hljs-bullet">   -</span> 严禁使用加粗或斜体：正文中不要使用 \textbf 或 \emph，依靠文字逻辑来表达重点。<br><span class="hljs-bullet">   -</span> 结构强制：必须使用 \paragraph&#123;核心结论&#125; + 分析文本 的形式。<br><span class="hljs-bullet">     *</span> \paragraph&#123;&#125; 中填写高度凝练的短语结论（使用 Title Case 格式）。<br><span class="hljs-bullet">     *</span> 紧接着在同一段落中展开具体的数值分析和逻辑推演。<br><span class="hljs-bullet">   -</span> 不要使用列表环境，保持纯文本段落。<br><br><span class="hljs-bullet">4.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [LaTeX]：只输出分析后的 LaTeX 代码。<br><span class="hljs-bullet">     *</span> 必须对特殊字符进行转义（例如：<span class="hljs-code">`%`</span>、<span class="hljs-code">`_`</span>、<span class="hljs-code">`&amp;`</span>）。<br><span class="hljs-bullet">     *</span> 保持数学公式原样（保留 <span class="hljs-code">`$`</span> 符号）。<br><span class="hljs-bullet">     *</span> 不同的结论点之间请空一行。<br><span class="hljs-bullet">   -</span> Part 2 [Translation]：对应的中文直译（用于核对数据结论是否准确）。<br><span class="hljs-bullet">   -</span> 除以上两部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Input</span><br>[在此处粘贴你的 Excel 数据或实验结果文本]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="论文整体以-Reviewer-视角进行审视"><a href="#论文整体以-Reviewer-视角进行审视" class="headerlink" title="论文整体以 Reviewer 视角进行审视"></a>论文整体以 Reviewer 视角进行审视</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># Role</span><br>你是一位以严苛、精准著称的资深学术审稿人，熟悉计算机科学领域顶级会议的评审标准。你的职责是作为守门员，确保只有在理论创新、实验严谨性和逻辑自洽性上均达到最高标准的研究才能被接收。<br><br><span class="hljs-section"># Task</span><br>请深入阅读并分析我上传的【PDF论文文件】。基于我指定的【投稿目标】，撰写一份严厉但具有建设性的审稿报告。<br><br><span class="hljs-section"># Constraints</span><br><span class="hljs-bullet">1.</span> 评审基调（严苛模式）：<br><span class="hljs-bullet">   -</span> 默认态度：请抱着拒稿的预设心态进行审查，除非论文的亮点足以说服你改变主意。<br><span class="hljs-bullet">   -</span> 拒绝客套：省略所有无关痛痒的赞美，直接切入核心缺陷。你的目标是帮作者发现可能导致拒稿的致命伤，而不是让作者开心。<br><br><span class="hljs-bullet">2.</span> 审查维度：<br><span class="hljs-bullet">   -</span> 原创性：该工作是实质性的突破还是边际增量？如果是后者，直接指出。<br><span class="hljs-bullet">   -</span> 严谨性：数学推导是否有跳跃？实验对比是否公平（Baseline 是否齐全）？消融实验是否充分支撑了核心主张？<br><span class="hljs-bullet">   -</span> 一致性：引言中声称的贡献在实验部分是否真的得到了验证？<br><br><span class="hljs-bullet">3.</span> 格式要求：<br><span class="hljs-bullet">   -</span> 严禁列表化滥用：在陈述复杂逻辑时，请使用连贯段落。<br><span class="hljs-bullet">   -</span> 保持 LaTeX 纯净：不要使用无关的格式指令。<br><br><span class="hljs-bullet">4.</span> 输出格式：<br><span class="hljs-bullet">   -</span> Part 1 [The Review Report]：模拟真实的顶会审稿意见（使用中文）。包含以下板块：<br><span class="hljs-bullet">     *</span> Summary: 一句话总结文章核心。<br><span class="hljs-bullet">     *</span> Strengths: 简要列出 1-2 点真正有价值的贡献。<br><span class="hljs-bullet">     *</span> Weaknesses (Critical): 必须列出 3-5 个可能导致直接拒稿的致命问题（如：缺乏核心 Baseline，原理存在逻辑漏洞，创新点被过度包装）。<br><span class="hljs-bullet">     *</span> Rating: 给出预估评分（1-10分，其中 Top 5% 为 8分以上）。<br><span class="hljs-bullet">   -</span> Part 2 [Strategic Advice]：针对作者的中文改稿建议。<br><span class="hljs-bullet">     *</span> 直击痛点：用中文解释 Part 1 中的 Critical Weaknesses 到底因何而起。<br><span class="hljs-bullet">     *</span> 行动指南：具体建议作者该补什么实验、该重写哪段逻辑、或该如何降低审稿人的攻击欲。<br><span class="hljs-bullet">   -</span> 除以上两部分外，不要输出任何多余的对话。<br><br><span class="hljs-section"># Execution Protocol</span><br>在输出前，请自查：<br><span class="hljs-bullet">1.</span> 你的语气是否太温和了？如果是，请重新审视那些模糊的实验结果，并提出尖锐的质疑。<br><span class="hljs-bullet">2.</span> 你指出的问题是否具体？不要说“实验不够”，要说“缺少在 ImageNet 数据集上的鲁棒性验证”。<br><br><span class="hljs-section"># Input</span><br>请根据我上传的pdf附件进行分析，我计划投稿于 [在此处输入你的投稿目标，例如：ICML 2026]<br><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h2><p>我们从公开网站 <a target="_blank" rel="noopener" href="https://arena.ai/zh/leaderboard/text/creative-writing">arena.ai</a> 上获取了Creative Writing能力排名前10的模型与具体版本，该榜单结果与调研群体的日常使用选择高度契合。在科研场景中，日常的 idea 交互与论文写作，主力模型仍为 Gemini-3-pro&#x2F;flash；在实验代码编写场景下，更多使用 Claude-4.5 系列模型，以及 Cursor 内置的 Composer 模型。此外，从实际体验来看，GPT 5.1 与 GPT 5.2 的表现较为一般，目前对gpt系列模型的使用频率已大幅下降。</p>
+<p><img src="/images/model-rank.png" srcset="/img/loading.gif" lazyload alt="模型排名"></p>
+<hr>
+<h1 id="Part-II-论文写作相关的-Agent-Skills"><a href="#Part-II-论文写作相关的-Agent-Skills" class="headerlink" title="Part II: 论文写作相关的 Agent-Skills"></a>Part II: 论文写作相关的 Agent-Skills</h1><blockquote>
+<p>🎯 <strong>适用对象</strong>：本部分内容主要面向经常使用 Cursor、Claude Code 等 AI coding 工具的用户</p>
+<p>💡 <strong>使用说明</strong>：Agent Skills 是一种可被 AI 助手（如 Claude、Cursor）加载的扩展能力包，内含针对特定任务的流程、规范与模板。在 Claude Code、Cursor 等环境中配置相应 Skill 后，在对话中直接描述需求（如目标会议、repo 路径、要写的章节），即可触发对应流程，无需记忆复杂 prompt</p>
+</blockquote>
+<h2 id="Skills-的配置"><a href="#Skills-的配置" class="headerlink" title="Skills 的配置"></a>Skills 的配置</h2><p>下文的演示基于 <strong>OpenSkills</strong> 生态：它提供一套<strong>通用的 Skills 加载&#x2F;管理方式</strong>，让 Cursor 等 AI coding agent 可以读取并使用以 <code>SKILL.md</code> 为核心的技能包。参考链接： <a target="_blank" rel="noopener" href="https://cursor.com/docs/context/skills">Cursor Agent Skills</a>、<a target="_blank" rel="noopener" href="https://github.com/numman-ali/openskills">openskills</a></p>
+<h3 id="1-前置依赖"><a href="#1-前置依赖" class="headerlink" title="1) 前置依赖"></a>1) 前置依赖</h3><p>OpenSkills 通过 npm 分发，并会从 GitHub 拉取 skills 仓库，因此建议准备：</p>
+<ul>
+<li>Node.js 20.6+（含 npm）</li>
+<li>Git</li>
+</ul>
+<h3 id="2-安装-运行-OpenSkills"><a href="#2-安装-运行-OpenSkills" class="headerlink" title="2) 安装&#x2F;运行 OpenSkills"></a>2) 安装&#x2F;运行 OpenSkills</h3><p>OpenSkills 支持直接用 <code>npx</code> 运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npx openskills --version<br></code></pre></td></tr></table></figure>
+
+<p>如需多项目复用，也可全局安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i -g openskills<br>openskills --version<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-一键安装-Skills"><a href="#3-一键安装-Skills" class="headerlink" title="3) 一键安装 Skills"></a>3) 一键安装 Skills</h3><p>OpenSkills 支持直接从 GitHub 仓库安装 Skills，并自动放入默认目录（一般为项目内 <code>./.claude/skills/</code>），Cursor 会自动从 <code>.claude/skills/</code>（以及 <code>.cursor/skills/</code>）发现 skills 并加载</p>
+<p>下面以两个上游仓库为例展示 Skills 的安装方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># research 相关：zechenzhangAGI/AI-research-SKILLs</span><br>npx openskills install zechenzhangAGI/AI-research-SKILLs<br><br><span class="hljs-comment"># Anthropic 官方 skills</span><br>npx openskills install anthropics/skills<br></code></pre></td></tr></table></figure>
+
+<p>执行后 OpenSkills 会弹出交互式选择（勾选需要的 Skill 即可，默认全部安装）</p>
+<h3 id="4-在-Cursor-中查看与使用-Skills"><a href="#4-在-Cursor-中查看与使用-Skills" class="headerlink" title="4) 在 Cursor 中查看与使用 Skills"></a>4) 在 Cursor 中查看与使用 Skills</h3><p>Skills 安装到 <code>.claude/skills/</code> 后，Cursor 启动时会自动发现并提供给 Agent 使用。建议按以下方式验证：</p>
+<ul>
+<li><strong>确认 skills 已安装</strong>：<code>npx openskills list</code> 能看到目标 skills</li>
+<li><strong>在 Cursor Settings 中查看</strong>：打开 Cursor Settings，进入 <strong>Rules, Skills, Subagents</strong>，在 <strong>Skills</strong> 区域可看到已发现的 skills</li>
+<li><strong>在对话中手动调用</strong>：在 Agent Chat 输入 <code>/</code>，搜索 skill 名称并手动插入</li>
+<li><strong>在对话中自然触发</strong>：直接提出明显对应 skill 的需求（例如“用会议模板开新稿”“写一个 booktabs 表格”），若行为与 Skill 文档一致，则配置生效</li>
+</ul>
+<p>配置完成后，无需记忆复杂 prompt，在对话中直接说明「要做什么」和「已有信息」即可。例如：提供研究 repo 路径与目标会议，说明「用 ICLR 2026 模板新建一篇论文、项目放在当前目录」。</p>
+<p><img src="/images/example.png" srcset="/img/loading.gif" lazyload alt="Skills 配置与触发示意"></p>
+<h2 id="Skills-总览"><a href="#Skills-总览" class="headerlink" title="Skills 总览"></a>Skills 总览</h2><table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>来源</th>
+<th>功能简述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>20-ml-paper-writing</strong></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zechenzhangAGI/AI-research-SKILLs">zechenzhangAGI&#x2F;AI-research-SKILLs</a></td>
+<td>面向 NeurIPS &#x2F; ICML &#x2F; ICLR &#x2F; ACL &#x2F; AAAI &#x2F; COLM 的完整论文写作：从 repo 起稿、LaTeX 模板、引用验证、审稿人视角、会议 checklist、格式迁移；内含 booktabs 表格规范与图规范（矢量图、caption、色盲友好等）。</td>
+</tr>
+<tr>
+<td><strong>humanizer</strong></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/blader/humanizer">blader&#x2F;humanizer</a></td>
+<td>识别并去除 AI 写作痕迹，使文本更自然、像人写。基于 Wikipedia「Signs of AI writing」：过度强调意义、促销腔、空洞 -ing 分析、模糊归因、破折号滥用、三点式堆砌、AI 高频词、否定式平行等；同时注入「人味」：有观点、节奏变化、承认不确定性、适当用「我」。适合润色后终稿或投稿前语言风格检查。</td>
+</tr>
+<tr>
+<td><strong>docx</strong></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills">anthropics&#x2F;skills</a></td>
+<td>对 .docx 进行创建、编辑、分析。支持：用 pandoc 转 Markdown 读正文；用 Document 库&#x2F;OOXML 编辑已有文档；Redlining 流程做带修订痕迹的审稿式修改。<strong>论文场景</strong>：给定期刊&#x2F;会议的 Word 投稿模板，在模板中替换标题、作者、摘要、正文等占位内容，生成符合格式的投稿稿；也可对他人文档做修订建议（tracked changes）。</td>
+</tr>
+<tr>
+<td><strong>doc-coauthoring</strong></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills">anthropics&#x2F;skills</a></td>
+<td>分阶段文档协作：收集上下文与澄清问题 → 按节头脑风暴→起草→精修 → 读者测试查盲点。适用于论文单节或整篇的结构化迭代。</td>
+</tr>
+<tr>
+<td><strong>canvas-design</strong></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills">anthropics&#x2F;skills</a></td>
+<td>先产出 design philosophy (.md)，再在画布上实现为单页 .png &#x2F; .pdf，适合论文中的概念图、示意图、框架图。</td>
+</tr>
+</tbody></table>
+<h2 id="使用场景与示例-Prompt"><a href="#使用场景与示例-Prompt" class="headerlink" title="使用场景与示例 Prompt"></a>使用场景与示例 Prompt</h2><table>
+<thead>
+<tr>
+<th>使用场景</th>
+<th>推荐 Skill</th>
+<th>前置输入</th>
+<th>示例 Prompt</th>
+<th>产出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>从零写一篇论文</td>
+<td>20-ml-paper-writing</td>
+<td>研究 repo 路径或关键文件（README、results、笔记）+ 目标会议</td>
+<td>「用这个 repo 帮我写一篇投 NeurIPS 的论文」「根据 results&#x2F; 里的实验，起草一篇 ICML 的稿子」</td>
+<td>一句式贡献确认后，按 Abstract→Introduction→Methods→Experiments→Related Work→Limitations 的完整初稿</td>
+</tr>
+<tr>
+<td>用会议模板开新稿</td>
+<td>20-ml-paper-writing</td>
+<td>目标会议 + 论文目录存放路径</td>
+<td>「帮我用 ICLR 2026 模板新建一篇论文」「用 NeurIPS 2025 模板，项目放在当前目录」</td>
+<td>拷贝完整模板目录并写好标题、作者占位、章节骨架</td>
+</tr>
+<tr>
+<td>加引用 &#x2F; 写 Related Work</td>
+<td>20-ml-paper-writing</td>
+<td>要引用的主题或关键词（如「RLHF 对齐」），或希望被引用的表述</td>
+<td>「帮我找并引用 2023 年后 RLHF 的几篇代表作」「Related Work 里需要 cite Vaswani 的 attention，帮我查准并给 BibTeX」</td>
+<td>经检索&#x2F;API 核实的 BibTeX；无法核实的标为 [CITATION NEEDED] 或 placeholder，需用户自行核对</td>
+</tr>
+<tr>
+<td>换会议 &#x2F; 改投别家</td>
+<td>20-ml-paper-writing</td>
+<td>当前稿子会议格式、目标会议、.tex 或项目路径</td>
+<td>「这篇稿子要从 NeurIPS 改成 ICML，帮我做格式迁移」「把 main.tex 迁到 ICLR 2026 模板里，页数限制 9 页」</td>
+<td>新会议模板下的稿子（仅迁移正文与图表）+ 页数、Broader Impact &#x2F; Limitations 等提醒</td>
+</tr>
+<tr>
+<td>投稿前清单核对</td>
+<td>20-ml-paper-writing</td>
+<td>无</td>
+<td>「帮我对一下 NeurIPS 的 paper checklist」「交稿前帮我看一遍 ICML 的要求」</td>
+<td>按该会议要求的逐项核对（匿名、页数、图表、引用、伦理等），并标出缺失或需修改项</td>
+</tr>
+<tr>
+<td>写 &#x2F; 改 LaTeX 表格</td>
+<td>20-ml-paper-writing</td>
+<td>方法名、指标名、数值（或简单列表&#x2F;CSV）</td>
+<td>「帮我把下面结果做成论文里的表格：Method A 准确率 85.2，Method B 92.1…」「用 booktabs 风格，加 ↑↓ 标注指标方向」</td>
+<td>可直接粘贴进 .tex 的 <code>\begin{table}...\end{table}</code> 代码（含 \toprule&#x2F;\midrule&#x2F;\bottomrule、最佳值加粗、数值右对齐等）</td>
+</tr>
+<tr>
+<td>图与 caption 规范</td>
+<td>20-ml-paper-writing</td>
+<td>图或图的描述</td>
+<td>「帮我写 Figure 1 的 caption，要求包含 xxx」「这张图要符合顶会要求，检查图内标题、色盲友好」</td>
+<td>符合规范的 caption 文案 + 矢量图&#x2F;线型等修改建议</td>
+</tr>
+<tr>
+<td>结构化流程写某一节</td>
+<td>doc-coauthoring</td>
+<td>无（进入流程后按提示提供上下文）</td>
+<td>「用 doc coauthoring 流程，我们先写 Introduction」「我想用协作流程写这篇论文的 Methods」</td>
+<td>三阶段说明（收集上下文→分节起草→读者测试），同意后进入 Stage 1</td>
+</tr>
+<tr>
+<td>Stage 1：提供上下文</td>
+<td>doc-coauthoring</td>
+<td>文档类型、读者、目标效果、模板等；repo、主要结论、不确定点、笔记、目标会议（可零散提供）</td>
+<td>「投 ICLR，读者是审稿人」「主要贡献是 X，但 Related Work 还没想好怎么划界」「实验在 results&#x2F;，README 里有总结」</td>
+<td>5～10 个澄清问题（如贡献侧重、必放结果），回答后进入 Stage 2</td>
+</tr>
+<tr>
+<td>Stage 2：按节起草与修改</td>
+<td>doc-coauthoring</td>
+<td>选定一节；对要点勾选保留&#x2F;合并&#x2F;删，对正文用简短指令改</td>
+<td>「保留 1、4、7，删 3」「这段太长了，压缩成三句」「加一句和 Figure 1 的对应」</td>
+<td>该节更新版，循环至满意后换下一节</td>
+</tr>
+<tr>
+<td>Stage 3：读者测试</td>
+<td>doc-coauthoring</td>
+<td>稿子基本定稿</td>
+<td>「做一下读者测试」「用新会话试几个读者问题」</td>
+<td>读者视角下的不清&#x2F;易误解处 + 修改建议；可按需改稿</td>
+</tr>
+<tr>
+<td>论文概念图 &#x2F; 示意图 &#x2F; 框架图</td>
+<td>canvas-design</td>
+<td>图的用途与大致元素（如三阶段 pipeline、方法对比）</td>
+<td>「帮我画一个我们方法的整体框架图，三块：数据、训练、推理」「做一张方法对比的示意图，左边传统方法，右边我们的」</td>
+<td>design philosophy (.md) + 可下载的 .pdf 或 .png，可插入 LaTeX 并配合 20-ml-paper-writing 写 caption</td>
+</tr>
+<tr>
+<td>改图的风格或细节</td>
+<td>canvas-design</td>
+<td>对已有图的修改意见</td>
+<td>「背景改成浅灰」「左边块加大一点」「不要那么多字，只保留标签」</td>
+<td>按意见调整后的新版图说明，再导出 .pdf&#x2F;.png 供替换进论文</td>
+</tr>
+<tr>
+<td>去 AI 味 &#x2F; 润色后终稿检查</td>
+<td>humanizer</td>
+<td>待检查的段落或全文（LaTeX 片段、Word 正文、Markdown 等）</td>
+<td>「这段读起来像 AI 写的，帮我 humanize」「投稿前帮我把 Abstract 和 Introduction 去一下 AI 味」</td>
+<td>重写后的自然文本 + 可选修改说明；保留原意与语气，减少显著性堆砌、破折号滥用、三点式、AI 高频词等</td>
+</tr>
+<tr>
+<td>用 Word 模板写投稿稿</td>
+<td>docx</td>
+<td>期刊&#x2F;会议提供的 .docx 投稿模板；你的标题、作者、摘要、各节正文</td>
+<td>「这是某期刊的 Word 模板，帮我把我的标题、摘要和正文填进去」「在模板里替换作者信息和 Section 1–4 的内容」</td>
+<td>符合模板格式的 .docx 稿（可先解包再脚本替换占位内容，或按 OOXML 编辑后重新打包）</td>
+</tr>
+<tr>
+<td>对 Word 稿做修订建议</td>
+<td>docx</td>
+<td>已写好的 .docx 论文或审稿意见</td>
+<td>「按 redlining 流程，帮我在文档里标出需要改的几处」「把这段改成 tracked changes：原文删除、新文插入」</td>
+<td>带修订痕迹的 .docx（仅标记改动处，便于作者接受&#x2F;拒绝）</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://star-history.com/#Leey21/awesome-ai-research-writing&Date"><img src="https://api.star-history.com/svg?repos=Leey21/awesome-ai-research-writing&type=Date" srcset="/img/loading.gif" lazyload alt="Star History Chart"></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>科研prompt</div>
+      <div>http://cathylove47.github.io/2026/03/24/科研prompt/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/23/Lingshu%E8%AE%BA%E6%96%87/" title="Lingshu论文">
+                        <span class="hidden-mobile">Lingshu论文</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
