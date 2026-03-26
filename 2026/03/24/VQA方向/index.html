@@ -1,0 +1,926 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="框架目标是：  基于 VisPlay 的自学习能力，引入 SPELL 式第三个 verifier&#x2F;scorer agent，构建一个适用于医学影像QA&#x2F;医学视觉推理的三智能体自进化系统。  其中，VisPlay 提供的是“图像驱动的 questioner-reasoner 自进化闭环”，核心包括 image-conditioned questioner、multimodal r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VQA方向">
+<meta property="og:url" content="http://cathylove47.github.io/2026/03/24/VQA%E6%96%B9%E5%90%91/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="框架目标是：  基于 VisPlay 的自学习能力，引入 SPELL 式第三个 verifier&#x2F;scorer agent，构建一个适用于医学影像QA&#x2F;医学视觉推理的三智能体自进化系统。  其中，VisPlay 提供的是“图像驱动的 questioner-reasoner 自进化闭环”，核心包括 image-conditioned questioner、multimodal r">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-24T11:45:58.000Z">
+<meta property="article:modified_time" content="2026-03-24T11:46:16.866Z">
+<meta property="article:author" content="cathy">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>VQA方向 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathylove47.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">VQA方向</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-24 19:45" pubdate>
+          2026年3月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">VQA方向</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>框架目标是：</p>
+<blockquote>
+<p>基于 <strong>VisPlay</strong> 的自学习能力，引入 <strong>SPELL 式第三个 verifier&#x2F;scorer agent</strong>，构建一个适用于<strong>医学影像QA&#x2F;医学视觉推理</strong>的三智能体自进化系统。</p>
+</blockquote>
+<p>其中，VisPlay 提供的是“<strong>图像驱动的 questioner-reasoner 自进化闭环</strong>”，核心包括 image-conditioned questioner、multimodal reasoner、不确定性奖励、difficulty filtering 和伪标签训练。</p>
+<p>2511.15661v2</p>
+<p>SPELL 提供的是“<strong>第三个 verifier 参与奖励与质量控制</strong>”的思想，用 verifier 判断 responder 输出与参考答案的语义一致性，并缓解仅靠规则奖励的局限。</p>
+<p>Yang 等 - 2025 - SPELL Self-Play…</p>
+<hr>
+<h1 id="一、框架名称"><a href="#一、框架名称" class="headerlink" title="一、框架名称"></a>一、框架名称</h1><p>可以先命名为：</p>
+<p><strong>Med-VisPlay-V: A Verifier-Guided Self-Evolving Medical Vision-Language Framework</strong></p>
+<p>如果你想突出三智能体，也可以叫：</p>
+<p><strong>Tri-Agent Medical VisPlay</strong></p>
+<hr>
+<h1 id="二、核心目标"><a href="#二、核心目标" class="headerlink" title="二、核心目标"></a>二、核心目标</h1><p>这个框架解决的不是普通医学VQA，而是更具体的三个问题：</p>
+<ol>
+<li><p>如何从<strong>未标注医学图像</strong>中自动生成高质量训练问题</p>
+</li>
+<li><p>如何在<strong>没有人工答案</strong>的情况下构造相对可信的伪标签</p>
+</li>
+<li><p>如何避免医学场景中最危险的现象：</p>
+<ul>
+<li>hallucination 自强化</li>
+<li>错误伪标签循环放大</li>
+<li>问题分布漂移到“视觉上难但医学上无意义”的方向</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="三、整体结构"><a href="#三、整体结构" class="headerlink" title="三、整体结构"></a>三、整体结构</h1><p>框架由三个 agent 组成：</p>
+<h2 id="Agent-1：Medical-Image-Conditioned-Questioner"><a href="#Agent-1：Medical-Image-Conditioned-Questioner" class="headerlink" title="Agent 1：Medical Image-Conditioned Questioner"></a>Agent 1：Medical Image-Conditioned Questioner</h2><p>输入：医学图像<br>输出：与图像相关的医学问题</p>
+<p>职责：</p>
+<ul>
+<li>生成有训练价值的问题</li>
+<li>控制问题难度</li>
+<li>保持问题多样性</li>
+<li>保证问题属于“图像可回答”的医学问题</li>
+</ul>
+<hr>
+<h2 id="Agent-2：Medical-Multimodal-Reasoner"><a href="#Agent-2：Medical-Multimodal-Reasoner" class="headerlink" title="Agent 2：Medical Multimodal Reasoner"></a>Agent 2：Medical Multimodal Reasoner</h2><p>输入：医学图像 + 医学问题<br>输出：答案 + 可选解释</p>
+<p>职责：</p>
+<ul>
+<li>对问题作答</li>
+<li>多次采样生成候选答案</li>
+<li>形成伪标签候选</li>
+<li>作为被 challenge 的对象，提供难度信号</li>
+</ul>
+<hr>
+<h2 id="Agent-3：Medical-Verifier-Scorer"><a href="#Agent-3：Medical-Verifier-Scorer" class="headerlink" title="Agent 3：Medical Verifier &#x2F; Scorer"></a>Agent 3：Medical Verifier &#x2F; Scorer</h2><p>输入：医学图像 + 医学问题 + candidate answer + 可选 reasoning + pseudo-label<br>输出：分数或二值判断</p>
+<p>职责：</p>
+<ul>
+<li>评估答案是否可靠</li>
+<li>判断回答是否与图像一致</li>
+<li>判断解释是否支持答案</li>
+<li>判断问题是否适合仅凭图像回答</li>
+<li>作为 reward shaping 和数据过滤模块</li>
+</ul>
+<hr>
+<h1 id="四、训练闭环"><a href="#四、训练闭环" class="headerlink" title="四、训练闭环"></a>四、训练闭环</h1><p>整个框架分成两个主循环。</p>
+<h2 id="第一阶段：Questioner-训练循环"><a href="#第一阶段：Questioner-训练循环" class="headerlink" title="第一阶段：Questioner 训练循环"></a>第一阶段：Questioner 训练循环</h2><h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><p>给定一张医学图像 III，Questioner 生成一组问题：</p>
+<p>{qi}i=1G∼Qθ(⋅∣I)\{q_i\}_{i&#x3D;1}^G \sim Q_\theta(\cdot | I){qi​}i=1G​∼Qθ​(⋅∣I)</p>
+<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><p>Reasoner 对每个问题采样多次答案：</p>
+<p>{ai,j}j=1m∼Sϕ(⋅∣I,qi)\{a_{i,j}\}_{j&#x3D;1}^m \sim S_\phi(\cdot | I, q_i){ai,j​}j=1m​∼Sϕ​(⋅∣I,qi​)</p>
+<h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><p>构造伪标签：</p>
+<p>yi<del>=MajorityVote({ai,j})\tilde{y_i} &#x3D; \text{MajorityVote}(\{a_{i,j}\})yi​</del>​=MajorityVote({ai,j​})</p>
+<p>并计算置信度：</p>
+<p>ci=p^(y<del>i∣I,qi)c_i &#x3D; \hat p(\tilde y_i | I, q_i)ci​=p^​(y</del>​i​∣I,qi​)</p>
+<p>这一步直接沿用 VisPlay 的核心思想。</p>
+<p>2511.15661v2</p>
+<h3 id="Step-4"><a href="#Step-4" class="headerlink" title="Step 4"></a>Step 4</h3><p>Verifier 对问题和伪标签做评估，输出：</p>
+<ul>
+<li>问题是否有效</li>
+<li>答案是否可信</li>
+<li>是否 grounded in image</li>
+<li>reasoning 与 answer 是否一致</li>
+</ul>
+<h3 id="Step-5"><a href="#Step-5" class="headerlink" title="Step 5"></a>Step 5</h3><p>给 Questioner 奖励，鼓励它生成：</p>
+<ul>
+<li>中等难度问题</li>
+<li>非重复问题</li>
+<li>医学有效问题</li>
+</ul>
+<hr>
+<h2 id="第二阶段：Reasoner-训练循环"><a href="#第二阶段：Reasoner-训练循环" class="headerlink" title="第二阶段：Reasoner 训练循环"></a>第二阶段：Reasoner 训练循环</h2><h3 id="Step-1-1"><a href="#Step-1-1" class="headerlink" title="Step 1"></a>Step 1</h3><p>从 Questioner 生成的大量问题中，筛选出：</p>
+<ul>
+<li>置信度中等</li>
+<li>verifier 高分</li>
+<li>医学有效</li>
+<li>多样性较高</li>
+</ul>
+<p>的问题集合 DDD</p>
+<h3 id="Step-2-1"><a href="#Step-2-1" class="headerlink" title="Step 2"></a>Step 2</h3><p>对每个样本 (I,q,y<del>)(I, q, \tilde y)(I,q,y</del>​)，Reasoner 再采样多个候选答案</p>
+<h3 id="Step-3-1"><a href="#Step-3-1" class="headerlink" title="Step 3"></a>Step 3</h3><p>用 verifier 和 pseudo-label 一起计算 reward，优化 Reasoner</p>
+<h3 id="Step-4-1"><a href="#Step-4-1" class="headerlink" title="Step 4"></a>Step 4</h3><p>Reasoner 能力提升后，返回上一阶段，驱动 Questioner 继续升级问题难度</p>
+<hr>
+<h1 id="五、三类核心奖励设计"><a href="#五、三类核心奖励设计" class="headerlink" title="五、三类核心奖励设计"></a>五、三类核心奖励设计</h1><p>这是整个框架最关键的部分。</p>
+<h2 id="1-Questioner-reward"><a href="#1-Questioner-reward" class="headerlink" title="1. Questioner reward"></a>1. Questioner reward</h2><p>建议写成：</p>
+<p>rQ=1valid(q)⋅ReLU(runc−rdiv+λmedrmed−valid)r_Q &#x3D; \mathbb{1}_{valid}(q)\cdot \text{ReLU}(r_{unc} - r_{div} + \lambda_{med} r_{med-valid})rQ​=1valid​(q)⋅ReLU(runc​−rdiv​+λmed​rmed−valid​)</p>
+<p>其中：</p>
+<h3 id="a-不确定性奖励"><a href="#a-不确定性奖励" class="headerlink" title="(a) 不确定性奖励"></a>(a) 不确定性奖励</h3><p>继承 VisPlay：</p>
+<p>runc=1−∣2c−1∣r_{unc} &#x3D; 1 - |2c - 1|runc​=1−∣2c−1∣</p>
+<p>含义：</p>
+<ul>
+<li>c≈0.5c \approx 0.5c≈0.5：奖励最高</li>
+<li>太简单或太确定：奖励低</li>
+</ul>
+<p>2511.15661v2</p>
+<h3 id="b-多样性惩罚"><a href="#b-多样性惩罚" class="headerlink" title="(b) 多样性惩罚"></a>(b) 多样性惩罚</h3><p>问题之间如果过于相似，则扣分，防止 question collapse。VisPlay 原文用 BLEU 聚类做 redundancy penalty。</p>
+<p>2511.15661v2</p>
+<h3 id="c-医学有效性奖励"><a href="#c-医学有效性奖励" class="headerlink" title="(c) 医学有效性奖励"></a>(c) 医学有效性奖励</h3><p>这是医学版新增项，建议由 Verifier 给出：</p>
+<p>rmed−valid∈[0,1]r_{med-valid} \in [0,1]rmed−valid​∈[0,1]</p>
+<p>用来判断：</p>
+<ul>
+<li>问题是否真的与图像相关</li>
+<li>是否属于医学视觉问题</li>
+<li>是否不依赖图像外信息</li>
+<li>是否有训练意义</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li>“该胸片最可疑异常位于哪里？”：高分</li>
+<li>“患者最可能的治疗方案是什么？”：低分</li>
+</ul>
+<hr>
+<h2 id="2-Reasoner-reward"><a href="#2-Reasoner-reward" class="headerlink" title="2. Reasoner reward"></a>2. Reasoner reward</h2><p>建议设计成加权组合：</p>
+<p>rS=λansrans+λconsrcons+λgroundrground+λsafersafer_S &#x3D; \lambda_{ans} r_{ans} + \lambda_{cons} r_{cons} + \lambda_{ground} r_{ground} + \lambda_{safe} r_{safe}rS​=λans​rans​+λcons​rcons​+λground​rground​+λsafe​rsafe​</p>
+<h3 id="a-答案一致奖励-ransr-ans-rans​"><a href="#a-答案一致奖励-ransr-ans-rans​" class="headerlink" title="(a) 答案一致奖励 ransr_{ans}rans​"></a>(a) 答案一致奖励 ransr_{ans}rans​</h3><p>如果输出答案与 pseudo-label 一致，则给正奖励。<br>这是 VisPlay&#x2F;R-Zero 风格的基础 reward。</p>
+<p>2511.15661v2</p>
+<h3 id="b-解释一致奖励-rconsr-cons-rcons​"><a href="#b-解释一致奖励-rconsr-cons-rcons​" class="headerlink" title="(b) 解释一致奖励 rconsr_{cons}rcons​"></a>(b) 解释一致奖励 rconsr_{cons}rcons​</h3><p>看 reasoning 是否支持 final answer。<br>例如 explanation 里说“左肺异常”，final answer 却说“右肺病变”，则扣分。</p>
+<h3 id="c-图像依据奖励-rgroundr-ground-rground​"><a href="#c-图像依据奖励-rgroundr-ground-rground​" class="headerlink" title="(c) 图像依据奖励 rgroundr_{ground}rground​"></a>(c) 图像依据奖励 rgroundr_{ground}rground​</h3><p>看回答是否真的可由图像支持。<br>避免模型无依据补充：</p>
+<ul>
+<li>病史</li>
+<li>治疗方案</li>
+<li>不可见临床信息</li>
+</ul>
+<h3 id="d-安全性奖励-rsafer-safe-rsafe​"><a href="#d-安全性奖励-rsafer-safe-rsafe​" class="headerlink" title="(d) 安全性奖励 rsafer_{safe}rsafe​"></a>(d) 安全性奖励 rsafer_{safe}rsafe​</h3><p>避免高风险错误表达，比如：</p>
+<ul>
+<li>过度诊断</li>
+<li>不必要的确定性口吻</li>
+<li>越权结论</li>
+</ul>
+<hr>
+<h2 id="3-Verifier-reward-training-signal"><a href="#3-Verifier-reward-training-signal" class="headerlink" title="3. Verifier reward &#x2F; training signal"></a>3. Verifier reward &#x2F; training signal</h2><p>Verifier 本身可以不一定用 RL 单独训练。更现实的方案是：</p>
+<h3 id="方案-A：固定-verifier"><a href="#方案-A：固定-verifier" class="headerlink" title="方案 A：固定 verifier"></a>方案 A：固定 verifier</h3><p>先使用一个较强医学VLM&#x2F;LLM作为冻结 judge，负责打分。</p>
+<h3 id="方案-B：逐步蒸馏-verifier"><a href="#方案-B：逐步蒸馏-verifier" class="headerlink" title="方案 B：逐步蒸馏 verifier"></a>方案 B：逐步蒸馏 verifier</h3><p>后续可训练一个轻量 verifier，输入：</p>
+<ul>
+<li>image</li>
+<li>question</li>
+<li>answer</li>
+<li>reasoning</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>validity</li>
+<li>groundedness</li>
+<li>consistency</li>
+<li>semantic correctness</li>
+</ul>
+<p>如果你想完全三智能体 co-evolution，也可以后续再扩展 verifier 的在线更新。</p>
+<hr>
+<h1 id="六、问题空间设计"><a href="#六、问题空间设计" class="headerlink" title="六、问题空间设计"></a>六、问题空间设计</h1><p>这一点必须限制，不然系统很容易崩。</p>
+<h2 id="建议的医学问题类型"><a href="#建议的医学问题类型" class="headerlink" title="建议的医学问题类型"></a>建议的医学问题类型</h2><h3 id="一级：低风险基础问题"><a href="#一级：低风险基础问题" class="headerlink" title="一级：低风险基础问题"></a>一级：低风险基础问题</h3><ul>
+<li>模态识别</li>
+<li>解剖结构识别</li>
+<li>图像方向&#x2F;部位识别</li>
+</ul>
+<h3 id="二级：中风险征象问题"><a href="#二级：中风险征象问题" class="headerlink" title="二级：中风险征象问题"></a>二级：中风险征象问题</h3><ul>
+<li>是否存在异常</li>
+<li>异常位置</li>
+<li>异常形态、大小、边界、密度、颜色、纹理</li>
+</ul>
+<h3 id="三级：轻诊断问题"><a href="#三级：轻诊断问题" class="headerlink" title="三级：轻诊断问题"></a>三级：轻诊断问题</h3><ul>
+<li>候选诊断多选</li>
+<li>最可能影像学印象</li>
+<li>finding-to-diagnosis mapping</li>
+</ul>
+<h3 id="暂不建议一开始纳入"><a href="#暂不建议一开始纳入" class="headerlink" title="暂不建议一开始纳入"></a>暂不建议一开始纳入</h3><ul>
+<li>治疗方案</li>
+<li>预后判断</li>
+<li>药物推荐</li>
+<li>单图无法回答的病史推断</li>
+</ul>
+<hr>
+<h1 id="七、数据流设计"><a href="#七、数据流设计" class="headerlink" title="七、数据流设计"></a>七、数据流设计</h1><p>建议你的数据流分成四层。</p>
+<h2 id="层-1：原始图像池"><a href="#层-1：原始图像池" class="headerlink" title="层 1：原始图像池"></a>层 1：原始图像池</h2><ul>
+<li>Chest X-ray</li>
+<li>Fundus</li>
+<li>Dermoscopy</li>
+<li>Pathology</li>
+<li>CT&#x2F;MRI 切片</li>
+</ul>
+<p>尽量先从单张图像任务做起。</p>
+<hr>
+<h2 id="层-2：Questioner-生成问题池"><a href="#层-2：Questioner-生成问题池" class="headerlink" title="层 2：Questioner 生成问题池"></a>层 2：Questioner 生成问题池</h2><p>对每张图生成多个问题</p>
+<hr>
+<h2 id="层-3：Reasoner-候选答案池"><a href="#层-3：Reasoner-候选答案池" class="headerlink" title="层 3：Reasoner 候选答案池"></a>层 3：Reasoner 候选答案池</h2><p>每个问题生成多个答案，用于：</p>
+<ul>
+<li>majority vote</li>
+<li>self-consistency</li>
+<li>verifier 打分</li>
+</ul>
+<hr>
+<h2 id="层-4：高质量训练池"><a href="#层-4：高质量训练池" class="headerlink" title="层 4：高质量训练池"></a>层 4：高质量训练池</h2><p>只保留：</p>
+<ul>
+<li>中等难度</li>
+<li>verifier 通过</li>
+<li>问题多样</li>
+<li>伪标签置信度适中</li>
+</ul>
+<p>的样本进入下一轮训练</p>
+<hr>
+<h1 id="八、一个推荐的最小可行版本（MVP）"><a href="#八、一个推荐的最小可行版本（MVP）" class="headerlink" title="八、一个推荐的最小可行版本（MVP）"></a>八、一个推荐的最小可行版本（MVP）</h1><p>不要一开始做太大，建议先做一个可验证的 MVP。</p>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>胸片或 fundus 的医学VQA</p>
+<h2 id="三个-agent"><a href="#三个-agent" class="headerlink" title="三个 agent"></a>三个 agent</h2><ul>
+<li>Questioner：生成异常识别&#x2F;部位识别&#x2F;模态识别问题</li>
+<li>Reasoner：回答并给 boxed answer</li>
+<li>Verifier：判断问题有效性与答案可信度</li>
+</ul>
+<h2 id="训练设置"><a href="#训练设置" class="headerlink" title="训练设置"></a>训练设置</h2><ul>
+<li><p>backbone：Qwen2.5-VL-3B 或 7B</p>
+</li>
+<li><p>图像数据：未标注医学图像</p>
+</li>
+<li><p>只做多选或短答案 QA</p>
+</li>
+<li><p>reward 用：</p>
+<ul>
+<li>uncertainty</li>
+<li>diversity</li>
+<li>medical-validity</li>
+<li>answer-consistency</li>
+</ul>
+</li>
+</ul>
+<h2 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h2><ul>
+<li>医学VQA accuracy</li>
+<li>hallucination rate</li>
+<li>verifier agreement</li>
+<li>pseudo-label precision</li>
+<li>question diversity</li>
+</ul>
+<hr>
+<h1 id="九、和原始-VisPlay-相比，你的新增贡献可以怎么写"><a href="#九、和原始-VisPlay-相比，你的新增贡献可以怎么写" class="headerlink" title="九、和原始 VisPlay 相比，你的新增贡献可以怎么写"></a>九、和原始 VisPlay 相比，你的新增贡献可以怎么写</h1><p>如果做论文，贡献点可以写成：</p>
+<h2 id="贡献-1"><a href="#贡献-1" class="headerlink" title="贡献 1"></a>贡献 1</h2><p>把 VisPlay 的自进化 questioner-reasoner 框架扩展到医学视觉问答场景，构建面向未标注医学图像的三智能体自学习系统。VisPlay 原始框架只有 image-conditioned questioner 与 multimodal reasoner。</p>
+<p>2511.15661v2</p>
+<h2 id="贡献-2"><a href="#贡献-2" class="headerlink" title="贡献 2"></a>贡献 2</h2><p>引入 verifier&#x2F;scorer agent，借鉴 SPELL 中 verifier 的思想，用于语义一致性、医学有效性和图像依据约束。SPELL 的 verifier 用于 responder 输出与 reference answer 的等价性判断与奖励整合。</p>
+<p>Yang 等 - 2025 - SPELL Self-Play…</p>
+<h2 id="贡献-3"><a href="#贡献-3" class="headerlink" title="贡献 3"></a>贡献 3</h2><p>提出适用于医学场景的 reward 设计与问题空间约束，降低伪标签错误自强化和医学 hallucination 风险。</p>
+<h2 id="贡献-4"><a href="#贡献-4" class="headerlink" title="贡献 4"></a>贡献 4</h2><p>证明在少量或零人工医学QA标注条件下，系统仍可通过自进化持续提升医学影像理解与推理能力。</p>
+<hr>
+<h1 id="十、你这个框架最关键的价值"><a href="#十、你这个框架最关键的价值" class="headerlink" title="十、你这个框架最关键的价值"></a>十、你这个框架最关键的价值</h1><p>一句话说清楚就是：</p>
+<blockquote>
+<p>它把“医学自学习”从一个高风险的伪标签闭环，变成一个带有质量控制、问题约束和安全过滤的三智能体进化系统。</p>
+</blockquote>
+<hr>
+<h1 id="十一、最大的风险点"><a href="#十一、最大的风险点" class="headerlink" title="十一、最大的风险点"></a>十一、最大的风险点</h1><p>也要提前知道。</p>
+<h2 id="风险-1"><a href="#风险-1" class="headerlink" title="风险 1"></a>风险 1</h2><p>Verifier 本身不可靠，可能把错误答案放行。</p>
+<h2 id="风险-2"><a href="#风险-2" class="headerlink" title="风险 2"></a>风险 2</h2><p>Questioner 可能学会“骗 verifier”，生成表面合理但低价值的问题。</p>
+<h2 id="风险-3"><a href="#风险-3" class="headerlink" title="风险 3"></a>风险 3</h2><p>Reasoner 可能过拟合 verifier 偏好，而不是真正学会医学视觉理解。</p>
+<h2 id="风险-4"><a href="#风险-4" class="headerlink" title="风险 4"></a>风险 4</h2><p>医学图像中很多问题不是单图可答，问题空间控制不严会导致训练噪声很大。</p>
+<hr>
+<h1 id="十二、最后给你一个精炼版框架图文字描述"><a href="#十二、最后给你一个精炼版框架图文字描述" class="headerlink" title="十二、最后给你一个精炼版框架图文字描述"></a>十二、最后给你一个精炼版框架图文字描述</h1><p>你可以直接放进笔记或开题报告里：</p>
+<p><strong>Med-VisPlay-V 框架</strong><br>以未标注医学图像为输入，Medical Questioner 基于图像生成医学视觉问题；Medical Reasoner 对每个问题进行多次采样作答，通过多数投票形成伪标签；Medical Verifier 对问题有效性、答案可信度、图像依据性和解释一致性进行评分。Questioner 通过“不确定性 + 多样性 + 医学有效性”奖励进行优化，Reasoner 通过“答案一致性 + 医学依据 + 解释一致性 + 安全性”奖励进行优化。系统在 Questioner–Reasoner–Verifier 三者的闭环交互中逐步提升医学视觉推理能力。</p>
+<p>如果你要，我下一步可以直接把这个框架整理成<strong>论文方法章节写法</strong>，包括：方法图、公式、算法流程和实验设计。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>VQA方向</div>
+      <div>http://cathylove47.github.io/2026/03/24/VQA方向/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/24/R-zero/" title="R-zero">
+                        <span class="hidden-mobile">R-zero</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
