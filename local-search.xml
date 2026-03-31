@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>X-ray数据集调研</title>
+    <link href="/2026/03/30/X-ray%E6%95%B0%E6%8D%AE%E9%9B%86%E8%B0%83%E7%A0%94/"/>
+    <url>/2026/03/30/X-ray%E6%95%B0%E6%8D%AE%E9%9B%86%E8%B0%83%E7%A0%94/</url>
+    
+    <content type="html"><![CDATA[<h1 id="NIH-chest-Xray-14"><a href="#NIH-chest-Xray-14" class="headerlink" title="NIH-chest-Xray-14"></a>NIH-chest-Xray-14</h1><p>训练集 89.7k</p><p>image:图片</p><p>label: 对疾病的分类  <strong>14 类胸部病变 + “无发现”</strong></p><h1 id="MIMIC-CXR"><a href="#MIMIC-CXR" class="headerlink" title="MIMIC-CXR"></a>MIMIC-CXR</h1><p>每一项研究不仅包含DICOM格式的影像，还配对有经过脱敏处理的完整自由文本放射学报告<br><img src="https://github.com/cathylove47/cathylove47.github.io/blob/main/img/MIMIC%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="示意图"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>VQA方向</title>
     <link href="/2026/03/24/VQA%E6%96%B9%E5%90%91/"/>
     <url>/2026/03/24/VQA%E6%96%B9%E5%90%91/</url>
