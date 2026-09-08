@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>计组 P5：一条指令的执行</title>
+    <link href="/408/computer-organization/instruction-execution/"/>
+    <url>/408/computer-organization/instruction-execution/</url>
+    
+    <content type="html"><![CDATA[<p>课堂讲义《计组 P5：一条指令的执行》，共 22 页。页面会随滚动逐页加载，轻点图片可单独放大。</p><p><a href="/downloads/408/计组P5_一条指令的执行.pdf" target="_blank" rel="noopener">在新窗口打开 PDF</a>&nbsp;·&nbsp;<a href="/downloads/408/计组P5_一条指令的执行.pdf" download>下载 PDF</a></p><style>.lecture-pages {  display: grid;  gap: 1.25rem;  margin-top: 1.25rem;}.lecture-page {  margin: 0;  content-visibility: auto;  contain-intrinsic-block-size: auto 900px;}.lecture-page a {  display: block;}.lecture-page img {  display: block;  width: 100%;  max-width: 100%;  height: auto;  margin: 0 auto;  background: #fff;  border: 1px solid rgba(127, 127, 127, 0.25);  border-radius: 8px;}.lecture-page figcaption {  padding-top: 0.35rem;  color: #777;  font-size: 0.85rem;  text-align: center;}@media (max-width: 767px) {  .lecture-pages {    gap: 0.85rem;  }  .lecture-page img {    border-radius: 5px;  }}</style><div class="lecture-pages">  <figure class="lecture-page" id="page-01"><a href="/images/408/jizu-p5/page-01.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-01.webp" width="1600" height="3391" alt="计组 P5 讲义第 1 页" decoding="async" fetchpriority="high"></a><figcaption>第 1 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-02"><a href="/images/408/jizu-p5/page-02.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-02.webp" width="1600" height="1000" alt="计组 P5 讲义第 2 页" loading="lazy" decoding="async"></a><figcaption>第 2 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-03"><a href="/images/408/jizu-p5/page-03.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-03.webp" width="1600" height="1000" alt="计组 P5 讲义第 3 页" loading="lazy" decoding="async"></a><figcaption>第 3 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-04"><a href="/images/408/jizu-p5/page-04.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-04.webp" width="1600" height="1000" alt="计组 P5 讲义第 4 页" loading="lazy" decoding="async"></a><figcaption>第 4 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-05"><a href="/images/408/jizu-p5/page-05.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-05.webp" width="1600" height="900" alt="计组 P5 讲义第 5 页" loading="lazy" decoding="async"></a><figcaption>第 5 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-06"><a href="/images/408/jizu-p5/page-06.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-06.webp" width="1600" height="900" alt="计组 P5 讲义第 6 页" loading="lazy" decoding="async"></a><figcaption>第 6 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-07"><a href="/images/408/jizu-p5/page-07.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-07.webp" width="1600" height="900" alt="计组 P5 讲义第 7 页" loading="lazy" decoding="async"></a><figcaption>第 7 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-08"><a href="/images/408/jizu-p5/page-08.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-08.webp" width="1600" height="900" alt="计组 P5 讲义第 8 页" loading="lazy" decoding="async"></a><figcaption>第 8 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-09"><a href="/images/408/jizu-p5/page-09.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-09.webp" width="1600" height="900" alt="计组 P5 讲义第 9 页" loading="lazy" decoding="async"></a><figcaption>第 9 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-10"><a href="/images/408/jizu-p5/page-10.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-10.webp" width="1600" height="900" alt="计组 P5 讲义第 10 页" loading="lazy" decoding="async"></a><figcaption>第 10 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-11"><a href="/images/408/jizu-p5/page-11.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-11.webp" width="1600" height="900" alt="计组 P5 讲义第 11 页" loading="lazy" decoding="async"></a><figcaption>第 11 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-12"><a href="/images/408/jizu-p5/page-12.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-12.webp" width="1600" height="900" alt="计组 P5 讲义第 12 页" loading="lazy" decoding="async"></a><figcaption>第 12 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-13"><a href="/images/408/jizu-p5/page-13.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-13.webp" width="1600" height="900" alt="计组 P5 讲义第 13 页" loading="lazy" decoding="async"></a><figcaption>第 13 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-14"><a href="/images/408/jizu-p5/page-14.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-14.webp" width="1600" height="900" alt="计组 P5 讲义第 14 页" loading="lazy" decoding="async"></a><figcaption>第 14 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-15"><a href="/images/408/jizu-p5/page-15.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-15.webp" width="1600" height="900" alt="计组 P5 讲义第 15 页" loading="lazy" decoding="async"></a><figcaption>第 15 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-16"><a href="/images/408/jizu-p5/page-16.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-16.webp" width="1600" height="900" alt="计组 P5 讲义第 16 页" loading="lazy" decoding="async"></a><figcaption>第 16 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-17"><a href="/images/408/jizu-p5/page-17.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-17.webp" width="1600" height="900" alt="计组 P5 讲义第 17 页" loading="lazy" decoding="async"></a><figcaption>第 17 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-18"><a href="/images/408/jizu-p5/page-18.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-18.webp" width="1600" height="900" alt="计组 P5 讲义第 18 页" loading="lazy" decoding="async"></a><figcaption>第 18 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-19"><a href="/images/408/jizu-p5/page-19.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-19.webp" width="1600" height="900" alt="计组 P5 讲义第 19 页" loading="lazy" decoding="async"></a><figcaption>第 19 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-20"><a href="/images/408/jizu-p5/page-20.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-20.webp" width="1600" height="900" alt="计组 P5 讲义第 20 页" loading="lazy" decoding="async"></a><figcaption>第 20 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-21"><a href="/images/408/jizu-p5/page-21.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-21.webp" width="1600" height="900" alt="计组 P5 讲义第 21 页" loading="lazy" decoding="async"></a><figcaption>第 21 / 22 页</figcaption></figure>  <figure class="lecture-page" id="page-22"><a href="/images/408/jizu-p5/page-22.webp" target="_blank" rel="noopener"><img src="/images/408/jizu-p5/page-22.webp" width="1600" height="900" alt="计组 P5 讲义第 22 页" loading="lazy" decoding="async"></a><figcaption>第 22 / 22 页</figcaption></figure></div><p>如需离线保存或打印，请使用上方 PDF 下载链接。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>408 辅导</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>计算机组成原理</tag>
+      
+      <tag>王道强化课</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重新开始</title>
+    <link href="/2026/07/13/%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/"/>
+    <url>/2026/07/13/%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/</url>
+    
+    <content type="html"><![CDATA[<p>博客重新开始。</p><p>之后会在这里记录科研、学习和生活。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>随笔</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

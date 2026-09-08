@@ -1,0 +1,229 @@
+:root {
+  --reading-font: "Iowan Old Style", "Palatino Linotype", "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
+  --ui-font: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --reading-max-width: 78ch;
+}
+
+body {
+  font-family: var(--ui-font);
+}
+
+.post-content,
+post-custom {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.post-content .markdown-body {
+  font-family: var(--reading-font);
+  font-size: 1.06rem;
+  line-height: 1.95;
+  letter-spacing: 0.008em;
+  text-rendering: optimizeLegibility;
+  max-width: var(--reading-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-content .markdown-body p {
+  margin: 1.15em 0;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.post-content .markdown-body > h2,
+.post-content .markdown-body > h3,
+.post-content .markdown-body > h4 {
+  line-height: 1.5;
+}
+
+.post-content .markdown-body > h2 {
+  margin-top: 2.6em;
+  margin-bottom: 1em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.post-content .markdown-body > h3 {
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+}
+
+.post-content .markdown-body ul,
+.post-content .markdown-body ol {
+  margin-top: 0.9em;
+  margin-bottom: 1.2em;
+  padding-left: 1.4em;
+}
+
+.post-content .markdown-body li {
+  margin: 0.48em 0;
+}
+
+.post-content .markdown-body blockquote {
+  margin: 1.4em 0;
+  padding: 0.9em 1.1em;
+  border-left: 4px solid var(--post-link-color);
+  border-radius: 8px;
+  background-color: var(--board-bg-color);
+}
+
+.post-content .markdown-body table {
+  margin: 1.4em 0;
+  width: 100%;
+  font-size: 0.95em;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post-content .markdown-body th {
+  font-weight: 700;
+  background-color: var(--board-bg-color);
+}
+
+.post-content .markdown-body code {
+  border-radius: 4px;
+  padding: 0.12em 0.28em;
+}
+
+.post-content .markdown-body hr {
+  margin: 2.3em 0;
+}
+
+@media (max-width: 991px) {
+  .post-content,
+  post-custom {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .post-content .markdown-body {
+    font-size: 1.02rem;
+    line-height: 1.88;
+  }
+}
+
+@media (max-width: 767px) {
+  .post-content,
+  post-custom {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .post-content .markdown-body {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+
+  .post-content .markdown-body > h2 {
+    margin-top: 2.2em;
+  }
+}
+
+/* ========================================================== */
+/*  🌟 Modern Cyber-Aesthetic & Glassmorphism Enhancements     */
+/* ========================================================== */
+
+/* 1. 导航栏毛玻璃与渐变边框效果 */
+.navbar {
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease !important;
+}
+
+/* 2. 首页文章卡片浮雕发光悬停 (Glassmorphic Cards) */
+.index-card {
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.index-card:hover {
+  transform: translateY(-5px) scale(1.008) !important;
+  box-shadow: 0 16px 36px -4px rgba(66, 153, 225, 0.18), 0 6px 16px -2px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+}
+
+/* 卡片悬浮微妙高光流动线 */
+.index-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  pointer-events: none;
+}
+
+.index-card:hover::after {
+  left: 200%;
+}
+
+/* 3. 标签与分类胶囊徽章 (Gradient Pill Badges) */
+.post-meta a, .tagcloud a, .badge {
+  border-radius: 20px !important;
+  transition: all 0.25s ease !important;
+}
+
+.index-info .post-metas a:hover {
+  color: #4f46e5 !important;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* 4. 代码块精致化与阴影 */
+.markdown-body pre {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 5. 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
+}
+
+/* 6. 平滑滚动体验 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 7. 暗色模式强化 (Dark Mode Polish) */
+[data-user-color-scheme="dark"] .index-card {
+  background: rgba(30, 41, 59, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-user-color-scheme="dark"] .index-card:hover {
+  border-color: rgba(129, 140, 248, 0.4) !important;
+  box-shadow: 0 16px 36px -4px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* 8. 文章内容主体卡片轻微圆角与阴影提升 */
+.container .row .col-lg-8 .board {
+  border-radius: 18px !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06) !important;
+}
