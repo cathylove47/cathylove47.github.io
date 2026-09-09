@@ -39,4 +39,6 @@ npm run onekey
 
 `npm run onekey` 会把生成结果发布到同一 GitHub 仓库的 `main` 分支。
 
+论文精读站点源码在 `source/pathology-atlas/`，由 Hexo `skip_render` 原样拷贝到 `/pathology-atlas/`。不要把这套静态文件只放在 `main` 分支：`hexo deploy` 会覆盖 `main`。
+
 旧文章已保存在 `legacy_posts/`，不会参与网站构建。
