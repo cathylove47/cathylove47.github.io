@@ -15,8 +15,10 @@ fi
 
 echo "开始清理"
 npx hexo clean
-echo "开始生成"
+echo "生成博客页面"
 NODE_ENV=production npx hexo generate
+echo "同步论文精读页面"
+bash bin/sync-pathology-atlas.sh
 echo "开始部署"
 npx hexo deploy
 echo "部署完成"
