@@ -374,6 +374,7 @@ navbar:
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "论文精读", link: "/pathology-atlas/", icon: "iconfont icon-bookmark-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "论文精读", link: "/pathology-atlas/", icon: "iconfont icon-book-fill" }
     - { key: "links", link: "/links/", icon: "iconfont icon-link-fill", name: "友链" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
@@ -730,6 +731,8 @@ post:
   math:
     # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `math: true`
     # If you want to use math on the custom page, you need to set `math: true` in Front-matter
+    # 公式已改为生成期 KaTeX 渲染（scripts/math-renderer.js + hexo-renderer-markdown-it），
+    # 此开关仅控制是否额外加载客户端公式库：katex 引擎只为页面注入 katex.min.css 样式。
     enable: true
 
     # 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
@@ -737,7 +740,7 @@ post:
     specific: false
 
     # Options: mathjax | katex
-    engine: mathjax
+    engine: katex
 
   # 流程图，基于 mermaid-js，具体请见：https://hexo.fluid-dev.com/docs/guide/#mermaid-流程图
   # Flow chart, based on mermaid-js, see: https://hexo.fluid-dev.com/docs/en/guide/#mermaid
