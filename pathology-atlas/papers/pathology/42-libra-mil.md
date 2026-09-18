@@ -58,7 +58,7 @@ LLM 生成的实体描述不是金标准。文本分支会偏，所以不能只�
 
 ## 1. 三分钟摘要与推荐理由
 
-Libra-MIL 把少样本 WSI 分类写成双原型问题。视觉支路学 \(K_v\) 个实例原型；语言支路用冻结 LLM 生成实例级实体和袋级形态，经 CONCH 文本编码器变成文本原型。两路相似度经 Sinkhorn 最优传输融合成每个实例的标量权重，再用袋级文本做 cross-attention 聚合。
+Libra-MIL 把少样本 WSI 分类写成双原型问题。视觉支路学 $K_v$ 个实例原型；语言支路用冻结 LLM 生成实例级实体和袋级形态，经 CONCH 文本编码器变成文本原型。两路相似度经 Sinkhorn 最优传输融合成每个实例的标量权重，再用袋级文本做 cross-attention 聚合。
 
 在 TCGA-RCC、TCGA-NSCLC 和 CAMELYON16 的 1/4/16-shot 上，相对当时 SOTA 平均提升 2.49% ACC、2.61% AUC、2.15% F1。消融默认 6 个视觉原型。它适合接在 CLAM / CONCH 之后，看语言先验究竟能补多少少样本信号。
 
@@ -76,7 +76,7 @@ WSI patches → 冻结视觉编码器 → 实例特征
 袋级文本 query → cross-attention → 切片 logits
 ```
 
-传输代价是 \(1-\cos(\mathbf{p}_v,\mathbf{p}_t)\)。训练损失是袋级交叉熵；Sinkhorn 迭代可反传。
+传输代价是 $1-\cos(\mathbf{p}_v,\mathbf{p}_t)$。训练损失是袋级交叉熵；Sinkhorn 迭代可反传。
 
 ## 4. 实验、数据集与指标
 

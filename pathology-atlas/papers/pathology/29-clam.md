@@ -129,29 +129,29 @@ CLAM 处于这条演进链的早期关键位置：
 
 ### 3.1 Attention MIL 的基本计算
 
-设一张 slide 有 \(N\) 个 patch，encoder 输出：
+设一张 slide 有 $N$ 个 patch，encoder 输出：
 
-\[
+$$
 h_i = f(x_i)
-\]
+$$
 
 attention 网络为每个 patch 计算分数，再在所有 patch 上做 softmax：
 
-\[
+$$
 a_i = \operatorname{softmax}(g(h_i))
-\]
+$$
 
 整张 slide 的表示是：
 
-\[
+$$
 z = \sum_{i=1}^{N} a_i h_i
-\]
+$$
 
 最后：
 
-\[
+$$
 \hat{y} = \operatorname{classifier}(z)
-\]
+$$
 
 仓库 `models/model_clam.py` 中的对应逻辑是：
 
@@ -177,8 +177,8 @@ A = a.mul(b)
 
 对于真实类别对应的 attention 分支：
 
-- 取 attention 最高的 \(k\) 个 patch，作为高证据实例；
-- 取 attention 最低的 \(k\) 个 patch，作为低证据实例；
+- 取 attention 最高的 $k$ 个 patch，作为高证据实例；
+- 取 attention 最低的 $k$ 个 patch，作为低证据实例；
 - 分别赋予正、负的实例伪标签；
 - 用 instance classifier 和实例损失训练。
 
@@ -191,9 +191,9 @@ top_n_ids = torch.topk(-A, self.k_sample, dim=1)[1][-1]
 
 总损失近似为：
 
-\[
+$$
 L = \lambda L_{\text{bag}} + (1-\lambda)L_{\text{instance}}
-\]
+$$
 
 仓库训练代码对应：
 

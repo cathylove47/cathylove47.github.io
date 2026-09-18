@@ -77,7 +77,7 @@ WSI → 4096 区域 → CONCH 256 patch 特征
      → 可选：投影进 Qwen3-0.6B 做 caption / VQA
 ```
 
-区域损失用 LogSigmoid；全局损失是双向 InfoNCE。Q-Former query 数 \(N_q=8\)，每张切片采样 \(K=8\) 条子标题。
+区域损失用 LogSigmoid；全局损失是双向 InfoNCE。Q-Former query 数 $N_q=8$，每张切片采样 $K=8$ 条子标题。
 
 ## 4. 实验、数据集与指标
 

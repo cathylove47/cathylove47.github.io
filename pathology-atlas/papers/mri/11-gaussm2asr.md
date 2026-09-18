@@ -23,13 +23,13 @@
 1. CSMF 将 LR target 与 HR reference 编到统一 180 维空间。
 2. SPMF 用参考特征全局统计生成通道缩放/偏置，再用像素门控选择目标或参考信息，重点抑制大面积背景。
 3. AG-DDCA 让 Gaussian prompt 分别查询空间特征与 Fourier 幅度，再由 prompt 条件门控融合；频率支路专门补高频边界。
-4. AGGP 以参考图 Sobel 梯度为 Query、Transformer 特征为 K/V，Top-T 稀疏注意聚焦边界；中心为均匀初值 \(\mu_i\) 加偏移 \(\mu_o\)。
+4. AGGP 以参考图 Sobel 梯度为 Query、Transformer 特征为 K/V，Top-T 稀疏注意聚焦边界；中心为均匀初值 $\mu_i$ 加偏移 $\mu_o$。
 5. MLP 另预测协方差、透明度和灰度；窄高斯画边界，宽高斯画平滑区域，rasterizer 可在任意网格输出。
 6. Stage 1 用 HR target 预训练 AGGP；Stage 2 冻结它再用 LR 输入训练全网。单阶段显著下降，不能当可选技巧。
 
 ### 证据与边界
 
-- 训练倍率为 \((1,4]\)，5×/6× 才是未见倍率证据；out-of-scale 仍第一才支持 arbitrary-scale 泛化。
+- 训练倍率为 $(1,4]$，5×/6× 才是未见倍率证据；out-of-scale 仍第一才支持 arbitrary-scale 泛化。
 - 4×：IXI 32.03/0.9350、BraTS 34.65/0.9621、fastMRI 30.53/0.7410；不同数据集绝对值不可横比。
 - 消融支持 SPMF、频率支路、Top-T、中心初始化和两阶段训练；但没有病灶保持或诊断下游实验，不能把更高 SSIM 等同于临床更可靠。
 
@@ -96,7 +96,7 @@ MLP → covariance / opacity / intensity
 
 ## 4. 实验、数据集与指标
 
-数据为 IXI（500/77）、BraTS（600/200）和 fastMRI（500/53）；分别以 T1/T1/FD 为参考，以 T2/T2/FSPD 为目标。训练倍率为 \((1,4]\)，测试还包括未见的 5×、6×。指标是 PSNR/SSIM。消融显示 SPMF、频率分支、Top-T 中心引导、均匀初始中心和两阶段训练都不可缺。
+数据为 IXI（500/77）、BraTS（600/200）和 fastMRI（500/53）；分别以 T1/T1/FD 为参考，以 T2/T2/FSPD 为目标。训练倍率为 $(1,4]$，测试还包括未见的 5×、6×。指标是 PSNR/SSIM。消融显示 SPMF、频率分支、Top-T 中心引导、均匀初始中心和两阶段训练都不可缺。
 
 ## 5. 代码仓库审计
 
@@ -106,7 +106,7 @@ MLP → covariance / opacity / intensity
 
 ## 6. 环境、显存与数据
 
-论文使用单张 A100 40 GB、batch 1、500k iterations、Adam，初始学习率 \(2\times10^{-4}\)。官方环境为 Python 3.10、PyTorch 2.0.1、CUDA 11.8。IXI 需先用 FSL-FLIRT 配准；BraTS 与 fastMRI 采用预配准对比。
+论文使用单张 A100 40 GB、batch 1、500k iterations、Adam，初始学习率 $2\times10^{-4}$。官方环境为 Python 3.10、PyTorch 2.0.1、CUDA 11.8。IXI 需先用 FSL-FLIRT 配准；BraTS 与 fastMRI 采用预配准对比。
 
 ## 7. 建议复现路径
 
