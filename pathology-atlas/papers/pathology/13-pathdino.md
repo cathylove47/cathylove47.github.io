@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2024；PathDino 由5个小型 Transformer block 构成，约900万参数；Fast Patch Selection、轻量 encoder 和 HistoRotate 是三个需要分别消融的贡献（2026-09-01）。
 
+## 原文摘要
+
+> This paper addresses complex challenges in histopathological image analysis through three key contributions. Firstly, it introduces a fast patch selection method, FPS, for whole-slide image (WSI) analysis, significantly reducing computational cost while maintaining accuracy. Secondly, it presents PathDino, a lightweight histopathology feature extractor with a minimal configuration of five Transformer blocks and only 9 million parameters, markedly fewer than alternatives. Thirdly, it introduces a rotation-agnostic representation learning paradigm using self-supervised learning, effectively mitigating overfitting. We also show that our compact model outperforms existing state-of-the-art histopathology-specific vision transformers on 12 diverse datasets, including both internal datasets spanning four sites (breast, liver, skin, and colorectal) and seven public datasets (PANDA, CAMELYON16, BRACS, DigestPath, Kather, PanNuke, and WSSS4LUAD). Notably, even with a training dataset of 6 million histopathology patches from The Cancer Genome Atlas (TCGA), our approach demonstrates an average 8.5% improvement in patch-level majority vote performance. These contributions provide a robust framework for enhancing image analysis in digital pathology, rigorously validated through extensive evaluation. Project Page: https://kimialabmayo.github.io/PathDino-Page/
+
+*来源：arXiv:2311.08359（https://arxiv.org/abs/2311.08359）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PathDino 论文框架图](/papers/pathology/13-pathdino-pipeline.png)
+
+> **原文图注**：Figure 2 : The WSI Analysis Pipeline. (A) The fast patch selection method, FPS, selects a set of representative patches while preserving spatial distribution. (B) HistoRotate is a 360 ∘ 360^{\circ} rotation augmentation for histopathology model training, enhancing learning without contextual information alteration. (C) PathDino is a compact histopathology Transformer with five small vision transformer blocks and ≈ \approx 9 9 million parameters, significantly leaner than alternatives.
+
+*图源：https://arxiv.org/html/2311.08359v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

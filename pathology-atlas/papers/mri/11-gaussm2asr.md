@@ -8,13 +8,13 @@
 
 ## 原文摘要
 
-> Implicit neural representation methods learn a continuous mapping for arbitrary-scale MRI super-resolution, but their spectral bias favors low-frequency components and misses sharp anatomical boundaries. GaussM²ASR converts high-frequency reconstruction into optimization of anisotropic 2D Gaussian kernels. Its anatomy-guided pipeline comprises Structure Prior Modulation Fusion, Anatomy-Guided Dual-Domain Cross Attention, and an Anatomy-Guided Gaussian Parametrizer using gradient-based sparse attention.
+> Implicit neural representation (INR) based methods learn a continuous mapping from a low-resolution (LR) target magnetic resonance (MR) image and a high-resolution (HR) reference image to achieve arbitrary-scale super-resolution (SR). However, their inherent spectral bias favors learning low-frequency (LF) components, often failing to capture the sharp transitions at anatomical boundaries and resulting in the loss of high-frequency (HF) details. Inspired by 3D Gaussian splatting, we propose GaussM2ASR (Gaussian Multi-contrast MRI Arbitrary-scale Super-Resolution), which converts the challenging task of HF anatomical reconstruction into a smoother parameter optimization problem by learning the parameters of anisotropic 2D Gaussian kernels. To handle inter-contrast discrepancies, we introduce an anatomy-guided pipeline comprising three core modules: a Structure Prior Modulation Fusion (SPMF) module for feature enhancement; an Anatomy-Guided Dual-Domain Cross Attention (AG-DDCA) module for joint spatial-frequency modeling; and an Anatomy-Guided Gaussian Parametrizer (AGGP) that leverages gradient-based sparse attention to concentrate Gaussian centers on critical anatomical structures. Extensive experiments on multiple datasets demonstrate that GaussM2ASR surpasses state-of-the-art methods in recovering fine anatomical details. Our source codes have been released at https://github.com/Qiuhai-CV/GaussM2ASR.
 
-**摘要因果链**：INR 逐坐标回归容易平滑边界；二维各向异性高斯把图像改写成可伸缩基函数。参考对比依次指导特征调制、空间/频率融合和高斯中心定位，而不是直接复制像素。
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
 
 ## Pipeline 图：按论文 Figure 3 重绘
 
-![GaussM²ASR pipeline 重绘图](/pathology-atlas/papers/mri/gaussm2asr-pipeline.svg)
+![GaussM²ASR pipeline 重绘图](/papers/mri/gaussm2asr-pipeline.svg)
 
 *依据论文 Figure 3 连接关系重绘；官方仓库未提供可直接嵌入的框架图片。模块名、输入输出和方向来自正式论文。*
 
@@ -32,7 +32,6 @@
 - 训练倍率为 \((1,4]\)，5×/6× 才是未见倍率证据；out-of-scale 仍第一才支持 arbitrary-scale 泛化。
 - 4×：IXI 32.03/0.9350、BraTS 34.65/0.9621、fastMRI 30.53/0.7410；不同数据集绝对值不可横比。
 - 消融支持 SPMF、频率支路、Top-T、中心初始化和两阶段训练；但没有病灶保持或诊断下游实验，不能把更高 SSIM 等同于临床更可靠。
-
 
 ## 0. 零基础导读：先读这一节
 

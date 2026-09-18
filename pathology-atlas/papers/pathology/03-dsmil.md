@@ -7,6 +7,20 @@
 **精读状态**：已完成论文、补充材料与官方仓库交叉核验（2026-09-01）  
 **建议投入**：先用预提取 CAMELYON16 特征跑通；暂不从原始 WSI 和 SimCLR 预训练开始。
 
+## 原文摘要
+
+> We address the challenging problem of whole slide image (WSI) classification. WSIs have very high resolutions and usually lack localized annotations. WSI classification can be cast as a multiple instance learning (MIL) problem when only slide-level labels are available. We propose a MIL-based method for WSI classification and tumor detection that does not require localized annotations. Our method has three major components. First, we introduce a novel MIL aggregator that models the relations of the instances in a dual-stream architecture with trainable distance measurement. Second, since WSIs can produce large or unbalanced bags that hinder the training of MIL models, we propose to use self-supervised contrastive learning to extract good representations for MIL and alleviate the issue of prohibitive memory cost for large bags. Third, we adopt a pyramidal fusion mechanism for multiscale WSI features, and further improve the accuracy of classification and localization. Our model is evaluated on two representative WSI datasets. The classification accuracy of our model compares favorably to fully-supervised methods, with less than 2% accuracy gap across datasets. Our results also outperform all previous MIL-based methods. Additional benchmark results on standard MIL datasets further demonstrate the superior performance of our MIL aggregator on general MIL problems. GitHub repository: https://github.com/binli123/dsmil-wsi
+
+*来源：arXiv:2011.08939（https://arxiv.org/abs/2011.08939）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DSMIL 论文框架图](/papers/pathology/03-dsmil-pipeline.jpg)
+
+> **原文图注**：Figure 2: Overview of our DSMIL. DSMIL uses features learned by self-supervised contrastive learning. Embeddings of different scales of a WSI are concatenated to form feature pyramids. The figure shows an example of two magnifications (20 × \times and 5 × \times ). The 5 × \times feature vector is duplicated and concatenated with each of the 20 × \times feature vectors of the sub-images within this 5 × \times patch.
+
+*图源：https://arxiv.org/html/2011.08939v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

@@ -6,6 +6,18 @@
 
 **精读核验**：Cell 189, 4225–4240，2026-07-09；正文与扩展方法共 42 页，DOI、数据和官方 companion 仓库已核验。
 
+## 原文摘要
+
+> SUMMARY Spatial transcriptomics (ST) assays are transforming our understanding of tumor heterogeneity, but their high cost limits their application in large-scale biomarker discovery. Here we present Path2Space , a deep-learning model that predicts spatial gene expression directly from histopathology slides. Trained on extensive breast cancer ST data, Path2Space robustly predicts the spatial expression of thousands of genes, outperforming 21 established methods. Charting the tumor microenvironment (TME) of 976 breast cancer TCGA tumors, it accurately infers cell-type abundances and identifies three spatially defined breast cancer subgroups with distinct survival outcomes. Notably, the derived low-cost spatial TME landscapes enable more accurate predictions of patient response to chemotherapy and trastuzumab compared to costly conventional bulk sequencing–based biomarkers. Path2Space thus offers a scalable, fast and cost-effective alternative to molecular assays. It opens avenues for large cohort treatment biomarker discovery and translationally relevant insights into tumor biology, with potential applicability across many cancer indications.
+
+*来源：PMC:PMC13317733。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图说明
+
+> Cell 论文为订阅出版，作者未提供开放获取的框架图或 arXiv 版本；正文框架图需在机构订阅下查看。
+
+*说明：本篇未插入框架图，原因是缺少可核验的公开原图；不使用任何替代图片或重绘示意。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -103,4 +115,3 @@ Visium spot 混合多个细胞；预测表达受组织形态可见性上限限�
 - [Cell 正式论文](https://doi.org/10.1016/j.cell.2026.04.023)
 - [官方推理仓库](https://github.com/eldadshulman/path2space-companion)
 - [Zenodo 代码](https://doi.org/10.5281/zenodo.14729336)
-

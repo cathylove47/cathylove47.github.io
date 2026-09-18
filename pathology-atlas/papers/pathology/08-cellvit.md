@@ -6,6 +6,20 @@
 
 **精读核验**：Medical Image Analysis 94 (2024), Article 103143；论文在 PanNuke 报告 mean panoptic quality 0.50、F1-detection 0.83。官方 WSI 流程要求1024像素 patch、64像素重叠（6.25%）（2026-09-01）。
 
+## 原文摘要
+
+> Nuclei detection and segmentation in hematoxylin and eosin-stained (H&E) tissue images are important clinical tasks and crucial for a wide range of applications. However, it is a challenging task due to nuclei variances in staining and size, overlapping boundaries, and nuclei clustering. While convolutional neural networks have been extensively used for this task, we explore the potential of Transformer-based networks in this domain. Therefore, we introduce a new method for automated instance segmentation of cell nuclei in digitized tissue samples using a deep learning architecture based on Vision Transformer called CellViT. CellViT is trained and evaluated on the PanNuke dataset, which is one of the most challenging nuclei instance segmentation datasets, consisting of nearly 200,000 annotated Nuclei into 5 clinically important classes in 19 tissue types. We demonstrate the superiority of large-scale in-domain and out-of-domain pre-trained Vision Transformers by leveraging the recently published Segment Anything Model and a ViT-encoder pre-trained on 104 million histological image patches - achieving state-of-the-art nuclei detection and instance segmentation performance on the PanNuke dataset with a mean panoptic quality of 0.50 and an F1-detection score of 0.83. The code is publicly available at https://github.com/TIO-IKIM/CellViT
+
+*来源：arXiv:2306.15350（https://arxiv.org/abs/2306.15350）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CellViT 论文框架图](/papers/pathology/08-cellvit-pipeline.png)
+
+> **原文图注**：Figure 2: Network structure of our proposed CellViT-network consisting of a ViT encoder connected to multiple decoders via skip connections. Postprocessing is used to separate overlapping nuclei and perform nuclei type classification. For visualization purposes, the tissue classification branch is not illustrated. As encoder networks, we used the pre-trained ViT 256 \text{ViT}_{256} and SAM models.
+
+*图源：https://arxiv.org/html/2306.15350v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

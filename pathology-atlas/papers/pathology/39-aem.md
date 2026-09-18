@@ -1,5 +1,19 @@
 # AEM：用注意力熵缓解 WSI MIL 过拟合
 
+## 原文摘要
+
+> Multiple Instance Learning (MIL) effectively analyzes whole slide images but faces overfitting due to attention over-concentration. While existing solutions rely on complex architectural modifications or additional processing steps, we introduce Attention Entropy Maximization (AEM), a simple yet effective regularization technique. Our investigation reveals the positive correlation between attention entropy and model performance. Building on this insight, we integrate AEM regularization into the MIL framework to penalize excessive attention concentration. To address sensitivity to the AEM weight parameter, we implement Cosine Weight Annealing, reducing parameter dependency. Extensive evaluations demonstrate AEM's superior performance across diverse feature extractors, MIL frameworks, attention mechanisms, and augmentation techniques. Here is our anonymous code: https://github.com/dazhangyu123/AEM.
+
+*来源：arXiv:2406.15303（https://arxiv.org/abs/2406.15303）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![AEM 论文框架图](/papers/pathology/39-aem-pipeline.png)
+
+> **原文图注**：Figure 3 : Overview of plugging ADR into MIL framework. ADR adds only a negative entropy regularization for attention values to the regular MIL framework.
+
+*图源：https://arxiv.org/html/2406.15303v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

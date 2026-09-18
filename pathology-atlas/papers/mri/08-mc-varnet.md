@@ -1,5 +1,19 @@
 # MC-VarNet
 
+## 原文摘要
+
+> Multi-contrast MRI super-resolution (SR) and reconstruction methods aim to explore complementary information from the reference image to help the reconstruction of the target image. Existing deep learning-based methods usually manually design fusion rules to aggregate the multi-contrast images, fail to model their correlations accurately and lack certain interpretations. Against these issues, we propose a multi-contrast variational network (MC-VarNet) to explicitly model the relationship of multi-contrast images. Our model is constructed based on an intuitive motivation that multi-contrast images have consistent (edges and structures) and inconsistent (contrast) information. We thus build a model to reconstruct the target image and decompose the reference image as a common component and a unique component. In the feature interaction phase, only the common component is transferred to the target image. We solve the variational model and unfold the iterative solutions into a deep network. Hence, the proposed method combines the good interpretability of model-based methods with the powerful representation ability of deep learning-based methods. Experimental results on the multi-contrast MRI reconstruction and SR demonstrate the effectiveness of the proposed model. Especially, since we explicitly model the multi-contrast images, our model is more robust to the reference images with noises and large inconsistent structures. The code is available at https://github.com/lpcccc-cv/MC-VarNet.
+
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MC-VarNet 论文框架图](/papers/mri/08-mc-varnet-pipeline.png)
+
+> **原文图注**：MC-VarNet 框架图（论文 Figure 2 原图，从 ICCV 2023 官方 PDF 提取的内嵌图像）。
+
+*图源：CVF 官方 PDF（ICCV 2023）。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 MC-VarNet 面向多对比 MRI 的联合超分辨与重建，把各对比的信息分解为共享与特有成分，再嵌入变分网络。它比简单通道拼接更明确地回答“哪些信息可以跨对比迁移”。

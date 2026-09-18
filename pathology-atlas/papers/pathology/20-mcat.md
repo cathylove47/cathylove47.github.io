@@ -6,6 +6,20 @@
 
 **精读核验**：ICCV 2021 正式论文与 Mahmood Lab 官方仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> Survival outcome prediction is a challenging weakly-supervised and ordinal regression task in computational pathology that involves modeling complex interactions within the tumor microenvironment in gigapixel whole slide images (WSIs). Despite recent progress in formulating WSIs as bags for multiple instance learning (MIL), representation learning of entire WSIs remains an open and challenging problem, especially in overcoming: 1) the computational complexity of feature aggregation in large bags, and 2) the data heterogeneity gap in incorporating biological priors such as genomic measurements. In this work, we present a Multimodal Co-Attention Transformer (MCAT) framework that learns an interpretable, dense co-attention mapping between WSIs and genomic features formulated in an embedding space. Inspired by approaches in Visual Question Answering (VQA) that can attribute how word embeddings attend to salient objects in an image when answering a question, MCAT learns how histology patches attend to genes when predicting patient survival. In addition to visualizing multimodal interactions, our co-attention transformation also reduces the space complexity of WSI bags, which enables the adaptation of Transformer layers as a general encoder backbone in MIL. We apply our proposed method on five different cancer datasets (4,730 WSIs, 67 million patches). Our experimental results demonstrate that the proposed method consistently achieves superior performance compared to the state-of-the-art methods.
+
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MCAT 论文框架图](/papers/pathology/20-mcat-pipeline.jpg)
+
+> **原文图注**：MCAT 网络结构图（作者官方仓库 docs/Fig1_netarch.jpg）
+
+*图源：https://github.com/mahmoodlab/MCAT。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2022，pp. 18802–18812；官方仓库提供 CAMELYON16 train/test 特征、48个测试 mask 的下载说明和 TCGA-Lung 特征入口（2026-09-01）。
 
+## 原文摘要
+
+> Multiple instance learning (MIL) has been increasingly used in the classification of histopathology whole slide images (WSIs). However, MIL approaches for this specific classification problem still face unique challenges, particularly those related to small sample cohorts. In these, there are limited number of WSI slides (bags), while the resolution of a single WSI is huge, which leads to a large number of patches (instances) cropped from this slide. To address this issue, we propose to virtually enlarge the number of bags by introducing the concept of pseudo-bags, on which a double-tier MIL framework is built to effectively use the intrinsic features. Besides, we also contribute to deriving the instance probability under the framework of attention-based MIL, and utilize the derivation to help construct and analyze the proposed framework. The proposed method outperforms other latest methods on the CAMELYON-16 by substantially large margins, and is also better in performance on the TCGA lung cancer dataset. The proposed framework is ready to be extended for wider MIL applications. The code is available at: https://github.com/hrzhang1123/DTFD-MIL
+
+*来源：arXiv:2203.12081（https://arxiv.org/abs/2203.12081）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DTFD-MIL 论文框架图](/papers/pathology/05-dtfd-mil-pipeline.png)
+
+> **原文图注**：Figure 1 : Illustration of the difference between conventional MIL models and the proposed double-tier MIL model.
+
+*图源：https://arxiv.org/html/2203.12081v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

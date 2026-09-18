@@ -4,6 +4,20 @@
 > **发表**：Nature Biomedical Engineering，2021
 > **关键词**：WSI、弱监督、Multiple Instance Learning、Attention、实例级约束、可解释热图
 
+## 原文摘要
+
+> The rapidly emerging field of computational pathology has the potential to enable objective diagnosis, therapeutic response prediction and identification of new morphological features of clinical relevance. However, deep learning-based computational pathology approaches either require manual annotation of gigapixel whole slide images (WSIs) in fully-supervised settings or thousands of WSIs with slide-level labels in a weakly-supervised setting. Moreover, whole slide level computational pathology methods also suffer from domain adaptation and interpretability issues. These challenges have prevented the broad adaptation of computational pathology for clinical and research purposes. Here we present CLAM - Clustering-constrained attention multiple instance learning, an easy-to-use, high-throughput, and interpretable WSI-level processing and learning method that only requires slide-level labels while being data efficient, adaptable and capable of handling multi-class subtyping problems. CLAM is a deep-learning-based weakly-supervised method that uses attention-based learning to automatically identify sub-regions of high diagnostic value in order to accurately classify the whole slide, while also utilizing instance-level clustering over the representative regions identified to constrain and refine the feature space. In three separate analyses, we demonstrate the data efficiency and adaptability of CLAM and its superior performance over standard weakly-supervised classification. We demonstrate that CLAM models are interpretable and can be used to identify well-known and new morphological features. We further show that models trained using CLAM are adaptable to independent test cohorts, cell phone microscopy images, and biopsies. CLAM is a general-purpose and adaptable method that can be used for a variety of different computational pathology tasks in both clinical and research settings.
+
+*来源：arXiv:2004.09666（https://arxiv.org/abs/2004.09666）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CLAM 论文框架图](/papers/pathology/29-clam-pipeline.jpg)
+
+> **原文图注**：Figure 1: Overview of the CLAM conceptual framework, architecture and interpretability.
+
+*图源：https://arxiv.org/html/2004.09666v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 ### 0.1 把它想成什么？

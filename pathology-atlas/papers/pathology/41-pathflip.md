@@ -10,28 +10,15 @@
 
 > While Vision-Language Models (VLMs) have achieved notable progress in computational pathology (CPath), the gigapixel scale and spatial heterogeneity of Whole Slide Images (WSIs) continue to pose challenges for multimodal understanding. Existing alignment methods struggle to capture fine-grained correspondences between textual descriptions and visual cues across thousands of patches from a slide, compromising their performance on downstream tasks. In this paper, we propose PathFLIP (Pathology Fine-grained Language-Image Pretraining), a novel framework for holistic WSI interpretation. PathFLIP decomposes slide-level captions into region-level subcaptions and generates text-conditioned region embeddings to facilitate precise visual-language grounding. By harnessing Large Language Models (LLMs), PathFLIP can seamlessly follow diverse clinical instructions and adapt to varied diagnostic contexts. Furthermore, it exhibits versatile capabilities across multiple paradigms, efficiently handling slide-level classification and retrieval, fine-grained lesion localization, and instruction following. Extensive experiments demonstrate that PathFLIP outperforms existing large-scale pathological VLMs on four representative benchmarks while requiring significantly less training data, paving the way for fine-grained, instruction-aware WSI interpretation in clinical practice.
 
-**摘要真正提出的因果链**：现有模型的问题不是缺少更大的 LLM，而是切片级文字与数千个 patch 之间没有细粒度对应；所以作者把 caption 拆成 sub-caption，再以文字条件从区域特征中取证。分类、检索、定位和问答只是这套区域对齐表示的四种读出方式。
+*来源：arXiv:2512.17621（https://arxiv.org/abs/2512.17621）。逐字原文，未改写、未压缩。*
 
 ## 论文 Pipeline 原图
 
-![PathFLIP 官方框架图](https://raw.githubusercontent.com/cyclexfy/PathFLIP/main/docs/overview.png)
+![PathFLIP 论文框架图](/papers/pathology/41-pathflip-pipeline.png)
 
-*图源：作者官方仓库 `docs/overview.png`。*
+> **原文图注**：Figure 2: Overview of PathFLIP. Given a slide-caption pair S i S^{i} , T i T^{i} >, the slide S i S^{i} is divided into N N regions { S 1 i , … , S N i } \{S^{i}_{1},\ldots,S^{i}_{N}\} . We use Slide Q-Former and Region Q-Former to extract slide-level and region-level features. Captions { T k , T j , T i } \{T^{k},T^{j},T^{i}\} are decomposed and sampled to obtain region-level subcaptions { T 1 k , T 2 j , T 3 i } \{T^{k}_{1},T^{j}_{2},T^{i}_{3}\} . The slide-level contrastive loss ℒ s ​ l ​ i ​ d ​ e \mathcal{L}_{slide} aligns the global image feature v i v^{i} with its corresponding text feature t i t^{i} . The region-level contrastive loss ℒ r ​ e ​ g ​ i ​ o ​ n \mathcal{L}_{region} encourages alignment between region-image and subcaption pairs from the same slide as positive pairs, while treating all others in the batch as negatives.
 
-### 沿着图从左到右读
-
-1. **视觉输入不是直接送入 LLM**：WSI 先切成 region，每个 region 再含多个 patch；冻结的 CONCH 只负责产生 patch embedding。
-2. **同一 Q-Former 做两种压缩**：Region Q-Former 在区域内压缩 patch，Slide Q-Former 在全切片范围压缩 patch。两者共享权重，因此局部与全局表示处在同一参数化空间。
-3. **文字被拆成随机子标题**：完整 caption 按句切分，每轮采样 1–3 句组成 sub-caption，论文设置每张切片采样 8 条。这同时构造弱区域监督和文本增强。
-4. **真正的新模块是 Text–Region Attention**：sub-caption 先查询所有 region 表示，得到文字条件的区域 embedding；区域对比损失不是把某个固定 ROI 当标签，而是学习“这段文字应从哪些区域取证”。
-5. **两级损失各管一件事**：slide-level InfoNCE 保住整张切片语义；region-level LogSigmoid 逼近局部对应。只保留任何一级都会损害任务覆盖。
-6. **LLM 是第二阶段读出器**：视觉对齐完成后，区域/切片 token 投影给 Qwen3-0.6B，并用 LoRA 做 caption/VQA；因此生成能力不能单独证明区域对齐有效，必须看检索与消融。
-
-### 图中最容易看漏的点
-
-- “region-level”不是病理医生 ROI 标注，而是规则切块加 sub-caption 弱监督。
-- Slide Q-Former 与 Region Q-Former 的价值不同：前者负责全局诊断，后者负责局部检索；Table 1 中删除二者分别把平均 AUC 从 0.6634 降到 0.5604 和 0.5475。
-- Text–Region Attention 被删后平均 AUC 降到 0.5444，说明提升不能只归因于多加一个 Q-Former。
+*图源：https://arxiv.org/html/2512.17621v1。原图直接取自论文，未重绘、未描摹。*
 
 ## 0. 零基础导读：先读这一节
 

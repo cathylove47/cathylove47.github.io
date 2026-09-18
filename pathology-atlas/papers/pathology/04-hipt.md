@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2022 Oral；预训练覆盖33癌种、10,678张 WSI、408,218个4096×4096区域和约1.04亿个256×256 patch（2026-09-01）。
 
+## 原文摘要
+
+> Vision Transformers (ViTs) and their multi-scale and hierarchical variations have been successful at capturing image representations but their use has been generally studied for low-resolution images (e.g. - 256x256, 384384). For gigapixel whole-slide imaging (WSI) in computational pathology, WSIs can be as large as 150000x150000 pixels at 20X magnification and exhibit a hierarchical structure of visual tokens across varying resolutions: from 16x16 images capture spatial patterns among cells, to 4096x4096 images characterizing interactions within the tissue microenvironment. We introduce a new ViT architecture called the Hierarchical Image Pyramid Transformer (HIPT), which leverages the natural hierarchical structure inherent in WSIs using two levels of self-supervised learning to learn high-resolution image representations. HIPT is pretrained across 33 cancer types using 10,678 gigapixel WSIs, 408,218 4096x4096 images, and 104M 256x256 images. We benchmark HIPT representations on 9 slide-level tasks, and demonstrate that: 1) HIPT with hierarchical pretraining outperforms current state-of-the-art methods for cancer subtyping and survival prediction, 2) self-supervised ViTs are able to model important inductive biases about the hierarchical structure of phenotypes in the tumor microenvironment.
+
+*来源：arXiv:2206.02647（https://arxiv.org/abs/2206.02647）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![HIPT 论文框架图](/papers/pathology/04-hipt-pipeline.jpg)
+
+> **原文图注**：Figure 2 : HIPT Architecture. Motivated by the use of hierarchical representations in natural language processing, where embeddings can be aggregated at the character-, word-, sentence- and paragraph-level to form document representations, we aggregate visual tokens at the x 16 \textbf{x}_{16} cell-, x 256 \textbf{x}_{256} patch-, x 4096 \textbf{x}_{4096} region-level to form slide representations. To also model important dependencies between visual concepts at each stage, we adapt Transformer self-attention as a permutation-equivariant aggregation layer. Note that since the complexity of patching x 4096 \textbf{x}_{4096} regions with x 256 \textbf{x}_{256} tokens is the same as patching x 256 \textbf{x}_{256} images with x 16 \textbf{x}_{16} tokens, we can pretrain aggregation layers for high-resolution images using similar self-supervised ViT techniques for low-resolution images.
+
+*图源：https://arxiv.org/html/2206.02647v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

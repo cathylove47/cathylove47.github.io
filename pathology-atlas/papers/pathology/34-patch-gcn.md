@@ -1,5 +1,19 @@
 # Patch-GCN：把整张病理切片看成二维点云
 
+## 原文摘要
+
+> Cancer prognostication is a challenging task in computational pathology that requires context-aware representations of histology features to adequately infer patient survival. Despite the advancements made in weakly-supervised deep learning, many approaches are not context-aware and are unable to model important morphological feature interactions between cell identities and tissue types that are prognostic for patient survival. In this work, we present Patch-GCN, a context-aware, spatially-resolved patch-based graph convolutional network that hierarchically aggregates instance-level histology features to model local- and global-level topological structures in the tumor microenvironment. We validate Patch-GCN with 4,370 gigapixel WSIs across five different cancer types from the Cancer Genome Atlas (TCGA), and demonstrate that Patch-GCN outperforms all prior weakly-supervised approaches by 3.58-9.46%. Our code and corresponding models are publicly available at https://github.com/mahmoodlab/Patch-GCN.
+
+*来源：arXiv:2107.13048（https://arxiv.org/abs/2107.13048）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![Patch-GCN 论文框架图](/papers/pathology/34-patch-gcn-pipeline.jpg)
+
+> **原文图注**：Fig 1: Patch-GCN framework for context-aware survival outcome prediction in WSIs. Non-overlapping 256 × 256 256\times 256 patches are patched as used as input into a ResNet-50 CNN to construct the node feature matrix, with edges drawn between adjacent image patches in the WSI. A ReLU + Softmax Message Passing scheme is used to aggregate instance-level embeddings in local neighborhoods, with residual mappings and skip connections used to construct context-aware embeddings, followed by global attention-based pooling.
+
+*图源：https://arxiv.org/html/2107.13048v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

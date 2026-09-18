@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2024；论文报告在 TCGA-Lung few-shot 设置中相对对比方法至少提高9.19个百分点 accuracy。该数字属于特定 few-shot 协议，不代表所有任务的普遍增益（2026-09-01）。
 
+## 原文摘要
+
+> Whole Slide Image (WSI) classification is often formulated as a Multiple Instance Learning (MIL) problem. Recently, Vision-Language Models (VLMs) have demonstrated remarkable performance in WSI classification. However, existing methods leverage coarse-grained pathogenetic descriptions for visual representation supervision, which are insufficient to capture the complex visual appearance of pathogenetic images, hindering the generalizability of models on diverse downstream tasks. Additionally, processing high-resolution WSIs can be computationally expensive. In this paper, we propose a novel "Fine-grained Visual-Semantic Interaction" (FiVE) framework for WSI classification. It is designed to enhance the model's generalizability by leveraging the interaction between localized visual patterns and fine-grained pathological semantics. Specifically, with meticulously designed queries, we start by utilizing a large language model to extract fine-grained pathological descriptions from various non-standardized raw reports. The output descriptions are then reconstructed into fine-grained labels used for training. By introducing a Task-specific Fine-grained Semantics (TFS) module, we enable prompts to capture crucial visual information in WSIs, which enhances representation learning and augments generalization capabilities significantly. Furthermore, given that pathological visual patterns are redundantly distributed across tissue slices, we sample a subset of visual instances during training. Our method demonstrates robust generalizability and strong transferability, dominantly outperforming the counterparts on the TCGA Lung Cancer dataset with at least 9.19% higher accuracy in few-shot experiments. The code is available at: https://github.com/ls1rius/WSI_FiVE.
+
+*来源：arXiv:2402.19326（https://arxiv.org/abs/2402.19326）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![WSI-FiVE 论文框架图](/papers/pathology/12-wsi-five-pipeline.png)
+
+> **原文图注**：Figure 2 : Left: The structure of the FiVE framework. The model consists of a frozen image encoder, a text encoder, and the TFS module. Whole slide images are divided into instances for embedding extraction by the image encoder. Raw pathological reports are standardized by GPT-4 into fine-grained descriptions. The fine-grained descriptions and manual prompts are sampled, shuffled, and reconstructed in pairs. These prompts aggregate instances into bag-level features, subsequently aligned with the descriptions utilizing contrastive loss. Top Right: Fine-grained pathological descriptions. The fine-grained pathological descriptions are generated from multiple answers based on specific queries. These descriptions undergo a process of random sampling, shuffling, and reconstruction to form a unified sentence. Bottom Right: The Instance Aggregator module. The instance aggregator consists of a self-attention module and a cross-attention module, fusing image instance embeddings and prompt embeddings to create bag-level features.
+
+*图源：https://arxiv.org/html/2402.19326v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

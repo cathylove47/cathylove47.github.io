@@ -1,5 +1,19 @@
 # DisPro：模态缺失条件下的病理—组学生存预测
 
+## 原文摘要
+
+> The integration of multimodal data including pathology images and gene profiles is widely applied in precise survival prediction. Despite recent advances in multimodal survival models, collecting complete modalities for multimodal fusion still poses a significant challenge, hindering their application in clinical settings. Current approaches tackling incomplete modalities often fall short, as they typically compensate for only a limited part of the knowledge of missing modalities. To address this issue, we propose a Distilled Prompt Learning framework (DisPro) to utilize the strong robustness of Large Language Models (LLMs) to missing modalities, which employs two-stage prompting for compensation of comprehensive information for missing modalities. In the first stage, Unimodal Prompting (UniPro) distills the knowledge distribution of each modality, preparing for supplementing modality-specific knowledge of the missing modality in the subsequent stage. In the second stage, Multimodal Prompting (MultiPro) leverages available modalities as prompts for LLMs to infer the missing modality, which provides modality-common information. Simultaneously, the unimodal knowledge acquired in the first stage is injected into multimodal inference to compensate for the modality-specific knowledge of the missing modality. Extensive experiments covering various missing scenarios demonstrated the superiority of the proposed method. The code is available at https://github.com/Innse/DisPro.
+
+*来源：arXiv:2503.01653（https://arxiv.org/abs/2503.01653）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DisPro 论文框架图](/papers/pathology/27-dispro-pipeline.png)
+
+> **原文图注**：Figure 1 : Insights for existing incomplete multimodal learning and comparison to the proposed method. (a) Generation-based Imputation and Imputation-free approaches, (b) Retrieved-based Imputation and (c) Ours.
+
+*图源：https://arxiv.org/html/2503.01653v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -95,4 +109,3 @@ DisPro 分为两阶段：UniPro 先为单一模态学习提示和风险表征，
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2025/html/Du_DisPro_Survival_Prediction_for_Missing_Modalities_with_Multi-Modal_Prototypes_CVPR_2025_paper.html)
 - [官方代码](https://github.com/Innse/DisPro)
-

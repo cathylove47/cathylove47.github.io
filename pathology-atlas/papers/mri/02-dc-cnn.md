@@ -1,5 +1,19 @@
 # DC-CNN
 
+## 原文摘要
+
+> The acquisition of Magnetic Resonance Imaging (MRI) is inherently slow. Inspired by recent advances in deep learning, we propose a framework for reconstructing MR images from undersampled data using a deep cascade of convolutional neural networks to accelerate the data acquisition process. We show that for Cartesian undersampling of 2D cardiac MR images, the proposed method outperforms the state-of-the-art compressed sensing approaches, such as dictionary learning-based MRI (DLMRI) reconstruction, in terms of reconstruction error, perceptual quality and reconstruction speed for both 3-fold and 6-fold undersampling. Compared to DLMRI, the error produced by the method proposed is approximately twice as small, allowing to preserve anatomical structures more faithfully. Using our method, each image can be reconstructed in 23 ms, which is fast enough to enable real-time applications.
+
+*来源：arXiv:1703.00555（https://arxiv.org/abs/1703.00555）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DC-CNN 论文框架图](/papers/mri/02-dc-cnn-pipeline.svg)
+
+> **原文图注**：Figure 1: A cascade of CNNs. The depth of architecture and the depth of cascade is denoted by n d n_{d} and n c n_{c} respectively.
+
+*图源：https://arxiv.org/html/1703.00555v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 DC-CNN 把“CNN 去伪影”和“数据一致性（data consistency）”交替堆叠，是理解深度 MRI 重建最直观的起点。它的价值不在今天仍是最强，而在于把纯图像网络拉回到测量物理中。

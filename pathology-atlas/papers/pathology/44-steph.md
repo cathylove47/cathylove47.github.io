@@ -8,30 +8,17 @@
 
 ## 原文摘要
 
-> Whole-Slide Images are widely used for estimating cancer prognosis. Cancer-specific models, however, often struggle to learn generalizable knowledge from scarce samples. STEPH efficiently absorbs knowledge from other cancers via model merging: it applies task vector mixup to each source-target pair and sparsely aggregates the mixtures with hypernetworks. Across 13 cancers it improves 5.14% over cancer-specific learning and 2.01% over an existing transfer baseline.
+> Whole-Slide Images (WSIs) are widely used for estimating the prognosis of cancer patients. Current studies generally follow a cancer-specific learning paradigm. However, the available training samples for one cancer type are usually scarce in pathology. Consequently, the model often struggles to learn generalizable knowledge, thus performing worse on the tumor samples with inherent high heterogeneity. Although multi-cancer joint learning and knowledge transfer approaches have been explored recently to address it, they either rely on large-scale joint training or extensive inference across multiple models, posing new challenges in computational efficiency. To this end, this paper proposes a new scheme, Sparse Task Vector Mixup with Hypernetworks (STEPH). Unlike previous ones, it efficiently absorbs generalizable knowledge from other cancers for the target via model merging: i) applying task vector mixup to each source-target pair and then ii) sparsely aggregating task vector mixtures to obtain an improved target model, driven by hypernetworks. Extensive experiments on 13 cancer datasets show that STEPH improves over cancer-specific learning and an existing knowledge transfer baseline by 5.14% and 2.01%, respectively. Moreover, it is a more efficient solution for learning prognostic knowledge from other cancers, without requiring large-scale joint training or extensive multi-model inference. Code is publicly available at https://github.com/liupei101/STEPH.
 
-**摘要因果链**：目标不是训练泛癌多任务模型，而是在不联合数据、不做多模型推理的条件下改善一个目标癌种；task-vector mixup 提供候选方向，稀疏聚合决定当前 WSI 采用哪些方向。
+*来源：arXiv:2603.10526（https://arxiv.org/abs/2603.10526）。逐字原文，未改写、未压缩。*
 
 ## 论文 Pipeline 原图
 
-![STEPH 官方框架图](https://raw.githubusercontent.com/liupei101/STEPH/main/docs/fig-steph-overview.png)
+![STEPH 论文框架图](/papers/pathology/44-steph-pipeline.png)
 
-*图源：作者官方仓库 `docs/fig-steph-overview.png`。*
+> **原文图注**：Figure 3 : Sparse Task Vector Mixup with Hypernetworks ( STEPH ) for efficient knowledge transfer in WSI prognosis. After computing task vectors, STEPH first applies mixup to each paired ( τ t , τ s ) (\tau_{t},\tau_{s}) to absorb prognostic knowledge from cross-cancer models. Then, the most beneficial mixtures are selected and aggregated to derive ℳ t ∗ \mathcal{M}_{t}^{*} for prediction. Hypernetworks drive these steps by steering task vectors.
 
-### 沿着图从左到右读
-
-1. 各癌种模型必须从同一 \(M_0\) 训练，才能令任务向量 \(\tau=M-M_0\) 可比较。
-2. 对每个来源构造 \(\tau_{mix,i}=\lambda_i\tau_t+(1-\lambda_i)\tau_{s_i}\)；\(H_{mix}(X)\) 为当前 WSI 预测 \(\lambda_i\)。
-3. \(H_{agg}(X)\) 预测聚合权重并只保留 Top-K，默认 K=5，以抑制负迁移。
-4. 合并发生在 MIL 参数里，不是对 13 个预测求平均；最终推理仍是一个模型：40.1 GFLOPs，而表示迁移基线 330.7 GFLOPs。
-5. 辅助损失同时约束单个 mixture 与最终合并模型，否则权重可学习不等于生存排序有效。
-
-### 证据与边界
-
-- 平均 C-index：单癌种 0.6609，ROUPKT 0.6812，STEPH 0.6949；提升覆盖 12/13 癌种。
-- 动态 mixup 仅带来小幅提升；动态稀疏聚合更关键，统一聚合权重只有 0.6490。
-- 证据限于相同 ABMIL 架构、初始化和 UNI2-h 特征，不能推出异构模型也能直接合并。
-
+*图源：https://arxiv.org/html/2603.10526v1。原图直接取自论文，未重绘、未描摹。*
 
 ## 0. 零基础导读：先读这一节
 

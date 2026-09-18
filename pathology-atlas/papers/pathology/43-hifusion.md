@@ -8,30 +8,17 @@
 
 ## 原文摘要
 
-> Spatial transcriptomics bridges gene expression and tissue morphology but faces clinical adoption barriers due to technical complexity and prohibitive costs. Existing approaches often fail to capture biological heterogeneity within spots and are susceptible to morphological noise from surrounding tissue. HiFusion integrates Hierarchical Intra-Spot Modeling, which uses multi-resolution sub-patch decomposition and feature alignment, with Context-aware Cross-scale Fusion, which selectively incorporates regional context through cross-attention.
+> Spatial transcriptomics (ST) bridges gene expression and tissue morphology but faces clinical adoption barriers due to technical complexity and prohibitive costs. While computational methods predict gene expression from H&E-stained whole-slide images (WSIs), existing approaches often fail to capture the intricate biological heterogeneity within spots and are susceptible to morphological noise when integrating contextual information from surrounding tissue. To overcome these limitations, we propose HiFusion, a novel deep learning framework that integrates two complementary components. First, we introduce the Hierarchical Intra-Spot Modeling module that extracts fine-grained morphological representations through multi-resolution sub-patch decomposition, guided by a feature alignment loss to ensure semantic consistency across scales. Concurrently, we present the Context-aware Cross-scale Fusion module, which employs cross-attention to selectively incorporate biologically relevant regional context, thereby enhancing representational capacity. This architecture enables comprehensive modeling of both cellular-level features and tissue microenvironmental cues, which are essential for accurate gene expression prediction. Extensive experiments on two benchmark ST datasets demonstrate that HiFusion achieves state-of-the-art performance across both 2D slide-wise cross-validation and more challenging 3D sample-specific scenarios. These results underscore HiFusion's potential as a robust, accurate, and scalable solution for ST inference from routine histopathology.
 
-**摘要因果链**：误差来自 spot 内部被当成均匀块，以及 spot 外部邻域被无选择灌入。HISM 先形成可信的多尺度 spot 表示，CCF 再让邻域有选择地读取它。
+*来源：arXiv:2511.12969（https://arxiv.org/abs/2511.12969）。逐字原文，未改写、未压缩。*
 
 ## 论文 Pipeline 原图
 
-![HiFusion 官方框架图](https://raw.githubusercontent.com/Advanced-AI-in-Medicine-and-Physics-Lab/HiFusion/main/assets/framework.jpg)
+![HiFusion 论文框架图](/papers/pathology/43-hifusion-pipeline.png)
 
-*图源：作者官方仓库 `assets/framework.jpg`。*
+> **原文图注**：Figure 1: Schematic of the proposed HiFusion framework, which integrates Hierarchical Intra-Spot Modeling (HISM) and Context-Aware Cross-Scale Fusion (CCF) . HISM hierarchically decomposes each spot into multi-scale patches to extract fine-grained features with semantic alignment. CCF fuses contextual region features with multi-scale spot representations via residual cross-attention for gene expression prediction.
 
-### 沿着图从左到右读
-
-1. 同一 spot 有三条尺度支路：Level-0 看完整 224×224 spot，Level-1/2 看更细的非重叠子块；共享 ResNet-18。
-2. 子块特征按原位置重排，\(L_{align}=\sum_{s=1}^{2}\|\tilde F_s^S-F_0^S\|_1\) 迫使细尺度保留完整 spot 语义。
-3. 三层特征经可学习 softmax 权重融合，不是简单 concat。
-4. 448×448 邻域由 ResNet-10 压成 Query，spot 多尺度 token 作 K/V；因此模型学的是“邻域需要从 spot 读取什么”。
-5. 输出保留 Query 残差后回归 250 个基因，注意力不可靠时仍有区域表示保底。
-
-### 证据与边界
-
-- HER2 2D 结果 0.5459 MSE / 0.5699 MAE / 0.4961 PCC，三个指标同时改善。
-- 3D 协议是同一患者首层训练、其余层测试，测患者内跨切片泛化，不能与 2D 跨患者结果混读。
-- 邻域约 2× spot 最佳，继续增大反而下降，直接支持“更多上下文不等于更多有效信息”。
-
+*图源：https://arxiv.org/html/2511.12969v1。原图直接取自论文，未重绘、未描摹。*
 
 ## 0. 零基础导读：先读这一节
 

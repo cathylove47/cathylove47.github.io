@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2023；论文使用超过55万份病理报告等域内文本预训练文本编码器，最佳模型再用超过3.3万对病理图文训练，在三个真实癌症亚型任务上的平均中位零样本准确率为70.2%（2026-09-01）。
 
+## 原文摘要
+
+> Contrastive visual language pretraining has emerged as a powerful method for either training new language-aware image encoders or augmenting existing pretrained models with zero-shot visual recognition capabilities. However, existing works typically train on large datasets of image-text pairs and have been designed to perform downstream tasks involving only small to medium sized-images, neither of which are applicable to the emerging field of computational pathology where there are limited publicly available paired image-text datasets and each image can span up to 100,000 x 100,000 pixels. In this paper we present MI-Zero, a simple and intuitive framework for unleashing the zero-shot transfer capabilities of contrastively aligned image and text models on gigapixel histopathology whole slide images, enabling multiple downstream diagnostic tasks to be carried out by pretrained encoders without requiring any additional labels. MI-Zero reformulates zero-shot transfer under the framework of multiple instance learning to overcome the computational challenge of inference on extremely large images. We used over 550k pathology reports and other available in-domain text corpora to pre-train our text encoder. By effectively leveraging strong pre-trained encoders, our best model pretrained on over 33k histopathology image-caption pairs achieves an average median zero-shot accuracy of 70.2% across three different real-world cancer subtyping tasks. Our code is available at: https://github.com/mahmoodlab/MI-Zero.
+
+*来源：arXiv:2306.07831（https://arxiv.org/abs/2306.07831）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MI-Zero 论文框架图](/papers/pathology/06-mi-zero-pipeline.jpg)
+
+> **原文图注**：Figure 2 : Schematic of MI-Zero. A gigapixel WSI is converted to a collection of patches (instances), each embedded into an aligned visual-language latent space. In the set-based representation, the similarity scores between patch embeddings and prompt embeddings are aggregated via a permutation invariant operator such as topK max-pooling to produce the WSI-level classification prediction. Alternatively, a graph-based representation may be used to incorporate spatial context by first aggregating predictions in local neighborhoods ( Section 3.5 ).
+
+*图源：https://arxiv.org/html/2306.07831v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

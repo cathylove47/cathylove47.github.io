@@ -6,6 +6,20 @@
 
 **精读核验**：MICCAI 2024，LNCS 15004，pp. 296–306；作者为 Shu Yang、Yihui Wang、Hao Chen，论文和补充材料均有 MICCAI 官方开放页面（2026-09-01）。
 
+## 原文摘要
+
+> Multiple Instance Learning (MIL) has emerged as a dominant paradigm to extract discriminative feature representations within Whole Slide Images (WSIs) in computational pathology. Despite driving notable progress, existing MIL approaches suffer from limitations in facilitating comprehensive and efficient interactions among instances, as well as challenges related to time-consuming computations and overfitting. In this paper, we incorporate the Selective Scan Space State Sequential Model (Mamba) in Multiple Instance Learning (MIL) for long sequence modeling with linear complexity, termed as MambaMIL. By inheriting the capability of vanilla Mamba, MambaMIL demonstrates the ability to comprehensively understand and perceive long sequences of instances. Furthermore, we propose the Sequence Reordering Mamba (SR-Mamba) aware of the order and distribution of instances, which exploits the inherent valuable information embedded within the long sequences. With the SR-Mamba as the core component, MambaMIL can effectively capture more discriminative features and mitigate the challenges associated with overfitting and high computational overhead. Extensive experiments on two public challenging tasks across nine diverse datasets demonstrate that our proposed framework performs favorably against state-of-the-art MIL methods. The code is released at https://github.com/isyangshu/MambaMIL.
+
+*来源：arXiv:2403.06800（https://arxiv.org/abs/2403.06800）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MambaMIL 论文框架图](/papers/pathology/14-mambamil-pipeline.png)
+
+> **原文图注**：Figure 1: Overview of MambaMIL. Given a set of patches cropped from a slide, we sequentially utilize Feature Extractor, Linear Projection, stacked SR-Mamba modules and Aggregation for WSI analysis.
+
+*图源：https://arxiv.org/html/2403.06800v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

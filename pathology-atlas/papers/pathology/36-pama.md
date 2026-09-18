@@ -1,5 +1,19 @@
 # PAMA：带相对位置的 WSI 掩码自编码器
 
+## 原文摘要
+
+> Transformer-based multiple instance learning (MIL) framework has been proven advanced for whole slide image (WSI) analysis. However, existing spatial embedding strategies in Transformer can only represent fixed structural information, which are hard to tackle the...
+
+*来源：论文页 meta。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PAMA 论文框架图](/papers/pathology/36-pama-pipeline.png)
+
+> **原文图注**：PAMA 框架图（作者官方仓库 images/PAMA_FRAMEWORK.png）
+
+*图源：https://github.com/WkEEn/PAMA。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

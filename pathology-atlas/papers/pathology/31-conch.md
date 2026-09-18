@@ -1,5 +1,19 @@
 # CONCH：病理视觉语言模型的关键前置
 
+## 原文摘要
+
+> The accelerated adoption of digital pathology and advances in deep learning have enabled the development of powerful models for various pathology tasks across a diverse array of diseases and patient cohorts. However, model training is often difficult due to label scarcity in the medical domain and the model's usage is limited by the specific task and disease for which it is trained. Additionally, most models in histopathology leverage only image data, a stark contrast to how humans teach each other and reason about histopathologic entities. We introduce CONtrastive learning from Captions for Histopathology (CONCH), a visual-language foundation model developed using diverse sources of histopathology images, biomedical text, and notably over 1.17 million image-caption pairs via task-agnostic pretraining. Evaluated on a suite of 13 diverse benchmarks, CONCH can be transferred to a wide range of downstream tasks involving either or both histopathology images and text, achieving state-of-the-art performance on histology image classification, segmentation, captioning, text-to-image and image-to-text retrieval. CONCH represents a substantial leap over concurrent visual-language pretrained systems for histopathology, with the potential to directly facilitate a wide array of machine learning-based workflows requiring minimal or no further supervised fine-tuning.
+
+*来源：arXiv:2307.12914（https://arxiv.org/abs/2307.12914）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CONCH 论文框架图](/papers/pathology/31-conch-pipeline.jpg)
+
+> **原文图注**：Figure 1: Data curation and model schematic. Caption on next page.
+
+*图源：https://arxiv.org/html/2307.12914v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -71,4 +85,3 @@ MI-Zero 展示 WSI 零样本聚合，CONCH强化病理图文编码，SlideChat/C
 
 ## 12. 官方链接
 [论文](https://doi.org/10.1038/s41591-024-02856-4) · [代码](https://github.com/mahmoodlab/CONCH)
-

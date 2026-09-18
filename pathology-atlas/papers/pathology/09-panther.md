@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2024，pp. 11566–11578；评估由4个诊断分类任务和9个预后任务组成，共13个数据集（2026-09-01）。
 
+## 原文摘要
+
+> Representation learning of pathology whole-slide images (WSIs) has been has primarily relied on weak supervision with Multiple Instance Learning (MIL). However, the slide representations resulting from this approach are highly tailored to specific clinical tasks, which limits their expressivity and generalization, particularly in scenarios with limited data. Instead, we hypothesize that morphological redundancy in tissue can be leveraged to build a task-agnostic slide representation in an unsupervised fashion. To this end, we introduce PANTHER, a prototype-based approach rooted in the Gaussian mixture model that summarizes the set of WSI patches into a much smaller set of morphological prototypes. Specifically, each patch is assumed to have been generated from a mixture distribution, where each mixture component represents a morphological exemplar. Utilizing the estimated mixture parameters, we then construct a compact slide representation that can be readily used for a wide range of downstream tasks. By performing an extensive evaluation of PANTHER on subtyping and survival tasks using 13 datasets, we show that 1) PANTHER outperforms or is on par with supervised MIL baselines and 2) the analysis of morphological prototypes brings new qualitative and quantitative insights into model interpretability.
+
+*来源：arXiv:2405.11643（https://arxiv.org/abs/2405.11643）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PANTHER 论文框架图](/papers/pathology/09-panther-pipeline.jpg)
+
+> **原文图注**：Figure 2 : Overview of Panther workflow . Whole-slide image (WSI) is segmented and patched into a set of WSI patches. A compressed feature for each patch is encoded through a feature extractor pretrained on a large histopathology dataset. Panther uses the Gaussian mixture model for patch embedding distribution, with each mixture corresponding to a morphologically distinct prototype. The estimated model parameters are concatenated to form the slide representation, which can be used as input to a predictor module for clinical downstream tasks and visualized as a prototypical assignment map.
+
+*图源：https://arxiv.org/html/2405.11643v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

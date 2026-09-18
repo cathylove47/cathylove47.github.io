@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2024；论文示意配置含4,999个基因、331个 pathway tokens、256维 token，以及每例约7,000–100,000个 histology patch tokens（2026-09-01）。
 
+## 原文摘要
+
+> Integrating whole-slide images (WSIs) and bulk transcriptomics for predicting patient survival can improve our understanding of patient prognosis. However, this multimodal task is particularly challenging due to the different nature of these data: WSIs represent a very high-dimensional spatial description of a tumor, while bulk transcriptomics represent a global description of gene expression levels within that tumor. In this context, our work aims to address two key challenges: (1) how can we tokenize transcriptomics in a semantically meaningful and interpretable way?, and (2) how can we capture dense multimodal interactions between these two modalities? Specifically, we propose to learn biological pathway tokens from transcriptomics that can encode specific cellular functions. Together with histology patch tokens that encode the different morphological patterns in the WSI, we argue that they form appropriate reasoning units for downstream interpretability analyses. We propose fusing both modalities using a memory-efficient multimodal Transformer that can model interactions between pathway and histology patch tokens. Our proposed model, SURVPATH, achieves state-of-the-art performance when evaluated against both unimodal and multimodal baselines on five datasets from The Cancer Genome Atlas. Our interpretability framework identifies key multimodal prognostic factors, and, as such, can provide valuable insights into the interaction between genotype and phenotype, enabling a deeper understanding of the underlying biological mechanisms at play. We make our code public at: https://github.com/ajv012/SurvPath.
+
+*来源：arXiv:2304.06819（https://arxiv.org/abs/2304.06819）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![SurvPath 论文框架图](/papers/pathology/11-survpath-pipeline.png)
+
+> **原文图注**：Fig. 2 : Block diagram of SurvPath . (1) We tokenize transcriptomics into biological pathway tokens that are semantically meaningful, interpretable, and end-to-end learnable. (2) We further tokenize the corresponding histology whole-slide image into patch tokens using an SSL pre-trained feature extractor. (3) We combine pathway and patch tokens using a memory-efficient multimodal Transformer used for survival outcome prediction.
+
+*图源：https://arxiv.org/html/2304.06819v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

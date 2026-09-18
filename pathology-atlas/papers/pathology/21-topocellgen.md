@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2025 正式论文、补充材料与官方仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> Accurately modeling multi-class cell topology is crucial in digital pathology, as it provides critical insights into tissue structure and pathology. The synthetic generation of cell topology enables realistic simulations of complex tissue environments, enhances downstream tasks by augmenting training data, aligns more closely with pathologists' domain knowledge, and offers new opportunities for controlling and generalizing the tumor microenvironment. In this paper, we propose a novel approach that integrates topological constraints into a diffusion model to improve the generation of realistic, contextually accurate cell topologies. Our method refines the simulation of cell distributions and interactions, increasing the precision and interpretability of results in downstream tasks such as cell detection and classification. To assess the topological fidelity of generated layouts, we introduce a new metric, Topological Frechet Distance (TopoFD), which overcomes the limitations of traditional metrics like FID in evaluating topological structure. Experimental results demonstrate the effectiveness of our approach in generating multi-class cell layouts that capture intricate topological relationships. Code is available at https://github.com/Melon-Xu/TopoCellGen.
+
+*来源：arXiv:2412.06011（https://arxiv.org/abs/2412.06011）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![TopoCellGen 论文框架图](/papers/pathology/21-topocellgen-pipeline.png)
+
+> **原文图注**：Figure 2 : An overview of our method TopoCellGen . ( a ) denotes the overview workflow. ( b ) shows the details of ℒ count \mathcal{L}_{\text{count}} , ℒ intra \mathcal{L}_{\text{intra}} and ℒ inter \mathcal{L}_{\text{inter}} .
+
+*图源：https://arxiv.org/html/2412.06011v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -100,4 +114,3 @@ TopoCellGen 不直接生成看起来逼真的 H&E，而是先生成多类细胞�
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2025/html/Xu_TopoCellGen_Generating_Histopathology_Cell_Topology_with_a_Diffusion_Model_CVPR_2025_paper.html)
 - [官方代码](https://github.com/Melon-Xu/TopoCellGen)
-

@@ -1,5 +1,19 @@
 # ReMix：先压缩 WSI bag，再做隐空间增强
 
+## 原文摘要
+
+> Whole slide image (WSI) classification often relies on deep weakly supervised multiple instance learning (MIL) methods to handle gigapixel resolution images and slide-level labels. Yet the decent performance of deep learning comes from harnessing massive datasets and diverse samples, urging the need for efficient training pipelines for scaling to large datasets and data augmentation techniques for diversifying samples. However, current MIL-based WSI classification pipelines are memory-expensive and computation-inefficient since they usually assemble tens of thousands of patches as bags for computation. On the other hand, despite their popularity in other tasks, data augmentations are unexplored for WSI MIL frameworks. To address them, we propose ReMix, a general and efficient framework for MIL based WSI classification. It comprises two steps: reduce and mix. First, it reduces the number of instances in WSI bags by substituting instances with instance prototypes, i.e., patch cluster centroids. Then, we propose a ``Mix-the-bag'' augmentation that contains four online, stochastic and flexible latent space augmentations. It brings diverse and reliable class-identity-preserving semantic changes in the latent space while enforcing semantic-perturbation invariance. We evaluate ReMix on two public datasets with two state-of-the-art MIL methods. In our experiments, consistent improvements in precision, accuracy, and recall have been achieved but with orders of magnitude reduced training time and memory consumption, demonstrating ReMix's effectiveness and efficiency. Code is available.
+
+*来源：arXiv:2207.01805（https://arxiv.org/abs/2207.01805）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![ReMix 论文框架图](/papers/pathology/35-remix-pipeline.png)
+
+> **原文图注**：Figure 1: ReMix ’s overview. (a) Patch encoder pre-training. (b) Reduce the number of instances by substituting them with prototypes (right); several patches can abstract a large-size whole slide image (left). (c) Mix the bags by appending, replacing, interpolating prototypes, or transferring intra-cluster covariance from other WSIs.
+
+*图源：https://arxiv.org/html/2207.01805v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

@@ -1,5 +1,17 @@
 # HE2RNA：从 H&E 预测转录组的起点
 
+## 原文摘要
+
+> Deep learning methods for digital pathology analysis are an effective way to address multiple clinical questions, from diagnosis to prediction of treatment outcomes. These methods have also been used to predict gene mutations from pathology images, but no comprehensive evaluation of their potential for extracting molecular features from histology slides has yet been performed. We show that HE2RNA, a model based on the integration of multiple data modes, can be trained to systematically predict RNA-Seq profiles from whole-slide images alone, without expert annotation. Through its interpretable design, HE2RNA provides virtual spatialization of gene expression, as validated by CD3- and CD20-staining on an independent dataset. The transcriptomic representation learned by HE2RNA can also be transferred on other datasets, even of small size, to increase prediction performance for specific molecular phenotypes. We illustrate the use of this approach in clinical diagnosis purposes such as the identification of tumors with microsatellite instability. RNA-sequencing of tumour tissue can provide important diagnostic and prognostic information but this is costly and not routinely performed in all clinical settings. Here, the authors show that whole slide histology slides&#8212;part of routine care&#8212;can be used to predict RNA-sequencing data and thus reduce the need for additional analyses.
+
+*来源：论文页 meta。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图说明
+
+> 论文没有单张 pipeline 总图：方法分散在正文与 Extended Data 中，PMC/arXiv 均无对应整体框架图。
+
+*说明：本篇未插入框架图，原因是缺少可核验的公开原图；不使用任何替代图片或重绘示意。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -71,4 +83,3 @@ HE2RNA提供 bulk 弱监督起点；HESCAPE与 SpaCRD转向真实空间转录组
 
 ## 12. 官方链接
 [论文](https://www.nature.com/articles/s41467-020-17678-4) · [代码](https://github.com/owkin/HE2RNA_code)
-

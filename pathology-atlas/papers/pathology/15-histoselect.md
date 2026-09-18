@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2026 正式论文，pp. 6972–6981；总评估规模为356,000个问答对。论文报告平均减少70%视觉 token，并在三个病理 QA 任务上提升 accuracy（2026-09-01）。
 
+## 原文摘要
+
+> Computational pathology has advanced rapidly in recent years, driven by domain-specific image encoders and growing interest in using vision-language models to answer natural-language questions about diseases. Yet, the core problem behind pathology question-answering remains unsolved, considering that a gigapixel slide contains far more information than necessary for a given question. Pathologists naturally navigate tissue and morphology complexity by scanning broadly, and zooming in selectively according to the clinical questions. Current models, in contrast, rely on uniform patch sampling or broad attention maps, often attending equally to irrelevant regions while overlooking key visual evidence. In this work, we try to bring models closer to how humans actually examine slides. We propose a question-guided, tissue-aware, and coarse-to-fine retrieval framework, HistoSelect, that consists of two key components: a group sampler that identifies question-relevant tissue regions, followed by a patch selector that retrieves the most informative patches within those regions. By selecting only the most informative patches, our method becomes significantly more efficient: reducing visual token usage by 70% on average, while improving accuracy across three pathology QA tasks. Evaluated on 356,000 question-answer pairs, our approach outperforms existing methods and produces answers grounded in interpretable, pathologist-consistent regions. Our results suggest that bringing human-like search and attention patterns into WSI reasoning is a promising direction for building practical and reliable pathology VLMs. Code is available at https://github.com/winston52/HistoSelect.
+
+*来源：arXiv:2603.00667（https://arxiv.org/abs/2603.00667）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![HistoSelect 论文框架图](/papers/pathology/15-histoselect-pipeline.png)
+
+> **原文图注**：Figure 1 : Illustration of our HistoSelect framework. (a) The baseline method feeds a large number of patches indiscriminately into the VLM, leading to high redundancy and question-irrelevance. (b) Our question-guided tissue-aware selection method. The question guides the model to select a relevant and sparse subset of informative patches, which are then fed to the VLM for reasoning.
+
+*图源：https://arxiv.org/html/2603.00667v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

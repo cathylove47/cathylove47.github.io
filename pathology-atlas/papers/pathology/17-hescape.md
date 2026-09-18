@@ -6,6 +6,20 @@
 
 **精读核验**：论文为 ICCV 2025 workshop 论文并有 arXiv 版本；官方仓库、数据入口和训练配置已核验（2026-09-02）。
 
+## 原文摘要
+
+> Spatial transcriptomics enables simultaneous measurement of gene expression and tissue morphology, offering unprecedented insights into cellular organization and disease mechanisms. However, the field lacks comprehensive benchmarks for evaluating multimodal learning methods that leverage both histology images and gene expression data. Here, we present HESCAPE, a large-scale benchmark for cross-modal contrastive pretraining in spatial transcriptomics, built on a curated pan-organ dataset spanning 6 different gene panels and 54 donors. We systematically evaluated state-of-the-art image and gene expression encoders across multiple pretraining strategies and assessed their effectiveness on two downstream tasks: gene mutation classification and gene expression prediction. Our benchmark demonstrates that gene expression encoders are the primary determinant of strong representational alignment, and that gene models pretrained on spatial transcriptomics data outperform both those trained without spatial data and simple baseline approaches. However, downstream task evaluation reveals a striking contradiction: while contrastive pretraining consistently improves gene mutation classification performance, it degrades direct gene expression prediction compared to baseline encoders trained without cross-modal objectives. We identify batch effects as a key factor that interferes with effective cross-modal alignment. Our findings highlight the critical need for batch-robust multimodal learning approaches in spatial transcriptomics. To accelerate progress in this direction, we release HESCAPE, providing standardized datasets, evaluation protocols, and benchmarking tools for the community
+
+*来源：arXiv:2508.01490（https://arxiv.org/abs/2508.01490）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![HESCAPE 论文框架图](/papers/pathology/17-hescape-pipeline.jpg)
+
+> **原文图注**：Figure 1 : HESCAPE Benchmark: 4 gene expression encoders and 5 image encoders for digital pathology have been fine-tuned with contrastive pretraining, and evaluated in downstream tasks.
+
+*图源：https://arxiv.org/html/2508.01490v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -102,4 +116,3 @@ H&E spot patch → 图像 encoder ┐
 
 - [arXiv](https://arxiv.org/abs/2508.01490)
 - [官方代码与数据说明](https://github.com/peng-lab/hescape)
-

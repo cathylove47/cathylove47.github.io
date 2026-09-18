@@ -8,30 +8,17 @@
 
 ## 原文摘要
 
-> A static survival model trained on a single dataset fails to adapt to evolving clinical environments. ConSurv combines Multi-staged Mixture of Experts (MS-MoE), which captures shared and task-specific knowledge at the WSI encoder, genomic encoder, and fusion stages, with Feature Constrained Replay (FCR), which restricts feature deviation of previous data at all three levels. The paper also introduces the four-dataset MSAIL benchmark.
+> Survival prediction of cancers is crucial for clinical practice, as it informs mortality risks and influences treatment plans. However, a static model trained on a single dataset fails to adapt to the dynamically evolving clinical environment and continuous data streams, limiting its practical utility. While continual learning (CL) offers a solution to learn dynamically from new datasets, existing CL methods primarily focus on unimodal inputs and suffer from severe catastrophic forgetting in survival prediction. In real-world scenarios, multimodal inputs often provide comprehensive and complementary information, such as whole slide images and genomics; and neglecting inter-modal correlations negatively impacts the performance. To address the two challenges of catastrophic forgetting and complex inter-modal interactions between gigapixel whole slide images and genomics, we propose ConSurv, the first multimodal continual learning (MMCL) method for survival analysis. ConSurv incorporates two key components: Multi-staged Mixture of Experts (MS-MoE) and Feature Constrained Replay (FCR). MS-MoE captures both task-shared and task-specific knowledge at different learning stages of the network, including two modality encoders and the modality fusion component, learning inter-modal relationships. FCR further enhances learned knowledge and mitigates forgetting by restricting feature deviation of previous data at different levels, including encoder-level features of two modalities and the fusion-level representations. Additionally, we introduce a new benchmark integrating four datasets, Multimodal Survival Analysis Incremental Learning (MSAIL), for comprehensive evaluation in the CL setting. Extensive experiments demonstrate that ConSurv outperforms competing methods across multiple metrics.
 
-**摘要因果链**：遗忘不只发生在预测头，还发生在 WSI、基因组以及二者关系三层；MS-MoE 负责隔离/共享新知识，FCR 同时固定三层旧表示。
+*来源：arXiv:2511.09853（https://arxiv.org/abs/2511.09853）。逐字原文，未改写、未压缩。*
 
 ## 论文 Pipeline 原图
 
-![ConSurv 官方框架图](https://raw.githubusercontent.com/LucyDYu/ConSurv/main/framework.png)
+![ConSurv 论文框架图](/papers/pathology/45-consurv-pipeline.png)
 
-*图源：作者官方仓库 `framework.png`，对应论文 Figure 2。*
+> **原文图注**：Figure 2: Overall architecture of ConSurv. (a) The MMCL workflow for continual survival prediction across different cancer datasets. We employ a recent SOTA model, MoME ( Xiong et al. 2024a ) , in survival prediction as our backbone model. We train the model sequentially on the multimodal datasets. (b) MS-MoE learns both shared and task-specific knowledge at different learning stages of the network, including WSI and genomic encoders and the modality fusion component. (c) FCR preserves previously learned knowledge through additional loss terms on the replay buffer.
 
-### 沿着图从左到右读
-
-1. 任务顺序固定为 BLCA→UCEC→LUAD→BRCA；这是 task-incremental learning，推理时已知癌种 ID。
-2. WSI encoder、genomic encoder、fusion component 各插入专家池；shared expert 始终启用，其余按 TopK-S 路由。
-3. 新任务增加 router，不复制整套模型；不同癌种可复用或绕开同一专家。
-4. FCR buffer 保存旧样本在 patch、genomic、fusion 三层的特征目标；当前模型重算后用 \(L_2\) 限制漂移，并回放旧生存标签。
-5. 当前任务损失提供可塑性，三层约束提供稳定性，replay 生存损失防止旧决策边界失效。
-
-### 证据与边界
-
-- 顺序微调使 BLCA C-index 从 0.607 降到 0.531，先证明确有遗忘。
-- ConSurv 平均 C-index 0.601、IPCW C-index 0.597；仍略低于能访问所有数据的联合训练 0.611。
-- 完整三层 FCR 通常优于只约束 fusion，但 C-index、forgetting 与 BWT 存在取舍，不能只报最终均值。
-
+*图源：https://arxiv.org/html/2511.09853v1。原图直接取自论文，未重绘、未描摹。*
 
 ## 0. 零基础导读：先读这一节
 

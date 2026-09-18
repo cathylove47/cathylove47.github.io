@@ -1,5 +1,19 @@
 # DuDoRNet
 
+## 原文摘要
+
+> MRI with multiple protocols is commonly used for diagnosis, but it suffers from a long acquisition time, which yields the image quality vulnerable to say motion artifacts. To accelerate, various methods have been proposed to reconstruct full images from under-sampled k-space data. However, these algorithms are inadequate for two main reasons. Firstly, aliasing artifacts generated in the image domain are structural and non-local, so that sole image domain restoration is insufficient. Secondly, though MRI comprises multiple protocols during one exam, almost all previous studies only employ the reconstruction of an individual protocol using a highly distorted undersampled image as input, leaving the use of fully-sampled short protocol (say T1) as complementary information highly underexplored. In this work, we address the above two limitations by proposing a Dual Domain Recurrent Network (DuDoRNet) with deep T1 prior embedded to simultaneously recover k-space and images for accelerating the acquisition of MRI with a long imaging protocol. Specifically, a Dilated Residual Dense Network (DRDNet) is customized for dual domain restorations from undersampled MRI data. Extensive experiments on different sampling patterns and acceleration rates demonstrate that our method consistently outperforms state-of-the-art methods, and can reconstruct high-quality MRI.
+
+*来源：arXiv:2001.03799（https://arxiv.org/abs/2001.03799）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DuDoRNet 论文框架图](/papers/mri/05-dudornet-pipeline.svg)
+
+> **原文图注**：Figure 2 : The architecture of our D ilated R esidual D ense Network ( DRD-Net ) with building modules of SDRDB shown in Figure 3 . The input can be either x u x_{u} in image domain or k u k_{u} in k-space domain. Convolution operation is followed by ReLU.
+
+*图源：https://arxiv.org/html/2001.03799v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 DuDoRNet 同时在 k-space 与图像域循环恢复，并利用较易获得的全采样 T1 作为深先验来重建其他协议。它展示了 MRI 多对比信息如何进入网络，而不只是把不同序列堆成通道。

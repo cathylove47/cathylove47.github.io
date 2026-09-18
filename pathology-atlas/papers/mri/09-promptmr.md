@@ -1,5 +1,19 @@
 # PromptMR
 
+## 原文摘要
+
+> The key to dynamic or multi-contrast magnetic resonance imaging (MRI) reconstruction lies in exploring inter-frame or inter-contrast information. Currently, the unrolled model, an approach combining iterative MRI reconstruction steps with learnable neural network layers, stands as the best-performing method for MRI reconstruction. However, there are two main limitations to overcome: firstly, the unrolled model structure and GPU memory constraints restrict the capacity of each denoising block in the network, impeding the effective extraction of detailed features for reconstruction; secondly, the existing model lacks the flexibility to adapt to variations in the input, such as different contrasts, resolutions or views, necessitating the training of separate models for each input type, which is inefficient and may lead to insufficient reconstruction. In this paper, we propose a two-stage MRI reconstruction pipeline to address these limitations. The first stage involves filling the missing k-space data, which we approach as a physics-based reconstruction problem. We first propose a simple yet efficient baseline model, which utilizes adjacent frames/contrasts and channel attention to capture the inherent inter-frame/-contrast correlation. Then, we extend the baseline model to a prompt-based learning approach, PromptMR, for all-in-one MRI reconstruction from different views, contrasts, adjacent types, and acceleration factors. The second stage is to refine the reconstruction from the first stage, which we treat as a general video restoration problem to further fuse features from neighboring frames/contrasts in the image domain. Extensive experiments show that our proposed method significantly outperforms previous state-of-the-art accelerated MRI reconstruction methods.
+
+*来源：arXiv:2309.13839（https://arxiv.org/abs/2309.13839）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PromptMR 论文框架图](/papers/mri/09-promptmr-pipeline.png)
+
+> **原文图注**：Figure 2: Overview of PromptMR in Stage I: an all-in-one unrolled model for MRI reconstruction. Adjacent inputs, depicted in image domain for visual clarity, provide neighboring k-space information for reconstruction. To accommodate different input varieties, the input-type adaptive visual prompt is integrated into each cascade of the unrolled architecture to guide the reconstruction process.
+
+*图源：https://arxiv.org/html/2309.13839v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 PromptMR 用输入类型自适应视觉提示（prompt）调节深展开模型，使同一框架处理动态 MRI 和多对比 MRI。它的意义是把“任务/输入条件”显式注入每个 cascade，而不是为每种输入重做架构。

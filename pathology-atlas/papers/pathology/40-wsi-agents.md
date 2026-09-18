@@ -1,5 +1,19 @@
 # WSI-Agents：面向整张切片的多模型核验工作流
 
+## 原文摘要
+
+> Whole slide images (WSIs) are vital in digital pathology, enabling gigapixel tissue analysis across various pathological tasks. While recent advancements in multi-modal large language models (MLLMs) allow multi-task WSI analysis through natural language, they often underperform compared to task-specific models. Collaborative multi-agent systems have emerged as a promising solution to balance versatility and accuracy in healthcare, yet their potential remains underexplored in pathology-specific domains. To address these issues, we propose WSI-Agents, a novel collaborative multi-agent system for multi-modal WSI analysis. WSI-Agents integrates specialized functional agents with robust task allocation and verification mechanisms to enhance both task-specific accuracy and multi-task versatility through three components: (1) a task allocation module assigning tasks to expert agents using a model zoo of patch and WSI level MLLMs, (2) a verification mechanism ensuring accuracy through internal consistency checks and external validation using pathology knowledge bases and domain-specific models, and (3) a summary module synthesizing the final summary with visual interpretation maps. Extensive experiments on multi-modal WSI benchmarks show WSI-Agents's superiority to current WSI MLLMs and medical agent frameworks across diverse tasks.
+
+*来源：arXiv:2507.14680（https://arxiv.org/abs/2507.14680）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![WSI-Agents 论文框架图](/papers/pathology/40-wsi-agents-pipeline.png)
+
+> **原文图注**：Figure 1 : The workflow of WSI-Agents with three main modules.
+
+*图源：https://arxiv.org/html/2507.14680v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

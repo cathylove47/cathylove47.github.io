@@ -1,5 +1,19 @@
 # SpaCRD：跨样本、跨平台的空间癌区检测
 
+## 原文摘要
+
+> Accurate detection of cancer tissue regions (CTR) enables deeper analysis of the tumor microenvironment and offers crucial insights into treatment response. Traditional CTR detection methods, which typically rely on the rich cellular morphology in histology images, are susceptible to a high rate of false positives due to morphological similarities across different tissue regions. The groundbreaking advances in spatial transcriptomics (ST) provide detailed cellular phenotypes and spatial localization information, offering new opportunities for more accurate cancer region detection. However, current methods are unable to effectively integrate histology images with ST data, especially in the context of cross-sample and cross-platform/batch settings for accomplishing the CTR detection. To address this challenge, we propose SpaCRD, a transfer learning-based method that deeply integrates histology images and ST data to enable reliable CTR detection across diverse samples, platforms, and batches. Once trained on source data, SpaCRD can be readily generalized to accurately detect cancerous regions across samples from different platforms and batches. The core of SpaCRD is a category-regularized variational reconstruction-guided bidirectional cross-attention fusion network, which enables the model to adaptively capture latent co-expression patterns between histological features and gene expression from multiple perspectives. Extensive benchmark analysis on 23 matched histology-ST datasets spanning various disease types, platforms, and batches demonstrates that SpaCRD consistently outperforms existing eight state-of-the-art methods in CTR detection.
+
+*来源：arXiv:2603.06186（https://arxiv.org/abs/2603.06186）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![SpaCRD 论文框架图](/papers/pathology/25-spacrd-pipeline.png)
+
+> **原文图注**：Figure 2: The framework of SpaCRD. Stage I: UNI is used to extract histology features, while modality-alignment representation learning aligns histology and ST modalities into a shared embedding space. Stage II: VRBCA integrates aligned histology and ST features into a compact and class-consistent embedding that captures biologically relevant cross-modal interactions. Stage III: The learned representation is used to estimate cancer likelihood scores for each spot.
+
+*图源：https://arxiv.org/html/2603.06186v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -95,4 +109,3 @@ SpaCRD 把 H&E 形态与空间转录组表达做双向对齐，用重构约束�
 
 - [论文 DOI](https://doi.org/10.1609/aaai.v40i14.38135)
 - [官方代码](https://github.com/wenwenmin/SpaCRD)
-

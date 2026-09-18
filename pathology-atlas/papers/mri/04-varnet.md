@@ -1,5 +1,19 @@
 # End-to-End VarNet
 
+## 原文摘要
+
+> The slow acquisition speed of magnetic resonance imaging (MRI) has led to the development of two complementary methods: acquiring multiple views of the anatomy simultaneously (parallel imaging) and acquiring fewer samples than necessary for traditional signal processing methods (compressed sensing). While the combination of these methods has the potential to allow much faster scan times, reconstruction from such undersampled multi-coil data has remained an open problem. In this paper, we present a new approach to this problem that extends previously proposed variational methods by learning fully end-to-end. Our method obtains new state-of-the-art results on the fastMRI dataset for both brain and knee MRIs.
+
+*来源：arXiv:2004.06688（https://arxiv.org/abs/2004.06688）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![E2E-VarNet 论文框架图](/papers/mri/04-varnet-pipeline.png)
+
+> **原文图注**：Figure 1 : Top : Block diagram of our model which takes under-sampled k-space as input and applies several cascades, followed by an inverse Fourier transform (IFT) and an RSS transform. The Data Consistency (DC) module computes a correction map that brings the intermediate k-space closer to the measured k-space values. The Refinement (R) module maps multi-coil k-space data into one image, applies a U-Net, and then back to multi-coil k-space data. The Sensitivity Map Estimation (SME) module estimates the sensitivity maps used in the Refinement module.
+
+*图源：https://arxiv.org/html/2004.06688v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 E2E-VarNet 将经典变分网络扩展到多线圈 MRI，并把灵敏度图估计纳入端到端学习。它兼具清晰物理结构、成熟 fastMRI 实现和预训练权重，是这个分支最值得完整复现的基线。

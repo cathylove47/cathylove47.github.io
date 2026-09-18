@@ -6,6 +6,12 @@
 
 **精读核验**：Medical Image Analysis 81 (2022), Article 102559；CTransPath 将 CNN 的局部归纳偏置与多尺度 Swin Transformer 结合，并采用语义相关对比学习（Semantically-Relevant Contrastive Learning, SRCL）（2026-09-01）。
 
+## 论文 Pipeline 原图说明
+
+> 论文正文无框架总图，且未在 arXiv 或 PMC 提供开放全文。
+
+*说明：本篇未插入框架图，原因是缺少可核验的公开原图；不使用任何替代图片或重绘示意。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

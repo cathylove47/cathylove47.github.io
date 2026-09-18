@@ -1,0 +1,849 @@
+{
+  "generatedAt": "2026-09-18T06:36:11.669Z",
+  "entries": [
+    {
+      "slug": "03-dsmil",
+      "domain": "pathology",
+      "shortTitle": "DSMIL",
+      "title": "Dual-Stream Multiple Instance Learning Network for Whole Slide Image Classification",
+      "year": 2021,
+      "arxivId": "2011.08939",
+      "abstractSource": "arXiv:2011.08939",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/03-dsmil-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2011.08939v1",
+        "caption": "Figure 2: Overview of our DSMIL. DSMIL uses features learned by self-supervised contrastive learning. Embeddings of different scales of a WSI are concatenated to form feature pyramids. The figure shows an example of two magnifications (20 × \\times and 5 × \\times ). The 5 × \\times feature vector is duplicated and concatenated with each of the 20 × \\times feature vectors of the sub-images within this 5 × \\times patch.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "04-hipt",
+      "domain": "pathology",
+      "shortTitle": "HIPT",
+      "title": "Scaling Vision Transformers to Gigapixel Images via Hierarchical Self-Supervised Learning",
+      "year": 2022,
+      "arxivId": "2206.02647",
+      "abstractSource": "arXiv:2206.02647",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/04-hipt-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2206.02647v1",
+        "caption": "Figure 2 : HIPT Architecture. Motivated by the use of hierarchical representations in natural language processing, where embeddings can be aggregated at the character-, word-, sentence- and paragraph-level to form document representations, we aggregate visual tokens at the x 16 \\textbf{x}_{16} cell-, x 256 \\textbf{x}_{256} patch-, x 4096 \\textbf{x}_{4096} region-level to form slide representations. To also model important dependencies between visual concepts at each stage, we adapt Transformer self-attention as a permutation-equivariant aggregation layer. Note that since the complexity of patching x 4096 \\textbf{x}_{4096} regions with x 256 \\textbf{x}_{256} tokens is the same as patching x 256 \\textbf{x}_{256} images with x 16 \\textbf{x}_{16} tokens, we can pretrain aggregation layers for high-resolution images using similar self-supervised ViT techniques for low-resolution images.",
+        "score": 10
+      }
+    },
+    {
+      "slug": "05-dtfd-mil",
+      "domain": "pathology",
+      "shortTitle": "DTFD-MIL",
+      "title": "Double-Tier Feature Distillation Multiple Instance Learning",
+      "year": 2022,
+      "arxivId": "2203.12081",
+      "abstractSource": "arXiv:2203.12081",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/05-dtfd-mil-pipeline.png",
+        "origin": "https://arxiv.org/html/2203.12081v1",
+        "caption": "Figure 1 : Illustration of the difference between conventional MIL models and the proposed double-tier MIL model.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "06-mi-zero",
+      "domain": "pathology",
+      "shortTitle": "MI-Zero",
+      "title": "Visual Language Pretrained Multiple Instance Zero-Shot Transfer for Histopathology Images",
+      "year": 2023,
+      "arxivId": "2306.07831",
+      "abstractSource": "arXiv:2306.07831",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/06-mi-zero-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2306.07831v1",
+        "caption": "Figure 2 : Schematic of MI-Zero. A gigapixel WSI is converted to a collection of patches (instances), each embedded into an aligned visual-language latent space. In the set-based representation, the similarity scores between patch embeddings and prompt embeddings are aggregated via a permutation invariant operator such as topK max-pooling to produce the WSI-level classification prediction. Alternatively, a graph-based representation may be used to incorporate spatial context by first aggregating predictions in local neighborhoods ( Section 3.5 ).",
+        "score": 14
+      }
+    },
+    {
+      "slug": "07-ctranspath",
+      "domain": "pathology",
+      "shortTitle": "CTransPath",
+      "title": "Transformer-based Unsupervised Contrastive Learning for Histopathological Image Classification",
+      "year": 2022,
+      "arxivId": "",
+      "abstractSource": "",
+      "hasAbstract": false,
+      "figure": null
+    },
+    {
+      "slug": "08-cellvit",
+      "domain": "pathology",
+      "shortTitle": "CellViT",
+      "title": "Vision Transformers for Precise Cell Segmentation and Classification",
+      "year": 2024,
+      "arxivId": "2306.15350",
+      "abstractSource": "arXiv:2306.15350",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/08-cellvit-pipeline.png",
+        "origin": "https://arxiv.org/html/2306.15350v1",
+        "caption": "Figure 2: Network structure of our proposed CellViT-network consisting of a ViT encoder connected to multiple decoders via skip connections. Postprocessing is used to separate overlapping nuclei and perform nuclei type classification. For visualization purposes, the tissue classification branch is not illustrated. As encoder networks, we used the pre-trained ViT 256 \\text{ViT}_{256} and SAM models.",
+        "score": 17
+      }
+    },
+    {
+      "slug": "09-panther",
+      "domain": "pathology",
+      "shortTitle": "PANTHER",
+      "title": "Morphological Prototyping for Unsupervised Slide Representation Learning",
+      "year": 2024,
+      "arxivId": "2405.11643",
+      "abstractSource": "arXiv:2405.11643",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/09-panther-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2405.11643v1",
+        "caption": "Figure 2 : Overview of Panther workflow . Whole-slide image (WSI) is segmented and patched into a set of WSI patches. A compressed feature for each patch is encoded through a feature extractor pretrained on a large histopathology dataset. Panther uses the Gaussian mixture model for patch embedding distribution, with each mixture corresponding to a morphologically distinct prototype. The estimated model parameters are concatenated to form the slide representation, which can be used as input to a predictor module for clinical downstream tasks and visualized as a prototypical assignment map.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "10-tangle",
+      "domain": "pathology",
+      "shortTitle": "TANGLE",
+      "title": "Transcriptomics-Guided Slide Representation Learning in Computational Pathology",
+      "year": 2024,
+      "arxivId": "2405.11618",
+      "abstractSource": "arXiv:2405.11618",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/10-tangle-pipeline.png",
+        "origin": "https://arxiv.org/html/2405.11618v1",
+        "caption": "Figure 2 : Overview of Tangle for (S+E) pre-training . An input histology slide is tessellated into patches and encoded using a pre-trained vision encoder. The resulting patch embeddings are passed to an ABMIL module to derive a slide embedding. The corresponding gene expression data are encoded using an MLP. A symmetric contrastive objective ℒ s ​ y ​ m ​ C ​ L \\mathcal{L}_{symCL} learns to align embeddings from both modalities. During inference, a query slide is encoded into a slide embedding by the trained pooling module to be used for downstream tasks.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "11-survpath",
+      "domain": "pathology",
+      "shortTitle": "SurvPath",
+      "title": "Modeling Dense Multimodal Interactions Between Biological Pathways and Histology",
+      "year": 2024,
+      "arxivId": "2304.06819",
+      "abstractSource": "arXiv:2304.06819",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/11-survpath-pipeline.png",
+        "origin": "https://arxiv.org/html/2304.06819v1",
+        "caption": "Fig. 2 : Block diagram of SurvPath . (1) We tokenize transcriptomics into biological pathway tokens that are semantically meaningful, interpretable, and end-to-end learnable. (2) We further tokenize the corresponding histology whole-slide image into patch tokens using an SSL pre-trained feature extractor. (3) We combine pathway and patch tokens using a memory-efficient multimodal Transformer used for survival outcome prediction.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "12-wsi-five",
+      "domain": "pathology",
+      "shortTitle": "WSI-FiVE",
+      "title": "Generalizable Whole Slide Image Classification with Fine-Grained Visual-Semantic Interaction",
+      "year": 2024,
+      "arxivId": "2402.19326",
+      "abstractSource": "arXiv:2402.19326",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/12-wsi-five-pipeline.png",
+        "origin": "https://arxiv.org/html/2402.19326v1",
+        "caption": "Figure 2 : Left: The structure of the FiVE framework. The model consists of a frozen image encoder, a text encoder, and the TFS module. Whole slide images are divided into instances for embedding extraction by the image encoder. Raw pathological reports are standardized by GPT-4 into fine-grained descriptions. The fine-grained descriptions and manual prompts are sampled, shuffled, and reconstructed in pairs. These prompts aggregate instances into bag-level features, subsequently aligned with the descriptions utilizing contrastive loss. Top Right: Fine-grained pathological descriptions. The fine-grained pathological descriptions are generated from multiple answers based on specific queries. These descriptions undergo a process of random sampling, shuffling, and reconstruction to form a unified sentence. Bottom Right: The Instance Aggregator module. The instance aggregator consists of a self-attention module and a cross-attention module, fusing image instance embeddings and prompt embeddings to create bag-level features.",
+        "score": 9
+      }
+    },
+    {
+      "slug": "13-pathdino",
+      "domain": "pathology",
+      "shortTitle": "PathDino",
+      "title": "Rotation-Agnostic Image Representation Learning for Digital Pathology",
+      "year": 2024,
+      "arxivId": "2311.08359",
+      "abstractSource": "arXiv:2311.08359",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/13-pathdino-pipeline.png",
+        "origin": "https://arxiv.org/html/2311.08359v1",
+        "caption": "Figure 2 : The WSI Analysis Pipeline. (A) The fast patch selection method, FPS, selects a set of representative patches while preserving spatial distribution. (B) HistoRotate is a 360 ∘ 360^{\\circ} rotation augmentation for histopathology model training, enhancing learning without contextual information alteration. (C) PathDino is a compact histopathology Transformer with five small vision transformer blocks and ≈ \\approx 9 9 million parameters, significantly leaner than alternatives.",
+        "score": 11
+      }
+    },
+    {
+      "slug": "14-mambamil",
+      "domain": "pathology",
+      "shortTitle": "MambaMIL",
+      "title": "Enhancing Long Sequence Modeling with Sequence Reordering in Computational Pathology",
+      "year": 2024,
+      "arxivId": "2403.06800",
+      "abstractSource": "arXiv:2403.06800",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/14-mambamil-pipeline.png",
+        "origin": "https://arxiv.org/html/2403.06800v1",
+        "caption": "Figure 1: Overview of MambaMIL. Given a set of patches cropped from a slide, we sequentially utilize Feature Extractor, Linear Projection, stacked SR-Mamba modules and Aggregation for WSI analysis.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "15-histoselect",
+      "domain": "pathology",
+      "shortTitle": "HistoSelect",
+      "title": "Act Like a Pathologist: Tissue-Aware Whole Slide Image Reasoning",
+      "year": 2026,
+      "arxivId": "2603.00667",
+      "abstractSource": "arXiv:2603.00667",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/15-histoselect-pipeline.png",
+        "origin": "https://arxiv.org/html/2603.00667v1",
+        "caption": "Figure 1 : Illustration of our HistoSelect framework. (a) The baseline method feeds a large number of patches indiscriminately into the VLM, leading to high redundancy and question-irrelevance. (b) Our question-guided tissue-aware selection method. The question guides the model to select a relevant and sparse subset of informative patches, which are then fed to the VLM for reasoning.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "16-slidechat",
+      "domain": "pathology",
+      "shortTitle": "SlideChat",
+      "title": "SlideChat: A Large Vision-Language Assistant for Whole-Slide Pathology Image Understanding",
+      "year": 2025,
+      "arxivId": "2410.11761",
+      "abstractSource": "arXiv:2410.11761",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/16-slidechat-pipeline.png",
+        "origin": "https://arxiv.org/html/2410.11761v1",
+        "caption": "Figure 2: Overview of our SlideChat. (A) SlideChat serializes each input WSI into a sequence of 224×224 patches, converting each into visual embeddings with a patch-level encoder. A slide-level encoder then interacts with these features to generate contextual embeddings. Then, a multimodal projector maps the visual features from the slide-level encoder into a unified space, aligned seamlessly with the LLM. (B) SlideChat was trained for two stages: Cross-Domain Alignment and Visual Instruction Learning.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "17-hescape",
+      "domain": "pathology",
+      "shortTitle": "HESCAPE",
+      "title": "A Large-Scale Benchmark of Cross-Modal Learning for Histology and Gene Expression in Spatial Transcriptomics",
+      "year": 2025,
+      "arxivId": "2508.01490",
+      "abstractSource": "arXiv:2508.01490",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/17-hescape-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2508.01490v1",
+        "caption": "Figure 1 : HESCAPE Benchmark: 4 gene expression encoders and 5 image encoders for digital pathology have been fine-tuned with contrastive pretraining, and evaluated in downstream tasks.",
+        "score": 8
+      }
+    },
+    {
+      "slug": "18-cpath-omni",
+      "domain": "pathology",
+      "shortTitle": "CPath-Omni",
+      "title": "CPath-Omni: A Unified Multimodal Foundation Model for Patch and Whole Slide Image Analysis in Computational Pathology",
+      "year": 2025,
+      "arxivId": "2412.12077",
+      "abstractSource": "arXiv:2412.12077",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/18-cpath-omni-pipeline.png",
+        "origin": "https://arxiv.org/html/2412.12077v1",
+        "caption": "Figure 2 : Overview of two key vision components of CPath-Omni: the patch-level model, CPath-CLIP, and the WSI model, SlideParser.",
+        "score": 17
+      }
+    },
+    {
+      "slug": "19-path2space",
+      "domain": "pathology",
+      "shortTitle": "Path2Space",
+      "title": "AI-predicted Spatial Transcriptomics Unlocks Breast Cancer Biomarkers from Pathology",
+      "year": 2026,
+      "arxivId": "",
+      "abstractSource": "PMC:PMC13317733",
+      "hasAbstract": true,
+      "figure": null
+    },
+    {
+      "slug": "20-mcat",
+      "domain": "pathology",
+      "shortTitle": "MCAT",
+      "title": "Multimodal Co-Attention Transformer for Survival Prediction in Gigapixel Whole Slide Images",
+      "year": 2021,
+      "arxivId": "",
+      "abstractSource": "论文页摘要",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/20-mcat-pipeline.jpg",
+        "origin": "https://github.com/mahmoodlab/MCAT",
+        "caption": "MCAT 网络结构图（作者官方仓库 docs/Fig1_netarch.jpg）",
+        "score": 20
+      }
+    },
+    {
+      "slug": "21-topocellgen",
+      "domain": "pathology",
+      "shortTitle": "TopoCellGen",
+      "title": "TopoCellGen: Generating Histopathology Cell Topology with a Diffusion Model",
+      "year": 2025,
+      "arxivId": "2412.06011",
+      "abstractSource": "arXiv:2412.06011",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/21-topocellgen-pipeline.png",
+        "origin": "https://arxiv.org/html/2412.06011v1",
+        "caption": "Figure 2 : An overview of our method TopoCellGen . ( a ) denotes the overview workflow. ( b ) shows the details of ℒ count \\mathcal{L}_{\\text{count}} , ℒ intra \\mathcal{L}_{\\text{intra}} and ℒ inter \\mathcal{L}_{\\text{inter}} .",
+        "score": 14
+      }
+    },
+    {
+      "slug": "22-pathfinder",
+      "domain": "pathology",
+      "shortTitle": "PathFinder",
+      "title": "PathFinder: A Multi-Modal Multi-Agent System for Medical Diagnostic Decision-Making Applied to Histopathology",
+      "year": 2025,
+      "arxivId": "2502.08916",
+      "abstractSource": "arXiv:2502.08916",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/22-pathfinder-pipeline.png",
+        "origin": "https://arxiv.org/html/2502.08916v1",
+        "caption": "Figure 1 : Overview of the Triage Agent architecture. Definitions of M M and H H can be found in Section 4 .",
+        "score": 15
+      }
+    },
+    {
+      "slug": "23-e2e-vit",
+      "domain": "pathology",
+      "shortTitle": "E2E-ViT",
+      "title": "Turning Pre-Trained Vision Transformers into End-to-End Histopathology Whole Slide Image Models for Survival Prediction",
+      "year": 2026,
+      "arxivId": "",
+      "abstractSource": "论文页摘要",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/23-e2e-vit-pipeline.png",
+        "origin": "CVF 官方 PDF（CVPR 2026）",
+        "caption": "Figure 2 原图（论文框架图，从 CVPR 2026 官方 PDF 渲染提取）。",
+        "score": 20
+      }
+    },
+    {
+      "slug": "24-meatrd",
+      "domain": "pathology",
+      "shortTitle": "MEATRD",
+      "title": "MEATRD: Multimodal Anomalous Tissue Region Detection Enhanced with Spatial Transcriptomics",
+      "year": 2025,
+      "arxivId": "2412.10659",
+      "abstractSource": "arXiv:2412.10659",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/24-meatrd-pipeline.png",
+        "origin": "https://arxiv.org/html/2412.10659v1",
+        "caption": "Figure 2: The workflow of MEATRD.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "25-spacrd",
+      "domain": "pathology",
+      "shortTitle": "SpaCRD",
+      "title": "SpaCRD: Multimodal Deep Fusion of Histology and Spatial Transcriptomics for Cancer Region Detection",
+      "year": 2026,
+      "arxivId": "2603.06186",
+      "abstractSource": "arXiv:2603.06186",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/25-spacrd-pipeline.png",
+        "origin": "https://arxiv.org/html/2603.06186v1",
+        "caption": "Figure 2: The framework of SpaCRD. Stage I: UNI is used to extract histology features, while modality-alignment representation learning aligns histology and ST modalities into a shared embedding space. Stage II: VRBCA integrates aligned histology and ST features into a compact and class-consistent embedding that captures biologically relevant cross-modal interactions. Stage III: The learned representation is used to estimate cancer likelihood scores for each spot.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "26-ps3",
+      "domain": "pathology",
+      "shortTitle": "PS3",
+      "title": "PS3: A Multimodal Transformer Integrating Pathology Reports with Histology Images and Biological Pathways for Cancer Survival Prediction",
+      "year": 2025,
+      "arxivId": "2509.20022",
+      "abstractSource": "arXiv:2509.20022",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/26-ps3-pipeline.png",
+        "origin": "https://arxiv.org/html/2509.20022v1",
+        "caption": "Figure 1 : (a) Whole Slide Image X i X_{i} patches are processed by a frozen image encoder E I E_{I} to extract visual features H h \\textbf{H}^{h} , which are clustered into N ℋ N_{\\mathcal{H}} histological prototypes using a Gaussian Mixture Model (GMM) to obtain a slide-level representation. (b) Feature embeddings 𝐇 i t \\mathbf{H}_{i}^{t} are extracted from the text segments of a single pathology report R i R_{i} , using a frozen text encoder E T E_{T} . For a batch of pathology reports 𝐇 t \\mathbf{H}^{t} we construct Diagnostic prototypes by applying Transformer-based self-attention mechanisms and sorting the text segments within each report based on their importance scores. (c) Gene-expression vector 𝐱 p \\mathbf{x}^{p} are multiplied with the binary pathway vectors ( 𝐁 \\mathbf{B} ) to create pathway prototypes. These are processed through f α f_{\\alpha} MLPs to generate feature embeddings. (d) Prototypes from each modality are projected into key, value and query representations, followed by self- and cross-modal attention to integrate information. The resulting outputs are used for survival risk prediction.",
+        "score": 11
+      }
+    },
+    {
+      "slug": "27-dispro",
+      "domain": "pathology",
+      "shortTitle": "DisPro",
+      "title": "Distilled Prompt Learning for Incomplete Multimodal Survival Prediction",
+      "year": 2025,
+      "arxivId": "2503.01653",
+      "abstractSource": "arXiv:2503.01653",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/27-dispro-pipeline.png",
+        "origin": "https://arxiv.org/html/2503.01653v1",
+        "caption": "Figure 1 : Insights for existing incomplete multimodal learning and comparison to the proposed method. (a) Generation-based Imputation and Imputation-free approaches, (b) Retrieved-based Imputation and (c) Ours.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "28-gmmamba",
+      "domain": "pathology",
+      "shortTitle": "GMMamba",
+      "title": "GMMamba: Group Masking Mamba for Whole Slide Image Classification",
+      "year": 2025,
+      "arxivId": "",
+      "abstractSource": "论文页摘要",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/28-gmmamba-pipeline.png",
+        "origin": "CVF 官方 PDF（ICCV 2025）",
+        "caption": "Figure 3 原图（论文框架图，从 ICCV 2025 官方 PDF 渲染提取）。",
+        "score": 20
+      }
+    },
+    {
+      "slug": "29-clam",
+      "domain": "pathology",
+      "shortTitle": "CLAM",
+      "title": "Data-efficient and Weakly Supervised Computational Pathology on Whole-Slide Images",
+      "year": 2021,
+      "arxivId": "2004.09666",
+      "abstractSource": "arXiv:2004.09666",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/29-clam-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2004.09666v1",
+        "caption": "Figure 1: Overview of the CLAM conceptual framework, architecture and interpretability.",
+        "score": 20
+      }
+    },
+    {
+      "slug": "30-transmil",
+      "domain": "pathology",
+      "shortTitle": "TransMIL",
+      "title": "Transformer Based Correlated Multiple Instance Learning for Whole Slide Image Classification",
+      "year": 2021,
+      "arxivId": "2106.00908",
+      "abstractSource": "arXiv:2106.00908",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/30-transmil-pipeline.png",
+        "origin": "https://arxiv.org/html/2106.00908v1",
+        "caption": "Figure 3: Overview of our TransMIL. Each WSI is cropped into patches (background is discraded), and embedded in feature vectors by ResNet50. Then the sequence is processed with the TPT module: 1) Squaring of sequence; 2) Correlation modelling of the sequence; 3) Conditional position encoding and local information fusion; 4) Deep feature aggregation; 5) Mapping of 𝕋 → 𝒴 \\mathbb{T}\\rightarrow\\mathcal{Y} .",
+        "score": 10
+      }
+    },
+    {
+      "slug": "31-conch",
+      "domain": "pathology",
+      "shortTitle": "CONCH",
+      "title": "A Visual-Language Foundation Model for Computational Pathology",
+      "year": 2024,
+      "arxivId": "2307.12914",
+      "abstractSource": "arXiv:2307.12914",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/31-conch-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2307.12914v1",
+        "caption": "Figure 1: Data curation and model schematic. Caption on next page.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "32-prov-gigapath",
+      "domain": "pathology",
+      "shortTitle": "Prov-GigaPath",
+      "title": "A Whole-Slide Foundation Model for Digital Pathology from Real-World Data",
+      "year": 2024,
+      "arxivId": "",
+      "abstractSource": "PMC:PMC11153137",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/32-prov-gigapath-pipeline.jpg",
+        "origin": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11153137/",
+        "caption": "a , Flow chart showing the model architecture of Prov-GigaPath. Prov-GigaPath first serializes each input WSI into a sequence of 256 × 256 image tiles in row-major order and uses an image tile-level encoder to convert each image tile into a visual embedding. Then Prov-GigaPath applies a slide-level encoder based on the LongNet architecture to generate contextualized embeddings, which can serve as the basis for various downstream applications. b , Image tile-level pretraining using DINOv2. c , Slide-level pretraining with LongNet using masked autoencoder. [CLS] is the classification token.",
+        "score": 12
+      }
+    },
+    {
+      "slug": "33-he2rna",
+      "domain": "pathology",
+      "shortTitle": "HE2RNA",
+      "title": "A Deep Learning Model to Predict RNA-Seq Expression of Tumours from Whole Slide Images",
+      "year": 2020,
+      "arxivId": "",
+      "abstractSource": "论文页 meta",
+      "hasAbstract": true,
+      "figure": null
+    },
+    {
+      "slug": "34-patch-gcn",
+      "domain": "pathology",
+      "shortTitle": "Patch-GCN",
+      "title": "Whole Slide Images are 2D Point Clouds: Context-Aware Survival Prediction using Patch-based Graph Convolutional Networks",
+      "year": 2021,
+      "arxivId": "2107.13048",
+      "abstractSource": "arXiv:2107.13048",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/34-patch-gcn-pipeline.jpg",
+        "origin": "https://arxiv.org/html/2107.13048v1",
+        "caption": "Fig 1: Patch-GCN framework for context-aware survival outcome prediction in WSIs. Non-overlapping 256 × 256 256\\times 256 patches are patched as used as input into a ResNet-50 CNN to construct the node feature matrix, with edges drawn between adjacent image patches in the WSI. A ReLU + Softmax Message Passing scheme is used to aggregate instance-level embeddings in local neighborhoods, with residual mappings and skip connections used to construct context-aware embeddings, followed by global attention-based pooling.",
+        "score": 12
+      }
+    },
+    {
+      "slug": "35-remix",
+      "domain": "pathology",
+      "shortTitle": "ReMix",
+      "title": "ReMix: A General and Efficient Framework for Multiple Instance Learning based Whole Slide Image Classification",
+      "year": 2022,
+      "arxivId": "2207.01805",
+      "abstractSource": "arXiv:2207.01805",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/35-remix-pipeline.png",
+        "origin": "https://arxiv.org/html/2207.01805v1",
+        "caption": "Figure 1: ReMix ’s overview. (a) Patch encoder pre-training. (b) Reduce the number of instances by substituting them with prototypes (right); several patches can abstract a large-size whole slide image (left). (c) Mix the bags by appending, replacing, interpolating prototypes, or transferring intra-cluster covariance from other WSIs.",
+        "score": 12
+      }
+    },
+    {
+      "slug": "36-pama",
+      "domain": "pathology",
+      "shortTitle": "PAMA",
+      "title": "Position-Aware Masked Autoencoder for Histopathology WSI Representation Learning",
+      "year": 2023,
+      "arxivId": "",
+      "abstractSource": "论文页 meta",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/36-pama-pipeline.png",
+        "origin": "https://github.com/WkEEn/PAMA",
+        "caption": "PAMA 框架图（作者官方仓库 images/PAMA_FRAMEWORK.png）",
+        "score": 20
+      }
+    },
+    {
+      "slug": "37-retmil",
+      "domain": "pathology",
+      "shortTitle": "RetMIL",
+      "title": "RetMIL: Retentive Multiple Instance Learning for Histopathological Whole Slide Image Classification",
+      "year": 2024,
+      "arxivId": "2403.10858",
+      "abstractSource": "arXiv:2403.10858",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/37-retmil-pipeline.png",
+        "origin": "https://arxiv.org/html/2403.10858v1",
+        "caption": "Figure 1: Overall framework of RetMIL",
+        "score": 19
+      }
+    },
+    {
+      "slug": "38-wsicaption",
+      "domain": "pathology",
+      "shortTitle": "WsiCaption",
+      "title": "WsiCaption: Multiple Instance Generation of Pathology Reports for Gigapixel Whole-Slide Images",
+      "year": 2024,
+      "arxivId": "2311.16480",
+      "abstractSource": "arXiv:2311.16480",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/38-wsicaption-pipeline.png",
+        "origin": "https://arxiv.org/html/2311.16480v1",
+        "caption": "Figure 1 : The pipeline of extracting WSI-text pairs from TCGA. We first get raw PDF files and then OCR is used to transform the characters into text. Finally, we resort to LLMs to summarize the text.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "39-aem",
+      "domain": "pathology",
+      "shortTitle": "AEM",
+      "title": "AEM: Attention Entropy Maximization for Multiple Instance Learning based Whole Slide Image Classification",
+      "year": 2025,
+      "arxivId": "2406.15303",
+      "abstractSource": "arXiv:2406.15303",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/39-aem-pipeline.png",
+        "origin": "https://arxiv.org/html/2406.15303v1",
+        "caption": "Figure 3 : Overview of plugging ADR into MIL framework. ADR adds only a negative entropy regularization for attention values to the regular MIL framework.",
+        "score": 10
+      }
+    },
+    {
+      "slug": "40-wsi-agents",
+      "domain": "pathology",
+      "shortTitle": "WSI-Agents",
+      "title": "WSI-Agents: A Collaborative Multi-Agent System for Multi-Modal Whole Slide Image Analysis",
+      "year": 2025,
+      "arxivId": "2507.14680",
+      "abstractSource": "arXiv:2507.14680",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/40-wsi-agents-pipeline.png",
+        "origin": "https://arxiv.org/html/2507.14680v1",
+        "caption": "Figure 1 : The workflow of WSI-Agents with three main modules.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "41-pathflip",
+      "domain": "pathology",
+      "shortTitle": "PathFLIP",
+      "title": "PathFLIP: Fine-grained Language-Image Pretraining for Versatile Computational Pathology",
+      "year": 2026,
+      "arxivId": "2512.17621",
+      "abstractSource": "arXiv:2512.17621",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/41-pathflip-pipeline.png",
+        "origin": "https://arxiv.org/html/2512.17621v1",
+        "caption": "Figure 2: Overview of PathFLIP. Given a slide-caption pair S i S^{i} , T i T^{i} >, the slide S i S^{i} is divided into N N regions { S 1 i , … , S N i } \\{S^{i}_{1},\\ldots,S^{i}_{N}\\} . We use Slide Q-Former and Region Q-Former to extract slide-level and region-level features. Captions { T k , T j , T i } \\{T^{k},T^{j},T^{i}\\} are decomposed and sampled to obtain region-level subcaptions { T 1 k , T 2 j , T 3 i } \\{T^{k}_{1},T^{j}_{2},T^{i}_{3}\\} . The slide-level contrastive loss ℒ s ​ l ​ i ​ d ​ e \\mathcal{L}_{slide} aligns the global image feature v i v^{i} with its corresponding text feature t i t^{i} . The region-level contrastive loss ℒ r ​ e ​ g ​ i ​ o ​ n \\mathcal{L}_{region} encourages alignment between region-image and subcaption pairs from the same slide as positive pairs, while treating all others in the batch as negatives.",
+        "score": 18
+      }
+    },
+    {
+      "slug": "42-libra-mil",
+      "domain": "pathology",
+      "shortTitle": "Libra-MIL",
+      "title": "Multimodal Prototypes Stereoscopic Infused with Task-specific Language Priors for Few-shot Whole Slide Image Classification",
+      "year": 2026,
+      "arxivId": "2511.07941",
+      "abstractSource": "arXiv:2511.07941",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/42-libra-mil-pipeline.png",
+        "origin": "https://arxiv.org/html/2511.07941v1",
+        "caption": "Figure 2: Overview of Libra-MIL. The framework first employs Vision Preprocessing and Task-specific Language Priors Generation modules to perform modality-specific preprocessing and prior embedding. The dual-prototype multimodal learner then integrates instance-level representations from both modalities into a unified similarity space through prototype-based modeling and Sinkhorn optimal transport.",
+        "score": 15
+      }
+    },
+    {
+      "slug": "43-hifusion",
+      "domain": "pathology",
+      "shortTitle": "HiFusion",
+      "title": "Hierarchical Intra-Spot Alignment and Regional Context Fusion for Spatial Gene Expression Prediction from Histopathology",
+      "year": 2026,
+      "arxivId": "2511.12969",
+      "abstractSource": "arXiv:2511.12969",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/43-hifusion-pipeline.png",
+        "origin": "https://arxiv.org/html/2511.12969v1",
+        "caption": "Figure 1: Schematic of the proposed HiFusion framework, which integrates Hierarchical Intra-Spot Modeling (HISM) and Context-Aware Cross-Scale Fusion (CCF) . HISM hierarchically decomposes each spot into multi-scale patches to extract fine-grained features with semantic alignment. CCF fuses contextual region features with multi-scale spot representations via residual cross-attention for gene expression prediction.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "44-steph",
+      "domain": "pathology",
+      "shortTitle": "STEPH",
+      "title": "Sparse Task Vector Mixup with Hypernetworks for Efficient Knowledge Transfer in Whole-Slide Image Prognosis",
+      "year": 2026,
+      "arxivId": "2603.10526",
+      "abstractSource": "arXiv:2603.10526",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/44-steph-pipeline.png",
+        "origin": "https://arxiv.org/html/2603.10526v1",
+        "caption": "Figure 3 : Sparse Task Vector Mixup with Hypernetworks ( STEPH ) for efficient knowledge transfer in WSI prognosis. After computing task vectors, STEPH first applies mixup to each paired ( τ t , τ s ) (\\tau_{t},\\tau_{s}) to absorb prognostic knowledge from cross-cancer models. Then, the most beneficial mixtures are selected and aggregated to derive ℳ t ∗ \\mathcal{M}_{t}^{*} for prediction. Hypernetworks drive these steps by steering task vectors.",
+        "score": 5
+      }
+    },
+    {
+      "slug": "45-consurv",
+      "domain": "pathology",
+      "shortTitle": "ConSurv",
+      "title": "ConSurv: Multimodal Continual Learning for Survival Analysis",
+      "year": 2026,
+      "arxivId": "2511.09853",
+      "abstractSource": "arXiv:2511.09853",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/pathology/45-consurv-pipeline.png",
+        "origin": "https://arxiv.org/html/2511.09853v1",
+        "caption": "Figure 2: Overall architecture of ConSurv. (a) The MMCL workflow for continual survival prediction across different cancer datasets. We employ a recent SOTA model, MoME ( Xiong et al. 2024a ) , in survival prediction as our backbone model. We train the model sequentially on the multimodal datasets. (b) MS-MoE learns both shared and task-specific knowledge at different learning stages of the network, including WSI and genomic encoders and the modality fusion component. (c) FCR preserves previously learned knowledge through additional loss terms on the replay buffer.",
+        "score": 14
+      }
+    },
+    {
+      "slug": "01-fastmri",
+      "domain": "mri",
+      "shortTitle": "fastMRI",
+      "title": "fastMRI: An Open Dataset and Benchmarks for Accelerated MRI",
+      "year": 2020,
+      "arxivId": "1811.08839",
+      "abstractSource": "arXiv:1811.08839",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/01-fastmri-pipeline.png",
+        "origin": "https://arxiv.org/html/1811.08839v1",
+        "caption": "Figure 2 面板 (a)-(e)：k-space 原始数据、各线圈图像、ESPIRiT 灵敏度图、参考图像与重建结果（fastMRI 原始数据管线）。",
+        "score": 20
+      }
+    },
+    {
+      "slug": "02-dc-cnn",
+      "domain": "mri",
+      "shortTitle": "DC-CNN",
+      "title": "A Deep Cascade of Convolutional Neural Networks for MR Image Reconstruction",
+      "year": 2017,
+      "arxivId": "1703.00555",
+      "abstractSource": "arXiv:1703.00555",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/02-dc-cnn-pipeline.svg",
+        "origin": "https://arxiv.org/html/1703.00555v1",
+        "caption": "Figure 1: A cascade of CNNs. The depth of architecture and the depth of cascade is denoted by n d n_{d} and n c n_{c} respectively.",
+        "score": 15
+      }
+    },
+    {
+      "slug": "03-modl",
+      "domain": "mri",
+      "shortTitle": "MoDL",
+      "title": "MoDL: Model-Based Deep Learning Architecture for Inverse Problems",
+      "year": 2019,
+      "arxivId": "1712.02862",
+      "abstractSource": "arXiv:1712.02862",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/03-modl-pipeline.svg",
+        "origin": "https://arxiv.org/html/1712.02862v1",
+        "caption": "Fig. 2 : MoDL-CC: extension of the MoDL architecture to the multi-coil (parallel MRI) setting. The recursive algorithm alternates between projections to the coil-constraints denoted by 𝒫 c \\mathcal{P}_{c} step in ( 14 ), denoising denoted by 𝒟 𝐰 \\mathcal{D}_{\\mathbf{w}} in ( 13 ), followed by the data consistency step in ( 15 ).",
+        "score": 11
+      }
+    },
+    {
+      "slug": "04-varnet",
+      "domain": "mri",
+      "shortTitle": "E2E-VarNet",
+      "title": "End-to-End Variational Networks for Accelerated MRI Reconstruction",
+      "year": 2020,
+      "arxivId": "2004.06688",
+      "abstractSource": "arXiv:2004.06688",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/04-varnet-pipeline.png",
+        "origin": "https://arxiv.org/html/2004.06688v1",
+        "caption": "Figure 1 : Top : Block diagram of our model which takes under-sampled k-space as input and applies several cascades, followed by an inverse Fourier transform (IFT) and an RSS transform. The Data Consistency (DC) module computes a correction map that brings the intermediate k-space closer to the measured k-space values. The Refinement (R) module maps multi-coil k-space data into one image, applies a U-Net, and then back to multi-coil k-space data. The Sensitivity Map Estimation (SME) module estimates the sensitivity maps used in the Refinement module.",
+        "score": 19
+      }
+    },
+    {
+      "slug": "05-dudornet",
+      "domain": "mri",
+      "shortTitle": "DuDoRNet",
+      "title": "Learning a Dual-Domain Recurrent Network for Fast MRI Reconstruction with Deep T1 Prior",
+      "year": 2020,
+      "arxivId": "2001.03799",
+      "abstractSource": "arXiv:2001.03799",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/05-dudornet-pipeline.svg",
+        "origin": "https://arxiv.org/html/2001.03799v1",
+        "caption": "Figure 2 : The architecture of our D ilated R esidual D ense Network ( DRD-Net ) with building modules of SDRDB shown in Figure 3 . The input can be either x u x_{u} in image domain or k u k_{u} in k-space domain. Convolution operation is followed by ReLU.",
+        "score": 17
+      }
+    },
+    {
+      "slug": "06-score-mri",
+      "domain": "mri",
+      "shortTitle": "Score-MRI",
+      "title": "Score-Based Diffusion Models for Accelerated MRI",
+      "year": 2022,
+      "arxivId": "2110.05243",
+      "abstractSource": "arXiv:2110.05243",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/06-score-mri-pipeline.png",
+        "origin": "https://arxiv.org/html/2110.05243v1",
+        "caption": "Fig. 1 : Overview of the proposed method. Starting from 𝒙 T {\\bm{x}}_{T} , sampled from the prior distribution, 𝒙 0 {\\bm{x}}_{0} is reached by solving the reverse SDE with Score-POCS sampling, alternating between the update step, and the data consistency step.",
+        "score": 16
+      }
+    },
+    {
+      "slug": "07-humus-net",
+      "domain": "mri",
+      "shortTitle": "HUMUS-Net",
+      "title": "Hybrid Unrolled Multi-Scale Network Architecture for Accelerated MRI Reconstruction",
+      "year": 2022,
+      "arxivId": "2203.08213",
+      "abstractSource": "arXiv:2203.08213",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/07-humus-net-pipeline.png",
+        "origin": "https://arxiv.org/html/2203.08213v1",
+        "caption": "Figure 1: Overview of the HUMUS-Block architecture. First, we extract high-resolution features 𝑭 𝑯 \\bm{F_{H}} from the input noisy image through a convolution layer f H f_{H} . Then, we apply a convolutional feature extractor f L f_{L} to obtain low-resolution features and process them using a Transformer-convolutional hybrid multi-scale feature extractor. The shallow, high-resolution and deep, low-resolution features are then synthesized into the final high-resolution denoised image.",
+        "score": 19
+      }
+    },
+    {
+      "slug": "08-mc-varnet",
+      "domain": "mri",
+      "shortTitle": "MC-VarNet",
+      "title": "Decomposition-Based Variational Network for Multi-Contrast MRI Super-Resolution and Reconstruction",
+      "year": 2023,
+      "arxivId": "",
+      "abstractSource": "论文页摘要",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/08-mc-varnet-pipeline.png",
+        "origin": "CVF 官方 PDF（ICCV 2023）",
+        "caption": "MC-VarNet 框架图（论文 Figure 2 原图，从 ICCV 2023 官方 PDF 提取的内嵌图像）。",
+        "score": 20
+      }
+    },
+    {
+      "slug": "09-promptmr",
+      "domain": "mri",
+      "shortTitle": "PromptMR",
+      "title": "Fill the K-Space and Refine the Image: Prompting for Dynamic and Multi-Contrast MRI Reconstruction",
+      "year": 2024,
+      "arxivId": "2309.13839",
+      "abstractSource": "arXiv:2309.13839",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/09-promptmr-pipeline.png",
+        "origin": "https://arxiv.org/html/2309.13839v1",
+        "caption": "Figure 2: Overview of PromptMR in Stage I: an all-in-one unrolled model for MRI reconstruction. Adjacent inputs, depicted in image domain for visual clarity, provide neighboring k-space information for reconstruction. To accommodate different input varieties, the input-type adaptive visual prompt is integrated into each cascade of the unrolled architecture to guide the reconstruction process.",
+        "score": 17
+      }
+    },
+    {
+      "slug": "10-promptmr-plus",
+      "domain": "mri",
+      "shortTitle": "PromptMR+",
+      "title": "Rethinking Deep Unrolled Models for Accelerated MRI Reconstruction",
+      "year": 2024,
+      "arxivId": "",
+      "abstractSource": "论文页摘要",
+      "hasAbstract": true,
+      "figure": {
+        "local": "/papers/mri/10-promptmr-plus-pipeline.png",
+        "origin": "https://github.com/hellopipu/PromptMR-plus",
+        "caption": "PromptMR+ 结构图（作者官方仓库 assets/proposed.png）",
+        "score": 20
+      }
+    },
+    {
+      "slug": "11-gaussm2asr",
+      "domain": "mri",
+      "shortTitle": "GaussM²ASR",
+      "title": "Adaptive Anisotropic Gaussian Splatting for Multi-contrast MRI Arbitrary-Scale Super-Resolution with Anatomy Guidance",
+      "year": 2026,
+      "arxivId": "",
+      "abstractSource": "论文页摘要",
+      "hasAbstract": true,
+      "figure": null
+    }
+  ]
+}

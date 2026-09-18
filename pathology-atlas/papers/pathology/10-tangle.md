@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2024；论文的三个独立测试集合分别包含1,265张乳腺 WSI、1,946张肺 WSI 和4,584张肝脏 WSI，重点证据来自 few-shot transfer 而非只看预训练损失（2026-09-01）。
 
+## 原文摘要
+
+> Self-supervised learning (SSL) has been successful in building patch embeddings of small histology images (e.g., 224x224 pixels), but scaling these models to learn slide embeddings from the entirety of giga-pixel whole-slide images (WSIs) remains challenging. Here, we leverage complementary information from gene expression profiles to guide slide representation learning using multimodal pre-training. Expression profiles constitute highly detailed molecular descriptions of a tissue that we hypothesize offer a strong task-agnostic training signal for learning slide embeddings. Our slide and expression (S+E) pre-training strategy, called Tangle, employs modality-specific encoders, the outputs of which are aligned via contrastive learning. Tangle was pre-trained on samples from three different organs: liver (n=6,597 S+E pairs), breast (n=1,020), and lung (n=1,012) from two different species (Homo sapiens and Rattus norvegicus). Across three independent test datasets consisting of 1,265 breast WSIs, 1,946 lung WSIs, and 4,584 liver WSIs, Tangle shows significantly better few-shot performance compared to supervised and SSL baselines. When assessed using prototype-based classification and slide retrieval, Tangle also shows a substantial performance improvement over all baselines. Code available at https://github.com/mahmoodlab/TANGLE.
+
+*来源：arXiv:2405.11618（https://arxiv.org/abs/2405.11618）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![TANGLE 论文框架图](/papers/pathology/10-tangle-pipeline.png)
+
+> **原文图注**：Figure 2 : Overview of Tangle for (S+E) pre-training . An input histology slide is tessellated into patches and encoded using a pre-trained vision encoder. The resulting patch embeddings are passed to an ABMIL module to derive a slide embedding. The corresponding gene expression data are encoded using an MLP. A symmetric contrastive objective ℒ s ​ y ​ m ​ C ​ L \mathcal{L}_{symCL} learns to align embeddings from both modalities. During inference, a query slide is encoded into a slide embedding by the trained pooling module to be used for downstream tasks.
+
+*图源：https://arxiv.org/html/2405.11618v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

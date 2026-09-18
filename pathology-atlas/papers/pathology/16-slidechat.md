@@ -6,6 +6,20 @@
 
 **精读核验**：正式发表于 CVPR 2025；论文、补充材料、项目页、模型、数据和官方仓库已于 2026-09-02 核验。
 
+## 原文摘要
+
+> Despite the progress made by multimodal large language models (MLLMs) in computational pathology, they remain limited by a predominant focus on patch-level analysis, missing essential contextual information at the whole-slide level. The lack of large-scale instruction datasets and the gigapixel scale of whole slide images (WSIs) pose significant developmental challenges. In this paper, we present SlideChat, the first vision-language assistant capable of understanding gigapixel whole-slide images, exhibiting excellent multimodal conversational capability and response complex instruction across diverse pathology scenarios. To support its development, we created SlideInstruction, the largest instruction-following dataset for WSIs consisting of 4.2K WSI captions and 176K VQA pairs with multiple categories. Furthermore, we propose SlideBench, a multimodal benchmark that incorporates captioning and VQA tasks to assess SlideChat's capabilities in varied clinical settings such as microscopy, diagnosis. Compared to both general and specialized MLLMs, SlideChat exhibits exceptional capabilities achieving state-of-the-art performance on 18 of 22 tasks. For example, it achieved an overall accuracy of 81.17% on SlideBench-VQA (TCGA), and 54.15% on SlideBench-VQA (BCNB). Our code, data, and model is publicly accessible at https://uni-medical.github.io/SlideChat.github.io.
+
+*来源：arXiv:2410.11761（https://arxiv.org/abs/2410.11761）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![SlideChat 论文框架图](/papers/pathology/16-slidechat-pipeline.png)
+
+> **原文图注**：Figure 2: Overview of our SlideChat. (A) SlideChat serializes each input WSI into a sequence of 224×224 patches, converting each into visual embeddings with a patch-level encoder. A slide-level encoder then interacts with these features to generate contextual embeddings. Then, a multimodal projector maps the visual features from the slide-level encoder into a unified space, aligned seamlessly with the LLM. (B) SlideChat was trained for two stages: Cross-Domain Alignment and Visual Instruction Learning.
+
+*图源：https://arxiv.org/html/2410.11761v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -102,4 +116,3 @@ GPT-4 参与训练问题生成，可能把文本先验带进 benchmark；TCGA �
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2025/html/Chen_SlideChat_A_Large_Vision-Language_Assistant_for_Whole-Slide_Pathology_Image_Understanding_CVPR_2025_paper.html)
 - [官方代码](https://github.com/uni-medical/SlideChat)
 - [项目页](https://uni-medical.github.io/SlideChat.github.io/)
-

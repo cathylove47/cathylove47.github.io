@@ -1,5 +1,19 @@
 # Prov-GigaPath：整张切片基础模型
 
+## 原文摘要
+
+> Digital pathology poses unique computational challenges, as a standard gigapixel slide may comprise tens of thousands of image tiles 1 – 3 . Prior models have often resorted to subsampling a small portion of tiles for each slide, thus missing the important slide-level context 4 . Here we present Prov-GigaPath, a whole-slide pathology foundation model pretrained on 1.3 billion 256 × 256 pathology image tiles in 171,189 whole slides from Providence, a large US health network comprising 28 cancer centres. The slides originated from more than 30,000 patients covering 31 major tissue types. To pretrain Prov-GigaPath, we propose GigaPath, a novel vision transformer architecture for pretraining gigapixel pathology slides. To scale GigaPath for slide-level learning with tens of thousands of image tiles, GigaPath adapts the newly developed LongNet 5 method to digital pathology. To evaluate Prov-GigaPath, we construct a digital pathology benchmark comprising 9 cancer subtyping tasks and 17 pathomics tasks, using both Providence and TCGA data 6 . With large-scale pretraining and ultra-large-context modelling, Prov-GigaPath attains state-of-the-art performance on 25 out of 26 tasks, with significant improvement over the second-best method on 18 tasks. We further demonstrate the potential of Prov-GigaPath on vision–language pretraining for pathology 7 , 8 by incorporating the pathology reports. In sum, Prov-GigaPath is an open-weight foundation model that achieves state-of-the-art performance on various digital pathology tasks, demonstrating the importance of real-world data and whole-slide modelling.
+
+*来源：PMC:PMC11153137。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![Prov-GigaPath 论文框架图](/papers/pathology/32-prov-gigapath-pipeline.jpg)
+
+> **原文图注**：a , Flow chart showing the model architecture of Prov-GigaPath. Prov-GigaPath first serializes each input WSI into a sequence of 256 × 256 image tiles in row-major order and uses an image tile-level encoder to convert each image tile into a visual embedding. Then Prov-GigaPath applies a slide-level encoder based on the LongNet architecture to generate contextualized embeddings, which can serve as the basis for various downstream applications. b , Image tile-level pretraining using DINOv2. c , Slide-level pretraining with LongNet using masked autoencoder. [CLS] is the classification token.
+
+*图源：https://pmc.ncbi.nlm.nih.gov/articles/PMC11153137/。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -71,4 +85,3 @@ HIPT先做层级自监督，Prov-GigaPath扩展到超大真实队列；E2E-ViT�
 
 ## 12. 官方链接
 [Nature 论文](https://www.nature.com/articles/s41586-024-07441-w) · [代码与权重](https://github.com/prov-gigapath/prov-gigapath)
-

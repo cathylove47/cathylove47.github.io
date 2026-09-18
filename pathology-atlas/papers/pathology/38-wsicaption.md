@@ -1,5 +1,19 @@
 # WsiCaption：从整张切片生成病理报告
 
+## 原文摘要
+
+> Whole slide images are the foundation of digital pathology for the diagnosis and treatment of carcinomas. Writing pathology reports is laborious and error-prone for inexperienced pathologists. To reduce the workload and improve clinical automation, we investigate how to generate pathology reports given whole slide images. On the data end, we curated the largest WSI-text dataset (PathText). In specific, we collected nearly 10000 high-quality WSI-text pairs for visual-language models by recognizing and cleaning pathology reports which narrate diagnostic slides in TCGA. On the model end, we propose the multiple instance generative model (MI-Gen) which can produce pathology reports for gigapixel WSIs. We benchmark our model on the largest subset of TCGA-PathoText. Experimental results show our model can generate pathology reports which contain multiple clinical clues and achieve competitive performance on certain slide-level tasks. We observe that simple semantic extraction from the pathology reports can achieve the best performance (0.838 of F1 score) on BRCA subtyping surpassing previous state-of-the-art approaches. Our collected dataset and related code are available.
+
+*来源：arXiv:2311.16480（https://arxiv.org/abs/2311.16480）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![WsiCaption 论文框架图](/papers/pathology/38-wsicaption-pipeline.png)
+
+> **原文图注**：Figure 1 : The pipeline of extracting WSI-text pairs from TCGA. We first get raw PDF files and then OCR is used to transform the characters into text. Finally, we resort to LLMs to summarize the text.
+
+*图源：https://arxiv.org/html/2311.16480v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。

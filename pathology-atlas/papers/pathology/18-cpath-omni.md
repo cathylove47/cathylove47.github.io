@@ -6,6 +6,20 @@
 
 **精读核验**：CVPR 2025 正式论文、补充材料、官方模型仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> The emergence of large multimodal models (LMMs) has brought significant advancements to pathology. Previous research has primarily focused on separately training patch-level and whole-slide image (WSI)-level models, limiting the integration of learned knowledge across patches and WSIs, and resulting in redundant models. In this work, we introduce CPath-Omni, the first 15-billion-parameter LMM designed to unify both patch and WSI level image analysis, consolidating a variety of tasks at both levels, including classification, visual question answering, captioning, and visual referring prompting. Extensive experiments demonstrate that CPath-Omni achieves state-of-the-art (SOTA) performance across seven diverse tasks on 39 out of 42 datasets, outperforming or matching task-specific models trained for individual tasks. Additionally, we develop a specialized pathology CLIP-based visual processor for CPath-Omni, CPath-CLIP, which, for the first time, integrates different vision models and incorporates a large language model as a text encoder to build a more powerful CLIP model, which achieves SOTA performance on nine zero-shot and four few-shot datasets. Our findings highlight CPath-Omni's ability to unify diverse pathology tasks, demonstrating its potential to streamline and advance the field of foundation model in pathology.
+
+*来源：arXiv:2412.12077（https://arxiv.org/abs/2412.12077）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CPath-Omni 论文框架图](/papers/pathology/18-cpath-omni-pipeline.png)
+
+> **原文图注**：Figure 2 : Overview of two key vision components of CPath-Omni: the patch-level model, CPath-CLIP, and the WSI model, SlideParser.
+
+*图源：https://arxiv.org/html/2412.12077v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 0. 零基础导读：先读这一节
 
 > 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
@@ -100,4 +114,3 @@ patch / WSI 视觉 token → projector → 15B LMM
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2025/html/Sun_CPath-Omni_A_Unified_Multimodal_Foundation_Model_for_Patch_and_Whole_CVPR_2025_paper.html)
 - [官方代码与模型](https://github.com/PathFoundation/CPath-Omni)
-
