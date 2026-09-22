@@ -6,6 +6,56 @@
 
 **精读核验**：MICCAI 2024，LNCS 15004，pp. 296–306；作者为 Shu Yang、Yihui Wang、Hao Chen，论文和补充材料均有 MICCAI 官方开放页面（2026-09-01）。
 
+## 原文摘要
+
+> Multiple Instance Learning (MIL) has emerged as a dominant paradigm to extract discriminative feature representations within Whole Slide Images (WSIs) in computational pathology. Despite driving notable progress, existing MIL approaches suffer from limitations in facilitating comprehensive and efficient interactions among instances, as well as challenges related to time-consuming computations and overfitting. In this paper, we incorporate the Selective Scan Space State Sequential Model (Mamba) in Multiple Instance Learning (MIL) for long sequence modeling with linear complexity, termed as MambaMIL. By inheriting the capability of vanilla Mamba, MambaMIL demonstrates the ability to comprehensively understand and perceive long sequences of instances. Furthermore, we propose the Sequence Reordering Mamba (SR-Mamba) aware of the order and distribution of instances, which exploits the inherent valuable information embedded within the long sequences. With the SR-Mamba as the core component, MambaMIL can effectively capture more discriminative features and mitigate the challenges associated with overfitting and high computational overhead. Extensive experiments on two public challenging tasks across nine diverse datasets demonstrate that our proposed framework performs favorably against state-of-the-art MIL methods. The code is released at https://github.com/isyangshu/MambaMIL.
+
+*来源：arXiv:2403.06800（https://arxiv.org/abs/2403.06800）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MambaMIL 论文框架图](/papers/pathology/14-mambamil-pipeline.png)
+
+> **原文图注**：Figure 1: Overview of MambaMIL. Given a set of patches cropped from a slide, we sequentially utilize Feature Extractor, Linear Projection, stacked SR-Mamba modules and Aggregation for WSI analysis.
+
+*图源：https://arxiv.org/html/2403.06800v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+Transformer 像让班里每个人同时和所有人聊天，人数一多就很贵；Mamba 像沿队伍传递一张不断更新的便签，成本更接近线性。
+
+### 0.2 它为什么出现？
+
+WSI 有数万 patch，完整自注意力成本随长度平方增长；但 Mamba 按顺序读取，而 WSI patch 原本没有天然的一维顺序。
+
+### 0.3 它到底怎么做？
+
+1. 把预提取 patch 特征排成序列。
+2. 用重排序规则给 patch 安排更有意义的阅读顺序。
+3. 用双向或重排序 Mamba 传递长距离信息。
+4. 汇总序列并输出分类或生存预测。
+
+### 0.4 先认清这些词
+
+- **状态空间模型**：用不断更新的内部状态读取长序列。
+- **线性复杂度**：序列加倍时，计算量大致也只加倍。
+- **序列重排序**：决定模型先看哪个 patch、后看哪个 patch。
+- **MIL**：从一组 patch 推断整张切片标签。
+
+### 0.5 输入和输出
+
+输入是 patch 特征序列；输出是切片分类或患者风险。
+
+### 0.6 最容易误解的地方
+
+Mamba 的效率优势不自动解决空间问题；错误的排序可能把相邻组织拆开或制造虚假邻接。
+
+**现在只记住一句话：MambaMIL = 用更省计算的长序列模型读 patch，但必须认真安排阅读顺序。**
+
 ## 1. 三分钟摘要与推荐理由
 
 MambaMIL 将选择性状态空间模型引入 WSI MIL，以线性复杂度处理长实例序列。由于 Mamba 对顺序敏感，而传统 WSI bag 常被视作无序集合，论文进一步提出 Sequence Reordering Mamba（SR-Mamba），利用实例顺序/分布构建更有效的扫描序列。

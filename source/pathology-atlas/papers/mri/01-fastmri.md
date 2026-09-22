@@ -1,5 +1,19 @@
 # fastMRI
 
+## 原文摘要
+
+> Accelerating Magnetic Resonance Imaging (MRI) by taking fewer measurements has the potential to reduce medical costs, minimize stress to patients and make MRI possible in applications where it is currently prohibitively slow or expensive. We introduce the fastMRI dataset, a large-scale collection of both raw MR measurements and clinical MR images, that can be used for training and evaluation of machine-learning approaches to MR image reconstruction. By introducing standardized evaluation criteria and a freely-accessible dataset, our goal is to help the community make rapid advances in the state of the art for MR image reconstruction. We also provide a self-contained introduction to MRI for machine learning researchers with no medical imaging background.
+
+*来源：arXiv:1811.08839（https://arxiv.org/abs/1811.08839）。逐字原文，未改写、未压缩。*
+
+## 论文数据管线原图
+
+![fastMRI 论文数据管线图](/papers/mri/01-fastmri-pipeline.png)
+
+> **原文图注**：Figure 2 面板 (a)-(e)：k-space 原始数据、各线圈图像、ESPIRiT 灵敏度图、参考图像与重建结果（fastMRI 原始数据管线）。
+
+*图源：https://arxiv.org/html/1811.08839v1。该篇论文没有架构总图，此处展示其数据管线的原始图。*
+
 ## 三分钟摘要与推荐理由
 
 fastMRI 首先是一套**原始 MRI 测量数据、统一任务定义和基线代码**，而不只是一个模型。学习 MRI 重建时，最容易犯的错误是直接读网络而跳过 k-space、线圈灵敏度、采样掩膜和数据一致性；这篇应当作为全分支的入口。

@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2024；论文的三个独立测试集合分别包含1,265张乳腺 WSI、1,946张肺 WSI 和4,584张肝脏 WSI，重点证据来自 few-shot transfer 而非只看预训练损失（2026-09-01）。
 
+## 原文摘要
+
+> Self-supervised learning (SSL) has been successful in building patch embeddings of small histology images (e.g., 224x224 pixels), but scaling these models to learn slide embeddings from the entirety of giga-pixel whole-slide images (WSIs) remains challenging. Here, we leverage complementary information from gene expression profiles to guide slide representation learning using multimodal pre-training. Expression profiles constitute highly detailed molecular descriptions of a tissue that we hypothesize offer a strong task-agnostic training signal for learning slide embeddings. Our slide and expression (S+E) pre-training strategy, called Tangle, employs modality-specific encoders, the outputs of which are aligned via contrastive learning. Tangle was pre-trained on samples from three different organs: liver (n=6,597 S+E pairs), breast (n=1,020), and lung (n=1,012) from two different species (Homo sapiens and Rattus norvegicus). Across three independent test datasets consisting of 1,265 breast WSIs, 1,946 lung WSIs, and 4,584 liver WSIs, Tangle shows significantly better few-shot performance compared to supervised and SSL baselines. When assessed using prototype-based classification and slide retrieval, Tangle also shows a substantial performance improvement over all baselines. Code available at https://github.com/mahmoodlab/TANGLE.
+
+*来源：arXiv:2405.11618（https://arxiv.org/abs/2405.11618）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![TANGLE 论文框架图](/papers/pathology/10-tangle-pipeline.png)
+
+> **原文图注**：Figure 2 : Overview of Tangle for (S+E) pre-training . An input histology slide is tessellated into patches and encoded using a pre-trained vision encoder. The resulting patch embeddings are passed to an ABMIL module to derive a slide embedding. The corresponding gene expression data are encoded using an MLP. A symmetric contrastive objective ℒ s ​ y ​ m ​ C ​ L \mathcal{L}_{symCL} learns to align embeddings from both modalities. During inference, a query slide is encoded into a slide embedding by the trained pooling module to be used for downstream tasks.
+
+*图源：https://arxiv.org/html/2405.11618v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+同一个病人有两份作业：一张病理图和一份基因表达表。TANGLE 让两个翻译器学会把这两份作业翻译成相近的意思。
+
+### 0.2 它为什么出现？
+
+只靠裁剪、旋转等图像增强做自监督，未必抓住与疾病真正相关的生物学信息；转录组提供了另一种病例级监督。
+
+### 0.3 它到底怎么做？
+
+1. 把 WSI patch 汇总成一个切片向量。
+2. 把同一病例的 RNA 表达编码成另一个向量。
+3. 让配对病例的图像向量和 RNA 向量靠近，让不配对病例分开。
+4. 训练结束后只保留图像分支，用于新切片任务。
+
+### 0.4 先认清这些词
+
+- **转录组**：一个样本中大量基因表达水平的集合。
+- **跨模态**：同时处理图像、文字、组学等不同类型信息。
+- **对齐**：让同一病例的不同模态在数字空间中靠近。
+- **线性探针**：冻结 encoder，只训练一个简单分类头来测表示质量。
+
+### 0.5 输入和输出
+
+训练输入是配对的 WSI 与 bulk RNA-seq；部署输入可以只有 WSI；输出是 slide embedding 或下游预测。
+
+### 0.6 最容易误解的地方
+
+RNA 是整块组织的平均测量，不告诉模型某个具体 patch 的基因表达；对齐也不证明因果关系。
+
+**现在只记住一句话：TANGLE = 用同一病人的基因表达教切片表示学到生物学语义。**
+
 ## 1. 三分钟摘要与推荐理由
 
 TANGLE 把同一病例的 WSI 和基因表达视为两种互补视图：图像保留空间形态，转录组描述分子状态。两个模态分别编码后，通过对称对比目标对齐。训练完成后，只保留 slide encoder，即可做少样本分类、原型分类或检索。

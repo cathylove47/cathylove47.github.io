@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2024；论文报告在 TCGA-Lung few-shot 设置中相对对比方法至少提高9.19个百分点 accuracy。该数字属于特定 few-shot 协议，不代表所有任务的普遍增益（2026-09-01）。
 
+## 原文摘要
+
+> Whole Slide Image (WSI) classification is often formulated as a Multiple Instance Learning (MIL) problem. Recently, Vision-Language Models (VLMs) have demonstrated remarkable performance in WSI classification. However, existing methods leverage coarse-grained pathogenetic descriptions for visual representation supervision, which are insufficient to capture the complex visual appearance of pathogenetic images, hindering the generalizability of models on diverse downstream tasks. Additionally, processing high-resolution WSIs can be computationally expensive. In this paper, we propose a novel "Fine-grained Visual-Semantic Interaction" (FiVE) framework for WSI classification. It is designed to enhance the model's generalizability by leveraging the interaction between localized visual patterns and fine-grained pathological semantics. Specifically, with meticulously designed queries, we start by utilizing a large language model to extract fine-grained pathological descriptions from various non-standardized raw reports. The output descriptions are then reconstructed into fine-grained labels used for training. By introducing a Task-specific Fine-grained Semantics (TFS) module, we enable prompts to capture crucial visual information in WSIs, which enhances representation learning and augments generalization capabilities significantly. Furthermore, given that pathological visual patterns are redundantly distributed across tissue slices, we sample a subset of visual instances during training. Our method demonstrates robust generalizability and strong transferability, dominantly outperforming the counterparts on the TCGA Lung Cancer dataset with at least 9.19% higher accuracy in few-shot experiments. The code is available at: https://github.com/ls1rius/WSI_FiVE.
+
+*来源：arXiv:2402.19326（https://arxiv.org/abs/2402.19326）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![WSI-FiVE 论文框架图](/papers/pathology/12-wsi-five-pipeline.png)
+
+> **原文图注**：Figure 2 : Left: The structure of the FiVE framework. The model consists of a frozen image encoder, a text encoder, and the TFS module. Whole slide images are divided into instances for embedding extraction by the image encoder. Raw pathological reports are standardized by GPT-4 into fine-grained descriptions. The fine-grained descriptions and manual prompts are sampled, shuffled, and reconstructed in pairs. These prompts aggregate instances into bag-level features, subsequently aligned with the descriptions utilizing contrastive loss. Top Right: Fine-grained pathological descriptions. The fine-grained pathological descriptions are generated from multiple answers based on specific queries. These descriptions undergo a process of random sampling, shuffling, and reconstruction to form a unified sentence. Bottom Right: The Instance Aggregator module. The instance aggregator consists of a self-attention module and a cross-attention module, fusing image instance embeddings and prompt embeddings to create bag-level features.
+
+*图源：https://arxiv.org/html/2402.19326v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+只看图片像做没有题目的看图考试；WSI-FiVE 把疾病文字提示也带进来，让每个图像小块知道应该寻找什么线索。
+
+### 0.2 它为什么出现？
+
+只用切片标签训练，模型可能记住染色或医院差异；只在最后拼接一段文字，又无法指导具体 patch 的选择。
+
+### 0.3 它到底怎么做？
+
+1. 把 WSI 转成一组视觉 token。
+2. 从报告或类别描述中提取细粒度病理语义。
+3. 让文字 token 与局部视觉 token 多次交互。
+4. 融合得到切片表示并完成分类。
+
+### 0.4 先认清这些词
+
+- **细粒度**：不是只说“癌症”，而是描述核形态、结构、分化等具体线索。
+- **视觉—语义交互**：让图像特征和文字特征相互查询。
+- **泛化**：换数据集、医院或任务后仍能工作。
+- **prompt**：提供给模型的文字任务或类别说明。
+
+### 0.5 输入和输出
+
+输入是 WSI patch 特征与病理语义文字；输出是切片类别。
+
+### 0.6 最容易误解的地方
+
+文字可以提供知识，也可能带来标签捷径；必须确认测试信息没有泄漏到提示生成流程。
+
+**现在只记住一句话：WSI-FiVE = 用细致的病理文字指导每个 patch 找证据。**
+
 ## 1. 三分钟摘要与推荐理由
 
 WSI-FiVE 将病理报告/类别语义与 patch 视觉特征进行细粒度交互，而不是只在最后拼接一个文本向量。它希望通过文本提供的疾病语义，提高模型在不同数据和任务上的泛化能力。

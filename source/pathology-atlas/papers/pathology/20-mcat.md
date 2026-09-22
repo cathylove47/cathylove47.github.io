@@ -6,6 +6,56 @@
 
 **精读核验**：ICCV 2021 正式论文与 Mahmood Lab 官方仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> Survival outcome prediction is a challenging weakly-supervised and ordinal regression task in computational pathology that involves modeling complex interactions within the tumor microenvironment in gigapixel whole slide images (WSIs). Despite recent progress in formulating WSIs as bags for multiple instance learning (MIL), representation learning of entire WSIs remains an open and challenging problem, especially in overcoming: 1) the computational complexity of feature aggregation in large bags, and 2) the data heterogeneity gap in incorporating biological priors such as genomic measurements. In this work, we present a Multimodal Co-Attention Transformer (MCAT) framework that learns an interpretable, dense co-attention mapping between WSIs and genomic features formulated in an embedding space. Inspired by approaches in Visual Question Answering (VQA) that can attribute how word embeddings attend to salient objects in an image when answering a question, MCAT learns how histology patches attend to genes when predicting patient survival. In addition to visualizing multimodal interactions, our co-attention transformation also reduces the space complexity of WSI bags, which enables the adaptation of Transformer layers as a general encoder backbone in MIL. We apply our proposed method on five different cancer datasets (4,730 WSIs, 67 million patches). Our experimental results demonstrate that the proposed method consistently achieves superior performance compared to the state-of-the-art methods.
+
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MCAT 论文框架图](/papers/pathology/20-mcat-pipeline.jpg)
+
+> **原文图注**：MCAT 网络结构图（作者官方仓库 docs/Fig1_netarch.jpg）
+
+*图源：https://github.com/mahmoodlab/MCAT。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+把六组基因当成六位提问者，每位都去问切片：“哪些区域和我有关？”得到六份图像摘要后，再共同判断患者风险。
+
+### 0.2 它为什么出现？
+
+直接拼接整张切片和基因向量太粗，无法表示某组基因与哪些组织区域共同关联生存。
+
+### 0.3 它到底怎么做？
+
+1. 把患者 WSI 变成大量 patch 特征。
+2. 把基因按功能整理成若干组并编码。
+3. 让每组基因作为 query，从 patch 中提取一个视觉概念。
+4. 融合视觉概念和基因表示，预测离散时间生存风险。
+
+### 0.4 先认清这些词
+
+- **共注意力**：一个模态主动查询另一个模态。
+- **query**：带着问题去寻找相关信息的向量。
+- **离散时间风险**：把时间分段，估计每段发生事件的概率。
+- **患者级划分**：同一患者的全部切片只能在一个数据集合中。
+
+### 0.5 输入和输出
+
+输入是患者 WSI、组学数据和生存结局；输出是患者风险和生存概率。
+
+### 0.6 最容易误解的地方
+
+基因 query 关注某区域只表示统计关联；报告性能前必须排除患者泄漏。
+
+**现在只记住一句话：MCAT = 基因组主动从切片中提取与生存相关的视觉证据。**
+
 ## 1. 三分钟摘要与推荐理由
 
 MCAT 把 6 组功能相关基因表示当作 query，对数万 WSI patch 特征做共注意力。这样既实现早期跨模态交互，又把超长 patch 序列压缩成少量“基因引导的视觉概念”，随后再用 Transformer 建模并预测离散时间生存风险。

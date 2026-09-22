@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2026 正式论文与 Apache-2.0 官方仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> Conventional whole slide image (WSI) analysis pipelines follow a two-stage process. First, an image encoder, such as a vision transformer (ViT), is used to perform batched offline feature extraction on a series of tiles cropped from the WSI. Second, a multiple instance learning (MIL) model is trained with slide-level labels to obtain task-specific slide embeddings. However, several limitations exist: strong reliance on pre-trained weights of the tile encoder, the absence of receptive fields from the original image, and a lack of task-independent WSI representations. An ideal improvement would be to develop an end-to-end pre-trained WSI model, but training it from scratch will face challenges such as high training costs and computational complexity. In this work, we deconstruct the key steps of ViT-based pathology image representation and propose a conversion strategy called E2E-ViT, which transforms a vanilla ViT into an end-to-end pre-trained WSI model without introducing additional parameters. E2E-ViT directly inputs the entire tissue region in WSIs to efficiently feed image sequences into the transformer backbone, achieving information interaction from the original receptive fields and generating slide features. Through multiple survival prediction tasks, we demonstrate that transformed pre-trained ViTs outperform two-stage MIL models and slide foundation models (SFM). Our work presents a new end-to-end learning paradigm that provides a promising direction for the next generation of computational pathology models.
+
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![E2E-ViT 论文框架图](/papers/pathology/23-e2e-vit-pipeline.png)
+
+> **原文图注**：Figure 2 原图（论文框架图，从 CVPR 2026 官方 PDF 渲染提取）。
+
+*图源：CVF 官方 PDF（CVPR 2026）。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+传统流程先让翻译员把所有图片翻译成固定笔记，再让老师判题；E2E-ViT 让翻译员和判题老师一起学习，错误可以一路反馈到最初看图阶段。
+
+### 0.2 它为什么出现？
+
+两阶段 MIL 会冻结 patch encoder，使它无法根据具体生存任务调整；直接端到端处理全部像素又超出显存。
+
+### 0.3 它到底怎么做？
+
+1. 从 WSI 中准备组织 patch。
+2. 重新组织 patch 的图像 token，并压缩超长序列。
+3. 把预训练 ViT 改造成能处理整张切片上下文的模型。
+4. 从像素到生存头联合反向传播。
+
+### 0.4 先认清这些词
+
+- **端到端**：最终任务误差可以一直更新到最前面的图像 encoder。
+- **预提取特征**：提前算好且训练下游时通常不再变化的向量。
+- **token 压缩**：减少送入长序列模型的信息单元数量。
+- **相对位置编码**：告诉模型两个 patch 彼此相隔多远。
+
+### 0.5 输入和输出
+
+输入仍是裁好的 WSI patch 像素；输出是患者生存风险。
+
+### 0.6 最容易误解的地方
+
+这里的“端到端”不是直接读取原始 SVS 文件；仍依赖组织检测、切块和采样。
+
+**现在只记住一句话：E2E-ViT = 让 patch 看图器也参与任务学习，而不是永远冻结。**
+
 ## 1. 三分钟摘要与推荐理由
 
 传统 WSI 流程先离线提取每个 tile 的特征，再训练 MIL 聚合器，视觉 encoder 无法随任务更新。E2E-ViT 重新组织图像输入、压缩 token 序列并加入相对位置编码，把已有 patch-level ViT 权重直接转换为能处理整张组织区域的模型，不增加额外参数。
@@ -66,4 +116,3 @@ WSI tissue patches → 重新拼接/批量输入 ViT patch embedding
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2026/html/Li_Turning_Pre-Trained_Vision_Transformers_into_End-to-End_Histopathology_Whole_Slide_Image_CVPR_2026_paper.html)
 - [官方代码](https://github.com/WonderLandxD/E2E-ViT)
-

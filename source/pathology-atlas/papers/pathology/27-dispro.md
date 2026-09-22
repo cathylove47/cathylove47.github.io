@@ -1,5 +1,55 @@
 # DisPro：模态缺失条件下的病理—组学生存预测
 
+## 原文摘要
+
+> The integration of multimodal data including pathology images and gene profiles is widely applied in precise survival prediction. Despite recent advances in multimodal survival models, collecting complete modalities for multimodal fusion still poses a significant challenge, hindering their application in clinical settings. Current approaches tackling incomplete modalities often fall short, as they typically compensate for only a limited part of the knowledge of missing modalities. To address this issue, we propose a Distilled Prompt Learning framework (DisPro) to utilize the strong robustness of Large Language Models (LLMs) to missing modalities, which employs two-stage prompting for compensation of comprehensive information for missing modalities. In the first stage, Unimodal Prompting (UniPro) distills the knowledge distribution of each modality, preparing for supplementing modality-specific knowledge of the missing modality in the subsequent stage. In the second stage, Multimodal Prompting (MultiPro) leverages available modalities as prompts for LLMs to infer the missing modality, which provides modality-common information. Simultaneously, the unimodal knowledge acquired in the first stage is injected into multimodal inference to compensate for the modality-specific knowledge of the missing modality. Extensive experiments covering various missing scenarios demonstrated the superiority of the proposed method. The code is available at https://github.com/Innse/DisPro.
+
+*来源：arXiv:2503.01653（https://arxiv.org/abs/2503.01653）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DisPro 论文框架图](/papers/pathology/27-dispro-pipeline.png)
+
+> **原文图注**：Figure 1 : Insights for existing incomplete multimodal learning and comparison to the proposed method. (a) Generation-based Imputation and Imputation-free approaches, (b) Retrieved-based Imputation and (c) Ours.
+
+*图源：https://arxiv.org/html/2503.01653v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+考试时有的学生缺课，拿不到图像或基因其中一份资料。DisPro 让资料完整的“老师模型”教缺资料的模型，尽量在少一份证据时继续判断。
+
+### 0.2 它为什么出现？
+
+现实患者经常缺 WSI 或组学，而许多多模态模型要求两者同时存在。
+
+### 0.3 它到底怎么做？
+
+1. 先用模态完整的病例学习联合表示。
+2. 为不同缺失情况准备可学习 prompt。
+3. 把完整模型的知识蒸馏给只有单模态的分支。
+4. 根据实际可用模态预测生存风险。
+
+### 0.4 先认清这些词
+
+- **模态缺失**：某位患者缺少图像、组学或其他输入。
+- **prompt learning**：学习少量提示向量来调整模型行为。
+- **知识蒸馏**：让较完整或较强模型指导较弱模型。
+- **非随机缺失**：资料缺失与病情、医院流程等因素相关。
+
+### 0.5 输入和输出
+
+输入可以是完整或缺失的 WSI/组学；输出是患者生存风险。
+
+### 0.6 最容易误解的地方
+
+训练时随机遮掉模态，比真实临床缺失简单；真实缺失可能本身携带偏倚信息。
+
+**现在只记住一句话：DisPro = 用完整病例教会模型在缺一份模态时继续预测。**
+
 ## 1. 一句话结论
 
 DisPro 用提示学习把单模态患者投射到共享的多模态语义空间，目标是在 WSI 或组学缺失时仍能预测生存；它对“现实数据不齐全”这一问题切中要害，但随机模拟缺失并不等价于临床中的非随机缺失。
@@ -59,4 +109,3 @@ DisPro 分为两阶段：UniPro 先为单一模态学习提示和风险表征，
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2025/html/Du_DisPro_Survival_Prediction_for_Missing_Modalities_with_Multi-Modal_Prototypes_CVPR_2025_paper.html)
 - [官方代码](https://github.com/Innse/DisPro)
-

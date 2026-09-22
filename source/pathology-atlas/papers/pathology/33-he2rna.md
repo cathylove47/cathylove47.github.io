@@ -1,5 +1,53 @@
 # HE2RNA：从 H&E 预测转录组的起点
 
+## 原文摘要
+
+> Deep learning methods for digital pathology analysis are an effective way to address multiple clinical questions, from diagnosis to prediction of treatment outcomes. These methods have also been used to predict gene mutations from pathology images, but no comprehensive evaluation of their potential for extracting molecular features from histology slides has yet been performed. We show that HE2RNA, a model based on the integration of multiple data modes, can be trained to systematically predict RNA-Seq profiles from whole-slide images alone, without expert annotation. Through its interpretable design, HE2RNA provides virtual spatialization of gene expression, as validated by CD3- and CD20-staining on an independent dataset. The transcriptomic representation learned by HE2RNA can also be transferred on other datasets, even of small size, to increase prediction performance for specific molecular phenotypes. We illustrate the use of this approach in clinical diagnosis purposes such as the identification of tumors with microsatellite instability. RNA-sequencing of tumour tissue can provide important diagnostic and prognostic information but this is costly and not routinely performed in all clinical settings. Here, the authors show that whole slide histology slides&#8212;part of routine care&#8212;can be used to predict RNA-sequencing data and thus reduce the need for additional analyses.
+
+*来源：论文页 meta。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图说明
+
+> 论文没有单张 pipeline 总图：方法分散在正文与 Extended Data 中，PMC/arXiv 均无对应整体框架图。
+
+*说明：本篇未插入框架图，原因是缺少可核验的公开原图；不使用任何替代图片或重绘示意。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+像根据农田照片猜土壤里哪些营养成分较多。HE2RNA 根据 H&E 外观预测整块肿瘤样本的基因表达。
+
+### 0.2 它为什么出现？
+
+RNA 测序昂贵且会消耗样本；研究者想知道组织形态中是否藏有可预测的分子信号。
+
+### 0.3 它到底怎么做？
+
+1. 把 WSI 切成 tile，并用预训练 CNN 提取特征。
+2. 让共享网络为各 tile 预测基因表达信号。
+3. 挑选和聚合最有证据的 tile。
+4. 得到患者级 bulk RNA-seq 表达预测，并分析相关区域。
+
+### 0.4 先认清这些词
+
+- **RNA-seq**：测量大量基因表达水平的实验技术。
+- **bulk**：把许多细胞混在一起得到的平均值。
+- **top-k 聚合**：只汇总分数最高的若干实例。
+- **表达预测**：根据图像估计基因读数，不是直接测量。
+
+### 0.5 输入和输出
+
+输入是 WSI；输出是患者级多个基因的预测表达。
+
+### 0.6 最容易误解的地方
+
+它预测的是 bulk 表达，不是真正的空间转录组地图；相关热图只能提示可能区域。
+
+**现在只记住一句话：HE2RNA = 从 H&E 估计整块样本的基因表达，是“形态推分子”路线的起点。**
+
 ## 1. 三分钟摘要与推荐理由
 HE2RNA 用配对的 TCGA WSI 与 bulk RNA-seq 学习从组织形态预测基因表达，是 Path2Space、HESCAPE、MEATRD 和 SpaCRD 所在“形态—表达”主线的早期锚点。
 
@@ -35,4 +83,3 @@ HE2RNA提供 bulk 弱监督起点；HESCAPE与 SpaCRD转向真实空间转录组
 
 ## 12. 官方链接
 [论文](https://www.nature.com/articles/s41467-020-17678-4) · [代码](https://github.com/owkin/HE2RNA_code)
-

@@ -1,5 +1,55 @@
 # GMMamba：分组建模超大病理切片
 
+## 原文摘要
+
+> Recent advances in selective state space models (Mamba) have shown great promise in whole slide image (WSI) classification. Despite this, WSIs contain explicit local redundancy (similar patches) and irrelevant regions (uninformative instances), posing significant challenges for Mamba-based multi-instance learning (MIL) methods in capturing global representations. Furthermore, bag-level approaches struggle to extract critical features from all instances, while group-level methods fail to adequately account for tumor dispersion and intrinsic correlations across groups, leading to suboptimal global representations. To address these issues, we propose group masking Mamba (GMMamba), a novel framework that combines two elaborate modules: (1) intra-group masking Mamba (IMM) for selective instance exploration within groups, and (2) cross-group super-feature sampling (CSS) to ameliorate long-range relation learning. Specifically, IMM adaptively predicts sparse masks to filter out features with low attention scores (i.e., uninformative patterns) during bidirectional Mamba modeling, facilitating the removal of instance redundancies for compact local representation. For improved bag prediction, the CSS module further aggregates sparse group representations into discriminative features, effectively grasping comprehensive dependencies among dispersed and sparse tumor regions inherent in large-scale WSIs. Extensive experiments on four datasets demonstrate that GMMamba outperforms the state-of-the-art ACMIL by 2.2% and 6.4% in accuracy on the TCGA-BRCA and TCGA-ESCA datasets, respectively.
+
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![GMMamba 论文框架图](/papers/pathology/28-gmmamba-pipeline.png)
+
+> **原文图注**：Figure 3 原图（论文框架图，从 ICCV 2025 官方 PDF 渲染提取）。
+
+*图源：CVF 官方 PDF（ICCV 2025）。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+把一个超大班级分组，每组先交流并选出代表，再让组代表完成全班判断；同时暂时遮住一些低分发言，迫使模型利用更稳健的线索。
+
+### 0.2 它为什么出现？
+
+数万 patch 的全局 Transformer 太贵，普通池化又忽略组内和跨组关系。
+
+### 0.3 它到底怎么做？
+
+1. 把 WSI patch 特征划分成多个组。
+2. 用双向 Mamba 建模每组内部的长序列关系。
+3. 通过分组遮蔽减少对少数容易线索的依赖。
+4. 抽取组级超级特征并汇总为切片分类。
+
+### 0.4 先认清这些词
+
+- **group masking**：按策略遮住部分实例或组，让模型学习替代证据。
+- **Mamba**：线性复杂度的选择性状态空间序列模型。
+- **超级特征**：一组 patch 压缩后的代表表示。
+- **双向**：同时按正向和反向读取序列。
+
+### 0.5 输入和输出
+
+输入是 WSI 的 patch embedding；输出是切片类别。
+
+### 0.6 最容易误解的地方
+
+低注意力不等于无用，尤其是罕见病灶；遮蔽策略必须检查是否误删关键证据。
+
+**现在只记住一句话：GMMamba = patch 分组、组内用 Mamba、组间用代表特征。**
+
 ## 1. 一句话结论
 
 GMMamba 先把 WSI 实例分组，再用双向 Mamba 建模组内关系，并跨组抽取代表性“超级特征”；它以近线性序列建模降低长序列成本，但固定遮蔽低注意力实例可能同时删掉稀有而关键的病灶。
@@ -59,4 +109,3 @@ GMMamba 先把 WSI 实例分组，再用双向 Mamba 建模组内关系，并跨
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/ICCV2025/html/Zheng_GMMamba_Group_Masking_Mamba_for_Whole_Slide_Image_Classification_ICCV_2025_paper.html)
 - [官方代码](https://github.com/titizheng/GMMamba)
-

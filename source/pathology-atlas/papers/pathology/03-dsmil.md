@@ -7,6 +7,57 @@
 **精读状态**：已完成论文、补充材料与官方仓库交叉核验（2026-09-01）  
 **建议投入**：先用预提取 CAMELYON16 特征跑通；暂不从原始 WSI 和 SimCLR 预训练开始。
 
+## 原文摘要
+
+> We address the challenging problem of whole slide image (WSI) classification. WSIs have very high resolutions and usually lack localized annotations. WSI classification can be cast as a multiple instance learning (MIL) problem when only slide-level labels are available. We propose a MIL-based method for WSI classification and tumor detection that does not require localized annotations. Our method has three major components. First, we introduce a novel MIL aggregator that models the relations of the instances in a dual-stream architecture with trainable distance measurement. Second, since WSIs can produce large or unbalanced bags that hinder the training of MIL models, we propose to use self-supervised contrastive learning to extract good representations for MIL and alleviate the issue of prohibitive memory cost for large bags. Third, we adopt a pyramidal fusion mechanism for multiscale WSI features, and further improve the accuracy of classification and localization. Our model is evaluated on two representative WSI datasets. The classification accuracy of our model compares favorably to fully-supervised methods, with less than 2% accuracy gap across datasets. Our results also outperform all previous MIL-based methods. Additional benchmark results on standard MIL datasets further demonstrate the superior performance of our MIL aggregator on general MIL problems. GitHub repository: https://github.com/binli123/dsmil-wsi
+
+*来源：arXiv:2011.08939（https://arxiv.org/abs/2011.08939）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DSMIL 论文框架图](/papers/pathology/03-dsmil-pipeline.jpg)
+
+> **原文图注**：Figure 2: Overview of our DSMIL. DSMIL uses features learned by self-supervised contrastive learning. Embeddings of different scales of a WSI are concatenated to form feature pyramids. The figure shows an example of two magnifications (20 × \times and 5 × \times ). The 5 × \times feature vector is duplicated and concatenated with each of the 20 × \times feature vectors of the sub-images within this 5 × \times patch.
+
+*图源：https://arxiv.org/html/2011.08939v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+想象老师只告诉你“这一大盒卡片里有坏卡片”，却不告诉你坏的是哪一张。DSMIL 先挑出最可疑的一张，再把整盒里与它相似的卡片一起检查。
+
+### 0.2 它为什么出现？
+
+一张病理切片被切成几千个小块，但训练标签通常只说整张切片有没有病。真正有病灶的小块可能很少，简单平均会把信号冲淡，只看最高分又容易误判。
+
+### 0.3 它到底怎么做？
+
+1. 把整张切片切成许多 patch，并把每个 patch 变成一串数字特征。
+2. 第一条支路给每个 patch 打分，找出每个类别最可疑的关键 patch。
+3. 第二条支路比较其他 patch 与关键 patch 的相似程度，决定各自应占多大权重。
+4. 合并“最可疑 patch 的判断”和“整张切片汇总后的判断”，输出切片类别。
+
+### 0.4 先认清这些词
+
+- **WSI**：一张超大病理切片图像，像一幅必须放大查看的巨型地图。
+- **patch**：从 WSI 上裁下的小方块。
+- **bag / instance**：整张切片是袋子，里面每个 patch 是一个实例。
+- **MIL**：只拿到袋子标签、不拿到每个小块标签的学习方法。
+- **attention**：模型分配的关注权重；权重大不等于医学上的因果证据。
+
+### 0.5 输入和输出
+
+输入是一张切片的全部 patch 特征和切片级标签；输出是切片分类分数，并可生成 patch 关注热图。
+
+### 0.6 最容易误解的地方
+
+“关键 patch”是模型认为最支持某个类别的 patch，不保证它一定是真病灶；热图仍需病理专家核对。
+
+**现在只记住一句话：DSMIL = 先找一个最可疑的小块，再围绕它组织整张切片的证据。**
+
 ## 1. 三分钟摘要与推荐理由
 
 ### 一句话结论

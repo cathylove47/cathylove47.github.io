@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2024，pp. 11566–11578；评估由4个诊断分类任务和9个预后任务组成，共13个数据集（2026-09-01）。
 
+## 原文摘要
+
+> Representation learning of pathology whole-slide images (WSIs) has been has primarily relied on weak supervision with Multiple Instance Learning (MIL). However, the slide representations resulting from this approach are highly tailored to specific clinical tasks, which limits their expressivity and generalization, particularly in scenarios with limited data. Instead, we hypothesize that morphological redundancy in tissue can be leveraged to build a task-agnostic slide representation in an unsupervised fashion. To this end, we introduce PANTHER, a prototype-based approach rooted in the Gaussian mixture model that summarizes the set of WSI patches into a much smaller set of morphological prototypes. Specifically, each patch is assumed to have been generated from a mixture distribution, where each mixture component represents a morphological exemplar. Utilizing the estimated mixture parameters, we then construct a compact slide representation that can be readily used for a wide range of downstream tasks. By performing an extensive evaluation of PANTHER on subtyping and survival tasks using 13 datasets, we show that 1) PANTHER outperforms or is on par with supervised MIL baselines and 2) the analysis of morphological prototypes brings new qualitative and quantitative insights into model interpretability.
+
+*来源：arXiv:2405.11643（https://arxiv.org/abs/2405.11643）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PANTHER 论文框架图](/papers/pathology/09-panther-pipeline.jpg)
+
+> **原文图注**：Figure 2 : Overview of Panther workflow . Whole-slide image (WSI) is segmented and patched into a set of WSI patches. A compressed feature for each patch is encoded through a feature extractor pretrained on a large histopathology dataset. Panther uses the Gaussian mixture model for patch embedding distribution, with each mixture corresponding to a morphologically distinct prototype. The estimated model parameters are concatenated to form the slide representation, which can be used as input to a predictor module for clinical downstream tasks and visualized as a prototypical assignment map.
+
+*图源：https://arxiv.org/html/2405.11643v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+把一大盒拼图按形状分成几堆，再记录每堆有多少、中心长什么样、内部差异多大。PANTHER 用这些统计代替保存几万个 patch。
+
+### 0.2 它为什么出现？
+
+监督 MIL 通常只为一个任务服务，换任务可能要重训；直接保存全部 patch 又长又贵。
+
+### 0.3 它到底怎么做？
+
+1. 先用训练集 patch 建立若干形态原型。
+2. 判断一张 WSI 的每个 patch 更像哪个原型。
+3. 统计每种原型在该切片中的比例、中心和变化。
+4. 把统计量拼成固定长度的 slide embedding，再做分类、生存或检索。
+
+### 0.4 先认清这些词
+
+- **原型**：一类常见形态的代表中心。
+- **高斯混合模型**：用多个钟形分布共同描述复杂数据。
+- **无监督**：建立 slide 表示时不需要下游任务标签。
+- **固定长度表示**：不管切片有多少 patch，最后得到同样长度的向量。
+
+### 0.5 输入和输出
+
+输入是数量不固定的 patch embedding；输出是长度固定的切片表示。
+
+### 0.6 最容易误解的地方
+
+原型是数学聚类中心，不一定自动对应病理学上有名字的组织成分。
+
+**现在只记住一句话：PANTHER = 用“形态配方表”压缩整张切片。**
+
 ## 1. 三分钟摘要与推荐理由
 
 PANTHER 假设一张 WSI 的 patch 来自若干形态成分，用高斯混合模型估计这些原型及其分布参数，再把整张 WSI 压缩为固定长度 slide embedding。与监督 MIL 不同，这个表示不依赖某个下游标签，因而可以用于分类、生存和检索。

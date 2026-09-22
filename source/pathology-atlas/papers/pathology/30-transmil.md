@@ -1,5 +1,55 @@
 # TransMIL：从独立 patch 到相关实例建模
 
+## 原文摘要
+
+> Multiple instance learning (MIL) is a powerful tool to solve the weakly supervised classification in whole slide image (WSI) based pathology diagnosis. However, the current MIL methods are usually based on independent and identical distribution hypothesis, thus neglect the correlation among different instances. To address this problem, we proposed a new framework, called correlated MIL, and provided a proof for convergence. Based on this framework, we devised a Transformer based MIL (TransMIL), which explored both morphological and spatial information. The proposed TransMIL can effectively deal with unbalanced/balanced and binary/multiple classification with great visualization and interpretability. We conducted various experiments for three different computational pathology problems and achieved better performance and faster convergence compared with state-of-the-art methods. The test AUC for the binary tumor classification can be up to 93.09% over CAMELYON16 dataset. And the AUC over the cancer subtypes classification can be up to 96.03% and 98.82% over TCGA-NSCLC dataset and TCGA-RCC dataset, respectively. Implementation is available at: https://github.com/szc19990412/TransMIL.
+
+*来源：arXiv:2106.00908（https://arxiv.org/abs/2106.00908）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![TransMIL 论文框架图](/papers/pathology/30-transmil-pipeline.png)
+
+> **原文图注**：Figure 3: Overview of our TransMIL. Each WSI is cropped into patches (background is discraded), and embedded in feature vectors by ResNet50. Then the sequence is processed with the TPT module: 1) Squaring of sequence; 2) Correlation modelling of the sequence; 3) Conditional position encoding and local information fusion; 4) Deep feature aggregation; 5) Mapping of 𝕋 → 𝒴 \mathbb{T}\rightarrow\mathcal{Y} .
+
+*图源：https://arxiv.org/html/2106.00908v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+传统 MIL 像把每个学生当作互不认识；TransMIL 让学生彼此交流，并告诉模型他们在教室里的座位位置。
+
+### 0.2 它为什么出现？
+
+肿瘤、间质和免疫区域会成片出现，patch 不是独立的；普通注意力池化可能忽略共现和空间结构。
+
+### 0.3 它到底怎么做？
+
+1. 输入预提取的 patch 特征。
+2. 补齐并排列成近似二维网格。
+3. 用 Transformer 让 patch 交换信息。
+4. 通过金字塔位置编码加入多尺度空间关系，再用 class token 分类。
+
+### 0.4 先认清这些词
+
+- **相关实例**：patch 之间存在共现或空间关系。
+- **class token**：专门汇总整组信息并用于分类的 token。
+- **PPEG**：用不同尺度卷积注入位置关系的模块。
+- **Transformer**：用注意力让信息单元彼此交互。
+
+### 0.5 输入和输出
+
+输入是 patch 特征及其排列；输出是 WSI 类别。
+
+### 0.6 最容易误解的地方
+
+把 patch 补成方形网格只是计算安排，不一定完全还原原始组织几何。
+
+**现在只记住一句话：TransMIL = 让 patch 相互交流，同时补回它们的空间位置。**
+
 ## 1. 三分钟摘要与推荐理由
 TransMIL 用 Transformer 显式建模 WSI 中 patch 之间的相关性，并通过金字塔位置编码恢复二维空间结构，是理解后续长序列 MIL 与 Mamba 方法的重要桥梁。
 
@@ -35,4 +85,3 @@ TransMIL 连接 CLAM 类注意力 MIL 与 MambaMIL/GMMamba 的高效长序列建
 
 ## 12. 官方链接
 [NeurIPS 论文](https://papers.nips.cc/paper/2021/hash/10c272d06794d3e5785d5e7c5356e9ff-Abstract.html) · [代码](https://github.com/szc19990412/TransMIL)
-

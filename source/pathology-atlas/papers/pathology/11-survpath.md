@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2024；论文示意配置含4,999个基因、331个 pathway tokens、256维 token，以及每例约7,000–100,000个 histology patch tokens（2026-09-01）。
 
+## 原文摘要
+
+> Integrating whole-slide images (WSIs) and bulk transcriptomics for predicting patient survival can improve our understanding of patient prognosis. However, this multimodal task is particularly challenging due to the different nature of these data: WSIs represent a very high-dimensional spatial description of a tumor, while bulk transcriptomics represent a global description of gene expression levels within that tumor. In this context, our work aims to address two key challenges: (1) how can we tokenize transcriptomics in a semantically meaningful and interpretable way?, and (2) how can we capture dense multimodal interactions between these two modalities? Specifically, we propose to learn biological pathway tokens from transcriptomics that can encode specific cellular functions. Together with histology patch tokens that encode the different morphological patterns in the WSI, we argue that they form appropriate reasoning units for downstream interpretability analyses. We propose fusing both modalities using a memory-efficient multimodal Transformer that can model interactions between pathway and histology patch tokens. Our proposed model, SURVPATH, achieves state-of-the-art performance when evaluated against both unimodal and multimodal baselines on five datasets from The Cancer Genome Atlas. Our interpretability framework identifies key multimodal prognostic factors, and, as such, can provide valuable insights into the interaction between genotype and phenotype, enabling a deeper understanding of the underlying biological mechanisms at play. We make our code public at: https://github.com/ajv012/SurvPath.
+
+*来源：arXiv:2304.06819（https://arxiv.org/abs/2304.06819）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![SurvPath 论文框架图](/papers/pathology/11-survpath-pipeline.png)
+
+> **原文图注**：Fig. 2 : Block diagram of SurvPath . (1) We tokenize transcriptomics into biological pathway tokens that are semantically meaningful, interpretable, and end-to-end learnable. (2) We further tokenize the corresponding histology whole-slide image into patch tokens using an SSL pre-trained feature extractor. (3) We combine pathway and patch tokens using a memory-efficient multimodal Transformer used for survival outcome prediction.
+
+*图源：https://arxiv.org/html/2304.06819v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+把成千上万个基因按功能分成几个“工作小组”，再让每个小组去询问切片里的组织区域，最后共同估计病人的风险。
+
+### 0.2 它为什么出现？
+
+直接把所有基因压成一个向量会丢掉通路结构，直接拼接图像与组学又很难看出两者如何交互。
+
+### 0.3 它到底怎么做？
+
+1. 把 WSI 变成许多组织 patch token。
+2. 按生物通路把基因表达整理成 pathway token。
+3. 让通路 token 与组织 token 通过注意力交换信息。
+4. 融合这些交互结果，预测患者生存风险。
+
+### 0.4 先认清这些词
+
+- **生物通路**：一组共同完成某种生物功能的基因。
+- **token**：模型处理的一个信息单元。
+- **生存预测**：估计不同时间段发生事件的风险，需处理删失。
+- **删失**：随访结束时尚未观察到事件，并不等于永远不会发生。
+
+### 0.5 输入和输出
+
+输入是患者的 WSI 特征、RNA 表达和生存记录；输出是患者风险分数或时间段风险。
+
+### 0.6 最容易误解的地方
+
+某通路对某区域的注意力高，只表示模型利用了这种关联，不证明该通路导致了该形态。
+
+**现在只记住一句话：SurvPath = 让“基因通路小组”和“组织区域”对话后预测生存。**
+
 ## 1. 三分钟摘要与推荐理由
 
 SurvPath 不把数千个基因粗暴压成一个向量，而是按生物通路构造 pathway tokens，再与 WSI patch tokens 通过内存友好的多模态 Transformer 进行密集交互。输出用于患者生存风险预测，并可追踪哪些形态区域与哪些通路共同关联预后。

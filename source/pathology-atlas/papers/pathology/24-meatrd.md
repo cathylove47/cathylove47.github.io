@@ -6,6 +6,56 @@
 
 **精读核验**：AAAI 2025 论文、扩展 arXiv 与作者官方仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> The detection of anomalous tissue regions (ATRs) within affected tissues is crucial in clinical diagnosis and pathological studies. Conventional automated ATR detection methods, primarily based on histology images alone, falter in cases where ATRs and normal tissues have subtle visual differences. The recent spatial transcriptomics (ST) technology profiles gene expressions across tissue regions, offering a molecular perspective for detecting ATRs. However, there is a dearth of ATR detection methods that effectively harness complementary information from both histology images and ST. To address this gap, we propose MEATRD, a novel ATR detection method that integrates histology image and ST data. MEATRD is trained to reconstruct image patches and gene expression profiles of normal tissue spots (inliers) from their multimodal embeddings, followed by learning a one-class classification AD model based on latent multimodal reconstruction errors. This strategy harmonizes the strengths of reconstruction-based and one-class classification approaches. At the heart of MEATRD is an innovative masked graph dual-attention transformer (MGDAT) network, which not only facilitates cross-modality and cross-node information sharing but also addresses the model over-generalization issue commonly seen in reconstruction-based AD methods. Additionally, we demonstrate that modality-specific, task-relevant information is collated and condensed in multimodal bottleneck encoding generated in MGDAT, marking the first theoretical analysis of the informational properties of multimodal bottleneck encoding. Extensive evaluations across eight real ST datasets reveal MEATRD's superior performance in ATR detection, surpassing various state-of-the-art AD methods. Remarkably, MEATRD also proves adept at discerning ATRs that only show slight visual deviations from normal tissues.
+
+*来源：arXiv:2412.10659（https://arxiv.org/abs/2412.10659）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MEATRD 论文框架图](/papers/pathology/24-meatrd-pipeline.png)
+
+> **原文图注**：Figure 2: The workflow of MEATRD.
+
+*图源：https://arxiv.org/html/2412.10659v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+先学习一个正常社区应该长什么样、居民说什么话，再找出“外观或表达无法被正常规则解释”的街区。
+
+### 0.2 它为什么出现？
+
+异常组织可能在 H&E 上很像正常组织，只看图或只看基因都可能漏掉；不同 spot 之间还有空间邻接关系。
+
+### 0.3 它到底怎么做？
+
+1. 把每个空间 spot 当作图中的节点。
+2. 同时提取 spot 图像特征和基因表达特征。
+3. 让双重注意力在邻居和模态之间交换信息。
+4. 学习重建正常 spot，用重建误差和单类目标给异常打分。
+
+### 0.4 先认清这些词
+
+- **图节点**：图结构中的一个对象，这里对应一个空间 spot。
+- **重建**：让模型尽量恢复输入内容。
+- **单类学习**：主要学习正常样本的范围，再识别偏离者。
+- **异常分数**：样本不像已学正常模式的程度。
+
+### 0.5 输入和输出
+
+输入是 spot 图像、基因表达和空间邻接图；输出是每个 spot 的异常分数。
+
+### 0.6 最容易误解的地方
+
+如果正常参考和目标样本批次不同，模型可能把实验批次误当成异常。
+
+**现在只记住一句话：MEATRD = 同时看图像、基因和邻居，找出最不像正常模式的区域。**
+
 ## 1. 三分钟摘要与推荐理由
 
 MEATRD 面向“异常区域和正常区域形态很像”的情形，把每个 ST spot 当作图节点，同时使用该位置的 H&E patch 与基因表达。MGDAT 在节点之间、模态之间交换信息；模型只学习重建正常 spot，再结合重建偏差和 one-class 分类识别异常。

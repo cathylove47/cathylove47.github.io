@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2022，pp. 18802–18812；官方仓库提供 CAMELYON16 train/test 特征、48个测试 mask 的下载说明和 TCGA-Lung 特征入口（2026-09-01）。
 
+## 原文摘要
+
+> Multiple instance learning (MIL) has been increasingly used in the classification of histopathology whole slide images (WSIs). However, MIL approaches for this specific classification problem still face unique challenges, particularly those related to small sample cohorts. In these, there are limited number of WSI slides (bags), while the resolution of a single WSI is huge, which leads to a large number of patches (instances) cropped from this slide. To address this issue, we propose to virtually enlarge the number of bags by introducing the concept of pseudo-bags, on which a double-tier MIL framework is built to effectively use the intrinsic features. Besides, we also contribute to deriving the instance probability under the framework of attention-based MIL, and utilize the derivation to help construct and analyze the proposed framework. The proposed method outperforms other latest methods on the CAMELYON-16 by substantially large margins, and is also better in performance on the TCGA lung cancer dataset. The proposed framework is ready to be extended for wider MIL applications. The code is available at: https://github.com/hrzhang1123/DTFD-MIL
+
+*来源：arXiv:2203.12081（https://arxiv.org/abs/2203.12081）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![DTFD-MIL 论文框架图](/papers/pathology/05-dtfd-mil-pipeline.png)
+
+> **原文图注**：Figure 1 : Illustration of the difference between conventional MIL models and the proposed double-tier MIL model.
+
+*图源：https://arxiv.org/html/2203.12081v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+一个班有几千名学生，老师没法一次听完所有人发言。DTFD-MIL 先把学生分成小组，每组交一份摘要，再根据各组摘要给全班下结论。
+
+### 0.2 它为什么出现？
+
+WSI 数量可能不多，但每张 WSI 有海量 patch。直接用少量巨大 bag 训练容易不稳定，随机丢 patch 又可能漏掉小病灶。
+
+### 0.3 它到底怎么做？
+
+1. 把一张切片的 patch 分成多个伪包（pseudo-bag）。
+2. 第一层 MIL 分别处理每个伪包。
+3. 从每个伪包提炼一个代表特征，而不是保留所有 patch。
+4. 第二层 MIL 汇总这些伪包代表，输出原切片预测。
+
+### 0.4 先认清这些词
+
+- **pseudo-bag**：从一个大 bag 中分出的临时小袋子。
+- **蒸馏特征**：从一组 patch 中压缩出的代表信息。
+- **双层**：先在小组内汇总，再在小组之间汇总。
+- **弱监督**：只有整张切片标签，没有每个 patch 的精确标签。
+
+### 0.5 输入和输出
+
+输入是一个超大的 patch 特征集合；输出是切片类别。中间产物是若干伪包摘要。
+
+### 0.6 最容易误解的地方
+
+伪包能增加训练单元，但如果分组恰好漏掉稀少病灶，摘要仍可能失真。
+
+**现在只记住一句话：DTFD-MIL = 大袋拆小袋，小袋先总结，再做总总结。**
+
 ## 1. 三分钟摘要与推荐理由
 
 WSI 数据经常出现“患者/切片少，但每张切片 patch 极多”的不平衡。DTFD-MIL 将一个大 bag 拆成多个 pseudo-bag，在第一层 MIL 中提炼伪包表征，再在第二层完成原切片预测。它相当于虚拟增加 bag 数量，同时把超长实例集合压缩成更稳定的中间表示。

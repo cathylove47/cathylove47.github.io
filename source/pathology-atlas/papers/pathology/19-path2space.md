@@ -6,6 +6,54 @@
 
 **精读核验**：Cell 189, 4225–4240，2026-07-09；正文与扩展方法共 42 页，DOI、数据和官方 companion 仓库已核验。
 
+## 原文摘要
+
+> SUMMARY Spatial transcriptomics (ST) assays are transforming our understanding of tumor heterogeneity, but their high cost limits their application in large-scale biomarker discovery. Here we present Path2Space , a deep-learning model that predicts spatial gene expression directly from histopathology slides. Trained on extensive breast cancer ST data, Path2Space robustly predicts the spatial expression of thousands of genes, outperforming 21 established methods. Charting the tumor microenvironment (TME) of 976 breast cancer TCGA tumors, it accurately infers cell-type abundances and identifies three spatially defined breast cancer subgroups with distinct survival outcomes. Notably, the derived low-cost spatial TME landscapes enable more accurate predictions of patient response to chemotherapy and trastuzumab compared to costly conventional bulk sequencing–based biomarkers. Path2Space thus offers a scalable, fast and cost-effective alternative to molecular assays. It opens avenues for large cohort treatment biomarker discovery and translationally relevant insights into tumor biology, with potential applicability across many cancer indications.
+
+*来源：PMC:PMC13317733。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图说明
+
+> Cell 论文为订阅出版，作者未提供开放获取的框架图或 arXiv 版本；正文框架图需在机构订阅下查看。
+
+*说明：本篇未插入框架图，原因是缺少可核验的公开原图；不使用任何替代图片或重绘示意。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+像根据城市照片猜哪里更热闹，Path2Space 根据 H&E 外观预测每个位置可能有哪些基因活跃，再把预测地图用于队列研究。
+
+### 0.2 它为什么出现？
+
+空间转录组能测“哪里表达什么基因”，但昂贵且样本少；普通 H&E 便宜且常见，却没有直接基因读数。
+
+### 0.3 它到底怎么做？
+
+1. 用配对 H&E 与空间转录组学习图像—表达关系。
+2. 从 spot 周围图像提取 CTransPath 特征。
+3. 用模型预测每个 spot 的多基因表达。
+4. 把模型应用到更大的 H&E 队列，研究空间亚型、预后和疗效。
+
+### 0.4 先认清这些词
+
+- **空间转录组**：同时保留位置的基因表达测量。
+- **bulk RNA-seq**：整块组织混合后的平均基因表达。
+- **spot**：空间测序中的一个测量区域。
+- **空间亚型**：根据预测或实测的空间模式对病例分组。
+
+### 0.5 输入和输出
+
+训练输入是配对 H&E 和 spot 表达；部署输入是 H&E；输出是预测的 spot×gene 空间表达矩阵。
+
+### 0.6 最容易误解的地方
+
+预测表达是模型估计，不是测量值，不能直接替代真实空间测序或用于未经验证的个体临床决策。
+
+**现在只记住一句话：Path2Space = 从常规 H&E 估计空间基因地图，但“预测”绝不是“实测”。**
+
 ## 1. 三分钟摘要与推荐理由
 
 Path2Space 用配对的 H&E—空间转录组训练模型，从常规病理图像预测数千个基因的 spot 级空间表达。作者随后将它应用到 976 例 TCGA 乳腺癌 WSI，构建空间亚型（SpatioTypes），并用推断出的空间标志物研究生存和治疗反应。
@@ -67,4 +115,3 @@ Visium spot 混合多个细胞；预测表达受组织形态可见性上限限�
 - [Cell 正式论文](https://doi.org/10.1016/j.cell.2026.04.023)
 - [官方推理仓库](https://github.com/eldadshulman/path2space-companion)
 - [Zenodo 代码](https://doi.org/10.5281/zenodo.14729336)
-

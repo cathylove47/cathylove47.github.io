@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2024；PathDino 由5个小型 Transformer block 构成，约900万参数；Fast Patch Selection、轻量 encoder 和 HistoRotate 是三个需要分别消融的贡献（2026-09-01）。
 
+## 原文摘要
+
+> This paper addresses complex challenges in histopathological image analysis through three key contributions. Firstly, it introduces a fast patch selection method, FPS, for whole-slide image (WSI) analysis, significantly reducing computational cost while maintaining accuracy. Secondly, it presents PathDino, a lightweight histopathology feature extractor with a minimal configuration of five Transformer blocks and only 9 million parameters, markedly fewer than alternatives. Thirdly, it introduces a rotation-agnostic representation learning paradigm using self-supervised learning, effectively mitigating overfitting. We also show that our compact model outperforms existing state-of-the-art histopathology-specific vision transformers on 12 diverse datasets, including both internal datasets spanning four sites (breast, liver, skin, and colorectal) and seven public datasets (PANDA, CAMELYON16, BRACS, DigestPath, Kather, PanNuke, and WSSS4LUAD). Notably, even with a training dataset of 6 million histopathology patches from The Cancer Genome Atlas (TCGA), our approach demonstrates an average 8.5% improvement in patch-level majority vote performance. These contributions provide a robust framework for enhancing image analysis in digital pathology, rigorously validated through extensive evaluation. Project Page: https://kimialabmayo.github.io/PathDino-Page/
+
+*来源：arXiv:2311.08359（https://arxiv.org/abs/2311.08359）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PathDino 论文框架图](/papers/pathology/13-pathdino-pipeline.png)
+
+> **原文图注**：Figure 2 : The WSI Analysis Pipeline. (A) The fast patch selection method, FPS, selects a set of representative patches while preserving spatial distribution. (B) HistoRotate is a 360 ∘ 360^{\circ} rotation augmentation for histopathology model training, enhancing learning without contextual information alteration. (C) PathDino is a compact histopathology Transformer with five small vision transformer blocks and ≈ \approx 9 9 million parameters, significantly leaner than alternatives.
+
+*图源：https://arxiv.org/html/2311.08359v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+把一张组织图片转 90 度，它仍是同一块组织。PathDino 让小模型反复看旋转后的同一图像，学会不被方向骗到。
+
+### 0.2 它为什么出现？
+
+病理切片通常没有天然的“上方”，自然图像的方向习惯不适用；同时，大型 encoder 训练和推理成本很高。
+
+### 0.3 它到底怎么做？
+
+1. 从 WSI 中选择有代表性的 patch。
+2. 为同一 patch 制作多个旋转视图。
+3. 用 DINO 自蒸馏让不同视图得到一致表示。
+4. 用轻量 Transformer 输出 patch 特征，服务下游任务。
+
+### 0.4 先认清这些词
+
+- **旋转不变**：图像转向后，模型对内容的理解尽量不变。
+- **DINO**：不需要人工标签的师生式自监督方法。
+- **自蒸馏**：教师和学生来自同一模型体系，教师提供稳定目标。
+- **patch 选择**：从海量区域中挑代表性样本以降低成本。
+
+### 0.5 输入和输出
+
+输入是病理 patch；输出是轻量、方向稳定的 patch embedding。
+
+### 0.6 最容易误解的地方
+
+并非所有方向都绝对无意义；有明确取向的组织结构或采集流程仍需单独验证。
+
+**现在只记住一句话：PathDino = 一个小巧、懂得“转过来还是同一块组织”的 patch encoder。**
+
 ## 1. 三分钟摘要与推荐理由
 
 PathDino 围绕病理图像的两个实际特点设计：切片方向通常没有自然图像那样的“向上”语义；大规模 WSI 中很多 patch 冗余。论文提出 HistoRotate 旋转增强、轻量五层 Transformer PathDino，以及保持空间分布的快速 patch 选择（FPS）。

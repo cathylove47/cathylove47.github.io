@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2025 正式论文、补充材料、官方模型仓库已核验（2026-09-02）。
 
+## 原文摘要
+
+> The emergence of large multimodal models (LMMs) has brought significant advancements to pathology. Previous research has primarily focused on separately training patch-level and whole-slide image (WSI)-level models, limiting the integration of learned knowledge across patches and WSIs, and resulting in redundant models. In this work, we introduce CPath-Omni, the first 15-billion-parameter LMM designed to unify both patch and WSI level image analysis, consolidating a variety of tasks at both levels, including classification, visual question answering, captioning, and visual referring prompting. Extensive experiments demonstrate that CPath-Omni achieves state-of-the-art (SOTA) performance across seven diverse tasks on 39 out of 42 datasets, outperforming or matching task-specific models trained for individual tasks. Additionally, we develop a specialized pathology CLIP-based visual processor for CPath-Omni, CPath-CLIP, which, for the first time, integrates different vision models and incorporates a large language model as a text encoder to build a more powerful CLIP model, which achieves SOTA performance on nine zero-shot and four few-shot datasets. Our findings highlight CPath-Omni's ability to unify diverse pathology tasks, demonstrating its potential to streamline and advance the field of foundation model in pathology.
+
+*来源：arXiv:2412.12077（https://arxiv.org/abs/2412.12077）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CPath-Omni 论文框架图](/papers/pathology/18-cpath-omni-pipeline.png)
+
+> **原文图注**：Figure 2 : Overview of two key vision components of CPath-Omni: the patch-level model, CPath-CLIP, and the WSI model, SlideParser.
+
+*图源：https://arxiv.org/html/2412.12077v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+过去常请两个学生：一个只看局部 patch，一个只看整张 WSI。CPath-Omni 想训练一个学生，同时完成局部分类、整图问答和文字描述。
+
+### 0.2 它为什么出现？
+
+patch 模型与 WSI 模型割裂，能力和数据难共享；统一模型则要同时处理不同分辨率、任务和监督来源。
+
+### 0.3 它到底怎么做？
+
+1. 先训练病理图文视觉处理器 CPath-CLIP。
+2. 用大量 patch 指令学习局部分类、描述和问答。
+3. 再用 WSI 级指令把能力迁移到整张切片。
+4. 通过同一个大模型完成多种 patch 与 WSI 任务。
+
+### 0.4 先认清这些词
+
+- **基础模型**：在大规模多任务数据上预训练、可迁移到多种任务的模型。
+- **多模态**：联合处理图像和文字。
+- **指令数据**：由任务要求、输入和答案组成的训练样例。
+- **统一模型**：用同一套主要参数服务多种粒度和任务。
+
+### 0.5 输入和输出
+
+输入可以是 patch 或 WSI，加上文字指令；输出可以是类别、描述、回答或指代区域。
+
+### 0.6 最容易误解的地方
+
+任务多、数据多会增加能力，也会让训练数据重叠和评测污染更难审计。
+
+**现在只记住一句话：CPath-Omni = 用一个病理多模态大模型同时处理局部和整张切片。**
+
 ## 1. 三分钟摘要与推荐理由
 
 CPath-Omni 想消除“patch 模型一套、WSI 模型另一套”的割裂。它用同一 15B 大模型处理分类、VQA、caption 和视觉指代，同时提出 CPath-CLIP 作为视觉处理器。论文报告在 7 类任务、42 个数据集中的 39 个达到或匹配当时最佳。
@@ -64,4 +114,3 @@ patch / WSI 视觉 token → projector → 15B LMM
 
 - [CVF 论文页](https://openaccess.thecvf.com/content/CVPR2025/html/Sun_CPath-Omni_A_Unified_Multimodal_Foundation_Model_for_Patch_and_Whole_CVPR_2025_paper.html)
 - [官方代码与模型](https://github.com/PathFoundation/CPath-Omni)
-

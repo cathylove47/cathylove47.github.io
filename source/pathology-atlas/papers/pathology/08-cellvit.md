@@ -6,6 +6,56 @@
 
 **精读核验**：Medical Image Analysis 94 (2024), Article 103143；论文在 PanNuke 报告 mean panoptic quality 0.50、F1-detection 0.83。官方 WSI 流程要求1024像素 patch、64像素重叠（6.25%）（2026-09-01）。
 
+## 原文摘要
+
+> Nuclei detection and segmentation in hematoxylin and eosin-stained (H&E) tissue images are important clinical tasks and crucial for a wide range of applications. However, it is a challenging task due to nuclei variances in staining and size, overlapping boundaries, and nuclei clustering. While convolutional neural networks have been extensively used for this task, we explore the potential of Transformer-based networks in this domain. Therefore, we introduce a new method for automated instance segmentation of cell nuclei in digitized tissue samples using a deep learning architecture based on Vision Transformer called CellViT. CellViT is trained and evaluated on the PanNuke dataset, which is one of the most challenging nuclei instance segmentation datasets, consisting of nearly 200,000 annotated Nuclei into 5 clinically important classes in 19 tissue types. We demonstrate the superiority of large-scale in-domain and out-of-domain pre-trained Vision Transformers by leveraging the recently published Segment Anything Model and a ViT-encoder pre-trained on 104 million histological image patches - achieving state-of-the-art nuclei detection and instance segmentation performance on the PanNuke dataset with a mean panoptic quality of 0.50 and an F1-detection score of 0.83. The code is publicly available at https://github.com/TIO-IKIM/CellViT
+
+*来源：arXiv:2306.15350（https://arxiv.org/abs/2306.15350）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CellViT 论文框架图](/papers/pathology/08-cellvit-pipeline.png)
+
+> **原文图注**：Figure 2: Network structure of our proposed CellViT-network consisting of a ViT encoder connected to multiple decoders via skip connections. Postprocessing is used to separate overlapping nuclei and perform nuclei type classification. For visualization purposes, the tissue classification branch is not illustrated. As encoder networks, we used the pre-trained ViT 256 \text{ViT}_{256} and SAM models.
+
+*图源：https://arxiv.org/html/2306.15350v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+不是只说“这片森林有问题”，而是把每棵树圈出来并标明树种。CellViT 会找出每个细胞核的边界，并判断它属于哪类细胞。
+
+### 0.2 它为什么出现？
+
+WSI 分类热图只能指出大概关注区域，不能直接回答“这里有多少肿瘤细胞、免疫细胞在哪里”。
+
+### 0.3 它到底怎么做？
+
+1. 把局部病理图像送进 ViT encoder。
+2. 解码器同时预测细胞核区域、边界/距离信息和细胞类型。
+3. 后处理把粘在一起的细胞核分开。
+4. 输出每个细胞的位置、轮廓和类别，供空间分析使用。
+
+### 0.4 先认清这些词
+
+- **实例分割**：不仅分前景，还把相邻的每个对象分别编号。
+- **细胞分类**：给分割出的细胞核判断类型。
+- **decoder**：把压缩特征恢复成像素级预测的模块。
+- **GeoJSON**：可保存细胞位置、轮廓和属性的地理式数据格式。
+
+### 0.5 输入和输出
+
+输入是病理 patch 或 WSI 区域；输出是每个细胞实例的轮廓、坐标和类别。
+
+### 0.6 最容易误解的地方
+
+细胞核形状不总能唯一决定细胞类型；跨染色、跨中心时必须重新验证。
+
+**现在只记住一句话：CellViT = 把每个细胞核圈出来、分开来、再命名。**
+
 ## 1. 三分钟摘要与推荐理由
 
 CellViT 将 ViT/SAM 类 encoder 放入 U-Net 风格的分割框架，同时预测细胞核实例和类别。它把“整张切片最终标签”下沉到可定位的细胞级表示，为细胞组成、空间图和可解释性研究提供基础。

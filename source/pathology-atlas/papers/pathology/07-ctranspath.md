@@ -6,6 +6,48 @@
 
 **精读核验**：Medical Image Analysis 81 (2022), Article 102559；CTransPath 将 CNN 的局部归纳偏置与多尺度 Swin Transformer 结合，并采用语义相关对比学习（Semantically-Relevant Contrastive Learning, SRCL）（2026-09-01）。
 
+## 论文 Pipeline 原图说明
+
+> 论文正文无框架总图，且未在 arXiv 或 PMC 提供开放全文。
+
+*说明：本篇未插入框架图，原因是缺少可核验的公开原图；不使用任何替代图片或重绘示意。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+通用图像模型像只学过日常照片的翻译员；CTransPath 是专门学习病理图像语言的翻译员，把每个 patch 翻译成更有用的数字特征。
+
+### 0.2 它为什么出现？
+
+ImageNet 模型擅长猫狗和物体，不一定理解染色、细胞核、腺体和组织结构。下游 MIL 的上限常被 patch 编码器限制。
+
+### 0.3 它到底怎么做？
+
+1. 从 TCGA、PAIP 等病理切片中采样大量 patch。
+2. 对同一 patch 制作不同增强视图。
+3. 用对比学习让同一图像的不同视图靠近、不同图像分开。
+4. 把训练好的 Swin Transformer 当作通用病理特征提取器。
+
+### 0.4 先认清这些词
+
+- **encoder**：把图像变成数字特征的模型。
+- **对比学习**：通过比较“同一个”和“不同的”样本来学习表示。
+- **Swin Transformer**：在局部窗口内计算注意力的视觉 Transformer。
+- **冻结特征**：训练下游模型时不再修改 encoder。
+
+### 0.5 输入和输出
+
+输入是病理 patch；输出是可供 CLAM、SurvPath 等模型使用的 patch embedding。
+
+### 0.6 最容易误解的地方
+
+换 encoder 就可能明显改变结果，所以比较聚合器时必须固定同一套 patch、encoder 和数据划分。
+
+**现在只记住一句话：CTransPath = 先训练一个懂病理 patch 的“翻译器”，再让其他模型使用它。**
+
 ## 1. 三分钟摘要与推荐理由
 
 CTransPath 在大规模 TCGA 和 PAIP 病理 patch 上进行无监督对比学习，并使用改造后的 Swin Transformer 获得通用病理表征。它长期被 CLAM、SurvPath、MI-Zero 等项目作为特征编码器，是理解“encoder 选择如何左右 WSI 结果”的关键基线。

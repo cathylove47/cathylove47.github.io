@@ -1,5 +1,55 @@
 # CONCH：病理视觉语言模型的关键前置
 
+## 原文摘要
+
+> The accelerated adoption of digital pathology and advances in deep learning have enabled the development of powerful models for various pathology tasks across a diverse array of diseases and patient cohorts. However, model training is often difficult due to label scarcity in the medical domain and the model's usage is limited by the specific task and disease for which it is trained. Additionally, most models in histopathology leverage only image data, a stark contrast to how humans teach each other and reason about histopathologic entities. We introduce CONtrastive learning from Captions for Histopathology (CONCH), a visual-language foundation model developed using diverse sources of histopathology images, biomedical text, and notably over 1.17 million image-caption pairs via task-agnostic pretraining. Evaluated on a suite of 13 diverse benchmarks, CONCH can be transferred to a wide range of downstream tasks involving either or both histopathology images and text, achieving state-of-the-art performance on histology image classification, segmentation, captioning, text-to-image and image-to-text retrieval. CONCH represents a substantial leap over concurrent visual-language pretrained systems for histopathology, with the potential to directly facilitate a wide array of machine learning-based workflows requiring minimal or no further supervised fine-tuning.
+
+*来源：arXiv:2307.12914（https://arxiv.org/abs/2307.12914）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![CONCH 论文框架图](/papers/pathology/31-conch-pipeline.jpg)
+
+> **原文图注**：Figure 1: Data curation and model schematic. Caption on next page.
+
+*图源：https://arxiv.org/html/2307.12914v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+CONCH 像一本病理图文双语词典：看到图能找到相关文字，看到病理术语也能找到相关图。
+
+### 0.2 它为什么出现？
+
+通用 CLIP 缺少专业病理知识，纯视觉 encoder 又不能直接理解疾病名称和描述。
+
+### 0.3 它到底怎么做？
+
+1. 收集病理图像与专业文字配对。
+2. 分别用图像编码器和文本编码器生成向量。
+3. 通过对比目标让匹配图文靠近。
+4. 再用生成式目标加强描述能力，服务零样本分类和检索。
+
+### 0.4 先认清这些词
+
+- **图文对齐**：让匹配图像和文字在向量空间中接近。
+- **零样本分类**：用类别文字直接给图像分类。
+- **跨模态检索**：文字搜图或以图搜文。
+- **基础模型**：可迁移到多种下游任务的大规模预训练模型。
+
+### 0.5 输入和输出
+
+输入可以是病理图像或文字；输出是共享 embedding、相似度或生成描述。
+
+### 0.6 最容易误解的地方
+
+相似度高表示训练空间中接近，不保证诊断正确；数据来源偏差会进入表示。
+
+**现在只记住一句话：CONCH = 病理图像和专业文字之间的双向翻译器。**
+
 ## 1. 三分钟摘要与推荐理由
 CONCH 用超过 117 万图像—文本对训练病理专用视觉语言基础模型，可做零样本分类、检索、分割与描述。它直接帮助理解 SlideChat、CPath-Omni 和 PathFinder 的图文对齐基础。
 
@@ -35,4 +85,3 @@ MI-Zero 展示 WSI 零样本聚合，CONCH强化病理图文编码，SlideChat/C
 
 ## 12. 官方链接
 [论文](https://doi.org/10.1038/s41591-024-02856-4) · [代码](https://github.com/mahmoodlab/CONCH)
-

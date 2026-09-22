@@ -6,6 +6,56 @@
 
 **精读核验**：论文为 ICCV 2025 workshop 论文并有 arXiv 版本；官方仓库、数据入口和训练配置已核验（2026-09-02）。
 
+## 原文摘要
+
+> Spatial transcriptomics enables simultaneous measurement of gene expression and tissue morphology, offering unprecedented insights into cellular organization and disease mechanisms. However, the field lacks comprehensive benchmarks for evaluating multimodal learning methods that leverage both histology images and gene expression data. Here, we present HESCAPE, a large-scale benchmark for cross-modal contrastive pretraining in spatial transcriptomics, built on a curated pan-organ dataset spanning 6 different gene panels and 54 donors. We systematically evaluated state-of-the-art image and gene expression encoders across multiple pretraining strategies and assessed their effectiveness on two downstream tasks: gene mutation classification and gene expression prediction. Our benchmark demonstrates that gene expression encoders are the primary determinant of strong representational alignment, and that gene models pretrained on spatial transcriptomics data outperform both those trained without spatial data and simple baseline approaches. However, downstream task evaluation reveals a striking contradiction: while contrastive pretraining consistently improves gene mutation classification performance, it degrades direct gene expression prediction compared to baseline encoders trained without cross-modal objectives. We identify batch effects as a key factor that interferes with effective cross-modal alignment. Our findings highlight the critical need for batch-robust multimodal learning approaches in spatial transcriptomics. To accelerate progress in this direction, we release HESCAPE, providing standardized datasets, evaluation protocols, and benchmarking tools for the community
+
+*来源：arXiv:2508.01490（https://arxiv.org/abs/2508.01490）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![HESCAPE 论文框架图](/papers/pathology/17-hescape-pipeline.jpg)
+
+> **原文图注**：Figure 1 : HESCAPE Benchmark: 4 gene expression encoders and 5 image encoders for digital pathology have been fine-tuned with contrastive pretraining, and evaluated in downstream tasks.
+
+*图源：https://arxiv.org/html/2508.01490v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+HESCAPE 更像一套统一考试规则，而不是一个新学生。它把不同图像模型、基因模型和训练方法放到同一张试卷上比较。
+
+### 0.2 它为什么出现？
+
+空间转录组论文使用的数据、划分和 encoder 各不相同，结果难以公平比较；随机按 spot 划分还可能让同一供体信息泄漏。
+
+### 0.3 它到底怎么做？
+
+1. 为每个空间 spot 配对局部 H&E 图像和基因表达。
+2. 更换不同图像 encoder 和基因 encoder。
+3. 用 CLIP 或 SigLIP 目标对齐两种模态。
+4. 统一评价检索、突变分类和基因表达预测。
+
+### 0.4 先认清这些词
+
+- **spot**：空间转录组测量的一个小区域，不一定是单细胞。
+- **benchmark**：固定数据与规则的公平比较平台。
+- **跨模态检索**：用图找匹配基因，或用基因找匹配图。
+- **批次效应**：由医院、实验流程或设备带来的非生物差异。
+
+### 0.5 输入和输出
+
+输入是成对的 spot 图像与基因表达；输出是对齐表示和多个统一下游指标。
+
+### 0.6 最容易误解的地方
+
+检索变好不保证基因预测也变好；不同目标可能需要不同表示。
+
+**现在只记住一句话：HESCAPE = 给“图像—基因对齐”建立公平考场，并揭示对齐好不等于所有任务都好。**
+
 ## 1. 三分钟摘要与推荐理由
 
 HESCAPE 的价值不在提出又一个融合模型，而在系统回答：图像 encoder、基因 encoder、冻结/微调策略和 CLIP/SigLIP 目标，究竟谁决定跨模态对齐效果？基准覆盖 6 种基因 panel、54 名供体，并比较跨模态检索、突变分类与基因表达预测。
@@ -66,4 +116,3 @@ H&E spot patch → 图像 encoder ┐
 
 - [arXiv](https://arxiv.org/abs/2508.01490)
 - [官方代码与数据说明](https://github.com/peng-lab/hescape)
-

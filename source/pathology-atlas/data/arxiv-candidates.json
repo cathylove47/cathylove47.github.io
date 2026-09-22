@@ -1,0 +1,1370 @@
+{
+  "generatedAt": "2026-09-22T16:29:59.549Z",
+  "windowDays": 30,
+  "candidates": [
+    {
+      "id": "2609.24524",
+      "domain": "pathology",
+      "title": "Preoperative Prediction of Microvascular Invasion in Hepatocellular Carcinoma by Integrating Multimodal Ultrasound and Clinical Data: A Multicenter Study",
+      "authors": [
+        "Jun Cheng",
+        "Yuanyuan Kong",
+        "Qing Huang",
+        "Xiaotong Tan",
+        "Licong Dong",
+        "Yulong Han",
+        "Wufeng Xue",
+        "Ruobing Huang",
+        "Dong Ni",
+        "Qi Yang",
+        "Jie Yu",
+        "Ping Liang"
+      ],
+      "summary": "Background: Microvascular invasion (MVI) predicts recurrence and survival in hepatocellular carcinoma (HCC) but requires postoperative histopathology for diagnosis. We developed and validated a model integrating multimodal ultrasound and clinical data for preoperative MVI prediction. Methods: This multicenter study included 489 patients with HCC from eight centers. All patients had B-mode ultrasound (BUS), color Doppler flow imaging (CDFI), dynamic contrast-enhanced ultrasound (DCE-US), and clinical information. Data from seven centers (n = 421) were used for model development with five-fold cross-validation; data from the remaining center (n = 68) formed an independent external validation cohort. The proposed multimodal information fusion network used modality-specific encoders, a hemodynamic temporal change module for bidirectional DCE-US perfusion changes, and a representation consistency learning module to align heterogeneous ultrasound representations before Transformer-based fusion. Results: In external validation, DCE-US achieved the highest single-modality area under the receiver operating characteristic curve (AUC; 0.8545+/-0.0198), versus clinical information (0.6715+/-0.0156), CDFI (0.6435+/-0.0344), and BUS (0.6087+/-0.0417). Pixel-difference sampling and the proposed temporal module outperformed alternative sampling and video representation methods. The full model achieved the best performance, with an AUC of 0.8953+/-0.0180, accuracy of 81.18%+/-2.83%, sensitivity of 86.40%+/-6.69%, and specificity of 78.14%+/-6.28. Conclusions: Integrating multimodal ultrasound and clinical information enabled promising preoperative MVI prediction in HCC. DCE-US was the main source of predictive information, while BUS, CDFI, and clinical information provided complementary value. The proposed framework may support preoperative risk stratification and individualized clinical decision-making.",
+      "published": "2026-09-21T12:59:53Z",
+      "updated": "2026-09-21T12:59:53Z",
+      "url": "https://arxiv.org/abs/2609.24524",
+      "pdfUrl": "https://arxiv.org/pdf/2609.24524",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.24468",
+      "domain": "mri",
+      "title": "MIGA:Shared-Geometry Gaussian Representation with Implicit Amplitude Modeling for Accelerated 3D Multi-Echo MRI",
+      "authors": [
+        "Jingran Xu",
+        "Yuanyuan Liu",
+        "Yanjie Zhu"
+      ],
+      "summary": "Three-dimensional multi-echo MRI provides rich anatomical and quantitative information, but repeated volumetric encoding prolongs acquisition and motivates k-space undersampling. Reconstructing undersampled multi-echo data requires exploiting shared anatomy while preserving echo-dependent signal variation; full-volume modeling also introduces substantial computational and memory demands. We propose MIGA, a scan-specific framework comprising shared anisotropic Gaussian geometry, a coordinate-conditioned multi-output amplitude network, and explicit echo-specific phase variables. The Gaussian geometry provides common spatial support across echoes, the implicit network models spatially structured amplitude variations, and the phase variables retain echo-specific complex signal information. All components are jointly optimized using only the acquired multi-coil k-space, requiring no fully sampled training data. Experiments showed that MIGA consistently outperformed the comparison methods across imaging tasks and acceleration factors, with larger improvements under stronger undersampling. MIGA also achieved a favorable quality-cost balance among the evaluated full-volume multi-echo methods. These results support the effectiveness of combining shared Gaussian geometry with implicit echo-dependent amplitude modeling for accelerated 3D multi-echo MRI reconstruction.",
+      "published": "2026-09-21T12:10:01Z",
+      "updated": "2026-09-21T12:10:01Z",
+      "url": "https://arxiv.org/abs/2609.24468",
+      "pdfUrl": "https://arxiv.org/pdf/2609.24468",
+      "matchedKeywords": [
+        "mri",
+        "k-space",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.24116",
+      "domain": "pathology",
+      "title": "Patch-to-Global: Random Patch Diffusion for Globally Consistent Megapixel Artifact Inpainting in Whole Slide Images",
+      "authors": [
+        "Hyeseong Lee",
+        "Eunsu Kim",
+        "D M Bappy",
+        "Ho Heon Kim",
+        "Youngsuk Lee",
+        "Se Young Chun",
+        "Jang-Hwan Choi",
+        "Sung Hak Lee",
+        "Sangjeong Ahn"
+      ],
+      "summary": "Although deep learning has advanced Whole Slide Image (WSI) Analysis, tissue artifacts like bubbles and folds often cause silent failures by concealing essential morphology. Current pathology image restoration methods are mostly restricted to small patches, struggling to maintain global structural coherence at a megapixel scale. We introduce RestorePath, a framework for globally consistent megapixel scale inpainting that reconstructs diagnostic structures in histological image to prevent incorrect high-confidence predictions and lower error rates. Our model utilizes a Latent Diffusion Model (LDM) conditioned on Pathology Foundation Model (PFM) embeddings, integrating Large Kernel Attention (LKA) to manage long-range dependencies during random patch diffusion. Enhanced by Distance-Weighted Interpolation (DWI) and an Adaptive Guidance Scale (AGS), RestorePath ensures structural consistency and fidelity by modulating information from surrounding patches. Evaluations across TCGA-BRCA, BACH, and Camelyon16 datasets for images ranging from 512 to 4608 pixels demonstrate state-of-the-art performance in maintaining histological consistency. RestorePath significantly improves downstream Computational Pathology (CP) tasks, outperforming both raw artifact images and the conventional Detect-and-Discard (D&D) approach. The code is available at https://github.com/PathfinderLab/RestorePath",
+      "published": "2026-09-21T05:12:46Z",
+      "updated": "2026-09-21T05:12:46Z",
+      "url": "https://arxiv.org/abs/2609.24116",
+      "pdfUrl": "https://arxiv.org/pdf/2609.24116",
+      "matchedKeywords": [
+        "pathology",
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.24057",
+      "domain": "pathology",
+      "title": "Representation-guided in-context learning for medical image interpretation with multimodal large language models",
+      "authors": [
+        "Minda Zhao",
+        "Fangyu Hu",
+        "Yan Luo",
+        "Yutong Yang",
+        "Jiahui Cai",
+        "Kaichen Zhou",
+        "Manling Li",
+        "Paul Liang",
+        "Yilun Du",
+        "Lucy Q. Shen",
+        "Mengyu Wang"
+      ],
+      "summary": "Medical image interpretation is central to diagnosis and care, yet adapting general-purpose multimodal large language models (MLLMs) often requires resource-intensive domain-specific fine-tuning. Here we introduce representation-guided in-context learning (RG-ICL), a training-free inference framework that retrieves query-aligned demonstrations using frozen encoders, without task-specific parameter updates. Across eight datasets spanning histopathology, radiology and retinal fundoscopy, RG-ICL improved classification (mean gain 20 percentage points) and visual question answering (VQA) (mean gain 13 percentage points) over no-context and conventional ICL, approaching or exceeding training-based comparators. Which cases were retrieved mattered more than how many: 6 query-aligned cases outperformed up to 32 randomly selected ones, whereas fixed or random cases often reduced accuracy below baseline. For VQA, aligning reference cases with both image content and question intent produced further gains. These findings indicate that for medical image interpretation, curating which reference cases an MLLM sees is a practical alternative to retraining it.",
+      "published": "2026-09-21T03:34:38Z",
+      "updated": "2026-09-21T03:34:38Z",
+      "url": "https://arxiv.org/abs/2609.24057",
+      "pdfUrl": "https://arxiv.org/pdf/2609.24057",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.21953",
+      "domain": "pathology",
+      "title": "RACER: Role-Aligned Competence Estimation for Human-AI Routing",
+      "authors": [
+        "Joshua Strong",
+        "Emma Sun",
+        "Alexander Capstick",
+        "Pramit Saha",
+        "Cheng Ouyang",
+        "J. Alison Noble"
+      ],
+      "summary": "Learning to defer asks a predictive system when to act autonomously and when to defer to a human expert. Population-adaptive deferral extends this problem to unseen experts using a small context set of expert behavior. Neural context encoders such as L2D-Pop can be query-dependent, but may learn routing shortcuts tied to absolute class coordinates. Identity-Free Deferral (IFD) removes such shortcuts through role-indexed classwise competence profiles, but its estimates are constant within each class and cannot capture instance-level expert specialization. We propose RACER---Role-Aligned Competence Estimation for Routing---a role-relative framework for estimating an unseen expert's competence from context. RACER estimates the posterior-predictive probability that the expert is correct on a query under each candidate class role, then combines these estimates with the model posterior to obtain the Bayes-relevant expert-correctness probability. Nonparametric and neural kernel-pooling estimators use candidate-role relations, shared aggregation, and symmetric summaries, excluding absolute class-identity channels. We prove coherent class-relabelling invariance, derive a Bayes-aligned deferral surrogate, and give a plug-in regret bound relating routing regret to classifier and competence-estimation error. On controlled synthetic benchmarks, including a PathMNIST histopathology context-scaling study with simulated experts, RACER benefits from additional context under hidden subtype dependence and gives the strongest aggregate performance on a separately sampled unseen-expert split in the CIFAR-100 synthetic experiments. On the radiologist and human--AI chest-radiography benchmarks (VinDr-CXR and CheXpert), the RACER family is competitive or best in budget-swept deferral, with calibration results varying across metrics and datasets.",
+      "published": "2026-09-18T16:11:05Z",
+      "updated": "2026-09-18T16:11:05Z",
+      "url": "https://arxiv.org/abs/2609.21953",
+      "pdfUrl": "https://arxiv.org/pdf/2609.21953",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.21811",
+      "domain": "pathology",
+      "title": "MIST: Multimodal Survival Prediction with Genomic-Guided Histology Attention",
+      "authors": [
+        "Muhammet Sami Yavuz",
+        "Sabri Mustafa Kahya",
+        "Richard R. Chen",
+        "Jana Lipkova",
+        "Benedikt Wiestler"
+      ],
+      "summary": "Multimodal survival models can combine complementary prognostic information from whole-slide images and genomic profiles, but effective fusion remains challenging amid external cohort shift and computational complexity. To address these challenges, we propose MIST, multimodal survival prediction with genomic-guided histology attention. MIST represents genomic features as tokens and allows them to query compact foundation-model-derived histology context tokens before survival prediction. This design enriches molecular information with histology context rather than merging separately encoded modalities only at the final stage. Training combines discrete-time survival prediction with genomic feature masking, WSI dropout, and paired WSI-genomics contrastive alignment. Across four external evaluations in colon, renal, lung, and glioblastoma cohorts, MIST improves external C-index over standard fusion baselines in the primary comparisons. These results support genomic-guided histology attention as a compact and effective strategy for multimodal oncology outcome prediction. Our code is available at https://github.com/samiyavuuz/MIST .",
+      "published": "2026-09-18T14:21:37Z",
+      "updated": "2026-09-18T14:21:37Z",
+      "url": "https://arxiv.org/abs/2609.21811",
+      "pdfUrl": "https://arxiv.org/pdf/2609.21811",
+      "matchedKeywords": [
+        "wsi"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.21115",
+      "domain": "pathology",
+      "title": "Hybrid quantum-classical attention for histopathology-based molecular profiling in data-limited cancers",
+      "authors": [
+        "Kahn Rhrissorrakrai",
+        "Aritra Bose",
+        "Aldo Guzman-Saenz",
+        "Filippo Utro",
+        "Laxmi Pardia"
+      ],
+      "summary": "Molecular profiling from routine histopathology could expand access to precision oncology when sequencing is unavailable, tissue is limited, or training cohorts are small. We developed a hybrid quantum-classical strategy that replaces softmax attention in a transformer for histopathology-based gene expression prediction with a quantum-derived doubly stochastic matrix (QDSM). Across 29 cancer cohorts from The Cancer Genome Atlas and an independent pancreatic cancer cohort from the Clinical Proteomic Tumor Analysis Consortium, QDSM attention produced selective gains, with the largest relative improvements in smaller, data-limited cohorts, including adrenocortical carcinoma and uveal melanoma. Rather than improving transcriptome-wide performance uniformly, QDSM redistributed predictive accuracy across genes and pathways, improving biologically relevant targets in some tumor contexts while worsening others. In adrenocortical carcinoma, preferentially improved genes were enriched for adverse overall-survival associations, linking enhanced molecular inference to prognostically relevant biology. In pancreatic cancer transfer experiments, QDSM improved selected metabolic and lineage-associated genes but did not consistently improve performance under cross-cohort shift. Leave-one-cancer-out mixed-effects analysis showed that baseline molecular features predicted part of the gene-level benefit, while residuals identified cancer-specific programs that improved more or less than expected. Separate experiments on IBM quantum processors recovered the doubly stochastic matrix primitive underlying the attention mechanism. These findings position QDSM attention as a context- and target-dependent strategy for image-based molecular profiling and molecular triage when direct testing is unavailable, incomplete, or impractical.",
+      "published": "2026-09-17T22:00:55Z",
+      "updated": "2026-09-17T22:00:55Z",
+      "url": "https://arxiv.org/abs/2609.21115",
+      "pdfUrl": "https://arxiv.org/pdf/2609.21115",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.20815",
+      "domain": "pathology",
+      "title": "ERCPMP-Gx: Endoscopic Image and Video Dataset for Morphological, Histopathological, and Genomic Characterization of Colorectal Polyposis",
+      "authors": [
+        "Zahra Ghaffari",
+        "Massih Bahar",
+        "Mojgan Forootan",
+        "Ali Darvishi",
+        "Hamidreza Bolhasani"
+      ],
+      "summary": "Hereditary polyposis syndromes can be precursor lesions to colorectal cancer and are associated with a broad spectrum of extracolonic tumors. Early identification and accurate classification of these syndromes are essential for timely diagnosis, individualized patient management, and targeted surveillance strategies for affected families. However, public endoscopic datasets are largely organized around the individual sporadic polyp, and none links the polyposis phenotype to histopathology and germline findings at the patient level. Here, we present ERCPMP-Gx, an endoscopic, histopathological, and genomic dataset developed to support the application of artificial intelligence (AI) in the recognition, characterization, and classification of colorectal polyposis. Most procedures were performed using the Olympus EVIS X1 system with white-light endoscopy (WLE), narrow-band imaging (NBI), magnifying NBI (M-NBI), and NBI with near focus modes, yielding 160 images and accompanying video clips. Approximately eighty percent of cases represent clinically and/or genetically confirmed hereditary polyposis syndromes (PG), including familial adenomatous polyposis (FAP), Peutz-Jeghers syndrome (PJS), juvenile polyposis syndrome (JPS), and ganglioneuroma syndrome (GNS), while the remaining twenty percent comprise non-hereditary polyps and polyp-mimicking lesions with overlapping morphological features (Non-PG), included to support differential classification. Each released record is linked, where available, to standardized endoscopic annotations, representative histopathology, and clinically reported germline findings, forming an AI-ready, patient-level annotation framework. The dataset is publicly accessible at Mendeley (https://doi.org/10.17632/nzyfc544bx.2). For the latest updates and further information, readers are referred to the DataBioX website: https://databiox.com.",
+      "published": "2026-09-17T17:59:28Z",
+      "updated": "2026-09-17T17:59:28Z",
+      "url": "https://arxiv.org/abs/2609.20815",
+      "pdfUrl": "https://arxiv.org/pdf/2609.20815",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.20100",
+      "domain": "pathology",
+      "title": "A Smaller Transformer in Your Transformer",
+      "authors": [
+        "Dhananjay Tomar",
+        "Marius Aasan",
+        "Andreas Kleppe",
+        "Adín Ramírez Rivera"
+      ],
+      "summary": "Recent findings indicate that Vision Transformers settle into locally similar computational phases, implying a level of depthwise computational redundancy. However, existing methods to exploit this redundancy either fail to reduce inference compute or severely degrade model expressivity. In this work, we formalise a unified view of block redundancy that decouples the geometry from specific surrogate interventions. We then introduce Transformer-Within-Transformer (TWT), a post-hoc method that fuses contiguous groups of redundant layers into a single learned surrogate layer. TWT reduces parameter count and inference compute while remaining competitive with original models using half the depth on natural images, and in several downstream histopathology settings, TWT matches or even improves on the original baseline.",
+      "published": "2026-09-17T12:01:13Z",
+      "updated": "2026-09-17T12:01:13Z",
+      "url": "https://arxiv.org/abs/2609.20100",
+      "pdfUrl": "https://arxiv.org/pdf/2609.20100",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.18578",
+      "domain": "pathology",
+      "title": "Learning Where to Focus: Self-Supervised Multi-Scale ViTs for Histopathology",
+      "authors": [
+        "Anabel Stammer",
+        "Valay Bundele",
+        "Mehran Hosseinzadeh",
+        "Hendrik P. A. Lensch"
+      ],
+      "summary": "Pathologists diagnose diseases by first locating suspicious tissue and then examining it at higher magnification, whereas self-supervised vision transformers (ViTs) allocate the same spatial resolution to every image region despite diagnostic evidence being sparse and spanning multiple biological scales. Recent pathology foundation models have substantially improved representation quality by scaling training data and model capacity, but largely retain uniform tokenization. We instead investigate whether pathology representations can be improved by learning where to allocate spatial resolution during self-supervised learning. To this end, we propose CRAFT (Coarse-to-fine Region-Adaptive Feature Tokenization), a DINO-based framework that learns image-dependent mixed-scale representations by using self-supervised attention to selectively refine informative regions while preserving coarse context, together with a symmetric cross-scale regularization objective that encourages complementary coarse and fine representations. Across CAMELYON16, TCGA-Lung subtype classification, and TCGA-LUAD survival prediction, CRAFT consistently outperforms comparable-scale self-supervised methods while requiring lower inference computation. Despite using only a compact 22M parameter backbone trained on comparatively small pathology datasets, CRAFT remains competitive with, and often surpasses, substantially larger pathology foundation models.",
+      "published": "2026-09-16T12:38:41Z",
+      "updated": "2026-09-16T12:38:41Z",
+      "url": "https://arxiv.org/abs/2609.18578",
+      "pdfUrl": "https://arxiv.org/pdf/2609.18578",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.17868",
+      "domain": "pathology",
+      "title": "Lumen: Parameter-Efficient Alignment of Pretrained Vision and Language Encoders for Zero-Shot Computational Pathology",
+      "authors": [
+        "Kiarash Tajbakhsh",
+        "Abdelrahman Faqieh",
+        "Michael Jopiti",
+        "Javier Garcia-Baroja",
+        "Philipp Zens",
+        "Branislav Zagrapan",
+        "Yuri Tolkach",
+        "Martin D. Berger",
+        "Aurel Perren",
+        "Bastian Dislich",
+        "Inti Zlobec",
+        "Amjad Khan"
+      ],
+      "summary": "Pathology vision-language models are commonly built by pretraining or fine-tuning large encoders on paired image-caption data. We asked whether a pathology vision-language model can instead be assembled by parameter-efficient alignment of frozen unimodal foundation models, leaving their pretrained representations untouched. Here we present Lumen, which aligns frozen Virchow2 and BioMedBERT backbones using rank-4 adapters and projection heads, training only 0.40% of the total parameters on the public QUILT-1M corpus. Across nine public zero-shot patch benchmarks, Lumen achieved the highest mean chance-corrected balanced accuracy, 0.546 versus 0.461 for the strongest baseline (paired difference 0.086, 95% CI 0.042-0.136). On lymph-node metastasis detection, Lumen reached an AUROC of 0.964 (95% CI 0.956-0.971) on 4,214 held-out internal slides and 0.955 (95% CI 0.942-0.966) on 2,368 slides across nine external cohorts and six organs. At the internally calibrated threshold, it outperformed all vision-language baselines, with a balanced accuracy of 0.909 (95% CI 0.896-0.923) internally and 0.915 (95% CI 0.902-0.929) externally. Lumen performed competitively across the evaluations, with the exception of cross-modal retrieval, where it ranked third behind CONCH and PathGen-L/14. Fully fine-tuning both encoders gave Lumen no consistent benefit over low-rank adaptation, although it improved retrieval. Aligning frozen unimodal foundation models therefore yields strong and transferable performance at patch and slide level while training only a small fraction of the parameters.",
+      "published": "2026-09-15T21:47:58Z",
+      "updated": "2026-09-15T21:47:58Z",
+      "url": "https://arxiv.org/abs/2609.17868",
+      "pdfUrl": "https://arxiv.org/pdf/2609.17868",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.17090",
+      "domain": "pathology",
+      "title": "StainBridge: Stain-Aware Pairwise Registration of Serial Renal Biopsy Whole-Slide Images Across Structural and Immunohistochemical Stains",
+      "authors": [
+        "Ellen Wei",
+        "Bohang Jiang",
+        "Yanfan Zhu",
+        "Daniel Reisenbüchler",
+        "Kenji Ikemura",
+        "Steven Salvatore",
+        "Surya Seshan",
+        "Thangamani Muthukumar",
+        "Mert R. Sabuncu",
+        "Yihe Yang",
+        "Ruining Deng"
+      ],
+      "summary": "Three-dimensional (3D) reconstruction of histopathology tissue requires accurate pairwise registration of serial whole-slide images (WSIs). Cross-stain benchmarks have advanced registration of differently stained histology, including structural-to-immunohistochemistry (IHC) pairs, but serial renal biopsy stacks remain difficult: they interleave several structural stains with diverse IHC markers whose expression can be sparse or absent, leaving few shared features to match. We present StainBridge, a stain-aware framework for registering serial renal biopsy WSIs across structural and IHC stains. StainBridge couples three preprocessing components, stain deconvolution, intensity normalization, and tissue-mask injection, with XFeat-based affine initialization and four nonrigid backends (VoxelMorph, ConvexAdam, FireANTs, and DeeperHistReg). We evaluate it on 23 cases comprising 338 WSIs, four structural stains, and ten IHC markers, with functional tissue units annotated on consecutive sections to give 1,468 landmark correspondences across 272 image pairs, and report tissue-mask Dice, functional-unit centroid error in micrometers, and tissue-restricted structural similarity. Nonrigid refinement improves on the affine initialization for three of four backends, VoxelMorph being the exception. DeeperHistReg, which computes its own initialization rather than relying on XFeat, gives the best pooled landmark accuracy and registers the most pairs, including every attempted structural-IHC pair. Preprocessing improves landmark accuracy for ConvexAdam and FireANTs in every stain-pairing category, and FireANTs shows both the largest single preprocessing gain on structural-IHC pairs and the best pooled tissue overlap. These results offer practical guidance for cross-stain registration and a foundation for integrated 3D analysis of renal tissue architecture and molecular expression.",
+      "published": "2026-09-15T12:22:59Z",
+      "updated": "2026-09-15T12:22:59Z",
+      "url": "https://arxiv.org/abs/2609.17090",
+      "pdfUrl": "https://arxiv.org/pdf/2609.17090",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.16448",
+      "domain": "pathology",
+      "title": "Decentralized Gossip Learning and Federated Averaging for Histopathology Image Classification",
+      "authors": [
+        "Yusuf Ozturk",
+        "Enes Goltekin",
+        "Bengisu Atli",
+        "Akin Ozturk",
+        "Ulas Bagci"
+      ],
+      "summary": "Breast histopathology analysis increasingly relies on distributed learning because direct data pooling across institutions is often restricted by privacy, governance, and communication constraints. This study compares server-based Federated Averaging (FedAvg), fully decentralized gossip learning, and Hybrid Gossip-FedAvg for invasive ductal carcinoma (IDC) patch classification. Experiments used 277,524 color image patches with patient-disjoint training, validation, and test partitions and a workload-balanced, Dirichlet-guided allocation across six nodes. Ring, random degree-3, and fully connected gossip topologies were evaluated together with sensitivity analyses for statistical heterogeneity, mixing coefficient, learning rate, model drift, prediction disagreement, calibration, clinically motivated operating points, communication payload, and patient-level IDC burden, together with auxiliary backbone robustness analyses. In the principal alpha=0.3 experiment, Hybrid Gossip-FedAvg achieved a test area under the receiver operating characteristic curve (ROC-AUC) of 0.8811, closely followed by FedAvg at 0.8801 and fully connected gossip at 0.8751. Across three independent patient-level repetitions, FedAvg and Hybrid Gossip-FedAvg obtained the same mean ROC-AUC of 0.9082, with standard deviations of 0.0037 and 0.0043, respectively. Hybrid achieved the highest mean area under the precision-recall curve of 0.8240, whereas FedAvg produced the lowest mean Brier score of 0.1335. Denser gossip graphs improved discrimination but increased theoretical model payload, while ring gossip remained sensitive to learning rate and mixing strength. Overall, FedAvg provided the most consistently reliable server-based baseline, topology-aware gossip offered a viable decentralized alternative, and Hybrid Gossip-FedAvg provided a balanced compromise between peer-to-peer diffusion and periodic global coordination.",
+      "published": "2026-09-15T00:09:18Z",
+      "updated": "2026-09-15T00:09:18Z",
+      "url": "https://arxiv.org/abs/2609.16448",
+      "pdfUrl": "https://arxiv.org/pdf/2609.16448",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.16207",
+      "domain": "pathology",
+      "title": "Hyperbolic Contrastive Learning with Entailment for Spatial Transcriptomics",
+      "authors": [
+        "Daniela Vega",
+        "Paula Cárdenas",
+        "Hannah Ceballos",
+        "Leonardo Manrique",
+        "Pablo Arbelaéz"
+      ],
+      "summary": "Spatial Transcriptomics (ST) has transformed biomedical research by enabling the spatial mapping of gene expression across tissue sections. However, high operational costs, specialized equipment requirements, and sensitivity to experimental noise limit the accessibility and scalability of ST. Recent computer vision approaches aim to overcome these limitations by predicting spatial gene expression directly from histopathology images. While effective, current approaches often suffer from gene expression over-smoothing and overly uniform predictions across tissue regions, suggesting that further progress depends on learning representations that reflect the hierarchical and asymmetric structure of gene regulation and tissue morphology. To address these issues, we propose Hyperbolic Contrastive Learning with Entailment for Spatial Transcriptomics (HyCLoST), a hyperbolic contrastive learning model that captures the intrinsic hierarchical relationships within ST data. By leveraging hyperbolic geometry and a gene-to-image entailment loss, HyCLoST learns structured, biologically grounded representations that improve gene expression prediction accuracy, achieving a 6% reduction in MSE and an 8% increase in PCC across 26 ST datasets, over previous methods. Our source code is publicly available at https://github.com/BCV-Uniandes/HyCLoST",
+      "published": "2026-09-14T18:39:51Z",
+      "updated": "2026-09-14T18:39:51Z",
+      "url": "https://arxiv.org/abs/2609.16207",
+      "pdfUrl": "https://arxiv.org/pdf/2609.16207",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "spatial transcriptomics"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.15150",
+      "domain": "pathology",
+      "title": "Weakly Supervised Spatial Grounding for Discriminative Attention-Based Ultrasound-Histopathology Alignment in Prostate Cancer Grading",
+      "authors": [
+        "Obed Korshie Dzikunu",
+        "Emma Willis",
+        "Mohammad Mahdi Abootorabi",
+        "Mohamed Harmanani",
+        "Zhuoxin Guo",
+        "Ferdinand Luger",
+        "Adam Kinnaird",
+        "Brian Wodlinger",
+        "Parvin Mousavi",
+        "Purang Abolmaesumi"
+      ],
+      "summary": "Unpaired cross-modal distillation transfers grade structure from histopathology into a micro-ultrasound (micro-US) encoder by aligning a pooled needle-region embedding to a frozen histopathology teacher under grade-group correspondence alone. A single objective is thereby required to serve two distinct functions: rendering patch features discriminative of tissue state, and selecting which patches enter the pooled representation. We decouple them. Weak spatial supervision derived from percentage involvement, recorded routinely at biopsy, constrains the predicted proportion of malignant tissue within each core, acting on the encoder features independently of the alignment objective. The alignment loss then operates on features that differ across a core, and attention concentrates on a subset of patches rather than remaining near-uniform. On 7,166 biopsy cores from 811 patients across seven centers under patient-level 5-fold cross-validation, the method reaches 67.1 macro AUC and 68.5 csPCa AUC, against 61.2 and 52.8 for the existing unpaired alignment method and 63.1 and 62.6 for the strongest unimodal baselines. Ablation against existing attention regularizers designed to prevent attention-uniformity collapse shows that such regularizers do not substitute for label-derived supervision: they constrain the attention distribution, whereas the signal required acts on the features that attention reads.",
+      "published": "2026-09-14T07:24:46Z",
+      "updated": "2026-09-14T07:24:46Z",
+      "url": "https://arxiv.org/abs/2609.15150",
+      "pdfUrl": "https://arxiv.org/pdf/2609.15150",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.14530",
+      "domain": "pathology",
+      "title": "Sharing standardized image-derived data in computational pathology using DICOM",
+      "authors": [
+        "Daniela P. Schacherer",
+        "Christopher P. Bridge",
+        "David Clunie",
+        "Igor Octaviano",
+        "André Homeyer",
+        "Markus D. Herrmann",
+        "Olivier Gevaert",
+        "Tabita Ghete",
+        "Markus Metzler",
+        "Henning Hoefener",
+        "Tahsin Kurc",
+        "Curtis Lisle",
+        "Kenneth Philbrick",
+        "Joel Saltz",
+        "Yuanning Zheng",
+        "Andrey Fedorov"
+      ],
+      "summary": "Development and evaluation of computational pathology methods require access to large and diverse datasets. Over the past decade, various initiatives invested significantly into collecting, centralizing, and sharing pathology imaging data. In contrast, sharing of image-derived data such as region-of-interest delineations or segmentation masks is less well developed. In this work, we describe our approach to encoding and sharing image-derived pathology data in a standardized manner within the National Cancer Institute (NCI) Imaging Data Commons (IDC), a platform that hosts and provides public access to de-identified radiology and pathology data. The IDC relies on the Digital Imaging and Communications in Medicine (DICOM) standard for data harmonization, yet the adoption of DICOM for pathology image-derived content has remained largely unexplored until now. Here, we present five representative datasets harmonized by conversion from their original representations into DICOM and shared publicly in the IDC. We demonstrate the benefits of this harmonization, describe contributions to critical open-source tooling, and discuss technical considerations relevant to broader adoption of DICOM for pathology image-derived data.",
+      "published": "2026-09-13T14:06:50Z",
+      "updated": "2026-09-13T14:06:50Z",
+      "url": "https://arxiv.org/abs/2609.14530",
+      "pdfUrl": "https://arxiv.org/pdf/2609.14530",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.16032",
+      "domain": "pathology",
+      "title": "Conditioning noise is a free regularizer for LoRA fine-tuning: no pathology encoder required for diffusion-based artifact detection in histopathology",
+      "authors": [
+        "Konstantinos Moutselos",
+        "Ilias Maglogiannis"
+      ],
+      "summary": "Diffusion-based artifact detectors score whole-slide image patches by reconstruction error under a model fine-tuned on clean tissue. We show that conditioning this fine-tuning on random Gaussian embeddings -- resampled at every step from approx. 200 KB of precomputed embedding statistics, with no encoder, no cache, and no change to inference -- consistently widens the clean/artifact separation. A four-step ablation chain shows the benefit requires neither content (shuffled real embeddings), provenance (synthetic Gaussians), a tuned intensity (flat across an 8x variance range), nor per-patch identity (fresh per-step noise); a LoRA-dropout control shows the conditioning pathway specifically, not generic weight perturbation, carries the effect. Patch-level gains of +0.25-0.48 Cohen's d replicate across nine trainings; honest leave-one-slide-out evaluation clears a pre-registered bar in 2/2 seeds; and two pre-registered external endpoints on a 281-case set confirm pooled Delta F1 = +0.0073 (95% CI) and +0.0129 (97.5% CI, two-look corrected). We release the full evaluation protocol, including measured seed noise and selection-optimism pricing.",
+      "published": "2026-09-11T07:16:38Z",
+      "updated": "2026-09-11T07:16:38Z",
+      "url": "https://arxiv.org/abs/2609.16032",
+      "pdfUrl": "https://arxiv.org/pdf/2609.16032",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.11044",
+      "domain": "pathology",
+      "title": "BEACON: A Versatile Accelerator for Computational Pathology Applications",
+      "authors": [
+        "Sumanth Gudaparthi",
+        "Ananth Krishna Prasad",
+        "Lin Jia",
+        "Rajeev Balasubramonian",
+        "Srinivasan Parthasarathy"
+      ],
+      "summary": "While accelerators for AI have seen great commercial success, it is challenging to replicate that success for other specialized domains due to a number of factors. We make the case that barriers for new accelerators can be lowered by starting with a baseline AI accelerator, and adding minimal logic to support new operators demanded by new specialized domains. This leads to a versatile chip that can be manufactured at high volume and deployed for a range of popular applications. We refer to this as the AI+X approach. This paper explores its potential for the emerging domain of Computational Pathology, which involves analysis of large whole-slide tissue images with a multi-stage pipeline. The pipeline requires support for a number of different kernels and operators - early stages perform segmentation and feature extraction, followed by graph creation with k nearest neighbor (kNN) algorithms, and finally inference with an iterative graph convolutional network (GCN) that alternates between Aggregation and Combination. We show that these stages execute inefficiently on a range of baseline CPU, GPU, AI, and GCN accelerators. That inefficiency is addressed with a combination of software re-structuring and small modifications to a baseline systolic AI accelerator. Many of the above kernels can be mapped to a systolic accelerator by offering a flexible datapath between processing elements and register access mechanisms. We add support for feature aggregation, load balanced execution, Euclidean distance calculation, binning, and counter aggregation. This additional flexibility and logic grows the area of a baseline AI chiplet by 1.1x, but by avoiding the memory wall and offering high parallelism, the proposed accelerator BEACON yields over an order of magnitude higher throughput for Computational Pathology than baseline CPU and GPU platforms.",
+      "published": "2026-09-10T03:45:07Z",
+      "updated": "2026-09-10T03:45:07Z",
+      "url": "https://arxiv.org/abs/2609.11044",
+      "pdfUrl": "https://arxiv.org/pdf/2609.11044",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.10914",
+      "domain": "pathology",
+      "title": "Seamless Whole Slide Label-Free Virtual Staining",
+      "authors": [
+        "Dou Hoon Kwark",
+        "Kianoush Falahkheirkhah",
+        "Ji-hun Oh",
+        "Shirui Luo",
+        "Volodymyr Kindratenko",
+        "Rohit Bhargava"
+      ],
+      "summary": "Label-free virtual staining offers a compelling, non-destructive alternative to standard histopathology; however, its clinical adoption is hindered by the computational bottlenecks inherent to processing gigapixel Whole Slide Images (WSIs). Current deep learning approaches require patch-based inference to avoid memory constraints, which disrupts global tissue continuity and introduces tiling artifacts--displaying visible seams and color shifts. To address this, we introduce the Consistency Memory Bank (COMB), a novel label-free virtual staining framework that enforces spatial and channel consistency across tiles without memory bottlenecks. COMB decouples context storage from computation, utilizing a dynamic retrieval mechanism to fetch feature representations from adjacent tiles. This enables a retrieval-based context integration strategy that adopts local padding to resolve spatial discontinuities and neighbor-aware channel attention to stabilize statistical drift. Further optimized with a sliding window schedule to ensure minimal memory overhead, our method demonstrates superior performance over state-of-the-art baselines, achieving significant improvements in both perceptual fidelity and tiling consistency, while suggesting its downstream utility in tumor segmentation. Code is available at https://github.com/dou0000/COMB.",
+      "published": "2026-09-09T23:59:55Z",
+      "updated": "2026-09-09T23:59:55Z",
+      "url": "https://arxiv.org/abs/2609.10914",
+      "pdfUrl": "https://arxiv.org/pdf/2609.10914",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.09510",
+      "domain": "pathology",
+      "title": "CHIMERA Challenge Task 2 and 3: Response Subtypes Classification and Progression Survival Prediction in Bladder Cancer Patients using Multimodal Datasets",
+      "authors": [
+        "Catherine Chia"
+      ],
+      "summary": "High-risk non-muscle-invasive bladder cancer (HR-NMIBC) carries substantial risks of recurrence and progression, while current clinical risk stratification remains limited. CHIMERA was established as a multimodal AI challenge to benchmark prediction in HR-NMIBC under standardized evaluation. Task BRS predicts RNA-seq-defined BCG Response Subtypes from histopathology and structured clinicopathological data, whereas Task Progression models time-to-progression using histopathology, structured data, and RNA sequencing. A multimodal dataset of 368 patients was divided into public training and hidden validation and test sets. In total, 159 submissions were made, and 13 top-performing models were selected for benchmarking. The best models achieved a weighted F1 score of 0.73 for Task BRS and a C-index of 0.68 for Task Progression. Post-challenge analyses revealed task-dependent modality contributions, cohort-dependent performance degradation, and sensitivity to missing structured data. In Task BRS, histopathology partly compensated for pathology-derived structured variables, whereas progression models showed greater dependence on complementary inputs. Cross-model error analysis further identified patients that were consistently difficult across different architectures, with T1 substage associated with prediction difficulty. These findings highlight barriers to transportability and the importance of missingness-aware modeling and independent multi-institutional validation. CHIMERA provides a standardized multimodal benchmark for bladder cancer and a framework for studying not only model performance, but also robustness, information sufficiency, and patient-level prediction failure.",
+      "published": "2026-09-08T22:52:55Z",
+      "updated": "2026-09-08T22:52:55Z",
+      "url": "https://arxiv.org/abs/2609.09510",
+      "pdfUrl": "https://arxiv.org/pdf/2609.09510",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.06338",
+      "domain": "mri",
+      "title": "One Shared LoRA Weight for MRI Reconstruction across Acceleration Factors",
+      "authors": [
+        "Zhiwei Zhao",
+        "Weikang Gong",
+        "Zhongnian Li",
+        "Xinzheng Xu"
+      ],
+      "summary": "Accelerated MRI reconstruction recovers images from undersampled k-space. However, different acceleration factors produce distinct artifact patterns. Existing methods often train separate models for each factor, leading to poor cross-factor generalization and high training and storage costs. We propose Shared LoRA, a parameter-efficient framework that freezes the pretrained SHFormer backbone and trains a single shared set of LoRA adapters together with a lightweight gating network. During training, undersampled inputs are generated by randomly sampling acceleration factors and their corresponding sampling masks, enabling the shared adapters to learn reconstruction knowledge across factors. Given the acceleration factor, GateNet generates layer-wise coefficients to dynamically modulate the residual strength of each adapter. Experiments show that Shared LoRA achieves the best or competitive PSNR and SSIM across acceleration factors, while its trainable parameters account for only about 5.3% of the total model parameters. Its performance at lower acceleration factors remains largely unaffected as the jointly trained factor set expands, and it generalizes stably to unseen neighboring factors.",
+      "published": "2026-09-06T02:23:24Z",
+      "updated": "2026-09-06T02:23:24Z",
+      "url": "https://arxiv.org/abs/2609.06338",
+      "pdfUrl": "https://arxiv.org/pdf/2609.06338",
+      "matchedKeywords": [
+        "mri",
+        "k-space",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.05956",
+      "domain": "pathology",
+      "title": "STP-BENCH: A Unified Systematic Benchmark for Virtual Spatial Transcriptomics from Histopathology Images",
+      "authors": [
+        "Youngmin Chung",
+        "Ji Hun Ha",
+        "Andrew H. Song",
+        "Cristina Almagro-Pérez",
+        "Chaeyoung Seo",
+        "Won Jun Suh",
+        "Jeong Won Beom",
+        "Kyoung Bin Oh",
+        "Eytan Ruppin",
+        "Faisal Mahmood",
+        "Joo Sang Lee"
+      ],
+      "summary": "Spatial transcriptomics (ST) provides unprecedented insights into tumor heterogeneity by capturing spatially resolved gene expression, yet its high experimental cost hinders large-scale adoption. Consequently, computational approaches that predict spatial gene expression directly from hematoxylin and eosin slides, termed virtual ST, have rapidly emerged. Despite this progress, assessing advances in the field remains difficult due to insufficient benchmarking: prior studies rely on small, heterogeneous datasets, inconsistent training and inference pipelines, and limited evaluation of biological interpretability and model robustness. To address these gaps, we present STP-BENCH, a standardized benchmark for virtual ST models. STP-BENCH comprises six cancer types spanning two ST platforms (Visium and Xenium), with each training dataset containing more than 30,000 spots and at least 15 slides to ensure statistical reliability. We evaluate 21 predictive approaches, re-implemented with a unified pathology foundation model as the morphological encoder when architecturally applicable. Beyond conventional benchmarks that report average predictive accuracy on highly variable genes, we systematically examine which genes and gene sets are recoverable from histomorphology. We further evaluate the downstream biological utility of predicted profiles through cell-type deconvolution and spatial domain identification, and assess model reliability under domain shifts and data scaling. Notably, unified morphological encoding substantially re-orders model rankings established in prior studies, indicating that architectural innovations and image encoding have been conflated in previous evaluations. We publicly release STP-BENCH to support reproducibility and serve as a community benchmark at https://github.com/NEXGEM/STP-Bench.",
+      "published": "2026-09-05T07:43:36Z",
+      "updated": "2026-09-05T07:43:36Z",
+      "url": "https://arxiv.org/abs/2609.05956",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05956",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "spatial transcriptomics"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.05323",
+      "domain": "pathology",
+      "title": "Scalable Detection of Fossil Palynomorphs in Multifocal Digital Microscopy Images",
+      "authors": [
+        "Abbas Shaikh",
+        "Praise Mayor",
+        "Patrick Ainlay-Vazquez",
+        "Aditya Viswanathan",
+        "Teon Golden",
+        "Eric Zhang",
+        "Ingrid C. Romero",
+        "Alexander E. White",
+        "Scott Wing",
+        "Arko Barman"
+      ],
+      "summary": "Palynomorphs (microscopic, organic-walled fossils such as pollen, spores, and dinoflagellates) are important high-resolution records of past climates and are critical to the study of ancient ecosystems. Existing methods rely on manual analysis of high-resolution, multifocal digital microscopy images, which is slow and time-consuming and requires researchers to compromise on the scale of their investigations. To the best of our knowledge, our work proposes the first ever scalable end-to-end pipeline for automated palynomorph detection in whole slide images that addresses this bottleneck through: (1) efficient methods for decomposing and compressing digitized multifocal microscope slide images into tractable 2-dimensional tiles for analysis; (2) benchmarking modern object detection models, including RF-DETR, for the detection of palynomorphs, achieving an AP@50 of 0.879; (3) an efficient algorithm for the synthesis of detection outputs across large-scale, high-resolution images; and (4) an I/O optimization resulting in faster inference time. Our methods drastically reduce the time required for palynomorph detection in a single slide from often days of manual inspection to under one hour of automated analysis, enabling palynological research at a substantially greater scale.",
+      "published": "2026-09-04T16:18:10Z",
+      "updated": "2026-09-04T16:18:10Z",
+      "url": "https://arxiv.org/abs/2609.05323",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05323",
+      "matchedKeywords": [
+        "whole slide"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.04071",
+      "domain": "pathology",
+      "title": "TAP-Path: Task-Adaptive Structural and Token Pruning for Efficient and Trustworthy Pathology Foundation Models",
+      "authors": [
+        "Mehedi Hasan",
+        "Ashfak Yeafi",
+        "Md Khairul Islam"
+      ],
+      "summary": "Pathology foundation models improve transferable representation learning for histopathology, but recent gains often rely on encoders with hundreds of millions of parameters and high inference cost. We propose TAP-Path, a task-adaptive compression framework that directly restructures a pretrained Virchow2 encoder rather than distilling it into a separate student. TAP-Path combines validation-driven transformer-block selection, physical removal of redundant blocks, input-adaptive patch-token pruning, multi-depth feature recovery, and a lightweight gated task head. The final model retains 24 of 32 transformer blocks and 70% of patch tokens after pruning, reducing encoder parameters by 24.96% (631.24M to 473.70M) and analytical encoder compute by 35.20% (340.13G to 220.40G FLOPs). Across three task-head optimization seeds, TAP-Path achieved $87.98 \\pm 0.067%$ test accuracy, $81.26 \\pm 0.49%$ balanced accuracy, and $82.38 \\pm 0.48%$ macro-F1 on a 32-class histopathology benchmark, compared with 86.89% for full Virchow2 and 87.67% for UNI2-h. TAP-Path achieved a Brier score of $0.1800 \\pm 0.0005$ and failure-detection AUROC of $0.9047 \\pm 0.0060$. A validation-only rare-aware objective improved rare-class balanced accuracy in a secondary operating analysis. Frozen external evaluation on 433 CPTAC samples yielded $91.22 \\pm 0.83%$ accuracy and $91.10 \\pm 0.81%$ balanced accuracy. These results show that task-adaptive structural and token sparsification can improve the accuracy-efficiency trade-off of large pathology foundation models while preserving reliability under internal and external evaluation.",
+      "published": "2026-09-03T16:43:36Z",
+      "updated": "2026-09-03T16:43:36Z",
+      "url": "https://arxiv.org/abs/2609.04071",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04071",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.04019",
+      "domain": "mri",
+      "title": "DREAM: Deep-Reparametrization of Adaptive Regularization Maps for Fast Zero-Shot Self-Supervised Learning",
+      "authors": [
+        "Thanh Trung Vu",
+        "Ander Biguri",
+        "Christoph Kolbitsch",
+        "Luca Calatroni",
+        "Kostas Papafitsoros",
+        "Andreas Kofler"
+      ],
+      "summary": "Adaptive regularization is an effective means of improving the flexibility of classical variational reconstruction methods while retaining their interpretability and mathematical structure. In this work, we propose an approach for learning deep-reparameterized adaptive regularization maps (DREAM) for Total Variation (TV) and Total Generalized Variation (TGV) through algorithm unrolling in a zero-shot, self-supervised setting, requiring no access to large paired datasets. We first validate DREAM on a two-dimensional image-denoising problem and then apply it to large-scale dynamic MRI reconstruction. The resulting adaptive models are theoretically grounded, as they retain the convergence properties of the primal-dual algorithm used as the building block of the unrolled architecture. Our results show that the regularization parameter maps can be learned efficiently, requiring substantially fewer weight updates than state-of-the-art methods to achieve comparable performance. We further demonstrate that the CNN parametrization of the maps acts as an implicit prior and provides effective dimensionality reduction, outperforming direct optimization of the adaptive parameters. Across both applications, the performance gap between supervised and zero-shot training is smaller for DREAM than for the end-to-end deep-learning methods considered for comparison. Remarkably, in dynamic cardiac MRI reconstruction, zero-shot training matches the performance of the supervised model. Moreover, the learned adaptive maps are highly interpretable, providing a compelling alternative to purely deep-learning-based methods when reference data are difficult to obtain.",
+      "published": "2026-09-03T15:58:39Z",
+      "updated": "2026-09-03T15:58:39Z",
+      "url": "https://arxiv.org/abs/2609.04019",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04019",
+      "matchedKeywords": [
+        "mri",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.03947",
+      "domain": "pathology",
+      "title": "Computationally Efficient Pathology Segmentation using Knowledge Distillation from Foundation Models",
+      "authors": [
+        "Jiaqi Lv",
+        "Yijie Zhu",
+        "Saki Okada",
+        "Maxwell Stanley Renna",
+        "Robert Goldin",
+        "Stefan Antonowicz",
+        "Shan E Ahmed Raza"
+      ],
+      "summary": "Automatic tissue segmentation is essential for large-scale analysis of histopathology whole-slide images (WSIs), but accurate pixel-level segmentation remains challenging. Pixel-level annotations are expensive to obtain, models pre-trained on natural images may transfer poorly to histopathology, and pathology foundation models, despite their strong representations, are computationally expensive to deploy at scale. We address these challenges with a foundation-model knowledge distillation framework for efficient tissue segmentation. We first train Virchow2-based segmentation teachers, including a LoRA-adapted variant, achieving state-of-the-art or highly competitive performance across four datasets: PUMA, IGNITE, BEETLE, and a private blood vessel segmentation dataset. We then transfer response-level and feature-level knowledge from these teachers into compact student networks. Distillation consistently improves student performance over supervised training alone, producing state-of-the-art or near state-of-the-art results with substantially fewer parameters and up to ten-fold higher inference throughput than foundation-model-based segmentation networks. These results show that foundation-model knowledge can be effectively transferred to efficient segmentation models for scalable deployment without compromising performance. Models trained on the public datasets will be released through TIAToolbox.",
+      "published": "2026-09-03T14:52:00Z",
+      "updated": "2026-09-03T14:52:00Z",
+      "url": "https://arxiv.org/abs/2609.03947",
+      "pdfUrl": "https://arxiv.org/pdf/2609.03947",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.03689",
+      "domain": "pathology",
+      "title": "Semantic-Aware Subgraph State Space Model for WSI Classification in Histopathology",
+      "authors": [
+        "Feixing Chen",
+        "Hao Lu",
+        "Lin Luo",
+        "Yan Xu"
+      ],
+      "summary": "Histopathological subtyping relies on the recognition of characteristic histological patterns. These patterns may be expressed by individual tissue structures or by the spatial distribution and co-occurrence of multiple structures, and they often span irregularly shaped tissue regions, termed semantic units in this work. However, conventional patch-based representations may fragment such units and fail to explicitly preserve their internal spatial organization, while efficiently modeling relationships among numerous spatially separated units remains challenging. To address these limitations, we propose the Semantic-Aware Subgraph State Space Model (SASG-SSM), a flexible and efficient framework for whole slide image (WSI) classification. Semantic-Aware Subgraphs (SASGs) first approximate irregularly shaped semantic units by adaptively grouping spatially connected patches guided by class-agnostic visual-semantic priors. By representing patches as graph nodes with adjacency edges, SASGs preserve their internal spatial organization rather than treating them as an unordered set. A Subgraph State Space Module (SG-SSM) subsequently combines a graph neural network encoder for intra-subgraph topology encoding with a Mamba-based state space encoder for efficient contextualization across large numbers of subgraphs. This module integrates local structural information within semantic units with global contextual information arising from their distribution and co-occurrence across the WSI, while efficiently modeling a large number of spatially distributed regions. Extensive experiments across four WSI subtyping datasets demonstrate consistent advantages over representative state-of-the-art methods. Further evaluations under small-cohort and few-shot settings demonstrate robustness and data efficiency under limited training data. Code will be released at https://github.com/HLSvois/SASG-SSM.",
+      "published": "2026-09-03T11:26:43Z",
+      "updated": "2026-09-03T11:26:43Z",
+      "url": "https://arxiv.org/abs/2609.03689",
+      "pdfUrl": "https://arxiv.org/pdf/2609.03689",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.05547",
+      "domain": "pathology",
+      "title": "A Network-Based Biomarker of Morphological Disruption Associated with Breast Cancer Malignancy",
+      "authors": [
+        "Reza Bozorgpour"
+      ],
+      "summary": "Breast cancer diagnosis commonly considers individual nuclear morphological characteristics, whereas their joint organization is less frequently evaluated. We developed the Morphological Network Disruption Index (MNDI), a patient-level measure of morphological abnormality relative to a benign reference state. Using the Wisconsin Diagnostic Breast Cancer dataset, ten nuclear characteristics were represented as network nodes, with MNDI summarizing disruption across 45 pairwise feature configurations. Performance was evaluated using repeated stratified five-fold cross-validation. Malignant lesions exhibited substantially higher MNDI than benign lesions (mean: 3.454 vs. 1.165; p = 2.94e-69). MNDI achieved an AUC of 0.941 (95% CI: 0.918-0.961), with 85.9% sensitivity and 91.6% specificity. A classifier using network-derived descriptors achieved an AUC of AUC of 0.928 +/- 0.024. Independent evaluation in the BreaKHis histopathology cohort showed limited discrimination (AUC = 0.538, 95% CI: 0.401-0.668), indicating dependence on the underlying morphological representation. MNDI provides an interpretable framework for quantifying patient-specific morphological disruption, while individual implementations require validation within compatible feature spaces.",
+      "published": "2026-09-03T02:50:19Z",
+      "updated": "2026-09-03T02:50:19Z",
+      "url": "https://arxiv.org/abs/2609.05547",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05547",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.02390",
+      "domain": "pathology",
+      "title": "Seeing Beyond the Lesion: Disease Recognition from Reactive CNS Tissue",
+      "authors": [
+        "Jan Schnorrenberg",
+        "Jan Ernsting",
+        "Enrico Küllenberg",
+        "Tim Hahn",
+        "Benjamin Risse",
+        "Christian Thomas"
+      ],
+      "summary": "Sampling error yields exclusively reactive, non-lesional brain parenchyma in a significant proportion of intracranial biopsies, leaving the underlying disease undiagnosed. We benchmark four pathology foundation models (UNI2-h, Virchow2, Prov-GigaPath, H-optimus-0) as frozen patch encoders within a shared attention-based multiple-instance learning framework using 245 whole-slide images from 186 patients with confirmed downstream diagnoses. We first show that coarse disease-category prediction can be reproduced largely from slide size alone. After restricting classification to three finer diagnostic distinctions within common tissue categories, this confound no longer explains performance, yet disease labels remain predictable above chance under permutation testing (p $\\le 10^{-4}$ throughout). Surprisingly, performance is statistically indistinguishable across all foundation-model encoders, suggesting that recovering these weak morphological signatures is not limited by current patch representations. Signed instance-contribution maps and expert review further test whether predictive evidence localizes to reactive parenchyma rather than sampling-induced bias like blood introduced during tissue sampling. These results position acquisition-shortcut auditing via a provenance-only baseline as a necessary control in computational-pathology benchmarks, and show, once that confound is removed, that weakly supervised models still recover disease signal from tissue conventionally regarded as non-diagnostic.",
+      "published": "2026-09-02T10:02:43Z",
+      "updated": "2026-09-02T10:02:43Z",
+      "url": "https://arxiv.org/abs/2609.02390",
+      "pdfUrl": "https://arxiv.org/pdf/2609.02390",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.02224",
+      "domain": "pathology",
+      "title": "Signal or Noise? Auditing Rotation-Induced Saliency Drift in Medical and Aerial Imaging",
+      "authors": [
+        "Khawaja Murad ul Hassan",
+        "Mehran Ebrahimi"
+      ],
+      "summary": "Post-hoc saliency maps such as Grad-CAM are increasingly used to audit why a deployed vision model made a decision, yet the heatmap drifts when the input is rotated, even when the prediction is unchanged. In domains with no canonical orientation, such as histopathology and aerial imagery, this undermines using saliency as evidence. We ask whether that drift is faithful signal or noise introduced by the CAM operator, and answer it by measuring equivariance at every stage of the operator rather than inferring it from the network's output. The instability is not where one would guess: the channel weights are the most rotation-stable stage, and on ResNet-50 exactly stable, because a GAP+linear head makes the class gradient field spatially constant. What moves is the spatial activation tensor, and the classifier's own pooling discards that movement. A causal test confirms the consequence: occluding the pixels whose saliency drifts costs the model less than occluding random pixels, at either orientation. The drift is carried by degrees of freedom the classifier throws away, which is what makes removing it faithful rather than destructive. EquiGrad-CAM is a training-free wrapper that takes T rotated views, inverse-rotates each view's saliency into a common canonical frame, and averages. On the full ImageNet-1K validation set it raises equivariance over single-view Grad-CAM by +36.0% (ResNet-50), +87.5% (VGG-16) and +247% (ViT-B/16); a scale-matched ablation isolates alignment before averaging, not the locus of aggregation, as the driver. It beats rotation-augmented training without retraining, lifts zero-shot CLIP by +145%, and yields rotation-consistent explanations on PatchCamelyon and RESISC45. Its by-product PEUM ranks explanations by how reproducible they are, at no cost beyond the views already taken. Code: https://github.com/Khawaja-Murad/EquiGrad-CAM",
+      "published": "2026-09-02T07:35:39Z",
+      "updated": "2026-09-02T07:35:39Z",
+      "url": "https://arxiv.org/abs/2609.02224",
+      "pdfUrl": "https://arxiv.org/pdf/2609.02224",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.02118",
+      "domain": "pathology",
+      "title": "Synergistic Information Disentanglement for Omni-modal Slide Representation Learning in Computational Pathology",
+      "authors": [
+        "Mingxin Liu",
+        "Chengfei Cai",
+        "Anwen Lu",
+        "Pengbo Xu",
+        "Jun Li",
+        "Jinze Li",
+        "Depin Chen",
+        "Jun Xu"
+      ],
+      "summary": "In computational pathology (CPath), developing omni-modal self-supervised learning (SSL) models that integrate histology, genomics, and clinical reports enables transferable representation learning for whole slide images (WSIs). Existing approaches implicitly force heterogeneous modalities into a uniform latent space by contrastive alignment, causing modality collapse where unique, synergistic diagnostic signals (termed as $\\mathrmΦ$) are discarded in favor of trivial redundancy. We hypothesize that the strongest task-agnostic SSL training signal stems from distilling the synergistic interactions over merely aligning shared redundancy. To this end, we introduce \\textsc{$\\mathrmΦ$-Omni}, a synergistic information disentanglement framework grounded in Partial Information Decomposition (PID) theory for slide representation learning. Unlike standard contrastive approaches, \\textsc{$\\mathrmΦ$-Omni} employs a Synergistic Information Bottleneck (SIB) regulated by the proposed $\\mathrmΦ\\text{ID}$ objective, which explicitly suppresses marginal redundancy while maximizing irreducible synergy, thereby distilling high-order cross-modal interactions. Following pretraining on breast ($n$=1031) and lung ($n$=919) cohorts, \\textsc{$\\mathrmΦ$-Omni} demonstrates superior few-shot performance across five independent external datasets spanning eight tasks compared to supervised and SSL baselines. Source code is available here.",
+      "published": "2026-09-02T05:16:44Z",
+      "updated": "2026-09-04T07:51:58Z",
+      "url": "https://arxiv.org/abs/2609.02118",
+      "pdfUrl": "https://arxiv.org/pdf/2609.02118",
+      "matchedKeywords": [
+        "pathology",
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.01987",
+      "domain": "pathology",
+      "title": "Morphology signal in whole slide image foundation models can automatically triage slides",
+      "authors": [
+        "Ayushi Sinha",
+        "Shashank Yadav",
+        "Benjamin Holmes",
+        "Pravat Das",
+        "Aaron W. Bogan",
+        "James S. Lewis",
+        "Santiago Romero-Brufau",
+        "Andrew Y. K. Foong",
+        "Scott H. Kaufmann",
+        "Kathryn M. Van Abel",
+        "David M. Routman",
+        "Michael R. Lucas"
+      ],
+      "summary": "Patient exams in the cancer diagnosis and staging process typically generate several whole slide images (WSIs). One of the initial steps in training models on WSI data is identifying one or a few slides containing tumor or other diagnostic biomarkers necessary for downstream prediction tasks such as estimating recurrence risk or progression-free survival. This step requires tedious manual curation by experienced pathologists. Many published datasets make the artificial assumption of 1 slide per patient. Alternatively, all slides per patient may be used for model training, which may dilute the signal from the few slides containing tumor or other relevant information. In this paper, we present a pipeline to overcome these challenges using publicly available WSI foundation models (FMs). Our evaluations show that ranking WSIs based on predictions from zero-shot classification using WSI FMs accurately identifies slides with the most tumor, indicating that WSI FMs contain sufficient morphology signal to automatically triage slides. We also present a formulation for ranked evaluation to benchmark FM performance in slide triage. We show, on multiple datasets, that tumor slides are identified in the top-2 ranked slides for patients with up to 43 slides.",
+      "published": "2026-09-02T01:51:09Z",
+      "updated": "2026-09-02T01:51:09Z",
+      "url": "https://arxiv.org/abs/2609.01987",
+      "pdfUrl": "https://arxiv.org/pdf/2609.01987",
+      "matchedKeywords": [
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.01960",
+      "domain": "pathology",
+      "title": "Mesoscopic Light Localization and Inverse Participation Ratio Analysis of Tissue Structural Disorder for Optical Cancer Detection",
+      "authors": [
+        "Santanu Maity",
+        "Mousa Alrubayan",
+        "Prabhakar Pradhan"
+      ],
+      "summary": "We introduce a mesoscopic physics-based framework that transforms conventional transmission optical micrographs into quantitative maps of tissue structural heterogeneity using the Inverse Participation Ratio (IPR). For the first time, to our knowledge, IPR-based light-localization analysis is applied to cancer tissue imaging to quantify nano- to submicron-scale structural alterations through spatial fluctuations in tissue mass density or refractive index. Unlike conventional morphology-based assessment, this physics-driven approach provides objective structural biomarkers from label-free or routinely stained tissue images. The method establishes a scalable, reproducible platform for quantitative computational pathology and enhanced cancer diagnosis by integrating mesoscopic optical physics with standard optical microscopy.",
+      "published": "2026-09-02T00:33:11Z",
+      "updated": "2026-09-03T00:24:58Z",
+      "url": "https://arxiv.org/abs/2609.01960",
+      "pdfUrl": "https://arxiv.org/pdf/2609.01960",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.01959",
+      "domain": "mri",
+      "title": "Data-Efficient Networks for Multi-Contrast MRI Reconstruction based on a Generalized Content/Style Prior",
+      "authors": [
+        "Chinmay Rao",
+        "Efe Ilıcak",
+        "Matthias J. P. van Osch",
+        "Mariya Doneva",
+        "Laurens Beljaards",
+        "Navid Jabarimani",
+        "Nicola Pezzotti",
+        "Marius Staring"
+      ],
+      "summary": "Multi-contrast MR scans contain redundant structural information that can be leveraged during reconstruction and potentially accelerate acquisition times. This idea has inspired end-to-end guided reconstruction models, leveraging one or more contrasts to guide the reconstruction of a different contrast. However, these models require large paired multi-contrast raw datasets for training, limiting their application in low-data regimes. In this work, we propose a modular framework, namely CoSMo-RecNet, for learning guided reconstruction models in the low-data regime. At its core is a reusable multi-contrast representation based on a content/style model, which can be learned from large-scale, publicly accessible, unpaired multi-contrast image datasets, without available k-space data. Using this frozen model as a multi-contrast prior and using a set of reference contrasts, the reconstruction problem reduces to a much simpler refinement problem that can be solved by a lightweight unrolled network and thus learned from small, task-specific reconstruction datasets. We demonstrate the efficacy of CoSMo-RecNet by evaluating it on the low-field 0.3 T M4Raw dataset, showing stable reconstruction quality on decreasing the raw training data budget. CoSMo-RecNet achieved higher reconstruction quality with 5 training subjects or lower compared to a parameter-count-matched MoDL trained on 100 subjects. On a data-limited and severely out-of-distribution ultra-low-field 47 mT Halbach scanner dataset, CoSMo-RecNet was superior to other viable strategies, including classical reconstruction, transfer learning, and zero-shot reconstruction.",
+      "published": "2026-09-02T00:29:17Z",
+      "updated": "2026-09-02T00:29:17Z",
+      "url": "https://arxiv.org/abs/2609.01959",
+      "pdfUrl": "https://arxiv.org/pdf/2609.01959",
+      "matchedKeywords": [
+        "mri",
+        "k-space",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.01426",
+      "domain": "pathology",
+      "title": "Semantic-Guided Multimodal Preprocessing for Vision Transformer-Based Clear Cell Renal Cell Carcinoma Grading",
+      "authors": [
+        "Fatemeh Javadian",
+        "Zhu Chen",
+        "Zahra Aminparast",
+        "Johannes Stegmaier"
+      ],
+      "summary": "Clear cell renal cell carcinoma (CCRCC) grading is essential for treatment planning, yet existing approaches either analyze patch-level images directly or focus solely on nuclei-level classification, without linking to final tumor grading. We propose a semantic-guided multimodal preprocessing method that integrates nuclei classification maps from existing pre-trained models with RGB histopathology images for Vision Transformer (ViT)-based CCRCC grading. Our approach employs classification map channel concatenation and multiplicative modulation, with optimized overlays to leverage nuclei grading information, while preserving RGB textural features. Evaluation of multiple preprocessing strategies demonstrates that semantic-guided enhancement achieves 0.916 balanced accuracy, outperforming RGB-only baseline (0.707) and max-voting aggregation from prior studies (0.427). Sensitivity analysis reveals that this 21 percentage point improvement over baseline persists even under simulated perturbation at rates matching current state-of-the-art nuclei classification model error thresholds, suggesting both effective semantic utilization and practical robustness. These findings show that preprocessing-based multimodal fusion can leverage the diagnostic potential of existing imperfect nuclei classifiers, effectively bridging previously isolated fine-grained nuclear-level analysis with coarse-grained ViT-based patch classification. Per-class recall was consistent across grades (0.93, 0.91, 0.91), indicating that gains are not concentrated in the majority class. Because the sensitivity analysis perturbs ground-truth maps rather than predictions from an actual nuclei model, this result characterizes robustness under simulated error rather than deployment with a real upstream model, which remains for future work.",
+      "published": "2026-09-01T15:39:14Z",
+      "updated": "2026-09-01T15:39:14Z",
+      "url": "https://arxiv.org/abs/2609.01426",
+      "pdfUrl": "https://arxiv.org/pdf/2609.01426",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.01146",
+      "domain": "pathology",
+      "title": "StainPresetNet: Stain Preset Network for Fast Multi-to-Multi Stain Normalization",
+      "authors": [
+        "Hongtao Kang",
+        "Die Luo",
+        "Li Chen",
+        "Jing Cai",
+        "Junbo Hu",
+        "Xiuli Liu",
+        "Shenghua Cheng"
+      ],
+      "summary": "Stain normalization reduces color variations caused by variations in staining protocols and imaging conditions, thereby enhancing computer-aided diagnostic system performance. Traditional methods derive mapping relationships from individual or limited reference images through pixel-wise transformation, offering style flexibility but suffering from inaccurate color mapping extraction. While existing deep-learning-based approaches achieve accurate dataset-wide color mapping through complex neural networks, they face challenges including computational inefficiency, artifact generation, and fixed normalization directions requiring model retraining for directional changes. To address these limitations, we propose StainPresetNet - a novel framework that combines structural preservation with dataset-level color mapping while maintaining computational efficiency. Our method implements pixel-wise normalization guided by preset reference images, enabling multi-directional adaptability without retraining. Evaluations on cytopathology and histopathology datasets demonstrate that StainPresetNet achieves superior color mapping accuracy compared to conventional methods, effectively improves classifier generalization in diagnostic tasks, and reduces computational overhead by 90\\% versus existing deep learning approaches. The proposed preset-guided mechanism facilitates flexible adjustment of normalization directions through simple reference image replacement, overcoming the directional rigidity of current deep-learning-based solutions.",
+      "published": "2026-09-01T12:20:05Z",
+      "updated": "2026-09-01T12:20:05Z",
+      "url": "https://arxiv.org/abs/2609.01146",
+      "pdfUrl": "https://arxiv.org/pdf/2609.01146",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.00866",
+      "domain": "pathology",
+      "title": "Benchmarking Vision-Language Models for Automated Pathology Diagnosis and Report Generation",
+      "authors": [
+        "Yumi Lee",
+        "Harim Oh",
+        "Hyoryung Kim",
+        "Minji Kim",
+        "Eunsu Kim",
+        "Hyeseong Lee",
+        "Junya Fukuoka",
+        "Andrey Bychkov",
+        "Jijgee Munkhdelger",
+        "Rajiv Kumar Kaushal",
+        "Ayushi Sahay",
+        "Rajni Yadav",
+        "Bharathi Prabakaran",
+        "Sulen Sarioglu",
+        "Serdar Balcı",
+        "Ilknur Turkmen",
+        "Yuri Tolkach",
+        "Christian Harder",
+        "Julian Westerdorf",
+        "Reinhard Buettner",
+        "Audun Ljone Henriksen",
+        "Sepp De Raedt",
+        "Byung Hyun Lee",
+        "Sungjin Lim",
+        "Joohoon Lee",
+        "Gwanghyun Kim",
+        "Se Young Chun",
+        "Suryakant Singh",
+        "Saarthak Kapse",
+        "Prateek Prasanna",
+        "Kyung A Kim",
+        "Yousun Kang",
+        "Sehwan Yoo",
+        "Sungman Hong",
+        "Shubham Innani",
+        "Michael Feldman",
+        "Spyridon Bakas",
+        "Ujjwal Baid",
+        "Prasad Dutande",
+        "Suhas Gajare",
+        "Bhakti Baheti",
+        "Serkan Sökmen",
+        "Ece Tuğba Cebeci",
+        "Ahmet Halıcı",
+        "Musa Balcı",
+        "Kardelen Peçenek",
+        "Srividhya Sainath",
+        "Kyongseok Jang",
+        "Messi H. J. Lee",
+        "Noorul Wahab",
+        "Bodong Du",
+        "Jiaming Zhang",
+        "Qixiang Zhang",
+        "Jang-Hwan Choi",
+        "Sangjeong Ahn"
+      ],
+      "summary": "The rapid advancement of vision-language models (VLMs) has accelerated progress in computational pathology; however, whole-slide image (WSI)-based pathology report generation remains limited by the scarcity of large-scale WSI--report datasets and the complexity of mapping spatially distributed visual patterns to structured clinical text. To address this, we introduce a clinically curated Pan-Asia WSI--report dataset of approximately 10,500 pairs from five institutions and establish the REG 2025 benchmark through a MICCAI challenge for systematic evaluation of multimodal models. We analyze submitted methods spanning pretrained VLMs, multiple-instance learning frameworks, hierarchical expert models, retrieval-augmented generation, and cross-modal Transformers. Rather than indicating that VLM use alone was sufficient for superior performance, the results suggest that top-performing methods benefited from structured report representations, hierarchical diagnostic decomposition, and effective multimodal grounding. We identify key limitations, including instability in quantitative attribute estimation (e.g., numeric hallucination) and a tendency toward diagnostic overspecification, with some errors resembling known diagnostic pitfalls in routine pathology. These findings establish REG 2025 as a benchmark for evaluating WSI-based structured report generation and vision-language understanding in computational pathology, providing insights for the design of clinically grounded multimodal pathology models.",
+      "published": "2026-09-01T08:01:31Z",
+      "updated": "2026-09-01T08:01:31Z",
+      "url": "https://arxiv.org/abs/2609.00866",
+      "pdfUrl": "https://arxiv.org/pdf/2609.00866",
+      "matchedKeywords": [
+        "pathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.00704",
+      "domain": "pathology",
+      "title": "FTU-Seek: Foundation Model-Guided Hard-Negative Learning for Sparse Functional Tissue Unit Segmentation",
+      "authors": [
+        "Zonghao Liu",
+        "Lei Su",
+        "Jiguang Yu",
+        "Xuqing Geng",
+        "Louis Shuo Wang",
+        "Jianmin Wang",
+        "Jingfeng Liu"
+      ],
+      "summary": "Functional tissue units (FTUs), including tertiary lymphoid structures (TLSs), blood vessels, and glands, encode localized immune, vascular, and epithelial organization in histopathology. Accurate quantification of these structures is important for studying tissue architecture and disease-associated tissue organization. However, FTUs are frequently sparse, heterogeneous, and surrounded by large amounts of morphologically similar background tissue, making automated segmentation in whole-slide images (WSIs) challenging. We therefore developed FTU-Seek, a pathology foundation model-guided framework that treats morphology-aware negative-patch selection as a key component of sparse FTU segmentation. FTU-Seek uses frozen multi-depth features from the UNI pathology foundation model to train a patch-level classifier that distinguishes FTU-containing from FTU-absent tissue. Target-absent patches are subsequently ranked according to their predicted target-containing probabilities, and the highest-scoring hard negatives are selected through a static Top$K$ strategy to construct compact segmentation training sets. The framework was evaluated using five-fold cross-validation and internal test cohorts across TLS, blood-vessel, and gland segmentation tasks, with an additional independent 30-WSI held-out cohort for TLS. Positive-only, all-tissue, random-negative, and matched random Top$K$ sampling strategies served as comparators. Segmentation-derived phenotypes were further explored in external TCGA cohorts.",
+      "published": "2026-09-01T04:32:26Z",
+      "updated": "2026-09-01T04:32:26Z",
+      "url": "https://arxiv.org/abs/2609.00704",
+      "pdfUrl": "https://arxiv.org/pdf/2609.00704",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.00424",
+      "domain": "pathology",
+      "title": "MUFASA: An Information Utility-Aware Preprocessing Framework for Reliable Model Reasoning in Computational Pathology",
+      "authors": [
+        "Rathinaraja Jeyaraj",
+        "Barathi Subramanian",
+        "Songmi Noh",
+        "Mitchell N. Peterson",
+        "Terry Guo",
+        "George A. Fisher",
+        "Nigam H. Shah",
+        "Curtis P. Langlotz",
+        "Thomas J. Montine",
+        "Jeanne Shen"
+      ],
+      "summary": "Reliable computational pathology depends on preprocessing methods that identify informative tissue regions while excluding artifacts and low-utility regions from whole-slide images (WSI). However, existing preprocessing pipelines often retain such regions or discard diagnostically relevant tissue, thereby limiting downstream model performance, reliability, and robustness across heterogeneous cohorts. Here, we systematically evaluate how these regions affect downstream AI model performance across multiple clinically relevant applications and introduce MUFASA, a generalizable, information utility-aware preprocessing framework for H&E-stained WSI that excludes artifacts and low-utility regions while preserving biologically meaningful tissue. MUFASA integrates slide-level artifact masking, stain-aware tile filtering, reconstruction-based utility stratification of tiles, and targeted recovery of tissue tiles that are over-filtered by earlier phases. Across tumor diagnosis, tumor subtyping, biomarker status prediction, and survival prognostication tasks in diverse cancer cohorts, MUFASA consistently improves downstream model performance relative to widely used preprocessing baselines. These gains are accompanied by reduced artifact-associated attribution in model heatmaps, indicating improved alignment between retained tissue and model attention. Our findings establish WSI preprocessing as a critical determinant of downstream model performance and validity, revealing that even accurate predictions can conceal important failure modes stemming from anatomically implausible reasoning driven by retained artifact-containing and low information-utility tiles.",
+      "published": "2026-08-31T22:01:09Z",
+      "updated": "2026-08-31T22:01:09Z",
+      "url": "https://arxiv.org/abs/2609.00424",
+      "pdfUrl": "https://arxiv.org/pdf/2609.00424",
+      "matchedKeywords": [
+        "pathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.00396",
+      "domain": "pathology",
+      "title": "SlideMix: Enhancing Whole Slide Image Analysis via Multimodal Shuffling",
+      "authors": [
+        "Chad Wong",
+        "Sicheng Chen",
+        "Tianyi Zhang",
+        "Enhui Chai",
+        "Yueming Jin",
+        "Zeyu Liu",
+        "Fei Xia"
+      ],
+      "summary": "Histopathological whole slide images (WSIs) are central to cancer diagnosis, but their gigapixel scale, tissue heterogeneity, weak slide-level supervision, sparse diagnostic regions, and multi-scale evidence make robust automated analysis challenging. Multiple instance learning (MIL) is widely used to aggregate tile-level features into slide-level predictions, yet existing augmentation strategies often perturb tissue regions without preserving diagnostic relevance, slide context, or cross-scale structure. We propose SlideMix, a model-agnostic multimodal augmentation framework for MIL-based WSI analysis. SlideMix uses a retrieval-augmented vision-language model (VLM)-based Visual-Language Adaptive Region selector to identify diagnostically relevant regions and reduce weak-label noise. It then performs In-place Tile Shuffling within meaningful tissue regions to mix feature embeddings while preserving slide-level context. A VLM-based soft-labeling module supervises mixed samples, while a multi-factor, loss-driven online Curriculum-Learning Feedback scheme adaptively controls shuffle granularity, feature similarity, and shuffle ratio to promote cross-scale representation learning. Across 11 WSI datasets comprising 20,523 slides, 8 diagnostic tasks, and 10 WSI backbones, SlideMix improves accuracy and generalization in most settings and compares favorably with established augmentation baselines, providing a simple plug-and-play approach for more robust and scalable digital pathology models. Source code: https://github.com/Xia-Research-Lab/SlideMix",
+      "published": "2026-08-31T21:25:02Z",
+      "updated": "2026-08-31T21:25:02Z",
+      "url": "https://arxiv.org/abs/2609.00396",
+      "pdfUrl": "https://arxiv.org/pdf/2609.00396",
+      "matchedKeywords": [
+        "pathology",
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2609.00342",
+      "domain": "pathology",
+      "title": "SlideBank: A Persistent Hierarchical Evidence Bank for Consistent Whole-Slide Reasoning",
+      "authors": [
+        "Beidi Zhao",
+        "Gexin Huang",
+        "Ciro Zhang",
+        "Anqi Li",
+        "Yusheng Tan",
+        "Chen Zhou",
+        "Gang Wang",
+        "Zu-hua Gao",
+        "Xiaoxiao Li"
+      ],
+      "summary": "Whole-slide images (WSIs) are challenging for vision-language reasoning because diagnostically relevant morphology is sparse, heterogeneous, and distributed across gigapixel-scale images and multiple spatial resolutions. Existing WSI models and pathology agents can aggregate slide features or actively acquire evidence, but the information retained after exploration is often difficult to access semantically while preserving its connection to the original visual evidence. We introduce SlideBank, a training-free framework that represents each WSI as a persistent, concept-indexed, and spatially grounded evidence bank. SlideBank performs question-independent coarse-to-fine exploration to identify informative regions and multi-scale views, converts them into explicit morphological observations, and grounds pathology signals to their supporting patches and WSI coordinates. At inference time, questions are routed to relevant signals and evidence scales, and the linked global, regional, and patch evidence is integrated through confidence-based cross-level consensus. Experiments on WSI-VQA and SlideBench-BCNB show that with Patho-R1, SlideBank reaches 52.77% on WSI-VQA and with Quilt-LLaVA, it reaches 50.92% average accuracy on SlideBench-BCNB, while structured signal-guided retrieval consistently outperforms random evidence sampling. Reusing the same bank across repeated queries further achieves over 99% rephrasing consistency and substantially reduces amortized inference cost through persistent evidence reuse.",
+      "published": "2026-08-31T20:37:52Z",
+      "updated": "2026-08-31T20:37:52Z",
+      "url": "https://arxiv.org/abs/2609.00342",
+      "pdfUrl": "https://arxiv.org/pdf/2609.00342",
+      "matchedKeywords": [
+        "pathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.30835",
+      "domain": "pathology",
+      "title": "Reliable Benchmarking of Artifact Detection in Computational Pathology: A Reproducibility and Uncertainty Analysis",
+      "authors": [
+        "Konstantinos Moutselos",
+        "Ilias Maglogiannis"
+      ],
+      "summary": "Background and Objective: Quality control is a prerequisite for whole-slide image analysis, yet the benchmarks on which quality-control methods are compared share four properties that make their reported differences hard to interpret: few independent slides, annotation concentrated in a minority of them, pooled ratio metrics with no closed-form standard error, and a single inherited train/test partition. We propose a reliability protocol for such benchmarks. Methods: The protocol quantifies four sources of variability - test-set sampling, training stochasticity, partition composition, and undocumented preprocessing - a claim is reportable only if it survives all four; three of the four cost minutes of compute. We apply it to an independent reconstruction of a published diffusion-based artifact detector, evaluated on the original 24-slide partition and against a supervised baseline. Results: The method's central mechanism reproduces: the auxiliary contrastive term improves pooled F1 from 0.673 to 0.688 and replicates under a second seed (+0.0156, p = 0.031; +0.0190, p = 0.005), although it acts on pen marking rather than the artifact types cited to motivate it. Its comparative claims do not: differences between design variants, and against the supervised baseline, fall inside the uncertainty of the evaluation. Four of 24 slides carry 70% of scored annotated pixels, giving an effective sample size of 6.2, and the inherited partition sits at the 7th percentile. An unreported tissue-restriction step excludes 41.4% of out-of-focus annotation against 2.6% of air bubble; such a gate is confounded with blur by construction. Conclusions: Small-cohort benchmarks support far weaker conclusions than current reporting implies. The four checks are cheap enough to accompany any evaluation on such a resource and separate reproducible effects from differences the evaluation cannot resolve.",
+      "published": "2026-08-31T14:07:15Z",
+      "updated": "2026-08-31T14:07:15Z",
+      "url": "https://arxiv.org/abs/2608.30835",
+      "pdfUrl": "https://arxiv.org/pdf/2608.30835",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.28820",
+      "domain": "pathology",
+      "title": "Explainable Artificial Intelligence (XAI) in Computational Pathology: Definitions, Taxonomy, and Recommendations",
+      "authors": [
+        "Shubham Innani",
+        "Suhang You",
+        "Adam Shephard",
+        "Bhakti Baheti",
+        "Francesco Ciompi",
+        "Joe Yeong",
+        "Nasir Rajpoot",
+        "Michael Feldman",
+        "Solene Florence Kammerer-Jacquet",
+        "Dimitrios Makris",
+        "Geert Litjens",
+        "Anne L. Martel",
+        "Jana Lipkova",
+        "April Khademi",
+        "Spyridon Bakas",
+        "for the MICCAI SIG-CompPath"
+      ],
+      "summary": "Computational pathology (CompPath) is transforming medicine by leveraging artificial intelligence (AI) algorithms to support diagnosis, prognosis, and treatment prediction from gigapixel whole-slide images. Clinical adoption is progressing, but is constrained by concerns about safety, accountability, and regulatory oversight in high-stakes clinical environments. Explainable AI (XAI) systems hold promise for building trust and enabling verification, yet the literature remains fragmented due to inconsistent terminology, overlapping methodological families, ad hoc validation, and current reviews. This review aims to formalize XAI methods in CompPath through the: i) introduction of a pathology-centric vocabulary comprising seven core terms; ii) development of a taxonomy across methodological families and three orthogonal axes (stage, type, scope); and iii) establishment of a task-driven framework that maps five clinical questions to recommended methods, method evaluation, and deployment context. Five key gaps between current XAI capabilities and clinical deployment are identified, and actionable steps are proposed to advance XAI for CompPath.",
+      "published": "2026-08-28T19:46:28Z",
+      "updated": "2026-08-28T19:46:28Z",
+      "url": "https://arxiv.org/abs/2608.28820",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28820",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.28191",
+      "domain": "pathology",
+      "title": "EXPOSE: Explainable and Domain-Robust Embeddings from Pathology Vision Foundation Models using Sparse Autoencoders",
+      "authors": [
+        "Anja Witte",
+        "Maximilian Lennartz",
+        "Jan Baumbach",
+        "Guido Sauter",
+        "Stefan Bonn",
+        "Patrick Fuhlert",
+        "Marina Zimmermann"
+      ],
+      "summary": "Vision Foundation Models (VFMs) are widely used in computational pathology but remain sensitive to domain shifts arising from variations in staining, tissue preparation, and scanner hardware. A key limitation is that VFM embeddings entangle biological with domain-specific information, hindering cross-domain generalization. We propose Explainable Probing of Cross-Domain Sparse Embeddings (EXPOSE), a framework that uses Sparse Autoencoders (SAEs) as an explainable bottleneck to identify and suppress domain-specific components in VFM embeddings. We train a sparse representation of VFM features, use a linear classifier to identify domain-specific latent dimensions, and mask these features prior to downstream relapse prediction without retraining the backbone model. Experiments on a large prostate cancer dataset with multiple acquisition domains show that SAE features capture both domain- and task-specific information, which are partially disentangled in the latent space. Removing domain-specific features improves cross-domain performance and increases embedding robustness as measured by the Domain Robustness Index (DoRI). Code is available at https://github.com/imsb-uke/expose .",
+      "published": "2026-08-28T11:04:28Z",
+      "updated": "2026-08-28T11:04:28Z",
+      "url": "https://arxiv.org/abs/2608.28191",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28191",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.28714",
+      "domain": "mri",
+      "title": "Evaluating the Safety of Deep Learning-Based Brain MRI Reconstruction",
+      "authors": [
+        "Dat Tat Mai",
+        "Thai Viet Pham",
+        "Thu Nguyen Thi Dang",
+        "James Jin Kang"
+      ],
+      "summary": "Objective: Deep learning accelerates brain MRI four- to tenfold, but models can erase lesions or synthesize false tissue - failures pixel-averaged metrics like PSNR and SSIM miss. We review whether current evaluation practices detect this blind spot. Methods: Following PRISMA 2020, we searched seven databases without date limits, including 263 studies (1995-2026), appraised them using QUADAS-2 and matched instruments, and synthesized narratively. Categories were derived from titles, abstracts, and controlled vocabulary; reported prevalence figures represent floors. Duplicate screening achieved high agreement (Fleiss kappa = 0.877), as did appraisal (0.788; 0.390 where observable). Extraction is unaudited. Results: Only 18 of 263 studies (6.8%) recorded both a fidelity metric and reader assessment on identical data, leaving the central surrogate unmeasured. Reader studies mostly measured inter-reader agreement, which was weak: fastMRI 2020 concordance reached 0.457 and 0.386 (Kendall W), improving only where SSIM diverged. Erasing a 100 mm3 lacunar infarct shifts global PSNR by 0.03 dB under the stated error model. As the corpus grew fivefold, reader assessments dropped from 32% to 18%, recovering to 21%. Generative models - most associated with hallucination (39%) - were among the least reader-evaluated (11.3%), while self-supervised models reached 47% with zero reader evaluation. Only 5% released code and ran reader studies; none evaluated a model observer; no named dataset covered acute stroke or hemorrhage. Conclusions: On these floors, current evaluation practices cannot certify diagnostic safety. We derive five requirements safety-oriented evaluations must meet.",
+      "published": "2026-08-28T08:08:14Z",
+      "updated": "2026-08-28T08:08:14Z",
+      "url": "https://arxiv.org/abs/2608.28714",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28714",
+      "matchedKeywords": [
+        "mri",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.28708",
+      "domain": "pathology",
+      "title": "STEP: A Modular Silent Trial Engine for Operational Evaluation of Digital Pathology AI in Routine Workflow",
+      "authors": [
+        "Gabriele Campanella",
+        "Matthew Croken",
+        "Olga Lukatskaya",
+        "Jane Houldsworth",
+        "Ricky Kwan",
+        "Peter Schüffler",
+        "Chad Vanderbilt"
+      ],
+      "summary": "Prospective silent trials provide an important bridge between retrospective validation of artificial intelligence (AI) models and their use in clinical care by evaluating model performance and operational reliability on live clinical data without influencing patient management. In computational pathology, conducting silent trials requires integration across laboratory information systems, digital pathology infrastructure, computational resources, and model inference pipelines, and these workflows are often implemented using application-specific software. We developed the Silent Trial Engine for Pathology (STEP), a reusable software platform for orchestrating prospective silent trials of computational pathology AI models across heterogeneous clinical and computational environments. STEP separates common trial orchestration from institution-specific data access and compute infrastructure through modular adapter interfaces. The platform supports scheduled case discovery, per-slide inference submission, deterministic idempotency, failure recovery, result and ancillary-data ingestion, persistent trial and run state, and audit logging, with compute adapters supporting local execution and high-performance computing environments using LSF and Slurm. STEP was deployed at three institutions to support prospective silent evaluation of EAGLE, an AI model for predicting EGFR mutation status from hematoxylin and eosin-stained whole-slide images. By separating trial-level workflow logic from site-specific integrations, STEP enables a common execution framework to operate across heterogeneous pathology environments while maintaining durable and auditable trial state. This approach may reduce duplicated engineering effort and facilitate systematic real-world evaluation of computational pathology AI before interventional clinical deployment.",
+      "published": "2026-08-27T20:33:39Z",
+      "updated": "2026-08-27T20:33:39Z",
+      "url": "https://arxiv.org/abs/2608.28708",
+      "pdfUrl": "https://arxiv.org/pdf/2608.28708",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.27278",
+      "domain": "pathology",
+      "title": "Decoupled I/O-Dominant Pipelines for Large-Scale Whole-Slide Image Embedding Extraction",
+      "authors": [
+        "Mayanka Chandrashekar",
+        "Xi Zhang",
+        "Ethan Seefried",
+        "Tirthankar Ghosal",
+        "John Gounley",
+        "Heidi Hanson"
+      ],
+      "summary": "Whole-slide images (WSIs) are central to computational pathology but are prohibitively large, making patch-based processing the practical unit for foundation model inference. At scale, however, generating and handling massive numbers of patches on quickly introduces significant I/O and orchestration overhead, often dominating end-to-end performance. We present a decoupled, I/O-aware pipeline for large-scale WSI embedding extraction that decomposes the workflow into three stages: (1) patch generation and staging, (2) embarrassingly parallel embedding inference, and (3) sharded vector database ingestion. This design isolates data movement from compute, enabling efficient patch delivery, scalable multi-node inference with minimal communication. The resulting system produces a distributed vector database where embeddings are persistently coupled with rich metadata (e.g., patient, slide, and patch attributes), enabling efficient filtering, retrieval, and downstream reuse. This representation database is compact and reusable for tasks such as retrieval, classification, and few-shot learning, particularly benefiting low-resource environments. We show that decoupling I/O, computation, and ingestion enables high-throughput WSI embedding extraction at scale. By characterizing the scaling envelope, we demonstrate that storage dominates beyond moderate concurrency, reframing WSI embedding extraction as a data-centric systems problem rather than a purely compute-bound workload.",
+      "published": "2026-08-27T15:53:16Z",
+      "updated": "2026-08-27T15:53:16Z",
+      "url": "https://arxiv.org/abs/2608.27278",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27278",
+      "matchedKeywords": [
+        "pathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.27004",
+      "domain": "pathology",
+      "title": "MVC-Bench: Benchmarking Calibration of Medical Vision-Language Models",
+      "authors": [
+        "Ashshak Sharifdeen",
+        "Shihab Aaqil Ahamed",
+        "Ufaq Khan",
+        "Muhammad Akhtar Munir",
+        "Sujair Ibrahim",
+        "Mohamed Rafeek Mareer Ahamed",
+        "Yutong Xie",
+        "Imran Razzak",
+        "Muhammad Haris Khan"
+      ],
+      "summary": "Reliable evaluation of vision-language models (VLMs) and medical vision-language models (Medical-VLMs) requires calibrated confidence, particularly under realistic clinical conditions. However, existing efforts mainly focused on improving accuracy, leaving calibration in the medical domain underexplored. To this end, we propose MVC-Bench, a calibration-centric benchmark for medical image classification with VLMs and Medical-VLMs. MVC-Bench assesses the calibration across three axes: (i) robustness to modality, backbone, and domain shift (ii) effectiveness of calibration strategies and prompt-tuning methods (iii) stability under prompt-template and random-seed variations. The benchmark covers eight different backbones, three medical modalities, including fundus imaging, histopathology, and chest X-ray under in-domain and domain shift settings. It compares post-hoc calibration, train-time calibration, and zero-shot inference methods, together with six prompt-tuning methods. Across more than 1638 controlled experiments, we report accuracy and Expected Calibration Error (ECE) as primary metrics, and further report results with complementary calibration measures, including Maximum Calibration Error (MCE) and Adaptive Calibration Error (ACE). We further investigate the underlying causes of miscalibration in VLMs and Medical-VLMs and propose a simple train-time calibration method, Multi-Class Margin (MCM) regularization, which achieves lowest ECE on 10 out of 12 settings in in-domain and remains competitive under domain shifts. Collectively, MVC-Bench provides a structured evaluation framework and actionable guidance for improving calibration in safety-critical medical workflows.",
+      "published": "2026-08-27T11:49:46Z",
+      "updated": "2026-08-31T12:39:07Z",
+      "url": "https://arxiv.org/abs/2608.27004",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27004",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.27516",
+      "domain": "pathology",
+      "title": "Destroy Me: Automatic Artifact Generation for Histopathology Images",
+      "authors": [
+        "Zuzanna Krawczyk-Borysiak",
+        "Adam Krawczyk",
+        "Mateusz Miller",
+        "Gabriela Kaczmarek",
+        "Sławomir Pakuło",
+        "Małgorzata Sokół",
+        "Żaneta Swiderska-Chadaj"
+      ],
+      "summary": "Deep learning's diagnostic utility in pathology is constrained by model vulnerability to real-world data imperfections. While current strategies favor \"perfect data\" by filtering low-quality regions, which can lead to the loss of valuable diagnostic context, we propose a paradigm shift: engineering models to thrive in imperfect environments using \"Destroy Me\", a hybrid framework for realistic artifact synthesis and robust data augmentation. Our approach combines Stable Diffusion, fine-tuned to preserve morphological continuity by realistically integrating artifacts with the underlying tissue architecture, with physics-based procedural modeling to synthesize six common artifact types: tissue folds, precipitates, blur, stitching errors, dust, and pen markers. Artifact fidelity is assessed using Kernel Inception Distance (KID) and color Wasserstein distance metrics. Validating this strategy on lung adenocarcinoma pattern classification with an nnU-Net, we confirm that models trained on \"destroyed\" patches consistently outperform baselines on independent real-world datasets. Specifically, we observed a 10.5% relative improvement in macro F1-score and a 15% relative increase in the Cohen's Kappa ($κ$) coefficient. Crucially, our results demonstrate that selective, impact-weighted augmentation is vital for balancing practical robustness with the preservation of subtle diagnostic features.",
+      "published": "2026-08-27T10:12:09Z",
+      "updated": "2026-08-27T10:12:09Z",
+      "url": "https://arxiv.org/abs/2608.27516",
+      "pdfUrl": "https://arxiv.org/pdf/2608.27516",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.26647",
+      "domain": "mri",
+      "title": "Tissue-Mixture Entropy-Weighted Reconstruction for Partial-Volume-Aware Brain MRI Super-Resolution",
+      "authors": [
+        "Xiao Tong",
+        "Wenyun Yang",
+        "Ziheng Zhang",
+        "Jingzhi Han",
+        "Zhaochu Luo",
+        "Jinbo Yang"
+      ],
+      "summary": "Background and Objectives: Full-image objectives in brain magnetic resonance imaging (MRI) super-resolution (SR) can underweight tissue-transition regions affected by the partial-volume effect (PVE), as these regions occupy a small fraction of the image. Binary boundaries further provide only a discrete approximation of continuous tissue mixtures within a voxel. Methods: We propose Anatomy-Guided Gaussian-Parameter Warping with PVE-Balanced Reconstruction (AGW-PBR), combining a low-resolution (LR)-only reconstruction backbone with a PVE-aware training objective. The backbone uses LR-derived anatomical guidance, soft latent assignment, and bounded residual warping. Quality-controlled tissue fractions are converted into tissue-mixture entropy to spatially weight reconstruction within validated PVE support. PVE sidecars are used only during training, while inference requires only the LR image. Downstream utility is further evaluated through zero-shot transfer to whole-tumor segmentation on BraTS2023. Results: AGW-PBR improves reconstruction across 2x and 4x SR on IXI and achieves the lowest normalized gradient-vector reconstruction error at both CSF--GM and GM--WM interfaces at 4x. Ablation studies verify the contributions of PVE-aware weighting and soft latent assignment. The PVE-free AGW backbone also maintains strong performance on fastMRI. On BraTS2023, AGW-PBR achieves competitive whole-tumor Dice and the lowest HD95 under direct zero-shot transfer. Conclusions:AGW-PBR improves brain MRI SR while preserving tissue-transition information relevant to downstream analysis. The results support tissue-mixture entropy as an effective supervision signal for partial-volume-aware MRI reconstruction.",
+      "published": "2026-08-27T05:58:41Z",
+      "updated": "2026-09-02T09:38:58Z",
+      "url": "https://arxiv.org/abs/2608.26647",
+      "pdfUrl": "https://arxiv.org/pdf/2608.26647",
+      "matchedKeywords": [
+        "mri",
+        "magnetic resonance",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.25970",
+      "domain": "pathology",
+      "title": "PANDA - Prototype-Anchored Alignment for Partially Unpaired Multimodal Learning, with Applications to Alzheimers MRI and TCGA Pathology",
+      "authors": [
+        "Sheethal Bhat",
+        "Mahfuzur Rahman Chowdhury",
+        "Paula Andrea Perez-Toro",
+        "Stephan Wunderlich",
+        "Rose Dawn Bharat",
+        "Siming Bayer",
+        "Andreas Maier"
+      ],
+      "summary": "Multimodal medical prediction often faces incomplete pairing: auxiliary modalities with complementary signal are available for only a subset of subjects (or none) and cannot be assumed at deployment. We introduce PANDA (Prototype Anchored Data Alignment), a two-stage framework that transfers auxiliary information to a primary-modality model without auxiliary inputs at inference. Stage 1 learns a shared embedding from the paired subset and estimates class prototypes from auxiliary modalities; Stage 2 trains the primary encoder on all subjects using cross-entropy plus alignment to the frozen prototypes. Because supervision is defined at the class-prototype level, PANDA accommodates arbitrary pairing rates, including zero subject overlap. We evaluate PANDA on two applications. On a 1,021-subject multi-scanner ADNI cohort, we perform AD/CN classification with three auxiliary modalities at distinct pairing rates: tabular scores (44.8%), FDG-PET (18.7%), and external handwriting kinematics (0% overlap). Relative to the same-backbone MRI-only baseline, PANDA attains AUC 0.868 +-0.020 (+7.9pp) and reduces 1.5T CN false positives by 24.3pp; on a fully trainable Conv5-FC3 backbone it reaches AUC 0.893 (best overall). A pairing-rate ablation shows that the joint anchor remains within seed noise from 75% to 5% pairing. On TCGA-Lung survival prediction from whole-slide images with RNA-seq as auxiliary data, PANDA improves over WSI-only on 2-year OS (AUC +3.5pp) and Cox PH (C-index +9.0pts) and outperforms full-fusion training, which underperforms WSI-only, while requiring no RNA at inference; wide confidence intervals on this smaller cohort keep the gains below conventional significance. Overall, PANDA provides a deployment-oriented mechanism for leveraging incomplete auxiliary modalities to improve primary-modality prediction.",
+      "published": "2026-08-26T16:28:20Z",
+      "updated": "2026-08-26T16:28:20Z",
+      "url": "https://arxiv.org/abs/2608.25970",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25970",
+      "matchedKeywords": [
+        "pathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.25828",
+      "domain": "mri",
+      "title": "FlowMoDL: Model-Based Deep Learning with Conjugate-Gradient Data Consistency for Highly Accelerated 4D Flow MRI Reconstruction",
+      "authors": [
+        "Tristan Gottwald",
+        "Michelle Bruch",
+        "Mubashir-Ul Hassan",
+        "Fatma Alickovic",
+        "Milan Kloiber",
+        "Daniel Tenbrinck",
+        "Torsten Panholzer",
+        "Melanie Schaller",
+        "Jana Hutter"
+      ],
+      "summary": "We present FlowMoDL, an unrolled neural network for highly accelerated 4D flow MRI reconstruction that directly optimizes for both anatomical magnitude and phase-derived velocity accuracy. Building on the MoDL framework, FlowMoDL alternates a learned (3+1)D spatiotemporal denoiser with conjugate-gradient data-consistency updates based on the SENSE forward model. A novel dual-pathway conditioning scheme adapts the denoiser features and data-consistency weighting, enabling a single model to handle varying acceleration factors ($10\\times$ to $50\\times$). To ensure physiological accuracy, the network is trained using a deep-supervision composite loss that explicitly penalizes velocity magnitude and angular errors, stabilized by a curriculum schedule. We evaluate FlowMoDL on the multi-center CMRx4DFlow dataset against classical and deep-learning baselines (CG-SENSE, MoDL, FlowVN, and FlowMRI-Net). A key advantage of FlowMoDL is its superior gradient step efficiency. When evaluated under an equivalent, limited budget of gradient steps, competing flow-specific networks degrade significantly. In contrast, FlowMoDL robustly converges and strictly outperforms all competitors across all acceleration factors in magnitude SSIM, nRMSE, relative velocity error, and angular error, successfully recovering sharp structural details and temporally coherent velocity fields.",
+      "published": "2026-08-26T14:08:13Z",
+      "updated": "2026-08-26T14:08:13Z",
+      "url": "https://arxiv.org/abs/2608.25828",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25828",
+      "matchedKeywords": [
+        "mri",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    },
+    {
+      "id": "2608.25127",
+      "domain": "mri",
+      "title": "Learning spatially varying regularisation parameters of low regularity for image reconstruction",
+      "authors": [
+        "Kostas Papafitsoros",
+        "Luca Calatroni",
+        "Andreas Kofler"
+      ],
+      "summary": "In this chapter, we review and discuss the regularity properties of spatially adaptive regularisation weight functions used in variational image reconstruction. Incorporating such weights into classical model-based regularisers, such as Total Variation (TV) and Total Generalised Variation (TGV), allows the regularisation strength to vary across the image and adapt to local image content. When appropriately estimated, these weights can thus significantly improve edge and detail preservation in the reconstructions. We review the existing theoretical literature on this topic for different regularity classes, including constant, continuous, and piecewise constant functions. Our discussion is motivated by recent work on hybrid image reconstruction methods that combine model-based regularisation with deep neural networks to learn highly adaptive regularisation weights. In particular, we discuss how the structural properties of these weights influence the reconstruction from both theoretical and practical perspectives. Through representative examples in image denoising and magnetic resonance imaging (MRI) reconstruction, we demonstrate that the learned weights are often of low regularity and can adapt not only to the image structure but also to the specific noise realisation. We conclude by highlighting several directions for future research on this topic.",
+      "published": "2026-08-25T20:25:44Z",
+      "updated": "2026-08-25T20:25:44Z",
+      "url": "https://arxiv.org/abs/2608.25127",
+      "pdfUrl": "https://arxiv.org/pdf/2608.25127",
+      "matchedKeywords": [
+        "mri",
+        "magnetic resonance",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-17T13:09:31.104Z",
+      "lastSeen": "2026-09-22T16:29:59.549Z"
+    }
+  ]
+}

@@ -1,5 +1,19 @@
 # Score-MRI
 
+## 原文摘要
+
+> Score-based diffusion models provide a powerful way to model images using the gradient of the data distribution. Leveraging the learned score function as a prior, here we introduce a way to sample data from a conditional distribution given the measurements, such that the model can be readily used for solving inverse problems in imaging, especially for accelerated MRI. In short, we train a continuous time-dependent score function with denoising score matching. Then, at the inference stage, we iterate between numerical SDE solver and data consistency projection step to achieve reconstruction. Our model requires magnitude images only for training, and yet is able to reconstruct complex-valued data, and even extends to parallel imaging. The proposed method is agnostic to sub-sampling patterns, and can be used with any sampling schemes. Also, due to its generative nature, our approach can quantify uncertainty, which is not possible with standard regression settings. On top of all the advantages, our method also has very strong performance, even beating the models trained with full supervision. With extensive experiments, we verify the superiority of our method in terms of quality and practicality.
+
+*来源：arXiv:2110.05243（https://arxiv.org/abs/2110.05243）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![Score-MRI 论文框架图](/papers/mri/06-score-mri-pipeline.png)
+
+> **原文图注**：Fig. 1 : Overview of the proposed method. Starting from 𝒙 T {\bm{x}}_{T} , sampled from the prior distribution, 𝒙 0 {\bm{x}}_{0} is reached by solving the reverse SDE with Score-POCS sampling, alternating between the update step, and the data consistency step.
+
+*图源：https://arxiv.org/html/2110.05243v1。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 Score-MRI 用无条件 score-based diffusion model 学习 MRI 图像分布，在推理时把随机微分方程求解与 k-space 数据一致性交替。它代表“生成先验 + 测量约束”路线，并能产生样本来表达不确定性。

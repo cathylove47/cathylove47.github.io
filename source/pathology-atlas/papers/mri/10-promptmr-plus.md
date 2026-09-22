@@ -1,5 +1,19 @@
 # PromptMR+
 
+## 原文摘要
+
+> "3D Gaussian Splatting (3DGS) recently gained popularity by combining the advantages of both primitive-based and volumetric 3D representations, resulting in improved quality and efficiency for 3D scene rendering. However, 3DGS is not alias-free and still produces severe blurring or jaggies when rendered at varying resolutions because the discrete sampling scheme used treats each pixel as an isolated single point, which is insensitive to changes in the footprints of pixels and is restricted in sampling bandwidth. In this paper, we use a conditioned logistic function as the analytic approximation of the cumulative distribution function (CDF) of the Gaussian signal and calculate the integral by subtracting the CDFs. We introduce this approximation to two-dimensional pixel shading and present Analytic-Splatting, which analytically approximates the Gaussian integral within the 2D-pixel window area to better capture the intensity response of each pixel. Then, we use the approximated response of the pixel window integral area to participate in the transmittance calculation of volume rendering, making Analytic-Splatting sensitive to the changes in pixel footprint at different resolutions. Extensive experiments on various datasets validate that our approach has better anti-aliasing capability that gives more details and better fidelity."
+
+*来源：论文页摘要。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![PromptMR+ 论文框架图](/papers/mri/10-promptmr-plus-pipeline.png)
+
+> **原文图注**：PromptMR+ 结构图（作者官方仓库 assets/proposed.png）
+
+*图源：https://github.com/hellopipu/PromptMR-plus。原图直接取自论文，未重绘、未描摹。*
+
 ## 三分钟摘要与推荐理由
 
 PromptMR+ 不只追求换一个更大的正则器，而是重新检查深展开模型的梯度传播与灵敏度图估计显存。它通过有效梯度学习和按线圈计算 sensitivity map，让更深 cascade 训练更现实，是工程与方法结合得很好的 ECCV 2024 Oral。

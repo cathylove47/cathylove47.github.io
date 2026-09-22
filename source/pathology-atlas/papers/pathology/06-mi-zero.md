@@ -6,6 +6,56 @@
 
 **精读核验**：CVPR 2023；论文使用超过55万份病理报告等域内文本预训练文本编码器，最佳模型再用超过3.3万对病理图文训练，在三个真实癌症亚型任务上的平均中位零样本准确率为70.2%（2026-09-01）。
 
+## 原文摘要
+
+> Contrastive visual language pretraining has emerged as a powerful method for either training new language-aware image encoders or augmenting existing pretrained models with zero-shot visual recognition capabilities. However, existing works typically train on large datasets of image-text pairs and have been designed to perform downstream tasks involving only small to medium sized-images, neither of which are applicable to the emerging field of computational pathology where there are limited publicly available paired image-text datasets and each image can span up to 100,000 x 100,000 pixels. In this paper we present MI-Zero, a simple and intuitive framework for unleashing the zero-shot transfer capabilities of contrastively aligned image and text models on gigapixel histopathology whole slide images, enabling multiple downstream diagnostic tasks to be carried out by pretrained encoders without requiring any additional labels. MI-Zero reformulates zero-shot transfer under the framework of multiple instance learning to overcome the computational challenge of inference on extremely large images. We used over 550k pathology reports and other available in-domain text corpora to pre-train our text encoder. By effectively leveraging strong pre-trained encoders, our best model pretrained on over 33k histopathology image-caption pairs achieves an average median zero-shot accuracy of 70.2% across three different real-world cancer subtyping tasks. Our code is available at: https://github.com/mahmoodlab/MI-Zero.
+
+*来源：arXiv:2306.07831（https://arxiv.org/abs/2306.07831）。逐字原文，未改写、未压缩。*
+
+## 论文 Pipeline 原图
+
+![MI-Zero 论文框架图](/papers/pathology/06-mi-zero-pipeline.jpg)
+
+> **原文图注**：Figure 2 : Schematic of MI-Zero. A gigapixel WSI is converted to a collection of patches (instances), each embedded into an aligned visual-language latent space. In the set-based representation, the similarity scores between patch embeddings and prompt embeddings are aggregated via a permutation invariant operator such as topK max-pooling to produce the WSI-level classification prediction. Alternatively, a graph-based representation may be used to incorporate spatial context by first aggregating predictions in local neighborhoods ( Section 3.5 ).
+
+*图源：https://arxiv.org/html/2306.07831v1。原图直接取自论文，未重绘、未描摹。*
+
+## 0. 零基础导读：先读这一节
+
+> 这一节只讲直觉，不要求你懂公式。后面的章节用于深入和复现；第一次阅读时，看完本节和第 1 节就可以先停。
+
+### 0.1 把它想成什么？
+
+给模型一张图和几张写着疾病描述的卡片，让它判断图更像哪张文字卡片，而不是先为每种新疾病重新上课。
+
+### 0.2 它为什么出现？
+
+普通分类器需要目标任务标注。病理标注昂贵，而且 WSI 太大，不能直接照搬自然图像的 CLIP。
+
+### 0.3 它到底怎么做？
+
+1. 把 WSI 切成 patch，用病理图像编码器生成视觉向量。
+2. 把类别名或病理描述交给文本编码器生成文字向量。
+3. 计算每个 patch 与每段文字有多相似。
+4. 把所有 patch 的相似度汇总成切片级零样本预测。
+
+### 0.4 先认清这些词
+
+- **视觉语言模型**：让图像和文字落到同一个可比较空间的模型。
+- **零样本**：没有针对目标类别重新训练，直接用文字描述分类。
+- **embedding**：模型把图像或文字压成的一串数字。
+- **prompt**：提供给文本编码器的类别描述或提示句。
+
+### 0.5 输入和输出
+
+输入是 WSI patch 和候选类别文字；输出是每个类别的切片级相似度与预测。
+
+### 0.6 最容易误解的地方
+
+“零样本”不等于“没有训练过”：模型仍在其他病理图文数据上预训练过，提示词也会影响结果。
+
+**现在只记住一句话：MI-Zero = 用文字描述当分类器，把 patch—文字匹配汇总到整张切片。**
+
 ## 1. 三分钟摘要与推荐理由
 
 MI-Zero 将 CLIP 式图文对齐模型用于千兆像素 WSI。它先为 patch 提取视觉嵌入，把类别描述编码成文本嵌入，再将 patch—文本相似度通过 MIL 方式汇总成切片级零样本预测。这样可以在没有目标任务训练标签的情况下做癌症亚型分类。
