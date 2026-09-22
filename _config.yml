@@ -106,3 +106,6 @@ deploy:
   # 部署分支（与 GitHub Pages 设置一致，建议 main）
   branch: main
   # 如使用自定义域名，需在部署产物根目录添加 CNAME 文件
+  # hexo-deployer-git 默认忽略隐藏文件（含 pathology-atlas/.nojekyll），
+  # 会导致部署后 Pages 走 Jekyll 处理；关掉隐藏文件过滤，保持产物与 public/ 一致。
+  ignore_hidden: false
