@@ -1,7 +1,114 @@
 {
-  "generatedAt": "2026-09-22T16:29:59.549Z",
+  "generatedAt": "2026-09-25T06:18:43.826Z",
   "windowDays": 30,
   "candidates": [
+    {
+      "id": "2609.29825",
+      "domain": "mri",
+      "title": "Anatomy-Aligned Surface Field Learning for Myocardial Reconstruction from Sparse Short-Axis Cine MRI",
+      "authors": [
+        "Xiaohan Yuan",
+        "Xuan Yang",
+        "Qingya Li",
+        "Yangang Wang",
+        "Lei Li"
+      ],
+      "summary": "Patient-specific 4D myocardial reconstruction from cine MRI supports quantitative functional assessment, regional motion analysis, and simulation-based modeling. However, routinely acquired short-axis (SAX) cine MRI is sparsely sampled along the through-plane direction, making dense and anatomically consistent surface reconstruction challenging. In this study, we propose an anatomy-aligned surface learning framework that parameterizes the epicardial and endocardial surfaces on a shared circumferential-longitudinal UV domain. This formulation converts irregular 3D reconstruction into structured coordinate-field completion with explicit correspondence across subjects and cardiac phases. Sparse SAX contours are encoded as UV observation fields, coverage-aware sampling improves robustness to incomplete slice coverage, and topology- and distortion-aware learning preserves circumferential continuity and local surface quality. Experiments on three public cine MRI datasets showed that the proposed method consistently outperformed representative mesh-based and implicit reconstruction approaches, achieving overall Chamfer distances of $2.887$~mm on ACDC, $2.641$~mm on M\\&Ms, and $2.810$~mm on M\\&Ms-2. The reconstructed sequences also preserved ventricular function, with end-diastolic volume and ejection fraction errors of $3.3$~mL and $1.1 \\%$, respectively. These results demonstrate that anatomy-aligned UV learning provides an accurate, efficient, and correspondence-aware representation for sparse cine MRI reconstruction and myocardial modeling. The source code will be available at https://github.com/yuan-xiaohan/SAX2MyoSurf.",
+      "published": "2026-09-24T13:58:16Z",
+      "updated": "2026-09-24T13:58:16Z",
+      "url": "https://arxiv.org/abs/2609.29825",
+      "pdfUrl": "https://arxiv.org/pdf/2609.29825",
+      "matchedKeywords": [
+        "mri",
+        "reconstruction"
+      ],
+      "firstSeen": "2026-09-25T06:18:43.826Z",
+      "lastSeen": "2026-09-25T06:18:43.826Z"
+    },
+    {
+      "id": "2609.28231",
+      "domain": "pathology",
+      "title": "Do Center Biases Propagate? Robustness of Pathology Foundation Models in Whole-Slide Image Classification",
+      "authors": [
+        "Ilán Carretero",
+        "Pablo Meseguer",
+        "Rocío del Amor",
+        "Valery Naranjo"
+      ],
+      "summary": "Pathology foundation models (PFMs) have transformed computational pathology through powerful representation learning from histopathological images. PFMs provide rich, discriminative representations for whole slide image (WSI) analysis, enabling tasks such as slide-level classification under multiple instance learning (MIL). However, these representations may also encode non-biological signals associated with acquisition centers, potentially introducing spurious shortcuts into downstream predictions. In this work, we evaluate center-associated robustness in WSI classification using a controlled training setting with increasing class-center correlations quantified by Cramér's V. We benchmark six PFMs across four datasets and two MIL aggregators, while evaluating ComBat as a robustification strategy. We further introduce the Area Under the Cramér's V Curve (AUCC) to jointly capture absolute classification performance and its degradation as spurious correlation increases. Results show that center-related information encoded by PFMs propagates to WSI-level predictions, with robustness depending on both the PFM representation and MIL aggregation strategy. Additionally, ComBat harmonization does not provide consistent robustness gains across datasets.",
+      "published": "2026-09-23T14:55:43Z",
+      "updated": "2026-09-23T14:55:43Z",
+      "url": "https://arxiv.org/abs/2609.28231",
+      "pdfUrl": "https://arxiv.org/pdf/2609.28231",
+      "matchedKeywords": [
+        "pathology",
+        "whole slide",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-25T06:18:43.826Z",
+      "lastSeen": "2026-09-25T06:18:43.826Z"
+    },
+    {
+      "id": "2609.27710",
+      "domain": "pathology",
+      "title": "FFM-CP: Cross-Backbone Fusion of Vision-Language Foundation Models for Few-Shot Computational Pathology",
+      "authors": [
+        "Anh-Tien Nguyen",
+        "Trung DQ. Dang",
+        "Nghiem Tuong Diep",
+        "Bui Ngoc Han Nguyen",
+        "Tan-Ha Mai",
+        "Miriam Cindy Maurer",
+        "Phuong Hoa Nguyen",
+        "Thi Thuy Uyen Nguyen",
+        "Youngjun Park",
+        "Daniel Sonntag",
+        "Duy Minh Ho Nguyen",
+        "Anne-Christin Hauschild"
+      ],
+      "summary": "Pathology vision-language foundation models vary in performance across diseases and tasks, with no single model consistently performing best. The high cost of expert pathology annotation can also limit the labeled data available for task-specific adaptation. Combining complementary pretrained representations is a potential approach to these limitations, yet learning an effective fusion from few labeled examples remains challenging. We introduce Few-shot Fusion Foundation Models of Computational Pathology (FFM-CP), which is a framework that combines multiple pathology vision-language models in the few-shot learning setting. The framework first aligns heterogeneous representations using a closed-form Orthogonal Procrustes transformation estimated from corresponding support images. This alignment preserves within-model feature geometry without training an additional alignment network. Within the aligned space, a unified graph enables information exchange across backbones by jointly refining support-image features and visual and textual class prototypes. These refined representations support complementary text-prototype and case-retrieval branches that capture semantic class knowledge and within-class visual variation, respectively. Each branch learns to combine predictions from all ordered backbone pairs, allowing queries encoded by one model to draw on evidence represented by another. We evaluate three backbone combinations on six histopathology datasets at 4, 8, and 16 shots per class. FFM-CP achieves higher mean macro-F1 than the strongest individually adapted member of each fused set in 50 of 54 comparisons. These findings suggest that combining complementary pretrained representations can improve histopathological classification when annotations are limited.",
+      "published": "2026-09-23T11:28:09Z",
+      "updated": "2026-09-23T11:28:09Z",
+      "url": "https://arxiv.org/abs/2609.27710",
+      "pdfUrl": "https://arxiv.org/pdf/2609.27710",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "firstSeen": "2026-09-25T06:18:43.826Z",
+      "lastSeen": "2026-09-25T06:18:43.826Z"
+    },
+    {
+      "id": "2609.26920",
+      "domain": "pathology",
+      "title": "Cross-Modal Contrastive Learning from Histopathology and CT for Automated Renal Cell Carcinoma Grading",
+      "authors": [
+        "Amit Das",
+        "Tanmay Shukla",
+        "Naofumi Tomita",
+        "Faraz Farhadi",
+        "Jessica Sin",
+        "Ari Hakimi",
+        "Chad Vanderbilt",
+        "Jie-Fu Chen",
+        "Ritesh Kotecha",
+        "Weijie Ma",
+        "Bing Ren",
+        "Saeed Hassanpour"
+      ],
+      "summary": "Background: Clear cell renal cell carcinoma (ccRCC) exhibits substantial clinical heterogeneity, and accurate grade assessment is essential for risk stratification and treatment planning. However, conventional grading requires invasive tissue sampling. We developed RCC-Align, a cross-modal contrastive learning framework that leverages paired histopathology and computed tomography (CT) data during training to improve noninvasive CT-based ccRCC grade prediction. Methods: RCC-Align aligns paired whole-slide histopathology images (WSIs) and CT scans through contrastive cross-modal objectives, transferring grade-discriminative information from microscopic tissue morphology to macroscopic radiologic representations. The framework was trained and evaluated on paired TCGA and CPTAC cohorts using patient-level five-fold cross-validation. Performance for low- versus high-grade ccRCC classification was compared against CT-only baselines (DINOv2-Base and DINOv2-Finetuned) and a WSI-based reference model (GigaPath-Finetuned). Cross-modal alignment was assessed using cosine similarity analysis. Results: RCC-Align achieved an AUC of 0.601 (95% CI, 0.524-0.673) and AUPRC of 0.599 (95% CI, 0.541-0.676), outperforming DINOv2-Finetuned (AUC 0.545; AUPRC 0.543) with significantly improved low-grade prediction (p = 0.004). RCC-Align also demonstrated stronger paired WSI-CT embedding alignment compared with baselines. The WSI-based GigaPath reference achieved an AUC of 0.719. Conclusion: Pathology-guided contrastive learning improves CT-based ccRCC grading while requiring only CT at inference. This approach may complement tissue diagnosis when biopsy is unsafe, infeasible, or limited by intratumoral heterogeneity. Validation in larger, multi-institutional cohorts with external testing is needed before clinical translation.",
+      "published": "2026-09-22T18:16:40Z",
+      "updated": "2026-09-22T18:16:40Z",
+      "url": "https://arxiv.org/abs/2609.26920",
+      "pdfUrl": "https://arxiv.org/pdf/2609.26920",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "wsi"
+      ],
+      "firstSeen": "2026-09-25T06:18:43.826Z",
+      "lastSeen": "2026-09-25T06:18:43.826Z"
+    },
     {
       "id": "2609.24524",
       "domain": "pathology",
@@ -30,7 +137,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.24468",
@@ -52,35 +159,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
-    },
-    {
-      "id": "2609.24116",
-      "domain": "pathology",
-      "title": "Patch-to-Global: Random Patch Diffusion for Globally Consistent Megapixel Artifact Inpainting in Whole Slide Images",
-      "authors": [
-        "Hyeseong Lee",
-        "Eunsu Kim",
-        "D M Bappy",
-        "Ho Heon Kim",
-        "Youngsuk Lee",
-        "Se Young Chun",
-        "Jang-Hwan Choi",
-        "Sung Hak Lee",
-        "Sangjeong Ahn"
-      ],
-      "summary": "Although deep learning has advanced Whole Slide Image (WSI) Analysis, tissue artifacts like bubbles and folds often cause silent failures by concealing essential morphology. Current pathology image restoration methods are mostly restricted to small patches, struggling to maintain global structural coherence at a megapixel scale. We introduce RestorePath, a framework for globally consistent megapixel scale inpainting that reconstructs diagnostic structures in histological image to prevent incorrect high-confidence predictions and lower error rates. Our model utilizes a Latent Diffusion Model (LDM) conditioned on Pathology Foundation Model (PFM) embeddings, integrating Large Kernel Attention (LKA) to manage long-range dependencies during random patch diffusion. Enhanced by Distance-Weighted Interpolation (DWI) and an Adaptive Guidance Scale (AGS), RestorePath ensures structural consistency and fidelity by modulating information from surrounding patches. Evaluations across TCGA-BRCA, BACH, and Camelyon16 datasets for images ranging from 512 to 4608 pixels demonstrate state-of-the-art performance in maintaining histological consistency. RestorePath significantly improves downstream Computational Pathology (CP) tasks, outperforming both raw artifact images and the conventional Detect-and-Discard (D&D) approach. The code is available at https://github.com/PathfinderLab/RestorePath",
-      "published": "2026-09-21T05:12:46Z",
-      "updated": "2026-09-21T05:12:46Z",
-      "url": "https://arxiv.org/abs/2609.24116",
-      "pdfUrl": "https://arxiv.org/pdf/2609.24116",
-      "matchedKeywords": [
-        "pathology",
-        "whole slide",
-        "wsi"
-      ],
-      "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.24057",
@@ -109,7 +188,40 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
+    },
+    {
+      "id": "2609.25123",
+      "domain": "pathology",
+      "title": "WILSON - a pathology foundation model framework for patient-level analysis and diagnostic text generation",
+      "authors": [
+        "Saghir Alfasly",
+        "Wataru Uegami",
+        "Sobhan Hemati",
+        "Wenchao Han",
+        "Xiaojia Tang",
+        "Kevin Thompson",
+        "Daniel Stone",
+        "Ghazal Alabtah",
+        "Saba Yasir",
+        "Michael R. Lucas",
+        "Eric W. Klee",
+        "Cheryl L. Willman",
+        "Judy C. Boughey",
+        "Matthew P. Goetz",
+        "Krishna R. Kalari",
+        "H. R. Tizhoosh"
+      ],
+      "summary": "Pathologists integrate morphology across magnifications and across the slides of a patient case, whereas pathology foundation models encode thousands of tiles from single slides and aggregate their features. Here we present WILSON, a vision--language foundation model that represents whole-slide images and multi-slide cases as single multi-magnification composite images, trained on approximately 189k slides from Mayo Clinic spanning 42 organs and 829 diagnostic entities using pathology reports as supervision. Without task-specific training, WILSON exceeded a dedicated case-level model on all internal cohorts (macro-F1 0.52 versus 0.38) and matched slide-level models up to 9.4 times larger at 272- to 2,155-fold lower compute. End-to-end fine-tuning on 508 triple-negative breast cancer cases improved histologic subtyping and stromal tumor-infiltrating lymphocyte grading by 0.16 and 0.11 macro-F1. WILSON retrieved matching diagnostic text at 75.6% recall@1 (PRISM, 58.1%) and generated captions closer to report-derived references than PRISM and PRISM2 on the internal cohort and on most external comparisons. Composite images thus offer a compact, clinically aligned computational unit for pathology.",
+      "published": "2026-09-20T16:01:04Z",
+      "updated": "2026-09-20T16:01:04Z",
+      "url": "https://arxiv.org/abs/2609.25123",
+      "pdfUrl": "https://arxiv.org/pdf/2609.25123",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "firstSeen": "2026-09-25T06:18:43.826Z",
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.21953",
@@ -133,7 +245,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.21811",
@@ -155,7 +267,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.21115",
@@ -178,7 +290,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.20815",
@@ -201,7 +313,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.20100",
@@ -223,7 +335,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-22T16:29:59.549Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.18578",
@@ -245,7 +357,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.17868",
@@ -274,7 +386,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.17090",
@@ -304,7 +416,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.16448",
@@ -327,7 +439,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.16207",
@@ -351,7 +463,7 @@
         "spatial transcriptomics"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.15150",
@@ -379,7 +491,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.14530",
@@ -412,7 +524,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.16032",
@@ -432,7 +544,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.11044",
@@ -454,7 +566,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.10914",
@@ -480,7 +592,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.09510",
@@ -499,7 +611,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.06338",
@@ -522,7 +634,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.05956",
@@ -552,7 +664,7 @@
         "spatial transcriptomics"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.05323",
@@ -579,7 +691,7 @@
         "whole slide"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.04071",
@@ -600,7 +712,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.04019",
@@ -624,7 +736,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.03947",
@@ -650,7 +762,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.03689",
@@ -674,7 +786,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.05547",
@@ -693,7 +805,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.02390",
@@ -716,7 +828,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.02224",
@@ -736,7 +848,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.02118",
@@ -763,7 +875,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.01987",
@@ -793,7 +905,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.01960",
@@ -813,7 +925,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.01959",
@@ -840,7 +952,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.01426",
@@ -862,7 +974,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.01146",
@@ -887,7 +999,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.00866",
@@ -960,7 +1072,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.00704",
@@ -986,7 +1098,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.00424",
@@ -1014,7 +1126,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.00396",
@@ -1040,7 +1152,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2609.00342",
@@ -1067,7 +1179,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.30835",
@@ -1086,7 +1198,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.28820",
@@ -1119,7 +1231,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.28191",
@@ -1143,7 +1255,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.28714",
@@ -1165,7 +1277,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.28708",
@@ -1189,7 +1301,7 @@
         "pathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.27278",
@@ -1213,7 +1325,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.27004",
@@ -1240,7 +1352,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.27516",
@@ -1265,7 +1377,7 @@
         "histopathology"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.26647",
@@ -1290,7 +1402,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.25970",
@@ -1315,7 +1427,7 @@
         "wsi"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     },
     {
       "id": "2608.25828",
@@ -1342,29 +1454,7 @@
         "reconstruction"
       ],
       "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
-    },
-    {
-      "id": "2608.25127",
-      "domain": "mri",
-      "title": "Learning spatially varying regularisation parameters of low regularity for image reconstruction",
-      "authors": [
-        "Kostas Papafitsoros",
-        "Luca Calatroni",
-        "Andreas Kofler"
-      ],
-      "summary": "In this chapter, we review and discuss the regularity properties of spatially adaptive regularisation weight functions used in variational image reconstruction. Incorporating such weights into classical model-based regularisers, such as Total Variation (TV) and Total Generalised Variation (TGV), allows the regularisation strength to vary across the image and adapt to local image content. When appropriately estimated, these weights can thus significantly improve edge and detail preservation in the reconstructions. We review the existing theoretical literature on this topic for different regularity classes, including constant, continuous, and piecewise constant functions. Our discussion is motivated by recent work on hybrid image reconstruction methods that combine model-based regularisation with deep neural networks to learn highly adaptive regularisation weights. In particular, we discuss how the structural properties of these weights influence the reconstruction from both theoretical and practical perspectives. Through representative examples in image denoising and magnetic resonance imaging (MRI) reconstruction, we demonstrate that the learned weights are often of low regularity and can adapt not only to the image structure but also to the specific noise realisation. We conclude by highlighting several directions for future research on this topic.",
-      "published": "2026-08-25T20:25:44Z",
-      "updated": "2026-08-25T20:25:44Z",
-      "url": "https://arxiv.org/abs/2608.25127",
-      "pdfUrl": "https://arxiv.org/pdf/2608.25127",
-      "matchedKeywords": [
-        "mri",
-        "magnetic resonance",
-        "reconstruction"
-      ],
-      "firstSeen": "2026-09-17T13:09:31.104Z",
-      "lastSeen": "2026-09-22T16:29:59.549Z"
+      "lastSeen": "2026-09-25T06:18:43.826Z"
     }
   ]
 }
