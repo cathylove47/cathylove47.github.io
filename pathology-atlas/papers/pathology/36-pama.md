@@ -2,9 +2,15 @@
 
 ## 原文摘要
 
-> Transformer-based multiple instance learning (MIL) framework has been proven advanced for whole slide image (WSI) analysis. However, existing spatial embedding strategies in Transformer can only represent fixed structural information, which are hard to tackle the...
+> Transformer-based multiple instance learning (MIL) framework has been proven advanced for whole slide image (WSI) analysis. However, existing spatial embedding strategies in Transformer can only represent fixed structural information, which are hard to tackle the scale-varying and isotropic characteristics of WSIs. Moreover, the current MIL cannot take advantage of a large number of unlabeled WSIs for training. In this paper, we propose a novel self-supervised whole slide image representation learning framework named position-aware masked autoencoder (PAMA), which can make full use of abundant unlabeled WSIs to improve the discrimination of slide features. Moreover, we propose a position-aware cross-attention (PACA) module with a kernel reorientation (KRO) strategy, which makes PAMA able to maintain spatial integrity and semantic enrichment during the training. We evaluated the proposed method on a public TCGA-Lung dataset with 3,064 WSIs and an in-house Endometrial dataset with 3,654 WSIs, and compared it with 6 state-of-the-art methods. The results of experiments show our PAMA is superior to SOTA MIL methods and SSL methods. The code will be available at https://github.com/WkEEn/PAMA.
 
-*来源：论文页 meta。逐字原文，未改写、未压缩。*
+*来源：Springer 章节页（https://doi.org/10.1007/978-3-031-43987-2_69）。逐字原文，未改写、未压缩。*
+
+## 中文摘要
+
+> 基于 Transformer 的多实例学习（MIL）框架已被证明在全切片图像（WSI）分析上具有先进性。然而，Transformer 中现有的空间嵌入策略只能表示固定的结构信息，难以应对 WSI 尺度多变且各向同性的特性。此外，当前的 MIL 无法利用大量无标注 WSI 来训练。本文提出一种新的自监督全切片图像表征学习框架，命名为位置感知掩码自编码器（position-aware masked autoencoder，PAMA），它能够充分利用大量无标注 WSI 来提升切片特征的判别性。此外，我们提出带有卷积核重定向（kernel reorientation，KRO）策略的位置感知交叉注意力（position-aware cross-attention，PACA）模块，使 PAMA 在训练过程中能够保持空间完整性与语义丰富性。我们在一个包含 3,064 张 WSI 的公开 TCGA-Lung 数据集和一个包含 3,654 张 WSI 的内部 Endometrial 数据集上评估了所提方法，并与 6 种最先进方法进行了比较。实验结果表明，我们的 PAMA 优于 SOTA 的 MIL 方法与 SSL 方法。代码将发布于 https://github.com/WkEEn/PAMA。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
 
 ## 论文 Pipeline 原图
 

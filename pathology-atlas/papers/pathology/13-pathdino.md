@@ -12,6 +12,12 @@
 
 *来源：arXiv:2311.08359（https://arxiv.org/abs/2311.08359）。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 本文通过三项关键贡献来应对组织病理学图像分析中的复杂挑战。首先，它引入了一种用于全切片图像（WSI）分析的快速 patch 选择方法 FPS，在保持 accuracy 的同时显著降低计算成本。其次，它提出了 PathDino，一个轻量的组织病理学特征提取器，其最小配置为五个 Transformer block、仅 900 万参数，明显少于其他方案。第三，它引入了一种使用自监督学习的旋转无关表示学习范式，有效缓解了过拟合。我们还表明，我们紧凑的模型在 12 个多样数据集上优于现有的 state-of-the-art 组织病理学专用 vision transformer，这些数据集既包括覆盖四个部位（乳腺、肝脏、皮肤与结直肠）的内部数据集，也包括七个公开数据集（PANDA、CAMELYON16、BRACS、DigestPath、Kather、PanNuke 与 WSSS4LUAD）。值得注意的是，即使训练数据集是来自 The Cancer Genome Atlas（TCGA）的 600 万个组织病理学 patch，我们的方法在 patch 级多数投票性能上仍展现出平均 8.5% 的提升。这些贡献为增强数字病理学中的图像分析提供了一个稳健的框架，并通过广泛评估得到了严格验证。项目页面：https://kimialabmayo.github.io/PathDino-Page/
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图
 
 ![PathDino 论文框架图](/papers/pathology/13-pathdino-pipeline.png)

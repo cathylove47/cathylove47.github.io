@@ -6,6 +6,18 @@
 
 **精读核验**：Medical Image Analysis 81 (2022), Article 102559；CTransPath 将 CNN 的局部归纳偏置与多尺度 Swin Transformer 结合，并采用语义相关对比学习（Semantically-Relevant Contrastive Learning, SRCL）（2026-09-01）。
 
+## 原文摘要
+
+> A large-scale and well-annotated dataset is a key factor for the success of deep learning in medical image analysis. However, assembling such large annotations is very challenging, especially for histopathological images with unique characteristics (e.g., gigapixel image size, multiple cancer types, and wide staining variations). To alleviate this issue, self-supervised learning (SSL) could be a promising solution that relies only on unlabeled data to generate informative representations and generalizes well to various downstream tasks even with limited annotations. In this work, we propose a novel SSL strategy called semantically-relevant contrastive learning (SRCL), which compares relevance between instances to mine more positive pairs. Compared to the two views from an instance in traditional contrastive learning, our SRCL aligns multiple positive instances with similar visual concepts, which increases the diversity of positives and then results in more informative representations. We employ a hybrid model (CTransPath) as the backbone, which is designed by integrating a convolutional neural network (CNN) and a multi-scale Swin Transformer architecture. The CTransPath is pretrained on massively unlabeled histopathological images that could serve as a collaborative local-global feature extractor to learn universal feature representations more suitable for tasks in the histopathology image domain. The effectiveness of our SRCL-pretrained CTransPath is investigated on five types of downstream tasks (patch retrieval, patch classification, weakly-supervised whole-slide image classification, mitosis detection, and colorectal adenocarcinoma gland segmentation), covering nine public datasets. The results show that our SRCL-based visual representations not only achieve state-of-the-art performance in each dataset, but are also more robust and transferable than other SSL methods and ImageNet pretraining (both supervised and self-supervised methods). Our code and pretrained model are available at https://github.com/Xiyue-Wang/TransPath.
+
+*来源：PubMed PMID 35952419（https://pubmed.ncbi.nlm.nih.gov/35952419/）。逐字原文，未改写、未压缩。*
+
+## 中文摘要
+
+> 大规模且标注良好的数据集是深度学习在医学图像分析中取得成功的关键因素。然而，组装如此大规模的标注非常困难，尤其是对于具有独特特性的组织病理学图像（例如千兆像素级的图像尺寸、多种癌症类型以及广泛的染色差异）。为缓解这一问题，自监督学习（self-supervised learning，SSL）可能是一个有前景的解决方案，它仅依赖无标注数据来生成有信息量的表征，并且即使在标注有限的情况下也能很好地泛化到各种下游任务。在本工作中，我们提出一种新的 SSL 策略，称为语义相关对比学习（semantically-relevant contrastive learning，SRCL），它通过比较实例之间的相关性来挖掘更多正样本对。与传统对比学习中来自同一实例的两个视图相比，我们的 SRCL 将具有相似视觉概念的多个正实例对齐，这增加了正样本的多样性，从而产生更有信息量的表征。我们采用一个混合模型（CTransPath）作为骨干，它通过整合卷积神经网络（CNN）与多尺度 Swin Transformer 架构而设计。CTransPath 在大量无标注组织病理学图像上进行预训练，可作为协同的局部—全局特征提取器，学习更适合组织病理学图像领域任务的通用特征表征。我们在五类下游任务（patch 检索、patch 分类、弱监督全切片图像分类、有丝分裂检测以及结肠直肠腺癌腺体分割）上考察了 SRCL 预训练的 CTransPath 的有效性，覆盖九个公开数据集。结果表明，我们基于 SRCL 的视觉表征不仅在各个数据集上取得了最先进的性能，而且比其他 SSL 方法与 ImageNet 预训练（包括监督与自监督方法）更鲁棒、更具可迁移性。我们的代码与预训练模型见 https://github.com/Xiyue-Wang/TransPath。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图说明
 
 > 论文正文无框架总图，且未在 arXiv 或 PMC 提供开放全文。

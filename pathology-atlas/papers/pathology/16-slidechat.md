@@ -12,6 +12,12 @@
 
 *来源：arXiv:2410.11761（https://arxiv.org/abs/2410.11761）。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 尽管多模态大语言模型（MLLMs）在计算病理学中已取得进展，但它们仍受限于主要聚焦于 patch 级分析，缺失了整张切片层面的关键上下文信息。大规模指令数据集的缺乏，以及全切片图像（WSIs）的千兆像素规模，构成了重大的研发挑战。在本文中，我们提出 SlideChat，首个能够理解千兆像素全切片图像的视觉语言助手，展现出出色的多模态对话能力，并能在多样的病理场景中响应复杂指令。为支持其开发，我们创建了 SlideInstruction，这是面向 WSIs 的最大指令遵循数据集，包含 4.2K 条 WSI 描述与 176K 个多类别 VQA 问答对。此外，我们提出 SlideBench，一个融合描述生成与 VQA 任务的多模态基准，用于评估 SlideChat 在显微成像、诊断等不同临床场景中的能力。与通用及专用 MLLMs 相比，SlideChat 展现出非凡的能力，在 22 个任务中的 18 个上取得了当时最佳的表现。例如，它在 SlideBench-VQA（TCGA）上取得了 81.17% 的总体准确率，在 SlideBench-VQA（BCNB）上取得了 54.15%。我们的代码、数据与模型公开可访问，地址为 https://uni-medical.github.io/SlideChat.github.io。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图
 
 ![SlideChat 论文框架图](/papers/pathology/16-slidechat-pipeline.png)

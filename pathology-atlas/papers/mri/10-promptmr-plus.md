@@ -2,9 +2,15 @@
 
 ## 原文摘要
 
-> "3D Gaussian Splatting (3DGS) recently gained popularity by combining the advantages of both primitive-based and volumetric 3D representations, resulting in improved quality and efficiency for 3D scene rendering. However, 3DGS is not alias-free and still produces severe blurring or jaggies when rendered at varying resolutions because the discrete sampling scheme used treats each pixel as an isolated single point, which is insensitive to changes in the footprints of pixels and is restricted in sampling bandwidth. In this paper, we use a conditioned logistic function as the analytic approximation of the cumulative distribution function (CDF) of the Gaussian signal and calculate the integral by subtracting the CDFs. We introduce this approximation to two-dimensional pixel shading and present Analytic-Splatting, which analytically approximates the Gaussian integral within the 2D-pixel window area to better capture the intensity response of each pixel. Then, we use the approximated response of the pixel window integral area to participate in the transmittance calculation of volume rendering, making Analytic-Splatting sensitive to the changes in pixel footprint at different resolutions. Extensive experiments on various datasets validate that our approach has better anti-aliasing capability that gives more details and better fidelity."
+> Magnetic Resonance Imaging (MRI) is a widely used imaging modality for clinical diagnostics and the planning of surgical interventions. Accelerated MRI seeks to mitigate the inherent limitation of long scanning time by reducing the amount of raw k-space data required for image reconstruction. Recently, the deep unrolled model (DUM) has demonstrated significant effectiveness and improved interpretability for MRI reconstruction, by truncating and unrolling the conventional iterative reconstruction algorithms with deep neural networks. However, the potential of DUM for MRI reconstruction has not been fully exploited. In this paper, we first enhance the gradient and information flow within and across iteration stages of DUM, then we highlight the importance of using various adjacent information for accurate and memory-efficient sensitivity map estimation and improved multi-coil MRI reconstruction. Extensive experiments on several public MRI reconstruction datasets show that our method outperforms existing MRI reconstruction methods by a large margin. The code is available at https://github.com/hellopipu/PromptMR-plus.
 
-*来源：论文页摘要。逐字原文，未改写、未压缩。*
+*来源：ECVA ECCV 2024 论文页（https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9565_ECCV_2024_paper.php）。逐字原文，未改写、未压缩。*
+
+## 中文摘要
+
+> 磁共振成像（MRI）是临床诊断与外科手术规划中广泛使用的成像方式。加速 MRI 试图通过减少图像重建所需的原始 k-space 数据量，来缓解扫描时间过长这一固有限制。近来，深度展开模型（deep unrolled model，DUM）通过用深度神经网络截断并展开传统迭代重建算法，在 MRI 重建上展现出显著的有效性并提升了可解释性。然而，DUM 在 MRI 重建上的潜力尚未被充分挖掘。本文首先增强了 DUM 迭代阶段内部与跨阶段之间的梯度与信息流，随后强调了利用多种相邻信息来实现准确且显存高效的灵敏度图估计、以及改进多线圈 MRI 重建的重要性。在多个公开 MRI 重建数据集上的大量实验表明，我们的方法以较大幅度优于现有的 MRI 重建方法。代码见 https://github.com/hellopipu/PromptMR-plus。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
 
 ## 论文 Pipeline 原图
 

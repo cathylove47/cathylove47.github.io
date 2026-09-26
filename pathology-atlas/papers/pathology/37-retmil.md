@@ -6,6 +6,12 @@
 
 *来源：arXiv:2403.10858（https://arxiv.org/abs/2403.10858）。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 基于深度学习的组织病理学全切片图像（WSI）分析，已成为计算病理学中的一个研究焦点。当前的范式主要基于多实例学习（MIL），其中以 Transformer 为骨干的方法已被充分讨论。这些方法将 patch 表示为 WSI 序列中的 token，从而把 WSI 任务转换为序列任务。然而，高异质性带来的特征复杂性，以及千兆像素规模带来的超长序列，使基于 Transformer 的 MIL 面临高内存消耗、推理速度慢和性能不足的挑战。为此，我们提出一种名为 RetMIL 的 retentive MIL 方法，它通过分层特征传播结构来处理 WSI 序列。在局部层面，WSI 序列被划分为多个子序列。每个子序列的 token 通过并行的 linear retention 机制进行更新，并利用一个 attention 层进行聚合。在全局层面，子序列被融合为一个全局序列，随后通过串行的 retention 机制进行更新，最后通过一个 global attention pooling 得到切片级表示。我们在两个公开的 CAMELYON 和 BRACS 数据集，以及一个公开—内部的 LUNG 数据集上进行实验，证实 RetMIL 不仅取得了 state-of-the-art 性能，还显著降低了计算开销。我们的代码将很快开放访问。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图
 
 ![RetMIL 论文框架图](/papers/pathology/37-retmil-pipeline.png)

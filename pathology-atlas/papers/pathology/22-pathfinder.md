@@ -12,6 +12,12 @@
 
 *来源：arXiv:2502.08916（https://arxiv.org/abs/2502.08916）。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 通过组织病理学全切片图像（WSIs）来诊断疾病，是现代病理学的根本，但受到 WSI 千兆像素级规模与复杂性的挑战。经过训练的组织病理学家通过导航 WSI、寻找相关 patch、做记录，并将它们汇编起来产出最终的整体性诊断，从而克服这一挑战。传统 AI 方法，如多实例学习与基于 transformer 的模型，无法胜任这样一种整体性、迭代式、多尺度的诊断流程，限制了它们在真实世界中的采用。我们提出 PathFinder，一个多模态、多智能体框架，它模拟专家病理学家的决策过程。PathFinder 集成四个 AI 智能体——Triage Agent、Navigation Agent、Description Agent 和 Diagnosis Agent——它们协同导航 WSI、收集证据，并提供带有自然语言解释的全面诊断。Triage Agent 将 WSI 分类为良性或有风险；若有风险，Navigation Agent 与 Description Agent 会迭代地聚焦于显著区域，生成重要性图以及所采样 patch 的描述性洞见。最后，Diagnosis Agent 综合各项发现，以确定患者的诊断分类。我们的实验表明，PathFinder 在皮肤黑色素瘤诊断中比当前最先进方法高出 8%，同时通过对诊断相关 patch 的自然语言描述提供了内生的可解释性。病理学家的定性分析表明，Description Agent 的输出质量很高，可与 GPT-4o 相比。PathFinder 也是首个在这一具挑战性的黑色素瘤分类任务中超过病理学家平均表现 9% 的 AI 系统，为病理学中高效、准确且可解释的 AI 辅助诊断树立了新纪录。数据、代码与模型见 https://pathfinder-dx.github.io/
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图
 
 ![PathFinder 论文框架图](/papers/pathology/22-pathfinder-pipeline.png)

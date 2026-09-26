@@ -12,6 +12,12 @@
 
 *来源：论文页摘要。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 基于隐式神经表示（INR）的方法学习从低分辨率（LR）目标磁共振（MR）图像与高分辨率（HR）参考图像出发的连续映射，以实现任意倍率超分辨率（SR）。然而，它们固有的谱偏置偏好学习低频（LF）成分，往往无法捕捉解剖边界处的陡峭跃变，并导致高频（HF）细节的丢失。受 3D Gaussian splatting 启发，我们提出 GaussM2ASR（Gaussian Multi-contrast MRI Arbitrary-scale Super-Resolution），它通过学习各向异性二维高斯核的参数，把 HF 解剖重建这一困难任务转化为更平滑的参数优化问题。为处理对比间差异，我们引入一个解剖引导的流程，其中包含三个核心模块：用于特征增强的 Structure Prior Modulation Fusion（SPMF）模块；用于空间—频率联合建模的 Anatomy-Guided Dual-Domain Cross Attention（AG-DDCA）模块；以及利用基于梯度的稀疏注意力把高斯中心集中到关键解剖结构上的 Anatomy-Guided Gaussian Parametrizer（AGGP）。在多个数据集上的大量实验表明，GaussM2ASR 在恢复精细解剖细节方面超越了最先进的方法。我们的源代码已在 https://github.com/Qiuhai-CV/GaussM2ASR 发布。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## Pipeline 图：按论文 Figure 3 重绘
 
 ![GaussM²ASR pipeline 重绘图](/papers/mri/gaussm2asr-pipeline.svg)
