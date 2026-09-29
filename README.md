@@ -59,7 +59,7 @@ npm run onekey
 
 `npm run onekey` 会把生成结果发布到同一 GitHub 仓库的 `main` 分支。
 
-两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。博客导航在 `_config.fluid.yml` 中分别配置「论文精读」和「课程资料」。课程页不依赖论文阅读器，不共享其主题存储；当前根路径没有首页，课程页「返回博客」指向 `/about/`。
+两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。博客导航在 `_config.fluid.yml` 中分别配置「论文精读」和「课程资料」。课程页不依赖论文阅读器，不共享其主题存储；两个栏目顶部均有「返回博客」按钮，直接回到 `/` 首页。
 
 课程资料的内容和渲染源码保存在 `paper-reading-atlas/` 子模块。新增资料后单独构建：
 
@@ -73,3 +73,9 @@ npm run onekey
 课程构建不会携带论文文件；原始附件放在子模块的 `course-site/public/<课程 ID>/`，课程目录和 Markdown 正文登记在 `lib/courses.ts`。
 
 旧文章已保存在 `legacy_posts/`，不会参与网站构建。
+
+## 无文章时的首页
+
+Fluid 的首页生成器在文章集合为空时仍生成根路径页面，显示欢迎信息及「课程资料」「论文精读」入口；不需要恢复 `legacy_posts/` 或创建虚构文章。存在文章时继续使用原有分页配置和日期排序。
+
+运行 `npm test` 检查空首页与添加文章后的分页行为；运行 `npm run build` 生成 `public/index.html`。发布时必须包含该文件，否则博客根地址会返回 404。

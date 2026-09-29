@@ -8,6 +8,22 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
 %>
 
 <h1 style="display: none"><%= config.title %></h1>
+<% if (page.posts.length === 0) { %>
+  <section class="mx-auto" aria-labelledby="welcome-heading">
+    <h2 id="welcome-heading">欢迎来到凯鑫的个人博客</h2>
+    <p>这里记录学习与思考。目前还没有公开的博客文章，可以先进入下面的学习栏目。</p>
+    <div class="row">
+      <article class="col-12 col-md-6 index-info py-4">
+        <h3 class="index-header"><a href="<%= url_for('/courses/') %>">课程资料</a></h3>
+        <p>按课程整理课件、题目讲解和课堂笔记。</p>
+      </article>
+      <article class="col-12 col-md-6 index-info py-4">
+        <h3 class="index-header"><a href="<%= url_for('/pathology-atlas/') %>">论文精读</a></h3>
+        <p>计算病理与 MRI 重建的论文学习路线和精读笔记。</p>
+      </article>
+    </div>
+  </section>
+<% } %>
 <% page.posts.each(function (post) { %>
   <div class="row mx-auto index-card">
     <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>

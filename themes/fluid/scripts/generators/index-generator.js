@@ -12,7 +12,9 @@ module.exports = function(locals) {
   const path = config.index_generator.path || '';
 
   return pagination(path, posts, {
-    perPage: config.index_generator.per_page,
+    // Keep the home route when there are no published posts; normal pagination
+    // otherwise emits zero pages for an empty collection.
+    perPage: posts.length === 0 ? 0 : config.index_generator.per_page,
     layout: 'index',
     format: paginationDir + '/%d/',
     data: {
