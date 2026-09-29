@@ -17,8 +17,8 @@ echo "开始清理"
 npx hexo clean
 echo "生成博客页面"
 NODE_ENV=production npx hexo generate
-echo "同步论文精读页面"
-bash bin/sync-pathology-atlas.sh
+echo "同步论文精读与课程资料独立页面"
+bash bin/sync-learning-sites.sh
 echo "开始部署"
 npx hexo deploy
 echo "部署完成"

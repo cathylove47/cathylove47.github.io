@@ -55,10 +55,21 @@ git add paper-reading-atlas
 npm run onekey
 ```
 
-部署脚本会优先使用 `paper-reading-atlas/dist/static/` 的本地构建结果，同步到网站的 `/pathology-atlas/`；如果本地尚未构建，则继续使用博客 `main` 分支中已有的构建产物。
+部署脚本 `bin/sync-learning-sites.sh` 分别同步两个独立栏目：论文精读使用 `paper-reading-atlas/dist/static/`，发布到 `/pathology-atlas/`；课程资料使用 `paper-reading-atlas/dist/courses/`，发布到 `/courses/`。某一栏目本地尚未构建时，继续使用博客 `main` 分支中该栏目的已有产物。
 
 `npm run onekey` 会把生成结果发布到同一 GitHub 仓库的 `main` 分支。
 
-论文精读站点源码在 `source/pathology-atlas/`，由 Hexo `skip_render` 原样拷贝到 `/pathology-atlas/`。不要把这套静态文件只放在 `main` 分支：`hexo deploy` 会覆盖 `main`。
+两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。博客导航在 `_config.fluid.yml` 中分别配置「论文精读」和「课程资料」。课程页不依赖论文阅读器，不共享其主题存储；当前根路径没有首页，课程页「返回博客」指向 `/about/`。
+
+课程资料的内容和渲染源码保存在 `paper-reading-atlas/` 子模块。新增资料后单独构建：
+
+```bash
+cd paper-reading-atlas
+npm run build:courses
+cd ..
+npm run onekey
+```
+
+课程构建不会携带论文文件；原始附件放在子模块的 `course-site/public/<课程 ID>/`，课程目录和 Markdown 正文登记在 `lib/courses.ts`。
 
 旧文章已保存在 `legacy_posts/`，不会参与网站构建。
