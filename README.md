@@ -61,7 +61,7 @@ npm run onekey
 
 两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。博客导航在 `_config.fluid.yml` 中分别配置「论文精读」和「课程资料」。课程页不依赖论文阅读器，不共享其主题存储；两个栏目顶部均有「返回博客」按钮，直接回到 `/` 首页。
 
-课程资料的内容和渲染源码保存在 `paper-reading-atlas/` 子模块。新增资料后单独构建：
+「课程资料」栏目定位为 408 讲题资料库，按四科组织题目与知识点，答案与解析默认折叠。内容和渲染源码保存在 `paper-reading-atlas/` 子模块。新增资料后单独构建：
 
 ```bash
 cd paper-reading-atlas
@@ -70,7 +70,7 @@ cd ..
 npm run onekey
 ```
 
-课程构建不会携带论文文件；原始附件放在子模块的 `course-site/public/<课程 ID>/`，课程目录和 Markdown 正文登记在 `lib/courses.ts`。
+课程构建不会携带论文文件；原始附件放在子模块的 `course-site/public/<资料 ID>/`，四科分类、题目正文、标签及独立的 `solution` 解析登记在 `lib/courses.ts`。不要在题面或摘要中提前透露答案，也不要添加示例内容充数。
 
 旧文章已保存在 `legacy_posts/`，不会参与网站构建。
 
