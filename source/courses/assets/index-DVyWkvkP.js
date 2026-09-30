@@ -2128,6 +2128,257 @@ $$
 
 2. **哪些指令执行时可能改变特权级？**
 
-   **答：** 自陷、中断及中断返回等会涉及特权级切换；是否改变特权级与是否改变执行顺序是不同的判断维度。`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+   **答：** 自陷、中断及中断返回等会涉及特权级切换；是否改变特权级与是否改变执行顺序是不同的判断维度。`}},{id:`wangdao-mock2-major-19`,title:`五段式流水线中的分支控制冒险`,type:`题目`,date:`2026-09-30`,chapter:`处理器 · 流水线冒险`,tags:[`五段式流水线`,`控制冒险`,`数据冒险`,`分支与跳转`],summary:`在给定的五段式流水线指令序列中，区分会引起控制冒险的分支、跳转指令与产生 RAW 依赖的数据冒险指令。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片未显示答案，故本题答案为本站推导。`,content:String.raw`在采用“取指、译码/取数、执行、访存、写回”五段式流水线的处理器中，执行如下指令序列（第一列为指令序号），其中 $t0$、$t1$、$s3$、$s4$、$s5$ 表示寄存器编号。
+
+~~~text
+1  loop: add  t1, s3, s3      //R[t1] ← R[s3] + R[s3]
+2        add  t1, t1, t1      //R[t1] ← R[t1] + R[t1]
+3        lw   t0, 0(t1)       //R[t0] ← M[R[t1] + 0]
+4        bne  t0, s5, exit    //if (R[t0] ≠ R[s5]) then goto exit
+5        add  s3, s3, s4      //R[s3] = R[s3] + R[s4]
+6        j    loop           //goto loop
+7  exit:
+~~~
+
+在上述指令序列中，共有（ ）条指令会产生分支控制冒险。
+
+- A．1
+- B．2
+- C．3
+- D．4`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-19/question.png`}],solution:{answer:String.raw`**选 B：2 条。** 第 4 条条件分支指令 **bne** 和第 6 条无条件跳转指令 **j** 都会改变 PC，因而可能产生控制冒险。`,explanation:String.raw`## 先按指令类型分类
+
+会改变程序控制流的指令是第 4 条 **bne** 和第 6 条 **j**：
+
+- **bne**：条件成立时转移到目标标签；条件不成立时继续顺序执行。
+- **j**：无条件转移到循环开始位置。
+
+五段式流水线在取指时需要确定下一条指令地址。分支结果或跳转目标尚未确定时，处理器可能继续取入顺序路径上的指令；若之后确认应转移，已取入的错误路径指令就需要冲洗。因此，这两条转移类指令各算一条可能引起控制冒险的指令，共 2 条。
+
+$$
+1\ (bne)+1\ (j)=2.
+$$
+
+第 1、2、5 条是 **add**，第 3 条是 **lw**；它们本身不会改变 PC，不产生控制冒险。不过，指令间存在数据依赖：例如第 2 条使用第 1 条写入的 $t1$，第 3 条又使用第 2 条写入的 $t1$。这类 RAW 依赖属于数据冒险，不应计入本题所问的控制冒险。`,pitfalls:String.raw`- 把 RAW 数据冒险误数成控制冒险；例如前两条 **add** 之间有 $t1$ 依赖，但它们不改变 PC。
+- 只数条件分支 **bne**，漏掉无条件跳转 **j**。
+- 把 6 条实际指令都算进去；只有转移类指令引起控制冒险。
+- 把第 7 行的标签当作一条指令；它只是目标标记，不执行。`,extension:String.raw`1. **这段序列中的 RAW 数据冒险出现在哪几对指令之间？**
+
+   **答：** 第 $1\to2$ 条（$t1$）、第 $2\to3$ 条（$t1$）、第 $3\to4$ 条（$t0$）。
+
+2. **常见的控制冒险处理办法有哪些？**
+
+   **答：** 使用延迟槽；采用分支预测，并在预测错误时冲洗错误路径指令；或提前在译码段比较、尽早确定分支方向。`}},{id:`wangdao-mock2-major-20`,title:`多处理器系统：共享存储不等于一致访问时间`,type:`题目`,date:`2026-09-30`,chapter:`计算机系统结构 · 多处理器系统`,tags:[`多处理器系统`,`共享存储`,`SMP`,`UMA与NUMA`,`同步控制`],summary:`区分共享存储多处理器的共同地址空间与 UMA 的一致访问时间假设，判断多处理器系统描述中的错误项。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片未显示答案键，因此答案为本站推导。`,content:String.raw`下列关于多处理器系统的描述中，错误的是（ ）。
+
+- A．多处理器系统是共享存储多处理器系统的简称
+- B．多处理器系统中所有主存储器都属于单一地址空间
+- C．多处理器系统必须解决共享存储器的同步控制问题
+- D．多处理器系统中各处理器对所有存储单元的访问时间是一致的`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-20/question.png`}],solution:{answer:String.raw`**选 D。**共享存储多处理器共享单一地址空间，但共享地址空间并不保证访问时间一致。`,explanation:String.raw`## 先分清两个概念
+
+**共享存储**说的是处理器可以访问共同的主存地址空间；**访问时间一致**说的是访问不同存储位置时延是否相同。这是两件事，不能由前者直接推出后者。
+
+- **A 正确：**本题所说的多处理器系统是共享存储多处理器系统（SMP）的简称。
+- **B 正确：**共享存储多处理器中的主存属于处理器共同可见的单一地址空间。
+- **C 正确：**多个处理器可能同时访问、修改共享数据，系统必须提供同步与互斥机制；原子操作等硬件支持和操作系统、程序中的同步协议共同发挥作用。
+- **D 错误：**一致的访问时间是 UMA（均匀存储器访问）的特征，不是共享存储多处理器的必然条件。NUMA 也共享地址空间，但处理器访问本地内存通常比访问远程内存快，因此访问时间不一致。
+
+所以，**共享地址空间不等于 UMA**，错误项为 D。`,pitfalls:String.raw`- 把 UMA 的「访问时间一致」当成所有多处理器系统的定义；这是额外的体系结构特征。
+- 反过来以为多处理器系统必须是 NUMA；共享存储多处理器也可以采用 UMA。
+- 把同步控制看成纯软件问题；软件需安排同步，但要依靠硬件提供的原子操作等机制，系统才能正确协调并发访问。
+- 看到「共享」就推断「所有处理器访问任何存储位置等时延」；共享描述可见性与地址空间，不描述时延。`,extension:String.raw`## 追问一：UMA 与 NUMA 的区别是什么？
+
+**答：**看不同处理器访问不同主存位置的时间是否一致。UMA 中访问时间一致；NUMA 中访问时间随内存位置而异，通常本地访问更快、远程访问更慢。二者都可以共享地址空间。
+
+## 追问二：采用私有 Cache 时，为什么需要 Cache 一致性协议？
+
+**答：**同一内存位置可能同时在多个处理器的 Cache 中有副本；一个处理器写入后，其他副本若仍保留旧值就会读到过期数据。Cache 一致性协议通过更新或失效等机制协调这些副本，使处理器观察到符合一致性规则的值。`}},{id:`wangdao-mock2-major-21`,title:`异步传输最适用的场景`,type:`题目`,date:`2026-09-30`,chapter:`计算机组成原理 · 总线与 I/O 传输`,tags:[`同步传输`,`异步传输`,`握手方式`,`I/O 接口`],summary:`比较 CPU、主存、PCI 总线和打印机的速度协调方式，判断异步传输最适用的场景。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`在下列各种情况中，最应采用异步传输方式的是（ ）。
+
+- **A．** I/O 接口与打印机交换信息
+- **B．** CPU 与主存交换信息
+- **C．** CPU 和 PCI 总线交换信息
+- **D．** 由统一时序信号控制方式下的设备`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-21/question.png`}],solution:{answer:String.raw`**选 A。** 打印机等 I/O 设备与 CPU 或总线的速度差异较大，适合用应答（握手）协调传输。`,explanation:String.raw`## 判据：看双方如何协调时序
+
+- **同步传输**：发送方和接收方依据统一时钟或时序节拍，在约定时刻交换信息。双方时序协调，适合速度相近、连续传输量较大的场景。
+- **异步传输**：不要求双方共用统一时钟节拍；发送方发出请求后，由接收方用应答信号表示已准备好，双方通过握手协调。它适合速度差异较大的设备，但握手会带来额外开销。
+
+## 逐项判断
+
+- **A．I/O 接口与打印机：**打印机工作速度远低于 CPU 和总线。用请求/应答握手，接口可按打印机实际准备情况传送，因此最适合异步方式。
+- **B．CPU 与主存：**在本题所述的常见主存访问语境中，按统一时序协调，属于同步传输。
+- **C．CPU 和 PCI 总线：**传统 PCI 总线以时钟节拍协调传输，属于同步总线传输。
+- **D．统一时序信号控制：**题干已明确给出统一时序信号，正是同步方式的特征。
+
+因此，最应采用异步传输的是 **A**。`,pitfalls:String.raw`- 把“统一时序”误判为异步；统一时钟/时序节拍是同步传输的判据。
+- 看到总线就一概判断为同步；应按具体总线协议判断。本题的 PCI 是同步总线。
+- 把打印机速度与总线速度混为一谈；打印机是慢速外设，接口需要缓冲并按设备就绪情况握手。`,extension:String.raw`1. **为什么异步传输的效率通常低于同步传输？**
+
+   **答：**每次传输需要请求、应答等握手过程，控制信号和等待时间带来额外开销；同步方式按时钟节拍连续传送时，这类逐次握手开销较少。
+
+2. **半同步方式有什么特点？**
+
+   **答：**它保留统一时钟节拍，同时用应答或 WAIT 信号适配较慢设备；慢设备未准备好时可插入等待周期，准备好后再继续传输。`}},{id:`wangdao-mock2-major-22`,title:`开中断和关中断设置什么？`,type:`题目`,date:`2026-09-30`,chapter:`计算机组成原理 · 中断系统`,tags:[`中断系统`,`中断允许触发器`,`中断屏蔽`,`中断请求`],summary:`区分开/关中断控制 CPU 响应的允许状态，与屏蔽寄存器、请求寄存器和中断向量的作用。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片中未见答案键，因此答案为本站推导。`,content:String.raw`开中断和关中断两种操作都用于对（ ）进行设置。
+
+- A．中断允许触发器
+- B．中断屏蔽寄存器
+- C．中断请求寄存器
+- D．中断向量寄存器`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-22/question.png`}],solution:{answer:String.raw`**选 A：中断允许触发器。**`,explanation:String.raw`开中断与关中断改变的是 CPU 的中断允许状态：开中断使中断允许触发器置位，关中断使其清零。以 x86 为例，**STI** 设置标志寄存器中的 IF 位，**CLI** 清除 IF 位；IF 决定 CPU 是否响应可屏蔽的外部中断。
+
+其余选项的作用不同：
+
+- **中断屏蔽寄存器**：按中断源控制哪些请求被屏蔽，例如 8259 的 IMR。
+- **中断请求寄存器**：记录中断控制器当前待处理的中断请求，不是开/关中断的总允许位。
+- **中断向量寄存器**：保存或指示中断向量；向量表据此找到相应的服务程序入口，不负责开关中断。
+
+因此，题干所说开中断和关中断设置的是中断允许触发器。`,pitfalls:String.raw`- 把「是否允许 CPU 响应可屏蔽中断」和「是否屏蔽某个中断源」混为一谈：前者对应中断允许触发器，后者对应中断屏蔽寄存器。
+- 把中断请求寄存器中的请求状态误当成开关控制位。
+- 把中断向量或向量表误当成中断允许状态；它们用于定位中断服务程序。`,extension:String.raw`1. **关中断后，哪些事件仍可能打断 CPU？**
+
+   **答：** 不可屏蔽中断（NMI）以及内部异常、陷阱仍可被处理。关中断通常只禁止可屏蔽外部中断，并不屏蔽 NMI 或 CPU 内部异常事件。
+
+2. **为什么中断服务程序入口处通常先关中断？**
+
+   **答：** 为避免在现场保护等关键步骤尚未完成时被可屏蔽中断再次打断，造成嵌套或重入干扰。具体是否及何时重新开中断，由处理器机制和服务程序设计决定。`}},{id:`wangdao-mock2-major-23`,title:`不同操作系统与硬件平台的系统调用指令`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 系统调用`,tags:[`系统调用`,`陷入指令`,`指令集体系结构`,`系统调用接口`],summary:`区分同一台计算机上不同操作系统使用的系统调用指令，以及同一 Linux 在不同硬件平台上的系统调用指令。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`(23) 在同一台计算机上，运行 Windows、Linux、UNIX 等不同的操作系统，它们的系统调用一般是通过执行（ ）的系统调用指令来实现的；运行在不同硬件平台上的相同 Linux 操作系统，它们的系统调用一般是（ ）的。
+
+- A．相同，相同
+- B．相同，不同
+- C．不同，不同
+- D．不同，相同`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-23/question.png`}],solution:{answer:String.raw`**选 B：相同，不同。** 同一台计算机的指令集相同，不同操作系统一般使用该平台提供的系统调用陷入指令；换到不同硬件平台，指令集不同，系统调用指令一般也不同。`,explanation:String.raw`## 分两问判断
+
+### 同一台计算机，换操作系统
+
+Windows、Linux、UNIX 运行在同一台计算机上时，面对的是同一套处理器指令集。执行系统调用时，用户态程序需要通过硬件支持的陷入机制进入内核，因此系统调用指令一般相同。
+
+### 同一操作系统，换硬件平台
+
+Linux 可运行在不同指令集的平台上。系统调用进入内核所用的指令由硬件指令集决定，例如 x86-64 使用 **syscall**，AArch64 使用 **svc**，RISC-V 使用 **ecall**。因此，不同硬件平台上的系统调用指令一般不同。
+
+## 分清三个层次
+
+- **陷入指令（硬件层）**：触发从用户态进入内核态的处理，由处理器指令集提供。
+- **系统调用号与参数传递约定（操作系统 ABI 层）**：规定请求哪个内核服务，以及参数、返回值如何传递；即使指令相同，不同操作系统的约定也未必相同。
+- **库函数接口（编译器／操作系统环境层）**：程序常调用 **read**、**write** 等库函数；库函数再按目标系统的 ABI 发起系统调用。相似的函数接口不代表底层陷入指令相同。`,pitfalls:String.raw`- 把「系统调用指令」和「系统调用号／系统调用接口」混为一谈。题目问的是用于陷入内核的指令，不是调用编号或库函数名称。
+- 以为移植 Linux 后，系统调用接口和底层调用方式都完全相同。**read**、**write** 等接口可以相近，但陷入指令及参数传递寄存器由 ISA 和 ABI 决定。
+- 忽略题目的比较条件：第一问固定硬件平台、改变操作系统；第二问固定 Linux、改变硬件平台。`,extension:String.raw`1. **同一台机器上运行同一 Linux 的不同发行版，陷入指令一般相同吗？**
+
+   **答：** 相同。发行版通常共享该硬件平台的指令集以及 Linux 系统调用 ABI；发行版差异不会改变处理器提供的陷入指令。
+
+2. **为什么不同操作系统的系统调用号可能不同？**
+
+   **答：** 系统调用号由操作系统内核定义和编号，用来选择具体服务；它属于操作系统的 ABI 约定，不是硬件指令集规定的编号，因此不同操作系统可以采用不同的系统调用号。
+
+3. **同一 Linux 的 read 接口在 x86-64 与 RISC-V 上，是否意味着执行同一条陷入指令？**
+
+   **答：** 不意味着。库函数接口可以相近，但 x86-64 与 RISC-V 的陷入指令不同，分别使用 **syscall** 与 **ecall**。`}},{id:`wangdao-mock2-major-24`,title:`哪些操作通常不需要切换到内核态？`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 处理器状态与特权指令`,tags:[`用户态与内核态`,`特权指令`,`系统调用`,`页表`],summary:`比较 I/O 指令、系统调用、通用寄存器清零和修改页表，判断哪项通常无需切换到内核态执行。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，因此以下答案为本站推导。`,content:String.raw`（单选题第 24 题，2 分）
+
+在操作系统中，以下过程通常不需要切换到内核态执行的是（ ）。
+
+- A．执行 I/O 指令
+- B．系统调用
+- C．通用寄存器清零
+- D．修改页表`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-24/question.png`}],solution:{answer:String.raw`**选 C。** 通用寄存器清零是非特权操作，用户态程序可以直接执行。`,explanation:String.raw`判断关键是操作是否属于特权操作，或是否会通过受控入口请求操作系统服务。
+
+- **A．执行 I/O 指令**：I/O 指令通常是特权指令，用户态直接执行会触发保护异常。
+- **B．系统调用**：由用户态发起，但要通过系统调用入口陷入内核态，由内核完成请求。
+- **C．通用寄存器清零**：普通寄存器可由当前程序直接写入，不要求进入内核态。例如在 x86 上，用户态代码可用 **xor eax, eax** 将 EAX 清零。
+- **D．修改页表**：页表管理涉及操作系统维护的地址空间映射，并可能需要执行特权操作，因此由内核负责。`,pitfalls:String.raw`- 把「系统调用」当成全程在用户态执行：用户态只是发起请求，服务由内核态代码执行。
+- 把修改页表当成普通内存写：页表由操作系统管理，修改映射需要内核控制。
+- 以为所有涉及硬件的动作都要进入内核：用户态仍可执行普通指令、访问获准的内存并操作自己的通用寄存器。`,extension:String.raw`1. **用户程序想直接执行「in」或「out」指令，会发生什么？**
+
+   **答：** 这类 I/O 指令通常是特权指令；在用户态执行会触发保护异常，随后由内核处理。
+
+2. **哪些事件会使处理器从用户态进入内核态？**
+
+   **答：** 系统调用、外部中断和异常都可以使处理器转入内核态，由相应内核处理程序接管。`}},{id:`wangdao-mock2-major-25`,title:`进程状态转换：判断状态变化的原因`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 进程管理`,tags:[`进程状态`,`状态转换`,`处理机调度`,`I/O`],summary:`判断进程主动让出 CPU、事件完成、时间片用完等情形对应的状态转换，辨析就绪态与阻塞态。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片未显示答案，故答案为本站推导。`,content:String.raw`## 一、单项选择题
+
+(25) 下列关于进程状态的说法中，正确的是（ ）。
+
+- Ⅰ．进程主动让出 CPU、可能会导致该进程由执行态变为就绪态
+- Ⅱ．从阻塞态到就绪态的转换是由协作进程决定的
+- Ⅲ．一次 I/O 操作的结束，将会导致一个进程由就绪态变为运行态
+- Ⅳ．一个运行的进程用完了分配给它的时间片后，其状态变为阻塞态
+- Ⅴ．在进程状态转换中，“就绪 → 阻塞”是不可能发生的
+
+- A．Ⅰ、Ⅱ 和 Ⅲ
+- B．Ⅰ、Ⅱ 和 Ⅴ
+- C．Ⅰ、Ⅱ 和 Ⅳ
+- D．Ⅰ、Ⅱ、Ⅲ 和 Ⅴ`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-25/question.png`}],solution:{answer:String.raw`**选 B：Ⅰ、Ⅱ、Ⅴ。**`,explanation:String.raw`## 逐项判断
+
+- **Ⅰ 对。** 运行态进程主动让出 CPU（例如执行 yield）后仍然具备运行条件，只是暂时不占用 CPU，因此可由运行态转为就绪态。
+- **Ⅱ 对。** 阻塞进程等待的事件完成后，可能由协作进程或设备等引发唤醒；进程转为就绪态，等待调度。事件完成使其脱离阻塞，并不等于它立即获得 CPU。
+- **Ⅲ 错。** I/O 完成对应等待 I/O 的阻塞态进程转为就绪态；就绪态转为运行态要由处理机调度程序选中。
+- **Ⅳ 错。** 时间片用完时，进程仍可继续执行，只是本轮 CPU 使用机会结束，通常由运行态转为就绪态；阻塞是进程等待某个事件或资源时发生的转换。
+- **Ⅴ 对。** 就绪态进程没有正在 CPU 上运行，不能在该状态下发出等待事件或资源的请求，因此不会直接由就绪态转为阻塞态。
+
+所以正确的是 Ⅰ、Ⅱ、Ⅴ，选 B。`,pitfalls:String.raw`- 把“运行 → 就绪”和“运行 → 阻塞”混淆：时间片用完或主动让出 CPU，可回到就绪态；等待事件或资源才进入阻塞态。
+- 误以为 I/O 完成会直接让进程上 CPU：I/O 完成只是使等待者就绪，之后还要等待调度。
+- 把“由协作进程决定”误解成“由调度程序决定”：协作进程或事件完成可以使阻塞进程具备运行条件；调度程序决定的是哪个就绪进程获得 CPU。`,extension:String.raw`## 追问一：画出三态转换图，并说明每条箭头的原因。
+
+**答：**
+
+~~~text
+就绪 ──调度选中──→ 运行
+运行 ──时间片到或主动让出 CPU──→ 就绪
+运行 ──等待事件或资源──→ 阻塞
+阻塞 ──等待的事件完成──→ 就绪
+~~~
+
+调度选中决定就绪 → 运行；时间片用完或主动让出 CPU 对应运行 → 就绪；等待事件或资源对应运行 → 阻塞；事件完成对应阻塞 → 就绪。
+
+## 追问二：新建态与终止态各与哪些状态相连？
+
+**答：** 新建态进程被接纳后进入就绪态；运行中的进程完成或被撤销后进入终止态。依具体系统模型，新建态也可能先进入挂起就绪态，终止态之后由系统回收资源；这些扩展状态不改变本题的三态判断。`}},{id:`wangdao-mock2-major-26`,title:`多线程系统的特长：哪项描述不恰当？`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 线程`,tags:[`多线程`,`线程并发`,`线程适用场景`,`键盘输入`],summary:`区分多线程适合并行计算、并发服务和交互任务的场景，与把单一输入事件流不必要地按应用拆成线程。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，以下答案为本站推导。`,content:String.raw`在下列描述中，哪个不是多线程系统的特长？（ ）
+
+- **A．** 利用线程并行地执行矩阵乘法运算
+- **B．** Web 服务器利用线程请求 HTTP 服务
+- **C．** 键盘驱动程序为每个正在运行的应用配备一个线程，用来响应相应的键盘输入
+- **D．** 基于 GUI 的调试程序用不同线程处理用户的输入、计算、跟踪等操作`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-26/question.png`}],solution:{answer:String.raw`**选 C。** 矩阵乘法可拆分为并行任务；Web 服务器可用多个线程并发处理请求；GUI 调试程序把输入、计算和跟踪分开处理，也能改善交互响应。键盘输入来自一个设备，是单一事件流；为每个正在运行的应用都配置一个驱动线程，并不是多线程的特长，通常既无必要，也不能让键盘事件本身并行产生。`,explanation:String.raw`## 判断标准：线程有没有带来并行或并发收益
+
+多线程的价值不在于线程数量多，而在于能否把可并行的工作分开执行，或让多个任务在等待与处理期间交错推进。
+
+- **A 成立：** 矩阵乘法可拆成多个相互独立的行、块或元素计算，多个线程可并行完成这些工作。
+- **B 成立：** Web 服务器会面对多个请求。线程可分别处理不同请求，一个请求等待 I/O 时，其他请求仍可推进。
+- **D 成立：** 输入响应、计算、跟踪等工作可以分开调度；计算或跟踪进行时，界面线程仍能响应用户操作。
+- **C 不恰当：** 键盘是一个输入设备，产生的是单一事件流。让驱动程序为每个正在运行的应用分别配置线程，不是处理这条事件流所必需的并行化；更合理的是由驱动处理输入，再按目标分发事件。大量应用各有一个专用键盘线程还会带来调度与管理开销。
+
+因此，题目问「不是多线程系统的特长」，答案是 C。`,pitfalls:String.raw`- **以为线程越多越好：** 线程有调度、切换和管理成本；只有任务能并行或并发推进时，线程化才可能带来收益。
+- **把「每个设备一个线程」当成通用规则：** 驱动可由线程服务设备，但事件通常由驱动读取并分发给应用，不需要为每个应用都配置键盘驱动线程。
+- **只凭「有线程」判断属于特长：** 要检查线程是否解决了并行计算、请求并发或交互响应问题；无收益的线程化不是特长。
+- **把键盘事件说成绝对不能并发处理：** 事件到达是单一输入流，但后续应用工作可以并发；本题不恰当的是给每个应用配一个键盘响应线程这一设计。`,extension:String.raw`## 追问一：在这些场景里，多线程相比多进程有什么优势？
+
+**答：** 同一进程内的线程共享地址空间，线程间共享数据和通信通常更方便，创建与切换开销通常也小于进程。代价是共享数据需要同步，出错时也可能相互影响。
+
+## 追问二：什么情况下多线程反而有害？
+
+**答：** 任务本来只需串行处理时，增加线程会带来不必要的调度和管理开销；计算密集任务若共享数据很多，也可能因锁竞争和同步开销抵消并行收益。
+
+## 追问三：键盘只有一个事件流，能否把事件处理并行化？
+
+**答：** 可以并行处理彼此独立的后续工作，但输入事件的到达顺序仍需保留；是否拆成线程取决于工作量与同步成本，而不是给每个应用固定分配一个驱动线程。`}},{id:`wangdao-mock2-major-27`,title:`时间片轮转调度：哪些因素影响时间片大小？`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 处理机调度`,tags:[`时间片轮转调度`,`时间片`,`响应时间`,`上下文切换`],summary:`判断时间片大小应考虑哪些因素，区分响应时间、就绪队列规模、处理能力与进程运行时间。`,source:`题目来自用户照片「408 模拟 · 26 王道 8 套卷」，照片中无可见答案键；答案为本站推导。`,content:String.raw`在时间片轮转调度算法中确定合理的时间片大小很重要，下列哪些因素应当被考虑在内？（ ）
+
+- Ⅰ．系统对响应时间的要求
+- Ⅱ．就绪队列中进程的数量
+- Ⅲ．系统的处理能力
+- Ⅳ．各个进程所需的运行时间
+
+- **A．** Ⅰ、Ⅱ、Ⅲ
+- **B．** Ⅱ、Ⅲ、Ⅳ
+- **C．** Ⅰ、Ⅲ、Ⅳ
+- **D．** Ⅰ、Ⅱ、Ⅲ、Ⅳ`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-27/question.png`}],solution:{answer:String.raw`**选 A：Ⅰ、Ⅱ、Ⅲ。**
+
+时间片 $q$ 需要兼顾响应时间、就绪队列规模和处理机开销。各进程所需运行时间不是确定时间片大小的依据。`,explanation:String.raw`## 逐项判断
+
+- **Ⅰ．系统对响应时间的要求：考虑。** 若有 $n$ 个进程，等候一轮的时间量级约为 $nq$；响应要求越严格，时间片应相应调整。
+- **Ⅱ．就绪队列中进程的数量：考虑。** 进程越多，同一进程等待轮转的时间越长。队列较长时通常需要较小的时间片，才能满足响应要求。
+- **Ⅲ．系统的处理能力：考虑。** 时间片过小会增加时钟中断和上下文切换频率，处理机花在调度开销上的比例上升；应结合系统处理能力选择合适粒度。
+- **Ⅳ．各个进程所需的运行时间：不考虑。** 调度时通常并不知道每个进程还需要运行多久；轮转调度用固定时间片公平地分配处理机，不依赖预知各进程运行时间。
+
+因此应考虑Ⅰ、Ⅱ、Ⅲ，选 A。`,pitfalls:String.raw`- 把「进程运行时间未知」误读成「它也是应考虑的因素」；时间片不依据逐个进程的实际运行需求来定。
+- 误以为时间片越小越好。过小会使切换更频繁，调度开销增大。
+- 把响应时间与周转时间混为一谈。响应时间关注进程获得响应前的等待；周转时间是从提交到完成的总时间。`,extension:String.raw`## 追问一：就绪队列中的进程数变多，为什么通常要缩短时间片？
+
+**答：** 一轮轮转中，进程需等待其他进程各运行一个时间片；若有 $n$ 个进程，等待一轮的量级约为 $nq$。在响应要求不变时，$n$ 增大就需要适当减小 $q$。
+
+## 追问二：时间片大到进程通常一次用完，会退化成什么调度？
+
+**答：** 退化为先来先服务（FCFS）调度。进程长时间占用处理机后才轮到下一个进程，交互响应性会变差。`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
 `)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Im({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Fm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Pm(e.label))),s=o+jm,c=i*s-jm+Mm*2,l=(a+1)*Am+Mm*2-(Am-km),u=e=>({x:Mm+o/2+e.column*s,y:Mm+e.depth*Am+km/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
 `).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+km/2} C ${e.x} ${e.y+km/2+18}, ${t.x} ${t.y-km/2-18}, ${t.x} ${t.y-km/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-km/2,width:o,height:km,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Lm({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Zo,{remarkPlugins:[bp],rehypePlugins:[ym],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Tm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Im,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Rm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=wm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=p.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),h=e!==`all`,g=o.trim().toLocaleLowerCase(),_=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!g||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(g)))})).filter(({items:e})=>e.length>0),v=_.reduce((e,t)=>e+t.items.length,0),y=c?Dm.find(({material:e})=>e.id===c)??null:null;function b(){t(`all`),r(`全部`),a(``),s(``)}function x(e){let t=Em[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsx)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:e.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(te,{size:16}),`返回博客`]}),y&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(te,{}),`返回讲义列表`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(ae,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ce,{}):(0,N.jsx)(se,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!y&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:wm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Om}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${y?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Dm.length})]}),wm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:y?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-24 rounded-2xl border border-border bg-card p-5 outline-none sm:p-8`,children:[(0,N.jsx)(`div`,{className:`mb-6 flex flex-wrap items-center justify-end gap-3`,children:(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:y.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[y.lesson.title,` · `,y.material.chapter,` · `,y.material.type]}),(0,N.jsx)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:y.material.title}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:y.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),y.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,y.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":y.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:y.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Lm,{children:y.material.content})]}),y.material.attachments&&y.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:y.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Tm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(ie,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),y.material.type===`题目`&&(y.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(re,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Lm,{children:y.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Lm,{children:y.material.solution.explanation})]}),y.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Lm,{children:y.material.solution.pitfalls})]}),y.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Lm,{children:y.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},y.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(O,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...xm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`div`,{className:`mt-4 space-y-3 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),h&&m.flatMap(e=>e.tags).map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!h&&m.map(e=>(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,N.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,N.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n)},children:n},n))})]},e.lesson.id))]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:wm.find(t=>t.id===e)?.title,` · `,v,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Dm.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(oe,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ne,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(oe,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):_.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${wm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:b,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:_.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>x(e))})]},e.id))})]})})]})]})]})}(0,bm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Rm,{})}));
