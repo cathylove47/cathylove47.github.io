@@ -891,7 +891,7 @@ int main(void) {
 - 以为代码段一定是私有的：只读可共享，fork 后父子通常共享代码段，写时复制主要作用在数据页上。
 - 以为「数据段装的是所有变量」：局部变量在栈，动态分配在堆。
 - 以为页表在进程的地址空间里：每个进程一套页表，但页表本身放在内核中，由 PCB 的存储管理信息指向。
-- 把「进程切换」与「线程切换」等同：前者要换页表/地址空间，后者不换。`}],Cm=[{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:[]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:[{id:`wangdao-mock1-major-41`,title:`邻接矩阵的强连通分量、顶点度数与最小生成树`,type:`题目`,date:`2026-09-30`,chapter:`图 · 邻接矩阵 / 连通性 / 最小生成树`,tags:[`邻接矩阵`,`强连通分量`,`出度与入度`,`最小生成树`,`Prim`,`Kruskal`],summary:`给一个 5 阶邻接矩阵，三问：强连通分量个数、读一段 C 函数的功能并求返回值、无向图最小生成树的算法选择与权值。`,source:`用户提供的截图，页脚为「408 模拟 · 26 王道 8 套卷」（含公众号水印）；截图未附官方答案，本页结论均由本站独立复算：强连通分量用可达矩阵、函数返回值按 C 代码逐项模拟、最小生成树用 Prüfer 序列穷举 125 棵生成树验证。`,content:String.raw`## 二、综合应用题
+- 把「进程切换」与「线程切换」等同：前者要换页表/地址空间，后者不换。`}],Cm=[{id:`wangdao-mock1-major-41`,title:`邻接矩阵的强连通分量、顶点度数与最小生成树`,type:`题目`,date:`2026-09-30`,chapter:`图 · 邻接矩阵 / 连通性 / 最小生成树`,tags:[`邻接矩阵`,`强连通分量`,`出度与入度`,`最小生成树`,`Prim`,`Kruskal`],summary:`给一个 5 阶邻接矩阵，三问：强连通分量个数、读一段 C 函数的功能并求返回值、无向图最小生成树的算法选择与权值。`,source:`用户提供的截图，页脚为「408 模拟 · 26 王道 8 套卷」（含公众号水印）；截图未附官方答案，本页结论均由本站独立复算：强连通分量用可达矩阵、函数返回值按 C 代码逐项模拟、最小生成树用 Prüfer 序列穷举 125 棵生成树验证。`,content:String.raw`## 二、综合应用题
 
 (41)（10 分）某有向图 $G$ 的邻接矩阵如下所示，顶点从 0 开始编号，回答下列问题。
 
@@ -1465,6 +1465,456 @@ $$
 
 **问：两个页框池分开做 FIFO 会带来什么影响？**
 
-**答：** 4KB 与 4MB 页面互不干扰，回收页框只在对应尺寸的池内进行；若将两种尺寸合并计数，会错误地让一种尺寸的页淘汰另一种尺寸的页。`}}]},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],wm=`/courses/`,Tm={题目:ne,知识点:oe},Em=Cm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Dm=Em.filter(({material:e})=>e.type===`题目`).length,Om=28,km=64,Am=26,jm=16,Mm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Nm(e){let t=(e.match(Mm)??[]).length;return(e.length-t)*7.4+t*13+18}function Pm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
-`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Fm({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Pm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Nm(e.label))),s=o+Am,c=i*s-Am+jm*2,l=(a+1)*km+jm*2-(km-Om),u=e=>({x:jm+o/2+e.column*s,y:jm+e.depth*km+Om/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
-`).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+Om/2} C ${e.x} ${e.y+Om/2+18}, ${t.x} ${t.y-Om/2-18}, ${t.x} ${t.y-Om/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-Om/2,width:o,height:Om,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Im({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Zo,{remarkPlugins:[bp],rehypePlugins:[ym],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${wm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Fm,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Lm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=Cm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=[...new Set(p.flatMap(({items:e})=>e.flatMap(e=>e.tags)))].sort((e,t)=>e.localeCompare(t,`zh-CN`)),h=o.trim().toLocaleLowerCase(),g=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!h||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(h)))})).filter(({items:e})=>e.length>0),_=g.reduce((e,t)=>e+t.items.length,0),v=c?Em.find(({material:e})=>e.id===c)??null:null;function y(){t(`all`),r(`全部`),a(``),s(``)}function b(e){let t=Tm[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsx)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:e.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(te,{size:16}),`返回博客`]}),v&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(te,{}),`返回讲义列表`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(ae,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ce,{}):(0,N.jsx)(se,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!v&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Cm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Dm}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${v?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Em.length})]}),Cm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:v?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-24 rounded-2xl border border-border bg-card p-5 outline-none sm:p-8`,children:[(0,N.jsx)(`div`,{className:`mb-6 flex flex-wrap items-center justify-end gap-3`,children:(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:v.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[v.lesson.title,` · `,v.material.chapter,` · `,v.material.type]}),(0,N.jsx)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:v.material.title}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:v.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),v.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,v.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":v.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:v.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Im,{children:v.material.content})]}),v.material.attachments&&v.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:v.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${wm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(ie,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),v.material.type===`题目`&&(v.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(re,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Im,{children:v.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Im,{children:v.material.solution.explanation})]}),v.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Im,{children:v.material.solution.pitfalls})]}),v.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Im,{children:v.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},v.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(O,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...xm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),m.map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:Cm.find(t=>t.id===e)?.title,` · `,_,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Em.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(oe,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ne,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(oe,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):g.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${Cm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:y,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:g.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>b(e))})]},e.id))})]})})]})]})]})}(0,bm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Lm,{})}));
+**答：** 4KB 与 4MB 页面互不干扰，回收页框只在对应尺寸的池内进行；若将两种尺寸合并计数，会错误地让一种尺寸的页淘汰另一种尺寸的页。`}}],wm=[{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:[{id:`wangdao-mock2-major-01`,title:`二叉树递归求高度的时间复杂度`,type:`题目`,date:`2026-09-30`,chapter:`树 · 二叉树遍历与复杂度`,tags:[`二叉树`,`递归`,`时间复杂度`,`树高`],summary:`分析递归计算二叉树高度的 maxFunc：判断每个结点的访问次数，并区分时间复杂度与递归栈空间复杂度。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
+
+(01) 设二叉树共有 $n$ 个结点，则下列程序段的时间复杂度是（ ）。
+
+~~~c
+int maxFunc(TreeNode* root){
+    if (root == NULL) return 0;
+    return max(maxFunc(root->left), maxFunc(root->right))+1;
+}
+~~~
+
+- A．$O(\log_2 n)$
+- B．$O(n)$
+- C．$O(n\log_2 n)$
+- D．$O(2^n)$`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-01/question.png`}],solution:{answer:String.raw`**选 B，$O(n)$。** 函数计算的是二叉树的高度；计算过程中每个非空结点只访问一次。`,explanation:String.raw`## 递归工作量
+
+对每个非空结点，函数递归处理左、右子树各一次，再用常数时间完成比较和加一。因此，若左右子树分别有 $l$、$r$ 个结点，则
+
+$$
+T(n)=T(l)+T(r)+O(1),\qquad l+r=n-1.
+$$
+
+每个结点只进入函数一次，空指针调用也至多对应每个结点的两个孩子，合计仍为 $O(n)$，所以时间复杂度为 $\Theta(n)$。
+
+复杂度与树的形状无关：树退化成链时仍逐个访问全部结点；完全二叉树也仍逐个访问全部结点。**max** 只比较两个结果，耗时为 $O(1)$。
+
+函数返回的是树高，不是结点总数；返回值表示什么，不决定程序检查多少结点。递归调用栈空间为 $O(h)$，其中 $h$ 是树高，最坏情况下退化成链，空间为 $O(n)$。`,pitfalls:String.raw`- 把“求高度”误认为时间复杂度是 $O(\log n)$：高度可能很小，但函数仍需访问所有结点。
+- 把 **max** 当成 $O(n)$ 操作；这里它只比较两个数，是 $O(1)$。
+- 混淆时间和空间：时间是 $O(n)$；递归栈是 $O(h)$，最坏为 $O(n)$。
+- 误以为链式退化会改变遍历工作量；链与完全二叉树都访问每个结点一次。`,extension:String.raw`1. **若每次递归都继续遍历整棵规模为 $n-1$ 的子树，使递推式变为 $T(n)=2T(n-1)+O(1)$，时间复杂度是什么？**
+
+   **答：** 展开递推可得 $T(n)=\Theta(2^n)$，故为 $O(2^n)$。
+
+2. **若改为一般树，每个结点遍历自己的孩子链表，以求所有孩子递归结果的最大值，时间复杂度如何？**
+
+   **答：** 仍为 $O(n)$。每个结点递归访问一次，所有结点的孩子链表总共扫描 $n-1$ 条父子边；把各结点的扫描量加起来是线性的。`}},{id:`wangdao-mock2-major-02`,title:`先序与中序序列相同的二叉树形状数`,type:`题目`,date:`2026-09-30`,chapter:`树 · 二叉树遍历`,tags:[`先序遍历`,`中序遍历`,`二叉树形状`,`重复结点值`],summary:`由相同的先序与中序序列判断二叉树形状数，关键是正确处理重复结点值。`,source:`本题来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，因此以下答案为本站推导。`,content:String.raw`（单选题第 2 题，2 分）
+
+已知某二叉树共有 5 个结点，其先序遍历和中序遍历的序列都是 “ooops”，则这样的二叉树共有（ ）种不同的形状。
+
+- A．1
+- B．3
+- C．5
+- D．6`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-02/question.png`}],solution:{answer:`C．5 种。`,explanation:String.raw`## 计数方法
+
+先序序列的第一个字符是根。根在中序序列中的位置决定左右子树的结点数；由于结点值有重复，必须逐个考虑与根同值的中序位置。
+
+记 $f(s)$ 为先序和中序序列都等于字符串 $s$ 时可得到的二叉树形状数。若根在中序位置 $k$（从 0 开始），左子树的先序序列为 $s[1..k]$，中序序列为 $s[0..k-1]$，所以两者必须相同；右子树也相应满足相同的前序、中序序列。于是
+
+$$
+f(s)=\sum_k f(s[0..k-1])f(s[k+1..])
+$$
+
+其中 $k$ 只取满足 $s[k]=s[0]$ 且 $s[1..k]=s[0..k-1]$ 的位置，空串计数为 1。
+
+对于 “ooops”，根只能放在中序序列中连续的三个 $o$ 之一，对应 $k=0,1,2$：
+
+- $k=0$：左子树为空，右子树序列为 “oops”，贡献 $f(\text{oops})=2$。
+- $k=1$：左右子树序列分别为 “o” 和 “ops”，贡献 $f(\text{o})f(\text{ops})=1$。
+- $k=2$：左右子树序列分别为 “oo” 和 “ps”，贡献 $f(\text{oo})f(\text{ps})=2$。
+
+因此 $f(\text{ooops})=2+1+2=5$。其中 $f(\text{oo})=2$，因为两个相同值结点既可由一个作另一个的左孩子，也可作右孩子；$f(\text{ps})=f(\text{o})=f(\text{ops})=1$。
+
+重复字符是关键：根的相同值可以对应中序序列里的多个位置。若五个字符互不相同，先序与中序首字符相同意味着根就是中序序列首字符，左子树为空；递归应用同一结论，树只能是一条右斜链，只有 1 种形状。`,pitfalls:String.raw`- 忽略重复字符，套用“先序和中序唯一确定二叉树”的结论而答 1。
+- 把“形状”与结点标号方式混为一谈；本题按形状计数，每个形状只计一次。
+- 只枚举树形而不检查是否存在使两种遍历都为 “ooops” 的标号，或只枚举标号而重复计算同一形状。`,extension:String.raw`- 若先序和中序序列都是 “abcde”，答案是多少？
+
+**答：**1 种。字符互不相同，递归可知每个根都必须是当前中序序列的首字符，因此树是唯一的右斜链。
+
+- 若先序和中序序列都是 “aaaaa”，答案是多少？
+
+**答：**42 种。每个二叉树形状都能使先序、中序序列同为 “aaaaa”，所以形状数为第 5 个 Catalan 数：$C_5=\frac{1}{6}\binom{10}{5}=42$。`}},{id:`wangdao-mock2-major-03`,title:`二叉树第 7 层结点数的最大值`,type:`题目`,date:`2026-09-30`,chapter:`树与二叉树 · 二叉树性质`,tags:[`二叉树`,`结点数`,`层数`,`最值`,`反向约束`],summary:`一棵有 100 个结点的二叉树，第 7 层最多有多少个结点？关键是最大化目标层，同时满足相邻层结点数约束。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案或答案解析，以下答案为本站推导。`,content:String.raw`若一棵二叉树有 100 个结点，根结点为第 1 层，则第 7 层最多有（ ）个结点。
+
+- **A．** 37
+- **B．** 48
+- **C．** 49
+- **D．** 64`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-03/question.png`}],solution:{answer:String.raw`**选 B：48。**
+
+取各层结点数为 $1,2,3,6,12,24,48$，前 7 层共 $96$ 个结点，且每层都不超过上一层的 2 倍，因此第 7 层有 48 个结点可实现。剩余 4 个结点可以放在第 8 层。
+
+若第 7 层有 49 个结点，逐层向上取满足二叉树约束的最少结点数，得到 $1,2,4,7,13,25,49$，合计 $101$ 个，超过总数 100。因此 49 不可达，48 为最大值。`,explanation:String.raw`## 关键约束：后一层不能超过前一层的两倍
+
+设第 $i$ 层的结点数为 $L_i$。二叉树中每个结点至多有两个孩子，因此：
+
+$$
+L_1=1,\qquad L_{i+1}\le 2L_i.
+$$
+
+要让第 7 层尽可能多，不能先假定前六层都满；应从目标层往上反推：给定 $L_7=x$，每一层至少要有 $\lceil L_{i+1}/2\rceil$ 个结点。
+
+## 48 可以达到
+
+令各层结点数为：
+
+$$
+1,\ 2,\ 3,\ 6,\ 12,\ 24,\ 48.
+$$
+
+逐层检查，每一层都不超过上一层的两倍；前七层合计：
+
+$$
+1+2+3+6+12+24+48=96\le 100.
+$$
+
+这是可实现的层数序列。若题目要求整棵树恰有 100 个结点，再在第 8 层放入 4 个结点即可；第 7 层的 48 个结点足以提供这些孩子位置。
+
+## 49 不可能
+
+若 $L_7=49$，从第 7 层逐层向上反推最少结点数：
+
+- $L_6\ge\lceil49/2\rceil=25$
+- $L_5\ge\lceil25/2\rceil=13$
+- $L_4\ge\lceil13/2\rceil=7$
+- $L_3\ge\lceil7/2\rceil=4$
+- $L_2\ge\lceil4/2\rceil=2$
+- $L_1=1$
+
+所以前七层至少有 $1+2+4+7+13+25+49=101$ 个结点，已经超过 100。更大的 $L_7$ 需要的前层结点只会更多，因此最大值就是 48。
+
+## 穷举复核
+
+动态穷举所有满足 $L_1=1$、$1\le L_{i+1}\le2L_i$ 且前七层合计不超过 100 的层数序列，共得到 25,217 个有效序列；其中 $L_7=48$ 的序列有 8 个，$L_7=49$ 的序列有 0 个，最大 $L_7$ 为 48。`,pitfalls:String.raw`- **误选 37：** 先把前六层都取满，得到 $1+2+4+8+16+32=63$，剩下 $100-63=37$。这只是在“前六层全满”额外条件下的结果，不是本题最大值。
+- **忽略层间约束：** $1,2,4,8,16,21,48$ 虽然总数恰为 100，但第 7 层的 48 大于第 6 层的 $2\times21=42$，不是合法二叉树层数序列。
+- **只检查结点总数：** 总数不超过 100 还不够；必须同时保证每层都能由上一层的结点提供孩子。`,extension:String.raw`## 追问一：若要求前 6 层全满，第 7 层最多多少个结点？
+
+**答：37 个。**前六层有 $1+2+4+8+16+32=63$ 个结点，100 个结点还剩 37 个；第 6 层有 32 个结点，最多可提供 64 个孩子位置，所以这 37 个结点可以放在第 7 层。
+
+## 追问二：若整棵树有 127 个结点，第 7 层最多多少个结点？
+
+**答：64 个。**第 7 层最多为 $2^6=64$ 个；完全二叉树前七层恰有 $1+2+4+8+16+32+64=127$ 个结点，达到上界。`}},{id:`wangdao-mock2-major-04`,title:`完全二叉树的叶结点数与最大深度`,type:`题目`,date:`2026-09-30`,chapter:`树 · 完全二叉树`,tags:[`完全二叉树`,`叶结点`,`树的深度`],summary:`已知完全二叉树有 64 个叶结点，判断可能达到的最大深度；关键是统计最后两层的叶结点。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，本页结论为本站推导。`,content:String.raw`**（04）** 已知一棵完全二叉树有 64 个叶结点，根结点的深度为 1，则该树可能达到的最大深度为（ ）。
+
+- A．7
+- B．8
+- C．9
+- D．10`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-04/question.png`}],solution:{answer:String.raw`**选 B（8）。** 深度 8、最后一层只有 1 个结点时，整棵完全二叉树恰有 64 个叶结点；枚举可知深度 9 及以上均不可能。`,explanation:String.raw`设树深度为 $h$，最后一层有 $k$ 个结点，$1\le k\le 2^{h-1}$。当 $h\ge2$ 时，第 $h-1$ 层共有 $2^{h-2}$ 个结点，其中有 $\lceil k/2\rceil$ 个结点在最后一层有孩子。其余第 $h-1$ 层结点也是叶结点，因此叶结点总数为
+
+$$
+ k+2^{h-2}-\lceil k/2\rceil=2^{h-2}+\lfloor k/2\rfloor.
+$$
+
+注意这里是 $\lfloor k/2\rfloor$，不是 $\lceil k/2\rceil$。
+
+枚举 $h=1..10$ 及每个 $h$ 的 $k=1..2^{h-1}$，叶结点数等于 64 的情况只有：
+
+- $h=7$：$k=64$，结点总数 $2^6-1+64=127$。
+- $h=8$：$k=1$，结点总数 $2^7-1+1=128$。
+
+所以最大深度为 8，选 B。直接运行的枚举脚本输出：
+
+~~~c
+h=7: k=64; nodeCounts=127
+h=8: k=1; nodeCounts=128
+~~~`,pitfalls:String.raw`- 把叶结点数直接当成最后一层结点数，会漏掉倒数第二层上没有孩子的结点。
+- 把完全二叉树当成满二叉树；最后一层允许不满，但结点必须从左向右连续排列。
+- 误用 $2^h$ 估算结点或叶结点数；根深度为 1 时，深度 $h$ 的满二叉树共有 $2^h-1$ 个结点。
+- 把深度当成根到叶的边数；本题根结点深度为 1，深度就是层数。
+- 将叶结点公式中的 $\lfloor k/2\rfloor$ 写成 $\lceil k/2\rceil$，会漏掉 $h=8,k=1$ 这个关键解。`,extension:String.raw`**追问 1：** 叶结点数为 64 的完全二叉树最少有多少个结点？
+
+**答：** 127 个。枚举所得的最浅解为 $h=7,k=64$，总结点数为 $2^6-1+64=127$；$h=8,k=1$ 时有 128 个结点。
+
+**追问 2：** 若题目改问可能达到的最小深度，答案是多少？
+
+**答：** 7。枚举中最小的可行深度是 7，且 $h=7,k=64$ 时确有 64 个叶结点；深度不超过 6 的完全二叉树最多只有 $2^5=32$ 个叶结点。`}},{id:`wangdao-mock2-major-05`,title:`二叉排序树与中序线索树：判断错误说法`,type:`题目`,date:`2026-09-30`,chapter:`树与二叉树 · 二叉排序树 / 中序线索树`,tags:[`二叉排序树`,`中序遍历`,`中序后继`,`中序线索树`,`选择题`],summary:`判断关于二叉排序树结点的中序前驱与后继、中序线索树遍历，以及叶结点父结点关键字位置的说法中哪项错误。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片中未显示答案，以下答案与解析为本站推导。`,content:String.raw`（05）（2 分）下列关于二叉树的说法中，错误的是（ ）。
+
+- **A．** 若二叉排序树的一个结点有两个孩子，则它的中序后继结点没有左孩子，它的中序前驱结点没有右孩子
+- **B．** 若二叉排序树的一个结点 $x$ 的右子树为空，且 $x$ 有一个中序后继 $y$，则 $y$ 一定是 $x$ 的祖先，且其左孩子也是 $x$ 的祖先（$x$ 可视为自身的祖先）
+- **C．** 在中序线索树中，从最左边的结点开始不断地查找后继结点，不一定能遍历完树中的所有结点
+- **D．** 若 $x$ 是二叉排序树的叶结点，$y$ 是其父结点，则 $y$ 的值要么是树中大于 $x$ 的值的最小关键字，要么是树中小于 $x$ 的最大关键字`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-05/question.png`}],solution:{answer:String.raw`**选 C。** 中序线索树从最左结点出发，反复查找中序后继，会按中序次序访问全树每个结点；因此 C 所说的「不一定能遍历完」错误。`,explanation:String.raw`## 逐项判断
+
+**A 对。** 设结点 $z$ 有左右孩子。它的中序后继是右子树中最靠左的结点，按定义没有左孩子；它的中序前驱是左子树中最靠右的结点，按定义没有右孩子。
+
+**B 对。** $x$ 没有右子树时，若它存在中序后继 $y$，就沿祖先链向上找：第一个满足「当前结点位于其左子树中」的祖先就是 $y$。因此 $y$ 是 $x$ 的祖先，而 $y$ 的左孩子也位于通向 $x$ 的祖先链上（$x$ 可视为自身祖先）。
+
+**C 错。** 中序线索把原本为空的左、右孩子指针改作前驱、后继线索。查找后继时，若右指针是线索就直接沿线索；若右指针指向右孩子，就从右孩子出发一路向左到最左结点。每一步得到的都是中序序列中的下一个结点，从最左结点开始便会依次遍历完整个中序序列。
+
+**D 对。** $x$ 是叶结点且 $y$ 是其父结点。若 $x$ 是 $y$ 的左孩子，$y$ 就是 $x$ 的直接中序后继，也就是严格大于 $x$ 的最小关键字；若 $x$ 是 $y$ 的右孩子，$y$ 就是 $x$ 的直接中序前驱，也就是严格小于 $x$ 的最大关键字。`,pitfalls:String.raw`- 把 C 的真假记反：中序后继链恰好串起完整的中序序列。
+- 把线索当成普通孩子指针。要先区分该指针是线索还是孩子指针，再决定直接跟随还是进入子树找最左结点。
+- 把 D 中左右孩子与前驱、后继对应关系弄反：左孩子对应父结点为后继，右孩子对应父结点为前驱。`,extension:String.raw`**追问一：中序线索化后，按后继遍历还需要栈吗？**
+
+**答：** 不需要。线索保存了原本空指针位置的中序前驱或后继信息；从最左结点反复找后继即可遍历，额外辅助空间为 $O(1)$。
+
+**追问二：如果只做了前序线索，能否仅凭这些线索、不借助其他结构完成中序遍历？**
+
+**答：** 不能保证。前序线索记录的是前序前驱与后继，并未提供中序后继关系；中序遍历仍需利用孩子结构并借助栈、递归或额外的中序线索等手段。`}},{id:`wangdao-mock2-major-06`,title:`有向图邻接矩阵：环、强连通分量与拓扑序列`,type:`题目`,date:`2026-09-30`,chapter:`图 · 有向图 / 强连通分量 / 拓扑排序`,tags:[`有向图`,`邻接矩阵`,`有向环`,`强连通分量`,`拓扑排序`],summary:`读 5 个顶点的邻接矩阵，判断无环、强连通分量数量与拓扑序列是否存在。`,source:`用户提供的照片，题目来自「408 模拟 · 26 王道 8 套卷」；截图中未显示答案，本题结论为本站推导。`,content:String.raw`有向图的邻接矩阵 $A$ 如下所示，在下列说法中，错误的是（ ）。
+
+~~~text
+     0 1 2 3 4
+ 0 [ 0 1 0 0 0 ]
+ 1 [ 0 0 0 1 0 ]
+ 2 [ 0 0 0 0 1 ]
+ 3 [ 1 0 0 0 0 ]
+ 4 [ 0 0 0 1 0 ]
+~~~
+
+- Ⅰ．图中没有环
+- Ⅱ．该图的强连通分量的数量为 2
+- Ⅲ．拓扑序列存在
+
+- **A．** Ⅰ
+- **B．** Ⅰ、Ⅲ
+- **C．** Ⅱ、Ⅲ
+- **D．** Ⅰ、Ⅱ、Ⅲ`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-06/question.png`}],solution:{answer:String.raw`**选 D：Ⅰ、Ⅱ、Ⅲ 都错误。**
+
+存在有向环 $0\to1\to3\to0$，所以Ⅰ错，图没有拓扑序列，Ⅲ错。强连通分量共有 3 个：$\{0,1,3\}$、$\{2\}$、$\{4\}$，所以Ⅱ也错。`,explanation:String.raw`## 逐条判断
+
+### Ⅰ．图中没有环——错误
+
+从矩阵逐行读出弧：$0\to1$、$1\to3$、$2\to4$、$3\to0$、$4\to3$。其中
+
+$$
+0\to1\to3\to0
+$$
+
+首尾回到顶点 0，构成有向环。因此图并非无环图。
+
+### Ⅱ．强连通分量数量为 2——错误
+
+顶点 $0,1,3$ 两两可达：它们在环上，构成一个强连通分量 $\{0,1,3\}$。
+
+顶点 2 和 4 各自形成单元素强连通分量：$2\to4$，而 $4\to3$；从 2 或 4 可以到达环，但环上没有路径返回 2 或 4。因此它们都不能并入 $\{0,1,3\}$，彼此也不强连通。
+
+所以三个分量是 $\{2\}$、$\{4\}$、$\{0,1,3\}$，数量为 3。
+
+### Ⅲ．拓扑序列存在——错误
+
+有向图存在拓扑序列，当且仅当它是有向无环图。图中已有环 $0\to1\to3\to0$，故拓扑序列不存在。
+
+三条说法都错误，选 D。`,pitfalls:String.raw`- 只数邻接矩阵中的非零元素，不能判断有无环；要顺着弧检查是否能回到已访问顶点。
+- 数强连通分量时别漏掉单元素分量：2 和 4 分别是一个分量。
+- Ⅱ中的“2”是声称的分量数量，不是环的数量；本图只有一个所列出的环，而强连通分量有 3 个。
+- 有向图含环时不存在拓扑序列，不能把“有环”与“仍可拓扑排序”混为一谈。`,extension:String.raw`**追问一：若要让该图有拓扑序列，最少删哪条弧？**
+
+**答：** 删去 $3\to0$、$0\to1$、$1\to3$ 中任意一条即可。原图唯一的有向环由这三条弧组成；删去其中任意一条会打破环，其余弧不能再形成环，因此所得图是有向无环图。
+
+**追问二：将强连通分量缩点后，图是什么结构？**
+
+**答：** 是链 $\{2\}\to\{4\}\to\{0,1,3\}$。前两条弧分别来自 $2\to4$ 和 $4\to3$；其中 $4\to3$ 指向分量 $\{0,1,3\}$。`}},{id:`wangdao-mock2-major-07`,title:`AOE 网中时间余量最大的活动`,type:`题目`,date:`2026-09-30`,chapter:`图 · AOE 网与关键路径`,tags:[`AOE 网`,`关键路径`,`活动时间余量`,`事件最早发生时间`,`事件最迟发生时间`],summary:`给出含 6 个事件、8 个活动的 AOE 网，求时间余量最大的活动的余量。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中的答案未显示，故本题答案与解析为本站推导。`,content:String.raw`（07）在下面的 AOE 网中，时间余量最大的活动的时间余量是（ ）。
+
+图中事件 A 是源点，F 是汇点；活动与持续时间如下：
+
+- $a$：A→B，持续时间 5
+- $b$：A→C，持续时间 5
+- $c$：A→D，持续时间 7
+- $d$：B→D，持续时间 1
+- $g$：B→F，持续时间 2
+- $e$：C→E，持续时间 5
+- $f$：E→F，持续时间 3
+- $h$：D→F，持续时间 4
+
+- **A．** 5
+- **B．** 6
+- **C．** 3
+- **D．** 4`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-07/question.png`}],solution:{answer:String.raw`**选 B：6。** 时间余量最大的活动是 $g$（B→F），时间余量为 6。`,explanation:String.raw`## 1. 先算事件最早发生时间 $ve$
+
+源点 $A$ 的最早发生时间为 0。其余事件取所有进入活动所能到达时间的最大值：
+
+- $ve(A)=0$
+- $ve(B)=ve(A)+5=5$
+- $ve(C)=ve(A)+5=5$
+- $ve(D)=\max(ve(A)+7,\ ve(B)+1)=\max(7,6)=7$
+- $ve(E)=ve(C)+5=10$
+- $ve(F)=\max(ve(B)+2,\ ve(D)+4,\ ve(E)+3)=\max(7,11,13)=13$
+
+所以工程工期是 13。
+
+## 2. 反向算事件最迟发生时间 $vl$
+
+汇点取 $vl(F)=ve(F)=13$；其余事件取所有后续活动允许时间的最小值：
+
+- $vl(F)=13$
+- $vl(E)=vl(F)-3=10$
+- $vl(D)=vl(F)-4=9$
+- $vl(C)=vl(E)-5=5$
+- $vl(B)=\min(vl(D)-1,\ vl(F)-2)=\min(8,11)=8$
+- $vl(A)=\min(vl(B)-5,\ vl(C)-5,\ vl(D)-7)=\min(3,0,2)=0$
+
+## 3. 逐项算活动时间余量
+
+活动 $(i,j)$ 的时间余量为 $vl(j)-ve(i)-活动持续时间$：
+
+- $a$（A→B）：$vl(B)-ve(A)-5=8-0-5=3$
+- $b$（A→C）：$vl(C)-ve(A)-5=5-0-5=0$
+- $c$（A→D）：$vl(D)-ve(A)-7=9-0-7=2$
+- $d$（B→D）：$vl(D)-ve(B)-1=9-5-1=3$
+- $g$（B→F）：$vl(F)-ve(B)-2=13-5-2=6$
+- $e$（C→E）：$vl(E)-ve(C)-5=10-5-5=0$
+- $f$（E→F）：$vl(F)-ve(E)-3=13-10-3=0$
+- $h$（D→F）：$vl(F)-ve(D)-4=13-7-4=2$
+
+最大值为 $6$，对应活动 $g$，因此选 B。余量为 0 的关键活动构成关键路径 A→C→E→F，路径长度 $5+5+3=13$。`,pitfalls:String.raw`- **只算 $vl(j)-ve(i)$，忘了减活动持续时间。** 活动余量必须是 $vl(j)-ve(i)-活动持续时间$。
+- **把活动余量和事件余量混淆。** 事件余量是 $vl(i)-ve(i)$；活动余量还要结合活动起点、终点和持续时间。
+- **把 $g$ 的最早开工余量当成公式。** $ve(F)-ve(B)-2=13-5-2=6$ 在本题恰好也得到 6，但一般的活动总余量按 $vl(F)-ve(B)-2$ 计算；两者相等是因为汇点 $F$ 的最早与最迟时间都为 13。
+- **找错关键路径。** 本题持续时间最长的路径是 A→C→E→F，长度 13；$g$ 的活动余量为 6，并不在关键路径上。`,extension:String.raw`**追问一：本题的关键路径是哪条？**
+
+**答：** A→C→E→F，路径长度为 $5+5+3=13$，与工程工期相同。
+
+**追问二：如果把活动 $g$ 的持续时间从 2 改为 9，关键路径会不会变？**
+
+**答：** 会。此时 A→B→F 的长度为 $5+9=14$，比原来的 A→C→E→F（13）长，工期变为 14；A→B→F 成为新的关键路径。此时 $g$ 的总时间余量为 0，关键路径不是多条。`}},{id:`wangdao-mock2-major-08`,title:`红黑树性质判断`,type:`题目`,date:`2026-09-30`,chapter:`树与二叉树 · 平衡二叉树与红黑树`,tags:[`红黑树`,`黑高`,`AVL树`,`平衡二叉树`,`反例构造`],summary:`判断红黑树的黑高、查找效率与平衡性质；用最小反例区分红黑树和 AVL 树。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，以下答案为本站推导。`,content:String.raw`下列关于红黑树的说法中，正确的是（ ）。
+
+- **A．** 任意一棵红黑树中红结点的数量和黑结点的数量一定相等
+- **B．** 红黑树的黑高可能正好是整棵红黑树高度的一半
+- **C．** 红黑树的查找效率要优于平衡二叉树
+- **D．** 一棵合法的红黑树应该也是一棵平衡二叉树`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-08/question.png`}],solution:{answer:String.raw`**选 B。** 红黑树的黑高可能正好是整棵树高度的一半。`,explanation:String.raw`## 先看红黑树的三条约束
+
+- 根结点是黑色。
+- 红结点的孩子必须是黑色，即不能有相邻的红结点。
+- 从任一结点到其后代 NIL 叶子的每条路径，黑结点数相同。
+
+黑高 $bh$ 不是整棵树里黑结点的总数，而是指定结点到 NIL 叶子路径上的黑结点数。按根到叶的结点层数计高度，红黑树有 $h\le 2bh$；颜色可以沿最长路径黑、红交替，因此等号可以取到。最简单的例子是黑根加两个红孩子：高度为 2，黑高为 1。
+
+## A 错：黑结点总数不必等于红结点总数
+
+黑根加两个红孩子就是反例：共有 1 个黑结点、2 个红结点。路径黑高相同约束的是每条路径上的黑结点数，不是整棵树中红、黑结点的总数。
+
+## C 错：红黑树不保证比 AVL 树查找更快
+
+两者查找的最坏时间复杂度都是 $O(\log n)$。AVL 树要求每个结点左右子树高度差不超过 1，整体高度约束更严格；红黑树只保证高度不超过约 $2\log_2(n+1)$。因此不能说红黑树查找效率必然优于 AVL 树。红黑树常见优势是插入、删除时旋转次数较少。
+
+## D 错：合法红黑树不一定是 AVL 树
+
+在 408 的语境中，「平衡二叉树」按 AVL 树理解：每个结点左右子树高度差的绝对值不超过 1。下面用 B、R 分别表示黑、红；空孩子均为 NIL 黑叶子。
+
+~~~binary
+10B
+  L: 5B
+  R: 15R
+    L: 12B
+    R: 20B
+      R: 25R
+~~~
+
+这是 6 个实际结点的合法红黑树，但不是 AVL 树：以根 10 为例，左子树高为 1，右子树高为 3，按边数计的根平衡因子 $BF=1-3=-2$。
+
+检查红黑性质：根 10 是黑色；红结点 15、25 没有红孩子；所有根到 NIL 的路径都含 2 个实际黑结点，若计入末尾的 NIL 则黑高均为 3。路径可以不同长，但黑结点数一致。
+
+**为什么不用题目要求的 5 个结点？** 对所有有序二叉树形状和红黑着色作穷举检查，5 个实际结点时合法但非 AVL 的红黑树数量为 0；首次出现于 6 个结点，数量为 8。因此 5 个结点的反例不存在，上图是最小规模反例。`,pitfalls:String.raw`- **把黑高当成全树黑结点总数：** 黑高比较的是路径上的黑结点数，不能据此推出红黑结点总数相等。
+- **把高度上界当成查找必然更快：** 红黑树和 AVL 树查找最坏情况都是 $O(\log n)$；AVL 的高度约束更紧，不能反向断言红黑树更快。
+- **把「平衡二叉树」按日常说法理解：** 408 中此处指 AVL 树，不是泛指「看起来较平衡」的树。
+- **硬凑 5 个结点的反例：** 合法红黑树的红黑约束会排除所有五结点非 AVL 形状；最小反例需要 6 个结点。`,extension:String.raw`## 追问一：红黑树插入时为什么最多旋转两次？
+
+**答：** 新插入结点先着红色。若父结点是黑色，不需修复；若父结点和叔父结点都是红色，通过变色把问题向上移，不旋转。若叔父是黑色，则先把「折线」调整为「直线」（一次旋转），再旋转祖父并变色，至多再一次。因此插入修复最多两次旋转。
+
+## 追问二：红黑树和 AVL 树如何取舍？
+
+**答：** 查找占主导、希望树高更紧时，AVL 通常更合适；插入和删除较频繁、希望减少旋转和维护开销时，常选红黑树。两者的查找最坏时间复杂度均为 $O(\log n)$。
+
+## 追问三：这道题中如何最快否定 D？
+
+**答：** 不必证明每棵红黑树都不平衡，只需给出一棵合法红黑树在某结点的左右子树高度差为 2。上面的 6 结点树在根处 $BF=-2$，所以它不是 AVL 树。`}},{id:`wangdao-mock2-major-09`,title:`3 阶 B 树删除关键字后的合并与调整`,type:`题目`,date:`2026-09-30`,chapter:`查找 · B 树的删除`,tags:[`B 树`,`关键字删除`,`结点下溢`,`合并`,`树高调整`],summary:`在 3 阶 B 树中删除叶子关键字 71，依次处理叶结点与父结点下溢，判断调整后的树形。`,source:`本题来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，以下答案为本站推导。`,content:String.raw`对于如下这棵 3 阶 B 树，完成“删除 71”操作后应该是（ ）。
+
+原树：根结点为 $47$；第二层结点为 $20$、$60$；叶子层中，$20$ 下挂 $18$、$23$ 两个叶结点，$60$ 下挂 $55$、$71$ 两个叶结点。
+
+- **A．** 根为 $20$，把 $47$ 当左子树、$55\ 60$ 当右子树
+- **B．** 根为 $47$，左子树为 $20$、右子树为 $60$，其下挂 $18$、$23$、$55\ 60$
+- **C．** 根为 $20\ 47$，三个孩子分别是 $18$、$23$、$55\ 60$
+- **D．** 根为 $23\ 55$，孩子是 $18\ 20$、$47$、$60$
+
+以上选项的树形以原题截图为准；正文用文字描述。`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-09/question.png`}],solution:{answer:String.raw`**选 C。** 删除并完成两次合并后，根结点关键字为 $20\ 47$，三个孩子依次为 $18$、$23$、$55\ 60$。`,explanation:String.raw`## 先明确 3 阶的结点下限
+
+3 阶 B 树每个结点最多有 3 个孩子。非根结点至少有 $\lceil 3/2\rceil=2$ 个孩子，因此至少有 $2-1=1$ 个关键字。阶数是孩子数上限，不是关键字数上限。
+
+## 第一次下溢：删除 71
+
+$71$ 所在叶结点删除后变为空，关键字数为 0，低于最少的 1 个。它的兄弟叶结点 $55$ 也只有 1 个关键字，已经达到下限，不能借。
+
+于是合并这两个叶结点，并把父结点分隔关键字 $60$ 下移，得到叶结点 $55\ 60$。父结点原本只有关键字 $60$，下移后变空，发生下溢。
+
+## 第二次下溢：向上合并
+
+空结点的兄弟结点 $20$ 也只有 1 个关键字，不能借。将它与根中的分隔关键字 $47$ 合并，得到新的根结点 $20\ 47$。原来属于 $20$ 的叶子结点 $18$、$23$，以及合并得到的叶结点 $55\ 60$，成为新根的三个孩子。
+
+最终根为 $20\ 47$，三个孩子依次为 $18$、$23$、$55\ 60$，对应选项 C。`,pitfalls:String.raw`## 易错点
+
+- 只删去 $71$，却把空叶结点保留下来；空结点低于 3 阶 B 树非根结点的关键字下限。
+- 误以为可以向 $55$ 借；它只有 1 个关键字，已达到最小值。
+- 第一次合并后忘记检查父结点下溢，或忘记空根会让树高降低 1。
+- 把“3 阶”误解为每个结点最多有 3 个关键字；实际最多有 3 个孩子、2 个关键字。`,extension:String.raw`## 追问一：如果删除 55 呢？
+
+**答：** 与删除 $71$ 对称。空叶结点与兄弟 $71$ 及父关键字 $60$ 合并成 $60\ 71$，随后父结点下溢，再与根中的 $47$ 和兄弟结点 $20$ 合并；最终根同样为 $20\ 47$，三个孩子为 $18$、$23$、$60\ 71$。
+
+## 追问二：为什么 3 阶 B 树的非根结点最少有 1 个关键字？
+
+**答：** 非根结点至少有 $\lceil m/2\rceil$ 个孩子，关键字数比孩子数少 1，所以最少关键字数是 $\lceil m/2\rceil-1$。当 $m=3$ 时为 $\lceil 3/2\rceil-1=1$。`}},{id:`wangdao-mock2-major-10`,title:`快速排序最坏情况与基准选择`,type:`题目`,date:`2026-09-30`,chapter:`排序 · 快速排序`,tags:[`快速排序`,`划分`,`最坏时间复杂度`,`基准选择`],summary:`每轮选待排序子序列的末元素为基准，判断哪种初始排列会使快速排序达到最坏情况。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片中未显示答案，本题答案与解析为本站推导。`,content:String.raw`假设在快速排序算法中总是选择待排序子序列中的最后一个元素作为基准，则这个算法的最坏情况出现在（ ）。
+
+- A．待排序序列初始有序时
+- B．待排序序列呈现中间小并逐次向两边增大的情况
+- C．待排序序列呈现中间大并逐次向两边减小的情况
+- D．以上选项都不是`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-10/question.png`}],solution:{answer:String.raw`**选 A。** 每轮选择当前子序列的最后一个元素为基准。对于初始有序序列，基准始终是当前子序列的最大值，划分为 $(n-1,0)$，因此达到最坏时间复杂度 $O(n^2)$。`,explanation:String.raw`## 为什么初始有序会退化
+
+以升序序列为例，每一轮都取末元素作为基准，它就是当前子序列的最大值。划分后左侧有 $n-1$ 个元素，右侧为空；下一轮又只处理大小为 $n-1$ 的子序列。
+
+比较次数满足：
+
+$$
+T(n)=T(n-1)+(n-1)=\frac{n(n-1)}{2}=O(n^2).
+$$
+
+划分越来越不平衡，递归链上有 $n$ 个非空子序列层级（含最后的单元素子序列），递归深度为 $n$。逆序序列也会产生同样的退化：末元素每次都是当前子序列的最小值，划分为 $(0,n-1)$。但选项中只有初始有序，因此选 A。
+
+对照来看，划分接近均衡时递归深度约为 $\log_2 n$，总比较次数为 $O(n\log n)$。快速排序的最好、最坏表现取决于每轮划分形状，而不是只由序列规模决定。`,pitfalls:String.raw`- **把末元素基准与首元素基准混谈。** 两者都可能在有序或逆序输入上退化，但要从题目指定的基准位置逐轮判断。
+- **误把“中间小”或“中间大”认作最坏。** 这类形态可能使划分较均衡；关键看基准两侧的规模是否严重失衡。
+- **认为只有有序才会最坏。** 逆序对末元素基准也会每轮分出一个空侧；只是本题选项中没有逆序。
+- **把最坏情况归因于规模。** $n$ 决定输入长度，排列和基准选择共同决定划分形状。`,extension:String.raw`**问：怎样降低快速排序遇到最坏情况的风险？**
+
+**答：** 可以随机选择基准，或使用三数取中（从首、尾、中间位置的元素中选中间值）来降低持续极端划分的概率。它们降低风险，但并不保证所有输入都能避免最坏情况。
+
+**问：若每轮改取当前子序列的第一个元素为基准，最坏情况还是有序序列吗？**
+
+**答：** 是。升序时首元素为最小值，逆序时首元素为最大值；两种情况下都反复产生 $(0,n-1)$ 或 $(n-1,0)$ 划分，时间复杂度均为 $O(n^2)$。
+
+**问：末元素基准在本题的升序输入上，$n=8$ 时有多少次关键字比较？**
+
+**答：** $7+6+5+4+3+2+1=28$ 次；递归深度按非空子序列层级计为 8。`}},{id:`wangdao-mock2-major-11`,title:`堆排序建大根堆的交换次数`,type:`题目`,date:`2026-09-30`,chapter:`排序 · 堆排序`,tags:[`堆排序`,`大根堆`,`建堆`,`交换次数`],summary:`对给定序列自底向上建大根堆，逐轮模拟向下筛选，区分交换次数与比较次数。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，以下答案为本站推导。`,content:String.raw`堆排序分为两个阶段，其中第一个阶段将给定的序列建成一个堆，第二个阶段逐次输出堆顶元素。设给定序列为 $\{48,62,35,77,55,14,35,98\}$，若在堆排序的第一个阶段将该序列建成一个堆（大根堆），则交换元素的次数为（ ）。
+
+- **A．** 5
+- **B．** 6
+- **C．** 7
+- **D．** 8`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-11/question.png`}],solution:{answer:String.raw`**选 B：6 次。** 按从最后一个非叶结点开始、遇到相等不交换的标准向下筛选规则，依次处理 $i=4,3,2,1$，交换次数为 $1+0+2+3=6$。`,explanation:String.raw`## 建堆规则
+
+把序列按完全二叉树的层序放入数组，下标从 1 开始。最后一个非叶结点是 $\lfloor 8/2\rfloor=4$，因此从 $i=4$ 到 $i=1$，每次选择较大的孩子；只有孩子严格大于当前结点时才交换，并继续向下筛选。
+
+下面每行数组均为该轮筛选结束后的状态。逐步模拟结果：
+
+- **$i=4$：** 77 与唯一的孩子 98 交换，1 次。数组：$[48,62,35,98,55,14,35,77]$。
+- **$i=3$：** 两个孩子为 14、35，较大者 35 与当前值相等，不交换，0 次。数组：$[48,62,35,98,55,14,35,77]$。
+- **$i=2$：** 62 先与较大的孩子 98 交换，再与孩子 77 交换，2 次。数组：$[48,98,35,77,55,14,35,62]$。
+- **$i=1$：** 48 依次与 98、77、62 交换，3 次。数组：$[98,77,35,62,55,14,35,48]$。
+
+逐轮交换数为 $1,0,2,3$，所以建堆总交换数为 $6$。最终数组满足每个父结点都不小于其孩子，是一个大根堆。
+
+用脚本按上述规则逐轮模拟，输出如下：
+
+~~~text
+[(4, [48, 62, 35, 98, 55, 14, 35, 77], 1, 1), (3, [48, 62, 35, 98, 55, 14, 35, 77], 0, 2), (2, [48, 98, 35, 77, 55, 14, 35, 62], 2, 3), (1, [98, 77, 35, 62, 55, 14, 35, 48], 3, 5)]
+total swaps 6 total key comparisons 11
+~~~
+
+每个记录依次为「起始结点下标、该轮结束数组、交换次数、关键字比较次数」。可见比较次数为 11，不能把它当成交换次数。`,pitfalls:String.raw`- **从叶子开始建堆：** 叶子本身已经是堆，应从最后一个非叶结点 $\lfloor n/2\rfloor$ 开始，向前处理到根。
+- **相等也交换：** 本题 $i=3$ 的结点和较大孩子都为 35；标准筛选在孩子不严格大于当前值时停止，不做无意义交换。若人为规定相等也交换，这一轮会多计 1 次，得到 7 次；它不是本题采用的标准交换口径。
+- **把比较次数当成交换次数：** 本次模拟共比较关键字 11 次，但真正交换只有 6 次。
+- **把第二阶段的交换也算入：** 题目只问第一阶段建堆，不计反复交换堆顶与末尾元素的排序过程。`,extension:String.raw`**问：为什么自底向上建堆的时间复杂度是 $O(n)$，而不是 $O(n\log n)$？**
+
+**答：** 高度为 $h$ 的结点数至多为 $\lceil n/2^{h+1}\rceil$，每个结点至多向下移动 $h$ 层。总工作量被 $\sum_{h\ge0} h\lceil n/2^{h+1}\rceil$ 控制；加权几何级数 $\sum h/2^{h+1}$ 收敛，因此总工作量为 $O(n)$。
+
+**问：本题第二阶段第一次输出堆顶元素后，数组是什么？**
+
+**答：** 先将根 98 与末尾 48 交换，再对前 7 个元素向下筛选：$[48,77,35,62,55,14,35,98]$ 中，48 先与 77 交换，再与 62 交换。数组为 $[77,62,35,48,55,14,35,98]$；末尾 98 是刚输出的最大元素。脚本输出：
+
+~~~text
+after_first_output= [77, 62, 35, 48, 55, 14, 35, 98]
+~~~`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Im({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Fm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Pm(e.label))),s=o+jm,c=i*s-jm+Mm*2,l=(a+1)*Am+Mm*2-(Am-km),u=e=>({x:Mm+o/2+e.column*s,y:Mm+e.depth*Am+km/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
+`).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+km/2} C ${e.x} ${e.y+km/2+18}, ${t.x} ${t.y-km/2-18}, ${t.x} ${t.y-km/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-km/2,width:o,height:km,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Lm({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Zo,{remarkPlugins:[bp],rehypePlugins:[ym],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Tm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Im,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Rm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=wm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=[...new Set(p.flatMap(({items:e})=>e.flatMap(e=>e.tags)))].sort((e,t)=>e.localeCompare(t,`zh-CN`)),h=o.trim().toLocaleLowerCase(),g=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!h||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(h)))})).filter(({items:e})=>e.length>0),_=g.reduce((e,t)=>e+t.items.length,0),v=c?Dm.find(({material:e})=>e.id===c)??null:null;function y(){t(`all`),r(`全部`),a(``),s(``)}function b(e){let t=Em[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsx)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:e.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(te,{size:16}),`返回博客`]}),v&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(te,{}),`返回讲义列表`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(ae,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ce,{}):(0,N.jsx)(se,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!v&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:wm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Om}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${v?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Dm.length})]}),wm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:v?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-24 rounded-2xl border border-border bg-card p-5 outline-none sm:p-8`,children:[(0,N.jsx)(`div`,{className:`mb-6 flex flex-wrap items-center justify-end gap-3`,children:(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:v.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[v.lesson.title,` · `,v.material.chapter,` · `,v.material.type]}),(0,N.jsx)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:v.material.title}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:v.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),v.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,v.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":v.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:v.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Lm,{children:v.material.content})]}),v.material.attachments&&v.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:v.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Tm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(ie,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),v.material.type===`题目`&&(v.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(re,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Lm,{children:v.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Lm,{children:v.material.solution.explanation})]}),v.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Lm,{children:v.material.solution.pitfalls})]}),v.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Lm,{children:v.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},v.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(O,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...xm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),m.map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:wm.find(t=>t.id===e)?.title,` · `,_,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Dm.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(oe,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ne,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(oe,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):g.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${wm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:y,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:g.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>b(e))})]},e.id))})]})})]})]})]})}(0,bm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Rm,{})}));
