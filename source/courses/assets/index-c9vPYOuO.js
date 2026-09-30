@@ -1915,6 +1915,219 @@ total swaps 6 total key comparisons 11
 
 ~~~text
 after_first_output= [77, 62, 35, 48, 55, 14, 35, 98]
-~~~`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+~~~`}},{id:`wangdao-mock2-major-12`,title:`改善计算机性能的措施与 CPU 执行时间`,type:`题目`,date:`2026-09-30`,chapter:`计算机性能指标 · CPU 执行时间`,tags:[`CPU 执行时间`,`指令数`,`CPI`,`时钟周期`,`吞吐率`],summary:`依据 CPU 执行时间公式，区分缩短单个程序执行时间的措施与提高处理器吞吐率的措施。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片中无答案可见，故本题答案为本站推导。`,content:String.raw`下面给出了改善计算机性能的四种可能措施：
+
+- Ⅰ．用更快的处理器替换原来的慢处理器
+- Ⅱ．增加同类处理器的个数，使不同的处理器能同时执行程序
+- Ⅲ．优化编译生成的代码，减少程序执行的总时钟周期数
+- Ⅳ．缩短指令执行过程中访问内存的时间
+
+其中能够缩短 CPU 执行时间的措施是（ ）。
+
+- A．Ⅰ、Ⅱ、Ⅲ
+- B．Ⅰ、Ⅱ、Ⅳ
+- C．Ⅰ、Ⅲ、Ⅳ
+- D．Ⅰ、Ⅱ、Ⅲ、Ⅳ`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-12/question.png`}],solution:{answer:String.raw`**选 C，Ⅰ、Ⅲ、Ⅳ。**`,explanation:String.raw`CPU 执行时间可写为
+
+$$
+CPU\text{时间}=\text{指令数}\times CPI\times\text{时钟周期}。
+$$
+
+逐项判断：
+
+- Ⅰ．换用更快的处理器，可缩短时钟周期，因此能缩短 CPU 执行时间。
+- Ⅱ．增加处理器个数通常提高系统吞吐率或并行任务处理能力，但对未并行化的单个程序，不会因此自动缩短它的 CPU 执行时间。
+- Ⅲ．优化编译生成的代码、减少程序执行的总时钟周期数，可缩短 CPU 执行时间。
+- Ⅳ．缩短指令执行过程中的访存时间，可减少相关等待并降低平均 CPI，因而能缩短 CPU 执行时间。
+
+故选Ⅰ、Ⅲ、Ⅳ，即 C。`,pitfalls:String.raw`- 把“提高吞吐率”误当成“缩短单个程序的执行时间”。
+- 混淆指令数、CPI 与时钟周期的关系；CPU 执行时间是三者相乘。
+- 认为增加处理器个数必然加速单个程序；只有程序能够并行利用多个处理器时，才可能缩短其执行时间。`,extension:String.raw`1. **提高主频一定会缩短程序的 CPU 执行时间吗？**
+
+   **答：**不一定。主频提高意味着时钟周期缩短，但更深的流水线可能使 CPI 上升；最终执行时间取决于指令数、CPI 与时钟周期的乘积。
+
+2. **增加处理器个数主要有利于改善什么指标？**
+
+   **答：**主要有利于提高系统吞吐率和并行任务的处理能力；若单个程序经过并行化，也可能缩短该程序的执行时间。`}},{id:`wangdao-mock2-major-13`,title:`补码运算与溢出标志`,type:`题目`,date:`2026-09-30`,chapter:`数据的表示与运算 · 补码运算与溢出`,tags:[`补码`,`算术右移`,`溢出标志 OF`,`定点数运算`],summary:`根据 8 位补码求 x/2+2y 的机器数，并依据同号相加是否变号判断溢出。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片未显示答案，故本题答案为本站推导。`,content:String.raw`（第 13 题，2 分）
+
+在某 8 位计算机中，假定 $x$ 和 $y$ 是两个带符号整数变量，用补码表示有 $[x]_{\text{补}}=\text{44H}$，$[y]_{\text{补}}=\text{DCH}$，则 $x/2+2y$ 的机器数以及相应的溢出标志 $OF$ 分别是（ ）。
+
+- A．CAH、0
+- B．CAH、1
+- C．DAH、0
+- D．DAH、1`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-13/question.png`}],solution:{answer:String.raw`**选 C，DAH、0。**`,explanation:String.raw`## 逐步计算
+
+8 位补码的最高位是符号位。$\text{44H}=0100\,0100_2$，最高位为 0，因此 $x=+68$；$\text{DCH}=1101\,1100_2$，按补码解释为 $220-256=-36$，因此 $y=-36$。
+
+$x/2=+34$，机器运算可将正数 $\text{44H}$ 算术右移一位得到 $\text{22H}$。$2y=-72$，对应 8 位补码为 $256-72=184=\text{B8H}$。相加得到 $34+(-72)=-38$，其 8 位补码为 $256-38=218=\text{DAH}$。
+
+**$OF$ 由同号相加结果变号产生。** 即两个操作数同号而结果符号与它们不同，才发生有符号溢出。本题相加的操作数 $+34$ 与 $-72$ 异号，异号相加天然不溢出，因此 $OF=0$。结果为 $\text{DAH}$，选 C。`,pitfalls:String.raw`- 把 $\text{DCH}$ 当成无符号数 $220$；它作为 8 位补码表示 $-36$。
+- 混用算术右移与逻辑右移；负数算术右移要保留符号位，逻辑右移则在高位补 0。
+- 把 $2y$ 直接看作左移一位而不检查运算范围；应检查有符号数值是否可表示。
+- 把有符号溢出标志 $OF$ 与无符号进位标志 $CF$ 混用；两者判据不同。`,extension:String.raw`1. **若 $x/2$ 改用逻辑右移，结果会是什么？用负数说明算术右移与逻辑右移的区别。**
+
+   **答：** 本题 $x=+68$，其最高位为 0，所以逻辑右移一位仍为 $\text{22H}$，与算术右移结果相同。负数时则不同：以 8 位补码 $-3=\text{FDH}=1111\,1101_2$ 为例，算术右移一位并保留符号位得到 $1111\,1110_2=\text{FEH}$（$-2$）；逻辑右移在高位补 0，得到 $0111\,1110_2=\text{7EH}$（按无符号解释为 $126$）。
+
+2. **若某次 8 位有符号加法的精确和为 $+100$，$OF$ 是多少？若精确和为 $+130$ 呢？**
+
+   **答：** $+100$ 在 $[-128,127]$ 范围内，故 $OF=0$；$+130$ 超出范围，故 $OF=1$。注意 $+100$ 本身并未超出 8 位有符号数范围。`}},{id:`wangdao-mock2-major-14`,title:`单精度浮点数对阶与舍入阈值`,type:`题目`,date:`2026-09-30`,chapter:`计算机组成原理 · 浮点数运算`,tags:[`IEEE 754`,`单精度浮点数`,`对阶`,`舍入`],summary:`判断单精度浮点数加减中，保留两位附加位并采用就近舍入时，阶差达到多少即可直接取阶大的数。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，故本题答案为本站推导。`,content:String.raw`（第 14 题，2 分）
+
+在 IEEE754 单精度浮点数的加减运算中，当对阶操作得到的两个阶码之差的绝对值 $|\Delta E|$ 大于或等于（ ）时，就无须继续进行后续操作，此时运算结果直接取阶大的那个数。已知在对阶移位时保留两位附加位，在根据附加位进行舍入时采用就近舍入的方式。
+
+- A．24
+- B．25
+- C．126
+- D．128`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-14/question.png`}],solution:{answer:String.raw`**选 B．25。**`,explanation:String.raw`单精度浮点数的有效数包含隐藏位，共 24 位。对阶时，小阶数的有效数右移；保留两位附加位，可分别看作保护位 $G$ 和舍入位 $R$，其后的所有位可由粘着位概括。
+
+以大阶数的 ULP（相邻可表示数的间距）为单位，设小阶有效数的第 $i$ 位右移后落在位置 $i+|\Delta E|$，其中 $i\in[0,23]$，有效数位置编号为 0 至 23，附加位从位置 24 起。
+
+- 当 $|\Delta E|=24$ 时，最高有效位可能落入位置 24，也就是 $G$ 位。若 $G=1$，小数部分至少达到半个 ULP；就近舍入可能改变大阶数，不能直接结束。
+- 当 $|\Delta E|\ge25$ 时，小阶有效数所有位都移到 $G$ 位之后，$G=0$。余数严格小于半个 ULP；后续粘着位无论是什么，都不会触发进位，舍入结果仍为大阶数。
+
+因此最小阈值为 25。阶码范围中的 126、128 与本题的对阶舍入阈值无关。`,pitfalls:String.raw`- 把“两位附加位”误当成只保留一位；阈值边界需要考察 $G$ 位。
+- 把 126 或 128 当作答案；它们与阶码范围有关，不是对阶后是否影响舍入的界限。
+- 把阈值算成 24；阶差为 24 时，最高有效位仍可能落入 $G$ 位，产生舍入进位。
+- 误以为 $G=0$ 时，后续粘着位仍能令余数达到半个 ULP；它们只能表示小于半 ULP 的尾部。`,extension:String.raw`1. **若对阶时不保留附加位，按移出有效数的位不再参与舍入处理，阈值是多少？**
+
+   **答：** 阈值为 24。有效数的位置为 0 至 23；当 $|\Delta E|\ge24$ 时，所有有效数位都移出保留的有效数位置，不会改变结果。若保留 $G$ 位并按其进行就近舍入，则阶差 24 时仍可能舍入进位。
+
+2. **为什么粘着位不参与是否达到半个 ULP 的判断？**
+
+   **答：** 保留两位附加位时，$G$ 位就是最高的舍入判断位。$G=0$ 表示余数严格小于半个 ULP，后续粘着位再多也不能使其达到半个 ULP；$G=1$ 则已达到或超过半个 ULP，是否进位再结合舍入位及 tie-to-even 规则判断。`}},{id:`wangdao-mock2-major-15`,title:`DRAM 位扩展、行缓冲与地址引脚`,type:`题目`,date:`2026-09-30`,chapter:`存储器 · DRAM 与内存条组织`,tags:[`DRAM`,`位扩展`,`行缓冲`,`多模块交叉编址`,`MDR`],summary:`判断由 8 片 DRAM 位扩展构成的内存条，其行缓冲总量、编址方式、地址引脚扩容关系及 MDR 宽度。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
+
+(15) 某计算机的字长为 64 位，采用 64 位定长指令字，存储器总线的宽度为 64 位，若用 8 个 $64M\times 8$ 位的 DRAM 芯片扩展构成一个 $64M\times 64$ 位的内存条，支持突发传输方式，则下列说法中正确的是（ ）。
+
+- Ⅰ．在该内存条中，所有芯片行缓冲的总大小为 64KB
+- Ⅱ．采用多模块交叉编址方式
+- Ⅲ．每块 DRAM 芯片如果地址引脚数增加 1 个，那么容量至少增加 4 倍
+- Ⅳ．该计算机的主存数据寄存器（MDR）的宽度为 8 位
+
+- A．Ⅰ、Ⅲ
+- B．Ⅰ、Ⅱ、Ⅲ
+- C．Ⅱ、Ⅲ
+- D．Ⅰ、Ⅱ、Ⅲ、Ⅳ`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-15/question.png`}],solution:{answer:String.raw`**选 A，Ⅰ、Ⅲ。**`,explanation:String.raw`## 逐项判断
+
+**Ⅰ正确。** $64M=2^{26}$ 个地址。按经典的方阵组织，每片可分为 $8192$ 行、每行 $8192$ 个 $8$ 位单元；一片的行缓冲大小为 $8192\times 8=65536$ bit，即 $8$ KiB。8 片进行位扩展并同时选中，行缓冲合计为 $8\times8=64$ KiB。
+
+**Ⅱ错误。** 8 片共同提供同一地址处的 64 位数据，属于位扩展。多模块交叉编址是多个独立存储模块交错存放地址并可轮流或并行响应，不是将芯片并接以增加字宽。支持突发传输也不改变这里的扩展方式。
+
+**Ⅲ正确。** DRAM 的行、列地址复用同一组地址引脚。按上述方阵组织，地址引脚增加 1 根时，行地址位数和列地址位数各增加 1 位，行数与列数分别翻倍，容量至少增至原来的 $2\times2=4$ 倍。
+
+**Ⅳ错误。** 主存数据寄存器宽度与存储器数据总线宽度相匹配。本题总线宽度为 64 位，因此 MDR 宽度为 64 位，而非单片芯片的 8 位。`,pitfalls:String.raw`- 把位扩展与字扩展或多模块交叉编址混为一谈；位扩展增加每个地址的数据位数。
+- 把 MDR 宽度误认为单个 DRAM 芯片的位宽；应看主存数据通路宽度。
+- 把“地址引脚数增加”只理解为行地址位数增加；行、列地址复用同一组引脚。
+- 用芯片总容量代替行缓冲大小；行缓冲只对应一行的数据。
+- 将支持突发传输直接等同于多模块交叉编址；两者描述的不是同一层次的组织方式。`,extension:String.raw`1. **若要构成 $256M\times64$ 位的内存条，使用 $64M\times8$ 位芯片，需要多少片？如何扩展？**
+
+   **答：** 需要 $32$ 片。每个深度组用 $8$ 片位扩展成 $64M\times64$ 位，再用 $4$ 组字扩展到 $256M\times64$ 位。
+
+2. **提高存储带宽为什么常用多模块交叉编址？**
+
+   **答：** 多个模块可交错存放连续地址，并让访存请求在模块间轮流或并行处理，提高并行度与带宽，并降低平均访存等待时间。`}},{id:`wangdao-mock2-major-16`,title:`按字节编址的 RAM 芯片数量计算`,type:`题目`,date:`2026-09-30`,chapter:`存储器 · 主存容量与芯片组织`,tags:[`按字节编址`,`MAR`,`存储器容量`,`芯片数量`,`位扩展`],summary:`根据 MAR 位数、已占用 ROM 地址范围和 RAM 芯片容量，计算所需芯片数。`,source:`本题来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图中未显示答案，因此以下答案为本站推导。`,content:String.raw`某按字节编址的计算机已配有 $00000\text{H}\sim07FFFH$ 的 ROM 区，MAR 为 20 位，现用 $16K\times 8$ 位的 R4M 芯片构成剩下的 RAM 区 $08000\text{H}\sim\text{FFFFFH}$，则需要这样的 R4M 芯片（ ）片。
+
+- A．61
+- B．62
+- C．63
+- D．64`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-16/question.png`}],solution:{answer:String.raw`**选 B，62 片。**`,explanation:String.raw`## 先算 RAM 区的字节数
+
+MAR 为 20 位，且按字节编址，因此可寻址 $2^{20}=1,048,576$ 个字节，即 $1\text{MB}=1024\text{KB}$。
+
+ROM 地址范围两端都包含在内，大小为
+
+$$
+07FFFH-00000H+1=08000H=32,768\text{B}=32\text{KB}.
+$$
+
+RAM 区字节数为
+
+$$
+FFFFFH-08000H+1=F8000H=1,015,808\text{B}=992\text{KB}.
+$$
+
+一片 $16K\times8$ 位芯片可存 $16K$ 个字节，即 $16\text{KB}$。所需芯片数为
+
+$$
+\frac{992\text{KB}}{16\text{KB/片}}=62\text{片}.
+$$
+
+芯片数据宽度为 8 位，正好对应按字节编址的 8 位数据，因此不需要位扩展。`,pitfalls:String.raw`- ROM 范围是闭区间：$00000H\sim07FFFH$ 共 $08000H=32\text{KB}$，不是 $31\text{KB}$ 或 $32\text{KB}-1$。
+- MAR 为 20 位时，按字节编址的地址空间是 $2^{20}$ 字节，即 $1\text{MB}$；不能把它误当成 $1\text{M}$ 个 16 位字。
+- RAM 容量应为 $1024\text{KB}-32\text{KB}=992\text{KB}$，不是 $1008\text{KB}$。
+- $16K\times8$ 位芯片宽度是 8 位，与字节宽度相符；不要额外计算位扩展。`,extension:String.raw`1. **若 MAR 改为 24 位，ROM 区仍为 $00000H\sim07FFFH$，其余地址仍全部作为 RAM，使用 $16K\times8$ 位芯片，需要多少片？**
+
+   **答：** 24 位 MAR 可寻址 $2^{24}=16\text{MB}=16384\text{KB}$。RAM 容量为 $16384-32=16352\text{KB}$，故需要 $16352/16=1022$ 片。
+
+2. **若仍按原题地址范围，但 RAM 芯片改为 $8K\times4$ 位，需要多少片？**
+
+   **答：** 每片容量为 $8K\times4\text{bit}=4\text{KB}$。每组用两片并联组成 8 位数据宽度，每组容量为 $8\text{KB}$；$992\text{KB}/8\text{KB}=124$ 组，因此共需 $124\times2=248$ 片。`}},{id:`wangdao-mock2-major-17`,title:`Cache 缺失率与缺失开销`,type:`题目`,date:`2026-09-30`,chapter:`存储器 · Cache 缺失与性能`,tags:[`Cache`,`缺失率`,`缺失损失`,`关联度`,`AMAT`],summary:`区分 Cache 缺失率、缺失损失与总缺失开销，并用冲突访问序列说明缺失率可以达到 100%。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；照片中没有答案标注，因此答案为本站推导。`,content:String.raw`（单项选择题第 17 题，2 分）
+
+Cache 缺失会导致系统需要额外的时间开销去获取数据，通常以时钟周期为单位来衡量 Cache 缺失的开销，下列关于 Cache 缺失引起的开销的说法中，正确的是（ ）。
+
+- A．若 Cache1 比 Cache2 的缺失率高，则 Cache1 的总缺失开销一定比 Cache2 的大
+- B．提高 Cache 的关联度一定能降低 Cache 的缺失率
+- C．无论是直接映射还是组相联映射，都可能发生刚被替换出的数据又被访问的情况，导致缺失率为 100%
+- D．Cache 缺失所引起的时间开销只和 Cache 本身的结构有关`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-17/question.png`}],solution:{answer:`C．`,explanation:String.raw`## 逐项判断
+
+- A 错。总缺失开销还取决于访问次数和每次缺失的代价。可近似写成
+
+$$
+\text{总缺失开销}=\text{访存次数}\times\text{缺失率}\times\text{平均缺失损失}。
+$$
+
+缺失率较高，不代表访存次数和平均缺失损失也较大，因此不能推出总缺失开销一定较大。
+- B 错。提高关联度主要有助于减少冲突缺失；访问序列若没有冲突，缺失率可以不变，强制缺失和容量缺失也不会因此必然消失。「一定降低」过于绝对。
+- C 对。直接映射中，两个主存块若映射到同一行，交替访问时每次都替换前一个块；组相联中，若冲突块数超过每组路数并按冲突方式交替访问，也可令每次访问都缺失。冷启动访问也会产生强制缺失。
+- D 错。缺失损失还受下一级存储器的延迟、总线带宽等因素影响，不只由 Cache 结构决定。
+
+### 直接映射冲突示例
+
+设 A、B 是两个不同的主存块，但映射到直接映射 Cache 的同一行。Cache 初始为空，重复访问 A、B；每次装入其中一个块，都会替换另一个。模拟序列为 A、B、A、B、A、B、A、B、A、B，共 10 次访问，结果全部缺失，缺失率为 100%。`,pitfalls:String.raw`- 混淆缺失率、单次缺失损失与总缺失开销；总开销还要考虑访存次数。
+- 把「关联度越高越好」当成必然；它不能消除所有类型的缺失，也可能增加命中时间和硬件复杂度。
+- 把缺失开销说成只由 Cache 结构决定，忽略下一级存储器和总线等因素。
+- 忘记空 Cache 的首次访问会发生强制缺失；提高关联度不能消除它。`,extension:String.raw`1. **降低 Cache 缺失开销的常见方法有哪些？**
+
+   **答：** 可采用多级 Cache、预取、提高下一级存储器或总线带宽等方法；增大块大小可利用空间局部性，但也要注意无用数据带来的带宽消耗和 Cache 污染。
+
+2. **平均访存时间 AMAT 的公式是什么？它与本题的缺失开销有何关系？**
+
+   **答：** 单级 Cache 的常见公式为
+
+$$
+AMAT=\text{命中时间}+\text{缺失率}\times\text{缺失损失}。
+$$
+
+   缺失率与缺失损失共同决定缺失对平均访存时间的贡献；仅比较缺失率，不能判断总缺失开销或 AMAT 一定更大。`}},{id:`wangdao-mock2-major-18`,title:`改变程序执行顺序的指令类型`,type:`题目`,date:`2026-09-30`,chapter:`指令系统 · 程序执行顺序`,tags:[`指令系统`,`程序执行顺序`,`跳转指令`,`过程调用`,`中断`],summary:`判断六类控制类指令执行后是否一定改变程序执行顺序，区分条件跳转与无条件控制转移。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
+
+(18) 下列各种类型的指令中，（ ）执行后一定会改变程序的执行顺序。
+
+- ①条件跳转指令
+- ②无条件跳转指令
+- ③过程调用指令
+- ④过程返回指令
+- ⑤自陷指令
+- ⑥中断返回指令
+
+- A．②③④⑤⑥
+- B．②③⑤⑥
+- C．①②③④⑤
+- D．③④⑤⑥`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-18/question.png`}],solution:{answer:String.raw`**选 A（②③④⑤⑥）。** 除条件跳转外，其余五类指令执行后都会转移到非顺序执行位置。`,explanation:String.raw`## 逐项判断
+
+- ① 条件跳转指令：条件不成立时继续执行下一条指令，因此不一定改变执行顺序。
+- ② 无条件跳转指令：直接把程序转移到目标位置，一定改变执行顺序。
+- ③ 过程调用指令：保存返回地址并转入被调用过程，一定改变执行顺序。
+- ④ 过程返回指令：取出返回地址并转回调用者，一定改变执行顺序。
+- ⑤ 自陷指令：转入操作系统的自陷处理程序，一定改变控制流。
+- ⑥ 中断返回指令：恢复中断现场并返回被中断程序的位置，一定改变控制流。
+
+因此，只有 ① 不满足“一定改变”，答案为 A。这里判断的是控制流是否转移；自陷伴随的特权级变化不是本题判定依据。`,pitfalls:String.raw`- 把条件跳转误认为必然跳转；条件不成立时按顺序执行下一条。
+- 把“改变执行顺序”与“改变特权级”混为一谈；自陷进入内核态的附带效果不是此题的采分点，关键是控制流转移。
+- 漏掉过程返回指令；它会按返回地址回到调用者。
+- 把中断返回当成普通返回；它恢复中断现场并返回被中断程序。`,extension:String.raw`1. **条件跳转在什么情况下不改变程序执行顺序？**
+
+   **答：** 条件不成立时，按顺序取下一条指令。
+
+2. **哪些指令执行时可能改变特权级？**
+
+   **答：** 自陷、中断及中断返回等会涉及特权级切换；是否改变特权级与是否改变执行顺序是不同的判断维度。`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
 `)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Im({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Fm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Pm(e.label))),s=o+jm,c=i*s-jm+Mm*2,l=(a+1)*Am+Mm*2-(Am-km),u=e=>({x:Mm+o/2+e.column*s,y:Mm+e.depth*Am+km/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
 `).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+km/2} C ${e.x} ${e.y+km/2+18}, ${t.x} ${t.y-km/2-18}, ${t.x} ${t.y-km/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-km/2,width:o,height:km,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Lm({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Zo,{remarkPlugins:[bp],rehypePlugins:[ym],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Tm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Im,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Rm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=wm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=p.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),h=e!==`all`,g=o.trim().toLocaleLowerCase(),_=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!g||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(g)))})).filter(({items:e})=>e.length>0),v=_.reduce((e,t)=>e+t.items.length,0),y=c?Dm.find(({material:e})=>e.id===c)??null:null;function b(){t(`all`),r(`全部`),a(``),s(``)}function x(e){let t=Em[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsx)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:e.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(te,{size:16}),`返回博客`]}),y&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(te,{}),`返回讲义列表`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(ae,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ce,{}):(0,N.jsx)(se,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!y&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:wm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Om}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${y?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Dm.length})]}),wm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:y?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-24 rounded-2xl border border-border bg-card p-5 outline-none sm:p-8`,children:[(0,N.jsx)(`div`,{className:`mb-6 flex flex-wrap items-center justify-end gap-3`,children:(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:y.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[y.lesson.title,` · `,y.material.chapter,` · `,y.material.type]}),(0,N.jsx)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:y.material.title}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:y.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),y.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,y.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":y.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:y.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Lm,{children:y.material.content})]}),y.material.attachments&&y.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:y.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Tm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(ie,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),y.material.type===`题目`&&(y.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(re,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Lm,{children:y.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Lm,{children:y.material.solution.explanation})]}),y.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Lm,{children:y.material.solution.pitfalls})]}),y.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Lm,{children:y.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},y.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(O,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...xm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`div`,{className:`mt-4 space-y-3 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),h&&m.flatMap(e=>e.tags).map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!h&&m.map(e=>(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,N.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,N.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n)},children:n},n))})]},e.lesson.id))]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:wm.find(t=>t.id===e)?.title,` · `,v,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Dm.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(oe,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ne,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(oe,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):_.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${wm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:b,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:_.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>x(e))})]},e.id))})]})})]})]})]})}(0,bm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Rm,{})}));
