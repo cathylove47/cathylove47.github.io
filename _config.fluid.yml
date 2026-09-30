@@ -374,7 +374,7 @@ navbar:
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "论文精读", link: "/pathology-atlas/", icon: "iconfont icon-bookmark-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "课程资料", link: "/courses/", icon: "iconfont icon-book-fill" }
+    - { key: "备课讲义", link: "/courses/", icon: "iconfont icon-book-fill" }
     - { key: "links", link: "/links/", icon: "iconfont icon-link-fill", name: "友链" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
