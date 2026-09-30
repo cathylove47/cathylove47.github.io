@@ -2377,6 +2377,110 @@ Linux 可运行在不同指令集的平台上。系统调用进入内核所用�
 
 ## 追问二：时间片大到进程通常一次用完，会退化成什么调度？
 
-**答：** 退化为先来先服务（FCFS）调度。进程长时间占用处理机后才轮到下一个进程，交互响应性会变差。`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+**答：** 退化为先来先服务（FCFS）调度。进程长时间占用处理机后才轮到下一个进程，交互响应性会变差。`}},{id:`wangdao-mock2-major-28`,title:`语句间的数据依赖与前驱图`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 进程同步与程序执行`,tags:[`数据依赖`,`前驱图`,`读写集合`,`拓扑排序`],summary:`根据四条语句的读写关系确定必须满足的执行先后约束。`,source:`题目来自用户提供的「408 模拟 · 王道模拟题第二套」截图上半部分；截图中无可见答案键，答案由本站根据读写集合独立推导并枚举验证。`,content:String.raw`（28）对于下面的四条语句，（ ）是对应的前驱图。
+
+- S1：a=x+y；
+- S2：b=z+1；
+- S3：c=a-b；
+- S4：w=c+1；
+
+- **A．** S1→S3，S2→S3，S3→S4
+- **B．** S1→S4，S2→S4，S4→S3
+- **C．** S1→S2→S3→S4
+- **D．** S1→S2→S4→S3`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-28/question.png`}],solution:{answer:String.raw`**选 A。** 必须满足的依赖边为 S1→S3、S2→S3、S3→S4。`,explanation:String.raw`## 从读写集合推导依赖
+
+- S1 读 $x,y$，写 $a$。
+- S2 读 $z$，写 $b$。
+- S3 读 $a,b$，写 $c$。
+- S4 读 $c$，写 $w$。
+
+若一条语句写出的变量被另一条语句读取，写者必须先于读者。因此 $a$ 产生 S1→S3，$b$ 产生 S2→S3，$c$ 产生 S3→S4。其余写入都没有被其他语句读取，不产生额外的先后边。
+
+已独立运行脚本：对上述读集合、写集合逐对检查「前者写集合与后者读集合有交集」，得到边集 [('S1','S3'), ('S2','S3'), ('S3','S4')]。再枚举四条语句的全部排列并过滤违反边约束者，合法拓扑序列恰有 2 个：S1→S2→S3→S4，以及 S2→S1→S3→S4。
+
+S1 与 S2 读写的变量互不相交，彼此独立，可以交换执行顺序；两者都必须先于读取 $a,b$ 的 S3，S3 又必须先于读取 $c$ 的 S4。故精确的最小前驱图是 A。C 虽然也是一个合法执行顺序，但它额外规定 S1 必须先于 S2，加入了并不存在的数据依赖，不能作为对应的精确前驱图。B、D 则把依赖次序颠倒或漏掉必要边。`,pitfalls:String.raw`- 把「一条合法执行序列」误当成「精确的前驱图」；前驱图只连必须的先后约束，不应给独立语句添加虚假边。
+- 只看语句书写顺序而漏掉数据来源；应逐个变量检查写者与读者。
+- 忽略 S1 和 S2 的执行顺序可以互换；二者的读写集合不冲突。`,extension:String.raw`**问：** S1 和 S2 能否并行执行？为什么？
+
+**答：** 可以。S1 读取 $x,y$ 并写 $a$，S2 读取 $z$ 并写 $b$；两者读写集合没有交集，互不依赖。枚举结果也给出两种合法顺序：S1 在 S2 前，或 S2 在 S1 前。
+
+**问：** 如果在 S3 之前执行 S4，哪里会出错？
+
+**答：** S4 要读取 $c$，而 $c$ 由 S3 写入；若 S4 先执行，它会读到尚未由本组语句计算出的值，因此必须有 S3→S4。
+
+**问：** 为什么选项 C 不是对应的精确前驱图？
+
+**答：** C 额外加入 S1→S2，强行规定两个独立语句的顺序。前驱图应只表达真实的必要依赖；这个额外约束不改变某一种执行顺序的合法性，却错误地排除了 S2 先于 S1 的合法调度。`}},{id:`wangdao-mock2-major-29`,title:`行优先二维数组：两种循环次序的缺页比较`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 虚拟内存与页面置换`,tags:[`虚拟内存`,`页面置换`,`LRU`,`局部性`],summary:`比较两段循环按不同次序访问行优先存放的二维数组时，LRU 下的数据缺页次数。`,source:`用户提供的模拟题截图第29题；截图未显示答案，答案由本站按题设条件独立模拟推导。`,content:String.raw`如下程序在页式虚存系统中执行，程序代码位于虚空间 0 页中，$A$ 为 $128\times128$ 的数组，在虚空间以行为主序存放，每页存放 128 个数组元素。工作集大小为 2 个页框（开始时程序代码已在内存中，占 1 个页框），用 LRU 算法，下面两个对 $A$ 初始化的程序引起的页故障数约为（ ）。
+
+程序1：
+
+~~~c
+for (j = 1; j <= 128; j++)
+    for (i = 1; i <= 128; i++)
+        A[i][j] = 0;
+~~~
+
+程序2：
+
+~~~c
+for (i = 1; i <= 128; i++)
+    for (j = 1; j <= 128; j++)
+        A[i][j] = 0;
+~~~
+
+- **A．** 程序1：$128\times128$ 次，程序2：$128$ 次
+- **B．** 程序1：$128$ 次，程序2：$128\times128$ 次
+- **C．** 程序1：$64$ 次，程序2：$64\times64$ 次
+- **D．** 程序1：$64\times64$ 次，程序2：$64$ 次`,attachments:[{name:`查看原题截图`,path:`wangdao-mock2-major-29/question.png`}],solution:{answer:String.raw`**选 A：程序1发生 $128\times128=16384$ 次数据缺页，程序2发生 $128$ 次数据缺页。**`,explanation:String.raw`## 先确定页框里能放什么
+
+总共只有 2 个页框，其中 1 个已被代码页占用，所以只剩 **1 个数据页框**。每次数据访问前都引用代码页 0。按题设，代码页最初就在内存；代码访问后，它成为最近使用页，随后数据访问至多置换数据页，因此代码页一直驻留。下面每次数据访问前的代码页引用都是命中，数据页框只能保留最近访问的那一行。
+
+这里按题目的常规页对齐假设：每行 128 个元素，恰好占 1 页，$A[i][j]$ 落在第 $i$ 行对应的数据页。代码页不算数组数据页；不能把“2 个页框”误读成“2 个数据页框”。
+
+## 用 2×2 小例子看 LRU
+
+把数组缩成 2×2、每页容纳一行，仍保留“代码页 + 1 个数据页框”。初始只有代码页 C 在内存。记 F 为数据缺页，H 为数据命中；每次列出的数据访问之前，都先访问代码页 C：
+
+- 列优先：$(1,1):F$，页框为 C、1；$(2,1):F$，页框为 C、2；$(1,2):F$，页框为 C、1；$(2,2):F$，页框为 C、2。共 4 次缺页。
+- 行优先：$(1,1):F$，页框为 C、1；$(1,2):H$，页框为 C、1；$(2,1):F$，页框为 C、2；$(2,2):H$，页框为 C、2。共 2 次缺页。
+
+模拟器逐次执行“代码页引用 → 数据页引用”，完整小例子输出为：
+
+~~~text
+toy column: [(1, 1, 1, 'F', ('C', 1)), (2, 1, 2, 'F', ('C', 2)), (1, 2, 1, 'F', ('C', 1)), (2, 2, 2, 'F', ('C', 2))]
+toy row: [(1, 1, 1, 'F', ('C', 1)), (1, 2, 1, 'H', ('C', 1)), (2, 1, 2, 'F', ('C', 2)), (2, 2, 2, 'H', ('C', 2))]
+~~~
+
+每个元组依次为 $(i,j,数据页,命中状态,访问后的 LRU 页框顺序)$。这也直接展示：在两次数据访问之间访问代码页，并不会腾出第二个数据页框。
+
+## 代回 128×128 数组计数
+
+- **程序1是列优先访问。** 固定 $j$ 后，$i$ 从 1 到 128，依次访问第 1 至第 128 行的 128 个不同数据页。只有 1 个数据页框，每次都缺页；下一列又从第 1 行开始，上一列末尾留下的是第 128 行，仍无法命中。因此每列 128 次缺页，共 $128\times128=16384$ 次。
+- **程序2是行优先访问。** 固定 $i$ 后，内层 $j$ 的 128 次访问都落在同一行页。该行第一次访问缺页，之后 127 次命中；转到下一行时发生下一次缺页。因此共有 128 行、128 次缺页。
+
+独立逐次模拟的输出如下；其中 frames 包含代码页，code_faults 统计每次数据访问之前对代码页的引用是否缺页：
+
+~~~text
+frames=2 column: data_faults, code_faults, code_resident, final_frames = (16384, 0, True, 2)
+frames=2 row: data_faults, code_faults, code_resident, final_frames = (128, 0, True, 2)
+~~~
+
+所以对应 A。`,pitfalls:String.raw`## 常见误区
+
+- **把总页框数当成数据页框数。** 2 个总页框里有 1 个固定驻留的代码页，只剩 1 个容纳数据。
+- **只看数组总大小或页数。** 128 页都要访问，不等于只缺页 128 次；列优先在只有 1 个数据页框时，每一列都会把 128 页完整扫一遍。
+- **忽略行优先布局。** $A[i][j]$ 中内层下标连续变化时，程序2连续访问同一行页；程序1则在各行页之间来回切换。
+- **漏掉代码访问但把它算作数据缺页。** 每次数据访问前代码页 0 都命中，且代码页占用的页框已计入总数；答案统计的是数组数据页缺页。`,extension:String.raw`**问：** 如果把两段程序的循环次序互换，数据缺页次数各是多少？
+
+**答：** 原程序1改成行优先后为 $128$ 次；原程序2改成列优先后为 $128\times128=16384$ 次。原因是内层循环沿行访问时，同一行的 128 个元素共用一个数据页；沿列访问时则在 128 个行页间轮换，而只有一个数据页框。
+
+**问：** 若总页框数至少为 129（包括代码页），且数据页初始为空，两种访问次序各缺页多少次？
+
+**答：** 两种次序都是 $128$ 次。扣除驻留代码页后，至少有 128 个数据页框，能同时容纳数组的 128 个行页；每个数据页首次访问时缺页一次，此后命中。模拟 129 个总页框得到：
+
+~~~text
+frames=129 column: data_faults, code_faults, code_resident, final_frames = (128, 0, True, 129)
+frames=129 row: data_faults, code_faults, code_resident, final_frames = (128, 0, True, 129)
+~~~`}}]},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:Cm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],Tm=`/courses/`,Em={题目:ne,知识点:oe},Dm=wm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Om=Dm.filter(({material:e})=>e.type===`题目`).length,km=28,Am=64,jm=26,Mm=16,Nm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Pm(e){let t=(e.match(Nm)??[]).length;return(e.length-t)*7.4+t*13+18}function Fm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
 `)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Im({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Fm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Pm(e.label))),s=o+jm,c=i*s-jm+Mm*2,l=(a+1)*Am+Mm*2-(Am-km),u=e=>({x:Mm+o/2+e.column*s,y:Mm+e.depth*Am+km/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
 `).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+km/2} C ${e.x} ${e.y+km/2+18}, ${t.x} ${t.y-km/2-18}, ${t.x} ${t.y-km/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-km/2,width:o,height:km,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Lm({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Zo,{remarkPlugins:[bp],rehypePlugins:[ym],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Tm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Im,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Rm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=wm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=p.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),h=e!==`all`,g=o.trim().toLocaleLowerCase(),_=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!g||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(g)))})).filter(({items:e})=>e.length>0),v=_.reduce((e,t)=>e+t.items.length,0),y=c?Dm.find(({material:e})=>e.id===c)??null:null;function b(){t(`all`),r(`全部`),a(``),s(``)}function x(e){let t=Em[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsx)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:e.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(te,{size:16}),`返回博客`]}),y&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(te,{}),`返回讲义列表`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(ae,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ce,{}):(0,N.jsx)(se,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!y&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:wm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Om}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${y?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Dm.length})]}),wm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:y?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-24 rounded-2xl border border-border bg-card p-5 outline-none sm:p-8`,children:[(0,N.jsx)(`div`,{className:`mb-6 flex flex-wrap items-center justify-end gap-3`,children:(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:y.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[y.lesson.title,` · `,y.material.chapter,` · `,y.material.type]}),(0,N.jsx)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:y.material.title}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:y.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),y.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,y.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":y.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:y.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Lm,{children:y.material.content})]}),y.material.attachments&&y.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:y.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Tm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(ie,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),y.material.type===`题目`&&(y.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(re,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Lm,{children:y.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Lm,{children:y.material.solution.explanation})]}),y.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Lm,{children:y.material.solution.pitfalls})]}),y.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Lm,{children:y.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},y.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(O,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...xm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`div`,{className:`mt-4 space-y-3 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),h&&m.flatMap(e=>e.tags).map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!h&&m.map(e=>(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,N.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,N.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n)},children:n},n))})]},e.lesson.id))]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:wm.find(t=>t.id===e)?.title,` · `,v,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Dm.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(oe,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ne,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(oe,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):_.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${wm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:b,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:_.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>x(e))})]},e.id))})]})})]})]})]})}(0,bm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Rm,{})}));
