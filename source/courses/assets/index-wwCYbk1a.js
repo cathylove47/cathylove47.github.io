@@ -999,6 +999,472 @@ $$
 
 **问：若把题目换成稀疏图（例如 $n=10^4$、$E=2n$），该选哪个算法？**
 
-**答：** 选 Kruskal。它的开销主要是按边排序 $O(E\log E)$，只与边数有关；而邻接矩阵实现的 Prim 是 $O(n^2)$，在 $n$ 很大而边很少时会远慢于 Kruskal。稀疏图常用邻接表 + 堆优化的 Prim（$O(E\log n)$），但按 408 默认口径答 Kruskal 即可。`}}]},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],wm=`/courses/`,Tm={题目:ne,知识点:oe},Em=Cm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Dm=Em.filter(({material:e})=>e.type===`题目`).length,Om=28,km=64,Am=26,jm=16,Mm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Nm(e){let t=(e.match(Mm)??[]).length;return(e.length-t)*7.4+t*13+18}function Pm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+**答：** 选 Kruskal。它的开销主要是按边排序 $O(E\log E)$，只与边数有关；而邻接矩阵实现的 Prim 是 $O(n^2)$，在 $n$ 很大而边很少时会远慢于 Kruskal。稀疏图常用邻接表 + 堆优化的 Prim（$O(E\log n)$），但按 408 默认口径答 Kruskal 即可。`}},{id:`wangdao-mock1-major-42`,title:`二叉树高度与平衡判断`,type:`题目`,date:`2026-09-30`,chapter:`树与二叉树 · 高度与平衡`,tags:[`二叉树`,`后序遍历`,`树高`,`平衡判断`,`递归`],summary:`设计一次后序遍历，同时求二叉树高度并判断每个结点是否平衡；比较重复求高的做法并分析复杂度。`,source:`用户提供的原题截图；以下算法、例树结论及复杂度均由本站独立推导和脚本复核。`,content:String.raw`## 二、综合应用题
+
+(42)（13 分）假设二叉树采用二叉链表存储，试设计算法求该二叉树的高度，并判断该二叉树是否平衡。本题中的「平衡」是指二叉树中任意一个结点的左、右子树的高度差的绝对值不超过 1。二叉树的结点的定义如下：
+
+~~~c
+typedef struct BiTNode{
+    int data;                      //数据域
+    struct BiTNode *lchild, *rchild; //左、右孩子指针
+}BiTNode, *BiTree;
+~~~
+
+回答下列问题：
+1）给出算法的基本设计思想。
+2）根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。`,attachments:[{name:`查看原题截图`,path:`wangdao-mock1-major-42/question.png`}],solution:{answer:String.raw`**设计思想：** 后序遍历，自底向上一次遍历同时求每棵子树的高度与平衡标志。空树高度为 0，视为平衡；非空结点的高度为 $\max(左高,右高)+1$，该结点平衡当且仅当左右子树均平衡且 $|左高-右高|\le 1$。
+
+时间复杂度为 $O(n)$，每个结点只处理一次；递归栈空间为 $O(h)$，其中 $h$ 为树高。
+
+~~~c
+typedef struct {
+    int height;
+    int balanced;
+} Result;
+
+Result heightAndBalance(BiTree T) {
+    Result r = {0, 1};
+    if (T == NULL) return r;  /* 空树：高度 0，视为平衡 */
+
+    Result left = heightAndBalance(T->lchild);
+    Result right = heightAndBalance(T->rchild);
+
+    r.height = (left.height > right.height
+                ? left.height : right.height) + 1;
+    int diff = left.height - right.height;
+    r.balanced = left.balanced && right.balanced
+                 && diff <= 1 && diff >= -1;
+    return r;
+}
+~~~
+
+调用函数并将结果保存在变量 r 中后，r.height 是树高，r.balanced 非 0 表示平衡。`,explanation:String.raw`## 一、为什么用后序遍历
+
+结点的高度依赖左右子树的高度，所以先递归处理左右孩子，再处理当前结点，即后序遍历。递归函数为每棵子树返回一对结果：$(高度, 是否平衡)$。左右结果已经算出后，当前结点用常数次比较即可同时确定高度和平衡标志。
+
+- 空树返回 $(0,真)$。
+- 非空结点高度为 $\max(h_L,h_R)+1$。
+- 当前结点平衡当且仅当 $B_L\land B_R\land |h_L-h_R|\le 1$。
+- 各结点只访问一次，故时间 $O(n)$；递归栈最多 $h$ 层，空间 $O(h)$。
+
+若先写一个求高度的递归函数，再对每个结点分别调用它检查左右子树，最坏会重复遍历同一批后代。例如高度为 $n$ 的单链，每个结点都触发子树高度计算，工作量为 $n+(n-1)+\cdots+1=\Theta(n^2)$。这比一次后序遍历的 $O(n)$ 更差。
+
+## 二、平衡例：A(B(D,E),C)
+
+~~~binary
+A
+  L: B
+    L: D
+    R: E
+  R: C
+~~~
+
+叶结点 $D,E,C$ 的高度均为 1，左右子树高度差均为 0。
+
+- $B$：左右高为 $(1,1)$，高度 $2$，差 $|1-1|=0$，平衡。
+- $A$：左右高为 $(2,1)$，高度 $3$，差 $|2-1|=1$，平衡。
+
+所以树高为 3，整棵树平衡。
+
+## 三、不平衡例：A(B(D,E(F)),C)
+
+~~~binary
+A
+  L: B
+    L: D
+    R: E
+      R: F
+  R: C
+~~~
+
+叶结点 $D,F,C$ 的高度均为 1，左右子树高度差均为 0。
+
+- $E$：左右高为 $(0,1)$，高度 $2$，差 $|0-1|=1$，平衡。
+- $B$：左右高为 $(1,2)$，高度 $3$，差 $|1-2|=1$，平衡。
+- $A$：左右高为 $(3,1)$，高度 $4$，差 $|3-1|=2$，不平衡。
+
+所以树高为 4，但整棵树不平衡。这里每个结点都必须检查；仅比较根结点或者只比较整棵树的某种总体高度都不能替代逐结点的平衡条件。
+
+## 四、哨兵值变体
+
+也可让递归函数返回高度：空树返回 0；子树不平衡时返回 $-1$；父结点发现任一子树返回 $-1$ 或左右高度差超过 1，就返回 $-1$，否则返回当前高度。
+
+~~~c
+int heightOrUnbalanced(BiTree T) {
+    if (T == NULL) return 0;
+
+    int left = heightOrUnbalanced(T->lchild);
+    if (left == -1) return -1;
+    int right = heightOrUnbalanced(T->rchild);
+    if (right == -1) return -1;
+
+    int diff = left - right;
+    if (diff > 1 || diff < -1) return -1;
+    return (left > right ? left : right) + 1;
+}
+~~~
+
+该写法能用 $-1$ 表示「不平衡」，并在发现不平衡后短路停止额外递归；但树不平衡时返回值只有 $-1$，拿不到实际高度。题目若同时要求高度与平衡状态，应采用结构体返回两个结果，或另用输出参数/全局标志保存高度与状态。
+
+## 五、课堂追问
+
+**问：为什么后序遍历能在 $O(n)$ 内同时得到高度和平衡状态？**
+
+**答：** 每个结点只递归访问一次，左右子树的高度和平衡状态返回后，当前结点只做常数次比较和计算；两个量在同一趟遍历中自底向上得到，因此总时间为 $O(n)$。
+
+**问：若树不平衡，但题目仍要求树的高度，怎么办？**
+
+**答：** 用结构体同时返回高度和平衡标志，或用输出参数/全局标志记录二者。单独返回 $-1$ 的哨兵写法无法在不平衡时同时给出实际高度。
+
+**问：若改用 AVL 的平衡因子思路会怎样？**
+
+**答：** 仍可在结点处根据左右子树高度计算平衡因子 $BF=h_L-h_R$，并检查 $|BF|\le 1$；本题只判断是否平衡，不需要修改树。AVL 插入、删除中的旋转是维护操作，用来恢复平衡，不属于本题的判定算法。`,pitfalls:String.raw`- **把「平衡」误作整棵树的总体高度差。** 定义要求每个结点的左右子树高度差都不超过 1；例树中只有根 A 的差为 2，就足以判定不平衡。
+- **漏掉空树边界。** 空树高度为 0，且视为平衡；这也使叶结点的递归计算自然得到高度 1。
+- **只检查根结点。** 左右子树自身也可能已经不平衡，必须把子树的平衡标志合并到父结点。
+- **对子树重复求高度。** 对每个结点再遍历后代求高，退化树最坏达到 $O(n^2)$；后序遍历返回高度可避免重复工作。
+- **忽略已不平衡的子树。** 合并时必须要求左右子树都平衡；哨兵写法发现子树返回 $-1$ 后应立即向上传播。`,extension:String.raw`**问：为什么后序遍历能在 $O(n)$ 内同时得到高度和平衡状态？**
+
+**答：** 每个结点仅访问一次；左右孩子返回各自的高度和平衡标志后，当前结点用常数时间求出本结点的两个结果，所以总工作量与结点数成正比。
+
+**问：若要求返回树高且树不平衡怎么办？**
+
+**答：** 返回包含 height 和 balanced 字段的结构体，或通过输出参数/全局标志分别保存高度与是否平衡。若只返回高度或用 $-1$ 哨兵标记不平衡，出现不平衡时就不能同时获得真实高度。
+
+**问：换成带平衡因子的 AVL 思路有什么不同？**
+
+**答：** 可将平衡因子定义为 $BF=h_L-h_R$，每个结点检查 $|BF|\le 1$；判定树是否平衡仍不需要修改树。AVL 插入或删除后可能通过旋转恢复平衡，旋转是维护操作，不是本题只判定时要做的事。`}},{id:`wangdao-mock1-major-43`,title:`Cache 命中率分析`,type:`题目`,date:`2026-09-30`,chapter:`计算机组成原理 · Cache 映射与命中率`,tags:[`Cache`,`时间局部性`,`空间局部性`,`直接映射`,`组相联`,`LRU`,`命中率`],summary:`分析向量点积的时间、空间局部性，并按直接映射与 2 路组相联 Cache 逐次模拟访问命中情况。`,source:`用户提供的题目截图，页脚为「408 模拟 · 26 王道 8 套卷」；答案由逐次 Cache 模拟独立复算。`,content:String.raw`**43）（11 分）Cache 命中率分析**
+
+以下是计算两个向量点积的程序段：
+
+~~~c
+float dotproduct(float x[8], float y[8]){
+    float sum = 0.0;
+    int i;
+    for(i = 0; i < 8; i++)
+        sum += x[i] * y[i];
+    return sum;
+}
+~~~
+
+回答下列问题：
+
+1）分析访问数组 $x$ 和 $y$ 时的时间局部性和空间局部性。
+
+2）假定数据 Cache 采用**直接映射**方式，Cache 容量为 32B，每个主存块的大小为 16B；编译器将变量 sum 和 i 分配在寄存器中，内存按字节编址，数组 $x$ 存放在以 0000 0040H 开始的 32B 的连续存储区中，数组 $y$ 则紧跟在 $x$ 后进行存放。该程序数据访问的命中率是多少？要求说明每次访问时 Cache 的命中情况。
+
+3）将 2）中的数据 Cache 改用 **2 路组相联映射方式，并采用 LRU 替换算法，块的大小改为 8B**，其他条件不变，则该程序数据访问的命中率是多少？
+
+4）在 2）中条件不变的情况下，将数组 $x$ 定义为 float x[12]，则数据访问的命中率是多少？`,attachments:[{name:`查看原题截图`,path:`wangdao-mock1-major-43/question.png`}],solution:{answer:String.raw`**1）时间局部性差，空间局部性好。** 在本次顺序遍历中，每个 $x[i]$、$y[i]$ 各访问一次，不会再次访问同一元素；相邻元素地址连续、步长为 4B。
+
+**2）命中率为 0%。** 16 次访问全部缺失。
+
+**3）命中率为 50%。** 16 次访问中 8 次缺失、8 次命中。
+
+**4）命中率为 75%。** 16 次访问中 4 次缺失、12 次命中。`,explanation:String.raw`## 1）局部性
+
+循环按 $i=0,1,\ldots,7$ 顺序读取两个连续数组。一个元素在该程序段中只读取一次，故**时间局部性差**；元素地址步长为 4B，Cache 装入一个块时也会带入相邻元素，故**空间局部性好**。
+
+## 2）直接映射，块 16B
+
+$x$ 起址为 $0x40$，$y$ 起址为 $0x60$。元素地址分别为 $0x40+4i$、$0x60+4i$。Cache 有 $32/16=2$ 行；主存块号为 $\lfloor 地址/16\rfloor$，行号为块号模 2。
+
+- $x_0$–$x_3$ 位于块 4、行 0；$x_4$–$x_7$ 位于块 5、行 1。
+- $y_0$–$y_3$ 位于块 6、行 0；$y_4$–$y_7$ 位于块 7、行 1。
+- 每对交替访问的 $x_i,y_i$ 映射到同一行，后访问者立即替换前者。序列：$x_0$ M，$y_0$ M，$x_1$ M，$y_1$ M，$x_2$ M，$y_2$ M，$x_3$ M，$y_3$ M，$x_4$ M，$y_4$ M，$x_5$ M，$y_5$ M，$x_6$ M，$y_6$ M，$x_7$ M，$y_7$ M。
+
+因此缺失 16 次、命中 0 次，命中率 $0/16=0\%$。
+
+## 3）2 路组相联，块 8B，LRU
+
+Cache 共 $32/8=4$ 行，即 2 组、每组 2 路。组号为 $\lfloor 地址/8\rfloor\bmod2$。$x$ 从块 8 开始，$y$ 从块 12 开始；二者对应块在各自被用到的区间内同组，但不同块可同时放入该组的两路。每块含两个 float，因此每个块的第二个元素命中；换到新块时发生缺失。
+
+访问序列：$x_0$ M，$y_0$ M，$x_1$ H，$y_1$ H，$x_2$ M，$y_2$ M，$x_3$ H，$y_3$ H，$x_4$ M，$y_4$ M，$x_5$ H，$y_5$ H，$x_6$ M，$y_6$ M，$x_7$ H，$y_7$ H。
+
+共缺失 8 次、命中 8 次，命中率 $8/16=50\%$。
+
+## 4）将 x 改为 float x[12]
+
+$x$ 占 $12\times4=48$B，故 $y$ 起址为 $0x40+48=0x70$。仍按直接映射、32B 容量、16B 块计算：$x$ 的八个被访问元素仍位于块 4、5（行 0、1）；$y$ 的八个元素位于块 7、8（行 1、0）。前四轮两数组落在不同 Cache 行，块内后续访问命中；$i=4$ 时双方换入新块，随后块内访问命中。
+
+访问序列：$x_0$ M，$y_0$ M，$x_1$ H，$y_1$ H，$x_2$ H，$y_2$ H，$x_3$ H，$y_3$ H，$x_4$ M，$y_4$ M，$x_5$ H，$y_5$ H，$x_6$ H，$y_6$ H，$x_7$ H，$y_7$ H。
+
+共缺失 4 次、命中 12 次，命中率 $12/16=75\%$。
+
+## 逐次模拟脚本输出
+
+用 Python 编写访存级模拟器：按地址除以块大小求块号，再按 Cache 组数求组号；命中时更新 LRU 顺序，缺失时按路数替换。脚本原样输出如下：
+
+~~~text
+2
+x0M y0M x1M y1M x2M y2M x3M y3M x4M y4M x5M y5M x6M y6M x7M y7M
+hits=0 misses=16 rate=0%
+3
+x0M y0M x1H y1H x2M y2M x3H y3H x4M y4M x5H y5H x6M y6M x7H y7H
+hits=8 misses=8 rate=50%
+4
+x0M y0M x1H y1H x2H y2H x3H y3H x4M y4M x5H y5H x6H y6H x7H y7H
+hits=12 misses=4 rate=75%
+~~~`,pitfalls:String.raw`- 把字节地址直接比较，不先换算主存块号、行号或组号。应使用块号 $\lfloor 地址/块大小\rfloor$，再计算映射位置。
+- 把 32B 容量误当成 32 行。行数是容量除以块大小；2 路时组数还要再除以 2。
+- 忽略访问顺序造成的直接映射冲突：第 2 问中 $x_i$ 与 $y_i$ 交替访问并映射到同一行，故不是只计算冷缺失。
+- 忘记 $x[12]$ 占 48B，$y$ 起址应由 $0x60$ 移至 $0x70$；命中率是命中次数除以总访问次数，不是缺失率。`,extension:String.raw`**问：为什么第 3 问块更小、相联度更高，命中率却低于第 2 问？**
+
+**答：** 块从 16B 减为 8B 后，每块只含两个 float，顺序扫描八个元素需要访问四个块；第 3 问因此有 8 次冷缺失。两路能让同组的 $x$、$y$ 块共存，避免交替冲突，但抵消不了块变小带来的额外缺失。第 2 问虽有冲突抖动，$x$ 的前四项与 $y$ 的前四项分别仍在首块，具体命中率按逐次访问结果为 0%。
+
+**问：若第 2 问改为先遍历 x 再遍历 y（各自仍访问 8 个元素），命中率是多少？**
+
+**答：** 仍为 75%。$x$ 的 8 个 float 占 2 块，先读 $x$ 发生 2 次缺失、6 次命中；随后读 $y$ 的 2 块再发生 2 次缺失、6 次命中。总计 4 次缺失、12 次命中，共 16 次访问。这里每个块的 4 个 float 全被使用；若只访问块中部分元素，未使用部分带来的空间局部性收益会下降。
+
+**问：块大小增大与相联度增大，对时间、空间局部性的作用有何不同？**
+
+**答：** 增大块大小主要利用空间局部性：一次缺失带入更多相邻字节，对顺序访问有利，但可能带来无用数据、污染 Cache，并减少可容纳块数。增大相联度不增加一次带入的相邻数据，主要减少不同主存块映射到同一位置时的冲突缺失；它对空间局部性的直接利用不变，对反复访问的时间局部性则可通过减少冲突驱逐来提供帮助。`}},{id:`wangdao-mock1-major-44`,title:`单周期取指部件的数据通路`,type:`题目`,date:`2026-09-30`,chapter:`计算机组成原理 · 单周期 CPU · 取指数据通路`,tags:[`单周期 CPU`,`取指部件`,`PC`,`分支跳转`,`SignExt`,`数据通路`],summary:`分析单周期 CPU 取指部件的输入信号、顺序/分支/跳转下地址选择、PC 写使能、Jump 地址范围及符号扩展。`,source:`用户提供的题目截图（第44题，12分）；截图未附官方答案，本页结论由本站按题面与数据通路独立推导。`,content:String.raw`（44）（12 分）下图是一个单周期 CPU 取指部件的数据通路，取指操作是每条指令的公共操作，其功能是取指令并计算下一条指令的地址。若是顺序执行，则下一条指令的地址为 $PC+4$；若是跳转执行，则要根据当前指令是分支（Branch）指令还是跳转（Jump）指令，按不同的方式计算目标地址。因为指令长度为 32 位，按边界对齐存放，所以指令地址总是 4 的倍数，即最后两位总是“00”，因此 $PC$ 中只需存放前 30 位地址 $PC\langle31:2\rangle$，取指令时，指令地址 $=PC\langle31:2\rangle\mathbin{\|}\text{“00”}$（在 PC 的 30 位后拼接两位“00”）。已知 $imm16$ 为 16 位立即数，Adder 为加法器，MUX 为多路选择器，回答下列问题。
+
+1）以上取指部件的输入信号有哪几个？各有什么作用？（不考虑时钟信号）
+
+2）已知下一条指令地址的计算方法如下：
+
+- 顺序执行时：$PC\langle31:2\rangle\leftarrow PC\langle31:2\rangle+1$。
+- Branch 指令跳转条件满足时：$PC\langle31:2\rangle\leftarrow PC\langle31:2\rangle+1+SignExt[imm16]$。
+- Jump 指令跳转执行时：$PC\langle31:2\rangle\leftarrow PC\langle31:28\rangle\mathbin{\|}Target\langle25:0\rangle$。
+
+请给出以上三种情况下的输入信号，信号有效为 1、无效为 0，其中分支指令要考虑跳转条件不满足和满足两种情况。
+
+3）为什么在该数据通路中 $PC$ 不需要写“使能”控制信号？
+
+4）对于无条件跳转指令，当前可跳转的最大和最小地址之间共包含多少条指令？
+
+5）图中的 SignExt 部件起什么作用？`,attachments:[{name:`查看原题截图`,path:`wangdao-mock1-major-44/question.png`}],solution:{answer:String.raw`**1）输入信号：** 若把时钟也计入，图中外部输入共 5 个：$Clk$、$Branch$、$Jump$、$Zero$、$imm16$。题目要求不考虑时钟信号，因此应答其余 4 个。$PC$ 是部件内部状态寄存器，不是外部输入。
+
+- $Branch$：表示当前指令是否为分支指令；与 $Zero$ 共同控制分支是否成立。
+- $Jump$：表示当前指令是否为无条件跳转指令；有效时选择 Jump 目标地址。
+- $Zero$：来自比较/减法结果的零标志；本数据通路中 $Zero=1$ 表示分支条件满足，$Zero=0$ 表示不满足。
+- $imm16$：16 位分支偏移量，经符号扩展后与 $PC+1$ 相加。
+- $Clk$：时钟输入，在有效时钟沿更新 $PC$；第1问按题意不计入输入数。
+
+**2）信号取值：**
+
+- **顺序执行：** $Branch=0$，$Jump=0$，$Zero=\times$，$imm16=\times$；下地址取 $PC\langle31:2\rangle+1$。
+- **Branch 条件满足：** $Branch=1$，$Jump=0$，$Zero=1$，$imm16$ 为有效偏移；下地址取 $PC\langle31:2\rangle+1+SignExt[imm16]$。
+- **Branch 条件不满足：** $Branch=1$，$Jump=0$，$Zero=0$，$imm16=\times$；分支选择条件 $Branch\land Zero=0$，下地址退回顺序通路 $PC\langle31:2\rangle+1$。
+- **Jump：** $Branch=\times$，$Jump=1$，$Zero=\times$，$imm16=\times$；下地址取 $PC\langle31:28\rangle\mathbin{\|}Target\langle25:0\rangle$。$Jump$ 优先选择跳转目标，Branch 不影响结果。
+
+其中 $\times$ 表示任意值或无关项。
+
+**3）** 取指是每条指令都要执行的公共操作。每个时钟周期都必须把选出的下一条地址写入 $PC$，没有需要让 $PC$ 保持不变的周期，因此不需要单独设置写使能信号。
+
+**4）$2^{26}=67{,}108{,}864$ 条。** Jump 地址高 4 位固定，低 28 位可变，目标区域大小为 $2^{28}$ 字节；每条指令占 4 字节，所以指令数为 $2^{28}/4=2^{26}=67{,}108{,}864$。
+
+**5）** $SignExt$ 将 16 位立即数符号扩展为 30 位，与 $PC\langle31:2\rangle$ 的位宽一致。它保留立即数的正负号，使分支偏移既可向前也可向后。`,explanation:String.raw`## 1）沿信号路径理解输入
+
+$PC$ 保存当前指令地址的高 30 位；顺序地址通过加 1 得到（因为低两位恒为 $00$，字节地址上的 $+4$ 等价于 30 位字地址上的 $+1$）。分支通路把符号扩展后的立即数加到顺序地址上；分支选择由 $Branch\land Zero$ 决定。Jump 控制最上层 MUX 选择拼接得到的跳转目标。
+
+题目第1问明确排除时钟，所以输入信号答案是 $Branch$、$Jump$、$Zero$、$imm16$ 共 4 个；若按物理接口把时钟计入，则共 5 个。$PC$ 是寄存器内部状态，不列为输入。
+
+## 2）信号组合与下地址
+
+分支成立的选择条件不是单独的 $Branch$，而是 $Branch\land Zero$：只有当前指令是分支且零标志为 1，才选择偏移地址。条件不成立时使用顺序地址。Jump 由独立控制信号选择拼接目标；其选择优先于分支通路，因此表中 $Branch$、$Zero$、$imm16$ 可视为无关项。
+
+## 3）地址表示与范围
+
+指令地址低两位恒为 $00$，所以 $PC\langle31:2\rangle$ 每次顺序加 1 就对应字节地址加 4。Jump 目标的高 4 位沿用当前 $PC\langle31:28\rangle$，低 28 位由 $Target\langle25:0\rangle$ 加末尾两位 $00$ 构成；因此目标落在高 4 位固定的 $2^{28}$ 字节区域内。
+
+## 4）SignExt
+
+$SignExt$ 将 16 位二进制补码立即数符号扩展为 30 位，与 $PC\langle31:2\rangle$ 的宽度匹配。扩展保留符号位，使偏移可以为正也可以为负，分支目标因而既能在当前顺序地址之后，也能在之前。`,pitfalls:String.raw`- **把 $PC$ 当作外部输入。** 它是取指部件内部保存当前地址的状态寄存器；第1问不计时钟时，列 $Branch$、$Jump$、$Zero$、$imm16$ 四个输入。
+- **只看 $Branch$，忽略 $Zero$。** 条件不满足时 $Branch\land Zero=0$，仍走顺序地址通路。
+- **把 Jump 地址空间算成整个 32 位空间。** 高 4 位固定，当前可跳区域只有 $2^{28}$ 字节。
+- **把字节数误当指令条数。** 指令每条占 4 字节，须用 $2^{28}/4$。
+- **把 SignExt 说成零扩展。** 符号扩展保留负偏移的含义，分支可以向后跳。`,extension:String.raw`**问：为什么 $PC$ 只存高 30 位，取指时再拼接“00”？**
+
+**答：** 指令按 4 字节边界对齐，地址最低两位恒为 $00$，这两位不必存入寄存器。$PC$ 存 $PC\langle31:2\rangle$ 可少存两位；送入指令存储器时拼回“00”即可还原字节地址。顺序执行时字节地址加 4，等价于寄存器中的 30 位值加 1。
+
+**问：如果把 Branch 与 Jump 合并成一个控制信号，会丢失什么信息？**
+
+**答：** 会丢失当前应选择哪一种目标地址的区别。Branch 需要先检查 $Zero$，成立时用 $PC+1+SignExt[imm16]$，不成立时用顺序地址；Jump 不检查 $Zero$，直接使用拼接的目标地址。一个控制位无法单独表达这两种选择规则。
+
+**问：无条件跳转与条件跳转在信号上的本质差异是什么？**
+
+**答：** 条件跳转必须由 $Branch$ 和条件结果 $Zero$ 共同决定是否采用偏移目标，只有 $Branch\land Zero=1$ 才跳；无条件跳转由 $Jump=1$ 直接选择 Jump 目标，不受 $Zero$ 影响。`}},{id:`wangdao-mock1-major-45`,title:`生产者/销售者同步：限制两类产品的累计产量差`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 信号量与进程同步`,tags:[`信号量`,`生产者-消费者`,`互斥与同步`,`进程同步`],summary:`两个生产者共用无限仓库，销售者取货；用五个信号量保证入库/出库互斥、仓库非空，并限制 A、B 的累计产量差。`,source:`用户提供的原题截图，题号（45），标注为“408 模拟·26 王道 8 套卷”；未独立核验原始试卷出处。解析为本站按题意推导。`,content:String.raw`（45）（8 分）假设有两个生产者进程 A、B 和一个销售者进程 C，它们共享一个无限大的仓库，生产者每次循环生产一件产品，然后入库供销售者销售；销售者每次循环从仓库取出一件产品进行销售。如果不允许同时入库，也不允许边入库边出库，而且要求生产产品 A 和 B 的件数关系满足：$-n \le A 的件数 - B 的件数 \le m$，其中 $n$、$m$ 是正整数，但对仓库中产品 A 和产品 B 的件数无上述要求。用信号量机制写出 A、B、C 三个进程的工作流程。`,attachments:[{name:`查看原题截图`,path:`wangdao-mock1-major-45/question.png`}],solution:{answer:String.raw`设 $a$、$b$ 分别为 A、B 的累计产量。需要五个信号量：
+
+~~~c
+semaphore mutex = 1;   /* 入库、出库操作互斥 */
+semaphore full  = 0;   /* 仓库中现有产品总数 */
+semaphore sa    = m;   /* A 可继续生产的额度 */
+semaphore sb    = n;   /* B 可继续生产的额度 */
+
+A:  while (1) {
+        P(sa);
+        生产一件 A;
+        P(mutex);
+        入库 A;
+        V(mutex);
+        V(sb);
+        V(full);
+    }
+
+B:  while (1) {
+        P(sb);
+        生产一件 B;
+        P(mutex);
+        入库 B;
+        V(mutex);
+        V(sa);
+        V(full);
+    }
+
+C:  while (1) {
+        P(full);
+        P(mutex);
+        从仓库取一件产品（A 或 B 均可）;
+        V(mutex);
+        销售该产品;
+    }
+~~~
+
+信号量初值依次为：$mutex=1$、$full=0$、$sa=m$、$sb=n$。其中 $sa$、$sb$ 表示生产额度，不是仓库库存。`,explanation:String.raw`## 先分清两类约束
+
+题目约束的是**累计产量之差**：$-n\le a-b\le m$；它不约束仓库里 A、B 各自的存量。销售者可以取任意一种产品，所以取货只需知道仓库中是否有产品，不需知道是哪一种。
+
+## 五个信号量各管一件事
+
+- **mutex = 1：** 保护仓库的入库、出库操作。任何时刻只允许一个进程操作仓库。
+- **full = 0：** 计数仓库中现有产品总数。C 先执行 $P(full)$，确保有产品可取。
+- **sa = m：** 表示 A 尚可使用的生产额度。
+- **sb = n：** 表示 B 尚可使用的生产额度。
+
+仓库无限大，不存在容量限制，因此**不设 empty（空位数）信号量**。$full$ 只需一个，因为 C 不区分产品种类。
+
+## 额度为什么这样设置
+
+在 A、B 的一轮生产及其额度交接完成后，保持不变式：
+
+$$
+sa=m-(a-b),\qquad sb=n+(a-b).
+$$
+
+初始时 $a=b=0$，所以 $sa=m$、$sb=n$。A 每生产一件，$a-b$ 增加 1：A 先消耗一个 $sa$ 额度，随后执行 $V(sb)$，给 B 增加一个额度。于是 $sa$ 减 1、$sb$ 加 1，正好对应不变式的变化。B 每生产一件则相反：先消耗一个 $sb$，再执行 $V(sa)$，使 $a-b$ 减 1。
+
+两种额度都不能为负，因此：
+
+$$
+sa\ge0\Rightarrow a-b\le m,\qquad sb\ge0\Rightarrow a-b\ge -n.
+$$
+
+故累计产量差始终在题目要求的范围内。额度在每次入库完成后交接；生产者各自至多有一个生产循环在执行。
+
+## 为什么生产不放进临界区
+
+题目只要求**入库不能并发，也不能与出库并发**，不要求 A、B 的生产互斥。生产动作放在 $P(mutex)$ 之前，避免无谓地占住仓库互斥锁；临界区只包含实际入库或出库。C 的销售也在释放 $mutex$ 后进行。
+
+## 同步次序
+
+A 入库后依次执行 $V(mutex)$、$V(sb)$、$V(full)$；B 入库后依次执行 $V(mutex)$、$V(sa)$、$V(full)$。释放先后可调整，但三次 signal 都不能漏：释放仓库锁、交接另一生产者的额度、通知销售者有新产品。`,pitfalls:String.raw`- **多设 capacity 信号量：** 仓库无限大，不需要空位计数。
+- **把生产也放进临界区：** 题目只要求入库/出库互斥，生产应在仓库锁外完成。
+- **只用 mutex 和 full：** 会漏掉限制累计产量差的关键采分点；还需 $sa$、$sb$ 两个额度信号量。
+- **额度方向写反或不解释初值：** $sa=m$、$sb=n$；A 生产后执行 $V(sb)$，B 生产后执行 $V(sa)$。
+- **一个信号量兼做互斥与同步：** $mutex$ 保护临界区，$full$ 表示有货，职责不同。
+- **把约束误用到库存：** 不等式约束累计生产件数差，不是仓库内两类产品的存量差。`,extension:String.raw`**追问 1：如果仓库容量改为 $k$，需要增加什么信号量？**
+
+**答：** 增加 $empty=k$，表示空位数。生产者入库前执行 $P(empty)$，销售者出库后执行 $V(empty)$；原有 $full$ 仍表示现有产品总数。
+
+**追问 2：如果销售者必须区分产品种类并按指定策略销售（例如轮流销售 A、B），怎么改？**
+
+**答：** 把 $full$ 拆为 $fullA$、$fullB$ 两个计数信号量，分别记录仓库中的 A、B 产品数；生产者入库后 signal 对应的计数，C 按销售策略对所需种类执行对应的 $P(fullA)$ 或 $P(fullB)$。若严格轮流，还需另行同步轮次。
+
+**追问 3：当 $m=n=1$ 时，两个生产者如何交替？**
+
+**答：** $a-b$ 只能在 $-1,0,1$ 之间变化：A 最多领先 1 件，B 也最多领先 1 件。到达 $1$ 时 A 的额度用尽，必须等 B 生产；到达 $-1$ 时 B 的额度用尽，必须等 A 生产。它们不一定严格按每一件轮流，连续领先者会在差值边界等待。`}},{id:`wangdao-mock1-major-46`,title:`请求分页、二级页表与混合页大小`,type:`题目`,date:`2026-09-30`,chapter:`操作系统 · 虚拟内存 / 请求分页 / 多级页表`,tags:[`请求分页`,`二级页表`,`大页`,`FIFO`,`地址转换`,`缺页异常`],summary:`混合使用 4KB 与 4MB 页面，根据页目录项的有效位和 Page_Size 标志分析访存次数、物理地址、FIFO 置换及页目录项地址。`,source:`用户提供的原题截图；题目标注为“46）（7 分）”。未独立核验原始试卷出处；解析由本站按题设逐步复算。`,content:String.raw`（46）（7 分）请求分页、二级页表与混合页大小
+
+某 32 位系统采用请求分页内存管理方式，页面大小可设为 4KB 或 4MB，按字节编址，页表所在的页框大小均为 4KB，页表项大小为 4 字节。对于 4KB 的页，采用二级分页方式，其中 32 位逻辑地址的划分如下：
+
+$$
+\underbrace{P_1}_{10\text{ 位页目录号}}\;\underbrace{P_2}_{10\text{ 位页号}}\;\underbrace{d}_{12\text{ 位页内偏移量}}
+$$
+
+高 10 位为页目录号，中间 10 位为页号，低 12 位为页内偏移。页表项的条目有一个标志位 Page_Size，当 Page_Size 置为 1 时，表示页面大小为 4MB，而不是标准的 4KB，页目录的条目会绕过内层页表而直接指向 4MB 的页框，且地址的低 22 位指向 4MB 页内偏移量。该系统的逻辑地址和物理地址均为 32 位。执行某进程时，页基址寄存器的值为 7F65 4000H，假设该进程的页目录表内容如下所示：
+
+- 目录号 0H：页框号 FF101H，有效位 1，装入时刻 120，Page_Size 0
+- 目录号 1H：页框号 B1A60H，有效位 0，装入时刻 140，Page_Size 0
+- 目录号 2H：页框号 254H，有效位 1，装入时刻 180，Page_Size 1
+- 目录号 3H：页框号 202H，有效位 0，装入时刻 20，Page_Size 1
+- 目录号 4H：页框号 CD404H，有效位 1，装入时刻 220，Page_Size 0
+- 目录号 5H：页框号 163H，有效位 1，装入时刻 300，Page_Size 1
+- ……
+- 目录号 BAH：页框号 EF807H，有效位 0，装入时刻 60，Page_Size 0
+
+回答下列问题：
+
+1）某指令周期内访问的虚拟地址分别是 013FF35AH 和 015F123DH，则获得这两个地址所对应的数据分别需要至少进行多少次访存？
+
+2）虚拟地址 015F123DH 转换后得到的物理地址是什么？这个数据所在的页框大小是多少？
+
+3）假设系统采用固定分配局部置换策略为该进程分配两个 4KB 的页框和两个 4MB 的页框，对这组不同大小的页均采用 FIFO 置换算法，当该进程执行到 404 时刻时，要访问虚拟地址 00D40866H 的数据，则地址转换后得到的物理地址是什么？
+
+4）在进程执行过程中，若访问虚拟地址 2EBCA234H 时发生缺页，在缺页异常处理过程中，要为所缺页分配页框并更新相应的页目录表项，则本次更新的页目录表项的物理地址是什么？`,attachments:[{name:`查看原题截图`,path:`wangdao-mock1-major-46/question.png`}],solution:{answer:String.raw`1）013FF35AH：至少 **3 次访存**；015F123DH：至少 **2 次访存**。
+
+2）物理地址为 **58DF123DH**，所在页框大小为 **4MB**。
+
+3）物理地址为 **95140866H**。
+
+4）要更新的页目录项物理地址为 **7F6542E8H**。`,explanation:String.raw`## 先拆地址：页目录号是高 10 位
+
+4KB 页地址拆成 $P_1/P_2/d$，位宽依次为 10、10、12；4MB 页直接按 $P_1$/低 22 位偏移拆分。等价计算为：$P_1=A\gg22$，$P_2=(A\gg12)\mathbin{\&}3FF_H$，$d=A\mathbin{\&}FFF_H$，4MB 偏移为 $A\mathbin{\&}3FFFFF_H$。
+
+- $013FF35A_H$：$P_1=004_H$，$P_2=3FF_H$，$d=35A_H$；低 22 位为 $3FF35A_H$。
+- $015F123D_H$：$P_1=005_H$，$P_2=1F1_H$，$d=23D_H$；低 22 位为 $1F123D_H$。
+- $00D40866_H$：$P_1=003_H$，$P_2=140_H$，$d=866_H$；低 22 位为 $140866_H$。
+- $2EBCA234_H$：$P_1=0BA_H$，$P_2=3CA_H$，$d=234_H$；低 22 位为 $3CA234_H$。
+
+## 1）至少访存次数
+
+$013FF35A_H$ 的目录号是 4H，目录项有效且 Page_Size=0，使用 4KB 页。无 TLB 时，先访页目录，再访二级页表，最后访数据，共 **3 次**。
+
+$015F123D_H$ 的目录号是 5H，目录项有效且 Page_Size=1，使用 4MB 页。目录项直接给出页框，不访问二级页表；访目录和访数据，共 **2 次**。
+
+## 2）4MB 页的物理地址
+
+5H 目录项给出页框号 $163_H$。4MB 页框大小为 $2^{22}=400000_H$ 字节，因此物理地址为页框基址加低 22 位偏移：
+
+$$
+163_H\times400000_H+1F123D_H=58C00000_H+1F123D_H=58DF123D_H.
+$$
+
+数据所在页框大小为 **4MB**。
+
+## 3）按 4MB 页框池独立执行 FIFO
+
+$00D40866_H$ 的 $P_1=003_H$，对应目录项有效位为 0，发生缺页；该项 Page_Size=1，所以缺失的是 4MB 页。题设为该进程分别分配 4KB 与 4MB 页框池，置换按页面大小分别进行，不能跨池回收。
+
+当前有效的 4MB 页是：目录 2H 占页框 254H，装入时刻 180；目录 5H 占页框 163H，装入时刻 300。FIFO 比较装入时刻，最早的是目录 2H，因此新页复用页框 254H。该地址低 22 位偏移为 $140866_H$：
+
+$$
+254_H\times400000_H+140866_H=95000000_H+140866_H=95140866_H.
+$$
+
+## 4）页目录项的物理地址
+
+$2EBCA234_H$ 的高 10 位目录号为 $BA_H$，该项有效位为 0，发生缺页。缺页处理要更新的是页目录表中第 $BA_H$ 项。页目录基址为 $7F654000_H$，每个目录项 4 字节：
+
+$$
+7F654000_H+BA_H\times4=7F654000_H+2E8_H=7F6542E8_H.
+$$
+
+这是页目录项本身的物理地址，不是二级页表项地址，也不是缺页数据的物理地址。`,pitfalls:String.raw`- 把 $015F123D_H$ 当二级页表处理：Page_Size=1 时绕过内层页表，只需 2 次访存。
+- 把 4MB 页框号按 4KB 单位理解：页框号要乘 $4MB$，不能乘 $4KB$。
+- 取低 22 位偏移时算错边界：4MB 偏移取低 22 位，不是低 20 位或低 24 位。
+- FIFO 比较的是装入时刻，不是页框号大小；4KB、4MB 两个页框池分别置换，不能混在一起比较。
+- 第 4 问求的是页目录项地址：页目录表基址加目录号乘 4，不是内层页表项地址或数据物理地址。
+- 有效位为 0 表示不在内存，不能当成命中；第 3、4 问都要先判缺页。
+- 页框大小依据 Page_Size 判定，不能只看页框号或题目中默认的 4KB 页面。`,extension:String.raw`**问：若系统有 TLB 命中，第 1 问的访存次数如何变化？**
+
+**答：** TLB 命中时无需访页目录或页表，4KB 页只需 1 次访存取数据；4MB 页同样只需 1 次。
+
+**问：为什么 4MB 页能省去一级页表访存？**
+
+**答：** 页目录项直接给出 4MB 页框基址，虚拟地址低 22 位就是页内偏移，因此不用再查二级页表。代价是大页可能带来较多页内碎片；页表项数量虽减少，内部碎片可能增多。
+
+**问：两个页框池分开做 FIFO 会带来什么影响？**
+
+**答：** 4KB 与 4MB 页面互不干扰，回收页框只在对应尺寸的池内进行；若将两种尺寸合并计数，会错误地让一种尺寸的页淘汰另一种尺寸的页。`}}]},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Sm}],wm=`/courses/`,Tm={题目:ne,知识点:oe},Em=Cm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Dm=Em.filter(({material:e})=>e.type===`题目`).length,Om=28,km=64,Am=26,jm=16,Mm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Nm(e){let t=(e.match(Mm)??[]).length;return(e.length-t)*7.4+t*13+18}function Pm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
 `)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Fm({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Pm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Nm(e.label))),s=o+Am,c=i*s-Am+jm*2,l=(a+1)*km+jm*2-(km-Om),u=e=>({x:jm+o/2+e.column*s,y:jm+e.depth*km+Om/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
 `).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+Om/2} C ${e.x} ${e.y+Om/2+18}, ${t.x} ${t.y-Om/2-18}, ${t.x} ${t.y-Om/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-Om/2,width:o,height:Om,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Im({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Zo,{remarkPlugins:[bp],rehypePlugins:[ym],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${wm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Fm,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Lm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=Cm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=[...new Set(p.flatMap(({items:e})=>e.flatMap(e=>e.tags)))].sort((e,t)=>e.localeCompare(t,`zh-CN`)),h=o.trim().toLocaleLowerCase(),g=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!h||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(h)))})).filter(({items:e})=>e.length>0),_=g.reduce((e,t)=>e+t.items.length,0),v=c?Em.find(({material:e})=>e.id===c)??null:null;function y(){t(`all`),r(`全部`),a(``),s(``)}function b(e){let t=Tm[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsx)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:e.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(te,{size:16}),`返回博客`]}),v&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(te,{}),`返回讲义列表`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(ae,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ce,{}):(0,N.jsx)(se,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!v&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Cm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Dm}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${v?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Em.length})]}),Cm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:v?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-24 rounded-2xl border border-border bg-card p-5 outline-none sm:p-8`,children:[(0,N.jsx)(`div`,{className:`mb-6 flex flex-wrap items-center justify-end gap-3`,children:(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:v.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[v.lesson.title,` · `,v.material.chapter,` · `,v.material.type]}),(0,N.jsx)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:v.material.title}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:v.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),v.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,v.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":v.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:v.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Im,{children:v.material.content})]}),v.material.attachments&&v.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:v.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${wm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(ie,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),v.material.type===`题目`&&(v.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(re,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Im,{children:v.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Im,{children:v.material.solution.explanation})]}),v.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Im,{children:v.material.solution.pitfalls})]}),v.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Im,{children:v.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},v.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(O,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...xm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),m.map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:Cm.find(t=>t.id===e)?.title,` · `,_,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Em.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(oe,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ne,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(oe,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):g.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${Cm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:y,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:g.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>b(e))})]},e.id))})]})})]})]})]})}(0,bm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Lm,{})}));
