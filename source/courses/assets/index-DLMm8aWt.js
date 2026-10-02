@@ -2593,7 +2593,7 @@ A 把缓存的位置和副本对象都颠倒了：本题模型中是「内存里
 
 **问：** 把置换策略从 LRU 换成 FIFO，会影响正确性吗？
 
-**答：** 在两种策略都正确处理脏块写回、访问一致性和必要同步的前提下，改换淘汰策略主要改变命中率及写回时机，不应改变正常运行时读取到的逻辑内容。淘汰脏块前必须保留或写回其修改；不能用「最终会写回」替代这一要求。`}}],Em=[{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:[{id:`io-interrupt-dma-bus-clock`,questionNumber:44,title:`中断与 DMA 的请求次数和 I/O 总线时钟`,type:`题目`,date:`2026-10-01`,chapter:`输入/输出系统 · 中断与 DMA`,tags:[`中断方式`,`DMA`,`周期窃取`,`I/O 总线`,`访存次数`],summary:`由主频、CPI 与 Cache 命中率求每秒访主存次数，再由字符设备中断与块设备 DMA 的传输率求每秒请求次数和 I/O 总线时钟下限。`,source:`学生提供的试卷照片（第 6 页，第 44 题），图上未显示答案；解析为本站推导。K/M 按十进制（1KB=1000B、1MB=10^6 B）取值，与 2009 年 408 真题官方解法同一口径；1024 进制下的结果见解析与追问。`,content:String.raw`（44）某计算机主频为 200MHz，CPI 为 5，存储器总线宽度为 32 位。准备连接一个数据传输率为 20KB/s 的字符设备，及 1 个数据传输率为 1MB/s 的块设备；字符设备采用中断方式 I/O，块设备采用 DMA 方式 I/O，DMA 传送方式为周期窃取方式，每次 DMA 传送数据块大小为 4000B。请回答：
+**答：** 在两种策略都正确处理脏块写回、访问一致性和必要同步的前提下，改换淘汰策略主要改变命中率及写回时机，不应改变正常运行时读取到的逻辑内容。淘汰脏块前必须保留或写回其修改；不能用「最终会写回」替代这一要求。`}}],Em=[{id:`io-interrupt-dma-bus-clock`,questionNumber:44,title:`中断与 DMA 的请求次数和 I/O 总线时钟`,type:`题目`,date:`2026-10-01`,chapter:`输入/输出系统 · 中断与 DMA`,tags:[`中断方式`,`DMA`,`周期窃取`,`I/O 总线`,`访存次数`],summary:`由主频、CPI 与 Cache 命中率求每秒访主存次数，再由字符设备中断与块设备 DMA 的传输率求每秒请求次数和 I/O 总线时钟下限。`,source:`学生提供的试卷照片（第 6 页，第 44 题），图上未显示答案；解析为本站推导。K/M 按十进制（1KB=1000B、1MB=10^6 B）取值，与 2009 年 408 真题官方解法同一口径；1024 进制下的结果见解析与追问。`,content:String.raw`（44）某计算机主频为 200MHz，CPI 为 5，存储器总线宽度为 32 位。准备连接一个数据传输率为 20KB/s 的字符设备，及 1 个数据传输率为 1MB/s 的块设备；字符设备采用中断方式 I/O，块设备采用 DMA 方式 I/O，DMA 传送方式为周期窃取方式，每次 DMA 传送数据块大小为 4000B。请回答：
 
 1）若 CPU 平均每条指令访存 1.2 次，Cache 命中率为 0.98，则 CPU 平均每秒访问主存次数是多少？
 
@@ -2728,6 +2728,1485 @@ $$P=\frac{1}{512}\approx0.195\%$$`,pitfalls:String.raw`- **把 PAGE_NUM 当成�
 
 **问：为什么语句2、3 都缺页，语句4 却命中？**
 
-**答：** 顺序扫描 1048 页只留下最后 512 页（536~1047），页 0 与页 512 都被挤出；语句2 重新装入页 0，语句3 只淘汰了页 537，所以语句4 再访问页 0 时仍在内存中。`}}]},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:Tm},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:wm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Cm}],Dm=`/courses/`,Om={题目:ie,知识点:ce},km=Em.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Am=km.filter(({material:e})=>e.type===`题目`).length,jm=28,Mm=64,Nm=26,Pm=16,Fm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Im(e){let t=(e.match(Fm)??[]).length;return(e.length-t)*7.4+t*13+18}function Lm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
-`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Rm({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Lm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Im(e.label))),s=o+Nm,c=i*s-Nm+Pm*2,l=(a+1)*Mm+Pm*2-(Mm-jm),u=e=>({x:Pm+o/2+e.column*s,y:Pm+e.depth*Mm+jm/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
-`).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+jm/2} C ${e.x} ${e.y+jm/2+18}, ${t.x} ${t.y-jm/2-18}, ${t.x} ${t.y-jm/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-jm/2,width:o,height:jm,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function zm({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Qo,{remarkPlugins:[xp],rehypePlugins:[bm],urlTransform:e=>{let t=ns(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Dm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Rm,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Bm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=Em.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=p.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),h=e!==`all`,g=o.trim().toLocaleLowerCase(),_=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!g||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(g)))})).filter(({items:e})=>e.length>0),v=_.reduce((e,t)=>e+t.items.length,0),y=c?km.find(({material:e})=>e.id===c)??null:null,b=y?y.lesson.materials.findIndex(e=>e.id===y.material.id):-1,x=y?y.lesson.materials[b+1]:void 0;function S(){t(`all`),r(`全部`),a(``),s(``)}function C(e){let t=Om[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),e.type===`题目`&&e.questionNumber!==void 0&&(0,N.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,e.questionNumber,` 题`]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[e.tags.slice(0,2).map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e)),e.tags.length>2&&(0,N.jsxs)(`span`,{className:`py-1 text-xs text-muted-foreground`,children:[`+`,e.tags.length-2]})]})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(ne,{size:16}),`返回博客`]}),y&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(ne,{}),`返回讲义列表`]}),y&&(0,N.jsxs)(`button`,{className:`action-button disabled:cursor-not-allowed disabled:opacity-50`,disabled:!x,title:x?`下一张：${x.title}`:`已是本课最后一张`,onClick:()=>{x&&l(x.id)},children:[(0,N.jsx)(re,{}),`下一张`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(se,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ue,{}):(0,N.jsx)(D,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!y&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Em.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Am}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${y?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:km.length})]}),Em.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:y?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-32 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-24 sm:p-8`,children:[(0,N.jsxs)(`div`,{className:`mb-6 flex flex-wrap items-center justify-between gap-3`,children:[(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[`本课第 `,b+1,` / `,y.lesson.materials.length,` 张`]}),(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:y.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})]}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[y.lesson.title,` · `,y.material.chapter,` · `,y.material.type]}),(0,N.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[y.material.type===`题目`&&y.material.questionNumber!==void 0&&(0,N.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,y.material.questionNumber,` 题 ·`]}),y.material.title]}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:y.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),y.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,y.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":y.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:y.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(zm,{children:y.material.content})]}),y.material.attachments&&y.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:y.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Dm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(oe,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),y.material.type===`题目`&&(y.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(ae,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(zm,{children:y.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(zm,{children:y.material.solution.explanation})]}),y.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(zm,{children:y.material.solution.pitfalls})]}),y.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(zm,{children:y.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},y.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(le,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...Sm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,N.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,N.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),h&&m.flatMap(e=>e.tags).map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!h&&m.map(e=>(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,N.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,N.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n)},children:n},n))})]},e.lesson.id))]})]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:Em.find(t=>t.id===e)?.title,` · `,v,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),km.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(ce,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ie,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ce,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):_.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${Em.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:S,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:_.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>C(e))})]},e.id))})]})})]})]})]})}(0,xm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Bm,{})}));
+**答：** 顺序扫描 1048 页只留下最后 512 页（536~1047），页 0 与页 512 都被挤出；语句2 重新装入页 0，语句3 只淘汰了页 537，所以语句4 再访问页 0 时仍在内存中。`}}],Dm=[{id:`mock-exam-1-ds-q01`,questionNumber:1,title:`循环队列 tag 判空与判满`,type:`题目`,date:`2026-10-02`,chapter:`栈、队列和数组 · 循环队列`,tags:[`循环队列`,`队空队满判定`,`tag 标记法`],summary:`循环队列用 tag 区分队空与队满，给 MAXSIZE、front、rear、tag 求元素个数。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站独立推导并由脚本枚举复核，并非官方答案。`,content:String.raw`设循环队列的存储结构如下，其中 $front$ 指向队头元素，$rear$ 指向下一个可插入位置；$tag=0$ 表示最近一次对队列的操作是删除，$tag=1$ 表示最近一次操作是插入。当 $front=rear$ 时，由 $tag$ 区分队空与队满。若 $MAXSIZE=24$，$front=7$，$rear=19$，$tag=1$，则队列中的元素个数为（　）。
+
+- A．11
+- B．12
+- C．13
+- D．24`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 B：12。**`,explanation:String.raw`## 1. 关键判断：先看 $front$ 与 $rear$ 是否相等
+
+题设的 $tag$ 只用来消除 **$front=rear$** 时的歧义：此时队空与队满在指针上无法区分，才需要 $tag$ 判断。本题 $front=7\ne rear=19$，指针本身就区分了队空与队满，**$tag$ 不参与计数**。
+
+## 2. 循环队列元素个数公式（注意边界）
+
+计算元素个数必须分情况，不能不分场合地套同一个取模式：
+
+~~~text
+front != rear :  n = (rear - front + MAXSIZE) mod MAXSIZE
+front == rear :  tag = 0 -> n = 0        （队空）
+                 tag = 1 -> n = MAXSIZE  （队满）
+~~~
+
+也就是说：取模公式只适用于 $front\ne rear$。在 $front=rear$ 且 $tag=1$ 的队满情形，元素个数是 $MAXSIZE$，而 $(rear-front+MAXSIZE)\bmod MAXSIZE$ 会算出 $0$，此时公式失效，必须用 $tag$ 判满。
+
+## 3. 代入本题（$front\ne rear$）
+
+$$
+n=(19-7+24)\bmod 24=36\bmod 24=12.
+$$
+
+位置校验：$front=7$ 表示队头在 7 号，$rear=19$ 表示 19 号可插入，被占用位置为 $7,8,\dots,18$，共 12 个，与公式一致。
+
+## 4. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+~~~text
+Q1 循环队列 MAXSIZE=24 front=7 rear=19 tag=1
+   front!=rear -> n=(rear-front+MAXSIZE)%MAXSIZE = 12
+   独立枚举校验: front=7 起连续占用 12 个位置 = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+   若误读 tag=1 为队满则得 24（选项D 24）
+   -> 12  => B
+~~~`,pitfalls:String.raw`- 见到 $tag=1$ 就判队满选 D（24）：$tag=1$ 只有在 $front=rear$ 时才表示队满。
+- 把取模公式当万能公式：$front=rear$ 且 $tag=1$ 时元素个数是 $MAXSIZE$，不是 $(rear-front+MAXSIZE)\bmod MAXSIZE=0$。
+- 误以为 $rear$ 指向队尾元素而多算一个（得 13，选 C）。本题 $rear$ 指向下一个可插入位置。`}},{id:`mock-exam-1-ds-q02`,questionNumber:2,title:`栈的合法出栈序列`,type:`题目`,date:`2026-10-02`,chapter:`栈、队列和数组 · 栈`,tags:[`栈`,`合法出栈序列`,`卡特兰数`],summary:`元素 1、2、3、4 依次入栈、可交替出栈，判断哪个出栈序列不可能。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站枚举推导，并非官方答案。`,content:String.raw`元素 1、2、3、4 按此顺序依次入栈，入栈与出栈操作可以交替进行。下列序列中，不可能成为出栈序列的是（　）。
+
+- A．3、2、1、4
+- B．2、1、4、3
+- C．3、1、4、2
+- D．4、3、2、1`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 C：3、1、4、2。**`,explanation:String.raw`## 1. 计数：合法序列有多少个
+
+入栈顺序固定为 $1,2,3,4$，出入栈可任意交替。$n$ 个元素依次入栈的全部合法出栈序列数等于卡特兰数
+
+$$
+C_n=\frac{1}{n+1}\binom{2n}{n},\qquad C_4=\frac{1}{5}\binom{8}{4}=14.
+$$
+
+## 2. 枚举全部 14 个合法序列
+
+~~~text
+1234  1243  1324  1342  1432  2134  2143  2314
+2341  2431  3214  3241  3421  4321
+~~~
+
+逐个对照选项：
+
+- A 3、2、1、4 = 3214，在表中，合法；
+- B 2、1、4、3 = 2143，在表中，合法；
+- C 3、1、4、2 = 3142，**不在表中**，不可能；
+- D 4、3、2、1 = 4321，在表中，合法。
+
+## 3. 反证 C 为什么不可能
+
+要让 3 最先出栈，必须先把 1、2、3 依次压栈，此时栈内自底向上为 $1,2$（栈顶为 2）。弹出 3 后，栈顶是 2，紧接着能弹出的只能是 2，或者先把 4 压栈再弹 4——**不可能越过 2 直接弹出 1**。所以 3142 非法。
+
+## 4. 脚本独立枚举（.cache/crosscheck/verify_juan1.py 实际输出）
+
+脚本对 4! 种排列做栈模拟，筛出全部合法出栈序列：
+
+~~~text
+Q2 1,2,3,4 依次入栈：合法出栈序列共 14 个（卡特兰数 C4=14）
+   全部: 4321, 3421, 3241, 3214, 2431, 2341, 2314, 2143, 2134, 1432, 1342, 1324, 1243, 1234
+   选项 3214: 合法
+   选项 2143: 合法
+   选项 3142: 不可能 <== 答案
+   选项 4321: 合法
+~~~`,pitfalls:String.raw`- 漏掉「4 可以先入栈、后出栈」这一步，误判 B 或 D 不可能。
+- 认为逆序 4321 一定非法（其实任意逆序始终合法）。
+- 把「入栈顺序 1,2,3,4」与「元素值大小」绑定，忘记 4 可以在 3 出栈之后才入栈。`}},{id:`mock-exam-1-ds-q03`,questionNumber:3,title:`由前序与后序判断可能的中序`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 遍历与重建`,tags:[`二叉树遍历`,`前序与后序`,`中序序列不唯一`],summary:`已知前序 ABDCE、后序 DBECA，问哪个序列可能是该二叉树的中序序列。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站枚举推导，并非官方答案。`,content:String.raw`已知一棵二叉树的前序遍历序列为 ABDCE，后序遍历序列为 DBECA。根据这些信息，以下（　）序列可能是该二叉树的中序遍历序列。
+
+- A．DBEAC
+- B．DBAEC
+- C．DBECA
+- D．DBCEA`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 B：DBAEC。**`,explanation:String.raw`## 1. 先明确一个前提：只给前序 + 后序，一般不能保证唯一
+
+只给前序和后序，**一般不能保证唯一确定**一棵二叉树：当某个结点只有一个孩子时，这个孩子挂左还是挂右，前序、后序读出来完全一样。本题满足条件的二叉树共有 **4 棵**，它们的中序序列分别为
+
+$$
+BDACE,\quad BDAEC,\quad DBACE,\quad DBAEC.
+$$
+
+题干问的是「可能是」，只要选项落在这一集合里即可，因此答案是唯一的 B。这不是题目出错：正因为结构不唯一，才用「可能」提问。
+
+## 2. 手工构造并验证 B
+
+取二叉树：A 的左孩子是 B、右孩子是 C；B 的左孩子是 D；C 的左孩子是 E。
+
+~~~binary
+A
+  L: B
+    L: D
+  R: C
+    L: E
+~~~
+
+- 前序（根-左-右）：A → B → D → C → E = ABDCE ✓
+- 后序（左-右-根）：D → B → E → C → A = DBECA ✓
+- 中序（左-根-右）：D → B → A → E → C = DBAEC ✓
+
+## 3. 为什么恰好 4 棵
+
+由前序知根为 A；后序最后一位也是 A，二者相容。前序在 A 之后的左子树根是 B、右子树根是 C；后序对应的左子树段为 DB、右子树段为 EC。每个「根 + 一个孩子」的小结构，孩子既可挂左也可挂右，左右子树各有 2 种，共 $2\times2=4$ 棵。
+
+## 4. 选项排除
+
+- A DBEAC：它要求 A 的左子树中序为 DBE（B 为根，D 左、E 右），该左子树后序应为 DEB，全树后序变成 DEBCA，与题给 DBECA 不符 ✗
+- C、D 均不属于上述 4 个中序序列 ✗
+
+## 5. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+脚本先枚举 5 个结点的全部二叉树形态（$C_5=42$），按前序贴标号 A,B,D,C,E，再读后序筛出 DBECA：
+
+~~~text
+Q3 前序=ABDCE 后序=DBECA
+   5 结点二叉树形态数 (C5) = 42
+   满足 前序=ABDCE 且 后序=DBECA 的树数量 = 4
+   中序集合 = ['BDACE', 'BDAEC', 'DBACE', 'DBAEC']
+   选项 DBEAC: 不可能
+   选项 DBAEC: 可能
+   选项 DBECA: 不可能
+   选项 DBCEA: 不可能
+~~~`,pitfalls:String.raw`- 默认「前序 + 后序能唯一确定二叉树」，忽视单孩子结点的左右歧义。
+- 直接把 DBEAC（A）当答案：它对应的树后序为 DEBCA，与题给不符。
+- 把后序末位不是根来理解（后序末位就是整棵树的根 = A）。`}},{id:`mock-exam-1-ds-q04`,questionNumber:4,title:`哈夫曼树 WPL 计算`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 哈夫曼树`,tags:[`哈夫曼树`,`带权路径长度 WPL`,`贪心合并`],summary:`字符集 {a,b,c,d,e} 频率为 {5,9,12,13,16}，求哈夫曼树的 WPL。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站用小顶堆模拟推导，并非官方答案。`,content:String.raw`若字符集为 $\{a，b，c，d，e\}$，对应的频率为 $\{5，9，12，13，16\}$，则构造的哈夫曼树的带权路径长度（WPL）为（　）。
+
+- A．120
+- B．124
+- C．130
+- D．135`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 B：124。**`,explanation:String.raw`## 1. 哈夫曼树的构造（每次取最小的两棵合并）
+
+按权值从小到大反复取两个最小的树合并，新结点权值 = 两子树权值之和：
+
+~~~text
+5  + 9  = 14   -> 候选 {12, 13, 14, 16}
+12 + 13 = 25   -> 候选 {14, 16, 25}
+14 + 16 = 30   -> 候选 {25, 30}
+25 + 30 = 55   -> 根
+~~~
+
+树形为 $55\big(25(12,13),\ 30(14(5,9),\,16)\big)$。
+
+## 2. 两种算法互相印证
+
+**算法一（WPL = 所有内部结点权值之和）：**
+
+$$
+14+25+30+55=124.
+$$
+
+**算法二（WPL = 各叶频 × 叶深度）：** 深度为标准约定（根深度 0）：12、13、16 深度为 2；5、9 深度为 3。
+
+$$
+5\times3+9\times3+12\times2+13\times2+16\times2=15+27+24+26+32=124.
+$$
+
+两法一致，选 B。
+
+## 3. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+脚本用小顶堆模拟合并过程：
+
+~~~text
+Q4 哈夫曼 频率=[5, 9, 12, 13, 16]
+   合并: [(5, 9, 14), (12, 13, 25), (14, 16, 30), (25, 30, 55)]
+   WPL(=内部结点权和) = 124
+   另证: 朴素自底向上构造的最优性由 Huffman 保证，且叶深验证 5*3+9*3+12*2+13*2+16*2 = 124
+   -> 124 => B
+~~~`,pitfalls:String.raw`- 只用前几步较小者累加而漏掉最后一步（得 14+25+30 = 69，或忘记加根）。
+- 把 WPL 算成所有叶权之和（$5+9+12+13+16=55$，恰好等于根权值，无此选项）。
+- 合并时没取最小的两棵（贪心取错）会得到偏大的 WPL。`}},{id:`mock-exam-1-ds-q05`,questionNumber:5,title:`KMP 的 next 数组`,type:`题目`,date:`2026-10-02`,chapter:`串 · 模式匹配`,tags:[`KMP`,`next 数组`,`最长相等前后缀`],summary:`按题给定义求模式串 T="abcac" 的 next 数组。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站暴力求最长相等真前后缀推导，并非官方答案。`,content:String.raw`设模式串 $T$ 的下标从 1 开始，并采用如下定义：$next[1]=0$；当 $j>1$ 时，$next[j]=k$ 表示 $T[1\ldots k-1]$ 是 $T[1\ldots j-1]$ 的最长相等真前缀与真后缀，若不存在非空的相等前后缀，则 $k=1$。模式串 $T="abcac"$ 的 next 数组为（　）。
+
+- A．01122
+- B．01212
+- C．01112
+- D．01221`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 C：01112。**`,explanation:String.raw`## 1. 先读懂定义
+
+$next[j]=k$ 中的 $k$，含义是「$T[1\ldots j-1]$ 的最长相等真前缀与真后缀长度再加 1」。所以 $k-1$ 才是那个最长相等前后缀的长度。
+
+## 2. 逐位求（$T="abcac"$）
+
+- $j=1$：定义直接规定 $next[1]=0$。
+- $j=2$：$T[1\ldots1]="a"$ 无真前后缀，长度 0 ⇒ $next[2]=0+1=1$。
+- $j=3$：$T[1\ldots2]="ab"$，前缀 a 与后缀 b 不等 ⇒ 长度 0 ⇒ $next[3]=1$。
+- $j=4$：$T[1\ldots3]="abc"$，无相等前后缀 ⇒ 长度 0 ⇒ $next[4]=1$。
+- $j=5$：$T[1\ldots4]="abca"$，最长相等的真前缀=真后缀为 a（长度 1）⇒ $next[5]=1+1=2$。
+
+于是
+
+$$
+next[1\ldots5]=[0,1,1,1,2]\ \Rightarrow\ 01112.
+$$
+
+## 3. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+脚本对每个 $j$ 暴力枚举最长相等真前后缀：
+
+~~~text
+Q5 T='abcac'  题给定义 next[1]=0, next[j]=k 即 T[1..k-1] 为最长相等真前后缀
+   j=1: T[1..0]='' -> next[1]=0
+   j=2: T[1..1]='a' -> next[2]=1
+   j=3: T[1..2]='ab' -> next[3]=1
+   j=4: T[1..3]='abc' -> next[4]=1
+   j=5: T[1..4]='abca' -> next[5]=2
+   next = [0, 1, 1, 1, 2]  -> 01112
+   -> 01112 => C
+~~~`,pitfalls:String.raw`- 把 $next$ 与 $nextval$（优化后的 next）混淆，或把 $next[j]$ 直接当成最长相等前后缀长度（会差 1）。
+- 求 $j=5$ 时把 $"abca"$ 的前后缀误写成 ab（abca 的前缀 ab 与后缀 ca 不等），误得 3。
+- 忘记 $T="abcac"$ 第 5 位是 c。`}},{id:`mock-exam-1-ds-q06`,questionNumber:6,title:`图的存储结构辨析`,type:`题目`,date:`2026-10-02`,chapter:`图 · 图的存储结构`,tags:[`十字链表`,`邻接多重表`,`邻接表`,`逆邻接表`],summary:`四个关于图的存储结构的叙述，选出错误的一项。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析依据数据结构教材通行结论，并非官方答案（概念题不做脚本验证）。`,content:String.raw`下列关于图的存储结构的叙述中，错误的是（　）。
+
+- A．十字链表为每条有向边设置一个边结点，并将同一顶点的出边和入边分别链接
+- B．对于稀疏图，邻接表的空间复杂度为 $O(|V|+|E|)$，通常比邻接矩阵更节省空间
+- C．邻接多重表适合存储有向图，十字链表适合存储无向图
+- D．在有向图的逆邻接表中，顶点 $v$ 对应链表中的边结点数等于 $v$ 的入度`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 C。**`,explanation:String.raw`## 逐项判断
+
+**A 正确。** 十字链表是**有向图**的链式存储结构，每条弧设一个弧结点，含尾顶点、头顶点、同尾弧链、同头弧链，既能方便地找某顶点的出边，也能方便地找入边。
+
+**B 正确。** 邻接表的存储量：有向图每条弧占 1 个邻接点，无向图每条边占 2 个邻接点，两者都与 $O(|V|+|E|)$ 同阶。稀疏图 $|E|\ll|V|^2$ 时，远比邻接矩阵的 $O(|V|^2)$ 省空间。
+
+**C 错误（正是题目所问）。** 二者被对调了：**邻接多重表是为无向图设计的**（每条边一个边结点，同时链出共享该边的两个顶点），**十字链表是为有向图设计的**。
+
+**D 正确。** 逆邻接表按**入边**建链，顶点 $v$ 的链表中边结点个数 = $v$ 的入度（正邻接表中则是出度）。
+
+因此错误的是 C。
+
+## 概念题依据
+
+本题无数值可枚举，未做脚本验证，依据为数据结构教材通行结论：十字链表 ↔ 有向图；邻接多重表 ↔ 无向图；邻接表空间 $O(|V|+|E|)$；逆邻接表边结点数 = 入度。`,pitfalls:String.raw`- 记混「十字链表 ↔ 有向图」「邻接多重表 ↔ 无向图」这一组配对。
+- 把邻接表空间复杂度误记为 $O(|V|^2)$（那是邻接矩阵）。
+- 把逆邻接表当成邻接表，从而判成「等于出度」而认为 D 错误。`}},{id:`mock-exam-1-ds-q07`,questionNumber:7,title:`AOE 网关键路径判定`,type:`题目`,date:`2026-10-02`,chapter:`图 · 关键路径`,tags:[`AOE 网`,`关键路径`,`关键活动`,`最早/最迟开始时间`],summary:`7 事件、9 活动的 AOE 网，判断关于关键路径与活动时间的说法哪条错误。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站按拓扑序正推/逆推推导，并非官方答案。`,content:String.raw`下图是一个有 7 个事件、9 个活动的 AOE 网，以下说法错误的是（　）。
+
+![AOE 网原图](/courses/mock-exam-1/q07-aoe.png)
+
+- A．关键路径长度为 16
+- B．活动 $f$ 的最早开始时间为 8
+- C．活动 $g$ 的最迟开始时间为 7
+- D．缩短活动 $d$ 就可以缩短整个工程的工期`,attachments:[{name:`查看 AOE 网原图`,path:`mock-exam-1/q07-aoe.png`},{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 D。**`,explanation:String.raw`## 1. 正推各事件最早发生时间 $ve$
+
+$$
+ve[V_1]=0,\quad ve[V_2]=3,\quad ve[V_3]=2,
+$$
+$$
+ve[V_4]=\max(3+5,\ 2+6)=8,
+$$
+$$
+ve[V_5]=2+4=6,\quad ve[V_6]=\max(8+2,\ 6+3)=10,
+$$
+$$
+ve[V_7]=\max(6+5,\ 10+6)=16.
+$$
+
+## 2. 逆推各事件最迟发生时间 $vl$（终点 $vl[V_7]=ve[V_7]=16$）
+
+$$
+vl[V_7]=16,\quad vl[V_6]=16-6=10,\quad vl[V_5]=\min(10-3,\ 16-5)=7,
+$$
+$$
+vl[V_4]=10-2=8,\quad vl[V_3]=\min(8-6,\ 7-4)=2,\quad vl[V_2]=8-5=3,
+$$
+$$
+vl[V_1]=\min(3-3,\ 2-2)=0.
+$$
+
+## 3. 逐项判定
+
+- **A 正确**：工期 = $ve[V_7]=16$。
+- **B 正确**：$f$ 的最早开始时间 = $ve[V_4]=8$。
+- **C 正确**：$g$ 的最迟开始时间 = $vl[V_6]-3=10-3=7$。
+- **D 错误**：$d$ 的松弛时间 $=vl[V_4]-ve[V_3]-6=8-2-6=0$，确实是关键活动。但关键路径有**两条**：
+$$
+V_1\xrightarrow{a}V_2\xrightarrow{c}V_4\xrightarrow{f}V_6\xrightarrow{i}V_7=3+5+2+6=16,
+$$
+$$
+V_1\xrightarrow{b}V_3\xrightarrow{d}V_4\xrightarrow{f}V_6\xrightarrow{i}V_7=2+6+2+6=16.
+$$
+  $d$ 只出现在其中一条上。单独压缩 $d$，$V_4$ 仍由另一条路径（经 $c$ 的 $3+5=8$）决定为 8，工期仍为 16。**只有当活动位于所有关键路径上时，压缩它才能缩短工期**，故 D 错。
+
+## 4. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+~~~text
+Q7 AOE ve = {'V1': 0, 'V2': 3, 'V3': 2, 'V4': 8, 'V5': 6, 'V6': 10, 'V7': 16}
+   vl = {'V1': 0, 'V2': 3, 'V3': 2, 'V4': 8, 'V5': 7, 'V6': 10, 'V7': 16}
+   a: V1->V2 w=3 最早开始=0 最迟开始=0 关键
+   b: V1->V3 w=2 最早开始=0 最迟开始=0 关键
+   c: V2->V4 w=5 最早开始=3 最迟开始=3 关键
+   d: V3->V4 w=6 最早开始=2 最迟开始=2 关键
+   e: V3->V5 w=4 最早开始=2 最迟开始=3 
+   f: V4->V6 w=2 最早开始=8 最迟开始=8 关键
+   g: V5->V6 w=3 最早开始=6 最迟开始=7 
+   h: V5->V7 w=5 最早开始=6 最迟开始=11 
+   i: V6->V7 w=6 最早开始=10 最迟开始=10 关键
+   工期 = ve[V7] = 16  关键活动 = ['a', 'b', 'c', 'd', 'f', 'i']
+   A. 关键路径长度16 ? True
+   B. f 最早开始时间 = 8 ? ==8
+   C. g 最迟开始时间 = 7 ? ==7
+       缩短 d: w(d)=0 -> ve[V4]=8 工期=16
+       缩短 d: w(d)=1 -> ve[V4]=8 工期=16
+       缩短 d: w(d)=2 -> ve[V4]=8 工期=16
+       缩短 d: w(d)=3 -> ve[V4]=8 工期=16
+       缩短 d: w(d)=4 -> ve[V4]=8 工期=16
+       缩短 d: w(d)=5 -> ve[V4]=8 工期=16
+   -> A/B/C 对, D 错 => D
+~~~`,pitfalls:String.raw`- 看到 $d$ 是关键活动（松弛为 0）就认为「缩短它一定能缩短工期」，忽略「必须位于所有关键路径上」。
+- 没发现 $ve[V_4]=8$ 是两条路径**同时取到**（$3+5=8$ 与 $2+6=8$），从而看不到 D 的错误。
+- 混淆活动的最迟开始时间 $l=vl[\text{终点}]-w$ 与 $e$。`}},{id:`mock-exam-1-ds-q08`,questionNumber:8,title:`BST、AVL 与红黑树性质辨析`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 树型查找`,tags:[`二叉搜索树`,`AVL 树`,`红黑树`,`平衡条件`],summary:`四条关于 BST、AVL、红黑树的叙述，选出正确的组合。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析依据数据结构教材通行结论，并非官方答案（概念题不做脚本验证）。`,content:String.raw`下列关于二叉搜索树（BST）、平衡二叉树（AVL 树）和红黑树的描述中，正确的是（　）。
+
+Ⅰ．三者均为有序树，且查找时间复杂度均为 $O(\log n)$
+
+Ⅱ．AVL 树和红黑树的平衡条件相同，均通过旋转维持平衡
+
+Ⅲ．红黑树的每个节点包含颜色属性，AVL 树的每个节点包含平衡因子
+
+Ⅳ．红黑树和 AVL 树在最坏情况下的查找时间复杂度不同
+
+- A．仅Ⅰ、Ⅱ正确
+- B．仅Ⅱ、Ⅲ正确
+- C．仅Ⅲ正确
+- D．仅Ⅳ正确`,attachments:[{name:`查看原卷试题页（第 1 页）`,path:`mock-exam-1/page-1.png`}],solution:{answer:String.raw`**选 C：仅Ⅲ正确。**`,explanation:String.raw`## 逐条判断
+
+**Ⅰ 错。** 三者的结点确有左右次序（可视为有序树），但**普通 BST 不保证平衡**：插入有序序列会退化为单支树，查找最坏为 $O(n)$，不是 $O(\log n)$。
+
+**Ⅱ 错。** 平衡条件**不同**：
+
+- AVL 树要求任意结点左右子树**高度差不超过 1**（严格高度平衡）；
+- 红黑树只要求「结点非红即黑、根与叶为黑、红结点的孩子必为黑、任一结点到叶的黑结点数相同」，其最长路径不超过最短路径的 2 倍（近似平衡）。
+
+二者都会用旋转调整，但条件不同，「平衡条件相同」错误。
+
+**Ⅲ 对。** 红黑树的结点带颜色域；AVL 树的结点带平衡因子（BF）域。
+
+**Ⅳ 错。** 红黑树最坏查找 $O(\log n)$，AVL 树最坏查找也是 $O(\log n)$，**渐近最坏情况相同**（只是常数因子不同）。注意这与 Ⅱ 不矛盾：平衡条件不同，但都能把高度控制在 $O(\log n)$。
+
+只有 Ⅲ 正确，选 C。
+
+## 概念题依据
+
+本题无数值可枚举，未做脚本验证，依据为教材通行结论：AVL 高度差 ≤1；红黑树五条性质；两者查找最坏均 $O(\log n)$；BST 最坏 $O(n)$。`,pitfalls:String.raw`- 把「AVL 比红黑树更平衡、查找更快（常数更小）」误当成「最坏时间复杂度不同」。
+- 只记住「红黑树也是平衡树」就认为它与 AVL 的平衡条件一致。
+- 以为只有红黑树带附加信息，忘记 AVL 结点也要存平衡因子。`}},{id:`mock-exam-1-ds-q09`,questionNumber:9,title:`散列表二次探测再散列`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 散列表`,tags:[`散列表`,`二次探测`,`冲突处理`],summary:`表长 11、H(key)=key mod 11、二次探测处理冲突，求插入 52 时的表地址。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 2 页；卷面未印参考答案，解析为本站模拟完整插入过程推导，并非官方答案。`,content:String.raw`哈希表长度为 11，哈希函数 $H(key)=key \bmod 11$。依次插入关键字 19、30、41、52，采用二次探测再散列处理冲突，探测增量依次为 $1^2$、$-1^2$、$2^2$、$-2^2$、$\ldots$。插入 52 时所在的表地址为（　）。
+
+- A．8
+- B．1
+- C．9
+- D．7`,attachments:[{name:`查看原卷试题页（第 2 页）`,path:`mock-exam-1/page-2.png`}],solution:{answer:String.raw`**选 B：1。**`,explanation:String.raw`## 1. 探测约定
+
+先取 $H_0=H(key)$ 本身，再依次加 $+1^2,\,-1^2,\,+2^2,\,-2^2,\ldots$，每次对 11 取模。注意 $-1^2$ 应理解为增量 $-1$（向左探 1 格），不是「负数平方得 +1」。
+
+## 2. 逐个插入
+
+- **19**：$H=19\bmod 11=8$，地址 8 空 ⇒ 存 **8**。
+- **30**：$H=8$ 被占；$8+1=9$ 空 ⇒ 存 **9**。
+- **41**：$H=8$ 占，$8+1=9$ 占，$8-1=7$ 空 ⇒ 存 **7**。
+- **52**：$H=8$ 占，$8+1=9$ 占，$8-1=7$ 占，$8+4=12\bmod 11=1$ 空 ⇒ 存 **1**。
+
+插入 52 落在地址 **1**，选 B。
+
+最终散列表（下标 $0\ldots10$）：
+
+$$
+[\ -,52,-,-,-,-,-,41,19,30,-]
+$$
+
+## 3. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+~~~text
+Q9 表长11, H(key)=key mod 11, 二次探测 1^2,-1^2,2^2,...  依次插入 19,30,41,52
+   插入 19: H=8 探测 [8] -> 存入地址 8
+   插入 30: H=8 探测 [8, 9] -> 存入地址 9
+   插入 41: H=8 探测 [8, 9, 7] -> 存入地址 7
+   插入 52: H=8 探测 [8, 9, 7, 1] -> 存入地址 1
+   最终表: [None, 52, None, None, None, None, None, 41, 19, 30, None]
+   52 所在地址 = 1
+   -> 1 => B
+~~~`,pitfalls:String.raw`- 漏掉「先用 $H(key)$ 本身试一次」，直接从 $+1^2$ 开始。
+- 把 $-1^2$ 当成 $+1$：若如此，41 会落到地址 1，52 的结果也随之错误。
+- 探测增量不取模（得 $8+4=12$ 越界）。`}},{id:`mock-exam-1-ds-q10`,questionNumber:10,title:`不稳定且平均 O(n log n) 的排序`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 排序算法的性质`,tags:[`排序稳定性`,`时间复杂度`,`快速排序`],summary:`四个排序算法中，选出不稳定且平均时间复杂度为 O(n log n) 的一个。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 2 页；卷面未印参考答案，解析依据排序算法性质表，并非官方答案（概念题不做脚本验证）。`,content:String.raw`下列排序算法中，不稳定且平均时间复杂度为 $O(n\log n)$ 的是（　）。
+
+- A．直接插入排序
+- B．快速排序
+- C．归并排序
+- D．希尔排序`,attachments:[{name:`查看原卷试题页（第 2 页）`,path:`mock-exam-1/page-2.png`}],solution:{answer:String.raw`**选 B：快速排序。**`,explanation:String.raw`## 逐项核对「稳定性 + 平均复杂度」
+
+- **A 直接插入排序**：稳定；平均 $O(n^2)$ —— 两条都不满足。
+- **B 快速排序**：**不稳定**（划分时相等元素可能被交换跨越）；平均 $O(n\log n)$（最坏 $O(n^2)$）—— **两条都满足** ✓
+- **C 归并排序**：稳定；平均 $O(n\log n)$ —— 稳定性不满足。
+- **D 希尔排序**：不稳定（增量分组跨越式移动）；其平均复杂度取决于所取增量序列，没有单一通用值，408 范围内也不把它归入平均 $O(n\log n)$ —— 复杂度不满足。
+
+只有快速排序同时满足，选 B。
+
+## 概念题依据
+
+本题不适合脚本枚举，未做脚本验证，依据排序算法稳定性/复杂度通行结论：插入、归并稳定；快排、希尔、堆排、选择不稳定；快排、堆排、归并平均 $O(n\log n)$；希尔排序的平均复杂度与增量序列有关，无单一通用值，不按 $O(n\log n)$ 处理。`,pitfalls:String.raw`- 看到「不稳定且复杂度不像 $n^2$」就选希尔排序：希尔不稳定，但平均复杂度不是 $O(n\log n)$。
+- 把归并排序当成不稳定。
+- 因为快排最坏是 $O(n^2)$ 就排除它，忽略题干问的是**平均**。`}},{id:`mock-exam-1-ds-q11`,questionNumber:11,title:`堆排序首轮调整`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 堆排序`,tags:[`堆排序`,`大根堆`,`筛选调整`],summary:`大根堆 [10,9,8,7,6,5,4] 首次交换堆顶与末尾后，求调整后的堆序列。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 2 页；卷面未印参考答案，解析为本站逐步模拟筛选推导，并非官方答案。`,content:String.raw`对给定的大根堆 $[10,9,8,7,6,5,4]$ 进行堆排序，第一次交换堆顶与末尾元素后，调整后的堆序列是（　）。
+
+- A．$[9,8,7,6,5,4]$
+- B．$[9,7,8,4,6,5]$
+- C．$[9,7,8,6,5,4]$
+- D．$[8,9,7,4,6,5]$`,attachments:[{name:`查看原卷试题页（第 2 页）`,path:`mock-exam-1/page-2.png`}],solution:{answer:String.raw`**选 B：$[9,7,8,4,6,5]$。**`,explanation:String.raw`## 1. 交换堆顶与末尾
+
+初始大根堆 $[10,9,8,7,6,5,4]$（下标从 0 起），交换堆顶 10 与末尾 4：
+
+$$
+[4,9,8,7,6,5,10].
+$$
+
+末尾 10 已归位，**不再参与后续调整**，待调整的堆是前 6 个元素 $[4,9,8,7,6,5]$。
+
+## 2. 自顶向下筛选（每次与较大的孩子交换）
+
+- 下标 0（值 4）：孩子下标 1（9）、2（8），较大者 9，$4<9$ ⇒ 交换 → $[9,4,8,7,6,5]$。
+- 下标 1（值 4）：孩子下标 3（7）、4（6），较大者 7，$4<7$ ⇒ 交换 → $[9,7,8,4,6,5]$。
+- 下标 3（值 4）：孩子下标 7、8 均 ≥6（越界），无孩子，结束。
+
+调整后的堆为 $[9,7,8,4,6,5]$（完整数组 $[9,7,8,4,6,5,10]$），选 B。
+
+## 3. 脚本独立复核（.cache/crosscheck/verify_juan1.py 实际输出）
+
+~~~text
+Q11 初始大根堆 [10, 9, 8, 7, 6, 5, 4]
+   交换堆顶/末尾后完整数组 = [4, 9, 8, 7, 6, 5, 10]（末尾 10 已归位）
+   对前 6 个元素筛选后堆 = [9, 7, 8, 4, 6, 5]
+   完整数组 = [9, 7, 8, 4, 6, 5, 10]
+   选项 B = [9,7,8,4,6,5] -> True
+~~~`,pitfalls:String.raw`- 交换后仍把 10 留在堆里一起调整（正确做法是把末尾元素排除在堆外）。
+- 调整时与**较小**的孩子交换（必须与较大的孩子交换）。
+- 只做一轮交换就停：下标 1 与 3 的那次交换容易漏掉（得到 $[9,4,8,7,6,5]$）。`}}],Om=[{id:`mock-exam-2-ds-q01`,questionNumber:1,title:`循环累加平方和的时间复杂度`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 算法的时间复杂度分析`,tags:[`时间复杂度`,`循环次数估计`,`平方和求和`],summary:`给定一个累加平方和、返回首个使累加和超过 n 的 i 的函数，判断其时间复杂度量级。`,source:`2027 年 408 模拟试题（二）第 1 题，扫描版试卷（无文字层）。原卷未印参考答案，本页答案由本地独立推导并用脚本实跑验证，非引用官方答案。`,content:String.raw`设 $n$ 为正整数，且不考虑整数溢出，函数 findMinI 的时间复杂度为（　）。
+
+~~~c
+int findMinI(int n) {
+    int sum = 0, i = 0;
+    while (sum <= n) {
+        i++;
+        sum += i * i;
+    }
+    return i;
+}
+~~~
+
+- **A．** $O(\log n)$
+- **B．** $O(n)$
+- **C．** $O(\sqrt{n})$
+- **D．** $O(\sqrt[3]{n})$`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**D**（$O(\sqrt[3]{n})$）`,explanation:String.raw`循环每执行一次，$i$ 加 1，$sum$ 累加 $i^2$。设循环共执行 $k$ 次后退出，则
+
+$$
+\mathrm{sum}=\sum_{i=1}^{k} i^2=\dfrac{k(k+1)(2k+1)}{6}\approx\dfrac{k^3}{3}.
+$$
+
+退出条件是 $\mathrm{sum}>n$，即 $\dfrac{k^3}{3}>n$，故 $k\approx\sqrt[3]{3n}=\Theta(\sqrt[3]{n})$。注意 $i$ 每轮只加 1 这一点不改变结论：循环次数就是 $i$ 的终值，而与 $n$ 成三次方根关系。
+
+脚本验证结果（整理）：
+
+- $n=10^6$：循环 144 次，$i^3=2985984\approx3n$
+- $n=10^9$：循环 1442 次，$i^3=2998442888\approx3n$
+- $n=10^{12}$：循环 14422 次，$i^3=2999690679448\approx3n$
+
+三组数据都满足 $i^3\approx3n$，故量级为 $\Theta(\sqrt[3]{n})$，选 D。`,pitfalls:String.raw`1. 看到 $while(sum \le n)$ 就判 $O(n)$——漏看 $sum$ 是平方累加，实际只需约 $\sqrt[3]{3n}$ 轮。
+2. 把循环变量 $i$ 的增长当成"每轮加到 $n$"，误判为 $O(n)$。
+3. 忽略系数 3，误选其他量级：$n=10^6$ 时 $\sqrt{n}=1000$，而实测只需 144 轮，明显不符。`}},{id:`mock-exam-2-ds-q02`,questionNumber:2,title:`中缀表达式转后缀表达式`,type:`题目`,date:`2026-10-02`,chapter:`栈与队列 · 中缀表达式转后缀`,tags:[`中缀转后缀`,`表达式求值`,`运算符优先级`],summary:`给出含加减乘与括号的中缀表达式，在四个候选中选出正确的后缀表达式。`,source:`2027 年 408 模拟试题（二）第 2 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由本地独立转换并代值求值验证，非引用官方答案。`,content:String.raw`中缀表达式 $a+b*c-(d+e)*f$ 的后缀表达式是（　）。
+
+- **A．** abc\*+de+f\*−
+- **B．** abc\*de+f\*+−
+- **C．** ab+c\*def\*+−
+- **D．** abc\*+def\*+−`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**A**（abc\*+de+f\*−）`,explanation:String.raw`按"先乘后加减、括号优先"逐步转换：
+
+- $b*c\Rightarrow$ bc\*
+- $a$ 与 bc\* 相加 $\Rightarrow$ abc\*+
+- $d+e\Rightarrow$ de+
+- 再与 $f$ 相乘 $\Rightarrow$ de+f\*
+- 最后两部分相减 $\Rightarrow$ abc\*+de+f\*−
+
+代值验证（取 $a=2,\ b=3,\ c=5,\ d=7,\ e=11,\ f=13$，中缀真值 $=2+15-18\times13=-217$）：
+
+- A 得 $-217$，与真值一致
+- B 得 $-247$，实际算的是 $a-(bc+(d+e)f)$
+- C 得 $-125$，实际算的是 $(a+b)c-(d+ef)$
+- D 得 $-133$，实际算的是 $a+bc-(d+ef)$
+
+只有 A 求值等于中缀真值。`,pitfalls:String.raw`1. 把 $-(d+e)*f$ 读成 $-(d+e*f)$，得到 D 一类结果。
+2. 后缀里 \* 与 − 的先后颠倒：de+f\* 必须在 − 之前完成。
+3. 只凭"看起来像"选 B/D，不代值验算。`}},{id:`mock-exam-2-ds-q03`,questionNumber:3,title:`m叉树与度为m的树的概念辨析`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · m叉树与度为m的树`,tags:[`m叉树`,`度为m的树`,`结点度数`],summary:`辨析 m 叉树与度为 m 的树两个定义，从四条叙述中选出正确的一项。`,source:`2027 年 408 模拟试题（二）第 3 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由定义与反例逐项排除得到，非引用官方答案。`,content:String.raw`下列关于 m 叉树与度为 m 的树的叙述中，正确的是（　）。
+
+- **A．** m 叉树中的每个非叶结点都必须恰有 m 个孩子
+- **B．** m 叉树中每个结点的孩子数不超过 m
+- **C．** 度为 m 的树可以是空树
+- **D．** 度为 m 的树中可以存在度大于 m 的结点`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**B**`,explanation:String.raw`先分清两个定义：
+
+- **m 叉树**：每个结点的度至多为 $m$，即孩子数不超过 $m$。它允许某个非叶结点只有 1 个或 2 个孩子——例如只有根、根有 2 个孩子的 3 叉树仍是合法的 3 叉树。据此 B 正确、A 错误。
+- **度为 m 的树**：树中至少有一个结点的度为 $m$，且所有结点的度都不超过 $m$（"树的度"就是树中结点的最大度数）。据此它必须非空，C 错误；也不可能有度大于 $m$ 的结点，D 错误。
+
+逐项反例排除：
+
+- 排除 A：3 叉树中根只有 2 个孩子、孩子都是叶，没有"恰有 $m$ 个孩子的非叶结点"这一约束，A 不成立。
+- 排除 C：度为 $m$ 的树要求至少有一个结点的度达到 $m$，这本身就需要树中存在结点，故它必须非空。
+- 排除 D：若存在度 $>m$ 的结点，则树的最大度 $>m$，与"度为 $m$"矛盾。
+- B 逐字对应 m 叉树定义"每个结点的度不大于 $m$"。`,pitfalls:String.raw`1. 把"m 叉树"当成"每个非叶结点都有 m 个孩子"的满 m 叉树——混淆"至多 m 个"与"恰好 m 个"。
+2. 把"度为 m 的树"理解成"度为 m 的结点组成的树"，从而以为可以是空树（C 错）。
+3. 忽略"树的度 = 最大结点度"这一定义，误以为度为 m 的树里还能有更大的结点度（D 错）。`}},{id:`mock-exam-2-ds-q04`,questionNumber:4,title:`AVL树插入后的最先失衡结点与旋转类型`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 平衡二叉树 AVL 的插入与旋转`,tags:[`AVL树`,`平衡因子`,`LR旋转`,`失衡检测`],summary:`向空 AVL 树依次插入六个关键字，问插入最后一个后最先失衡的结点及其调整类型。`,source:`2027 年 408 模拟试题（二）第 4 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由从空树逐次插入的脚本模拟得到，非引用官方答案。`,content:String.raw`向一棵空 AVL 树依次插入关键字 30、20、40、10、25、22。插入 22 后，最先失衡的结点及其对应的调整类型分别是（　）。
+
+- **A．** 结点 20，RR 型
+- **B．** 结点 20，RL 型
+- **C．** 结点 30，LR 型
+- **D．** 结点 30，LL 型`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**C**（结点 30，LR 型）`,explanation:String.raw`插入过程（用 root(左,右) 记法表示树形）：
+
+1. 插 30 → 根 30。
+2. 插 20 → 30(20, —)。
+3. 插 40 → 30(20, 40)，平衡因子 $0$，平衡。
+4. 插 10 → 10 成为 20 的左孩子，20 的 BF $=1$，30 的 BF $=1$，仍平衡。
+5. 插 25 → 25 成为 20 的右孩子，20 的 BF $=0$，30 的 BF $=1$，仍平衡。
+6. 插 22 → 22 走到 25 的左孩子（30→20→25→22）。自下往上第一个失衡的是 **结点 30**（左子树高 3、右子树高 1，BF $=+2$）。插入位置在 30 的**左孩子 20 的右子树**中，即"先左后右"，故为 **LR 型**，需先对 20 左旋、再对 30 右旋。
+
+脚本从空树逐次插入并逐次打印，插入 22 前后的脚本验证结果（整理）：
+
+~~~
+插入 25: root=30 inorder=[10,20,25,30,40]
+插入 22: root=25 inorder=[10,20,22,25,30,40]
+唯一失衡事件: (插入22, 结点30, left heavy, LR)
+~~~
+
+调整后树形为 25(20(10,22), 30(—,40))，恢复平衡且满足中序 10,20,22,25,30,40。`,pitfalls:String.raw`1. 只检查插入点附近的 20、25，忘记继续向上回推检查 30（失衡点可以离插入点很远）。
+2. 把类型判反：失衡点是 30，但插入落在其左子树的右子树上，是 LR 而不是 LL。
+3. 用插入路径的第一步（30→20 向左）就直接判 LL，忽略后面还会向右拐。`}},{id:`mock-exam-2-ds-q05`,questionNumber:5,title:`稀疏有向图的存储结构选择`,type:`题目`,date:`2026-10-02`,chapter:`图 · 图的存储结构`,tags:[`邻接表`,`邻接矩阵`,`邻接多重表`,`稀疏图`],summary:`对有 n 个顶点、m 条边且稀疏的有向图，按"遍历某顶点所有出边并省空间"的要求选择存储结构。`,source:`2027 年 408 模拟试题（二）第 5 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由定义与空间/时间分析判定，非引用官方答案。`,content:String.raw`对于含 $n$ 个顶点、$m$ 条边且 $m$ 远小于 $n^2$ 的有向图，若主要操作是遍历某顶点的所有出边，并希望节省存储空间，则最适合的存储结构是（　）。
+
+- **A．** 邻接矩阵
+- **B．** 邻接表
+- **C．** 邻接多重表
+- **D．** 顺序表`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**B**（邻接表）`,explanation:String.raw`需同时满足"省空间"和"遍历某顶点所有出边"两个要求：
+
+- **省空间**：$m\ll n^2$ 时，邻接矩阵固定占 $O(n^2)$，浪费极大；邻接表只存 $n$ 个顶点表结点 + $m$ 条弧结点，占 $O(n+m)$。
+- **遍历出边**：邻接表中顶点 $v$ 的出边表恰好就是 $v$ 的全部出边，顺链扫描一次即 $O(\mathrm{outdeg}(v))$；邻接矩阵要遍历一整行，为 $O(n)$。
+- **邻接多重表**是为无向图设计的（同一条边只存一个结点、用两对指针挂到两个顶点上），本题是有向图，用它反而要额外区分方向。
+- **顺序表**根本没有"出边"的语义。
+
+两个指标上邻接表都最优，故选 B。`,pitfalls:String.raw`1. 见"遍历出边方便"就选邻接矩阵（出边在矩阵中是一行，看似直观，但代价是 $O(n)$ 且不省空间）。
+2. 误选邻接多重表：它是无向图的存储结构，对"有向图的出边"并不合适。
+3. 忽略题设的 $m\ll n^2$ 条件，认为邻接表只有在稀疏时才有优势——本题正是稀疏图。`}},{id:`mock-exam-2-ds-q06`,questionNumber:6,title:`由邻接矩阵的平方反推图并判定命题`,type:`题目`,date:`2026-10-02`,chapter:`图 · 邻接矩阵与路径计数`,tags:[`邻接矩阵`,`矩阵平方`,`路径计数`,`入度`],summary:`已知简单有向图邻接矩阵 A 的平方 B，从四条命题中选出一定正确的组合。`,source:`2027 年 408 模拟试题（二）第 6 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由穷举全部 2^9 个 0/1 矩阵求解 A 得到，非引用官方答案。`,content:String.raw`设简单有向图 $G$ 的邻接矩阵为 $A[3][3]$，$A[i][j]=0/1$ 表示图中不含有/含有从 $i$ 到 $j$ 的弧边（$i$ 与 $j$ 均从 1 开始编号）。令矩阵 $B=A^2$，即 $B=A*A$。$B$ 如下所示。以下说法一定正确的是（　）。
+
+$$
+B = \begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 0 \\
+0 & 1 & 2
+\end{bmatrix}
+$$
+
+- **Ⅰ．** 图 G 中存在从顶点 1 到顶点 3 的边
+- **Ⅱ．** 图 G 中不存在顶点 2 到顶点 3 的边
+- **Ⅲ．** 图 G 中从顶点 3 到顶点 2，途经两条边的路径有 1 条
+- **Ⅳ．** 图 G 中顶点 3 的入度为 2
+
+- **A．** Ⅰ
+- **B．** Ⅰ、Ⅱ
+- **C．** Ⅲ
+- **D．** Ⅰ、Ⅲ、Ⅳ`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**D**（Ⅰ、Ⅲ、Ⅳ）`,explanation:String.raw`关键性质：$B=A^2$ 中 $B[i][j]$ 恰是 $i\to j$ 的**长度为 2 的路径条数**。$B[3][2]=1$ 直接证实了 Ⅲ。要定出 A，可枚举全部 $2^9=512$ 个 0/1 矩阵，看哪些满足 $A^2=B$。
+
+脚本验证结果（整理）：
+
+~~~
+枚举 512 个 0/1 矩阵：A^2=B 的解个数 = 1（限制无自环的解个数 = 1）
+唯一解 A = [[0,1,1],[0,0,1],[1,1,0]]
+I : a13=1 -> True
+II: a23=1，'不存在' -> False
+III: B[3][2]=1 直证
+IV: 顶点3入度=列3和=2 -> True
+~~~
+
+即边集 $\{1\to2,\ 1\to3,\ 2\to3,\ 3\to1,\ 3\to2\}$。逐条判定：
+
+- Ⅰ：$a_{13}=1$ → 存在边 $1\to3$，真。
+- Ⅱ：$a_{23}=1$ → 顶点 2 到 3 有边，"不存在"为假。
+- Ⅲ：$B[3][2]=1$，且 A 中 $3\to2$ 的 2 步路径确为 $3\to1\to2$ 一条，真。
+- Ⅳ：顶点 3 的入度 = 第 3 列之和 $=a_{13}+a_{23}+a_{33}=1+1+0=2$，真。
+
+三条为真 → D。题目问"一定正确"，应选恰好列出全部真命题的那一项（C 只列了 Ⅲ，不完整）。`,pitfalls:String.raw`1. 把 $A^2$ 当成"A 自己与自己按位乘"，忽略它是矩阵乘法（含"路径计数"语义）。
+2. 由 $B[3][3]=2$ 直接推断"顶点 3 的出度为 2 或入度为 2"——$B[3][3]$ 是长度 2 的回路条数，不是度数。
+3. 把 Ⅱ 读反：$a_{23}=1$ 是"有边 $2\to3$"，而非"没有边"。
+4. 看到 C（Ⅲ）也是真命题就选 C：应按"选出全部真命题"的组合来选。`}},{id:`mock-exam-2-ds-q07`,questionNumber:7,title:`线性探测哈希表查找失败的平均查找长度`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 开放定址法与查找失败的 ASL`,tags:[`哈希表`,`线性探测`,`DELETED`,`查找失败ASL`],summary:`向长度 11 的哈希表依次插入四个关键字并逻辑删除其一，求查找失败的平均查找长度。`,source:`2027 年 408 模拟试题（二）第 7 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由按题述规则模拟脚本得到，非引用官方答案。`,content:String.raw`一个初始为空、长度为 11 的哈希表地址为 0～10，哈希函数为 $H(key)=key \bmod 11$，采用线性探测法处理冲突。依次插入关键字 12、23、34、45 后，逻辑删除关键字 23，即将其所在位置标记为 DELETED。查找过程中遇到 DELETED 时继续向后探测，遇到从未使用过的空位置时停止。若查找失败的关键字，其初始哈希地址在 0～10 上等概率分布，则查找失败的平均查找长度为（　）。
+
+- **A．** 15/11
+- **B．** 18/11
+- **C．** 21/11
+- **D．** 25/11`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p02.png`}],solution:{answer:String.raw`**C**（21/11）`,explanation:String.raw`四个关键字的 $H$ 值都是 $1$（$12,23,34,45 \bmod 11 = 1$），线性探测一路右移，插入后的表为：
+
+- 地址 0：空
+- 地址 1：12
+- 地址 2：DELETED（原 23）
+- 地址 3：34
+- 地址 4：45
+- 地址 5～10：空
+
+**删除 23 只是打标记（DELETED），探测链不能断**，所以从地址 1 出发的失败查找仍要穿过地址 2 的 DELETED 槽继续向右。按题述口径，每个被探查的槽都算一次比较（DELETED 槽也计一次），比较次数 = 走到第一个真正的空位为止经过的槽数：
+
+- 初始地址 0：地址 0 即空 → 1 次
+- 初始地址 1：1(12) → 2(DEL) → 3(34) → 4(45) → 5 空 → 5 次
+- 初始地址 2：2(DEL) → 3(34) → 4(45) → 5 空 → 4 次
+- 初始地址 3：3(34) → 4(45) → 5 空 → 3 次
+- 初始地址 4：4(45) → 5 空 → 2 次
+- 初始地址 5～10：本身即空 → 各 1 次，共 6 次
+
+$$
+\mathrm{ASL}_{fail}=\dfrac{1+5+4+3+2+1\times6}{11}=\dfrac{21}{11}.
+$$
+
+脚本验证结果（整理）：表 [空,12,DEL,34,45,空,空,空,空,空,空]；各起始地址比较次数 [1,5,4,3,2,1,1,1,1,1,1]；和 21。`,pitfalls:String.raw`1. 把 DELETED 当成空位（遇 DELETED 即停止）：从地址 1 出发只需 2 次比较，总和变成 $1+2+1+3+2+6=15$，得 15/11，会错选 A。
+2. 用"分母为关键字个数 4"——查找失败的初始地址在 0～10 上等概率，分母是 11。
+3. 漏掉"起始地址本身为空时也要算 1 次比较"，导致地址 0、5～10 计成 0 次。`}},{id:`mock-exam-2-ds-q08`,questionNumber:8,title:`哈夫曼树的WPL与指定叶子编码`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 哈夫曼树与编码`,tags:[`哈夫曼树`,`WPL`,`前缀编码`],summary:`由七个权值构造哈夫曼树，求带权路径长度 WPL 与权值 9 的叶结点编码。`,source:`2027 年 408 模拟试题（二）第 8 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由最小堆模拟合并构造哈夫曼树得到，非引用官方答案。`,content:String.raw`以权值 2、3、7、9、18、25、32 构造哈夫曼树。每次选择权值最小的两棵树合并，并规定权值较小的结点作为左孩子，左分支编码为 0，右分支编码为 1。该哈夫曼树的带权路径长度 WPL 以及权值为 9 的叶结点对应的编码分别为（　）。
+
+- **A．** 221，010
+- **B．** 230，010
+- **C．** 230，011
+- **D．** 239，010`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p03.png`}],solution:{answer:String.raw`**B**（230，010）`,explanation:String.raw`排序后权值为 $2,3,7,9,18,25,32$，每次取最小的两棵树合并（小者为左孩子）：
+
+1. $2+3=5$（左 2、右 3）
+2. $5+7=12$（左 5、右 7）
+3. $9+12=21$（左 9、右 12）
+4. $18+21=39$（左 18、右 21）
+5. $25+32=57$（左 25、右 32）
+6. $39+57=96$（左 39、右 57）
+
+**WPL = 所有非叶结点权值之和** $=5+12+21+39+57+96=230$。
+
+**权值 9 的编码**：从根 96 出发，$96\to39$ 走左（0），$39\to21$ 走右（1），$21\to9$ 走左（0）→ **010**。
+
+脚本验证结果（整理）：合并序列 [(2,3,5),(5,7,12),(9,12,21),(18,21,39),(25,32,57),(39,57,96)]；WPL = 230；编码 {2:01100, 3:01101, 7:0111, 9:010, 18:00, 25:10, 32:11}。另按叶子权值 × 编码长度校验：$2\cdot5+3\cdot5+7\cdot4+9\cdot3+18\cdot2+25\cdot2+32\cdot2=230$，两法一致。`,pitfalls:String.raw`1. WPL 误按"叶子权值 × 深度"逐项手数时数错深度，导致 221/239 之类。
+2. 编码方向搞反（忽略"权值较小的结点作为左孩子"，把 9 的父结点 21 当成右孩子一环，得 011）。
+3. 合并顺序选错（例如先把 7 与 9 合并），树形与 WPL 都会变——本题无相等权值，最小两棵是唯一的。`}},{id:`mock-exam-2-ds-q09`,questionNumber:9,title:`双向交替扫描快排的不稳定性判定`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 快速排序的稳定性`,tags:[`快速排序`,`稳定性`,`划分算法`],summary:`按给定的枢轴与双向交替扫描划分规则，找出能说明该快排不稳定的输入序列。`,source:`2027 年 408 模拟试题（二）第 9 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由严格按题干实现的模拟脚本得到，非引用官方答案。`,content:String.raw`对记录序列按关键字递增进行快速排序。每趟划分以当前子表的第一个记录为枢轴，并采用双向交替扫描法：右指针先向左寻找第一个关键字小于枢轴的记录，将其移至左端空位；左指针再向右寻找第一个关键字大于枢轴的记录，将其移至右端空位；重复上述过程，直至两个指针相遇，最后将枢轴放入相遇位置。下标 a、b 仅用于区分关键字相等的不同记录，不参与关键字比较。下列哪组输入能够说明上述快速排序是不稳定的（　）。
+
+- **A．** (1,2,3,4,5)
+- **B．** (1a,1b,3,2,4)
+- **C．** (2a,2b,3,1,4)
+- **D．** (2,4,3a,3b,1)`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p03.png`}],solution:{answer:String.raw`**C**`,explanation:String.raw`按题述算法逐组模拟（枢轴取子表首元素；右指针找 $<$ 枢轴的元素填左空位，左指针找 $>$ 枢轴的元素填右空位，**相等不移动**；指针相遇后放枢轴）：
+
+- **A** (1,2,3,4,5)：全不相同，无所谓稳定性。
+- **B** (1a,1b,3,2,4)：枢轴 1a，右指针找不到小于 1a 的元素，直接走到左端与 low 相遇，枢轴原位；1b 与枢轴相等被跳过。输出 (1a,1b,2,3,4)，1a 仍在 1b 前，稳定。
+- **C** (2a,2b,3,1,4)：枢轴 2a。右指针从右向左找到 1（$<2a$），移到下标 0；左指针从下标 1 向右，2b 与 2a 相等被跳过，遇到 3（$>2a$）移到下标 3；两指针相遇，放入枢轴 2a。输出 **(1,2b,2a,3,4)**——2b 跑到 2a 前面，相等记录相对次序被颠倒，**不稳定**。
+- **D** (2,4,3a,3b,1)：枢轴 2。右指针找到 1 移到左端，左指针找到 4 移到右端，相遇后放枢轴，输出 (1,2,3a,3b,4)，3a 仍在 3b 前，稳定。
+
+脚本验证结果（整理，按题干实现划分并做稳定性检查）：
+
+~~~
+A -> [1,2,3,4,5]  stable=True
+B -> [1a,1b,2,3,4]  stable=True
+C -> [1,2b,2a,3,4]  stable=False
+D -> [1,2,3a,3b,4]  stable=True
+不稳定选项 = ['C']
+~~~
+
+只有 C 破坏了相等记录的相对次序。`,pitfalls:String.raw`1. 误以为"枢轴是一对相等元素中的一个"就必然不稳定——B 里 1a 作枢轴却仍稳定，要看相等元素是否被跨过。
+2. 忘记"相等元素不移动"（比较条件带 $>$ / $<$），把 2b 也算一次搬移。
+3. 把 D 中 3a、3b 当成会被移动的元素——它们位于枢轴右侧且都大于枢轴，第一趟不会被搬动。`}},{id:`mock-exam-2-ds-q10`,questionNumber:10,title:`折半查找比较次数的最大与最小值`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 折半查找的比较次数`,tags:[`折半查找`,`判定树`,`比较次数`],summary:`长度为 1 000 000 的升序表用下取整 mid 折半查找，求成功查找比较次数的最大值与最小值。`,source:`2027 年 408 模拟试题（二）第 10 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由对全部 10^6 个下标逐个折半查找统计得到，非引用官方答案。`,content:String.raw`一个长度为 1 000 000 的升序顺序表采用折半查找，表中各关键字互不相同，下标从 0 开始，并取 $mid=\lfloor(low+high)/2\rfloor$。假定待查关键字一定存在于表中，且每访问一个表中元素并将其与待查关键字比较时，计为一次关键字比较。成功查找一个关键字所需比较次数的最大值和最小值分别为（　）。
+
+- **A．** 19，1
+- **B．** 20，1
+- **C．** 20，2
+- **D．** 21，1`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p03.png`}],solution:{answer:String.raw`**B**（20，1）`,explanation:String.raw`折半查找的比较次数就是该记录在**判定树**中的层数（根为第 1 层）。
+
+- **最小值**：待查关键字正好落在第一次访问的 $mid=\lfloor(0+999999)/2\rfloor=499999$ 处，只需 1 次比较 → 1。
+- **最大值**：判定树前 19 层最多容纳 $2^{19}-1=524287$ 个记录，装不下 $10^6$；前 20 层可容 $2^{20}-1=1048575\ge10^6$。故最大层数为 $\lceil\log_2(10^6+1)\rceil=20$ → 20。
+
+脚本对全部 $10^6$ 个下标逐一执行折半查找并统计，脚本验证结果（整理）：
+
+~~~
+最少比较次数 = 1   最多比较次数 = 20
+深度分布: (1,1),(2,2),(3,4) ... (19,262144),(20,475713)
+ceil(log2(1000001)) = 20
+第20层结点数 = 475713 = n - (2^19-1)
+~~~
+
+深度 $<20$ 的结点共 $2^{19}-1=524287$ 个，落在第 20 层的恰有 $1000000-524287=475713$ 个，与分布吻合。`,pitfalls:String.raw`1. 把最大值算成 $\lfloor\log_2 n\rfloor=19$：$2^{19}=524288<10^6$，19 层装不下，必须是 20。
+2. 认为最小值是 0 或 2：第一次访问就是一次比较；$mid$ 恰好命中时答案为 1 次。
+3. 用 1 开始的下标或 $mid=\lceil(low+high)/2\rceil$ 去算——本题明确下取整、下标从 0 开始，虽不改变本例最大/最小值，但会影响具体关键字的比较次数。`}},{id:`mock-exam-2-ds-q11`,questionNumber:11,title:`k路平衡归并的趟数与缓冲区数量`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 外部排序的 k 路平衡归并`,tags:[`外部排序`,`k路平衡归并`,`归并趟数`,`缓冲区`],summary:`对 100 个初始归并段做 k 路平衡归并要求趟数不超过 3，求所需最少缓冲区总数。`,source:`2027 年 408 模拟试题（二）第 11 题，扫描版试卷（无文字层）。原卷未印参考答案，答案由按 k 逐值模拟归并趟数得到，非引用官方答案。`,content:String.raw`外部排序有 100 个初始归并段，采用 $k$ 路平衡归并，要求归并趟数不超过 3。每一路需要 1 个输入缓冲区，另需 1 个输出缓冲区，则至少需要（　）个缓冲区。
+
+- **A．** 4
+- **B．** 5
+- **C．** 6
+- **D．** 7`,attachments:[{name:`查看原题截图`,path:`mock-exam-2/q-p03.png`}],solution:{answer:String.raw`**C**（6）`,explanation:String.raw`两步：
+
+1. **定 k**：$k$ 路平衡归并的趟数 $S=\lceil\log_k 100\rceil\le3$。
+   - $k=4$：$\log_4 100\approx3.32\Rightarrow S=4>3$，不行；
+   - $k=5$：$\log_5 100\approx2.86\Rightarrow S=3\le3$，可行。
+   最小的 $k$ 为 5。
+2. **算缓冲区**：每一路各需 1 个输入缓冲区（共 $k=5$ 个），另加 1 个输出缓冲区 → $5+1=6$。
+
+脚本对 $k=2\ldots8$ 逐个模拟"把当前归并段数除以 $k$ 向上取整"直到只剩 1 段，脚本验证结果（整理）：
+
+~~~
+k=2: 趟数=7  缓冲区=3  too many passes
+k=3: 趟数=5  缓冲区=4  too many passes
+k=4: 趟数=4  缓冲区=5  too many passes
+k=5: 趟数=3  缓冲区=6  OK
+k=6: 趟数=3  缓冲区=7  OK
+最小 k=5，缓冲区 6 => C
+~~~
+
+$k=4$ 需 4 趟（超限），$k=5$ 恰为 3 趟，取最小 $k=5$，缓冲区 $=k+1=6$。`,pitfalls:String.raw`1. 只算 $k$ 个输入缓冲区（5 个）而漏掉输出缓冲区，错选 B。
+2. 把 $k$ 判成 4（4 路归并 100 段需 $\lceil\log_4 100\rceil=4$ 趟，已超 3 趟）。
+3. 缓冲区总数误按记忆公式（如 $2k$ 或 $2k+1$）计算。`}}],km=[{id:`mock-exam-3-ds-q01`,questionNumber:1,title:`线性结构的存储方式`,type:`题目`,date:`2026-10-02`,chapter:`栈和队列 · 存储结构`,tags:[`循环队列`,`共享栈`,`静态链表`,`十字链表`],summary:`循环队列、共享栈、静态链表、稀疏矩阵十字链表四种存储方式的叙述，找出错误的一项。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。`,content:String.raw`下列关于线性结构存储方式的叙述中，错误的是（　）。
+
+- **A．** 循环队列采用“牺牲一个存储单元”法时，front=rear 表示队满
+- **B．** 共享栈的两个栈顶指针分别为 top1 和 top2，且分别从数组两端向中间增长时，top1+1=top2 表示栈满
+- **C．** 静态链表使用数组下标（游标）表示结点之间的链接关系
+- **D．** 稀疏矩阵的十字链表结点可同时链接同一行和同一列中的非零元素`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`}],solution:{answer:String.raw`**选 A。**`,explanation:String.raw`## 逐项判定
+
+- **A 错。** “牺牲一个存储单元”法下，数组长度记为 $M$，判空条件是 $front==rear$，判满条件是 $(rear+1)\bmod M==front$。A 却说 $front=rear$ 表示**队满**，把判空条件说成了判满条件，正好说反。
+- **B 对。** 共享栈的两个栈顶从数组两端向中间增长：初始化 $top1=-1$（左栈空）、$top2=M$（右栈空）。当两栈顶相邻、中间再无空位时栈满，即 $top1+1==top2$。
+- **C 对。** 静态链表把结点顺序存放在一维数组里，每个结点的 $next$ 域保存的是**后继结点的数组下标**（游标），而不是真实地址。
+- **D 对。** 十字链表的每个非零元素结点带两个指针域，同时挂在**行链表**和**列链表**上，这正是它能按行、按列高效遍历的原因。
+
+## 关于“front==rear”
+
+$front==rear$ 到底表示空还是满，取决于循环队列的**实现方案**：
+
+- **牺牲一个存储单元**：$front==rear$ 恒表示**队空**，队满用 $(rear+1)\bmod M==front$ 判定。
+- **另设 size 计数或 tag 标志**：才可能用 $front==rear$ 配合同一个标志位表示队满。
+
+题目已限定“牺牲一个存储单元”法，所以 A 必然错。记住：只有“另设标志/计数”时，$front==rear$ 才需要再分情况讨论。
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 按“牺牲一个单元”的循环队列（$M=5$）实跑，连续入队到满，原样输出：
+
+~~~text
+Q1 牺牲一个单元法 M=5: 入队到满后 front=0 rear=4
+   front==rear ? False   isEmpty=False  isFull=True
+   队满判据 (rear+1)%M==front : True
+   -> front=rear 表示【队空】而非队满 => 选项 A 是错的（题干问错误项）=> A
+~~~
+
+入满时 $front=0,\ rear=4$，此时 $front==rear$ 为 **False**、$isFull()$ 为 True，而 $(rear+1)\bmod 5==0==front$ 判满成立——直接证明 $front==rear$ 是判空而非判满。`,pitfalls:String.raw`1. 只背“front==rear 是空还是满”，不区分“牺牲单元”与“另设 size/flag”两种实现——只有牺牲单元法才用 $(rear+1)\bmod M==front$ 判满。
+2. 把共享栈的 $top1+1==top2$ 记成 $top1==top2$：前者表示两栈顶相邻（满），后者表示两栈顶指向同一格。
+3. 以为静态链表存的是结点地址——数组里只存下标。
+4. 只记十字链表“能省空间”，忘了它的两个指针域分别对应同行、同列，才能同时按行列链接。`}},{id:`mock-exam-3-ds-q02`,questionNumber:2,title:`栈与队列的性质判定`,type:`题目`,date:`2026-10-02`,chapter:`栈和队列 · 栈与队列性质`,tags:[`共享栈`,`BFS遍历`,`链队列`,`卡特兰数`],summary:`判断共享栈栈满条件、无向图不设访问标记的 BFS、带头结点链队列入队、合法出栈序列数四条叙述哪些正确。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。`,content:String.raw`下列关于栈与队列的叙述中，正确的是（　）。
+
+- **Ⅰ．** 共享栈初始时 top1=-1、top2=MaxSize，其栈满条件为 top1=top2
+- **Ⅱ．** 在无向迷宫图上进行 BFS 时不设置访问标记只会增加重复访问，不可能造成无限循环
+- **Ⅲ．** 带头结点的链队列中，front 指向头结点、rear 指向队尾结点，将结点 x 入队可执行 rear->next=x; x->next=NULL; rear=x
+- **Ⅳ．** n 个不同元素按固定次序入栈时，合法出栈序列数为 C(2n,n)/(n+1)
+
+- **A．** 仅Ⅰ、Ⅱ、Ⅲ
+- **B．** 仅Ⅰ、Ⅲ、Ⅳ
+- **C．** 仅Ⅲ、Ⅳ
+- **D．** Ⅰ、Ⅱ、Ⅲ、Ⅳ`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`}],solution:{answer:String.raw`**选 C。**`,explanation:String.raw`## 逐条判定
+
+- **Ⅰ 错。** 题设初始化下 $top1=-1$、$top2=MaxSize$，两栈顶相邻即满，栈满条件是 $top1+1==top2$。$top1==top2$ 表示两个栈顶指向同一格，在本初始化下不可能出现，也不是判满条件。
+- **Ⅱ 错。** 无向图中只要有一条边 $u\!-\!v$，就存在来回走的 2 步环 $u\to v\to u$。BFS 不设访问标记时，一个顶点出队后又把它已访问过的邻居重新入队：以最简单的两点一边为例，队首 $u$ 出队时把 $v$ 入队，$v$ 出队时又把 $u$ 入队，队列长度始终为 1、却永远不会变空，算法无法终止。所以“不可能造成无限循环”断言为假（“会增加重复访问”那半句虽对，但整句已被“不可能无限循环”否定）。
+- **Ⅲ 对。** 带头结点的链队列中 $front$ 恒指向头结点，空队时 $rear==front$。入队就是让队尾的 $next$ 指向 $x$、把 $x$ 的 $next$ 置空、再让 $rear$ 指向 $x$，与题述三行代码一致。
+- **Ⅳ 对。** $n$ 个元素按固定次序入栈，合法出栈序列数是第 $n$ 个卡特兰数
+
+$$
+C_n=\dfrac{1}{n+1}\dbinom{2n}{n},
+$$
+
+与题给表达式完全相同。
+
+仅 Ⅲ、Ⅳ 成立 → **C**。
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 实跑输出（Ⅱ 用三角形无向图 1-2、2-3、3-1，不设 visit；Ⅲ 按题述代码入队；Ⅳ 枚举全部入/出栈序列）：
+
+~~~text
+Q2-II 三角形无向图 BFS 不设 visit：200 步后队列长度 = 201（仍非空）
+   队列随步数线性增长 => 永不终止 => Ⅱ 的'不可能造成无限循环'为假
+Q2-III 带头结点链队依次入队 a,b,c -> 出队次序 ['a', 'b', 'c'] => Ⅲ 对
+Q2-IV 合法出栈序列数 vs Catalan C(2n,n)/(n+1):
+   n=1: 枚举=1  Catalan=1  相等=True
+   n=2: 枚举=2  Catalan=2  相等=True
+   n=3: 枚举=5  Catalan=5  相等=True
+   n=4: 枚举=14  Catalan=14  相等=True
+   n=5: 枚举=42  Catalan=42  相等=True
+   n=6: 枚举=132  Catalan=132  相等=True
+   n=7: 枚举=429  Catalan=429  相等=True
+   -> 仅 Ⅲ、Ⅳ 对 => C
+~~~
+
+Ⅱ 里三角形图每步恰好出队 1 个、入队 2 个（两个邻居都被重新入队），队列长度每步 $+1$；跑 200 步后仍有 201 个待处理顶点，队列非空即无法终止——200 步本身只是演示，真正的理由是“出队 1、入队 2”这一结构使队列恒不减少（两点一边时则是长度恒为 1、同样不为空）。Ⅳ 的枚举值 $1,2,5,14,42,132,429$ 全部等于对应卡特兰数。`,pitfalls:String.raw`1. 把 Ⅱ 当成“只是多访问几次”而判对——无向图不设访问标记是无终止循环，不是性能问题。
+2. 把 Ⅰ 的 $top1=top2$ 与“两栈顶相邻即满”混为一谈（相邻是 $top1+1=top2$）。
+3. 认为 Ⅲ 里的 $x\to next=NULL$ 多余——不置空，下次入队会把旧链带进来。
+4. 记不住卡特兰数而漏判 Ⅳ。`}},{id:`mock-exam-3-ds-q03`,questionNumber:3,title:`二叉树的空指针域与线索`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 线索二叉树`,tags:[`二叉树`,`空指针域`,`线索化`],summary:`含 n 个结点的二叉树共有 2n 个孩子指针域，其中可作为前驱/后继线索的空指针域有多少个。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本枚举复核，非官方答案。`,content:String.raw`一棵含n个结点的二叉树共有2n个孩子指针域，其中可用于建立前驱或后继线索的空指针域个数为（　）。
+
+- **A．** n+1
+- **B．** 3n-1
+- **C．** n-1
+- **D．** 与树的形态有关`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`}],solution:{answer:String.raw`**选 A。**`,explanation:String.raw`## 计数
+
+含 $n$ 个结点的二叉树一共给出 $2n$ 个孩子指针域（每个结点两个）。
+
+- 其中真正指向孩子的非空指针，恰好对应树中的边。一棵 $n$ 个结点的二叉树有 $n-1$ 条边，所以非空孩子指针共 $n-1$ 个。
+- 其余全部为空：
+
+$$
+2n-(n-1)=n+1.
+$$
+
+**空指针域个数恒为 $n+1$，与树的形态无关**。这 $n+1$ 个空域都是**可用于线索化**的域：建立前驱或后继线索时，正是这 $n+1$ 个空域提供落点。但要区分“可用空域数”与“实际非空线索数”：$n$ 个结点的二叉链表里，真正指向结点的非空线索只有 $n-1$ 条（每条树边对应一条线索）；不带头结点做中序遍历时，序列**首结点的左空域**与**末结点的右空域**没有前驱/后继可指，仍然保持为 NULL。
+
+## 另一种看法
+
+也可以用“边数恒为 $n-1$”直接推：结点总数 $n$，孩子指针非空数 = 边数 = $n-1$，故空指针数 $=2n-(n-1)=n+1$。所以 D“与形态有关”被直接否定。
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 枚举 $n=1\dots7$ 的全部二叉树形态，逐棵统计空孩子指针域个数，原样输出：
+
+~~~text
+Q3 n 结点二叉树空孩子指针域个数（枚举全部形态）
+   n=1: 形态数=1 空域取值集合={2}  n+1=2
+   n=2: 形态数=2 空域取值集合={3}  n+1=3
+   n=3: 形态数=5 空域取值集合={4}  n+1=4
+   n=4: 形态数=14 空域取值集合={5}  n+1=5
+   n=5: 形态数=42 空域取值集合={6}  n+1=6
+   n=6: 形态数=132 空域取值集合={7}  n+1=7
+   n=7: 形态数=429 空域取值集合={8}  n+1=8
+   -> 恒为 n+1 => A
+~~~
+
+每个 $n$ 下“空域取值集合”都是单元素集合，且恰好等于 $n+1$，直接否证选项 D。`,pitfalls:String.raw`1. 选 D：以为“树越高空指针越多”——空指针数 $n+1$ 与形态无关（由边数恒为 $n-1$ 即可看出）。
+2. 把 $2n$ 里的非空数记成 $n$（把每条边的两端各算一次），得 $2n-n=n$。
+3. 混淆“可用于线索化的空域数（$n+1$）”与“实际指向结点的非空线索数（$n-1$）”：$n+1$ 是空域总数，而中序序列首结点的左域、末结点的右域等无法指向结点的域仍留空，真正挂上线索的只有 $n-1$ 条。`}},{id:`mock-exam-3-ds-q04`,questionNumber:4,title:`由中序与后序重建二叉树`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 遍历与重建`,tags:[`中序遍历`,`后序遍历`,`二叉树重建`],summary:`已知中序 DBEAFC、后序 DEBFCA，判断关于该二叉树的四种说法哪一项正确。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本重建复核，非官方答案。`,content:String.raw`已知一棵二叉树的中序遍历为DBEAFC，后序遍历为DEBFCA，下列说法中正确的是（　）。
+
+- **A．** 根节点的左子树高度为 4
+- **B．** 根节点的右子树的根为 F
+- **C．** 无法唯一确定前序遍历
+- **D．** 该二叉树中，F是C的左孩子且C无右子树`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`}],solution:{answer:String.raw`**选 D。**`,explanation:String.raw`## 1. 先定根
+
+后序遍历的**最后一个结点是整棵树的根**：后序 DEBFCA 的末位为 $A$，故根是 $A$。
+
+在中序 DBEAFC 中找到 $A$，它把中序切成两段：
+
+- 左子树中序 = DBE
+- 右子树中序 = FC
+
+后序相应切分：后序去掉末位 $A$ 得 DEBFC，
+
+- 左子树后序 = DEB（对应左子树 $3$ 个结点）
+- 右子树后序 = FC（对应右子树 $2$ 个结点）
+
+## 2. 递归重建
+
+- **左子树**：后序 DEB 末位 $B$ 是根；中序 DBE 中 $B$ 左边是 D、右边是 E，故左子树为 $B(D,E)$。
+- **右子树**：后序 FC 末位 $C$ 是根；中序 FC 中 $C$ 左边是 F、右边为空，故右子树为 $C(F,\varnothing)$。
+
+整棵树：
+
+~~~binary
+A
+  L: B
+    L: D
+    R: E
+  R: C
+    L: F
+~~~
+
+前序遍历为 $ABDECF$。
+
+## 3. 逐项判定
+
+- **A 错。** 根左子树 $B(D,E)$ 只有两层：按层数高度为 2、按边数为 1，无论如何都不是 4。
+- **B 错。** 根的右子树的根是 $C$，$F$ 只是 $C$ 的左孩子。
+- **C 错。** 中序 + 后序可**唯一**确定二叉树，前序唯一为 $ABDECF$。
+- **D 对。** $C$ 的左孩子是 $F$，$C$ 无右子树。
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 由中序/后序递归重建并回代验证，原样输出：
+
+~~~text
+Q4 重建树 = ('A', ('B', ('D', None, None), ('E', None, None)), ('C', ('F', None, None), None))
+   前序=ABDECF 中序=DBEAFC 后序=DEBFCA
+   A 根左子树高度(按层)=2 / (按边)=1 -> '4' 假
+   B 根右子树的根 = C -> 'F' 假
+   C 前序唯一确定 = ABDECF -> '无法唯一确定' 假
+   D 根右孩子=C 其左=F 其右=None -> D 真
+   -> D
+~~~
+
+重建出的树回代得到的中序 DBEAFC、后序 DEBFCA 与原题完全一致，自洽性检查通过。`,pitfalls:String.raw`1. 选项 A 的“高度”定义：按结点层数是 2、按边数是 1，两种定义都不是 4。
+2. 把“右子树的根”与“右孩子的孩子”混淆——$C$ 是根，$F$ 是 $C$ 的左孩子。
+3. 误以为“中序 + 后序不能唯一确定二叉树”（不能唯一确定的是**前序 + 后序**）。
+4. 重建时把后序左子树的切片写错（左子树应取后序前 $k$ 个，右子树取中间到倒数第二，末位单独作根）。`}},{id:`mock-exam-3-ds-q05`,questionNumber:5,title:`生成森林的边数`,type:`题目`,date:`2026-10-02`,chapter:`图 · 生成树与生成森林`,tags:[`生成森林`,`连通分量`,`无向图`],summary:`无向图有 8 个顶点、3 个连通分量，其任意一棵生成森林含多少条边。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本枚举复核，非官方答案。`,content:String.raw`某无向图共有8个顶点和3个连通分量，则该图的任意一棵生成森林所含边数为（　）。
+
+- **A．** 4
+- **B．** 5
+- **C．** 6
+- **D．** 7`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`}],solution:{answer:String.raw`**选 B。**`,explanation:String.raw`## 公式推导
+
+生成森林的做法是：对每个连通分量各取一棵生成树，合起来即为生成森林。
+
+设图有 $k$ 个连通分量，第 $i$ 个分量有 $n_i$ 个顶点，则它的生成树有 $n_i-1$ 条边。全部相加：
+
+$$
+\sum_{i=1}^{k}(n_i-1)=\Big(\sum_{i=1}^{k}n_i\Big)-k=n-k .
+$$
+
+代入 $n=8$、$k=3$：
+
+$$
+8-3=5 \text{ 条边}.
+$$
+
+**结论只与 $n$、$k$ 有关，与各分量的顶点数如何分配无关。**
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 按公式计算，并在 $8=4+2+2$ 的划分下逐分量枚举生成树，原样输出：
+
+~~~text
+Q5 n=8 k=3 -> 边数 = n-k = 5 => B
+   分量 [0, 1, 2, 3]: 生成树 16 棵，每棵边数 3
+   分量 [4, 5]: 生成树 1 棵，每棵边数 1
+   分量 [6, 7]: 生成树 1 棵，每棵边数 1
+   生成森林总数 = 16，每棵边数 = 5
+~~~
+
+三个分量的生成树边数分别为 $3,1,1$，合计恒为 $5$，与 $n-k=5$ 一致。`,pitfalls:String.raw`1. 用“连通图生成树 $n-1$ 条边”直接答 7（忽略 3 个分量各少一条边）。
+2. 把边数记成 $n+k=11$ 或 $n-2k$ 等。
+3. 以为答案取决于各分量的顶点数分配——实际只与 $n$、$k$ 有关。`}},{id:`mock-exam-3-ds-q06`,questionNumber:6,title:`Dijkstra 单步更新`,type:`题目`,date:`2026-10-02`,chapter:`图 · 最短路径`,tags:[`Dijkstra`,`最短路径`,`带权有向图`],summary:`6 个顶点的带权有向图，以顶点 1 为源点执行 Dijkstra，选中顶点 5 并更新相邻顶点后，顶点 6 的 dist 值。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。图中边权经像素级复核确认。`,content:String.raw`6. 6.给定带权有向图如下。以顶点1为源点执行Dijkstra算法；每次从尚未确定的顶点中选择dist最小者，若有多个则选择编号最小者。选中顶点5后，考察从顶点5出发的所有边，并据此更新其相邻顶点的dist值。完成上述更新后，顶点6的dist值为（　）。
+
+（原卷此处题号“6.”重复印刷一次，照录。）
+
+![第6题带权有向图](mock-exam-3/q6.png)
+
+边权：1→2 为 2，1→4 为 1，1→3 为 3；3→5 为 2，4→5 为 5，2→5 为 4；3→6 为 4，4→6 为 6，5→6 为 1。
+
+- **A．** 5
+- **B．** 6
+- **C．** 7
+- **D．** 9`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`}],solution:{answer:String.raw`**选 B。**`,explanation:String.raw`## 图上九条有向边
+
+按图读出的边与权值（像素级复核确认）：
+
+- $1\to2$ 权 2，$1\to4$ 权 1，$1\to3$ 权 3
+- $3\to5$ 权 2，$4\to5$ 权 5，$2\to5$ 权 4
+- $3\to6$ 权 4，$4\to6$ 权 6，$5\to6$ 权 1
+
+## 逐步执行
+
+初始化 $dist[1]=0$，其余 $dist[\cdot]=\infty$。每次在未确定顶点中取 $dist$ 最小者，并列时取编号小者。
+
+- **第 1 步 选 $1(0)$**：松弛 $1\to2=2$、$1\to3=3$、$1\to4=1$ → $dist[2]=2,\ dist[3]=3,\ dist[4]=1$。
+- **第 2 步 选 $4(1)$**（当前最小）：松弛 $4\to5=1+5=6$、$4\to6=1+6=7$ → $dist[5]=6,\ dist[6]=7$。
+- **第 3 步 选 $2(2)$**：松弛 $2\to5=2+4=6$，不小于当前 $dist[5]=6$，不改。
+- **第 4 步 选 $3(3)$**：松弛 $3\to5=3+2=5<6$ → $dist[5]=5$；$3\to6=3+4=7$ 不小于 7，不改。
+- **第 5 步 选 $5(5)$**：松弛 $5\to6=5+1=6<7$ → **$dist[6]=6$**。
+- **第 6 步 选 $6(6)$**。
+
+关键在于第 4 步：此时剩余顶点中 $dist[3]=3$ 最小（$5$ 还是 6、$6$ 还是 7），所以先选 3，由 $3\to5$ 把 $dist[5]$ 改小为 5；第 5 步才轮到 5，用 $5\to6$ 把 $dist[6]$ 从 7 改小为 6。
+
+最终 $dist=\{0,2,3,1,5,6\}$，$dist[6]=6$ → **B**。
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 严格实现 Dijkstra（含“编号最小”打破并列），脚本输出节选整理（仅保留本题判定相关的行，松弛行按原值列出）：
+
+~~~text
+Q6 Dijkstra 源点 1（边表：1→2:2, 1→4:1, 1→3:3, 3→5:2, 4→5:5, 3→6:4, 4→6:6, 2→5:4, 5→6:1）
+     relax 4->6 w=6 -> dist[6]=7
+     relax 5->6 w=1 -> dist[6]=6
+   选中顺序 [(1, 0), (4, 1), (2, 2), (3, 3), (5, 5), (6, 6)]
+   最终 dist = [0, 2, 3, 1, 5, 6]
+   dist[6] = 6 => B
+~~~`,pitfalls:String.raw`1. 只看 $1\to4\to6$（$1+6=7$）或 $1\to3\to6$（$3+4=7$），漏掉 $1\to3\to5\to6=3+2+1=6$。
+2. 第 4 步误选顶点 5（此时 $dist[5]=6>dist[3]=3$，不满足“选 dist 最小者”），于是漏掉 $3\to5$ 的改小，最终得 7。
+3. 忘记松弛只在更小时生效：$2\to5$（$2+4=6$）与 $4\to5$（$1+5=6$）都无法把 $dist[5]$ 降到 5 以下。
+4. 完全忘记“并列取编号最小者”的规则。本题各次被选顶点的 $dist$ 都是唯一的（如第 2 步 $dist[4]=1$、第 4 步 $dist[3]=3$），该规则并未被触发；但它仍是算法的一部分，遇到并列时必须按编号取小。`}},{id:`mock-exam-3-ds-q07`,questionNumber:7,title:`Kruskal 与 Prim 的区别`,type:`题目`,date:`2026-10-02`,chapter:`图 · 最小生成树`,tags:[`Kruskal`,`Prim`,`最小生成树`],summary:`判断关于 Kruskal 与 Prim 两种最小生成树算法主要区别的四种说法哪一项正确。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1～2 页（第 1 页共 11 页、第 2 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导，非官方答案。`,content:String.raw`在Kruskal算法与Prim算法中，二者的主要区别是（　）。
+
+- **A．** Kruskal 基于顶点扩展，Prim 基于边扩展
+- **B．** Kruskal 每次选取当前权值最小的边，无须判断加入该边是否形成回路
+- **C．** Kruskal 适合稠密图，Prim 适合稀疏图
+- **D．** Kruskal 按权值从小到大考察边并避免成环，Prim 每次选取连接当前生成树与树外顶点的最小权值边`,attachments:[{name:`查看原卷截图（第 1 页）`,path:`mock-exam-3/page1.png`},{name:`查看原卷截图（第 2 页，含 B～D 选项）`,path:`mock-exam-3/page2.png`}],solution:{answer:String.raw`**选 D。**`,explanation:String.raw`## 两种算法的机制
+
+- **Kruskal（按边扩展，又称“加边法”）**：把所有边按权值**从小到大**排序，依次考察；若当前边两端点不属于同一连通分量（加入后**不成环**）就选入，否则丢弃。用并查集判环，适合**稀疏图**，复杂度 $O(e\log e)$。
+- **Prim（按顶点扩展，又称“加点法”）**：从任一顶点出发，每次从“一端在生成树内、另一端在树外”的割边中选权值最小者，把对应树外顶点并入。适合**稠密图**，邻接矩阵实现复杂度 $O(n^2)$，与边数无关。
+
+## 逐项判定
+
+- **A 错。** 说反了：Kruskal 按边、Prim 按顶点扩展。
+- **B 错。** Kruskal **必须**判断是否成环（否则会选出回路），这是它的关键步骤。
+- **C 错。** 说反了：Kruskal 适合稀疏图，Prim 适合稠密图。
+- **D 对。** 两句话分别准确描述了 Kruskal 与 Prim 的取舍方式（Kruskal 排序后考察边并避免成环；Prim 取跨越当前割的最小边）。
+
+概念题，由定义与教材复杂度结论直接判定。`,pitfalls:String.raw`1. 把“适合稠密/稀疏”记反：Prim 在稠密图上 $O(n^2)$ 优于 Kruskal 的 $O(e\log e)$，故 **Prim 稠密、Kruskal 稀疏**。
+2. 认为 Kruskal 不需要判环——它靠并查集判环。
+3. 把“每次取最小边”当成 Prim——Prim 取的是**跨越当前割**的最小边，不是全图最小边。`}},{id:`mock-exam-3-ds-q08`,questionNumber:8,title:`AVL 插入与平衡因子`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 平衡二叉树`,tags:[`AVL树`,`平衡因子`,`旋转`],summary:`向空平衡二叉树依次插入 2,3,4,7,5,8，求形成树中平衡因子为 0 的非叶结点个数。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 2 页（第 2 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。`,content:String.raw`向一棵空的平衡二叉树中依次插入2, 3, 4, 7, 5, 8，形成的二叉树中平衡因子为0的非叶节点个数为（　）。
+
+- **A．** 0
+- **B．** 1
+- **C．** 2
+- **D．** 3`,attachments:[{name:`查看原卷截图（第 2 页）`,path:`mock-exam-3/page2.png`}],solution:{answer:String.raw`**选 C。**`,explanation:String.raw`## 逐次插入
+
+平衡因子 $BF=$ 左子树高 $-$ 右子树高（按边数计，叶结点 $BF=0$）。
+
+- 插 2：2。
+- 插 3：2(–,3)。
+- 插 4：结点 2 失衡（$BF=-2$，RR 型）→ 对 2 左旋 → 3(2,4)。
+- 插 7：3(2,4(–,7))，未失衡。
+- 插 5：结点 4 失衡（$BF=-2$，RL 型）→ 先对 7 右旋、再对 4 左旋 → 3(2,5(4,7))。
+- 插 8：结点 3 失衡（$BF=-2$，RR 型）→ 对 3 左旋 → 5(3(2,4),7(–,8))。
+
+最终树：
+
+~~~binary
+5
+  L: 3
+    L: 2
+    R: 4
+  R: 7
+    R: 8
+~~~
+
+## 统计非叶结点
+
+非叶结点为 $5,3,7$：
+
+- 结点 $3$：左子树 $\{2\}$ 高 1（层）/0（边），右子树 $\{4\}$ 高 1/0 → 平衡 → $BF=0$ ✔
+- 结点 $7$：左子树空、右子树 $\{8\}$ → $BF=-1$ ✘
+- 结点 $5$：左子树 $3(2,4)$ 与右子树 $7(\varnothing,8)$ 等高 → $BF=0$ ✔
+
+平衡因子为 0 的非叶结点是 **3 和 5，共 2 个** → **C**。
+
+（三个叶结点 $2,4,8$ 的 $BF$ 也都是 0，但题目限定“**非叶**节点”，不计入。）
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 从空树依次插入并记录旋转事件、统计非叶结点 $BF$，原样输出：
+
+~~~text
+Q8 AVL 依次插入 2,3,4,7,5,8
+   插 2: 2(.,.)  events=None
+   插 3: 2(.,3(.,.))  events=None
+   插 4: 3(2(.,.),4(.,.))  events=('RR', 2)
+   插 7: 3(2(.,.),4(.,7(.,.)))  events=('RR', 2)
+   插 5: 3(2(.,.),5(4(.,.),7(.,.)))  events=('RL', 4)
+   插 8: 5(3(2(.,.),4(.,.)),7(.,8(.,.)))  events=('RR', 3)
+   旋转事件=[('RR', 2), ('RL', 4), ('RR', 3)]
+   非叶结点(BF)=[(5, 0), (3, 0), (7, -1)]  BF==0 的个数=2
+   -> C
+~~~
+
+三次旋转依次为“对 2 的 RR”“对 4 的 RL”“对 3 的 RR”，非叶结点 $BF$ 列表为 $(5,0),(3,0),(7,-1)$。`,pitfalls:String.raw`1. 把三个叶子（$2,4,8$，$BF$ 均为 0）也数进去，误得 5 或选 D。
+2. 插入 5 时只做单旋：结点 4 的失衡属 RL 型（在右孩子的左子树插入），必须**先右旋 7、再左旋 4** 两步。
+3. 插入 8 后用“结点 4 或 7 失衡”来判断——真正的最高失衡点是 3，旋转后根变为 5。
+4. 平衡因子按“结点数”而非“子树高度差”计算。`}},{id:`mock-exam-3-ds-q09`,questionNumber:9,title:`败者树的作用`,type:`题目`,date:`2026-10-02`,chapter:`外部排序 · 败者树`,tags:[`败者树`,`k路归并`,`外部排序`],summary:`判断关于 k 路归并中败者树主要作用及相关性质的说法哪一项正确。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 2 页（第 2 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导，非官方答案。`,content:String.raw`在k路归并中使用败者树的主要作用是（　）。
+
+- **A．** 内部结点记录比较中的败者，更新一个归并段的当前元素后可在 O(log k)时间内选出新的最小元素
+- **B．** 每输出一个元素都重新对 k 个归并段进行完整排序
+- **C．** 把选择最小元素所需的辅助空间降为 O(1)
+- **D．** 仅适用于二路归并，不适用于多路归并`,attachments:[{name:`查看原卷截图（第 2 页）`,path:`mock-exam-3/page2.png`}],solution:{answer:String.raw`**选 A。**`,explanation:String.raw`## 败者树的结构与价值
+
+败者树是一棵**完全二叉树**：$k$ 个归并段的当前元素放在 $k$ 个**叶结点**上，内部结点保存**比较中的败者**（胜者继续向上比较），树根之上另设一个结点保存最终**胜者**（全局最小元素）。
+
+其价值在于**增量更新**：每当某个归并段的最小元素被输出、该段换上下一个元素时，只需从这个叶结点出发沿路径向上重赛，比较次数至多为树高 $\lceil\log_2 k\rceil$（$k$ 非 2 的幂时个别叶结点路径略短），即 $O(\log k)$，就能得到新的全局最小；而朴素做法每输出一个元素都要在 $k$ 个元素间比 $k-1$ 次。
+
+## 逐项判定
+
+- **A 对。** 准确描述了“内部结点存败者 + 单元素更新后 $O(\log k)$ 选出新最小”两点。
+- **B 错。** 败者树的作用恰恰是**避免**每次输出都重新比较/排序。
+- **C 错。** 败者树需要 $O(k)$ 个内部结点（辅助空间 $O(k)$），并非 $O(1)$；它省的是**时间**不是空间。
+- **D 错。** 败者树正是为**多路归并**（$k\ge2$，含 $k>2$）设计的，$k$ 路皆可用。
+
+概念题，由败者树的定义与代价分析直接判定：叶结点为 $k$ 个当前元素，内部结点存败者，更新一段后沿一条根路径重赛即可得新最小值，单次代价 $O(\log k)$，辅助空间 $O(k)$。`,pitfalls:String.raw`1. 把败者树与“堆”混为一谈，以为它省的是空间（C）。
+2. 记成“内部结点记录胜者”——内部结点记的是**败者**，只有根上方的输出结点记胜者。
+3. 误以为只适用二路归并（D）——败者树的意义就在于 $k$ 较大时把“每次选最小”从 $O(k)$ 降到 $O(\log k)$。`}},{id:`mock-exam-3-ds-q10`,questionNumber:10,title:`多关键字稳定排序次序`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 多关键字排序`,tags:[`多关键字排序`,`低位优先`,`稳定排序`],summary:`按“总分、数学、语文、英语”优先级降序排序，每趟都用稳定排序，应如何安排关键字次序。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 2 页（第 2 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。`,content:String.raw`现按“总分、数学、语文、英语”的优先级对学生成绩降序排序，即高优先级关键字相同时才比较下一关键字。若每一趟都采用稳定排序，则应按怎样的关键字次序依次排序（　）。
+
+- **A．** 总分→数学→语文→英语
+- **B．** 英语→语文→数学→总分
+- **C．** 数学→语文→英语→总分
+- **D．** 英语→总分→语文→数学`,attachments:[{name:`查看原卷截图（第 2 页）`,path:`mock-exam-3/page2.png`}],solution:{answer:String.raw`**选 B。**`,explanation:String.raw`## 低位优先（LSD）原则
+
+要让“高优先级关键字相同时才比较下一关键字”成立，必须**从优先级最低的关键字排到最高**，且每一趟都必须是**稳定**排序。
+
+理由是：稳定排序保证“已按低优先级关键字排好的相对次序”不会被其后按更高优先级关键字排序时打乱——即高优先级相等的记录，其内部次序正是上一趟（更低优先级）排出来的结果。从最低位依次排到最高位后，整体结果等价于一次多关键字比较。
+
+本题优先级从高到低为 总分 > 数学 > 语文 > 英语，故排序次序应为：
+
+$$
+\text{英语}\to\text{语文}\to\text{数学}\to\text{总分}.
+$$
+
+→ **B**。
+
+## 脚本实证
+
+.cache/crosscheck/verify_juan3.py 用 4 条示例记录，依次按“英语→语文→数学→总分”做**稳定**排序，并与一次性四级降序比较，原样输出：
+
+~~~text
+Q10 按 英语 稳定降序: ['s2', 's3', 's1', 's4']
+Q10 按 语文 稳定降序: ['s2', 's3', 's1', 's4']
+Q10 按 数学 稳定降序: ['s4', 's3', 's2', 's1']
+Q10 按 总分 稳定降序: ['s3', 's2', 's1', 's4']
+   一次多关键字排序 = ['s3', 's2', 's1', 's4']  相同=True
+   -> 英语→语文→数学→总分 => B
+~~~
+
+四趟稳定排序的最终次序 s3,s2,s1,s4 与“直接按 (总分,数学,语文,英语) 四级降序”一次比较完全一致（脚本报告 相同=True）。`,pitfalls:String.raw`1. 按优先级从高到低对全体记录逐趟排序（A）——在一趟排完整个序列、且每趟稳定排序的设定下，后面更低位关键字的排序会打乱前面高优先级的次序，因而错。（真正的 MSD 高位优先基数排序是对子序列递归分组排序，并不把全体记录按高位到低位逐趟重排，那是另一种合法算法，不能一概判错。）
+2. 选“逆序但总分位置错”的 D（英语→总分→语文→数学）：总分是**最高**优先级，必须**最后**排。
+3. 忽略“每趟必须稳定”这一前提：中间若用了不稳定排序，即便次序正确也可能出错。
+4. 误以为“降序”要把排序次序也倒过来——降序只影响每趟内部的比较方向（从大到小），不影响“低优先级先排”的顺序。`}},{id:`mock-exam-3-ds-q11`,questionNumber:11,title:`Top-n 小根堆的时间复杂度`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 堆与 Top-n`,tags:[`堆`,`Top-n`,`时间复杂度`],summary:`从 m 个商品中选出相关度最高的 n 个（n 远小于 m），扫描全部商品并维护大小为 n 的小根堆，求时间复杂度。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 2 页（第 2 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。`,content:String.raw`有m个商品，需要选出相关度最高的n个商品（n远小于m）。若扫描全部商品并维护一个大小为n的小根堆，则时间复杂度为（　）。
+
+- **A．** O(m log n)
+- **B．** O(n log m)
+- **C．** O(m log m)
+- **D．** O(m+n)`,attachments:[{name:`查看原卷截图（第 2 页）`,path:`mock-exam-3/page2.png`}],solution:{answer:String.raw`**选 A。**`,explanation:String.raw`## Top-n 做法
+
+维护一个大小为 $n$ 的**小根堆**，堆顶是当前已选出的 $n$ 个商品里相关度**最低**的那个。
+
+- 顺序扫描 $m$ 个商品，每个商品做一次判断；若它比堆顶更相关，就用堆替换（弹堆顶 + 插入自身），一次堆操作 $O(\log n)$；否则直接丢弃（$O(1)$）。
+- 总代价 = $m$ 次“读 + 判断”（$O(m)$）+ 至多 $m$ 次堆操作（每次 $O(\log n)$）= $O(m\log n)$。
+- 之所以用小根堆而非大根堆：堆顶放“最差的那个”，新元素一来就能 $O(1)$ 与它比较并决定是否替换，从而只扫一遍。
+
+本题只需在扫描时维护大小为 $n$ 的小根堆（$O(m\log n)$），不必对全部 $m$ 个商品做 $O(m\log m)$ 的比较排序；这正是 Top-n 用堆的价值。
+
+## 逐项排除
+
+- **A 对。** $m$ 次扫描循环，每次至多一次 $O(\log n)$ 的堆调整。
+- **B 错。** 把 $m$ 和 $n$ 的角色对调了。
+- **C 错。** $O(m\log m)$ 是把全部 $m$ 个元素做堆排序/比较排序的代价，题设已限定堆大小为 $n$。
+- **D 错。** 漏掉每次堆替换的对数代价。
+
+## 脚本实证
+
+本次独立模拟核验（独立重写的 Top-n 程序，非旧 verify_juan3 脚本）：用一个 9 元素受控输入核对正确性，再跑三组大规模数据统计替换次数。替换条件是“新元素大于堆顶（小根堆的最小者）”时替换。
+
+~~~text
+input=[4,9,1,7,3,8,2,6,5], n=3
+扫描 9 项：前 3 项入堆，其余大于堆顶才替换，替换 2 次
+入选 = [7, 8, 9]  == sorted(input)[-3:]  （断言通过）
+~~~
+
+~~~text
+m=10000    n=10:  扫描 10000，入堆 10，   替换 72，  总更新 82
+m=100000   n=100: 扫描 100000，入堆 100， 替换 649， 总更新 749
+m=1000000  n=1000:扫描 1000000，入堆 1000，替换 6937，总更新 7937
+~~~
+
+替换次数取决于数据分布，但**上界是每个元素至多一次**；每次替换（弹堆顶 + 压入）代价 $O(\log n)$，加上 $m$ 次 $O(1)$ 的扫描判断，总量级 $O(m\log n)$，与 A 一致。
+
+**说明：** 旧 verify_juan3.py 的 Q11 段替换方向写反（按 $x<heap[0]$ 替换，且把“读 + 比较”也计入“堆操作”），该输出已弃用；脚本其后已改为 $x>heap[0]$ 并分别统计入堆/替换，修正后输出与上表一致。上表为独立重写的模拟结果，两项互相印证。`,pitfalls:String.raw`1. 选 C（$O(m\log m)$）：那是把全部 $m$ 个元素做堆排序/比较排序的代价。
+2. 选 B（$O(n\log m)$）：把 $m$ 和 $n$ 的角色对调。
+3. 选 D（$O(m+n)$）：漏掉每次堆替换的 $O(\log n)$。
+4. 误用**大**根堆：大根堆堆顶最大，无法 $O(1)$ 判断“新元素是否该挤进前 $n$”。`}}],Am=[{id:`mock-exam-4-ds-q01`,questionNumber:1,title:`数据结构应用特性判断`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 数据结构与算法的应用`,tags:[`栈与函数调用`,`BFS队列`,`哈希表装填因子`,`线索二叉树`],summary:`判断关于栈、BFS 队列、哈希表装填因子与线索二叉树的四条应用特性陈述中，哪些正确。`,source:`题目来自用户提供的「模拟试题（四）」扫描件（数据结构第 1～11 题）；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。`,content:String.raw`以下关于数据结构应用特性的描述中，正确的是（　）。
+
+- Ⅰ．在操作系统函数调用机制中，栈用于实现函数递归调用时局部变量、返回地址等信息的顺序存取与管理，遵循后进先出原则
+- Ⅱ．BFS执行过程中，队列用于保存已经被发现、但其邻接点尚未全部检查的顶点，使顶点按发现的先后次序接受扩展，从而实现逐层遍历
+- Ⅲ．哈希表的装填因子越大，哈希表空间利用率越高，但空闲位置越少，元素映射到相同哈希地址引发冲突的概率也越高
+- Ⅳ．线索二叉树通过线索指针直接指向前驱或后继节点，遍历过程中无需额外的访问标记数组来记录节点是否已访问，可直接利用线索实现高效遍历
+
+- A．Ⅰ、Ⅱ、Ⅲ
+- B．Ⅰ、Ⅲ、Ⅳ
+- C．Ⅱ、Ⅲ、Ⅳ
+- D．Ⅰ、Ⅱ、Ⅲ、Ⅳ`,attachments:[{name:`查看原题截图（第 1 页）`,path:`mock-exam-4/page1.png`}],solution:{answer:String.raw`**选 D：Ⅰ、Ⅱ、Ⅲ、Ⅳ 全部正确。** 四项陈述逐条对照教材结论皆为真，没有可判错的定义性错误。`,explanation:String.raw`## 逐条判定
+
+- **Ⅰ 正确。** 函数（含递归）调用时，系统用**栈**保存调用返回地址、参数与局部变量；栈是后进先出（LIFO）结构，递归返回次序与调用次序相反，正由 LIFO 保证。
+
+- **Ⅱ 正确。** BFS 中队列存放“已发现但其邻接点尚未全部检查（尚未扩展）”的顶点；入队按发现次序、出队即扩展，从而保证先发现的顶点先扩展，实现逐层遍历。这正是 BFS 队列的标准语义。
+
+- **Ⅲ 正确。** 装填因子 $\alpha=\dfrac{n}{m}$（$n$ 为已存元素数、$m$ 为表长）。$\alpha$ 越大，表内空闲位置越少、空间利用率越高。在表长与哈希方法固定的前提下，已存元素越多、被占用的位置越多，新元素按同一哈希方法落到已占位置上的机会就越大，冲突可能性与查找时的探查链长度都随之上升。
+
+- **Ⅳ 正确。** 中序线索化后，原本为空的左、右指针域被改写为指向前驱、后继的线索；遍历时顺线索即可找到后继，既不需要递归栈，也不需要“是否已访问”的标记数组。线索本身携带了前驱、后继信息，等价于把访问顺序固化在指针里。
+
+四项均为正确表述，故选 **D**。
+
+## 复核说明
+
+本题为概念判断题，独立复核脚本 .cache/crosscheck/verify_juan4.py 只覆盖第 3、8、9、10、11 题，未对本题题面逐项枚举。此处按各数据结构的定义逐条核对，结论与四项教材原文命题一致。`,pitfalls:String.raw`- 把 Ⅲ 判错：误以为“冲突概率只取决于哈希函数”而与装填因子无关；实际上装填因子越大冲突越多。
+- 把 Ⅳ 判错：误以为“线索化省掉的是递归栈而不是标记数组”。两者都省了，陈述并未出错。
+- 见到“全选”就不敢选：应逐项独立判断，本题四项在定义层面都成立。
+- 只挑出一两条明显正确的（如 Ⅰ、Ⅱ）就选部分组合项，漏检 Ⅲ、Ⅳ。`}},{id:`mock-exam-4-ds-q02`,questionNumber:2,title:`稀疏矩阵的存储结构`,type:`题目`,date:`2026-10-02`,chapter:`数组与矩阵 · 稀疏矩阵存储`,tags:[`三元组表`,`十字链表`,`稀疏矩阵`,`行优先存储`],summary:`辨析三元组表与十字链表两种稀疏矩阵存储结构的结点内容与适用性说法。`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。`,content:String.raw`下列关于稀疏矩阵存储的说法，正确的是（　）。
+
+- A．三元组表仅存储矩阵中的行列下标
+- B．十字链表的每个非零元素结点通常包含行号、列号、元素值，以及分别链接同行和同列下一非零元素的指针
+- C．三元组表按列优先顺序存储非零元素
+- D．十字链表仅适用于对称稀疏矩阵的存储`,attachments:[{name:`查看原题截图（第 1 页）`,path:`mock-exam-4/page1.png`}],solution:{answer:String.raw`**选 B。** 十字链表结点含行、列、值及同列、同行两个指针，正是其标准结构。`,explanation:String.raw`## 逐条判定
+
+- **A 错。** 三元组表每个结点存 (行下标, 列下标, 元素值) 三项；只有行列下标而无值就无法还原矩阵。
+
+- **B 对。** 十字链表每个非零元结点含 (行, 列, 值, right, down)，其中 $right$ 指向同行下一非零元、$down$ 指向同列下一非零元；此外还有行头指针数组与列头指针数组。这正是稀疏矩阵十字链表的标准结点结构。
+
+- **C 错。** 三元组顺序表以**行序为主序**（按行优先）有序存放非零元，不是列优先。
+
+- **D 错。** 十字链表对**任意**稀疏矩阵都适用，包括非对称矩阵，甚至不必是方阵；并非只用于对称矩阵。
+
+故选 **B**。
+
+## 复核说明
+
+概念题，独立复核脚本 .cache/crosscheck/verify_juan4.py 未覆盖本题；结论按教材对三元组表与十字链表的定义逐项排除。`,pitfalls:String.raw`- 认为三元组表只存下标而漏掉元素值。
+- 记混三元组表的存储次序（行优先 vs 列优先）。
+- 把“对称矩阵的压缩存储（上/下三角）”与“十字链表”混为一谈。
+- 误以为十字链表只能存对称矩阵。`}},{id:`mock-exam-4-ds-q03`,questionNumber:3,title:`中序线索化后剩余空指针域`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 线索二叉树`,tags:[`线索二叉树`,`中序线索化`,`空指针域`],summary:`一棵不带头结点的非空二叉树做中序线索化后，仍为空的指针域有多少个？`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案由脚本枚举全部树形验证得出，并非引用官方答案。`,content:String.raw`对一棵不带头结点的非空二叉树进行中序线索化后，仍保持为空的孩子指针域数量为（　）。
+
+- A．0
+- B．1
+- C．2
+- D．无法确定`,attachments:[{name:`查看原题截图（第 1 页）`,path:`mock-exam-4/page1.png`}],solution:{answer:String.raw`**选 C：2。** 不带头结点的非空二叉树中序线索化后，只有中序首结点的左域与中序末结点的右域仍为空，恒为 2 个。`,explanation:String.raw`## 计数推导
+
+$n$ 个结点的二叉树共有 $2n$ 个指针域，其中非空的是 $n-1$ 条父子边，故原有 $n+1$ 个空指针域。中序线索化把这 $n+1$ 个空域改写为线索：
+
+- 中序序列的**第一个结点**没有前驱，其左指针域线索化后仍为 NULL；
+- 中序序列的**最后一个结点**没有后继，其右指针域线索化后仍为 NULL；
+- 其余 $(n+1)-2=n-1$ 个空域分别指向真实存在的前驱或后继。
+
+因为本题明确“**不带头结点**”且树“**非空**”，首结点左域与末结点右域无对象可指，只能保持空。所以剩余空域恒为 **2**。
+
+- 若 $n=1$，该结点既是首又是末，左右两域皆空，仍为 2；
+- 与树形无关，恒为 2。
+
+## 脚本原样输出（.cache/crosscheck/verify_juan4.py，全部树形枚举）
+
+~~~
+Q3 非空二叉树(不带头结点)中序线索化后，仍为空的指针域数量
+   n=1: 全部形态下剩余空指针域数量集合 = {2}  (原空域数 n+1 = 2)
+   n=2: 全部形态下剩余空指针域数量集合 = {2}  (原空域数 n+1 = 3)
+   n=3: 全部形态下剩余空指针域数量集合 = {2}  (原空域数 n+1 = 4)
+   n=4: 全部形态下剩余空指针域数量集合 = {2}  (原空域数 n+1 = 5)
+   n=5: 全部形态下剩余空指针域数量集合 = {2}  (原空域数 n+1 = 6)
+   n=6: 全部形态下剩余空指针域数量集合 = {2}  (原空域数 n+1 = 7)
+   -> 恒为 [2] => C
+~~~
+
+脚本对 $n=1\ldots6$ 的每一棵二叉树都实际做中序线索化，并统计“标记为线索且指向 NULL”的指针域，结果一律为 2，与推导一致。`,pitfalls:String.raw`- 误答 0：把“带头结点”的结论（首、末结点指针回指头结点）套到本题。
+- 误答 1：只记住“首结点左域为空”而漏掉末结点右域也为空。
+- 误答“无法确定”：以为空域数随树形变化，实际恒为 2。`}},{id:`mock-exam-4-ds-q04`,questionNumber:4,title:`森林转二叉树后根的右孩子`,type:`题目`,date:`2026-10-02`,chapter:`树与二叉树 · 森林与二叉树转换`,tags:[`森林转二叉树`,`孩子兄弟表示法`,`右孩子链`],summary:`非空森林按孩子—兄弟表示法转成二叉树后，若根结点没有右孩子，可推出什么结论？`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。`,content:String.raw`将一个非空森林按孩子—兄弟表示法转换为二叉树，并以森林中第一棵树的根作为所得二叉树的根。若该二叉树的根结点没有右孩子，则下列说法正确的是（　）。
+
+- A．森林中只有一棵树
+- B．森林中所有树的根节点只有一个孩子
+- C．森林中至少有两棵树
+- D．无法确定森林中树的数量`,attachments:[{name:`查看原题截图（第 1 页）`,path:`mock-exam-4/page1.png`}],solution:{answer:String.raw`**选 A：森林中只有一棵树。** 所得二叉树根的右孩子链长度等于森林中树的数量减一，根无右孩子即树的数量为 1。`,explanation:String.raw`## 映射规则
+
+森林 → 二叉树（孩子—兄弟表示法）的规则：
+
+- 每棵树内部：**左孩子 = 第一个孩子，右孩子 = 下一个兄弟**；
+- 第 $k$ 棵树的根成为第 $k-1$ 棵树根的**右孩子**。
+
+于是所得二叉树的根 = 第一棵树的根，从根出发沿右孩子链可以依次取得第 2、3、…、$k$ 棵树的根。因此：
+
+$$
+\text{根的右孩子链长度} = \text{森林中树的数量} - 1 .
+$$
+
+## 结论
+
+根结点没有右孩子 $\iff$ 右孩子链长度为 0 $\iff$ 森林中树的数量 $-1=0$ $\iff$ **森林只有一棵树**。
+
+需要注意的是，“根无右孩子”**唯一确定**森林只有一棵树，但反过来只能确定“森林有 $k\ge 2$ 棵树时根必有右孩子”，仅凭“根有右孩子”一般无法反推出 $k$ 的**具体数值**（除非给出整条右孩子链的长度）。本题问的是“根无右孩子”这一情形，故可确定森林只有一棵树。
+
+对照选项：A 正确；C 与结论相反；B 讨论的是“根的孩子数”，与根有无右孩子不是同一件事（那对应根的左孩子是否为空）；D 错误，因为此情形下树的数量可唯一确定为 1，并非“无法确定”。故选 **A**。
+
+## 复核说明
+
+概念题，独立复核脚本 .cache/crosscheck/verify_juan4.py 未覆盖本题；结论由“根的右孩子链长度 = 森林中树的数量 − 1”这一映射关系直接推出。`,pitfalls:String.raw`- 把“根没有右孩子”理解成“第一棵树的根没有孩子”；后者对应根的左孩子为空，是另一回事。
+- 选 D：误以为根有无右孩子与树的数量无关；实际上“根无右孩子”当且仅当森林只有一棵树。
+- 选 C：把关系记反（右孩子链存在 ⇔ 森林中树的数量 ≥ 2）。`}},{id:`mock-exam-4-ds-q05`,questionNumber:5,title:`并查集的实现与操作`,type:`题目`,date:`2026-10-02`,chapter:`图 · 并查集`,tags:[`并查集`,`双亲表示法`,`Find`,`Union`],summary:`关于并查集的存储结构与 Find、删除等操作能力，判断哪一条说法正确。`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。`,content:String.raw`下列关于并查集的说法正确的是（　）。
+
+- A．并查集可以用树的双亲表示法作为存储结构来实现
+- B．Find操作返回集合元素个数的相反数
+- C．并查集可以很高效地进行删除操作
+- D．并查集可以用来计算两个结点间的路径长度`,attachments:[{name:`查看原题截图（第 1 页）`,path:`mock-exam-4/page1.png`}],solution:{answer:String.raw`**选 A。** 并查集用双亲表示法的森林（数组 $parent[i]$）实现，Find 上溯到根、Union 合并两棵树。`,explanation:String.raw`## 逐条判定
+
+- **A 对。** 并查集（不相交集合）的经典实现是**双亲表示法**的树/森林：数组 $parent[i]$ 指向父结点，根指向自身（也可把根的双亲域存为负数以记录集合大小）。Find 沿 $parent$ 上溯到根，Union 把一棵树的根挂到另一棵树的根下。
+
+- **B 错。** Find 返回的是该元素所在集合的**代表元（根）**，不是元素个数。把根的双亲域存为 $-size$ 只是“按大小合并”的存储技巧，Find 的返回值仍是根。
+
+- **C 错。** 并查集只支持高效的“合并”，**不支持高效删除/分裂**。删除一个元素会破坏树的父子关系，通常需要重建，代价高。
+
+- **D 错。** 并查集只回答“两个元素是否属于同一集合”，不保存路径长度信息，无法求两个结点间的路径长度。
+
+故选 **A**。
+
+## 复核说明
+
+概念题，独立复核脚本 .cache/crosscheck/verify_juan4.py 未覆盖本题；结论按并查集的定义与实现逐项排除。`,pitfalls:String.raw`- 见“根的双亲域存负数”就选 B，把存储技巧当成 Find 的语义。
+- 把并查集与“支持删除的集合/可持久化并查集”混淆。
+- 把“求连通性”误当成“求最短路径/路径长度”。`}},{id:`mock-exam-4-ds-q06`,questionNumber:6,title:`Floyd与Dijkstra算法辨析`,type:`题目`,date:`2026-10-02`,chapter:`图 · 最短路径`,tags:[`Floyd算法`,`Dijkstra算法`,`最短路径`,`时间复杂度`,`负权边`],summary:`判断关于 Floyd 与 Dijkstra 两算法中路径矩阵含义、负权边适用性与时空复杂度的四条陈述。`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。`,content:String.raw`以下关于Floyd算法和Dijkstra算法的描述中，正确的是（　）。
+
+- Ⅰ．Floyd 算法中，路径矩阵 P[i][j]表示顶点 i 到 j 的最短路径长度
+- Ⅱ．Dijkstra 算法适用于求解单源最短路径问题，且图中不能包含负权边
+- Ⅲ．Floyd 算法的时间复杂度为 O(n³)，其空间复杂度可优化为 O(n²)
+- Ⅳ．Dijkstra 算法能够正确求解包含负权边的图的单源最短路径
+
+- A．仅Ⅰ、Ⅱ正确
+- B．仅Ⅱ、Ⅲ正确
+- C．仅Ⅲ、Ⅳ正确
+- D．Ⅰ、Ⅲ、Ⅳ均正确`,attachments:[{name:`查看原题截图（第 1 页）`,path:`mock-exam-4/page1.png`},{name:`查看原题截图（第 2 页）`,path:`mock-exam-4/page2.png`}],solution:{answer:String.raw`**选 B：仅 Ⅱ、Ⅲ 正确。** Ⅰ 把路径矩阵与距离矩阵混淆，Ⅳ 高估了 Dijkstra 对负权边的能力。`,explanation:String.raw`## 逐条判定
+
+- **Ⅰ 错。** Floyd 算法中记录**最短路径长度**的是**距离矩阵** $D[i][j]$；而**路径矩阵** $P[i][j]$ 记录的是最短路径上的**中转点/前驱**（用于回溯具体路径），并不是长度。
+
+- **Ⅱ 对。** Dijkstra 是单源最短路径算法，基于“已确定最短路的顶点集”贪心扩展，要求**所有边权非负**。有负权边时，某顶点在被“确定”之后仍可能被更短的绕行路径更新，算法会出错。
+
+- **Ⅲ 对。** Floyd 三层循环的时间复杂度为 $\Theta(n^3)$；实现上只需一个距离矩阵（可原地迭代），外加一个路径矩阵，空间为 $\Theta(n^2)$，无需三维的 $A^{(k)}$ 数组。
+
+- **Ⅳ 错。** 含负权边时 Dijkstra **不能保证正确**（个别含负权的实例可能碰巧得出正确结果，但算法本身不再可靠）。求含负权边的单源最短路应使用 Bellman-Ford（或 SPFA），在无负环时也可用 Floyd；不能直接用 Dijkstra。
+
+仅 Ⅱ、Ⅲ 正确，故选 **B**。
+
+## 复核说明
+
+概念题，独立复核脚本 .cache/crosscheck/verify_juan4.py 未覆盖本题；结论按两个算法的定义与教材标准实现逐项排除。`,pitfalls:String.raw`- 把 $P[i][j]$（路径/中转点矩阵）与 $D[i][j]$（距离矩阵）搞混，误判 Ⅰ 为真。
+- 误以为 Dijkstra 能处理负权边（选 C 或 D）。
+- 误以为 Floyd“必须开三维数组”，因而否定 Ⅲ 的 $O(n^2)$ 空间。`}},{id:`mock-exam-4-ds-q07`,questionNumber:7,title:`m阶B树的定义`,type:`题目`,date:`2026-10-02`,chapter:`查找 · B树`,tags:[`B树`,`m阶B树`,`关键字数下限`,`平衡`],summary:`设 m≥3，判断哪条叙述符合 m 阶 B 树的定义（关键字下限、叶结点层次、分裂与树高、借位次序）。`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案。卷面 B 项括号经放大复核为上取整符号，以下答案与解析为本站独立推导。`,content:String.raw`设m≥3。下列叙述符合m阶B树定义的是（　）。
+
+- A．删除关键字时，若左、右兄弟均可借，定义强制要求优先向左兄弟借关键字
+- B．除根结点外，每个非叶结点至少含有 $\lceil m/2\rceil-1$ 个关键字
+- C．同一棵B树的叶结点可以出现在不同层
+- D．插入关键字时，只要有任一结点发生分裂，整棵树的高度就一定增加1`,attachments:[{name:`查看原题截图（第 2 页）`,path:`mock-exam-4/page2.png`}],solution:{answer:String.raw`**选 B。** $m$ 阶 B 树中除根外的非叶结点至少有 $\lceil m/2\rceil$ 个孩子，即至少 $\lceil m/2\rceil-1$ 个关键字。`,explanation:String.raw`## 逐条判定
+
+- **A 错。** B 树的插入、删除定义只规定结点的关键字数须落在 $[\lceil m/2\rceil-1,\ m-1]$（根可少于下限），并**没有**规定“左右兄弟均可借时优先向左借”这类强制次序。向左或向右借都是合法实现，属实现细节而非定义。
+
+- **B 对。** $m$ 阶 B 树中，除根外的所有非叶（非终端）结点至少有 $\lceil m/2\rceil$ 个孩子，即至少 $\lceil m/2\rceil-1$ 个关键字。这正是 $m$ 阶 B 树的定义条款。
+
+- **C 错。** B 树是**绝对平衡**的多路查找树，所有叶结点（失败结点所在层）都在**同一层**，这是定义要求；否则各条查找路径长度不一致。
+
+- **D 错。** 结点分裂只是把中间关键字上移到父结点。只有**根结点**分裂时树高才 $+1$，非根结点分裂不影响树高。
+
+故选 **B**。
+
+## 复核说明
+
+概念题，独立复核脚本 .cache/crosscheck/verify_juan4.py 未覆盖本题；结论对照 $m$ 阶 B 树定义逐项排除。`,pitfalls:String.raw`- 把“关键字数下限”与“孩子数下限”记反：孩子数下限是 $\lceil m/2\rceil$，关键字数下限是 $\lceil m/2\rceil-1$。
+- 混淆 B 树与 B+ 树，或把“树高增长条件”错当成“任意分裂都长高”。
+- 把某些教材删除、借位的实现约定当成“定义强制”。`}},{id:`mock-exam-4-ds-q08`,questionNumber:8,title:`AVL树的最大高度`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 平衡二叉树`,tags:[`AVL树`,`平衡二叉树`,`最少结点数`,`树高`],summary:`一棵含 20 个结点的 AVL 树（根在第 1 层）最大可能高度是多少？`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案由脚本递推验证得出，并非引用官方答案。`,content:String.raw`一棵AVL树共有20个结点，规定根结点位于第1层、树高等于最大层数，则该树的最大高度为（　）。
+
+- A．4
+- B．5
+- C．6
+- D．7`,attachments:[{name:`查看原题截图（第 2 页）`,path:`mock-exam-4/page2.png`}],solution:{answer:String.raw`**选 C：6。** 高度 6 的 AVL 树最少需 20 个结点，恰可用 20 个结点搭出；高度 7 至少需 33 个结点，故 20 个结点最大高度为 6。`,explanation:String.raw`## 递推
+
+设 $N(h)$ 为高度为 $h$ 的 AVL 树所需的**最少结点数**。要使结点少而高度大，高度 $h\ge 2$ 的最少结点 AVL 树，其两棵子树应分别取高度 $h-1$ 与 $h-2$ 的**最少结点 AVL 树**（内部各结点同样满足平衡条件，并非要求叶子也带两棵子树），于是
+
+$$
+N(0)=0,\quad N(1)=1,\quad N(h)=N(h-1)+N(h-2)+1\ (h\ge 2).
+$$
+
+- $h=6$ 时 $N(6)=20$，恰好可用 20 个结点搭出高度 6 的 AVL 树；
+- $h=7$ 时 $N(7)=33>20$，搭不出来。
+
+故 20 个结点的 AVL 树最大高度为 6，选 **C**。
+
+## 脚本原样输出（.cache/crosscheck/verify_juan4.py）
+
+~~~
+Q8 AVL 高度 h 最少结点数 N(h)=N(h-1)+N(h-2)+1
+   h=1: N=1
+   h=2: N=2
+   h=3: N=4
+   h=4: N=7
+   h=5: N=12
+   h=6: N=20
+   h=7: N=33
+   h=8: N=54
+   20 个结点的最大高度 = 6  (N(6)=20<=20 < N(7)=33)
+   -> 6 => C
+~~~`,pitfalls:String.raw`- 用完全平衡树 $\lfloor\log_2 20\rfloor+1=5$ 去估高度，忽略了 AVL 允许左右子树高度差 1，故能更高。
+- 记错递推式（漏掉 $+1$ 或写成 $N(h)=N(h-1)+N(h-2)$）。
+- 把高度定义与层数错位；本题明确规定根在第 1 层、树高 = 最大层数。`}},{id:`mock-exam-4-ds-q09`,questionNumber:9,title:`双散列的平均查找长度`,type:`题目`,date:`2026-10-02`,chapter:`查找 · 散列表`,tags:[`双散列`,`开放定址`,`平均查找长度`,`ASL`],summary:`地址 0～12 的双散列表依次插入 9 个关键字，等概率下查找成功的平均查找长度是多少？`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案由脚本逐次模拟插入验证得出，并非引用官方答案。`,content:String.raw`某散列表地址为0~12，初始为空，采用开放定址的双散列法处理冲突。设 $H_1(key)=key\bmod 13$，$H_2(key)=1+(key\bmod 11)$，第 $i+1$ 次探查的地址为 $[H_1(key)+i\times H_2(key)]\bmod 13$（$i=0,1,\dots,12$），依次插入关键字（26,110,35,91,108,32,82,58,62）。若查找成功时各关键字被查找的概率相同，则该散列表查找成功的平均查找长度为（　）。
+
+- A．$16/9$
+- B．$18/9$
+- C．$20/9$
+- D．$22/9$`,attachments:[{name:`查看原题截图（第 2 页）`,path:`mock-exam-4/page2.png`}],solution:{answer:String.raw`**选 C：$20/9$。** 各关键字探查次数之和为 20，等概率查找 9 个关键字，$ASL_{succ}=20/9$。`,explanation:String.raw`## 逐步插入
+
+按题述探查公式 $\text{addr}=[H_1+i\times H_2]\bmod 13$ 依次插入，记录每个关键字所需的探查（比较）次数：
+
+- 26：$H_1=0,\ H_2=5$，探查 0，落位 0，次数 1
+- 110：$H_1=6,\ H_2=1$，探查 6，落位 6，次数 1
+- 35：$H_1=9,\ H_2=3$，探查 9，落位 9，次数 1
+- 91：$H_1=0,\ H_2=4$，探查 0 → 4，落位 4，次数 2
+- 108：$H_1=4,\ H_2=10$，探查 4 → 1，落位 1，次数 2
+- 32：$H_1=6,\ H_2=11$，探查 6 → 4 → 2，落位 2，次数 3
+- 82：$H_1=4,\ H_2=6$，探查 4 → 10，落位 10，次数 2
+- 58：$H_1=6,\ H_2=4$，探查 6 → 10 → 1 → 5，落位 5，次数 4
+- 62：$H_1=10,\ H_2=8$，探查 10 → 5 → 0 → 8，落位 8，次数 4
+
+最终散列表（地址 0～12）为：
+
+$$
+[26,\ 108,\ 32,\ \text{空},\ 91,\ 58,\ 110,\ \text{空},\ 62,\ 35,\ 82,\ \text{空},\ \text{空}]
+$$
+
+探查次数之和为 $1+1+1+2+2+3+2+4+4=20$；查找成功时对 9 个关键字等概率，故
+
+$$
+ASL_{succ}=\frac{1}{9}\sum_{k}\text{probes}(k)=\frac{20}{9}.
+$$
+
+## 脚本原样输出（.cache/crosscheck/verify_juan4.py）
+
+~~~
+Q9 双散列 addr=[H1+i*H2]%13, H1=key%13, H2=1+key%11
+   key=  26 H1= 0 H2= 5 探查=[0] 落位=0 次数=1
+   key= 110 H1= 6 H2= 1 探查=[6] 落位=6 次数=1
+   key=  35 H1= 9 H2= 3 探查=[9] 落位=9 次数=1
+   key=  91 H1= 0 H2= 4 探查=[0, 4] 落位=4 次数=2
+   key= 108 H1= 4 H2=10 探查=[4, 1] 落位=1 次数=2
+   key=  32 H1= 6 H2=11 探查=[6, 4, 2] 落位=2 次数=3
+   key=  82 H1= 4 H2= 6 探查=[4, 10] 落位=10 次数=2
+   key=  58 H1= 6 H2= 4 探查=[6, 10, 1, 5] 落位=5 次数=4
+   key=  62 H1=10 H2= 8 探查=[10, 5, 0, 8] 落位=8 次数=4
+   表 = [26, 108, 32, None, 91, 58, 110, None, 62, 35, 82, None, None]
+   次数 = [1, 1, 1, 2, 2, 3, 2, 4, 4]  sum=20
+   ASL_succ = 20/9 = 2.2222 -> 选项 C(20/9)
+~~~`,pitfalls:String.raw`- 108 的探查序列误算为“直接落 4”：地址 4 已被 91 占用，必须再探查到 1，少算一次 → 会错选 A/B。
+- 只按 $H_1$ 做线性探测（忽略 $H_2$ 的步长），得到完全不同的分布。
+- 分母取错：查找成功时等概率对象是 **9 个关键字**，分母取 9（不是表长 13，也不是 20）。`}},{id:`mock-exam-4-ds-q10`,questionNumber:10,title:`快速排序的最坏情形`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 快速排序`,tags:[`快速排序`,`枢轴`,`时间复杂度`,`最坏情形`],summary:`枢轴固定取子表首元素时，四种初始序列特征中哪一种一定使快速排序退化到 O(n²)？`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案由脚本统计比较次数验证得出，并非引用官方答案。`,content:String.raw`快速排序的每趟划分均选择当前子表的第一个元素作为枢轴，不采用随机化、三数取中或针对重复关键字的三路划分。下列初始序列特征中，一定会使其时间复杂度达到O(n²)的是（　）。
+
+- A．所有关键字互异，且已经按升序排列
+- B．所有关键字互异，且随机排列
+- C．每趟所选枢轴均为当前子表的中位数
+- D．每趟划分所得两个子表的规模之差至多为1`,attachments:[{name:`查看原题截图（第 2 页）`,path:`mock-exam-4/page2.png`}],solution:{answer:String.raw`**选 A。** 升序序列下枢轴恒为当前子表最小值，划分退化为“空 + n−1”，递归深度 n，比较次数达 $n(n-1)/2$，一定是 $O(n^2)$。`,explanation:String.raw`## 逐条判定
+
+枢轴固定取子表首元素时，划分是否退化只取决于“首元素在子表中的名次”。
+
+- **A 对。** 序列已升序，则每趟首元素都是当前子表的**最小值**，划分结果为“左子表空 + 右子表 $n-1$ 个元素”，递归深度 $n$，总比较次数
+
+$$
+\sum_{i=1}^{n}(i-1)=\frac{n(n-1)}{2}=\Theta(n^2).
+$$
+
+  **一定**退化。
+
+- **B 错。** 随机排列的平均复杂度是 $\Theta(n\log n)$，只是“平均意义上好”，并不能保证达到 $O(n^2)$。
+
+- **C 错。** 枢轴恒为中位数 → 每趟把表均分，递归深度 $\Theta(\log n)$，总时间 $\Theta(n\log n)$。
+
+- **D 错。** 两子表规模差 ≤ 1 即“近似均分”，递推式 $T(n)=2T(n/2)+\Theta(n)=\Theta(n\log n)$。
+
+只有 A 是“一定”退化到 $O(n^2)$，故选 **A**。
+
+## 脚本原样输出（.cache/crosscheck/verify_juan4.py，20 个元素、枢轴取首元素）
+
+~~~
+Q10 快排（枢轴=首元素）比较次数
+   A 升序 1..20: 比较次数 = 190  n(n-1)/2 = 190
+   B 随机排列: 多次比较次数 = [60, 78, 65, 67, 63] (平均 66.6)
+   -> A 一定退化 O(n^2) => A
+~~~
+
+A 的比较次数恰为 $20\times19/2=190$，与退化理论值完全吻合；B 随机序列仅约 67 次，远未退化。`,pitfalls:String.raw`- 误以为“升序输入对快排最优/平均”——恰恰是最坏情形（枢轴永远最小）。
+- 把“平均 $O(n\log n)$”当成“不会退化”，忽略 B 只是平均好、不保证退化。
+- 忘记题设“枢轴固定取首元素”，套用随机化快排的结论。`}},{id:`mock-exam-4-ds-q11`,questionNumber:11,title:`二路归并排序第二趟结果`,type:`题目`,date:`2026-10-02`,chapter:`排序 · 归并排序`,tags:[`二路归并`,`自底向上`,`第二趟`],summary:`对给定 8 元素序列做二路归并排序，第二趟归并后的序列状态是哪一个选项？`,source:`题目来自用户提供的「模拟试题（四）」扫描件；原卷未印参考答案，以下答案由脚本逐趟归并验证得出，并非引用官方答案。`,content:String.raw`已知一个序列(23, 12, 35, 47, 18, 39, 51, 26)，采用二路归并排序算法进行排序。在第二趟归并后，序列的状态是（　）。
+
+- A．(12, 23, 18, 35, 47, 26, 39, 51)
+- B．(12, 18, 23, 26, 35, 39, 47, 51)
+- C．(12, 23, 35, 47, 18, 26, 39, 51)
+- D．(12, 23, 18, 35, 26, 47, 39, 51)`,attachments:[{name:`查看原题截图（第 2 页）`,path:`mock-exam-4/page2.png`}],solution:{answer:String.raw`**选 C：(12, 23, 35, 47, 18, 26, 39, 51)。** 第二趟把相邻的长度 2 的有序段两两归并成长度 4 的有序段。`,explanation:String.raw`## 逐趟归并
+
+二路归并排序自底向上，每趟把相邻两个长度为 $L$ 的有序段两两归并成长度 $2L$ 的有序段。
+
+- **初始：** 23, 12, 35, 47, 18, 39, 51, 26
+- **第 1 趟：** 长度 1 的段两两归并 → (12,23)　(35,47)　(18,39)　(26,51)，全序列 12, 23, 35, 47, 18, 39, 26, 51
+- **第 2 趟：** 长度 2 的段两两归并 → (12,23,35,47)　(18,26,39,51)，全序列 12, 23, 35, 47, 18, 26, 39, 51
+- **第 3 趟：** 归并这两段即得全局有序 12, 18, 23, 26, 35, 39, 47, 51
+
+第二趟结果与选项 C 逐字相同，故选 **C**。
+
+## 脚本原样输出（.cache/crosscheck/verify_juan4.py）
+
+~~~
+Q11 二路归并 [23, 12, 35, 47, 18, 39, 51, 26]
+   pass 1: [[12, 23], [35, 47], [18, 39], [26, 51]]  展平 = [12, 23, 35, 47, 18, 39, 26, 51]
+   pass 2: [[12, 23, 35, 47], [18, 26, 39, 51]]  展平 = [12, 23, 35, 47, 18, 26, 39, 51]
+   pass 3: [[12, 18, 23, 26, 35, 39, 47, 51]]  展平 = [12, 18, 23, 26, 35, 39, 47, 51]
+   -> 第二趟 = [12, 23, 35, 47, 18, 26, 39, 51] => C
+~~~`,pitfalls:String.raw`- 把“第 2 趟”当成递归式归并排序拆分树中深度为 2 的层，从而数错趟数。
+- 选项 A、D 是“部分相邻段交错归并”的中间态，混淆了两两归并的边界对齐方式。
+- 选项 B 是全部排好（第 3 趟之后）的最终结果，提前选了它。`}}],jm=[{id:`mock-exam-1`,title:`模拟卷一`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；原卷未印参考答案，已独立推导与复核。`,materials:Dm},{id:`mock-exam-2`,title:`模拟卷二`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；原卷未印参考答案，已独立推导与复核。`,materials:Om},{id:`mock-exam-3`,title:`模拟卷三`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；原卷未印参考答案，已独立推导与复核。`,materials:km},{id:`mock-exam-4`,title:`模拟卷四`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；原卷未印参考答案，已独立推导与复核。`,materials:Am},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:Em},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:Tm},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:wm},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:Cm}],Mm=`/courses/`,Nm={题目:ie,知识点:ce},Pm=jm.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),Fm=Pm.filter(({material:e})=>e.type===`题目`).length,Im=28,Lm=64,Rm=26,zm=16,Bm=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Vm(e){let t=(e.match(Bm)??[]).length;return(e.length-t)*7.4+t*13+18}function Hm(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Um({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Hm(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Vm(e.label))),s=o+Rm,c=i*s-Rm+zm*2,l=(a+1)*Lm+zm*2-(Lm-Im),u=e=>({x:zm+o/2+e.column*s,y:zm+e.depth*Lm+Im/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,N.jsxs)(`figure`,{className:`my-4`,children:[(0,N.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
+`).map(e=>e.trim()).join(`，`)}`,style:{width:`100%`,height:`auto`,maxWidth:c},className:`mx-auto block`,children:[(0,N.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,N.jsx)(`path`,{d:`M ${e.x} ${e.y+Im/2} C ${e.x} ${e.y+Im/2+18}, ${t.x} ${t.y-Im/2-18}, ${t.x} ${t.y-Im/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,N.jsxs)(`g`,{children:[(0,N.jsx)(`rect`,{x:n-o/2,y:r-Im/2,width:o,height:Im,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,N.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]}),t===`binary`&&(0,N.jsx)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:`左下为左孩子，右下为右孩子`})]})}function Wm({children:e}){return(0,N.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,N.jsx)(Qo,{remarkPlugins:[xp],rehypePlugins:[bm],urlTransform:e=>{let t=ns(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Mm}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,N.jsx)(Um,{source:n,kind:r})}return(0,N.jsx)(`pre`,{children:e})}},children:e})})}function Gm(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]);let p=jm.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),m=p.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),h=e!==`all`,g=o.trim().toLocaleLowerCase(),_=p.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!g||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(g)))})).filter(({items:e})=>e.length>0),v=_.reduce((e,t)=>e+t.items.length,0),y=c?Pm.find(({material:e})=>e.id===c)??null:null,b=y?y.lesson.materials.findIndex(e=>e.id===y.material.id):-1,x=y?y.lesson.materials[b+1]:void 0;function S(){t(`all`),r(`全部`),a(``),s(``)}function C(e){let t=Nm[e.type];return(0,N.jsxs)(`button`,{className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,onClick:()=>l(e.id),children:[(0,N.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,N.jsx)(t,{size:15}),(0,N.jsx)(`span`,{className:`text-primary`,children:e.type}),(0,N.jsxs)(`span`,{children:[`· `,e.chapter]})]}),e.type===`题目`&&e.questionNumber!==void 0&&(0,N.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,e.questionNumber,` 题`]}),(0,N.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:e.title}),(0,N.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),e.tags.length>0&&(0,N.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[e.tags.slice(0,2).map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e)),e.tags.length>2&&(0,N.jsxs)(`span`,{className:`py-1 text-xs text-muted-foreground`,children:[`+`,e.tags.length-2]})]})]},e.id)}return(0,N.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,N.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,N.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,N.jsx)(ne,{size:16}),`返回博客`]}),y&&(0,N.jsxs)(`button`,{className:`action-button`,onClick:()=>l(null),children:[(0,N.jsx)(ne,{}),`返回讲义列表`]}),y&&(0,N.jsxs)(`button`,{className:`action-button disabled:cursor-not-allowed disabled:opacity-50`,disabled:!x,title:x?`下一张：${x.title}`:`已是本课最后一张`,onClick:()=>{x&&l(x.id)},children:[(0,N.jsx)(re,{}),`下一张`]})]}),(0,N.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,N.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,N.jsx)(se,{size:19}),`408 备课讲义`]}),(0,N.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,N.jsx)(ue,{}):(0,N.jsx)(D,{})})]})]})}),(0,N.jsxs)(`main`,{className:`mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10`,children:[!y&&(0,N.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,N.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,N.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:jm.length}),`次课`]}),(0,N.jsxs)(`p`,{children:[(0,N.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:Fm}),`道题目`]})]})]}),(0,N.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[(0,N.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 ${y?`hidden lg:block`:``}`,"aria-label":`课次导航`,children:[(0,N.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,N.jsxs)(`button`,{className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-pressed":e===`all`,onClick:()=>{t(`all`),a(``),l(null)},children:[`全部课次`,(0,N.jsx)(`span`,{className:`text-xs`,children:Pm.length})]}),jm.map(n=>(0,N.jsxs)(`button`,{"aria-pressed":e===n.id,onClick:()=>{t(n.id),a(``),l(null)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===n.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,N.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[n.title,(0,N.jsx)(`span`,{className:`text-xs font-normal`,children:n.materials.length})]}),(0,N.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n.date})]},n.id)),(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,N.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,N.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认折叠，课堂上先出题、再展开。页面不直接上传文件，仅收录可公开分享的内容。`})]})]}),(0,N.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:y?(0,N.jsxs)(`article`,{ref:f,tabIndex:-1,className:`scroll-mt-32 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-24 sm:p-8`,children:[(0,N.jsxs)(`div`,{className:`mb-6 flex flex-wrap items-center justify-between gap-3`,children:[(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[`本课第 `,b+1,` / `,y.lesson.materials.length,` 张`]}),(0,N.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:y.material.type===`题目`?`课堂讲题 · 先看题，再展开解析`:`知识点讲解`})]}),(0,N.jsxs)(`p`,{className:`text-xs text-primary`,children:[y.lesson.title,` · `,y.material.chapter,` · `,y.material.type]}),(0,N.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[y.material.type===`题目`&&y.material.questionNumber!==void 0&&(0,N.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,y.material.questionNumber,` 题 ·`]}),y.material.title]}),(0,N.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:y.material.tags.map(e=>(0,N.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),y.material.source&&(0,N.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`来源：`,y.material.source]}),(0,N.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":y.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,N.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:y.material.type===`题目`?`题目`:`知识点讲解`}),(0,N.jsx)(Wm,{children:y.material.content})]}),y.material.attachments&&y.material.attachments.length>0&&(0,N.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:y.material.attachments.map(e=>(0,N.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Mm}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,N.jsx)(oe,{}),(0,N.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),y.material.type===`题目`&&(y.material.solution?(0,N.jsxs)(`details`,{className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,N.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,N.jsxs)(`span`,{children:[`答案与解析`,(0,N.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,N.jsx)(ae,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,N.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,N.jsx)(Wm,{children:y.material.solution.answer})]}),(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题思路`}),(0,N.jsx)(Wm,{children:y.material.solution.explanation})]}),y.material.solution.pitfalls&&(0,N.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错点与辨析`}),(0,N.jsx)(Wm,{children:y.material.solution.pitfalls})]}),y.material.solution.extension&&(0,N.jsxs)(`section`,{children:[(0,N.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,N.jsx)(Wm,{children:y.material.solution.extension})]})]})]}):(0,N.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`}))]},y.material.id):(0,N.jsxs)(N.Fragment,{children:[(0,N.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,N.jsxs)(`div`,{className:`relative`,children:[(0,N.jsx)(le,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,N.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,N.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...Sm].map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),m.length>0&&(0,N.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,N.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,N.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,N.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,N.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,N.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,N.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),h&&m.flatMap(e=>e.tags).map(e=>(0,N.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!h&&m.map(e=>(0,N.jsxs)(`div`,{children:[(0,N.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,N.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,N.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n)},children:n},n))})]},e.lesson.id))]})]})]}),(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,N.jsxs)(`output`,{children:[e===`all`?`全部课次`:jm.find(t=>t.id===e)?.title,` · `,v,` 条内容`]}),(0,N.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),Pm.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,N.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,N.jsx)(ce,{size:24})}),(0,N.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,N.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,N.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ie,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,N.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,N.jsx)(ce,{className:`mb-3 text-primary`,size:19}),(0,N.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 先思考，后讲解`}),(0,N.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点折叠收纳，讲到哪里展开到哪里。`})]})]})]}):_.length===0?(0,N.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,N.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`all`?`没有找到匹配的内容`:`${jm.find(t=>t.id===e)?.title} 还没有内容`}),(0,N.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,N.jsx)(`button`,{className:`action-button`,onClick:S,children:`清除筛选`}):(0,N.jsx)(`button`,{className:`action-button`,onClick:()=>{t(`all`),l(null)},children:`看全部课次`})]}):(0,N.jsx)(`div`,{className:`grid gap-6`,children:_.map(({lesson:e,items:t})=>(0,N.jsxs)(`section`,{"aria-label":e.title,children:[(0,N.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,N.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,N.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,N.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,N.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>C(e))})]},e.id))})]})})]})]})]})}(0,xm.createRoot)(document.getElementById(`root`)).render((0,N.jsx)(w.StrictMode,{children:(0,N.jsx)(Gm,{})}));
