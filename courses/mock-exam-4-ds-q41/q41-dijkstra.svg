@@ -1,0 +1,54 @@
+<svg width="360" height="598" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 598" role="img" aria-labelledby="ttl dsc" font-family="'Noto Sans SC','Microsoft YaHei','Segoe UI',sans-serif">
+<rect x="0" y="0" width="360" height="598" fill="#fffdf7"/>
+<title id="ttl">矩阵 Dijkstra 的执行过程与零权边示例</title>
+<desc id="dsc">带权有向图 5 个顶点：0 到 2 权 1，2 到 4 权 0，2 到 1 权 2，0 到 1 权 4，1 到 3 权 1，2 到 3 权 5，3 到 4 权 3。以 0 为起点逐轮确定顶点，第 2 轮确定 2 后 dist 为 0,3,1,6,1，第 3 轮确定 4 并返回 1；零权边 2 到 4 被正常松弛。若某顶点只有出边则其 dist 始终为 INT_MAX，取不到顶点时结束并返回 -1。</desc>
+<defs>
+<marker id="mkg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/>
+</marker>
+<marker id="mkp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#15803d"/>
+</marker>
+<marker id="mkr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+</marker>
+</defs>
+<rect x="12" y="42" width="336" height="248" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="30" font-size="17" fill="#0f172a" font-weight="bold">示例图：start=0，target=4</text>
+<text x="24" y="68" font-size="16" fill="#334155">绿：最短路径；红：零权边 2→4</text>
+<line x1="69" y1="100" x2="133" y2="100" stroke="#15803d" stroke-width="2.4" marker-end="url(#mkp)"/>
+<text x="101" y="92" font-size="16" fill="#15803d" font-weight="bold" text-anchor="middle">1</text>
+<line x1="177" y1="100" x2="254" y2="100" stroke="#dc2626" stroke-width="2.4" marker-end="url(#mkr)"/>
+<text x="215" y="92" font-size="16" fill="#dc2626" font-weight="bold" text-anchor="middle">0</text>
+<line x1="59" y1="112" x2="94" y2="189" stroke="#0f172a" stroke-width="2" marker-end="url(#mkg)"/>
+<text x="60" y="150" font-size="16" fill="#0f172a" font-weight="bold">4</text>
+<line x1="163" y1="111" x2="202" y2="189" stroke="#0f172a" stroke-width="2" marker-end="url(#mkg)"/>
+<text x="196" y="146" font-size="16" fill="#0f172a" font-weight="bold">5</text>
+<line x1="120" y1="212" x2="190" y2="212" stroke="#0f172a" stroke-width="2" marker-end="url(#mkg)"/>
+<text x="155" y="204" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="middle">1</text>
+<line x1="220" y1="193" x2="266" y2="114" stroke="#0f172a" stroke-width="2" marker-end="url(#mkg)"/>
+<text x="251" y="150" font-size="16" fill="#0f172a" font-weight="bold">3</text>
+<circle cx="52" cy="100" r="17" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="52" y="106" font-size="16" fill="#14532d" font-weight="bold" text-anchor="middle">0</text>
+<circle cx="155" cy="100" r="17" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="155" y="106" font-size="16" fill="#14532d" font-weight="bold" text-anchor="middle">2</text>
+<circle cx="276" cy="100" r="17" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="276" y="106" font-size="16" fill="#14532d" font-weight="bold" text-anchor="middle">4</text>
+<circle cx="103" cy="212" r="17" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="103" y="218" font-size="16" fill="#7c2d12" font-weight="bold" text-anchor="middle">1</text>
+<circle cx="212" cy="212" r="17" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="212" y="218" font-size="16" fill="#7c2d12" font-weight="bold" text-anchor="middle">3</text>
+<text x="24" y="258" font-size="16" fill="#334155">对角线 Edge[i][i]=0；无边为 INT_MAX。</text>
+<text x="24" y="280" font-size="16" fill="#334155">边权全为非负整数，取到 0 的边仍可松弛。</text>
+<rect x="12" y="302" width="336" height="180" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="328" font-size="16" fill="#0f172a" font-weight="bold">逐轮取“未确定且距离最小”的顶点</text>
+<text x="24" y="358" font-size="16" fill="#334155">取 0 后：dist = [0, 4, 1, ∞, ∞]</text>
+<text x="24" y="386" font-size="16" fill="#334155">取 2 后：dist = [0, 3, 1, 6, 1]</text>
+<text x="24" y="414" font-size="16" fill="#15803d" font-weight="bold">取 4：4 已确定 → 返回 dist[4] = 1</text>
+<text x="24" y="442" font-size="16" fill="#334155">路径 0→2→4，长度 1+0 = 1</text>
+<text x="24" y="470" font-size="16" fill="#64748b">∞ 表示 dist 仍为 INT_MAX，尚未发现通路</text>
+<rect x="12" y="494" width="336" height="92" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="520" font-size="16" fill="#334155">零权边照常参与松弛：1+0=1，</text>
+<text x="24" y="544" font-size="16" fill="#334155">不能把 0 当成“无边”而跳过。</text>
+<text x="24" y="572" font-size="15" fill="#64748b">不可达：剩余距离全为 INT_MAX → break → -1</text>
+</svg>
