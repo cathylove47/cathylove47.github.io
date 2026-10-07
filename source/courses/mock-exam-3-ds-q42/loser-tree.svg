@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="330" viewBox="0 0 360 330" role="img" aria-label="外部归并两趟归并示意与固定4叶败者树">
+  <title>第42题：10到3到1的两趟归并与固定4叶败者树</title>
+  <desc>上半部分给出初始10个归并段以4路归并经两趟变为1个有序段（10到3到1）；下半部分给出固定4叶败者树：叶结点为4路归并段（不足时以正无穷虚拟段补足），内部结点记录该场比赛的败者段号，冠军另存。</desc>
+  <rect x="0" y="0" width="360" height="330" fill="#f7f9fc"/>
+  <style>text{font-family:sans-serif}</style>
+
+  <text x="12" y="18" font-size="12" font-weight="bold" fill="#1f2d3d">两趟 4 路归并：10 段 → 3 段 → 1 段</text>
+
+  <rect x="16" y="30" width="66" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="49" y="52" font-size="11" text-anchor="middle" fill="#1e3a8a">10 段</text>
+  <rect x="147" y="30" width="66" height="34" rx="6" fill="#c7d2fe" stroke="#4f46e5"/>
+  <text x="180" y="52" font-size="11" text-anchor="middle" fill="#312e81">3 段</text>
+  <rect x="278" y="30" width="66" height="34" rx="6" fill="#fde68a" stroke="#d97706"/>
+  <text x="311" y="52" font-size="11" text-anchor="middle" fill="#7c2d12">1 段</text>
+
+  <line x1="82" y1="47" x2="145" y2="47" stroke="#334155" stroke-width="1.6" marker-end="url(#a2)"/>
+  <line x1="213" y1="47" x2="276" y2="47" stroke="#334155" stroke-width="1.6" marker-end="url(#a2)"/>
+  <text x="113" y="26" font-size="10" text-anchor="middle" fill="#475569">第1趟 k=4</text>
+  <text x="244" y="26" font-size="10" text-anchor="middle" fill="#475569">第2趟 k=4</text>
+  <text x="180" y="80" font-size="10" text-anchor="middle" fill="#64748b">每趟读 50 块 + 写 50 块 = 100 次块 I/O</text>
+  <defs>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <line x1="12" y1="94" x2="348" y2="94" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="12" y="112" font-size="12" font-weight="bold" fill="#1f2d3d">固定 4 叶败者树（内部结点记“败者”段号）</text>
+
+  <rect x="150" y="120" width="60" height="26" rx="5" fill="#fde68a" stroke="#d97706"/>
+  <text x="180" y="137" font-size="10" text-anchor="middle" fill="#7c2d12">冠军 ls[0]</text>
+
+  <line x1="180" y1="146" x2="180" y2="160" stroke="#94a3b8" stroke-width="1.2"/>
+
+  <rect x="150" y="160" width="60" height="26" rx="5" fill="#e0e7ff" stroke="#4f46e5"/>
+  <text x="180" y="177" font-size="10" text-anchor="middle" fill="#312e81">结点1：败者</text>
+
+  <line x1="170" y1="186" x2="100" y2="206" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="190" y1="186" x2="260" y2="206" stroke="#94a3b8" stroke-width="1.2"/>
+
+  <rect x="70" y="206" width="60" height="26" rx="5" fill="#e0e7ff" stroke="#4f46e5"/>
+  <text x="100" y="223" font-size="10" text-anchor="middle" fill="#312e81">结点2：败者</text>
+  <rect x="230" y="206" width="60" height="26" rx="5" fill="#e0e7ff" stroke="#4f46e5"/>
+  <text x="260" y="223" font-size="10" text-anchor="middle" fill="#312e81">结点3：败者</text>
+
+  <line x1="85" y1="232" x2="60" y2="256" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="115" y1="232" x2="140" y2="256" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="245" y1="232" x2="220" y2="256" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="275" y1="232" x2="300" y2="256" stroke="#94a3b8" stroke-width="1.2"/>
+
+  <rect x="34" y="256" width="52" height="26" rx="5" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="60" y="273" font-size="10" text-anchor="middle" fill="#1e3a8a">段0</text>
+  <rect x="114" y="256" width="52" height="26" rx="5" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="140" y="273" font-size="10" text-anchor="middle" fill="#1e3a8a">段1</text>
+  <rect x="194" y="256" width="52" height="26" rx="5" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="220" y="273" font-size="10" text-anchor="middle" fill="#1e3a8a">段2</text>
+  <rect x="274" y="256" width="52" height="26" rx="5" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="300" y="273" font-size="10" text-anchor="middle" fill="#991b1b">+∞ 补</text>
+
+  <rect x="14" y="292" width="332" height="30" rx="6" fill="#eef2ff" stroke="#6366f1"/>
+  <text x="24" y="311" font-size="10" fill="#312e81">调整：自该段叶沿路径到根，比较 2 次（树高 ⌈log₂4⌉=2）；建树 3 次</text>
+</svg>

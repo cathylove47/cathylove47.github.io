@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 275" width="360" height="275" font-family="'Helvetica Neue',Arial,sans-serif">
+  <title>双向链表插入：四条指针赋值</title>
+  <desc>把结点p接到pre与原后继之间，先连接p的后继，再修正原后继的前驱，最后连接pre与p及p的前驱。</desc>
+  <rect width="360" height="275" fill="#f5f8fc"/>
+  <text x="12" y="20" font-size="13" font-weight="bold" fill="#1f2d3d">插入 p：把 p 接到 pre 与 pre-&gt;next 之间</text>
+
+  <defs>
+    <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#2f6fed"/>
+    </marker>
+    <marker id="ah2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <text x="12" y="46" font-size="10.5" fill="#5a6b7b">next 方向（语句 ③、①）</text>
+  <g>
+    <rect x="20" y="62" width="66" height="34" rx="6" fill="#fff" stroke="#1f2d3d" stroke-width="1.6"/>
+    <text x="53" y="83" font-size="12" fill="#1f2d3d" text-anchor="middle" font-weight="bold">pre</text>
+    <rect x="147" y="62" width="66" height="34" rx="6" fill="#fff" stroke="#2f6fed" stroke-width="2"/>
+    <text x="180" y="83" font-size="12" fill="#2f6fed" text-anchor="middle" font-weight="bold">p</text>
+    <rect x="274" y="62" width="66" height="34" rx="6" fill="#fff" stroke="#1f2d3d" stroke-width="1.6"/>
+    <text x="307" y="79" font-size="10" fill="#1f2d3d" text-anchor="middle" font-weight="bold">pre-&gt;next</text>
+  </g>
+  <line x1="86" y1="79" x2="147" y2="79" stroke="#2f6fed" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="213" y1="79" x2="274" y2="79" stroke="#2f6fed" stroke-width="2" marker-end="url(#ah)"/>
+  <circle cx="116" cy="79" r="8.5" fill="#2f6fed"/>
+  <text x="116" y="83" font-size="10" fill="#fff" text-anchor="middle">③</text>
+  <circle cx="243" cy="79" r="8.5" fill="#2f6fed"/>
+  <text x="243" y="83" font-size="10" fill="#fff" text-anchor="middle">①</text>
+
+  <text x="12" y="140" font-size="10.5" fill="#5a6b7b">prior 方向（语句 ②、④）</text>
+  <g>
+    <rect x="20" y="156" width="66" height="34" rx="6" fill="#fff" stroke="#1f2d3d" stroke-width="1.6"/>
+    <text x="53" y="177" font-size="12" fill="#1f2d3d" text-anchor="middle" font-weight="bold">pre</text>
+    <rect x="147" y="156" width="66" height="34" rx="6" fill="#fff" stroke="#2f6fed" stroke-width="2"/>
+    <text x="180" y="177" font-size="12" fill="#2f6fed" text-anchor="middle" font-weight="bold">p</text>
+    <rect x="274" y="156" width="66" height="34" rx="6" fill="#fff" stroke="#1f2d3d" stroke-width="1.6"/>
+    <text x="307" y="173" font-size="10" fill="#1f2d3d" text-anchor="middle" font-weight="bold">pre-&gt;next</text>
+  </g>
+  <line x1="274" y1="173" x2="213" y2="173" stroke="#c0392b" stroke-width="2" marker-end="url(#ah2)"/>
+  <line x1="147" y1="173" x2="86" y2="173" stroke="#c0392b" stroke-width="2" marker-end="url(#ah2)"/>
+  <circle cx="243" cy="173" r="8.5" fill="#c0392b"/>
+  <text x="243" y="177" font-size="10" fill="#fff" text-anchor="middle">②</text>
+  <circle cx="116" cy="173" r="8.5" fill="#c0392b"/>
+  <text x="116" y="177" font-size="10" fill="#fff" text-anchor="middle">④</text>
+
+  <text x="12" y="216" font-size="10.5" fill="#1f2d3d">① p-&gt;next = pre-&gt;next　　③ pre-&gt;next = p</text>
+  <text x="12" y="232" font-size="10.5" fill="#1f2d3d">② pre-&gt;next-&gt;prior = p　④ p-&gt;prior = pre</text>
+  <text x="12" y="252" font-size="10" fill="#8a97a4">② 须先判 pre-&gt;next != NULL；③ 须在 ② 之后，先取旧后继再覆盖。</text>
+  <text x="12" y="268" font-size="10" fill="#8a97a4">初始化只截断首结点的 next；每轮插入均须重写 p-&gt;prior。</text>
+</svg>

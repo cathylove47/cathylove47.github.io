@@ -1,0 +1,66 @@
+<svg width="360" height="502" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 502" role="img" aria-labelledby="ttl dsc" font-family="'Noto Sans SC','Microsoft YaHei','Segoe UI',sans-serif">
+<rect x="0" y="0" width="360" height="502" fill="#fffdf7"/>
+<title id="ttl">下标记录数组与二分查找</title>
+<desc id="dsc">原数组a为2,6,3,8,1,7,4,9，下标0到7。辅助数组idx保存原下标，按a[idx]升序排成4,0,2,6,1,5,3,7，对应值1,2,3,4,6,7,8,9递增，a保持不变。查询在idx上二分：编号1返回原下标4，编号7返回5，编号5不存在则返回-1。本例8个元素最坏需要4轮，每轮常数次比较。</desc>
+<text x="24" y="30" font-size="17" fill="#0f172a" font-weight="bold">原数组 a（预处理不得改动）</text>
+<rect x="12" y="42" width="336" height="110" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="66" font-size="15" fill="#334155">下标 0 到 7，元素保持原次序</text>
+<text x="38.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">0</text>
+<text x="78.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">1</text>
+<text x="118.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">2</text>
+<text x="158.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">3</text>
+<text x="198.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">4</text>
+<text x="238.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">5</text>
+<text x="278.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">6</text>
+<text x="318.5" y="94" font-size="13" fill="#64748b" text-anchor="middle">7</text>
+<rect x="20" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="60" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="100" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="140" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="180" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="220" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="260" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="300" y="100" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="38.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">2</text>
+<text x="78.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">6</text>
+<text x="118.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">3</text>
+<text x="158.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">8</text>
+<text x="198.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">1</text>
+<text x="238.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">7</text>
+<text x="278.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">4</text>
+<text x="318.5" y="125" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">9</text>
+<text x="180" y="176" font-size="16" fill="#334155" text-anchor="middle">按 a[idx] 升序重排下标</text>
+<rect x="12" y="188" width="336" height="142" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="212" font-size="15" fill="#0f172a" font-weight="bold">辅助数组 idx（a 未改动）：a[idx] 递增</text>
+<rect x="20" y="222" width="37" height="36" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<rect x="60" y="222" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="100" y="222" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="140" y="222" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="180" y="222" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="220" y="222" width="37" height="36" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="1.6"/>
+<rect x="260" y="222" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<rect x="300" y="222" width="37" height="36" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="38.5" y="247" font-size="17" fill="#14532d" font-weight="bold" text-anchor="middle">4</text>
+<text x="78.5" y="247" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">0</text>
+<text x="118.5" y="247" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">2</text>
+<text x="158.5" y="247" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">6</text>
+<text x="198.5" y="247" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">1</text>
+<text x="238.5" y="247" font-size="17" fill="#7f1d1d" font-weight="bold" text-anchor="middle">5</text>
+<text x="278.5" y="247" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">3</text>
+<text x="318.5" y="247" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="middle">7</text>
+<text x="38.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">1</text>
+<text x="78.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">2</text>
+<text x="118.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">3</text>
+<text x="158.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">4</text>
+<text x="198.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">6</text>
+<text x="238.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">7</text>
+<text x="278.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">8</text>
+<text x="318.5" y="288" font-size="16" fill="#15803d" text-anchor="middle">9</text>
+<text x="24" y="316" font-size="15" fill="#334155">idx = [4,0,2,6,1,5,3,7]（上面一行是 a[idx]）</text>
+<rect x="12" y="340" width="336" height="152" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="368" font-size="16" fill="#15803d">查 k=1：命中 idx[0]，a[4]=1 → 返回 4</text>
+<text x="24" y="396" font-size="16" fill="#dc2626">查 k=7：命中 idx[5]，a[5]=7 → 返回 5</text>
+<text x="24" y="424" font-size="16" fill="#334155">查 k=5：二分到底未命中 → 返回 -1</text>
+<text x="24" y="454" font-size="15" fill="#64748b">本例至多 4 轮；预处理 O(n log n)</text>
+<text x="24" y="480" font-size="15" fill="#64748b">单次查询 O(log n)，额外空间 O(1)</text>
+</svg>
