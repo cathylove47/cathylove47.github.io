@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 470" width="360" height="470" role="img" aria-labelledby="t1 d1" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect x="0" y="0" width="360" height="470" fill="#fffdf7"/>
+  <title id="t1">无向图与邻接多重表的边结点</title>
+  <desc id="d1">上半部是无向图：顶点 A、B、C 两两相连，边为 e1(A,B)、e2(A,C)、e3(B,C)，顶点 D 孤立无边。下半部是邻接多重表的三个边结点 e1、e2、e3，各含 ivex、jvex、ilink、jlink 等字段，每条边只有一个结点。</desc>
+
+  <text x="14" y="30" font-size="20" font-weight="700" fill="#1f2937">① 无向图（D 为孤立点）</text>
+
+  <!-- edges -->
+  <line x1="100" y1="82" x2="240" y2="82" stroke="#334155" stroke-width="2"/>
+  <line x1="100" y1="82" x2="170" y2="176" stroke="#334155" stroke-width="2"/>
+  <line x1="240" y1="82" x2="170" y2="176" stroke="#334155" stroke-width="2"/>
+  <text x="170" y="70" font-size="18" font-weight="700" fill="#b45309" text-anchor="middle">e1 (A-B)</text>
+  <text x="96" y="126" font-size="18" font-weight="700" fill="#b45309" text-anchor="end">e2 (A-C)</text>
+  <text x="246" y="126" font-size="18" font-weight="700" fill="#b45309" text-anchor="start">e3 (B-C)</text>
+
+  <!-- nodes -->
+  <g stroke="#2563eb" stroke-width="2" fill="#dbeafe">
+    <circle cx="100" cy="82" r="20"/>
+    <circle cx="240" cy="82" r="20"/>
+    <circle cx="170" cy="176" r="20"/>
+    <circle cx="50" cy="176" r="20"/>
+  </g>
+  <g font-size="20" font-weight="700" fill="#1e3a8a" text-anchor="middle">
+    <text x="100" y="89">A</text>
+    <text x="240" y="89">B</text>
+    <text x="170" y="183">C</text>
+    <text x="50" y="183">D</text>
+  </g>
+  <text x="50" y="216" font-size="18" fill="#6b7280" text-anchor="middle">D 无依附边</text>
+
+  <text x="14" y="250" font-size="20" font-weight="700" fill="#1f2937">② 每条边 → 一个边结点（m=3 个）</text>
+
+  <g>
+    <rect x="14" y="264" width="332" height="56" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+    <text x="26" y="288" font-size="19" fill="#854d0e">e1　ivex=A　jvex=B</text>
+    <text x="26" y="310" font-size="19" fill="#854d0e">　　ilink=e2　jlink=e3</text>
+  </g>
+  <g>
+    <rect x="14" y="328" width="332" height="56" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+    <text x="26" y="352" font-size="19" fill="#854d0e">e2　ivex=A　jvex=C</text>
+    <text x="26" y="374" font-size="19" fill="#854d0e">　　ilink=NULL　jlink=e3</text>
+  </g>
+  <g>
+    <rect x="14" y="392" width="332" height="56" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+    <text x="26" y="416" font-size="19" fill="#854d0e">e3　ivex=B　jvex=C</text>
+    <text x="26" y="438" font-size="19" fill="#854d0e">　　ilink=NULL　jlink=NULL</text>
+  </g>
+
+  <text x="14" y="466" font-size="18" fill="#6b7280">普通邻接表：6 个边结点；本表：3 个</text>
+</svg>

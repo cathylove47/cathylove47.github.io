@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="925" viewBox="0 0 360 925" role="img" aria-labelledby="title desc">
+<title id="title">减法后的十二种比较条件</title>
+<desc id="desc">无符号比较用CF和ZF；有符号比较用SF异或OF及ZF。CF约定为发生借位时取1。</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8 Z" fill="#19745d"/>
+</marker>
+</defs>
+<rect width="360" height="925" rx="16" fill="#fffdf7"/>
+<g font-family="Microsoft YaHei, Segoe UI, sans-serif">
+<text x="20" y="35" font-size="24" font-weight="700" fill="#173c36">比较条件：先算 a − b</text>
+<rect x="16" y="58" width="328" height="350" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="91" font-size="22" font-weight="700" fill="#155e75">无符号：CF = 1 表示借位</text>
+<text x="34" y="139" font-size="22" font-weight="400" fill="#173c36">a &lt; b</text>
+<text x="151" y="139" font-size="21" font-weight="400" fill="#173c36">CF = 1</text>
+<text x="34" y="185" font-size="22" font-weight="400" fill="#173c36">a ≤ b</text>
+<text x="151" y="185" font-size="21" font-weight="400" fill="#173c36">CF ∨ ZF = 1</text>
+<text x="34" y="231" font-size="22" font-weight="400" fill="#173c36">a &gt; b</text>
+<text x="151" y="231" font-size="21" font-weight="400" fill="#173c36">CF ∨ ZF = 0</text>
+<text x="34" y="277" font-size="22" font-weight="400" fill="#173c36">a ≥ b</text>
+<text x="151" y="277" font-size="21" font-weight="400" fill="#173c36">CF = 0</text>
+<text x="34" y="323" font-size="22" font-weight="400" fill="#173c36">a = b</text>
+<text x="151" y="323" font-size="21" font-weight="400" fill="#173c36">ZF = 1</text>
+<text x="34" y="369" font-size="22" font-weight="400" fill="#173c36">a ≠ b</text>
+<text x="151" y="369" font-size="21" font-weight="400" fill="#173c36">ZF = 0</text>
+<rect x="16" y="468" width="328" height="398" rx="12" fill="#fff4e5" stroke="#e2bd88"/>
+<text x="30" y="502" font-size="22" font-weight="700" fill="#965914">有符号：先算 L = SF ⊕ OF</text>
+<text x="34" y="551" font-size="22" font-weight="400" fill="#173c36">a &lt; b</text>
+<text x="151" y="551" font-size="21" font-weight="400" fill="#173c36">L = 1</text>
+<text x="34" y="597" font-size="22" font-weight="400" fill="#173c36">a ≤ b</text>
+<text x="151" y="597" font-size="21" font-weight="400" fill="#173c36">L ∨ ZF = 1</text>
+<text x="34" y="643" font-size="22" font-weight="400" fill="#173c36">a &gt; b</text>
+<text x="151" y="643" font-size="21" font-weight="400" fill="#173c36">L ∨ ZF = 0</text>
+<text x="34" y="689" font-size="22" font-weight="400" fill="#173c36">a ≥ b</text>
+<text x="151" y="689" font-size="21" font-weight="400" fill="#173c36">L = 0</text>
+<text x="34" y="735" font-size="22" font-weight="400" fill="#173c36">a = b</text>
+<text x="151" y="735" font-size="21" font-weight="400" fill="#173c36">ZF = 1</text>
+<text x="34" y="781" font-size="22" font-weight="400" fill="#173c36">a ≠ b</text>
+<text x="151" y="781" font-size="21" font-weight="400" fill="#173c36">ZF = 0</text>
+<text x="30" y="849" font-size="20" font-weight="400" fill="#173c36">OF 纠正 SF；ZF 单独管相等</text>
+<text x="22" y="898" font-size="18" font-weight="400" fill="#173c36">∨ 是或，⊕ 是异或；条件为真才成立</text>
+</g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 660" width="360" height="660" role="img" aria-labelledby="t4 d4" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect x="0" y="0" width="360" height="660" fill="#fffdf7"/>
+  <title id="t4">删除边 e3 前后的邻接多重表</title>
+  <desc id="d4">上半部是删除前：边结点 e3 同时挂在 B 链（经 e1.jlink）和 C 链（经 e2.jlink）上。下半部是删除后：把 e1.jlink 与 e2.jlink 都改为 NULL，e3 被删除，剩余边结点 e1、e2，各顶点 firstedge 不变，度变为 A2、B1、C1、D0。</desc>
+  <defs>
+    <marker id="arw" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <text x="14" y="30" font-size="20" font-weight="700" fill="#1f2937">删除前：e3 挂在 B、C 两条链中</text>
+  <text x="14" y="58" font-size="18" fill="#6b7280">firstedge: A=e1 B=e1 C=e2 D=NULL</text>
+
+  <text x="16" y="116" font-size="20" font-weight="700" fill="#1e3a8a">B</text>
+  <rect x="34" y="92" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="116" font-size="18" fill="#854d0e" text-anchor="middle">e1</text>
+  <line x1="96" y1="110" x2="214" y2="141" stroke="#334155" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="150" y="120" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+
+  <text x="16" y="216" font-size="20" font-weight="700" fill="#1e3a8a">C</text>
+  <rect x="34" y="192" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="216" font-size="18" fill="#854d0e" text-anchor="middle">e2</text>
+  <line x1="96" y1="210" x2="214" y2="161" stroke="#334155" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="150" y="188" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+
+  <rect x="216" y="120" width="74" height="46" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="253" y="141" font-size="18" fill="#b91c1c" text-anchor="middle">e3</text>
+  <text x="253" y="161" font-size="18" fill="#b91c1c" text-anchor="middle">B–C</text>
+  <text x="14" y="270" font-size="19" fill="#1f2937">度 A2 B2 C2 D0（Σ=2m=6）</text>
+
+  <line x1="14" y1="296" x2="346" y2="296" stroke="#e5e7eb" stroke-width="2"/>
+
+  <text x="14" y="322" font-size="20" font-weight="700" fill="#1f2937">删除后：改 e1.jlink、e2.jlink</text>
+
+  <rect x="250" y="336" width="86" height="40" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="250" y1="336" x2="336" y2="376" stroke="#dc2626" stroke-width="1.5"/>
+  <line x1="336" y1="336" x2="250" y2="376" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="293" y="361" font-size="18" fill="#b91c1c" text-anchor="middle">e3</text>
+  <text x="293" y="398" font-size="18" fill="#b91c1c" text-anchor="middle">已删除</text>
+
+  <text x="16" y="436" font-size="20" font-weight="700" fill="#1e3a8a">B</text>
+  <rect x="34" y="412" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="436" font-size="18" fill="#854d0e" text-anchor="middle">e1</text>
+  <line x1="96" y1="430" x2="158" y2="430" stroke="#334155" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="127" y="423" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+  <text x="166" y="436" font-size="18" fill="#16a34a" font-weight="700">NULL</text>
+  <text x="222" y="436" font-size="18" fill="#16a34a">← e1.jlink</text>
+
+  <text x="16" y="496" font-size="20" font-weight="700" fill="#1e3a8a">C</text>
+  <rect x="34" y="472" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="496" font-size="18" fill="#854d0e" text-anchor="middle">e2</text>
+  <line x1="96" y1="490" x2="158" y2="490" stroke="#334155" stroke-width="1.8" marker-end="url(#arw)"/>
+  <text x="127" y="483" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+  <text x="166" y="496" font-size="18" fill="#16a34a" font-weight="700">NULL</text>
+  <text x="222" y="496" font-size="18" fill="#16a34a">← e2.jlink</text>
+
+  <text x="14" y="544" font-size="18" fill="#1f2937">剩余边结点：e1、e2（e3 已删）</text>
+  <text x="14" y="572" font-size="18" fill="#1f2937">firstedge 不变: A,B=e1; C=e2; D=NULL</text>
+  <text x="14" y="602" font-size="19" font-weight="700" fill="#b91c1c">度 A2 B1 C1 D0（Σ=2m=4）</text>
+  <text x="14" y="634" font-size="18" fill="#6b7280">改动只有两个字段；e1、e2 本身不移动。</text>
+</svg>

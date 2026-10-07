@@ -1,0 +1,66 @@
+<svg width="360" height="484" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 484" role="img" aria-labelledby="ttl dsc" font-family="'Noto Sans SC','Microsoft YaHei','Segoe UI',sans-serif">
+<rect x="0" y="0" width="360" height="484" fill="#fffdf7"/>
+<title id="ttl">十字链表的两种结点与当前状态</title>
+<desc id="dsc">顶点结点含data/firstout/firstin，弧结点含tailvex/headvex/tlink/hlink；给出A到D与e1、e2、e3的当前链接值。</desc>
+<defs>
+<marker id="mk_graph" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/>
+</marker>
+<marker id="mk_out" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+</marker>
+<marker id="mk_in" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+</marker>
+</defs>
+<rect x="12" y="8" width="336" height="180" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="36" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">顶点结点（顺序存储，每个顶点一个）</text>
+<text x="58" y="60" font-size="18" text-anchor="middle" fill="#334155">data</text>
+<text x="152" y="60" font-size="18" text-anchor="middle" fill="#334155">firstout</text>
+<text x="274" y="60" font-size="18" text-anchor="middle" fill="#334155">firstin</text>
+<rect x="20" y="69" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="58" y="87" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
+<text x="152" y="87" font-size="18" text-anchor="middle" fill="#14532d">e1</text>
+<text x="274" y="87" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<rect x="20" y="95" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="58" y="113" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
+<text x="152" y="113" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<text x="274" y="113" font-size="18" text-anchor="middle" fill="#14532d">e1</text>
+<rect x="20" y="121" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="58" y="139" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">C</text>
+<text x="152" y="139" font-size="18" text-anchor="middle" fill="#14532d">e3</text>
+<text x="274" y="139" font-size="18" text-anchor="middle" fill="#14532d">e2</text>
+<rect x="20" y="147" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="58" y="165" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">D</text>
+<text x="152" y="165" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<text x="274" y="165" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<text x="24" y="206" font-size="18" text-anchor="start" fill="#64748b">NULL＝空指针（链结束）</text>
+<rect x="12" y="218" width="336" height="182" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="246" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">弧结点（每条弧一个，共 3 条）</text>
+<text x="40" y="270" font-size="18" text-anchor="middle" fill="#334155">弧</text>
+<text x="94" y="270" font-size="18" text-anchor="middle" fill="#334155">tailvex</text>
+<text x="162" y="270" font-size="18" text-anchor="middle" fill="#334155">headvex</text>
+<text x="230" y="270" font-size="18" text-anchor="middle" fill="#334155">tlink</text>
+<text x="302" y="270" font-size="18" text-anchor="middle" fill="#334155">hlink</text>
+<rect x="20" y="279" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="40" y="297" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
+<text x="94" y="297" font-size="18" text-anchor="middle" fill="#334155">A</text>
+<text x="162" y="297" font-size="18" text-anchor="middle" fill="#334155">B</text>
+<text x="230" y="297" font-size="18" text-anchor="middle" fill="#334155">e2</text>
+<text x="302" y="297" font-size="18" text-anchor="middle" fill="#334155">e3</text>
+<rect x="20" y="305" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="40" y="323" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e2</text>
+<text x="94" y="323" font-size="18" text-anchor="middle" fill="#334155">A</text>
+<text x="162" y="323" font-size="18" text-anchor="middle" fill="#334155">C</text>
+<text x="230" y="323" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<text x="302" y="323" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<rect x="20" y="331" width="320" height="26" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="40" y="349" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e3</text>
+<text x="94" y="349" font-size="18" text-anchor="middle" fill="#334155">C</text>
+<text x="162" y="349" font-size="18" text-anchor="middle" fill="#334155">B</text>
+<text x="230" y="349" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<text x="302" y="349" font-size="18" text-anchor="middle" fill="#64748b">NULL</text>
+<text x="24" y="420" font-size="18" text-anchor="start" fill="#0f172a">tailvex/headvex＝弧尾、弧头下标</text>
+<text x="24" y="444" font-size="18" text-anchor="start" fill="#0f172a">tlink 串「同弧尾」的弧</text>
+<text x="24" y="468" font-size="18" text-anchor="start" fill="#0f172a">hlink 串「同弧头」的弧</text>
+</svg>

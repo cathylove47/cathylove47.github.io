@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 424" width="360" height="424" role="img" aria-labelledby="t3 d3" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect x="0" y="0" width="360" height="424" fill="#fffdf7"/>
+  <title id="t3">沿 B 的依附链遍历时的字段选择</title>
+  <desc id="d3">沿顶点 B 的依附链遍历：B.firstedge 得到边结点 e1；e1 的 jvex 是 B，所以走 e1.jlink 到 e3；e3 的 ivex 是 B，所以走 e3.ilink，为 NULL 结束。规则是当前顶点等于 ivex 就走 ilink，等于 jvex 就走 jlink。</desc>
+
+  <text x="14" y="30" font-size="20" font-weight="700" fill="#1f2937">沿 B 链遍历：看当前顶点选字段</text>
+
+  <rect x="14" y="46" width="332" height="56" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="26" y="70" font-size="18" fill="#854d0e">规则：当前顶点 v=ivex → 走 ilink；</text>
+  <text x="26" y="92" font-size="18" fill="#854d0e">　　　v=jvex → 走 jlink</text>
+
+  <rect x="14" y="120" width="332" height="48" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="28" y="150" font-size="19" fill="#1e3a8a">① B.firstedge → e1</text>
+
+  <line x1="180" y1="168" x2="180" y2="186" stroke="#334155" stroke-width="1.8"/>
+  <path d="M180 190 l-5 -8 h10 z" fill="#334155"/>
+
+  <rect x="14" y="190" width="332" height="58" rx="8" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="28" y="214" font-size="19" fill="#312e81">② e1.jvex=B（B 是 jvex）</text>
+  <text x="28" y="236" font-size="19" fill="#312e81">　　走 e1.jlink → 到 e3</text>
+
+  <line x1="180" y1="248" x2="180" y2="266" stroke="#334155" stroke-width="1.8"/>
+  <path d="M180 270 l-5 -8 h10 z" fill="#334155"/>
+
+  <rect x="14" y="270" width="332" height="58" rx="8" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="28" y="294" font-size="19" fill="#312e81">③ e3.ivex=B（B 是 ivex）</text>
+  <text x="28" y="316" font-size="19" fill="#312e81">　　走 e3.ilink=NULL → 结束</text>
+
+  <text x="14" y="356" font-size="20" font-weight="700" fill="#b91c1c">B 链 = e1 → e3，度 = 2</text>
+  <text x="14" y="384" font-size="18" fill="#6b7280">同一条链里先走 jlink、再走 ilink：</text>
+  <text x="14" y="404" font-size="18" fill="#6b7280">字段由当前顶点决定，不是固定 ilink。</text>
+</svg>

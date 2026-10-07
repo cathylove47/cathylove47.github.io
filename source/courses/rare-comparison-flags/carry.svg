@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="722" viewBox="0 0 360 722" role="img" aria-labelledby="title desc">
+<title id="title">进位、借位和有符号溢出的区别</title>
+<desc id="desc">n位加法器计算a加b按位取反再加1；减法CF是最高位进位取反，OF是最高位输入输出进位异或。</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8 Z" fill="#19745d"/>
+</marker>
+</defs>
+<rect width="360" height="722" rx="16" fill="#fffdf7"/>
+<g font-family="Microsoft YaHei, Segoe UI, sans-serif">
+<text x="20" y="35" font-size="24" font-weight="700" fill="#173c36">CF / OF：从哪里来</text>
+<rect x="16" y="58" width="328" height="176" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="93" font-size="22" font-weight="700" fill="#173c36">n 位减法：a − b</text>
+<text x="30" y="135" font-size="20" font-weight="400" fill="#173c36">等价加法：a + NOT(b) + 1</text>
+<text x="30" y="178" font-size="20" font-weight="400" fill="#173c36">Cn：最高位的进位输出</text>
+<text x="30" y="213" font-size="20" font-weight="400" fill="#173c36">Cn−1：进入最高位的进位</text>
+<path d="M180 245 L180 278" fill="none" stroke="#19745d" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="328" height="245" rx="12" fill="#eef5fc" stroke="#a7bfd8"/>
+<text x="30" y="331" font-size="23" font-weight="700" fill="#155e75">CF = NOT(Cn)</text>
+<text x="30" y="372" font-size="20" font-weight="400" fill="#173c36">减法：无进位 ↔ 有借位</text>
+<text x="30" y="420" font-size="23" font-weight="700" fill="#965914">OF = Cn−1 ⊕ Cn</text>
+<text x="30" y="462" font-size="20" font-weight="400" fill="#173c36">SF = 截断后结果的最高位</text>
+<text x="30" y="501" font-size="20" font-weight="400" fill="#173c36">ZF = 结果所有位均为 0</text>
+<text x="24" y="580" font-size="22" font-weight="700" fill="#965914">有符号“小于” = SF ⊕ OF</text>
+<text x="24" y="621" font-size="20" font-weight="400" fill="#173c36">OF = 1 时，翻转 SF 的判断</text>
+<text x="24" y="661" font-size="18" font-weight="400" fill="#173c36">加法的 CF = Cn，别套减法公式</text>
+<text x="24" y="699" font-size="18" font-weight="400" fill="#173c36">本图采用 x86 的减法借位约定</text>
+</g>
+</svg>
