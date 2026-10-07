@@ -1,0 +1,36 @@
+<svg width="360" height="304" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 304" role="img" aria-labelledby="ttl dsc" font-family="'Noto Sans SC','Microsoft YaHei','Segoe UI',sans-serif">
+<rect x="0" y="0" width="360" height="304" fill="#fffdf7"/>
+<title id="ttl">有向图原图：箭头是真正的弧</title>
+<desc id="dsc">顶点A、B、C、D；弧e1从A到B，e2从A到C，e3从C到B；D是孤立顶点。</desc>
+<defs>
+<marker id="mk_graph" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/>
+</marker>
+<marker id="mk_out" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+</marker>
+<marker id="mk_in" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+</marker>
+</defs>
+<line x1="127.0" y1="72.0" x2="233.0" y2="72.0" stroke="#0f172a" stroke-width="2.4" marker-end="url(#mk_graph)"/>
+<line x1="95.0" y1="104.0" x2="95.0" y2="164.0" stroke="#0f172a" stroke-width="2.4" marker-end="url(#mk_graph)"/>
+<line x1="120.85322407455666" y1="177.142354204441" x2="239.14677592544334" y2="90.85764579555898" stroke="#0f172a" stroke-width="2.4" marker-end="url(#mk_graph)"/>
+<circle cx="95" cy="72" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="95" y="79" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
+<circle cx="265" cy="72" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="265" y="79" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
+<circle cx="95" cy="196" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="95" y="203" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">C</text>
+<circle cx="265" cy="196" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="265" y="203" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">D</text>
+<rect x="164" y="84" width="32" height="24" rx="5" fill="#ffffff" opacity="0.9"/>
+<text x="180" y="102" font-size="20" text-anchor="middle" fill="#1e293b" font-weight="bold">e1</text>
+<rect x="104" y="126" width="32" height="24" rx="5" fill="#ffffff" opacity="0.9"/>
+<text x="120" y="144" font-size="20" text-anchor="middle" fill="#1e293b" font-weight="bold">e2</text>
+<rect x="194" y="152" width="32" height="24" rx="5" fill="#ffffff" opacity="0.9"/>
+<text x="210" y="170" font-size="20" text-anchor="middle" fill="#1e293b" font-weight="bold">e3</text>
+<text x="265" y="240" font-size="18" text-anchor="middle" fill="#64748b">孤立顶点，无弧</text>
+<text x="180" y="266" font-size="18" text-anchor="middle" fill="#0f172a">图中箭头＝真正的弧（本站绘制）</text>
+<text x="180" y="290" font-size="18" text-anchor="middle" fill="#0f172a">e1 A→B、e2 A→C、e3 C→B</text>
+</svg>

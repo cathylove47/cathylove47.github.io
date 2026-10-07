@@ -1,0 +1,32 @@
+<svg width="360" height="360" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-labelledby="bdTitle bdDesc">
+<title id="bdTitle">单精度浮点数在零附近与边界处的间隔</title>
+<desc id="bdDesc">非规格数从 0 到最大非规格等间距排列，间隔恒为 2^-149；最小规格数与最大非规格数也相距 2^-149，规格数区间从 2^-126 起，间隔随指数逐倍增大，最大有限数约为 3.4e38。</desc>
+<rect x="0" y="0" width="360" height="360" fill="#f8fafc"/>
+<text x="180" y="34" font-size="22" font-family="system-ui, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">零附近与边界的间隔</text>
+<text x="180" y="60" font-size="19" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">单位间距 2^-149 ≈ 1.4e-45</text>
+
+<rect x="10" y="74" width="340" height="98" rx="8" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.6"/>
+<text x="22" y="100" font-size="20" font-family="system-ui, sans-serif" font-weight="700" fill="#1e3a8a">① 非规格数：间隔恒为 2^-149</text>
+<line x1="24" y1="142" x2="336" y2="142" stroke="#334155" stroke-width="1.6"/>
+<line x1="24" y1="136" x2="24" y2="148" stroke="#334155" stroke-width="1.6"/>
+<line x1="76" y1="136" x2="76" y2="148" stroke="#334155" stroke-width="1.6"/>
+<line x1="128" y1="136" x2="128" y2="148" stroke="#334155" stroke-width="1.6"/>
+<line x1="180" y1="136" x2="180" y2="148" stroke="#334155" stroke-width="1.6"/>
+<line x1="232" y1="136" x2="232" y2="148" stroke="#334155" stroke-width="1.6"/>
+<line x1="284" y1="136" x2="284" y2="148" stroke="#334155" stroke-width="1.6"/>
+<line x1="336" y1="136" x2="336" y2="148" stroke="#334155" stroke-width="1.6"/>
+<text x="24" y="170" font-size="18" font-family="system-ui, sans-serif" fill="#0f172a" text-anchor="middle">0</text>
+<text x="76" y="170" font-size="18" font-family="system-ui, sans-serif" fill="#0f172a" text-anchor="middle">2^-149</text>
+<text x="180" y="170" font-size="18" font-family="system-ui, sans-serif" fill="#0f172a" text-anchor="middle">…</text>
+<text x="312" y="170" font-size="18" font-family="system-ui, sans-serif" fill="#0f172a" text-anchor="middle">最大非规格</text>
+
+<rect x="10" y="182" width="340" height="76" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.6"/>
+<text x="22" y="206" font-size="20" font-family="system-ui, sans-serif" font-weight="700" fill="#92400e">② 分界处：两数相距还是 2^-149</text>
+<text x="22" y="232" font-size="19" font-family="system-ui, sans-serif" fill="#0f172a">最大非规格 = (1−2^-23)·2^-126</text>
+<text x="22" y="254" font-size="19" font-family="system-ui, sans-serif" fill="#0f172a">最小规格 = 2^-126，相差 2^-149</text>
+
+<rect x="10" y="266" width="340" height="84" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1.6"/>
+<text x="22" y="290" font-size="20" font-family="system-ui, sans-serif" font-weight="700" fill="#166534">③ 规格数区间</text>
+<text x="22" y="316" font-size="19" font-family="system-ui, sans-serif" fill="#0f172a">从 2^-126 起，间隔随指数逐倍变大</text>
+<text x="22" y="340" font-size="19" font-family="system-ui, sans-serif" fill="#0f172a">再往上到 (2−2^-23)·2^127 为止</text>
+</svg>

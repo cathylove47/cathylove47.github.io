@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 470" width="360" height="470" role="img" aria-labelledby="t2 d2" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <rect x="0" y="0" width="360" height="470" fill="#fffdf7"/>
+  <title id="t2">顶点表与四条依附链</title>
+  <desc id="d2">上半部是顶点表的四个顶点结点及其 firstedge：A 指向 e1、B 指向 e1、C 指向 e2、D 为 NULL。下半部是四条依附链，箭头上的字段表示下一步要走的指针：A 链 e1 经 ilink 到 e2；B 链 e1 经 jlink 到 e3 再经 ilink 到 NULL；C 链 e2 经 jlink 到 e3 再经 jlink 到 NULL；D 链为 NULL。e3 同时出现在 B、C 两条链上。</desc>
+
+  <text x="14" y="28" font-size="20" font-weight="700" fill="#1f2937">① 顶点表的 firstedge 域</text>
+
+  <g stroke="#2563eb" stroke-width="1.5" fill="#dbeafe">
+    <rect x="14" y="40" width="164" height="40" rx="8"/>
+    <rect x="182" y="40" width="164" height="40" rx="8"/>
+    <rect x="14" y="88" width="164" height="40" rx="8"/>
+    <rect x="182" y="88" width="164" height="40" rx="8"/>
+  </g>
+  <g font-size="18" fill="#1e3a8a" text-anchor="middle">
+    <text x="96" y="65">A　firstedge=e1</text>
+    <text x="264" y="65">B　firstedge=e1</text>
+    <text x="96" y="113">C　firstedge=e2</text>
+    <text x="264" y="113">D　firstedge=NULL</text>
+  </g>
+
+  <text x="14" y="158" font-size="20" font-weight="700" fill="#1f2937">② 依附链（箭头标下一步字段）</text>
+
+  <!-- A chain -->
+  <text x="16" y="200" font-size="20" font-weight="700" fill="#1e3a8a">A</text>
+  <rect x="34" y="176" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="200" font-size="18" fill="#854d0e" text-anchor="middle">e1</text>
+  <line x1="96" y1="194" x2="146" y2="194" stroke="#334155" stroke-width="1.8"/>
+  <path d="M146 194 l-8 -5 v10 z" fill="#334155"/>
+  <text x="121" y="187" font-size="18" fill="#334155" text-anchor="middle">ilink</text>
+  <rect x="150" y="176" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="180" y="200" font-size="18" fill="#854d0e" text-anchor="middle">e2</text>
+  <line x1="212" y1="194" x2="262" y2="194" stroke="#334155" stroke-width="1.8"/>
+  <path d="M262 194 l-8 -5 v10 z" fill="#334155"/>
+  <text x="237" y="187" font-size="18" fill="#334155" text-anchor="middle">ilink</text>
+  <text x="270" y="200" font-size="18" fill="#6b7280">NULL</text>
+
+  <!-- B chain -->
+  <text x="16" y="256" font-size="20" font-weight="700" fill="#1e3a8a">B</text>
+  <rect x="34" y="232" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="256" font-size="18" fill="#854d0e" text-anchor="middle">e1</text>
+  <line x1="96" y1="250" x2="146" y2="250" stroke="#334155" stroke-width="1.8"/>
+  <path d="M146 250 l-8 -5 v10 z" fill="#334155"/>
+  <text x="121" y="243" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+  <rect x="150" y="232" width="60" height="36" rx="7" fill="#fde68a" stroke="#b45309" stroke-width="2.5"/>
+  <text x="180" y="256" font-size="18" fill="#854d0e" text-anchor="middle">e3</text>
+  <line x1="212" y1="250" x2="262" y2="250" stroke="#334155" stroke-width="1.8"/>
+  <path d="M262 250 l-8 -5 v10 z" fill="#334155"/>
+  <text x="237" y="243" font-size="18" fill="#334155" text-anchor="middle">ilink</text>
+  <text x="270" y="256" font-size="18" fill="#6b7280">NULL</text>
+
+  <!-- C chain -->
+  <text x="16" y="312" font-size="20" font-weight="700" fill="#1e3a8a">C</text>
+  <rect x="34" y="288" width="60" height="36" rx="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="64" y="312" font-size="18" fill="#854d0e" text-anchor="middle">e2</text>
+  <line x1="96" y1="306" x2="146" y2="306" stroke="#334155" stroke-width="1.8"/>
+  <path d="M146 306 l-8 -5 v10 z" fill="#334155"/>
+  <text x="121" y="299" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+  <rect x="150" y="288" width="60" height="36" rx="7" fill="#fde68a" stroke="#b45309" stroke-width="2.5"/>
+  <text x="180" y="312" font-size="18" fill="#854d0e" text-anchor="middle">e3</text>
+  <line x1="212" y1="306" x2="262" y2="306" stroke="#334155" stroke-width="1.8"/>
+  <path d="M262 306 l-8 -5 v10 z" fill="#334155"/>
+  <text x="237" y="299" font-size="18" fill="#334155" text-anchor="middle">jlink</text>
+  <text x="270" y="312" font-size="18" fill="#6b7280">NULL</text>
+
+  <!-- D chain -->
+  <text x="16" y="368" font-size="20" font-weight="700" fill="#1e3a8a">D</text>
+  <text x="60" y="368" font-size="18" fill="#6b7280">firstedge=NULL（无边）</text>
+
+  <text x="14" y="400" font-size="18" fill="#b91c1c">e3 同时挂在 B、C 两条链上：</text>
+  <text x="14" y="424" font-size="18" fill="#b91c1c">一条边只对应一个边结点。</text>
+  <text x="14" y="450" font-size="18" fill="#6b7280">链长即度：A2 B2 C2 D0（Σ=2m=6）。</text>
+</svg>

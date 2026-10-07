@@ -6889,7 +6889,7 @@ $$
 2. 用总长 −40 得数据长度，再解读数据开头的 "HTTP/1.1" 印证这是 B→A 的响应。
 3. 明确"谁是发送方"：源端口 80 = 服务器 B，目的端口 = 客户端 A。
 4. 序号题统一用"SYN 占 1 个序号"把起点对齐到 1，再算累计字节。
-5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],j_=[{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-06`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
+5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],j_=[{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-07`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
 
 红黑树是一棵二叉搜索树，每个实结点额外记录红或黑的颜色（理论上只需 1 bit，实际内存占用由实现决定），并满足：
 
@@ -8172,7 +8172,176 @@ FAT 与它们不同：FAT 属于文件块的分配与定位结构，服务于「
 
 **问：位图的 1 表示空闲是普遍约定吗？** **答：** 不是。不同教材与实现可能采用相反约定（1 表示占用、0 表示空闲）。答题时必须先确认题目约定，不能把自己的默认约定套到别人写的位图上。
 
-**问：既然有公式上界，为什么还要讨论 V6 的 100？** **答：** 因为考试与理解都容易把「公式能算出的上界」误当「实现真实采用的容量」。V6 是具体系统，其取值由源码决定；上界只是理论上限。分清这两者，才能正确解释历史系统的行为。`}}]},{id:`mock-exam-1`,title:`lion模拟卷1`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:D_},{id:`mock-exam-2`,title:`lion模拟卷2`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:O_},{id:`mock-exam-3`,title:`lion模拟卷3`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:k_},{id:`mock-exam-4`,title:`lion模拟卷4`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:A_},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:E_},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:T_},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:w_},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:C_}],M_=String.raw`### 循环队列与指针约定
+**问：既然有公式上界，为什么还要讨论 V6 的 100？** **答：** 因为考试与理解都容易把「公式能算出的上界」误当「实现真实采用的容量」。V6 是具体系统，其取值由源码决定；上界只是理论上限。分清这两者，才能正确解释历史系统的行为。`}},{id:`rare-adjacency-multilist`,title:`邻接多重表：无向图一条边只存一个结点`,type:`知识点`,date:`2026-10-07`,chapter:`数据结构 · 图的存储`,tags:[`邻接多重表`,`无向图`,`边结点`,`依附链`,`度`,`图的存储`],summary:`从无向图、共享边结点和两条指针链，读懂邻接多重表。`,source:`本站绘制示意图；字段与遍历规则参考 N诺《邻接多重表、十字链表》，链接见正文。教学例题由本站自拟，非真题。`,content:String.raw`![无向图及其三个共享边结点](rare-adjacency-multilist/graph-records.svg)
+
+**先看图：** A、B 都能指到同一个 e1，不是各复制一份。本例无自环，A～D 代指顶点下标 0～3。
+
+![顶点入口与依附链](rare-adjacency-multilist/vertex-chains.svg)
+
+**数度：** 每条顶点链的长度就是该顶点的度；孤立点 D 的入口为 NULL。
+
+![沿B链必须在jlink和ilink之间切换](rare-adjacency-multilist/field-switch.svg)
+
+**跟箭头：** 当前顶点等于 ivex 就走 ilink，等于 jvex 就走 jlink。B 的链先走 jlink，再走 ilink。
+
+**联系邻接表：** m 条无向边，普通邻接表有 2m 个边条目，邻接多重表只有 m 个共享边结点（都不含顶点头）。“多重”不要求图中有平行边。
+
+图为本站绘制。参考：[N诺：邻接多重表与十字链表](https://noobdream.com/Major/article/218/)。`},{id:`rare-adjacency-multilist-trace`,questionNumber:11,title:`邻接多重表：读 B、C 的依附链并删除边 e3`,type:`题目`,date:`2026-10-07`,chapter:`数据结构 · 图的存储`,tags:[`邻接多重表`,`依附链`,`度`,`删除边`,`指针字段`],summary:`给定含 A、B、C、D 的无向图及其邻接多重表存储，写出 B、C 的依附链与度，再删除边 e3，指出变化的指针字段并列出去除 e3 后剩余的边结点与各顶点度。`,source:`本站绘制示意图与自拟教学题，非真题。字段与遍历规则参考 N诺《邻接多重表、十字链表》，可点击的出处链接在前一张知识卡正文。`,content:String.raw`**自拟教学题。** 下图给出无向简单图与三个共享边结点；A～D 代指顶点下标 0～3，D 孤立，NULL 表示空指针。
+
+![待读的无向图与边结点字段](rare-adjacency-multilist/graph-records.svg)
+
+顶点入口 firstedge：A=e1，B=e1，C=e2，D=NULL。
+
+1. 按指针顺序写出 B、C 的依附链、每一步使用的字段和各自的度。
+2. 删除 e3：哪些指针字段改变？列出剩余边结点以及 A、B、C、D 的度与度之和。`,solution:{answer:String.raw`![删除前各个顶点的链](rare-adjacency-multilist/vertex-chains.svg)
+
+**B：** e1 → e3 → NULL，先 jlink 后 ilink，度 2。**C：** e2 → e3 → NULL，两步均走 jlink，度 2。`,explanation:String.raw`![从B和C两条链同时摘除e3](rare-adjacency-multilist/delete-e3.svg)
+
+**改两处：** e1.jlink=NULL、e2.jlink=NULL；四个 firstedge 不变，再释放 e3。剩余 e1、e2，度依次为 2、1、1、0，总和 4=2×2。
+
+**度和复核：** 一条边摘除，两端各少 1，度和由 6 变为 4；没有链再指向 e3。找 B、C 链的前驱需 O(deg B+deg C)，不能只凭 e3 的地址就声称删边 O(1)。`,pitfalls:String.raw`- 固定走 ilink；在 e1 上会误入 A 的链。
+- 只摘除一端就释放 e3，另一端仍留悬空指针。
+- 把一个共享边结点误数成两条边；本例没有自环。`,extension:String.raw`**问：** 从 A 和 B 都访问到 e1，是两个边结点吗？ **答：** 不是，是同一结点在两条顶点链上出现；同一个 mark 字段也只需改一次。`,teachingFramework:String.raw`### 讲题框架
+
+1. 圈出无向边，再指到唯一的边结点。
+2. 固定 B，用手指追踪字段切换。
+3. 删除 e3 时，同时绕开它在 B、C 两条链上的位置。
+
+### 常见做法
+
+先写当前顶点 → 匹配 ivex/jvex → 选 link → 到 NULL 停；删边后复核两端链与度和。`}},{id:`rare-orthogonal-list`,type:`知识点`,date:`2026-10-07`,title:`有向图的十字链表：一条弧挂两条链，出度入度一起管`,chapter:`图 · 图的存储（有向图）`,tags:[`十字链表`,`有向图存储`,`出边链与入边链`,`tlink与hlink`,`firstout与firstin`],summary:`从原图、共享弧结点和入出边指针，区分十字链表的两条链。`,source:`本站绘制示意图；字段与方向参考 N诺《邻接多重表、十字链表》，链接见正文。题目为本站自拟教学题，非真题。`,content:String.raw`![先看真正的有向图弧](rare-orthogonal-list/graph-arcs.svg)
+
+**图的箭头是弧。** e1 从 A 指向 B；D 为孤立点。A、B、C、D 代指顶点下标 0～3。
+
+![每条弧只有一个结点，含两套链接字段](rare-orthogonal-list/ol-records.svg)
+
+**记录的箭头是指针，不是新弧。** 同一个 e1 被 A 的出边链和 B 的入边链共享。
+
+![出边沿tlink，入边沿hlink](rare-orthogonal-list/chains.svg)
+
+**只记两条线：** firstout → tlink 串同弧尾（出边）；firstin → hlink 串同弧头（入边）。链长分别是出度、入度。
+
+![新弧e4同时接入两个链首](rare-orthogonal-list/insert-e4.svg)
+
+**头插 B→C：** e4 的两个 link 先接原链首，再更新 B.firstout、C.firstin。不是复制两个 e4。
+
+**相近结构：** 无向图用邻接多重表的两端链；稀疏矩阵的十字链表用同行 right、同列 down。共享记录的思路相同，字段不能混用。
+
+图为本站绘制。参考：[N诺：邻接多重表与十字链表](https://noobdream.com/Major/article/218/)。`},{id:`rare-orthogonal-list-trace`,type:`题目`,questionNumber:12,date:`2026-10-07`,title:`有向图十字链表：读两条弧链、算四个顶点的度、再头插一条弧`,chapter:`图 · 图的存储（有向图）`,tags:[`十字链表`,`有向图存储`,`弧链追踪`,`顶点出入度`,`头插法`],summary:`给出有向图与十字链表的当前状态，追踪顶点 A 的出边链与顶点 B 的入边链，写出 4 个顶点的出度与入度，再用头插法接入新弧 e4（B→C），写出被改动的两个链首指针与新结点的两个链接域。`,source:`本站绘制示意图与自拟教学题，非真题。字段与入出链方向参考 N诺《邻接多重表、十字链表》，可点击的出处链接在前一张知识卡正文。`,content:String.raw`**自拟教学题。** 顶点下标 0～3 在图中标为 A、B、C、D；NULL 表示空指针。
+
+![有向图原始三条弧](rare-orthogonal-list/graph-arcs.svg)
+
+![已知的顶点入口与弧结点字段](rare-orthogonal-list/ol-records.svg)
+
+1. 从 A.firstout 和 B.firstin 出发，分别追踪出边链、入边链，写到 NULL。
+2. 写出四个顶点的（出度，入度）。
+3. 用头插法加入 e4（B→C）：哪些链首改变？e4.tlink、e4.hlink 是什么？再求各度数与全图入、出度之和。`,solution:{answer:String.raw`![沿两种指针得到的入边和出边链](rare-orthogonal-list/chains.svg)
+
+**A 出边：** e1 → e2 → NULL，沿 tlink。**B 入边：** e1 → e3 → NULL，沿 hlink。
+
+**原（出度，入度）：** A(2,0)、B(0,2)、C(1,1)、D(0,0)。`,explanation:String.raw`![e4头插前后，两条链共享同一个弧结点](rare-orthogonal-list/insert-e4.svg)
+
+**新结点先接旧入口：** e4.tlink=NULL、e4.hlink=e2；再令 B.firstout=e4、C.firstin=e4。其它旧字段不变。
+
+**新（出度，入度）：** A(2,0)、B(1,2)、C(1,2)、D(0,0)；出度和=入度和=4。只让 B 出度、C 入度各加 1，与新增一条 B→C 一致。`,pitfalls:String.raw`- tlink 与 hlink 对调：t 是同尾出链，h 是同头入链。
+- 把记录之间的指针误当原图新增加的弧。
+- 只接 B 出链，漏接 C 入链；或覆盖旧 C 入链而丢失 e2。`,extension:String.raw`**问：** 改成尾插 e4，度数变吗？ **答：** 不变。同样新增 B→C；C 入链由头插的 e4→e2 改成 e2→e4，链序不同，链长相同。`,teachingFramework:String.raw`### 讲题框架
+
+1. 先在原图指出弧的起点与终点。
+2. 用两种颜色分别追 tlink、hlink。
+3. 在头插图上先画新 link，再移动两个入口。
+
+### 常见做法
+
+固定一个顶点、一种方向 → 沿对应 link 走到 NULL → 数度；新增弧后检查入度和=出度和=弧数。`}},{id:`rare-ieee754-special`,title:`IEEE754 单精度的特殊位模式：零、非规格数、无穷与 NaN`,type:`知识点`,date:`2026-10-07`,chapter:`计算机组成原理 · IEEE 754 浮点数`,tags:[`IEEE754`,`单精度`,`非规格数`,`有符号零`,`无穷与NaN`],summary:`用阶码分支图、零附近刻度和典型运算辨认单精度特殊值。`,source:`理论依据：Oracle《Numerical Computation Guide》第 2 章 IEEE Arithmetic §2.2.2 单格式（含表 2-2 位模式对应值、表 2-3 重要位模式），文档链接见正文末尾。文中示意图由本站绘制，数值由原生 Node DataView 独立核算。`,content:String.raw`![单精度符号阶码尾数的位宽](rare-ieee754-special/bit-fields.svg)
+
+**只看两步：** 先判 E，再判 F 是否全 0。
+
+![五类位模式及正负零等典型例子](rare-ieee754-special/classification.svg)
+
+**别套错公式：** 规格数隐含 1、指数 E−127；非规格数隐含 0、指数固定 −126。
+
+![从零到非规格数再到最小正规格数](rare-ieee754-special/boundary.svg)
+
+零附近最小间隔是 $2^{-149}$；最大非规格数到最小正规格数也只差这一格，不是突然跳一大段。
+
+![有符号零无穷与NaN的典型运算和比较](rare-ieee754-special/arithmetic.svg)
+
+本专题按默认非陷阱、就近舍入讨论。**NaN 的 =、<、≤、>、≥ 都是假，≠ 为真；+0 与 −0 数值相等，但位串和倒数符号不同。**
+
+位模式分类不等于异常：非规格数不必然触发下溢，无穷也不是最大有限数。
+
+图为本站绘制。参考：[Oracle 单精度格式 §2.2.2](https://docs.oracle.com/cd/E19059-01/stud.10/819-0499/ncg_math.html)。`},{id:`rare-ieee754-special-decode`,questionNumber:13,title:`给定九个十六进制位模式：判定单精度类型并写出数值`,type:`题目`,date:`2026-10-07`,chapter:`计算机组成原理 · IEEE 754 浮点数`,tags:[`IEEE754`,`单精度`,`位模式分类`,`非规格数`,`无穷与NaN`],summary:`给出九个 32 位十六进制位模式，要求判定类型、写出精确数值或表达式，并比较有符号零与 NaN、说明最小规格数与最大非规格数的间距。`,source:`本站自拟教学题，不冒充 408 真题；九个位模式的分类与数值由原生 Node DataView 独立核算。理论依据：Oracle《Numerical Computation Guide》第 2 章 IEEE Arithmetic §2.2.2 单格式（表 2-2、表 2-3），文档链接见解析。`,content:String.raw`**自拟教学题。** 所有位串按 binary32 单精度解释；运算采用默认非陷阱、就近舍入。
+
+![只给位宽、不标答案的sEF布局](rare-ieee754-special/bit-fields.svg)
+
+待判断：00000000、80000000、00000001；007FFFFF、00800000、7F7FFFFF；7F800000、FF800000、7FC00000（均为十六进制）。
+
+1. 判定九项的类型，并写出精确值或表达式。
+2. 两个零数值和位串各是否相同？分别计算 1/(+0)、1/(−0)。
+3. NaN 与自身做 =、≠、<、≤、>、≥ 比较，分别如何？
+4. 00800000 与 007FFFFF 的数值相差多少？`,solution:{answer:String.raw`![九项位模式对应的分类与精确值](rare-ieee754-special/decode.svg)
+
+**两个零：** 数值相等，位串不同；倒数分别为 +∞、−∞。**NaN：** =、<、≤、>、≥ 都是假，≠ 为真。**相邻边界之差：** $2^{-149}$。`,explanation:String.raw`![特殊值运算和比较结果](rare-ieee754-special/arithmetic.svg)
+
+**只推两步：** 最小正非规格数 $2^{-126}\times2^{-23}=2^{-149}$；最大非规格数与最小正规格数之差同样为 $2^{-126}-(1-2^{-23})2^{-126}=2^{-149}$。
+
+参考：[Oracle §2.2.2](https://docs.oracle.com/cd/E19059-01/stud.10/819-0499/ncg_math.html)。`,pitfalls:String.raw`- 非规格数指数误写 −127；正确为 −126。
+- 把 NaN 的“不等于”也判成假。
+- 把无穷当最大有限数，或把所有非规格数等同下溢异常。`,extension:String.raw`**问：** 只把 00800000 的 E 从 1 改成 0，F 保持 0，会得到什么？ **答：** 00000000，即 +0；这不是把原数简单除以 2。
+
+**问：** 007FFFFF 加一个最小正非规格数呢？ **答：** 恰好成为 00800000，即 $2^{-126}$。
+
+**问：** FFC00000 也是 NaN 吗？ **答：** 是，E=255、F≠0，符号位不改变 NaN 分类。`,teachingFramework:String.raw`### 讲题框架
+
+1. 在三段位域上圈 E 和 F。
+2. 沿分类图认类型，再沿边界图看最小间隔。
+3. 把“数值相等”与“位串相同”分开问。
+
+### 常见做法
+
+截 E、F → 判类型 → 选隐含位与指数 → 写值；运算和比较另查特殊值图。`}},{id:`rare-comparison-flags`,title:`图解比较标志：OF、CF 与大小关系`,type:`知识点`,date:`2026-10-07`,chapter:`计算机组成原理 · 运算器 · 条件标志`,tags:[`OF`,`CF`,`SF`,`ZF`,`有符号与无符号比较`],summary:`沿减法器的进位线读懂标志，再选对应的大小关系判据。`,source:`本站绘制示意图；题目为本站自拟教学题，非真题。采用 a−b、借位时 CF=1 的约定。概念与条件参考 Stanford 归档的 Intel 80386 Programmer’s Reference Manual：CMP 与 Jcc，条件另经逐位加法器模型独立穷举核对。独立加法器模型复核 1～8 位共 87,380 对输入、1,048,560 个关系判断，全部一致。`,content:String.raw`![先从加法器看清减法CF和OF的来源](rare-comparison-flags/carry.svg)
+
+**先固定约定：** 同宽的 a−b；CF=1 表示借位。CMP 只改标志，不保存差值。
+
+![无符号和有符号六种大小关系的条件图](rare-comparison-flags/conditions.svg)
+
+**OF / CF 两个标志不够用：** 有符号比较还要 SF，相等还要 ZF。图中的上下两组是二选一，不是先后执行。
+
+**看一个反例：**
+
+![同一位串分别解释为有符号数和无符号数](rare-comparison-flags/answers.svg)
+
+有符号小于看 $SF\oplus OF$，不是直接看差值的最高位。
+
+**出处：** [CMP：比较就是减法](https://www.scs.stanford.edu/05au-cs240c/lab/i386/CMP.htm) · [Jcc：条件跳转](https://www.scs.stanford.edu/05au-cs240c/lab/i386/Jcc.htm)。图为本站绘制。`},{id:`rare-comparison-flags-trace`,questionNumber:14,title:`比较标志：从减法位串判断六种关系`,type:`题目`,date:`2026-10-07`,chapter:`计算机组成原理 · 运算器 · 比较条件`,tags:[`补码`,`OF`,`CF`,`SF`,`ZF`,`逻辑表达式`],summary:`同一组机器位串分别作有符号与无符号解释，写出对应比较条件。`,source:`本站绘制示意图；题目为本站自拟教学题，非真题。采用 a−b、借位时 CF=1 的约定。概念与条件参考 Stanford 归档的 Intel 80386 Programmer’s Reference Manual：CMP 与 Jcc，条件另经逐位加法器模型独立穷举核对。独立加法器模型复核 1～8 位共 87,380 对输入、1,048,560 个关系判断，全部一致。`,content:String.raw`**自拟教学题。** 采用 4 位教学模型，不是实际的 4 位 x86 指令。执行 a−b，仅保留低 4 位；沿用 x86 的“借位时 CF=1”约定，ZF=1 表示结果为零。
+
+![三组未计算的减法输入位串](rare-comparison-flags/question.svg)
+
+1. 求各组的 r、CF、OF、SF、ZF。
+2. 分别按无符号整数和补码整数判断 a 与 b 的关系。
+3. 写出两种解释下 $<,\le,>,\ge,=,\ne$ 的逻辑条件；说明为什么不能只用 OF 判断有符号大小。
+
+**概念依据：** [CMP：比较就是减法](https://www.scs.stanford.edu/05au-cs240c/lab/i386/CMP.htm) · [Jcc：条件跳转](https://www.scs.stanford.edu/05au-cs240c/lab/i386/Jcc.htm)。`,solution:{answer:String.raw`![三组减法的结果与全部标志](rare-comparison-flags/answers.svg)
+
+① 无符号 7<15，有符号 7>−1；② 无符号 8>1，有符号 −8<1；③ 两种解释均为 5=5。`,explanation:String.raw`![十二种比较条件的完整答案](rare-comparison-flags/conditions.svg)
+
+**从例①看纠错：** r=1000 的 SF=1，但 OF=1，所以 $SF\oplus OF=0$，有符号比较并非“小于”。严格大于还要排除相等：$ZF=0$。
+
+**位级核对例①：** 0111+0000+1=1000；进入最高位的进位为 1，输出进位为 0，故 OF=1、CF=1。`,teachingFramework:String.raw`### 讲题框架
+
+1. 先遮住答案，读 a、b 的原始位串。
+2. 在同一差值旁标两种数值解释，让学生指出比较结果为何相反。
+3. 用条件图选择 CF 线路或 SF⊕OF 线路，最后用 ZF 排除相等。
+
+### 常见做法
+
+固定 a−b 和借位约定 → 截断求 r → 写四个标志 → 选数值解释 → 代入逻辑式。`,pitfalls:String.raw`- 把 OF=1 当成“大于”或“小于”；OF 只报告有符号运算溢出。
+- 严格大于只检查 CF=0 或 SF⊕OF=0，漏掉 ZF。
+- 把减法 CF 直接等同最高位进位；本题 CF 恰好取其反。
+- 颠倒 a−b 的顺序，或使用被后续指令改写的标志。`,extension:String.raw`**问：** 0011−0010 与 0101−0101 的 CF、OF 都是 0，能只靠这两个标志区分 > 和 = 吗？ **答：** 不能。前者 r=0001、ZF=0，后者 r=0000、ZF=1；严格大于必须排除相等。
+
+**问：** 若另一架构约定 C=1 表示“不借位”，无符号 ≥ 怎么写？ **答：** C=1；严格 > 为 C=1 且 ZF=0。先确认语义，不能照搬本题的 CF 取值。`}}]},{id:`mock-exam-1`,title:`lion模拟卷1`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:D_},{id:`mock-exam-2`,title:`lion模拟卷2`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:O_},{id:`mock-exam-3`,title:`lion模拟卷3`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:k_},{id:`mock-exam-4`,title:`lion模拟卷4`,date:`2026-10-02`,summary:`数据结构单项选择题第 1～11 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 45 题，原卷未印参考答案，已独立推导与复核。`,materials:A_},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:E_},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:T_},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:w_},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:C_}],M_=String.raw`### 循环队列与指针约定
 
 循环队列把长度为 $N$ 的数组首尾相接。**这里约定 front 指向队头元素，rear 指向下一次入队的写入位置**；若题目采用别的指针含义，公式也要重新推导。下标范围为 $0$ 至 $N-1$，推进一步都要对 $N$ 取模。
 
@@ -10712,7 +10881,17 @@ DHCP 为主机动态分配 IP 地址、子网掩码、默认网关、DNS 服务�
 - 一个广播域内可部署多台 DHCP 服务器，客户端只选定一个；续租阶段可单播。
 - **客户端首次申请不需要预先知道 DHCP 服务器的 IP 地址**，靠广播发现。
 - **DHCP 支持地址保留（静态绑定）**，把某 MAC 与固定 IP 绑定，使指定主机总是获得同一地址。
-- 跨网段时可由 DHCP 中继代理转发请求。`,"mock-exam-4-cn-q40":Dy,"mock-exam-4-co-q43":Tv,"mock-exam-4-co-q44":Av,"mock-exam-4-os-q45":qv,"mock-exam-4-os-q46":Uv,"mock-exam-4-cn-q47":Ty,"io-interrupt-dma-bus-clock":Nv,"vm-lru-array-page-faults":ny,"wangdao-mock2-major-01":cv,"wangdao-mock2-major-02":P_,"wangdao-mock2-major-03":lv,"wangdao-mock2-major-04":lv,"wangdao-mock2-major-05":uv,"wangdao-mock2-major-06":dv,"wangdao-mock2-major-07":R_,"wangdao-mock2-major-08":z_,"wangdao-mock2-major-09":av,"wangdao-mock2-major-10":ov,"wangdao-mock2-major-11":W_,"wangdao-mock2-major-12":mv,"wangdao-mock2-major-13":hv,"wangdao-mock2-major-14":_v,"wangdao-mock2-major-15":yv,"wangdao-mock2-major-16":yv,"wangdao-mock2-major-17":xv,"wangdao-mock2-major-18":Tv,"wangdao-mock2-major-19":kv,"wangdao-mock2-major-20":Dv,"wangdao-mock2-major-21":Mv,"wangdao-mock2-major-22":Pv,"wangdao-mock2-major-23":Lv,"wangdao-mock2-major-24":Lv,"wangdao-mock2-major-25":Rv,"wangdao-mock2-major-26":Vv,"wangdao-mock2-major-27":Uv,"wangdao-mock2-major-28":Wv,"wangdao-mock2-major-29":ny,"wangdao-mock2-major-30":cy,"wangdao-mock2-major-31":uy,"wangdao-mock2-major-32":py,"wangdao-mock1-major-41":J_,"wangdao-mock1-major-42":cv,"wangdao-mock1-major-43":Sv,"wangdao-mock1-major-44":Av,"wangdao-mock1-major-45":Yv,"wangdao-mock1-major-46":ey,"forest-to-binary-min-height":rv,"directed-graph-path-strings":dv,"insertion-sort-comparison-counts":fv,"system-hierarchy-levels":pv,"float32-12-1-rounding":_v,"isa-specified-things":pv,"kernel-mode-operations":Lv,"rare-rbt-validity":B_,"rare-rbt-black-height":B_,"rare-rbt-insertion":V_,"rare-rbt-deletion":V_,"rare-rbt-recolor-cost":V_,"rare-grouped-allocation":iy,"rare-grouped-release":iy,"rare-grouped-empty":iy,"rare-grouped-batch-io":iy,"rare-grouped-capacity":ay},jy;function My(){return jy||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jy=void 0,t(n.error)},n.onblocked=()=>{r=!0,jy=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jy=void 0},e(t)}}),jy}async function Ny(e,t){let n=await My();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function Py(e){return Ny(`readonly`,t=>t.index(`materialId`).getAll(e))}async function Fy(e){e.length&&await Ny(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function Iy(e){await Ny(`readwrite`,t=>t.delete(e))}var Ly=`/courses/`,Ry={题目:re,知识点:se},zy=j_.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),By=zy.filter(({material:e})=>e.type===`题目`).length,Vy=28,Hy=64,Uy=26,Wy=16,Gy=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Ky(e){let t=(e.match(Gy)??[]).length;return(e.length-t)*7.4+t*13+18}function qy(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+- 跨网段时可由 DHCP 中继代理转发请求。`,"mock-exam-4-cn-q40":Dy,"mock-exam-4-co-q43":Tv,"mock-exam-4-co-q44":Av,"mock-exam-4-os-q45":qv,"mock-exam-4-os-q46":Uv,"mock-exam-4-cn-q47":Ty,"io-interrupt-dma-bus-clock":Nv,"vm-lru-array-page-faults":ny,"wangdao-mock2-major-01":cv,"wangdao-mock2-major-02":P_,"wangdao-mock2-major-03":lv,"wangdao-mock2-major-04":lv,"wangdao-mock2-major-05":uv,"wangdao-mock2-major-06":dv,"wangdao-mock2-major-07":R_,"wangdao-mock2-major-08":z_,"wangdao-mock2-major-09":av,"wangdao-mock2-major-10":ov,"wangdao-mock2-major-11":W_,"wangdao-mock2-major-12":mv,"wangdao-mock2-major-13":hv,"wangdao-mock2-major-14":_v,"wangdao-mock2-major-15":yv,"wangdao-mock2-major-16":yv,"wangdao-mock2-major-17":xv,"wangdao-mock2-major-18":Tv,"wangdao-mock2-major-19":kv,"wangdao-mock2-major-20":Dv,"wangdao-mock2-major-21":Mv,"wangdao-mock2-major-22":Pv,"wangdao-mock2-major-23":Lv,"wangdao-mock2-major-24":Lv,"wangdao-mock2-major-25":Rv,"wangdao-mock2-major-26":Vv,"wangdao-mock2-major-27":Uv,"wangdao-mock2-major-28":Wv,"wangdao-mock2-major-29":ny,"wangdao-mock2-major-30":cy,"wangdao-mock2-major-31":uy,"wangdao-mock2-major-32":py,"wangdao-mock1-major-41":J_,"wangdao-mock1-major-42":cv,"wangdao-mock1-major-43":Sv,"wangdao-mock1-major-44":Av,"wangdao-mock1-major-45":Yv,"wangdao-mock1-major-46":ey,"forest-to-binary-min-height":rv,"directed-graph-path-strings":dv,"insertion-sort-comparison-counts":fv,"system-hierarchy-levels":pv,"float32-12-1-rounding":_v,"isa-specified-things":pv,"kernel-mode-operations":Lv,"rare-rbt-validity":B_,"rare-rbt-black-height":B_,"rare-rbt-insertion":V_,"rare-rbt-deletion":V_,"rare-rbt-recolor-cost":V_,"rare-grouped-allocation":iy,"rare-grouped-release":iy,"rare-grouped-empty":iy,"rare-grouped-batch-io":iy,"rare-grouped-capacity":ay,"rare-adjacency-multilist-trace":String.raw`![以B为例，按当前顶点选择边结点字段](rare-adjacency-multilist/field-switch.svg)
+
+**无向图：** 一条边一个共享结点。当前顶点匹配 ivex → ilink；匹配 jvex → jlink。本题没有自环，顶点链长度等于度。`,"rare-orthogonal-list-trace":String.raw`![弧结点与两个顶点入口的字段布局](rare-orthogonal-list/ol-records.svg)
+
+**有向图：** 一条弧一个共享结点。firstout+tlink 找同尾出弧；firstin+hlink 找同头入弧。出度和=入度和=弧数。`,"rare-ieee754-special-decode":String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
+
+**规格数：** $(-1)^s2^{E-127}(1+F/2^{23})$。**非规格数：** $(-1)^s2^{-126}(F/2^{23})$，其中 F 是 23 位字段的无符号整数值；最小正非规格数为 $2^{-149}$。`,"rare-comparison-flags-trace":String.raw`![从进位线区分CF借位与OF溢出](rare-comparison-flags/carry.svg)
+
+**对象是同宽 a−b。** CF 服务无符号解释；SF 与 OF 一起服务补码解释；ZF 管相等。
+
+设输入符号位为 $s_a,s_b$，截断差值符号位为 $s_r$：$OF=(s_a\oplus s_b)\land(s_a\oplus s_r)$。因此有符号小于用 $SF\oplus OF$，不是只用 OF。`},jy;function My(){return jy||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jy=void 0,t(n.error)},n.onblocked=()=>{r=!0,jy=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jy=void 0},e(t)}}),jy}async function Ny(e,t){let n=await My();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function Py(e){return Ny(`readonly`,t=>t.index(`materialId`).getAll(e))}async function Fy(e){e.length&&await Ny(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function Iy(e){await Ny(`readwrite`,t=>t.delete(e))}var Ly=`/courses/`,Ry={题目:re,知识点:se},zy=j_.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),By=zy.filter(({material:e})=>e.type===`题目`).length,Vy=28,Hy=64,Uy=26,Wy=16,Gy=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Ky(e){let t=(e.match(Gy)??[]).length;return(e.length-t)*7.4+t*13+18}function qy(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
 `)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Jy({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=qy(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Ky(e.label))),s=o+Uy,c=i*s-Uy+Wy*2,l=(a+1)*Hy+Wy*2-(Hy-Vy),u=e=>({x:Wy+o/2+e.column*s,y:Wy+e.depth*Hy+Vy/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,P.jsxs)(`figure`,{className:`my-4`,children:[(0,P.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,P.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
 `).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,P.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,P.jsx)(`path`,{d:`M ${e.x} ${e.y+Vy/2} C ${e.x} ${e.y+Vy/2+18}, ${t.x} ${t.y-Vy/2-18}, ${t.x} ${t.y-Vy/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,P.jsxs)(`g`,{children:[(0,P.jsx)(`rect`,{x:n-o/2,y:r-Vy/2,width:o,height:Vy,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,P.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,P.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function Yy({children:e,gfm:t=!1}){return(0,P.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,P.jsx)(Zo,{remarkPlugins:t?[xp,xg]:[xp],rehypePlugins:[b_],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Ly}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,P.jsx)(Jy,{source:n,kind:r})}return(0,P.jsx)(`pre`,{children:e})}},children:e})})}var Xy={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function Zy({image:e}){let t=(0,w.useRef)(null);return(0,w.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,P.jsxs)(`figure`,{className:`min-w-0`,children:[(0,P.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&window.open(t.src,`_blank`,`noopener,noreferrer`)}}),(0,P.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name})]})}function Qy({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,w.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,w.useState)(!1),[o,s]=(0,w.useState)([]),[c,l]=(0,w.useState)(!1),[u,d]=(0,w.useState)(`正在读取补充图片…`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let t=!0;return Py(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>Xy[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await Fy(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await Iy(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,P.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,P.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,P.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,P.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,P.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,P.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,P.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,P.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 rounded-xl border border-border p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,P.jsx)(Yy,{gfm:!0,children:n.content}):(0,P.jsx)(`div`,{className:`whitespace-pre-wrap text-sm leading-7 [overflow-wrap:anywhere]`,children:n.content}):(0,P.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,P.jsxs)(`div`,{className:`mt-4`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,P.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
 ## 课堂提醒

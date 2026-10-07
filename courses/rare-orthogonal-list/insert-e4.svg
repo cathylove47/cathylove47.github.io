@@ -1,0 +1,61 @@
+<svg width="360" height="580" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 580" role="img" aria-labelledby="ttl dsc" font-family="'Noto Sans SC','Microsoft YaHei','Segoe UI',sans-serif">
+<rect x="0" y="0" width="360" height="580" fill="#fffdf7"/>
+<title id="ttl">头插新弧e4前后的两条链</title>
+<desc id="dsc">头插e4（B到C）后，B.firstout与C.firstin改为e4；e4.tlink为空、e4.hlink指向e2。</desc>
+<defs>
+<marker id="mk_graph" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/>
+</marker>
+<marker id="mk_out" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+</marker>
+<marker id="mk_in" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+</marker>
+</defs>
+<rect x="12" y="8" width="336" height="224" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="36" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">插入前（当前状态）</text>
+<text x="24" y="66" font-size="18" text-anchor="start" fill="#2563eb" font-weight="bold">B 的出边链（firstout）</text>
+<rect x="20" y="94" width="42" height="40" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="41.0" y="121" font-size="22" text-anchor="#7c2d12" fill="bold">B</text>
+<line x1="62" y1="114" x2="282" y2="114" stroke="#2563eb" stroke-width="2.2" marker-end="url(#mk_out)"/>
+<text x="290" y="120" font-size="18" text-anchor="start" fill="#64748b" font-weight="bold">NULL</text>
+<text x="24" y="166" font-size="18" text-anchor="start" fill="#dc2626" font-weight="bold">C 的入边链（firstin）</text>
+<rect x="20" y="192" width="42" height="40" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="41.0" y="219" font-size="22" text-anchor="#7c2d12" fill="bold">C</text>
+<line x1="62" y1="212" x2="147.0" y2="212" stroke="#dc2626" stroke-width="2.2" marker-end="url(#mk_in)"/>
+<rect x="147.0" y="192" width="50" height="40" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="172.0" y="209" font-size="20" text-anchor="#14532d" fill="bold">e2</text>
+<text x="172.0" y="227" font-size="18" text-anchor="#14532d" fill="#0f172a">A→C</text>
+<line x1="197.0" y1="212" x2="282.0" y2="212" stroke="#dc2626" stroke-width="2.2" marker-end="url(#mk_in)"/>
+<text x="290" y="218" font-size="18" text-anchor="start" fill="#64748b" font-weight="bold">NULL</text>
+<rect x="12" y="248" width="336" height="288" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="276" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">头插新弧 e4（B→C）后</text>
+<text x="24" y="306" font-size="18" text-anchor="start" fill="#2563eb" font-weight="bold">B 的出边链 → 新链首 e4</text>
+<rect x="20" y="332" width="42" height="40" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="41.0" y="359" font-size="22" text-anchor="#7c2d12" fill="bold">B</text>
+<line x1="62" y1="352" x2="147.0" y2="352" stroke="#2563eb" stroke-width="2.2" marker-end="url(#mk_out)"/>
+<rect x="147.0" y="332" width="50" height="40" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-width="1.4"/>
+<text x="172.0" y="349" font-size="20" text-anchor="#7c2d12" fill="bold">e4</text>
+<text x="172.0" y="367" font-size="18" text-anchor="#7c2d12" fill="#0f172a">B→C</text>
+<line x1="197.0" y1="352" x2="282.0" y2="352" stroke="#2563eb" stroke-width="2.2" marker-end="url(#mk_out)"/>
+<text x="290" y="358" font-size="18" text-anchor="start" fill="#64748b" font-weight="bold">NULL</text>
+<text x="24" y="406" font-size="18" text-anchor="start" fill="#dc2626" font-weight="bold">C 的入边链 → 新链首 e4</text>
+<rect x="20" y="432" width="42" height="40" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="41.0" y="459" font-size="22" text-anchor="#7c2d12" fill="bold">C</text>
+<line x1="62" y1="452" x2="95.0" y2="452" stroke="#dc2626" stroke-width="2.2" marker-end="url(#mk_in)"/>
+<rect x="95.0" y="432" width="50" height="40" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-width="1.4"/>
+<text x="120.0" y="449" font-size="20" text-anchor="#7c2d12" fill="bold">e4</text>
+<text x="120.0" y="467" font-size="18" text-anchor="#7c2d12" fill="#0f172a">B→C</text>
+<line x1="145.0" y1="452" x2="199.0" y2="452" stroke="#dc2626" stroke-width="2.2" marker-end="url(#mk_in)"/>
+<text x="172.0" y="444" font-size="18" text-anchor="middle" fill="#dc2626" font-weight="bold">hlink</text>
+<rect x="199.0" y="432" width="50" height="40" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="224.0" y="449" font-size="20" text-anchor="#14532d" fill="bold">e2</text>
+<text x="224.0" y="467" font-size="18" text-anchor="#14532d" fill="#0f172a">A→C</text>
+<line x1="249.0" y1="452" x2="282.0" y2="452" stroke="#dc2626" stroke-width="2.2" marker-end="url(#mk_in)"/>
+<text x="290" y="458" font-size="18" text-anchor="start" fill="#64748b" font-weight="bold">NULL</text>
+<text x="24" y="492" font-size="18" text-anchor="start" fill="#7c2d12" font-weight="bold">两处 e4 是同一个弧结点，</text>
+<text x="24" y="516" font-size="18" text-anchor="start" fill="#7c2d12" font-weight="bold">同时挂在 B 出边链与 C 入边链上</text>
+<text x="24" y="540" font-size="18" text-anchor="start" fill="#0f172a">B.firstout=e4，C.firstin=e4</text>
+<text x="24" y="564" font-size="18" text-anchor="start" fill="#0f172a">e4.tlink=NULL，e4.hlink=e2</text>
+</svg>

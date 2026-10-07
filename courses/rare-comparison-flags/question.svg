@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="634" viewBox="0 0 360 634" role="img" aria-labelledby="title desc">
+<title id="title">三个待解的四位减法输入</title>
+<desc id="desc">情况一0111减1111；情况二1000减0001；情况三0101减0101。输入未标注计算结果。</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8 Z" fill="#19745d"/>
+</marker>
+</defs>
+<rect width="360" height="634" rx="16" fill="#fffdf7"/>
+<g font-family="Microsoft YaHei, Segoe UI, sans-serif">
+<text x="20" y="35" font-size="24" font-weight="700" fill="#173c36">4 位减法：读图判大小</text>
+<rect x="16" y="64" width="328" height="136" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="98" font-size="22" font-weight="700" fill="#173c36">情况 ①</text>
+<text x="34" y="138" font-size="24" font-weight="400" fill="#173c36">a = 0111</text>
+<text x="180" y="138" font-size="24" font-weight="400" fill="#173c36">b = 1111</text>
+<text x="34" y="178" font-size="20" font-weight="400" fill="#173c36">r = a − b （仅保留低 4 位）</text>
+<rect x="16" y="220" width="328" height="136" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="254" font-size="22" font-weight="700" fill="#173c36">情况 ②</text>
+<text x="34" y="294" font-size="24" font-weight="400" fill="#173c36">a = 1000</text>
+<text x="180" y="294" font-size="24" font-weight="400" fill="#173c36">b = 0001</text>
+<text x="34" y="334" font-size="20" font-weight="400" fill="#173c36">r = a − b （仅保留低 4 位）</text>
+<rect x="16" y="376" width="328" height="136" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="410" font-size="22" font-weight="700" fill="#173c36">情况 ③</text>
+<text x="34" y="450" font-size="24" font-weight="400" fill="#173c36">a = 0101</text>
+<text x="180" y="450" font-size="24" font-weight="400" fill="#173c36">b = 0101</text>
+<text x="34" y="490" font-size="20" font-weight="400" fill="#173c36">r = a − b （仅保留低 4 位）</text>
+<text x="22" y="567" font-size="20" font-weight="400" fill="#173c36">先求 r 与 CF、OF、SF、ZF。</text>
+<text x="22" y="605" font-size="20" font-weight="400" fill="#173c36">同一串位：分别按两种数解释。</text>
+</g>
+</svg>

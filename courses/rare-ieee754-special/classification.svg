@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="938" viewBox="0 0 360 938" role="img" aria-labelledby="title desc">
+<title id="title">IEEE754单精度的五类位模式</title>
+<desc id="desc">按八位阶码E和二十三位尾数字段F分类。有符号零与非规格数用E零区分F；无穷与NaN用E255区分F。</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8 Z" fill="#19745d"/>
+</marker>
+</defs>
+<rect width="360" height="938" rx="16" fill="#fffdf7"/>
+<g font-family="Microsoft YaHei, Segoe UI, sans-serif">
+<text x="20" y="35" font-size="24" font-weight="700" fill="#173c36">先看 E，再看 F</text>
+<rect x="16" y="58" width="328" height="93" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="93" font-size="22" font-weight="400" fill="#173c36">binary32：s / E / F</text>
+<text x="30" y="128" font-size="18" font-weight="400" fill="#173c36">符号 1 位 · 阶码 8 位 · 尾数 23 位</text>
+<rect x="16" y="171" width="328" height="123" rx="12" fill="#eff8f5" stroke="#a9cfc3"/>
+<text x="30" y="204" font-size="22" font-weight="700" fill="#173c36">1 ≤ E ≤ 254</text>
+<text x="30" y="241" font-size="22" font-weight="400" fill="#173c36">规格数：隐含 1</text>
+<text x="30" y="274" font-size="18" font-weight="400" fill="#173c36">指数 = E − 127</text>
+<rect x="16" y="313" width="328" height="123" rx="12" fill="#eef5fc" stroke="#a9cfc3"/>
+<text x="30" y="346" font-size="22" font-weight="700" fill="#173c36">E = 0，F = 0</text>
+<text x="30" y="383" font-size="22" font-weight="400" fill="#173c36">有符号零：+0 或 −0</text>
+<text x="30" y="416" font-size="18" font-weight="400" fill="#173c36">符号位 s 决定零的正负</text>
+<rect x="16" y="455" width="328" height="123" rx="12" fill="#fff4e5" stroke="#a9cfc3"/>
+<text x="30" y="488" font-size="22" font-weight="700" fill="#173c36">E = 0，F ≠ 0</text>
+<text x="30" y="525" font-size="22" font-weight="400" fill="#173c36">非规格数：隐含 0</text>
+<text x="30" y="558" font-size="18" font-weight="400" fill="#173c36">指数固定 −126，不是 −127</text>
+<rect x="16" y="597" width="328" height="123" rx="12" fill="#eef5fc" stroke="#a9cfc3"/>
+<text x="30" y="630" font-size="22" font-weight="700" fill="#173c36">E = 255，F = 0</text>
+<text x="30" y="667" font-size="22" font-weight="400" fill="#173c36">无穷：+∞ 或 −∞</text>
+<text x="30" y="700" font-size="18" font-weight="400" fill="#173c36">不是最大的有限数</text>
+<rect x="16" y="739" width="328" height="123" rx="12" fill="#fff4e5" stroke="#a9cfc3"/>
+<text x="30" y="772" font-size="22" font-weight="700" fill="#173c36">E = 255，F ≠ 0</text>
+<text x="30" y="809" font-size="22" font-weight="400" fill="#173c36">NaN：非数</text>
+<text x="30" y="842" font-size="18" font-weight="400" fill="#173c36">很多种位模式，不限于一种</text>
+<text x="23" y="912" font-size="20" font-weight="400" fill="#173c36">五种情况互斥，不是五步运算。</text>
+</g>
+</svg>

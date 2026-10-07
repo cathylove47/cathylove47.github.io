@@ -1,0 +1,22 @@
+<svg width="360" height="306" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 306" role="img" aria-labelledby="bfTitle bfDesc">
+<title id="bfTitle">单精度浮点数的三个位域：s、E、F</title>
+<desc id="bfDesc">32 位单精度被划分为 1 位符号 s、8 位阶码 E（共 8 位，取值 0 至 255）和 23 位尾数 F；图中只标示三段位域的宽度与位号。</desc>
+<rect x="0" y="0" width="360" height="306" fill="#f8fafc"/>
+<text x="180" y="36" font-size="22" font-family="system-ui, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">32 位单精度：s / E / F</text>
+<text x="180" y="64" font-size="19" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">高位在左，低位在右；共 1+8+23=32 位</text>
+<rect x="14" y="84" width="34" height="46" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>
+<rect x="48" y="84" width="122" height="46" rx="6" fill="#fde68a" stroke="#b45309" stroke-width="1.6"/>
+<rect x="170" y="84" width="176" height="46" rx="6" fill="#bbf7d0" stroke="#15803d" stroke-width="1.6"/>
+<text x="31" y="114" font-size="22" font-family="system-ui, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">s</text>
+<text x="109" y="114" font-size="21" font-family="system-ui, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">E</text>
+<text x="258" y="114" font-size="21" font-family="system-ui, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">F</text>
+<text x="31" y="156" font-size="18" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">1 位</text>
+<text x="109" y="156" font-size="18" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">8 位</text>
+<text x="258" y="156" font-size="18" font-family="system-ui, sans-serif" fill="#475569" text-anchor="middle">23 位</text>
+<text x="14" y="188" font-size="18" font-family="system-ui, sans-serif" fill="#475569">第31位</text>
+<text x="92" y="188" font-size="18" font-family="system-ui, sans-serif" fill="#475569">第30～23位</text>
+<text x="243" y="188" font-size="18" font-family="system-ui, sans-serif" fill="#475569">第22～0位</text>
+<line x1="14" y1="210" x2="346" y2="210" stroke="#cbd5e1" stroke-width="1.4"/>
+<text x="14" y="242" font-size="20" font-family="system-ui, sans-serif" fill="#0f172a">s 定符号，E 定指数，F 定尾数</text>
+<text x="14" y="276" font-size="20" font-family="system-ui, sans-serif" fill="#0f172a">E 共 8 位，F 共 23 位</text>
+</svg>
