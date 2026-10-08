@@ -6,6 +6,12 @@
 
 *来源：arXiv:2406.15303（https://arxiv.org/abs/2406.15303）。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 多实例学习（MIL）能有效地分析全切片图像，但由于 attention 过度集中而面临过拟合。现有解决方案依赖于复杂的架构改动或额外的处理步骤，而我们引入注意力熵最大化（Attention Entropy Maximization，AEM），一种简单却有效的正则化技术。我们的研究揭示了 attention entropy 与模型性能之间的正相关。基于这一洞见，我们将 AEM 正则整合进 MIL 框架，以惩罚过度的 attention 集中。为解决对 AEM 权重参数的敏感性，我们实现了余弦权重退火（Cosine Weight Annealing），以降低对该参数的依赖。大量评估表明，AEM 在不同的特征提取器、MIL 框架、attention 机制和数据增强技术上都具有更优的性能。这是我们匿名公开的代码：https://github.com/dazhangyu123/AEM。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图
 
 ![AEM 论文框架图](/papers/pathology/39-aem-pipeline.png)

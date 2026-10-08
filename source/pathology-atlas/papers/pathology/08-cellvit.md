@@ -12,6 +12,12 @@
 
 *来源：arXiv:2306.15350（https://arxiv.org/abs/2306.15350）。逐字原文，未改写、未压缩。*
 
+## 中文摘要
+
+> 在苏木精-伊红（H&E）染色的组织图像中进行的细胞核检测与分割是重要的临床任务，并且对广泛的应用至关重要。然而，由于细胞核在染色和大小上的差异、边界重叠以及细胞核聚集，这是一项具有挑战性的任务。尽管卷积神经网络已被广泛用于这一任务，我们仍探索了基于 Transformer 的网络在这一领域的潜力。因此，我们引入一种新方法，使用一种基于 Vision Transformer、名为 CellViT 的深度学习架构，对数字化组织样本中的细胞核进行自动实例分割。CellViT 在 PanNuke 数据集上进行了训练与评估，该数据集是最具挑战性的细胞核实例分割数据集之一，包含近 200,000 个被标注为 19 种组织类型中 5 个临床重要类别的细胞核。我们利用最近发布的 Segment Anything Model 以及一个在 104 million 张组织学图像 patch 上预训练的 ViT 编码器，展示了大规模域内与域外预训练 Vision Transformer 的优越性——在 PanNuke 数据集上取得了最先进的细胞核检测与实例分割性能，平均 panoptic quality 为 0.50，F1-detection 分数为 0.83。代码公开于 https://github.com/TIO-IKIM/CellViT
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
 ## 论文 Pipeline 原图
 
 ![CellViT 论文框架图](/papers/pathology/08-cellvit-pipeline.png)
