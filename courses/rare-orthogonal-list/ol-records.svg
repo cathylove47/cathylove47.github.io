@@ -1,73 +1,109 @@
-<svg width="360" height="668" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 668" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect x="0" y="0" width="360" height="668" fill="#fffdf7"/>
-<title id="ttl">十字链表的顶点结点表与弧结点表（当前状态）</title>
-<desc id="dsc">上表：顶点 A 的 firstout 为 e1、firstin 为空，B 的 firstout 为空、firstin 为 e1，C 的 firstout 为 e3、firstin 为 e2，D 两项都为空。下表：弧 e1 的 tailvex 为 A、headvex 为 B、tlink 为 e2、hlink 为 e3；e2 为 A 到 C、两个链接为空；e3 为 C 到 B、两个链接为空。</desc>
-<rect x="8" y="8" width="344" height="272" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<svg width="360" height="784" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 784" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+<rect x="0" y="0" width="360" height="784" fill="#fffdf7"/>
+<title id="ttl">十字链表的顶点结点表与弧结点表（本例全部字段值）</title>
+<desc id="dsc">上表为顶点结点：V1 的 firstin 是 e3、firstout 是 e1；V2 的 firstin 是 e1、firstout 为空；V3 的 firstin 是 e2、firstout 是 e3；V4 的 firstin 是 e4、firstout 是 e5。下表为弧结点：e1 的 tailvex 为 0、headvex 为 1、hlink 为 e6、tlink 为 e2；e2 为 0 到 2、hlink 为 e7、tlink 为空；e3 为 2 到 0、hlink 为 e5、tlink 为 e4；e4 为 2 到 3、两个链接都为空；e5 为 3 到 0、hlink 为空、tlink 为 e6；e6 为 3 到 1、hlink 为空、tlink 为 e7；e7 为 3 到 2、两个链接都为空。</desc>
+<rect x="8" y="8" width="344" height="276" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
 <text x="20" y="36" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">顶点结点：每个顶点一个（顺序存放）</text>
-<text x="20" y="62" font-size="18" text-anchor="start" fill="#1d4ed8">firstout：出边链的第一条弧（蓝）</text>
-<text x="20" y="86" font-size="18" text-anchor="start" fill="#b91c1c">firstin：入边链的第一条弧（红）</text>
-<text x="20" y="110" font-size="18" text-anchor="start" fill="#475569">顶点下标：A=0、B=1、C=2、D=3</text>
+<text x="20" y="62" font-size="17" text-anchor="start" fill="#1d4ed8">firstout：出边链的第 1 条弧（出去）</text>
+<text x="20" y="86" font-size="17" text-anchor="start" fill="#b91c1c">firstin：入边链的第 1 条弧（进来）</text>
+<text x="20" y="110" font-size="17" text-anchor="start" fill="#475569">下标：V1=0、V2=1、V3=2、V4=3</text>
 <rect x="20" y="120" width="320" height="28" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
-<text x="48" y="141" font-size="18" text-anchor="middle" fill="#334155" font-weight="bold">顶点</text>
-<text x="142" y="141" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">firstout</text>
-<text x="274" y="141" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">firstin</text>
+<text x="48" y="141" font-size="17" text-anchor="middle" fill="#334155" font-weight="bold">顶点</text>
+<text x="150" y="141" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">firstin</text>
+<text x="274" y="141" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">firstout</text>
 <rect x="20" y="148" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="170" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
-<rect x="120" y="150" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
-<text x="142" y="169" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e1</text>
-<text x="274" y="169" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<text x="48" y="170" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V1</text>
+<rect x="128" y="150" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="150" y="169" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e3</text>
+<rect x="252" y="150" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="274" y="169" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e1</text>
 <rect x="20" y="178" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="200" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
-<text x="142" y="199" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<rect x="252" y="180" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
-<text x="274" y="199" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">e1</text>
+<text x="48" y="200" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V2</text>
+<rect x="128" y="180" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="150" y="199" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e1</text>
+<text x="274" y="199" font-size="17" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
 <rect x="20" y="208" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="230" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">C</text>
-<rect x="120" y="210" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
-<text x="142" y="229" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e3</text>
-<rect x="252" y="210" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
-<text x="274" y="229" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">e2</text>
+<text x="48" y="230" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V3</text>
+<rect x="128" y="210" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="150" y="229" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e2</text>
+<rect x="252" y="210" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="274" y="229" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e3</text>
 <rect x="20" y="238" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<text x="48" y="260" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">D</text>
-<text x="142" y="259" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<text x="274" y="259" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<rect x="8" y="288" width="344" height="290" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<text x="20" y="316" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">弧结点：每条弧只存一份，被两条链共用</text>
-<text x="20" y="342" font-size="18" text-anchor="start" fill="#334155">tailvex：弧尾顶点的下标</text>
-<text x="20" y="366" font-size="18" text-anchor="start" fill="#334155">headvex：弧头顶点的下标</text>
-<text x="20" y="390" font-size="18" text-anchor="start" fill="#475569">弧尾＝起点，弧头＝终点</text>
-<text x="20" y="414" font-size="18" text-anchor="start" fill="#1d4ed8">tlink：同弧尾的下一条弧（出链）</text>
-<text x="20" y="438" font-size="18" text-anchor="start" fill="#b91c1c">hlink：同弧头的下一条弧（入链）</text>
-<rect x="20" y="448" width="320" height="28" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
-<text x="48" y="469" font-size="18" text-anchor="middle" fill="#334155" font-weight="bold">弧</text>
-<text x="112" y="469" font-size="18" text-anchor="middle" fill="#334155" font-weight="bold">tailvex</text>
-<text x="184" y="469" font-size="18" text-anchor="middle" fill="#334155" font-weight="bold">headvex</text>
-<text x="253" y="469" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">tlink</text>
-<text x="313" y="469" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">hlink</text>
-<rect x="20" y="476" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<rect x="26" y="478" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
-<text x="48" y="497" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
-<text x="112" y="497" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
-<text x="184" y="497" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
-<rect x="231" y="478" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
-<text x="253" y="497" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e2</text>
-<rect x="291" y="478" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
-<text x="313" y="497" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">e3</text>
-<rect x="20" y="506" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<rect x="26" y="508" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
-<text x="48" y="527" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e2</text>
-<text x="112" y="527" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
-<text x="184" y="527" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">C</text>
-<text x="253" y="527" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<text x="313" y="527" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<rect x="20" y="536" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-<rect x="26" y="538" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
-<text x="48" y="557" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e3</text>
-<text x="112" y="557" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">C</text>
-<text x="184" y="557" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
-<text x="253" y="557" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<text x="313" y="557" font-size="18" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
-<text x="180" y="604" font-size="18" text-anchor="middle" fill="#0f172a">每条弧只存一份，被两条链共用。</text>
-<text x="180" y="628" font-size="18" text-anchor="middle" fill="#0f172a">A.firstout 与 B.firstin 都写着 e1，</text>
-<text x="180" y="652" font-size="18" text-anchor="middle" fill="#0f172a">指的是同一个结点，不是各存一份。</text>
+<text x="48" y="260" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V4</text>
+<rect x="128" y="240" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="150" y="259" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e4</text>
+<rect x="252" y="240" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="274" y="259" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e5</text>
+<rect x="8" y="292" width="344" height="484" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="20" y="320" font-size="18" text-anchor="start" fill="#0f172a" font-weight="bold">弧结点：每条弧一个，被两条链共用</text>
+<text x="20" y="344" font-size="17" text-anchor="start" fill="#334155">tailvex、headvex 存顶点下标（数）；</text>
+<text x="20" y="368" font-size="17" text-anchor="start" fill="#334155">hlink、tlink 存弧结点的地址（指针）。</text>
+<text x="20" y="392" font-size="17" text-anchor="start" fill="#1d4ed8">tlink：同弧尾的下一条（出边链）</text>
+<text x="20" y="416" font-size="17" text-anchor="start" fill="#b91c1c">hlink：同弧头的下一条（入边链）</text>
+<rect x="20" y="426" width="320" height="28" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="48" y="447" font-size="17" text-anchor="middle" fill="#334155" font-weight="bold">弧</text>
+<text x="106" y="447" font-size="16" text-anchor="middle" fill="#334155" font-weight="bold">tailvex</text>
+<text x="170" y="447" font-size="16" text-anchor="middle" fill="#334155" font-weight="bold">headvex</text>
+<text x="232" y="447" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">hlink</text>
+<text x="300" y="447" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">tlink</text>
+<rect x="20" y="454" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="456" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="475" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
+<text x="106" y="475" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">0</text>
+<text x="170" y="475" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">1</text>
+<rect x="210" y="456" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="232" y="475" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e6</text>
+<rect x="278" y="456" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="300" y="475" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e2</text>
+<rect x="20" y="484" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="486" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="505" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e2</text>
+<text x="106" y="505" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">0</text>
+<text x="170" y="505" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">2</text>
+<rect x="210" y="486" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="232" y="505" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e7</text>
+<text x="300" y="505" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<rect x="20" y="514" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="516" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="535" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e3</text>
+<text x="106" y="535" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">2</text>
+<text x="170" y="535" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">0</text>
+<rect x="210" y="516" width="44" height="26" rx="6" fill="#dcfce7" stroke="#dc2626" stroke-width="1.4"/>
+<text x="232" y="535" font-size="17" text-anchor="middle" fill="#b91c1c" font-weight="bold">e5</text>
+<rect x="278" y="516" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="300" y="535" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e4</text>
+<rect x="20" y="544" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="546" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="565" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e4</text>
+<text x="106" y="565" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">2</text>
+<text x="170" y="565" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">3</text>
+<text x="232" y="565" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<text x="300" y="565" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<rect x="20" y="574" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="576" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="595" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e5</text>
+<text x="106" y="595" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">3</text>
+<text x="170" y="595" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">0</text>
+<text x="232" y="595" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<rect x="278" y="576" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="300" y="595" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e6</text>
+<rect x="20" y="604" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="606" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="625" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e6</text>
+<text x="106" y="625" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">3</text>
+<text x="170" y="625" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">1</text>
+<text x="232" y="625" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<rect x="278" y="606" width="44" height="26" rx="6" fill="#dcfce7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="300" y="625" font-size="17" text-anchor="middle" fill="#1d4ed8" font-weight="bold">e7</text>
+<rect x="20" y="634" width="320" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+<rect x="26" y="636" width="44" height="26" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="48" y="655" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e7</text>
+<text x="106" y="655" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">3</text>
+<text x="170" y="655" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">2</text>
+<text x="232" y="655" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<text x="300" y="655" font-size="15" text-anchor="middle" fill="#64748b" font-weight="bold">NULL</text>
+<text x="20" y="692" font-size="17" text-anchor="start" fill="#0f172a">每条弧只存一份，挂在两条链上。</text>
+<text x="20" y="718" font-size="17" text-anchor="start" fill="#334155">链内顺序＝建表时的接链顺序，</text>
+<text x="20" y="744" font-size="17" text-anchor="start" fill="#334155">本例按 e1 到 e7 接链，编号递增。</text>
+<text x="20" y="770" font-size="17" text-anchor="start" fill="#475569">本例 4 个顶点结点、7 个弧结点。</text>
 </svg>
