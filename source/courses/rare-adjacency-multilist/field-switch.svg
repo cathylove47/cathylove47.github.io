@@ -1,32 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 424" width="360" height="424" role="img" aria-labelledby="t3 d3" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-  <rect x="0" y="0" width="360" height="424" fill="#fffdf7"/>
-  <title id="t3">沿 B 的依附链遍历时的字段选择</title>
-  <desc id="d3">沿顶点 B 的依附链遍历：B.firstedge 得到边结点 e1；e1 的 jvex 是 B，所以走 e1.jlink 到 e3；e3 的 ivex 是 B，所以走 e3.ilink，为 NULL 结束。规则是当前顶点等于 ivex 就走 ilink，等于 jvex 就走 jlink。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 712" width="360" height="712" role="img" aria-labelledby="fsTitle fsDesc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <title id="fsTitle">沿 B 的依附链时当前顶点固定、字段切换</title>
+  <desc id="fsDesc">当前顶点 v 固定为 B，从头到尾不变。第 1 步当前结点是边结点 e1：四个字段是 ivex=A、jvex=B、ilink=e2、jlink=e3，其中 jvex 等于 B，所以选同一列的 jlink，走到 e3。第 2 步当前结点是边结点 e3：四个字段是 ivex=B、jvex=C、ilink=NULL、jlink=NULL，其中 ivex 等于 B，所以选同一列的 ilink，得到 NULL 结束。左列 ivex 与 ilink 配对，右列 jvex 与 jlink 配对；B 的依附链是 e1 到 e3，度为 2。追链时当前顶点不动，指针带到的下一个东西是另一个边结点，不是图上的另一个顶点。</desc>
+  <rect x="0" y="0" width="360" height="712" fill="#fffdf7"/>
 
-  <text x="14" y="30" font-size="20" font-weight="700" fill="#1f2937">沿 B 链遍历：看当前顶点选字段</text>
+  <text x="14" y="30" font-size="20" font-weight="700" fill="#1f2937">沿 B 的依附链：当前顶点一直是 B</text>
 
-  <rect x="14" y="46" width="332" height="56" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
-  <text x="26" y="70" font-size="18" fill="#854d0e">规则：当前顶点 v=ivex → 走 ilink；</text>
-  <text x="26" y="92" font-size="18" fill="#854d0e">　　　v=jvex → 走 jlink</text>
+  <rect x="14" y="46" width="332" height="44" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="180" y="75" font-size="20" font-weight="700" fill="#92400e" text-anchor="middle">当前顶点 v = B（固定不动）</text>
 
-  <rect x="14" y="120" width="332" height="48" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-  <text x="28" y="150" font-size="19" fill="#1e3a8a">① B.firstedge → e1</text>
+  <text x="14" y="112" font-size="18" fill="#1f2937">左列 ivex 与 ilink 配对</text>
+  <text x="14" y="136" font-size="18" fill="#1f2937">右列 jvex 与 jlink 配对</text>
 
-  <line x1="180" y1="168" x2="180" y2="186" stroke="#334155" stroke-width="1.8"/>
-  <path d="M180 190 l-5 -8 h10 z" fill="#334155"/>
+  <rect x="14" y="156" width="332" height="192" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="26" y="182" font-size="19" font-weight="700" fill="#1f2937">第 1 步：当前结点 = 边结点 e1</text>
+  <rect x="22" y="192" width="156" height="40" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="100" y="218" font-size="18" fill="#1e3a8a" text-anchor="middle">ivex = A</text>
+  <rect x="182" y="192" width="156" height="40" rx="6" fill="#fde68a" stroke="#b45309" stroke-width="2.5"/>
+  <text x="260" y="218" font-size="18" fill="#78350f" text-anchor="middle">jvex = B</text>
+  <line x1="260" y1="234" x2="260" y2="240" stroke="#166534" stroke-width="1.8"/>
+  <path d="M260 250 L254 240 L266 240 Z" fill="#166534"/>
+  <text x="248" y="248" font-size="18" fill="#166534" text-anchor="end">命中 jvex → 取 jlink</text>
+  <rect x="22" y="252" width="156" height="40" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="100" y="278" font-size="18" fill="#4c1d95" text-anchor="middle">ilink = e2</text>
+  <rect x="182" y="252" width="156" height="40" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="260" y="278" font-size="18" fill="#14532d" text-anchor="middle">jlink = e3</text>
+  <text x="26" y="314" font-size="18" fill="#334155">B = e1.jvex → 走 e1.jlink</text>
+  <text x="26" y="338" font-size="18" fill="#334155">到 e3（e3 是另一个边结点）</text>
 
-  <rect x="14" y="190" width="332" height="58" rx="8" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
-  <text x="28" y="214" font-size="19" fill="#312e81">② e1.jvex=B（B 是 jvex）</text>
-  <text x="28" y="236" font-size="19" fill="#312e81">　　走 e1.jlink → 到 e3</text>
+  <rect x="14" y="368" width="332" height="192" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="26" y="394" font-size="19" font-weight="700" fill="#1f2937">第 2 步：当前结点 = 边结点 e3</text>
+  <rect x="22" y="404" width="156" height="40" rx="6" fill="#fde68a" stroke="#b45309" stroke-width="2.5"/>
+  <text x="100" y="430" font-size="18" fill="#78350f" text-anchor="middle">ivex = B</text>
+  <rect x="182" y="404" width="156" height="40" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="260" y="430" font-size="18" fill="#1e3a8a" text-anchor="middle">jvex = C</text>
+  <line x1="100" y1="446" x2="100" y2="452" stroke="#166534" stroke-width="1.8"/>
+  <path d="M100 462 L94 452 L106 452 Z" fill="#166534"/>
+  <text x="118" y="460" font-size="18" fill="#166534">命中 ivex → 取 ilink</text>
+  <rect x="22" y="464" width="156" height="40" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="100" y="490" font-size="18" fill="#14532d" text-anchor="middle">ilink = NULL</text>
+  <rect x="182" y="464" width="156" height="40" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="260" y="490" font-size="18" fill="#4c1d95" text-anchor="middle">jlink = NULL</text>
+  <text x="26" y="526" font-size="18" fill="#334155">B = e3.ivex → 走 e3.ilink</text>
+  <text x="26" y="550" font-size="18" fill="#334155">= NULL，链到头，结束</text>
 
-  <line x1="180" y1="248" x2="180" y2="266" stroke="#334155" stroke-width="1.8"/>
-  <path d="M180 270 l-5 -8 h10 z" fill="#334155"/>
+  <rect x="14" y="584" width="332" height="100" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="26" y="614" font-size="18" fill="#991b1b">注意：追链 ≠ 沿图的边走。</text>
+  <text x="26" y="640" font-size="18" fill="#991b1b">当前顶点始终是 B；只是把 B 依附的边</text>
+  <text x="26" y="666" font-size="18" fill="#991b1b">一条条列出来。</text>
 
-  <rect x="14" y="270" width="332" height="58" rx="8" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
-  <text x="28" y="294" font-size="19" fill="#312e81">③ e3.ivex=B（B 是 ivex）</text>
-  <text x="28" y="316" font-size="19" fill="#312e81">　　走 e3.ilink=NULL → 结束</text>
-
-  <text x="14" y="356" font-size="20" font-weight="700" fill="#b91c1c">B 链 = e1 → e3，度 = 2</text>
-  <text x="14" y="384" font-size="18" fill="#6b7280">同一条链里先走 jlink、再走 ilink：</text>
-  <text x="14" y="404" font-size="18" fill="#6b7280">字段由当前顶点决定，不是固定 ilink。</text>
+  <text x="14" y="706" font-size="20" font-weight="700" fill="#b91c1c">B 的依附链 e1 → e3，度 = 2</text>
 </svg>
