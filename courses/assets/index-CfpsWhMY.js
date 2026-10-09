@@ -9047,88 +9047,347 @@ FAT 与它们不同：FAT 属于文件块的分配与定位结构，服务于「
 
 **问：位图的 1 表示空闲是普遍约定吗？** **答：** 不是。不同教材与实现可能采用相反约定（1 表示占用、0 表示空闲）。答题时必须先确认题目约定，不能把自己的默认约定套到别人写的位图上。
 
-**问：既然有公式上界，为什么还要讨论 V6 的 100？** **答：** 因为考试与理解都容易把「公式能算出的上界」误当「实现真实采用的容量」。V6 是具体系统，其取值由源码决定；上界只是理论上限。分清这两者，才能正确解释历史系统的行为。`}},{id:`rare-adjacency-multilist`,title:`邻接多重表：无向图一条边只存一个结点`,type:`知识点`,date:`2026-10-07`,chapter:`数据结构 · 图的存储`,tags:[`邻接多重表`,`无向图`,`边结点`,`依附链`,`度`,`图的存储`],summary:`从无向图、共享边结点和两条指针链，读懂邻接多重表。`,source:`本站绘制示意图；字段与遍历规则参考 N诺《邻接多重表、十字链表》，链接见正文。教学例题由本站自拟，非真题。`,content:String.raw`![无向图及其三个共享边结点](rare-adjacency-multilist/graph-records.svg)
+**问：既然有公式上界，为什么还要讨论 V6 的 100？** **答：** 因为考试与理解都容易把「公式能算出的上界」误当「实现真实采用的容量」。V6 是具体系统，其取值由源码决定；上界只是理论上限。分清这两者，才能正确解释历史系统的行为。`}},{id:`rare-adjacency-multilist`,title:`邻接多重表：无向图一条边只存一个边结点`,type:`知识点`,date:`2026-10-07`,chapter:`数据结构 · 图的存储`,tags:[`邻接多重表`,`无向图`,`边结点`,`依附链`,`度`,`图的存储`],summary:`从无向图、共享边结点和两条指针链，读懂 ivex、jvex 两个端点域与 ilink、jlink 两个指针域，并说清追链不是沿图的边走。`,source:`本站绘制示意图；字段定义与遍历规则参考 N诺《邻接多重表、十字链表》，链接见正文末尾。教学例题（三角形 e1(A,B)、e2(A,C)、e3(B,C) 加孤立点 D）由本站自拟，非真题。`,content:String.raw`**这页先解决一个问题：怎样列出“碰到 B 的所有边”？** 我们固定顶点 B，只是在内存里逐条查看这些边的记录，不是在图上从 B 走到另一个顶点。图的上半部是原图，下半部是存储记录；四个字段会在第二节逐个解释。
 
-**先看图：** A、B 都能指到同一个 e1，不是各复制一份。本例无自环，A～D 代指顶点下标 0～3。
+![无向图与三个共享边结点](rare-adjacency-multilist/graph-records.svg)
 
-![顶点入口与依附链](rare-adjacency-multilist/vertex-chains.svg)
+**先看清图是哪一种。** 上面这张图是**无向图**：一条边没有方向，(A,B) 与 (B,A) 指的是同一条边，所以画出来的线段两端都不带箭头。本页和下一张题目卡从头到尾只用同一个例子：
 
-**数度：** 每条顶点链的长度就是该顶点的度；孤立点 D 的入口为 NULL。
+- 顶点：A、B、C、D，分别代指顶点下标 0、1、2、3。
+- 边：e1 连接 A 与 B，e2 连接 A 与 C，e3 连接 B 与 C。
+- D 不和任何顶点相连，是孤立点。
+- 没有自环（没有 A—A 这种边），也没有平行边。下面的规则都默认无自环。
 
-![沿B链必须在jlink和ilink之间切换](rare-adjacency-multilist/field-switch.svg)
+**「依附于顶点 v」是什么意思？** 就是「这条边的一个端点正好是 v」。e1 依附于 A，也依附于 B；e3 依附于 B，也依附于 C。依附说的是**边与顶点**之间的关系，不是顶点与顶点之间的关系，两个端点的地位完全对等。
 
-**跟箭头：** 当前顶点等于 ivex 就走 ilink，等于 jvex 就走 jlink。B 的链先走 jlink，再走 ilink。
+## 一、为什么要有邻接多重表
 
-**联系邻接表：** m 条无向边，普通邻接表有 2m 个边条目，邻接多重表只有 m 个共享边结点（都不含顶点头）。“多重”不要求图中有平行边。
+普通邻接表存无向图时，一条边要在两个顶点的链上各出现一次：3 条边就要 6 个边表结点，同一条边被存了两遍。
 
-图为本站绘制。参考：[N诺：邻接多重表与十字链表](https://noobdream.com/Major/article/218/)。`},{id:`rare-adjacency-multilist-trace`,questionNumber:11,title:`邻接多重表：读 B、C 的依附链并删除边 e3`,type:`题目`,date:`2026-10-07`,chapter:`数据结构 · 图的存储`,tags:[`邻接多重表`,`依附链`,`度`,`删除边`,`指针字段`],summary:`给定含 A、B、C、D 的无向图及其邻接多重表存储，写出 B、C 的依附链与度，再删除边 e3，指出变化的指针字段并列出去除 e3 后剩余的边结点与各顶点度。`,source:`本站绘制示意图与自拟教学题，非真题。字段与遍历规则参考 N诺《邻接多重表、十字链表》，可点击的出处链接在前一张知识卡正文。`,content:String.raw`**自拟教学题。** 下图给出无向简单图与三个共享边结点；A～D 代指顶点下标 0～3，D 孤立，NULL 表示空指针。
+邻接多重表（adjacency multilist）让**一条边只建一个结点**，两个端点的链先后指向同一个结点：A 的链和 B 的链都指向 e1，但物理上只有一个 e1，不是各复制一份。「多重」指的是一个边结点同时挂在多条链上，**并不要求图里有平行边**。
 
-![待读的无向图与边结点字段](rare-adjacency-multilist/graph-records.svg)
+## 二、两类结点、四个字段
 
-顶点入口 firstedge：A=e1，B=e1，C=e2，D=NULL。
+**顶点结点**保存顶点自身的信息（如 data），另有入口指针 firstedge，指向「这条顶点链上的第一条依附边记录」；没有依附边就写 NULL。图中省略了 data，只画查链需要的入口。
 
-1. 按指针顺序写出 B、C 的依附链、每一步使用的字段和各自的度。
-2. 删除 e3：哪些指针字段改变？列出剩余边结点以及 A、B、C、D 的度与度之和。`,solution:{answer:String.raw`![删除前各个顶点的链](rare-adjacency-multilist/vertex-chains.svg)
+**边结点**有四个字段，先把全名写清楚再记缩写：
 
-**B：** e1 → e3 → NULL，先 jlink 后 ilink，度 2。**C：** e2 → e3 → NULL，两步均走 jlink，度 2。`,explanation:String.raw`![从B和C两条链同时摘除e3](rare-adjacency-multilist/delete-e3.svg)
+- ivex：这条边的第一个端点，存的是**顶点下标**（endpoint index i）。
+- jvex：这条边的第二个端点，存的也是**顶点下标**（endpoint index j）。
+- ilink：依附于 ivex 这个顶点的「下一条边」的指针（next edge pointer i）。
+- jlink：依附于 jvex 这个顶点的「下一条边」的指针（next edge pointer j）。
 
-**改两处：** e1.jlink=NULL、e2.jlink=NULL；四个 firstedge 不变，再释放 e3。剩余 e1、e2，度依次为 2、1、1、0，总和 4=2×2。
+四个字段因此天然分成两类：**ivex、jvex 存顶点**，是下标；**ilink、jlink 存边结点的地址**，是指针。一条边的两个端点谁写在 ivex 是任意的，但一旦定下来就必须成对使用：**ivex 与 ilink 配套，jvex 与 jlink 配套**，不能交叉。
 
-**度和复核：** 一条边摘除，两端各少 1，度和由 6 变为 4；没有链再指向 e3。找 B、C 链的前驱需 O(deg B+deg C)，不能只凭 e3 的地址就声称删边 O(1)。`,pitfalls:String.raw`- 固定走 ilink；在 e1 上会误入 A 的链。
-- 只摘除一端就释放 e3，另一端仍留悬空指针。
-- 把一个共享边结点误数成两条边；本例没有自环。`,extension:String.raw`**问：** 从 A 和 B 都访问到 e1，是两个边结点吗？ **答：** 不是，是同一结点在两条顶点链上出现；同一个 mark 字段也只需改一次。`,teachingFramework:String.raw`### 讲题框架
+## 三、怎么读一条依附链（最关键的一步）
 
-1. 圈出无向边，再指到唯一的边结点。
-2. 固定 B，用手指追踪字段切换。
-3. 删除 e3 时，同时绕开它在 B、C 两条链上的位置。
+要列出顶点 v 依附的所有边：先取 v.firstedge 作为当前边结点 p，然后重复判断：
 
-### 常见做法
+- 若 v 等于 p.ivex，就走 p.ilink；
+- 若 v 等于 p.jvex，就走 p.jlink；
+- 走到 NULL 结束。
 
-先写当前顶点 → 匹配 ivex/jvex → 选 link → 到 NULL 停；删边后复核两端链与度和。`}},{id:`rare-orthogonal-list`,type:`知识点`,date:`2026-10-07`,title:`有向图的十字链表：一条弧挂两条链，出度入度一起管`,chapter:`图 · 图的存储（有向图）`,tags:[`十字链表`,`有向图存储`,`出边链与入边链`,`tlink与hlink`,`firstout与firstin`],summary:`从原图、共享弧结点和入出边指针，区分十字链表的两条链。`,source:`本站绘制示意图；字段与方向参考 N诺《邻接多重表、十字链表》，链接见正文。题目为本站自拟教学题，非真题。`,content:String.raw`![先看真正的有向图弧](rare-orthogonal-list/graph-arcs.svg)
+没有自环时这两个条件不会同时成立，所以每一步走哪个字段是唯一确定的。
 
-**图的箭头是弧。** e1 从 A 指向 B；D 为孤立点。A、B、C、D 代指顶点下标 0～3。
+**必须分清的一件事：追链不是沿图的边走。** 追链时「当前顶点」从头到尾都是最开始那个 v，它一直没变；我们只是在内存里把依附于 v 的边一条条列出来。指针把我带到的下一个东西是**另一个边结点**，不是「图上的另一个顶点」，更不代表图上存在一条从 v 通向别人的路径。
 
-![每条弧只有一个结点，含两套链接字段](rare-orthogonal-list/ol-records.svg)
+![沿着 B 的依附链，当前顶点固定而字段切换](rare-adjacency-multilist/field-switch.svg)
 
-**记录的箭头是指针，不是新弧。** 同一个 e1 被 A 的出边链和 B 的入边链共享。
+## 四、本例的完整数值
 
-![出边沿tlink，入边沿hlink](rare-orthogonal-list/chains.svg)
+![顶点入口与四条依附链](rare-adjacency-multilist/vertex-chains.svg)
 
-**只记两条线：** firstout → tlink 串同弧尾（出边）；firstin → hlink 串同弧头（入边）。链长分别是出度、入度。
+顶点入口：
 
-![新弧e4同时接入两个链首](rare-orthogonal-list/insert-e4.svg)
+- A.firstedge = e1，B.firstedge = e1，C.firstedge = e2，D.firstedge = NULL。
 
-**头插 B→C：** e4 的两个 link 先接原链首，再更新 B.firstout、C.firstin。不是复制两个 e4。
+三个共享边结点：
 
-**相近结构：** 无向图用邻接多重表的两端链；稀疏矩阵的十字链表用同行 right、同列 down。共享记录的思路相同，字段不能混用。
+- e1：ivex=A、jvex=B、ilink=e2、jlink=e3。
+- e2：ivex=A、jvex=C、ilink=NULL、jlink=e3。
+- e3：ivex=B、jvex=C、ilink=NULL、jlink=NULL。
 
-图为本站绘制。参考：[N诺：邻接多重表与十字链表](https://noobdream.com/Major/article/218/)。`},{id:`rare-orthogonal-list-trace`,type:`题目`,questionNumber:12,date:`2026-10-07`,title:`有向图十字链表：读两条弧链、算四个顶点的度、再头插一条弧`,chapter:`图 · 图的存储（有向图）`,tags:[`十字链表`,`有向图存储`,`弧链追踪`,`顶点出入度`,`头插法`],summary:`给出有向图与十字链表的当前状态，追踪顶点 A 的出边链与顶点 B 的入边链，写出 4 个顶点的出度与入度，再用头插法接入新弧 e4（B→C），写出被改动的两个链首指针与新结点的两个链接域。`,source:`本站绘制示意图与自拟教学题，非真题。字段与入出链方向参考 N诺《邻接多重表、十字链表》，可点击的出处链接在前一张知识卡正文。`,content:String.raw`**自拟教学题。** 顶点下标 0～3 在图中标为 A、B、C、D；NULL 表示空指针。
+读 B（当前顶点始终是 B）：
 
-![有向图原始三条弧](rare-orthogonal-list/graph-arcs.svg)
+- B.firstedge 给出 e1；B 等于 e1.jvex，所以走 e1.jlink，到 e3；
+- 在 e3 上 B 等于 e3.ivex，所以走 e3.ilink = NULL，结束。
+- B 的依附链是 e1 → e3，链长 2，所以 B 的度是 2。
+
+读 C：
+
+- C.firstedge 给出 e2；C 等于 e2.jvex，走 e2.jlink，到 e3；
+- 在 e3 上 C 等于 e3.jvex，走 e3.jlink = NULL，结束。
+- C 的依附链是 e2 → e3，度也是 2。
+
+读 A：在 e1 上 A 等于 ivex，走 ilink 到 e2；在 e2 上 A 还是 ivex，走 ilink = NULL。A 的链是 e1 → e2，度 2。
+
+于是四个顶点的度依次是 2、2、2、0，度之和是 6，正好等于 2 乘边数 3。**一条顶点链有多长，这个顶点的度就是多少**，不需要额外再存度数。
+
+## 五、删一条边要做两件事
+
+![删除 e3：两条链都要绕开它](rare-adjacency-multilist/delete-e3.svg)
+
+删掉边 e3：
+
+1. 先把它从**两端**的链上摘下来。e3 挂在 B 链和 C 链上，所以要沿 B 链找到它的前驱 e1，把 e1.jlink 改成 NULL；再沿 C 链找到前驱 e2，把 e2.jlink 改成 NULL。四个顶点的 firstedge 都不用动。
+2. 两端都摘干净之后，才能释放 e3 这个结点。
+
+顺序不能反：先释放 e3，另一条链上就会留下一个指向已释放空间的悬空指针。另外，光有 e3 的地址并不能直接告诉我们它的前驱是谁，需要沿 B、C 两条链查找前驱，最坏时间为 O(deg(B)+deg(C))。若已经给出这两个前驱，改指针本身只需常数时间。
+
+## 六、最容易混的三点
+
+- 把 ivex、jvex 当成边的编号：它们是**顶点下标**，标识顶点表里的某个顶点，不是指针。
+- 把 ilink、jlink 当成图的边：它们是**指针**，指向另一个边结点。
+- 以为「沿着链走」就是「在图上从一个顶点走到另一个顶点」：链上的移动只发生在内存里，当前顶点不动。
+
+图为本站绘制。参考：[N诺：邻接多重表与十字链表](https://noobdream.com/Major/article/218/)。`},{id:`rare-adjacency-multilist-trace`,questionNumber:11,title:`邻接多重表：读 B、C 的依附链并删除边 e3`,type:`题目`,date:`2026-10-07`,chapter:`数据结构 · 图的存储`,tags:[`邻接多重表`,`依附链`,`度`,`删除边`,`指针字段`],summary:`给定含 A、B、C、D 的无向图及其邻接多重表存储，写出 B、C 的依附链与每一步选用的字段，再删除边 e3，指出变化的指针字段并列出去除 e3 后剩余的边结点与各顶点度。`,source:`本站绘制示意图与自拟教学题，非真题。字段定义与遍历规则参考 N诺《邻接多重表、十字链表》，出处链接在前一张知识卡正文。`,content:String.raw`**自拟教学题。** 下图给出一个无向简单图与它的邻接多重表存储。顶点下标 0 到 3 在图上写作 A、B、C、D，NULL 表示空指针，本例没有自环。
+
+![题给的无向图与三个共享边结点](rare-adjacency-multilist/graph-records.svg)
+
+**先复习两个字的含义。** ivex、jvex 是这条边两个端点的**顶点下标**；ilink 是依附于 ivex 的下一条边的**指针**，jlink 是依附于 jvex 的下一条边的指针。依附于顶点 v 就是这条边的一个端点正好是 v。
+
+题给数据：
+
+- 顶点入口：A.firstedge = e1，B.firstedge = e1，C.firstedge = e2，D.firstedge = NULL。
+- 边结点：e1 的 ivex=A、jvex=B、ilink=e2、jlink=e3；e2 的 ivex=A、jvex=C、ilink=NULL、jlink=e3；e3 的 ivex=B、jvex=C、ilink=NULL、jlink=NULL。
+
+1. 分别写出 B、C 的依附链：每一步写明当前顶点等于哪个端点字段、因而走了哪个指针字段，并给出 A、B、C、D 四个顶点的度。
+2. 删除边 e3：哪些指针字段要改？改完之后列出剩余的边结点，以及 A、B、C、D 的度与度之和。`,solution:{answer:String.raw`![各顶点的依附链与每一步的字段](rare-adjacency-multilist/vertex-chains.svg)
+
+**B 的依附链（当前顶点始终是 B）：** B.firstedge 给出 e1；B 等于 e1.jvex，走 e1.jlink 到 e3；在 e3 上 B 等于 e3.ivex，走 e3.ilink = NULL，结束。链是 e1 → e3，链长 2，B 的度是 2。
+
+**C 的依附链（当前顶点始终是 C）：** C.firstedge 给出 e2；C 等于 e2.jvex，走 e2.jlink 到 e3；在 e3 上 C 等于 e3.jvex，走 e3.jlink = NULL，结束。链是 e2 → e3，链长 2，C 的度是 2。
+
+**四个顶点的度：** A 是 2（链 e1 → e2，两步都走 ilink），B 是 2，C 是 2，D 是 0（firstedge 为 NULL，没有依附边）。度之和 6 = 2 乘边数 3。`,explanation:String.raw`![删除 e3 前后的两条链与改动字段](rare-adjacency-multilist/delete-e3.svg)
+
+**要改的字段只有两个。** e3 同时挂在 B 链和 C 链上，所以两条链都要绕开它：
+
+- B 链上 e3 的前驱是 e1，e1.jlink 原来指向 e3，改成 e1.jlink = NULL。
+- C 链上 e3 的前驱是 e2，e2.jlink 原来指向 e3，改成 e2.jlink = NULL。
+- 四个顶点的 firstedge 一个都不用动（A=e1、B=e1、C=e2、D=NULL，删 e3 没碰到任何链首）。
+- e3 自己的四个字段也不值得改，因为它马上要被释放。
+
+**剩余边结点：** e1、e2。**新的度：** A 是 2，B 是 1，C 是 1，D 是 0，度之和 4，正好等于 2 乘剩余边数 2。这也可以复核：删掉一条边，两个端点各少 1，度和从 6 降到 4，减了 2。
+
+**释放顺序：** 先把 e1.jlink、e2.jlink 都改成 NULL，确认两条链上都不再指向 e3，最后才释放 e3。反过来先释放，另一条链上就留下悬空指针。
+
+**这一步的代价：** 要改 e1.jlink，必须沿 B 链从 B.firstedge 走到 e3，才认得出前驱是 e1；要改 e2.jlink，必须沿 C 链再走一遍。因此，仅知道被删边地址时，查找前驱的最坏时间为 O(deg(B)+deg(C))；本例从 B、C 链首各跟随一次链接就到 e3。若题目同时给出两个前驱，修改这两个指针本身是 O(1)。拿到 e3 的地址并不能免掉这次查找——边结点里没有指向前驱的字段。`,pitfalls:String.raw`- 追 B 链时在 e1 上固定走 ilink，于是走进 A 的链，把 e2 也算成 B 的边。
+- 追链时以为当前顶点会跟着走到边的另一头：那样在 e3 上就会用 C 去判断，B 的链直接算错。
+- 只把 e3 从一条链上摘掉就释放，另一条链上留下悬空指针。
+- 把共享的 e3 当成两条边（B—C 一条、C—B 一条），于是把度之和算成 8 之类。
+- 分不清 ivex、jvex（顶点下标）和 ilink、jlink（边结点指针），删边时去改 e3 自己的字段，漏掉 e1.jlink、e2.jlink。
+- 忘记 D 是孤立点：它的 firstedge 是 NULL，度是 0，不要因为四个顶点就给它凑一条边。`,extension:String.raw`**问：如果改成删除 e1，要改的字段还是 e1.jlink 吗？** **答：** 不是。e1 是 A 链、B 链共同的**链首**，两条链上都没有前驱边结点，所以改的是两个顶点入口：A.firstedge 由 e1 改成 e2（也就是 e1.ilink 的值），B.firstedge 由 e1 改成 e3（也就是 e1.jlink 的值）。e1 自己的四个字段一个都不用改，两端摘完直接释放 e1。剩余边结点 e2（A—C）、e3（B—C），度变成 A1、B1、C2、D0，度之和 4 = 2 乘 2。这正好和删 e3 形成对照：**删链首改的是 firstedge，删链中间的结点改的是前驱边结点的指针域**。
+
+**问：为什么 B 的链是 e1 → e3，而 e2 一直不出现？** **答：** 因为 e2 连接的是 A 与 C，和 B 无关。每条顶点链只收集依附于这个顶点的边，判断依据就是当前顶点等于哪个端点字段。B 依附的边只有 e1、e3 两条，所以链长 2、度 2；C 依附 e2、e3，也是 2。
+
+**问：删完 e3 之后，怎么检查自己没算错？** **答：** 三条自检：第一，每条顶点链的长度等于该顶点的度，本次是 2、1、1、0；第二，度之和等于 2 乘剩余边数，4 = 2 乘 2；第三，从四个 firstedge 出发沿对应字段走一遍，任何一条链都不应该再走到 e3。`,teachingFramework:String.raw`### 讲题框架
+
+**第一步：先认图，再认结点。** 让学生在图上把 e3 的两端写成「B—C」，再指到唯一的边结点 e3，并口头确认：图上的线段没有箭头，是无向边；3 条边只有 3 个边结点。这一句必须让学生自己说出来，不能老师代说。
+
+**第二步：把「当前顶点」钉死。** 在草稿纸角落写一个大写 B，宣布「从头到尾都是这个 B，它不会动」。每到一个边结点只问两句话：B 等于这条边的 ivex 吗？B 等于这条边的 jvex 吗？命中哪个就走同名的 link。这一步是本题最容易崩的地方。
+
+**第三步：读 B 链，边读边出声。** e1：B 等于 jvex，走 jlink，到 e3；e3：B 等于 ivex，走 ilink，得到 NULL，停。数结点个数得度 2。然后让学生**独立复述** C 链（e2 → e3，两步都走 jlink），再对比 B 链（先 jlink 再 ilink），点明「同一条链上字段会换，因为当前顶点在不同结点上命中的端点字段不同」。
+
+**第四步：删边当成「摘链」。** 先在存储示意图上圈出指向 e3 的两处指针（e1.jlink、e2.jlink），把两条都改指 NULL，再把 e3 划掉，最后才说「现在可以释放」。强调边结点里没有前驱字段，必须沿链找。
+
+**第五步：用删链首做对照。** 让学生推断「删 e1 要改什么」，引导他们发现改的是 A.firstedge、B.firstedge，而不是任何 link 域；再用剩余边数与度和复核。
+
+### 板书顺序
+
+1. 画原图（线段不带箭头）→ 写三个边结点的四个字段。
+2. 固定 B，逐结点写「当前结点 + 命中的端点字段 + 走的指针字段」三列。
+3. 删 e3：两行改动 + 一句释放顺序。
+4. 对照删 e1，收口成一句口诀：摘链首改入口，摘中间改前驱。
+
+### 常见做法与自检
+
+先写当前顶点，再比 ivex、jvex，再选 ilink、jlink，走到 NULL 停止，链长即度。删边时先列出这条边出现在哪几条链上，再逐条找前驱、改前驱的指针域（没有前驱就改 firstedge），全部摘完才释放。自检两条：度和必须等于 2 乘边数；计数时每个边结点只能算一次。`}},{id:`rare-orthogonal-list`,type:`知识点`,date:`2026-10-07`,title:`有向图的十字链表：一条弧一个共享结点，出入两条链各走各的`,chapter:`图 · 图的存储（有向图）`,tags:[`十字链表`,`有向图存储`,`出边链与入边链`,`tlink与hlink`,`firstout与firstin`],summary:`先从有向图的弧讲起，再逐字段翻译 firstout、firstin 与 tailvex、headvex、tlink、hlink，跟着走完一条出边链与一条入边链，最后头插一条新弧。`,source:`本站绘制示意图；字段与方向参考 N诺《邻接多重表、十字链表》，链接见正文末尾。教学例题由本站自拟，非真题。`,content:String.raw`![有向图的原始三条弧](rare-orthogonal-list/graph-arcs.svg)
+
+**先看真正的图。** 这里有 4 个顶点 A、B、C、D（代指下标 0、1、2、3）和 3 条**弧**（有向边）：e1 从 A 到 B、e2 从 A 到 C、e3 从 C 到 B；D 与任何顶点都不相连，叫孤立点。弧的起点叫**弧尾**，终点叫**弧头**：e1 的弧尾是 A、弧头是 B。
+
+**看图只认一件事：** 图里的黑色实心箭头画的是弧本身，表示“谁指向谁”，**不是指针**。十字链表里另外有一种箭头（记录之间的指针），两者长得像但含义完全不同，后面会分开说。
+
+### 为什么要有十字链表
+
+有向图最常被问两个问题：
+
+- 从顶点 v 出发有哪些弧？（求**出度**）
+- 哪些弧指向顶点 v？（求**入度**）
+
+邻接表把出弧排得很整齐，数入度却要把整张表扫一遍。十字链表的办法是：**每条弧在内存里只存一个弧结点**，再让这一个结点同时挂到两条链上——一条按弧尾聚在一起（出弧），一条按弧头聚在一起（入弧）。所以它又常被说成“一条弧挂两条链”。
+
+### 字段翻译：先把词认全
+
+**顶点结点（每个顶点一个）**
+
+- data：顶点名称或其他顶点信息，本例用 A、B、C、D 表示。
+- firstout：**指向出边链第一条弧结点的入口指针**，即“以我为弧尾”的那串弧的链首地址。
+- firstin：**指向入边链第一条弧结点的入口指针**，即“以我为弧头”的那串弧的链首地址。
+- 没有相应弧时值为 NULL（空指针，链到此结束）。
+
+**弧结点（每条弧一个，被两条链共用）**
+
+- tailvex：**弧尾顶点的下标**（本例 A=0、B=1、C=2、D=3）。
+- headvex：**弧头顶点的下标**。
+- tlink：**同弧尾的下一条弧**，出边链的后继。
+- hlink：**同弧头的下一条弧**，入边链的后继。
+
+记忆方法：tail 对应 t，head 对应 h。tailvex 与 tlink 是一对（都在管“同弧尾”），headvex 与 hlink 是一对（都在管“同弧头”）。特别注意：**tailvex、headvex 存的是顶点下标（一个数），tlink、hlink 存的是另一个弧结点的地址（一个指针）**，两类字段不能互相赋值。
+
+![顶点结点表与弧结点表](rare-orthogonal-list/ol-records.svg)
+
+把图翻译成上表，就是本例的全部已知条件：A.firstout=e1、A.firstin=NULL；B.firstout=NULL、B.firstin=e1；C.firstout=e3、C.firstin=e2；D 两项都是 NULL。弧结点里 e1 是 A→B、tlink=e2、hlink=e3；e2 是 A→C、两个链接都是 NULL；e3 是 C→B、两个链接都是 NULL。
+
+### 走一条出边链：A 的出弧
+
+![沿 tlink 的出边链与沿 hlink 的入边链](rare-orthogonal-list/chains.svg)
+
+1. 起点不是弧而是顶点：读 A.firstout，得到 e1。
+2. 走到 e1 先核对一次：e1.tailvex = A，说明 e1 确实属于“以 A 为弧尾”的这串弧。
+3. 读 e1.tlink，得到 e2；核对 e2.tailvex = A；读 e2.tlink = NULL，链结束。
+4. 走过的弧有 e1、e2 两条，所以 **A 的出度是 2**。
+
+**为什么 e1 之后走的是 e1.tlink？** 因为 e1.tailvex = A，e1 属于“同弧尾 A”这一批弧，而串起这批弧用的字段正是 tlink（同尾链接）。反过来，e1 的 hlink 会被 B 的入边链用掉。
+
+### 走一条入边链：B 的入弧
+
+1. 读 B.firstin，得到 e1。
+2. 核对 e1.headvex = B，说明 e1 属于“以 B 为弧头”的这串弧。
+3. 读 e1.hlink，得到 e3；核对 e3.headvex = B；读 e3.hlink = NULL，链结束。
+4. 走过 e1、e3 两条，所以 **B 的入度是 2**。
+
+**为什么 e1 之后走的是 e1.hlink？** 因为 e1.headvex = B，e1 属于“同弧头 B”这一批弧，串起这批弧的字段是 hlink（同头链接）。
+
+**结论要记牢一句：** 到了 e1 之后往哪走，取决于你此刻走的是出边链还是入边链，**不取决于 e1 自己**。e1 的两个链接字段把两条链分别接下去，同一个 e1 因此会出现在 A 的出边链和 B 的入边链上——它是同一个结点，不是复制了两份，这就是“十字”这个名的来历。
+
+### 链上的顺序由谁决定
+
+图只规定“有哪些弧”，**不规定链上谁先谁后**。顺序由插入历史决定：本例 A.firstout 之所以是 e1，是因为当初先插入 e2、再头插 e1；如果换成先 e1 后 e2 的头插，A.firstout 就会是 e2，链变成 e2 → e1 → NULL。
+
+所以做题时必须照着字段一步一步走，不能按 e1、e2、e3 的编号顺序想当然。链长（也就是出度、入度）与顺序无关，只与链上有几条弧有关。
+
+### 度数：只数弧，不数指针
+
+- 出度之和 = 入度之和 = 弧数。本例 3 条弧：出度依次为 A=2、B=0、C=1、D=0，入度依次为 A=0、B=2、C=1、D=0，两个和都等于 3。
+- 若要把“总度数”定义为出度加入度，则它是 6 = 2 × 3；这与“出度之和”不是同一个量，答题时先看清题目问哪一个。
+
+### 头插一条新弧：先建结点，再接两条链
+
+![头插 e4 的四步写入](rare-orthogonal-list/insert-e4.svg)
+
+以插入 e4（B→C）为例，顺序固定：
+
+1. 新建弧结点并写端点：e4.tailvex = B、e4.headvex = C。
+2. 先把**旧链首**存进新结点：e4.tlink = B.firstout（原值 NULL）、e4.hlink = C.firstin（原值 e2）。
+3. 再改两个入口：B.firstout = e4、C.firstin = e4。
+4. 其余字段保持原值：A 的两项、C.firstout、D 的两项，以及 e1、e2、e3 的所有链接都不动。
+
+**为什么第 2 步必须在第 3 步之前：** 第 3 步覆盖两个旧入口。此时再用入口给新结点的链接赋值，读到的都是 e4 自己：e4.tlink=e4、e4.hlink=e4，两条链都可能形成自环。B 原来为空，虽然没有旧弧被丢弃，仍会形成自环；C 原来指向 e2，还会把 e2 从 C 的入边链上丢掉。先保存旧链首，再移动入口，才能既保留旧弧又避免自环。
+
+初始化 e4 的两个端点后，接链只需更新 4 个指针域：e4.tlink、e4.hlink、B.firstout、C.firstin；已知两个端点入口时，这部分是 O(1)。没有尾指针而要同时尾插到两条链，需要分别找出链和入链的链尾，最坏为 O(出度(B)+入度(C))。
+
+### 易错清单
+
+- 把记录之间的指针当成图上新增的弧。指针只是存储结构，弧数只看弧结点的个数。
+- tlink 与 hlink 对调。t 是“同弧尾”的出链，h 是“同弧头”的入链；在 e1 上走错字段，就会跑到另一个顶点的链上。
+- 把 tailvex、headvex 当成指针域。它们存的是顶点下标。
+- 只接出边链、忘了接入边链（头插必须同时改 firstout 与 firstin 两处入口）。
+- 以为链上顺序由弧的编号或下标决定；顺序只由插入历史决定。
+- 把 e1 在两处出现当成两个结点，或认为邻接多重表要求图里有平行边（两种结构都不要求平行边）。
+- 把“链长”与“链上顶点个数”混淆：链长是弧数，就是度数。
+
+### 不要和这两个结构混
+
+- 邻接多重表：无向图的版本，边结点里的字段是 ivex、jvex、ilink、jlink，当前顶点匹配 ivex 走 ilink、匹配 jvex 走 jlink。
+- 稀疏矩阵的十字链表：每个非零元结点用 right 串同一行、用 down 串同一列。
+
+它们的共同思想是“一个记录挂两条链”，但字段名与含义各不相同，不能混用。
+
+### 讲课顺序（教师用）
+
+1. 先只看图，问“e1 的弧尾、弧头分别是谁”，把“弧尾=起点、弧头=终点”钉死。
+2. 再给字段表，逐个字段用中文念一遍，强调 tailvex/headvex 是下标、tlink/hlink 是指针。
+3. 带着走 A 的出边链，走一步读一个字段，核对一次 tailvex。
+4. 让学生自己走 B 的入边链，只提示“这次找同弧头，所以用 hlink”。
+5. 头插 e4，按 1→2→3 板书；最后故意先改入口，让学生发现 e2 被丢掉。
+
+图为本站绘制。参考：[N诺：邻接多重表与十字链表](https://noobdream.com/Major/article/218/)。`},{id:`rare-orthogonal-list-trace`,type:`题目`,questionNumber:12,date:`2026-10-07`,title:`有向图十字链表：读两条弧链、算四个顶点的度、再头插一条弧`,chapter:`图 · 图的存储（有向图）`,tags:[`十字链表`,`有向图存储`,`弧链追踪`,`顶点出入度`,`头插法`],summary:`给出有向图与十字链表的当前状态、每个字段的中文含义与全部已知值，追踪 A 的出边链与 B 的入边链，写出 4 个顶点的出度入度，再用头插法接入新弧 e4（B→C）并求新度数。`,source:`本站绘制示意图与自拟教学题，非真题。字段与入出链方向参考 N诺《邻接多重表、十字链表》，可点击的出处链接在前一张知识卡正文。`,content:String.raw`**自拟教学题。** 下面给出有向图及其十字链表存储。A～D 是顶点下标 0～3 的名字，NULL 表示空指针。先读字段说明，再作答。
+
+![有向图的原始三条弧](rare-orthogonal-list/graph-arcs.svg)
 
 ![已知的顶点入口与弧结点字段](rare-orthogonal-list/ol-records.svg)
 
-1. 从 A.firstout 和 B.firstin 出发，分别追踪出边链、入边链，写到 NULL。
-2. 写出四个顶点的（出度，入度）。
-3. 用头插法加入 e4（B→C）：哪些链首改变？e4.tlink、e4.hlink 是什么？再求各度数与全图入、出度之和。`,solution:{answer:String.raw`![沿两种指针得到的入边和出边链](rare-orthogonal-list/chains.svg)
+**字段说明（解题只用这 6 个字段）**
 
-**A 出边：** e1 → e2 → NULL，沿 tlink。**B 入边：** e1 → e3 → NULL，沿 hlink。
+- 顶点结点：firstout 是该顶点出边链的第 1 条弧；firstin 是入边链的第 1 条弧。
+- 弧结点：tailvex 是弧尾顶点的下标；headvex 是弧头顶点的下标；tlink 是同弧尾的下一条弧；hlink 是同弧头的下一条弧。
+- 已知入口：A.firstout=e1、A.firstin=NULL；B.firstout=NULL、B.firstin=e1；C.firstout=e3、C.firstin=e2；D 两项都是 NULL。
+- 已知弧结点：e1 是 A→B，tlink=e2、hlink=e3；e2 是 A→C，两个链接都是 NULL；e3 是 C→B，两个链接都是 NULL。
 
-**原（出度，入度）：** A(2,0)、B(0,2)、C(1,1)、D(0,0)。`,explanation:String.raw`![e4头插前后，两条链共享同一个弧结点](rare-orthogonal-list/insert-e4.svg)
+**问题**
 
-**新结点先接旧入口：** e4.tlink=NULL、e4.hlink=e2；再令 B.firstout=e4、C.firstin=e4。其它旧字段不变。
+1. 从 A.firstout 出发走完 A 的出边链，逐条写出经过的弧、每一步用到的字段与最后一个链接的值，并给出 A 的出度；再从 B.firstin 出发走完 B 的入边链，同样写出过程与 B 的入度。
+2. 写出 A、B、C、D 各自的（出度，入度）。
+3. 用头插法加入新弧 e4（B→C）：写出被改动的链首指针、新结点 e4 的 tailvex、headvex、tlink、hlink 的值，并给出改动后四个顶点的（出度，入度）以及全图的出度之和、入度之和。`,solution:{answer:String.raw`![沿 tlink 的出边链与沿 hlink 的入边链](rare-orthogonal-list/chains.svg)
 
-**新（出度，入度）：** A(2,0)、B(1,2)、C(1,2)、D(0,0)；出度和=入度和=4。只让 B 出度、C 入度各加 1，与新增一条 B→C 一致。`,pitfalls:String.raw`- tlink 与 hlink 对调：t 是同尾出链，h 是同头入链。
-- 把记录之间的指针误当原图新增加的弧。
-- 只接 B 出链，漏接 C 入链；或覆盖旧 C 入链而丢失 e2。`,extension:String.raw`**问：** 改成尾插 e4，度数变吗？ **答：** 不变。同样新增 B→C；C 入链由头插的 e4→e2 改成 e2→e4，链序不同，链长相同。`,teachingFramework:String.raw`### 讲题框架
+**A 的出边链（沿 tlink）：** 读 A.firstout = e1 → 核对 e1.tailvex = A → 读 e1.tlink = e2 → 核对 e2.tailvex = A → 读 e2.tlink = NULL，结束。链为 e1 → e2 → NULL，共 2 条弧，A 的出度 = 2。
 
-1. 先在原图指出弧的起点与终点。
-2. 用两种颜色分别追 tlink、hlink。
-3. 在头插图上先画新 link，再移动两个入口。
+**B 的入边链（沿 hlink）：** 读 B.firstin = e1 → 核对 e1.headvex = B → 读 e1.hlink = e3 → 核对 e3.headvex = B → 读 e3.hlink = NULL，结束。链为 e1 → e3 → NULL，共 2 条弧，B 的入度 = 2。
 
-### 常见做法
+**第 2 问：** A(2,0)、B(0,2)、C(1,1)、D(0,0)。其中 C 的出边链是 e3 → NULL（1 条），入边链是 e2 → NULL（1 条）；D 两条链都是 NULL，所以是 (0,0)。
 
-固定一个顶点、一种方向 → 沿对应 link 走到 NULL → 数度；新增弧后检查入度和=出度和=弧数。`}},{id:`rare-ieee754-special`,title:`IEEE754 单精度的特殊位模式：零、非规格数、无穷与 NaN`,type:`知识点`,date:`2026-10-07`,chapter:`计算机组成原理 · IEEE 754 浮点数`,tags:[`IEEE754`,`单精度`,`非规格数`,`有符号零`,`无穷与NaN`],summary:`用阶码分支图、零附近刻度和典型运算辨认单精度特殊值。`,source:`理论依据：Oracle《Numerical Computation Guide》第 2 章 IEEE Arithmetic §2.2.2 单格式（含表 2-2 位模式对应值、表 2-3 重要位模式），文档链接见正文末尾。文中示意图由本站绘制，数值由原生 Node DataView 独立核算。`,content:String.raw`![单精度符号阶码尾数的位宽](rare-ieee754-special/bit-fields.svg)
+**为什么 A 走 e1.tlink、B 走 e1.hlink：** e1.tailvex = A，e1 属于“同弧尾 A”的弧，接这批弧用的是 tlink；e1.headvex = B，e1 属于“同弧头 B”的弧，接这批弧用的是 hlink。同一个 e1 被两条链共用，往哪走取决于此刻走的是哪条链。`,explanation:String.raw`![头插 e4 的四步写入](rare-orthogonal-list/insert-e4.svg)
+
+**头插 e4（B→C）：先初始化端点，再更新四个指针域。**
+
+1. 新建弧结点并写端点：e4.tailvex = B、e4.headvex = C。
+2. 先保存旧链首：e4.tlink = B.firstout（原值 NULL）、e4.hlink = C.firstin（原值 e2）。
+3. 再改两个入口：B.firstout = e4、C.firstin = e4。
+4. 其余字段保持原值：A.firstout=e1、A.firstin=NULL、C.firstout=e3、D 两项都是 NULL，e1、e2、e3 的链接一个都没动。
+
+**为什么第 2 步必须写在第 3 步前面：** 两个入口一旦被覆盖，再从入口读取的就是 e4 自己。用它们回填链接会得到 e4.tlink=e4、e4.hlink=e4，出链和入链都会自环；C 的旧链首 e2 还会丢失。B 原来为空也不能忽略这个错误，因为它同样可能自环。正确值是 e4.tlink=NULL、e4.hlink=e2。
+
+**改动后的四条链：** A 的出边链仍是 e1 → e2 → NULL；B 的出边链变成 e4 → NULL（原来为空）；C 的入边链变成 e4 → e2 → NULL；C 的出边链仍是 e3 → NULL。A、B 的入边链与 C 的出边链都不受影响。
+
+**第 3 问结果：** A(2,0)、B(1,2)、C(1,2)、D(0,0)。出度之和 = 2+1+1+0 = 4，入度之和 = 0+2+2+0 = 4，都等于弧数 4；插入前两者都等于 3。新增一条 B→C 只让弧尾 B 的出度加 1、弧头 C 的入度加 1，其余度数不动；若按“总度数”（出度加入度）统计，则由 6 变为 8。`,pitfalls:String.raw`- tlink 与 hlink 对调。t 是“同弧尾”的出链，h 是“同弧头”的入链；在 e1 上走错字段会串到另一个顶点的链上。
+- 把记录之间的指针当成图上新增的弧，或反过来忘了记指针：弧数只看弧结点个数。
+- 只改一个入口（例如只改 B.firstout），另一端还指着旧结点，链断裂或丢弧。
+- 先改入口再取旧链首，读回的是新结点自己，旧链首丢失；本题 C 端就此丢掉 e2。
+- 把 tailvex、headvex（顶点下标）当成指针域，或把 tlink、hlink 当成顶点下标。
+- 只看链上第一条弧就报度数：A、B 的第一条弧都是 e1，必须走完整条链才对。
+- 把“出度之和”与“总度数”混为一谈：出度之和 = 入度之和 = 弧数，两者相加才是总度数。
+- 以为链上顺序由弧的编号决定：顺序由插入历史决定，与编号无关。`,extension:String.raw`**问：改成尾插 e4，度数会变吗？** **答：** 不变。B 原本没有出弧，尾插后 B 的出边链仍是 e4 → NULL；C 的入边链由头插的 e4 → e2 → NULL 变成 e2 → e4 → NULL。链序不同、链长相同，四个度数仍是 A(2,0)、B(1,2)、C(1,2)、D(0,0)，出度之和 = 入度之和 = 4。可见度数只与弧的集合有关，与链上的顺序无关。
+
+**问：只给出弧的集合，能唯一确定 firstout 的值吗？** **答：** 不能。firstout 是链首，取决于插入顺序：本例若先插 e1、再头插 e2，A.firstout 就是 e2，而 e2.tlink = e1、e1.tlink = NULL。能确定的只有“从 firstout 出发沿 tlink 能走遍该顶点的全部出弧”。
+
+**问：头插的代价是多少？** **答：** 在端点已初始化、两个顶点入口已知的前提下，只更新 4 个指针域，是 O(1)。如果没有尾指针而要同时尾插到出链和入链，则需分别查找两个链尾，最坏为 O(出度(B)+入度(C))。
+
+**问：为什么同一条弧 e1 会出现在两条链上？** **答：** 因为一个弧结点里同时有 tlink 与 hlink 两个指针域。出边链用 tlink 串同弧尾的弧，入边链用 hlink 串同弧头的弧；一个结点同时属于两条链，所以“每条弧只有一个结点，却被两条链共用”。
+
+**问：只看一个顶点自己的出边链，能求出它的入度吗？** **答：** 一般不能。自己的出链收集以自己为起点的弧，不代表有哪些弧进入自己。十字链表直接从该顶点的 firstin 沿 hlink 统计入度；只有普通邻接表时，也能扫描所有顶点的出链，逐条统计弧头等于该顶点的弧，只是需要扫描全图。
+
+**问：这张图有 4 个顶点、3 条弧，十字链表一共几个结点？** **答：** 弧结点 3 个（每条弧一个），顶点结点 4 个，共 7 个。**普通有向图邻接表也只需 3 个弧条目**，每条弧在弧尾的出链中存一次；不要套用无向图的 2m 规则。如果另外维护逆邻接表，出、入两个索引合计为 6 个条目。十字链表则让 3 个弧结点各带两种链接，供出、入两条链共享。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先分清两种箭头：图里的黑箭头是弧（谁指向谁），记录里的蓝红箭头是指针（存的地址）。学生第一次看十字链表，最常见的误解是把“存储结构里的指针”当成“图里新增的边”，开场就堵住它。
+
+### 2. 讲题顺序（约 12 分钟）
+
+1. 示范 A 的出边链（3 分钟）：从 A.firstout 读 e1，核对 tailvex，再读 tlink。强调固定动作——先读顶点入口，每到一个弧结点核对一次 tailvex 或 headvex。
+2. 让学生自己走 B 的入边链（3 分钟）：只提示“要找同弧头的弧，所以用 hlink”，让他们在 e1 上做出选择。
+3. 数四个度数（2 分钟）：点名 e1 在两条链上各出现一次，提醒度数只数弧、不数指针。
+4. 头插 e4（4 分钟）：先在图上画出 B→C，再按 1 建结点、2 存旧链首、3 改入口板书；最后故意把 2、3 两步对调，让学生亲眼看到 e2 丢失。
+
+### 3. 板书画什么
+
+左边画原图并标出弧尾、弧头；右边画四个顶点入口与 e1、e2、e3 三个方框。用蓝笔画出边链、红笔画入边链，把 e1 画在两条线的交叉处，顺势说明“十字”的含义。
+
+### 4. 常见做法
+
+固定一条流水线：当前顶点 → 匹配 tailvex（出链）或 headvex（入链） → 选 tlink 或 hlink → 到 NULL 停。作答时先写出每一步读取的字段与值，再写结论，避免只写结果不写过程。
+
+### 5. 收尾检查
+
+用两个恒等式自查：出度之和 = 入度之和 = 弧数；插入一条弧后只影响两个度数（新弧尾的出度 +1、新弧头的入度 +1）。`}},{id:`rare-ieee754-special`,title:`IEEE754 单精度的特殊位模式：零、非规格数、无穷与 NaN`,type:`知识点`,date:`2026-10-07`,chapter:`计算机组成原理 · IEEE 754 浮点数`,tags:[`IEEE754`,`单精度`,`非规格数`,`有符号零`,`无穷与NaN`],summary:`用阶码分支图、零附近刻度和典型运算辨认单精度特殊值。`,source:`理论依据：Oracle《Numerical Computation Guide》第 2 章 IEEE Arithmetic §2.2.2 单格式（含表 2-2 位模式对应值、表 2-3 重要位模式），文档链接见正文末尾。文中示意图由本站绘制，数值由原生 Node DataView 独立核算。`,content:String.raw`![单精度符号阶码尾数的位宽](rare-ieee754-special/bit-fields.svg)
 
 **只看两步：** 先判 E，再判 F 是否全 0。
 
@@ -12070,11 +12329,51 @@ DHCP 为主机动态分配 IP 地址、子网掩码、默认网关、DNS 服务�
 - 一个广播域内可部署多台 DHCP 服务器，客户端只选定一个；续租阶段可单播。
 - **客户端首次申请不需要预先知道 DHCP 服务器的 IP 地址**，靠广播发现。
 - **DHCP 支持地址保留（静态绑定）**，把某 MAC 与固定 IP 绑定，使指定主机总是获得同一地址。
-- 跨网段时可由 DHCP 中继代理转发请求。`,"mock-exam-4-cn-q40":Dy,"mock-exam-4-co-q43":Tv,"mock-exam-4-co-q44":Av,"mock-exam-4-os-q45":qv,"mock-exam-4-os-q46":Uv,"mock-exam-4-cn-q47":Ty,"io-interrupt-dma-bus-clock":Nv,"vm-lru-array-page-faults":ny,"wangdao-mock2-major-01":cv,"wangdao-mock2-major-02":P_,"wangdao-mock2-major-03":lv,"wangdao-mock2-major-04":lv,"wangdao-mock2-major-05":uv,"wangdao-mock2-major-06":dv,"wangdao-mock2-major-07":R_,"wangdao-mock2-major-08":z_,"wangdao-mock2-major-09":av,"wangdao-mock2-major-10":ov,"wangdao-mock2-major-11":W_,"wangdao-mock2-major-12":mv,"wangdao-mock2-major-13":hv,"wangdao-mock2-major-14":_v,"wangdao-mock2-major-15":yv,"wangdao-mock2-major-16":yv,"wangdao-mock2-major-17":xv,"wangdao-mock2-major-18":Tv,"wangdao-mock2-major-19":kv,"wangdao-mock2-major-20":Dv,"wangdao-mock2-major-21":Mv,"wangdao-mock2-major-22":Pv,"wangdao-mock2-major-23":Lv,"wangdao-mock2-major-24":Lv,"wangdao-mock2-major-25":Rv,"wangdao-mock2-major-26":Vv,"wangdao-mock2-major-27":Uv,"wangdao-mock2-major-28":Wv,"wangdao-mock2-major-29":ny,"wangdao-mock2-major-30":cy,"wangdao-mock2-major-31":uy,"wangdao-mock2-major-32":py,"wangdao-mock1-major-41":J_,"wangdao-mock1-major-42":cv,"wangdao-mock1-major-43":Sv,"wangdao-mock1-major-44":Av,"wangdao-mock1-major-45":Yv,"wangdao-mock1-major-46":ey,"forest-to-binary-min-height":rv,"directed-graph-path-strings":dv,"insertion-sort-comparison-counts":fv,"system-hierarchy-levels":pv,"float32-12-1-rounding":_v,"isa-specified-things":pv,"kernel-mode-operations":Lv,"rare-rbt-validity":B_,"rare-rbt-black-height":B_,"rare-rbt-insertion":V_,"rare-rbt-deletion":V_,"rare-rbt-recolor-cost":V_,"rare-grouped-allocation":iy,"rare-grouped-release":iy,"rare-grouped-empty":iy,"rare-grouped-batch-io":iy,"rare-grouped-capacity":ay,"rare-adjacency-multilist-trace":String.raw`![以B为例，按当前顶点选择边结点字段](rare-adjacency-multilist/field-switch.svg)
+- 跨网段时可由 DHCP 中继代理转发请求。`,"mock-exam-4-cn-q40":Dy,"mock-exam-4-co-q43":Tv,"mock-exam-4-co-q44":Av,"mock-exam-4-os-q45":qv,"mock-exam-4-os-q46":Uv,"mock-exam-4-cn-q47":Ty,"io-interrupt-dma-bus-clock":Nv,"vm-lru-array-page-faults":ny,"wangdao-mock2-major-01":cv,"wangdao-mock2-major-02":P_,"wangdao-mock2-major-03":lv,"wangdao-mock2-major-04":lv,"wangdao-mock2-major-05":uv,"wangdao-mock2-major-06":dv,"wangdao-mock2-major-07":R_,"wangdao-mock2-major-08":z_,"wangdao-mock2-major-09":av,"wangdao-mock2-major-10":ov,"wangdao-mock2-major-11":W_,"wangdao-mock2-major-12":mv,"wangdao-mock2-major-13":hv,"wangdao-mock2-major-14":_v,"wangdao-mock2-major-15":yv,"wangdao-mock2-major-16":yv,"wangdao-mock2-major-17":xv,"wangdao-mock2-major-18":Tv,"wangdao-mock2-major-19":kv,"wangdao-mock2-major-20":Dv,"wangdao-mock2-major-21":Mv,"wangdao-mock2-major-22":Pv,"wangdao-mock2-major-23":Lv,"wangdao-mock2-major-24":Lv,"wangdao-mock2-major-25":Rv,"wangdao-mock2-major-26":Vv,"wangdao-mock2-major-27":Uv,"wangdao-mock2-major-28":Wv,"wangdao-mock2-major-29":ny,"wangdao-mock2-major-30":cy,"wangdao-mock2-major-31":uy,"wangdao-mock2-major-32":py,"wangdao-mock1-major-41":J_,"wangdao-mock1-major-42":cv,"wangdao-mock1-major-43":Sv,"wangdao-mock1-major-44":Av,"wangdao-mock1-major-45":Yv,"wangdao-mock1-major-46":ey,"forest-to-binary-min-height":rv,"directed-graph-path-strings":dv,"insertion-sort-comparison-counts":fv,"system-hierarchy-levels":pv,"float32-12-1-rounding":_v,"isa-specified-things":pv,"kernel-mode-operations":Lv,"rare-rbt-validity":B_,"rare-rbt-black-height":B_,"rare-rbt-insertion":V_,"rare-rbt-deletion":V_,"rare-rbt-recolor-cost":V_,"rare-grouped-allocation":iy,"rare-grouped-release":iy,"rare-grouped-empty":iy,"rare-grouped-batch-io":iy,"rare-grouped-capacity":ay,"rare-adjacency-multilist-trace":String.raw`![以当前顶点 B 为例，切换边走字段](rare-adjacency-multilist/field-switch.svg)
 
-**无向图：** 一条边一个共享结点。当前顶点匹配 ivex → ilink；匹配 jvex → jlink。本题没有自环，顶点链长度等于度。`,"rare-orthogonal-list-trace":String.raw`![弧结点与两个顶点入口的字段布局](rare-orthogonal-list/ol-records.svg)
+### 三句话分清概念
 
-**有向图：** 一条弧一个共享结点。firstout+tlink 找同尾出弧；firstin+hlink 找同头入弧。出度和=入度和=弧数。`,"rare-ieee754-special-decode":String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
+- **依附于顶点 v**：这条边的一个端点正好是 v。e1（A—B）依附于 A，也依附于 B。依附是「边与顶点」之间的关系，不是顶点之间的距离。
+- **顶点结点**：每个顶点结点保存 data 等自身信息，并有入口指针 firstedge，指向该顶点链上的第一条依附边记录；没有就是 NULL。
+- **边结点**：一条无向边只建一个结点（m 条边就 m 个，普通邻接表要 2m 个），两端的链先后指向它，物理上不复制。
+
+### 四个字段
+
+- **ivex、jvex**：这条边两个端点的**顶点下标**（存的是顶点）。
+- **ilink**：依附于 ivex 这个顶点的下一条边的**指针**（存的是边结点地址）。
+- **jlink**：依附于 jvex 这个顶点的下一条边的指针。
+
+ivex 与 ilink 必须配套，jvex 与 jlink 必须配套，不能交叉。两个端点谁写在 ivex 都行，但不能只交换端点下标而不同时交换对应的链接字段。
+
+### 查找规则
+
+固定当前顶点 v（v 从头到尾不变）：在边结点 p 上，若 v 等于 p.ivex 就走 p.ilink；若 v 等于 p.jvex 就走 p.jlink；遇到 NULL 结束。没有自环时每步唯一确定。链上的移动发生在内存里，指针指向的是另一个**边结点**，不是沿图的边从一个顶点走到另一个顶点。本例没有自环，顶点链的长度就是这个顶点的度，度之和为 2m。
+
+### 用 B 读一次
+
+1. B.firstedge=e1，先拿到 e1 这条边的记录。
+2. 在 e1 上比较 B：jvex=B，所以读 jlink=e3，转到 e3 记录。
+3. 在 e3 上 B=ivex，所以读 ilink=NULL，到这里停止。
+
+列出的边是 e1、e3；始终比较的是同一个 B，数两条边得到度 2。
+
+### 删除一条边
+
+先把它从**两端**的顶点链上摘掉：沿每条链找到它的前驱边结点，改前驱对应方向的指针域；若它本身就是链首，则改该顶点的 firstedge。两条链都摘干净，最后才释放这个边结点——顺序反了会留下悬空指针。边结点里没有前驱字段，仅有目标边地址时仍需沿链查找前驱；最坏为 O(deg(u)+deg(v))。已知两端前驱时，修改指针本身是 O(1)。`,"rare-orthogonal-list-trace":String.raw`![弧结点与两个顶点入口的字段布局](rare-orthogonal-list/ol-records.svg)
+
+**先分清两个词：** 图里的箭头是**弧**（有向边），记录里的箭头是**指针**（存的是地址）。弧的方向写进结点里，指针只负责把同类结点串成链。
+
+**顶点结点的两个入口指针：** firstout = 该顶点**出边链的第一条弧**（同弧尾，出去）；firstin = 该顶点**入边链的第一条弧**（同弧头，进来）。为 NULL 表示没有出弧或没有入弧。
+
+**弧结点的四个字段：** tailvex = 弧尾顶点的下标，headvex = 弧头顶点的下标（这两项存的是**顶点下标**，是一个数）；tlink = 同弧尾的下一条弧，hlink = 同弧头的下一条弧（这两项存的是**另一个弧结点的地址**，是指针）。记忆：tail→t，head→h；tailvex 与 tlink 管同尾，headvex 与 hlink 管同头，两类字段不能互换。
+
+**查找规则：** 求出弧就从该顶点 firstout 出发，一路沿 tlink 走到 NULL，链长就是出度；求入弧就从 firstin 出发，一路沿 hlink 走到 NULL，链长就是入度。每到一个弧结点先核对 tailvex（走的是出链）或 headvex（走的是入链）是否等于当前顶点。
+
+**走一条链的样子：** A.firstout = e1 → 核对 e1.tailvex = A → 读 e1.tlink = e2 → 核对 e2.tailvex = A → 读 e2.tlink = NULL 结束，共 2 条弧，A 的出度 = 2。换 B 走入链：B.firstin = e1（headvex = B）→ e1.hlink = e3（headvex = B）→ e3.hlink = NULL，B 的入度 = 2。同一个 e1 在两条链上各出现一次，是同一个结点。
+
+**两条核对原则：** 出度之和 = 入度之和 = 弧数；链上的先后顺序由插入历史决定，图本身不规定。
+
+**头插一条新弧**要写 4 处：新结点的 tlink、hlink 先取两条旧链首，再把两个顶点入口改成新结点。顺序不能颠倒：先改入口再取旧值，读回的是新结点自己，旧链首从此丢失。`,"rare-ieee754-special-decode":String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
 
 **规格数：** $(-1)^s2^{E-127}(1+F/2^{23})$。**非规格数：** $(-1)^s2^{-126}(F/2^{23})$，其中 F 是 23 位字段的无符号整数值；最小正非规格数为 $2^{-149}$。`,"rare-comparison-flags-trace":String.raw`![从进位线区分CF借位与OF溢出](rare-comparison-flags/carry.svg)
 
@@ -12120,8 +12419,8 @@ d[k][v] 表示至多 k 条边到 v 的最小权和。转移既保留上一层的
 
 ### 一次预处理，多次查询
 
-选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,"rare-union-find-parent-trace":iv,"rare-union-find-rank-height":iv,"rare-union-find-kruskal":iv},jy;function My(){return jy||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jy=void 0,t(n.error)},n.onblocked=()=>{r=!0,jy=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jy=void 0},e(t)}}),jy}async function Ny(e,t){let n=await My();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function Py(e){return Ny(`readonly`,t=>t.index(`materialId`).getAll(e))}async function Fy(e){e.length&&await Ny(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function Iy(e){await Ny(`readwrite`,t=>t.delete(e))}var Ly=`/courses/`,Ry={题目:re,知识点:se},zy=j_.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),By=zy.filter(({material:e})=>e.type===`题目`).length;function Vy(e,t){let n=new URLSearchParams;return e!==`all`&&n.set(`lesson`,e),t&&n.set(`material`,t),`#${n}`}function Hy(e){return e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&!e.defaultPrevented}var Uy=28,Wy=64,Gy=26,Ky=16,qy=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Jy(e){let t=(e.match(qy)??[]).length;return(e.length-t)*7.4+t*13+18}function Yy(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
-`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Xy({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Yy(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Jy(e.label))),s=o+Gy,c=i*s-Gy+Ky*2,l=(a+1)*Wy+Ky*2-(Wy-Uy),u=e=>({x:Ky+o/2+e.column*s,y:Ky+e.depth*Wy+Uy/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,P.jsxs)(`figure`,{className:`my-4`,children:[(0,P.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,P.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
-`).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,P.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,P.jsx)(`path`,{d:`M ${e.x} ${e.y+Uy/2} C ${e.x} ${e.y+Uy/2+18}, ${t.x} ${t.y-Uy/2-18}, ${t.x} ${t.y-Uy/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,P.jsxs)(`g`,{children:[(0,P.jsx)(`rect`,{x:n-o/2,y:r-Uy/2,width:o,height:Uy,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,P.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,P.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function Zy({children:e,gfm:t=!1}){return(0,P.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,P.jsx)(Zo,{remarkPlugins:t?[xp,xg]:[xp],rehypePlugins:[b_],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Ly}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,P.jsx)(Xy,{source:n,kind:r})}return(0,P.jsx)(`pre`,{children:e})}},children:e})})}var Qy={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function $y({image:e}){let t=(0,w.useRef)(null);return(0,w.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,P.jsxs)(`figure`,{className:`min-w-0`,children:[(0,P.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&window.open(t.src,`_blank`,`noopener,noreferrer`)}}),(0,P.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name})]})}function eb({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,w.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,w.useState)(!1),[o,s]=(0,w.useState)([]),[c,l]=(0,w.useState)(!1),[u,d]=(0,w.useState)(`正在读取补充图片…`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let t=!0;return Py(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>Qy[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await Fy(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await Iy(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,P.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,P.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,P.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,P.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,P.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,P.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,P.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,P.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 rounded-xl border border-border p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,P.jsx)(Zy,{gfm:!0,children:n.content}):(0,P.jsx)(`div`,{className:`whitespace-pre-wrap text-sm leading-7 [overflow-wrap:anywhere]`,children:n.content}):(0,P.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,P.jsxs)(`div`,{className:`mt-4`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,P.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
+选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,"rare-union-find-parent-trace":iv,"rare-union-find-rank-height":iv,"rare-union-find-kruskal":iv},jy;function My(){return jy||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jy=void 0,t(n.error)},n.onblocked=()=>{r=!0,jy=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jy=void 0},e(t)}}),jy}async function Ny(e,t){let n=await My();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function Py(e){return Ny(`readonly`,t=>t.index(`materialId`).getAll(e))}async function Fy(e){e.length&&await Ny(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function Iy(e){await Ny(`readwrite`,t=>t.delete(e))}var Ly=`/courses/`,Ry={题目:re,知识点:se},zy=j_.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),By=zy.filter(({material:e})=>e.type===`题目`).length;function Vy(e,t){let n=new URLSearchParams;return e!==`all`&&n.set(`lesson`,e),t&&n.set(`material`,t),`#${n}`}function Hy(e){return e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&!e.defaultPrevented}function Uy(e,t){return e===`rare-topics`?[{type:`知识点`,title:`知识点讲解`,items:t.filter(e=>e.type===`知识点`)},{type:`题目`,title:`配套题目`,items:t.filter(e=>e.type===`题目`)}].filter(e=>e.items.length>0):[{type:`全部`,title:null,items:t}]}var Wy=28,Gy=64,Ky=26,qy=16,Jy=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Yy(e){let t=(e.match(Jy)??[]).length;return(e.length-t)*7.4+t*13+18}function Xy(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Zy({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=Xy(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Yy(e.label))),s=o+Ky,c=i*s-Ky+qy*2,l=(a+1)*Gy+qy*2-(Gy-Wy),u=e=>({x:qy+o/2+e.column*s,y:qy+e.depth*Gy+Wy/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,P.jsxs)(`figure`,{className:`my-4`,children:[(0,P.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,P.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
+`).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,P.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,P.jsx)(`path`,{d:`M ${e.x} ${e.y+Wy/2} C ${e.x} ${e.y+Wy/2+18}, ${t.x} ${t.y-Wy/2-18}, ${t.x} ${t.y-Wy/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,P.jsxs)(`g`,{children:[(0,P.jsx)(`rect`,{x:n-o/2,y:r-Wy/2,width:o,height:Wy,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,P.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,P.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function Qy({children:e,gfm:t=!1}){return(0,P.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,P.jsx)(Zo,{remarkPlugins:t?[xp,xg]:[xp],rehypePlugins:[b_],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Ly}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,P.jsx)(Zy,{source:n,kind:r})}return(0,P.jsx)(`pre`,{children:e})}},children:e})})}var $y={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function eb({image:e}){let t=(0,w.useRef)(null);return(0,w.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,P.jsxs)(`figure`,{className:`min-w-0`,children:[(0,P.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&window.open(t.src,`_blank`,`noopener,noreferrer`)}}),(0,P.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name})]})}function tb({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,w.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,w.useState)(!1),[o,s]=(0,w.useState)([]),[c,l]=(0,w.useState)(!1),[u,d]=(0,w.useState)(`正在读取补充图片…`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let t=!0;return Py(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>$y[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await Fy(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await Iy(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,P.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,P.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,P.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,P.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,P.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,P.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,P.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,P.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 rounded-xl border border-border p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,P.jsx)(Qy,{gfm:!0,children:n.content}):(0,P.jsx)(`div`,{className:`whitespace-pre-wrap text-sm leading-7 [overflow-wrap:anywhere]`,children:n.content}):(0,P.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,P.jsxs)(`div`,{className:`mt-4`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,P.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
 ## 课堂提醒
-- **重点**：先判断适用条件`:`直接输入补充内容，保留换行；不会解析 Markdown 符号。`,onChange:e=>h({content:e.target.value,format:n.format})}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:n.format===`markdown`?`点击预览查看排版；公式可用 $…$ 或独占一行的 $$。`:`普通文字按原样展示，包括 *、# 等符号。`})]}),(0,P.jsxs)(`section`,{className:`mt-4 min-w-0 border-t border-border pt-4`,"aria-label":`补充图片`,children:[(0,P.jsxs)(`div`,{className:`flex flex-wrap items-center justify-between gap-2`,children:[(0,P.jsxs)(`h3`,{className:`text-sm font-semibold`,children:[`补充图片`,o.length>0?` · ${o.length} 张`:``]}),!i&&(0,P.jsxs)(P.Fragment,{children:[(0,P.jsx)(`input`,{ref:f,type:`file`,accept:Object.keys(Qy).join(`,`),multiple:!0,className:`hidden`,"aria-label":`选择补充图片`,onChange:e=>{let t=Array.from(e.target.files||[]);e.target.value=``,p(t)}}),(0,P.jsx)(`button`,{className:`action-button disabled:cursor-not-allowed disabled:opacity-50`,disabled:!c,onClick:()=>f.current?.click(),children:`添加图片`})]})]}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`在补充输入框内直接粘贴截图，也可选择图片；点击图片查看原图。两种文字格式均支持。`}),o.length>0&&(0,P.jsx)(`div`,{className:`mt-3 space-y-4`,children:o.map(e=>(0,P.jsxs)(`div`,{className:`min-w-0 rounded-xl border border-border p-3`,children:[(0,P.jsx)($y,{image:e}),!i&&(0,P.jsx)(`button`,{className:`action-button mt-2`,"aria-label":`移除图片：${e.name}`,onClick:()=>{m(e)},children:`移除图片`})]},e.id))}),(0,P.jsx)(`output`,{className:`mt-2 block text-xs leading-6 text-muted-foreground`,children:u})]}),(0,P.jsx)(`output`,{className:`mt-3 block text-xs leading-6 text-muted-foreground`,children:n.status})]})}function tb(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null),p=(0,w.useRef)(null),m=(0,w.useRef)(null),[h,g]=(0,w.useState)(!1);(0,w.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)),n=e.get(`lesson`),r=e.get(`material`);t(j_.some(e=>e.id===n)?n:`all`),l(zy.some(({material:e})=>e.id===r)?r:null),g(!1)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]),(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]),(0,w.useEffect)(()=>{let e=p.current,t=m.current;if(!e||!t||!e.clientHeight)return;let n=e.getBoundingClientRect(),r=t.getBoundingClientRect();r.top<n.top?e.scrollTop+=r.top-n.top:r.bottom>n.bottom&&(e.scrollTop+=r.bottom-n.bottom)},[c,h]);let _=j_.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),v=_.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),y=e!==`all`,b=o.trim().toLocaleLowerCase(),x=_.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!b||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(b)))})).filter(({items:e})=>e.length>0),S=x.reduce((e,t)=>e+t.items.length,0),C=e===`rare-topics`&&_[0]?.lesson.materials.length===0,T=c?zy.find(({material:e})=>e.id===c)??null:null,E=T?.material.type===`题目`?Ay[T.material.id]:void 0,ee=T?T.lesson.materials.findIndex(e=>e.id===T.material.id):-1,D=T?T.lesson.materials[ee-1]:void 0,ue=T?T.lesson.materials[ee+1]:void 0,de=T?.material.type===`题目`?`题`:`张`;function fe(){t(`all`),r(`全部`),a(``),s(``),window.history.replaceState(null,``,Vy(`all`))}function pe(t){let n=Ry[t.type];return(0,P.jsxs)(`a`,{href:Vy(e,t.id),className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,children:[(0,P.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,P.jsx)(n,{size:15}),(0,P.jsx)(`span`,{className:`text-primary`,children:t.type}),(0,P.jsxs)(`span`,{children:[`· `,t.chapter]})]}),t.type===`题目`&&t.questionNumber!==void 0&&(0,P.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,t.questionNumber,` 题`]}),(0,P.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:t.title}),(0,P.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:t.summary}),t.tags.length>0&&(0,P.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[t.tags.slice(0,2).map(e=>(0,P.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e)),t.tags.length>2&&(0,P.jsxs)(`span`,{className:`py-1 text-xs text-muted-foreground`,children:[`+`,t.tags.length-2]})]})]},t.id)}return(0,P.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,P.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,P.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,P.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,P.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,P.jsx)(te,{size:16}),`返回博客`]}),T&&(0,P.jsxs)(`a`,{className:`action-button`,href:Vy(e),children:[(0,P.jsx)(te,{}),`返回讲义列表`]}),T&&(0,P.jsxs)(`nav`,{className:`flex items-center gap-2`,"aria-label":`讲义切换`,children:[D?(0,P.jsxs)(`a`,{className:`action-button`,href:Vy(e,D.id),title:`上一${de}：${D.title}`,children:[(0,P.jsx)(te,{}),`上一`,de]}):(0,P.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课第一${de}`,children:[(0,P.jsx)(te,{}),`上一`,de]}),ue?(0,P.jsxs)(`a`,{className:`action-button`,href:Vy(e,ue.id),title:`下一${de}：${ue.title}`,children:[`下一`,de,(0,P.jsx)(ne,{})]}):(0,P.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课最后一${de}`,children:[`下一`,de,(0,P.jsx)(ne,{})]})]})]}),(0,P.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,P.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,P.jsx)(oe,{size:19}),`408 备课讲义`]}),(0,P.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,P.jsx)(le,{}):(0,P.jsx)(O,{})})]})]})}),(0,P.jsxs)(`main`,{className:`mx-auto px-5 py-8 sm:px-8 sm:py-10 ${T?`max-w-[1600px]`:`max-w-6xl`}`,children:[!T&&(0,P.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,P.jsxs)(`div`,{children:[(0,P.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,P.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,P.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,P.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,P.jsxs)(`p`,{children:[(0,P.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:j_.length}),`次课`]}),(0,P.jsxs)(`p`,{children:[(0,P.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:By}),`道题目`]})]})]}),(0,P.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[T?(0,P.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`当前课次目录`,children:[(0,P.jsx)(`h2`,{className:`px-2 text-sm font-semibold text-primary`,children:T.lesson.title}),(0,P.jsxs)(`p`,{className:`mt-2 px-2 text-xs leading-6 text-muted-foreground`,children:[`本课题目目录 · `,T.lesson.materials.length,` 条内容`]}),(0,P.jsx)(`div`,{className:`lg:hidden`,children:(0,P.jsxs)(`button`,{className:`action-button mt-3 w-full justify-between`,"aria-expanded":h,"aria-controls":`current-lesson-materials`,onClick:()=>g(!h),children:[h?`收起题目目录`:`展开题目目录`,(0,P.jsx)(ie,{size:16,className:h?`rotate-180`:``})]})}),(0,P.jsx)(`nav`,{id:`current-lesson-materials`,ref:p,className:`mt-3 max-h-64 overflow-y-auto overscroll-contain lg:max-h-[calc(100dvh-13rem)] ${h?``:`hidden lg:block`}`,"aria-label":`本课题目`,children:T.lesson.materials.map((t,n)=>(0,P.jsxs)(`a`,{href:Vy(e,t.id),ref:t.id===c?m:void 0,"aria-current":t.id===c?`page`:void 0,onClick:e=>{Hy(e)&&g(!1)},className:`mb-1 block w-full rounded-xl px-3 py-3 text-left ${t.id===c?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,children:[(0,P.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:t.type===`题目`&&t.questionNumber!==void 0?`第 ${t.questionNumber} 题`:t.type===`知识点`?`知识点 · 第 ${n+1} 张`:`题目 · 第 ${n+1} 张`}),(0,P.jsx)(`span`,{className:`mt-1 block break-words text-sm leading-6`,children:t.title})]},t.id))})]}):(0,P.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`课次导航`,children:[(0,P.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,P.jsxs)(`a`,{href:Vy(`all`),className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-current":e===`all`?`page`:void 0,onClick:e=>{Hy(e)&&a(``)},children:[`全部课次`,(0,P.jsx)(`span`,{className:`text-xs`,children:zy.length})]}),j_.map(t=>(0,P.jsxs)(`a`,{href:Vy(t.id),"aria-current":e===t.id?`page`:void 0,onClick:e=>{Hy(e)&&a(``)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===t.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,P.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[t.title,(0,P.jsx)(`span`,{className:`text-xs font-normal`,children:t.materials.length})]}),(0,P.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:t.date})]},t.id)),(0,P.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,P.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,P.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,P.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认展开，可点击标题手动收起。公开讲义由维护者收录；「我的补充」中的文字和图片只保存在当前浏览器。`})]})]}),(0,P.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:T?(0,P.jsxs)(`div`,{className:`grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_320px]`,children:[(0,P.jsxs)(`article`,{ref:f,tabIndex:-1,className:`min-w-0 scroll-mt-44 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-32 sm:p-8 lg:scroll-mt-24`,children:[(0,P.jsxs)(`p`,{className:`mb-6 text-xs text-muted-foreground`,children:[`本课第 `,ee+1,` / `,T.lesson.materials.length,` 张`]}),(0,P.jsxs)(`p`,{className:`text-xs text-primary`,children:[T.lesson.title,` · `,T.material.chapter,` · `,T.material.type]}),(0,P.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[T.material.type===`题目`&&T.material.questionNumber!==void 0&&(0,P.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,T.material.questionNumber,` 题 ·`]}),T.material.title]}),(0,P.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:T.material.tags.map(e=>(0,P.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),T.material.source&&(0,P.jsxs)(`details`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,"aria-label":`题目来源`,children:[(0,P.jsx)(`summary`,{className:`cursor-pointer`,children:`来源与资料说明`}),(0,P.jsx)(`p`,{className:`mt-2`,children:T.material.source})]}),(0,P.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":T.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,P.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:T.material.type===`题目`?`题目`:`知识点讲解`}),(0,P.jsx)(Zy,{children:T.material.content})]}),T.material.attachments&&T.material.attachments.length>0&&(0,P.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:T.material.attachments.map(e=>(0,P.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Ly}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,P.jsx)(ae,{}),(0,P.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),T.material.type===`题目`&&(T.material.solution?(0,P.jsxs)(`details`,{open:!0,className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,P.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,P.jsxs)(`span`,{children:[`答案与解析`,(0,P.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,P.jsx)(ie,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,P.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,P.jsxs)(`section`,{children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,P.jsx)(Zy,{children:T.material.solution.answer})]}),T.material.solution.teachingFramework&&(0,P.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`讲题框架`}),(0,P.jsx)(Zy,{children:T.material.solution.teachingFramework})]}),(0,P.jsxs)(`section`,{children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题步骤`}),(0,P.jsx)(Zy,{children:T.material.solution.explanation})]}),T.material.solution.pitfalls&&(0,P.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错提醒`}),(0,P.jsx)(Zy,{children:T.material.solution.pitfalls})]}),T.material.solution.extension&&(0,P.jsxs)(`section`,{children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,P.jsx)(Zy,{children:T.material.solution.extension})]})]})]}):(0,P.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`})),E&&(0,P.jsxs)(`section`,{className:`mt-8 min-w-0 rounded-xl border border-border bg-secondary/40 p-5 sm:p-6`,"aria-label":`基础知识`,children:[(0,P.jsx)(`h2`,{className:`mb-4 text-lg font-semibold text-primary`,children:`基础知识`}),(0,P.jsx)(Zy,{children:E})]})]},T.material.id),(0,P.jsx)(eb,{materialId:T.material.id},`supplement:${T.material.id}`)]}):(0,P.jsxs)(P.Fragment,{children:[e===`rare-topics`&&(0,P.jsxs)(`section`,{className:`mb-5 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`冷门知识专区`,children:[(0,P.jsx)(`h2`,{className:`font-display text-2xl font-semibold text-primary`,children:`冷门知识专区`}),(0,P.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-muted-foreground`,children:`发来一个冷门考点、一道题或一张截图，从这里积累可直接用于讲课的专题。`}),(0,P.jsxs)(`ol`,{className:`mt-4 list-decimal space-y-3 pl-5 text-sm leading-7`,children:[(0,P.jsxs)(`li`,{children:[(0,P.jsx)(`strong`,{children:`讲清原考点：`}),`介绍定义、公式、适用前提和容易遗漏的边界。`]}),(0,P.jsxs)(`li`,{children:[(0,P.jsx)(`strong`,{children:`拓展相近考点：`}),`查找相关知识点，说明联系、区别与常见混淆。`]}),(0,P.jsxs)(`li`,{children:[(0,P.jsx)(`strong`,{children:`配例题并讲透：`}),`给出完整题面、答案、推导和变式答案；可核验的真题注明出处，改编题或自拟题明确标注，不冒充真题。`]})]}),(0,P.jsx)(`p`,{className:`mt-4 text-xs leading-6 text-muted-foreground`,children:`先核对概念与解答，再收录发布。不把未经核实的答案或题源当成事实。`})]}),(0,P.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,P.jsxs)(`div`,{className:`relative`,children:[(0,P.jsx)(ce,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,P.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,P.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...S_].map(e=>(0,P.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),v.length>0&&(0,P.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,P.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,P.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,P.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,P.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,P.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,P.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),y&&v.flatMap(e=>e.tags).map(e=>(0,P.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!y&&v.map(e=>(0,P.jsxs)(`div`,{children:[(0,P.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,P.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,P.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n),window.history.replaceState(null,``,Vy(e.lesson.id))},children:n},n))})]},e.lesson.id))]})]})]}),(0,P.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,P.jsxs)(`output`,{children:[e===`all`?`全部课次`:j_.find(t=>t.id===e)?.title,` · `,S,` 条内容`]}),(0,P.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:`按备课顺序排列`})]}),zy.length===0?(0,P.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,P.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,P.jsx)(se,{size:24})}),(0,P.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,P.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,P.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,P.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,P.jsx)(re,{className:`mb-3 text-primary`,size:19}),(0,P.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,P.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,P.jsx)(se,{className:`mb-3 text-primary`,size:19}),(0,P.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 题面与解析分区`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点默认展开，需要时可手动收起。`})]})]})]}):x.length===0?(0,P.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,P.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`rare-topics`?C?`尚未收录冷门考点`:`没有找到匹配的冷门考点`:e===`all`?`没有找到匹配的内容`:`${j_.find(t=>t.id===e)?.title} 还没有内容`}),(0,P.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`rare-topics`?C?`把第一个冷门考点发来；核验后的知识点和例题会单独收录在本专区。`:`换个关键词，或调整类型与标签筛选。`:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,P.jsx)(`button`,{className:`action-button`,onClick:fe,children:`清除筛选`}):(0,P.jsx)(`a`,{className:`action-button`,href:Vy(`all`),children:`看全部课次`})]}):(0,P.jsx)(`div`,{className:`grid gap-6`,children:x.map(({lesson:e,items:t})=>(0,P.jsxs)(`section`,{"aria-label":e.title,children:[(0,P.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,P.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,P.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,P.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,P.jsx)(`div`,{className:`grid gap-3`,children:t.map(e=>pe(e))})]},e.id))})]})})]})]})]})}(0,x_.createRoot)(document.getElementById(`root`)).render((0,P.jsx)(w.StrictMode,{children:(0,P.jsx)(tb,{})}));
+- **重点**：先判断适用条件`:`直接输入补充内容，保留换行；不会解析 Markdown 符号。`,onChange:e=>h({content:e.target.value,format:n.format})}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:n.format===`markdown`?`点击预览查看排版；公式可用 $…$ 或独占一行的 $$。`:`普通文字按原样展示，包括 *、# 等符号。`})]}),(0,P.jsxs)(`section`,{className:`mt-4 min-w-0 border-t border-border pt-4`,"aria-label":`补充图片`,children:[(0,P.jsxs)(`div`,{className:`flex flex-wrap items-center justify-between gap-2`,children:[(0,P.jsxs)(`h3`,{className:`text-sm font-semibold`,children:[`补充图片`,o.length>0?` · ${o.length} 张`:``]}),!i&&(0,P.jsxs)(P.Fragment,{children:[(0,P.jsx)(`input`,{ref:f,type:`file`,accept:Object.keys($y).join(`,`),multiple:!0,className:`hidden`,"aria-label":`选择补充图片`,onChange:e=>{let t=Array.from(e.target.files||[]);e.target.value=``,p(t)}}),(0,P.jsx)(`button`,{className:`action-button disabled:cursor-not-allowed disabled:opacity-50`,disabled:!c,onClick:()=>f.current?.click(),children:`添加图片`})]})]}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`在补充输入框内直接粘贴截图，也可选择图片；点击图片查看原图。两种文字格式均支持。`}),o.length>0&&(0,P.jsx)(`div`,{className:`mt-3 space-y-4`,children:o.map(e=>(0,P.jsxs)(`div`,{className:`min-w-0 rounded-xl border border-border p-3`,children:[(0,P.jsx)(eb,{image:e}),!i&&(0,P.jsx)(`button`,{className:`action-button mt-2`,"aria-label":`移除图片：${e.name}`,onClick:()=>{m(e)},children:`移除图片`})]},e.id))}),(0,P.jsx)(`output`,{className:`mt-2 block text-xs leading-6 text-muted-foreground`,children:u})]}),(0,P.jsx)(`output`,{className:`mt-3 block text-xs leading-6 text-muted-foreground`,children:n.status})]})}function nb(){let[e,t]=(0,w.useState)(`all`),[n,r]=(0,w.useState)(`全部`),[i,a]=(0,w.useState)(``),[o,s]=(0,w.useState)(``),[c,l]=(0,w.useState)(null),[u,d]=(0,w.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,w.useRef)(null),p=(0,w.useRef)(null),m=(0,w.useRef)(null),[h,g]=(0,w.useState)(!1);(0,w.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)),n=e.get(`lesson`),r=e.get(`material`);t(j_.some(e=>e.id===n)?n:`all`),l(zy.some(({material:e})=>e.id===r)?r:null),g(!1)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]),(0,w.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,w.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,w.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]),(0,w.useEffect)(()=>{let e=p.current,t=m.current;if(!e||!t||!e.clientHeight)return;let n=e.getBoundingClientRect(),r=t.getBoundingClientRect();r.top<n.top?e.scrollTop+=r.top-n.top:r.bottom>n.bottom&&(e.scrollTop+=r.bottom-n.bottom)},[c,h]);let _=j_.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),v=_.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),y=e!==`all`,b=o.trim().toLocaleLowerCase(),x=_.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!b||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(b)))})).filter(({items:e})=>e.length>0),S=x.reduce((e,t)=>e+t.items.length,0),C=e===`rare-topics`&&_[0]?.lesson.materials.length===0,T=c?zy.find(({material:e})=>e.id===c)??null:null,E=T?.material.type===`题目`?Ay[T.material.id]:void 0,ee=T?Uy(T.lesson.id,T.lesson.materials):[],D=ee.find(e=>e.type===`全部`||e.type===T?.material.type)?.items??[],ue=T?D.findIndex(e=>e.id===T.material.id):-1,de=D[ue-1],fe=D[ue+1],pe=T?.material.type===`题目`?`题`:`张`;function me(){t(`all`),r(`全部`),a(``),s(``),window.history.replaceState(null,``,Vy(`all`))}function he(t){let n=Ry[t.type];return(0,P.jsxs)(`a`,{href:Vy(e,t.id),className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,children:[(0,P.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,P.jsx)(n,{size:15}),(0,P.jsx)(`span`,{className:`text-primary`,children:t.type}),(0,P.jsxs)(`span`,{children:[`· `,t.chapter]})]}),t.type===`题目`&&t.questionNumber!==void 0&&(0,P.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,t.questionNumber,` 题`]}),(0,P.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:t.title}),(0,P.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:t.summary}),t.tags.length>0&&(0,P.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[t.tags.slice(0,2).map(e=>(0,P.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e)),t.tags.length>2&&(0,P.jsxs)(`span`,{className:`py-1 text-xs text-muted-foreground`,children:[`+`,t.tags.length-2]})]})]},t.id)}return(0,P.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,P.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,P.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,P.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,P.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,P.jsx)(te,{size:16}),`返回博客`]}),T&&(0,P.jsxs)(`a`,{className:`action-button`,href:Vy(e),children:[(0,P.jsx)(te,{}),`返回讲义列表`]}),T&&(0,P.jsxs)(`nav`,{className:`flex items-center gap-2`,"aria-label":`讲义切换`,children:[de?(0,P.jsxs)(`a`,{className:`action-button`,href:Vy(e,de.id),title:`上一${pe}：${de.title}`,children:[(0,P.jsx)(te,{}),`上一`,pe]}):(0,P.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课第一${pe}`,children:[(0,P.jsx)(te,{}),`上一`,pe]}),fe?(0,P.jsxs)(`a`,{className:`action-button`,href:Vy(e,fe.id),title:`下一${pe}：${fe.title}`,children:[`下一`,pe,(0,P.jsx)(ne,{})]}):(0,P.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课最后一${pe}`,children:[`下一`,pe,(0,P.jsx)(ne,{})]})]})]}),(0,P.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,P.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,P.jsx)(oe,{size:19}),`408 备课讲义`]}),(0,P.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,P.jsx)(le,{}):(0,P.jsx)(O,{})})]})]})}),(0,P.jsxs)(`main`,{className:`mx-auto px-5 py-8 sm:px-8 sm:py-10 ${T?`max-w-[1600px]`:`max-w-6xl`}`,children:[!T&&(0,P.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,P.jsxs)(`div`,{children:[(0,P.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,P.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,P.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,P.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,P.jsxs)(`p`,{children:[(0,P.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:j_.length}),`次课`]}),(0,P.jsxs)(`p`,{children:[(0,P.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:By}),`道题目`]})]})]}),(0,P.jsxs)(`div`,{className:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[T?(0,P.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`当前课次目录`,children:[(0,P.jsx)(`h2`,{className:`px-2 text-sm font-semibold text-primary`,children:T.lesson.title}),(0,P.jsxs)(`p`,{className:`mt-2 px-2 text-xs leading-6 text-muted-foreground`,children:[T.lesson.id===`rare-topics`?`分区目录`:`本课题目目录`,` · `,T.lesson.materials.length,` 条内容`]}),(0,P.jsx)(`div`,{className:`lg:hidden`,children:(0,P.jsxs)(`button`,{className:`action-button mt-3 w-full justify-between`,"aria-expanded":h,"aria-controls":`current-lesson-materials`,onClick:()=>g(!h),children:[h?`收起`:`展开`,T.lesson.id===`rare-topics`?`分区目录`:`题目目录`,(0,P.jsx)(ie,{size:16,className:h?`rotate-180`:``})]})}),(0,P.jsx)(`nav`,{id:`current-lesson-materials`,ref:p,className:`mt-3 max-h-64 overflow-y-auto overscroll-contain lg:max-h-[calc(100dvh-13rem)] ${h?``:`hidden lg:block`}`,"aria-label":T.lesson.id===`rare-topics`?`冷门专区分区目录`:`本课题目`,children:ee.map(t=>(0,P.jsxs)(`div`,{className:t.title?`mt-4 first:mt-0`:void 0,children:[t.title&&(0,P.jsxs)(`h3`,{className:`mb-2 flex items-center justify-between px-3 text-xs font-semibold text-primary`,children:[t.title,(0,P.jsxs)(`span`,{className:`font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),t.items.map((t,n)=>(0,P.jsxs)(`a`,{href:Vy(e,t.id),ref:t.id===c?m:void 0,"aria-current":t.id===c?`page`:void 0,onClick:e=>{Hy(e)&&g(!1)},className:`mb-1 block w-full rounded-xl px-3 py-3 text-left ${t.id===c?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,children:[(0,P.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:t.type===`题目`&&t.questionNumber!==void 0?`第 ${t.questionNumber} 题`:t.type===`知识点`?`知识点 · 第 ${n+1} 张`:`题目 · 第 ${n+1} 张`}),(0,P.jsx)(`span`,{className:`mt-1 block break-words text-sm leading-6`,children:t.title})]},t.id))]},t.type))})]}):(0,P.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`课次导航`,children:[(0,P.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,P.jsxs)(`a`,{href:Vy(`all`),className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-current":e===`all`?`page`:void 0,onClick:e=>{Hy(e)&&a(``)},children:[`全部课次`,(0,P.jsx)(`span`,{className:`text-xs`,children:zy.length})]}),j_.map(t=>(0,P.jsxs)(`a`,{href:Vy(t.id),"aria-current":e===t.id?`page`:void 0,onClick:e=>{Hy(e)&&a(``)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===t.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,P.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[t.title,(0,P.jsx)(`span`,{className:`text-xs font-normal`,children:t.materials.length})]}),(0,P.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:t.date})]},t.id)),(0,P.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,P.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,P.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,P.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认展开，可点击标题手动收起。公开讲义由维护者收录；「我的补充」中的文字和图片只保存在当前浏览器。`})]})]}),(0,P.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:T?(0,P.jsxs)(`div`,{className:`grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_320px]`,children:[(0,P.jsxs)(`article`,{ref:f,tabIndex:-1,className:`min-w-0 scroll-mt-44 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-32 sm:p-8 lg:scroll-mt-24`,children:[(0,P.jsx)(`p`,{className:`mb-6 text-xs text-muted-foreground`,children:T.lesson.id===`rare-topics`?`${T.material.type}第 ${ue+1} / ${D.length} ${pe}`:`本课第 ${ue+1} / ${D.length} 张`}),(0,P.jsxs)(`p`,{className:`text-xs text-primary`,children:[T.lesson.title,` · `,T.material.chapter,` · `,T.material.type]}),(0,P.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[T.material.type===`题目`&&T.material.questionNumber!==void 0&&(0,P.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,T.material.questionNumber,` 题 ·`]}),T.material.title]}),(0,P.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:T.material.tags.map(e=>(0,P.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),T.material.source&&(0,P.jsxs)(`details`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,"aria-label":`题目来源`,children:[(0,P.jsx)(`summary`,{className:`cursor-pointer`,children:`来源与资料说明`}),(0,P.jsx)(`p`,{className:`mt-2`,children:T.material.source})]}),(0,P.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":T.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,P.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:T.material.type===`题目`?`题目`:`知识点讲解`}),(0,P.jsx)(Qy,{children:T.material.content})]}),T.material.attachments&&T.material.attachments.length>0&&(0,P.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:T.material.attachments.map(e=>(0,P.jsxs)(`a`,{className:`action-button max-w-full`,href:`${Ly}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,P.jsx)(ae,{}),(0,P.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),T.material.type===`题目`&&(T.material.solution?(0,P.jsxs)(`details`,{open:!0,className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,P.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,P.jsxs)(`span`,{children:[`答案与解析`,(0,P.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,P.jsx)(ie,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,P.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,P.jsxs)(`section`,{children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,P.jsx)(Qy,{children:T.material.solution.answer})]}),T.material.solution.teachingFramework&&(0,P.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`讲题框架`}),(0,P.jsx)(Qy,{children:T.material.solution.teachingFramework})]}),(0,P.jsxs)(`section`,{children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题步骤`}),(0,P.jsx)(Qy,{children:T.material.solution.explanation})]}),T.material.solution.pitfalls&&(0,P.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错提醒`}),(0,P.jsx)(Qy,{children:T.material.solution.pitfalls})]}),T.material.solution.extension&&(0,P.jsxs)(`section`,{children:[(0,P.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,P.jsx)(Qy,{children:T.material.solution.extension})]})]})]}):(0,P.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`})),E&&(0,P.jsxs)(`section`,{className:`mt-8 min-w-0 rounded-xl border border-border bg-secondary/40 p-5 sm:p-6`,"aria-label":`基础知识`,children:[(0,P.jsx)(`h2`,{className:`mb-4 text-lg font-semibold text-primary`,children:`基础知识`}),(0,P.jsx)(Qy,{children:E})]})]},T.material.id),(0,P.jsx)(tb,{materialId:T.material.id},`supplement:${T.material.id}`)]}):(0,P.jsxs)(P.Fragment,{children:[e===`rare-topics`&&(0,P.jsxs)(`section`,{className:`mb-5 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`冷门知识专区`,children:[(0,P.jsx)(`h2`,{className:`font-display text-2xl font-semibold text-primary`,children:`冷门知识专区`}),(0,P.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-muted-foreground`,children:`发来一个冷门考点、一道题或一张截图，从这里积累可直接用于讲课的专题。`}),(0,P.jsxs)(`ol`,{className:`mt-4 list-decimal space-y-3 pl-5 text-sm leading-7`,children:[(0,P.jsxs)(`li`,{children:[(0,P.jsx)(`strong`,{children:`讲清原考点：`}),`介绍定义、公式、适用前提和容易遗漏的边界。`]}),(0,P.jsxs)(`li`,{children:[(0,P.jsx)(`strong`,{children:`拓展相近考点：`}),`查找相关知识点，说明联系、区别与常见混淆。`]}),(0,P.jsxs)(`li`,{children:[(0,P.jsx)(`strong`,{children:`配例题并讲透：`}),`给出完整题面、答案、推导和变式答案；可核验的真题注明出处，改编题或自拟题明确标注，不冒充真题。`]})]}),(0,P.jsx)(`p`,{className:`mt-4 text-xs leading-6 text-muted-foreground`,children:`先核对概念与解答，再收录发布。不把未经核实的答案或题源当成事实。`})]}),(0,P.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,P.jsxs)(`div`,{className:`relative`,children:[(0,P.jsx)(ce,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,P.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,P.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...S_].map(e=>(0,P.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),v.length>0&&(0,P.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,P.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,P.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,P.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,P.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,P.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,P.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),y&&v.flatMap(e=>e.tags).map(e=>(0,P.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!y&&v.map(e=>(0,P.jsxs)(`div`,{children:[(0,P.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,P.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,P.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n),window.history.replaceState(null,``,Vy(e.lesson.id))},children:n},n))})]},e.lesson.id))]})]})]}),(0,P.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,P.jsxs)(`output`,{children:[e===`all`?`全部课次`:j_.find(t=>t.id===e)?.title,` · `,S,` 条内容`]}),(0,P.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:e===`rare-topics`?`知识点与题目分区 · 各区按收录顺序排列`:`按备课顺序排列`})]}),zy.length===0?(0,P.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,P.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,P.jsx)(se,{size:24})}),(0,P.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,P.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,P.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,P.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,P.jsx)(re,{className:`mb-3 text-primary`,size:19}),(0,P.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,P.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,P.jsx)(se,{className:`mb-3 text-primary`,size:19}),(0,P.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 题面与解析分区`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点默认展开，需要时可手动收起。`})]})]})]}):x.length===0?(0,P.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,P.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`rare-topics`?C?`尚未收录冷门考点`:`没有找到匹配的冷门考点`:e===`all`?`没有找到匹配的内容`:`${j_.find(t=>t.id===e)?.title} 还没有内容`}),(0,P.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`rare-topics`?C?`把第一个冷门考点发来；核验后的知识点和例题会单独收录在本专区。`:`换个关键词，或调整类型与标签筛选。`:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,P.jsx)(`button`,{className:`action-button`,onClick:me,children:`清除筛选`}):(0,P.jsx)(`a`,{className:`action-button`,href:Vy(`all`),children:`看全部课次`})]}):(0,P.jsx)(`div`,{className:`grid gap-6`,children:x.map(({lesson:e,items:t})=>{let n=Uy(e.id,t);return(0,P.jsxs)(`section`,{"aria-label":e.title,children:[(0,P.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,P.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,P.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,P.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,P.jsx)(`div`,{className:`grid items-start gap-5 ${n.length>1?`xl:grid-cols-2`:``}`,children:n.map(e=>{if(e.type===`全部`)return(0,P.jsx)(`div`,{className:`grid gap-3`,children:e.items.map(e=>he(e))},e.type);let t=Ry[e.type];return(0,P.jsxs)(`section`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4`,"aria-label":e.title,children:[(0,P.jsxs)(`h3`,{className:`mb-4 flex flex-wrap items-center gap-2 text-sm font-semibold text-primary`,children:[(0,P.jsx)(t,{size:17}),e.title,(0,P.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[e.items.length,` `,e.type===`题目`?`道`:`张`]})]}),(0,P.jsx)(`div`,{className:`grid gap-3`,children:e.items.map(e=>he(e))})]},e.type)})})]},e.id)})})]})})]})]})]})}(0,x_.createRoot)(document.getElementById(`root`)).render((0,P.jsx)(w.StrictMode,{children:(0,P.jsx)(nb,{})}));
