@@ -1,37 +1,47 @@
-<svg width="360" height="430" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 430" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect x="0" y="0" width="360" height="430" fill="#fffdf7"/>
-<title id="ttl">有向图原图：黑色实心箭头就是弧</title>
-<desc id="dsc">顶点 A、C 在上排，B、D 在下排。弧 e1 从 A 指向 B，e2 从 A 指向 C，e3 从 C 指向 B。A 是 e1、e2 的弧尾，B 是 e1、e3 的弧头，C 是 e2 的弧头、e3 的弧尾，D 是孤立点。本图只有弧，没有任何指针。</desc>
+<svg width="360" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 500" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+<rect x="0" y="0" width="360" height="500" fill="#fffdf7"/>
+<title id="ttl">例题原图：4 个顶点、7 条弧</title>
+<desc id="dsc">顶点 V1、V2 在上排，V3、V4 在下排。黑色实心箭头画的是弧本身：e1 从 V1 到 V2，e2 从 V1 到 V3，e3 从 V3 到 V1，e4 从 V3 到 V4，e5 从 V4 到 V1，e6 从 V4 到 V2，e7 从 V4 到 V3。本图没有任何指针。</desc>
 <defs>
 <marker id="arcEnd" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="14" markerHeight="14" orient="auto-start-reverse">
 <path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/>
 </marker>
 </defs>
-<text x="180" y="34" font-size="19" text-anchor="middle" fill="#0f172a" font-weight="bold">此图只有弧：黑色实心箭头就是弧</text>
-<text x="180" y="60" font-size="18" text-anchor="middle" fill="#334155">弧尾＝弧的起点，弧头＝弧的终点</text>
-<text x="95" y="112" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">弧尾：e1、e2</text>
-<text x="272" y="88" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">弧头：e2</text>
-<text x="272" y="112" font-size="18" text-anchor="middle" fill="#1d4ed8" font-weight="bold">弧尾：e3</text>
-<line x1="119" y1="150" x2="242" y2="150" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
-<line x1="95" y1="174" x2="95" y2="274" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
-<line x1="253.0" y1="166.3" x2="117.4" y2="280.9" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
-<circle cx="95" cy="150" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-<text x="95" y="158" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
-<circle cx="272" cy="150" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-<text x="272" y="158" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">C</text>
-<circle cx="95" cy="300" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-<text x="95" y="308" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
-<circle cx="272" cy="300" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-<text x="272" y="308" font-size="22" text-anchor="middle" fill="#7c2d12" font-weight="bold">D</text>
-<rect x="163" y="136" width="36" height="28" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
-<text x="181" y="156" font-size="19" text-anchor="middle" fill="#0f172a" font-weight="bold">e2</text>
-<rect x="110" y="212" width="36" height="28" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
-<text x="128" y="232" font-size="19" text-anchor="middle" fill="#0f172a" font-weight="bold">e1</text>
-<rect x="167" y="210" width="36" height="28" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
-<text x="185" y="230" font-size="19" text-anchor="middle" fill="#0f172a" font-weight="bold">e3</text>
-<text x="95" y="342" font-size="18" text-anchor="middle" fill="#b91c1c" font-weight="bold">弧头：e1、e3</text>
-<text x="272" y="342" font-size="18" text-anchor="middle" fill="#475569" font-weight="bold">孤立点：没有弧</text>
-<text x="180" y="376" font-size="18" text-anchor="middle" fill="#0f172a">图里的黑箭头是弧，不是指针：</text>
-<text x="180" y="400" font-size="18" text-anchor="middle" fill="#0f172a">它从弧尾（起点）指向弧头（终点）。</text>
-<text x="180" y="424" font-size="18" text-anchor="middle" fill="#475569">本图还没有出现任何指针。</text>
+<text x="180" y="34" font-size="18" text-anchor="middle" fill="#0f172a" font-weight="bold">黑箭头画的是弧本身，不是指针</text>
+<text x="180" y="60" font-size="17" text-anchor="middle" fill="#334155">弧尾＝起点，弧头＝终点</text>
+<line x1="124" y1="140" x2="240" y2="140" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<line x1="124" y1="268" x2="240" y2="268" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<line x1="100" y1="162" x2="100" y2="246" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<path d="M100,246 C62,222 62,186 100,162" fill="none" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<line x1="247" y1="247" x2="117" y2="161" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<line x1="264" y1="246" x2="264" y2="162" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<path d="M246,286 C216,336 148,336 118,286" fill="none" stroke="#0f172a" stroke-width="2.4" marker-end="url(#arcEnd)"/>
+<circle cx="100" cy="140" r="22" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="100" y="148" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V1</text>
+<circle cx="264" cy="140" r="22" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="264" y="148" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V2</text>
+<circle cx="100" cy="268" r="22" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="100" y="276" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V3</text>
+<circle cx="264" cy="268" r="22" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+<text x="264" y="276" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">V4</text>
+<rect x="163" y="127" width="38" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="182" y="146" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e1</text>
+<rect x="163" y="255" width="38" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="182" y="274" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e4</text>
+<rect x="110" y="191" width="34" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="127" y="210" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e2</text>
+<rect x="44" y="191" width="34" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="61" y="210" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e3</text>
+<rect x="163" y="191" width="38" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="182" y="210" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e5</text>
+<rect x="278" y="191" width="38" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="297" y="210" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e6</text>
+<rect x="163" y="303" width="38" height="26" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="182" y="322" font-size="17" text-anchor="middle" fill="#0f172a" font-weight="bold">e7</text>
+<rect x="8" y="358" width="344" height="106" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="20" y="384" font-size="17" text-anchor="start" fill="#0f172a">e1 V1→V2　e2 V1→V3　e3 V3→V1</text>
+<text x="20" y="410" font-size="17" text-anchor="start" fill="#0f172a">e4 V3→V4　e5 V4→V1　e6 V4→V2</text>
+<text x="20" y="436" font-size="17" text-anchor="start" fill="#0f172a">e7 V4→V3</text>
+<text x="180" y="466" font-size="17" text-anchor="middle" fill="#475569">本例 4 个顶点、7 条弧</text>
+<text x="180" y="490" font-size="17" text-anchor="middle" fill="#475569">顶点下标：V1=0、V2=1、V3=2、V4=3</text>
 </svg>

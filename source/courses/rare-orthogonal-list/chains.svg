@@ -1,7 +1,7 @@
-<svg width="360" height="740" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 740" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
-<rect x="0" y="0" width="360" height="740" fill="#fffdf7"/>
-<title id="ttl">沿 tlink 的出边链与沿 hlink 的入边链</title>
-<desc id="dsc">上图：从 A.firstout 得 e1，再沿 e1.tlink 得 e2，e2.tlink 为空，共两条弧，A 的出度是 2。下图：从 B.firstin 得 e1，再沿 e1.hlink 得 e3，e3.hlink 为空，共两条弧，B 的入度是 2。两条链的第 1 个结点都是同一个 e1。蓝色空心箭头表示沿 tlink 的指针，红色空心箭头表示沿 hlink 的指针，灰色 NULL 方块表示空指针，链到此结束。</desc>
+<svg width="360" height="830" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 830" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+<rect x="0" y="0" width="360" height="830" fill="#fffdf7"/>
+<title id="ttl">出边链（沿 tlink）与入边链（沿 hlink）的走法</title>
+<desc id="dsc">上图：从 V1.firstout 得到 e1，沿 e1.tlink 得到 e2，e2.tlink 为空，链长 2，V1 的出度是 2。下图：从 V2.firstin 得到 e1，沿 e1.hlink 得到 e6，e6.hlink 为空，链长 2，V2 的入度是 2。两条链的第 1 个结点都是同一个 e1。蓝色空心箭头表示沿 firstout 与 tlink 的出边链指针，红色空心箭头表示沿 firstin 与 hlink 的入边链指针，灰色 NULL 方块表示空指针。</desc>
 <defs>
 <marker id="linkOut" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="13" markerHeight="13" orient="auto-start-reverse">
 <path d="M1,0.8 L9.2,5 L1,9.2 z" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
@@ -10,56 +10,72 @@
 <path d="M1,0.8 L9.2,5 L1,9.2 z" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
 </marker>
 </defs>
-<rect x="8" y="8" width="344" height="310" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<text x="24" y="40" font-size="18" text-anchor="start" fill="#1d4ed8" font-weight="bold">出边链：从 A.firstout 出发</text>
-<text x="24" y="66" font-size="18" text-anchor="start" fill="#334155">每一步都沿 tlink 走，走到 NULL</text>
-<text x="24" y="122" font-size="18" text-anchor="start" fill="#1d4ed8">入口：A.firstout（蓝色箭头）</text>
-<text x="76" y="152" font-size="18" text-anchor="middle" fill="#2563eb" font-weight="bold">①</text>
-<text x="184" y="152" font-size="18" text-anchor="middle" fill="#2563eb" font-weight="bold">②</text>
-<text x="278" y="152" font-size="18" text-anchor="middle" fill="#2563eb" font-weight="bold">③</text>
-<rect x="16" y="161" width="36" height="46" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
-<text x="34" y="190" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">A</text>
-<line x1="52" y1="184" x2="100" y2="184" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
-<rect x="100" y="156" width="60" height="54" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
-<text x="130" y="177" font-size="19" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
-<text x="130" y="203" font-size="18" text-anchor="middle" fill="#14532d">A→B</text>
-<line x1="160" y1="184" x2="208" y2="184" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
-<rect x="208" y="156" width="60" height="54" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
-<text x="238" y="177" font-size="19" text-anchor="middle" fill="#14532d" font-weight="bold">e2</text>
-<text x="238" y="203" font-size="18" text-anchor="middle" fill="#14532d">A→C</text>
-<line x1="268" y1="184" x2="288" y2="184" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
-<rect x="290" y="170" width="60" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
-<text x="320" y="190" font-size="18" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
-<text x="130" y="230" font-size="18" text-anchor="middle" fill="#0f172a">同一个弧结点</text>
-<text x="24" y="258" font-size="18" text-anchor="start" fill="#0f172a">① A.firstout = e1：第 1 条弧</text>
-<text x="24" y="284" font-size="18" text-anchor="start" fill="#0f172a">② e1.tlink = e2：第 2 条同尾弧</text>
-<text x="24" y="310" font-size="18" text-anchor="start" fill="#0f172a">③ e2.tlink = NULL：链长 2，出度 2</text>
-<rect x="8" y="320" width="344" height="304" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<text x="24" y="352" font-size="18" text-anchor="start" fill="#b91c1c" font-weight="bold">入边链：从 B.firstin 出发</text>
-<text x="24" y="378" font-size="18" text-anchor="start" fill="#334155">每一步都沿 hlink 走，走到 NULL</text>
-<text x="24" y="434" font-size="18" text-anchor="start" fill="#b91c1c">入口：B.firstin（红色箭头）</text>
-<text x="76" y="464" font-size="18" text-anchor="middle" fill="#dc2626" font-weight="bold">①</text>
-<text x="184" y="464" font-size="18" text-anchor="middle" fill="#dc2626" font-weight="bold">②</text>
-<text x="278" y="464" font-size="18" text-anchor="middle" fill="#dc2626" font-weight="bold">③</text>
-<rect x="16" y="473" width="36" height="46" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
-<text x="34" y="502" font-size="20" text-anchor="middle" fill="#7c2d12" font-weight="bold">B</text>
-<line x1="52" y1="496" x2="100" y2="496" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
-<rect x="100" y="468" width="60" height="54" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
-<text x="130" y="489" font-size="19" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
-<text x="130" y="515" font-size="18" text-anchor="middle" fill="#14532d">A→B</text>
-<line x1="160" y1="496" x2="208" y2="496" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
-<rect x="208" y="468" width="60" height="54" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
-<text x="238" y="489" font-size="19" text-anchor="middle" fill="#14532d" font-weight="bold">e3</text>
-<text x="238" y="515" font-size="18" text-anchor="middle" fill="#14532d">C→B</text>
-<line x1="268" y1="496" x2="288" y2="496" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
-<rect x="290" y="482" width="60" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
-<text x="320" y="502" font-size="18" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
-<text x="130" y="538" font-size="18" text-anchor="middle" fill="#0f172a">同一个弧结点</text>
-<text x="24" y="564" font-size="18" text-anchor="start" fill="#0f172a">① B.firstin = e1：第 1 条弧</text>
-<text x="24" y="590" font-size="18" text-anchor="start" fill="#0f172a">② e1.hlink = e3：第 2 条同头弧</text>
-<text x="24" y="616" font-size="18" text-anchor="start" fill="#0f172a">③ e3.hlink = NULL：链长 2，入度 2</text>
-<rect x="8" y="632" width="344" height="92" rx="10" fill="#fff7ed" stroke="#fdba74" stroke-width="1.2"/>
-<text x="180" y="660" font-size="18" text-anchor="middle" fill="#7c2d12">同一条弧 e1 被两条链同时指向：</text>
-<text x="180" y="684" font-size="18" text-anchor="middle" fill="#7c2d12">在两条链里都排第 1。</text>
-<text x="180" y="708" font-size="18" text-anchor="middle" fill="#7c2d12">先后顺序由插入历史决定，原图不规定。</text>
+<rect x="8" y="8" width="344" height="284" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="40" font-size="18" text-anchor="start" fill="#1d4ed8" font-weight="bold">出边链：从 V1.firstout 出发</text>
+<text x="24" y="66" font-size="17" text-anchor="start" fill="#334155">每一步都读 tlink，走到 NULL 结束</text>
+<text x="72" y="108" font-size="17" text-anchor="middle" fill="#2563eb" font-weight="bold">①</text>
+<text x="188" y="108" font-size="17" text-anchor="middle" fill="#2563eb" font-weight="bold">②</text>
+<text x="286" y="108" font-size="17" text-anchor="middle" fill="#2563eb" font-weight="bold">③</text>
+<rect x="14" y="118" width="38" height="48" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="33" y="148" font-size="19" text-anchor="middle" fill="#7c2d12" font-weight="bold">V1</text>
+<line x1="52" y1="142" x2="90" y2="142" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="94" y="112" width="74" height="58" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="131" y="136" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
+<text x="131" y="160" font-size="16" text-anchor="middle" fill="#14532d">V1→V2</text>
+<line x1="168" y1="142" x2="204" y2="142" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="208" y="112" width="74" height="58" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="245" y="136" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e2</text>
+<text x="245" y="160" font-size="16" text-anchor="middle" fill="#14532d">V1→V3</text>
+<line x1="282" y1="142" x2="290" y2="142" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="294" y="128" width="58" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="323" y="148" font-size="16" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
+<text x="24" y="196" font-size="17" text-anchor="start" fill="#0f172a">① 读 V1.firstout，得到 e1</text>
+<text x="24" y="222" font-size="17" text-anchor="start" fill="#0f172a">② 读 e1.tlink，得到 e2（同弧尾）</text>
+<text x="24" y="248" font-size="17" text-anchor="start" fill="#0f172a">③ 读 e2.tlink = NULL，链结束</text>
+<text x="24" y="276" font-size="17" text-anchor="start" fill="#0f172a">链长 2，所以 V1 的出度 = 2</text>
+<rect x="8" y="300" width="344" height="284" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="332" font-size="18" text-anchor="start" fill="#b91c1c" font-weight="bold">入边链：从 V2.firstin 出发</text>
+<text x="24" y="358" font-size="17" text-anchor="start" fill="#334155">每一步都读 hlink，走到 NULL 结束</text>
+<text x="72" y="400" font-size="17" text-anchor="middle" fill="#dc2626" font-weight="bold">①</text>
+<text x="188" y="400" font-size="17" text-anchor="middle" fill="#dc2626" font-weight="bold">②</text>
+<text x="286" y="400" font-size="17" text-anchor="middle" fill="#dc2626" font-weight="bold">③</text>
+<rect x="14" y="410" width="38" height="48" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="33" y="440" font-size="19" text-anchor="middle" fill="#7c2d12" font-weight="bold">V2</text>
+<line x1="52" y1="434" x2="90" y2="434" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
+<rect x="94" y="404" width="74" height="58" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="131" y="428" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e1</text>
+<text x="131" y="452" font-size="16" text-anchor="middle" fill="#14532d">V1→V2</text>
+<line x1="168" y1="434" x2="204" y2="434" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
+<rect x="208" y="404" width="74" height="58" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="245" y="428" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e6</text>
+<text x="245" y="452" font-size="16" text-anchor="middle" fill="#14532d">V4→V2</text>
+<line x1="282" y1="434" x2="290" y2="434" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
+<rect x="294" y="420" width="58" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="323" y="440" font-size="16" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
+<text x="24" y="488" font-size="17" text-anchor="start" fill="#0f172a">① 读 V2.firstin，得到 e1</text>
+<text x="24" y="514" font-size="17" text-anchor="start" fill="#0f172a">② 读 e1.hlink，得到 e6（同弧头）</text>
+<text x="24" y="540" font-size="17" text-anchor="start" fill="#0f172a">③ 读 e6.hlink = NULL，链结束</text>
+<text x="24" y="568" font-size="17" text-anchor="start" fill="#0f172a">链长 2，所以 V2 的入度 = 2</text>
+<rect x="8" y="592" width="344" height="116" rx="10" fill="#fff7ed" stroke="#fdba74" stroke-width="1.2"/>
+<text x="20" y="618" font-size="16" text-anchor="start" fill="#7c2d12">e1 既是 V1.firstout，又是 V2.firstin：</text>
+<text x="20" y="642" font-size="16" text-anchor="start" fill="#7c2d12">同一个结点被两条链共用，不是各存一份。</text>
+<text x="20" y="666" font-size="16" text-anchor="start" fill="#7c2d12">指针指向的是整个弧结点，</text>
+<text x="20" y="690" font-size="16" text-anchor="start" fill="#7c2d12">也就是它的地址，不是某个字段框。</text>
+<rect x="8" y="716" width="344" height="106" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="20" y="742" font-size="17" text-anchor="start" fill="#1d4ed8" font-weight="bold">最长的出边链：V4 的出度是 3</text>
+<rect x="12" y="754" width="36" height="44" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="30" y="782" font-size="17" text-anchor="middle" fill="#7c2d12" font-weight="bold">V4</text>
+<line x1="48" y1="776" x2="70" y2="776" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="74" y="756" width="52" height="40" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="100" y="782" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e5</text>
+<line x1="126" y1="776" x2="148" y2="776" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="152" y="756" width="52" height="40" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="178" y="782" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e6</text>
+<line x1="204" y1="776" x2="226" y2="776" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="230" y="756" width="52" height="40" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="256" y="782" font-size="17" text-anchor="middle" fill="#14532d" font-weight="bold">e7</text>
+<line x1="282" y1="776" x2="300" y2="776" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="304" y="762" width="48" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="328" y="782" font-size="15" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
+<text x="180" y="818" font-size="16" text-anchor="middle" fill="#334155">V4.firstout = e5 → e6 → e7 → NULL</text>
 </svg>

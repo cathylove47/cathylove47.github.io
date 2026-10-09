@@ -1,0 +1,70 @@
+<svg width="360" height="786" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 786" role="img" aria-labelledby="ttl dsc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+<rect x="0" y="0" width="360" height="786" fill="#fffdf7"/>
+<title id="ttl">头插新弧 e8（V2 到 V4）：先存旧链首，再改入口</title>
+<desc id="dsc">第一步建弧结点 e8，其 tailvex 为 V2、headvex 为 V4。第二步先把旧链首存进新结点：e8.tlink 取 V2.firstout 的原值 NULL，e8.hlink 取 V4.firstin 的原值 e4。第三步再改两个入口：V2.firstout 与 V4.firstin 都改为 e8。第四步得到 V2 的出边链 e8 到 NULL，V4 的入边链 e8 到 e4 到 NULL。e1 到 e7 的字段保持原值。若先改入口再取旧值，e8.tlink 会读到 e8 自己形成自环，V4 的旧链首 e4 还会从入边链上丢掉。</desc>
+<defs>
+<marker id="linkOut" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="13" markerHeight="13" orient="auto-start-reverse">
+<path d="M1,0.8 L9.2,5 L1,9.2 z" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+</marker>
+<marker id="linkIn" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="13" markerHeight="13" orient="auto-start-reverse">
+<path d="M1,0.8 L9.2,5 L1,9.2 z" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+</marker>
+</defs>
+<text x="180" y="34" font-size="19" text-anchor="middle" fill="#0f172a" font-weight="bold">头插新弧 e8（V2→V4）</text>
+<text x="180" y="58" font-size="17" text-anchor="middle" fill="#334155">先建结点，再保存旧值、改入口</text>
+<rect x="12" y="76" width="336" height="64" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<circle cx="35" cy="97" r="14" fill="#7c2d12"/>
+<text x="35" y="104" font-size="17" text-anchor="middle" fill="#ffffff" font-weight="bold">1</text>
+<text x="58" y="96" font-size="17" text-anchor="start" fill="#0f172a" font-weight="bold">先建弧结点：e8.tailvex = V2</text>
+<text x="58" y="122" font-size="15" text-anchor="start" fill="#0f172a">e8.headvex = V4（V2 是尾，V4 是头）</text>
+<rect x="12" y="148" width="336" height="96" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+<circle cx="35" cy="169" r="14" fill="#1d4ed8"/>
+<text x="35" y="176" font-size="17" text-anchor="middle" fill="#ffffff" font-weight="bold">2</text>
+<text x="58" y="168" font-size="17" text-anchor="start" fill="#0f172a" font-weight="bold">先保存旧链首（入口还没动）</text>
+<text x="58" y="192" font-size="17" text-anchor="start" fill="#0f172a">e8.tlink = V2.firstout = NULL</text>
+<text x="58" y="216" font-size="17" text-anchor="start" fill="#0f172a">e8.hlink = V4.firstin = e4</text>
+<rect x="12" y="252" width="336" height="96" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+<circle cx="35" cy="273" r="14" fill="#1d4ed8"/>
+<text x="35" y="280" font-size="17" text-anchor="middle" fill="#ffffff" font-weight="bold">3</text>
+<text x="58" y="272" font-size="17" text-anchor="start" fill="#0f172a" font-weight="bold">再改两个入口指针</text>
+<text x="58" y="296" font-size="17" text-anchor="start" fill="#0f172a">V2.firstout = e8</text>
+<text x="58" y="320" font-size="17" text-anchor="start" fill="#0f172a">V4.firstin = e8</text>
+<rect x="12" y="356" width="336" height="284" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+<circle cx="35" cy="377" r="14" fill="#15803d"/>
+<text x="35" y="384" font-size="17" text-anchor="middle" fill="#ffffff" font-weight="bold">4</text>
+<text x="58" y="376" font-size="17" text-anchor="start" fill="#0f172a" font-weight="bold">结果：两条链各长一格</text>
+<text x="82" y="404" font-size="17" text-anchor="middle" fill="#2563eb" font-weight="bold">firstout</text>
+<text x="228" y="404" font-size="17" text-anchor="middle" fill="#2563eb" font-weight="bold">tlink</text>
+<rect x="20" y="409" width="36" height="46" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="38" y="438" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">V2</text>
+<line x1="56" y1="432" x2="108" y2="432" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="112" y="404" width="56" height="54" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-width="1.6"/>
+<text x="140" y="425" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">e8</text>
+<text x="140" y="451" font-size="16" text-anchor="middle" fill="#7c2d12">V2→V4</text>
+<line x1="168" y1="432" x2="288" y2="432" stroke="#2563eb" stroke-width="2.4" marker-end="url(#linkOut)"/>
+<rect x="290" y="418" width="60" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="320" y="438" font-size="15" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
+<text x="82" y="496" font-size="17" text-anchor="middle" fill="#dc2626" font-weight="bold">firstin</text>
+<text x="193" y="496" font-size="17" text-anchor="middle" fill="#dc2626" font-weight="bold">hlink</text>
+<rect x="20" y="501" width="36" height="46" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+<text x="38" y="530" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">V4</text>
+<line x1="56" y1="524" x2="108" y2="524" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
+<rect x="112" y="496" width="56" height="54" rx="8" fill="#fff7ed" stroke="#c2410c" stroke-width="1.6"/>
+<text x="140" y="517" font-size="18" text-anchor="middle" fill="#7c2d12" font-weight="bold">e8</text>
+<text x="140" y="543" font-size="16" text-anchor="middle" fill="#7c2d12">V2→V4</text>
+<line x1="168" y1="524" x2="216" y2="524" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
+<rect x="218" y="496" width="50" height="54" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+<text x="243" y="517" font-size="18" text-anchor="middle" fill="#14532d" font-weight="bold">e4</text>
+<text x="243" y="543" font-size="16" text-anchor="middle" fill="#14532d">V3→V4</text>
+<line x1="268" y1="524" x2="286" y2="524" stroke="#dc2626" stroke-width="2.4" marker-end="url(#linkIn)"/>
+<rect x="288" y="510" width="60" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+<text x="318" y="530" font-size="15" text-anchor="middle" fill="#475569" font-weight="bold">NULL</text>
+<text x="32" y="576" font-size="17" text-anchor="start" fill="#0f172a">接链只改 4 个指针域：</text>
+<text x="32" y="600" font-size="15" text-anchor="start" fill="#0f172a">e8.tlink、e8.hlink、V2.firstout、V4.firstin。</text>
+<text x="32" y="626" font-size="16" text-anchor="start" fill="#475569">e1 到 e7 的字段保持原值。</text>
+<rect x="12" y="648" width="336" height="124" rx="10" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+<text x="32" y="676" font-size="17" text-anchor="start" fill="#b91c1c" font-weight="bold">先改入口再读旧值，会出错：</text>
+<text x="32" y="702" font-size="16" text-anchor="start" fill="#7f1d1d">e8.tlink 会读回 e8 自己，出链自环；</text>
+<text x="32" y="728" font-size="16" text-anchor="start" fill="#7f1d1d">V4 的旧链首 e4 还会从入边链上丢掉。</text>
+<text x="32" y="754" font-size="16" text-anchor="start" fill="#7f1d1d">V2 原来为空也不能忽略这一步。</text>
+</svg>
