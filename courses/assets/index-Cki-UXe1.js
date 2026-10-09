@@ -7764,7 +7764,7 @@ $$
 2. 用总长 −40 得数据长度，再解读数据开头的 "HTTP/1.1" 印证这是 B→A 的响应。
 3. 明确"谁是发送方"：源端口 80 = 服务器 B，目的端口 = 客户端 A。
 4. 序号题统一用"SYN 占 1 个序号"把起点对齐到 1，再算累计字节。
-5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],j_=[{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-07`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
+5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],j_=[{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-09`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
 
 红黑树是一棵二叉搜索树，每个实结点额外记录红或黑的颜色（理论上只需 1 bit，实际内存占用由实现决定），并满足：
 
@@ -9216,7 +9216,321 @@ FAT 与它们不同：FAT 属于文件块的分配与定位结构，服务于「
 - 把减法 CF 直接等同最高位进位；本题 CF 恰好取其反。
 - 颠倒 a−b 的顺序，或使用被后续指令改写的标志。`,extension:String.raw`**问：** 0011−0010 与 0101−0101 的 CF、OF 都是 0，能只靠这两个标志区分 > 和 = 吗？ **答：** 不能。前者 r=0001、ZF=0，后者 r=0000、ZF=1；严格大于必须排除相等。
 
-**问：** 若另一架构约定 C=1 表示“不借位”，无符号 ≥ 怎么写？ **答：** C=1；严格 > 为 C=1 且 ZF=0。先确认语义，不能照搬本题的 CF 取值。`}}]},{id:`mock-exam-1`,title:`lion模拟卷1`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:D_},{id:`mock-exam-2`,title:`lion模拟卷2`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:O_},{id:`mock-exam-3`,title:`lion模拟卷3`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:k_},{id:`mock-exam-4`,title:`lion模拟卷4`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:A_},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:E_},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:T_},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:w_},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:C_}],M_=String.raw`### 循环队列与指针约定
+**问：** 若另一架构约定 C=1 表示“不借位”，无符号 ≥ 怎么写？ **答：** C=1；严格 > 为 C=1 且 ZF=0。先确认语义，不能照搬本题的 CF 取值。`}},{id:`rare-union-find-principles`,title:`并查集：双亲森林、合并与查找`,type:`知识点`,date:`2026-10-09`,chapter:`数据结构 · 并查集`,tags:[`并查集`,`双亲表示`,`按大小合并`,`按秩合并`,`路径压缩`,`动态连通`],summary:`从双亲森林读懂集合代表元、Find 与 Union，区分根值、集合大小、秩、实际树高与原图路径。`,source:`本站绘制树形示意图并编写教学代码。概念与复杂度参考 Princeton Algorithms §1.5 和 UF.java；应用参考 KruskalMST.java。下列例题均为本站自拟，非真题或官方试题。`,content:String.raw`### 1. 一片森林表示若干集合
+
+~~~tree
+0（根：−4）
+  1
+  2
+    3
+4（根：−1）
+~~~
+
+**两棵树＝两个集合。** 编号为 0～4，双亲数组 p=[−4,0,0,2,−1]。根存集合大小的相反数，非根存父下标：p[0]=−4 表示集合有 4 个元素；p[3]=2 表示 3 的父亲是 2。
+
+**图按父子层次展开；实际 p[x] 从孩子指向父亲。** 根也可约定为“指向自己”，但那是另一种编码，不能和这里的负数根混用。
+
+### 2. Find 沿旧路径找根，再压缩
+
+先查 Find(3)：**3→2→0，返回 0，不是 −4。** 把访问路径上的非根都直接接到 0：
+
+~~~tree
+0（根：−4）
+  1
+  2
+  3
+4（根：−1）
+~~~
+
+数组变为 [−4,0,0,0,−1]。**成员、根与集合大小不变，双亲可能改变。** 压缩不等于“找一次就把整棵树摊平”，未访问的分支不自动修改。
+
+### 3. Union 只连接两个根
+
+先 Find(x)、Find(y)；同根则不再合并。不同根时，小集合的根挂到大集合的根下；相同大小必须按题定规则选根。
+
+~~~cpp
+// p 由调用方提供 n 个 int；所有元素编号均合法
+void initUF(int p[], int n) {
+    for (int i = 0; i < n; ++i) p[i] = -1;
+}
+
+int Find(int p[], int x) {
+    int root = x;
+    while (p[root] >= 0) root = p[root];
+    while (x != root) {
+        int next = p[x]; // 改双亲前保存旧路径
+        p[x] = root;
+        x = next;
+    }
+    return root; // 返回下标，不是 p[root]
+}
+
+bool Union(int p[], int x, int y) {
+    int a = Find(p, x), b = Find(p, y);
+    if (a == b) return false; // 不重复累加大小
+    // 负数越小，集合越大；大小相同时，较小根保留
+    if (p[a] > p[b] || (p[a] == p[b] && a > b)) {
+        int t = a; a = b; b = t;
+    }
+    p[a] += p[b]; // 必须在覆盖 p[b] 前合计大小
+    p[b] = a;
+    return true;
+}
+~~~
+
+调用方若维护集合数，初始化为 n，**只有 Union 返回 true 才减 1**。返回 false 只表示没有新增合并，内部 Find 仍可能压缩路径。
+
+### 4. 大小、秩、真实树高不是一回事
+
+- **size：** 集合人数；压缩不会减少人数。本编码只在根处保存 −size。
+- **rank：** 按秩合并维护的层级上界；单点初值 0，相同秩合并时新根的秩加 1，不同秩则不加。
+- **实际树高：** 本专题按最长根到叶路径的边数计算，单点高 0。压缩会降低它，但通常**不下调 rank**。不要把旧 rank 当成当前树高。
+
+### 5. 复杂度先问“用了哪些优化”
+
+普通双亲链可能退化：单次 Find 最坏 $O(n)$。仅按大小或按秩合并：单次 Find 最坏 $O(\log n)$；每次深度增加时，对应集合规模至少翻倍。
+
+**合并优化＋路径压缩：** 初始化 $O(n)$，随后 m 次 Find/Union 总时间 $O(m\alpha(n))$，连初始化合计 $O(n+m\alpha(n))$。$\alpha$ 是反阿克曼函数；这是**摊还界，不是每次严格 O(1)**。从初始化开始按规则构造的树，单次 Find 仍可能走 $O(\log n)$ 条边。只用路径压缩，不能直接套这个双优化结论。
+
+数组总空间 $O(n)$；上面的迭代 Find 只用 $O(1)$ 局部空间。递归版会使用调用栈，不能把它的辅助空间一律称作 O(1)。
+
+### 6. 联系相近知识点
+
+- **Kruskal：** 按权排序后，用 Find(u)==Find(v) 判断加入该无向边是否成环；Union 只维护选边形成的连通分量。**双亲指针不是原图边，也不是最短路。**
+- **DFS/BFS：** 静态图可一次遍历标出连通分量；不断插入无向边并查询连通性时，并查集适合增量维护。单向可达不是等价关系，不能直接用普通并查集回答。
+- **“加权”两种含义：** weighted quick-union 常指按集合大小合并，不是维护图中边权；势能/带权并查集还需额外记录相对关系，普通 p 数组没有这项信息。
+- **删边与回滚：** 普通并查集不支持直接把一个集合拆开。回滚版本需记录修改历史，常避免路径压缩；不能把这种扩展的能力说成普通版本已经具备。
+
+### 易错点与已解答追问
+
+**问：** 代表元必然是最小编号吗？ **答：** 不必。这里仅在大小相同时选较小根；例如大小 3 的根 4 与单点根 0 合并，代表元仍是 4。代表元是维护身份的编号，不是集合的最小值。
+
+**问：** 只执行一次 Find，会减少集合数吗？ **答：** 不会。Find 只查询并可能压缩双亲；仅成功合并两个不同集合才减少集合数。
+
+**问：** 根值 −1 会和“查找失败”混淆吗？ **答：** 本编码的 −1 表示单点集合的大小，不表示失败；题设元素编号合法，Find 返回非负根下标。
+
+参考：[Princeton §1.5：Union-Find](https://algs4.cs.princeton.edu/15uf/)、[UF.java：按秩与路径压缩](https://algs4.cs.princeton.edu/15uf/UF.java.html)、[KruskalMST.java](https://algs4.cs.princeton.edu/43mst/KruskalMST.java)。`},{id:`rare-union-find-parent-trace`,questionNumber:15,title:`并查集：负数根编码与操作序列跟踪`,type:`题目`,date:`2026-10-09`,chapter:`数据结构 · 并查集`,tags:[`并查集`,`双亲数组`,`集合大小`,`操作序列`],summary:`按题定合并规则逐条执行操作，记录双亲数组、查找路径、代表元与集合数，并判断同集合合并的影响。`,source:`本站自拟教学例题，非真题；使用前一知识卡的迭代 Find 和按大小 Union。双亲、集合人数及连通性已独立模拟核对。`,content:String.raw`**自拟教学题。** 元素为 0～7，初始 p[i]=−1。p[i]<0 表示根且 −p[i] 为集合大小；否则 p[i] 为父下标。
+
+Find 先沿旧双亲定位根，再把所访问路径上的非根直接连到根。Union(x,y) 先分别执行 Find，按大小合并；大小相同时以**较小编号的根**为新根。若两次 Find 得到同根，则不合并、不累加大小。
+
+依次执行：
+
+~~~text
+Union(0,1), Union(2,3), Union(4,5), Union(6,7),
+Union(0,2), Union(4,6), Union(0,4),
+Find(7), Union(1,5)
+~~~
+
+1. 前七次 Union 后，写 p 数组、集合数及森林。
+2. Find(7) 的旧路径和返回值是什么？写压缩后的 p。
+3. 最后 Union(1,5) 是否成功合并？写最终 p、集合数、大小与实际树高（按边数）。指出仍未直接连根的结点。`,solution:{answer:String.raw`**前七次合并：** p=[−8,0,0,2,0,4,4,6]，一个集合，根 0，大小 8。
+
+**Find(7)：** 旧路径 7→6→4→0，返回 **0**；之后 p=[−8,0,0,2,0,4,0,0]。
+
+**最后 Union(1,5)：** 返回 false；最终 p=[−8,0,0,2,0,0,0,0]，仍一个集合、大小 8。实际高 **2 条边**，结点 **3 仍指向 2**。`,explanation:String.raw`### 先画前七次合并后的森林
+
+~~~tree
+0（根：−8）
+  1
+  2
+    3
+  4
+    5
+    6
+      7
+~~~
+
+- 四次成对合并：根 0、2、4、6 各有 2 个元素。
+- Union(0,2)：两组各 2 个，2 挂到 0；p[0]=−4，**3 仍挂 2**。
+- Union(4,6)：6 挂到 4，p[4]=−4；7 仍挂 6。
+- Union(0,4)：两组各 4 个，4 挂到 0，p[0]=−8。此时最长路径 0→4→6→7 有 3 条边。
+
+### 两次查找修改的是不同分支
+
+Find(7) 使 7、6 指向 0；4 本来已指向 0。**5 不在这条路径上，暂时仍指向 4。**
+
+最后 Union(1,5) 内的 Find(1) 沿 1→0，Find(5) 沿 5→4→0。后者把 5 接到 0；两根同为 0，所以随后不合并。
+
+~~~tree
+0（根：−8）
+  1
+  2
+    3
+  4
+  5
+  6
+  7
+~~~
+
+**Union 返回 false，但 p[5] 仍因内部 Find 改变。** 最长路径现在是 0→2→3，两条边。两段数组和旧路径经独立指针模型复算，根大小均为 8。
+
+### 常见做法
+
+先查根，再比负数根值、执行平局规则；查找前圈旧路径，随后只压缩这条路径。最后核对：根的负大小总和为 −n、根数等于集合数、每个元素仍能到达一个根。`,pitfalls:String.raw`- 用 p[x]==x 找根：与本题的负数根编码冲突；这里看 p[x]<0。
+- 比较负数大小时把小集合挂反：−8 对应 8 人，比 −4 对应的集合大。
+- 同根仍执行 p[a]+=p[b]，错误地把 −8 加成 −16。
+- 以为失败的 Union 绝不改数组，漏掉内部 Find 对 5 的压缩；或把未访问的 3 也直接接到 0。
+- 把“两条边”写成“两层”；本题最终为三层、两条边。`,extension:String.raw`**问：** 最后再执行 Find(3)，得到什么？ **答：** 旧路径 3→2→0，返回 0；p[3]=0 后，其余值不变，根大小仍为 8，实际树高降为 1 条边。
+
+**问：** 最后 Union(1,5) 后成功合并了几次？ **答：** 共 7 次，集合数由 8 降到 1；第八次 Union 没有新增合并。Find 不减少集合数。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先把“下标是元素、负根值是人数、非负值是双亲”写清，提醒代表元和根值是两个量。
+
+### 2. 如何带学生讲解
+
+成对合并画四棵小树，再做两次四人合并和一次八人合并。用不同颜色圈 Find(7) 与 Find(5) 的路径；让学生盯住未访问的 3。
+
+### 3. 下次遇到同类题怎么办
+
+固定编码、合并尺度、平局规则与压缩时机；失败 Union 也要先执行两次 Find。用根数与大小总和作守恒校验。`}},{id:`rare-union-find-rank-height`,questionNumber:16,title:`并查集：按秩合并后的树高与复杂度判断`,type:`题目`,date:`2026-10-09`,chapter:`数据结构 · 并查集`,tags:[`并查集`,`按秩合并`,`树高`,`摊还复杂度`],summary:`给定双亲森林与各结点秩，执行完整路径压缩和合并，比较保存的秩、实际高度与单次和摊还复杂度。`,source:`本站自拟教学题，非真题。rank 维护规则与复杂度依据 Princeton UF.java；本题采用完整路径压缩而不是其源码的路径折半，状态由独立模拟复核。`,content:String.raw`**自拟教学题。** 本题采用**根指向自己**的 parent 编码；单点 rank=0，实际树高按边数计算。不同秩合并时低秩根挂到高秩根；同秩时较小根保留且 rank 加 1。Find 完整压缩路径，**不修改 rank**。
+
+以下状态由依次合并 (0,1)、(2,3)、(4,5)、(6,7)、(0,2)、(4,6)、(0,4) 得到；8 保持单点：
+
+~~~tree
+0（rank=3）
+  1（rank=0）
+  2（rank=1）
+    3（rank=0）
+  4（rank=2）
+    5（rank=0）
+    6（rank=1）
+      7（rank=0）
+8（rank=0）
+~~~
+
+parent=[0,0,0,2,0,4,4,6,8]，rank=[3,0,1,0,2,0,1,0,0]。
+
+1. 初始根 0 所在树的实际高度是多少？依次执行 Find(0)～Find(7) 后，写 parent、rank[0] 与该树实际高度。
+2. 再执行 Union(8,0)，写 parent、rank[0]、实际高度与集合数。
+3. 对从单点开始按上述规则构造的 n=16 个元素，某根的 rank 最大可达多少？说明依据。
+4. 判断“按秩合并＋路径压缩，使每一次 Find 严格为 O(1)”是否正确，并分别写初始化、单次最坏和操作序列的时间界。`,solution:{answer:String.raw`**（1）** 初始高 3 条边；压缩后 parent=[0,0,0,0,0,0,0,0,8]，**rank[0]=3，实际高=1**。
+
+**（2）** parent=[0,0,0,0,0,0,0,0,0]，rank[0] 仍为 **3**，实际高仍 **1**；只有一个集合。
+
+**（3）** 最大 rank 为 **4**，可由 16 个单点逐层等秩合并实现。
+
+**（4）** 说法错误。初始化 $O(n)$，单次 Find 最坏 $O(\log n)$；m 次 Find/Union 的摊还总界为 $O(m\alpha(n))$，含初始化为 $O(n+m\alpha(n))$。`,explanation:String.raw`### rank 留存，双亲改变
+
+依次 Find(0)～Find(7) 后，所有非根都直接接到 0；8 没被合入：
+
+~~~tree
+0（rank=3）
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+8（rank=0）
+~~~
+
+压缩改变 parent，不改 rank。根 0 的 rank=3 是合并历史形成的上界，**不是当前真实高度**。Union(8,0) 时秩不同，8 接到 0，rank[0] 不增加；树仍是一层孩子围绕根。
+
+### 相同秩才加一：用人数约束秩
+
+根的 rank 为 r 时，集合至少有 $2^r$ 个元素。初始 rank=0、人数=1；两棵同秩 r 的树合成 rank=r+1，至少有 $2^r+2^r=2^{r+1}$ 人。压缩不减少人数，这个约束继续成立。
+
+$$
+2^r\le n,\qquad r\le\lfloor\log_2 n\rfloor
+$$
+
+n=16 时 r≤4；16 个单点两两合并，形成 8 棵 rank=1，再形成 4 棵 rank=2、2 棵 rank=3、1 棵 rank=4，达到上界。本题压缩前后及 16 元素构造均由独立状态模型复算。
+
+### 摊还不等于每次常数
+
+构造 $n=2^k$ 个元素的平衡合并树，让合并只查各组的根，尚未查过的深叶仍可有 k 条边。**第一次查这条深路径需走 k 步**，即 $\Theta(\log n)$；压缩后的后续查找才更便宜。序列总成本较低，不能倒推出序列里的每个操作都严格 O(1)。
+
+### 常见做法
+
+把“保存的 rank”“现场量出的高度”“集合人数”写成三项；压缩后只重画双亲。复杂度题先写初始化和优化组合，再区分单次最坏与摊还。`,pitfalls:String.raw`- 压缩后把 rank[0] 自动改为 1，违反给定维护规则。
+- Union(8,0) 时无条件加秩；只有相同秩合并才加。
+- 拿负根值编码的 Find 直接处理本题的自指根。
+- 因 α(n) 实际很小，把渐近摊还界改写成每次严格 O(1)。
+- 把 r≤log₂n 的人数下界只当作压缩前成立；压缩没有删除元素。`,extension:String.raw`**问：** 本题压缩之后，能从 rank[0]=3 推出还有 8 个元素吗？ **答：** 可推出“至少 8 个”，不能单凭秩推出“恰好 8 个”。合入低秩集合不增加 rank；再合入 8 后已有 9 人，但 rank 仍为 3。
+
+**问：** 只用按秩合并、不压缩，复杂度呢？ **答：** 从单点初始化开始，单次 Find/Union 最坏 O(log n)；仅凭按秩合并不能声称摊还 O(α(n))，该结论需要配合路径压缩。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+同一棵树同时标 rank 和实际高度，让学生先约定“高度按边数”，再动指针。
+
+### 2. 如何带学生讲解
+
+先完整压缩到星形，保留根上旧 rank=3。添入单点 8，观察人数增加而秩不增。最后用“两棵同秩树至少各有 2^r 人”证明秩界。
+
+### 3. 下次遇到同类题怎么办
+
+实际高度随指针改，秩随规定的合并规则改；两者分开维护。复杂度结论必须带上优化组合与“单次／摊还”的量词。`}},{id:`rare-union-find-kruskal`,questionNumber:17,title:`Kruskal：用并查集跟踪选边、判环与连通分量`,type:`题目`,date:`2026-10-09`,chapter:`数据结构 · 图与并查集`,tags:[`并查集`,`Kruskal`,`无向图`,`判环`,`连通分量`],summary:`对给定无向带权图逐边判定，记录选边与集合数，比较最小生成树的边和并查集双亲，并分析删边后能否继续使用原状态。`,source:`本站自拟教学题，非真题。Kruskal 的选边与提前停止依据 Princeton KruskalMST.java；最小总权值用全部四边子集枚举复核，删边后的连通分量独立遍历核对。`,content:String.raw`**自拟教学题。** 无向图顶点为 0～4，边已按权从小到大排列：
+
+- (0,1)，权 1；(1,2)，权 2；(0,2)，权 3；
+- (3,4)，权 4；(2,3)，权 5；(1,4)，权 6。
+
+Kruskal 从五个单点开始，按顺序检查边。两端不在同一集合时选入并执行 Union；同集合时跳过。按大小合并、大小相同保留较小根，根用 −size 编码，Find 完整压缩路径。**选满 n−1 条边立即停止。**
+
+1. 写出每条已考察边是否选入及当时集合数，列出生成树边和总权值。最后一条边是否考察？
+2. 在停止时写 p 数组。双亲指针是否必然对应生成树中的边？画出两种结构，解释区别。
+3. 若只保留选出的树，然后删除边 (1,2)，实际分成哪些集合？若只保留原并查集、不重建，Find(0)==Find(2) 的查询是否仍正确？
+
+概念依据：[Princeton KruskalMST.java](https://algs4.cs.princeton.edu/43mst/KruskalMST.java)。`,solution:{answer:String.raw`**（1）** 选 (0,1)、(1,2)，跳过 (0,2)，再选 (3,4)、(2,3)；集合数依次 **4、3、3、2、1**。选满 4 条停止，**(1,4) 未考察**。总权值 **1+2+4+5=12**。
+
+**（2）** p=[−5,0,0,0,3]。p[2]=0 是双亲指针，**不表示选入 (0,2)**。
+
+**（3）** 删除所选树的 (1,2) 后是 **{0,1} 与 {2,3,4}**。旧并查集仍把 0、2 判为同集合，已过期，不能继续当正确的删边后连通性状态。`,explanation:String.raw`### 选边时看根，选入后才合并
+
+- (0,1)：两个单点，选入；0 为根，大小 2。
+- (1,2)：Find(1)=0、Find(2)=2，选入；0 的大小增到 3。
+- (0,2)：两根均为 0，加入会与 0—1—2 形成环；跳过，集合数不减。
+- (3,4)：两个单点，选入；3 为根，大小 2。
+- (2,3)：根为 0、3，选入；根 3 挂到根 0，p[0]=−5。4 尚未被再次查询，所以 p[4]=3。
+
+### 原图选边：这是最小生成树
+
+~~~tree
+0
+  1（边权1）
+    2（边权2）
+      3（边权5）
+        4（边权4）
+~~~
+
+**这些边是无向的；只为展示任选 0 作图示根。** 权值为 12；枚举所有含 4 条边且连通的候选树，最小权值同样为 12。
+
+### 集合编码：这是并查集双亲森林
+
+~~~tree
+0（根：−5）
+  1
+  2
+  3
+    4
+~~~
+
+这里 2 的父亲是 0，却没有选入原图 (0,2)；3 的父亲也为 0，而原图根本没有 (0,3)。**并查集只保留“哪些顶点属于同一个分量”，不保留原图的路径与选边。** 想输出生成树，必须另存 accepted 边集合。
+
+### 删边后，旧集合不会自己分裂
+
+只在选出的树中删掉 (1,2)，左边 0—1，右边 2—3—4；独立遍历得到两个分量。旧 p 没有回退记录，也没有剩余边信息，不能通过简单“改一个双亲”就维护正确分量。可对剩余边重新建并查集；本题不把普通 DSU 说成支持在线删边。
+
+### 常见做法
+
+每条边先写两个根，再判是否选入；只有选入才减少集合数。并行维护“真实选边集合”和“集合双亲森林”，到 n−1 条及时停。删边题先明确删的是所选树还是含其他候选边的原图。`,pitfalls:String.raw`- 因为 p[2]=0，就声称选了 (0,2)，混淆两种森林。
+- 每考察一条边都减少集合数；同根的边不会新增合并。
+- 选满四边后仍把 (1,4) 写成“已经考察并跳过”；本题规定已停止。
+- 随意修改一个 parent 指针模拟原图删边，可能错误拆分、漏拆分或破坏负大小。
+- 把“删除所选树的边”与“删除完整原图的一条边”当成同一问题。`,extension:String.raw`**问：** 只看 Find(0)==Find(4)，就能知道全图已连通吗？ **答：** 不能。五个顶点中仅插入 (0,4) 时，0、4 已连通，但 1、2、3 仍孤立。应看集合数是否为 1，或累计成功合并是否为 n−1。
+
+**问：** 原图不连通时，Kruskal 怎么结束？ **答：** 所有边考察完仍不足 n−1 条，得到最小生成森林；若最终有 c 个分量，则选 n−c 条边，不应伪称已有全图生成树。
+
+**问：** Kruskal 允许零权边、负权边吗？ **答：** 允许；按权排序并按是否成环选边，不要求权非负。该条件与 Dijkstra 的非负权要求不同，累计权值仍需防数值溢出。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先写下 Kruskal 的两个职责：边表决定候选顺序，并查集决定是否成环。集合双亲不是候选边表。
+
+### 2. 如何带学生讲解
+
+逐边写“两个根／取舍／剩余分量数”。并排画所选链和并查集树，指给学生看原图有 1—2，而双亲是 2→0。再从所选链剪掉 1—2，说明旧双亲为何不自动拆开。
+
+### 3. 下次遇到同类题怎么办
+
+区分原图边、生成树边、双亲指针三类关系；到 n−1 条提前结束。静态删边可重建，在线增量与在线全动态问题不要混用结论。`}}]},{id:`mock-exam-1`,title:`lion模拟卷1`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:D_},{id:`mock-exam-2`,title:`lion模拟卷2`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:O_},{id:`mock-exam-3`,title:`lion模拟卷3`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:k_},{id:`mock-exam-4`,title:`lion模拟卷4`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:A_},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:E_},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:T_},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:w_},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:C_}],M_=String.raw`### 循环队列与指针约定
 
 循环队列把长度为 $N$ 的数组首尾相接。**这里约定 front 指向队头元素，rear 指向下一次入队的写入位置**；若题目采用别的指针含义，公式也要重新推导。下标范围为 $0$ 至 $N-1$，推进一步都要对 $N$ 取模。
 
@@ -11806,7 +12120,7 @@ d[k][v] 表示至多 k 条边到 v 的最小权和。转移既保留上一层的
 
 ### 一次预处理，多次查询
 
-选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`},jy;function My(){return jy||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jy=void 0,t(n.error)},n.onblocked=()=>{r=!0,jy=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jy=void 0},e(t)}}),jy}async function Ny(e,t){let n=await My();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function Py(e){return Ny(`readonly`,t=>t.index(`materialId`).getAll(e))}async function Fy(e){e.length&&await Ny(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function Iy(e){await Ny(`readwrite`,t=>t.delete(e))}var Ly=`/courses/`,Ry={题目:re,知识点:se},zy=j_.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),By=zy.filter(({material:e})=>e.type===`题目`).length,Vy=28,Hy=64,Uy=26,Wy=16,Gy=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Ky(e){let t=(e.match(Gy)??[]).length;return(e.length-t)*7.4+t*13+18}function qy(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,"rare-union-find-parent-trace":iv,"rare-union-find-rank-height":iv,"rare-union-find-kruskal":iv},jy;function My(){return jy||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jy=void 0,t(n.error)},n.onblocked=()=>{r=!0,jy=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jy=void 0},e(t)}}),jy}async function Ny(e,t){let n=await My();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function Py(e){return Ny(`readonly`,t=>t.index(`materialId`).getAll(e))}async function Fy(e){e.length&&await Ny(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function Iy(e){await Ny(`readwrite`,t=>t.delete(e))}var Ly=`/courses/`,Ry={题目:re,知识点:se},zy=j_.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),By=zy.filter(({material:e})=>e.type===`题目`).length,Vy=28,Hy=64,Uy=26,Wy=16,Gy=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function Ky(e){let t=(e.match(Gy)??[]).length;return(e.length-t)*7.4+t*13+18}function qy(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
 `)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function Jy({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=qy(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>Ky(e.label))),s=o+Uy,c=i*s-Uy+Wy*2,l=(a+1)*Hy+Wy*2-(Hy-Vy),u=e=>({x:Wy+o/2+e.column*s,y:Wy+e.depth*Hy+Vy/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,P.jsxs)(`figure`,{className:`my-4`,children:[(0,P.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,P.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
 `).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,P.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,P.jsx)(`path`,{d:`M ${e.x} ${e.y+Vy/2} C ${e.x} ${e.y+Vy/2+18}, ${t.x} ${t.y-Vy/2-18}, ${t.x} ${t.y-Vy/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,P.jsxs)(`g`,{children:[(0,P.jsx)(`rect`,{x:n-o/2,y:r-Vy/2,width:o,height:Vy,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,P.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,P.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function Yy({children:e,gfm:t=!1}){return(0,P.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,P.jsx)(Zo,{remarkPlugins:t?[xp,xg]:[xp],rehypePlugins:[b_],urlTransform:e=>{let t=ts(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${Ly}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,w.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,P.jsx)(Jy,{source:n,kind:r})}return(0,P.jsx)(`pre`,{children:e})}},children:e})})}var Xy={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function Zy({image:e}){let t=(0,w.useRef)(null);return(0,w.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,P.jsxs)(`figure`,{className:`min-w-0`,children:[(0,P.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&window.open(t.src,`_blank`,`noopener,noreferrer`)}}),(0,P.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name})]})}function Qy({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,w.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,w.useState)(!1),[o,s]=(0,w.useState)([]),[c,l]=(0,w.useState)(!1),[u,d]=(0,w.useState)(`正在读取补充图片…`),f=(0,w.useRef)(null);(0,w.useEffect)(()=>{let t=!0;return Py(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>Xy[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await Fy(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await Iy(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,P.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,P.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,P.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,P.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,P.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,P.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,P.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,P.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,P.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 rounded-xl border border-border p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,P.jsx)(Yy,{gfm:!0,children:n.content}):(0,P.jsx)(`div`,{className:`whitespace-pre-wrap text-sm leading-7 [overflow-wrap:anywhere]`,children:n.content}):(0,P.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,P.jsxs)(`div`,{className:`mt-4`,children:[(0,P.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,P.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
 ## 课堂提醒
