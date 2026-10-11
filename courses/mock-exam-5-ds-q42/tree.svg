@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560">
+<rect width="1000" height="560" fill="#ffffff"/>
+<text x="500.0" y="30" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#1f2937" text-anchor="middle">第 42 题（1）还原出的二叉树 bt：结点标注为 data(编号)</text>
+<line x1="385" y1="278" x2="330" y2="288" stroke="#334155" stroke-width="2"/>
+<line x1="455" y1="216" x2="385" y2="226" stroke="#334155" stroke-width="2"/>
+<line x1="455" y1="216" x2="525" y2="226" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="154" x2="265" y2="164" stroke="#334155" stroke-width="2"/>
+<line x1="350" y1="154" x2="455" y2="164" stroke="#334155" stroke-width="2"/>
+<line x1="430" y1="92" x2="350" y2="102" stroke="#334155" stroke-width="2"/>
+<line x1="265" y1="216" x2="195" y2="226" stroke="#334155" stroke-width="2"/>
+<line x1="525" y1="278" x2="525" y2="288" stroke="#334155" stroke-width="2"/>
+<line x1="525" y1="340" x2="470" y2="350" stroke="#334155" stroke-width="2"/>
+<circle cx="470" cy="376" r="26" fill="#f1f5f9" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="470" y="378" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">j</text>
+<text x="470" y="391" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">1</text>
+<text x="506" y="380" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="400">叶</text>
+<circle cx="330" cy="314" r="26" fill="#f1f5f9" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="330" y="316" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">h</text>
+<text x="330" y="329" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">2</text>
+<text x="366" y="318" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="400">叶</text>
+<circle cx="385" cy="252" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="385" y="254" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">f</text>
+<text x="385" y="267" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">3</text>
+<circle cx="455" cy="190" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="455" y="192" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">d</text>
+<text x="455" y="205" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">4</text>
+<circle cx="350" cy="128" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="350" y="130" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">b</text>
+<text x="350" y="143" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">5</text>
+<circle cx="430" cy="66" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="430" y="68" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">a</text>
+<text x="430" y="81" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">6</text>
+<circle cx="265" cy="190" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="265" y="192" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">c</text>
+<text x="265" y="205" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">7</text>
+<circle cx="195" cy="252" r="26" fill="#f1f5f9" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="195" y="254" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">e</text>
+<text x="195" y="267" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">8</text>
+<text x="231" y="256" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="400">叶</text>
+<circle cx="525" cy="252" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="525" y="254" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">g</text>
+<text x="525" y="267" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">9</text>
+<circle cx="525" cy="314" r="26" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+<text x="525" y="316" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" fill="#0f172a" text-anchor="middle" font-weight="700">i</text>
+<text x="525" y="329" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#1d4ed8" text-anchor="middle" font-weight="400">10</text>
+<rect x="30" y="430" width="940" height="74" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.4"/>
+<text x="48" y="452" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#334155" text-anchor="start" font-weight="400">根为结点 6（a）：表中只有它没有双亲。先序遍历：a b c e d f h g i j（结点编号 6, 5, 7, 8, 4, 3, 2, 9, 10, 1）。</text>
+<text x="48" y="472" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#334155" text-anchor="start" font-weight="400">按层序编号（根为 1）：1, 2, 4, 5, 8, 10, 11, 20, 22, 44。</text>
+<text x="48" y="492" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#b91c1c" text-anchor="start" font-weight="700">位置 3 空缺而 4、5 已有结点 —— 层序编号不连续，故不是完全二叉树。</text>
+</svg>
