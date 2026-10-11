@@ -4,6 +4,8 @@
 **首发**：2026-09-12，arXiv 2609.13860 v1  
 **发表状态**：CIBB 2026（作者声明接收）  
 **类型**：system/tool  
+**作者**：Antonino Vaccarella、Riccardo Cantini、Domenico Talia、Paolo Trunfio、Marianna Talia、Rosamaria Lappano、Marcello Maggiolini  
+**论文来源**：[arXiv:2609.13860v1](https://arxiv.org/abs/2609.13860v1)（作者提交的预印本）  
 **核验日期**：2026-10-11  
 **阅读范围**：作者摘要与 HTML 方法／评测说明；以下为中文导读和精读问题。  
 **代码状态**：本次未确认官方代码仓库；不填推测链接。
@@ -43,6 +45,9 @@ ClinAgent 使用 ReAct 循环连接 ClinicalTrials.gov、PubMed 与本地试验�
 
 ## 7. 来源
 
+- **使用版本**：arXiv:2609.13860v1；发表状态依据 arXiv 元数据，会议接收声明与正式出版记录分别标注。
+- **内容归属**：论文事实及结果来自作者原文；中文摘要为本站概述，阅读建议与检查问题为本站整理。
+- [原始 PDF（v1）](https://arxiv.org/pdf/2609.13860v1)
 - [作者原文与版本记录](https://arxiv.org/abs/2609.13860)
 - [HTML 全文](https://arxiv.org/html/2609.13860v1)
 

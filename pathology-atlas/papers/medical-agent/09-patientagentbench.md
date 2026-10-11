@@ -4,6 +4,8 @@
 **首发**：2026-07-28，arXiv 2607.25485 v1  
 **发表状态**：arXiv 预印本；本次未核实正式接收  
 **类型**：pure benchmark  
+**作者**：Korosh Vatanparvar、Ashutosh Joshi、Maria Xenochristou、Mohammad Abuzar Hashemi、Prasad Kasu、Deepak Bansal、Daniel Lopez-Martinez、Anchal Nema、Ramya Ganesan、Will Kimbrough、Alex Woody、Yadunandana Rao、Dilek Hakkani-Tur、Wilko Schulz-Mahlendorf  
+**论文来源**：[arXiv:2607.25485v1](https://arxiv.org/abs/2607.25485v1)（作者提交的预印本）  
 **核验日期**：2026-10-11  
 **阅读范围**：作者摘要与 HTML 方法／评测说明；以下为中文导读和精读问题。  
 **代码状态**：官方仓库已核对，本站未执行评测。
@@ -43,6 +45,9 @@ PatientAgentBench 让被测 Agent 在医疗工具沙箱中与模拟患者对话�
 
 ## 7. 来源
 
+- **使用版本**：arXiv:2607.25485v1；发表状态依据 arXiv 元数据，会议接收声明与正式出版记录分别标注。
+- **内容归属**：论文事实及结果来自作者原文；中文摘要为本站概述，阅读建议与检查问题为本站整理。
+- [原始 PDF（v1）](https://arxiv.org/pdf/2607.25485v1)
 - [作者原文与版本记录](https://arxiv.org/abs/2607.25485)
 - [HTML 全文](https://arxiv.org/html/2607.25485v1)
 - [作者代码入口](https://github.com/amazon-science/PatientAgentBench)

@@ -4,6 +4,8 @@
 **首发**：2026-06-22，arXiv 2606.23301 v1  
 **发表状态**：arXiv 预印本；本次未核实正式接收  
 **类型**：pure benchmark  
+**作者**：Yitong Qiao、Lei Liu、Yue Shen、Jian Wang、Jinjie Gu、Zhixuan Chu、Kui Ren  
+**论文来源**：[arXiv:2606.23301v1](https://arxiv.org/abs/2606.23301v1)（作者提交的预印本）  
 **核验日期**：2026-10-11  
 **阅读范围**：作者摘要与 HTML 方法／评测说明；以下为中文导读和精读问题。  
 **代码状态**：本次未确认可运行官方仓库；MIMIC 数据访问条件见原文。
@@ -43,6 +45,9 @@ EHR-Complex 基于 MIMIC-IV 构建交互式临床数据库任务，Agent 在沙�
 
 ## 7. 来源
 
+- **使用版本**：arXiv:2606.23301v1；发表状态依据 arXiv 元数据，会议接收声明与正式出版记录分别标注。
+- **内容归属**：论文事实及结果来自作者原文；中文摘要为本站概述，阅读建议与检查问题为本站整理。
+- [原始 PDF（v1）](https://arxiv.org/pdf/2606.23301v1)
 - [作者原文与版本记录](https://arxiv.org/abs/2606.23301)
 - [HTML 全文](https://arxiv.org/html/2606.23301v1)
 

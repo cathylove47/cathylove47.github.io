@@ -4,6 +4,8 @@
 **首发**：2026-09-25，arXiv 2609.30714 v1  
 **发表状态**：arXiv 预印本；本次未核实正式接收  
 **类型**：pure method  
+**作者**：Xueyang Li、Mingze Jiang、Gelei Xu、Jun Xia、Ching-Hao Chiu、Mengzhao Jia、Danny Z. Chen、Yiyu Shi  
+**论文来源**：[arXiv:2609.30714v1](https://arxiv.org/abs/2609.30714v1)（作者提交的预印本）  
 **核验日期**：2026-10-11  
 **阅读范围**：作者摘要与 HTML 方法／评测说明；以下为中文导读和精读问题。  
 **代码状态**：作者提供仓库入口；本站未运行代码。
@@ -43,6 +45,9 @@ CRC-Router 将预测分数与多种不确定性信号组合，估计每项影像
 
 ## 7. 来源
 
+- **使用版本**：arXiv:2609.30714v1；发表状态依据 arXiv 元数据，会议接收声明与正式出版记录分别标注。
+- **内容归属**：论文事实及结果来自作者原文；中文摘要为本站概述，阅读建议与检查问题为本站整理。
+- [原始 PDF（v1）](https://arxiv.org/pdf/2609.30714v1)
 - [作者原文与版本记录](https://arxiv.org/abs/2609.30714)
 - [HTML 全文](https://arxiv.org/html/2609.30714v1)
 - [作者代码入口](https://github.com/XLIAaron/CRC-Router)
