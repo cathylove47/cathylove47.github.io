@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="290" viewBox="0 0 360 290" role="img" aria-label="示例二叉树各层实际结点数为1、2、2，最大值2" font-family="'Helvetica Neue',Arial,sans-serif">
+  <title>示例树的逐层真实结点个数</title>
+  <desc>第1层只有A（1个）；第2层B、C（2个）；第3层D、E（2个），D与E之间的空位置不计入层宽，故最大值为2。</desc>
+  <rect width="360" height="290" fill="#f5f8fc"/>
+  <text x="10" y="18" font-size="12.5" font-weight="bold" fill="#1f2d3d">逐层统计真实结点个数，取最大值</text>
+  <line x1="150" y1="56" x2="72" y2="128" stroke="#8aa0b5" stroke-width="1.5"/>
+  <line x1="150" y1="56" x2="228" y2="128" stroke="#8aa0b5" stroke-width="1.5"/>
+  <line x1="72" y1="128" x2="40" y2="208" stroke="#8aa0b5" stroke-width="1.5"/>
+  <line x1="228" y1="128" x2="260" y2="208" stroke="#8aa0b5" stroke-width="1.5"/>
+  <line x1="8" y1="56" x2="352" y2="56" stroke="#d9a441" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="352" y="48" font-size="10.5" text-anchor="end" fill="#a06600">第 1 层：A，共 1 个</text>
+  <line x1="8" y1="128" x2="352" y2="128" stroke="#d9a441" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="352" y="120" font-size="10.5" text-anchor="end" fill="#a06600">第 2 层：B、C，共 2 个</text>
+  <line x1="8" y1="208" x2="352" y2="208" stroke="#d9a441" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="352" y="200" font-size="10.5" text-anchor="end" fill="#a06600">第 3 层：D、E，共 2 个</text>
+  <circle cx="150" cy="56" r="15" fill="#fff4e0" stroke="#c98a2b" stroke-width="1.5"/>
+  <text x="150" y="60" font-size="12" text-anchor="middle" fill="#7a4a00">A</text>
+  <circle cx="72" cy="128" r="15" fill="#fff4e0" stroke="#c98a2b" stroke-width="1.5"/>
+  <text x="72" y="132" font-size="12" text-anchor="middle" fill="#7a4a00">B</text>
+  <circle cx="228" cy="128" r="15" fill="#fff4e0" stroke="#c98a2b" stroke-width="1.5"/>
+  <text x="228" y="132" font-size="12" text-anchor="middle" fill="#7a4a00">C</text>
+  <circle cx="40" cy="208" r="15" fill="#fff4e0" stroke="#c98a2b" stroke-width="1.5"/>
+  <text x="40" y="212" font-size="12" text-anchor="middle" fill="#7a4a00">D</text>
+  <circle cx="260" cy="208" r="15" fill="#fff4e0" stroke="#c98a2b" stroke-width="1.5"/>
+  <text x="260" y="212" font-size="12" text-anchor="middle" fill="#7a4a00">E</text>
+  <text x="10" y="252" font-size="10.5" fill="#3b5163">D、E 之间的空位置不计入层宽；三层个数 1、2、2 的最大值为 2。</text>
+  <text x="10" y="272" font-size="10.5" fill="#3b5163">空树宽度为 0；只需按层入队、出队计数，一趟层序遍历即可。</text>
+</svg>
