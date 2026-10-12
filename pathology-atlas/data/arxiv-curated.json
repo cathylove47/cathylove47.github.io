@@ -1,0 +1,1066 @@
+{
+  "policy": "近一年精选：按 v1 首次提交日期计，人工补充年度代表作与近期检索候选，并非全年穷尽。综合问题价值、实验设计、复现条件和团队积累筛选；单位已标注并链接原文，预印本不等于已接收。优先按阅读价值排序，同级再按日期。",
+  "candidates": [
+    {
+      "id": "2606.31179",
+      "domain": "medical-agent",
+      "title": "HealthAgentBench: A Unified Benchmark Suite of Realistic Agentic Healthcare Environments for Challenging Frontier AI Agents",
+      "authors": [
+        "Liu, Qianchu",
+        "Zhang, Sheng",
+        "Qin, Guanghui",
+        "Valanarasu, Jeya Maria Jose",
+        "Rokuss, Maximilian",
+        "Lu, Mingyu",
+        "Ossowski, Timothy",
+        "Chaves, Juan Manuel Zambrano",
+        "Wong, Cliff",
+        "Argaw, Peniel",
+        "Hasija, Yashna",
+        "Wei, Mu",
+        "Yim, Wen-wai",
+        "Liu, Qin",
+        "Jing, Zilin",
+        "Entenmann, Jason",
+        "Usuyama, Naoto",
+        "Naumann, Tristan",
+        "Poon, Hoifung"
+      ],
+      "summary": "As AI agents become increasingly capable of complex, long-horizon reasoning, rigorous and holistic evaluation is essential for measuring progress toward real-world healthcare applications. We introduce HealthAgentBench, a suite of 54 agentic healthcare tasks across 7 categories each with its unique environment. The benchmark suite spans diverse workflows throughout the patient journey and a broad range of modalities. Each task is designed to replicate an end-to-end clinical workflow: given minimal instructions, an agent must explore raw healthcare data, operate within a complex environment, and execute multi-step solutions that go beyond naive prompting. A final task success rate is reported to provide a single, interpretable metric for HealthAgentBench overall performance for each agent. Evaluating frontier agents on HealthAgentBench, we find that overall task success rate remains low, underscoring the difficulty of the suite. The strongest and the most cost effective agent, Codex GPT-5.5, achieves only approximately 42% success rate. Beyond aggregate performance, HealthAgentBench reveals nuanced strengths and weaknesses across task categories. Frontier agents show promise in automatically developing research modeling pipelines over EHR data, but medical imaging remains especially challenging, particularly for Claude Code models, while Codex GPT-5.5 shows emerging capability. Tasks that combine large search spaces with compositional reasoning requirements remain difficult for all current agents. Together, these results suggest that HealthAgentBench provides a challenging and realistic benchmark with substantial room for future progress. We release our benchmark at this https URL.",
+      "published": "2026-06-30T06:09:01Z",
+      "dateSource": "https://arxiv.org/abs/2606.31179",
+      "url": "https://arxiv.org/abs/2606.31179",
+      "pdfUrl": "https://arxiv.org/pdf/2606.31179",
+      "matchedKeywords": [
+        "medical",
+        "agent"
+      ],
+      "affiliations": [
+        "Microsoft Research"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2606.31179v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "七类真实医疗工作流、五十四个 Agent 任务，含病理、CT 与 EHR；公开容器化基准。适合从工具使用和长流程失败机制寻找具体研究问题。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:16.220Z"
+    },
+    {
+      "id": "2606.01961",
+      "domain": "medical-agent",
+      "title": "AutoMedBench: Towards Medical AutoResearch with Agentic AI Models",
+      "authors": [
+        "Liu, Junqi",
+        "Song, Selena",
+        "Wang, Yuhan",
+        "Mao, Jiawei",
+        "Chen, Hardy",
+        "Huang, Xiaoke",
+        "Qi, Tianhao",
+        "Guo, Pengfei",
+        "Tang, Yucheng",
+        "He, Yufan",
+        "Zhao, Can",
+        "Myronenko, Andriy",
+        "Yang, Dong",
+        "Xu, Daguang",
+        "Zhou, Yuyin"
+      ],
+      "summary": "Autonomous agents are increasingly expected to support end-to-end medical-AI research workflows, moving beyond isolated prediction tasks or short-form clinical question answering. However, existing medical agent benchmarks primarily evaluate final outputs, providing limited visibility into agent behavior within the research process. To address this gap, we present AutoMedBench, a workflow-aware benchmark for autonomous medical-AI research across diverse medical imaging and multimodal inference tasks, organizing agent execution into a unified five-stage workflow (S1-S5): Plan, Setup, Validate, Inference, and Submit. It comprises long-horizon tasks with each run averaging 33 agent turns, spanning five research tracks: segmentation, image enhancement, visual question answering (VQA), report generation, and lesion detection. Each task is evaluated under two difficulty tiers, Lite and Standard, which use the same data and metrics but differ in the amount of task-brief scaffolding, and each run is scored using both final task performance and S1-S5 stage scores, enabling stage-level analysis from the initial task brief to the final submitted artifact. Across thousands of recorded runs, stage-level scoring reveals that Validate is the weakest workflow stage on average, whereas Setup is the strongest, suggesting that current agents are better at making pipelines executable than at verifying their reliability. Post-run error analysis further shows that verification and submission failures dominate tagged errors, accounting for 37.7% and 38.1% of fired codes respectively, whereas task-understanding errors are rare at 0.9%, and runs with one fired error code have a 48% lower overall score than runs with no error code on average.",
+      "published": "2026-06-01T09:22:55Z",
+      "dateSource": "https://arxiv.org/abs/2606.01961",
+      "url": "https://arxiv.org/abs/2606.01961",
+      "pdfUrl": "https://arxiv.org/pdf/2606.01961",
+      "matchedKeywords": [
+        "medical",
+        "agent"
+      ],
+      "affiliations": [
+        "University of California, Santa Cruz",
+        "NVIDIA"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2606.01961v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "医学影像科研 Agent 的五阶段流程评测，覆盖分割、增强、VQA、报告和检测；有公开基准。适合研究验证、错误恢复与最终任务表现的差距。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:16.096Z"
+    },
+    {
+      "id": "2512.17493",
+      "domain": "mri",
+      "title": "UPMRI: Unsupervised Parallel MRI Reconstruction via Projected Conditional Flow Matching",
+      "authors": [
+        "Luo, Xinzhe",
+        "Li, Yingzhen",
+        "Qin, Chen"
+      ],
+      "summary": "Reconstructing high-quality images from substantially undersampled k-space data for accelerated MRI presents a challenging ill-posed inverse problem. While supervised deep learning has revolutionized this field, it relies heavily on large datasets of fully sampled ground-truth images, which are often impractical or impossible to acquire in clinical settings due to long scan times. Despite advances in self-supervised/unsupervised MRI reconstruction, their performance remains inadequate at high acceleration rates. To bridge this gap, we introduce UPMRI, an unsupervised reconstruction framework based on Projected Conditional Flow Matching (PCFM) and its unsupervised transformation. Unlike standard generative models, PCFM learns the prior distribution of fully sampled parallel MRI data by utilizing only undersampled k-space measurements. To reconstruct the image, we establish a novel theoretical link between the marginal vector field in the measurement space, governed by the continuity equation, and the optimal solution to the PCFM objective. This connection results in a cyclic dual-space sampling algorithm for high-quality reconstruction. Extensive evaluations on the fastMRI brain and CMRxRecon cardiac datasets demonstrate that UPMRI significantly outperforms state-of-the-art self-supervised and unsupervised baselines. Notably, it also achieves reconstruction fidelity comparable to or better than leading supervised methods at high acceleration factors, while requiring no fully sampled training data.",
+      "published": "2025-12-19T12:04:58Z",
+      "dateSource": "https://arxiv.org/abs/2512.17493",
+      "url": "https://arxiv.org/abs/2512.17493",
+      "pdfUrl": "https://arxiv.org/pdf/2512.17493",
+      "matchedKeywords": [
+        "MRI"
+      ],
+      "affiliations": [
+        "Imperial College London"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2512.17493v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "仅用欠采样数据学习并行 MRI 的生成先验；fastMRI 脑与 CMRxRecon 心脏实验。适合精读投影 flow matching、数据一致性和无监督假设。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:15.640Z"
+    },
+    {
+      "id": "2512.06530",
+      "domain": "mri",
+      "title": "On The Role of K-Space Acquisition in MRI Reconstruction Domain-Generalization",
+      "authors": [
+        "Wattad, Mohammed",
+        "Shor, Tamir",
+        "Bronstein, Alex"
+      ],
+      "summary": "Recent work has established learned k-space acquisition patterns as a promising direction for improving reconstruction quality in accelerated Magnetic Resonance Imaging (MRI). Despite encouraging results, most existing research focuses on acquisition patterns optimized for a single dataset or modality, with limited consideration of their transferability across imaging domains. In this work, we demonstrate that the benefits of learned k-space sampling can extend beyond the training domain, enabling superior reconstruction performance under domain shifts. Our study presents two main contributions. First, through systematic evaluation across datasets and acquisition paradigms, we show that models trained with learned sampling patterns exhibitimproved generalization under cross-domain settings. Second, we propose a novel method that enhances domain robustness by introducing acquisition uncertainty during training-stochastically perturbing k-space trajectories to simulate variability across scanners and imaging conditions. Our results highlight the importance of treating kspace trajectory design not merely as an acceleration mechanism, but as an active degree of freedom for improving domain generalization in MRI reconstruction.",
+      "published": "2025-12-06T18:49:46Z",
+      "dateSource": "https://arxiv.org/abs/2512.06530",
+      "url": "https://arxiv.org/abs/2512.06530",
+      "pdfUrl": "https://arxiv.org/pdf/2512.06530",
+      "matchedKeywords": [
+        "MRI"
+      ],
+      "affiliations": [
+        "Technion – Israel Institute of Technology"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/pdf/2512.06530v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "将采集轨迹扰动用于跨域重建；多架构与固定/学习采样的对照，并提供实验代码。适合从物理采集机制切入泛化研究。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:15.760Z"
+    },
+    {
+      "id": "2511.23204",
+      "domain": "pathology",
+      "title": "Pathryoshka: Compressing Pathology Foundation Models via Multi-Teacher Knowledge Distillation with Nested Embeddings",
+      "authors": [
+        "Grashei, Christian",
+        "Brechenmacher, Christian",
+        "Umer, Rao Muhammad",
+        "Liu, Jingsong",
+        "Marr, Carsten",
+        "Schüffler, Peter J.",
+        "Szczurek, Ewa"
+      ],
+      "summary": "Pathology foundation models (FMs) have driven significant progress in computational pathology. However, these high-performing models can easily exceed a billion parameters and produce high-dimensional embeddings, thus limiting their applicability for research or clinical use when computing resources are tight. Here, we introduce Pathryoshka, a multi-teacher distillation framework inspired by RADIO distillation and Matryoshka Representation Learning to reduce pathology FM sizes while allowing for adaptable embedding dimensions. We evaluate our framework with a distilled model on ten public pathology benchmarks with varying downstream tasks. Compared to its much larger teachers, Pathryoshka reduces the model size by 86-92% at on-par performance. It outperforms state-of-the-art single-teacher distillation models of comparable size by a median margin of 7.0 in accuracy. By enabling efficient local deployment without sacrificing accuracy or representational richness, Pathryoshka democratizes access to state-of-the-art pathology FMs for the broader research and clinical community.",
+      "published": "2025-11-28T14:11:31Z",
+      "dateSource": "https://arxiv.org/abs/2511.23204",
+      "url": "https://arxiv.org/abs/2511.23204",
+      "pdfUrl": "https://arxiv.org/pdf/2511.23204",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "affiliations": [
+        "Technical University of Munich",
+        "Helmholtz Munich",
+        "Munich Data Science Institute",
+        "Munich Center for Machine Learning"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2511.23204v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "多教师蒸馏与可截断嵌套表示；十个公开病理基准。优先看压缩与下游使用，原始预训练依赖院内大数据，完整重训门槛高。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:15.513Z"
+    },
+    {
+      "id": "2610.13095",
+      "domain": "mri",
+      "title": "Stochastic Finite-Transition Learning and Exploration for Accelerated MRI Reconstruction",
+      "authors": [
+        "Muhammad Usama Mirza",
+        "Esin Öztürk Işık",
+        "Tolga Çukur"
+      ],
+      "summary": "Generative MRI reconstruction maps an initial source distribution to the target image distribution along a learned recovery trajectory. Common generative methods, such as diffusion and flow, typically learn fine-grained local dynamics whose integration defines this global mapping, hence requiring many network evaluations at inference. Existing few-step sampling approaches can lower computational burden by approximating large transformations from local dynamics, albeit at the expense of reconstruction fidelity. FLEX-MRI instead partitions recovery into a small number of finite intervals between retained states defined by progressive changes in k-space support, and directly learns the reconstruction change across each interval. Because such finite transitions can admit multiple plausible outcomes, FLEX-MRI combines support-relaxed finite-transition learning with stochastic exploration. During training, randomized k-space sampling masks define finite-transition targets with varying support, while the prediction loss remains unrestricted by each individual mask. At inference, FLEX-MRI perturbs a random subset of currently estimated k-space coefficients, allowing the learned predictor to stochastically explore alternative transition paths. Each predicted state is then reconciled with the acquired measurements through data consistency. We theoretically show that this stochastic exploration induces nonzero transition-level variation through the learned recovery map and data consistency without requiring an auxiliary generative sampler. Experiments on multi-coil MRI datasets show that FLEX-MRI outperforms competing methods while maintaining computational efficiency comparable to few-step baselines.",
+      "published": "2026-10-09T06:50:55Z",
+      "url": "https://arxiv.org/abs/2610.13095",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13095",
+      "matchedKeywords": [
+        "mri",
+        "k-space",
+        "reconstruction"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22MRI+reconstruction%22+OR+%22magnetic+resonance+reconstruction%22+OR+%22accelerated+MRI%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.13095",
+      "updated": "2026-10-09",
+      "affiliations": [
+        "Bilkent University / UMRAM",
+        "Boğaziçi University"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.13095v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "MRI 专门研究团队；少步生成重建、物理一致性与公开代码，适合接续本站快速重建路线。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2610.11329",
+      "domain": "pathology",
+      "title": "PathLang: A Language-Centered Benchmark for Vision-Language Models in Computational Pathology",
+      "authors": [
+        "Fanqi Cheng",
+        "Kuo Gong",
+        "Shangke Liu",
+        "Beidi Zhao",
+        "Junchao Zhu",
+        "Zheyu Zhu",
+        "Leiyue Zhao",
+        "Fengbei Liu",
+        "John Cannon",
+        "Gang Wang",
+        "Zu-hua Gao",
+        "Kenji Ikemura",
+        "Yihe Yang",
+        "Yaohong Wang",
+        "Yuankai Huo",
+        "Xiaoxiao Li",
+        "Mert R. Sabuncu",
+        "Ruining Deng"
+      ],
+      "summary": "Pathology vision-language models (VLMs) have shown strong visual perception ability, but their robustness in the language domain remains poorly characterized. Existing pathology VLM benchmarks largely rely on canonical closed-set prompts or perturb only generic templates, treating language as a fixed evaluation component rather than a variable axis of model behavior. In clinical practice, however, diagnostic language varies across reports, institutions, and candidate diagnoses. We introduce PathLang, a language-centered and clinically grounded zero-shot benchmark. PathLang holds the underlying slides, ground-truth labels, and image-text evaluation direction fixed while systematically varying only the diagnostic language, so that performance differences reflect how a diagnosis is phrased rather than what is imaged. The language variation follows how pathologists actually rephrase diagnoses (terminology, specificity, and reporting style), and all prompts and candidate pools are validated by six board-certified pathologists. PathLang covers four task families: (1) zero-shot classification with image-text alignment analysis, (2) cross-modal retrieval, (3) paraphrase robustness, including semantic-equivalence paraphrases, length and reporting-style variation, and prompt ensembling, and (4) open-vocabulary diagnosis retrieval over four candidate pools with distinct forms of semantic competition. Across nine VLMs and five public datasets spanning four organs, we find that performance is highly sensitive to clinically equivalent paraphrases, varies substantially across forms of semantic competition, and that image-text alignment quality does not necessarily translate into inter-class separability. We release the prompt corpus, candidate pools, pre-computed text embeddings, and evaluation code at https://anonymous.4open.science/r/PathLang.",
+      "published": "2026-10-08T06:27:42Z",
+      "url": "https://arxiv.org/abs/2610.11329",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11329",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.11329",
+      "updated": "2026-10-08",
+      "affiliations": [
+        "New York University",
+        "Columbia University",
+        "Weill Cornell Medicine / Cornell University / Cornell Tech",
+        "University of British Columbia / BC Cancer",
+        "Vanderbilt University",
+        "University of Pennsylvania",
+        "Johns Hopkins University",
+        "New York Medical College",
+        "UT MD Anderson Cancer Center"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.11329v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "多所研究大学与医学中心合作；临床专家核验的语言鲁棒性评测，覆盖多个模型和公开数据。论文页期刊栏不作为已接收证明。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2610.10225",
+      "domain": "pathology",
+      "title": "Masked Feature Encoding for Large-Scale Whole Slide Image Representation",
+      "authors": [
+        "Haoyu He",
+        "Basile Tessier-Cloutier",
+        "Yang Wang",
+        "Mahdi S. Hosseini"
+      ],
+      "summary": "Whole slide image (WSI) analysis in computational pathology follows a multiple instance learning (MIL) pipeline where patch embeddings are extracted independently and aggregated for slide-level prediction, but within-slide variance from staining, scanner, and local texture can overwhelm the discriminative signal. We propose Masked Feature Encoding for Multiple Instance Learning (MFE-MIL), a feature-space masking framework that trains a lightweight MLP adapter jointly with a window-based masked reconstruction branch and a MIL classification head. The two objectives are complementary. Classification guides the adapter to suppress within-slide patch variance, while window-based masked reconstruction provides an auxiliary regularizer for the adapted features without using patch coordinates, coordinate graphs, or segmentation preprocessing. The raster patch-extraction order is used only as a weak implicit prior. At inference, the decoder is removed, leaving only the adapter and MIL head. Across CAMELYON16/17, PANDA, and TCGA-BRCA with four diverse encoders, MFE-MIL improves ACC/F1 for nearly all tested aggregator-encoder settings and AUC in most, outperforms coordinate-based spatial methods (CAMIL), and achieves higher AUC than 2DMamba on three of four datasets (UNI). On five TCGA survival cohorts it improves the average concordance index for every aggregator tested, its most consistent gain. Code is available at https://github.com/AtlasAnalyticsLab/MFE-MIL.",
+      "published": "2026-10-07T15:17:17Z",
+      "url": "https://arxiv.org/abs/2610.10225",
+      "pdfUrl": "https://arxiv.org/pdf/2610.10225",
+      "matchedKeywords": [
+        "pathology",
+        "whole slide",
+        "wsi"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.10225",
+      "updated": "2026-10-07",
+      "affiliations": [
+        "Concordia University",
+        "McGill University",
+        "Mila – Quebec AI Institute"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.10225v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "AI 与病理团队合作；冻结特征上的轻量 MIL，多数据集、多编码器实验与代码入口，适合低成本复现。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2610.08109",
+      "domain": "mri",
+      "title": "Beyond Training from Scratch: Foundation Models for Data-Efficient and Generalizable Cardiac MRI Reconstruction",
+      "authors": [
+        "Anam Hashmi",
+        "Mayug Maniparambil",
+        "Julia Dietlmeier",
+        "Kathleen M. Curran",
+        "Noel E. O'Connor"
+      ],
+      "summary": "Cardiac magnetic resonance imaging reconstruction aims to recover high-quality images from undersampled acquisitions, enabling faster scans while preserving diagnostic fidelity. Recent reconstruction methods are typically trained from scratch and often require large amounts of task-specific data, limiting their robustness under data scarcity and distribution shifts. In this work, we investigate whether pretrained vision foundation models can serve as effective priors for accelerated cardiac MRI reconstruction. We propose a reconstruction framework that integrates frozen and parameter-efficiently adapted visual encoders, including CLIP, BiomedCLIP, and DINOv2, within a transformer-based reconstruction architecture. Extensive experiments on the CMRxRecon2023 and CMRxRecon2024 benchmarks demonstrate that pretrained representations consistently outperform a transformer trained from scratch across multiple acceleration factors. We further evaluate performance under limited supervision and cross-dataset transfer, showing that foundation models provide superior data efficiency and generalization. While frozen representations are particularly effective in extreme low-data regimes, Low-Rank Adaptation (LoRA) yields additional gains when moderate amounts of training data are available. Among the evaluated backbones, DINOv2 achieves the strongest overall performance. These findings highlight the potential of vision foundation models as robust and transferable priors for cardiac MRI reconstruction.",
+      "published": "2026-10-06T10:32:13Z",
+      "url": "https://arxiv.org/abs/2610.08109",
+      "pdfUrl": "https://arxiv.org/pdf/2610.08109",
+      "matchedKeywords": [
+        "mri",
+        "magnetic resonance",
+        "reconstruction"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22MRI+reconstruction%22+OR+%22magnetic+resonance+reconstruction%22+OR+%22accelerated+MRI%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.08109",
+      "updated": "2026-10-06",
+      "affiliations": [
+        "Dublin City University",
+        "University College Dublin",
+        "Research Ireland Centre for Research Training in Machine Learning",
+        "Rinn Artificial Intelligence"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.08109v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "大学机器学习与医学影像团队；两个心脏 MRI 基准上的低数据、LoRA 与跨数据集比较，代码公开。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2610.05778",
+      "domain": "medical-agent",
+      "title": "MedicalHarness: A Controlled Evaluation of LLMs and Agent Harnesses on Medical Tasks",
+      "authors": [
+        "Ziqing Wang",
+        "Lili Zhao",
+        "Kaize Ding"
+      ],
+      "summary": "LLM agents are increasingly built for medical work and scored on clinical benchmarks. Each such score, however, comes from a model running inside an agent harness, the system that controls the loop between the model and its environment. An agent's score is therefore a property of a model--harness pair. For medical agents, how much outcomes change with the harness has rarely been measured. Measuring this change, and explaining it, raises two challenges. First, a harness comparison must change nothing but the harness and be repeated across models and kinds of task. Second, comparing whole harnesses leaves their mechanisms bundled together, so it cannot show when an individual mechanism helps. To address these challenges, we present MedicalHarness, a controlled study of models and agent harnesses on medical tasks. We first build MedicalHarnessBench to evaluate agents on $107$ tasks across four domains that each test a different harness capability. Using this benchmark, we run five open-weight models under five agent harnesses, changing only the harness within a comparison, and analyze both outcomes and execution traces. To study individual mechanisms, we build MH-Lab, a controlled harness that switches off context management, planning or tool exposure one at a time within a shared execution loop. We find that the harness and its interaction with the model account for about a quarter of the outcome variance, and that no single harness is best across models and tasks. Code and data are available at https://github.com/REAL-Lab-NU/MedicalHarness.",
+      "published": "2026-10-05T04:22:28Z",
+      "url": "https://arxiv.org/abs/2610.05778",
+      "pdfUrl": "https://arxiv.org/pdf/2610.05778",
+      "matchedKeywords": [
+        "medical",
+        "clinical",
+        "agent"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22medical+agent%22+OR+%22clinical+agent%22+OR+%22medical+multi-agent%22+OR+%22medical+agentic%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.05778",
+      "updated": "2026-10-05",
+      "affiliations": [
+        "Northwestern University"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.05778v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "西北大学团队；控制模型与 Agent harness 的对照评测，机制消融及代码数据入口清楚。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2610.05157",
+      "domain": "pathology",
+      "title": "Cross-Modal Contrastive Learning for the Retrieval of Immunotherapy-Associated Molecular Signatures from Histopathology",
+      "authors": [
+        "Sigrid Vila-Bagaria",
+        "Mar Teixidó",
+        "Miquel Piñol",
+        "Felip Vilardell",
+        "Robert Montal",
+        "Veronica Vilaplana"
+      ],
+      "summary": "Gastric Adenocarcinoma is a leading cause of cancer mortality. Although \"Inflamed/Non-Inflamed\" subtypes have been proposed to predict immunotherapy response, their identification relies on a costly 10-gene RNA signature. We propose a Cross-modal Contrastive Multiple Instance Learning (CCMIL) framework for cross-modal retrieval, imputing these molecular signatures directly from standard Hematoxylin & Eosin (H&E) slides. By leveraging a supervised contrastive objective, CCMIL aligns visual morphological patterns with molecular phenotypes into a shared latent space. This establishes an interpretable search-by-case retrieval engine, enabling pathologists to query a whole slide image to surface transcriptomically coherent neighbors and approximate RNA signatures without genomic sequencing at inference. Our results demonstrate that this retrieval-first approach captures the continuous phenotypic spectrum of tumor inflammation and yields clinically interpretable attention heatmaps. Furthermore, the learned representation also supports competitive downstream classification, providing a practical molecular pre-screening strategy.",
+      "published": "2026-10-04T12:06:36Z",
+      "url": "https://arxiv.org/abs/2610.05157",
+      "pdfUrl": "https://arxiv.org/pdf/2610.05157",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "whole slide"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.05157",
+      "updated": "2026-10-04",
+      "affiliations": [
+        "Universitat Politècnica de Catalunya (UPC)",
+        "IRB Lleida / Cancer Biomarkers Research Group"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.05157v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "大学与肿瘤标志物团队合作；病理—RNA 检索与临床解释，适合多模态阅读，外部验证需进一步检查。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2610.04800",
+      "domain": "medical-agent",
+      "title": "MedImageOSWorld: Benchmarking GUI Agents for Medical Image Consoles",
+      "authors": [
+        "Long, Ziyang",
+        "Li, Xinqi",
+        "Xing, Lujing",
+        "Yang, Hsin-Jung"
+      ],
+      "summary": "Graphical consoles offer a practical interface for medical acquisition assistance, allowing agents to work through the controls and visual feedback used by human operators. Reliable assistance requires linking on-screen anatomy to acquisition decisions that determine what image evidence becomes available next. We introduce MedImageOSWorld, a benchmark for evaluating this capability in simulated CT, MR, and ultrasound consoles. Using screenshots and mouse-and-keyboard actions, agents configure protocols, plan acquisitions, inspect the resulting images, and make corrective adjustments across seven capability levels, from console operation to feedback-driven control. Evaluation combines task-specific workflow checks with hidden anatomical ground truth to assess procedural completion and acquisition outcomes separately. A common evaluation protocol specifies episode conditions and interaction budgets, while recorded trajectories support analysis of how agents observe, act, and respond to acquisition feedback. Across eleven open-weight agents, success rates range from 3.0 to 25.0 on a 0-100 scale while workflow-progress rates reach 21.5-74.5: agents complete much of the console workflow but rarely acquire the intended anatomy. Success collapses between perception and planning, from 79-90% at the lowest three levels for the best agent to at most 12% for millimetre-level planning and 0% for closed-loop control among open-weight agents. Two proprietary agents reach success rates of about 34 and exceed the best open-weight agent mainly in acquisition quality (61 versus 42). MedImageOSWorld provides a controlled setting for studying whether general-purpose GUI agents can translate visual observations into effective medical acquisition decisions.",
+      "published": "2026-10-03T22:56:09Z",
+      "dateSource": "https://arxiv.org/abs/2610.04800",
+      "url": "https://arxiv.org/abs/2610.04800",
+      "pdfUrl": "https://arxiv.org/pdf/2610.04800",
+      "matchedKeywords": [
+        "medical",
+        "agent"
+      ],
+      "affiliations": [
+        "Cedars-Sinai Medical Center",
+        "University of California, Los Angeles",
+        "Technical University of Munich",
+        "Max Delbrück Center / Berlin Ultrahigh Field Facility"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.04800v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "影像医学中心与 UCLA/TUM 团队；GUI Agent 控制模拟采集，区分工作流与解剖结果，适合影像 Agent 路线。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      },
+      "firstSeen": "2026-10-12T03:31:48.602Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z"
+    },
+    {
+      "id": "2610.01813",
+      "domain": "pathology",
+      "title": "AI-assisted mitotic counting improves reproducibility and efficiency across multiple tumour types",
+      "authors": [
+        "Graham, Simon",
+        "Jahanifar, Mostafa",
+        "Vu, Quoc Dang",
+        "Maskoliunaite, Vygante",
+        "Petroska, Donatas",
+        "Valkiuniene, Ruta Barbora",
+        "Lashen, Ayat Gamal",
+        "Ong, Jen Hong",
+        "Nnorom, Amede Ogechi",
+        "Couper, Sinclair",
+        "Kardasz, Natasha",
+        "Agrawal, Reshma",
+        "Chohan, Brinder Singh",
+        "Rendon, Jose Luis Solorzano",
+        "Natu, Shonali",
+        "Laurinavicius, Arvydas",
+        "Rajpoot, Nasir",
+        "Snead, David"
+      ],
+      "summary": "Mitotic counting is an important component of tumour grading, diagnosis and prognostic assessment across several tumour types, but manual assessment is time-consuming and subject to inter-pathologist variability. To help address these challenges, we developed MitPro, an AI tool designed to improve consistency and efficiency by directing pathologists towards regions with the highest predicted mitotic activity and highlighting mitotic figures for review, while retaining pathologist control over region selection and the final count. We evaluated its effect on the reproducibility and efficiency of mitotic counting in a retrospective, non-interventional, paired reader study comprising 385 whole-slide images from 3 centres in 3 countries and 7 tumour types using 3 different scanners. 13 pathologists participated, with each slide assessed independently by 3 pathologists without AI assistance and again with AI assistance after a minimum 2 week washout period. Across all slides, AI-assisted counting increased the intraclass correlation coefficient from 0.589 to 0.949. Mean pathologist-level median assessment time decreased from 286.4 to 127.8 seconds, corresponding to an average saving of 151.8 seconds per assessment. Improvements in agreement and efficiency were also observed in supporting analyses using HALO AP and Sectra image management systems and in 2 additional tumour types outside the main study population. AI-assisted assessment was associated with a subtle shift towards higher mitotic counts and scores, consistent with identification of more active mitotic hotspots and fewer missed mitotic figures. The frequency of score change between unassisted and AI-assisted assessment was comparable with inter-pathologist variation during routine counting. These findings support the use of MitPro as an assistive tool for more consistent and efficient mitotic assessment in routine practice.",
+      "published": "2026-10-01T14:48:55Z",
+      "dateSource": "https://arxiv.org/abs/2610.01813",
+      "url": "https://arxiv.org/abs/2610.01813",
+      "pdfUrl": "https://arxiv.org/pdf/2610.01813",
+      "matchedKeywords": [
+        "pathology",
+        "whole slide"
+      ],
+      "affiliations": [
+        "Histofy Ltd",
+        "Vilnius University / National Center of Pathology",
+        "Nottingham University Hospitals NHS Trust",
+        "Newcastle Upon Tyne Hospitals NHS Foundation Trust",
+        "University Hospitals Tees",
+        "University Hospitals Coventry and Warwickshire NHS Trust",
+        "University Hospitals of Derby and Burton NHS Foundation Trust",
+        "Fundación MD Anderson Cancer Center España"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/pdf/2610.01813v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "病理产业团队与多家临床中心合作；多中心配对读片研究，适合了解 AI 辅助效率与一致性的临床证据。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      },
+      "firstSeen": "2026-10-12T03:31:48.602Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z"
+    },
+    {
+      "id": "2610.00678",
+      "domain": "pathology",
+      "title": "Nonparametric Distribution Matching for Self-Supervised Whole-Slide Image Condensation",
+      "authors": [
+        "Duong M. Nguyen",
+        "Trong Nghia Hoang",
+        "Hang Thi Nguyen",
+        "Thanh Trung Huynh",
+        "Phi Le Nguyen",
+        "Minh N. Do"
+      ],
+      "summary": "Histological whole-slide images (WSIs) are central to computational pathology but pose severe computational challenges due to their extremely high resolution, often spanning several gigabytes per slide. To enable scalable learning, existing methods apply self-supervised data condensation to reduce computational cost, but typically rely on heuristic prototype learning and do not explicitly preserve learning-relevant feature distributions for downstream tasks. In response, we introduce a principled reformulation of WSI condensation as a distribution-matching problem under a fixed representational lens, and develop NICER, a tractable approximation framework based on a nonparametric prior with slide-adaptive capacity. Experiments on five histopathology datasets, together with clinical evaluation from a board-certified pathologist, show that NICER consistently outperforms prior methods, achieving an average accuracy improvement of 7.44% while offering improved efficiency-accuracy trade-offs, highlighting the benefits of principled, distribution-aware condensation for scalable histological representation learning. Source codes are available in https://github.com/nmduonggg/NICER.",
+      "published": "2026-09-30T20:15:54Z",
+      "url": "https://arxiv.org/abs/2610.00678",
+      "pdfUrl": "https://arxiv.org/pdf/2610.00678",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology",
+        "wsi"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-04T03:44:12.578Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2610.00678",
+      "updated": "2026-09-30",
+      "affiliations": [
+        "University of Illinois Urbana-Champaign",
+        "Washington State University",
+        "Hanoi Medical University",
+        "VinUniversity",
+        "Hanoi University of Science and Technology"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2610.00678v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "包含 UIUC 与医学团队；WSI 凝缩有理论、五数据集及病理解释评价，并提供代码。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.39371",
+      "domain": "medical-agent",
+      "title": "EHR-RobustGym: Benchmarking and Training Agents for Robust Clinical Reasoning",
+      "authors": [
+        "Yitong Qiao",
+        "Yancheng Jin",
+        "Lei Liu",
+        "Yue Shen",
+        "Jian Wang",
+        "Jinjie Gu",
+        "Zhixuan Chu"
+      ],
+      "summary": "In hospital workflows, electronic health records (EHRs) are often noisy, and may not contain the evidence needed to confirm events or measurements referenced in a clinical query. Even when database retrieval succeeds, clinical agents can overlook such discrepancies and return plausible but unsupported answers. We introduce EHR-RobustGym, a scalable and interactive environment for evaluating and training robust clinical agents grounded in noisy EHRs. Built on MIMIC-IV hospital records (365K patients, 31 tables, and over 500M records), EHR-RobustGym comprises 5,486 Clean-Noise pairs spanning six clinical intents and both patient-level and population-level queries. The pairs test robustness to Record-level, Value-level, and Query-level noise, while interactive SQL/Python execution and outcome verification support trajectory collection and training. Evaluating multiple LLMs reveals substantial robustness gaps: average task success across proprietary and large-scale open-weight models drops from 62.2% on Clean questions to 37.9% on Noise questions. At k=4, pass^k consistency falls below 50% for most evaluated models, exposing instability in clinical task completion. Supervised fine-tuning and reinforcement learning in EHR-RobustGym improve performance, with gains generalizing to five external EHR benchmarks. Together, these results position EHR-RobustGym as a testbed for evaluating and improving the evidence-grounded robustness of clinical agents.",
+      "published": "2026-09-30T09:23:10Z",
+      "url": "https://arxiv.org/abs/2609.39371",
+      "pdfUrl": "https://arxiv.org/pdf/2609.39371",
+      "matchedKeywords": [
+        "clinical",
+        "health",
+        "agent"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22medical+agent%22+OR+%22clinical+agent%22+OR+%22medical+multi-agent%22+OR+%22medical+agentic%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-12T03:28:07.312Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.39371",
+      "updated": "2026-09-30",
+      "affiliations": [
+        "Zhejiang University",
+        "Ant Healthcare, Ant Group"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.39371v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "浙大与蚂蚁医疗团队；噪声 EHR 的交互执行、训练和外部基准验证，可与 EHR-Complex 对读。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.38644",
+      "domain": "mri",
+      "title": "Joint Supervised and Self-Supervised Training with Acquisition-Robust Techniques for Accelerated 4D Flow MRI Reconstruction",
+      "authors": [
+        "Mengyuan Xue",
+        "Bochun Mei"
+      ],
+      "summary": "4D flow MRI measures time-resolved, three-directional blood velocity but requires long acquisition times, and its diagnostic signal is carried by the phase difference \\emph{between} velocity encodings, not by image magnitude. Recent work has developed a per-encoding variational network to address image reconstruction in this field. In this work, we incorporate a joint supervised and self-supervised training regime and utilize both magnitude and velocity data during supervision. At the same time, we add multiple acquisition-robust and conditioning strategies based on the acceleration factors. On the CMRx4DFlow~2026 aortic dataset (1.5 and 3T), our model lowers RelErr by $38$--$50\\%$ and AngErr by $7.0$--$8.7^\\circ$ against a training-matched baseline across $R{=}10$--$50$, improving on every held-out subject at every acceleration. Our model also shows strong generalization ability to transfer on out-of-distribution data by employing the joint training scheme, with an increase of $7.2\\%$ in SSIM and decrease of $38\\%$ and $31\\%$ in AngErr and RelErr respectively.",
+      "published": "2026-09-29T23:03:27Z",
+      "url": "https://arxiv.org/abs/2609.38644",
+      "pdfUrl": "https://arxiv.org/pdf/2609.38644",
+      "matchedKeywords": [
+        "mri",
+        "reconstruction"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22MRI+reconstruction%22+OR+%22magnetic+resonance+reconstruction%22+OR+%22accelerated+MRI%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-04T03:44:12.578Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.38644",
+      "updated": "2026-09-29",
+      "affiliations": [
+        "UT Southwestern Medical Center",
+        "University of California, San Francisco"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.38644v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "医学中心与 UCSF 影像团队；4D flow 的相位/速度评价与自监督训练，提供代码；数据和计算门槛较高。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.35943",
+      "domain": "pathology",
+      "title": "HERO: Histology Encoder for Robust Representation in Oncology",
+      "authors": [
+        "Zhi Li",
+        "Eghbal Amidi",
+        "Yating Cheng",
+        "Tyson Dawson",
+        "Gorkem Can Ates",
+        "Shuzhen Kuang",
+        "Norsang Lama",
+        "Md Ashequr Rahman",
+        "Zhiying Lu",
+        "Elisabeth K. Kong",
+        "Milan Radovich",
+        "David Spetzler",
+        "George W. Sledge",
+        "Ming Chen"
+      ],
+      "summary": "Foundation models trained on large pathology image corpora now provide strong, transferable representations for computational pathology. Over the past few years a series of such models has been released, each trained on more slides than the last; on standard classification and segmentation benchmarks, the leading models are now separated by small margins. In clinical use, however, the foundation model is applied to images from hospitals, scanners, and staining protocols outside its training data. Encoders generally embed these acquisition factors alongside biological information, which may introduce downstream errors and hinder safe clinical adoption. A pathology foundation model should therefore be robust to acquisition shift without giving up representation quality, yet robustness is seldom the axis along which models are compared. In this report, we introduce HERO (Histology Encoder for Robust Representation in Oncology), a ViT-G/14 pathology foundation model trained with the DINO and iBOT objectives and refined with high-resolution Gram anchoring on a morphology-balanced corpus of 500 million tiles from approximately 575,000 clinical whole-slide images. Across the evaluated public benchmarks, HERO shows the strongest robustness to center, scanner, and stain variation among the compared state-of-the-art foundation models, performs comparably on tile-level classification, segmentation, and gene-expression prediction, ranks first on average across 39 evaluated slide-level clinical tasks, and, under an equal-weighted framework-level analysis, has the best average rank across the six benchmark frameworks.",
+      "published": "2026-09-28T16:27:18Z",
+      "url": "https://arxiv.org/abs/2609.35943",
+      "pdfUrl": "https://arxiv.org/pdf/2609.35943",
+      "matchedKeywords": [
+        "pathology"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-04T03:44:12.578Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.35943",
+      "updated": "2026-09-28",
+      "affiliations": [
+        "Caris Life Sciences"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.35943v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "临床分子检测与病理产业团队；重点报告跨中心、扫描仪、染色鲁棒性，适合追踪基础模型趋势；复现需另核对权重许可。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.33834",
+      "domain": "mri",
+      "title": "CLIMB-flow: Coupled Linear Inverse posterior sampling via Multiscale-Based flow",
+      "authors": [
+        "Zeqiu Yu",
+        "Ruizhi Yuan",
+        "Mathews Jacob"
+      ],
+      "summary": "Diffusion models are now widely used in Bayesian inverse problems in imaging as priors, where latent diffusion models are often used for larger scale problems to keep the computational complexity and model-size manageable. Unfortunately, the auto-encoder based compression results in loss of spatial detail. In addition, the optimization is converted to a non-linear problem. In this paper, we introduce a posterior sampling algorithm customized for the pyramidal/cascaded architecture, which relies on a coarse to fine hierarchical strategy to generate images in the pixel domain. We present CLIMB-Flow which alternates between three steps: an end-point estimation from the current coarse and noisy image, data-consistent update of the clean image, and re-noising it back to the level the network expects. Together these steps sample the posterior at that scale using an approximate Gibbs sampling from two conditional distributions. Experiments on ImageNet, CelebA, AFHQ and fastMRI span inpainting, deblurring, super-resolution and accelerated MRI, with PSNR gains of 1.37-7.66 dB over the strongest competing method on CelebA and pixel-domain reconstruction up to 512x512.",
+      "published": "2026-09-27T18:34:31Z",
+      "url": "https://arxiv.org/abs/2609.33834",
+      "pdfUrl": "https://arxiv.org/pdf/2609.33834",
+      "matchedKeywords": [
+        "mri",
+        "reconstruction"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22MRI+reconstruction%22+OR+%22magnetic+resonance+reconstruction%22+OR+%22accelerated+MRI%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-04T03:44:12.578Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.33834",
+      "updated": "2026-09-27",
+      "affiliations": [
+        "University of Virginia",
+        "University of Pittsburgh"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.33834v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "研究大学计算成像团队；多尺度 flow 后验采样涵盖 fastMRI，需单独核对 MRI 实验口径。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.33178",
+      "domain": "pathology",
+      "title": "Can Protein-Derived Knowledge Improve Pathology Foundation Models?",
+      "authors": [
+        "Di Zhang",
+        "Zhangpeng Gong",
+        "Jiashuai Liu",
+        "Zhi Zeng",
+        "Jiusong Ge",
+        "Chunze Yang",
+        "Xitong Ling",
+        "Kai Yi",
+        "Kai He",
+        "Weimiao Yu",
+        "Mireia Crispin-Ortuzar",
+        "Chen Li",
+        "Zeyu Gao"
+      ],
+      "summary": "Molecularly guided pathology foundation models (PFMs) exploit transcriptomic or proteomic information to enrich whole-slide image (WSI) representations, yet effectively leveraging large standalone molecular corpora remains challenging. First, existing molecular foundation models encode protein sequences or single-cell states, not the patient-level bulk expression profiles paired with WSIs. Second, because cross-modal supervision is restricted to paired WSI-omics samples, knowledge from standalone molecular corpora reaches the pathology encoder only indirectly, creating a paired-support bottleneck. To address these challenges, we propose a three-stage framework that decouples proteomic knowledge acquisition from cross-modal transfer, yielding ProSlide, a slide-level hierarchical pathology foundation model. First, to close the modality gap, we pretrain a Proteomic Foundation Encoder (PFE) on 12,695 sample-level bulk protein profiles using virtual profile generation and expression-space multi-view pretraining. Second, we pretrain ProSlide, a patch-region-slide encoder, to predict protein expression from paired WSI-protein samples. Third, to relax the paired-support bottleneck, we introduce Prot2Path, a cross-modal relational distillation objective. For each paired sample, it aligns the similarity distributions of the WSI and its protein profile over a shared, frozen bank of PFE-encoded paired and standalone profiles. We evaluate ProSlide on 12 downstream tasks across breast, lung, and renal cancers. Despite being pretrained with only 2,229 WSIs and 12,695 sample-level protein profiles, ProSlide achieves the highest mean accuracy and AUC within each cancer group.",
+      "published": "2026-09-27T03:58:10Z",
+      "url": "https://arxiv.org/abs/2609.33178",
+      "pdfUrl": "https://arxiv.org/pdf/2609.33178",
+      "matchedKeywords": [
+        "pathology",
+        "wsi"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-04T03:44:12.578Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.33178",
+      "updated": "2026-09-27",
+      "affiliations": [
+        "Xi’an Jiaotong University",
+        "Tsinghua University",
+        "University of Cambridge",
+        "National University of Singapore",
+        "A*STAR Bioinformatics Institute",
+        "Peking Union Medical College"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.33178v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "剑桥、西交、清华、新加坡及协和合作；蛋白知识迁移到病理，有多癌种下游与机制分析。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.31813",
+      "domain": "mri",
+      "title": "Awaken, Then Scale: Tiny Adaptation for MRI Reconstruction",
+      "authors": [
+        "Mohammed Wattad",
+        "Tamir Shor",
+        "Alexander M. Bronstein"
+      ],
+      "summary": "Dormant Awakening (DA) specializes a magnetic resonance imaging (MRI) reconstruction model by fitting a small set of zero weights to one labeled slice. Across fourteen U-shaped convolutional network (U-Net) and vision transformer (ViT) sources, fitting 1,004 or 10,560 weights gives mean peak signal-to-noise ratio (PSNR) gains of .430 and .509 dB. We analyze how scaling the fitted output correction changes evaluation PSNR, then use the calibration correction size to cap changes on new images. The cap bounds changes in root mean squared error (RMSE) relative to the source without an evaluation reference. At 10\\% adaptation budget, we compare fixed halving and dynamic capping for DA, unrestricted sparse adaptation and low-rank adaptation (LoRA). The controls increase both measured calibration-evaluation correlations across all six tested architecture-adapter settings. Experiments concern one constructed fastMRI-to-M4Raw shift with fixed source checkpoints and participant panels.",
+      "published": "2026-09-25T13:54:34Z",
+      "url": "https://arxiv.org/abs/2609.31813",
+      "pdfUrl": "https://arxiv.org/pdf/2609.31813",
+      "matchedKeywords": [
+        "mri",
+        "magnetic resonance",
+        "reconstruction"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22MRI+reconstruction%22+OR+%22magnetic+resonance+reconstruction%22+OR+%22accelerated+MRI%22&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-10-04T03:44:12.578Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.31813",
+      "updated": "2026-09-25",
+      "affiliations": [
+        "Technion – Israel Institute of Technology"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.31813v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "Technion 团队；少参数 MRI 适配与误差控制分析，实验范围限于构造的 fastMRI→M4Raw 变化。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.27710",
+      "domain": "pathology",
+      "title": "FFM-CP: Cross-Backbone Fusion of Vision-Language Foundation Models for Few-Shot Computational Pathology",
+      "authors": [
+        "Anh-Tien Nguyen",
+        "Trung DQ. Dang",
+        "Nghiem Tuong Diep",
+        "Bui Ngoc Han Nguyen",
+        "Tan-Ha Mai",
+        "Miriam Cindy Maurer",
+        "Phuong Hoa Nguyen",
+        "Thi Thuy Uyen Nguyen",
+        "Youngjun Park",
+        "Daniel Sonntag",
+        "Duy Minh Ho Nguyen",
+        "Anne-Christin Hauschild"
+      ],
+      "summary": "Pathology vision-language foundation models vary in performance across diseases and tasks, with no single model consistently performing best. The high cost of expert pathology annotation can also limit the labeled data available for task-specific adaptation. Combining complementary pretrained representations is a potential approach to these limitations, yet learning an effective fusion from few labeled examples remains challenging. We introduce Few-shot Fusion Foundation Models of Computational Pathology (FFM-CP), which is a framework that combines multiple pathology vision-language models in the few-shot learning setting. The framework first aligns heterogeneous representations using a closed-form Orthogonal Procrustes transformation estimated from corresponding support images. This alignment preserves within-model feature geometry without training an additional alignment network. Within the aligned space, a unified graph enables information exchange across backbones by jointly refining support-image features and visual and textual class prototypes. These refined representations support complementary text-prototype and case-retrieval branches that capture semantic class knowledge and within-class visual variation, respectively. Each branch learns to combine predictions from all ordered backbone pairs, allowing queries encoded by one model to draw on evidence represented by another. We evaluate three backbone combinations on six histopathology datasets at 4, 8, and 16 shots per class. FFM-CP achieves higher mean macro-F1 than the strongest individually adapted member of each fused set in 50 of 54 comparisons. These findings suggest that combining complementary pretrained representations can improve histopathological classification when annotations are limited.",
+      "published": "2026-09-23T11:28:09Z",
+      "url": "https://arxiv.org/abs/2609.27710",
+      "pdfUrl": "https://arxiv.org/pdf/2609.27710",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-09-25T06:18:43.826Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.27710",
+      "updated": "2026-09-23",
+      "affiliations": [
+        "Justus Liebig University Giessen",
+        "University Medical Center Göttingen",
+        "Technical University of Denmark",
+        "Mohamed bin Zayed University of Artificial Intelligence",
+        "Max Planck Institute for Biology of Ageing",
+        "National Taiwan University",
+        "VNU University of Medicine and Pharmacy",
+        "Hue University",
+        "DFKI",
+        "University of Stuttgart / IMPRS-IS",
+        "University of Oldenburg"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.27710v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "德国医学信息学、DFKI、DTU 等合作；六个病理数据集的少样本跨编码器融合，适合方法对照。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2609.21953",
+      "domain": "pathology",
+      "title": "RACER: Role-Aligned Competence Estimation for Human-AI Routing",
+      "authors": [
+        "Joshua Strong",
+        "Emma Sun",
+        "Alexander Capstick",
+        "Pramit Saha",
+        "Cheng Ouyang",
+        "J. Alison Noble"
+      ],
+      "summary": "Learning to defer asks a predictive system when to act autonomously and when to defer to a human expert. Population-adaptive deferral extends this problem to unseen experts using a small context set of expert behavior. Neural context encoders such as L2D-Pop can be query-dependent, but may learn routing shortcuts tied to absolute class coordinates. Identity-Free Deferral (IFD) removes such shortcuts through role-indexed classwise competence profiles, but its estimates are constant within each class and cannot capture instance-level expert specialization. We propose RACER---Role-Aligned Competence Estimation for Routing---a role-relative framework for estimating an unseen expert's competence from context. RACER estimates the posterior-predictive probability that the expert is correct on a query under each candidate class role, then combines these estimates with the model posterior to obtain the Bayes-relevant expert-correctness probability. Nonparametric and neural kernel-pooling estimators use candidate-role relations, shared aggregation, and symmetric summaries, excluding absolute class-identity channels. We prove coherent class-relabelling invariance, derive a Bayes-aligned deferral surrogate, and give a plug-in regret bound relating routing regret to classifier and competence-estimation error. On controlled synthetic benchmarks, including a PathMNIST histopathology context-scaling study with simulated experts, RACER benefits from additional context under hidden subtype dependence and gives the strongest aggregate performance on a separately sampled unseen-expert split in the CIFAR-100 synthetic experiments. On the radiologist and human--AI chest-radiography benchmarks (VinDr-CXR and CheXpert), the RACER family is competitive or best in budget-swept deferral, with calibration results varying across metrics and datasets.",
+      "published": "2026-09-18T16:11:05Z",
+      "url": "https://arxiv.org/abs/2609.21953",
+      "pdfUrl": "https://arxiv.org/pdf/2609.21953",
+      "matchedKeywords": [
+        "pathology",
+        "histopathology"
+      ],
+      "discoverySource": "https://arxiv.org/search/?query=%22computational+pathology%22+OR+%22whole+slide+image%22+OR+histopathology&searchtype=all&abstracts=show&order=-announced_date_first&size=100",
+      "firstSeen": "2026-09-22T16:29:59.549Z",
+      "lastSeen": "2026-10-12T03:31:48.602Z",
+      "dateSource": "https://arxiv.org/abs/2609.21953",
+      "updated": "2026-09-18",
+      "affiliations": [
+        "University of Oxford"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2609.21953v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "reason": "牛津工程科学团队；人机转交的理论与影像基准，但作者明确标为 work in progress，需保留阶段性判断。",
+        "checkedAt": "2026-10-12",
+        "priority": 2
+      }
+    },
+    {
+      "id": "2607.17782",
+      "domain": "mri",
+      "title": "BrainNext: A General-Purpose Self-Supervised Foundation Model for Brain MRI Analysis",
+      "authors": [
+        "Mazher, Moona",
+        "Qayyum, Abdul",
+        "Niederer, Steven A.",
+        "Alexander, Daniel C."
+      ],
+      "summary": "Foundation models pretrained using self-supervised learning have transformed computer vision by learning transferable representations from large-scale unlabeled data. However, existing foundation models for neuroimaging remain limited by task-specific training, slice-based learning strategies, or relatively small pretraining datasets, restricting their generalizability across diverse brain MRI applications. In this work, we present BrainNext, a general-purpose self-supervised foundation model for volumetric brain MRI analysis. BrainNext combines masked autoencoder (MAE) pretraining with a native three-dimensional Bi-Directional xLSTM-UNet architecture to learn rich anatomical representations from 60,551 unlabeled brain MRI examinations spanning multiple MRI modalities. The pretrained model is subsequently adapted to downstream tasks through lightweight task-specific fine-tuning. We evaluate BrainNext on the Foundation Models for Medical Imaging (FOMO) 2025 Method Track, encompassing classification, segmentation, and brain-age estimation, where it achieved second place overall and ranked first in the meningioma segmentation task on the official FOMO 2025 challenge leaderboard, demonstrating strong transferability across heterogeneous neuroimaging tasks. These results highlight the potential of large-scale self-supervised pretraining to learn robust and transferable volumetric representations, establishing BrainNext as a scalable foundation model for diverse brain MRI applications.",
+      "published": "2026-07-20T10:15:02Z",
+      "dateSource": "https://arxiv.org/abs/2607.17782",
+      "url": "https://arxiv.org/abs/2607.17782",
+      "pdfUrl": "https://arxiv.org/pdf/2607.17782",
+      "matchedKeywords": [
+        "MRI"
+      ],
+      "affiliations": [
+        "University College London",
+        "Imperial College London",
+        "Stanford University"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/pdf/2607.17782v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "三维脑 MRI 自监督基础模型，在 FOMO 分类、分割与脑龄任务上评测。适合了解可迁移体积表示；大规模预训练与权重获取需另核对。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:15.987Z"
+    },
+    {
+      "id": "2512.02497",
+      "domain": "mri",
+      "title": "A Large Scale Benchmark for Test Time Adaptation Methods in Medical Image Segmentation",
+      "authors": [
+        "Yu, Wenjing",
+        "Jiang, Shuo",
+        "Chen, Yifei",
+        "Chang, Shuo",
+        "Wang, Yuanhan",
+        "Wu, Beining",
+        "Dong, Jie",
+        "Liu, Mingxuan",
+        "Zhu, Shenghao",
+        "Qin, Feiwei",
+        "Wang, Changmiao",
+        "Tian, Qiyuan"
+      ],
+      "summary": "Test time Adaptation is a promising approach for mitigating domain shift in medical image segmentation; however, current evaluations remain limited in terms of modality coverage, task diversity, and methodological consistency. We present MedSeg-TTA, a comprehensive benchmark that examines twenty representative adaptation methods across seven imaging modalities, including MRI, CT, ultrasound, pathology, dermoscopy, OCT, and chest X-ray, under fully unified data preprocessing, backbone configuration, and test time protocols. The benchmark encompasses four significant adaptation paradigms: Input-level Transformation, Feature-level Alignment, Output-level Regularization, and Prior Estimation, enabling the first systematic cross-modality comparison of their reliability and applicability. The results show that no single paradigm performs best in all conditions. Input-level methods are more stable under mild appearance shifts. Feature-level and Output-level methods offer greater advantages in boundary-related metrics, whereas prior-based methods exhibit strong modality dependence. Several methods degrade significantly under large inter-center and inter-device shifts, which highlights the importance of principled method selection for clinical deployment. MedSeg-TTA provides standardized datasets, validated implementations, and a public leaderboard, establishing a rigorous foundation for future research on robust, clinically reliable test-time adaptation. All source codes and open-source datasets are available at this https URL.",
+      "published": "2025-12-02T07:40:42Z",
+      "dateSource": "https://arxiv.org/abs/2512.02497",
+      "url": "https://arxiv.org/abs/2512.02497",
+      "pdfUrl": "https://arxiv.org/pdf/2512.02497",
+      "matchedKeywords": [
+        "MRI"
+      ],
+      "affiliations": [
+        "Hangzhou Dianzi University",
+        "Tsinghua University",
+        "Shenzhen Research Institute of Big Data"
+      ],
+      "affiliationSources": [
+        {
+          "label": "作者原文首页（v1）",
+          "url": "https://arxiv.org/html/2512.02497v1"
+        }
+      ],
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "MedSeg-TTA 比较二十种适配方法、七种模态，包含 MRI 脑肿瘤分割；公开代码。适合作为跨域适配基线阅读，非 MRI 重建论文；原文模板的期刊栏不视为接收证明。",
+        "checkedAt": "2026-10-12"
+      },
+      "firstSeen": "2026-10-12T03:48:15.870Z"
+    }
+  ]
+}
