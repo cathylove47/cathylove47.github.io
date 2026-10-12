@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 450" width="360" height="450" role="img" aria-labelledby="chTitle chDesc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <title id="chTitle">2024 真题数据里 d 的依附链，字段会在 ilink 与 jlink 之间切换</title>
+  <desc id="chDesc">当前顶点固定为 d。d.firstedge 给出边结点④，④的 ivex 正是 d，所以走 ④.ilink 到 ⑦；⑦的 jvex 是 d，所以走 ⑦.jlink 到 ⑥；⑥的 jvex 是 d，所以走 ⑥.jlink 到 ②；②的 jvex 是 d，走 ②.jlink 得到空指针，链结束。整条链是 ④→⑦→⑥→②，长度 4，正好等于 d 的度；同一条链上前一步走 ilink、后面几步走 jlink，因为每次命中的下标域不同。</desc>
+  <rect x="0" y="0" width="360" height="450" fill="#fffdf7"/>
+
+  <text x="14" y="28" font-size="18" font-weight="700" fill="#1f2937">d 的依附链：当前顶点不动</text>
+  <text x="14" y="52" font-size="13" fill="#6b7280">固定 v = d，只比 ivex / jvex，命中哪个就走同名指针</text>
+  <text x="14" y="72" font-size="13" fill="#6b7280">起点：d.firstedge = ④</text>
+
+  <rect x="20" y="80" width="320" height="42" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="46" y="106" font-size="15" font-weight="700" fill="#b45309" text-anchor="middle">④</text>
+  <line x1="76" y1="80" x2="76" y2="122" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="198" y1="80" x2="198" y2="122" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="77" y="81" width="121" height="40" fill="#fef3c7"/>
+  <text x="137" y="106" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">ivex = d (3) ✓</text>
+  <text x="268" y="106" font-size="14" fill="#334155" text-anchor="middle">jvex = c (2)</text>
+
+  <line x1="180" y1="122" x2="180" y2="146" stroke="#2563eb" stroke-width="1.8"/>
+  <path d="M180 150l-4-7h8z" fill="#2563eb"/>
+  <text x="14" y="143" font-size="13" fill="#2563eb">d 命中 ivex → 走 ④.ilink</text>
+
+  <rect x="20" y="154" width="320" height="42" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="46" y="180" font-size="15" font-weight="700" fill="#b45309" text-anchor="middle">⑦</text>
+  <line x1="76" y1="154" x2="76" y2="196" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="198" y1="154" x2="198" y2="196" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="137" y="180" font-size="14" fill="#334155" text-anchor="middle">ivex = e (4)</text>
+  <rect x="199" y="155" width="120" height="40" fill="#fef3c7"/>
+  <text x="259" y="180" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">jvex = d (3) ✓</text>
+
+  <line x1="180" y1="196" x2="180" y2="220" stroke="#2563eb" stroke-width="1.8"/>
+  <path d="M180 224l-4-7h8z" fill="#2563eb"/>
+  <text x="14" y="217" font-size="13" fill="#2563eb">d 命中 jvex → 走 ⑦.jlink</text>
+
+  <rect x="20" y="228" width="320" height="42" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="46" y="254" font-size="15" font-weight="700" fill="#b45309" text-anchor="middle">⑥</text>
+  <line x1="76" y1="228" x2="76" y2="270" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="198" y1="228" x2="198" y2="270" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="137" y="254" font-size="14" fill="#334155" text-anchor="middle">ivex = a (0)</text>
+  <rect x="199" y="229" width="120" height="40" fill="#fef3c7"/>
+  <text x="259" y="254" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">jvex = d (3) ✓</text>
+
+  <line x1="180" y1="270" x2="180" y2="294" stroke="#2563eb" stroke-width="1.8"/>
+  <path d="M180 298l-4-7h8z" fill="#2563eb"/>
+  <text x="14" y="291" font-size="13" fill="#2563eb">d 命中 jvex → 走 ⑥.jlink</text>
+
+  <rect x="20" y="302" width="320" height="42" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="46" y="328" font-size="15" font-weight="700" fill="#b45309" text-anchor="middle">②</text>
+  <line x1="76" y1="302" x2="76" y2="344" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="198" y1="302" x2="198" y2="344" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="137" y="328" font-size="14" fill="#334155" text-anchor="middle">ivex = b (1)</text>
+  <rect x="199" y="303" width="120" height="40" fill="#fef3c7"/>
+  <text x="259" y="328" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">jvex = d (3) ✓</text>
+
+  <text x="14" y="370" font-size="13" fill="#6b7280">②.jlink = ∧（空指针）→ 链结束</text>
+
+  <rect x="8" y="382" width="344" height="58" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="20" y="404" font-size="12.5" font-weight="700" fill="#166534">链 = ④ → ⑦ → ⑥ → ②，链长 4 = d 的度 ✓</text>
+  <text x="20" y="426" font-size="12.5" font-weight="700" fill="#166534">同一条链上先走 ilink、后走 jlink：命中哪列由当前顶点决定</text>
+</svg>

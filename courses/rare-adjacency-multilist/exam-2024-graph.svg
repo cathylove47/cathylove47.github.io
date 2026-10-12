@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" width="360" height="400" role="img" aria-labelledby="g24Title g24Desc" font-family="'Microsoft YaHei','PingFang SC',sans-serif">
+  <title id="g24Title">2024 真题第 4 题的邻接多重表还原出的无向图</title>
+  <desc id="g24Desc">把 7 个边结点的 ivex 与 jvex 两两连起来得到无向图：①是 a—b，②是 b—d，③是 c—a，④是 c—d，⑤是 c—e，⑥是 a—d，⑦是 d—e。顶点 a、b、c、d、e 对应下标 0 到 4。d 依附 4 条边，b 依附 2 条边，2024 真题问的正是 b 与 d 的度。线段两端不画箭头，因为是无向图。</desc>
+  <rect x="0" y="0" width="360" height="400" fill="#fffdf7"/>
+
+  <text x="14" y="28" font-size="18" font-weight="700" fill="#1f2937">① 7 个边结点 = 7 条边</text>
+  <text x="14" y="52" font-size="14" fill="#6b7280">把每个边结点的 ivex、jvex 连起来就得到这张图</text>
+
+  <g stroke="#334155" stroke-width="1.8">
+    <line x1="70" y1="100" x2="290" y2="100"/>
+    <line x1="290" y1="100" x2="180" y2="195"/>
+    <line x1="70" y1="100" x2="70" y2="290"/>
+    <line x1="70" y1="290" x2="180" y2="195"/>
+    <line x1="70" y1="290" x2="290" y2="290"/>
+    <line x1="70" y1="100" x2="180" y2="195"/>
+    <line x1="180" y1="195" x2="290" y2="290"/>
+  </g>
+
+  <g font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">
+    <text x="180" y="90">①</text>
+    <text x="250" y="132">②</text>
+    <text x="52" y="202">③</text>
+    <text x="103" y="260">④</text>
+    <text x="180" y="312">⑤</text>
+    <text x="101" y="134">⑥</text>
+    <text x="252" y="260">⑦</text>
+  </g>
+
+  <g stroke="#2563eb" stroke-width="2" fill="#dbeafe">
+    <circle cx="70" cy="100" r="18"/>
+    <circle cx="290" cy="100" r="18"/>
+    <circle cx="70" cy="290" r="18"/>
+    <circle cx="290" cy="290" r="18"/>
+    <circle cx="180" cy="195" r="18"/>
+  </g>
+  <g font-size="16" font-weight="700" fill="#1e3a8a" text-anchor="middle">
+    <text x="70" y="106">a</text>
+    <text x="290" y="106">b</text>
+    <text x="70" y="296">c</text>
+    <text x="290" y="296">e</text>
+    <text x="180" y="201">d</text>
+  </g>
+
+  <rect x="8" y="330" width="344" height="58" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="20" y="352" font-size="12.5" font-weight="700" fill="#166534">d 依附 4 条边：②(b—d) ④(c—d) ⑥(a—d) ⑦(d—e)</text>
+  <text x="20" y="374" font-size="12.5" font-weight="700" fill="#166534">b 依附 2 条边：①(a—b) ②(b—d) ← 真题问的就是它们</text>
+</svg>
