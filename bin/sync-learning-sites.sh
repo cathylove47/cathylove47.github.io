@@ -8,7 +8,9 @@ for site in pathology-atlas courses; do
   if [ "$site" = pathology-atlas ]; then
     BUILD_DIR=paper-reading-atlas/dist/static
   else
-    BUILD_DIR=paper-reading-atlas/dist/courses
+    # 课程站已拆到 cathylove47/course-notes，构建产物在仓库外的同级克隆；
+    # 该目录不存在时下面会回退到 origin/main 上已发布的 courses/。
+    BUILD_DIR=../course-notes/dist/courses
   fi
   mkdir -p public
   if [ -d "$BUILD_DIR" ]; then
