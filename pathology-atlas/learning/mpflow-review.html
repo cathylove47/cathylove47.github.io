@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="MPFlow（MICCAI 2026）的公开评审记录分析：3/5/4 的三条审稿意见、作者 rebuttal 补出的对照实验、以及三条互相矛盾的 meta-review，逐条对照来源。"><meta name="theme-color" content="#f6f4ee"><meta name="miccai-review-source" content="https://papers.miccai.org/miccai-2026/0671-Paper2812.html"><title>MPFlow 审稿人分析｜一篇 3/5/4 是怎么定局的</title><link rel="stylesheet" href="dds-story.css"><style id="review-record-style">/* review-record:start */
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="MPFlow（MICCAI 2026）的公开评审记录分析：3/5/4 的三条审稿意见、作者 rebuttal 补出的对照实验、以及三条互相矛盾的 meta-review，逐条对照来源。"><meta name="theme-color" content="#f6f4ee"><meta name="miccai-review-source" content="https://papers.miccai.org/miccai-2026/0671-Paper2812.html"><title>MPFlow 审稿人分析｜一篇 3/5/4 是怎么定局的</title><link rel="stylesheet" href="dds-story.css"><style>
+/* 本页三张对照表列多、单元格文字长，共享样式的 th,td { white-space: nowrap } 会把最后一列
+   （「状态」「rebuttal 后」）挤出可视区，而那一列正是结论所在。这里只让本页表格换行。 */
+main table th, main table td { white-space: normal; vertical-align: top; overflow-wrap: anywhere; }
+main table { margin: 18px 0 22px; }
+main table td:first-child { min-width: 30%; }
+</style><style id="review-record-style">/* review-record:start */
 .record-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
 .record-facts li { border: 1px solid var(--line); border-radius: 10px; background: var(--white); padding: 8px 10px; font-size: 13px; line-height: 1.6; }
 .record-facts li span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
@@ -22,15 +28,35 @@
 .record-body p { margin: 0 0 10px; }
 .record-body code { font-size: 12.5px; }
 .record-bibtex { margin: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--white); padding: 12px 14px; overflow-x: auto; font-size: 12.5px; line-height: 1.7; white-space: pre; }
-@media (max-width: 720px) { .record-review { padding: 14px; } .record-facts { grid-template-columns: 1fr; } }
+.record-index { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+.record-index a { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); padding: 8px 12px; font-size: 12px; text-decoration: none; color: var(--ink); min-width: 150px; }
+.record-index a:hover { border-color: var(--green); }
+.record-index b { font-size: 12.5px; font-weight: 600; }
+.record-index small { color: var(--muted); font-size: 11px; }
+.record-index em { font-style: normal; color: var(--green); font-size: 11.5px; }
+.record-index em.is-reject { color: var(--coral); }
+.record-index em.is-neutral { color: var(--muted); }
+.record-review:target { border-color: var(--green); box-shadow: 0 0 0 3px rgba(11, 117, 100, .08); }
+@media (max-width: 720px) { .record-review { padding: 14px; } .record-facts { grid-template-columns: 1fr; } .record-index a { min-width: 0; flex: 1 1 140px; } }
 /* review-record:end */</style></head>
 <body>
-<header class="topbar"><div class="topbar-inner"><a class="brand" href="../"><span class="brand-symbol">P</span>论文精读地图 <span style="color:var(--muted)">/ MRI 阅读室</span></a><div class="toplinks"><a href="mri-generative-route.html">生成式 MRI 学习路线</a><a href="#sources">来源与核验 ↗</a></div></div></header>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../"><span class="brand-symbol">P</span>论文精读地图 <span style="color:var(--muted)">/ MRI 阅读室</span></a><div class="toplinks"><a href="mri-generative-route.html">生成式 MRI 学习路线</a><a href="#sources">来源与核验 ↗</a></div><div class="progress-line" id="reading-progress"></div></div></header>
 <div class="paper-doc" data-paper-id="mpflow-miccai-2026-2812">
-<aside class="paper-sidebar" aria-label="内容阅读地图"><p class="side-eyebrow">A REVIEW TRAIL</p><nav><a href="#verdict"><b>00</b>先看结论</a><a href="#scores"><b>01</b>三条意见的立场</a><a href="#concerns"><b>02</b>八条关切，解决了几条</a><a href="#rebuttal"><b>03</b>rebuttal 补出的数字</a><a href="#meta"><b>04</b>meta-review 为什么互相打架</a><a href="#lessons"><b>05</b>对你自己投稿的含义</a><a href="#repro"><b>06</b>复现视角</a><a href="#record"><b>07</b>完整评审记录</a><a href="#sources"><b>↗</b>来源与核验</a></nav>
+<aside class="paper-sidebar" aria-label="内容阅读地图"><p class="side-eyebrow">A REVIEW TRAIL</p><nav><a href="#verdict"><b>00</b>先看结论</a><a href="#scores"><b>01</b>三条意见的立场</a><a href="#concerns"><b>02</b>八条关切，解决了几条</a><a href="#rebuttal"><b>03</b>rebuttal 补出的数字</a><a href="#meta"><b>04</b>meta-review 的分歧</a><a href="#lessons"><b>05</b>对你自己投稿的含义</a><a href="#repro"><b>06</b>复现视角</a><a href="#record"><b>07</b>完整评审记录</a><a href="#sources"><b>↗</b>来源与核验</a></nav>
 <div class="sidebar-foot"><strong>MPFlow · MICCAI 2026</strong>评审记录分析<br>审稿 3 条 · meta-review 3 条<br>抓取 2026-10-14</div></aside>
 <main class="paper-main">
-<section class="opening"><p class="eyebrow">MICCAI 2026 · 评审记录公开页 · 抓取于 2026-10-14</p><h1>MPFlow 的评审记录：一篇 3/5/4 是怎么定局的</h1><p class="opening-deck">零样本 MRI 重建论文 MPFlow：三位审稿人给出 3 分、5 分、4 分，作者用一次 rebuttal 补了三组对照实验，最后三条 meta-review 给出接受、拒绝、接受。分歧不在技术细节，而在两件事——补做的实验能不能算数，以及「范围限制」算不算致命缺陷。</p><div class="publication"><span class="highlight">MICCAI 2026 · LNCS 16888</span><span>Kim, Jin, Tregidgo, Figini, Alexander</span><span>零样本多模态重建</span><span>代码已公开</span></div></section>
+<section class="opening"><p class="eyebrow">MPFlow · MICCAI 2026 · 评审记录公开页 · 抓取于 2026-10-14</p><div class="opening-grid"><div><h1>一篇 3/5/4，<br><em>是怎么定局的。</em></h1><p class="opening-deck">零样本 MRI 重建论文 MPFlow：三位审稿人给出 3 分、5 分、4 分，作者用一次 rebuttal 补了三组对照实验，最后三条 meta-review 给出接受、拒绝、接受。分歧不在技术细节，而在两件事——补做的实验能不能算数，以及「范围限制」算不算致命缺陷。</p><div class="publication"><span class="highlight">MICCAI 2026 · LNCS 16888</span><span>Kim, Jin, Tregidgo, Figini, Alexander</span><span>零样本多模态重建</span><span>代码已公开</span></div></div><div class="cover-visual"><span class="visual-tag">HOW IT ENDED</span><svg viewBox="0 0 360 210" width="360" height="210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Microsoft YaHei, sans-serif" role="img" aria-label="三条审稿意见的初始评分与 rebuttal 后终评，以及三条互相矛盾的 meta-review 推荐">
+<defs><marker id="rv-down" markerWidth="7" markerHeight="7" refX="3" refY="6" orient="auto"><path d="M0 0 L3 6 L6 0" fill="none" stroke="#9cbaaf" stroke-width="1.2"/></marker></defs>
+<text x="16" y="18" font-size="10" fill="#9cbaaf" letter-spacing="1">初始评分</text>
+<rect x="16" y="30" width="96" height="62" fill="#2f4a45" stroke="#9cbaaf"/><text x="28" y="48" font-size="10" fill="#9cbaaf">R1</text><text x="64" y="76" font-size="28" fill="#f6f4ee" text-anchor="middle">3</text>
+<rect x="132" y="30" width="96" height="62" fill="#2f4a45" stroke="#9cbaaf"/><text x="144" y="48" font-size="10" fill="#9cbaaf">R2</text><text x="180" y="76" font-size="28" fill="#f6f4ee" text-anchor="middle">5</text>
+<rect x="248" y="30" width="96" height="62" fill="#2f4a45" stroke="#9cbaaf"/><text x="260" y="48" font-size="10" fill="#9cbaaf">R3</text><text x="296" y="76" font-size="28" fill="#f6f4ee" text-anchor="middle">4</text>
+<path d="M64 98 L64 112" stroke="#9cbaaf" marker-end="url(#rv-down)"/><path d="M180 98 L180 112" stroke="#9cbaaf" marker-end="url(#rv-down)"/><path d="M296 98 L296 112" stroke="#9cbaaf" marker-end="url(#rv-down)"/>
+<text x="64" y="132" font-size="12" fill="#e8a08e" text-anchor="middle">Reject</text><text x="180" y="132" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text><text x="296" y="132" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text>
+<line x1="16" y1="150" x2="344" y2="150" stroke="#2f4a45"/>
+<text x="16" y="170" font-size="10" fill="#9cbaaf" letter-spacing="1">meta-review 推荐</text>
+<text x="64" y="194" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text><text x="180" y="194" font-size="12" fill="#e8a08e" text-anchor="middle">Reject</text><text x="296" y="194" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text>
+</svg></div></div><div class="cover-caption">上排为三位审稿人的初始评分与 rebuttal 后终评，下排为三条 meta-review 的推荐。数据逐项转录自公开评审页，示意图为本站重绘。</div></section>
 
 <section class="chapter" id="verdict"><div class="chapter-heading"><span class="chapter-number">00</span><h2>先看结论</h2></div><div class="narrative"><p>三位审稿人的初始评分是 <strong>3 / 5 / 4</strong>，rebuttal 之后三人分别给出 <strong>Reject / Accept / Accept</strong>；三条 meta-review 是 <strong>Accept / Reject / Accept</strong>。论文随后出现在 MICCAI 2026 论文集里（LNCS 16888 卷、有 Open Access 版本与正式 BibTeX），因此可以判断最终被接收。</p><p>需要标清的一件事：<strong>评审页本身没有写出最终决定</strong>，「最终接收」是本站依据刊登事实与卷号推断的，不是页面上的原文。同样地，meta-review 的意见只是推荐，不是决定。</p></div>
 <div class="facts-grid"><div><b>3 / 5 / 4</b><p>三条初始评分；rebuttal 后变成 Reject / Accept / Accept。</p></div><div><b>2 : 1</b><p>meta-review 的接受与拒绝之比。分歧点写在 04 节。</p></div><div><b>240 NFE</b><p>作者自陈的等效采样次数：初始噪声筛选 8×20 加上主体 80，约为标称 T=100 的 2.4 倍。</p></div></div>
@@ -64,12 +90,13 @@
 
 <section class="chapter" id="repro"><div class="chapter-heading"><span class="chapter-number">06</span><h2>复现视角</h2></div><div class="narrative"><p>以下信息全部来自评审页（摘要、作者反馈与审稿意见），本站未运行代码、未核对正文公式细节。</p></div>
 <div class="facts-grid"><div><b>HCP + BraTS</b><p>两个评测任务：HCP 的 T2 超分，BraTS 的仿真加速重建；辅助模态是全采样的 T1。</p></div><div><b>240</b><p>作者自陈的等效 NFE：初始噪声筛选 8 次候选、每次 20 步，加主体 80 步。要做公平对比就得对齐这个预算。</p></div><div><b>成对配准数据</b><p>PAMRI 需要目标域上成对、已配准的多模态数据做预训练，作者在 rebuttal 中承诺在摘要里写明这一点。</p></div></div>
-<div class="aside-note"><strong>先要弄清的三件事。</strong>1. <code>P(·)</code> 的区块划分与脑掩码规则只出现在 rebuttal 里，正文若未补写，实现就依赖代码。2. 辅助模态在评测中始终是全采样的，这在真实流程里通常不成立——注册误差的影响未被压测。3. 复值/多线圈设定只是「换前向算子即可扩展」的推断，没有实验支撑。</div>
+<div class="aside-note"><strong>先要弄清的三件事。</strong><ol class="record-body" style="margin:8px 0 0;padding-left:20px"><li><code>P(·)</code> 的区块划分与脑掩码规则只出现在 rebuttal 里；正文若未补写，实现就依赖代码。</li><li>辅助模态在评测中始终是全采样的，这在真实流程里通常不成立——配准误差的影响未被压测。</li><li>复值 / 多线圈设定只是「换前向算子即可扩展」的推断，没有实验支撑。</li></ol></div>
 </section>
 
 <section class="chapter" id="record"><div class="chapter-heading"><span class="chapter-number">07</span><h2>完整评审记录（原文）</h2></div><p class="read-guide">以下内容由 <code>scripts/fetch-miccai-reviews.mjs</code> 从来源页机械导入，文字未经改写、未做压缩：摘要、BibTeX、三条审稿意见（含 rebuttal 后终评）、作者反馈、三条 meta-review。段落是评审页原文，评分与置信度徽章由脚本从原文中抽取；中文分析与判断在 00–06 节。</p>
 <!-- review-record:start -->
 <ul class="record-facts"><li><span>标题</span>MPFlow: Multi-modal Posterior-Guided Flow Matching for Zero-Shot MRI Reconstruction</li><li><span>作者</span>Kim, Seunghoi · Jin, Chen · Tregidgo, Henry F. J. · Figini, Matteo · Alexander, Daniel C.</li><li><span>来源站点</span>MICCAI 2026 - Open Access</li><li><span>页面发布</span>2026-09-21</li><li><span>抓取时间</span>2026-10-14</li><li><span>审稿意见</span>3 条（评分 3 / 5 / 4）</li><li><span>meta-review</span>3 条</li></ul>
+<nav aria-label="评审记录索引"><ul class="record-index"><li><a href="#record-review-1"><b>Review #1</b><small>初评 (3) Weak Reject · 置信度 4</small><em class="is-reject">rebuttal 后 Reject</em></a></li><li><a href="#record-review-2"><b>Review #2</b><small>初评 (5) Accept · 置信度 4</small><em>rebuttal 后 Accept</em></a></li><li><a href="#record-review-3"><b>Review #3</b><small>初评 (4) Weak Accept · 置信度 3</small><em>rebuttal 后 Accept</em></a></li><li><a href="#record-meta-review-1"><b>Meta-review #1</b><small>meta-review 推荐</small><em class="is-neutral">推荐 Invite for Rebuttal</em></a></li><li><a href="#record-meta-review-2"><b>Meta-review #2</b><small>meta-review 推荐</small><em class="is-reject">推荐 Reject</em></a></li><li><a href="#record-meta-review-3"><b>Meta-review #3</b><small>meta-review 推荐</small><em>推荐 Accept</em></a></li></ul></nav>
 <h3 class="record-h">原文页面上的链接</h3><ul class="record-links"><li><a href="https://papers.miccai.org/miccai-2026/paper/2812_paper.pdf" target="_blank" rel="noreferrer">https://papers.miccai.org/miccai-2026/paper/2812_paper.pdf ↗</a></li><li><a href="https://github.com/edshkim98/MPFlow" target="_blank" rel="noreferrer">https://github.com/edshkim98/MPFlow ↗</a></li></ul>
 <h3 class="record-h">摘要 <small>原文照抄</small></h3><div class="record-body"><p>Zero-shot MRI reconstruction relies on generative priors, but single-modality unconditional priors produce hallucinations under severe ill-posedness.
 In many clinical workflows, complementary MRI acquisitions (e.g. high-quality structural scans) are routinely available, yet existing reconstruction methods lack mechanisms to leverage this additional information.
@@ -91,7 +118,7 @@ Extensive experiments on HCP and BraTS show that MPFlow matches diffusion baseli
 
 </code></pre>
 <h3 class="record-h">审稿意见 <small>原文照抄 · 徽章由脚本从原文抽取</small></h3>
-<article class="record-review"><div class="record-review__head"><b>Review #1</b><span class="record-badge is-reject">(3) Weak Reject</span><span class="record-badge">置信度 4 · Very confident</span><span class="record-badge is-reject">rebuttal 后：Reject</span></div><div class="record-body"><ul>
+<article class="record-review" id="record-review-1"><div class="record-review__head"><b>Review #1</b><span class="record-badge is-reject">(3) Weak Reject</span><span class="record-badge">置信度 4 · Very confident</span><span class="record-badge is-reject">rebuttal 后：Reject</span></div><div class="record-body"><ul>
   <li><strong>Please describe the contribution of the paper</strong>
     <blockquote>
       <p>The paper proposed a flow matching-based posterior sampling method that leverages multi-modal information learned from contrastive learning. Experiments demonstrated the effectiveness of the proposed component.</p>
@@ -158,7 +185,7 @@ Extensive experiments on HCP and BraTS show that MPFlow matches diffusion baseli
 </ul>
 
 <p><br /><br /></p></div></article>
-<article class="record-review"><div class="record-review__head"><b>Review #2</b><span class="record-badge is-accept">(5) Accept</span><span class="record-badge">置信度 4 · Very confident</span><span class="record-badge is-accept">rebuttal 后：Accept</span></div><div class="record-body"><ul>
+<article class="record-review" id="record-review-2"><div class="record-review__head"><b>Review #2</b><span class="record-badge is-accept">(5) Accept</span><span class="record-badge">置信度 4 · Very confident</span><span class="record-badge is-accept">rebuttal 后：Accept</span></div><div class="record-body"><ul>
   <li><strong>Please describe the contribution of the paper</strong>
     <blockquote>
       <p>The paper makes a strong and well-motivated contribution to zero-shot MRI reconstruction. Its central idea—integrating auxiliary anatomical information into a posterior-guided generative reconstruction framework—is both elegant and conceptually insightful. In particular, the proposed method leverages auxiliary MR images at inference time, without requiring retraining or modification of the generative prior itself.</p>
@@ -238,7 +265,7 @@ Extensive experiments on HCP and BraTS show that MPFlow matches diffusion baseli
 </ul>
 
 <p><br /><br /></p></div></article>
-<article class="record-review"><div class="record-review__head"><b>Review #3</b><span class="record-badge is-accept">(4) Weak Accept</span><span class="record-badge">置信度 3 · Confident but not absolutely certain</span><span class="record-badge is-accept">rebuttal 后：Accept</span></div><div class="record-body"><ul>
+<article class="record-review" id="record-review-3"><div class="record-review__head"><b>Review #3</b><span class="record-badge is-accept">(4) Weak Accept</span><span class="record-badge">置信度 3 · Confident but not absolutely certain</span><span class="record-badge is-accept">rebuttal 后：Accept</span></div><div class="record-body"><ul>
   <li><strong>Please describe the contribution of the paper</strong>
     <blockquote>
       <p>This paper proposes MPFlow, a framework for zero-shot MRI reconstruction that introduces an auxiliary MRI modality as inference-time posterior guidance without retraining the unconditional generative prior. The method consists of two components: (1) PAMRI, a self-supervised patch-level cross-modal pretraining module that learns shared representations between target and auxiliary modalities; and (2) a multi-modal posterior-guided flow matching procedure that injects both data-consistency and PAMRI feature-alignment gradients into a rectified flow sampler, together with an initial noise selection mechanism. Experiments are conducted on HCP T2 super-resolution and BraTS FLAIR accelerated reconstruction, using fully-sampled T1 as the auxiliary modality. The authors report improvements in image quality metrics (PSNR, SSIM, LPIPS) and in hallucination-related indicators (SHAFE and tumor segmentation Dice).</p>
@@ -335,7 +362,7 @@ Multi-auxiliary and registration [R3.12.3-4]: We agree multi-auxiliary scalabili
 
 <p><br /><br /></p></div>
 <h3 class="record-h">meta-review <small>原文照抄</small></h3>
-<article class="record-review"><div class="record-review__head"><b>Meta-review #1</b><span class="record-badge">推荐：Invite for Rebuttal</span></div><div class="record-body"><ul>
+<article class="record-review" id="record-meta-review-1"><div class="record-review__head"><b>Meta-review #1</b><span class="record-badge">推荐：Invite for Rebuttal</span></div><div class="record-body"><ul>
   <li><strong>Your recommendation</strong>
     <blockquote>
       <p>Invite for Rebuttal</p>
@@ -363,7 +390,7 @@ Multi-auxiliary and registration [R3.12.3-4]: We agree multi-auxiliary scalabili
 </ul>
 
 <p><br /><br /></p></div></article>
-<article class="record-review"><div class="record-review__head"><b>Meta-review #2</b><span class="record-badge is-reject">推荐：Reject</span></div><div class="record-body"><ul>
+<article class="record-review" id="record-meta-review-2"><div class="record-review__head"><b>Meta-review #2</b><span class="record-badge is-reject">推荐：Reject</span></div><div class="record-body"><ul>
   <li><strong>After you have reviewed the rebuttal and updated reviews, please provide your recommendation based on all reviews and the authors’ rebuttal.</strong>
     <blockquote>
       <p>Reject</p>
@@ -381,7 +408,7 @@ Multi-auxiliary and registration [R3.12.3-4]: We agree multi-auxiliary scalabili
 </ul>
 
 <p><br /><br /></p></div></article>
-<article class="record-review"><div class="record-review__head"><b>Meta-review #3</b><span class="record-badge is-accept">推荐：Accept</span></div><div class="record-body"><ul>
+<article class="record-review" id="record-meta-review-3"><div class="record-review__head"><b>Meta-review #3</b><span class="record-badge is-accept">推荐：Accept</span></div><div class="record-body"><ul>
   <li><strong>After you have reviewed the rebuttal and updated reviews, please provide your recommendation based on all reviews and the authors’ rebuttal.</strong>
     <blockquote>
       <p>Accept</p>
@@ -395,120 +422,7 @@ Multi-auxiliary and registration [R3.12.3-4]: We agree multi-auxiliary scalabili
 </ul>
 
 <p><br /><br />
-<a href=""><b>back to top</b></a></p>
-
-  </div>
-
-  <div class="post-info">
-
-    <div class="post-categories">
-      <span><b>Topic(s): </b></span>
-
-      <a
-        href="https://papers.miccai.org/miccai-2026/categories#Body -> Brain"
-        class="post-category">
-        Body -> Brain
-      </a> |
-
-      <a
-        href="https://papers.miccai.org/miccai-2026/categories#Modalities -> MRI"
-        class="post-category">
-        Modalities -> MRI
-      </a> |
-
-      <a
-        href="https://papers.miccai.org/miccai-2026/categories#Applications -> Image Reconstruction"
-        class="post-category">
-        Applications -> Image Reconstruction
-      </a> |
-
-      <a
-        href="https://papers.miccai.org/miccai-2026/categories#Applications -> Image Synthesis / Augmentation / Super-Resolution"
-        class="post-category">
-        Applications -> Image Synthesis / Augmentation / Super-Resolution
-      </a> |
-
-      <a
-        href="https://papers.miccai.org/miccai-2026/categories#Machine Learning -> Deep Learning"
-        class="post-category">
-        Machine Learning -> Deep Learning
-      </a> |
-
-    </div>
-    <div class="post-tags">
-
-      <span><b> Author(s): </b></span>
-
-      <a href="https://papers.miccai.org/miccai-2026/tags#Kim, Seunghoi"
-        class="post-category">
-        Kim, Seunghoi
-      </a> |
-
-      <a href="https://papers.miccai.org/miccai-2026/tags#Jin, Chen"
-        class="post-category">
-        Jin, Chen
-      </a> |
-
-      <a href="https://papers.miccai.org/miccai-2026/tags#Tregidgo, Henry F. J."
-        class="post-category">
-        Tregidgo, Henry F. J.
-      </a> |
-
-      <a href="https://papers.miccai.org/miccai-2026/tags#Figini, Matteo"
-        class="post-category">
-        Figini, Matteo
-      </a> |
-
-      <a href="https://papers.miccai.org/miccai-2026/tags#Alexander, Daniel C."
-        class="post-category">
-        Alexander, Daniel C.
-      </a> |
-
-    </div>
-    <div class="post-other">
-
-      <div>
-        <span><b>
-          Next paper:
-        </b>
-        </span>
-        <a href="https://papers.miccai.org/miccai-2026/0672-Paper2760.html">
-          MRI2Rep: Autoregressive Structured Report Generation for 3D Liver MRI
-        </a>
-      </div>
-
-      <div>
-        <span><b>
-          Previous paper:
-        </b>
-        </span>
-        <a href="https://papers.miccai.org/miccai-2026/0670-Paper3435.html">
-          Motion-Conditioned Multi-view Fusion for Myocardial Infarction Localization from Echocardiography
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-</article>
-
-      </main>
-      <footer class="container-footer">
-        <div class="footer-copyright">
-  <span class="footer-copyright-text float-left">
-    Copyright &copy; 2026. The MICCAI Society
-  </span>
-
-  <span class="footer-copyright-text float-right">
-    MICCAI 2026 Open Access</a>.
-  </span>
-
-</div>
-
-      </footer>
-    </div>
-  </body>
-</html></div></article>
+<a href=""><b></div></article>
 <p class="read-guide">以上段落由 <code>scripts/fetch-miccai-reviews.mjs</code> 于 2026-10-14 从 <a href="https://papers.miccai.org/miccai-2026/0671-Paper2812.html" target="_blank" rel="noreferrer">来源页 ↗</a> 导入，文字未做改写；格式（标题层级、列表、引用块）按本页样式重排，脚本、表单与站点导航已剔除。</p>
 <!-- review-record:end -->
 </section>
@@ -518,4 +432,21 @@ Multi-auxiliary and registration [R3.12.3-4]: We agree multi-auxiliary scalabili
 </section>
 
 <footer class="page-footer"><span>论文精读地图 · 评审记录可追溯，判断与事实分开标注</span><a href="../?domain=mri&amp;paper=18-mpflow">回到 MPFlow 阅读页 →</a></footer>
-</main></div></body></html>
+</main></div><script>
+// 阅读进度条与侧栏高亮：与站内 *-story.js 的行为一致，本页只有一处交互，直接内联。
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const bar = document.getElementById('reading-progress');
+  if (bar) bar.style.width = (max > 0 ? scrollY / max * 100 : 100) + '%';
+}
+addEventListener('scroll', updateProgress, { passive: true });
+addEventListener('resize', updateProgress);
+updateProgress();
+const links = [...document.querySelectorAll('.paper-sidebar nav a')];
+const observer = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+  }
+}, { rootMargin: '-15% 0px -65% 0px' });
+document.querySelectorAll('main > section[id]').forEach(section => observer.observe(section));
+</script></body></html>
