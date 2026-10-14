@@ -4,9 +4,11 @@
 **作者**：Seunghoi Kim、Chen Jin、Henry F. J. Tregidgo、Matteo Figini、Daniel C. Alexander  
 **论文来源**：[MICCAI 2026 官方论文页](https://papers.miccai.org/miccai-2026/0671-Paper2812.html)  
 **使用版本／发表状态**：MICCAI 2026 接收版开放获取，LNCS 16888；另核对 arXiv:2603.03710v4（2026-09-24 更新）  
-**核验日期**：2026-10-11  
-**阅读范围**：作者摘要与官方论文信息；本篇为入门导读，实验表格尚未逐项审计。  
-**代码状态**：官方论文页提供代码入口；本站未运行。
+**核验日期**：2026-10-11（精读页核查更新于 2026-10-14）  
+**阅读范围**：作者摘要与官方论文信息；Table 1 / Table 2 已逐格转录核对（见精读页），其余分析与消融细节仍待补。  
+**代码状态**：官方论文页提供代码入口；本站未运行。已按固定提交 `0c302f330a1801db678970a5ba8dc5dd96f72ccf` 逐文件核查实现与论文的对应关系。
+
+**[打开完整的故事式 HTML 精读页](/pathology-atlas/learning/mpflow-story.html)** — 含四处交互（辅助模态信息重叠滑杆、直线与弯曲轨迹离散误差、自适应温度曲线、初始噪声优化的 NFE 记账）、九张公式卡、Table 1 / Table 2 原表条形图与官方仓库的真实片段。
 
 ## 1. 三分钟摘要
 
@@ -45,6 +47,8 @@ MPFlow 在推理时利用辅助 MRI 模态引导 rectified-flow 重建。PAMRI �
 
 ## 7. 来源与内容归属
 
+- [故事式 HTML 精读页](/pathology-atlas/learning/mpflow-story.html)（公式、交互、原表数值与代码核查）
+- [审稿人分析页](/pathology-atlas/learning/mpflow-review.html)（三条审稿意见、八条关切、rebuttal 数字与 meta-review 分歧）
 - [MICCAI 2026 正式来源](https://papers.miccai.org/miccai-2026/0671-Paper2812.html)
 - [会议接收版 PDF](https://papers.miccai.org/miccai-2026/paper/2812_paper.pdf)
 - [作者代码入口](https://github.com/edshkim98/MPFlow)
