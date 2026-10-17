@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="MPFlow（MICCAI 2026）的公开评审记录分析：3/5/4 的三条审稿意见、作者 rebuttal 补出的对照实验、以及三条互相矛盾的 meta-review，逐条对照来源。"><meta name="theme-color" content="#f6f4ee"><meta name="miccai-review-source" content="https://papers.miccai.org/miccai-2026/0671-Paper2812.html"><title>MPFlow 审稿人分析｜一篇 3/5/4 是怎么定局的</title><link rel="stylesheet" href="dds-story.css"><style>
+/* 本页三张对照表列多、单元格文字长，共享样式的 th,td { white-space: nowrap } 会把最后一列
+   （「状态」「rebuttal 后」）挤出可视区，而那一列正是结论所在。这里只让本页表格换行。 */
+main table th, main table td { white-space: normal; vertical-align: top; overflow-wrap: anywhere; }
+main table { margin: 18px 0 22px; }
+main table td:first-child { min-width: 30%; }
+</style><style id="review-record-style">/* review-record:start */
+.record-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
+.record-facts li { border: 1px solid var(--line); border-radius: 10px; background: var(--white); padding: 8px 10px; font-size: 13px; line-height: 1.6; }
+.record-facts li span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.record-links { margin: 0 0 6px; padding: 0; list-style: none; font-size: 13.5px; }
+.record-links li { margin: 0 0 4px; }
+.record-h { margin: 30px 0 10px; font-size: 15px; letter-spacing: .02em; }
+.record-h small { margin-left: 8px; color: var(--muted); font-size: 11.5px; font-weight: 400; }
+.record-review { margin: 0 0 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); padding: 16px 18px; }
+.record-review__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+.record-review__head b { font-size: 14px; }
+.record-badge { border: 1px solid var(--line); border-radius: 999px; background: var(--soft); padding: 3px 9px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.record-badge.is-accept { border-color: #bcd8c8; background: #e8f3ec; color: var(--green); }
+.record-badge.is-reject { border-color: #e2c3b0; background: #fbeee6; color: var(--coral); }
+.record-body { font-size: 13.5px; line-height: 1.85; overflow-wrap: anywhere; }
+.record-body ul { margin: 0 0 10px; padding-left: 20px; }
+.record-body li { margin: 0 0 12px; }
+.record-body li:last-child { margin-bottom: 0; }
+.record-body blockquote { margin: 8px 0 0; border-left: 2px solid var(--line); border-radius: 0 8px 8px 0; background: var(--soft); padding: 8px 12px; }
+.record-body p { margin: 0 0 10px; }
+.record-body code { font-size: 12.5px; }
+.record-bibtex { margin: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--white); padding: 12px 14px; overflow-x: auto; font-size: 12.5px; line-height: 1.7; white-space: pre; }
+.record-index { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+.record-index a { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); padding: 8px 12px; font-size: 12px; text-decoration: none; color: var(--ink); min-width: 150px; }
+.record-index a:hover { border-color: var(--green); }
+.record-index b { font-size: 12.5px; font-weight: 600; }
+.record-index small { color: var(--muted); font-size: 11px; }
+.record-index em { font-style: normal; color: var(--green); font-size: 11.5px; }
+.record-index em.is-reject { color: var(--coral); }
+.record-index em.is-neutral { color: var(--muted); }
+.record-review:target { border-color: var(--green); box-shadow: 0 0 0 3px rgba(11, 117, 100, .08); }
+@media (max-width: 720px) { .record-review { padding: 14px; } .record-facts { grid-template-columns: 1fr; } .record-index a { min-width: 0; flex: 1 1 140px; } }
+/* review-record:end */</style></head>
+<body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../"><span class="brand-symbol">P</span>论文精读地图 <span style="color:var(--muted)">/ MRI 阅读室</span></a><div class="toplinks"><a href="mri-generative-route.html">生成式 MRI 学习路线</a><a href="#sources">来源与核验 ↗</a></div><div class="progress-line" id="reading-progress"></div></div></header>
+<div class="paper-doc" data-paper-id="mpflow-miccai-2026-2812">
+<aside class="paper-sidebar" aria-label="内容阅读地图"><p class="side-eyebrow">A REVIEW TRAIL</p><nav><a href="#verdict"><b>00</b>先看结论</a><a href="#scores"><b>01</b>三条意见的立场</a><a href="#concerns"><b>02</b>八条关切，解决了几条</a><a href="#rebuttal"><b>03</b>rebuttal 补出的数字</a><a href="#meta"><b>04</b>meta-review 的分歧</a><a href="#lessons"><b>05</b>对你自己投稿的含义</a><a href="#repro"><b>06</b>复现视角</a><a href="#record"><b>07</b>完整评审记录</a><a href="#sources"><b>↗</b>来源与核验</a></nav>
+<div class="sidebar-foot"><strong>MPFlow · MICCAI 2026</strong>评审记录分析<br>审稿 3 条 · meta-review 3 条<br>抓取 2026-10-14</div></aside>
+<main class="paper-main">
+<section class="opening"><p class="eyebrow">MPFlow · MICCAI 2026 · 评审记录公开页 · 抓取于 2026-10-14</p><div class="opening-grid"><div><h1>一篇 3/5/4，<br><em>是怎么定局的。</em></h1><p class="opening-deck">零样本 MRI 重建论文 MPFlow：三位审稿人给出 3 分、5 分、4 分，作者用一次 rebuttal 补了三组对照实验，最后三条 meta-review 给出接受、拒绝、接受。分歧不在技术细节，而在两件事——补做的实验能不能算数，以及「范围限制」算不算致命缺陷。</p><div class="publication"><span class="highlight">MICCAI 2026 · LNCS 16888</span><span>Kim, Jin, Tregidgo, Figini, Alexander</span><span>零样本多模态重建</span><span>代码已公开</span></div></div><div class="cover-visual"><span class="visual-tag">HOW IT ENDED</span><svg viewBox="0 0 360 210" width="360" height="210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Microsoft YaHei, sans-serif" role="img" aria-label="三条审稿意见的初始评分与 rebuttal 后终评，以及三条互相矛盾的 meta-review 推荐">
+<defs><marker id="rv-down" markerWidth="7" markerHeight="7" refX="3" refY="6" orient="auto"><path d="M0 0 L3 6 L6 0" fill="none" stroke="#9cbaaf" stroke-width="1.2"/></marker></defs>
+<text x="16" y="18" font-size="10" fill="#9cbaaf" letter-spacing="1">初始评分</text>
+<rect x="16" y="30" width="96" height="62" fill="#2f4a45" stroke="#9cbaaf"/><text x="28" y="48" font-size="10" fill="#9cbaaf">R1</text><text x="64" y="76" font-size="28" fill="#f6f4ee" text-anchor="middle">3</text>
+<rect x="132" y="30" width="96" height="62" fill="#2f4a45" stroke="#9cbaaf"/><text x="144" y="48" font-size="10" fill="#9cbaaf">R2</text><text x="180" y="76" font-size="28" fill="#f6f4ee" text-anchor="middle">5</text>
+<rect x="248" y="30" width="96" height="62" fill="#2f4a45" stroke="#9cbaaf"/><text x="260" y="48" font-size="10" fill="#9cbaaf">R3</text><text x="296" y="76" font-size="28" fill="#f6f4ee" text-anchor="middle">4</text>
+<path d="M64 98 L64 112" stroke="#9cbaaf" marker-end="url(#rv-down)"/><path d="M180 98 L180 112" stroke="#9cbaaf" marker-end="url(#rv-down)"/><path d="M296 98 L296 112" stroke="#9cbaaf" marker-end="url(#rv-down)"/>
+<text x="64" y="132" font-size="12" fill="#e8a08e" text-anchor="middle">Reject</text><text x="180" y="132" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text><text x="296" y="132" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text>
+<line x1="16" y1="150" x2="344" y2="150" stroke="#2f4a45"/>
+<text x="16" y="170" font-size="10" fill="#9cbaaf" letter-spacing="1">meta-review 推荐</text>
+<text x="64" y="194" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text><text x="180" y="194" font-size="12" fill="#e8a08e" text-anchor="middle">Reject</text><text x="296" y="194" font-size="12" fill="#dbeaa9" text-anchor="middle">Accept</text>
+</svg></div></div><div class="cover-caption">上排为三位审稿人的初始评分与 rebuttal 后终评，下排为三条 meta-review 的推荐。数据逐项转录自公开评审页，示意图为本站重绘。</div></section>
+
+<section class="chapter" id="verdict"><div class="chapter-heading"><span class="chapter-number">00</span><h2>先看结论</h2></div><div class="narrative"><p>三位审稿人的初始评分是 <strong>3 / 5 / 4</strong>，rebuttal 之后三人分别给出 <strong>Reject / Accept / Accept</strong>；三条 meta-review 是 <strong>Accept / Reject / Accept</strong>。论文随后出现在 MICCAI 2026 论文集里（LNCS 16888 卷、有 Open Access 版本与正式 BibTeX），因此可以判断最终被接收。</p><p>需要标清的一件事：<strong>评审页本身没有写出最终决定</strong>，「最终接收」是本站依据刊登事实与卷号推断的，不是页面上的原文。同样地，meta-review 的意见只是推荐，不是决定。</p></div>
+<div class="facts-grid"><div><b>3 / 5 / 4</b><p>三条初始评分；rebuttal 后变成 Reject / Accept / Accept。</p></div><div><b>2 : 1</b><p>meta-review 的接受与拒绝之比。分歧点写在 04 节。</p></div><div><b>240 NFE</b><p>作者自陈的等效采样次数：初始噪声筛选 8×20 加上主体 80，约为标称 T=100 的 2.4 倍。</p></div></div>
+<div class="pullquote"><span class="mini-label">THE FAULT LINE</span><p>最尖锐的一条反对意见，直接把这篇的定位改了名：在它看来这不是一篇 MRI 重建论文，而是「用辅助图像做后验引导的精修」，与标题给人的印象不一致。</p></div>
+</section>
+
+<section class="chapter" id="scores"><div class="chapter-heading"><span class="chapter-number">01</span><h2>三条审稿意见各自站在哪里</h2></div><div class="narrative"><p>把六条记录并排看，会发现态度分布很不平均：审稿人 #2 从初评到终评一路接受，只提了一个基线可控性的小问题；审稿人 #3 给的是「勉强接受」，但技术问题提得最细、最硬，五条里四条是可验证的工程缺陷；审稿人 #1 是唯一的拒绝者，理由始终只有一条——没有真实多线圈原始数据。</p></div>
+<div class="table-scroll"><table><caption>评审记录条目的立场对照（摘录自公开评审页，逐项对应来源）</caption><thead><tr><th>记录</th><th>初评</th><th>置信度</th><th>rebuttal 后</th><th>它最重的那条关切</th></tr></thead><tbody><tr><td>Reviewer #1</td><td>(3) Weak Reject</td><td>Very confident (4)</td><td>Reject</td><td>评测只用仿真幅值数据，缺真实复值多线圈采集</td></tr><tr class="emphasis"><td>Reviewer #2</td><td>(5) Accept</td><td>Very confident (4)</td><td>Accept</td><td>DIP 基线看起来在过拟合，希望说明早停协议</td></tr><tr><td>Reviewer #3</td><td>(4) Weak Accept</td><td>Confident (3)</td><td>Accept</td><td>缺 FlowDPS 对比、NFE 记账不公平</td></tr><tr><td>Meta-review #1</td><td>Invite for Rebuttal</td><td>—</td><td>Accept</td><td>要求补 flow 类基线与匹配 NFE 的重跑</td></tr><tr class="emphasis"><td>Meta-review #2</td><td>—</td><td>—</td><td>Reject</td><td>定位错位、预注册假设、rebuttal 新实验不合规</td></tr><tr><td>Meta-review #3</td><td>—</td><td>—</td><td>Accept</td><td>剩余问题只是幅值域评测的范围限制</td></tr></tbody></table></div>
+<div class="aside-note"><strong>读表时别漏掉这一列。</strong>置信度是审稿人自评的把握程度。唯一坚持拒绝的 #1 自评 4 分（非常确定），提问题最多的 #3 自评 3 分（有把握但非绝对确定）——最终也是 #3 在 rebuttal 后转为接受。</div>
+</section>
+
+<section class="chapter" id="concerns"><div class="chapter-heading"><span class="chapter-number">02</span><h2>八条关切，解决了几条</h2></div><div class="narrative"><p>把六条记录里的意见去重后，剩下八条可检验的关切。判断标准很简单：作者是否给出了<strong>可核对的回应</strong>（数字、定义或明确承诺改稿），以及这条关切是否影响核心主张的成立。</p></div>
+<div class="table-scroll"><table><caption>八条关切的来源、回应状态与影响面</caption><thead><tr><th>关切</th><th>提出者</th><th>作者回应</th><th>状态</th></tr></thead><tbody><tr><td>缺 flow 类后验采样基线（FlowDPS / DDNM）</td><td>R1、R3；meta#1 点名</td><td>补跑 FlowDPS、DDNM，并把 PAMRI 引导接到 FlowDPS 上</td><td>已解决</td></tr><tr class="emphasis"><td>效率对比的 NFE 记账不公平</td><td>R3；meta#1 点名</td><td>在 T=240 匹配预算下重跑 DPS 与 DynamicDPS</td><td>已解决</td></tr><tr><td>PAMRI 的必要性没有对比更弱的替代方案</td><td>R3</td><td>与 NMI、Canny 边缘损失、pixel-MSE 三种强度级引导对照</td><td>已解决</td></tr><tr><td>patch 算子 P(·) 与背景处理未定义（全零区块会让 NMI 无定义）</td><td>R3</td><td>说明由辅助图构造脑掩码、只保留脑内容足够的区块</td><td>已解决（承诺写进正文）</td></tr><tr><td>Eq. 4 与 Eq. 6 复用同一个符号 z</td><td>R3</td><td>承诺区分初始噪声与对比特征，并写明正样本对定义</td><td>已解决（承诺改稿）</td></tr><tr class="emphasis"><td>缺真实复值多线圈原始数据</td><td>R1（终评以此拒稿）</td><td>称幅值评测是近年通行做法，复值域可换前向算子，留作未来工作</td><td>未解决</td></tr><tr><td>DIP 基线噪声大，可能过拟合</td><td>R2</td><td>采用测量损失早停，并称多个停止点差别很小</td><td>部分解决</td></tr><tr><td>配准与颅骨剥离假设、多辅助模态扩展</td><td>R3 附加意见；meta#2 以此为拒稿核心</td><td>承认是临床部署的下一步，承诺在摘要与贡献列表写清 PAMRI 的预训练要求</td><td>未解决</td></tr></tbody></table></div>
+<div class="aside-note"><strong>两类「未解决」的性质不同。</strong>缺多线圈数据是<strong>验证范围</strong>问题——方法本身没被证伪，只是没在某个设定下验证过；而配准与剥壳是<strong>前提假设</strong>问题——它决定了方法在真实流程里能不能用。这也是三条 meta-review 分裂的根：一方把它当范围，另一方当缺陷。</div>
+</section>
+
+<section class="chapter" id="rebuttal"><div class="chapter-heading"><span class="chapter-number">03</span><h2>rebuttal 里补出来的数字</h2></div><div class="narrative"><p>这份 rebuttal 之所以值得单独看，是因为它几乎逐条用实验回答了技术质疑，而不是停留在解释。以下数值全部来自作者反馈原文，本站没有复现，也没有读取论文正文之外的材料。</p><p>注意读法：<strong>SSIM 越高越好，SHAFE 越低越好</strong>（后者是论文使用的幻觉指标）。MPFlow 的对照值 0.78 / 0.20 出现在匹配 NFE 的那段回应里。</p></div>
+<div class="table-scroll"><table><caption>rebuttal 中的对照实验（数值来自作者反馈，含标准差处照抄）</caption><thead><tr><th>方法 / 变体</th><th>SSIM</th><th>SHAFE</th><th>回应的关切</th></tr></thead><tbody><tr><td>FlowDPS（ICCV'25）</td><td>0.624 ± 0.049</td><td>0.216 ± 0.043</td><td>缺 flow 类基线</td></tr><tr><td>DDNM（ICLR'23）</td><td>0.764 ± 0.123</td><td>0.221 ± 0.107</td><td>缺 diffusion 类强基线</td></tr><tr class="emphasis"><td>FlowDPS + PAMRI 引导</td><td>0.650 ± 0.047</td><td>0.204 ± 0.039</td><td>PAMRI 是否与采样器解耦</td></tr><tr><td>DPS（T=240，匹配 NFE）</td><td>0.713</td><td>0.220</td><td>NFE 记账</td></tr><tr><td>DynamicDPS（T=240，匹配 NFE）</td><td>0.702</td><td>0.269</td><td>NFE 记账</td></tr><tr><td>MPFlow（对照值）</td><td>0.78</td><td>0.20</td><td>—</td></tr><tr><td>MPFlow 去掉噪声优化（NFE=100）</td><td>0.754</td><td>0.218</td><td>噪声优化是否值得那份额外开销</td></tr><tr><td>把 PAMRI 换成 NMI</td><td>0.762 ± 0.036</td><td>0.210 ± 0.059</td><td>PAMRI 的必要性</td></tr><tr><td>把 PAMRI 换成 Canny 边缘损失</td><td>0.745 ± 0.044</td><td>0.255 ± 0.155</td><td>PAMRI 的必要性</td></tr><tr><td>把 PAMRI 换成 pixel-MSE</td><td>0.748 ± 0.037</td><td>0.215 ± 0.053</td><td>PAMRI 的必要性</td></tr></tbody></table></div>
+<div class="narrative"><p>这组数字的结构值得学：作者把「引导信号」与「采样器」拆成两个可独立替换的维度——换采样器（FlowDPS 接 PAMRI）验证引导的通用性，换引导（NMI / 边缘 / MSE）验证表征学习的必要性。任何一条只做一半，都还是会被追问。</p><p>但也正是这批数字，成了 Meta-review #2 判拒的直接理由：该意见指出，按 rebuttal 指南，<strong>新增实验不能作为回应计入录用决定</strong>，而作者列出的回应当中大部分属于这一类，于是「去掉新实验之后仍有未澄清的关切」——结论就成了拒绝。</p></div>
+</section>
+
+<section class="chapter" id="meta"><div class="chapter-heading"><span class="chapter-number">04</span><h2>meta-review 为什么互相打架</h2></div><div class="narrative"><p>三条 meta-review 读的是同一批材料，却给出三种结论。把理由对齐后，分歧只剩两条。</p></div>
+<div class="split-copy"><div><h3>分歧一：范围限制 vs 致命缺陷</h3><p>Meta #1 承认缺多线圈验证有效，但把它定为「范围限制而非致命缺陷」，因为核心贡献在已有评测内成立；Meta #2 则认为，既然标题与定位是 MRI 重建，而评测实际是幅值域的辅助精修，那么缺少真实复值采集就等于核心主张没被验证。</p></div><div><h3>分歧二：rebuttal 新实验的效力</h3><p>Meta #1 与 #3 都明确把 rebuttal 中澄清的基线、匹配 NFE、patch 算子与记号问题算作关切已解决；Meta #2 依指南排除新增实验，剩下的就只有未澄清项。同一份回应的效力，取决于按不按指南剔除。</p></div></div>
+<div class="aside-note"><strong>一个可操作的结论。</strong>Meta #2 的路线不是情绪化的：只要允许剔除 rebuttal 新增实验，别的审稿人提的关切就会变成「未回应」。也就是说，<strong>回应里的实验，在投稿版本里就该存在</strong>——rebuttal 是澄清与解释的场合，不是补实验的场合。</div>
+<div class="narrative"><p>剩下那条被三条 meta-review 一致保留的意见，是幅值域评测与「重建」措辞之间的落差。Meta #3 的建议写得最具体：把 PAMRI 的预训练前提与配准假设写明，并让重建主张与幅值域评测的口径一致。这类修改不改变实验，只改变论文说自己证明了什么。</p></div>
+</section>
+
+<section class="chapter" id="lessons"><div class="chapter-heading"><span class="chapter-number">05</span><h2>对你自己投稿的含义</h2></div><div class="narrative"><p>把这份记录反过来用：它几乎是一张投稿前的自查清单，每一条都能对应到某个具体的审稿动作。</p></div>
+<ul class="checklist"><li><div><strong>关键基线要在投稿版里，不要留到 rebuttal。</strong><small>同一个方法族的对比对象（这里是 flow 类后验采样）缺失，会被两位审稿人同时点名，而补做又可能按指南不计入。</small></div></li><li><div><strong>成本记账要提前写全，并给匹配预算的对照。</strong><small>额外模块带来的 NFE 会被逐项核算；只报标称步数、不报等效开销，等于把最容易被推翻的表放在明面上。</small></div></li><li><div><strong>标题口径要能被评测兜住。</strong><small>「重建」与「精修」、「超分」在审稿人眼里是不同的承诺。宽的前向算子描述救不了窄的评测设置。</small></div></li><li><div><strong>预处理假设要显式写进方法与局限。</strong><small>配准、颅骨剥离这类步骤会被当作临床可迁移性边界来审；不写，就等于把它留给 meta-review 去发现。</small></div></li><li><div><strong>每个可替换模块都要有「更弱的替代方案」消融。</strong><small>只有「有/无」两组，回答不了「有没有更简单的做法就够了」。</small></div></li></ul>
+</section>
+
+<section class="chapter" id="repro"><div class="chapter-heading"><span class="chapter-number">06</span><h2>复现视角</h2></div><div class="narrative"><p>以下信息全部来自评审页（摘要、作者反馈与审稿意见），本站未运行代码、未核对正文公式细节。</p></div>
+<div class="facts-grid"><div><b>HCP + BraTS</b><p>两个评测任务：HCP 的 T2 超分，BraTS 的仿真加速重建；辅助模态是全采样的 T1。</p></div><div><b>240</b><p>作者自陈的等效 NFE：初始噪声筛选 8 次候选、每次 20 步，加主体 80 步。要做公平对比就得对齐这个预算。</p></div><div><b>成对配准数据</b><p>PAMRI 需要目标域上成对、已配准的多模态数据做预训练，作者在 rebuttal 中承诺在摘要里写明这一点。</p></div></div>
+<div class="aside-note"><strong>先要弄清的三件事。</strong><ol class="record-body" style="margin:8px 0 0;padding-left:20px"><li><code>P(·)</code> 的区块划分与脑掩码规则只出现在 rebuttal 里；正文若未补写，实现就依赖代码。</li><li>辅助模态在评测中始终是全采样的，这在真实流程里通常不成立——配准误差的影响未被压测。</li><li>复值 / 多线圈设定只是「换前向算子即可扩展」的推断，没有实验支撑。</li></ol></div>
+</section>
+
+<section class="chapter" id="record"><div class="chapter-heading"><span class="chapter-number">07</span><h2>完整评审记录（原文）</h2></div><p class="read-guide">以下内容由 <code>scripts/fetch-miccai-reviews.mjs</code> 从来源页机械导入，文字未经改写、未做压缩：摘要、BibTeX、三条审稿意见（含 rebuttal 后终评）、作者反馈、三条 meta-review。段落是评审页原文，评分与置信度徽章由脚本从原文中抽取；中文分析与判断在 00–06 节。</p>
+<!-- review-record:start -->
+<ul class="record-facts"><li><span>标题</span>MPFlow: Multi-modal Posterior-Guided Flow Matching for Zero-Shot MRI Reconstruction</li><li><span>作者</span>Kim, Seunghoi · Jin, Chen · Tregidgo, Henry F. J. · Figini, Matteo · Alexander, Daniel C.</li><li><span>来源站点</span>MICCAI 2026 - Open Access</li><li><span>页面发布</span>2026-09-21</li><li><span>抓取时间</span>2026-10-14</li><li><span>审稿意见</span>3 条（评分 3 / 5 / 4）</li><li><span>meta-review</span>3 条</li></ul>
+<nav aria-label="评审记录索引"><ul class="record-index"><li><a href="#record-review-1"><b>Review #1</b><small>初评 (3) Weak Reject · 置信度 4</small><em class="is-reject">rebuttal 后 Reject</em></a></li><li><a href="#record-review-2"><b>Review #2</b><small>初评 (5) Accept · 置信度 4</small><em>rebuttal 后 Accept</em></a></li><li><a href="#record-review-3"><b>Review #3</b><small>初评 (4) Weak Accept · 置信度 3</small><em>rebuttal 后 Accept</em></a></li><li><a href="#record-meta-review-1"><b>Meta-review #1</b><small>meta-review 推荐</small><em class="is-neutral">推荐 Invite for Rebuttal</em></a></li><li><a href="#record-meta-review-2"><b>Meta-review #2</b><small>meta-review 推荐</small><em class="is-reject">推荐 Reject</em></a></li><li><a href="#record-meta-review-3"><b>Meta-review #3</b><small>meta-review 推荐</small><em>推荐 Accept</em></a></li></ul></nav>
+<h3 class="record-h">原文页面上的链接</h3><ul class="record-links"><li><a href="https://papers.miccai.org/miccai-2026/paper/2812_paper.pdf" target="_blank" rel="noreferrer">https://papers.miccai.org/miccai-2026/paper/2812_paper.pdf ↗</a></li><li><a href="https://github.com/edshkim98/MPFlow" target="_blank" rel="noreferrer">https://github.com/edshkim98/MPFlow ↗</a></li></ul>
+<h3 class="record-h">摘要 <small>原文照抄</small></h3><div class="record-body"><p>Zero-shot MRI reconstruction relies on generative priors, but single-modality unconditional priors produce hallucinations under severe ill-posedness.
+In many clinical workflows, complementary MRI acquisitions (e.g. high-quality structural scans) are routinely available, yet existing reconstruction methods lack mechanisms to leverage this additional information.
+We propose MPFlow, a zero-shot multi-modal reconstruction framework built on rectified flow that incorporates auxiliary MRI modalities at inference time without retraining the generative prior to improve anatomical fidelity.
+Cross-modal guidance is enabled by our proposed self-supervised pretraining strategy, Patch-level Multi-modal MR Image Pretraining (PAMRI), which learns shared representations across modalities.
+Sampling is jointly guided by data consistency and cross-modal feature alignment using pre-trained PAMRI, systematically suppressing intrinsic and extrinsic hallucinations.
+Extensive experiments on HCP and BraTS show that MPFlow matches diffusion baselines on image quality using only 20% of sampling steps while reducing tumor hallucinations by more than 15% (segmentation dice score). This demonstrates that cross-modal guidance enables more reliable and efficient zero-shot MRI reconstruction. Code is available at https://github.com/edshkim98/MPFlow.
+<br /><br /></p></div>
+<h3 class="record-h">BibTeX <small>原文照抄</small></h3><pre class="record-bibtex"><code>@InProceedings{KimSeu_MPFlow_MICCAI2026,
+        author = { Kim, Seunghoi AND Jin, Chen AND Tregidgo, Henry F. J. AND Figini, Matteo AND Alexander, Daniel C.},
+        title = { { MPFlow: Multi-modal Posterior-Guided Flow Matching for Zero-Shot MRI Reconstruction } },
+        booktitle = {Medical Image Computing and Computer Assisted Intervention -- MICCAI 2026},
+        year = {2026},
+        publisher = {Springer Nature Switzerland},
+        volume = {LNCS 16888},
+        month = {September},
+        page = {pending}
+}
+
+</code></pre>
+<h3 class="record-h">审稿意见 <small>原文照抄 · 徽章由脚本从原文抽取</small></h3>
+<article class="record-review" id="record-review-1"><div class="record-review__head"><b>Review #1</b><span class="record-badge is-reject">(3) Weak Reject</span><span class="record-badge">置信度 4 · Very confident</span><span class="record-badge is-reject">rebuttal 后：Reject</span></div><div class="record-body"><ul>
+  <li><strong>Please describe the contribution of the paper</strong>
+    <blockquote>
+      <p>The paper proposed a flow matching-based posterior sampling method that leverages multi-modal information learned from contrastive learning. Experiments demonstrated the effectiveness of the proposed component.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please list the major strengths of the paper: you should highlight a novel formulation, an original way to use data, demonstration of clinical feasibility, a novel application, a particularly strong evaluation, or anything else that is a strong aspect of this work. Please provide details, for instance, if a method is novel, explain what aspect is novel and why this is interesting.</strong>
+    <blockquote>
+      <p>1.The idea of introducing a multi-modal feature-level constraint to reduce extrinsic hallucination is interesting.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please list the major weaknesses of the paper. Please provide details: for instance, if you state that a formulation, way of using data, demonstration of clinical feasibility, or application is not novel, then you must provide specific references to prior work.</strong>
+    <blockquote>
+      <p>1.The compared baselines are limited to diffusion models. Recent work on flow-based inverse problems solving is missing. For example, “PnP-ﬂow: Plug-and-play image restoration with ﬂow matching”, ICLR 2025.Also, for diffusion-based baselines, the paper only includes DPS related approaches. Better performing solutions like DDNM (Zero-Shot Image Restoration Using Denoising Diffusion Null-Space Model, ICLR 2023) were omitted.
+2.The evaluation on MRI reconstruction is limited to simulated magnitude data from the BraTS dataset. Real-world complex-value multi-coil raw data were not evaluated.
+3.The initial noise optimization module did not lead to significant improvement according to the ablation study, which however increases computational cost.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please rate the clarity and organization of this paper</strong>
+    <blockquote>
+      <p>Satisfactory</p>
+    </blockquote>
+  </li>
+  <li><strong>Please comment on the reproducibility of the paper. Please be aware that providing code and data is a plus, but not a requirement for acceptance.</strong>
+    <blockquote>
+      <p>The authors claimed to release the source code and/or dataset upon acceptance of the submission.</p>
+    </blockquote>
+  </li>
+  <li><strong>Based on your review and your understanding of the MICCAI Scientific Code of Ethics, do you believe this submission may involve a potential ethics concern or violation?</strong>
+    <blockquote>
+      <p>N/A</p>
+    </blockquote>
+  </li>
+  <li><strong>Optional: If you have any additional comments to share with the authors, please provide them here. Please also refer to our Reviewer’s guide on what makes a good review and pay specific attention to the different assessment criteria for the different paper categories: https://conferences.miccai.org/2026/en/REVIEWER-GUIDELINES.html</strong>
+    <blockquote>
+      <p>N/A</p>
+    </blockquote>
+  </li>
+  <li><strong>Rate the paper on a scale of 1-6, 6 being the strongest (6-4: accept; 3-1: reject). Please use the entire range of the distribution. Spreading the score helps create a distribution for decision-making.</strong>
+    <blockquote>
+      <p>(3) Weak Reject — marginally below the acceptance threshold, but would not mind if accepted, dependent on rebuttal</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your recommendation. What were the major factors that led you to your overall score for this paper?</strong>
+    <blockquote>
+      <p>The weaknesses outweigh the strengths significantly. I would lean to reject the submission.</p>
+    </blockquote>
+  </li>
+  <li><strong>Reviewer confidence</strong>
+    <blockquote>
+      <p>Very confident (4)</p>
+    </blockquote>
+  </li>
+  <li><strong>[Post rebuttal] After reading the authors’ rebuttal, please state your final opinion of the paper.</strong>
+    <blockquote>
+      <p>Reject</p>
+    </blockquote>
+  </li>
+  <li><strong>[Post rebuttal] Please justify your final decision from above.</strong>
+    <blockquote>
+      <p>The strongest unresolved issue is the MRI realism/generalizability concern. The paper frames the method as MRI reconstruction and defines the forward model broadly enough to include complex-valued k-space tasks, but the actual evaluation is on HCP super-resolution and BraTS simulated accelerated reconstruction using magnitude-style image data, with no real complex-valued multi-coil raw MRI experiment. The paper’s own experimental setup lists HCP T2 super-resolution and BraTS FLAIR k-space reconstruction with T1 auxiliary images, rather than fastMRI-like raw multi-coil reconstruction. This limits the strength of the clinical reconstruction claim. This is a major limitation, not a minor extension. Since the method is presented as an MRI reconstruction framework, the absence of real multi-coil raw-data experiments substantially weakens the empirical validation.</p>
+
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /><br /></p></div></article>
+<article class="record-review" id="record-review-2"><div class="record-review__head"><b>Review #2</b><span class="record-badge is-accept">(5) Accept</span><span class="record-badge">置信度 4 · Very confident</span><span class="record-badge is-accept">rebuttal 后：Accept</span></div><div class="record-body"><ul>
+  <li><strong>Please describe the contribution of the paper</strong>
+    <blockquote>
+      <p>The paper makes a strong and well-motivated contribution to zero-shot MRI reconstruction. Its central idea—integrating auxiliary anatomical information into a posterior-guided generative reconstruction framework—is both elegant and conceptually insightful. In particular, the proposed method leverages auxiliary MR images at inference time, without requiring retraining or modification of the generative prior itself.</p>
+
+      <p>The patch-level multimodal representation learning framework(PAMRI) is practical and technically well aligned with the nature of MRI reconstruction. By operating in a learned latent space rather than enforcing direct pixel-level consistency between different MR contrasts, the method offers an effective way to handle the intensity and contrast mismatch across modalities. The use of mutual-information-based adaptive weighting in the patch alignment objective is particularly thoughtful and strengthens the multimodal formulation.</p>
+
+      <p>The authors validate the method across two distinct reconstruction tasks and datasets, covering both super-resolution and k-space reconstruction settings. In addition to standard image-quality metrics, they evaluate hallucination-related behavior and downstream task performance, which makes the empirical validation substantially more convincing. Overall, the paper presents a clear methodological contribution supported by comprehensive experiments.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please list the major strengths of the paper: you should highlight a novel formulation, an original way to use data, demonstration of clinical feasibility, a novel application, a particularly strong evaluation, or anything else that is a strong aspect of this work. Please provide details, for instance, if a method is novel, explain what aspect is novel and why this is interesting.</strong>
+    <blockquote>
+      <p>1.Rather than retraining or redesigning the generative prior to incorporate auxiliary inputs, the method uses the auxiliary modality to guide posterior sampling, which is a clean and flexible design.</p>
+
+      <p>2.The proposed PAMRI module is a particularly strong technical component. The use of patch-level multimodal representation learning is well motivated for MRI reconstruction, where preserving local anatomical structure is essential. Moreover, aligning modalities in a learned latent space, instead of imposing pixel-level(may be TV/Sobel) consistency, is especially suitable for multi-contrast MRI. In this regard, the adaptive mutual-information-based weighting is also a thoughtful addition: it provides a practical mechanism to account for cross-contrast mismatch while still extracting shared anatomical information. This is an original and technically meaningful way to exploit auxiliary MR images.</p>
+
+      <p>3.The paper is very clearly written.</p>
+
+      <p>4.The evaluation is comprehensive and convincing. The method is validated on two distinct MRI reconstruction settings, which strengthens the claim that the framework is general. In addition, the authors also assess hallucination-related behavior and downstream clinical relevance through segmentation-based analysis. It demonstrates that the method improves not only reconstruction fidelity in a numerical sense, but also structural and semantic reliability in ways that are meaningful for medical imaging applications.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please list the major weaknesses of the paper. Please provide details: for instance, if you state that a formulation, way of using data, demonstration of clinical feasibility, or application is not novel, then you must provide specific references to prior work.</strong>
+    <blockquote>
+      <p>The paper is overall strong, and I did not identify major conceptual flaws that substantially weaken the main claims.</p>
+
+      <p>One minor concern is the behavior of the DIP baseline, which appears visibly noisy and may be operating in an overfitting regime. Since DIP is known to be sensitive to stopping criteria, it would be preferable to clarify whether early stopping or a tuned stopping protocol was used for this baseline. A better-controlled DIP comparison would improve the fairness of the experimental presentation.</p>
+
+      <p>That said, this issue does not materially affect my confidence in the proposed method or the main conclusions of the paper, since the gains over the stronger generative baselines remain convincing.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please rate the clarity and organization of this paper</strong>
+    <blockquote>
+      <p>Good</p>
+    </blockquote>
+  </li>
+  <li><strong>Please comment on the reproducibility of the paper. Please be aware that providing code and data is a plus, but not a requirement for acceptance.</strong>
+    <blockquote>
+      <p>The authors claimed to release the source code and/or dataset upon acceptance of the submission.</p>
+    </blockquote>
+  </li>
+  <li><strong>Based on your review and your understanding of the MICCAI Scientific Code of Ethics, do you believe this submission may involve a potential ethics concern or violation?</strong>
+    <blockquote>
+      <p>N/A</p>
+    </blockquote>
+  </li>
+  <li><strong>Optional: If you have any additional comments to share with the authors, please provide them here. Please also refer to our Reviewer’s guide on what makes a good review and pay specific attention to the different assessment criteria for the different paper categories: https://conferences.miccai.org/2026/en/REVIEWER-GUIDELINES.html</strong>
+    <blockquote>
+      <p>N/A</p>
+    </blockquote>
+  </li>
+  <li><strong>Rate the paper on a scale of 1-6, 6 being the strongest (6-4: accept; 3-1: reject). Please use the entire range of the distribution. Spreading the score helps create a distribution for decision-making.</strong>
+    <blockquote>
+      <p>(5) Accept — should be accepted, independent of rebuttal</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your recommendation. What were the major factors that led you to your overall score for this paper?</strong>
+    <blockquote>
+      <p>My recommendation is primarily based on the clarity of the paper, the originality and elegance of the core idea, and the strength of the experimental validation. The method is conceptually well designed, and the writing makes the technical motivation and implementation easy to follow.</p>
+
+      <p>In addition, the proposed latent-space multimodal alignment strategy is well suited to MRI, where direct intensity correspondence across contrasts is often unreliable. The experiments are comprehensive, spanning multiple datasets, tasks, and evaluation protocols, including both conventional reconstruction metrics and downstream assessments related to hallucination and clinical relevance. Taken together, these factors make the work a high-quality and compelling contribution.</p>
+    </blockquote>
+  </li>
+  <li><strong>Reviewer confidence</strong>
+    <blockquote>
+      <p>Very confident (4)</p>
+    </blockquote>
+  </li>
+  <li><strong>[Post rebuttal] After reading the authors’ rebuttal, please state your final opinion of the paper.</strong>
+    <blockquote>
+      <p>Accept</p>
+    </blockquote>
+  </li>
+  <li><strong>[Post rebuttal] Please justify your final decision from above.</strong>
+    <blockquote>
+      <p>The primary idea of this paper, auxiliary mri data informed reconstruction is compelling, and the authors have effectively implemented it using the modern deep learning concept of latent space alignment. I believe this paper could have a positive impact on future research in MRI reconstruction, considering that clinical acquisitions typically do not rely on single-modality data.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /><br /></p></div></article>
+<article class="record-review" id="record-review-3"><div class="record-review__head"><b>Review #3</b><span class="record-badge is-accept">(4) Weak Accept</span><span class="record-badge">置信度 3 · Confident but not absolutely certain</span><span class="record-badge is-accept">rebuttal 后：Accept</span></div><div class="record-body"><ul>
+  <li><strong>Please describe the contribution of the paper</strong>
+    <blockquote>
+      <p>This paper proposes MPFlow, a framework for zero-shot MRI reconstruction that introduces an auxiliary MRI modality as inference-time posterior guidance without retraining the unconditional generative prior. The method consists of two components: (1) PAMRI, a self-supervised patch-level cross-modal pretraining module that learns shared representations between target and auxiliary modalities; and (2) a multi-modal posterior-guided flow matching procedure that injects both data-consistency and PAMRI feature-alignment gradients into a rectified flow sampler, together with an initial noise selection mechanism. Experiments are conducted on HCP T2 super-resolution and BraTS FLAIR accelerated reconstruction, using fully-sampled T1 as the auxiliary modality. The authors report improvements in image quality metrics (PSNR, SSIM, LPIPS) and in hallucination-related indicators (SHAFE and tumor segmentation Dice).</p>
+    </blockquote>
+  </li>
+  <li><strong>Please list the major strengths of the paper: you should highlight a novel formulation, an original way to use data, demonstration of clinical feasibility, a novel application, a particularly strong evaluation, or anything else that is a strong aspect of this work. Please provide details, for instance, if a method is novel, explain what aspect is novel and why this is interesting.</strong>
+    <blockquote>
+      <p>1.Meaningful and moderately novel problem formulation. Most zero-shot reconstruction methods rely on a unimodal unconditional prior. Framing inference-time multimodal guidance as a way to reduce hallucination—without retraining the prior—is a practically motivated and reasonably original angle.</p>
+
+      <p>2.Coherent end-to-end design. The pipeline from cross-modal representation learning (PAMRI) to posterior guidance and initial noise selection tells a consistent story; the components are not arbitrarily concatenated.</p>
+
+      <p>3.Evaluation beyond PSNR/SSIM. Including SHAFE and tumor segmentation Dice as proxy hallucination metrics is a meaningful step toward clinically relevant evaluation, going beyond standard pixel-level distortion measures.</p>
+
+      <p>4.Efficiency argument is concretely demonstrated. The authors show that fewer sampling steps can still match or exceed diffusion-based baselines, which is a substantive efficiency claim rather than a theoretical one.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please list the major weaknesses of the paper. Please provide details: for instance, if you state that a formulation, way of using data, demonstration of clinical feasibility, or application is not novel, then you must provide specific references to prior work.</strong>
+    <blockquote>
+      <p>1.FlowDPS comparison is missing. All main comparisons are against diffusion or DIP methods, despite the prior being a rectified flow. The paper cites FlowDPS [13] but provides no experimental comparison. Since FlowDPS is a directly comparable flow-based posterior sampling method, a comparison would calibrate how much gain comes from the multimodal guidance over a competitive unimodal flow baseline, rather than only over the paper’s own base model in Table 3a.</p>
+
+      <p>2.PAMRI necessity is not sufficiently justified. The ablation only compares w/ PAMRI vs. w/o PAMRI, without testing simpler auxiliary guidance alternatives. It therefore remains unclear whether the full patch-level contrastive design is necessary over a simpler baseline.</p>
+
+      <p>3.Hidden computational overhead makes Table 1 comparisons unfair. The initial noise selection (S=8, t_noise=0.2T) incurs 8x20+80=240 NFE at the nominal T=100 setting—2.4× the baseline cost. Efficiency comparisons must be re-reported at matched NFE.</p>
+
+      <p>4.Patch operator P(⋅) undefined; background handling unspecified. The sampling strategy for P(⋅) is never stated. More critically, without background masking on skull-stripped BraTS data, all-zero patches will cause NMI to be undefined and contrastive representation collapse. Both issues must be addressed for reproducibility.</p>
+
+      <p>5.Symbol clash in Eq. (6). z is used both for the initial noise z ~ N(0, I) in Eq. (4) and for the contrastive features z_i ∈ {u_i, w_i} in Eq. (6). Additionally, the definition of z_j in a positive pair is never stated explicitly. The notation should be disambiguated.</p>
+    </blockquote>
+  </li>
+  <li><strong>Please rate the clarity and organization of this paper</strong>
+    <blockquote>
+      <p>Satisfactory</p>
+    </blockquote>
+  </li>
+  <li><strong>Please comment on the reproducibility of the paper. Please be aware that providing code and data is a plus, but not a requirement for acceptance.</strong>
+    <blockquote>
+      <p>The authors claimed to release the source code and/or dataset upon acceptance of the submission.</p>
+    </blockquote>
+  </li>
+  <li><strong>Based on your review and your understanding of the MICCAI Scientific Code of Ethics, do you believe this submission may involve a potential ethics concern or violation?</strong>
+    <blockquote>
+      <p>N/A</p>
+    </blockquote>
+  </li>
+  <li><strong>Optional: If you have any additional comments to share with the authors, please provide them here. Please also refer to our Reviewer’s guide on what makes a good review and pay specific attention to the different assessment criteria for the different paper categories: https://conferences.miccai.org/2026/en/REVIEWER-GUIDELINES.html</strong>
+    <blockquote>
+      <p>1.The abstract and contribution list should explicitly state that PAMRI requires pretraining on paired, registered multi-modal data from the target domain; the system is not a plug-and-play extension of any off-the-shelf prior.
+2.Clarify whether PAMRI and the generative prior share the same training split and dataset.
+3.Multi-auxiliary scalability is unaddressed. Eq. (2) naturally extends to multiple auxiliary modalities, yet PAMRI’s single ψ(⋅) encoder and the guidance term in Eq. (8) are designed for one auxiliary input only. The authors should discuss how the framework would extend and how overlapping information across modalities would be handled.
+4.Clinical applicability boundary. Both datasets use pre-registered data, so the registration assumption is never stress-tested. It would be worth discussing how the method is expected to behave under imperfect registration (e.g., differing slice thickness, inter-session motion), and whether registering a low-quality target to a high-quality auxiliary is a practical prerequisite in real workflows.</p>
+    </blockquote>
+  </li>
+  <li><strong>Rate the paper on a scale of 1-6, 6 being the strongest (6-4: accept; 3-1: reject). Please use the entire range of the distribution. Spreading the score helps create a distribution for decision-making.</strong>
+    <blockquote>
+      <p>(4) Weak Accept — marginally above the acceptance threshold, but would not mind if rejected, dependent on rebuttal</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your recommendation. What were the major factors that led you to your overall score for this paper?</strong>
+    <blockquote>
+      <p>The core idea is genuinely interesting and the method design is coherent. The hallucination evaluation via SHAFE and Dice is reasonable for a venue like MICCAI, though the paper would benefit from a brief acknowledgment of their limitations as proxy metrics. The main concerns driving the score are: (W1) FlowDPS baseline is absent, leaving the source of gains unattributed; and (W3) the true NFE at T=100 is 240, making Table 1 comparisons materially unfair—this requires re-running at matched NFE, not just clarification. A satisfactory rebuttal on these two points would increase confidence in the score.</p>
+    </blockquote>
+  </li>
+  <li><strong>Reviewer confidence</strong>
+    <blockquote>
+      <p>Confident but not absolutely certain (3)</p>
+    </blockquote>
+  </li>
+  <li><strong>[Post rebuttal] After reading the authors’ rebuttal, please state your final opinion of the paper.</strong>
+    <blockquote>
+      <p>Accept</p>
+    </blockquote>
+  </li>
+  <li><strong>[Post rebuttal] Please justify your final decision from above.</strong>
+    <blockquote>
+      <p>The submitted paper was already close to acceptance based on a coherent multimodal posterior-guided reconstruction framework and solid hallucination-related and downstream-task evaluation. The rebuttal clarifies my main concerns about the FlowDPS-style comparison and NFE accounting, but much of the supporting evidence is rebuttal-only and should be treated as confidence-increasing rather than equivalent to submitted experiments. Overall, the concerns are sufficiently reduced for an Accept recommendation, but not for highlight consideration.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2><br /><br /></h2></div></article>
+<h3 class="record-h">作者反馈 <small>原文照抄</small></h3><div class="record-body"><blockquote>
+  <p>We thank all reviewers for their constructive feedback and for recognizing the importance of mitigating hallucinations in MRI reconstruction. We are pleased that the reviewers found our motivation strong (R2, R3), our method well-designed (R1-R3), and our experiments thorough (R2, R3).
+Missing baselines [R1.7.1, R3.7.1]: We evaluated FlowDPS (ICCV’25) and DDNM (ICLR’23) on HCP at T=100 using our pretrained rectified flow and diffusion priors. FlowDPS: SSIM 0.624±0.049, SHAFE 0.216±0.043; DDNM: SSIM 0.764±0.123, SHAFE 0.221±0.107.Both underperform MPFlow. Adding PAMRI guidance to FlowDPS yields SSIM 0.650±0.047, SHAFE 0.204±0.039, confirming PAMRI’s contribution is sampler-agnostic and complementary to recent posterior sampling methods.
+Matched-NFE evaluation [R3.7.3]: We agree noise optimization adds NFEs. For fair comparison, we re-ran DPS and DynamicDPS at T=240 (matched to MPFlow’s effective NFE). DPS: SSIM 0.713, SHAFE 0.220; DynamicDPS: SSIM 0.702, SHAFE 0.269.Both remain inferior to MPFlow (SSIM 0.78, SHAFE 0.20), demonstrating that MPFlow’s efficiency advantage is not an artifact of NFE accounting. Removing noise optimization from MPFlow (NFE=100) still yields substantial improvements over Tab. 1 baselines, as shown in Tab. 3.Patch operator [R3.7.4]: P(·) constructs a binary brain mask from the auxiliary image, partitions the image into non-overlapping patches, and selects only patches with sufficient brain content. We will clarify this in the revised manuscript.
+PAMRI necessity [R3.7.2]: We compared PAMRI against three intensity-based alternatives: Normalized Mutual Information (NMI), Canny edge loss, and pixel-MSE. NMI: SSIM 0.762±0.036, SHAFE 0.210±0.059; edge loss: SSIM 0.745±0.044, SHAFE 0.255±0.155; pixel-MSE: SSIM 0.748±0.037, SHAFE 0.215±0.053.PAMRI outperforms all three. While NMI is the strongest classical baseline, it still operates at the pixel level and cannot capture the fine-grained structural correspondence that PAMRI’s learned latent space provides. We also observed worsening in SHAFE score across all variants compared to using PAMRI (Tab. 3a), indicating that naive intensity-based guidance cannot suppress hallucinations as effectively.
+Noise optimization [R1.7.3]: While the ablation gain in Tab. 3a appears modest, isolating noise optimization against the vanilla baseline yields SSIM 0.754, SHAFE 0.218, a consistent ~2% improvement.
+Multi-coil data [R1.7.2]: Our evaluation on magnitude images follows standard practice in recent MRI reconstruction work (DynamicDPS, DiffDeuR); all baselines operate on magnitude data for direct comparability. PAMRI’s cross-modal guidance is orthogonal to magnitude vs. complex domain, the framework extends naturally to complex-valued reconstruction by replacing the forward operator. We agree validation on multi-coil raw data (e.g., fastMRI) is valuable future work.
+DIP baseline [R2.7.1]: We used measurement-loss-based early stopping for DIP. We tried multiple stopping points and observed minimal change in noise level, likely because measurement loss correlates poorly with image quality on heavily ill-posed problems, making the optimal window narrow and difficult to tune reliably.
+Notation [R3.7.5]: We will disambiguate the overloaded use of z in Eq. 4 vs. Eq. 6 and clarify positive pair definitions in the revised manuscript.
+Contribution list [R3.12.1]: We will revise the abstract and contribution list to explicitly state PAMRI’s pretraining requirements.
+Training data [R3.12.2]: PAMRI and the generative prior use the same training split and dataset, disjoint from the test set.
+Multi-auxiliary and registration [R3.12.3-4]: We agree multi-auxiliary scalability and stress-testing under imperfect registration are important next steps for clinical deployment.</p>
+</blockquote>
+
+<p><br /><br /></p></div>
+<h3 class="record-h">meta-review <small>原文照抄</small></h3>
+<article class="record-review" id="record-meta-review-1"><div class="record-review__head"><b>Meta-review #1</b><span class="record-badge">推荐：Invite for Rebuttal</span></div><div class="record-body"><ul>
+  <li><strong>Your recommendation</strong>
+    <blockquote>
+      <p>Invite for Rebuttal</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your decision.  In case you deviate from the reviewers’ recommendations, explain in detail the reasons why. In case of an invitation for rebuttal, clarify which points are important to address in the rebuttal.</strong>
+    <blockquote>
+      <p>The reviewers are mixed but see clear promise in the work, with scores of 3, 5, and 4.The paper proposes an interesting multimodal posterior-guided flow matching framework for zero-shot MRI reconstruction, using auxiliary MR images to guide sampling without retraining the generative prior. The PAMRI representation learning component and the use of hallucination-related/downstream metrics are viewed as meaningful strengths.</p>
+
+      <p>However, several issues need clarification before a final decision. The rebuttal should address the lack of direct comparison with flow-based posterior sampling baselines such as FlowDPS or other recent flow/inverse-problem methods, since this is important for attributing gains to the proposed multimodal guidance. The authors should also correct the efficiency comparison by reporting matched-NFE results, as the initial noise selection appears to add substantial hidden sampling cost.</p>
+    </blockquote>
+  </li>
+  <li><strong>After you have reviewed the rebuttal and updated reviews, please provide your recommendation based on all reviews and the authors’ rebuttal.</strong>
+    <blockquote>
+      <p>Accept</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your recommendation.</strong>
+    <blockquote>
+      <p>I recommend acceptance. The paper proposes a coherent and interesting multimodal posterior-guided flow matching framework for zero-shot MRI reconstruction, using an auxiliary MR modality to guide sampling without retraining the generative prior. The core idea is well motivated, and the use of PAMRI for latent-space cross-modal alignment is a meaningful way to exploit shared anatomy while avoiding direct pixel-level matching across contrasts.</p>
+
+      <p>The rebuttal addressed the main concerns raised during review. In particular, the authors clarified the FlowDPS/DDNM comparisons, matched-NFE accounting, the patch operator and masking strategy, the necessity of PAMRI compared with simpler guidance alternatives, and the role of the noise-optimization module. Reviewers #2 and #3 both support acceptance after rebuttal. Reviewer #1 remains concerned about the lack of real complex-valued multi-coil raw-data validation, which is a valid limitation, but I view it as a scope limitation rather than a fatal flaw for the current contribution.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /><br /></p></div></article>
+<article class="record-review" id="record-meta-review-2"><div class="record-review__head"><b>Meta-review #2</b><span class="record-badge is-reject">推荐：Reject</span></div><div class="record-body"><ul>
+  <li><strong>After you have reviewed the rebuttal and updated reviews, please provide your recommendation based on all reviews and the authors’ rebuttal.</strong>
+    <blockquote>
+      <p>Reject</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your recommendation.</strong>
+    <blockquote>
+      <p>The authors present an interesting methodology for performing posterior-guided image refinement using an auxiliary image. This wording is specific, as this is not an MRI reconstruction paper, contrary to what the title implies (pointed out by Reviewer 1). However, the authors do define “reconstruction” more broadly as the recreation of high-quality data from limited data. This, however, highlights an issue that is called out in the initial reviews and not addressed. This is the limitation of registered (and seemingly skull-stripped) images in an auxiliary-assisted challenge. This is a strong limitation that is commonly validated in other auxiliary-assisted refinement methods. Further, it takes the method further from the purpose of “reconstruction”, where the assumptions about data preprocessing are necessarily minimal. This is especially true for the two tasks presented here, where registration and skull-stripping would drastically affect the resolution and k-space components.</p>
+
+      <p>Additionally, the authors included new experiments conducted in the rebuttal and presented the results as responses to the reviewers’ concerns. This is not allowed under the rebuttal guidelines and cannot carry weight in the acceptance decision at this stage. Unfortunately, most of what the authors present as responses to the author’s concerns fall under this category and must be excluded.</p>
+
+      <p>Based on the lack of clarification for some concerns after removing additional experiments, I can only recommend rejection for this paper.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /><br /></p></div></article>
+<article class="record-review" id="record-meta-review-3"><div class="record-review__head"><b>Meta-review #3</b><span class="record-badge is-accept">推荐：Accept</span></div><div class="record-body"><ul>
+  <li><strong>After you have reviewed the rebuttal and updated reviews, please provide your recommendation based on all reviews and the authors’ rebuttal.</strong>
+    <blockquote>
+      <p>Accept</p>
+    </blockquote>
+  </li>
+  <li><strong>Please justify your recommendation.</strong>
+    <blockquote>
+      <p>This paper proposes MPFlow, a zero-shot MRI reconstruction framework that introduces an auxiliary MR modality as inference-time posterior guidance without retraining the unconditional generative prior, combining a patch-level cross-modal representation module (PAMRI) with a multi-modal posterior-guided flow matching sampler. The reviewers agree that the core idea of inference-time multimodal guidance to reduce hallucination is original and practically motivated, that the PAMRI latent-space alignment is well suited to multi-contrast MRI where pixel-level correspondence is unreliable, and that the evaluation is convincing in going beyond fidelity metrics to include hallucination-related and downstream segmentation measures, all of which are established within the submitted manuscript. The rebuttal clarified the effective sampling cost and the efficiency comparison, the positioning relative to flow-based posterior-sampling methods, the patch operator and background handling, and the notation, which together resolved the principal points of concern. The main remaining limitation is that the evaluation rests on magnitude-domain super-resolution and simulated accelerated reconstruction, which the authors note follows standard practice in recent reconstruction work; they frame validation on complex-valued multi-coil data as future work and observe that the framework extends to that setting by replacing the forward operator. The authors are encouraged to state the PAMRI pretraining requirement and the registration assumption explicitly, to qualify the reconstruction claim in line with the magnitude-domain evaluation, and to incorporate the noted clarifications in the camera-ready version.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /><br />
+<a href=""><b></div></article>
+<p class="read-guide">以上段落由 <code>scripts/fetch-miccai-reviews.mjs</code> 于 2026-10-14 从 <a href="https://papers.miccai.org/miccai-2026/0671-Paper2812.html" target="_blank" rel="noreferrer">来源页 ↗</a> 导入，文字未做改写；格式（标题层级、列表、引用块）按本页样式重排，脚本、表单与站点导航已剔除。</p>
+<!-- review-record:end -->
+</section>
+
+<section class="chapter" id="sources"><div class="chapter-heading"><span class="chapter-number">↗</span><h2>来源与核验</h2></div><p class="read-guide">第 00–06 节是本页自己的<strong>再组织</strong>（概括、归类与判断），第 07 节是来源页<strong>原文</strong>的机械导入、不做改写。评分、指标数值、作者回应与 meta-review 立场均逐项对照来源页；判断性语句（例如「范围限制 vs 致命缺陷」的归类）标明为本站解读。</p>
+<ul class="source-list"><li><a href="https://papers.miccai.org/miccai-2026/0671-Paper2812.html" target="_blank" rel="noreferrer">01 / MICCAI 2026 评审记录页 ↗</a><span>论文条目 0671 / Paper 2812。含摘要、作者与单位、代码链接、BibTeX、三条审稿意见（含 rebuttal 后终评）、作者反馈、三条 meta-review。本站于 2026-10-14 抓取该页并逐条核对；页面自身未写最终决定。</span></li><li><a href="https://papers.miccai.org/miccai-2026/paper/2812_paper.pdf" target="_blank" rel="noreferrer">02 / Open Access 正文 ↗</a><span>评审页给出的正文链接（本站未逐式核对公式编号与表号）。</span></li><li><a href="https://github.com/edshkim98/MPFlow" target="_blank" rel="noreferrer">03 / 官方代码仓库 edshkim98/MPFlow ↗</a><span>评审页与摘要中声明的代码入口；本站未运行。</span></li><li>04 / 本站标注<span>「最终被接收」由 LNCS 16888 卷号、Open Access 版本与 BibTeX 条目推断，非评审页原文；<code>240 NFE</code> 与 <code>8×20 + 80</code> 的拆解来自审稿人 #3 的成本分析，并由作者的匹配 NFE 回应确认；SHAFE / SSIM 数值全部来自作者反馈，未经本站复现。</span></li></ul>
+</section>
+
+<footer class="page-footer"><span>论文精读地图 · 评审记录可追溯，判断与事实分开标注</span><a href="../?domain=mri&amp;paper=18-mpflow">回到 MPFlow 阅读页 →</a></footer>
+</main></div><script>
+// 阅读进度条与侧栏高亮：与站内 *-story.js 的行为一致，本页只有一处交互，直接内联。
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const bar = document.getElementById('reading-progress');
+  if (bar) bar.style.width = (max > 0 ? scrollY / max * 100 : 100) + '%';
+}
+addEventListener('scroll', updateProgress, { passive: true });
+addEventListener('resize', updateProgress);
+updateProgress();
+const links = [...document.querySelectorAll('.paper-sidebar nav a')];
+const observer = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+  }
+}, { rootMargin: '-15% 0px -65% 0px' });
+document.querySelectorAll('main > section[id]').forEach(section => observer.observe(section));
+</script></body></html>

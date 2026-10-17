@@ -18,7 +18,7 @@
 
 ## 1. 三分钟摘要与推荐理由
 
-切片上的气泡、折叠、墨迹会遮住形态，让模型高置信度地给出错误答案（silent failure）。现有 QC 做法是 Detect-and-Discard：把可疑区域丢掉不管；但在“病灶只占极小面积”的场景里，丢掉就等于丢掉诊断证据。patch 级修复（Artifusion、ArtiDiffuser）又接不上跨 patch 的全局结构。
+切片上的气泡、折叠、墨迹会遮住形态，让模型高置信度地给出错误答案（silent failure）。现有 QC 做法是 Detect-and-Discard：把可疑区域丢掉不管；但在“病灶只占极小面积”的场景里，丢掉就等于丢掉诊断证据。patch 级修复（[ArtiFusion](55-artifusion.md)、[ArtiDiffuser](57-artidiffuser.md)）又接不上跨 patch 的全局结构。
 
 RestorePath 把这件事重新定义成**全局一致的百万像素级 inpainting**：以外科修复的方式，用周围健康组织的特征去填补伪影区，并把条件信号做成“检索 + 插值”，而不是让模型凭空生成。训练用 256×256 patch 与掩码，推理时在大图上随机采 patch、逐块去噪再拼回整图。
 
@@ -29,8 +29,8 @@ RestorePath 把这件事重新定义成**全局一致的百万像素级 inpainti
 论文给出的动机很硬：TCGA-BRCA 中 **63.7%** 的 WSI 至少含一处 megapixel 级伪影（Fig. 1），说明“patch 级修复足够”的假设不成立。作者把已有工作分成三类并指出缺口：
 
 - QC 检测类（HistoQC、GrandQC）：只判废、不重建，needle-in-a-haystack 场景下会丢掉稀疏病灶。
-- 病理扩散修复（Artifusion、ArtiDiffuser）：限于 patch 级，跨 patch 结构不连贯。
-- 高分辨率生成（DiffInfinite、LRDM、ZoomLDM）：要么目标是合成新组织而非对齐原有组织，要么用 PFM 特征生成大图但没有做“与周围组织严格对齐”的 inpainting。
+- 病理扩散修复（[ArtiFusion](55-artifusion.md)、[ArtiDiffuser](57-artidiffuser.md)）：限于 patch 级，跨 patch 结构不连贯。
+- 高分辨率生成（DiffInfinite、[LRDM](56-lrdm.md)、[ZoomLDM](58-zoomldm.md)）：要么目标是合成新组织而非对齐原有组织，要么用 PFM 特征生成大图但没有做“与周围组织严格对齐”的 inpainting。
 
 RestorePath 的位置：把「修复」的判据从「单块看起来像组织」改成「整图与周围健康区域结构一致」，并用距离加权插值（DWI）显式建模“从邻域借上下文”这件事。
 
@@ -87,7 +87,7 @@ RestorePath 的位置：把「修复」的判据从「单块看起来像组织�
 - 与 [CLAM](29-clam.md) 对照：同样的弱监督链路与注意力热图，这篇把它用作“修复是否让注意力回到病灶”的判据（Fig. 4），并直接对比 D&D 与零填充。
 - 与 [CONCH](31-conch.md) 对照：病理基础模型特征在这篇里承担三重角色——训练条件（UNI）、FID_C 的分布度量、Emb Sim 的特征一致性。
 - 与 [TopoCellGen](21-topocellgen.md) 对照：同属病理生成式建模，但目标相反——一个造新细胞拓扑，一个只在伪影区对齐原有组织。
-- 论文引用的 Artifusion / ArtiDiffuser / DiffInfinite / LRDM / ZoomLDM 不在本仓库，若要补齐“病理修复”这条支线，可优先补 DiffInfinite（随机 patch 扩散的源头）与 LRDM（PFM 条件生成）。
+- 论文引用的 Artifusion / ArtiDiffuser / LRDM / ZoomLDM 现已入库：[ArtiFusion](55-artifusion.md)（首个 DDPM 病理修复、仅用无伪影图像训练）、[ArtiDiffuser](57-artidiffuser.md)（反事实扩散统一修复与合成）、[LRDM](56-lrdm.md)（SSL 嵌入条件 + MultiDiffusion 拼大图）、[ZoomLDM](58-zoomldm.md)（倍率感知条件与多尺度生成）；DiffInfinite（随机 patch 扩散的源头）尚未入库，仍是这条支线的缺口。
 
 ## 8. 链接
 
