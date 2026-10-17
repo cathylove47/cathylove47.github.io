@@ -2,7 +2,7 @@
 
 **论文**：Learned representation-guided diffusion models for large-image generation，CVPR 2024（arXiv:2312.07330v2，2024-03-28；Graikos, Yellapragada, Le, Kapse, Prasanna, Saltz, Samaras；Stony Brook University）  
 **定位**：SSL 嵌入条件扩散、patch 组装成 1024×1024 大图、生成数据增广下游分类器  
-**精读核验**：依据 arXiv v2 的摘要、方法、表格与补充材料整理（2026-10-15）；数值逐字摘自原文，尚未进行复现实验。
+**精读核验**：依据 arXiv v2 的摘要、方法、表格与补充材料整理（2026-10-15）；数值逐字摘自原文。**复现范围见第 8 节**（2026-10-15/16 在 RTX 4090 D 上用官方权重完成两次 256×256 小图推理与一张 1024×1024 大图推理；未训练、未复算 FID、未使用自有 WSI）。
 
 ## 原文摘要
 
@@ -122,7 +122,81 @@
 - 与 [HIPT](04-hipt.md) 相连：HIPT 既是条件编码器（Table 7 中最优）也是对照表征（Table 4 中的基线），可从这篇看到 SSL 表征的下游两种用法。
 - 与 [CTransPath](07-ctranspath.md) 相连：5× 模型的条件编码器与 Embedding Similarity 的度量都用它。
 
-## 8. 链接
+## 8. 复现记录：本次实际跑了什么、条件是怎么接进去的
+
+**范围**：**只做推理** —— 官方权重 `weights/brca_hipt_20x`，单卡 **RTX 4090 D**，Python 3.8.20 / torch 2.0.1+cu118，上游 commit `cf810d0924126a302bbd3403e6b88ae7747781d1`。两次 256×256 小图（GPU 0 / GPU 2 各一次，每次 2 张）+ 一张 1024×1024 大图（seed 0）。**没有训练、没有复算 FID、没有自有 WSI 结果。**
+
+下文三类陈述显式区分：**【论文】**=原文结论；**【实测】**=本次运行观测（出处：服务器 `RECORD.md` 与 `outputs/*/run.json`）；**[推断]**=解释性推断。代码断言一律落到 `文件:行号`。
+
+### 8.1 实测耗时（脚本内计时，不含 Python 导入）
+
+| 实验 | 物理 GPU | 模型加载 / s | 采样+解码 / s | 脚本内总计 / s |
+|---|---|---:|---:|---:|
+| 小图 ×2（50 步，scale 2，seed 0） | 0 | 35.3 | 19.1 | 54.9 |
+| 小图 ×2（同上） | 2 | 34.1 | 19.6 | 54.9 |
+| 1024×1024 大图 ×1（sample-index 1，U-Net 批 ≤4） | 0 | 53.47 | 采样 157.59 + 解码 4.94 | 217.87 |
+
+- 【实测】两次小图用相同 seed，输出**逐像素一致**：只产生 2 个不同样本，不是 4 个；小图**未采集峰值显存**，不把估算写成实测。
+- 【实测】大图峰值显存（**本进程 torch 口径**，不含其他进程、也不等于整卡占用）：allocated **2857.22 MiB**、reserved **2996.00 MiB**；未 OOM。计时不含前置 Python 导入与 CUDA 初始化，是共享卡上的单次耗时，不是独占基准。
+- 【实测】大图保留官方设置：50 步、169 个窗口、latent 窗口 64、窗口步幅 16、`guidance = 3.0`（`upstream/notebooks/utils.py:128`；按 `:194` 的 `(1+guidance)·ε_cond − guidance·ε_uncond` 写法定价，等价 CFG scale 4.0）。每步 338 个条件/无条件输入按原顺序拆成每批 ≤4；CPU 上用官方小型 U-Net 验证过分批/不分批在 2e-5 内一致，**但没有做大图不分批的逐像素等价验证**。
+
+真实参考 / 生成（256×256，GPU 0 与 GPU 2 输出一致，只展示一份）：
+
+![两个真实 BRCA 小图样例](/papers/pathology/56-lrdm-patch-reference.png)
+
+![同条件下生成的图](/papers/pathology/56-lrdm-patch-synthetic.png)
+
+1024×1024 大图对照，左真实右生成（整个文件 2048×1024）：
+
+![大图对照：左侧真实，右侧生成](/papers/pathology/56-lrdm-large-comparison.png)
+
+原尺寸单图：[真实参考大图](/papers/pathology/56-lrdm-large-reference.png) · [生成大图](/papers/pathology/56-lrdm-large-synthetic.png)（本节 5 张图均为本次运行输出，未做任何修饰）
+
+### 8.2 条件到底是怎么接进 U-Net 的
+
+【实测】本次推理**从头到尾都是 SSL 在驱动**，缺的不是 SSL，是"算 SSL 的那个模型"：整张 1024×1024 完全由 `item["feat_20x"]` 决定（`patch/run_large_image_synthesis.py:110`）；小图脚本以 `feat_20x` 作条件、用 `torch.zeros_like(feat_20x)` 构造无条件分支（`patch/run_patch_synthesis.py:136-138`）。官方样例 `brca_hipt_patches.pickle` 就是 `image (256,256,3) uint8` + `feat_20x (384,) float32`。
+
+```text
+feat_20x (384,) ─ F.normalize ─ Linear(384,512) ┐
+                                                 ├─ stack(dim=1) → (2,512) ─ cross-attention → U-Net 去噪
+feat_5x  (768,) ─ F.normalize ─ Linear(768,512) ┘
+   缺失时由 modules.py:33-36 补零向量，不报错
+（链路出处：upstream/ldm/modules/encoders/modules.py:24-49；context_dim 见 brca/only_ssl.yaml:47）
+```
+
+- 【实测】`modules.py:49` 的 `torch.stack(..., dim=1)` 说明条件序列长度是 **2**（patch token + region token），不是 1；缺 `feat_5x` 时 `modules.py:33-36` 补零，这正是小图脚本 `:99` 敢直接 `pop("feat_5x")` 的原因。
+- [推断] 一张 WSI 不是"有两张切片"，而是同一张切片按两种放大倍率读：`feat_20x` 回答"这个小格子里细胞长什么样"，`feat_5x` 回答"它处在什么大环境里"。
+
+**512 不是自由超参。** 【论文】论文没有把它当作可调项。【实测】原因是它被复用的 ImageNet 类条件 U-Net 钉死：`configs/latent-diffusion/brca/only_ssl.yaml:32-48` 的 U-Net 超参（`model_channels 192`、`channel_mult [1,2,3,5]`、`attention_resolutions [8,4,2]`、`context_dim 512`）与 CompVis/latent-diffusion 的 `cin256-v2.yaml` 逐项一致。**坑在这里** —— `upstream/ldm/modules/diffusionmodules/openaimodel.py:761-772` 用 `self.load_state_dict(sd, strict=False)` 加载：把 `context_dim` 改成 768 跑同一份 checkpoint，cross-attention 的 K/V 形状不匹配会被**静默丢弃**、保持随机初始化，**不报错**。
+
+**无条件分支在实现上等于投影层的 bias。** 【实测】训练侧 `brca_only_ssl.py:64-69` 用 `p_uncond` 置零的是**原始** `feat_20x`/`feat_5x`；链路上零向量经 `F.normalize` 仍是零，再经 `nn.Linear`（`modules.py:24`，默认 `bias=True`）后**只剩 bias**。[推断] 所以论文 §14 说的"全零 null token"，在代码里实际是投影层的 bias 向量；训练与推理路径一致、CFG 自洽，但改投影层实现会悄悄改掉 CFG 的语义。
+
+**训练只更新 U-Net + 投影层。** 【实测】`only_ssl.yaml:17` `cond_stage_trainable: true` → `ddpm.py:629-630` 不冻结条件模型、`ddpm.py:1780-1782` 把 `cond_stage_model.parameters()` 加进优化器；第一级 VQ-VAE 在 `ddpm.py:604-609` 冻结。HIPT 与 VQ-VAE 都是冻结的。
+
+四条路线的条件编码器（接口相同：归一化 → 投影到 512 → cross-attention）：
+
+| 模型 | 条件编码器 | 原始维度 | 投影后 | 配置:行号 |
+|---|---|---:|---:|---|
+| BRCA 20× | HIPT patch ViT（`feat_20x`）+ 5×（`feat_5x`） | 384 + 768 | 512 ×2 | `brca/only_ssl.yaml:74-81` |
+| BRCA 5× | CTransPath（`feat_patch`） | 768 | 512 | `brca/only_patch_5x.yaml:73-78` |
+| CRC 20× | iBOT（`feat_patch`） | 768 | 512 | `crc/only_patch_20x.yaml:72-77` |
+| NAIP 卫星 | 自训 DINO ViT-B/16 | 768 | 512 | `satellite/naip.yaml:72-77` |
+
+【论文】CTransPath 在这篇工作里有**三处身份**：BRCA 5× 的条件器、大图 `Embedding Similarity` 的独立评估器、下游 MIL 的特征与基线；评估时换一个没参与生成的编码器，避免自评自。
+
+### 8.3 复现踩到的三个坑（都为实测，不是推测）
+
+1. 【实测】大图首次启动在模型加载前退出：`torch.cuda.reset_peak_memory_stats` 在 CUDA 未初始化时调用，报 `RuntimeError: Invalid device argument 0: did you call init?` —— **不是 OOM**。修法是在统计重置前显式 `torch.cuda.init()`（现于 `patch/run_large_image_synthesis.py:94`）。
+2. 【实测】环境里 `taming-transformers` 只有 `.dist-info`、没有源码，报 `ModuleNotFoundError: No module named 'taming'`；补官方源码 checkout 到 `dependencies/taming-transformers`（commit `3ba01b241669f5ade541ce990f7650a3b8f65318`），未改 `upstream/`。
+3. 【实测】小图脚本原先把官方已是 uint8 的参考图又按 -1~1 浮点范围转换了一次；已删除重复转换，并在 CPU 上逐值验证 100 张样例的 19,660,800 个通道值不变。
+
+### 8.4 本次能证明什么、不能证明什么
+
+- **能证明**：官方权重与依赖能在本机加载；小图与大图生成链路完整跑通；输出尺寸、参考图像素一致性、大图峰值显存已实测；两卡同 seed 可复现。
+- **不能证明**：任何质量结论 —— 没算 FID（官方加载器默认初始化 FID 的 Inception 网络并下载约 91.2 MiB 权重，但**没有计算 FID**）、没做病理专家评估、只跑了 1/15 张大图、只用 1 个种子、没有独立于官方样例的 WSI 数据。
+- **对比口径**：【论文】大图 stride 16 在 RTX 6000 上约 1 分钟/图；【实测】本机 217.87 s（含加载 53.47 s、采样 157.59 s）。两者硬件与实现（分批）都不同，不能直接当性能对比。
+
+## 9. 链接
 
 - [arXiv 摘要与版本记录](https://arxiv.org/abs/2312.07330)
 - [arXiv HTML 正文](https://arxiv.org/html/2312.07330v2)
