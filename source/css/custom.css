@@ -2,6 +2,15 @@
   --reading-font: "Iowan Old Style", "Palatino Linotype", "Source Han Serif SC", "Noto Serif SC", "Songti SC", serif;
   --ui-font: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --reading-max-width: 78ch;
+  /* 与论文精读 / 408 讲义共用的暖纸色板 */
+  --paper: #f5f2eb;
+  --paper-card: #fcfaf5;
+  --paper-line: #d8d1c4;
+  --paper-soft: #efeae1;
+  --ink: #34312d;
+  --ink-soft: #676157;
+  --accent: #675747;
+  --accent-warm: #81582c;
 }
 
 body {
@@ -122,108 +131,111 @@ post-custom {
 }
 
 /* ========================================================== */
-/*  🌟 Modern Cyber-Aesthetic & Glassmorphism Enhancements     */
+/*  🌾 Warm paper: 与论文精读 / 408 讲义共用一套视觉语言        */
 /* ========================================================== */
 
-/* 1. 导航栏毛玻璃与渐变边框效果 */
+body { background-color: var(--paper); color: var(--ink); }
+
+/* 导航：纸面底色 + 一条细线，不再用深蓝底 */
 .navbar {
-  backdrop-filter: blur(16px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease !important;
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border-bottom: 1px solid var(--paper-line);
+  box-shadow: none !important;
+  transition: background-color .24s ease, box-shadow .24s ease !important;
+}
+/* Fluid 首页的 navbar 默认透明，叠在深色头图上；这里改成实心纸面 */
+#navbar.navbar,
+#navbar.navbar.scrolling-navbar {
+  background-color: var(--paper-soft) !important;
+}
+#navbar.navbar .nav-link,
+#navbar.navbar .navbar-brand {
+  color: var(--ink) !important;
+}
+#navbar.navbar .nav-link:hover {
+  color: var(--accent-warm) !important;
 }
 
-/* 2. 首页文章卡片浮雕发光悬停 (Glassmorphic Cards) */
-.index-card {
-  border-radius: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
-  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  position: relative;
-  overflow: hidden;
+/* 门厅：一句定位 + 两个入口，不是营销大图 */
+.welcome { max-width: 860px; padding: 8px 4px 24px; }
+.welcome-kicker {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
 }
-
-.index-card:hover {
-  transform: translateY(-5px) scale(1.008) !important;
-  box-shadow: 0 16px 36px -4px rgba(66, 153, 225, 0.18), 0 6px 16px -2px rgba(0, 0, 0, 0.08) !important;
-  border-color: rgba(99, 102, 241, 0.35) !important;
+.welcome h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--reading-font);
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 600;
+  letter-spacing: -.01em;
 }
-
-/* 卡片悬浮微妙高光流动线 */
-.index-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
-  transform: skewX(-25deg);
-  transition: 0.75s;
-  pointer-events: none;
+.welcome-lede {
+  max-width: 34em;
+  margin: 10px 0 26px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.8;
 }
-
-.index-card:hover::after {
-  left: 200%;
-}
-
-/* 3. 标签与分类胶囊徽章 (Gradient Pill Badges) */
-.post-meta a, .tagcloud a, .badge {
-  border-radius: 20px !important;
-  transition: all 0.25s ease !important;
-}
-
-.index-info .post-metas a:hover {
-  color: #4f46e5 !important;
+.welcome-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.welcome-card {
+  display: block;
+  border: 1px solid var(--paper-line);
+  border-radius: 14px;
+  background: var(--paper-card);
+  padding: 22px 22px 20px;
+  color: var(--ink);
   text-decoration: none;
-  transform: translateY(-1px);
+  transition: border-color .18s ease, transform .18s ease;
 }
-
-/* 4. 代码块精致化与阴影 */
-.markdown-body pre {
-  border-radius: 12px !important;
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+.welcome-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+.welcome-card__meta { display: block; color: var(--ink-soft); font-size: 12px; letter-spacing: .02em; }
+.welcome-card h3 {
+  margin: 8px 0 6px;
+  font-family: var(--reading-font);
+  font-size: 24px;
+  font-weight: 600;
 }
+.welcome-card p { margin: 0 0 16px; color: var(--ink-soft); font-size: 13.5px; line-height: 1.75; }
+.welcome-card__go { color: var(--accent); font-size: 13px; font-weight: 650; }
+.welcome-card:hover .welcome-card__go { color: var(--accent-warm); }
 
-/* 5. 滚动条美化 */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* 文章卡片：同一套纸面语法，去掉玻璃发光与流光 */
+.index-card {
+  border: 1px solid var(--paper-line) !important;
+  border-radius: 14px !important;
+  background: var(--paper-card);
+  box-shadow: none !important;
+  transition: border-color .18s ease !important;
 }
+.index-card:hover { border-color: var(--accent) !important; box-shadow: none !important; }
+.index-card::after { display: none !important; }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+/* 标签与徽章 */
+.post-meta a, .tagcloud a, .badge { border-radius: 999px !important; transition: color .2s ease !important; }
+.index-info .post-metas a:hover { color: var(--accent-warm) !important; text-decoration: none; }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.4);
-  border-radius: 8px;
-  transition: background 0.2s;
-}
+/* 代码块与滚动条 */
+.markdown-body pre { border-radius: 12px !important; border: 1px solid var(--paper-line) !important; box-shadow: none !important; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(103, 87, 71, .28); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(103, 87, 71, .45); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.6);
-}
+html { scroll-behavior: smooth; }
 
-/* 6. 平滑滚动体验 */
-html {
-  scroll-behavior: smooth;
-}
+/* 暗色模式沿用深色纸面 */
+[data-user-color-scheme="dark"] body { background-color: #181c27; }
+[data-user-color-scheme="dark"] .welcome-card,
+[data-user-color-scheme="dark"] .index-card { background: #252d38; border-color: #435266 !important; }
+[data-user-color-scheme="dark"] .welcome h2 { color: #ddd8cf; }
+[data-user-color-scheme="dark"] .welcome-card h3 { color: #ddd8cf; }
 
-/* 7. 暗色模式强化 (Dark Mode Polish) */
-[data-user-color-scheme="dark"] .index-card {
-  background: rgba(30, 41, 59, 0.7) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3) !important;
-}
-
-[data-user-color-scheme="dark"] .index-card:hover {
-  border-color: rgba(129, 140, 248, 0.4) !important;
-  box-shadow: 0 16px 36px -4px rgba(99, 102, 241, 0.25) !important;
-}
-
-/* 8. 文章内容主体卡片轻微圆角与阴影提升 */
-.container .row .col-lg-8 .board {
-  border-radius: 18px !important;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06) !important;
+@media (prefers-reduced-motion: reduce) {
+  .welcome-card, .index-card { transition: none; }
+  html { scroll-behavior: auto; }
 }

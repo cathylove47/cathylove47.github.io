@@ -9,18 +9,23 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
 
 <h1 style="display: none"><%= config.title %></h1>
 <% if (page.posts.length === 0) { %>
-  <section class="mx-auto" aria-labelledby="welcome-heading">
+  <section class="mx-auto welcome" aria-labelledby="welcome-heading">
+    <p class="welcome-kicker">KAISEN'S NOTES</p>
     <h2 id="welcome-heading">欢迎来到凯鑫的个人博客</h2>
-    <p>这里记录学习与思考。目前还没有公开的博客文章，可以先进入下面的学习栏目。</p>
-    <div class="row">
-      <article class="col-12 col-md-6 index-info py-4">
-        <h3 class="index-header"><a href="<%= url_for('/courses/') %>">备课讲义</a></h3>
-        <p>面向 408 辅导，收集值得讲的题目、知识点与答案解析。</p>
-      </article>
-      <article class="col-12 col-md-6 index-info py-4">
-        <h3 class="index-header"><a href="<%= url_for('/pathology-atlas/') %>">论文精读</a></h3>
-        <p>计算病理与 MRI 重建的论文学习路线和精读笔记。</p>
-      </article>
+    <p class="welcome-lede">这里记录学习与思考。目前还没有公开的博客文章，可以先进入下面的学习栏目。</p>
+    <div class="welcome-grid">
+      <a class="welcome-card" href="<%= url_for('/courses/') %>">
+        <span class="welcome-card__meta">408 辅导 · 按课次备课</span>
+        <h3>备课讲义</h3>
+        <p>收集值得讲的题目、知识点与答案解析，按课次归档，下次复用同一课。</p>
+        <span class="welcome-card__go">进入讲义 →</span>
+      </a>
+      <a class="welcome-card" href="<%= url_for('/pathology-atlas/') %>">
+        <span class="welcome-card__meta">计算病理 · MRI · 医学 Agent</span>
+        <h3>论文精读</h3>
+        <p>论文学习路线、中文精读与复现记录，原文优先，解释可追溯。</p>
+        <span class="welcome-card__go">进入精读 →</span>
+      </a>
     </div>
   </section>
 <% } %>
