@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#efece4">
   <meta name="author" content="cathy">
   <meta name="keywords" content="">
   
@@ -67,7 +67,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.cathy47.online","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.cathy47.online","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#81582c","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -89,7 +89,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 100vh;">
+<div class="header-inner" style="height: 40vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -239,10 +239,6 @@
       </div>
 
       
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
     </div>
   </div>
 </div>
@@ -255,7 +251,7 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          style="margin-top: 0">
+          >
           
           <div class="container">
             <div class="row">
@@ -264,18 +260,23 @@
 
 <h1 style="display: none">cathy</h1>
 
-  <section class="mx-auto" aria-labelledby="welcome-heading">
+  <section class="mx-auto welcome" aria-labelledby="welcome-heading">
+    <p class="welcome-kicker">KAISEN'S NOTES</p>
     <h2 id="welcome-heading">欢迎来到凯鑫的个人博客</h2>
-    <p>这里记录学习与思考。目前还没有公开的博客文章，可以先进入下面的学习栏目。</p>
-    <div class="row">
-      <article class="col-12 col-md-6 index-info py-4">
-        <h3 class="index-header"><a href="/courses/">备课讲义</a></h3>
-        <p>面向 408 辅导，收集值得讲的题目、知识点与答案解析。</p>
-      </article>
-      <article class="col-12 col-md-6 index-info py-4">
-        <h3 class="index-header"><a href="/pathology-atlas/">论文精读</a></h3>
-        <p>计算病理与 MRI 重建的论文学习路线和精读笔记。</p>
-      </article>
+    <p class="welcome-lede">这里记录学习与思考。目前还没有公开的博客文章，可以先进入下面的学习栏目。</p>
+    <div class="welcome-grid">
+      <a class="welcome-card" href="/courses/">
+        <span class="welcome-card__meta">408 辅导 · 按课次备课</span>
+        <h3>备课讲义</h3>
+        <p>收集值得讲的题目、知识点与答案解析，按课次归档，下次复用同一课。</p>
+        <span class="welcome-card__go">进入讲义 →</span>
+      </a>
+      <a class="welcome-card" href="/pathology-atlas/">
+        <span class="welcome-card__meta">计算病理 · MRI · 医学 Agent</span>
+        <h3>论文精读</h3>
+        <p>论文学习路线、中文精读与复现记录，原文优先，解释可追溯。</p>
+        <span class="welcome-card__go">进入精读 →</span>
+      </a>
     </div>
   </section>
 
