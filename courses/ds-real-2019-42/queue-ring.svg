@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 456" width="560" height="456" font-family="'Helvetica Neue',Arial,sans-serif" role="img" aria-label="2019 年第 42 题：循环单链表队列的三种状态">
+  <title>2019 年第 42 题：循环单链表队列的三种状态</title>
+  <desc>初始单结点自环、第一个元素入队后两结点、出队后再入队仍两结点并复用空位。</desc>
+  <rect width="560" height="456" fill="#f5f8fc"/>
+  <text x="16" y="26" font-size="15" font-weight="bold" fill="#1f2d3d">2019 年第 42 题：循环单链表队列的三种状态</text>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2d3d"/>
+    </marker>
+  </defs>
+  <text x="18.0" y="50.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">循环单链表：front 指向「空位」结点，rear 指向队尾元素；出队只前移 front，腾出的结点留给后续入队复用</text>
+  <text x="30.0" y="96.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">① 初始：front = rear（队空）</text>
+  <circle cx="100" cy="160" r="24" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="100.0" y="164.0" font-size="10" fill="#5a6b7b" text-anchor="middle">空位</text>
+  <path d="M 117.0 143.0 Q 100.0 98.0 83.0 143.0" fill="none" stroke="#1f2d3d" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="100.0" y="116.0" font-size="9" fill="#5a6b7b" text-anchor="middle">next</text>
+  <text x="30.0" y="214.0" font-size="10" fill="#5a6b7b" text-anchor="start">环长 1，next 指向自身</text>
+  <text x="30.0" y="232.0" font-size="10" fill="#5a6b7b" text-anchor="start">rear-&gt;next == front ⇒ 入队前先补结点</text>
+  <text x="255.0" y="96.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">② 第一个元素 x 入队后</text>
+  <circle cx="305" cy="160" r="24" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="305.0" y="164.0" font-size="10" fill="#5a6b7b" text-anchor="middle">空位</text>
+  <circle cx="440" cy="160" r="24" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="440.0" y="164.0" font-size="12" fill="#1f2d3d" text-anchor="middle" font-weight="bold">x</text>
+  <line x1="329.0" y1="154.0" x2="414.0" y2="154.0" stroke="#1f2d3d" stroke-width="1.6" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M 434.0 184.0 Q 373.0 236.0 311.0 184.0" fill="none" stroke="#1f2d3d" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="305.0" y="128.0" font-size="10" fill="#2f6fed" text-anchor="middle" font-weight="bold">front</text>
+  <text x="440.0" y="128.0" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">rear</text>
+  <text x="255.0" y="214.0" font-size="10.5" fill="#1f8a5f" text-anchor="start" font-weight="bold">此时 front ≠ rear：非空</text>
+  <text x="255.0" y="232.0" font-size="10.5" fill="#1f8a5f" text-anchor="start" font-weight="bold">rear→next == front：当前已无空闲结点（满）</text>
+  <text x="30.0" y="290.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">③ 出队 x 后再入队 y：仍只用两个结点</text>
+  <circle cx="110" cy="360" r="24" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="110.0" y="364.0" font-size="10" fill="#5a6b7b" text-anchor="middle">空位</text>
+  <circle cx="245" cy="360" r="24" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="245.0" y="364.0" font-size="12" fill="#1f2d3d" text-anchor="middle" font-weight="bold">y</text>
+  <line x1="134.0" y1="354.0" x2="219.0" y2="354.0" stroke="#1f2d3d" stroke-width="1.6" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M 239.0 384.0 Q 178.0 436.0 116.0 384.0" fill="none" stroke="#1f2d3d" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="110.0" y="328.0" font-size="10" fill="#2f6fed" text-anchor="middle" font-weight="bold">front</text>
+  <text x="245.0" y="328.0" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">rear</text>
+  <text x="305.0" y="350.0" font-size="10.5" fill="#1f8a5f" text-anchor="start">出队：front = front-&gt;next</text>
+  <text x="305.0" y="368.0" font-size="10.5" fill="#1f8a5f" text-anchor="start">入队：rear = rear-&gt;next 后写值</text>
+  <text x="305.0" y="386.0" font-size="10.5" fill="#1f8a5f" text-anchor="start">两步都不碰其他结点，故 O(1)</text>
+  <text x="30.0" y="436.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">结点从不释放：占用的空间只增不减；只有判满时才新建结点补空位。</text>
+</svg>

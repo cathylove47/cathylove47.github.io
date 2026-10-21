@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 350" width="330" height="350" font-family="'Helvetica Neue',Arial,sans-serif" role="img" aria-label="2015 年第 42 题：邻接矩阵 A">
+  <title>2015 年第 42 题：邻接矩阵 A</title>
+  <desc>5 乘 5 的邻接矩阵，行 0 至 4 依次为 01101、10011、10010、01101、11010。</desc>
+  <rect width="330" height="350" fill="#f5f8fc"/>
+  <text x="16" y="26" font-size="15" font-weight="bold" fill="#1f2d3d">2015 年第 42 题：邻接矩阵 A</text>
+  <text x="20.0" y="46.0" font-size="11" fill="#5a6b7b" text-anchor="start">行、列下标均从 0 开始；无向图的邻接矩阵关于主对角线对称</text>
+  <text x="82.0" y="76.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">0</text>
+  <text x="50.0" y="110.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">0</text>
+  <text x="122.0" y="76.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">1</text>
+  <text x="50.0" y="150.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">1</text>
+  <text x="162.0" y="76.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">2</text>
+  <text x="50.0" y="190.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">2</text>
+  <text x="202.0" y="76.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">3</text>
+  <text x="50.0" y="230.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">3</text>
+  <text x="242.0" y="76.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">4</text>
+  <text x="50.0" y="270.0" font-size="11" fill="#5a6b7b" text-anchor="middle" font-weight="bold">4</text>
+  <rect x="62.0" y="86.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="82.0" y="110.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="102.0" y="86.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="122.0" y="110.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="142.0" y="86.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="162.0" y="110.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="182.0" y="86.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="202.0" y="110.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="222.0" y="86.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="242.0" y="110.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="62.0" y="126.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="82.0" y="150.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="102.0" y="126.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="122.0" y="150.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="142.0" y="126.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="162.0" y="150.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="182.0" y="126.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="202.0" y="150.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="222.0" y="126.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="242.0" y="150.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="62.0" y="166.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="82.0" y="190.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="102.0" y="166.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="122.0" y="190.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="142.0" y="166.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="162.0" y="190.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="182.0" y="166.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="202.0" y="190.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="222.0" y="166.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="242.0" y="190.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="62.0" y="206.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="82.0" y="230.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="102.0" y="206.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="122.0" y="230.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="142.0" y="206.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="162.0" y="230.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="182.0" y="206.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="202.0" y="230.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="222.0" y="206.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="242.0" y="230.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="62.0" y="246.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="82.0" y="270.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="102.0" y="246.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="122.0" y="270.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="142.0" y="246.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="162.0" y="270.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <rect x="182.0" y="246.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="202.0" y="270.7" font-size="13" fill="#1f2d3d" text-anchor="middle">1</text>
+  <rect x="222.0" y="246.0" width="40" height="40" fill="#ffffff" stroke="#c7d2de" stroke-width="1"/>
+  <text x="242.0" y="270.7" font-size="13" fill="#1f2d3d" text-anchor="middle">0</text>
+  <text x="62.0" y="330.0" font-size="11" fill="#1f8a5f" text-anchor="start">第 i 行非零元素个数 = 顶点 i 的度</text>
+</svg>

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 576" width="660" height="576" font-family="'Helvetica Neue',Arial,sans-serif" role="img" aria-label="2017 年第 42 题：Prim 选边过程">
+  <title>2017 年第 42 题：Prim 选边过程</title>
+  <desc>四步选边：A-D、D-E、C-E、B-C，每步候选边与已选边分别着色。</desc>
+  <rect width="660" height="576" fill="#f5f8fc"/>
+  <text x="16" y="26" font-size="15" font-weight="bold" fill="#1f2d3d">2017 年第 42 题：Prim 选边过程</text>
+  <text x="18.0" y="56.0" font-size="11.5" fill="#5a6b7b" text-anchor="start">从 A 出发，每步在「S 内—S 外」的候选边中取权最小者</text>
+  <rect x="8" y="76" width="316" height="216" rx="8" fill="#ffffff" stroke="#c7d2de"/>
+  <text x="20.0" y="96.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">第 1 步：选 A—D（权 4）</text>
+  <line x1="166.0" y1="142.0" x2="48.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="101.7" y="168.9" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="166.0" y1="142.0" x2="224.0" y2="264.0" stroke="#c0392b" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="173.5" y="187.3" font-size="9.5" fill="#c0392b" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="166.0" y1="142.0" x2="294.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="225.0" y="188.3" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="48.0" y1="207.0" x2="104.0" y2="264.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="68.2" y="247.2" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="104.0" y1="264.0" x2="224.0" y2="264.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="164.0" y="279.0" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="104.0" y1="264.0" x2="294.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="255.4" y="234.1" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="224.0" y1="264.0" x2="294.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="265.9" y="248.0" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">4</text>
+  <circle cx="166.0" cy="142.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="166.0" y="146.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">A</text>
+  <circle cx="48.0" cy="207.0" r="13" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="48.0" y="211.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">B</text>
+  <circle cx="294.0" cy="207.0" r="13" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="294.0" y="211.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">E</text>
+  <circle cx="104.0" cy="264.0" r="13" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="104.0" y="268.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">C</text>
+  <circle cx="224.0" cy="264.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="224.0" y="268.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="338" y="76" width="316" height="216" rx="8" fill="#ffffff" stroke="#c7d2de"/>
+  <text x="350.0" y="96.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">第 2 步：选 D—E（权 4）</text>
+  <line x1="496.0" y1="142.0" x2="378.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="431.7" y="168.9" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="496.0" y1="142.0" x2="554.0" y2="264.0" stroke="#2f6fed" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="503.5" y="187.3" font-size="9.5" fill="#2f6fed" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="496.0" y1="142.0" x2="624.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="555.0" y="188.3" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="378.0" y1="207.0" x2="434.0" y2="264.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="398.2" y="247.2" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="434.0" y1="264.0" x2="554.0" y2="264.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="494.0" y="279.0" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="434.0" y1="264.0" x2="624.0" y2="207.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="585.4" y="234.1" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="554.0" y1="264.0" x2="624.0" y2="207.0" stroke="#c0392b" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="595.9" y="248.0" font-size="9.5" fill="#c0392b" text-anchor="middle" font-weight="bold">4</text>
+  <circle cx="496.0" cy="142.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="496.0" y="146.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">A</text>
+  <circle cx="378.0" cy="207.0" r="13" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="378.0" y="211.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">B</text>
+  <circle cx="624.0" cy="207.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="624.0" y="211.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">E</text>
+  <circle cx="434.0" cy="264.0" r="13" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="434.0" y="268.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">C</text>
+  <circle cx="554.0" cy="264.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="554.0" y="268.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="8" y="326" width="316" height="216" rx="8" fill="#ffffff" stroke="#c7d2de"/>
+  <text x="20.0" y="346.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">第 3 步：选 E—C（权 5）</text>
+  <line x1="166.0" y1="392.0" x2="48.0" y2="457.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="101.7" y="418.9" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="166.0" y1="392.0" x2="224.0" y2="514.0" stroke="#2f6fed" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="173.5" y="437.3" font-size="9.5" fill="#2f6fed" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="166.0" y1="392.0" x2="294.0" y2="457.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="225.0" y="438.3" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="48.0" y1="457.0" x2="104.0" y2="514.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="68.2" y="497.2" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="104.0" y1="514.0" x2="224.0" y2="514.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="164.0" y="529.0" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="104.0" y1="514.0" x2="294.0" y2="457.0" stroke="#c0392b" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="255.4" y="484.1" font-size="9.5" fill="#c0392b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="224.0" y1="514.0" x2="294.0" y2="457.0" stroke="#2f6fed" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="265.9" y="498.0" font-size="9.5" fill="#2f6fed" text-anchor="middle" font-weight="bold">4</text>
+  <circle cx="166.0" cy="392.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="166.0" y="396.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">A</text>
+  <circle cx="48.0" cy="457.0" r="13" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="48.0" y="461.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">B</text>
+  <circle cx="294.0" cy="457.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="294.0" y="461.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">E</text>
+  <circle cx="104.0" cy="514.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="104.0" y="518.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">C</text>
+  <circle cx="224.0" cy="514.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="224.0" y="518.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">D</text>
+  <rect x="338" y="326" width="316" height="216" rx="8" fill="#ffffff" stroke="#c7d2de"/>
+  <text x="350.0" y="346.0" font-size="11" fill="#1f2d3d" text-anchor="start" font-weight="bold">第 4 步：选 C—B（权 4）</text>
+  <line x1="496.0" y1="392.0" x2="378.0" y2="457.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="431.7" y="418.9" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="496.0" y1="392.0" x2="554.0" y2="514.0" stroke="#2f6fed" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="503.5" y="437.3" font-size="9.5" fill="#2f6fed" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="496.0" y1="392.0" x2="624.0" y2="457.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="555.0" y="438.3" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="378.0" y1="457.0" x2="434.0" y2="514.0" stroke="#c0392b" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="398.2" y="497.2" font-size="9.5" fill="#c0392b" text-anchor="middle" font-weight="bold">4</text>
+  <line x1="434.0" y1="514.0" x2="554.0" y2="514.0" stroke="#cfd8e3" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="494.0" y="529.0" font-size="9.5" fill="#5a6b7b" text-anchor="middle" font-weight="bold">6</text>
+  <line x1="434.0" y1="514.0" x2="624.0" y2="457.0" stroke="#2f6fed" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="585.4" y="484.1" font-size="9.5" fill="#2f6fed" text-anchor="middle" font-weight="bold">5</text>
+  <line x1="554.0" y1="514.0" x2="624.0" y2="457.0" stroke="#2f6fed" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="595.9" y="498.0" font-size="9.5" fill="#2f6fed" text-anchor="middle" font-weight="bold">4</text>
+  <circle cx="496.0" cy="392.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="496.0" y="396.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">A</text>
+  <circle cx="378.0" cy="457.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="378.0" y="461.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">B</text>
+  <circle cx="624.0" cy="457.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="624.0" y="461.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">E</text>
+  <circle cx="434.0" cy="514.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="434.0" y="518.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">C</text>
+  <circle cx="554.0" cy="514.0" r="13" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="554.0" y="518.0" font-size="11" fill="#1f2d3d" text-anchor="middle" font-weight="bold">D</text>
+  <text x="18.0" y="560.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">蓝线＝已加入 MST 的边，红线＝本步新加入的边，浅灰＝尚未选中的边。</text>
+</svg>

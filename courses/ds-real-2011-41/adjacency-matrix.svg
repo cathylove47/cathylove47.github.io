@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="470" viewBox="0 0 440 470" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">恢复出的邻接矩阵</title>
+  <desc id="dsc">六阶矩阵，对角线为 0，严格上三角按一维数组填入，其余为无穷大。</desc>
+  <rect width="440" height="470" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <text x="20" y="26" font-size="14" font-weight="bold" fill="#132c40">邻接矩阵 A（行、列均为 0～5）</text>
+
+    <g font-size="12" fill="#5b6b7a" text-anchor="middle">
+      <text x="110" y="56">0</text><text x="162" y="56">1</text><text x="214" y="56">2</text>
+      <text x="266" y="56">3</text><text x="318" y="56">4</text><text x="370" y="56">5</text>
+    </g>
+    <g font-size="12" fill="#5b6b7a" text-anchor="end">
+      <text x="80" y="85">0</text><text x="80" y="131">1</text><text x="80" y="177">2</text>
+      <text x="80" y="223">3</text><text x="80" y="269">4</text><text x="80" y="315">5</text>
+    </g>
+
+    <g stroke="#8a9aa8" fill="#ffffff">
+      <rect x="86" y="62" width="48" height="42"/><rect x="134" y="62" width="48" height="42"/>
+      <rect x="182" y="62" width="48" height="42"/><rect x="230" y="62" width="48" height="42"/>
+      <rect x="278" y="62" width="48" height="42"/><rect x="326" y="62" width="48" height="42"/>
+
+      <rect x="86" y="104" width="48" height="42"/><rect x="134" y="104" width="48" height="42"/>
+      <rect x="182" y="104" width="48" height="42"/><rect x="230" y="104" width="48" height="42"/>
+      <rect x="278" y="104" width="48" height="42"/><rect x="326" y="104" width="48" height="42"/>
+
+      <rect x="86" y="146" width="48" height="42"/><rect x="134" y="146" width="48" height="42"/>
+      <rect x="182" y="146" width="48" height="42"/><rect x="230" y="146" width="48" height="42"/>
+      <rect x="278" y="146" width="48" height="42"/><rect x="326" y="146" width="48" height="42"/>
+
+      <rect x="86" y="188" width="48" height="42"/><rect x="134" y="188" width="48" height="42"/>
+      <rect x="182" y="188" width="48" height="42"/><rect x="230" y="188" width="48" height="42"/>
+      <rect x="278" y="188" width="48" height="42"/><rect x="326" y="188" width="48" height="42"/>
+
+      <rect x="86" y="230" width="48" height="42"/><rect x="134" y="230" width="48" height="42"/>
+      <rect x="182" y="230" width="48" height="42"/><rect x="230" y="230" width="48" height="42"/>
+      <rect x="278" y="230" width="48" height="42"/><rect x="326" y="230" width="48" height="42"/>
+
+      <rect x="86" y="272" width="48" height="42"/><rect x="134" y="272" width="48" height="42"/>
+      <rect x="182" y="272" width="48" height="42"/><rect x="230" y="272" width="48" height="42"/>
+      <rect x="278" y="272" width="48" height="42"/><rect x="326" y="272" width="48" height="42"/>
+    </g>
+
+    <g fill="#e8f1f8" stroke="#356c91">
+      <rect x="134" y="62" width="48" height="42"/><rect x="182" y="62" width="48" height="42"/>
+      <rect x="230" y="62" width="48" height="42"/><rect x="278" y="62" width="48" height="42"/>
+      <rect x="326" y="62" width="48" height="42"/>
+
+      <rect x="182" y="104" width="48" height="42"/><rect x="230" y="104" width="48" height="42"/>
+      <rect x="278" y="104" width="48" height="42"/><rect x="326" y="104" width="48" height="42"/>
+
+      <rect x="230" y="146" width="48" height="42"/><rect x="278" y="146" width="48" height="42"/>
+      <rect x="326" y="146" width="48" height="42"/>
+
+      <rect x="278" y="188" width="48" height="42"/><rect x="326" y="188" width="48" height="42"/>
+
+      <rect x="326" y="230" width="48" height="42"/>
+    </g>
+
+    <g font-size="14" fill="#132c40" text-anchor="middle">
+      <text x="110" y="89">0</text><text x="158" y="89">4</text><text x="206" y="89">6</text>
+      <text x="254" y="89">∞</text><text x="302" y="89">∞</text><text x="350" y="89">∞</text>
+
+      <text x="110" y="131">∞</text><text x="158" y="131">0</text><text x="206" y="131">5</text>
+      <text x="254" y="131">∞</text><text x="302" y="131">∞</text><text x="350" y="131">∞</text>
+
+      <text x="110" y="173">∞</text><text x="158" y="173">∞</text><text x="206" y="173">0</text>
+      <text x="254" y="173">4</text><text x="302" y="173">3</text><text x="350" y="173">∞</text>
+
+      <text x="110" y="215">∞</text><text x="158" y="215">∞</text><text x="206" y="215">∞</text>
+      <text x="254" y="215">0</text><text x="302" y="215">∞</text><text x="350" y="215">3</text>
+
+      <text x="110" y="257">∞</text><text x="158" y="257">∞</text><text x="206" y="257">∞</text>
+      <text x="254" y="257">∞</text><text x="302" y="257">0</text><text x="350" y="257">3</text>
+
+      <text x="110" y="299">∞</text><text x="158" y="299">∞</text><text x="206" y="299">∞</text>
+      <text x="254" y="299">∞</text><text x="302" y="299">∞</text><text x="350" y="299">0</text>
+    </g>
+
+    <rect x="86" y="360" width="14" height="14" fill="#e8f1f8" stroke="#356c91"/>
+    <text x="108" y="372" font-size="12" fill="#5b6b7a">浅色格 = 一维数组中存放的 15 个严格上三角元素</text>
+    <text x="20" y="404" font-size="12" fill="#5b6b7a">对角线（i = j）全部为 0，左下三角（i &gt; j）全部为 ∞。</text>
+    <text x="20" y="428" font-size="12" fill="#5b6b7a">按行填入顺序：A[0][1] … A[0][5]，A[1][2] … A[1][5]，…，A[4][5]。</text>
+  </g>
+</svg>

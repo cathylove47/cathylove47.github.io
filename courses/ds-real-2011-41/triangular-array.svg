@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">上三角矩阵按行优先压缩到一维数组</title>
+  <desc id="dsc">一维数组共 15 个元素，按第 0 行 5 个、第 1 行 4 个、第 2 行 3 个、第 3 行 2 个、第 4 行 1 个分组排列。</desc>
+  <rect width="640" height="300" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <text x="20" y="26" font-size="14" font-weight="bold" fill="#132c40">一维数组中的 15 个元素（行优先）</text>
+
+    <g font-size="12" fill="#5b6b7a">
+      <text x="22" y="76">第 0 行</text>
+      <text x="22" y="116">第 1 行</text>
+      <text x="22" y="156">第 2 行</text>
+      <text x="22" y="196">第 3 行</text>
+      <text x="22" y="236">第 4 行</text>
+    </g>
+
+    <g stroke="#356c91" fill="#eef4fa">
+      <rect x="100" y="54" width="44" height="34"/><rect x="144" y="54" width="44" height="34"/>
+      <rect x="188" y="54" width="44" height="34"/><rect x="232" y="54" width="44" height="34"/>
+      <rect x="276" y="54" width="44" height="34"/>
+
+      <rect x="100" y="94" width="44" height="34"/><rect x="144" y="94" width="44" height="34"/>
+      <rect x="188" y="94" width="44" height="34"/><rect x="232" y="94" width="44" height="34"/>
+
+      <rect x="100" y="134" width="44" height="34"/><rect x="144" y="134" width="44" height="34"/>
+      <rect x="188" y="134" width="44" height="34"/>
+
+      <rect x="100" y="174" width="44" height="34"/><rect x="144" y="174" width="44" height="34"/>
+
+      <rect x="100" y="214" width="44" height="34"/>
+    </g>
+    <g font-size="15" fill="#132c40" text-anchor="middle">
+      <text x="122" y="76">4</text><text x="166" y="76">6</text><text x="210" y="76">∞</text>
+      <text x="254" y="76">∞</text><text x="298" y="76">∞</text>
+
+      <text x="122" y="116">5</text><text x="166" y="116">∞</text><text x="210" y="116">∞</text>
+      <text x="254" y="116">∞</text>
+
+      <text x="122" y="156">4</text><text x="166" y="156">3</text><text x="210" y="156">∞</text>
+
+      <text x="122" y="196">∞</text><text x="166" y="196">3</text>
+
+      <text x="122" y="236">3</text>
+    </g>
+
+    <text x="330" y="112" font-size="12" fill="#5b6b7a">第 0 行存 5 个（列 1～5）</text>
+    <text x="330" y="136" font-size="12" fill="#5b6b7a">第 1 行存 4 个（列 2～5）</text>
+    <text x="330" y="160" font-size="12" fill="#5b6b7a">第 2 行存 3 个（列 3～5）</text>
+    <text x="330" y="184" font-size="12" fill="#5b6b7a">第 3 行存 2 个（列 4～5）</text>
+    <text x="330" y="208" font-size="12" fill="#5b6b7a">第 4 行存 1 个（列 5）</text>
+
+    <text x="330" y="244" font-size="12" fill="#5b6b7a">∞ 表示该位置没有弧。</text>
+    <text x="330" y="266" font-size="12" fill="#5b6b7a">对角线元素不存储。</text>
+  </g>
+</svg>

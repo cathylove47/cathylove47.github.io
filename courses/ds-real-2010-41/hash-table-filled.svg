@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="300" viewBox="0 0 620 300" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">线性探测构造结果与查找次数</title>
+  <desc id="dsc">槽 0 到 9 依次为 7、14、空、8、空、11、30、18、9、空；各关键字查找次数为 1、2、1、1、1、3、3。成功 ASL 12/7，失败 ASL 18/7。</desc>
+  <rect width="620" height="300" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <text x="20" y="28" font-size="14" font-weight="bold" fill="#132c40">线性探测的最终散列表</text>
+
+    <text x="6" y="78" font-size="13" fill="#132c40">地址</text>
+    <text x="6" y="126" font-size="13" fill="#132c40">关键字</text>
+    <text x="6" y="174" font-size="13" fill="#132c40">次数</text>
+
+    <!-- header row -->
+    <g font-size="12" fill="#5b6b7a" text-anchor="middle">
+      <text x="100" y="78">0</text><text x="152" y="78">1</text><text x="204" y="78">2</text>
+      <text x="256" y="78">3</text><text x="308" y="78">4</text><text x="360" y="78">5</text>
+      <text x="412" y="78">6</text><text x="464" y="78">7</text><text x="516" y="78">8</text>
+      <text x="568" y="78">9</text>
+    </g>
+
+    <!-- key row -->
+    <g>
+      <rect x="76" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="128" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="180" y="92" width="48" height="40" fill="#f4f7fa" stroke="#8a9aa8"/>
+      <rect x="232" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="284" y="92" width="48" height="40" fill="#f4f7fa" stroke="#8a9aa8"/>
+      <rect x="336" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="388" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="440" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="492" y="92" width="48" height="40" fill="#e8f1f8" stroke="#356c91"/>
+      <rect x="544" y="92" width="48" height="40" fill="#f4f7fa" stroke="#8a9aa8"/>
+    </g>
+    <g font-size="15" fill="#132c40" text-anchor="middle">
+      <text x="100" y="118">7</text><text x="152" y="118">14</text><text x="204" y="118">—</text>
+      <text x="256" y="118">8</text><text x="308" y="118">—</text><text x="360" y="118">11</text>
+      <text x="412" y="118">30</text><text x="464" y="118">18</text><text x="516" y="118">9</text>
+      <text x="568" y="118">—</text>
+    </g>
+
+    <!-- probe count row -->
+    <g>
+      <rect x="76" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="128" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="180" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="232" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="284" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="336" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="388" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="440" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="492" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+      <rect x="544" y="140" width="48" height="40" fill="#ffffff" stroke="#c9d4de"/>
+    </g>
+    <g font-size="14" fill="#132c40" text-anchor="middle">
+      <text x="100" y="166">1</text><text x="152" y="166">2</text><text x="204" y="166">—</text>
+      <text x="256" y="166">1</text><text x="308" y="166">—</text><text x="360" y="166">1</text>
+      <text x="412" y="166">1</text><text x="464" y="166">3</text><text x="516" y="166">3</text>
+      <text x="568" y="166">—</text>
+    </g>
+
+    <text x="20" y="212" font-size="13" fill="#1e7a4f">ASL成功 = (1+2+1+1+1+3+3) / 7 = 12/7 ≈ 1.71</text>
+    <text x="20" y="236" font-size="13" fill="#1e7a4f">ASL失败 = (3+2+1+2+1+5+4) / 7 = 18/7 ≈ 2.57</text>
+    <text x="20" y="260" font-size="12" fill="#5b6b7a">18 的探查序列 5→6→7；9 的探查序列 6→7→8；14 的探查序列 0→1。</text>
+    <text x="20" y="282" font-size="12" fill="#5b6b7a">失败的除数取散列函数值域 7，而不是槽位数 10。</text>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="430" viewBox="0 0 660 430" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">由链路状态信息得到的网络拓扑</title>
+  <desc id="dsc">四台路由器 R1 到 R4，链路费用 R1-R2 为 3、R1-R3 为 2、R2-R4 为 4、R3-R4 为 6；每台路由器各直连一个 192.1.x.x 子网，费用 1。</desc>
+  <rect width="660" height="430" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <text x="20" y="26" font-size="14" font-weight="bold" fill="#132c40">网络拓扑（边旁数字为链路费用）</text>
+
+    <g stroke="#356c91" stroke-width="1.8">
+      <line x1="172.4" y1="196.8" x2="297.6" y2="123.2"/>
+      <line x1="172.4" y1="223.2" x2="297.6" y2="296.8"/>
+      <line x1="341.6" y1="124.4" x2="448.4" y2="195.6"/>
+      <line x1="341.6" y1="295.6" x2="448.4" y2="224.4"/>
+    </g>
+    <g font-size="13" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="3" fill="#c0392b">
+      <text x="232" y="152">3</text>
+      <text x="232" y="268">2</text>
+      <text x="402" y="152">4</text>
+      <text x="402" y="268">6</text>
+    </g>
+
+    <g stroke="#8a9aa8" stroke-width="1.5">
+      <line x1="160" y1="135" x2="134" y2="190"/>
+      <line x1="392" y1="48" x2="342" y2="87"/>
+      <line x1="392" y1="352" x2="342" y2="333"/>
+      <line x1="496" y1="210" x2="510" y2="210"/>
+    </g>
+    <g font-size="11" fill="#5b6b7a">
+      <text x="132" y="166">1</text>
+      <text x="380" y="62">1</text>
+      <text x="380" y="348">1</text>
+      <text x="500" y="200">1</text>
+    </g>
+
+    <g>
+      <circle cx="150" cy="210" r="26" fill="#eef4fa" stroke="#356c91" stroke-width="1.8"/>
+      <text x="150" y="215" text-anchor="middle" font-size="14" fill="#132c40">R1</text>
+      <circle cx="320" cy="110" r="26" fill="#eef4fa" stroke="#356c91" stroke-width="1.8"/>
+      <text x="320" y="115" text-anchor="middle" font-size="14" fill="#132c40">R2</text>
+      <circle cx="320" cy="310" r="26" fill="#eef4fa" stroke="#356c91" stroke-width="1.8"/>
+      <text x="320" y="315" text-anchor="middle" font-size="14" fill="#132c40">R3</text>
+      <circle cx="470" cy="210" r="26" fill="#eef4fa" stroke="#356c91" stroke-width="1.8"/>
+      <text x="470" y="215" text-anchor="middle" font-size="14" fill="#132c40">R4</text>
+    </g>
+
+    <g fill="#f4f7fa" stroke="#8a9aa8">
+      <rect x="10" y="120" width="150" height="30" rx="6"/>
+      <rect x="330" y="18" width="150" height="30" rx="6"/>
+      <rect x="330" y="352" width="150" height="30" rx="6"/>
+      <rect x="510" y="195" width="140" height="30" rx="6"/>
+    </g>
+    <g font-size="12" fill="#132c40" text-anchor="middle">
+      <text x="85" y="140">192.1.1.0/24</text>
+      <text x="405" y="38">192.1.6.0/24</text>
+      <text x="405" y="372">192.1.5.0/24</text>
+      <text x="580" y="215">192.1.7.0/24</text>
+    </g>
+
+    <text x="20" y="408" font-size="12" fill="#5b6b7a">路由器之间是双向链路，费用两端一致；每个子网通过 1 条直连链路与路由器相连。</text>
+  </g>
+</svg>
