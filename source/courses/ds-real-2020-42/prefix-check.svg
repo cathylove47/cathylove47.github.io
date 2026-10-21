@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" width="700" height="440" font-family="'Helvetica Neue',Arial,sans-serif" role="img" aria-label="2020 年第 42 题：前缀特性的判定">
+  <title>2020 年第 42 题：前缀特性的判定</title>
+  <desc>两种违反前缀特性的字典树情形：途中撞上字符结点、字符结点仍有孩子。</desc>
+  <rect width="700" height="440" fill="#f5f8fc"/>
+  <text x="16" y="26" font-size="15" font-weight="bold" fill="#1f2d3d">2020 年第 42 题：前缀特性的判定</text>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2d3d"/>
+    </marker>
+  </defs>
+  <text x="18.0" y="50.0" font-size="11" fill="#5a6b7b" text-anchor="start">判定方法：把每个编码逐位插入字典树，字符只允许落在叶结点</text>
+  <text x="24.0" y="96.0" font-size="11.5" fill="#c0392b" text-anchor="start" font-weight="bold">情形一：插入途中撞上已有的字符结点</text>
+  <line x1="105.0" y1="170.0" x2="205.0" y2="170.0" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+  <text x="155.0" y="156.0" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">0</text>
+  <circle cx="105.0" cy="170.0" r="18" fill="#ffe2dc" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="105.0" y="173.6" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">A</text>
+  <circle cx="205.0" cy="170.0" r="18" fill="#ffffff" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="205.0" y="173.2" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="bold">01</text>
+  <text x="262.0" y="164.0" font-size="11" fill="#1f2d3d" text-anchor="start">插入 01 时先经过已存在的 A 结点；</text>
+  <text x="262.0" y="184.0" font-size="11" fill="#c0392b" text-anchor="start">A 已是完整码字，却还要往下插子结点 ⇒ 不满足前缀特性</text>
+  <text x="24.0" y="250.0" font-size="11.5" fill="#c0392b" text-anchor="start" font-weight="bold">情形二：某字符结点还带着孩子</text>
+  <line x1="105.0" y1="320.0" x2="205.0" y2="320.0" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+  <text x="155.0" y="306.0" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">0</text>
+  <line x1="205.0" y1="320.0" x2="305.0" y2="320.0" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+  <text x="255.0" y="306.0" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">1</text>
+  <circle cx="105.0" cy="320.0" r="18" fill="#eef3fb" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="105.0" y="323.2" font-size="9" fill="#1f2d3d" text-anchor="middle" font-weight="bold">根</text>
+  <circle cx="205.0" cy="320.0" r="18" fill="#ffffff" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="205.0" y="323.6" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="bold">A</text>
+  <circle cx="305.0" cy="320.0" r="18" fill="#ffffff" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="305.0" y="323.2" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="bold">AB</text>
+  <text x="362.0" y="314.0" font-size="11" fill="#c0392b" text-anchor="start">A 的结点下面还有孩子 ⇒ A 是 AB 的前缀</text>
+  <text x="362.0" y="334.0" font-size="11" fill="#c0392b" text-anchor="start">⇒ 同样不满足前缀特性</text>
+  <text x="18.0" y="400.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">两种情形都等价于：字典树里存在「既是字符结点、又有孩子」的结点。</text>
+  <text x="18.0" y="422.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">逐字符插入并顺路检查即可，代价与所有编码的总长度成正比。</text>
+</svg>

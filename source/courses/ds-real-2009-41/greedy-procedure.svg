@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="310" viewBox="0 0 480 310" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">题目给出的最近邻方法流程</title>
+  <desc id="dsc">三步：路径只含初始顶点；每次从当前顶点选最近的未加入顶点并移动；直到当前顶点是目标顶点。</desc>
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8Z" fill="#356c91"/>
+    </marker>
+  </defs>
+  <rect width="480" height="310" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <rect x="40" y="18" width="400" height="54" rx="8" fill="#eef4fa" stroke="#356c91"/>
+    <text x="240" y="41" text-anchor="middle" font-size="14" fill="#132c40">① 最短路径只含初始顶点</text>
+    <text x="240" y="61" text-anchor="middle" font-size="14" fill="#132c40">当前顶点 u = 初始顶点</text>
+
+    <line x1="240" y1="72" x2="240" y2="100" stroke="#356c91" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <rect x="40" y="102" width="400" height="54" rx="8" fill="#eef4fa" stroke="#356c91"/>
+    <text x="240" y="125" text-anchor="middle" font-size="13" fill="#132c40">② 在 u 的邻接点中选最近的未加入顶点 v</text>
+    <text x="240" y="145" text-anchor="middle" font-size="14" fill="#132c40">v 加入路径，令 u = v</text>
+
+    <line x1="240" y1="156" x2="240" y2="184" stroke="#356c91" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <rect x="40" y="186" width="400" height="48" rx="8" fill="#eef4fa" stroke="#356c91"/>
+    <text x="240" y="215" text-anchor="middle" font-size="14" fill="#132c40">③ u 是目标顶点？</text>
+
+    <line x1="240" y1="234" x2="240" y2="262" stroke="#356c91" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text x="250" y="253" font-size="12" fill="#356c91">是</text>
+
+    <rect x="165" y="264" width="150" height="36" rx="18" fill="#dfeaf3" stroke="#356c91"/>
+    <text x="240" y="287" text-anchor="middle" font-size="14" fill="#132c40">结束</text>
+
+    <path d="M40 210 H18 V129 H38" fill="none" stroke="#356c91" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text x="22" y="170" font-size="12" fill="#356c91">否</text>
+  </g>
+</svg>

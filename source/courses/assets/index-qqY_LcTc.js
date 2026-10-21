@@ -297,7 +297,1913 @@ l0,-`+(t+144)+`c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
 `))}function c(e,t,n,r){let i=n.enter(`tableCell`),o=n.enter(`phrasing`),s=n.containerPhrasing(e,{...r,before:a,after:a});return o(),i(),s}function l(e,t){return Cm(e,{align:t,alignDelimiters:r,padding:n,stringLength:i})}function u(e,t,n){let r=e.children,i=-1,a=[],o=t.enter(`table`);for(;++i<r.length;)a[i]=d(r[i],t,n);return o(),a}function d(e,t,n){let r=e.children,i=-1,a=[],o=t.enter(`tableRow`);for(;++i<r.length;)a[i]=c(r[i],e,t,n);return o(),a}function f(e,t,n){let r=Sh.inlineCode(e,t,n);return n.stack.includes(`tableCell`)&&(r=r.replace(/\|/g,`\\$&`)),r}}function Mh(){return{exit:{taskListCheckValueChecked:Ph,taskListCheckValueUnchecked:Ph,paragraph:Fh}}}function Nh(){return{unsafe:[{atBreak:!0,character:`-`,after:`[:|-]`}],handlers:{listItem:Ih}}}function Ph(e){let t=this.stack[this.stack.length-2];t.type,t.checked=e.type===`taskListCheckValueChecked`}function Fh(e){let t=this.stack[this.stack.length-2];if(t&&t.type===`listItem`&&typeof t.checked==`boolean`){let e=this.stack[this.stack.length-1];e.type;let n=e.children[0];if(n&&n.type===`text`){let r=t.children,i=-1,a;for(;++i<r.length;){let e=r[i];if(e.type===`paragraph`){a=e;break}}a===e&&(n.value=n.value.slice(1),n.value.length===0?e.children.shift():e.position&&n.position&&typeof n.position.start.offset==`number`&&(n.position.start.column++,n.position.start.offset++,e.position.start=Object.assign({},n.position.start)))}}this.exit(e)}function Ih(e,t,n,r){let i=e.children[0],a=typeof e.checked==`boolean`&&i&&i.type===`paragraph`,o=`[`+(e.checked?`x`:` `)+`] `,s=n.createTracker(r);a&&s.move(o);let c=Sh.listItem(e,t,n,{...r,...s.current()});return a&&(c=c.replace(/^(?:[*+-]|\d+\.)([\r\n]| {1,3})/,l)),c;function l(e){return e+o}}function Lh(){return[Bp(),um(),hm(),Ch(),Mh()]}function Rh(e){return{extensions:[Vp(),dm(e),gm(),jh(e),Nh()]}}var zh={tokenize:$h,partial:!0},Bh={tokenize:eg,partial:!0},Vh={tokenize:tg,partial:!0},Hh={tokenize:ng,partial:!0},Uh={tokenize:rg,partial:!0},Wh={name:`wwwAutolink`,tokenize:Zh,previous:ig},Gh={name:`protocolAutolink`,tokenize:Qh,previous:ag},Kh={name:`emailAutolink`,tokenize:Xh,previous:og},qh={};function Jh(){return{text:qh}}for(var Yh=48;Yh<123;)qh[Yh]=Kh,Yh++,Yh===58?Yh=65:Yh===91&&(Yh=97);qh[43]=Kh,qh[45]=Kh,qh[46]=Kh,qh[95]=Kh,qh[72]=[Kh,Gh],qh[104]=[Kh,Gh],qh[87]=[Kh,Wh],qh[119]=[Kh,Wh];function Xh(e,t,n){let r=this,i,a;return o;function o(t){return!sg(t)||!og.call(r,r.previous)||cg(r.events)?n(t):(e.enter(`literalAutolink`),e.enter(`literalAutolinkEmail`),s(t))}function s(t){return sg(t)?(e.consume(t),s):t===64?(e.consume(t),c):n(t)}function c(t){return t===46?e.check(Uh,u,l)(t):t===45||t===95||mn(t)?(a=!0,e.consume(t),c):u(t)}function l(t){return e.consume(t),i=!0,c}function u(o){return a&&i&&pn(r.previous)?(e.exit(`literalAutolinkEmail`),e.exit(`literalAutolink`),t(o)):n(o)}}function Zh(e,t,n){let r=this;return i;function i(t){return t!==87&&t!==119||!ig.call(r,r.previous)||cg(r.events)?n(t):(e.enter(`literalAutolink`),e.enter(`literalAutolinkWww`),e.check(zh,e.attempt(Bh,e.attempt(Vh,a),n),n)(t))}function a(n){return e.exit(`literalAutolinkWww`),e.exit(`literalAutolink`),t(n)}}function Qh(e,t,n){let r=this,i=``,a=!1;return o;function o(t){return(t===72||t===104)&&ag.call(r,r.previous)&&!cg(r.events)?(e.enter(`literalAutolink`),e.enter(`literalAutolinkHttp`),i+=String.fromCodePoint(t),e.consume(t),s):n(t)}function s(t){if(pn(t)&&i.length<5)return i+=String.fromCodePoint(t),e.consume(t),s;if(t===58){let n=i.toLowerCase();if(n===`http`||n===`https`)return e.consume(t),c}return n(t)}function c(t){return t===47?(e.consume(t),a?l:(a=!0,c)):n(t)}function l(t){return t===null||gn(t)||bn(t)||Cn(t)||Sn(t)?n(t):e.attempt(Bh,e.attempt(Vh,u),n)(t)}function u(n){return e.exit(`literalAutolinkHttp`),e.exit(`literalAutolink`),t(n)}}function $h(e,t,n){let r=0;return i;function i(t){return(t===87||t===119)&&r<3?(r++,e.consume(t),i):t===46&&r===3?(e.consume(t),a):n(t)}function a(e){return e===null?n(e):t(e)}}function eg(e,t,n){let r,i,a;return o;function o(t){return t===46||t===95?e.check(Hh,c,s)(t):t===null||bn(t)||Cn(t)||t!==45&&Sn(t)?c(t):(a=!0,e.consume(t),o)}function s(t){return t===95?r=!0:(i=r,r=void 0),e.consume(t),o}function c(e){return i||r||!a?n(e):t(e)}}function tg(e,t){let n=0,r=0;return i;function i(o){return o===40?(n++,e.consume(o),i):o===41&&r<n?a(o):o===33||o===34||o===38||o===39||o===41||o===42||o===44||o===46||o===58||o===59||o===60||o===63||o===93||o===95||o===126?e.check(Hh,t,a)(o):o===null||bn(o)||Cn(o)?t(o):(e.consume(o),i)}function a(t){return t===41&&r++,e.consume(t),i}}function ng(e,t,n){return r;function r(o){return o===33||o===34||o===39||o===41||o===42||o===44||o===46||o===58||o===59||o===63||o===95||o===126?(e.consume(o),r):o===38?(e.consume(o),a):o===93?(e.consume(o),i):o===60||o===null||bn(o)||Cn(o)?t(o):n(o)}function i(e){return e===null||e===40||e===91||bn(e)||Cn(e)?t(e):r(e)}function a(e){return pn(e)?o(e):n(e)}function o(t){return t===59?(e.consume(t),r):pn(t)?(e.consume(t),o):n(t)}}function rg(e,t,n){return r;function r(t){return e.consume(t),i}function i(e){return mn(e)?n(e):t(e)}}function ig(e){return e===null||e===40||e===42||e===95||e===91||e===93||e===126||bn(e)}function ag(e){return!pn(e)}function og(e){return!(e===47||sg(e))}function sg(e){return e===43||e===45||e===46||e===95||mn(e)}function cg(e){let t=e.length,n=!1;for(;t--;){let r=e[t][1];if((r.type===`labelLink`||r.type===`labelImage`)&&!r._balanced){n=!0;break}if(r._gfmAutolinkLiteralWalkedInto){n=!1;break}}return e.length>0&&!n&&(e[e.length-1][1]._gfmAutolinkLiteralWalkedInto=!0),n}var lg={tokenize:_g,partial:!0};function ug(){return{document:{91:{name:`gfmFootnoteDefinition`,tokenize:mg,continuation:{tokenize:hg},exit:gg}},text:{91:{name:`gfmFootnoteCall`,tokenize:pg},93:{name:`gfmPotentialFootnoteCall`,add:`after`,tokenize:dg,resolveTo:fg}}}}function dg(e,t,n){let r=this,i=r.events.length,a=r.parser.gfmFootnotes||(r.parser.gfmFootnotes=[]),o;for(;i--;){let e=r.events[i][1];if(e.type===`labelImage`){o=e;break}if(e.type===`gfmFootnoteCall`||e.type===`labelLink`||e.type===`label`||e.type===`image`||e.type===`link`)break}return s;function s(i){if(!o||!o._balanced)return n(i);let s=fn(r.sliceSerialize({start:o.end,end:r.now()}));return s.codePointAt(0)!==94||!a.includes(s.slice(1))?n(i):(e.enter(`gfmFootnoteCallLabelMarker`),e.consume(i),e.exit(`gfmFootnoteCallLabelMarker`),t(i))}}function fg(e,t){let n=e.length;for(;n--;)if(e[n][1].type===`labelImage`&&e[n][0]===`enter`){e[n][1];break}e[n+1][1].type=`data`,e[n+3][1].type=`gfmFootnoteCallLabelMarker`;let r={type:`gfmFootnoteCall`,start:Object.assign({},e[n+3][1].start),end:Object.assign({},e[e.length-1][1].end)},i={type:`gfmFootnoteCallMarker`,start:Object.assign({},e[n+3][1].end),end:Object.assign({},e[n+3][1].end)};i.end.column++,i.end.offset++,i.end._bufferIndex++;let a={type:`gfmFootnoteCallString`,start:Object.assign({},i.end),end:Object.assign({},e[e.length-1][1].start)},o={type:`chunkString`,contentType:`string`,start:Object.assign({},a.start),end:Object.assign({},a.end)},s=[e[n+1],e[n+2],[`enter`,r,t],e[n+3],e[n+4],[`enter`,i,t],[`exit`,i,t],[`enter`,a,t],[`enter`,o,t],[`exit`,o,t],[`exit`,a,t],e[e.length-2],e[e.length-1],[`exit`,r,t]];return e.splice(n,e.length-n+1,...s),e}function pg(e,t,n){let r=this,i=r.parser.gfmFootnotes||(r.parser.gfmFootnotes=[]),a=0,o;return s;function s(t){return e.enter(`gfmFootnoteCall`),e.enter(`gfmFootnoteCallLabelMarker`),e.consume(t),e.exit(`gfmFootnoteCallLabelMarker`),c}function c(t){return t===94?(e.enter(`gfmFootnoteCallMarker`),e.consume(t),e.exit(`gfmFootnoteCallMarker`),e.enter(`gfmFootnoteCallString`),e.enter(`chunkString`).contentType=`string`,l):n(t)}function l(s){if(a>999||s===93&&!o||s===null||s===91||bn(s))return n(s);if(s===93){e.exit(`chunkString`);let a=e.exit(`gfmFootnoteCallString`);return i.includes(fn(r.sliceSerialize(a)))?(e.enter(`gfmFootnoteCallLabelMarker`),e.consume(s),e.exit(`gfmFootnoteCallLabelMarker`),e.exit(`gfmFootnoteCall`),t):n(s)}return bn(s)||(o=!0),a++,e.consume(s),s===92?u:l}function u(t){return t===91||t===92||t===93?(e.consume(t),a++,l):l(t)}}function mg(e,t,n){let r=this,i=r.parser.gfmFootnotes||(r.parser.gfmFootnotes=[]),a,o=0,s;return c;function c(t){return e.enter(`gfmFootnoteDefinition`)._container=!0,e.enter(`gfmFootnoteDefinitionLabel`),e.enter(`gfmFootnoteDefinitionLabelMarker`),e.consume(t),e.exit(`gfmFootnoteDefinitionLabelMarker`),l}function l(t){return t===94?(e.enter(`gfmFootnoteDefinitionMarker`),e.consume(t),e.exit(`gfmFootnoteDefinitionMarker`),e.enter(`gfmFootnoteDefinitionLabelString`),e.enter(`chunkString`).contentType=`string`,u):n(t)}function u(t){if(o>999||t===93&&!s||t===null||t===91||bn(t))return n(t);if(t===93){e.exit(`chunkString`);let n=e.exit(`gfmFootnoteDefinitionLabelString`);return a=fn(r.sliceSerialize(n)),e.enter(`gfmFootnoteDefinitionLabelMarker`),e.consume(t),e.exit(`gfmFootnoteDefinitionLabelMarker`),e.exit(`gfmFootnoteDefinitionLabel`),f}return bn(t)||(s=!0),o++,e.consume(t),t===92?d:u}function d(t){return t===91||t===92||t===93?(e.consume(t),o++,u):u(t)}function f(t){return t===58?(e.enter(`definitionMarker`),e.consume(t),e.exit(`definitionMarker`),i.includes(a)||i.push(a),En(e,p,`gfmFootnoteDefinitionWhitespace`)):n(t)}function p(e){return t(e)}}function hg(e,t,n){return e.check(Wn,t,e.attempt(lg,t,n))}function gg(e){e.exit(`gfmFootnoteDefinition`)}function _g(e,t,n){let r=this;return En(e,i,`gfmFootnoteDefinitionIndent`,5);function i(e){let i=r.events[r.events.length-1];return i&&i[1].type===`gfmFootnoteDefinitionIndent`&&i[2].sliceSerialize(i[1],!0).length===4?t(e):n(e)}}function vg(e){let t=(e||{}).singleTilde,n={name:`strikethrough`,tokenize:i,resolveAll:r};return t??=!0,{text:{126:n},insideSpan:{null:[n]},attentionMarkers:{null:[126]}};function r(e,t){let n=-1;for(;++n<e.length;)if(e[n][0]===`enter`&&e[n][1].type===`strikethroughSequenceTemporary`&&e[n][1]._close){let r=n;for(;r--;)if(e[r][0]===`exit`&&e[r][1].type===`strikethroughSequenceTemporary`&&e[r][1]._open&&e[n][1].end.offset-e[n][1].start.offset===e[r][1].end.offset-e[r][1].start.offset){e[n][1].type=`strikethroughSequence`,e[r][1].type=`strikethroughSequence`;let i={type:`strikethrough`,start:Object.assign({},e[r][1].start),end:Object.assign({},e[n][1].end)},a={type:`strikethroughText`,start:Object.assign({},e[r][1].end),end:Object.assign({},e[n][1].start)},o=[[`enter`,i,t],[`enter`,e[r][1],t],[`exit`,e[r][1],t],[`enter`,a,t]],s=t.parser.constructs.insideSpan.null;s&&an(o,o.length,0,Ln(s,e.slice(r+1,n),t)),an(o,o.length,0,[[`exit`,a,t],[`enter`,e[n][1],t],[`exit`,e[n][1],t],[`exit`,i,t]]),an(e,r-1,n-r+3,o),n=r+o.length-2;break}}for(n=-1;++n<e.length;)e[n][1].type===`strikethroughSequenceTemporary`&&(e[n][1].type=`data`);return e}function i(e,n,r){let i=this.previous,a=this.events,o=0;return s;function s(t){return i===126&&a[a.length-1][1].type!==`characterEscape`?r(t):(e.enter(`strikethroughSequenceTemporary`),c(t))}function c(a){let s=In(i);if(a===126)return o>1?r(a):(e.consume(a),o++,c);if(o<2&&!t)return r(a);let l=e.exit(`strikethroughSequenceTemporary`),u=In(a);return l._open=!u||u===2&&!!s,l._close=!s||s===2&&!!u,n(a)}}}var yg=class{constructor(){this.map=[],this.index=new Map}add(e,t,n){bg(this,e,t,n)}consume(e){if(this.map.sort(function(e,t){return e[0]-t[0]}),this.map.length===0)return;let t=this.map.length,n=[];for(;t>0;)--t,n.push(e.slice(this.map[t][0]+this.map[t][1]),this.map[t][2]),e.length=this.map[t][0];n.push(e.slice()),e.length=0;let r=n.pop();for(;r;){for(let t of r)e.push(t);r=n.pop()}this.map.length=0,this.index.clear()}};function bg(e,t,n,r){if(n===0&&r.length===0)return;let i=e.index.get(t);if(i){i[1]+=n,i[2].push(...r);return}let a=[t,n,r];e.map.push(a),e.index.set(t,a)}function xg(e,t){let n=!1,r=[];for(;t<e.length;){let i=e[t];if(n){if(i[0]===`enter`)i[1].type===`tableContent`&&r.push(e[t+1][1].type===`tableDelimiterMarker`?`left`:`none`);else if(i[1].type===`tableContent`){if(e[t-1][1].type===`tableDelimiterMarker`){let e=r.length-1;r[e]=r[e]===`left`?`center`:`right`}}else if(i[1].type===`tableDelimiterRow`)break}else i[0]===`enter`&&i[1].type===`tableDelimiterRow`&&(n=!0);t+=1}return r}function Sg(){return{flow:{null:{name:`table`,tokenize:Cg,resolveAll:wg}}}}function Cg(e,t,n){let r=this,i=0,a=0,o;return s;function s(e){let t=r.events.length-1;for(;t>-1;){let{type:e}=r.events[t][1];if(e===`lineEnding`||e===`linePrefix`)t--;else break}let i=t>-1?r.events[t][1].type:null,a=i===`tableHead`||i===`tableRow`?ee:c;return a===ee&&r.parser.lazy[r.now().line]?n(e):a(e)}function c(t){return e.enter(`tableHead`),e.enter(`tableRow`),l(t)}function l(e){return e===124?u(e):(o=!0,a+=1,u(e))}function u(t){return t===null?n(t):E(t)?a>1?(a=0,r.interrupt=!0,e.exit(`tableRow`),e.enter(`lineEnding`),e.consume(t),e.exit(`lineEnding`),p):n(t):xn(t)?En(e,u,`whitespace`)(t):(a+=1,o&&(o=!1,i+=1),t===124?(e.enter(`tableCellDivider`),e.consume(t),e.exit(`tableCellDivider`),o=!0,u):(e.enter(`data`),d(t)))}function d(t){return t===null||t===124||bn(t)?(e.exit(`data`),u(t)):(e.consume(t),t===92?f:d)}function f(t){return t===92||t===124?(e.consume(t),d):d(t)}function p(t){return r.interrupt=!1,r.parser.lazy[r.now().line]?n(t):(e.enter(`tableDelimiterRow`),o=!1,xn(t)?En(e,m,`linePrefix`,r.parser.constructs.disable.null.includes(`codeIndented`)?void 0:4)(t):m(t))}function m(t){return t===45||t===58?g(t):t===124?(o=!0,e.enter(`tableCellDivider`),e.consume(t),e.exit(`tableCellDivider`),h):x(t)}function h(t){return xn(t)?En(e,g,`whitespace`)(t):g(t)}function g(t){return t===58?(a+=1,o=!0,e.enter(`tableDelimiterMarker`),e.consume(t),e.exit(`tableDelimiterMarker`),_):t===45?(a+=1,_(t)):t===null||E(t)?b(t):x(t)}function _(t){return t===45?(e.enter(`tableDelimiterFiller`),v(t)):x(t)}function v(t){return t===45?(e.consume(t),v):t===58?(o=!0,e.exit(`tableDelimiterFiller`),e.enter(`tableDelimiterMarker`),e.consume(t),e.exit(`tableDelimiterMarker`),y):(e.exit(`tableDelimiterFiller`),y(t))}function y(t){return xn(t)?En(e,b,`whitespace`)(t):b(t)}function b(n){return n===124?m(n):n===null||E(n)?!o||i!==a?x(n):(e.exit(`tableDelimiterRow`),e.exit(`tableHead`),t(n)):x(n)}function x(e){return n(e)}function ee(t){return e.enter(`tableRow`),te(t)}function te(n){return n===124?(e.enter(`tableCellDivider`),e.consume(n),e.exit(`tableCellDivider`),te):n===null||E(n)?(e.exit(`tableRow`),t(n)):xn(n)?En(e,te,`whitespace`)(n):(e.enter(`data`),S(n))}function S(t){return t===null||t===124||bn(t)?(e.exit(`data`),te(t)):(e.consume(t),t===92?ne:S)}function ne(t){return t===92||t===124?(e.consume(t),S):S(t)}}function wg(e,t){let n=-1,r=!0,i=0,a=[0,0,0,0],o=[0,0,0,0],s=!1,c=0,l,u,d,f=new yg;for(;++n<e.length;){let p=e[n],m=p[1];p[0]===`enter`?m.type===`tableHead`?(s=!1,c!==0&&(Eg(f,t,c,l,u),u=void 0,c=0),l={type:`table`,start:Object.assign({},m.start),end:Object.assign({},m.end)},f.add(n,0,[[`enter`,l,t]])):m.type===`tableRow`||m.type===`tableDelimiterRow`?(r=!0,d=void 0,a=[0,0,0,0],o=[0,n+1,0,0],s&&(s=!1,u={type:`tableBody`,start:Object.assign({},m.start),end:Object.assign({},m.end)},f.add(n,0,[[`enter`,u,t]])),i=m.type===`tableDelimiterRow`?2:u?3:1):i&&(m.type===`data`||m.type===`tableDelimiterMarker`||m.type===`tableDelimiterFiller`)?(r=!1,o[2]===0&&(a[1]!==0&&(o[0]=o[1],d=Tg(f,t,a,i,void 0,d),a=[0,0,0,0]),o[2]=n)):m.type===`tableCellDivider`&&(r?r=!1:(a[1]!==0&&(o[0]=o[1],d=Tg(f,t,a,i,void 0,d)),a=o,o=[a[1],n,0,0])):m.type===`tableHead`?(s=!0,c=n):m.type===`tableRow`||m.type===`tableDelimiterRow`?(c=n,a[1]===0?o[1]!==0&&(d=Tg(f,t,o,i,n,d)):(o[0]=o[1],d=Tg(f,t,a,i,n,d)),i=0):i&&(m.type===`data`||m.type===`tableDelimiterMarker`||m.type===`tableDelimiterFiller`)&&(o[3]=n)}for(c!==0&&Eg(f,t,c,l,u),f.consume(t.events),n=-1;++n<t.events.length;){let e=t.events[n];e[0]===`enter`&&e[1].type===`table`&&(e[1]._align=xg(t.events,n))}return e}function Tg(e,t,n,r,i,a){let o=r===1?`tableHeader`:r===2?`tableDelimiter`:`tableData`;n[0]!==0&&(a.end=Object.assign({},Dg(t.events,n[0])),e.add(n[0],0,[[`exit`,a,t]]));let s=Dg(t.events,n[1]);if(a={type:o,start:Object.assign({},s),end:Object.assign({},s)},e.add(n[1],0,[[`enter`,a,t]]),n[2]!==0){let i=Dg(t.events,n[2]),a=Dg(t.events,n[3]),o={type:`tableContent`,start:Object.assign({},i),end:Object.assign({},a)};if(e.add(n[2],0,[[`enter`,o,t]]),r!==2){let r=t.events[n[2]],i=t.events[n[3]];if(r[1].end=Object.assign({},i[1].end),r[1].type=`chunkText`,r[1].contentType=`text`,n[3]>n[2]+1){let t=n[2]+1,r=n[3]-n[2]-1;e.add(t,r,[])}}e.add(n[3]+1,0,[[`exit`,o,t]])}return i!==void 0&&(a.end=Object.assign({},Dg(t.events,i)),e.add(i,0,[[`exit`,a,t]]),a=void 0),a}function Eg(e,t,n,r,i){let a=[],o=Dg(t.events,n);i&&(i.end=Object.assign({},o),a.push([`exit`,i,t])),r.end=Object.assign({},o),a.push([`exit`,r,t]),e.add(n+1,0,a)}function Dg(e,t){let n=e[t],r=n[0]===`enter`?`start`:`end`;return n[1][r]}var Og={name:`tasklistCheck`,tokenize:Ag};function kg(){return{text:{91:Og}}}function Ag(e,t,n){let r=this;return i;function i(t){return r.previous!==null||!r._gfmTasklistFirstContentOfListItem?n(t):(e.enter(`taskListCheck`),e.enter(`taskListCheckMarker`),e.consume(t),e.exit(`taskListCheckMarker`),a)}function a(t){return bn(t)?(e.enter(`taskListCheckValueUnchecked`),e.consume(t),e.exit(`taskListCheckValueUnchecked`),o):t===88||t===120?(e.enter(`taskListCheckValueChecked`),e.consume(t),e.exit(`taskListCheckValueChecked`),o):n(t)}function o(t){return t===93?(e.enter(`taskListCheckMarker`),e.consume(t),e.exit(`taskListCheckMarker`),e.exit(`taskListCheck`),s):n(t)}function s(r){return E(r)?t(r):xn(r)?e.check({tokenize:jg},t,n)(r):n(r)}}function jg(e,t,n){return En(e,r,`whitespace`);function r(e){return e===null?n(e):t(e)}}function Mg(e){return cn([Jh(),ug(),vg(e),Sg(),kg()])}var Ng={};function Pg(e){let t=this,n=e||Ng,r=t.data(),i=r.micromarkExtensions||=[],a=r.fromMarkdownExtensions||=[],o=r.toMarkdownExtensions||=[];i.push(Mg(n)),a.push(Lh()),o.push(Rh(n))}var Fg=/[#.]/g;function Ig(e,t){let n=e||``,r={},i=0,a,o;for(;i<n.length;){Fg.lastIndex=i;let e=Fg.exec(n),t=n.slice(i,e?e.index:n.length);t&&(a?a===`#`?r.id=t:Array.isArray(r.className)?r.className.push(t):r.className=[t]:o=t,i+=t.length),e&&(a=e[0],i++)}return{type:`element`,tagName:o||t||`div`,properties:r,children:[]}}function Lg(e,t,n){let r=n?Ug(n):void 0;function i(n,i,...a){let o;if(n==null){o={type:`root`,children:[]};let e=i;a.unshift(e)}else{o=Ig(n,t);let s=o.tagName.toLowerCase(),c=r?r.get(s):void 0;if(o.tagName=c||s,Rg(i))a.unshift(i);else for(let[t,n]of Object.entries(i))zg(e,o.properties,t,n)}for(let e of a)Bg(o.children,e);return o.type===`element`&&o.tagName===`template`&&(o.content={type:`root`,children:o.children},o.children=[]),o}return i}function Rg(e){if(typeof e!=`object`||!e||Array.isArray(e))return!0;if(typeof e.type!=`string`)return!1;let t=e,n=Object.keys(e);for(let e of n){let n=t[e];if(n&&typeof n==`object`){if(!Array.isArray(n))return!0;let e=n;for(let t of e)if(typeof t!=`number`&&typeof t!=`string`)return!0}}return!!(`children`in e&&Array.isArray(e.children))}function zg(e,t,n,r){let i=$e(e,n),a;if(r!=null){if(typeof r==`number`){if(Number.isNaN(r))return;a=r}else a=typeof r==`boolean`?r:typeof r==`string`?i.spaceSeparated?it(r):i.commaSeparated?he(r):i.commaOrSpaceSeparated?it(he(r).join(` `)):Vg(i,i.property,r):Array.isArray(r)?[...r]:i.property===`style`?Hg(r):String(r);if(Array.isArray(a)){let e=[];for(let t of a)e.push(Vg(i,i.property,t));a=e}i.property===`className`&&Array.isArray(t.className)&&(a=t.className.concat(a)),t[i.property]=a}}function Bg(e,t){if(t!=null)if(typeof t==`number`||typeof t==`string`)e.push({type:`text`,value:String(t)});else if(Array.isArray(t))for(let n of t)Bg(e,n);else if(typeof t==`object`&&`type`in t)t.type===`root`?Bg(e,t.children):e.push(t);else throw Error("Expected node, nodes, or string, got `"+t+"`")}function Vg(e,t,n){if(typeof n==`string`){if(e.number&&n&&!Number.isNaN(Number(n)))return Number(n);if((e.boolean||e.overloadedBoolean)&&(n===``||Ee(n)===Ee(t)))return!0}return n}function Hg(e){let t=[];for(let[n,r]of Object.entries(e))t.push([n,r].join(`: `));return t.join(`; `)}function Ug(e){let t=new Map;for(let n of e)t.set(n.toLowerCase(),n);return t}var Wg=`altGlyph.altGlyphDef.altGlyphItem.animateColor.animateMotion.animateTransform.clipPath.feBlend.feColorMatrix.feComponentTransfer.feComposite.feConvolveMatrix.feDiffuseLighting.feDisplacementMap.feDistantLight.feDropShadow.feFlood.feFuncA.feFuncB.feFuncG.feFuncR.feGaussianBlur.feImage.feMerge.feMergeNode.feMorphology.feOffset.fePointLight.feSpecularLighting.feSpotLight.feTile.feTurbulence.foreignObject.glyphRef.linearGradient.radialGradient.solidColor.textArea.textPath`.split(`.`),Gg=Lg(nt,`div`),Kg=Lg(rt,`g`,Wg),qg={html:`http://www.w3.org/1999/xhtml`,mathml:`http://www.w3.org/1998/Math/MathML`,svg:`http://www.w3.org/2000/svg`,xlink:`http://www.w3.org/1999/xlink`,xml:`http://www.w3.org/XML/1998/namespace`,xmlns:`http://www.w3.org/2000/xmlns/`};function Jg(e,t){return Yg(e,t||{})||{type:`root`,children:[]}}function Yg(e,t){let n=Xg(e,t);return n&&t.afterTransform&&t.afterTransform(e,n),n}function Xg(e,t){switch(e.nodeType){case 1:return t_(e,t);case 3:return $g(e);case 8:return e_(e);case 9:return Zg(e,t);case 10:return Qg();case 11:return Zg(e,t);default:return}}function Zg(e,t){return{type:`root`,children:n_(e,t)}}function Qg(){return{type:`doctype`}}function $g(e){return{type:`text`,value:e.nodeValue||``}}function e_(e){return{type:`comment`,value:e.nodeValue||``}}function t_(e,t){let n=e.namespaceURI,r=n===qg.svg?Kg:Gg,i=n===qg.html?e.tagName.toLowerCase():e.tagName,a=n===qg.html&&i===`template`?e.content:e,o=e.getAttributeNames(),s={},c=-1;for(;++c<o.length;)s[o[c]]=e.getAttribute(o[c])||``;return r(i,s,n_(a,t))}function n_(e,t){let n=e.childNodes,r=[],i=-1;for(;++i<n.length;){let e=Yg(n[i],t);e!==void 0&&r.push(e)}return r}var r_=new DOMParser;function i_(e,t){return Jg(t?.fragment?a_(e):r_.parseFromString(e,`text/html`))}function a_(e){let t=document.createElement(`template`);return t.innerHTML=e,t.content}var o_=(function(e,t,n){let r=Ya(n);if(!e||!e.type||!e.children)throw Error(`Expected parent node`);if(typeof t==`number`){if(t<0||t===1/0)throw Error(`Expected positive finite number as index`)}else if(t=e.children.indexOf(t),t<0)throw Error(`Expected child node or index`);for(;++t<e.children.length;)if(r(e.children[t],t,e))return e.children[t]}),s_=(function(e){if(e==null)return d_;if(typeof e==`string`)return l_(e);if(typeof e==`object`)return c_(e);if(typeof e==`function`)return u_(e);throw Error("Expected function, string, or array as `test`")});function c_(e){let t=[],n=-1;for(;++n<e.length;)t[n]=s_(e[n]);return u_(r);function r(...e){let n=-1;for(;++n<t.length;)if(t[n].apply(this,e))return!0;return!1}}function l_(e){return u_(t);function t(t){return t.tagName===e}}function u_(e){return t;function t(t,n,r){return!!(f_(t)&&e.call(this,t,typeof n==`number`?n:void 0,r||void 0))}}function d_(e){return!!(e&&typeof e==`object`&&`type`in e&&e.type===`element`&&`tagName`in e&&typeof e.tagName==`string`)}function f_(e){return typeof e==`object`&&!!e&&`type`in e&&`tagName`in e}var p_=/\n/g,m_=/[\t ]+/g,h_=s_(`br`),g_=s_(k_),__=s_(`p`),v_=s_(`tr`),y_=s_([`datalist`,`head`,`noembed`,`noframes`,`noscript`,`rp`,`script`,`style`,`template`,`title`,O_,A_]),b_=s_(`address.article.aside.blockquote.body.caption.center.dd.dialog.dir.dl.dt.div.figure.figcaption.footer.form,.h1.h2.h3.h4.h5.h6.header.hgroup.hr.html.legend.li.listing.main.menu.nav.ol.p.plaintext.pre.section.ul.xmp`.split(`.`));function x_(e,t){let n=t||{},r=`children`in e?e.children:[],i=b_(e),a=D_(e,{whitespace:n.whitespace||`normal`,breakBefore:!1,breakAfter:!1}),o=[];(e.type===`text`||e.type===`comment`)&&o.push(...w_(e,{whitespace:a,breakBefore:!0,breakAfter:!0}));let s=-1;for(;++s<r.length;)o.push(...S_(r[s],e,{whitespace:a,breakBefore:s?void 0:i,breakAfter:s<r.length-1?h_(r[s+1]):i}));let c=[],l;for(s=-1;++s<o.length;){let e=o[s];typeof e==`number`?l!==void 0&&e>l&&(l=e):e&&(l!==void 0&&l>-1&&c.push(`
 `.repeat(l)||` `),l=-1,c.push(e))}return c.join(``)}function S_(e,t,n){return e.type===`element`?C_(e,t,n):e.type===`text`?n.whitespace===`normal`?w_(e,n):T_(e):[]}function C_(e,t,n){let r=D_(e,n),i=e.children||[],a=-1,o=[];if(y_(e))return o;let s,c;for(h_(e)||v_(e)&&o_(t,e,v_)?c=`
 `:__(e)?(s=2,c=2):b_(e)&&(s=1,c=1);++a<i.length;)o=o.concat(S_(i[a],e,{whitespace:r,breakBefore:a?void 0:s,breakAfter:a<i.length-1?h_(i[a+1]):c}));return g_(e)&&o_(t,e,g_)&&o.push(`	`),s&&o.unshift(s),c&&o.push(c),o}function w_(e,t){let n=String(e.value),r=[],i=[],a=0;for(;a<=n.length;){p_.lastIndex=a;let e=p_.exec(n),i=e&&`index`in e?e.index:n.length;r.push(E_(n.slice(a,i).replace(/[\u061C\u200E\u200F\u202A-\u202E\u2066-\u2069]/g,``),a===0?t.breakBefore:!0,i===n.length?t.breakAfter:!0)),a=i+1}let o=-1,s;for(;++o<r.length;)r[o].charCodeAt(r[o].length-1)===8203||o<r.length-1&&r[o+1].charCodeAt(0)===8203?(i.push(r[o]),s=void 0):r[o]?(typeof s==`number`&&i.push(s),i.push(r[o]),s=0):(o===0||o===r.length-1)&&i.push(0);return i}function T_(e){return[String(e.value)]}function E_(e,t,n){let r=[],i=0,a;for(;i<e.length;){m_.lastIndex=i;let n=m_.exec(e);a=n?n.index:e.length,!i&&!a&&n&&!t&&r.push(``),i!==a&&r.push(e.slice(i,a)),i=n?a+n[0].length:a}return i!==a&&!n&&r.push(``),r.join(` `)}function D_(e,t){if(e.type===`element`){let n=e.properties||{};switch(e.tagName){case`listing`:case`plaintext`:case`xmp`:return`pre`;case`nobr`:return`nowrap`;case`pre`:return n.wrap?`pre-wrap`:`pre`;case`td`:case`th`:return n.noWrap?`nowrap`:t.whitespace;case`textarea`:return`pre-wrap`;default:}}return t.whitespace}function O_(e){return!!(e.properties||{}).hidden}function k_(e){return e.tagName===`td`||e.tagName===`th`}function A_(e){return e.tagName===`dialog`&&!(e.properties||{}).open}var j_={},M_=[];function N_(e){let t=e||j_;return function(e,n){ao(e,`element`,function(e,r){let i=Array.isArray(e.properties.className)?e.properties.className:M_,a=i.includes(`language-math`),o=i.includes(`math-display`),s=i.includes(`math-inline`),c=o;if(!a&&!o&&!s)return;let l=r[r.length-1],u=e;if(e.tagName===`code`&&a&&l&&l.type===`element`&&l.tagName===`pre`&&(u=l,l=r[r.length-2],c=!0),!l)return;let d=x_(u,{whitespace:`pre`}),f;try{f=kp.renderToString(d,{...t,displayMode:c,throwOnError:!0})}catch(i){let a=i,o=a.name.toLowerCase();n.message(`Could not render math with KaTeX`,{ancestors:[...r,e],cause:a,place:e.position,ruleId:o,source:`rehype-katex`});try{f=kp.renderToString(d,{...t,displayMode:c,strict:`ignore`,throwOnError:!1})}catch{f=[{type:`element`,tagName:`span`,properties:{className:[`katex-error`],style:`color:`+(t.errorColor||`#cc0000`),title:String(i)},children:[{type:`text`,value:d}]}]}}typeof f==`string`&&(f=i_(f,{fragment:!0}).children);let p=l.children.indexOf(u);return l.children.splice(p,1,...f),io})}}function P_(e){let t=String(e),n=[];return{toOffset:i,toPoint:r};function r(e){if(typeof e==`number`&&e>-1&&e<=t.length){let r=0;for(;;){let i=n[r];if(i===void 0){let e=F_(t,n[r-1]);i=e===-1?t.length+1:e+1,n[r]=i}if(i>e)return{line:r+1,column:e-(r>0?n[r-1]:0)+1,offset:e};r++}}}function i(e){if(e&&typeof e.line==`number`&&typeof e.column==`number`&&!Number.isNaN(e.line)&&!Number.isNaN(e.column)){for(;n.length<e.line;){let e=n[n.length-1],r=F_(t,e),i=r===-1?t.length+1:r+1;if(e===i)break;n.push(i)}let r=(e.line>1?n[e.line-2]:0)+e.column-1;if(r<n[e.line-1])return r}}}function F_(e,t){let n=e.indexOf(`\r`,t),r=e.indexOf(`
-`,t);return r===-1?n:n===-1||n+1===r?r:n<r?n:r}var I_={}.hasOwnProperty,L_=Object.prototype;function R_(e,t){let n=t||{};return z_({file:n.file||void 0,location:!1,schema:n.space===`svg`?rt:nt,verbose:n.verbose||!1},e)}function z_(e,t){let n;switch(t.nodeName){case`#comment`:{let r=t;return n={type:`comment`,value:r.data},H_(e,r,n),n}case`#document`:case`#document-fragment`:{let r=t,i=`mode`in r?r.mode===`quirks`||r.mode===`limited-quirks`:!1;if(n={type:`root`,children:B_(e,t.childNodes),data:{quirksMode:i}},e.file&&e.location){let t=String(e.file),r=P_(t),i=r.toPoint(0),a=r.toPoint(t.length);n.position={start:i,end:a}}return n}case`#documentType`:{let r=t;return n={type:`doctype`},H_(e,r,n),n}case`#text`:{let r=t;return n={type:`text`,value:r.value},H_(e,r,n),n}default:return n=V_(e,t),n}}function B_(e,t){let n=-1,r=[];for(;++n<t.length;){let i=z_(e,t[n]);r.push(i)}return r}function V_(e,t){let n=e.schema;e.schema=t.namespaceURI===qg.svg?rt:nt;let r=-1,i={};for(;++r<t.attrs.length;){let e=t.attrs[r],n=(e.prefix?e.prefix+`:`:``)+e.name;I_.call(L_,n)||(i[n]=e.value)}let a=(e.schema.space===`svg`?Kg:Gg)(t.tagName,i,B_(e,t.childNodes));if(H_(e,t,a),a.tagName===`template`){let n=t,r=n.sourceCodeLocation,i=r&&r.startTag&&W_(r.startTag),o=r&&r.endTag&&W_(r.endTag),s=z_(e,n.content);i&&o&&e.file&&(s.position={start:i.end,end:o.start}),a.content=s}return e.schema=n,a}function H_(e,t,n){if(`sourceCodeLocation`in t&&t.sourceCodeLocation&&e.file){let r=U_(e,n,t.sourceCodeLocation);r&&(e.location=!0,n.position=r)}}function U_(e,t,n){let r=W_(n);if(t.type===`element`){let i=t.children[t.children.length-1];if(r&&!n.endTag&&i&&i.position&&i.position.end&&(r.end=Object.assign({},i.position.end)),e.verbose){let r={},i;if(n.attrs)for(i in n.attrs)I_.call(n.attrs,i)&&(r[$e(e.schema,i).property]=W_(n.attrs[i]));n.startTag;let a=W_(n.startTag),o=n.endTag?W_(n.endTag):void 0,s={opening:a};o&&(s.closing=o),s.properties=r,t.data={position:s}}}return r}function W_(e){let t=G_({line:e.startLine,column:e.startCol,offset:e.startOffset}),n=G_({line:e.endLine,column:e.endCol,offset:e.endOffset});return t||n?{start:t,end:n}:void 0}function G_(e){return e.line&&e.column?e:void 0}var K_={},q_={}.hasOwnProperty,J_=Om(`type`,{handlers:{root:X_,element:tv,text:$_,comment:ev,doctype:Q_}});function Y_(e,t){let n=(t||K_).space;return J_(e,n===`svg`?rt:nt)}function X_(e,t){let n={nodeName:`#document`,mode:(e.data||{}).quirksMode?`quirks`:`no-quirks`,childNodes:[]};return n.childNodes=rv(e.children,n,t),iv(e,n),n}function Z_(e,t){let n={nodeName:`#document-fragment`,childNodes:[]};return n.childNodes=rv(e.children,n,t),iv(e,n),n}function Q_(e){let t={nodeName:`#documentType`,name:`html`,publicId:``,systemId:``,parentNode:null};return iv(e,t),t}function $_(e){let t={nodeName:`#text`,value:e.value,parentNode:null};return iv(e,t),t}function ev(e){let t={nodeName:`#comment`,data:e.value,parentNode:null};return iv(e,t),t}function tv(e,t){let n=t,r=n;e.type===`element`&&e.tagName.toLowerCase()===`svg`&&n.space===`html`&&(r=rt);let i=[],a;if(e.properties){for(a in e.properties)if(a!==`children`&&q_.call(e.properties,a)){let t=nv(r,a,e.properties[a]);t&&i.push(t)}}let o=r.space,s={nodeName:e.tagName,tagName:e.tagName,attrs:i,namespaceURI:qg[o],childNodes:[],parentNode:null};return s.childNodes=rv(e.children,s,r),iv(e,s),e.tagName===`template`&&e.content&&(s.content=Z_(e.content,r)),s}function nv(e,t,n){let r=$e(e,t);if(n===!1||n==null||typeof n==`number`&&Number.isNaN(n)||!n&&r.boolean)return;Array.isArray(n)&&(n=r.commaSeparated?ge(n):at(n));let i={name:r.attribute,value:n===!0?``:String(n)};if(r.space&&r.space!==`html`&&r.space!==`svg`){let e=i.name.indexOf(`:`);e<0?i.prefix=``:(i.name=i.name.slice(e+1),i.prefix=r.attribute.slice(0,e)),i.namespace=qg[r.space]}return i}function rv(e,t,n){let r=-1,i=[];if(e)for(;++r<e.length;){let a=J_(e[r],n);a.parentNode=t,i.push(a)}return i}function iv(e,t){let n=e.position;n&&n.start&&n.end&&(n.start.offset,n.end.offset,t.sourceCodeLocation={startLine:n.start.line,startCol:n.start.column,startOffset:n.start.offset,endLine:n.end.line,endCol:n.end.column,endOffset:n.end.offset})}var av=[`area`,`base`,`basefont`,`bgsound`,`br`,`col`,`command`,`embed`,`frame`,`hr`,`image`,`img`,`input`,`keygen`,`link`,`meta`,`param`,`source`,`track`,`wbr`],ov=new Set([65534,65535,131070,131071,196606,196607,262142,262143,327678,327679,393214,393215,458750,458751,524286,524287,589822,589823,655358,655359,720894,720895,786430,786431,851966,851967,917502,917503,983038,983039,1048574,1048575,1114110,1114111]),K;(function(e){e[e.EOF=-1]=`EOF`,e[e.NULL=0]=`NULL`,e[e.TABULATION=9]=`TABULATION`,e[e.CARRIAGE_RETURN=13]=`CARRIAGE_RETURN`,e[e.LINE_FEED=10]=`LINE_FEED`,e[e.FORM_FEED=12]=`FORM_FEED`,e[e.SPACE=32]=`SPACE`,e[e.EXCLAMATION_MARK=33]=`EXCLAMATION_MARK`,e[e.QUOTATION_MARK=34]=`QUOTATION_MARK`,e[e.AMPERSAND=38]=`AMPERSAND`,e[e.APOSTROPHE=39]=`APOSTROPHE`,e[e.HYPHEN_MINUS=45]=`HYPHEN_MINUS`,e[e.SOLIDUS=47]=`SOLIDUS`,e[e.DIGIT_0=48]=`DIGIT_0`,e[e.DIGIT_9=57]=`DIGIT_9`,e[e.SEMICOLON=59]=`SEMICOLON`,e[e.LESS_THAN_SIGN=60]=`LESS_THAN_SIGN`,e[e.EQUALS_SIGN=61]=`EQUALS_SIGN`,e[e.GREATER_THAN_SIGN=62]=`GREATER_THAN_SIGN`,e[e.QUESTION_MARK=63]=`QUESTION_MARK`,e[e.LATIN_CAPITAL_A=65]=`LATIN_CAPITAL_A`,e[e.LATIN_CAPITAL_Z=90]=`LATIN_CAPITAL_Z`,e[e.RIGHT_SQUARE_BRACKET=93]=`RIGHT_SQUARE_BRACKET`,e[e.GRAVE_ACCENT=96]=`GRAVE_ACCENT`,e[e.LATIN_SMALL_A=97]=`LATIN_SMALL_A`,e[e.LATIN_SMALL_Z=122]=`LATIN_SMALL_Z`})(K||={});var sv={DASH_DASH:`--`,CDATA_START:`[CDATA[`,DOCTYPE:`doctype`,SCRIPT:`script`,PUBLIC:`public`,SYSTEM:`system`};function cv(e){return e>=55296&&e<=57343}function lv(e){return e>=56320&&e<=57343}function uv(e,t){return(e-55296)*1024+9216+t}function dv(e){return e!==32&&e!==10&&e!==13&&e!==9&&e!==12&&e>=1&&e<=31||e>=127&&e<=159}function fv(e){return e>=64976&&e<=65007||ov.has(e)}var q;(function(e){e.controlCharacterInInputStream=`control-character-in-input-stream`,e.noncharacterInInputStream=`noncharacter-in-input-stream`,e.surrogateInInputStream=`surrogate-in-input-stream`,e.nonVoidHtmlElementStartTagWithTrailingSolidus=`non-void-html-element-start-tag-with-trailing-solidus`,e.endTagWithAttributes=`end-tag-with-attributes`,e.endTagWithTrailingSolidus=`end-tag-with-trailing-solidus`,e.unexpectedSolidusInTag=`unexpected-solidus-in-tag`,e.unexpectedNullCharacter=`unexpected-null-character`,e.unexpectedQuestionMarkInsteadOfTagName=`unexpected-question-mark-instead-of-tag-name`,e.invalidFirstCharacterOfTagName=`invalid-first-character-of-tag-name`,e.unexpectedEqualsSignBeforeAttributeName=`unexpected-equals-sign-before-attribute-name`,e.missingEndTagName=`missing-end-tag-name`,e.unexpectedCharacterInAttributeName=`unexpected-character-in-attribute-name`,e.unknownNamedCharacterReference=`unknown-named-character-reference`,e.missingSemicolonAfterCharacterReference=`missing-semicolon-after-character-reference`,e.unexpectedCharacterAfterDoctypeSystemIdentifier=`unexpected-character-after-doctype-system-identifier`,e.unexpectedCharacterInUnquotedAttributeValue=`unexpected-character-in-unquoted-attribute-value`,e.eofBeforeTagName=`eof-before-tag-name`,e.eofInTag=`eof-in-tag`,e.missingAttributeValue=`missing-attribute-value`,e.missingWhitespaceBetweenAttributes=`missing-whitespace-between-attributes`,e.missingWhitespaceAfterDoctypePublicKeyword=`missing-whitespace-after-doctype-public-keyword`,e.missingWhitespaceBetweenDoctypePublicAndSystemIdentifiers=`missing-whitespace-between-doctype-public-and-system-identifiers`,e.missingWhitespaceAfterDoctypeSystemKeyword=`missing-whitespace-after-doctype-system-keyword`,e.missingQuoteBeforeDoctypePublicIdentifier=`missing-quote-before-doctype-public-identifier`,e.missingQuoteBeforeDoctypeSystemIdentifier=`missing-quote-before-doctype-system-identifier`,e.missingDoctypePublicIdentifier=`missing-doctype-public-identifier`,e.missingDoctypeSystemIdentifier=`missing-doctype-system-identifier`,e.abruptDoctypePublicIdentifier=`abrupt-doctype-public-identifier`,e.abruptDoctypeSystemIdentifier=`abrupt-doctype-system-identifier`,e.cdataInHtmlContent=`cdata-in-html-content`,e.incorrectlyOpenedComment=`incorrectly-opened-comment`,e.eofInScriptHtmlCommentLikeText=`eof-in-script-html-comment-like-text`,e.eofInDoctype=`eof-in-doctype`,e.nestedComment=`nested-comment`,e.abruptClosingOfEmptyComment=`abrupt-closing-of-empty-comment`,e.eofInComment=`eof-in-comment`,e.incorrectlyClosedComment=`incorrectly-closed-comment`,e.eofInCdata=`eof-in-cdata`,e.absenceOfDigitsInNumericCharacterReference=`absence-of-digits-in-numeric-character-reference`,e.nullCharacterReference=`null-character-reference`,e.surrogateCharacterReference=`surrogate-character-reference`,e.characterReferenceOutsideUnicodeRange=`character-reference-outside-unicode-range`,e.controlCharacterReference=`control-character-reference`,e.noncharacterCharacterReference=`noncharacter-character-reference`,e.missingWhitespaceBeforeDoctypeName=`missing-whitespace-before-doctype-name`,e.missingDoctypeName=`missing-doctype-name`,e.invalidCharacterSequenceAfterDoctypeName=`invalid-character-sequence-after-doctype-name`,e.duplicateAttribute=`duplicate-attribute`,e.nonConformingDoctype=`non-conforming-doctype`,e.missingDoctype=`missing-doctype`,e.misplacedDoctype=`misplaced-doctype`,e.endTagWithoutMatchingOpenElement=`end-tag-without-matching-open-element`,e.closingOfElementWithOpenChildElements=`closing-of-element-with-open-child-elements`,e.disallowedContentInNoscriptInHead=`disallowed-content-in-noscript-in-head`,e.openElementsLeftAfterEof=`open-elements-left-after-eof`,e.abandonedHeadElementChild=`abandoned-head-element-child`,e.misplacedStartTagForHeadElement=`misplaced-start-tag-for-head-element`,e.nestedNoscriptInHead=`nested-noscript-in-head`,e.eofInElementThatCanContainOnlyText=`eof-in-element-that-can-contain-only-text`})(q||={});var pv=65536,mv=class{constructor(e){this.handler=e,this.html=``,this.pos=-1,this.lastGapPos=-2,this.gapStack=[],this.skipNextNewLine=!1,this.lastChunkWritten=!1,this.endOfChunkHit=!1,this.bufferWaterline=pv,this.isEol=!1,this.lineStartPos=0,this.droppedBufferSize=0,this.line=1,this.lastErrOffset=-1}get col(){return this.pos-this.lineStartPos+Number(this.lastGapPos!==this.pos)}get offset(){return this.droppedBufferSize+this.pos}getError(e,t){let{line:n,col:r,offset:i}=this,a=r+t,o=i+t;return{code:e,startLine:n,endLine:n,startCol:a,endCol:a,startOffset:o,endOffset:o}}_err(e){this.handler.onParseError&&this.lastErrOffset!==this.offset&&(this.lastErrOffset=this.offset,this.handler.onParseError(this.getError(e,0)))}_addGap(){this.gapStack.push(this.lastGapPos),this.lastGapPos=this.pos}_processSurrogate(e){if(this.pos!==this.html.length-1){let t=this.html.charCodeAt(this.pos+1);if(lv(t))return this.pos++,this._addGap(),uv(e,t)}else if(!this.lastChunkWritten)return this.endOfChunkHit=!0,K.EOF;return this._err(q.surrogateInInputStream),e}willDropParsedChunk(){return this.pos>this.bufferWaterline}dropParsedChunk(){this.willDropParsedChunk()&&(this.html=this.html.substring(this.pos),this.lineStartPos-=this.pos,this.droppedBufferSize+=this.pos,this.pos=0,this.lastGapPos=-2,this.gapStack.length=0)}write(e,t){this.html.length>0?this.html+=e:this.html=e,this.endOfChunkHit=!1,this.lastChunkWritten=t}insertHtmlAtCurrentPos(e){this.html=this.html.substring(0,this.pos+1)+e+this.html.substring(this.pos+1),this.endOfChunkHit=!1}startsWith(e,t){if(this.pos+e.length>this.html.length)return this.endOfChunkHit=!this.lastChunkWritten,!1;if(t)return this.html.startsWith(e,this.pos);for(let t=0;t<e.length;t++)if((this.html.charCodeAt(this.pos+t)|32)!==e.charCodeAt(t))return!1;return!0}peek(e){let t=this.pos+e;if(t>=this.html.length)return this.endOfChunkHit=!this.lastChunkWritten,K.EOF;let n=this.html.charCodeAt(t);return n===K.CARRIAGE_RETURN?K.LINE_FEED:n}advance(){if(this.pos++,this.isEol&&(this.isEol=!1,this.line++,this.lineStartPos=this.pos),this.pos>=this.html.length)return this.endOfChunkHit=!this.lastChunkWritten,K.EOF;let e=this.html.charCodeAt(this.pos);return e===K.CARRIAGE_RETURN?(this.isEol=!0,this.skipNextNewLine=!0,K.LINE_FEED):e===K.LINE_FEED&&(this.isEol=!0,this.skipNextNewLine)?(this.line--,this.skipNextNewLine=!1,this._addGap(),this.advance()):(this.skipNextNewLine=!1,cv(e)&&(e=this._processSurrogate(e)),this.handler.onParseError===null||e>31&&e<127||e===K.LINE_FEED||e===K.CARRIAGE_RETURN||e>159&&e<64976||this._checkForProblematicCharacters(e),e)}_checkForProblematicCharacters(e){dv(e)?this._err(q.controlCharacterInInputStream):fv(e)&&this._err(q.noncharacterInInputStream)}retreat(e){for(this.pos-=e;this.pos<this.lastGapPos;)this.lastGapPos=this.gapStack.pop(),this.pos--;this.isEol=!1}},hv;(function(e){e[e.CHARACTER=0]=`CHARACTER`,e[e.NULL_CHARACTER=1]=`NULL_CHARACTER`,e[e.WHITESPACE_CHARACTER=2]=`WHITESPACE_CHARACTER`,e[e.START_TAG=3]=`START_TAG`,e[e.END_TAG=4]=`END_TAG`,e[e.COMMENT=5]=`COMMENT`,e[e.DOCTYPE=6]=`DOCTYPE`,e[e.EOF=7]=`EOF`,e[e.HIBERNATION=8]=`HIBERNATION`})(hv||={});function gv(e,t){for(let n=e.attrs.length-1;n>=0;n--)if(e.attrs[n].name===t)return e.attrs[n].value;return null}var _v=new Uint16Array(`ᵁ<Õıʊҝջאٵ۞ޢߖࠏ੊ઑඡ๭༉༦჊ረዡᐕᒝᓃᓟᔥ\0\0\0\0\0\0ᕫᛍᦍᰒᷝ὾⁠↰⊍⏀⏻⑂⠤⤒ⴈ⹈⿎〖㊺㘹㞬㣾㨨㩱㫠㬮ࠀEMabcfglmnoprstu\\bfms¦³¹ÈÏlig耻Æ䃆P耻&䀦cute耻Á䃁reve;䄂Āiyx}rc耻Â䃂;䐐r;쀀𝔄rave耻À䃀pha;䎑acr;䄀d;橓Āgp¡on;䄄f;쀀𝔸plyFunction;恡ing耻Å䃅Ācs¾Ãr;쀀𝒜ign;扔ilde耻Ã䃃ml耻Ä䃄ЀaceforsuåûþėĜĢħĪĀcrêòkslash;或Ŷöø;櫧ed;挆y;䐑ƀcrtąċĔause;戵noullis;愬a;䎒r;쀀𝔅pf;쀀𝔹eve;䋘còēmpeq;扎܀HOacdefhilorsuōőŖƀƞƢƵƷƺǜȕɳɸɾcy;䐧PY耻©䂩ƀcpyŝŢźute;䄆Ā;iŧŨ拒talDifferentialD;慅leys;愭ȀaeioƉƎƔƘron;䄌dil耻Ç䃇rc;䄈nint;戰ot;䄊ĀdnƧƭilla;䂸terDot;䂷òſi;䎧rcleȀDMPTǇǋǑǖot;抙inus;抖lus;投imes;抗oĀcsǢǸkwiseContourIntegral;戲eCurlyĀDQȃȏoubleQuote;思uote;怙ȀlnpuȞȨɇɕonĀ;eȥȦ户;橴ƀgitȯȶȺruent;扡nt;戯ourIntegral;戮ĀfrɌɎ;愂oduct;成nterClockwiseContourIntegral;戳oss;樯cr;쀀𝒞pĀ;Cʄʅ拓ap;才րDJSZacefiosʠʬʰʴʸˋ˗ˡ˦̳ҍĀ;oŹʥtrahd;椑cy;䐂cy;䐅cy;䐏ƀgrsʿ˄ˇger;怡r;憡hv;櫤Āayː˕ron;䄎;䐔lĀ;t˝˞戇a;䎔r;쀀𝔇Āaf˫̧Ācm˰̢riticalȀADGT̖̜̀̆cute;䂴oŴ̋̍;䋙bleAcute;䋝rave;䁠ilde;䋜ond;拄ferentialD;慆Ѱ̽\0\0\0͔͂\0Ѕf;쀀𝔻ƀ;DE͈͉͍䂨ot;惜qual;扐blèCDLRUVͣͲ΂ϏϢϸontourIntegraìȹoɴ͹\0\0ͻ»͉nArrow;懓Āeo·ΤftƀARTΐΖΡrrow;懐ightArrow;懔eåˊngĀLRΫτeftĀARγιrrow;柸ightArrow;柺ightArrow;柹ightĀATϘϞrrow;懒ee;抨pɁϩ\0\0ϯrrow;懑ownArrow;懕erticalBar;戥ǹABLRTaВЪаўѿͼrrowƀ;BUНОТ憓ar;椓pArrow;懵reve;䌑eft˒к\0ц\0ѐightVector;楐eeVector;楞ectorĀ;Bљњ憽ar;楖ightǔѧ\0ѱeeVector;楟ectorĀ;BѺѻ懁ar;楗eeĀ;A҆҇护rrow;憧ĀctҒҗr;쀀𝒟rok;䄐ࠀNTacdfglmopqstuxҽӀӄӋӞӢӧӮӵԡԯԶՒ՝ՠեG;䅊H耻Ð䃐cute耻É䃉ƀaiyӒӗӜron;䄚rc耻Ê䃊;䐭ot;䄖r;쀀𝔈rave耻È䃈ement;戈ĀapӺӾcr;䄒tyɓԆ\0\0ԒmallSquare;旻erySmallSquare;斫ĀgpԦԪon;䄘f;쀀𝔼silon;䎕uĀaiԼՉlĀ;TՂՃ橵ilde;扂librium;懌Āci՗՚r;愰m;橳a;䎗ml耻Ë䃋Āipժկsts;戃onentialE;慇ʀcfiosօֈ֍ֲ׌y;䐤r;쀀𝔉lledɓ֗\0\0֣mallSquare;旼erySmallSquare;斪Ͱֺ\0ֿ\0\0ׄf;쀀𝔽All;戀riertrf;愱cò׋؀JTabcdfgorstר׬ׯ׺؀ؒؖ؛؝أ٬ٲcy;䐃耻>䀾mmaĀ;d׷׸䎓;䏜reve;䄞ƀeiy؇،ؐdil;䄢rc;䄜;䐓ot;䄠r;쀀𝔊;拙pf;쀀𝔾eater̀EFGLSTصلَٖٛ٦qualĀ;Lؾؿ扥ess;招ullEqual;执reater;檢ess;扷lantEqual;橾ilde;扳cr;쀀𝒢;扫ЀAacfiosuڅڋږڛڞڪھۊRDcy;䐪Āctڐڔek;䋇;䁞irc;䄤r;愌lbertSpace;愋ǰگ\0ڲf;愍izontalLine;攀Āctۃۅòکrok;䄦mpńېۘownHumðįqual;扏܀EJOacdfgmnostuۺ۾܃܇܎ܚܞܡܨ݄ݸދޏޕcy;䐕lig;䄲cy;䐁cute耻Í䃍Āiyܓܘrc耻Î䃎;䐘ot;䄰r;愑rave耻Ì䃌ƀ;apܠܯܿĀcgܴܷr;䄪inaryI;慈lieóϝǴ݉\0ݢĀ;eݍݎ戬Āgrݓݘral;戫section;拂isibleĀCTݬݲomma;恣imes;恢ƀgptݿރވon;䄮f;쀀𝕀a;䎙cr;愐ilde;䄨ǫޚ\0ޞcy;䐆l耻Ï䃏ʀcfosuެ޷޼߂ߐĀiyޱ޵rc;䄴;䐙r;쀀𝔍pf;쀀𝕁ǣ߇\0ߌr;쀀𝒥rcy;䐈kcy;䐄΀HJacfosߤߨ߽߬߱ࠂࠈcy;䐥cy;䐌ppa;䎚Āey߶߻dil;䄶;䐚r;쀀𝔎pf;쀀𝕂cr;쀀𝒦րJTaceflmostࠥࠩࠬࡐࡣ঳সে্਷ੇcy;䐉耻<䀼ʀcmnpr࠷࠼ࡁࡄࡍute;䄹bda;䎛g;柪lacetrf;愒r;憞ƀaeyࡗ࡜ࡡron;䄽dil;䄻;䐛Āfsࡨ॰tԀACDFRTUVarࡾࢩࢱࣦ࣠ࣼयज़ΐ४Ānrࢃ࢏gleBracket;柨rowƀ;BR࢙࢚࢞憐ar;懤ightArrow;懆eiling;挈oǵࢷ\0ࣃbleBracket;柦nǔࣈ\0࣒eeVector;楡ectorĀ;Bࣛࣜ懃ar;楙loor;挊ightĀAV࣯ࣵrrow;憔ector;楎Āerँगeƀ;AVउऊऐ抣rrow;憤ector;楚iangleƀ;BEतथऩ抲ar;槏qual;抴pƀDTVषूौownVector;楑eeVector;楠ectorĀ;Bॖॗ憿ar;楘ectorĀ;B॥०憼ar;楒ightáΜs̀EFGLSTॾঋকঝঢভqualGreater;拚ullEqual;扦reater;扶ess;檡lantEqual;橽ilde;扲r;쀀𝔏Ā;eঽা拘ftarrow;懚idot;䄿ƀnpw৔ਖਛgȀLRlr৞৷ਂਐeftĀAR০৬rrow;柵ightArrow;柷ightArrow;柶eftĀarγਊightáοightáϊf;쀀𝕃erĀLRਢਬeftArrow;憙ightArrow;憘ƀchtਾੀੂòࡌ;憰rok;䅁;扪Ѐacefiosuਗ਼੝੠੷੼અઋ઎p;椅y;䐜Ādl੥੯iumSpace;恟lintrf;愳r;쀀𝔐nusPlus;戓pf;쀀𝕄cò੶;䎜ҀJacefostuણધભીଔଙඑ඗ඞcy;䐊cute;䅃ƀaey઴હાron;䅇dil;䅅;䐝ƀgswે૰଎ativeƀMTV૓૟૨ediumSpace;怋hiĀcn૦૘ë૙eryThiî૙tedĀGL૸ଆreaterGreateòٳessLesóੈLine;䀊r;쀀𝔑ȀBnptଢନଷ଺reak;恠BreakingSpace;䂠f;愕ڀ;CDEGHLNPRSTV୕ୖ୪୼஡௫ఄ౞಄ದ೘ൡඅ櫬Āou୛୤ngruent;扢pCap;扭oubleVerticalBar;戦ƀlqxஃஊ஛ement;戉ualĀ;Tஒஓ扠ilde;쀀≂̸ists;戄reater΀;EFGLSTஶஷ஽௉௓௘௥扯qual;扱ullEqual;쀀≧̸reater;쀀≫̸ess;批lantEqual;쀀⩾̸ilde;扵umpń௲௽ownHump;쀀≎̸qual;쀀≏̸eĀfsఊధtTriangleƀ;BEచఛడ拪ar;쀀⧏̸qual;括s̀;EGLSTవశ఼ౄోౘ扮qual;扰reater;扸ess;쀀≪̸lantEqual;쀀⩽̸ilde;扴estedĀGL౨౹reaterGreater;쀀⪢̸essLess;쀀⪡̸recedesƀ;ESಒಓಛ技qual;쀀⪯̸lantEqual;拠ĀeiಫಹverseElement;戌ghtTriangleƀ;BEೋೌ೒拫ar;쀀⧐̸qual;拭ĀquೝഌuareSuĀbp೨೹setĀ;E೰ೳ쀀⊏̸qual;拢ersetĀ;Eഃആ쀀⊐̸qual;拣ƀbcpഓതൎsetĀ;Eഛഞ쀀⊂⃒qual;抈ceedsȀ;ESTലള഻െ抁qual;쀀⪰̸lantEqual;拡ilde;쀀≿̸ersetĀ;E൘൛쀀⊃⃒qual;抉ildeȀ;EFT൮൯൵ൿ扁qual;扄ullEqual;扇ilde;扉erticalBar;戤cr;쀀𝒩ilde耻Ñ䃑;䎝܀Eacdfgmoprstuvලෂ෉෕ෛ෠෧෼ขภยา฿ไlig;䅒cute耻Ó䃓Āiy෎ීrc耻Ô䃔;䐞blac;䅐r;쀀𝔒rave耻Ò䃒ƀaei෮ෲ෶cr;䅌ga;䎩cron;䎟pf;쀀𝕆enCurlyĀDQฎบoubleQuote;怜uote;怘;橔Āclวฬr;쀀𝒪ash耻Ø䃘iŬื฼de耻Õ䃕es;樷ml耻Ö䃖erĀBP๋๠Āar๐๓r;怾acĀek๚๜;揞et;掴arenthesis;揜Ҁacfhilors๿ງຊຏຒດຝະ໼rtialD;戂y;䐟r;쀀𝔓i;䎦;䎠usMinus;䂱Āipຢອncareplanåڝf;愙Ȁ;eio຺ູ໠໤檻cedesȀ;EST່້໏໚扺qual;檯lantEqual;扼ilde;找me;怳Ādp໩໮uct;戏ortionĀ;aȥ໹l;戝Āci༁༆r;쀀𝒫;䎨ȀUfos༑༖༛༟OT耻"䀢r;쀀𝔔pf;愚cr;쀀𝒬؀BEacefhiorsu༾གྷཇའཱིྦྷྪྭ႖ႩႴႾarr;椐G耻®䂮ƀcnrཎནབute;䅔g;柫rĀ;tཛྷཝ憠l;椖ƀaeyཧཬཱron;䅘dil;䅖;䐠Ā;vླྀཹ愜erseĀEUྂྙĀlq྇ྎement;戋uilibrium;懋pEquilibrium;楯r»ཹo;䎡ghtЀACDFTUVa࿁࿫࿳ဢဨၛႇϘĀnr࿆࿒gleBracket;柩rowƀ;BL࿜࿝࿡憒ar;懥eftArrow;懄eiling;按oǵ࿹\0စbleBracket;柧nǔည\0နeeVector;楝ectorĀ;Bဝသ懂ar;楕loor;挋Āerိ၃eƀ;AVဵံြ抢rrow;憦ector;楛iangleƀ;BEၐၑၕ抳ar;槐qual;抵pƀDTVၣၮၸownVector;楏eeVector;楜ectorĀ;Bႂႃ憾ar;楔ectorĀ;B႑႒懀ar;楓Āpuႛ႞f;愝ndImplies;楰ightarrow;懛ĀchႹႼr;愛;憱leDelayed;槴ڀHOacfhimoqstuფჱჷჽᄙᄞᅑᅖᅡᅧᆵᆻᆿĀCcჩხHcy;䐩y;䐨FTcy;䐬cute;䅚ʀ;aeiyᄈᄉᄎᄓᄗ檼ron;䅠dil;䅞rc;䅜;䐡r;쀀𝔖ortȀDLRUᄪᄴᄾᅉownArrow»ОeftArrow»࢚ightArrow»࿝pArrow;憑gma;䎣allCircle;战pf;쀀𝕊ɲᅭ\0\0ᅰt;戚areȀ;ISUᅻᅼᆉᆯ斡ntersection;抓uĀbpᆏᆞsetĀ;Eᆗᆘ抏qual;抑ersetĀ;Eᆨᆩ抐qual;抒nion;抔cr;쀀𝒮ar;拆ȀbcmpᇈᇛሉላĀ;sᇍᇎ拐etĀ;Eᇍᇕqual;抆ĀchᇠህeedsȀ;ESTᇭᇮᇴᇿ扻qual;檰lantEqual;扽ilde;承Tháྌ;我ƀ;esሒሓሣ拑rsetĀ;Eሜም抃qual;抇et»ሓրHRSacfhiorsሾቄ቉ቕ቞ቱቶኟዂወዑORN耻Þ䃞ADE;愢ĀHc቎ቒcy;䐋y;䐦Ābuቚቜ;䀉;䎤ƀaeyብቪቯron;䅤dil;䅢;䐢r;쀀𝔗Āeiቻ኉ǲኀ\0ኇefore;戴a;䎘Ācn኎ኘkSpace;쀀  Space;怉ldeȀ;EFTካኬኲኼ戼qual;扃ullEqual;扅ilde;扈pf;쀀𝕋ipleDot;惛Āctዖዛr;쀀𝒯rok;䅦ૡዷጎጚጦ\0ጬጱ\0\0\0\0\0ጸጽ፷ᎅ\0᏿ᐄᐊᐐĀcrዻጁute耻Ú䃚rĀ;oጇገ憟cir;楉rǣጓ\0጖y;䐎ve;䅬Āiyጞጣrc耻Û䃛;䐣blac;䅰r;쀀𝔘rave耻Ù䃙acr;䅪Ādiፁ፩erĀBPፈ፝Āarፍፐr;䁟acĀekፗፙ;揟et;掵arenthesis;揝onĀ;P፰፱拃lus;抎Āgp፻፿on;䅲f;쀀𝕌ЀADETadps᎕ᎮᎸᏄϨᏒᏗᏳrrowƀ;BDᅐᎠᎤar;椒ownArrow;懅ownArrow;憕quilibrium;楮eeĀ;AᏋᏌ报rrow;憥ownáϳerĀLRᏞᏨeftArrow;憖ightArrow;憗iĀ;lᏹᏺ䏒on;䎥ing;䅮cr;쀀𝒰ilde;䅨ml耻Ü䃜ҀDbcdefosvᐧᐬᐰᐳᐾᒅᒊᒐᒖash;披ar;櫫y;䐒ashĀ;lᐻᐼ抩;櫦Āerᑃᑅ;拁ƀbtyᑌᑐᑺar;怖Ā;iᑏᑕcalȀBLSTᑡᑥᑪᑴar;戣ine;䁼eparator;杘ilde;所ThinSpace;怊r;쀀𝔙pf;쀀𝕍cr;쀀𝒱dash;抪ʀcefosᒧᒬᒱᒶᒼirc;䅴dge;拀r;쀀𝔚pf;쀀𝕎cr;쀀𝒲Ȁfiosᓋᓐᓒᓘr;쀀𝔛;䎞pf;쀀𝕏cr;쀀𝒳ҀAIUacfosuᓱᓵᓹᓽᔄᔏᔔᔚᔠcy;䐯cy;䐇cy;䐮cute耻Ý䃝Āiyᔉᔍrc;䅶;䐫r;쀀𝔜pf;쀀𝕐cr;쀀𝒴ml;䅸ЀHacdefosᔵᔹᔿᕋᕏᕝᕠᕤcy;䐖cute;䅹Āayᕄᕉron;䅽;䐗ot;䅻ǲᕔ\0ᕛoWidtè૙a;䎖r;愨pf;愤cr;쀀𝒵௡ᖃᖊᖐ\0ᖰᖶᖿ\0\0\0\0ᗆᗛᗫᙟ᙭\0ᚕ᚛ᚲᚹ\0ᚾcute耻á䃡reve;䄃̀;Ediuyᖜᖝᖡᖣᖨᖭ戾;쀀∾̳;房rc耻â䃢te肻´̆;䐰lig耻æ䃦Ā;r²ᖺ;쀀𝔞rave耻à䃠ĀepᗊᗖĀfpᗏᗔsym;愵èᗓha;䎱ĀapᗟcĀclᗤᗧr;䄁g;樿ɤᗰ\0\0ᘊʀ;adsvᗺᗻᗿᘁᘇ戧nd;橕;橜lope;橘;橚΀;elmrszᘘᘙᘛᘞᘿᙏᙙ戠;榤e»ᘙsdĀ;aᘥᘦ戡ѡᘰᘲᘴᘶᘸᘺᘼᘾ;榨;榩;榪;榫;榬;榭;榮;榯tĀ;vᙅᙆ戟bĀ;dᙌᙍ抾;榝Āptᙔᙗh;戢»¹arr;捼Āgpᙣᙧon;䄅f;쀀𝕒΀;Eaeiop዁ᙻᙽᚂᚄᚇᚊ;橰cir;橯;扊d;手s;䀧roxĀ;e዁ᚒñᚃing耻å䃥ƀctyᚡᚦᚨr;쀀𝒶;䀪mpĀ;e዁ᚯñʈilde耻ã䃣ml耻ä䃤Āciᛂᛈoninôɲnt;樑ࠀNabcdefiklnoprsu᛭ᛱᜰ᜼ᝃᝈ᝸᝽០៦ᠹᡐᜍ᤽᥈ᥰot;櫭Ācrᛶ᜞kȀcepsᜀᜅᜍᜓong;扌psilon;䏶rime;怵imĀ;e᜚᜛戽q;拍Ŷᜢᜦee;抽edĀ;gᜬᜭ挅e»ᜭrkĀ;t፜᜷brk;掶Āoyᜁᝁ;䐱quo;怞ʀcmprtᝓ᝛ᝡᝤᝨausĀ;eĊĉptyv;榰séᜌnoõēƀahwᝯ᝱ᝳ;䎲;愶een;扬r;쀀𝔟g΀costuvwឍឝឳេ៕៛៞ƀaiuបពរðݠrc;旯p»፱ƀdptឤឨឭot;樀lus;樁imes;樂ɱឹ\0\0ើcup;樆ar;昅riangleĀdu៍្own;施p;斳plus;樄eåᑄåᒭarow;植ƀako៭ᠦᠵĀcn៲ᠣkƀlst៺֫᠂ozenge;槫riangleȀ;dlr᠒᠓᠘᠝斴own;斾eft;旂ight;斸k;搣Ʊᠫ\0ᠳƲᠯ\0ᠱ;斒;斑4;斓ck;斈ĀeoᠾᡍĀ;qᡃᡆ쀀=⃥uiv;쀀≡⃥t;挐Ȁptwxᡙᡞᡧᡬf;쀀𝕓Ā;tᏋᡣom»Ꮜtie;拈؀DHUVbdhmptuvᢅᢖᢪᢻᣗᣛᣬ᣿ᤅᤊᤐᤡȀLRlrᢎᢐᢒᢔ;敗;敔;敖;敓ʀ;DUduᢡᢢᢤᢦᢨ敐;敦;敩;敤;敧ȀLRlrᢳᢵᢷᢹ;敝;敚;敜;教΀;HLRhlrᣊᣋᣍᣏᣑᣓᣕ救;敬;散;敠;敫;敢;敟ox;槉ȀLRlrᣤᣦᣨᣪ;敕;敒;攐;攌ʀ;DUduڽ᣷᣹᣻᣽;敥;敨;攬;攴inus;抟lus;択imes;抠ȀLRlrᤙᤛᤝ᤟;敛;敘;攘;攔΀;HLRhlrᤰᤱᤳᤵᤷ᤻᤹攂;敪;敡;敞;攼;攤;攜Āevģ᥂bar耻¦䂦Ȁceioᥑᥖᥚᥠr;쀀𝒷mi;恏mĀ;e᜚᜜lƀ;bhᥨᥩᥫ䁜;槅sub;柈Ŭᥴ᥾lĀ;e᥹᥺怢t»᥺pƀ;Eeįᦅᦇ;檮Ā;qۜۛೡᦧ\0᧨ᨑᨕᨲ\0ᨷᩐ\0\0᪴\0\0᫁\0\0ᬡᬮ᭍᭒\0᯽\0ᰌƀcpr᦭ᦲ᧝ute;䄇̀;abcdsᦿᧀᧄ᧊᧕᧙戩nd;橄rcup;橉Āau᧏᧒p;橋p;橇ot;橀;쀀∩︀Āeo᧢᧥t;恁îړȀaeiu᧰᧻ᨁᨅǰ᧵\0᧸s;橍on;䄍dil耻ç䃧rc;䄉psĀ;sᨌᨍ橌m;橐ot;䄋ƀdmnᨛᨠᨦil肻¸ƭptyv;榲t脀¢;eᨭᨮ䂢räƲr;쀀𝔠ƀceiᨽᩀᩍy;䑇ckĀ;mᩇᩈ朓ark»ᩈ;䏇r΀;Ecefms᩟᩠ᩢᩫ᪤᪪᪮旋;槃ƀ;elᩩᩪᩭ䋆q;扗eɡᩴ\0\0᪈rrowĀlr᩼᪁eft;憺ight;憻ʀRSacd᪒᪔᪖᪚᪟»ཇ;擈st;抛irc;抚ash;抝nint;樐id;櫯cir;槂ubsĀ;u᪻᪼晣it»᪼ˬ᫇᫔᫺\0ᬊonĀ;eᫍᫎ䀺Ā;qÇÆɭ᫙\0\0᫢aĀ;t᫞᫟䀬;䁀ƀ;fl᫨᫩᫫戁îᅠeĀmx᫱᫶ent»᫩eóɍǧ᫾\0ᬇĀ;dኻᬂot;橭nôɆƀfryᬐᬔᬗ;쀀𝕔oäɔ脀©;sŕᬝr;愗Āaoᬥᬩrr;憵ss;朗Ācuᬲᬷr;쀀𝒸Ābpᬼ᭄Ā;eᭁᭂ櫏;櫑Ā;eᭉᭊ櫐;櫒dot;拯΀delprvw᭠᭬᭷ᮂᮬᯔ᯹arrĀlr᭨᭪;椸;椵ɰ᭲\0\0᭵r;拞c;拟arrĀ;p᭿ᮀ憶;椽̀;bcdosᮏᮐᮖᮡᮥᮨ截rcap;橈Āauᮛᮞp;橆p;橊ot;抍r;橅;쀀∪︀Ȁalrv᮵ᮿᯞᯣrrĀ;mᮼᮽ憷;椼yƀevwᯇᯔᯘqɰᯎ\0\0ᯒreã᭳uã᭵ee;拎edge;拏en耻¤䂤earrowĀlrᯮ᯳eft»ᮀight»ᮽeäᯝĀciᰁᰇoninôǷnt;戱lcty;挭ঀAHabcdefhijlorstuwz᰸᰻᰿ᱝᱩᱵᲊᲞᲬᲷ᳻᳿ᴍᵻᶑᶫᶻ᷆᷍rò΁ar;楥Ȁglrs᱈ᱍ᱒᱔ger;怠eth;愸òᄳhĀ;vᱚᱛ怐»ऊūᱡᱧarow;椏aã̕Āayᱮᱳron;䄏;䐴ƀ;ao̲ᱼᲄĀgrʿᲁr;懊tseq;橷ƀglmᲑᲔᲘ耻°䂰ta;䎴ptyv;榱ĀirᲣᲨsht;楿;쀀𝔡arĀlrᲳᲵ»ࣜ»သʀaegsv᳂͸᳖᳜᳠mƀ;oș᳊᳔ndĀ;ș᳑uit;晦amma;䏝in;拲ƀ;io᳧᳨᳸䃷de脀÷;o᳧ᳰntimes;拇nø᳷cy;䑒cɯᴆ\0\0ᴊrn;挞op;挍ʀlptuwᴘᴝᴢᵉᵕlar;䀤f;쀀𝕕ʀ;emps̋ᴭᴷᴽᵂqĀ;d͒ᴳot;扑inus;戸lus;戔quare;抡blebarwedgåúnƀadhᄮᵝᵧownarrowóᲃarpoonĀlrᵲᵶefôᲴighôᲶŢᵿᶅkaro÷གɯᶊ\0\0ᶎrn;挟op;挌ƀcotᶘᶣᶦĀryᶝᶡ;쀀𝒹;䑕l;槶rok;䄑Ādrᶰᶴot;拱iĀ;fᶺ᠖斿Āah᷀᷃ròЩaòྦangle;榦Āci᷒ᷕy;䑟grarr;柿ऀDacdefglmnopqrstuxḁḉḙḸոḼṉṡṾấắẽỡἪἷὄ὎὚ĀDoḆᴴoôᲉĀcsḎḔute耻é䃩ter;橮ȀaioyḢḧḱḶron;䄛rĀ;cḭḮ扖耻ê䃪lon;払;䑍ot;䄗ĀDrṁṅot;扒;쀀𝔢ƀ;rsṐṑṗ檚ave耻è䃨Ā;dṜṝ檖ot;檘Ȁ;ilsṪṫṲṴ檙nters;揧;愓Ā;dṹṺ檕ot;檗ƀapsẅẉẗcr;䄓tyƀ;svẒẓẕ戅et»ẓpĀ1;ẝẤĳạả;怄;怅怃ĀgsẪẬ;䅋p;怂ĀgpẴẸon;䄙f;쀀𝕖ƀalsỄỎỒrĀ;sỊị拕l;槣us;橱iƀ;lvỚớở䎵on»ớ;䏵ȀcsuvỪỳἋἣĀioữḱrc»Ḯɩỹ\0\0ỻíՈantĀglἂἆtr»ṝess»Ṻƀaeiἒ἖Ἒls;䀽st;扟vĀ;DȵἠD;橸parsl;槥ĀDaἯἳot;打rr;楱ƀcdiἾὁỸr;愯oô͒ĀahὉὋ;䎷耻ð䃰Āmrὓὗl耻ë䃫o;悬ƀcipὡὤὧl;䀡sôծĀeoὬὴctatioîՙnentialåչৡᾒ\0ᾞ\0ᾡᾧ\0\0ῆῌ\0ΐ\0ῦῪ \0 ⁚llingdotseñṄy;䑄male;晀ƀilrᾭᾳ῁lig;耀ﬃɩᾹ\0\0᾽g;耀ﬀig;耀ﬄ;쀀𝔣lig;耀ﬁlig;쀀fjƀaltῙ῜ῡt;晭ig;耀ﬂns;斱of;䆒ǰ΅\0ῳf;쀀𝕗ĀakֿῷĀ;vῼ´拔;櫙artint;樍Āao‌⁕Ācs‑⁒α‚‰‸⁅⁈\0⁐β•‥‧‪‬\0‮耻½䂽;慓耻¼䂼;慕;慙;慛Ƴ‴\0‶;慔;慖ʴ‾⁁\0\0⁃耻¾䂾;慗;慜5;慘ƶ⁌\0⁎;慚;慝8;慞l;恄wn;挢cr;쀀𝒻ࢀEabcdefgijlnorstv₂₉₟₥₰₴⃰⃵⃺⃿℃ℒℸ̗ℾ⅒↞Ā;lٍ₇;檌ƀcmpₐₕ₝ute;䇵maĀ;dₜ᳚䎳;檆reve;䄟Āiy₪₮rc;䄝;䐳ot;䄡Ȁ;lqsؾق₽⃉ƀ;qsؾٌ⃄lanô٥Ȁ;cdl٥⃒⃥⃕c;檩otĀ;o⃜⃝檀Ā;l⃢⃣檂;檄Ā;e⃪⃭쀀⋛︀s;檔r;쀀𝔤Ā;gٳ؛mel;愷cy;䑓Ȁ;Eajٚℌℎℐ;檒;檥;檤ȀEaesℛℝ℩ℴ;扩pĀ;p℣ℤ檊rox»ℤĀ;q℮ℯ檈Ā;q℮ℛim;拧pf;쀀𝕘Āci⅃ⅆr;愊mƀ;el٫ⅎ⅐;檎;檐茀>;cdlqr׮ⅠⅪⅮⅳⅹĀciⅥⅧ;檧r;橺ot;拗Par;榕uest;橼ʀadelsↄⅪ←ٖ↛ǰ↉\0↎proø₞r;楸qĀlqؿ↖lesó₈ií٫Āen↣↭rtneqq;쀀≩︀Å↪ԀAabcefkosy⇄⇇⇱⇵⇺∘∝∯≨≽ròΠȀilmr⇐⇔⇗⇛rsðᒄf»․ilôکĀdr⇠⇤cy;䑊ƀ;cwࣴ⇫⇯ir;楈;憭ar;意irc;䄥ƀalr∁∎∓rtsĀ;u∉∊晥it»∊lip;怦con;抹r;쀀𝔥sĀew∣∩arow;椥arow;椦ʀamopr∺∾≃≞≣rr;懿tht;戻kĀlr≉≓eftarrow;憩ightarrow;憪f;쀀𝕙bar;怕ƀclt≯≴≸r;쀀𝒽asè⇴rok;䄧Ābp⊂⊇ull;恃hen»ᱛૡ⊣\0⊪\0⊸⋅⋎\0⋕⋳\0\0⋸⌢⍧⍢⍿\0⎆⎪⎴cute耻í䃭ƀ;iyݱ⊰⊵rc耻î䃮;䐸Ācx⊼⊿y;䐵cl耻¡䂡ĀfrΟ⋉;쀀𝔦rave耻ì䃬Ȁ;inoܾ⋝⋩⋮Āin⋢⋦nt;樌t;戭fin;槜ta;愩lig;䄳ƀaop⋾⌚⌝ƀcgt⌅⌈⌗r;䄫ƀelpܟ⌏⌓inåގarôܠh;䄱f;抷ed;䆵ʀ;cfotӴ⌬⌱⌽⍁are;愅inĀ;t⌸⌹戞ie;槝doô⌙ʀ;celpݗ⍌⍐⍛⍡al;抺Āgr⍕⍙eróᕣã⍍arhk;樗rod;樼Ȁcgpt⍯⍲⍶⍻y;䑑on;䄯f;쀀𝕚a;䎹uest耻¿䂿Āci⎊⎏r;쀀𝒾nʀ;EdsvӴ⎛⎝⎡ӳ;拹ot;拵Ā;v⎦⎧拴;拳Ā;iݷ⎮lde;䄩ǫ⎸\0⎼cy;䑖l耻ï䃯̀cfmosu⏌⏗⏜⏡⏧⏵Āiy⏑⏕rc;䄵;䐹r;쀀𝔧ath;䈷pf;쀀𝕛ǣ⏬\0⏱r;쀀𝒿rcy;䑘kcy;䑔Ѐacfghjos␋␖␢␧␭␱␵␻ppaĀ;v␓␔䎺;䏰Āey␛␠dil;䄷;䐺r;쀀𝔨reen;䄸cy;䑅cy;䑜pf;쀀𝕜cr;쀀𝓀஀ABEHabcdefghjlmnoprstuv⑰⒁⒆⒍⒑┎┽╚▀♎♞♥♹♽⚚⚲⛘❝❨➋⟀⠁⠒ƀart⑷⑺⑼rò৆òΕail;椛arr;椎Ā;gঔ⒋;檋ar;楢ॣ⒥\0⒪\0⒱\0\0\0\0\0⒵Ⓔ\0ⓆⓈⓍ\0⓹ute;䄺mptyv;榴raîࡌbda;䎻gƀ;dlࢎⓁⓃ;榑åࢎ;檅uo耻«䂫rЀ;bfhlpst࢙ⓞⓦⓩ⓫⓮⓱⓵Ā;f࢝ⓣs;椟s;椝ë≒p;憫l;椹im;楳l;憢ƀ;ae⓿─┄檫il;椙Ā;s┉┊檭;쀀⪭︀ƀabr┕┙┝rr;椌rk;杲Āak┢┬cĀek┨┪;䁻;䁛Āes┱┳;榋lĀdu┹┻;榏;榍Ȁaeuy╆╋╖╘ron;䄾Ādi═╔il;䄼ìࢰâ┩;䐻Ȁcqrs╣╦╭╽a;椶uoĀ;rนᝆĀdu╲╷har;楧shar;楋h;憲ʀ;fgqs▋▌উ◳◿扤tʀahlrt▘▤▷◂◨rrowĀ;t࢙□aé⓶arpoonĀdu▯▴own»њp»०eftarrows;懇ightƀahs◍◖◞rrowĀ;sࣴࢧarpoonó྘quigarro÷⇰hreetimes;拋ƀ;qs▋ও◺lanôবʀ;cdgsব☊☍☝☨c;檨otĀ;o☔☕橿Ā;r☚☛檁;檃Ā;e☢☥쀀⋚︀s;檓ʀadegs☳☹☽♉♋pproøⓆot;拖qĀgq♃♅ôউgtò⒌ôছiíলƀilr♕࣡♚sht;楼;쀀𝔩Ā;Eজ♣;檑š♩♶rĀdu▲♮Ā;l॥♳;楪lk;斄cy;䑙ʀ;achtੈ⚈⚋⚑⚖rò◁orneòᴈard;楫ri;旺Āio⚟⚤dot;䅀ustĀ;a⚬⚭掰che»⚭ȀEaes⚻⚽⛉⛔;扨pĀ;p⛃⛄檉rox»⛄Ā;q⛎⛏檇Ā;q⛎⚻im;拦Ѐabnoptwz⛩⛴⛷✚✯❁❇❐Ānr⛮⛱g;柬r;懽rëࣁgƀlmr⛿✍✔eftĀar০✇ightá৲apsto;柼ightá৽parrowĀlr✥✩efô⓭ight;憬ƀafl✶✹✽r;榅;쀀𝕝us;樭imes;樴š❋❏st;戗áፎƀ;ef❗❘᠀旊nge»❘arĀ;l❤❥䀨t;榓ʀachmt❳❶❼➅➇ròࢨorneòᶌarĀ;d྘➃;業;怎ri;抿̀achiqt➘➝ੀ➢➮➻quo;怹r;쀀𝓁mƀ;egল➪➬;檍;檏Ābu┪➳oĀ;rฟ➹;怚rok;䅂萀<;cdhilqrࠫ⟒☹⟜⟠⟥⟪⟰Āci⟗⟙;檦r;橹reå◲mes;拉arr;楶uest;橻ĀPi⟵⟹ar;榖ƀ;ef⠀भ᠛旃rĀdu⠇⠍shar;楊har;楦Āen⠗⠡rtneqq;쀀≨︀Å⠞܀Dacdefhilnopsu⡀⡅⢂⢎⢓⢠⢥⢨⣚⣢⣤ઃ⣳⤂Dot;戺Ȁclpr⡎⡒⡣⡽r耻¯䂯Āet⡗⡙;時Ā;e⡞⡟朠se»⡟Ā;sျ⡨toȀ;dluျ⡳⡷⡻owîҌefôएðᏑker;斮Āoy⢇⢌mma;権;䐼ash;怔asuredangle»ᘦr;쀀𝔪o;愧ƀcdn⢯⢴⣉ro耻µ䂵Ȁ;acdᑤ⢽⣀⣄sôᚧir;櫰ot肻·Ƶusƀ;bd⣒ᤃ⣓戒Ā;uᴼ⣘;横ţ⣞⣡p;櫛ò−ðઁĀdp⣩⣮els;抧f;쀀𝕞Āct⣸⣽r;쀀𝓂pos»ᖝƀ;lm⤉⤊⤍䎼timap;抸ఀGLRVabcdefghijlmoprstuvw⥂⥓⥾⦉⦘⧚⧩⨕⨚⩘⩝⪃⪕⪤⪨⬄⬇⭄⭿⮮ⰴⱧⱼ⳩Āgt⥇⥋;쀀⋙̸Ā;v⥐௏쀀≫⃒ƀelt⥚⥲⥶ftĀar⥡⥧rrow;懍ightarrow;懎;쀀⋘̸Ā;v⥻ే쀀≪⃒ightarrow;懏ĀDd⦎⦓ash;抯ash;抮ʀbcnpt⦣⦧⦬⦱⧌la»˞ute;䅄g;쀀∠⃒ʀ;Eiop඄⦼⧀⧅⧈;쀀⩰̸d;쀀≋̸s;䅉roø඄urĀ;a⧓⧔普lĀ;s⧓ସǳ⧟\0⧣p肻\xA0ଷmpĀ;e௹ఀʀaeouy⧴⧾⨃⨐⨓ǰ⧹\0⧻;橃on;䅈dil;䅆ngĀ;dൾ⨊ot;쀀⩭̸p;橂;䐽ash;怓΀;Aadqsxஒ⨩⨭⨻⩁⩅⩐rr;懗rĀhr⨳⨶k;椤Ā;oᏲᏰot;쀀≐̸uiöୣĀei⩊⩎ar;椨í஘istĀ;s஠டr;쀀𝔫ȀEest௅⩦⩹⩼ƀ;qs஼⩭௡ƀ;qs஼௅⩴lanô௢ií௪Ā;rஶ⪁»ஷƀAap⪊⪍⪑rò⥱rr;憮ar;櫲ƀ;svྍ⪜ྌĀ;d⪡⪢拼;拺cy;䑚΀AEadest⪷⪺⪾⫂⫅⫶⫹rò⥦;쀀≦̸rr;憚r;急Ȁ;fqs఻⫎⫣⫯tĀar⫔⫙rro÷⫁ightarro÷⪐ƀ;qs఻⪺⫪lanôౕĀ;sౕ⫴»శiíౝĀ;rవ⫾iĀ;eచథiäඐĀpt⬌⬑f;쀀𝕟膀¬;in⬙⬚⬶䂬nȀ;Edvஉ⬤⬨⬮;쀀⋹̸ot;쀀⋵̸ǡஉ⬳⬵;拷;拶iĀ;vಸ⬼ǡಸ⭁⭃;拾;拽ƀaor⭋⭣⭩rȀ;ast୻⭕⭚⭟lleì୻l;쀀⫽⃥;쀀∂̸lint;樔ƀ;ceಒ⭰⭳uåಥĀ;cಘ⭸Ā;eಒ⭽ñಘȀAait⮈⮋⮝⮧rò⦈rrƀ;cw⮔⮕⮙憛;쀀⤳̸;쀀↝̸ghtarrow»⮕riĀ;eೋೖ΀chimpqu⮽⯍⯙⬄୸⯤⯯Ȁ;cerല⯆ഷ⯉uå൅;쀀𝓃ortɭ⬅\0\0⯖ará⭖mĀ;e൮⯟Ā;q൴൳suĀbp⯫⯭å೸åഋƀbcp⯶ⰑⰙȀ;Ees⯿ⰀഢⰄ抄;쀀⫅̸etĀ;eഛⰋqĀ;qണⰀcĀ;eലⰗñസȀ;EesⰢⰣൟⰧ抅;쀀⫆̸etĀ;e൘ⰮqĀ;qൠⰣȀgilrⰽⰿⱅⱇìௗlde耻ñ䃱çృiangleĀlrⱒⱜeftĀ;eచⱚñదightĀ;eೋⱥñ೗Ā;mⱬⱭ䎽ƀ;esⱴⱵⱹ䀣ro;愖p;怇ҀDHadgilrsⲏⲔⲙⲞⲣⲰⲶⳓⳣash;抭arr;椄p;쀀≍⃒ash;抬ĀetⲨⲬ;쀀≥⃒;쀀>⃒nfin;槞ƀAetⲽⳁⳅrr;椂;쀀≤⃒Ā;rⳊⳍ쀀<⃒ie;쀀⊴⃒ĀAtⳘⳜrr;椃rie;쀀⊵⃒im;쀀∼⃒ƀAan⳰⳴ⴂrr;懖rĀhr⳺⳽k;椣Ā;oᏧᏥear;椧ቓ᪕\0\0\0\0\0\0\0\0\0\0\0\0\0ⴭ\0ⴸⵈⵠⵥ⵲ⶄᬇ\0\0ⶍⶫ\0ⷈⷎ\0ⷜ⸙⸫⸾⹃Ācsⴱ᪗ute耻ó䃳ĀiyⴼⵅrĀ;c᪞ⵂ耻ô䃴;䐾ʀabios᪠ⵒⵗǈⵚlac;䅑v;樸old;榼lig;䅓Ācr⵩⵭ir;榿;쀀𝔬ͯ⵹\0\0⵼\0ⶂn;䋛ave耻ò䃲;槁Ābmⶈ෴ar;榵Ȁacitⶕ⶘ⶥⶨrò᪀Āir⶝ⶠr;榾oss;榻nå๒;槀ƀaeiⶱⶵⶹcr;䅍ga;䏉ƀcdnⷀⷅǍron;䎿;榶pf;쀀𝕠ƀaelⷔ⷗ǒr;榷rp;榹΀;adiosvⷪⷫⷮ⸈⸍⸐⸖戨rò᪆Ȁ;efmⷷⷸ⸂⸅橝rĀ;oⷾⷿ愴f»ⷿ耻ª䂪耻º䂺gof;抶r;橖lope;橗;橛ƀclo⸟⸡⸧ò⸁ash耻ø䃸l;折iŬⸯ⸴de耻õ䃵esĀ;aǛ⸺s;樶ml耻ö䃶bar;挽ૡ⹞\0⹽\0⺀⺝\0⺢⺹\0\0⻋ຜ\0⼓\0\0⼫⾼\0⿈rȀ;astЃ⹧⹲຅脀¶;l⹭⹮䂶leìЃɩ⹸\0\0⹻m;櫳;櫽y;䐿rʀcimpt⺋⺏⺓ᡥ⺗nt;䀥od;䀮il;怰enk;怱r;쀀𝔭ƀimo⺨⺰⺴Ā;v⺭⺮䏆;䏕maô੶ne;明ƀ;tv⺿⻀⻈䏀chfork»´;䏖Āau⻏⻟nĀck⻕⻝kĀ;h⇴⻛;愎ö⇴sҀ;abcdemst⻳⻴ᤈ⻹⻽⼄⼆⼊⼎䀫cir;樣ir;樢Āouᵀ⼂;樥;橲n肻±ຝim;樦wo;樧ƀipu⼙⼠⼥ntint;樕f;쀀𝕡nd耻£䂣Ԁ;Eaceinosu່⼿⽁⽄⽇⾁⾉⾒⽾⾶;檳p;檷uå໙Ā;c໎⽌̀;acens່⽙⽟⽦⽨⽾pproø⽃urlyeñ໙ñ໎ƀaes⽯⽶⽺pprox;檹qq;檵im;拨iíໟmeĀ;s⾈ຮ怲ƀEas⽸⾐⽺ð⽵ƀdfp໬⾙⾯ƀals⾠⾥⾪lar;挮ine;挒urf;挓Ā;t໻⾴ï໻rel;抰Āci⿀⿅r;쀀𝓅;䏈ncsp;怈̀fiopsu⿚⋢⿟⿥⿫⿱r;쀀𝔮pf;쀀𝕢rime;恗cr;쀀𝓆ƀaeo⿸〉〓tĀei⿾々rnionóڰnt;樖stĀ;e【】䀿ñἙô༔઀ABHabcdefhilmnoprstux぀けさすムㄎㄫㅇㅢㅲㆎ㈆㈕㈤㈩㉘㉮㉲㊐㊰㊷ƀartぇおがròႳòϝail;検aròᱥar;楤΀cdenqrtとふへみわゔヌĀeuねぱ;쀀∽̱te;䅕iãᅮmptyv;榳gȀ;del࿑らるろ;榒;榥å࿑uo耻»䂻rր;abcfhlpstw࿜ガクシスゼゾダッデナp;極Ā;f࿠ゴs;椠;椳s;椞ë≝ð✮l;楅im;楴l;憣;憝Āaiパフil;椚oĀ;nホボ戶aló༞ƀabrョリヮrò៥rk;杳ĀakンヽcĀekヹ・;䁽;䁝Āes㄂㄄;榌lĀduㄊㄌ;榎;榐Ȁaeuyㄗㄜㄧㄩron;䅙Ādiㄡㄥil;䅗ì࿲âヺ;䑀Ȁclqsㄴㄷㄽㅄa;椷dhar;楩uoĀ;rȎȍh;憳ƀacgㅎㅟངlȀ;ipsླྀㅘㅛႜnåႻarôྩt;断ƀilrㅩဣㅮsht;楽;쀀𝔯ĀaoㅷㆆrĀduㅽㅿ»ѻĀ;l႑ㆄ;楬Ā;vㆋㆌ䏁;䏱ƀgns㆕ㇹㇼht̀ahlrstㆤㆰ㇂㇘㇤㇮rrowĀ;t࿜ㆭaéトarpoonĀduㆻㆿowîㅾp»႒eftĀah㇊㇐rrowó࿪arpoonóՑightarrows;應quigarro÷ニhreetimes;拌g;䋚ingdotseñἲƀahm㈍㈐㈓rò࿪aòՑ;怏oustĀ;a㈞㈟掱che»㈟mid;櫮Ȁabpt㈲㈽㉀㉒Ānr㈷㈺g;柭r;懾rëဃƀafl㉇㉊㉎r;榆;쀀𝕣us;樮imes;樵Āap㉝㉧rĀ;g㉣㉤䀩t;榔olint;樒arò㇣Ȁachq㉻㊀Ⴜ㊅quo;怺r;쀀𝓇Ābu・㊊oĀ;rȔȓƀhir㊗㊛㊠reåㇸmes;拊iȀ;efl㊪ၙᠡ㊫方tri;槎luhar;楨;愞ൡ㋕㋛㋟㌬㌸㍱\0㍺㎤\0\0㏬㏰\0㐨㑈㑚㒭㒱㓊㓱\0㘖\0\0㘳cute;䅛quï➺Ԁ;Eaceinpsyᇭ㋳㋵㋿㌂㌋㌏㌟㌦㌩;檴ǰ㋺\0㋼;檸on;䅡uåᇾĀ;dᇳ㌇il;䅟rc;䅝ƀEas㌖㌘㌛;檶p;檺im;择olint;樓iíሄ;䑁otƀ;be㌴ᵇ㌵担;橦΀Aacmstx㍆㍊㍗㍛㍞㍣㍭rr;懘rĀhr㍐㍒ë∨Ā;oਸ਼਴t耻§䂧i;䀻war;椩mĀin㍩ðnuóñt;朶rĀ;o㍶⁕쀀𝔰Ȁacoy㎂㎆㎑㎠rp;景Āhy㎋㎏cy;䑉;䑈rtɭ㎙\0\0㎜iäᑤaraì⹯耻­䂭Āgm㎨㎴maƀ;fv㎱㎲㎲䏃;䏂Ѐ;deglnprካ㏅㏉㏎㏖㏞㏡㏦ot;橪Ā;q኱ኰĀ;E㏓㏔檞;檠Ā;E㏛㏜檝;檟e;扆lus;樤arr;楲aròᄽȀaeit㏸㐈㐏㐗Āls㏽㐄lsetmé㍪hp;樳parsl;槤Ādlᑣ㐔e;挣Ā;e㐜㐝檪Ā;s㐢㐣檬;쀀⪬︀ƀflp㐮㐳㑂tcy;䑌Ā;b㐸㐹䀯Ā;a㐾㐿槄r;挿f;쀀𝕤aĀdr㑍ЂesĀ;u㑔㑕晠it»㑕ƀcsu㑠㑹㒟Āau㑥㑯pĀ;sᆈ㑫;쀀⊓︀pĀ;sᆴ㑵;쀀⊔︀uĀbp㑿㒏ƀ;esᆗᆜ㒆etĀ;eᆗ㒍ñᆝƀ;esᆨᆭ㒖etĀ;eᆨ㒝ñᆮƀ;afᅻ㒦ְrť㒫ֱ»ᅼaròᅈȀcemt㒹㒾㓂㓅r;쀀𝓈tmîñiì㐕aræᆾĀar㓎㓕rĀ;f㓔ឿ昆Āan㓚㓭ightĀep㓣㓪psiloîỠhé⺯s»⡒ʀbcmnp㓻㕞ሉ㖋㖎Ҁ;Edemnprs㔎㔏㔑㔕㔞㔣㔬㔱㔶抂;櫅ot;檽Ā;dᇚ㔚ot;櫃ult;櫁ĀEe㔨㔪;櫋;把lus;檿arr;楹ƀeiu㔽㕒㕕tƀ;en㔎㕅㕋qĀ;qᇚ㔏eqĀ;q㔫㔨m;櫇Ābp㕚㕜;櫕;櫓c̀;acensᇭ㕬㕲㕹㕻㌦pproø㋺urlyeñᇾñᇳƀaes㖂㖈㌛pproø㌚qñ㌗g;晪ڀ123;Edehlmnps㖩㖬㖯ሜ㖲㖴㗀㗉㗕㗚㗟㗨㗭耻¹䂹耻²䂲耻³䂳;櫆Āos㖹㖼t;檾ub;櫘Ā;dሢ㗅ot;櫄sĀou㗏㗒l;柉b;櫗arr;楻ult;櫂ĀEe㗤㗦;櫌;抋lus;櫀ƀeiu㗴㘉㘌tƀ;enሜ㗼㘂qĀ;qሢ㖲eqĀ;q㗧㗤m;櫈Ābp㘑㘓;櫔;櫖ƀAan㘜㘠㘭rr;懙rĀhr㘦㘨ë∮Ā;oਫ਩war;椪lig耻ß䃟௡㙑㙝㙠ዎ㙳㙹\0㙾㛂\0\0\0\0\0㛛㜃\0㜉㝬\0\0\0㞇ɲ㙖\0\0㙛get;挖;䏄rë๟ƀaey㙦㙫㙰ron;䅥dil;䅣;䑂lrec;挕r;쀀𝔱Ȁeiko㚆㚝㚵㚼ǲ㚋\0㚑eĀ4fኄኁaƀ;sv㚘㚙㚛䎸ym;䏑Ācn㚢㚲kĀas㚨㚮pproø዁im»ኬsðኞĀas㚺㚮ð዁rn耻þ䃾Ǭ̟㛆⋧es膀×;bd㛏㛐㛘䃗Ā;aᤏ㛕r;樱;樰ƀeps㛡㛣㜀á⩍Ȁ;bcf҆㛬㛰㛴ot;挶ir;櫱Ā;o㛹㛼쀀𝕥rk;櫚á㍢rime;怴ƀaip㜏㜒㝤dåቈ΀adempst㜡㝍㝀㝑㝗㝜㝟ngleʀ;dlqr㜰㜱㜶㝀㝂斵own»ᶻeftĀ;e⠀㜾ñम;扜ightĀ;e㊪㝋ñၚot;旬inus;樺lus;樹b;槍ime;樻ezium;揢ƀcht㝲㝽㞁Āry㝷㝻;쀀𝓉;䑆cy;䑛rok;䅧Āio㞋㞎xô᝷headĀlr㞗㞠eftarro÷ࡏightarrow»ཝऀAHabcdfghlmoprstuw㟐㟓㟗㟤㟰㟼㠎㠜㠣㠴㡑㡝㡫㢩㣌㣒㣪㣶ròϭar;楣Ācr㟜㟢ute耻ú䃺òᅐrǣ㟪\0㟭y;䑞ve;䅭Āiy㟵㟺rc耻û䃻;䑃ƀabh㠃㠆㠋ròᎭlac;䅱aòᏃĀir㠓㠘sht;楾;쀀𝔲rave耻ù䃹š㠧㠱rĀlr㠬㠮»ॗ»ႃlk;斀Āct㠹㡍ɯ㠿\0\0㡊rnĀ;e㡅㡆挜r»㡆op;挏ri;旸Āal㡖㡚cr;䅫肻¨͉Āgp㡢㡦on;䅳f;쀀𝕦̀adhlsuᅋ㡸㡽፲㢑㢠ownáᎳarpoonĀlr㢈㢌efô㠭ighô㠯iƀ;hl㢙㢚㢜䏅»ᏺon»㢚parrows;懈ƀcit㢰㣄㣈ɯ㢶\0\0㣁rnĀ;e㢼㢽挝r»㢽op;挎ng;䅯ri;旹cr;쀀𝓊ƀdir㣙㣝㣢ot;拰lde;䅩iĀ;f㜰㣨»᠓Āam㣯㣲rò㢨l耻ü䃼angle;榧ހABDacdeflnoprsz㤜㤟㤩㤭㦵㦸㦽㧟㧤㧨㧳㧹㧽㨁㨠ròϷarĀ;v㤦㤧櫨;櫩asèϡĀnr㤲㤷grt;榜΀eknprst㓣㥆㥋㥒㥝㥤㦖appá␕othinçẖƀhir㓫⻈㥙opô⾵Ā;hᎷ㥢ïㆍĀiu㥩㥭gmá㎳Ābp㥲㦄setneqĀ;q㥽㦀쀀⊊︀;쀀⫋︀setneqĀ;q㦏㦒쀀⊋︀;쀀⫌︀Āhr㦛㦟etá㚜iangleĀlr㦪㦯eft»थight»ၑy;䐲ash»ံƀelr㧄㧒㧗ƀ;beⷪ㧋㧏ar;抻q;扚lip;拮Ābt㧜ᑨaòᑩr;쀀𝔳tré㦮suĀbp㧯㧱»ജ»൙pf;쀀𝕧roð໻tré㦴Ācu㨆㨋r;쀀𝓋Ābp㨐㨘nĀEe㦀㨖»㥾nĀEe㦒㨞»㦐igzag;榚΀cefoprs㨶㨻㩖㩛㩔㩡㩪irc;䅵Ādi㩀㩑Ābg㩅㩉ar;機eĀ;qᗺ㩏;扙erp;愘r;쀀𝔴pf;쀀𝕨Ā;eᑹ㩦atèᑹcr;쀀𝓌ૣណ㪇\0㪋\0㪐㪛\0\0㪝㪨㪫㪯\0\0㫃㫎\0㫘ៜ៟tré៑r;쀀𝔵ĀAa㪔㪗ròσrò৶;䎾ĀAa㪡㪤ròθrò৫að✓is;拻ƀdptឤ㪵㪾Āfl㪺ឩ;쀀𝕩imåឲĀAa㫇㫊ròώròਁĀcq㫒ីr;쀀𝓍Āpt៖㫜ré។Ѐacefiosu㫰㫽㬈㬌㬑㬕㬛㬡cĀuy㫶㫻te耻ý䃽;䑏Āiy㬂㬆rc;䅷;䑋n耻¥䂥r;쀀𝔶cy;䑗pf;쀀𝕪cr;쀀𝓎Ācm㬦㬩y;䑎l耻ÿ䃿Ԁacdefhiosw㭂㭈㭔㭘㭤㭩㭭㭴㭺㮀cute;䅺Āay㭍㭒ron;䅾;䐷ot;䅼Āet㭝㭡træᕟa;䎶r;쀀𝔷cy;䐶grarr;懝pf;쀀𝕫cr;쀀𝓏Ājn㮅㮇;怍j;怌`.split(``).map(e=>e.charCodeAt(0))),vv=new Map([[0,65533],[128,8364],[130,8218],[131,402],[132,8222],[133,8230],[134,8224],[135,8225],[136,710],[137,8240],[138,352],[139,8249],[140,338],[142,381],[145,8216],[146,8217],[147,8220],[148,8221],[149,8226],[150,8211],[151,8212],[152,732],[153,8482],[154,353],[155,8250],[156,339],[158,382],[159,376]]);String.fromCodePoint;function yv(e){return e>=55296&&e<=57343||e>1114111?65533:vv.get(e)??e}var bv;(function(e){e[e.NUM=35]=`NUM`,e[e.SEMI=59]=`SEMI`,e[e.EQUALS=61]=`EQUALS`,e[e.ZERO=48]=`ZERO`,e[e.NINE=57]=`NINE`,e[e.LOWER_A=97]=`LOWER_A`,e[e.LOWER_F=102]=`LOWER_F`,e[e.LOWER_X=120]=`LOWER_X`,e[e.LOWER_Z=122]=`LOWER_Z`,e[e.UPPER_A=65]=`UPPER_A`,e[e.UPPER_F=70]=`UPPER_F`,e[e.UPPER_Z=90]=`UPPER_Z`})(bv||={});var xv=32,Sv;(function(e){e[e.VALUE_LENGTH=49152]=`VALUE_LENGTH`,e[e.BRANCH_LENGTH=16256]=`BRANCH_LENGTH`,e[e.JUMP_TABLE=127]=`JUMP_TABLE`})(Sv||={});function Cv(e){return e>=bv.ZERO&&e<=bv.NINE}function wv(e){return e>=bv.UPPER_A&&e<=bv.UPPER_F||e>=bv.LOWER_A&&e<=bv.LOWER_F}function Tv(e){return e>=bv.UPPER_A&&e<=bv.UPPER_Z||e>=bv.LOWER_A&&e<=bv.LOWER_Z||Cv(e)}function Ev(e){return e===bv.EQUALS||Tv(e)}var Dv;(function(e){e[e.EntityStart=0]=`EntityStart`,e[e.NumericStart=1]=`NumericStart`,e[e.NumericDecimal=2]=`NumericDecimal`,e[e.NumericHex=3]=`NumericHex`,e[e.NamedEntity=4]=`NamedEntity`})(Dv||={});var Ov;(function(e){e[e.Legacy=0]=`Legacy`,e[e.Strict=1]=`Strict`,e[e.Attribute=2]=`Attribute`})(Ov||={});var kv=class{constructor(e,t,n){this.decodeTree=e,this.emitCodePoint=t,this.errors=n,this.state=Dv.EntityStart,this.consumed=1,this.result=0,this.treeIndex=0,this.excess=1,this.decodeMode=Ov.Strict}startEntity(e){this.decodeMode=e,this.state=Dv.EntityStart,this.result=0,this.treeIndex=0,this.excess=1,this.consumed=1}write(e,t){switch(this.state){case Dv.EntityStart:return e.charCodeAt(t)===bv.NUM?(this.state=Dv.NumericStart,this.consumed+=1,this.stateNumericStart(e,t+1)):(this.state=Dv.NamedEntity,this.stateNamedEntity(e,t));case Dv.NumericStart:return this.stateNumericStart(e,t);case Dv.NumericDecimal:return this.stateNumericDecimal(e,t);case Dv.NumericHex:return this.stateNumericHex(e,t);case Dv.NamedEntity:return this.stateNamedEntity(e,t)}}stateNumericStart(e,t){return t>=e.length?-1:(e.charCodeAt(t)|xv)===bv.LOWER_X?(this.state=Dv.NumericHex,this.consumed+=1,this.stateNumericHex(e,t+1)):(this.state=Dv.NumericDecimal,this.stateNumericDecimal(e,t))}addToNumericResult(e,t,n,r){if(t!==n){let i=n-t;this.result=this.result*r**+i+Number.parseInt(e.substr(t,i),r),this.consumed+=i}}stateNumericHex(e,t){let n=t;for(;t<e.length;){let r=e.charCodeAt(t);if(Cv(r)||wv(r))t+=1;else return this.addToNumericResult(e,n,t,16),this.emitNumericEntity(r,3)}return this.addToNumericResult(e,n,t,16),-1}stateNumericDecimal(e,t){let n=t;for(;t<e.length;){let r=e.charCodeAt(t);if(Cv(r))t+=1;else return this.addToNumericResult(e,n,t,10),this.emitNumericEntity(r,2)}return this.addToNumericResult(e,n,t,10),-1}emitNumericEntity(e,t){var n;if(this.consumed<=t)return(n=this.errors)==null||n.absenceOfDigitsInNumericCharacterReference(this.consumed),0;if(e===bv.SEMI)this.consumed+=1;else if(this.decodeMode===Ov.Strict)return 0;return this.emitCodePoint(yv(this.result),this.consumed),this.errors&&(e!==bv.SEMI&&this.errors.missingSemicolonAfterCharacterReference(),this.errors.validateNumericCharacterReference(this.result)),this.consumed}stateNamedEntity(e,t){let{decodeTree:n}=this,r=n[this.treeIndex],i=(r&Sv.VALUE_LENGTH)>>14;for(;t<e.length;t++,this.excess++){let a=e.charCodeAt(t);if(this.treeIndex=Av(n,r,this.treeIndex+Math.max(1,i),a),this.treeIndex<0)return this.result===0||this.decodeMode===Ov.Attribute&&(i===0||Ev(a))?0:this.emitNotTerminatedNamedEntity();if(r=n[this.treeIndex],i=(r&Sv.VALUE_LENGTH)>>14,i!==0){if(a===bv.SEMI)return this.emitNamedEntityData(this.treeIndex,i,this.consumed+this.excess);this.decodeMode!==Ov.Strict&&(this.result=this.treeIndex,this.consumed+=this.excess,this.excess=0)}}return-1}emitNotTerminatedNamedEntity(){var e;let{result:t,decodeTree:n}=this,r=(n[t]&Sv.VALUE_LENGTH)>>14;return this.emitNamedEntityData(t,r,this.consumed),(e=this.errors)==null||e.missingSemicolonAfterCharacterReference(),this.consumed}emitNamedEntityData(e,t,n){let{decodeTree:r}=this;return this.emitCodePoint(t===1?r[e]&~Sv.VALUE_LENGTH:r[e+1],n),t===3&&this.emitCodePoint(r[e+2],n),n}end(){var e;switch(this.state){case Dv.NamedEntity:return this.result!==0&&(this.decodeMode!==Ov.Attribute||this.result===this.treeIndex)?this.emitNotTerminatedNamedEntity():0;case Dv.NumericDecimal:return this.emitNumericEntity(0,2);case Dv.NumericHex:return this.emitNumericEntity(0,3);case Dv.NumericStart:return(e=this.errors)==null||e.absenceOfDigitsInNumericCharacterReference(this.consumed),0;case Dv.EntityStart:return 0}}};function Av(e,t,n,r){let i=(t&Sv.BRANCH_LENGTH)>>7,a=t&Sv.JUMP_TABLE;if(i===0)return a!==0&&r===a?n:-1;if(a){let t=r-a;return t<0||t>=i?-1:e[n+t]-1}let o=n,s=o+i-1;for(;o<=s;){let t=o+s>>>1,n=e[t];if(n<r)o=t+1;else if(n>r)s=t-1;else return e[t+i]}return-1}var J;(function(e){e.HTML=`http://www.w3.org/1999/xhtml`,e.MATHML=`http://www.w3.org/1998/Math/MathML`,e.SVG=`http://www.w3.org/2000/svg`,e.XLINK=`http://www.w3.org/1999/xlink`,e.XML=`http://www.w3.org/XML/1998/namespace`,e.XMLNS=`http://www.w3.org/2000/xmlns/`})(J||={});var jv;(function(e){e.TYPE=`type`,e.ACTION=`action`,e.ENCODING=`encoding`,e.PROMPT=`prompt`,e.NAME=`name`,e.COLOR=`color`,e.FACE=`face`,e.SIZE=`size`})(jv||={});var Mv;(function(e){e.NO_QUIRKS=`no-quirks`,e.QUIRKS=`quirks`,e.LIMITED_QUIRKS=`limited-quirks`})(Mv||={});var Y;(function(e){e.A=`a`,e.ADDRESS=`address`,e.ANNOTATION_XML=`annotation-xml`,e.APPLET=`applet`,e.AREA=`area`,e.ARTICLE=`article`,e.ASIDE=`aside`,e.B=`b`,e.BASE=`base`,e.BASEFONT=`basefont`,e.BGSOUND=`bgsound`,e.BIG=`big`,e.BLOCKQUOTE=`blockquote`,e.BODY=`body`,e.BR=`br`,e.BUTTON=`button`,e.CAPTION=`caption`,e.CENTER=`center`,e.CODE=`code`,e.COL=`col`,e.COLGROUP=`colgroup`,e.DD=`dd`,e.DESC=`desc`,e.DETAILS=`details`,e.DIALOG=`dialog`,e.DIR=`dir`,e.DIV=`div`,e.DL=`dl`,e.DT=`dt`,e.EM=`em`,e.EMBED=`embed`,e.FIELDSET=`fieldset`,e.FIGCAPTION=`figcaption`,e.FIGURE=`figure`,e.FONT=`font`,e.FOOTER=`footer`,e.FOREIGN_OBJECT=`foreignObject`,e.FORM=`form`,e.FRAME=`frame`,e.FRAMESET=`frameset`,e.H1=`h1`,e.H2=`h2`,e.H3=`h3`,e.H4=`h4`,e.H5=`h5`,e.H6=`h6`,e.HEAD=`head`,e.HEADER=`header`,e.HGROUP=`hgroup`,e.HR=`hr`,e.HTML=`html`,e.I=`i`,e.IMG=`img`,e.IMAGE=`image`,e.INPUT=`input`,e.IFRAME=`iframe`,e.KEYGEN=`keygen`,e.LABEL=`label`,e.LI=`li`,e.LINK=`link`,e.LISTING=`listing`,e.MAIN=`main`,e.MALIGNMARK=`malignmark`,e.MARQUEE=`marquee`,e.MATH=`math`,e.MENU=`menu`,e.META=`meta`,e.MGLYPH=`mglyph`,e.MI=`mi`,e.MO=`mo`,e.MN=`mn`,e.MS=`ms`,e.MTEXT=`mtext`,e.NAV=`nav`,e.NOBR=`nobr`,e.NOFRAMES=`noframes`,e.NOEMBED=`noembed`,e.NOSCRIPT=`noscript`,e.OBJECT=`object`,e.OL=`ol`,e.OPTGROUP=`optgroup`,e.OPTION=`option`,e.P=`p`,e.PARAM=`param`,e.PLAINTEXT=`plaintext`,e.PRE=`pre`,e.RB=`rb`,e.RP=`rp`,e.RT=`rt`,e.RTC=`rtc`,e.RUBY=`ruby`,e.S=`s`,e.SCRIPT=`script`,e.SEARCH=`search`,e.SECTION=`section`,e.SELECT=`select`,e.SOURCE=`source`,e.SMALL=`small`,e.SPAN=`span`,e.STRIKE=`strike`,e.STRONG=`strong`,e.STYLE=`style`,e.SUB=`sub`,e.SUMMARY=`summary`,e.SUP=`sup`,e.TABLE=`table`,e.TBODY=`tbody`,e.TEMPLATE=`template`,e.TEXTAREA=`textarea`,e.TFOOT=`tfoot`,e.TD=`td`,e.TH=`th`,e.THEAD=`thead`,e.TITLE=`title`,e.TR=`tr`,e.TRACK=`track`,e.TT=`tt`,e.U=`u`,e.UL=`ul`,e.SVG=`svg`,e.VAR=`var`,e.WBR=`wbr`,e.XMP=`xmp`})(Y||={});var X;(function(e){e[e.UNKNOWN=0]=`UNKNOWN`,e[e.A=1]=`A`,e[e.ADDRESS=2]=`ADDRESS`,e[e.ANNOTATION_XML=3]=`ANNOTATION_XML`,e[e.APPLET=4]=`APPLET`,e[e.AREA=5]=`AREA`,e[e.ARTICLE=6]=`ARTICLE`,e[e.ASIDE=7]=`ASIDE`,e[e.B=8]=`B`,e[e.BASE=9]=`BASE`,e[e.BASEFONT=10]=`BASEFONT`,e[e.BGSOUND=11]=`BGSOUND`,e[e.BIG=12]=`BIG`,e[e.BLOCKQUOTE=13]=`BLOCKQUOTE`,e[e.BODY=14]=`BODY`,e[e.BR=15]=`BR`,e[e.BUTTON=16]=`BUTTON`,e[e.CAPTION=17]=`CAPTION`,e[e.CENTER=18]=`CENTER`,e[e.CODE=19]=`CODE`,e[e.COL=20]=`COL`,e[e.COLGROUP=21]=`COLGROUP`,e[e.DD=22]=`DD`,e[e.DESC=23]=`DESC`,e[e.DETAILS=24]=`DETAILS`,e[e.DIALOG=25]=`DIALOG`,e[e.DIR=26]=`DIR`,e[e.DIV=27]=`DIV`,e[e.DL=28]=`DL`,e[e.DT=29]=`DT`,e[e.EM=30]=`EM`,e[e.EMBED=31]=`EMBED`,e[e.FIELDSET=32]=`FIELDSET`,e[e.FIGCAPTION=33]=`FIGCAPTION`,e[e.FIGURE=34]=`FIGURE`,e[e.FONT=35]=`FONT`,e[e.FOOTER=36]=`FOOTER`,e[e.FOREIGN_OBJECT=37]=`FOREIGN_OBJECT`,e[e.FORM=38]=`FORM`,e[e.FRAME=39]=`FRAME`,e[e.FRAMESET=40]=`FRAMESET`,e[e.H1=41]=`H1`,e[e.H2=42]=`H2`,e[e.H3=43]=`H3`,e[e.H4=44]=`H4`,e[e.H5=45]=`H5`,e[e.H6=46]=`H6`,e[e.HEAD=47]=`HEAD`,e[e.HEADER=48]=`HEADER`,e[e.HGROUP=49]=`HGROUP`,e[e.HR=50]=`HR`,e[e.HTML=51]=`HTML`,e[e.I=52]=`I`,e[e.IMG=53]=`IMG`,e[e.IMAGE=54]=`IMAGE`,e[e.INPUT=55]=`INPUT`,e[e.IFRAME=56]=`IFRAME`,e[e.KEYGEN=57]=`KEYGEN`,e[e.LABEL=58]=`LABEL`,e[e.LI=59]=`LI`,e[e.LINK=60]=`LINK`,e[e.LISTING=61]=`LISTING`,e[e.MAIN=62]=`MAIN`,e[e.MALIGNMARK=63]=`MALIGNMARK`,e[e.MARQUEE=64]=`MARQUEE`,e[e.MATH=65]=`MATH`,e[e.MENU=66]=`MENU`,e[e.META=67]=`META`,e[e.MGLYPH=68]=`MGLYPH`,e[e.MI=69]=`MI`,e[e.MO=70]=`MO`,e[e.MN=71]=`MN`,e[e.MS=72]=`MS`,e[e.MTEXT=73]=`MTEXT`,e[e.NAV=74]=`NAV`,e[e.NOBR=75]=`NOBR`,e[e.NOFRAMES=76]=`NOFRAMES`,e[e.NOEMBED=77]=`NOEMBED`,e[e.NOSCRIPT=78]=`NOSCRIPT`,e[e.OBJECT=79]=`OBJECT`,e[e.OL=80]=`OL`,e[e.OPTGROUP=81]=`OPTGROUP`,e[e.OPTION=82]=`OPTION`,e[e.P=83]=`P`,e[e.PARAM=84]=`PARAM`,e[e.PLAINTEXT=85]=`PLAINTEXT`,e[e.PRE=86]=`PRE`,e[e.RB=87]=`RB`,e[e.RP=88]=`RP`,e[e.RT=89]=`RT`,e[e.RTC=90]=`RTC`,e[e.RUBY=91]=`RUBY`,e[e.S=92]=`S`,e[e.SCRIPT=93]=`SCRIPT`,e[e.SEARCH=94]=`SEARCH`,e[e.SECTION=95]=`SECTION`,e[e.SELECT=96]=`SELECT`,e[e.SOURCE=97]=`SOURCE`,e[e.SMALL=98]=`SMALL`,e[e.SPAN=99]=`SPAN`,e[e.STRIKE=100]=`STRIKE`,e[e.STRONG=101]=`STRONG`,e[e.STYLE=102]=`STYLE`,e[e.SUB=103]=`SUB`,e[e.SUMMARY=104]=`SUMMARY`,e[e.SUP=105]=`SUP`,e[e.TABLE=106]=`TABLE`,e[e.TBODY=107]=`TBODY`,e[e.TEMPLATE=108]=`TEMPLATE`,e[e.TEXTAREA=109]=`TEXTAREA`,e[e.TFOOT=110]=`TFOOT`,e[e.TD=111]=`TD`,e[e.TH=112]=`TH`,e[e.THEAD=113]=`THEAD`,e[e.TITLE=114]=`TITLE`,e[e.TR=115]=`TR`,e[e.TRACK=116]=`TRACK`,e[e.TT=117]=`TT`,e[e.U=118]=`U`,e[e.UL=119]=`UL`,e[e.SVG=120]=`SVG`,e[e.VAR=121]=`VAR`,e[e.WBR=122]=`WBR`,e[e.XMP=123]=`XMP`})(X||={});var Nv=new Map([[Y.A,X.A],[Y.ADDRESS,X.ADDRESS],[Y.ANNOTATION_XML,X.ANNOTATION_XML],[Y.APPLET,X.APPLET],[Y.AREA,X.AREA],[Y.ARTICLE,X.ARTICLE],[Y.ASIDE,X.ASIDE],[Y.B,X.B],[Y.BASE,X.BASE],[Y.BASEFONT,X.BASEFONT],[Y.BGSOUND,X.BGSOUND],[Y.BIG,X.BIG],[Y.BLOCKQUOTE,X.BLOCKQUOTE],[Y.BODY,X.BODY],[Y.BR,X.BR],[Y.BUTTON,X.BUTTON],[Y.CAPTION,X.CAPTION],[Y.CENTER,X.CENTER],[Y.CODE,X.CODE],[Y.COL,X.COL],[Y.COLGROUP,X.COLGROUP],[Y.DD,X.DD],[Y.DESC,X.DESC],[Y.DETAILS,X.DETAILS],[Y.DIALOG,X.DIALOG],[Y.DIR,X.DIR],[Y.DIV,X.DIV],[Y.DL,X.DL],[Y.DT,X.DT],[Y.EM,X.EM],[Y.EMBED,X.EMBED],[Y.FIELDSET,X.FIELDSET],[Y.FIGCAPTION,X.FIGCAPTION],[Y.FIGURE,X.FIGURE],[Y.FONT,X.FONT],[Y.FOOTER,X.FOOTER],[Y.FOREIGN_OBJECT,X.FOREIGN_OBJECT],[Y.FORM,X.FORM],[Y.FRAME,X.FRAME],[Y.FRAMESET,X.FRAMESET],[Y.H1,X.H1],[Y.H2,X.H2],[Y.H3,X.H3],[Y.H4,X.H4],[Y.H5,X.H5],[Y.H6,X.H6],[Y.HEAD,X.HEAD],[Y.HEADER,X.HEADER],[Y.HGROUP,X.HGROUP],[Y.HR,X.HR],[Y.HTML,X.HTML],[Y.I,X.I],[Y.IMG,X.IMG],[Y.IMAGE,X.IMAGE],[Y.INPUT,X.INPUT],[Y.IFRAME,X.IFRAME],[Y.KEYGEN,X.KEYGEN],[Y.LABEL,X.LABEL],[Y.LI,X.LI],[Y.LINK,X.LINK],[Y.LISTING,X.LISTING],[Y.MAIN,X.MAIN],[Y.MALIGNMARK,X.MALIGNMARK],[Y.MARQUEE,X.MARQUEE],[Y.MATH,X.MATH],[Y.MENU,X.MENU],[Y.META,X.META],[Y.MGLYPH,X.MGLYPH],[Y.MI,X.MI],[Y.MO,X.MO],[Y.MN,X.MN],[Y.MS,X.MS],[Y.MTEXT,X.MTEXT],[Y.NAV,X.NAV],[Y.NOBR,X.NOBR],[Y.NOFRAMES,X.NOFRAMES],[Y.NOEMBED,X.NOEMBED],[Y.NOSCRIPT,X.NOSCRIPT],[Y.OBJECT,X.OBJECT],[Y.OL,X.OL],[Y.OPTGROUP,X.OPTGROUP],[Y.OPTION,X.OPTION],[Y.P,X.P],[Y.PARAM,X.PARAM],[Y.PLAINTEXT,X.PLAINTEXT],[Y.PRE,X.PRE],[Y.RB,X.RB],[Y.RP,X.RP],[Y.RT,X.RT],[Y.RTC,X.RTC],[Y.RUBY,X.RUBY],[Y.S,X.S],[Y.SCRIPT,X.SCRIPT],[Y.SEARCH,X.SEARCH],[Y.SECTION,X.SECTION],[Y.SELECT,X.SELECT],[Y.SOURCE,X.SOURCE],[Y.SMALL,X.SMALL],[Y.SPAN,X.SPAN],[Y.STRIKE,X.STRIKE],[Y.STRONG,X.STRONG],[Y.STYLE,X.STYLE],[Y.SUB,X.SUB],[Y.SUMMARY,X.SUMMARY],[Y.SUP,X.SUP],[Y.TABLE,X.TABLE],[Y.TBODY,X.TBODY],[Y.TEMPLATE,X.TEMPLATE],[Y.TEXTAREA,X.TEXTAREA],[Y.TFOOT,X.TFOOT],[Y.TD,X.TD],[Y.TH,X.TH],[Y.THEAD,X.THEAD],[Y.TITLE,X.TITLE],[Y.TR,X.TR],[Y.TRACK,X.TRACK],[Y.TT,X.TT],[Y.U,X.U],[Y.UL,X.UL],[Y.SVG,X.SVG],[Y.VAR,X.VAR],[Y.WBR,X.WBR],[Y.XMP,X.XMP]]);function Pv(e){return Nv.get(e)??X.UNKNOWN}var Z=X,Fv={[J.HTML]:new Set([Z.ADDRESS,Z.APPLET,Z.AREA,Z.ARTICLE,Z.ASIDE,Z.BASE,Z.BASEFONT,Z.BGSOUND,Z.BLOCKQUOTE,Z.BODY,Z.BR,Z.BUTTON,Z.CAPTION,Z.CENTER,Z.COL,Z.COLGROUP,Z.DD,Z.DETAILS,Z.DIR,Z.DIV,Z.DL,Z.DT,Z.EMBED,Z.FIELDSET,Z.FIGCAPTION,Z.FIGURE,Z.FOOTER,Z.FORM,Z.FRAME,Z.FRAMESET,Z.H1,Z.H2,Z.H3,Z.H4,Z.H5,Z.H6,Z.HEAD,Z.HEADER,Z.HGROUP,Z.HR,Z.HTML,Z.IFRAME,Z.IMG,Z.INPUT,Z.LI,Z.LINK,Z.LISTING,Z.MAIN,Z.MARQUEE,Z.MENU,Z.META,Z.NAV,Z.NOEMBED,Z.NOFRAMES,Z.NOSCRIPT,Z.OBJECT,Z.OL,Z.P,Z.PARAM,Z.PLAINTEXT,Z.PRE,Z.SCRIPT,Z.SECTION,Z.SELECT,Z.SOURCE,Z.STYLE,Z.SUMMARY,Z.TABLE,Z.TBODY,Z.TD,Z.TEMPLATE,Z.TEXTAREA,Z.TFOOT,Z.TH,Z.THEAD,Z.TITLE,Z.TR,Z.TRACK,Z.UL,Z.WBR,Z.XMP]),[J.MATHML]:new Set([Z.MI,Z.MO,Z.MN,Z.MS,Z.MTEXT,Z.ANNOTATION_XML]),[J.SVG]:new Set([Z.TITLE,Z.FOREIGN_OBJECT,Z.DESC]),[J.XLINK]:new Set,[J.XML]:new Set,[J.XMLNS]:new Set},Iv=new Set([Z.H1,Z.H2,Z.H3,Z.H4,Z.H5,Z.H6]);new Set([Y.STYLE,Y.SCRIPT,Y.XMP,Y.IFRAME,Y.NOEMBED,Y.NOFRAMES,Y.PLAINTEXT]);var Q;(function(e){e[e.DATA=0]=`DATA`,e[e.RCDATA=1]=`RCDATA`,e[e.RAWTEXT=2]=`RAWTEXT`,e[e.SCRIPT_DATA=3]=`SCRIPT_DATA`,e[e.PLAINTEXT=4]=`PLAINTEXT`,e[e.TAG_OPEN=5]=`TAG_OPEN`,e[e.END_TAG_OPEN=6]=`END_TAG_OPEN`,e[e.TAG_NAME=7]=`TAG_NAME`,e[e.RCDATA_LESS_THAN_SIGN=8]=`RCDATA_LESS_THAN_SIGN`,e[e.RCDATA_END_TAG_OPEN=9]=`RCDATA_END_TAG_OPEN`,e[e.RCDATA_END_TAG_NAME=10]=`RCDATA_END_TAG_NAME`,e[e.RAWTEXT_LESS_THAN_SIGN=11]=`RAWTEXT_LESS_THAN_SIGN`,e[e.RAWTEXT_END_TAG_OPEN=12]=`RAWTEXT_END_TAG_OPEN`,e[e.RAWTEXT_END_TAG_NAME=13]=`RAWTEXT_END_TAG_NAME`,e[e.SCRIPT_DATA_LESS_THAN_SIGN=14]=`SCRIPT_DATA_LESS_THAN_SIGN`,e[e.SCRIPT_DATA_END_TAG_OPEN=15]=`SCRIPT_DATA_END_TAG_OPEN`,e[e.SCRIPT_DATA_END_TAG_NAME=16]=`SCRIPT_DATA_END_TAG_NAME`,e[e.SCRIPT_DATA_ESCAPE_START=17]=`SCRIPT_DATA_ESCAPE_START`,e[e.SCRIPT_DATA_ESCAPE_START_DASH=18]=`SCRIPT_DATA_ESCAPE_START_DASH`,e[e.SCRIPT_DATA_ESCAPED=19]=`SCRIPT_DATA_ESCAPED`,e[e.SCRIPT_DATA_ESCAPED_DASH=20]=`SCRIPT_DATA_ESCAPED_DASH`,e[e.SCRIPT_DATA_ESCAPED_DASH_DASH=21]=`SCRIPT_DATA_ESCAPED_DASH_DASH`,e[e.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN=22]=`SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN`,e[e.SCRIPT_DATA_ESCAPED_END_TAG_OPEN=23]=`SCRIPT_DATA_ESCAPED_END_TAG_OPEN`,e[e.SCRIPT_DATA_ESCAPED_END_TAG_NAME=24]=`SCRIPT_DATA_ESCAPED_END_TAG_NAME`,e[e.SCRIPT_DATA_DOUBLE_ESCAPE_START=25]=`SCRIPT_DATA_DOUBLE_ESCAPE_START`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED=26]=`SCRIPT_DATA_DOUBLE_ESCAPED`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED_DASH=27]=`SCRIPT_DATA_DOUBLE_ESCAPED_DASH`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH=28]=`SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN=29]=`SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN`,e[e.SCRIPT_DATA_DOUBLE_ESCAPE_END=30]=`SCRIPT_DATA_DOUBLE_ESCAPE_END`,e[e.BEFORE_ATTRIBUTE_NAME=31]=`BEFORE_ATTRIBUTE_NAME`,e[e.ATTRIBUTE_NAME=32]=`ATTRIBUTE_NAME`,e[e.AFTER_ATTRIBUTE_NAME=33]=`AFTER_ATTRIBUTE_NAME`,e[e.BEFORE_ATTRIBUTE_VALUE=34]=`BEFORE_ATTRIBUTE_VALUE`,e[e.ATTRIBUTE_VALUE_DOUBLE_QUOTED=35]=`ATTRIBUTE_VALUE_DOUBLE_QUOTED`,e[e.ATTRIBUTE_VALUE_SINGLE_QUOTED=36]=`ATTRIBUTE_VALUE_SINGLE_QUOTED`,e[e.ATTRIBUTE_VALUE_UNQUOTED=37]=`ATTRIBUTE_VALUE_UNQUOTED`,e[e.AFTER_ATTRIBUTE_VALUE_QUOTED=38]=`AFTER_ATTRIBUTE_VALUE_QUOTED`,e[e.SELF_CLOSING_START_TAG=39]=`SELF_CLOSING_START_TAG`,e[e.BOGUS_COMMENT=40]=`BOGUS_COMMENT`,e[e.MARKUP_DECLARATION_OPEN=41]=`MARKUP_DECLARATION_OPEN`,e[e.COMMENT_START=42]=`COMMENT_START`,e[e.COMMENT_START_DASH=43]=`COMMENT_START_DASH`,e[e.COMMENT=44]=`COMMENT`,e[e.COMMENT_LESS_THAN_SIGN=45]=`COMMENT_LESS_THAN_SIGN`,e[e.COMMENT_LESS_THAN_SIGN_BANG=46]=`COMMENT_LESS_THAN_SIGN_BANG`,e[e.COMMENT_LESS_THAN_SIGN_BANG_DASH=47]=`COMMENT_LESS_THAN_SIGN_BANG_DASH`,e[e.COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH=48]=`COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH`,e[e.COMMENT_END_DASH=49]=`COMMENT_END_DASH`,e[e.COMMENT_END=50]=`COMMENT_END`,e[e.COMMENT_END_BANG=51]=`COMMENT_END_BANG`,e[e.DOCTYPE=52]=`DOCTYPE`,e[e.BEFORE_DOCTYPE_NAME=53]=`BEFORE_DOCTYPE_NAME`,e[e.DOCTYPE_NAME=54]=`DOCTYPE_NAME`,e[e.AFTER_DOCTYPE_NAME=55]=`AFTER_DOCTYPE_NAME`,e[e.AFTER_DOCTYPE_PUBLIC_KEYWORD=56]=`AFTER_DOCTYPE_PUBLIC_KEYWORD`,e[e.BEFORE_DOCTYPE_PUBLIC_IDENTIFIER=57]=`BEFORE_DOCTYPE_PUBLIC_IDENTIFIER`,e[e.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED=58]=`DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED`,e[e.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED=59]=`DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED`,e[e.AFTER_DOCTYPE_PUBLIC_IDENTIFIER=60]=`AFTER_DOCTYPE_PUBLIC_IDENTIFIER`,e[e.BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS=61]=`BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS`,e[e.AFTER_DOCTYPE_SYSTEM_KEYWORD=62]=`AFTER_DOCTYPE_SYSTEM_KEYWORD`,e[e.BEFORE_DOCTYPE_SYSTEM_IDENTIFIER=63]=`BEFORE_DOCTYPE_SYSTEM_IDENTIFIER`,e[e.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED=64]=`DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED`,e[e.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED=65]=`DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED`,e[e.AFTER_DOCTYPE_SYSTEM_IDENTIFIER=66]=`AFTER_DOCTYPE_SYSTEM_IDENTIFIER`,e[e.BOGUS_DOCTYPE=67]=`BOGUS_DOCTYPE`,e[e.CDATA_SECTION=68]=`CDATA_SECTION`,e[e.CDATA_SECTION_BRACKET=69]=`CDATA_SECTION_BRACKET`,e[e.CDATA_SECTION_END=70]=`CDATA_SECTION_END`,e[e.CHARACTER_REFERENCE=71]=`CHARACTER_REFERENCE`,e[e.AMBIGUOUS_AMPERSAND=72]=`AMBIGUOUS_AMPERSAND`})(Q||={});var Lv={DATA:Q.DATA,RCDATA:Q.RCDATA,RAWTEXT:Q.RAWTEXT,SCRIPT_DATA:Q.SCRIPT_DATA,PLAINTEXT:Q.PLAINTEXT,CDATA_SECTION:Q.CDATA_SECTION};function Rv(e){return e>=K.DIGIT_0&&e<=K.DIGIT_9}function zv(e){return e>=K.LATIN_CAPITAL_A&&e<=K.LATIN_CAPITAL_Z}function Bv(e){return e>=K.LATIN_SMALL_A&&e<=K.LATIN_SMALL_Z}function Vv(e){return Bv(e)||zv(e)}function Hv(e){return Vv(e)||Rv(e)}function Uv(e){return e+32}function Wv(e){return e===K.SPACE||e===K.LINE_FEED||e===K.TABULATION||e===K.FORM_FEED}function Gv(e){return Wv(e)||e===K.SOLIDUS||e===K.GREATER_THAN_SIGN}function Kv(e){return e===K.NULL?q.nullCharacterReference:e>1114111?q.characterReferenceOutsideUnicodeRange:cv(e)?q.surrogateCharacterReference:fv(e)?q.noncharacterCharacterReference:dv(e)||e===K.CARRIAGE_RETURN?q.controlCharacterReference:null}var qv=class{constructor(e,t){this.options=e,this.handler=t,this.paused=!1,this.inLoop=!1,this.inForeignNode=!1,this.lastStartTagName=``,this.active=!1,this.state=Q.DATA,this.returnState=Q.DATA,this.entityStartPos=0,this.consumedAfterSnapshot=-1,this.currentCharacterToken=null,this.currentToken=null,this.currentAttr={name:``,value:``},this.preprocessor=new mv(t),this.currentLocation=this.getCurrentLocation(-1),this.entityDecoder=new kv(_v,(e,t)=>{this.preprocessor.pos=this.entityStartPos+t-1,this._flushCodePointConsumedAsCharacterReference(e)},t.onParseError?{missingSemicolonAfterCharacterReference:()=>{this._err(q.missingSemicolonAfterCharacterReference,1)},absenceOfDigitsInNumericCharacterReference:e=>{this._err(q.absenceOfDigitsInNumericCharacterReference,this.entityStartPos-this.preprocessor.pos+e)},validateNumericCharacterReference:e=>{let t=Kv(e);t&&this._err(t,1)}}:void 0)}_err(e,t=0){var n,r;(r=(n=this.handler).onParseError)==null||r.call(n,this.preprocessor.getError(e,t))}getCurrentLocation(e){return this.options.sourceCodeLocationInfo?{startLine:this.preprocessor.line,startCol:this.preprocessor.col-e,startOffset:this.preprocessor.offset-e,endLine:-1,endCol:-1,endOffset:-1}:null}_runParsingLoop(){if(!this.inLoop){for(this.inLoop=!0;this.active&&!this.paused;){this.consumedAfterSnapshot=0;let e=this._consume();this._ensureHibernation()||this._callState(e)}this.inLoop=!1}}pause(){this.paused=!0}resume(e){if(!this.paused)throw Error(`Parser was already resumed`);this.paused=!1,!this.inLoop&&(this._runParsingLoop(),this.paused||e?.())}write(e,t,n){this.active=!0,this.preprocessor.write(e,t),this._runParsingLoop(),this.paused||n?.()}insertHtmlAtCurrentPos(e){this.active=!0,this.preprocessor.insertHtmlAtCurrentPos(e),this._runParsingLoop()}_ensureHibernation(){return this.preprocessor.endOfChunkHit?(this.preprocessor.retreat(this.consumedAfterSnapshot),this.consumedAfterSnapshot=0,this.active=!1,!0):!1}_consume(){return this.consumedAfterSnapshot++,this.preprocessor.advance()}_advanceBy(e){this.consumedAfterSnapshot+=e;for(let t=0;t<e;t++)this.preprocessor.advance()}_consumeSequenceIfMatch(e,t){return this.preprocessor.startsWith(e,t)?(this._advanceBy(e.length-1),!0):!1}_createStartTagToken(){this.currentToken={type:hv.START_TAG,tagName:``,tagID:X.UNKNOWN,selfClosing:!1,ackSelfClosing:!1,attrs:[],location:this.getCurrentLocation(1)}}_createEndTagToken(){this.currentToken={type:hv.END_TAG,tagName:``,tagID:X.UNKNOWN,selfClosing:!1,ackSelfClosing:!1,attrs:[],location:this.getCurrentLocation(2)}}_createCommentToken(e){this.currentToken={type:hv.COMMENT,data:``,location:this.getCurrentLocation(e)}}_createDoctypeToken(e){this.currentToken={type:hv.DOCTYPE,name:e,forceQuirks:!1,publicId:null,systemId:null,location:this.currentLocation}}_createCharacterToken(e,t){this.currentCharacterToken={type:e,chars:t,location:this.currentLocation}}_createAttr(e){this.currentAttr={name:e,value:``},this.currentLocation=this.getCurrentLocation(0)}_leaveAttrName(){var e;let t=this.currentToken;if(gv(t,this.currentAttr.name)===null){if(t.attrs.push(this.currentAttr),t.location&&this.currentLocation){let n=(e=t.location).attrs??(e.attrs=Object.create(null));n[this.currentAttr.name]=this.currentLocation,this._leaveAttrValue()}}else this._err(q.duplicateAttribute)}_leaveAttrValue(){this.currentLocation&&(this.currentLocation.endLine=this.preprocessor.line,this.currentLocation.endCol=this.preprocessor.col,this.currentLocation.endOffset=this.preprocessor.offset)}prepareToken(e){this._emitCurrentCharacterToken(e.location),this.currentToken=null,e.location&&(e.location.endLine=this.preprocessor.line,e.location.endCol=this.preprocessor.col+1,e.location.endOffset=this.preprocessor.offset+1),this.currentLocation=this.getCurrentLocation(-1)}emitCurrentTagToken(){let e=this.currentToken;this.prepareToken(e),e.tagID=Pv(e.tagName),e.type===hv.START_TAG?(this.lastStartTagName=e.tagName,this.handler.onStartTag(e)):(e.attrs.length>0&&this._err(q.endTagWithAttributes),e.selfClosing&&this._err(q.endTagWithTrailingSolidus),this.handler.onEndTag(e)),this.preprocessor.dropParsedChunk()}emitCurrentComment(e){this.prepareToken(e),this.handler.onComment(e),this.preprocessor.dropParsedChunk()}emitCurrentDoctype(e){this.prepareToken(e),this.handler.onDoctype(e),this.preprocessor.dropParsedChunk()}_emitCurrentCharacterToken(e){if(this.currentCharacterToken){switch(e&&this.currentCharacterToken.location&&(this.currentCharacterToken.location.endLine=e.startLine,this.currentCharacterToken.location.endCol=e.startCol,this.currentCharacterToken.location.endOffset=e.startOffset),this.currentCharacterToken.type){case hv.CHARACTER:this.handler.onCharacter(this.currentCharacterToken);break;case hv.NULL_CHARACTER:this.handler.onNullCharacter(this.currentCharacterToken);break;case hv.WHITESPACE_CHARACTER:this.handler.onWhitespaceCharacter(this.currentCharacterToken);break}this.currentCharacterToken=null}}_emitEOFToken(){let e=this.getCurrentLocation(0);e&&(e.endLine=e.startLine,e.endCol=e.startCol,e.endOffset=e.startOffset),this._emitCurrentCharacterToken(e),this.handler.onEof({type:hv.EOF,location:e}),this.active=!1}_appendCharToCurrentCharacterToken(e,t){if(this.currentCharacterToken)if(this.currentCharacterToken.type===e){this.currentCharacterToken.chars+=t;return}else this.currentLocation=this.getCurrentLocation(0),this._emitCurrentCharacterToken(this.currentLocation),this.preprocessor.dropParsedChunk();this._createCharacterToken(e,t)}_emitCodePoint(e){let t=Wv(e)?hv.WHITESPACE_CHARACTER:e===K.NULL?hv.NULL_CHARACTER:hv.CHARACTER;this._appendCharToCurrentCharacterToken(t,String.fromCodePoint(e))}_emitChars(e){this._appendCharToCurrentCharacterToken(hv.CHARACTER,e)}_startCharacterReference(){this.returnState=this.state,this.state=Q.CHARACTER_REFERENCE,this.entityStartPos=this.preprocessor.pos,this.entityDecoder.startEntity(this._isCharacterReferenceInAttribute()?Ov.Attribute:Ov.Legacy)}_isCharacterReferenceInAttribute(){return this.returnState===Q.ATTRIBUTE_VALUE_DOUBLE_QUOTED||this.returnState===Q.ATTRIBUTE_VALUE_SINGLE_QUOTED||this.returnState===Q.ATTRIBUTE_VALUE_UNQUOTED}_flushCodePointConsumedAsCharacterReference(e){this._isCharacterReferenceInAttribute()?this.currentAttr.value+=String.fromCodePoint(e):this._emitCodePoint(e)}_callState(e){switch(this.state){case Q.DATA:this._stateData(e);break;case Q.RCDATA:this._stateRcdata(e);break;case Q.RAWTEXT:this._stateRawtext(e);break;case Q.SCRIPT_DATA:this._stateScriptData(e);break;case Q.PLAINTEXT:this._statePlaintext(e);break;case Q.TAG_OPEN:this._stateTagOpen(e);break;case Q.END_TAG_OPEN:this._stateEndTagOpen(e);break;case Q.TAG_NAME:this._stateTagName(e);break;case Q.RCDATA_LESS_THAN_SIGN:this._stateRcdataLessThanSign(e);break;case Q.RCDATA_END_TAG_OPEN:this._stateRcdataEndTagOpen(e);break;case Q.RCDATA_END_TAG_NAME:this._stateRcdataEndTagName(e);break;case Q.RAWTEXT_LESS_THAN_SIGN:this._stateRawtextLessThanSign(e);break;case Q.RAWTEXT_END_TAG_OPEN:this._stateRawtextEndTagOpen(e);break;case Q.RAWTEXT_END_TAG_NAME:this._stateRawtextEndTagName(e);break;case Q.SCRIPT_DATA_LESS_THAN_SIGN:this._stateScriptDataLessThanSign(e);break;case Q.SCRIPT_DATA_END_TAG_OPEN:this._stateScriptDataEndTagOpen(e);break;case Q.SCRIPT_DATA_END_TAG_NAME:this._stateScriptDataEndTagName(e);break;case Q.SCRIPT_DATA_ESCAPE_START:this._stateScriptDataEscapeStart(e);break;case Q.SCRIPT_DATA_ESCAPE_START_DASH:this._stateScriptDataEscapeStartDash(e);break;case Q.SCRIPT_DATA_ESCAPED:this._stateScriptDataEscaped(e);break;case Q.SCRIPT_DATA_ESCAPED_DASH:this._stateScriptDataEscapedDash(e);break;case Q.SCRIPT_DATA_ESCAPED_DASH_DASH:this._stateScriptDataEscapedDashDash(e);break;case Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN:this._stateScriptDataEscapedLessThanSign(e);break;case Q.SCRIPT_DATA_ESCAPED_END_TAG_OPEN:this._stateScriptDataEscapedEndTagOpen(e);break;case Q.SCRIPT_DATA_ESCAPED_END_TAG_NAME:this._stateScriptDataEscapedEndTagName(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPE_START:this._stateScriptDataDoubleEscapeStart(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED:this._stateScriptDataDoubleEscaped(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH:this._stateScriptDataDoubleEscapedDash(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH:this._stateScriptDataDoubleEscapedDashDash(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN:this._stateScriptDataDoubleEscapedLessThanSign(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPE_END:this._stateScriptDataDoubleEscapeEnd(e);break;case Q.BEFORE_ATTRIBUTE_NAME:this._stateBeforeAttributeName(e);break;case Q.ATTRIBUTE_NAME:this._stateAttributeName(e);break;case Q.AFTER_ATTRIBUTE_NAME:this._stateAfterAttributeName(e);break;case Q.BEFORE_ATTRIBUTE_VALUE:this._stateBeforeAttributeValue(e);break;case Q.ATTRIBUTE_VALUE_DOUBLE_QUOTED:this._stateAttributeValueDoubleQuoted(e);break;case Q.ATTRIBUTE_VALUE_SINGLE_QUOTED:this._stateAttributeValueSingleQuoted(e);break;case Q.ATTRIBUTE_VALUE_UNQUOTED:this._stateAttributeValueUnquoted(e);break;case Q.AFTER_ATTRIBUTE_VALUE_QUOTED:this._stateAfterAttributeValueQuoted(e);break;case Q.SELF_CLOSING_START_TAG:this._stateSelfClosingStartTag(e);break;case Q.BOGUS_COMMENT:this._stateBogusComment(e);break;case Q.MARKUP_DECLARATION_OPEN:this._stateMarkupDeclarationOpen(e);break;case Q.COMMENT_START:this._stateCommentStart(e);break;case Q.COMMENT_START_DASH:this._stateCommentStartDash(e);break;case Q.COMMENT:this._stateComment(e);break;case Q.COMMENT_LESS_THAN_SIGN:this._stateCommentLessThanSign(e);break;case Q.COMMENT_LESS_THAN_SIGN_BANG:this._stateCommentLessThanSignBang(e);break;case Q.COMMENT_LESS_THAN_SIGN_BANG_DASH:this._stateCommentLessThanSignBangDash(e);break;case Q.COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH:this._stateCommentLessThanSignBangDashDash(e);break;case Q.COMMENT_END_DASH:this._stateCommentEndDash(e);break;case Q.COMMENT_END:this._stateCommentEnd(e);break;case Q.COMMENT_END_BANG:this._stateCommentEndBang(e);break;case Q.DOCTYPE:this._stateDoctype(e);break;case Q.BEFORE_DOCTYPE_NAME:this._stateBeforeDoctypeName(e);break;case Q.DOCTYPE_NAME:this._stateDoctypeName(e);break;case Q.AFTER_DOCTYPE_NAME:this._stateAfterDoctypeName(e);break;case Q.AFTER_DOCTYPE_PUBLIC_KEYWORD:this._stateAfterDoctypePublicKeyword(e);break;case Q.BEFORE_DOCTYPE_PUBLIC_IDENTIFIER:this._stateBeforeDoctypePublicIdentifier(e);break;case Q.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED:this._stateDoctypePublicIdentifierDoubleQuoted(e);break;case Q.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED:this._stateDoctypePublicIdentifierSingleQuoted(e);break;case Q.AFTER_DOCTYPE_PUBLIC_IDENTIFIER:this._stateAfterDoctypePublicIdentifier(e);break;case Q.BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS:this._stateBetweenDoctypePublicAndSystemIdentifiers(e);break;case Q.AFTER_DOCTYPE_SYSTEM_KEYWORD:this._stateAfterDoctypeSystemKeyword(e);break;case Q.BEFORE_DOCTYPE_SYSTEM_IDENTIFIER:this._stateBeforeDoctypeSystemIdentifier(e);break;case Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED:this._stateDoctypeSystemIdentifierDoubleQuoted(e);break;case Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED:this._stateDoctypeSystemIdentifierSingleQuoted(e);break;case Q.AFTER_DOCTYPE_SYSTEM_IDENTIFIER:this._stateAfterDoctypeSystemIdentifier(e);break;case Q.BOGUS_DOCTYPE:this._stateBogusDoctype(e);break;case Q.CDATA_SECTION:this._stateCdataSection(e);break;case Q.CDATA_SECTION_BRACKET:this._stateCdataSectionBracket(e);break;case Q.CDATA_SECTION_END:this._stateCdataSectionEnd(e);break;case Q.CHARACTER_REFERENCE:this._stateCharacterReference();break;case Q.AMBIGUOUS_AMPERSAND:this._stateAmbiguousAmpersand(e);break;default:throw Error(`Unknown state`)}}_stateData(e){switch(e){case K.LESS_THAN_SIGN:this.state=Q.TAG_OPEN;break;case K.AMPERSAND:this._startCharacterReference();break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitCodePoint(e);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateRcdata(e){switch(e){case K.AMPERSAND:this._startCharacterReference();break;case K.LESS_THAN_SIGN:this.state=Q.RCDATA_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateRawtext(e){switch(e){case K.LESS_THAN_SIGN:this.state=Q.RAWTEXT_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateScriptData(e){switch(e){case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_statePlaintext(e){switch(e){case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateTagOpen(e){if(Vv(e))this._createStartTagToken(),this.state=Q.TAG_NAME,this._stateTagName(e);else switch(e){case K.EXCLAMATION_MARK:this.state=Q.MARKUP_DECLARATION_OPEN;break;case K.SOLIDUS:this.state=Q.END_TAG_OPEN;break;case K.QUESTION_MARK:this._err(q.unexpectedQuestionMarkInsteadOfTagName),this._createCommentToken(1),this.state=Q.BOGUS_COMMENT,this._stateBogusComment(e);break;case K.EOF:this._err(q.eofBeforeTagName),this._emitChars(`<`),this._emitEOFToken();break;default:this._err(q.invalidFirstCharacterOfTagName),this._emitChars(`<`),this.state=Q.DATA,this._stateData(e)}}_stateEndTagOpen(e){if(Vv(e))this._createEndTagToken(),this.state=Q.TAG_NAME,this._stateTagName(e);else switch(e){case K.GREATER_THAN_SIGN:this._err(q.missingEndTagName),this.state=Q.DATA;break;case K.EOF:this._err(q.eofBeforeTagName),this._emitChars(`</`),this._emitEOFToken();break;default:this._err(q.invalidFirstCharacterOfTagName),this._createCommentToken(2),this.state=Q.BOGUS_COMMENT,this._stateBogusComment(e)}}_stateTagName(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_ATTRIBUTE_NAME;break;case K.SOLIDUS:this.state=Q.SELF_CLOSING_START_TAG;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentTagToken();break;case K.NULL:this._err(q.unexpectedNullCharacter),t.tagName+=`�`;break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:t.tagName+=String.fromCodePoint(zv(e)?Uv(e):e)}}_stateRcdataLessThanSign(e){e===K.SOLIDUS?this.state=Q.RCDATA_END_TAG_OPEN:(this._emitChars(`<`),this.state=Q.RCDATA,this._stateRcdata(e))}_stateRcdataEndTagOpen(e){Vv(e)?(this.state=Q.RCDATA_END_TAG_NAME,this._stateRcdataEndTagName(e)):(this._emitChars(`</`),this.state=Q.RCDATA,this._stateRcdata(e))}handleSpecialEndTag(e){if(!this.preprocessor.startsWith(this.lastStartTagName,!1))return!this._ensureHibernation();this._createEndTagToken();let t=this.currentToken;switch(t.tagName=this.lastStartTagName,this.preprocessor.peek(this.lastStartTagName.length)){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:return this._advanceBy(this.lastStartTagName.length),this.state=Q.BEFORE_ATTRIBUTE_NAME,!1;case K.SOLIDUS:return this._advanceBy(this.lastStartTagName.length),this.state=Q.SELF_CLOSING_START_TAG,!1;case K.GREATER_THAN_SIGN:return this._advanceBy(this.lastStartTagName.length),this.emitCurrentTagToken(),this.state=Q.DATA,!1;default:return!this._ensureHibernation()}}_stateRcdataEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.RCDATA,this._stateRcdata(e))}_stateRawtextLessThanSign(e){e===K.SOLIDUS?this.state=Q.RAWTEXT_END_TAG_OPEN:(this._emitChars(`<`),this.state=Q.RAWTEXT,this._stateRawtext(e))}_stateRawtextEndTagOpen(e){Vv(e)?(this.state=Q.RAWTEXT_END_TAG_NAME,this._stateRawtextEndTagName(e)):(this._emitChars(`</`),this.state=Q.RAWTEXT,this._stateRawtext(e))}_stateRawtextEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.RAWTEXT,this._stateRawtext(e))}_stateScriptDataLessThanSign(e){switch(e){case K.SOLIDUS:this.state=Q.SCRIPT_DATA_END_TAG_OPEN;break;case K.EXCLAMATION_MARK:this.state=Q.SCRIPT_DATA_ESCAPE_START,this._emitChars(`<!`);break;default:this._emitChars(`<`),this.state=Q.SCRIPT_DATA,this._stateScriptData(e)}}_stateScriptDataEndTagOpen(e){Vv(e)?(this.state=Q.SCRIPT_DATA_END_TAG_NAME,this._stateScriptDataEndTagName(e)):(this._emitChars(`</`),this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEscapeStart(e){e===K.HYPHEN_MINUS?(this.state=Q.SCRIPT_DATA_ESCAPE_START_DASH,this._emitChars(`-`)):(this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEscapeStartDash(e){e===K.HYPHEN_MINUS?(this.state=Q.SCRIPT_DATA_ESCAPED_DASH_DASH,this._emitChars(`-`)):(this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEscaped(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_ESCAPED_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateScriptDataEscapedDash(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_ESCAPED_DASH_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataEscapedDashDash(e){switch(e){case K.HYPHEN_MINUS:this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN;break;case K.GREATER_THAN_SIGN:this.state=Q.SCRIPT_DATA,this._emitChars(`>`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataEscapedLessThanSign(e){e===K.SOLIDUS?this.state=Q.SCRIPT_DATA_ESCAPED_END_TAG_OPEN:Vv(e)?(this._emitChars(`<`),this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPE_START,this._stateScriptDataDoubleEscapeStart(e)):(this._emitChars(`<`),this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataEscapedEndTagOpen(e){Vv(e)?(this.state=Q.SCRIPT_DATA_ESCAPED_END_TAG_NAME,this._stateScriptDataEscapedEndTagName(e)):(this._emitChars(`</`),this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataEscapedEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataDoubleEscapeStart(e){if(this.preprocessor.startsWith(sv.SCRIPT,!1)&&Gv(this.preprocessor.peek(sv.SCRIPT.length))){this._emitCodePoint(e);for(let e=0;e<sv.SCRIPT.length;e++)this._emitCodePoint(this._consume());this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED}else this._ensureHibernation()||(this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataDoubleEscaped(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN,this._emitChars(`<`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateScriptDataDoubleEscapedDash(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN,this._emitChars(`<`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataDoubleEscapedDashDash(e){switch(e){case K.HYPHEN_MINUS:this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN,this._emitChars(`<`);break;case K.GREATER_THAN_SIGN:this.state=Q.SCRIPT_DATA,this._emitChars(`>`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataDoubleEscapedLessThanSign(e){e===K.SOLIDUS?(this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPE_END,this._emitChars(`/`)):(this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._stateScriptDataDoubleEscaped(e))}_stateScriptDataDoubleEscapeEnd(e){if(this.preprocessor.startsWith(sv.SCRIPT,!1)&&Gv(this.preprocessor.peek(sv.SCRIPT.length))){this._emitCodePoint(e);for(let e=0;e<sv.SCRIPT.length;e++)this._emitCodePoint(this._consume());this.state=Q.SCRIPT_DATA_ESCAPED}else this._ensureHibernation()||(this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._stateScriptDataDoubleEscaped(e))}_stateBeforeAttributeName(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.SOLIDUS:case K.GREATER_THAN_SIGN:case K.EOF:this.state=Q.AFTER_ATTRIBUTE_NAME,this._stateAfterAttributeName(e);break;case K.EQUALS_SIGN:this._err(q.unexpectedEqualsSignBeforeAttributeName),this._createAttr(`=`),this.state=Q.ATTRIBUTE_NAME;break;default:this._createAttr(``),this.state=Q.ATTRIBUTE_NAME,this._stateAttributeName(e)}}_stateAttributeName(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:case K.SOLIDUS:case K.GREATER_THAN_SIGN:case K.EOF:this._leaveAttrName(),this.state=Q.AFTER_ATTRIBUTE_NAME,this._stateAfterAttributeName(e);break;case K.EQUALS_SIGN:this._leaveAttrName(),this.state=Q.BEFORE_ATTRIBUTE_VALUE;break;case K.QUOTATION_MARK:case K.APOSTROPHE:case K.LESS_THAN_SIGN:this._err(q.unexpectedCharacterInAttributeName),this.currentAttr.name+=String.fromCodePoint(e);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.name+=`�`;break;default:this.currentAttr.name+=String.fromCodePoint(zv(e)?Uv(e):e)}}_stateAfterAttributeName(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.SOLIDUS:this.state=Q.SELF_CLOSING_START_TAG;break;case K.EQUALS_SIGN:this.state=Q.BEFORE_ATTRIBUTE_VALUE;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentTagToken();break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this._createAttr(``),this.state=Q.ATTRIBUTE_NAME,this._stateAttributeName(e)}}_stateBeforeAttributeValue(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.QUOTATION_MARK:this.state=Q.ATTRIBUTE_VALUE_DOUBLE_QUOTED;break;case K.APOSTROPHE:this.state=Q.ATTRIBUTE_VALUE_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingAttributeValue),this.state=Q.DATA,this.emitCurrentTagToken();break;default:this.state=Q.ATTRIBUTE_VALUE_UNQUOTED,this._stateAttributeValueUnquoted(e)}}_stateAttributeValueDoubleQuoted(e){switch(e){case K.QUOTATION_MARK:this.state=Q.AFTER_ATTRIBUTE_VALUE_QUOTED;break;case K.AMPERSAND:this._startCharacterReference();break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.value+=`�`;break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this.currentAttr.value+=String.fromCodePoint(e)}}_stateAttributeValueSingleQuoted(e){switch(e){case K.APOSTROPHE:this.state=Q.AFTER_ATTRIBUTE_VALUE_QUOTED;break;case K.AMPERSAND:this._startCharacterReference();break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.value+=`�`;break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this.currentAttr.value+=String.fromCodePoint(e)}}_stateAttributeValueUnquoted(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this._leaveAttrValue(),this.state=Q.BEFORE_ATTRIBUTE_NAME;break;case K.AMPERSAND:this._startCharacterReference();break;case K.GREATER_THAN_SIGN:this._leaveAttrValue(),this.state=Q.DATA,this.emitCurrentTagToken();break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.value+=`�`;break;case K.QUOTATION_MARK:case K.APOSTROPHE:case K.LESS_THAN_SIGN:case K.EQUALS_SIGN:case K.GRAVE_ACCENT:this._err(q.unexpectedCharacterInUnquotedAttributeValue),this.currentAttr.value+=String.fromCodePoint(e);break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this.currentAttr.value+=String.fromCodePoint(e)}}_stateAfterAttributeValueQuoted(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this._leaveAttrValue(),this.state=Q.BEFORE_ATTRIBUTE_NAME;break;case K.SOLIDUS:this._leaveAttrValue(),this.state=Q.SELF_CLOSING_START_TAG;break;case K.GREATER_THAN_SIGN:this._leaveAttrValue(),this.state=Q.DATA,this.emitCurrentTagToken();break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this._err(q.missingWhitespaceBetweenAttributes),this.state=Q.BEFORE_ATTRIBUTE_NAME,this._stateBeforeAttributeName(e)}}_stateSelfClosingStartTag(e){switch(e){case K.GREATER_THAN_SIGN:{let e=this.currentToken;e.selfClosing=!0,this.state=Q.DATA,this.emitCurrentTagToken();break}case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this._err(q.unexpectedSolidusInTag),this.state=Q.BEFORE_ATTRIBUTE_NAME,this._stateBeforeAttributeName(e)}}_stateBogusComment(e){let t=this.currentToken;switch(e){case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EOF:this.emitCurrentComment(t),this._emitEOFToken();break;case K.NULL:this._err(q.unexpectedNullCharacter),t.data+=`�`;break;default:t.data+=String.fromCodePoint(e)}}_stateMarkupDeclarationOpen(e){this._consumeSequenceIfMatch(sv.DASH_DASH,!0)?(this._createCommentToken(sv.DASH_DASH.length+1),this.state=Q.COMMENT_START):this._consumeSequenceIfMatch(sv.DOCTYPE,!1)?(this.currentLocation=this.getCurrentLocation(sv.DOCTYPE.length+1),this.state=Q.DOCTYPE):this._consumeSequenceIfMatch(sv.CDATA_START,!0)?this.inForeignNode?this.state=Q.CDATA_SECTION:(this._err(q.cdataInHtmlContent),this._createCommentToken(sv.CDATA_START.length+1),this.currentToken.data=`[CDATA[`,this.state=Q.BOGUS_COMMENT):this._ensureHibernation()||(this._err(q.incorrectlyOpenedComment),this._createCommentToken(2),this.state=Q.BOGUS_COMMENT,this._stateBogusComment(e))}_stateCommentStart(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_START_DASH;break;case K.GREATER_THAN_SIGN:{this._err(q.abruptClosingOfEmptyComment),this.state=Q.DATA;let e=this.currentToken;this.emitCurrentComment(e);break}default:this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentStartDash(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_END;break;case K.GREATER_THAN_SIGN:this._err(q.abruptClosingOfEmptyComment),this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`-`,this.state=Q.COMMENT,this._stateComment(e)}}_stateComment(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_END_DASH;break;case K.LESS_THAN_SIGN:t.data+=`<`,this.state=Q.COMMENT_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.data+=`�`;break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=String.fromCodePoint(e)}}_stateCommentLessThanSign(e){let t=this.currentToken;switch(e){case K.EXCLAMATION_MARK:t.data+=`!`,this.state=Q.COMMENT_LESS_THAN_SIGN_BANG;break;case K.LESS_THAN_SIGN:t.data+=`<`;break;default:this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentLessThanSignBang(e){e===K.HYPHEN_MINUS?this.state=Q.COMMENT_LESS_THAN_SIGN_BANG_DASH:(this.state=Q.COMMENT,this._stateComment(e))}_stateCommentLessThanSignBangDash(e){e===K.HYPHEN_MINUS?this.state=Q.COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH:(this.state=Q.COMMENT_END_DASH,this._stateCommentEndDash(e))}_stateCommentLessThanSignBangDashDash(e){e!==K.GREATER_THAN_SIGN&&e!==K.EOF&&this._err(q.nestedComment),this.state=Q.COMMENT_END,this._stateCommentEnd(e)}_stateCommentEndDash(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_END;break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`-`,this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentEnd(e){let t=this.currentToken;switch(e){case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EXCLAMATION_MARK:this.state=Q.COMMENT_END_BANG;break;case K.HYPHEN_MINUS:t.data+=`-`;break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`--`,this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentEndBang(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:t.data+=`--!`,this.state=Q.COMMENT_END_DASH;break;case K.GREATER_THAN_SIGN:this._err(q.incorrectlyClosedComment),this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`--!`,this.state=Q.COMMENT,this._stateComment(e)}}_stateDoctype(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_DOCTYPE_NAME;break;case K.GREATER_THAN_SIGN:this.state=Q.BEFORE_DOCTYPE_NAME,this._stateBeforeDoctypeName(e);break;case K.EOF:{this._err(q.eofInDoctype),this._createDoctypeToken(null);let e=this.currentToken;e.forceQuirks=!0,this.emitCurrentDoctype(e),this._emitEOFToken();break}default:this._err(q.missingWhitespaceBeforeDoctypeName),this.state=Q.BEFORE_DOCTYPE_NAME,this._stateBeforeDoctypeName(e)}}_stateBeforeDoctypeName(e){if(zv(e))this._createDoctypeToken(String.fromCharCode(Uv(e))),this.state=Q.DOCTYPE_NAME;else switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.NULL:this._err(q.unexpectedNullCharacter),this._createDoctypeToken(`�`),this.state=Q.DOCTYPE_NAME;break;case K.GREATER_THAN_SIGN:{this._err(q.missingDoctypeName),this._createDoctypeToken(null);let e=this.currentToken;e.forceQuirks=!0,this.emitCurrentDoctype(e),this.state=Q.DATA;break}case K.EOF:{this._err(q.eofInDoctype),this._createDoctypeToken(null);let e=this.currentToken;e.forceQuirks=!0,this.emitCurrentDoctype(e),this._emitEOFToken();break}default:this._createDoctypeToken(String.fromCodePoint(e)),this.state=Q.DOCTYPE_NAME}}_stateDoctypeName(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.AFTER_DOCTYPE_NAME;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.NULL:this._err(q.unexpectedNullCharacter),t.name+=`�`;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.name+=String.fromCodePoint(zv(e)?Uv(e):e)}}_stateAfterDoctypeName(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._consumeSequenceIfMatch(sv.PUBLIC,!1)?this.state=Q.AFTER_DOCTYPE_PUBLIC_KEYWORD:this._consumeSequenceIfMatch(sv.SYSTEM,!1)?this.state=Q.AFTER_DOCTYPE_SYSTEM_KEYWORD:this._ensureHibernation()||(this._err(q.invalidCharacterSequenceAfterDoctypeName),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e))}}_stateAfterDoctypePublicKeyword(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_DOCTYPE_PUBLIC_IDENTIFIER;break;case K.QUOTATION_MARK:this._err(q.missingWhitespaceAfterDoctypePublicKeyword),t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:this._err(q.missingWhitespaceAfterDoctypePublicKeyword),t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBeforeDoctypePublicIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.QUOTATION_MARK:t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateDoctypePublicIdentifierDoubleQuoted(e){let t=this.currentToken;switch(e){case K.QUOTATION_MARK:this.state=Q.AFTER_DOCTYPE_PUBLIC_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.publicId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypePublicIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.publicId+=String.fromCodePoint(e)}}_stateDoctypePublicIdentifierSingleQuoted(e){let t=this.currentToken;switch(e){case K.APOSTROPHE:this.state=Q.AFTER_DOCTYPE_PUBLIC_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.publicId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypePublicIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.publicId+=String.fromCodePoint(e)}}_stateAfterDoctypePublicIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.QUOTATION_MARK:this._err(q.missingWhitespaceBetweenDoctypePublicAndSystemIdentifiers),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:this._err(q.missingWhitespaceBetweenDoctypePublicAndSystemIdentifiers),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBetweenDoctypePublicAndSystemIdentifiers(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.GREATER_THAN_SIGN:this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.QUOTATION_MARK:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateAfterDoctypeSystemKeyword(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_DOCTYPE_SYSTEM_IDENTIFIER;break;case K.QUOTATION_MARK:this._err(q.missingWhitespaceAfterDoctypeSystemKeyword),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:this._err(q.missingWhitespaceAfterDoctypeSystemKeyword),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBeforeDoctypeSystemIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.QUOTATION_MARK:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateDoctypeSystemIdentifierDoubleQuoted(e){let t=this.currentToken;switch(e){case K.QUOTATION_MARK:this.state=Q.AFTER_DOCTYPE_SYSTEM_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.systemId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypeSystemIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.systemId+=String.fromCodePoint(e)}}_stateDoctypeSystemIdentifierSingleQuoted(e){let t=this.currentToken;switch(e){case K.APOSTROPHE:this.state=Q.AFTER_DOCTYPE_SYSTEM_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.systemId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypeSystemIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.systemId+=String.fromCodePoint(e)}}_stateAfterDoctypeSystemIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.GREATER_THAN_SIGN:this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.unexpectedCharacterAfterDoctypeSystemIdentifier),this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBogusDoctype(e){let t=this.currentToken;switch(e){case K.GREATER_THAN_SIGN:this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.NULL:this._err(q.unexpectedNullCharacter);break;case K.EOF:this.emitCurrentDoctype(t),this._emitEOFToken();break;default:}}_stateCdataSection(e){switch(e){case K.RIGHT_SQUARE_BRACKET:this.state=Q.CDATA_SECTION_BRACKET;break;case K.EOF:this._err(q.eofInCdata),this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateCdataSectionBracket(e){e===K.RIGHT_SQUARE_BRACKET?this.state=Q.CDATA_SECTION_END:(this._emitChars(`]`),this.state=Q.CDATA_SECTION,this._stateCdataSection(e))}_stateCdataSectionEnd(e){switch(e){case K.GREATER_THAN_SIGN:this.state=Q.DATA;break;case K.RIGHT_SQUARE_BRACKET:this._emitChars(`]`);break;default:this._emitChars(`]]`),this.state=Q.CDATA_SECTION,this._stateCdataSection(e)}}_stateCharacterReference(){let e=this.entityDecoder.write(this.preprocessor.html,this.preprocessor.pos);if(e<0)if(this.preprocessor.lastChunkWritten)e=this.entityDecoder.end();else{this.active=!1,this.preprocessor.pos=this.preprocessor.html.length-1,this.consumedAfterSnapshot=0,this.preprocessor.endOfChunkHit=!0;return}e===0?(this.preprocessor.pos=this.entityStartPos,this._flushCodePointConsumedAsCharacterReference(K.AMPERSAND),this.state=!this._isCharacterReferenceInAttribute()&&Hv(this.preprocessor.peek(1))?Q.AMBIGUOUS_AMPERSAND:this.returnState):this.state=this.returnState}_stateAmbiguousAmpersand(e){Hv(e)?this._flushCodePointConsumedAsCharacterReference(e):(e===K.SEMICOLON&&this._err(q.unknownNamedCharacterReference),this.state=this.returnState,this._callState(e))}},Jv=new Set([X.DD,X.DT,X.LI,X.OPTGROUP,X.OPTION,X.P,X.RB,X.RP,X.RT,X.RTC]),Yv=new Set([...Jv,X.CAPTION,X.COLGROUP,X.TBODY,X.TD,X.TFOOT,X.TH,X.THEAD,X.TR]),Xv=new Set([X.APPLET,X.CAPTION,X.HTML,X.MARQUEE,X.OBJECT,X.TABLE,X.TD,X.TEMPLATE,X.TH]),Zv=new Set([...Xv,X.OL,X.UL]),Qv=new Set([...Xv,X.BUTTON]),$v=new Set([X.ANNOTATION_XML,X.MI,X.MN,X.MO,X.MS,X.MTEXT]),ey=new Set([X.DESC,X.FOREIGN_OBJECT,X.TITLE]),ty=new Set([X.TR,X.TEMPLATE,X.HTML]),ny=new Set([X.TBODY,X.TFOOT,X.THEAD,X.TEMPLATE,X.HTML]),ry=new Set([X.TABLE,X.TEMPLATE,X.HTML]),iy=new Set([X.TD,X.TH]),ay=class{get currentTmplContentOrNode(){return this._isInTemplate()?this.treeAdapter.getTemplateContent(this.current):this.current}constructor(e,t,n){this.treeAdapter=t,this.handler=n,this.items=[],this.tagIDs=[],this.stackTop=-1,this.tmplCount=0,this.currentTagId=X.UNKNOWN,this.current=e}_indexOf(e){return this.items.lastIndexOf(e,this.stackTop)}_isInTemplate(){return this.currentTagId===X.TEMPLATE&&this.treeAdapter.getNamespaceURI(this.current)===J.HTML}_updateCurrentElement(){this.current=this.items[this.stackTop],this.currentTagId=this.tagIDs[this.stackTop]}push(e,t){this.stackTop++,this.items[this.stackTop]=e,this.current=e,this.tagIDs[this.stackTop]=t,this.currentTagId=t,this._isInTemplate()&&this.tmplCount++,this.handler.onItemPush(e,t,!0)}pop(){let e=this.current;this.tmplCount>0&&this._isInTemplate()&&this.tmplCount--,this.stackTop--,this._updateCurrentElement(),this.handler.onItemPop(e,!0)}replace(e,t){let n=this._indexOf(e);this.items[n]=t,n===this.stackTop&&(this.current=t)}insertAfter(e,t,n){let r=this._indexOf(e)+1;this.items.splice(r,0,t),this.tagIDs.splice(r,0,n),this.stackTop++,r===this.stackTop&&this._updateCurrentElement(),this.current&&this.currentTagId!==void 0&&this.handler.onItemPush(this.current,this.currentTagId,r===this.stackTop)}popUntilTagNamePopped(e){let t=this.stackTop+1;do t=this.tagIDs.lastIndexOf(e,t-1);while(t>0&&this.treeAdapter.getNamespaceURI(this.items[t])!==J.HTML);this.shortenToLength(Math.max(t,0))}shortenToLength(e){for(;this.stackTop>=e;){let t=this.current;this.tmplCount>0&&this._isInTemplate()&&--this.tmplCount,this.stackTop--,this._updateCurrentElement(),this.handler.onItemPop(t,this.stackTop<e)}}popUntilElementPopped(e){let t=this._indexOf(e);this.shortenToLength(Math.max(t,0))}popUntilPopped(e,t){let n=this._indexOfTagNames(e,t);this.shortenToLength(Math.max(n,0))}popUntilNumberedHeaderPopped(){this.popUntilPopped(Iv,J.HTML)}popUntilTableCellPopped(){this.popUntilPopped(iy,J.HTML)}popAllUpToHtmlElement(){this.tmplCount=0,this.shortenToLength(1)}_indexOfTagNames(e,t){for(let n=this.stackTop;n>=0;n--)if(e.has(this.tagIDs[n])&&this.treeAdapter.getNamespaceURI(this.items[n])===t)return n;return-1}clearBackTo(e,t){let n=this._indexOfTagNames(e,t);this.shortenToLength(n+1)}clearBackToTableContext(){this.clearBackTo(ry,J.HTML)}clearBackToTableBodyContext(){this.clearBackTo(ny,J.HTML)}clearBackToTableRowContext(){this.clearBackTo(ty,J.HTML)}remove(e){let t=this._indexOf(e);t>=0&&(t===this.stackTop?this.pop():(this.items.splice(t,1),this.tagIDs.splice(t,1),this.stackTop--,this._updateCurrentElement(),this.handler.onItemPop(e,!1)))}tryPeekProperlyNestedBodyElement(){return this.stackTop>=1&&this.tagIDs[1]===X.BODY?this.items[1]:null}contains(e){return this._indexOf(e)>-1}getCommonAncestor(e){let t=this._indexOf(e)-1;return t>=0?this.items[t]:null}isRootHtmlElementCurrent(){return this.stackTop===0&&this.tagIDs[0]===X.HTML}hasInDynamicScope(e,t){for(let n=this.stackTop;n>=0;n--){let r=this.tagIDs[n];switch(this.treeAdapter.getNamespaceURI(this.items[n])){case J.HTML:if(r===e)return!0;if(t.has(r))return!1;break;case J.SVG:if(ey.has(r))return!1;break;case J.MATHML:if($v.has(r))return!1;break}}return!0}hasInScope(e){return this.hasInDynamicScope(e,Xv)}hasInListItemScope(e){return this.hasInDynamicScope(e,Zv)}hasInButtonScope(e){return this.hasInDynamicScope(e,Qv)}hasNumberedHeaderInScope(){for(let e=this.stackTop;e>=0;e--){let t=this.tagIDs[e];switch(this.treeAdapter.getNamespaceURI(this.items[e])){case J.HTML:if(Iv.has(t))return!0;if(Xv.has(t))return!1;break;case J.SVG:if(ey.has(t))return!1;break;case J.MATHML:if($v.has(t))return!1;break}}return!0}hasInTableScope(e){for(let t=this.stackTop;t>=0;t--)if(this.treeAdapter.getNamespaceURI(this.items[t])===J.HTML)switch(this.tagIDs[t]){case e:return!0;case X.TABLE:case X.HTML:return!1}return!0}hasTableBodyContextInTableScope(){for(let e=this.stackTop;e>=0;e--)if(this.treeAdapter.getNamespaceURI(this.items[e])===J.HTML)switch(this.tagIDs[e]){case X.TBODY:case X.THEAD:case X.TFOOT:return!0;case X.TABLE:case X.HTML:return!1}return!0}hasInSelectScope(e){for(let t=this.stackTop;t>=0;t--)if(this.treeAdapter.getNamespaceURI(this.items[t])===J.HTML)switch(this.tagIDs[t]){case e:return!0;case X.OPTION:case X.OPTGROUP:break;default:return!1}return!0}generateImpliedEndTags(){for(;this.currentTagId!==void 0&&Jv.has(this.currentTagId);)this.pop()}generateImpliedEndTagsThoroughly(){for(;this.currentTagId!==void 0&&Yv.has(this.currentTagId);)this.pop()}generateImpliedEndTagsWithExclusion(e){for(;this.currentTagId!==void 0&&this.currentTagId!==e&&Yv.has(this.currentTagId);)this.pop()}},oy=3,sy;(function(e){e[e.Marker=0]=`Marker`,e[e.Element=1]=`Element`})(sy||={});var cy={type:sy.Marker},ly=class{constructor(e){this.treeAdapter=e,this.entries=[],this.bookmark=null}_getNoahArkConditionCandidates(e,t){let n=[],r=t.length,i=this.treeAdapter.getTagName(e),a=this.treeAdapter.getNamespaceURI(e);for(let e=0;e<this.entries.length;e++){let t=this.entries[e];if(t.type===sy.Marker)break;let{element:o}=t;if(this.treeAdapter.getTagName(o)===i&&this.treeAdapter.getNamespaceURI(o)===a){let t=this.treeAdapter.getAttrList(o);t.length===r&&n.push({idx:e,attrs:t})}}return n}_ensureNoahArkCondition(e){if(this.entries.length<oy)return;let t=this.treeAdapter.getAttrList(e),n=this._getNoahArkConditionCandidates(e,t);if(n.length<oy)return;let r=new Map(t.map(e=>[e.name,e.value])),i=0;for(let e=0;e<n.length;e++){let t=n[e];t.attrs.every(e=>r.get(e.name)===e.value)&&(i+=1,i>=oy&&this.entries.splice(t.idx,1))}}insertMarker(){this.entries.unshift(cy)}pushElement(e,t){this._ensureNoahArkCondition(e),this.entries.unshift({type:sy.Element,element:e,token:t})}insertElementAfterBookmark(e,t){let n=this.entries.indexOf(this.bookmark);this.entries.splice(n,0,{type:sy.Element,element:e,token:t})}removeEntry(e){let t=this.entries.indexOf(e);t!==-1&&this.entries.splice(t,1)}clearToLastMarker(){let e=this.entries.indexOf(cy);e===-1?this.entries.length=0:this.entries.splice(0,e+1)}getElementEntryInScopeWithTagName(e){let t=this.entries.find(t=>t.type===sy.Marker||this.treeAdapter.getTagName(t.element)===e);return t&&t.type===sy.Element?t:null}getElementEntry(e){return this.entries.find(t=>t.type===sy.Element&&t.element===e)}},uy={createDocument(){return{nodeName:`#document`,mode:Mv.NO_QUIRKS,childNodes:[]}},createDocumentFragment(){return{nodeName:`#document-fragment`,childNodes:[]}},createElement(e,t,n){return{nodeName:e,tagName:e,attrs:n,namespaceURI:t,childNodes:[],parentNode:null}},createCommentNode(e){return{nodeName:`#comment`,data:e,parentNode:null}},createTextNode(e){return{nodeName:`#text`,value:e,parentNode:null}},appendChild(e,t){e.childNodes.push(t),t.parentNode=e},insertBefore(e,t,n){let r=e.childNodes.indexOf(n);e.childNodes.splice(r,0,t),t.parentNode=e},setTemplateContent(e,t){e.content=t},getTemplateContent(e){return e.content},setDocumentType(e,t,n,r){let i=e.childNodes.find(e=>e.nodeName===`#documentType`);if(i)i.name=t,i.publicId=n,i.systemId=r;else{let i={nodeName:`#documentType`,name:t,publicId:n,systemId:r,parentNode:null};uy.appendChild(e,i)}},setDocumentMode(e,t){e.mode=t},getDocumentMode(e){return e.mode},detachNode(e){if(e.parentNode){let t=e.parentNode.childNodes.indexOf(e);e.parentNode.childNodes.splice(t,1),e.parentNode=null}},insertText(e,t){if(e.childNodes.length>0){let n=e.childNodes[e.childNodes.length-1];if(uy.isTextNode(n)){n.value+=t;return}}uy.appendChild(e,uy.createTextNode(t))},insertTextBefore(e,t,n){let r=e.childNodes[e.childNodes.indexOf(n)-1];r&&uy.isTextNode(r)?r.value+=t:uy.insertBefore(e,uy.createTextNode(t),n)},adoptAttributes(e,t){let n=new Set(e.attrs.map(e=>e.name));for(let r=0;r<t.length;r++)n.has(t[r].name)||e.attrs.push(t[r])},getFirstChild(e){return e.childNodes[0]},getChildNodes(e){return e.childNodes},getParentNode(e){return e.parentNode},getAttrList(e){return e.attrs},getTagName(e){return e.tagName},getNamespaceURI(e){return e.namespaceURI},getTextNodeContent(e){return e.value},getCommentNodeContent(e){return e.data},getDocumentTypeNodeName(e){return e.name},getDocumentTypeNodePublicId(e){return e.publicId},getDocumentTypeNodeSystemId(e){return e.systemId},isTextNode(e){return e.nodeName===`#text`},isCommentNode(e){return e.nodeName===`#comment`},isDocumentTypeNode(e){return e.nodeName===`#documentType`},isElementNode(e){return Object.prototype.hasOwnProperty.call(e,`tagName`)},setNodeSourceCodeLocation(e,t){e.sourceCodeLocation=t},getNodeSourceCodeLocation(e){return e.sourceCodeLocation},updateNodeSourceCodeLocation(e,t){e.sourceCodeLocation={...e.sourceCodeLocation,...t}}},dy=`html`,fy=`about:legacy-compat`,py=`http://www.ibm.com/data/dtd/v11/ibmxhtml1-transitional.dtd`,my=`+//silmaril//dtd html pro v0r11 19970101//,-//as//dtd html 3.0 aswedit + extensions//,-//advasoft ltd//dtd html 3.0 aswedit + extensions//,-//ietf//dtd html 2.0 level 1//,-//ietf//dtd html 2.0 level 2//,-//ietf//dtd html 2.0 strict level 1//,-//ietf//dtd html 2.0 strict level 2//,-//ietf//dtd html 2.0 strict//,-//ietf//dtd html 2.0//,-//ietf//dtd html 2.1e//,-//ietf//dtd html 3.0//,-//ietf//dtd html 3.2 final//,-//ietf//dtd html 3.2//,-//ietf//dtd html 3//,-//ietf//dtd html level 0//,-//ietf//dtd html level 1//,-//ietf//dtd html level 2//,-//ietf//dtd html level 3//,-//ietf//dtd html strict level 0//,-//ietf//dtd html strict level 1//,-//ietf//dtd html strict level 2//,-//ietf//dtd html strict level 3//,-//ietf//dtd html strict//,-//ietf//dtd html//,-//metrius//dtd metrius presentational//,-//microsoft//dtd internet explorer 2.0 html strict//,-//microsoft//dtd internet explorer 2.0 html//,-//microsoft//dtd internet explorer 2.0 tables//,-//microsoft//dtd internet explorer 3.0 html strict//,-//microsoft//dtd internet explorer 3.0 html//,-//microsoft//dtd internet explorer 3.0 tables//,-//netscape comm. corp.//dtd html//,-//netscape comm. corp.//dtd strict html//,-//o'reilly and associates//dtd html 2.0//,-//o'reilly and associates//dtd html extended 1.0//,-//o'reilly and associates//dtd html extended relaxed 1.0//,-//sq//dtd html 2.0 hotmetal + extensions//,-//softquad software//dtd hotmetal pro 6.0::19990601::extensions to html 4.0//,-//softquad//dtd hotmetal pro 4.0::19971010::extensions to html 4.0//,-//spyglass//dtd html 2.0 extended//,-//sun microsystems corp.//dtd hotjava html//,-//sun microsystems corp.//dtd hotjava strict html//,-//w3c//dtd html 3 1995-03-24//,-//w3c//dtd html 3.2 draft//,-//w3c//dtd html 3.2 final//,-//w3c//dtd html 3.2//,-//w3c//dtd html 3.2s draft//,-//w3c//dtd html 4.0 frameset//,-//w3c//dtd html 4.0 transitional//,-//w3c//dtd html experimental 19960712//,-//w3c//dtd html experimental 970421//,-//w3c//dtd w3 html//,-//w3o//dtd w3 html 3.0//,-//webtechs//dtd mozilla html 2.0//,-//webtechs//dtd mozilla html//`.split(`,`),hy=[...my,`-//w3c//dtd html 4.01 frameset//`,`-//w3c//dtd html 4.01 transitional//`],gy=new Set([`-//w3o//dtd w3 html strict 3.0//en//`,`-/w3c/dtd html 4.0 transitional/en`,`html`]),_y=[`-//w3c//dtd xhtml 1.0 frameset//`,`-//w3c//dtd xhtml 1.0 transitional//`],vy=[..._y,`-//w3c//dtd html 4.01 frameset//`,`-//w3c//dtd html 4.01 transitional//`];function yy(e,t){return t.some(t=>e.startsWith(t))}function by(e){return e.name===dy&&e.publicId===null&&(e.systemId===null||e.systemId===fy)}function xy(e){if(e.name!==dy)return Mv.QUIRKS;let{systemId:t}=e;if(t&&t.toLowerCase()===py)return Mv.QUIRKS;let{publicId:n}=e;if(n!==null){if(n=n.toLowerCase(),gy.has(n))return Mv.QUIRKS;let e=t===null?hy:my;if(yy(n,e))return Mv.QUIRKS;if(e=t===null?_y:vy,yy(n,e))return Mv.LIMITED_QUIRKS}return Mv.NO_QUIRKS}var Sy={TEXT_HTML:`text/html`,APPLICATION_XML:`application/xhtml+xml`},Cy=`definitionurl`,wy=`definitionURL`,Ty=new Map(`attributeName.attributeType.baseFrequency.baseProfile.calcMode.clipPathUnits.diffuseConstant.edgeMode.filterUnits.glyphRef.gradientTransform.gradientUnits.kernelMatrix.kernelUnitLength.keyPoints.keySplines.keyTimes.lengthAdjust.limitingConeAngle.markerHeight.markerUnits.markerWidth.maskContentUnits.maskUnits.numOctaves.pathLength.patternContentUnits.patternTransform.patternUnits.pointsAtX.pointsAtY.pointsAtZ.preserveAlpha.preserveAspectRatio.primitiveUnits.refX.refY.repeatCount.repeatDur.requiredExtensions.requiredFeatures.specularConstant.specularExponent.spreadMethod.startOffset.stdDeviation.stitchTiles.surfaceScale.systemLanguage.tableValues.targetX.targetY.textLength.viewBox.viewTarget.xChannelSelector.yChannelSelector.zoomAndPan`.split(`.`).map(e=>[e.toLowerCase(),e])),Ey=new Map([[`xlink:actuate`,{prefix:`xlink`,name:`actuate`,namespace:J.XLINK}],[`xlink:arcrole`,{prefix:`xlink`,name:`arcrole`,namespace:J.XLINK}],[`xlink:href`,{prefix:`xlink`,name:`href`,namespace:J.XLINK}],[`xlink:role`,{prefix:`xlink`,name:`role`,namespace:J.XLINK}],[`xlink:show`,{prefix:`xlink`,name:`show`,namespace:J.XLINK}],[`xlink:title`,{prefix:`xlink`,name:`title`,namespace:J.XLINK}],[`xlink:type`,{prefix:`xlink`,name:`type`,namespace:J.XLINK}],[`xml:lang`,{prefix:`xml`,name:`lang`,namespace:J.XML}],[`xml:space`,{prefix:`xml`,name:`space`,namespace:J.XML}],[`xmlns`,{prefix:``,name:`xmlns`,namespace:J.XMLNS}],[`xmlns:xlink`,{prefix:`xmlns`,name:`xlink`,namespace:J.XMLNS}]]),Dy=new Map(`altGlyph.altGlyphDef.altGlyphItem.animateColor.animateMotion.animateTransform.clipPath.feBlend.feColorMatrix.feComponentTransfer.feComposite.feConvolveMatrix.feDiffuseLighting.feDisplacementMap.feDistantLight.feFlood.feFuncA.feFuncB.feFuncG.feFuncR.feGaussianBlur.feImage.feMerge.feMergeNode.feMorphology.feOffset.fePointLight.feSpecularLighting.feSpotLight.feTile.feTurbulence.foreignObject.glyphRef.linearGradient.radialGradient.textPath`.split(`.`).map(e=>[e.toLowerCase(),e])),Oy=new Set([X.B,X.BIG,X.BLOCKQUOTE,X.BODY,X.BR,X.CENTER,X.CODE,X.DD,X.DIV,X.DL,X.DT,X.EM,X.EMBED,X.H1,X.H2,X.H3,X.H4,X.H5,X.H6,X.HEAD,X.HR,X.I,X.IMG,X.LI,X.LISTING,X.MENU,X.META,X.NOBR,X.OL,X.P,X.PRE,X.RUBY,X.S,X.SMALL,X.SPAN,X.STRONG,X.STRIKE,X.SUB,X.SUP,X.TABLE,X.TT,X.U,X.UL,X.VAR]);function ky(e){let t=e.tagID;return t===X.FONT&&e.attrs.some(({name:e})=>e===jv.COLOR||e===jv.SIZE||e===jv.FACE)||Oy.has(t)}function Ay(e){for(let t=0;t<e.attrs.length;t++)if(e.attrs[t].name===Cy){e.attrs[t].name=wy;break}}function jy(e){for(let t=0;t<e.attrs.length;t++){let n=Ty.get(e.attrs[t].name);n!=null&&(e.attrs[t].name=n)}}function My(e){for(let t=0;t<e.attrs.length;t++){let n=Ey.get(e.attrs[t].name);n&&(e.attrs[t].prefix=n.prefix,e.attrs[t].name=n.name,e.attrs[t].namespace=n.namespace)}}function Ny(e){let t=Dy.get(e.tagName);t!=null&&(e.tagName=t,e.tagID=Pv(e.tagName))}function Py(e,t){return t===J.MATHML&&(e===X.MI||e===X.MO||e===X.MN||e===X.MS||e===X.MTEXT)}function Fy(e,t,n){if(t===J.MATHML&&e===X.ANNOTATION_XML){for(let e=0;e<n.length;e++)if(n[e].name===jv.ENCODING){let t=n[e].value.toLowerCase();return t===Sy.TEXT_HTML||t===Sy.APPLICATION_XML}}return t===J.SVG&&(e===X.FOREIGN_OBJECT||e===X.DESC||e===X.TITLE)}function Iy(e,t,n,r){return(!r||r===J.HTML)&&Fy(e,t,n)||(!r||r===J.MATHML)&&Py(e,t)}var Ly=`hidden`,Ry=8,zy=3,$;(function(e){e[e.INITIAL=0]=`INITIAL`,e[e.BEFORE_HTML=1]=`BEFORE_HTML`,e[e.BEFORE_HEAD=2]=`BEFORE_HEAD`,e[e.IN_HEAD=3]=`IN_HEAD`,e[e.IN_HEAD_NO_SCRIPT=4]=`IN_HEAD_NO_SCRIPT`,e[e.AFTER_HEAD=5]=`AFTER_HEAD`,e[e.IN_BODY=6]=`IN_BODY`,e[e.TEXT=7]=`TEXT`,e[e.IN_TABLE=8]=`IN_TABLE`,e[e.IN_TABLE_TEXT=9]=`IN_TABLE_TEXT`,e[e.IN_CAPTION=10]=`IN_CAPTION`,e[e.IN_COLUMN_GROUP=11]=`IN_COLUMN_GROUP`,e[e.IN_TABLE_BODY=12]=`IN_TABLE_BODY`,e[e.IN_ROW=13]=`IN_ROW`,e[e.IN_CELL=14]=`IN_CELL`,e[e.IN_SELECT=15]=`IN_SELECT`,e[e.IN_SELECT_IN_TABLE=16]=`IN_SELECT_IN_TABLE`,e[e.IN_TEMPLATE=17]=`IN_TEMPLATE`,e[e.AFTER_BODY=18]=`AFTER_BODY`,e[e.IN_FRAMESET=19]=`IN_FRAMESET`,e[e.AFTER_FRAMESET=20]=`AFTER_FRAMESET`,e[e.AFTER_AFTER_BODY=21]=`AFTER_AFTER_BODY`,e[e.AFTER_AFTER_FRAMESET=22]=`AFTER_AFTER_FRAMESET`})($||={});var By={startLine:-1,startCol:-1,startOffset:-1,endLine:-1,endCol:-1,endOffset:-1},Vy=new Set([X.TABLE,X.TBODY,X.TFOOT,X.THEAD,X.TR]),Hy={scriptingEnabled:!0,sourceCodeLocationInfo:!1,treeAdapter:uy,onParseError:null},Uy=class{constructor(e,t,n=null,r=null){this.fragmentContext=n,this.scriptHandler=r,this.currentToken=null,this.stopped=!1,this.insertionMode=$.INITIAL,this.originalInsertionMode=$.INITIAL,this.headElement=null,this.formElement=null,this.currentNotInHTML=!1,this.tmplInsertionModeStack=[],this.pendingCharacterTokens=[],this.hasNonWhitespacePendingCharacterToken=!1,this.framesetOk=!0,this.skipNextNewLine=!1,this.fosterParentingEnabled=!1,this.options={...Hy,...e},this.treeAdapter=this.options.treeAdapter,this.onParseError=this.options.onParseError,this.onParseError&&(this.options.sourceCodeLocationInfo=!0),this.document=t??this.treeAdapter.createDocument(),this.tokenizer=new qv(this.options,this),this.activeFormattingElements=new ly(this.treeAdapter),this.fragmentContextID=n?Pv(this.treeAdapter.getTagName(n)):X.UNKNOWN,this._setContextModes(n??this.document,this.fragmentContextID),this.openElements=new ay(this.document,this.treeAdapter,this)}static parse(e,t){let n=new this(t);return n.tokenizer.write(e,!0),n.document}static getFragmentParser(e,t){let n={...Hy,...t};e??=n.treeAdapter.createElement(Y.TEMPLATE,J.HTML,[]);let r=n.treeAdapter.createElement(`documentmock`,J.HTML,[]),i=new this(n,r,e);return i.fragmentContextID===X.TEMPLATE&&i.tmplInsertionModeStack.unshift($.IN_TEMPLATE),i._initTokenizerForFragmentParsing(),i._insertFakeRootElement(),i._resetInsertionMode(),i._findFormInFragmentContext(),i}getFragment(){let e=this.treeAdapter.getFirstChild(this.document),t=this.treeAdapter.createDocumentFragment();return this._adoptNodes(e,t),t}_err(e,t,n){if(!this.onParseError)return;let r=e.location??By,i={code:t,startLine:r.startLine,startCol:r.startCol,startOffset:r.startOffset,endLine:n?r.startLine:r.endLine,endCol:n?r.startCol:r.endCol,endOffset:n?r.startOffset:r.endOffset};this.onParseError(i)}onItemPush(e,t,n){var r,i;(i=(r=this.treeAdapter).onItemPush)==null||i.call(r,e),n&&this.openElements.stackTop>0&&this._setContextModes(e,t)}onItemPop(e,t){var n,r;if(this.options.sourceCodeLocationInfo&&this._setEndLocation(e,this.currentToken),(r=(n=this.treeAdapter).onItemPop)==null||r.call(n,e,this.openElements.current),t){let e,t;this.openElements.stackTop===0&&this.fragmentContext?(e=this.fragmentContext,t=this.fragmentContextID):{current:e,currentTagId:t}=this.openElements,this._setContextModes(e,t)}}_setContextModes(e,t){let n=e===this.document||e&&this.treeAdapter.getNamespaceURI(e)===J.HTML;this.currentNotInHTML=!n,this.tokenizer.inForeignNode=!n&&e!==void 0&&t!==void 0&&!this._isIntegrationPoint(t,e)}_switchToTextParsing(e,t){this._insertElement(e,J.HTML),this.tokenizer.state=t,this.originalInsertionMode=this.insertionMode,this.insertionMode=$.TEXT}switchToPlaintextParsing(){this.insertionMode=$.TEXT,this.originalInsertionMode=$.IN_BODY,this.tokenizer.state=Lv.PLAINTEXT}_getAdjustedCurrentElement(){return this.openElements.stackTop===0&&this.fragmentContext?this.fragmentContext:this.openElements.current}_findFormInFragmentContext(){let e=this.fragmentContext;for(;e;){if(this.treeAdapter.getTagName(e)===Y.FORM){this.formElement=e;break}e=this.treeAdapter.getParentNode(e)}}_initTokenizerForFragmentParsing(){if(!(!this.fragmentContext||this.treeAdapter.getNamespaceURI(this.fragmentContext)!==J.HTML))switch(this.fragmentContextID){case X.TITLE:case X.TEXTAREA:this.tokenizer.state=Lv.RCDATA;break;case X.STYLE:case X.XMP:case X.IFRAME:case X.NOEMBED:case X.NOFRAMES:case X.NOSCRIPT:this.tokenizer.state=Lv.RAWTEXT;break;case X.SCRIPT:this.tokenizer.state=Lv.SCRIPT_DATA;break;case X.PLAINTEXT:this.tokenizer.state=Lv.PLAINTEXT;break;default:}}_setDocumentType(e){let t=e.name||``,n=e.publicId||``,r=e.systemId||``;if(this.treeAdapter.setDocumentType(this.document,t,n,r),e.location){let t=this.treeAdapter.getChildNodes(this.document).find(e=>this.treeAdapter.isDocumentTypeNode(e));t&&this.treeAdapter.setNodeSourceCodeLocation(t,e.location)}}_attachElementToTree(e,t){if(this.options.sourceCodeLocationInfo){let n=t&&{...t,startTag:t};this.treeAdapter.setNodeSourceCodeLocation(e,n)}if(this._shouldFosterParentOnInsertion())this._fosterParentElement(e);else{let t=this.openElements.currentTmplContentOrNode;this.treeAdapter.appendChild(t??this.document,e)}}_appendElement(e,t){let n=this.treeAdapter.createElement(e.tagName,t,e.attrs);this._attachElementToTree(n,e.location)}_insertElement(e,t){let n=this.treeAdapter.createElement(e.tagName,t,e.attrs);this._attachElementToTree(n,e.location),this.openElements.push(n,e.tagID)}_insertFakeElement(e,t){let n=this.treeAdapter.createElement(e,J.HTML,[]);this._attachElementToTree(n,null),this.openElements.push(n,t)}_insertTemplate(e){let t=this.treeAdapter.createElement(e.tagName,J.HTML,e.attrs),n=this.treeAdapter.createDocumentFragment();this.treeAdapter.setTemplateContent(t,n),this._attachElementToTree(t,e.location),this.openElements.push(t,e.tagID),this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(n,null)}_insertFakeRootElement(){let e=this.treeAdapter.createElement(Y.HTML,J.HTML,[]);this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(e,null),this.treeAdapter.appendChild(this.openElements.current,e),this.openElements.push(e,X.HTML)}_appendCommentNode(e,t){let n=this.treeAdapter.createCommentNode(e.data);this.treeAdapter.appendChild(t,n),this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(n,e.location)}_insertCharacters(e){let t,n;if(this._shouldFosterParentOnInsertion()?({parent:t,beforeElement:n}=this._findFosterParentingLocation(),n?this.treeAdapter.insertTextBefore(t,e.chars,n):this.treeAdapter.insertText(t,e.chars)):(t=this.openElements.currentTmplContentOrNode,this.treeAdapter.insertText(t,e.chars)),!e.location)return;let r=this.treeAdapter.getChildNodes(t),i=r[(n?r.lastIndexOf(n):r.length)-1];if(this.treeAdapter.getNodeSourceCodeLocation(i)){let{endLine:t,endCol:n,endOffset:r}=e.location;this.treeAdapter.updateNodeSourceCodeLocation(i,{endLine:t,endCol:n,endOffset:r})}else this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(i,e.location)}_adoptNodes(e,t){for(let n=this.treeAdapter.getFirstChild(e);n;n=this.treeAdapter.getFirstChild(e))this.treeAdapter.detachNode(n),this.treeAdapter.appendChild(t,n)}_setEndLocation(e,t){if(this.treeAdapter.getNodeSourceCodeLocation(e)&&t.location){let n=t.location,r=this.treeAdapter.getTagName(e),i=t.type===hv.END_TAG&&r===t.tagName?{endTag:{...n},endLine:n.endLine,endCol:n.endCol,endOffset:n.endOffset}:{endLine:n.startLine,endCol:n.startCol,endOffset:n.startOffset};this.treeAdapter.updateNodeSourceCodeLocation(e,i)}}shouldProcessStartTagTokenInForeignContent(e){if(!this.currentNotInHTML)return!1;let t,n;return this.openElements.stackTop===0&&this.fragmentContext?(t=this.fragmentContext,n=this.fragmentContextID):{current:t,currentTagId:n}=this.openElements,e.tagID===X.SVG&&this.treeAdapter.getTagName(t)===Y.ANNOTATION_XML&&this.treeAdapter.getNamespaceURI(t)===J.MATHML?!1:this.tokenizer.inForeignNode||(e.tagID===X.MGLYPH||e.tagID===X.MALIGNMARK)&&n!==void 0&&!this._isIntegrationPoint(n,t,J.HTML)}_processToken(e){switch(e.type){case hv.CHARACTER:this.onCharacter(e);break;case hv.NULL_CHARACTER:this.onNullCharacter(e);break;case hv.COMMENT:this.onComment(e);break;case hv.DOCTYPE:this.onDoctype(e);break;case hv.START_TAG:this._processStartTag(e);break;case hv.END_TAG:this.onEndTag(e);break;case hv.EOF:this.onEof(e);break;case hv.WHITESPACE_CHARACTER:this.onWhitespaceCharacter(e);break}}_isIntegrationPoint(e,t,n){return Iy(e,this.treeAdapter.getNamespaceURI(t),this.treeAdapter.getAttrList(t),n)}_reconstructActiveFormattingElements(){let e=this.activeFormattingElements.entries.length;if(e){let t=this.activeFormattingElements.entries.findIndex(e=>e.type===sy.Marker||this.openElements.contains(e.element)),n=t===-1?e-1:t-1;for(let e=n;e>=0;e--){let t=this.activeFormattingElements.entries[e];this._insertElement(t.token,this.treeAdapter.getNamespaceURI(t.element)),t.element=this.openElements.current}}}_closeTableCell(){this.openElements.generateImpliedEndTags(),this.openElements.popUntilTableCellPopped(),this.activeFormattingElements.clearToLastMarker(),this.insertionMode=$.IN_ROW}_closePElement(){this.openElements.generateImpliedEndTagsWithExclusion(X.P),this.openElements.popUntilTagNamePopped(X.P)}_resetInsertionMode(){for(let e=this.openElements.stackTop;e>=0;e--)switch(e===0&&this.fragmentContext?this.fragmentContextID:this.openElements.tagIDs[e]){case X.TR:this.insertionMode=$.IN_ROW;return;case X.TBODY:case X.THEAD:case X.TFOOT:this.insertionMode=$.IN_TABLE_BODY;return;case X.CAPTION:this.insertionMode=$.IN_CAPTION;return;case X.COLGROUP:this.insertionMode=$.IN_COLUMN_GROUP;return;case X.TABLE:this.insertionMode=$.IN_TABLE;return;case X.BODY:this.insertionMode=$.IN_BODY;return;case X.FRAMESET:this.insertionMode=$.IN_FRAMESET;return;case X.SELECT:this._resetInsertionModeForSelect(e);return;case X.TEMPLATE:this.insertionMode=this.tmplInsertionModeStack[0];return;case X.HTML:this.insertionMode=this.headElement?$.AFTER_HEAD:$.BEFORE_HEAD;return;case X.TD:case X.TH:if(e>0){this.insertionMode=$.IN_CELL;return}break;case X.HEAD:if(e>0){this.insertionMode=$.IN_HEAD;return}break}this.insertionMode=$.IN_BODY}_resetInsertionModeForSelect(e){if(e>0)for(let t=e-1;t>0;t--){let e=this.openElements.tagIDs[t];if(e===X.TEMPLATE)break;if(e===X.TABLE){this.insertionMode=$.IN_SELECT_IN_TABLE;return}}this.insertionMode=$.IN_SELECT}_isElementCausesFosterParenting(e){return Vy.has(e)}_shouldFosterParentOnInsertion(){return this.fosterParentingEnabled&&this.openElements.currentTagId!==void 0&&this._isElementCausesFosterParenting(this.openElements.currentTagId)}_findFosterParentingLocation(){for(let e=this.openElements.stackTop;e>=0;e--){let t=this.openElements.items[e];switch(this.openElements.tagIDs[e]){case X.TEMPLATE:if(this.treeAdapter.getNamespaceURI(t)===J.HTML)return{parent:this.treeAdapter.getTemplateContent(t),beforeElement:null};break;case X.TABLE:{let n=this.treeAdapter.getParentNode(t);return n?{parent:n,beforeElement:t}:{parent:this.openElements.items[e-1],beforeElement:null}}default:}}return{parent:this.openElements.items[0],beforeElement:null}}_fosterParentElement(e){let t=this._findFosterParentingLocation();t.beforeElement?this.treeAdapter.insertBefore(t.parent,e,t.beforeElement):this.treeAdapter.appendChild(t.parent,e)}_isSpecialElement(e,t){return Fv[this.treeAdapter.getNamespaceURI(e)].has(t)}onCharacter(e){if(this.skipNextNewLine=!1,this.tokenizer.inForeignNode){sS(this,e);return}switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ab(this,e);break;case $.BEFORE_HEAD:cb(this,e);break;case $.IN_HEAD:fb(this,e);break;case $.IN_HEAD_NO_SCRIPT:hb(this,e);break;case $.AFTER_HEAD:vb(this,e);break;case $.IN_BODY:case $.IN_CAPTION:case $.IN_CELL:case $.IN_TEMPLATE:xb(this,e);break;case $.TEXT:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:this._insertCharacters(e);break;case $.IN_TABLE:case $.IN_TABLE_BODY:case $.IN_ROW:gx(this,e);break;case $.IN_TABLE_TEXT:kx(this,e);break;case $.IN_COLUMN_GROUP:Ix(this,e);break;case $.AFTER_BODY:Qx(this,e);break;case $.AFTER_AFTER_BODY:iS(this,e);break;default:}}onNullCharacter(e){if(this.skipNextNewLine=!1,this.tokenizer.inForeignNode){oS(this,e);return}switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ab(this,e);break;case $.BEFORE_HEAD:cb(this,e);break;case $.IN_HEAD:fb(this,e);break;case $.IN_HEAD_NO_SCRIPT:hb(this,e);break;case $.AFTER_HEAD:vb(this,e);break;case $.TEXT:this._insertCharacters(e);break;case $.IN_TABLE:case $.IN_TABLE_BODY:case $.IN_ROW:gx(this,e);break;case $.IN_COLUMN_GROUP:Ix(this,e);break;case $.AFTER_BODY:Qx(this,e);break;case $.AFTER_AFTER_BODY:iS(this,e);break;default:}}onComment(e){if(this.skipNextNewLine=!1,this.currentNotInHTML){Zy(this,e);return}switch(this.insertionMode){case $.INITIAL:case $.BEFORE_HTML:case $.BEFORE_HEAD:case $.IN_HEAD:case $.IN_HEAD_NO_SCRIPT:case $.AFTER_HEAD:case $.IN_BODY:case $.IN_TABLE:case $.IN_CAPTION:case $.IN_COLUMN_GROUP:case $.IN_TABLE_BODY:case $.IN_ROW:case $.IN_CELL:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:case $.IN_TEMPLATE:case $.IN_FRAMESET:case $.AFTER_FRAMESET:Zy(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.AFTER_BODY:Qy(this,e);break;case $.AFTER_AFTER_BODY:case $.AFTER_AFTER_FRAMESET:$y(this,e);break;default:}}onDoctype(e){switch(this.skipNextNewLine=!1,this.insertionMode){case $.INITIAL:tb(this,e);break;case $.BEFORE_HEAD:case $.IN_HEAD:case $.IN_HEAD_NO_SCRIPT:case $.AFTER_HEAD:this._err(e,q.misplacedDoctype);break;case $.IN_TABLE_TEXT:Ax(this,e);break;default:}}onStartTag(e){this.skipNextNewLine=!1,this.currentToken=e,this._processStartTag(e),e.selfClosing&&!e.ackSelfClosing&&this._err(e,q.nonVoidHtmlElementStartTagWithTrailingSolidus)}_processStartTag(e){this.shouldProcessStartTagTokenInForeignContent(e)?lS(this,e):this._startTagOutsideForeignContent(e)}_startTagOutsideForeignContent(e){switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:rb(this,e);break;case $.BEFORE_HEAD:ob(this,e);break;case $.IN_HEAD:lb(this,e);break;case $.IN_HEAD_NO_SCRIPT:pb(this,e);break;case $.AFTER_HEAD:gb(this,e);break;case $.IN_BODY:ex(this,e);break;case $.IN_TABLE:Tx(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.IN_CAPTION:Mx(this,e);break;case $.IN_COLUMN_GROUP:Px(this,e);break;case $.IN_TABLE_BODY:Lx(this,e);break;case $.IN_ROW:zx(this,e);break;case $.IN_CELL:Vx(this,e);break;case $.IN_SELECT:Ux(this,e);break;case $.IN_SELECT_IN_TABLE:Gx(this,e);break;case $.IN_TEMPLATE:qx(this,e);break;case $.AFTER_BODY:Xx(this,e);break;case $.IN_FRAMESET:$x(this,e);break;case $.AFTER_FRAMESET:tS(this,e);break;case $.AFTER_AFTER_BODY:rS(this,e);break;case $.AFTER_AFTER_FRAMESET:aS(this,e);break;default:}}onEndTag(e){this.skipNextNewLine=!1,this.currentToken=e,this.currentNotInHTML?uS(this,e):this._endTagOutsideForeignContent(e)}_endTagOutsideForeignContent(e){switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ib(this,e);break;case $.BEFORE_HEAD:sb(this,e);break;case $.IN_HEAD:ub(this,e);break;case $.IN_HEAD_NO_SCRIPT:mb(this,e);break;case $.AFTER_HEAD:_b(this,e);break;case $.IN_BODY:fx(this,e);break;case $.TEXT:mx(this,e);break;case $.IN_TABLE:Ex(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.IN_CAPTION:Nx(this,e);break;case $.IN_COLUMN_GROUP:Fx(this,e);break;case $.IN_TABLE_BODY:Rx(this,e);break;case $.IN_ROW:Bx(this,e);break;case $.IN_CELL:Hx(this,e);break;case $.IN_SELECT:Wx(this,e);break;case $.IN_SELECT_IN_TABLE:Kx(this,e);break;case $.IN_TEMPLATE:Jx(this,e);break;case $.AFTER_BODY:Zx(this,e);break;case $.IN_FRAMESET:eS(this,e);break;case $.AFTER_FRAMESET:nS(this,e);break;case $.AFTER_AFTER_BODY:iS(this,e);break;default:}}onEof(e){switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ab(this,e);break;case $.BEFORE_HEAD:cb(this,e);break;case $.IN_HEAD:fb(this,e);break;case $.IN_HEAD_NO_SCRIPT:hb(this,e);break;case $.AFTER_HEAD:vb(this,e);break;case $.IN_BODY:case $.IN_TABLE:case $.IN_CAPTION:case $.IN_COLUMN_GROUP:case $.IN_TABLE_BODY:case $.IN_ROW:case $.IN_CELL:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:px(this,e);break;case $.TEXT:hx(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.IN_TEMPLATE:Yx(this,e);break;case $.AFTER_BODY:case $.IN_FRAMESET:case $.AFTER_FRAMESET:case $.AFTER_AFTER_BODY:case $.AFTER_AFTER_FRAMESET:eb(this,e);break;default:}}onWhitespaceCharacter(e){if(this.skipNextNewLine&&(this.skipNextNewLine=!1,e.chars.charCodeAt(0)===K.LINE_FEED)){if(e.chars.length===1)return;e.chars=e.chars.substr(1)}if(this.tokenizer.inForeignNode){this._insertCharacters(e);return}switch(this.insertionMode){case $.IN_HEAD:case $.IN_HEAD_NO_SCRIPT:case $.AFTER_HEAD:case $.TEXT:case $.IN_COLUMN_GROUP:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:case $.IN_FRAMESET:case $.AFTER_FRAMESET:this._insertCharacters(e);break;case $.IN_BODY:case $.IN_CAPTION:case $.IN_CELL:case $.IN_TEMPLATE:case $.AFTER_BODY:case $.AFTER_AFTER_BODY:case $.AFTER_AFTER_FRAMESET:bb(this,e);break;case $.IN_TABLE:case $.IN_TABLE_BODY:case $.IN_ROW:gx(this,e);break;case $.IN_TABLE_TEXT:Ox(this,e);break;default:}}};function Wy(e,t){let n=e.activeFormattingElements.getElementEntryInScopeWithTagName(t.tagName);return n?e.openElements.contains(n.element)?e.openElements.hasInScope(t.tagID)||(n=null):(e.activeFormattingElements.removeEntry(n),n=null):dx(e,t),n}function Gy(e,t){let n=null,r=e.openElements.stackTop;for(;r>=0;r--){let i=e.openElements.items[r];if(i===t.element)break;e._isSpecialElement(i,e.openElements.tagIDs[r])&&(n=i)}return n||(e.openElements.shortenToLength(Math.max(r,0)),e.activeFormattingElements.removeEntry(t)),n}function Ky(e,t,n){let r=t,i=e.openElements.getCommonAncestor(t);for(let a=0,o=i;o!==n;a++,o=i){i=e.openElements.getCommonAncestor(o);let n=e.activeFormattingElements.getElementEntry(o),s=n&&a>=zy;!n||s?(s&&e.activeFormattingElements.removeEntry(n),e.openElements.remove(o)):(o=qy(e,n),r===t&&(e.activeFormattingElements.bookmark=n),e.treeAdapter.detachNode(r),e.treeAdapter.appendChild(o,r),r=o)}return r}function qy(e,t){let n=e.treeAdapter.getNamespaceURI(t.element),r=e.treeAdapter.createElement(t.token.tagName,n,t.token.attrs);return e.openElements.replace(t.element,r),t.element=r,r}function Jy(e,t,n){let r=Pv(e.treeAdapter.getTagName(t));if(e._isElementCausesFosterParenting(r))e._fosterParentElement(n);else{let i=e.treeAdapter.getNamespaceURI(t);r===X.TEMPLATE&&i===J.HTML&&(t=e.treeAdapter.getTemplateContent(t)),e.treeAdapter.appendChild(t,n)}}function Yy(e,t,n){let r=e.treeAdapter.getNamespaceURI(n.element),{token:i}=n,a=e.treeAdapter.createElement(i.tagName,r,i.attrs);e._adoptNodes(t,a),e.treeAdapter.appendChild(t,a),e.activeFormattingElements.insertElementAfterBookmark(a,i),e.activeFormattingElements.removeEntry(n),e.openElements.remove(n.element),e.openElements.insertAfter(t,a,i.tagID)}function Xy(e,t){for(let n=0;n<Ry;n++){let n=Wy(e,t);if(!n)break;let r=Gy(e,n);if(!r)break;e.activeFormattingElements.bookmark=n;let i=Ky(e,r,n.element),a=e.openElements.getCommonAncestor(n.element);e.treeAdapter.detachNode(i),a&&Jy(e,a,i),Yy(e,r,n)}}function Zy(e,t){e._appendCommentNode(t,e.openElements.currentTmplContentOrNode)}function Qy(e,t){e._appendCommentNode(t,e.openElements.items[0])}function $y(e,t){e._appendCommentNode(t,e.document)}function eb(e,t){if(e.stopped=!0,t.location){let n=e.fragmentContext?0:2;for(let r=e.openElements.stackTop;r>=n;r--)e._setEndLocation(e.openElements.items[r],t);if(!e.fragmentContext&&e.openElements.stackTop>=0){let n=e.openElements.items[0],r=e.treeAdapter.getNodeSourceCodeLocation(n);if(r&&!r.endTag&&(e._setEndLocation(n,t),e.openElements.stackTop>=1)){let n=e.openElements.items[1],r=e.treeAdapter.getNodeSourceCodeLocation(n);r&&!r.endTag&&e._setEndLocation(n,t)}}}}function tb(e,t){e._setDocumentType(t);let n=t.forceQuirks?Mv.QUIRKS:xy(t);by(t)||e._err(t,q.nonConformingDoctype),e.treeAdapter.setDocumentMode(e.document,n),e.insertionMode=$.BEFORE_HTML}function nb(e,t){e._err(t,q.missingDoctype,!0),e.treeAdapter.setDocumentMode(e.document,Mv.QUIRKS),e.insertionMode=$.BEFORE_HTML,e._processToken(t)}function rb(e,t){t.tagID===X.HTML?(e._insertElement(t,J.HTML),e.insertionMode=$.BEFORE_HEAD):ab(e,t)}function ib(e,t){let n=t.tagID;(n===X.HTML||n===X.HEAD||n===X.BODY||n===X.BR)&&ab(e,t)}function ab(e,t){e._insertFakeRootElement(),e.insertionMode=$.BEFORE_HEAD,e._processToken(t)}function ob(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.HEAD:e._insertElement(t,J.HTML),e.headElement=e.openElements.current,e.insertionMode=$.IN_HEAD;break;default:cb(e,t)}}function sb(e,t){let n=t.tagID;n===X.HEAD||n===X.BODY||n===X.HTML||n===X.BR?cb(e,t):e._err(t,q.endTagWithoutMatchingOpenElement)}function cb(e,t){e._insertFakeElement(Y.HEAD,X.HEAD),e.headElement=e.openElements.current,e.insertionMode=$.IN_HEAD,e._processToken(t)}function lb(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.BASE:case X.BASEFONT:case X.BGSOUND:case X.LINK:case X.META:e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.TITLE:e._switchToTextParsing(t,Lv.RCDATA);break;case X.NOSCRIPT:e.options.scriptingEnabled?e._switchToTextParsing(t,Lv.RAWTEXT):(e._insertElement(t,J.HTML),e.insertionMode=$.IN_HEAD_NO_SCRIPT);break;case X.NOFRAMES:case X.STYLE:e._switchToTextParsing(t,Lv.RAWTEXT);break;case X.SCRIPT:e._switchToTextParsing(t,Lv.SCRIPT_DATA);break;case X.TEMPLATE:e._insertTemplate(t),e.activeFormattingElements.insertMarker(),e.framesetOk=!1,e.insertionMode=$.IN_TEMPLATE,e.tmplInsertionModeStack.unshift($.IN_TEMPLATE);break;case X.HEAD:e._err(t,q.misplacedStartTagForHeadElement);break;default:fb(e,t)}}function ub(e,t){switch(t.tagID){case X.HEAD:e.openElements.pop(),e.insertionMode=$.AFTER_HEAD;break;case X.BODY:case X.BR:case X.HTML:fb(e,t);break;case X.TEMPLATE:db(e,t);break;default:e._err(t,q.endTagWithoutMatchingOpenElement)}}function db(e,t){e.openElements.tmplCount>0?(e.openElements.generateImpliedEndTagsThoroughly(),e.openElements.currentTagId!==X.TEMPLATE&&e._err(t,q.closingOfElementWithOpenChildElements),e.openElements.popUntilTagNamePopped(X.TEMPLATE),e.activeFormattingElements.clearToLastMarker(),e.tmplInsertionModeStack.shift(),e._resetInsertionMode()):e._err(t,q.endTagWithoutMatchingOpenElement)}function fb(e,t){e.openElements.pop(),e.insertionMode=$.AFTER_HEAD,e._processToken(t)}function pb(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.BASEFONT:case X.BGSOUND:case X.HEAD:case X.LINK:case X.META:case X.NOFRAMES:case X.STYLE:lb(e,t);break;case X.NOSCRIPT:e._err(t,q.nestedNoscriptInHead);break;default:hb(e,t)}}function mb(e,t){switch(t.tagID){case X.NOSCRIPT:e.openElements.pop(),e.insertionMode=$.IN_HEAD;break;case X.BR:hb(e,t);break;default:e._err(t,q.endTagWithoutMatchingOpenElement)}}function hb(e,t){let n=t.type===hv.EOF?q.openElementsLeftAfterEof:q.disallowedContentInNoscriptInHead;e._err(t,n),e.openElements.pop(),e.insertionMode=$.IN_HEAD,e._processToken(t)}function gb(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.BODY:e._insertElement(t,J.HTML),e.framesetOk=!1,e.insertionMode=$.IN_BODY;break;case X.FRAMESET:e._insertElement(t,J.HTML),e.insertionMode=$.IN_FRAMESET;break;case X.BASE:case X.BASEFONT:case X.BGSOUND:case X.LINK:case X.META:case X.NOFRAMES:case X.SCRIPT:case X.STYLE:case X.TEMPLATE:case X.TITLE:e._err(t,q.abandonedHeadElementChild),e.openElements.push(e.headElement,X.HEAD),lb(e,t),e.openElements.remove(e.headElement);break;case X.HEAD:e._err(t,q.misplacedStartTagForHeadElement);break;default:vb(e,t)}}function _b(e,t){switch(t.tagID){case X.BODY:case X.HTML:case X.BR:vb(e,t);break;case X.TEMPLATE:db(e,t);break;default:e._err(t,q.endTagWithoutMatchingOpenElement)}}function vb(e,t){e._insertFakeElement(Y.BODY,X.BODY),e.insertionMode=$.IN_BODY,yb(e,t)}function yb(e,t){switch(t.type){case hv.CHARACTER:xb(e,t);break;case hv.WHITESPACE_CHARACTER:bb(e,t);break;case hv.COMMENT:Zy(e,t);break;case hv.START_TAG:ex(e,t);break;case hv.END_TAG:fx(e,t);break;case hv.EOF:px(e,t);break;default:}}function bb(e,t){e._reconstructActiveFormattingElements(),e._insertCharacters(t)}function xb(e,t){e._reconstructActiveFormattingElements(),e._insertCharacters(t),e.framesetOk=!1}function Sb(e,t){e.openElements.tmplCount===0&&e.treeAdapter.adoptAttributes(e.openElements.items[0],t.attrs)}function Cb(e,t){let n=e.openElements.tryPeekProperlyNestedBodyElement();n&&e.openElements.tmplCount===0&&(e.framesetOk=!1,e.treeAdapter.adoptAttributes(n,t.attrs))}function wb(e,t){let n=e.openElements.tryPeekProperlyNestedBodyElement();e.framesetOk&&n&&(e.treeAdapter.detachNode(n),e.openElements.popAllUpToHtmlElement(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_FRAMESET)}function Tb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML)}function Eb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e.openElements.currentTagId!==void 0&&Iv.has(e.openElements.currentTagId)&&e.openElements.pop(),e._insertElement(t,J.HTML)}function Db(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),e.skipNextNewLine=!0,e.framesetOk=!1}function Ob(e,t){let n=e.openElements.tmplCount>0;(!e.formElement||n)&&(e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),n||(e.formElement=e.openElements.current))}function kb(e,t){e.framesetOk=!1;let n=t.tagID;for(let t=e.openElements.stackTop;t>=0;t--){let r=e.openElements.tagIDs[t];if(n===X.LI&&r===X.LI||(n===X.DD||n===X.DT)&&(r===X.DD||r===X.DT)){e.openElements.generateImpliedEndTagsWithExclusion(r),e.openElements.popUntilTagNamePopped(r);break}if(r!==X.ADDRESS&&r!==X.DIV&&r!==X.P&&e._isSpecialElement(e.openElements.items[t],r))break}e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML)}function Ab(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),e.tokenizer.state=Lv.PLAINTEXT}function jb(e,t){e.openElements.hasInScope(X.BUTTON)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(X.BUTTON)),e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.framesetOk=!1}function Mb(e,t){let n=e.activeFormattingElements.getElementEntryInScopeWithTagName(Y.A);n&&(Xy(e,t),e.openElements.remove(n.element),e.activeFormattingElements.removeEntry(n)),e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.activeFormattingElements.pushElement(e.openElements.current,t)}function Nb(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.activeFormattingElements.pushElement(e.openElements.current,t)}function Pb(e,t){e._reconstructActiveFormattingElements(),e.openElements.hasInScope(X.NOBR)&&(Xy(e,t),e._reconstructActiveFormattingElements()),e._insertElement(t,J.HTML),e.activeFormattingElements.pushElement(e.openElements.current,t)}function Fb(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.activeFormattingElements.insertMarker(),e.framesetOk=!1}function Ib(e,t){e.treeAdapter.getDocumentMode(e.document)!==Mv.QUIRKS&&e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),e.framesetOk=!1,e.insertionMode=$.IN_TABLE}function Lb(e,t){e._reconstructActiveFormattingElements(),e._appendElement(t,J.HTML),e.framesetOk=!1,t.ackSelfClosing=!0}function Rb(e){let t=gv(e,jv.TYPE);return t!=null&&t.toLowerCase()===Ly}function zb(e,t){e._reconstructActiveFormattingElements(),e._appendElement(t,J.HTML),Rb(t)||(e.framesetOk=!1),t.ackSelfClosing=!0}function Bb(e,t){e._appendElement(t,J.HTML),t.ackSelfClosing=!0}function Vb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._appendElement(t,J.HTML),e.framesetOk=!1,t.ackSelfClosing=!0}function Hb(e,t){t.tagName=Y.IMG,t.tagID=X.IMG,Lb(e,t)}function Ub(e,t){e._insertElement(t,J.HTML),e.skipNextNewLine=!0,e.tokenizer.state=Lv.RCDATA,e.originalInsertionMode=e.insertionMode,e.framesetOk=!1,e.insertionMode=$.TEXT}function Wb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._reconstructActiveFormattingElements(),e.framesetOk=!1,e._switchToTextParsing(t,Lv.RAWTEXT)}function Gb(e,t){e.framesetOk=!1,e._switchToTextParsing(t,Lv.RAWTEXT)}function Kb(e,t){e._switchToTextParsing(t,Lv.RAWTEXT)}function qb(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.framesetOk=!1,e.insertionMode=e.insertionMode===$.IN_TABLE||e.insertionMode===$.IN_CAPTION||e.insertionMode===$.IN_TABLE_BODY||e.insertionMode===$.IN_ROW||e.insertionMode===$.IN_CELL?$.IN_SELECT_IN_TABLE:$.IN_SELECT}function Jb(e,t){e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML)}function Yb(e,t){e.openElements.hasInScope(X.RUBY)&&e.openElements.generateImpliedEndTags(),e._insertElement(t,J.HTML)}function Xb(e,t){e.openElements.hasInScope(X.RUBY)&&e.openElements.generateImpliedEndTagsWithExclusion(X.RTC),e._insertElement(t,J.HTML)}function Zb(e,t){e._reconstructActiveFormattingElements(),Ay(t),My(t),t.selfClosing?e._appendElement(t,J.MATHML):e._insertElement(t,J.MATHML),t.ackSelfClosing=!0}function Qb(e,t){e._reconstructActiveFormattingElements(),jy(t),My(t),t.selfClosing?e._appendElement(t,J.SVG):e._insertElement(t,J.SVG),t.ackSelfClosing=!0}function $b(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML)}function ex(e,t){switch(t.tagID){case X.I:case X.S:case X.B:case X.U:case X.EM:case X.TT:case X.BIG:case X.CODE:case X.FONT:case X.SMALL:case X.STRIKE:case X.STRONG:Nb(e,t);break;case X.A:Mb(e,t);break;case X.H1:case X.H2:case X.H3:case X.H4:case X.H5:case X.H6:Eb(e,t);break;case X.P:case X.DL:case X.OL:case X.UL:case X.DIV:case X.DIR:case X.NAV:case X.MAIN:case X.MENU:case X.ASIDE:case X.CENTER:case X.FIGURE:case X.FOOTER:case X.HEADER:case X.HGROUP:case X.DIALOG:case X.DETAILS:case X.ADDRESS:case X.ARTICLE:case X.SEARCH:case X.SECTION:case X.SUMMARY:case X.FIELDSET:case X.BLOCKQUOTE:case X.FIGCAPTION:Tb(e,t);break;case X.LI:case X.DD:case X.DT:kb(e,t);break;case X.BR:case X.IMG:case X.WBR:case X.AREA:case X.EMBED:case X.KEYGEN:Lb(e,t);break;case X.HR:Vb(e,t);break;case X.RB:case X.RTC:Yb(e,t);break;case X.RT:case X.RP:Xb(e,t);break;case X.PRE:case X.LISTING:Db(e,t);break;case X.XMP:Wb(e,t);break;case X.SVG:Qb(e,t);break;case X.HTML:Sb(e,t);break;case X.BASE:case X.LINK:case X.META:case X.STYLE:case X.TITLE:case X.SCRIPT:case X.BGSOUND:case X.BASEFONT:case X.TEMPLATE:lb(e,t);break;case X.BODY:Cb(e,t);break;case X.FORM:Ob(e,t);break;case X.NOBR:Pb(e,t);break;case X.MATH:Zb(e,t);break;case X.TABLE:Ib(e,t);break;case X.INPUT:zb(e,t);break;case X.PARAM:case X.TRACK:case X.SOURCE:Bb(e,t);break;case X.IMAGE:Hb(e,t);break;case X.BUTTON:jb(e,t);break;case X.APPLET:case X.OBJECT:case X.MARQUEE:Fb(e,t);break;case X.IFRAME:Gb(e,t);break;case X.SELECT:qb(e,t);break;case X.OPTION:case X.OPTGROUP:Jb(e,t);break;case X.NOEMBED:case X.NOFRAMES:Kb(e,t);break;case X.FRAMESET:wb(e,t);break;case X.TEXTAREA:Ub(e,t);break;case X.NOSCRIPT:e.options.scriptingEnabled?Kb(e,t):$b(e,t);break;case X.PLAINTEXT:Ab(e,t);break;case X.COL:case X.TH:case X.TD:case X.TR:case X.HEAD:case X.FRAME:case X.TBODY:case X.TFOOT:case X.THEAD:case X.CAPTION:case X.COLGROUP:break;default:$b(e,t)}}function tx(e,t){if(e.openElements.hasInScope(X.BODY)&&(e.insertionMode=$.AFTER_BODY,e.options.sourceCodeLocationInfo)){let n=e.openElements.tryPeekProperlyNestedBodyElement();n&&e._setEndLocation(n,t)}}function nx(e,t){e.openElements.hasInScope(X.BODY)&&(e.insertionMode=$.AFTER_BODY,Zx(e,t))}function rx(e,t){let n=t.tagID;e.openElements.hasInScope(n)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(n))}function ix(e){let t=e.openElements.tmplCount>0,{formElement:n}=e;t||(e.formElement=null),(n||t)&&e.openElements.hasInScope(X.FORM)&&(e.openElements.generateImpliedEndTags(),t?e.openElements.popUntilTagNamePopped(X.FORM):n&&e.openElements.remove(n))}function ax(e){e.openElements.hasInButtonScope(X.P)||e._insertFakeElement(Y.P,X.P),e._closePElement()}function ox(e){e.openElements.hasInListItemScope(X.LI)&&(e.openElements.generateImpliedEndTagsWithExclusion(X.LI),e.openElements.popUntilTagNamePopped(X.LI))}function sx(e,t){let n=t.tagID;e.openElements.hasInScope(n)&&(e.openElements.generateImpliedEndTagsWithExclusion(n),e.openElements.popUntilTagNamePopped(n))}function cx(e){e.openElements.hasNumberedHeaderInScope()&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilNumberedHeaderPopped())}function lx(e,t){let n=t.tagID;e.openElements.hasInScope(n)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(n),e.activeFormattingElements.clearToLastMarker())}function ux(e){e._reconstructActiveFormattingElements(),e._insertFakeElement(Y.BR,X.BR),e.openElements.pop(),e.framesetOk=!1}function dx(e,t){let n=t.tagName,r=t.tagID;for(let t=e.openElements.stackTop;t>0;t--){let i=e.openElements.items[t],a=e.openElements.tagIDs[t];if(r===a&&(r!==X.UNKNOWN||e.treeAdapter.getTagName(i)===n)){e.openElements.generateImpliedEndTagsWithExclusion(r),e.openElements.stackTop>=t&&e.openElements.shortenToLength(t);break}if(e._isSpecialElement(i,a))break}}function fx(e,t){switch(t.tagID){case X.A:case X.B:case X.I:case X.S:case X.U:case X.EM:case X.TT:case X.BIG:case X.CODE:case X.FONT:case X.NOBR:case X.SMALL:case X.STRIKE:case X.STRONG:Xy(e,t);break;case X.P:ax(e);break;case X.DL:case X.UL:case X.OL:case X.DIR:case X.DIV:case X.NAV:case X.PRE:case X.MAIN:case X.MENU:case X.ASIDE:case X.BUTTON:case X.CENTER:case X.FIGURE:case X.FOOTER:case X.HEADER:case X.HGROUP:case X.DIALOG:case X.ADDRESS:case X.ARTICLE:case X.DETAILS:case X.SEARCH:case X.SECTION:case X.SUMMARY:case X.LISTING:case X.FIELDSET:case X.BLOCKQUOTE:case X.FIGCAPTION:rx(e,t);break;case X.LI:ox(e);break;case X.DD:case X.DT:sx(e,t);break;case X.H1:case X.H2:case X.H3:case X.H4:case X.H5:case X.H6:cx(e);break;case X.BR:ux(e);break;case X.BODY:tx(e,t);break;case X.HTML:nx(e,t);break;case X.FORM:ix(e);break;case X.APPLET:case X.OBJECT:case X.MARQUEE:lx(e,t);break;case X.TEMPLATE:db(e,t);break;default:dx(e,t)}}function px(e,t){e.tmplInsertionModeStack.length>0?Yx(e,t):eb(e,t)}function mx(e,t){var n;t.tagID===X.SCRIPT&&((n=e.scriptHandler)==null||n.call(e,e.openElements.current)),e.openElements.pop(),e.insertionMode=e.originalInsertionMode}function hx(e,t){e._err(t,q.eofInElementThatCanContainOnlyText),e.openElements.pop(),e.insertionMode=e.originalInsertionMode,e.onEof(t)}function gx(e,t){if(e.openElements.currentTagId!==void 0&&Vy.has(e.openElements.currentTagId))switch(e.pendingCharacterTokens.length=0,e.hasNonWhitespacePendingCharacterToken=!1,e.originalInsertionMode=e.insertionMode,e.insertionMode=$.IN_TABLE_TEXT,t.type){case hv.CHARACTER:kx(e,t);break;case hv.WHITESPACE_CHARACTER:Ox(e,t);break}else Dx(e,t)}function _x(e,t){e.openElements.clearBackToTableContext(),e.activeFormattingElements.insertMarker(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_CAPTION}function vx(e,t){e.openElements.clearBackToTableContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_COLUMN_GROUP}function yx(e,t){e.openElements.clearBackToTableContext(),e._insertFakeElement(Y.COLGROUP,X.COLGROUP),e.insertionMode=$.IN_COLUMN_GROUP,Px(e,t)}function bx(e,t){e.openElements.clearBackToTableContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_TABLE_BODY}function xx(e,t){e.openElements.clearBackToTableContext(),e._insertFakeElement(Y.TBODY,X.TBODY),e.insertionMode=$.IN_TABLE_BODY,Lx(e,t)}function Sx(e,t){e.openElements.hasInTableScope(X.TABLE)&&(e.openElements.popUntilTagNamePopped(X.TABLE),e._resetInsertionMode(),e._processStartTag(t))}function Cx(e,t){Rb(t)?e._appendElement(t,J.HTML):Dx(e,t),t.ackSelfClosing=!0}function wx(e,t){!e.formElement&&e.openElements.tmplCount===0&&(e._insertElement(t,J.HTML),e.formElement=e.openElements.current,e.openElements.pop())}function Tx(e,t){switch(t.tagID){case X.TD:case X.TH:case X.TR:xx(e,t);break;case X.STYLE:case X.SCRIPT:case X.TEMPLATE:lb(e,t);break;case X.COL:yx(e,t);break;case X.FORM:wx(e,t);break;case X.TABLE:Sx(e,t);break;case X.TBODY:case X.TFOOT:case X.THEAD:bx(e,t);break;case X.INPUT:Cx(e,t);break;case X.CAPTION:_x(e,t);break;case X.COLGROUP:vx(e,t);break;default:Dx(e,t)}}function Ex(e,t){switch(t.tagID){case X.TABLE:e.openElements.hasInTableScope(X.TABLE)&&(e.openElements.popUntilTagNamePopped(X.TABLE),e._resetInsertionMode());break;case X.TEMPLATE:db(e,t);break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:case X.TBODY:case X.TD:case X.TFOOT:case X.TH:case X.THEAD:case X.TR:break;default:Dx(e,t)}}function Dx(e,t){let n=e.fosterParentingEnabled;e.fosterParentingEnabled=!0,yb(e,t),e.fosterParentingEnabled=n}function Ox(e,t){e.pendingCharacterTokens.push(t)}function kx(e,t){e.pendingCharacterTokens.push(t),e.hasNonWhitespacePendingCharacterToken=!0}function Ax(e,t){let n=0;if(e.hasNonWhitespacePendingCharacterToken)for(;n<e.pendingCharacterTokens.length;n++)Dx(e,e.pendingCharacterTokens[n]);else for(;n<e.pendingCharacterTokens.length;n++)e._insertCharacters(e.pendingCharacterTokens[n]);e.insertionMode=e.originalInsertionMode,e._processToken(t)}var jx=new Set([X.CAPTION,X.COL,X.COLGROUP,X.TBODY,X.TD,X.TFOOT,X.TH,X.THEAD,X.TR]);function Mx(e,t){let n=t.tagID;jx.has(n)?e.openElements.hasInTableScope(X.CAPTION)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(X.CAPTION),e.activeFormattingElements.clearToLastMarker(),e.insertionMode=$.IN_TABLE,Tx(e,t)):ex(e,t)}function Nx(e,t){let n=t.tagID;switch(n){case X.CAPTION:case X.TABLE:e.openElements.hasInTableScope(X.CAPTION)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(X.CAPTION),e.activeFormattingElements.clearToLastMarker(),e.insertionMode=$.IN_TABLE,n===X.TABLE&&Ex(e,t));break;case X.BODY:case X.COL:case X.COLGROUP:case X.HTML:case X.TBODY:case X.TD:case X.TFOOT:case X.TH:case X.THEAD:case X.TR:break;default:fx(e,t)}}function Px(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.COL:e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.TEMPLATE:lb(e,t);break;default:Ix(e,t)}}function Fx(e,t){switch(t.tagID){case X.COLGROUP:e.openElements.currentTagId===X.COLGROUP&&(e.openElements.pop(),e.insertionMode=$.IN_TABLE);break;case X.TEMPLATE:db(e,t);break;case X.COL:break;default:Ix(e,t)}}function Ix(e,t){e.openElements.currentTagId===X.COLGROUP&&(e.openElements.pop(),e.insertionMode=$.IN_TABLE,e._processToken(t))}function Lx(e,t){switch(t.tagID){case X.TR:e.openElements.clearBackToTableBodyContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_ROW;break;case X.TH:case X.TD:e.openElements.clearBackToTableBodyContext(),e._insertFakeElement(Y.TR,X.TR),e.insertionMode=$.IN_ROW,zx(e,t);break;case X.CAPTION:case X.COL:case X.COLGROUP:case X.TBODY:case X.TFOOT:case X.THEAD:e.openElements.hasTableBodyContextInTableScope()&&(e.openElements.clearBackToTableBodyContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE,Tx(e,t));break;default:Tx(e,t)}}function Rx(e,t){let n=t.tagID;switch(t.tagID){case X.TBODY:case X.TFOOT:case X.THEAD:e.openElements.hasInTableScope(n)&&(e.openElements.clearBackToTableBodyContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE);break;case X.TABLE:e.openElements.hasTableBodyContextInTableScope()&&(e.openElements.clearBackToTableBodyContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE,Ex(e,t));break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:case X.TD:case X.TH:case X.TR:break;default:Ex(e,t)}}function zx(e,t){switch(t.tagID){case X.TH:case X.TD:e.openElements.clearBackToTableRowContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_CELL,e.activeFormattingElements.insertMarker();break;case X.CAPTION:case X.COL:case X.COLGROUP:case X.TBODY:case X.TFOOT:case X.THEAD:case X.TR:e.openElements.hasInTableScope(X.TR)&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY,Lx(e,t));break;default:Tx(e,t)}}function Bx(e,t){switch(t.tagID){case X.TR:e.openElements.hasInTableScope(X.TR)&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY);break;case X.TABLE:e.openElements.hasInTableScope(X.TR)&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY,Rx(e,t));break;case X.TBODY:case X.TFOOT:case X.THEAD:(e.openElements.hasInTableScope(t.tagID)||e.openElements.hasInTableScope(X.TR))&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY,Rx(e,t));break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:case X.TD:case X.TH:break;default:Ex(e,t)}}function Vx(e,t){let n=t.tagID;jx.has(n)?(e.openElements.hasInTableScope(X.TD)||e.openElements.hasInTableScope(X.TH))&&(e._closeTableCell(),zx(e,t)):ex(e,t)}function Hx(e,t){let n=t.tagID;switch(n){case X.TD:case X.TH:e.openElements.hasInTableScope(n)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(n),e.activeFormattingElements.clearToLastMarker(),e.insertionMode=$.IN_ROW);break;case X.TABLE:case X.TBODY:case X.TFOOT:case X.THEAD:case X.TR:e.openElements.hasInTableScope(n)&&(e._closeTableCell(),Bx(e,t));break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:break;default:fx(e,t)}}function Ux(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.OPTION:e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e._insertElement(t,J.HTML);break;case X.OPTGROUP:e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e.openElements.currentTagId===X.OPTGROUP&&e.openElements.pop(),e._insertElement(t,J.HTML);break;case X.HR:e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e.openElements.currentTagId===X.OPTGROUP&&e.openElements.pop(),e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.INPUT:case X.KEYGEN:case X.TEXTAREA:case X.SELECT:e.openElements.hasInSelectScope(X.SELECT)&&(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode(),t.tagID!==X.SELECT&&e._processStartTag(t));break;case X.SCRIPT:case X.TEMPLATE:lb(e,t);break;default:}}function Wx(e,t){switch(t.tagID){case X.OPTGROUP:e.openElements.stackTop>0&&e.openElements.currentTagId===X.OPTION&&e.openElements.tagIDs[e.openElements.stackTop-1]===X.OPTGROUP&&e.openElements.pop(),e.openElements.currentTagId===X.OPTGROUP&&e.openElements.pop();break;case X.OPTION:e.openElements.currentTagId===X.OPTION&&e.openElements.pop();break;case X.SELECT:e.openElements.hasInSelectScope(X.SELECT)&&(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode());break;case X.TEMPLATE:db(e,t);break;default:}}function Gx(e,t){let n=t.tagID;n===X.CAPTION||n===X.TABLE||n===X.TBODY||n===X.TFOOT||n===X.THEAD||n===X.TR||n===X.TD||n===X.TH?(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode(),e._processStartTag(t)):Ux(e,t)}function Kx(e,t){let n=t.tagID;n===X.CAPTION||n===X.TABLE||n===X.TBODY||n===X.TFOOT||n===X.THEAD||n===X.TR||n===X.TD||n===X.TH?e.openElements.hasInTableScope(n)&&(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode(),e.onEndTag(t)):Wx(e,t)}function qx(e,t){switch(t.tagID){case X.BASE:case X.BASEFONT:case X.BGSOUND:case X.LINK:case X.META:case X.NOFRAMES:case X.SCRIPT:case X.STYLE:case X.TEMPLATE:case X.TITLE:lb(e,t);break;case X.CAPTION:case X.COLGROUP:case X.TBODY:case X.TFOOT:case X.THEAD:e.tmplInsertionModeStack[0]=$.IN_TABLE,e.insertionMode=$.IN_TABLE,Tx(e,t);break;case X.COL:e.tmplInsertionModeStack[0]=$.IN_COLUMN_GROUP,e.insertionMode=$.IN_COLUMN_GROUP,Px(e,t);break;case X.TR:e.tmplInsertionModeStack[0]=$.IN_TABLE_BODY,e.insertionMode=$.IN_TABLE_BODY,Lx(e,t);break;case X.TD:case X.TH:e.tmplInsertionModeStack[0]=$.IN_ROW,e.insertionMode=$.IN_ROW,zx(e,t);break;default:e.tmplInsertionModeStack[0]=$.IN_BODY,e.insertionMode=$.IN_BODY,ex(e,t)}}function Jx(e,t){t.tagID===X.TEMPLATE&&db(e,t)}function Yx(e,t){e.openElements.tmplCount>0?(e.openElements.popUntilTagNamePopped(X.TEMPLATE),e.activeFormattingElements.clearToLastMarker(),e.tmplInsertionModeStack.shift(),e._resetInsertionMode(),e.onEof(t)):eb(e,t)}function Xx(e,t){t.tagID===X.HTML?ex(e,t):Qx(e,t)}function Zx(e,t){if(t.tagID===X.HTML){if(e.fragmentContext||(e.insertionMode=$.AFTER_AFTER_BODY),e.options.sourceCodeLocationInfo&&e.openElements.tagIDs[0]===X.HTML){e._setEndLocation(e.openElements.items[0],t);let n=e.openElements.items[1];n&&!e.treeAdapter.getNodeSourceCodeLocation(n)?.endTag&&e._setEndLocation(n,t)}}else Qx(e,t)}function Qx(e,t){e.insertionMode=$.IN_BODY,yb(e,t)}function $x(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.FRAMESET:e._insertElement(t,J.HTML);break;case X.FRAME:e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.NOFRAMES:lb(e,t);break;default:}}function eS(e,t){t.tagID===X.FRAMESET&&!e.openElements.isRootHtmlElementCurrent()&&(e.openElements.pop(),!e.fragmentContext&&e.openElements.currentTagId!==X.FRAMESET&&(e.insertionMode=$.AFTER_FRAMESET))}function tS(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.NOFRAMES:lb(e,t);break;default:}}function nS(e,t){t.tagID===X.HTML&&(e.insertionMode=$.AFTER_AFTER_FRAMESET)}function rS(e,t){t.tagID===X.HTML?ex(e,t):iS(e,t)}function iS(e,t){e.insertionMode=$.IN_BODY,yb(e,t)}function aS(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.NOFRAMES:lb(e,t);break;default:}}function oS(e,t){t.chars=`�`,e._insertCharacters(t)}function sS(e,t){e._insertCharacters(t),e.framesetOk=!1}function cS(e){for(;e.treeAdapter.getNamespaceURI(e.openElements.current)!==J.HTML&&e.openElements.currentTagId!==void 0&&!e._isIntegrationPoint(e.openElements.currentTagId,e.openElements.current);)e.openElements.pop()}function lS(e,t){if(ky(t))cS(e),e._startTagOutsideForeignContent(t);else{let n=e._getAdjustedCurrentElement(),r=e.treeAdapter.getNamespaceURI(n);r===J.MATHML?Ay(t):r===J.SVG&&(Ny(t),jy(t)),My(t),t.selfClosing?e._appendElement(t,r):e._insertElement(t,r),t.ackSelfClosing=!0}}function uS(e,t){if(t.tagID===X.P||t.tagID===X.BR){cS(e),e._endTagOutsideForeignContent(t);return}for(let n=e.openElements.stackTop;n>0;n--){let r=e.openElements.items[n];if(e.treeAdapter.getNamespaceURI(r)===J.HTML){e._endTagOutsideForeignContent(t);break}let i=e.treeAdapter.getTagName(r);if(i.toLowerCase()===t.tagName){t.tagName=i,e.openElements.shortenToLength(n);break}}}new Set([Y.AREA,Y.BASE,Y.BASEFONT,Y.BGSOUND,Y.BR,Y.COL,Y.EMBED,Y.FRAME,Y.HR,Y.IMG,Y.INPUT,Y.KEYGEN,Y.LINK,Y.META,Y.PARAM,Y.SOURCE,Y.TRACK,Y.WBR]);var dS=/<(\/?)(iframe|noembed|noframes|plaintext|script|style|textarea|title|xmp)(?=[\t\n\f\r />])/gi,fS=new Set([`mdxFlowExpression`,`mdxJsxFlowElement`,`mdxJsxTextElement`,`mdxTextExpression`,`mdxjsEsm`]),pS={sourceCodeLocationInfo:!0,scriptingEnabled:!1};function mS(e,t){let n=OS(e),r=Om(`type`,{handlers:{root:gS,element:_S,text:vS,comment:xS,doctype:yS,raw:SS},unknown:CS}),i={parser:n?new Uy(pS):Uy.getFragmentParser(void 0,pS),handle(e){r(e,i)},stitches:!1,options:t||{}};r(e,i),wS(i,dt());let a=R_(n?i.parser.document:i.parser.getFragment(),{file:i.options.file});return i.stitches&&so(a,`comment`,function(e,t,n){let r=e;if(r.value.stitch&&n&&t!==void 0){let e=n.children;return e[t]=r.value.stitch,t}}),a.type===`root`&&a.children.length===1&&a.children[0].type===e.type?a.children[0]:a}function hS(e,t){let n=-1;if(e)for(;++n<e.length;)t.handle(e[n])}function gS(e,t){hS(e.children,t)}function _S(e,t){ES(e,t),hS(e.children,t),DS(e,t)}function vS(e,t){t.parser.tokenizer.state>4&&(t.parser.tokenizer.state=0);let n={type:hv.CHARACTER,chars:e.value,location:kS(e)};wS(t,dt(e)),t.parser.currentToken=n,t.parser._processToken(t.parser.currentToken)}function yS(e,t){let n={type:hv.DOCTYPE,name:`html`,forceQuirks:!1,publicId:``,systemId:``,location:kS(e)};wS(t,dt(e)),t.parser.currentToken=n,t.parser._processToken(t.parser.currentToken)}function bS(e,t){t.stitches=!0;let n=AS(e);`children`in e&&`children`in n&&(n.children=mS({type:`root`,children:e.children},t.options).children),xS({type:`comment`,value:{stitch:n}},t)}function xS(e,t){let n=e.value,r={type:hv.COMMENT,data:n,location:kS(e)};wS(t,dt(e)),t.parser.currentToken=r,t.parser._processToken(t.parser.currentToken)}function SS(e,t){if(t.parser.tokenizer.preprocessor.html=``,t.parser.tokenizer.preprocessor.pos=-1,t.parser.tokenizer.preprocessor.lastGapPos=-2,t.parser.tokenizer.preprocessor.gapStack=[],t.parser.tokenizer.preprocessor.skipNextNewLine=!1,t.parser.tokenizer.preprocessor.lastChunkWritten=!1,t.parser.tokenizer.preprocessor.endOfChunkHit=!1,t.parser.tokenizer.preprocessor.isEol=!1,TS(t,dt(e)),t.parser.tokenizer.write(t.options.tagfilter?e.value.replace(dS,`&lt;$1$2`):e.value,!1),t.parser.tokenizer._runParsingLoop(),t.parser.tokenizer.state===72||t.parser.tokenizer.state===78){t.parser.tokenizer.preprocessor.lastChunkWritten=!0;let e=t.parser.tokenizer._consume();t.parser.tokenizer._callState(e)}}function CS(e,t){let n=e;if(t.options.passThrough&&t.options.passThrough.includes(n.type))bS(n,t);else{let e=``;throw fS.has(n.type)&&(e=". It looks like you are using MDX nodes with `hast-util-raw` (or `rehype-raw`). If you use this because you are using remark or rehype plugins that inject `'html'` nodes, then please raise an issue with that plugin, as its a bad and slow idea. If you use this because you are using markdown syntax, then you have to configure this utility (or plugin) to pass through these nodes (see `passThrough` in docs), but you can also migrate to use the MDX syntax"),Error("Cannot compile `"+n.type+"` node"+e)}}function wS(e,t){TS(e,t);let n=e.parser.tokenizer.currentCharacterToken;n&&n.location&&(n.location.endLine=e.parser.tokenizer.preprocessor.line,n.location.endCol=e.parser.tokenizer.preprocessor.col+1,n.location.endOffset=e.parser.tokenizer.preprocessor.offset+1,e.parser.currentToken=n,e.parser._processToken(e.parser.currentToken)),e.parser.tokenizer.paused=!1,e.parser.tokenizer.inLoop=!1,e.parser.tokenizer.active=!1,e.parser.tokenizer.returnState=Lv.DATA,e.parser.tokenizer.charRefCode=-1,e.parser.tokenizer.consumedAfterSnapshot=-1,e.parser.tokenizer.currentLocation=null,e.parser.tokenizer.currentCharacterToken=null,e.parser.tokenizer.currentToken=null,e.parser.tokenizer.currentAttr={name:``,value:``}}function TS(e,t){if(t&&t.offset!==void 0){let n={startLine:t.line,startCol:t.column,startOffset:t.offset,endLine:-1,endCol:-1,endOffset:-1};e.parser.tokenizer.preprocessor.lineStartPos=-t.column+1,e.parser.tokenizer.preprocessor.droppedBufferSize=t.offset,e.parser.tokenizer.preprocessor.line=t.line,e.parser.tokenizer.currentLocation=n}}function ES(e,t){let n=e.tagName.toLowerCase();if(t.parser.tokenizer.state===Lv.PLAINTEXT)return;wS(t,dt(e));let r=t.parser.openElements.current,i=`namespaceURI`in r?r.namespaceURI:qg.html;i===qg.html&&n===`svg`&&(i=qg.svg);let a=Y_({...e,children:[]},{space:i===qg.svg?`svg`:`html`}),o={type:hv.START_TAG,tagName:n,tagID:Pv(n),selfClosing:!1,ackSelfClosing:!1,attrs:`attrs`in a?a.attrs:[],location:kS(e)};t.parser.currentToken=o,t.parser._processToken(t.parser.currentToken),t.parser.tokenizer.lastStartTagName=n}function DS(e,t){let n=e.tagName.toLowerCase();if(!t.parser.tokenizer.inForeignNode&&av.includes(n)||t.parser.tokenizer.state===Lv.PLAINTEXT)return;wS(t,ut(e));let r={type:hv.END_TAG,tagName:n,tagID:Pv(n),selfClosing:!1,ackSelfClosing:!1,attrs:[],location:kS(e)};t.parser.currentToken=r,t.parser._processToken(t.parser.currentToken),n===t.parser.tokenizer.lastStartTagName&&(t.parser.tokenizer.state===Lv.RCDATA||t.parser.tokenizer.state===Lv.RAWTEXT||t.parser.tokenizer.state===Lv.SCRIPT_DATA)&&(t.parser.tokenizer.state=Lv.DATA)}function OS(e){let t=e.type===`root`?e.children[0]:e;return!!(t&&(t.type===`doctype`||t.type===`element`&&t.tagName.toLowerCase()===`html`))}function kS(e){let t=dt(e)||{line:void 0,column:void 0,offset:void 0},n=ut(e)||{line:void 0,column:void 0,offset:void 0};return{startLine:t.line,startCol:t.column,startOffset:t.offset,endLine:n.line,endCol:n.column,endOffset:n.offset}}function AS(e){return`children`in e?Ga({...e,children:[]}):Ga(e)}function jS(e){return function(t,n){return mS(t,{...e,file:n})}}var MS=_(),NS=[`题目`,`知识点`],PS=[{id:`forest-to-binary-min-height`,questionNumber:4,title:`森林转换为二叉树：最小高度如何判断？`,type:`题目`,date:`2026-09-29`,chapter:`树与二叉树 · 森林转换`,tags:[`森林与二叉树转换`,`左孩子右兄弟`,`树的高度`],summary:`5 棵树分别有 2、3、4、5、7 个结点。树的次序可任意安排，如何判断转换后二叉树的最小高度？`,source:`用户提供的题目截图，标注为“2026 · 第4题 · 2分”；未独立核验原始试卷出处。解析为本站推导，并非引用官方答案。`,content:String.raw`森林 $F$ 中有 5 棵树，其结点个数分别为 2、3、4、5、7，森林中树的次序可以任意，问 $F$ 对应的二叉树最小高度为多少？
+`,t);return r===-1?n:n===-1||n+1===r?r:n<r?n:r}var I_={}.hasOwnProperty,L_=Object.prototype;function R_(e,t){let n=t||{};return z_({file:n.file||void 0,location:!1,schema:n.space===`svg`?rt:nt,verbose:n.verbose||!1},e)}function z_(e,t){let n;switch(t.nodeName){case`#comment`:{let r=t;return n={type:`comment`,value:r.data},H_(e,r,n),n}case`#document`:case`#document-fragment`:{let r=t,i=`mode`in r?r.mode===`quirks`||r.mode===`limited-quirks`:!1;if(n={type:`root`,children:B_(e,t.childNodes),data:{quirksMode:i}},e.file&&e.location){let t=String(e.file),r=P_(t),i=r.toPoint(0),a=r.toPoint(t.length);n.position={start:i,end:a}}return n}case`#documentType`:{let r=t;return n={type:`doctype`},H_(e,r,n),n}case`#text`:{let r=t;return n={type:`text`,value:r.value},H_(e,r,n),n}default:return n=V_(e,t),n}}function B_(e,t){let n=-1,r=[];for(;++n<t.length;){let i=z_(e,t[n]);r.push(i)}return r}function V_(e,t){let n=e.schema;e.schema=t.namespaceURI===qg.svg?rt:nt;let r=-1,i={};for(;++r<t.attrs.length;){let e=t.attrs[r],n=(e.prefix?e.prefix+`:`:``)+e.name;I_.call(L_,n)||(i[n]=e.value)}let a=(e.schema.space===`svg`?Kg:Gg)(t.tagName,i,B_(e,t.childNodes));if(H_(e,t,a),a.tagName===`template`){let n=t,r=n.sourceCodeLocation,i=r&&r.startTag&&W_(r.startTag),o=r&&r.endTag&&W_(r.endTag),s=z_(e,n.content);i&&o&&e.file&&(s.position={start:i.end,end:o.start}),a.content=s}return e.schema=n,a}function H_(e,t,n){if(`sourceCodeLocation`in t&&t.sourceCodeLocation&&e.file){let r=U_(e,n,t.sourceCodeLocation);r&&(e.location=!0,n.position=r)}}function U_(e,t,n){let r=W_(n);if(t.type===`element`){let i=t.children[t.children.length-1];if(r&&!n.endTag&&i&&i.position&&i.position.end&&(r.end=Object.assign({},i.position.end)),e.verbose){let r={},i;if(n.attrs)for(i in n.attrs)I_.call(n.attrs,i)&&(r[$e(e.schema,i).property]=W_(n.attrs[i]));n.startTag;let a=W_(n.startTag),o=n.endTag?W_(n.endTag):void 0,s={opening:a};o&&(s.closing=o),s.properties=r,t.data={position:s}}}return r}function W_(e){let t=G_({line:e.startLine,column:e.startCol,offset:e.startOffset}),n=G_({line:e.endLine,column:e.endCol,offset:e.endOffset});return t||n?{start:t,end:n}:void 0}function G_(e){return e.line&&e.column?e:void 0}var K_={},q_={}.hasOwnProperty,J_=Om(`type`,{handlers:{root:X_,element:tv,text:$_,comment:ev,doctype:Q_}});function Y_(e,t){let n=(t||K_).space;return J_(e,n===`svg`?rt:nt)}function X_(e,t){let n={nodeName:`#document`,mode:(e.data||{}).quirksMode?`quirks`:`no-quirks`,childNodes:[]};return n.childNodes=rv(e.children,n,t),iv(e,n),n}function Z_(e,t){let n={nodeName:`#document-fragment`,childNodes:[]};return n.childNodes=rv(e.children,n,t),iv(e,n),n}function Q_(e){let t={nodeName:`#documentType`,name:`html`,publicId:``,systemId:``,parentNode:null};return iv(e,t),t}function $_(e){let t={nodeName:`#text`,value:e.value,parentNode:null};return iv(e,t),t}function ev(e){let t={nodeName:`#comment`,data:e.value,parentNode:null};return iv(e,t),t}function tv(e,t){let n=t,r=n;e.type===`element`&&e.tagName.toLowerCase()===`svg`&&n.space===`html`&&(r=rt);let i=[],a;if(e.properties){for(a in e.properties)if(a!==`children`&&q_.call(e.properties,a)){let t=nv(r,a,e.properties[a]);t&&i.push(t)}}let o=r.space,s={nodeName:e.tagName,tagName:e.tagName,attrs:i,namespaceURI:qg[o],childNodes:[],parentNode:null};return s.childNodes=rv(e.children,s,r),iv(e,s),e.tagName===`template`&&e.content&&(s.content=Z_(e.content,r)),s}function nv(e,t,n){let r=$e(e,t);if(n===!1||n==null||typeof n==`number`&&Number.isNaN(n)||!n&&r.boolean)return;Array.isArray(n)&&(n=r.commaSeparated?ge(n):at(n));let i={name:r.attribute,value:n===!0?``:String(n)};if(r.space&&r.space!==`html`&&r.space!==`svg`){let e=i.name.indexOf(`:`);e<0?i.prefix=``:(i.name=i.name.slice(e+1),i.prefix=r.attribute.slice(0,e)),i.namespace=qg[r.space]}return i}function rv(e,t,n){let r=-1,i=[];if(e)for(;++r<e.length;){let a=J_(e[r],n);a.parentNode=t,i.push(a)}return i}function iv(e,t){let n=e.position;n&&n.start&&n.end&&(n.start.offset,n.end.offset,t.sourceCodeLocation={startLine:n.start.line,startCol:n.start.column,startOffset:n.start.offset,endLine:n.end.line,endCol:n.end.column,endOffset:n.end.offset})}var av=[`area`,`base`,`basefont`,`bgsound`,`br`,`col`,`command`,`embed`,`frame`,`hr`,`image`,`img`,`input`,`keygen`,`link`,`meta`,`param`,`source`,`track`,`wbr`],ov=new Set([65534,65535,131070,131071,196606,196607,262142,262143,327678,327679,393214,393215,458750,458751,524286,524287,589822,589823,655358,655359,720894,720895,786430,786431,851966,851967,917502,917503,983038,983039,1048574,1048575,1114110,1114111]),K;(function(e){e[e.EOF=-1]=`EOF`,e[e.NULL=0]=`NULL`,e[e.TABULATION=9]=`TABULATION`,e[e.CARRIAGE_RETURN=13]=`CARRIAGE_RETURN`,e[e.LINE_FEED=10]=`LINE_FEED`,e[e.FORM_FEED=12]=`FORM_FEED`,e[e.SPACE=32]=`SPACE`,e[e.EXCLAMATION_MARK=33]=`EXCLAMATION_MARK`,e[e.QUOTATION_MARK=34]=`QUOTATION_MARK`,e[e.AMPERSAND=38]=`AMPERSAND`,e[e.APOSTROPHE=39]=`APOSTROPHE`,e[e.HYPHEN_MINUS=45]=`HYPHEN_MINUS`,e[e.SOLIDUS=47]=`SOLIDUS`,e[e.DIGIT_0=48]=`DIGIT_0`,e[e.DIGIT_9=57]=`DIGIT_9`,e[e.SEMICOLON=59]=`SEMICOLON`,e[e.LESS_THAN_SIGN=60]=`LESS_THAN_SIGN`,e[e.EQUALS_SIGN=61]=`EQUALS_SIGN`,e[e.GREATER_THAN_SIGN=62]=`GREATER_THAN_SIGN`,e[e.QUESTION_MARK=63]=`QUESTION_MARK`,e[e.LATIN_CAPITAL_A=65]=`LATIN_CAPITAL_A`,e[e.LATIN_CAPITAL_Z=90]=`LATIN_CAPITAL_Z`,e[e.RIGHT_SQUARE_BRACKET=93]=`RIGHT_SQUARE_BRACKET`,e[e.GRAVE_ACCENT=96]=`GRAVE_ACCENT`,e[e.LATIN_SMALL_A=97]=`LATIN_SMALL_A`,e[e.LATIN_SMALL_Z=122]=`LATIN_SMALL_Z`})(K||={});var sv={DASH_DASH:`--`,CDATA_START:`[CDATA[`,DOCTYPE:`doctype`,SCRIPT:`script`,PUBLIC:`public`,SYSTEM:`system`};function cv(e){return e>=55296&&e<=57343}function lv(e){return e>=56320&&e<=57343}function uv(e,t){return(e-55296)*1024+9216+t}function dv(e){return e!==32&&e!==10&&e!==13&&e!==9&&e!==12&&e>=1&&e<=31||e>=127&&e<=159}function fv(e){return e>=64976&&e<=65007||ov.has(e)}var q;(function(e){e.controlCharacterInInputStream=`control-character-in-input-stream`,e.noncharacterInInputStream=`noncharacter-in-input-stream`,e.surrogateInInputStream=`surrogate-in-input-stream`,e.nonVoidHtmlElementStartTagWithTrailingSolidus=`non-void-html-element-start-tag-with-trailing-solidus`,e.endTagWithAttributes=`end-tag-with-attributes`,e.endTagWithTrailingSolidus=`end-tag-with-trailing-solidus`,e.unexpectedSolidusInTag=`unexpected-solidus-in-tag`,e.unexpectedNullCharacter=`unexpected-null-character`,e.unexpectedQuestionMarkInsteadOfTagName=`unexpected-question-mark-instead-of-tag-name`,e.invalidFirstCharacterOfTagName=`invalid-first-character-of-tag-name`,e.unexpectedEqualsSignBeforeAttributeName=`unexpected-equals-sign-before-attribute-name`,e.missingEndTagName=`missing-end-tag-name`,e.unexpectedCharacterInAttributeName=`unexpected-character-in-attribute-name`,e.unknownNamedCharacterReference=`unknown-named-character-reference`,e.missingSemicolonAfterCharacterReference=`missing-semicolon-after-character-reference`,e.unexpectedCharacterAfterDoctypeSystemIdentifier=`unexpected-character-after-doctype-system-identifier`,e.unexpectedCharacterInUnquotedAttributeValue=`unexpected-character-in-unquoted-attribute-value`,e.eofBeforeTagName=`eof-before-tag-name`,e.eofInTag=`eof-in-tag`,e.missingAttributeValue=`missing-attribute-value`,e.missingWhitespaceBetweenAttributes=`missing-whitespace-between-attributes`,e.missingWhitespaceAfterDoctypePublicKeyword=`missing-whitespace-after-doctype-public-keyword`,e.missingWhitespaceBetweenDoctypePublicAndSystemIdentifiers=`missing-whitespace-between-doctype-public-and-system-identifiers`,e.missingWhitespaceAfterDoctypeSystemKeyword=`missing-whitespace-after-doctype-system-keyword`,e.missingQuoteBeforeDoctypePublicIdentifier=`missing-quote-before-doctype-public-identifier`,e.missingQuoteBeforeDoctypeSystemIdentifier=`missing-quote-before-doctype-system-identifier`,e.missingDoctypePublicIdentifier=`missing-doctype-public-identifier`,e.missingDoctypeSystemIdentifier=`missing-doctype-system-identifier`,e.abruptDoctypePublicIdentifier=`abrupt-doctype-public-identifier`,e.abruptDoctypeSystemIdentifier=`abrupt-doctype-system-identifier`,e.cdataInHtmlContent=`cdata-in-html-content`,e.incorrectlyOpenedComment=`incorrectly-opened-comment`,e.eofInScriptHtmlCommentLikeText=`eof-in-script-html-comment-like-text`,e.eofInDoctype=`eof-in-doctype`,e.nestedComment=`nested-comment`,e.abruptClosingOfEmptyComment=`abrupt-closing-of-empty-comment`,e.eofInComment=`eof-in-comment`,e.incorrectlyClosedComment=`incorrectly-closed-comment`,e.eofInCdata=`eof-in-cdata`,e.absenceOfDigitsInNumericCharacterReference=`absence-of-digits-in-numeric-character-reference`,e.nullCharacterReference=`null-character-reference`,e.surrogateCharacterReference=`surrogate-character-reference`,e.characterReferenceOutsideUnicodeRange=`character-reference-outside-unicode-range`,e.controlCharacterReference=`control-character-reference`,e.noncharacterCharacterReference=`noncharacter-character-reference`,e.missingWhitespaceBeforeDoctypeName=`missing-whitespace-before-doctype-name`,e.missingDoctypeName=`missing-doctype-name`,e.invalidCharacterSequenceAfterDoctypeName=`invalid-character-sequence-after-doctype-name`,e.duplicateAttribute=`duplicate-attribute`,e.nonConformingDoctype=`non-conforming-doctype`,e.missingDoctype=`missing-doctype`,e.misplacedDoctype=`misplaced-doctype`,e.endTagWithoutMatchingOpenElement=`end-tag-without-matching-open-element`,e.closingOfElementWithOpenChildElements=`closing-of-element-with-open-child-elements`,e.disallowedContentInNoscriptInHead=`disallowed-content-in-noscript-in-head`,e.openElementsLeftAfterEof=`open-elements-left-after-eof`,e.abandonedHeadElementChild=`abandoned-head-element-child`,e.misplacedStartTagForHeadElement=`misplaced-start-tag-for-head-element`,e.nestedNoscriptInHead=`nested-noscript-in-head`,e.eofInElementThatCanContainOnlyText=`eof-in-element-that-can-contain-only-text`})(q||={});var pv=65536,mv=class{constructor(e){this.handler=e,this.html=``,this.pos=-1,this.lastGapPos=-2,this.gapStack=[],this.skipNextNewLine=!1,this.lastChunkWritten=!1,this.endOfChunkHit=!1,this.bufferWaterline=pv,this.isEol=!1,this.lineStartPos=0,this.droppedBufferSize=0,this.line=1,this.lastErrOffset=-1}get col(){return this.pos-this.lineStartPos+Number(this.lastGapPos!==this.pos)}get offset(){return this.droppedBufferSize+this.pos}getError(e,t){let{line:n,col:r,offset:i}=this,a=r+t,o=i+t;return{code:e,startLine:n,endLine:n,startCol:a,endCol:a,startOffset:o,endOffset:o}}_err(e){this.handler.onParseError&&this.lastErrOffset!==this.offset&&(this.lastErrOffset=this.offset,this.handler.onParseError(this.getError(e,0)))}_addGap(){this.gapStack.push(this.lastGapPos),this.lastGapPos=this.pos}_processSurrogate(e){if(this.pos!==this.html.length-1){let t=this.html.charCodeAt(this.pos+1);if(lv(t))return this.pos++,this._addGap(),uv(e,t)}else if(!this.lastChunkWritten)return this.endOfChunkHit=!0,K.EOF;return this._err(q.surrogateInInputStream),e}willDropParsedChunk(){return this.pos>this.bufferWaterline}dropParsedChunk(){this.willDropParsedChunk()&&(this.html=this.html.substring(this.pos),this.lineStartPos-=this.pos,this.droppedBufferSize+=this.pos,this.pos=0,this.lastGapPos=-2,this.gapStack.length=0)}write(e,t){this.html.length>0?this.html+=e:this.html=e,this.endOfChunkHit=!1,this.lastChunkWritten=t}insertHtmlAtCurrentPos(e){this.html=this.html.substring(0,this.pos+1)+e+this.html.substring(this.pos+1),this.endOfChunkHit=!1}startsWith(e,t){if(this.pos+e.length>this.html.length)return this.endOfChunkHit=!this.lastChunkWritten,!1;if(t)return this.html.startsWith(e,this.pos);for(let t=0;t<e.length;t++)if((this.html.charCodeAt(this.pos+t)|32)!==e.charCodeAt(t))return!1;return!0}peek(e){let t=this.pos+e;if(t>=this.html.length)return this.endOfChunkHit=!this.lastChunkWritten,K.EOF;let n=this.html.charCodeAt(t);return n===K.CARRIAGE_RETURN?K.LINE_FEED:n}advance(){if(this.pos++,this.isEol&&(this.isEol=!1,this.line++,this.lineStartPos=this.pos),this.pos>=this.html.length)return this.endOfChunkHit=!this.lastChunkWritten,K.EOF;let e=this.html.charCodeAt(this.pos);return e===K.CARRIAGE_RETURN?(this.isEol=!0,this.skipNextNewLine=!0,K.LINE_FEED):e===K.LINE_FEED&&(this.isEol=!0,this.skipNextNewLine)?(this.line--,this.skipNextNewLine=!1,this._addGap(),this.advance()):(this.skipNextNewLine=!1,cv(e)&&(e=this._processSurrogate(e)),this.handler.onParseError===null||e>31&&e<127||e===K.LINE_FEED||e===K.CARRIAGE_RETURN||e>159&&e<64976||this._checkForProblematicCharacters(e),e)}_checkForProblematicCharacters(e){dv(e)?this._err(q.controlCharacterInInputStream):fv(e)&&this._err(q.noncharacterInInputStream)}retreat(e){for(this.pos-=e;this.pos<this.lastGapPos;)this.lastGapPos=this.gapStack.pop(),this.pos--;this.isEol=!1}},hv;(function(e){e[e.CHARACTER=0]=`CHARACTER`,e[e.NULL_CHARACTER=1]=`NULL_CHARACTER`,e[e.WHITESPACE_CHARACTER=2]=`WHITESPACE_CHARACTER`,e[e.START_TAG=3]=`START_TAG`,e[e.END_TAG=4]=`END_TAG`,e[e.COMMENT=5]=`COMMENT`,e[e.DOCTYPE=6]=`DOCTYPE`,e[e.EOF=7]=`EOF`,e[e.HIBERNATION=8]=`HIBERNATION`})(hv||={});function gv(e,t){for(let n=e.attrs.length-1;n>=0;n--)if(e.attrs[n].name===t)return e.attrs[n].value;return null}var _v=new Uint16Array(`ᵁ<Õıʊҝջאٵ۞ޢߖࠏ੊ઑඡ๭༉༦჊ረዡᐕᒝᓃᓟᔥ\0\0\0\0\0\0ᕫᛍᦍᰒᷝ὾⁠↰⊍⏀⏻⑂⠤⤒ⴈ⹈⿎〖㊺㘹㞬㣾㨨㩱㫠㬮ࠀEMabcfglmnoprstu\\bfms¦³¹ÈÏlig耻Æ䃆P耻&䀦cute耻Á䃁reve;䄂Āiyx}rc耻Â䃂;䐐r;쀀𝔄rave耻À䃀pha;䎑acr;䄀d;橓Āgp¡on;䄄f;쀀𝔸plyFunction;恡ing耻Å䃅Ācs¾Ãr;쀀𝒜ign;扔ilde耻Ã䃃ml耻Ä䃄ЀaceforsuåûþėĜĢħĪĀcrêòkslash;或Ŷöø;櫧ed;挆y;䐑ƀcrtąċĔause;戵noullis;愬a;䎒r;쀀𝔅pf;쀀𝔹eve;䋘còēmpeq;扎܀HOacdefhilorsuōőŖƀƞƢƵƷƺǜȕɳɸɾcy;䐧PY耻©䂩ƀcpyŝŢźute;䄆Ā;iŧŨ拒talDifferentialD;慅leys;愭ȀaeioƉƎƔƘron;䄌dil耻Ç䃇rc;䄈nint;戰ot;䄊ĀdnƧƭilla;䂸terDot;䂷òſi;䎧rcleȀDMPTǇǋǑǖot;抙inus;抖lus;投imes;抗oĀcsǢǸkwiseContourIntegral;戲eCurlyĀDQȃȏoubleQuote;思uote;怙ȀlnpuȞȨɇɕonĀ;eȥȦ户;橴ƀgitȯȶȺruent;扡nt;戯ourIntegral;戮ĀfrɌɎ;愂oduct;成nterClockwiseContourIntegral;戳oss;樯cr;쀀𝒞pĀ;Cʄʅ拓ap;才րDJSZacefiosʠʬʰʴʸˋ˗ˡ˦̳ҍĀ;oŹʥtrahd;椑cy;䐂cy;䐅cy;䐏ƀgrsʿ˄ˇger;怡r;憡hv;櫤Āayː˕ron;䄎;䐔lĀ;t˝˞戇a;䎔r;쀀𝔇Āaf˫̧Ācm˰̢riticalȀADGT̖̜̀̆cute;䂴oŴ̋̍;䋙bleAcute;䋝rave;䁠ilde;䋜ond;拄ferentialD;慆Ѱ̽\0\0\0͔͂\0Ѕf;쀀𝔻ƀ;DE͈͉͍䂨ot;惜qual;扐blèCDLRUVͣͲ΂ϏϢϸontourIntegraìȹoɴ͹\0\0ͻ»͉nArrow;懓Āeo·ΤftƀARTΐΖΡrrow;懐ightArrow;懔eåˊngĀLRΫτeftĀARγιrrow;柸ightArrow;柺ightArrow;柹ightĀATϘϞrrow;懒ee;抨pɁϩ\0\0ϯrrow;懑ownArrow;懕erticalBar;戥ǹABLRTaВЪаўѿͼrrowƀ;BUНОТ憓ar;椓pArrow;懵reve;䌑eft˒к\0ц\0ѐightVector;楐eeVector;楞ectorĀ;Bљњ憽ar;楖ightǔѧ\0ѱeeVector;楟ectorĀ;BѺѻ懁ar;楗eeĀ;A҆҇护rrow;憧ĀctҒҗr;쀀𝒟rok;䄐ࠀNTacdfglmopqstuxҽӀӄӋӞӢӧӮӵԡԯԶՒ՝ՠեG;䅊H耻Ð䃐cute耻É䃉ƀaiyӒӗӜron;䄚rc耻Ê䃊;䐭ot;䄖r;쀀𝔈rave耻È䃈ement;戈ĀapӺӾcr;䄒tyɓԆ\0\0ԒmallSquare;旻erySmallSquare;斫ĀgpԦԪon;䄘f;쀀𝔼silon;䎕uĀaiԼՉlĀ;TՂՃ橵ilde;扂librium;懌Āci՗՚r;愰m;橳a;䎗ml耻Ë䃋Āipժկsts;戃onentialE;慇ʀcfiosօֈ֍ֲ׌y;䐤r;쀀𝔉lledɓ֗\0\0֣mallSquare;旼erySmallSquare;斪Ͱֺ\0ֿ\0\0ׄf;쀀𝔽All;戀riertrf;愱cò׋؀JTabcdfgorstר׬ׯ׺؀ؒؖ؛؝أ٬ٲcy;䐃耻>䀾mmaĀ;d׷׸䎓;䏜reve;䄞ƀeiy؇،ؐdil;䄢rc;䄜;䐓ot;䄠r;쀀𝔊;拙pf;쀀𝔾eater̀EFGLSTصلَٖٛ٦qualĀ;Lؾؿ扥ess;招ullEqual;执reater;檢ess;扷lantEqual;橾ilde;扳cr;쀀𝒢;扫ЀAacfiosuڅڋږڛڞڪھۊRDcy;䐪Āctڐڔek;䋇;䁞irc;䄤r;愌lbertSpace;愋ǰگ\0ڲf;愍izontalLine;攀Āctۃۅòکrok;䄦mpńېۘownHumðįqual;扏܀EJOacdfgmnostuۺ۾܃܇܎ܚܞܡܨ݄ݸދޏޕcy;䐕lig;䄲cy;䐁cute耻Í䃍Āiyܓܘrc耻Î䃎;䐘ot;䄰r;愑rave耻Ì䃌ƀ;apܠܯܿĀcgܴܷr;䄪inaryI;慈lieóϝǴ݉\0ݢĀ;eݍݎ戬Āgrݓݘral;戫section;拂isibleĀCTݬݲomma;恣imes;恢ƀgptݿރވon;䄮f;쀀𝕀a;䎙cr;愐ilde;䄨ǫޚ\0ޞcy;䐆l耻Ï䃏ʀcfosuެ޷޼߂ߐĀiyޱ޵rc;䄴;䐙r;쀀𝔍pf;쀀𝕁ǣ߇\0ߌr;쀀𝒥rcy;䐈kcy;䐄΀HJacfosߤߨ߽߬߱ࠂࠈcy;䐥cy;䐌ppa;䎚Āey߶߻dil;䄶;䐚r;쀀𝔎pf;쀀𝕂cr;쀀𝒦րJTaceflmostࠥࠩࠬࡐࡣ঳সে্਷ੇcy;䐉耻<䀼ʀcmnpr࠷࠼ࡁࡄࡍute;䄹bda;䎛g;柪lacetrf;愒r;憞ƀaeyࡗ࡜ࡡron;䄽dil;䄻;䐛Āfsࡨ॰tԀACDFRTUVarࡾࢩࢱࣦ࣠ࣼयज़ΐ४Ānrࢃ࢏gleBracket;柨rowƀ;BR࢙࢚࢞憐ar;懤ightArrow;懆eiling;挈oǵࢷ\0ࣃbleBracket;柦nǔࣈ\0࣒eeVector;楡ectorĀ;Bࣛࣜ懃ar;楙loor;挊ightĀAV࣯ࣵrrow;憔ector;楎Āerँगeƀ;AVउऊऐ抣rrow;憤ector;楚iangleƀ;BEतथऩ抲ar;槏qual;抴pƀDTVषूौownVector;楑eeVector;楠ectorĀ;Bॖॗ憿ar;楘ectorĀ;B॥०憼ar;楒ightáΜs̀EFGLSTॾঋকঝঢভqualGreater;拚ullEqual;扦reater;扶ess;檡lantEqual;橽ilde;扲r;쀀𝔏Ā;eঽা拘ftarrow;懚idot;䄿ƀnpw৔ਖਛgȀLRlr৞৷ਂਐeftĀAR০৬rrow;柵ightArrow;柷ightArrow;柶eftĀarγਊightáοightáϊf;쀀𝕃erĀLRਢਬeftArrow;憙ightArrow;憘ƀchtਾੀੂòࡌ;憰rok;䅁;扪Ѐacefiosuਗ਼੝੠੷੼અઋ઎p;椅y;䐜Ādl੥੯iumSpace;恟lintrf;愳r;쀀𝔐nusPlus;戓pf;쀀𝕄cò੶;䎜ҀJacefostuણધભીଔଙඑ඗ඞcy;䐊cute;䅃ƀaey઴હાron;䅇dil;䅅;䐝ƀgswે૰଎ativeƀMTV૓૟૨ediumSpace;怋hiĀcn૦૘ë૙eryThiî૙tedĀGL૸ଆreaterGreateòٳessLesóੈLine;䀊r;쀀𝔑ȀBnptଢନଷ଺reak;恠BreakingSpace;䂠f;愕ڀ;CDEGHLNPRSTV୕ୖ୪୼஡௫ఄ౞಄ದ೘ൡඅ櫬Āou୛୤ngruent;扢pCap;扭oubleVerticalBar;戦ƀlqxஃஊ஛ement;戉ualĀ;Tஒஓ扠ilde;쀀≂̸ists;戄reater΀;EFGLSTஶஷ஽௉௓௘௥扯qual;扱ullEqual;쀀≧̸reater;쀀≫̸ess;批lantEqual;쀀⩾̸ilde;扵umpń௲௽ownHump;쀀≎̸qual;쀀≏̸eĀfsఊధtTriangleƀ;BEచఛడ拪ar;쀀⧏̸qual;括s̀;EGLSTవశ఼ౄోౘ扮qual;扰reater;扸ess;쀀≪̸lantEqual;쀀⩽̸ilde;扴estedĀGL౨౹reaterGreater;쀀⪢̸essLess;쀀⪡̸recedesƀ;ESಒಓಛ技qual;쀀⪯̸lantEqual;拠ĀeiಫಹverseElement;戌ghtTriangleƀ;BEೋೌ೒拫ar;쀀⧐̸qual;拭ĀquೝഌuareSuĀbp೨೹setĀ;E೰ೳ쀀⊏̸qual;拢ersetĀ;Eഃആ쀀⊐̸qual;拣ƀbcpഓതൎsetĀ;Eഛഞ쀀⊂⃒qual;抈ceedsȀ;ESTലള഻െ抁qual;쀀⪰̸lantEqual;拡ilde;쀀≿̸ersetĀ;E൘൛쀀⊃⃒qual;抉ildeȀ;EFT൮൯൵ൿ扁qual;扄ullEqual;扇ilde;扉erticalBar;戤cr;쀀𝒩ilde耻Ñ䃑;䎝܀Eacdfgmoprstuvලෂ෉෕ෛ෠෧෼ขภยา฿ไlig;䅒cute耻Ó䃓Āiy෎ීrc耻Ô䃔;䐞blac;䅐r;쀀𝔒rave耻Ò䃒ƀaei෮ෲ෶cr;䅌ga;䎩cron;䎟pf;쀀𝕆enCurlyĀDQฎบoubleQuote;怜uote;怘;橔Āclวฬr;쀀𝒪ash耻Ø䃘iŬื฼de耻Õ䃕es;樷ml耻Ö䃖erĀBP๋๠Āar๐๓r;怾acĀek๚๜;揞et;掴arenthesis;揜Ҁacfhilors๿ງຊຏຒດຝະ໼rtialD;戂y;䐟r;쀀𝔓i;䎦;䎠usMinus;䂱Āipຢອncareplanåڝf;愙Ȁ;eio຺ູ໠໤檻cedesȀ;EST່້໏໚扺qual;檯lantEqual;扼ilde;找me;怳Ādp໩໮uct;戏ortionĀ;aȥ໹l;戝Āci༁༆r;쀀𝒫;䎨ȀUfos༑༖༛༟OT耻"䀢r;쀀𝔔pf;愚cr;쀀𝒬؀BEacefhiorsu༾གྷཇའཱིྦྷྪྭ႖ႩႴႾarr;椐G耻®䂮ƀcnrཎནབute;䅔g;柫rĀ;tཛྷཝ憠l;椖ƀaeyཧཬཱron;䅘dil;䅖;䐠Ā;vླྀཹ愜erseĀEUྂྙĀlq྇ྎement;戋uilibrium;懋pEquilibrium;楯r»ཹo;䎡ghtЀACDFTUVa࿁࿫࿳ဢဨၛႇϘĀnr࿆࿒gleBracket;柩rowƀ;BL࿜࿝࿡憒ar;懥eftArrow;懄eiling;按oǵ࿹\0စbleBracket;柧nǔည\0နeeVector;楝ectorĀ;Bဝသ懂ar;楕loor;挋Āerိ၃eƀ;AVဵံြ抢rrow;憦ector;楛iangleƀ;BEၐၑၕ抳ar;槐qual;抵pƀDTVၣၮၸownVector;楏eeVector;楜ectorĀ;Bႂႃ憾ar;楔ectorĀ;B႑႒懀ar;楓Āpuႛ႞f;愝ndImplies;楰ightarrow;懛ĀchႹႼr;愛;憱leDelayed;槴ڀHOacfhimoqstuფჱჷჽᄙᄞᅑᅖᅡᅧᆵᆻᆿĀCcჩხHcy;䐩y;䐨FTcy;䐬cute;䅚ʀ;aeiyᄈᄉᄎᄓᄗ檼ron;䅠dil;䅞rc;䅜;䐡r;쀀𝔖ortȀDLRUᄪᄴᄾᅉownArrow»ОeftArrow»࢚ightArrow»࿝pArrow;憑gma;䎣allCircle;战pf;쀀𝕊ɲᅭ\0\0ᅰt;戚areȀ;ISUᅻᅼᆉᆯ斡ntersection;抓uĀbpᆏᆞsetĀ;Eᆗᆘ抏qual;抑ersetĀ;Eᆨᆩ抐qual;抒nion;抔cr;쀀𝒮ar;拆ȀbcmpᇈᇛሉላĀ;sᇍᇎ拐etĀ;Eᇍᇕqual;抆ĀchᇠህeedsȀ;ESTᇭᇮᇴᇿ扻qual;檰lantEqual;扽ilde;承Tháྌ;我ƀ;esሒሓሣ拑rsetĀ;Eሜም抃qual;抇et»ሓրHRSacfhiorsሾቄ቉ቕ቞ቱቶኟዂወዑORN耻Þ䃞ADE;愢ĀHc቎ቒcy;䐋y;䐦Ābuቚቜ;䀉;䎤ƀaeyብቪቯron;䅤dil;䅢;䐢r;쀀𝔗Āeiቻ኉ǲኀ\0ኇefore;戴a;䎘Ācn኎ኘkSpace;쀀  Space;怉ldeȀ;EFTካኬኲኼ戼qual;扃ullEqual;扅ilde;扈pf;쀀𝕋ipleDot;惛Āctዖዛr;쀀𝒯rok;䅦ૡዷጎጚጦ\0ጬጱ\0\0\0\0\0ጸጽ፷ᎅ\0᏿ᐄᐊᐐĀcrዻጁute耻Ú䃚rĀ;oጇገ憟cir;楉rǣጓ\0጖y;䐎ve;䅬Āiyጞጣrc耻Û䃛;䐣blac;䅰r;쀀𝔘rave耻Ù䃙acr;䅪Ādiፁ፩erĀBPፈ፝Āarፍፐr;䁟acĀekፗፙ;揟et;掵arenthesis;揝onĀ;P፰፱拃lus;抎Āgp፻፿on;䅲f;쀀𝕌ЀADETadps᎕ᎮᎸᏄϨᏒᏗᏳrrowƀ;BDᅐᎠᎤar;椒ownArrow;懅ownArrow;憕quilibrium;楮eeĀ;AᏋᏌ报rrow;憥ownáϳerĀLRᏞᏨeftArrow;憖ightArrow;憗iĀ;lᏹᏺ䏒on;䎥ing;䅮cr;쀀𝒰ilde;䅨ml耻Ü䃜ҀDbcdefosvᐧᐬᐰᐳᐾᒅᒊᒐᒖash;披ar;櫫y;䐒ashĀ;lᐻᐼ抩;櫦Āerᑃᑅ;拁ƀbtyᑌᑐᑺar;怖Ā;iᑏᑕcalȀBLSTᑡᑥᑪᑴar;戣ine;䁼eparator;杘ilde;所ThinSpace;怊r;쀀𝔙pf;쀀𝕍cr;쀀𝒱dash;抪ʀcefosᒧᒬᒱᒶᒼirc;䅴dge;拀r;쀀𝔚pf;쀀𝕎cr;쀀𝒲Ȁfiosᓋᓐᓒᓘr;쀀𝔛;䎞pf;쀀𝕏cr;쀀𝒳ҀAIUacfosuᓱᓵᓹᓽᔄᔏᔔᔚᔠcy;䐯cy;䐇cy;䐮cute耻Ý䃝Āiyᔉᔍrc;䅶;䐫r;쀀𝔜pf;쀀𝕐cr;쀀𝒴ml;䅸ЀHacdefosᔵᔹᔿᕋᕏᕝᕠᕤcy;䐖cute;䅹Āayᕄᕉron;䅽;䐗ot;䅻ǲᕔ\0ᕛoWidtè૙a;䎖r;愨pf;愤cr;쀀𝒵௡ᖃᖊᖐ\0ᖰᖶᖿ\0\0\0\0ᗆᗛᗫᙟ᙭\0ᚕ᚛ᚲᚹ\0ᚾcute耻á䃡reve;䄃̀;Ediuyᖜᖝᖡᖣᖨᖭ戾;쀀∾̳;房rc耻â䃢te肻´̆;䐰lig耻æ䃦Ā;r²ᖺ;쀀𝔞rave耻à䃠ĀepᗊᗖĀfpᗏᗔsym;愵èᗓha;䎱ĀapᗟcĀclᗤᗧr;䄁g;樿ɤᗰ\0\0ᘊʀ;adsvᗺᗻᗿᘁᘇ戧nd;橕;橜lope;橘;橚΀;elmrszᘘᘙᘛᘞᘿᙏᙙ戠;榤e»ᘙsdĀ;aᘥᘦ戡ѡᘰᘲᘴᘶᘸᘺᘼᘾ;榨;榩;榪;榫;榬;榭;榮;榯tĀ;vᙅᙆ戟bĀ;dᙌᙍ抾;榝Āptᙔᙗh;戢»¹arr;捼Āgpᙣᙧon;䄅f;쀀𝕒΀;Eaeiop዁ᙻᙽᚂᚄᚇᚊ;橰cir;橯;扊d;手s;䀧roxĀ;e዁ᚒñᚃing耻å䃥ƀctyᚡᚦᚨr;쀀𝒶;䀪mpĀ;e዁ᚯñʈilde耻ã䃣ml耻ä䃤Āciᛂᛈoninôɲnt;樑ࠀNabcdefiklnoprsu᛭ᛱᜰ᜼ᝃᝈ᝸᝽០៦ᠹᡐᜍ᤽᥈ᥰot;櫭Ācrᛶ᜞kȀcepsᜀᜅᜍᜓong;扌psilon;䏶rime;怵imĀ;e᜚᜛戽q;拍Ŷᜢᜦee;抽edĀ;gᜬᜭ挅e»ᜭrkĀ;t፜᜷brk;掶Āoyᜁᝁ;䐱quo;怞ʀcmprtᝓ᝛ᝡᝤᝨausĀ;eĊĉptyv;榰séᜌnoõēƀahwᝯ᝱ᝳ;䎲;愶een;扬r;쀀𝔟g΀costuvwឍឝឳេ៕៛៞ƀaiuបពរðݠrc;旯p»፱ƀdptឤឨឭot;樀lus;樁imes;樂ɱឹ\0\0ើcup;樆ar;昅riangleĀdu៍្own;施p;斳plus;樄eåᑄåᒭarow;植ƀako៭ᠦᠵĀcn៲ᠣkƀlst៺֫᠂ozenge;槫riangleȀ;dlr᠒᠓᠘᠝斴own;斾eft;旂ight;斸k;搣Ʊᠫ\0ᠳƲᠯ\0ᠱ;斒;斑4;斓ck;斈ĀeoᠾᡍĀ;qᡃᡆ쀀=⃥uiv;쀀≡⃥t;挐Ȁptwxᡙᡞᡧᡬf;쀀𝕓Ā;tᏋᡣom»Ꮜtie;拈؀DHUVbdhmptuvᢅᢖᢪᢻᣗᣛᣬ᣿ᤅᤊᤐᤡȀLRlrᢎᢐᢒᢔ;敗;敔;敖;敓ʀ;DUduᢡᢢᢤᢦᢨ敐;敦;敩;敤;敧ȀLRlrᢳᢵᢷᢹ;敝;敚;敜;教΀;HLRhlrᣊᣋᣍᣏᣑᣓᣕ救;敬;散;敠;敫;敢;敟ox;槉ȀLRlrᣤᣦᣨᣪ;敕;敒;攐;攌ʀ;DUduڽ᣷᣹᣻᣽;敥;敨;攬;攴inus;抟lus;択imes;抠ȀLRlrᤙᤛᤝ᤟;敛;敘;攘;攔΀;HLRhlrᤰᤱᤳᤵᤷ᤻᤹攂;敪;敡;敞;攼;攤;攜Āevģ᥂bar耻¦䂦Ȁceioᥑᥖᥚᥠr;쀀𝒷mi;恏mĀ;e᜚᜜lƀ;bhᥨᥩᥫ䁜;槅sub;柈Ŭᥴ᥾lĀ;e᥹᥺怢t»᥺pƀ;Eeįᦅᦇ;檮Ā;qۜۛೡᦧ\0᧨ᨑᨕᨲ\0ᨷᩐ\0\0᪴\0\0᫁\0\0ᬡᬮ᭍᭒\0᯽\0ᰌƀcpr᦭ᦲ᧝ute;䄇̀;abcdsᦿᧀᧄ᧊᧕᧙戩nd;橄rcup;橉Āau᧏᧒p;橋p;橇ot;橀;쀀∩︀Āeo᧢᧥t;恁îړȀaeiu᧰᧻ᨁᨅǰ᧵\0᧸s;橍on;䄍dil耻ç䃧rc;䄉psĀ;sᨌᨍ橌m;橐ot;䄋ƀdmnᨛᨠᨦil肻¸ƭptyv;榲t脀¢;eᨭᨮ䂢räƲr;쀀𝔠ƀceiᨽᩀᩍy;䑇ckĀ;mᩇᩈ朓ark»ᩈ;䏇r΀;Ecefms᩟᩠ᩢᩫ᪤᪪᪮旋;槃ƀ;elᩩᩪᩭ䋆q;扗eɡᩴ\0\0᪈rrowĀlr᩼᪁eft;憺ight;憻ʀRSacd᪒᪔᪖᪚᪟»ཇ;擈st;抛irc;抚ash;抝nint;樐id;櫯cir;槂ubsĀ;u᪻᪼晣it»᪼ˬ᫇᫔᫺\0ᬊonĀ;eᫍᫎ䀺Ā;qÇÆɭ᫙\0\0᫢aĀ;t᫞᫟䀬;䁀ƀ;fl᫨᫩᫫戁îᅠeĀmx᫱᫶ent»᫩eóɍǧ᫾\0ᬇĀ;dኻᬂot;橭nôɆƀfryᬐᬔᬗ;쀀𝕔oäɔ脀©;sŕᬝr;愗Āaoᬥᬩrr;憵ss;朗Ācuᬲᬷr;쀀𝒸Ābpᬼ᭄Ā;eᭁᭂ櫏;櫑Ā;eᭉᭊ櫐;櫒dot;拯΀delprvw᭠᭬᭷ᮂᮬᯔ᯹arrĀlr᭨᭪;椸;椵ɰ᭲\0\0᭵r;拞c;拟arrĀ;p᭿ᮀ憶;椽̀;bcdosᮏᮐᮖᮡᮥᮨ截rcap;橈Āauᮛᮞp;橆p;橊ot;抍r;橅;쀀∪︀Ȁalrv᮵ᮿᯞᯣrrĀ;mᮼᮽ憷;椼yƀevwᯇᯔᯘqɰᯎ\0\0ᯒreã᭳uã᭵ee;拎edge;拏en耻¤䂤earrowĀlrᯮ᯳eft»ᮀight»ᮽeäᯝĀciᰁᰇoninôǷnt;戱lcty;挭ঀAHabcdefhijlorstuwz᰸᰻᰿ᱝᱩᱵᲊᲞᲬᲷ᳻᳿ᴍᵻᶑᶫᶻ᷆᷍rò΁ar;楥Ȁglrs᱈ᱍ᱒᱔ger;怠eth;愸òᄳhĀ;vᱚᱛ怐»ऊūᱡᱧarow;椏aã̕Āayᱮᱳron;䄏;䐴ƀ;ao̲ᱼᲄĀgrʿᲁr;懊tseq;橷ƀglmᲑᲔᲘ耻°䂰ta;䎴ptyv;榱ĀirᲣᲨsht;楿;쀀𝔡arĀlrᲳᲵ»ࣜ»သʀaegsv᳂͸᳖᳜᳠mƀ;oș᳊᳔ndĀ;ș᳑uit;晦amma;䏝in;拲ƀ;io᳧᳨᳸䃷de脀÷;o᳧ᳰntimes;拇nø᳷cy;䑒cɯᴆ\0\0ᴊrn;挞op;挍ʀlptuwᴘᴝᴢᵉᵕlar;䀤f;쀀𝕕ʀ;emps̋ᴭᴷᴽᵂqĀ;d͒ᴳot;扑inus;戸lus;戔quare;抡blebarwedgåúnƀadhᄮᵝᵧownarrowóᲃarpoonĀlrᵲᵶefôᲴighôᲶŢᵿᶅkaro÷གɯᶊ\0\0ᶎrn;挟op;挌ƀcotᶘᶣᶦĀryᶝᶡ;쀀𝒹;䑕l;槶rok;䄑Ādrᶰᶴot;拱iĀ;fᶺ᠖斿Āah᷀᷃ròЩaòྦangle;榦Āci᷒ᷕy;䑟grarr;柿ऀDacdefglmnopqrstuxḁḉḙḸոḼṉṡṾấắẽỡἪἷὄ὎὚ĀDoḆᴴoôᲉĀcsḎḔute耻é䃩ter;橮ȀaioyḢḧḱḶron;䄛rĀ;cḭḮ扖耻ê䃪lon;払;䑍ot;䄗ĀDrṁṅot;扒;쀀𝔢ƀ;rsṐṑṗ檚ave耻è䃨Ā;dṜṝ檖ot;檘Ȁ;ilsṪṫṲṴ檙nters;揧;愓Ā;dṹṺ檕ot;檗ƀapsẅẉẗcr;䄓tyƀ;svẒẓẕ戅et»ẓpĀ1;ẝẤĳạả;怄;怅怃ĀgsẪẬ;䅋p;怂ĀgpẴẸon;䄙f;쀀𝕖ƀalsỄỎỒrĀ;sỊị拕l;槣us;橱iƀ;lvỚớở䎵on»ớ;䏵ȀcsuvỪỳἋἣĀioữḱrc»Ḯɩỹ\0\0ỻíՈantĀglἂἆtr»ṝess»Ṻƀaeiἒ἖Ἒls;䀽st;扟vĀ;DȵἠD;橸parsl;槥ĀDaἯἳot;打rr;楱ƀcdiἾὁỸr;愯oô͒ĀahὉὋ;䎷耻ð䃰Āmrὓὗl耻ë䃫o;悬ƀcipὡὤὧl;䀡sôծĀeoὬὴctatioîՙnentialåչৡᾒ\0ᾞ\0ᾡᾧ\0\0ῆῌ\0ΐ\0ῦῪ \0 ⁚llingdotseñṄy;䑄male;晀ƀilrᾭᾳ῁lig;耀ﬃɩᾹ\0\0᾽g;耀ﬀig;耀ﬄ;쀀𝔣lig;耀ﬁlig;쀀fjƀaltῙ῜ῡt;晭ig;耀ﬂns;斱of;䆒ǰ΅\0ῳf;쀀𝕗ĀakֿῷĀ;vῼ´拔;櫙artint;樍Āao‌⁕Ācs‑⁒α‚‰‸⁅⁈\0⁐β•‥‧‪‬\0‮耻½䂽;慓耻¼䂼;慕;慙;慛Ƴ‴\0‶;慔;慖ʴ‾⁁\0\0⁃耻¾䂾;慗;慜5;慘ƶ⁌\0⁎;慚;慝8;慞l;恄wn;挢cr;쀀𝒻ࢀEabcdefgijlnorstv₂₉₟₥₰₴⃰⃵⃺⃿℃ℒℸ̗ℾ⅒↞Ā;lٍ₇;檌ƀcmpₐₕ₝ute;䇵maĀ;dₜ᳚䎳;檆reve;䄟Āiy₪₮rc;䄝;䐳ot;䄡Ȁ;lqsؾق₽⃉ƀ;qsؾٌ⃄lanô٥Ȁ;cdl٥⃒⃥⃕c;檩otĀ;o⃜⃝檀Ā;l⃢⃣檂;檄Ā;e⃪⃭쀀⋛︀s;檔r;쀀𝔤Ā;gٳ؛mel;愷cy;䑓Ȁ;Eajٚℌℎℐ;檒;檥;檤ȀEaesℛℝ℩ℴ;扩pĀ;p℣ℤ檊rox»ℤĀ;q℮ℯ檈Ā;q℮ℛim;拧pf;쀀𝕘Āci⅃ⅆr;愊mƀ;el٫ⅎ⅐;檎;檐茀>;cdlqr׮ⅠⅪⅮⅳⅹĀciⅥⅧ;檧r;橺ot;拗Par;榕uest;橼ʀadelsↄⅪ←ٖ↛ǰ↉\0↎proø₞r;楸qĀlqؿ↖lesó₈ií٫Āen↣↭rtneqq;쀀≩︀Å↪ԀAabcefkosy⇄⇇⇱⇵⇺∘∝∯≨≽ròΠȀilmr⇐⇔⇗⇛rsðᒄf»․ilôکĀdr⇠⇤cy;䑊ƀ;cwࣴ⇫⇯ir;楈;憭ar;意irc;䄥ƀalr∁∎∓rtsĀ;u∉∊晥it»∊lip;怦con;抹r;쀀𝔥sĀew∣∩arow;椥arow;椦ʀamopr∺∾≃≞≣rr;懿tht;戻kĀlr≉≓eftarrow;憩ightarrow;憪f;쀀𝕙bar;怕ƀclt≯≴≸r;쀀𝒽asè⇴rok;䄧Ābp⊂⊇ull;恃hen»ᱛૡ⊣\0⊪\0⊸⋅⋎\0⋕⋳\0\0⋸⌢⍧⍢⍿\0⎆⎪⎴cute耻í䃭ƀ;iyݱ⊰⊵rc耻î䃮;䐸Ācx⊼⊿y;䐵cl耻¡䂡ĀfrΟ⋉;쀀𝔦rave耻ì䃬Ȁ;inoܾ⋝⋩⋮Āin⋢⋦nt;樌t;戭fin;槜ta;愩lig;䄳ƀaop⋾⌚⌝ƀcgt⌅⌈⌗r;䄫ƀelpܟ⌏⌓inåގarôܠh;䄱f;抷ed;䆵ʀ;cfotӴ⌬⌱⌽⍁are;愅inĀ;t⌸⌹戞ie;槝doô⌙ʀ;celpݗ⍌⍐⍛⍡al;抺Āgr⍕⍙eróᕣã⍍arhk;樗rod;樼Ȁcgpt⍯⍲⍶⍻y;䑑on;䄯f;쀀𝕚a;䎹uest耻¿䂿Āci⎊⎏r;쀀𝒾nʀ;EdsvӴ⎛⎝⎡ӳ;拹ot;拵Ā;v⎦⎧拴;拳Ā;iݷ⎮lde;䄩ǫ⎸\0⎼cy;䑖l耻ï䃯̀cfmosu⏌⏗⏜⏡⏧⏵Āiy⏑⏕rc;䄵;䐹r;쀀𝔧ath;䈷pf;쀀𝕛ǣ⏬\0⏱r;쀀𝒿rcy;䑘kcy;䑔Ѐacfghjos␋␖␢␧␭␱␵␻ppaĀ;v␓␔䎺;䏰Āey␛␠dil;䄷;䐺r;쀀𝔨reen;䄸cy;䑅cy;䑜pf;쀀𝕜cr;쀀𝓀஀ABEHabcdefghjlmnoprstuv⑰⒁⒆⒍⒑┎┽╚▀♎♞♥♹♽⚚⚲⛘❝❨➋⟀⠁⠒ƀart⑷⑺⑼rò৆òΕail;椛arr;椎Ā;gঔ⒋;檋ar;楢ॣ⒥\0⒪\0⒱\0\0\0\0\0⒵Ⓔ\0ⓆⓈⓍ\0⓹ute;䄺mptyv;榴raîࡌbda;䎻gƀ;dlࢎⓁⓃ;榑åࢎ;檅uo耻«䂫rЀ;bfhlpst࢙ⓞⓦⓩ⓫⓮⓱⓵Ā;f࢝ⓣs;椟s;椝ë≒p;憫l;椹im;楳l;憢ƀ;ae⓿─┄檫il;椙Ā;s┉┊檭;쀀⪭︀ƀabr┕┙┝rr;椌rk;杲Āak┢┬cĀek┨┪;䁻;䁛Āes┱┳;榋lĀdu┹┻;榏;榍Ȁaeuy╆╋╖╘ron;䄾Ādi═╔il;䄼ìࢰâ┩;䐻Ȁcqrs╣╦╭╽a;椶uoĀ;rนᝆĀdu╲╷har;楧shar;楋h;憲ʀ;fgqs▋▌উ◳◿扤tʀahlrt▘▤▷◂◨rrowĀ;t࢙□aé⓶arpoonĀdu▯▴own»њp»०eftarrows;懇ightƀahs◍◖◞rrowĀ;sࣴࢧarpoonó྘quigarro÷⇰hreetimes;拋ƀ;qs▋ও◺lanôবʀ;cdgsব☊☍☝☨c;檨otĀ;o☔☕橿Ā;r☚☛檁;檃Ā;e☢☥쀀⋚︀s;檓ʀadegs☳☹☽♉♋pproøⓆot;拖qĀgq♃♅ôউgtò⒌ôছiíলƀilr♕࣡♚sht;楼;쀀𝔩Ā;Eজ♣;檑š♩♶rĀdu▲♮Ā;l॥♳;楪lk;斄cy;䑙ʀ;achtੈ⚈⚋⚑⚖rò◁orneòᴈard;楫ri;旺Āio⚟⚤dot;䅀ustĀ;a⚬⚭掰che»⚭ȀEaes⚻⚽⛉⛔;扨pĀ;p⛃⛄檉rox»⛄Ā;q⛎⛏檇Ā;q⛎⚻im;拦Ѐabnoptwz⛩⛴⛷✚✯❁❇❐Ānr⛮⛱g;柬r;懽rëࣁgƀlmr⛿✍✔eftĀar০✇ightá৲apsto;柼ightá৽parrowĀlr✥✩efô⓭ight;憬ƀafl✶✹✽r;榅;쀀𝕝us;樭imes;樴š❋❏st;戗áፎƀ;ef❗❘᠀旊nge»❘arĀ;l❤❥䀨t;榓ʀachmt❳❶❼➅➇ròࢨorneòᶌarĀ;d྘➃;業;怎ri;抿̀achiqt➘➝ੀ➢➮➻quo;怹r;쀀𝓁mƀ;egল➪➬;檍;檏Ābu┪➳oĀ;rฟ➹;怚rok;䅂萀<;cdhilqrࠫ⟒☹⟜⟠⟥⟪⟰Āci⟗⟙;檦r;橹reå◲mes;拉arr;楶uest;橻ĀPi⟵⟹ar;榖ƀ;ef⠀भ᠛旃rĀdu⠇⠍shar;楊har;楦Āen⠗⠡rtneqq;쀀≨︀Å⠞܀Dacdefhilnopsu⡀⡅⢂⢎⢓⢠⢥⢨⣚⣢⣤ઃ⣳⤂Dot;戺Ȁclpr⡎⡒⡣⡽r耻¯䂯Āet⡗⡙;時Ā;e⡞⡟朠se»⡟Ā;sျ⡨toȀ;dluျ⡳⡷⡻owîҌefôएðᏑker;斮Āoy⢇⢌mma;権;䐼ash;怔asuredangle»ᘦr;쀀𝔪o;愧ƀcdn⢯⢴⣉ro耻µ䂵Ȁ;acdᑤ⢽⣀⣄sôᚧir;櫰ot肻·Ƶusƀ;bd⣒ᤃ⣓戒Ā;uᴼ⣘;横ţ⣞⣡p;櫛ò−ðઁĀdp⣩⣮els;抧f;쀀𝕞Āct⣸⣽r;쀀𝓂pos»ᖝƀ;lm⤉⤊⤍䎼timap;抸ఀGLRVabcdefghijlmoprstuvw⥂⥓⥾⦉⦘⧚⧩⨕⨚⩘⩝⪃⪕⪤⪨⬄⬇⭄⭿⮮ⰴⱧⱼ⳩Āgt⥇⥋;쀀⋙̸Ā;v⥐௏쀀≫⃒ƀelt⥚⥲⥶ftĀar⥡⥧rrow;懍ightarrow;懎;쀀⋘̸Ā;v⥻ే쀀≪⃒ightarrow;懏ĀDd⦎⦓ash;抯ash;抮ʀbcnpt⦣⦧⦬⦱⧌la»˞ute;䅄g;쀀∠⃒ʀ;Eiop඄⦼⧀⧅⧈;쀀⩰̸d;쀀≋̸s;䅉roø඄urĀ;a⧓⧔普lĀ;s⧓ସǳ⧟\0⧣p肻\xA0ଷmpĀ;e௹ఀʀaeouy⧴⧾⨃⨐⨓ǰ⧹\0⧻;橃on;䅈dil;䅆ngĀ;dൾ⨊ot;쀀⩭̸p;橂;䐽ash;怓΀;Aadqsxஒ⨩⨭⨻⩁⩅⩐rr;懗rĀhr⨳⨶k;椤Ā;oᏲᏰot;쀀≐̸uiöୣĀei⩊⩎ar;椨í஘istĀ;s஠டr;쀀𝔫ȀEest௅⩦⩹⩼ƀ;qs஼⩭௡ƀ;qs஼௅⩴lanô௢ií௪Ā;rஶ⪁»ஷƀAap⪊⪍⪑rò⥱rr;憮ar;櫲ƀ;svྍ⪜ྌĀ;d⪡⪢拼;拺cy;䑚΀AEadest⪷⪺⪾⫂⫅⫶⫹rò⥦;쀀≦̸rr;憚r;急Ȁ;fqs఻⫎⫣⫯tĀar⫔⫙rro÷⫁ightarro÷⪐ƀ;qs఻⪺⫪lanôౕĀ;sౕ⫴»శiíౝĀ;rవ⫾iĀ;eచథiäඐĀpt⬌⬑f;쀀𝕟膀¬;in⬙⬚⬶䂬nȀ;Edvஉ⬤⬨⬮;쀀⋹̸ot;쀀⋵̸ǡஉ⬳⬵;拷;拶iĀ;vಸ⬼ǡಸ⭁⭃;拾;拽ƀaor⭋⭣⭩rȀ;ast୻⭕⭚⭟lleì୻l;쀀⫽⃥;쀀∂̸lint;樔ƀ;ceಒ⭰⭳uåಥĀ;cಘ⭸Ā;eಒ⭽ñಘȀAait⮈⮋⮝⮧rò⦈rrƀ;cw⮔⮕⮙憛;쀀⤳̸;쀀↝̸ghtarrow»⮕riĀ;eೋೖ΀chimpqu⮽⯍⯙⬄୸⯤⯯Ȁ;cerല⯆ഷ⯉uå൅;쀀𝓃ortɭ⬅\0\0⯖ará⭖mĀ;e൮⯟Ā;q൴൳suĀbp⯫⯭å೸åഋƀbcp⯶ⰑⰙȀ;Ees⯿ⰀഢⰄ抄;쀀⫅̸etĀ;eഛⰋqĀ;qണⰀcĀ;eലⰗñസȀ;EesⰢⰣൟⰧ抅;쀀⫆̸etĀ;e൘ⰮqĀ;qൠⰣȀgilrⰽⰿⱅⱇìௗlde耻ñ䃱çృiangleĀlrⱒⱜeftĀ;eచⱚñదightĀ;eೋⱥñ೗Ā;mⱬⱭ䎽ƀ;esⱴⱵⱹ䀣ro;愖p;怇ҀDHadgilrsⲏⲔⲙⲞⲣⲰⲶⳓⳣash;抭arr;椄p;쀀≍⃒ash;抬ĀetⲨⲬ;쀀≥⃒;쀀>⃒nfin;槞ƀAetⲽⳁⳅrr;椂;쀀≤⃒Ā;rⳊⳍ쀀<⃒ie;쀀⊴⃒ĀAtⳘⳜrr;椃rie;쀀⊵⃒im;쀀∼⃒ƀAan⳰⳴ⴂrr;懖rĀhr⳺⳽k;椣Ā;oᏧᏥear;椧ቓ᪕\0\0\0\0\0\0\0\0\0\0\0\0\0ⴭ\0ⴸⵈⵠⵥ⵲ⶄᬇ\0\0ⶍⶫ\0ⷈⷎ\0ⷜ⸙⸫⸾⹃Ācsⴱ᪗ute耻ó䃳ĀiyⴼⵅrĀ;c᪞ⵂ耻ô䃴;䐾ʀabios᪠ⵒⵗǈⵚlac;䅑v;樸old;榼lig;䅓Ācr⵩⵭ir;榿;쀀𝔬ͯ⵹\0\0⵼\0ⶂn;䋛ave耻ò䃲;槁Ābmⶈ෴ar;榵Ȁacitⶕ⶘ⶥⶨrò᪀Āir⶝ⶠr;榾oss;榻nå๒;槀ƀaeiⶱⶵⶹcr;䅍ga;䏉ƀcdnⷀⷅǍron;䎿;榶pf;쀀𝕠ƀaelⷔ⷗ǒr;榷rp;榹΀;adiosvⷪⷫⷮ⸈⸍⸐⸖戨rò᪆Ȁ;efmⷷⷸ⸂⸅橝rĀ;oⷾⷿ愴f»ⷿ耻ª䂪耻º䂺gof;抶r;橖lope;橗;橛ƀclo⸟⸡⸧ò⸁ash耻ø䃸l;折iŬⸯ⸴de耻õ䃵esĀ;aǛ⸺s;樶ml耻ö䃶bar;挽ૡ⹞\0⹽\0⺀⺝\0⺢⺹\0\0⻋ຜ\0⼓\0\0⼫⾼\0⿈rȀ;astЃ⹧⹲຅脀¶;l⹭⹮䂶leìЃɩ⹸\0\0⹻m;櫳;櫽y;䐿rʀcimpt⺋⺏⺓ᡥ⺗nt;䀥od;䀮il;怰enk;怱r;쀀𝔭ƀimo⺨⺰⺴Ā;v⺭⺮䏆;䏕maô੶ne;明ƀ;tv⺿⻀⻈䏀chfork»´;䏖Āau⻏⻟nĀck⻕⻝kĀ;h⇴⻛;愎ö⇴sҀ;abcdemst⻳⻴ᤈ⻹⻽⼄⼆⼊⼎䀫cir;樣ir;樢Āouᵀ⼂;樥;橲n肻±ຝim;樦wo;樧ƀipu⼙⼠⼥ntint;樕f;쀀𝕡nd耻£䂣Ԁ;Eaceinosu່⼿⽁⽄⽇⾁⾉⾒⽾⾶;檳p;檷uå໙Ā;c໎⽌̀;acens່⽙⽟⽦⽨⽾pproø⽃urlyeñ໙ñ໎ƀaes⽯⽶⽺pprox;檹qq;檵im;拨iíໟmeĀ;s⾈ຮ怲ƀEas⽸⾐⽺ð⽵ƀdfp໬⾙⾯ƀals⾠⾥⾪lar;挮ine;挒urf;挓Ā;t໻⾴ï໻rel;抰Āci⿀⿅r;쀀𝓅;䏈ncsp;怈̀fiopsu⿚⋢⿟⿥⿫⿱r;쀀𝔮pf;쀀𝕢rime;恗cr;쀀𝓆ƀaeo⿸〉〓tĀei⿾々rnionóڰnt;樖stĀ;e【】䀿ñἙô༔઀ABHabcdefhilmnoprstux぀けさすムㄎㄫㅇㅢㅲㆎ㈆㈕㈤㈩㉘㉮㉲㊐㊰㊷ƀartぇおがròႳòϝail;検aròᱥar;楤΀cdenqrtとふへみわゔヌĀeuねぱ;쀀∽̱te;䅕iãᅮmptyv;榳gȀ;del࿑らるろ;榒;榥å࿑uo耻»䂻rր;abcfhlpstw࿜ガクシスゼゾダッデナp;極Ā;f࿠ゴs;椠;椳s;椞ë≝ð✮l;楅im;楴l;憣;憝Āaiパフil;椚oĀ;nホボ戶aló༞ƀabrョリヮrò៥rk;杳ĀakンヽcĀekヹ・;䁽;䁝Āes㄂㄄;榌lĀduㄊㄌ;榎;榐Ȁaeuyㄗㄜㄧㄩron;䅙Ādiㄡㄥil;䅗ì࿲âヺ;䑀Ȁclqsㄴㄷㄽㅄa;椷dhar;楩uoĀ;rȎȍh;憳ƀacgㅎㅟངlȀ;ipsླྀㅘㅛႜnåႻarôྩt;断ƀilrㅩဣㅮsht;楽;쀀𝔯ĀaoㅷㆆrĀduㅽㅿ»ѻĀ;l႑ㆄ;楬Ā;vㆋㆌ䏁;䏱ƀgns㆕ㇹㇼht̀ahlrstㆤㆰ㇂㇘㇤㇮rrowĀ;t࿜ㆭaéトarpoonĀduㆻㆿowîㅾp»႒eftĀah㇊㇐rrowó࿪arpoonóՑightarrows;應quigarro÷ニhreetimes;拌g;䋚ingdotseñἲƀahm㈍㈐㈓rò࿪aòՑ;怏oustĀ;a㈞㈟掱che»㈟mid;櫮Ȁabpt㈲㈽㉀㉒Ānr㈷㈺g;柭r;懾rëဃƀafl㉇㉊㉎r;榆;쀀𝕣us;樮imes;樵Āap㉝㉧rĀ;g㉣㉤䀩t;榔olint;樒arò㇣Ȁachq㉻㊀Ⴜ㊅quo;怺r;쀀𝓇Ābu・㊊oĀ;rȔȓƀhir㊗㊛㊠reåㇸmes;拊iȀ;efl㊪ၙᠡ㊫方tri;槎luhar;楨;愞ൡ㋕㋛㋟㌬㌸㍱\0㍺㎤\0\0㏬㏰\0㐨㑈㑚㒭㒱㓊㓱\0㘖\0\0㘳cute;䅛quï➺Ԁ;Eaceinpsyᇭ㋳㋵㋿㌂㌋㌏㌟㌦㌩;檴ǰ㋺\0㋼;檸on;䅡uåᇾĀ;dᇳ㌇il;䅟rc;䅝ƀEas㌖㌘㌛;檶p;檺im;择olint;樓iíሄ;䑁otƀ;be㌴ᵇ㌵担;橦΀Aacmstx㍆㍊㍗㍛㍞㍣㍭rr;懘rĀhr㍐㍒ë∨Ā;oਸ਼਴t耻§䂧i;䀻war;椩mĀin㍩ðnuóñt;朶rĀ;o㍶⁕쀀𝔰Ȁacoy㎂㎆㎑㎠rp;景Āhy㎋㎏cy;䑉;䑈rtɭ㎙\0\0㎜iäᑤaraì⹯耻­䂭Āgm㎨㎴maƀ;fv㎱㎲㎲䏃;䏂Ѐ;deglnprካ㏅㏉㏎㏖㏞㏡㏦ot;橪Ā;q኱ኰĀ;E㏓㏔檞;檠Ā;E㏛㏜檝;檟e;扆lus;樤arr;楲aròᄽȀaeit㏸㐈㐏㐗Āls㏽㐄lsetmé㍪hp;樳parsl;槤Ādlᑣ㐔e;挣Ā;e㐜㐝檪Ā;s㐢㐣檬;쀀⪬︀ƀflp㐮㐳㑂tcy;䑌Ā;b㐸㐹䀯Ā;a㐾㐿槄r;挿f;쀀𝕤aĀdr㑍ЂesĀ;u㑔㑕晠it»㑕ƀcsu㑠㑹㒟Āau㑥㑯pĀ;sᆈ㑫;쀀⊓︀pĀ;sᆴ㑵;쀀⊔︀uĀbp㑿㒏ƀ;esᆗᆜ㒆etĀ;eᆗ㒍ñᆝƀ;esᆨᆭ㒖etĀ;eᆨ㒝ñᆮƀ;afᅻ㒦ְrť㒫ֱ»ᅼaròᅈȀcemt㒹㒾㓂㓅r;쀀𝓈tmîñiì㐕aræᆾĀar㓎㓕rĀ;f㓔ឿ昆Āan㓚㓭ightĀep㓣㓪psiloîỠhé⺯s»⡒ʀbcmnp㓻㕞ሉ㖋㖎Ҁ;Edemnprs㔎㔏㔑㔕㔞㔣㔬㔱㔶抂;櫅ot;檽Ā;dᇚ㔚ot;櫃ult;櫁ĀEe㔨㔪;櫋;把lus;檿arr;楹ƀeiu㔽㕒㕕tƀ;en㔎㕅㕋qĀ;qᇚ㔏eqĀ;q㔫㔨m;櫇Ābp㕚㕜;櫕;櫓c̀;acensᇭ㕬㕲㕹㕻㌦pproø㋺urlyeñᇾñᇳƀaes㖂㖈㌛pproø㌚qñ㌗g;晪ڀ123;Edehlmnps㖩㖬㖯ሜ㖲㖴㗀㗉㗕㗚㗟㗨㗭耻¹䂹耻²䂲耻³䂳;櫆Āos㖹㖼t;檾ub;櫘Ā;dሢ㗅ot;櫄sĀou㗏㗒l;柉b;櫗arr;楻ult;櫂ĀEe㗤㗦;櫌;抋lus;櫀ƀeiu㗴㘉㘌tƀ;enሜ㗼㘂qĀ;qሢ㖲eqĀ;q㗧㗤m;櫈Ābp㘑㘓;櫔;櫖ƀAan㘜㘠㘭rr;懙rĀhr㘦㘨ë∮Ā;oਫ਩war;椪lig耻ß䃟௡㙑㙝㙠ዎ㙳㙹\0㙾㛂\0\0\0\0\0㛛㜃\0㜉㝬\0\0\0㞇ɲ㙖\0\0㙛get;挖;䏄rë๟ƀaey㙦㙫㙰ron;䅥dil;䅣;䑂lrec;挕r;쀀𝔱Ȁeiko㚆㚝㚵㚼ǲ㚋\0㚑eĀ4fኄኁaƀ;sv㚘㚙㚛䎸ym;䏑Ācn㚢㚲kĀas㚨㚮pproø዁im»ኬsðኞĀas㚺㚮ð዁rn耻þ䃾Ǭ̟㛆⋧es膀×;bd㛏㛐㛘䃗Ā;aᤏ㛕r;樱;樰ƀeps㛡㛣㜀á⩍Ȁ;bcf҆㛬㛰㛴ot;挶ir;櫱Ā;o㛹㛼쀀𝕥rk;櫚á㍢rime;怴ƀaip㜏㜒㝤dåቈ΀adempst㜡㝍㝀㝑㝗㝜㝟ngleʀ;dlqr㜰㜱㜶㝀㝂斵own»ᶻeftĀ;e⠀㜾ñम;扜ightĀ;e㊪㝋ñၚot;旬inus;樺lus;樹b;槍ime;樻ezium;揢ƀcht㝲㝽㞁Āry㝷㝻;쀀𝓉;䑆cy;䑛rok;䅧Āio㞋㞎xô᝷headĀlr㞗㞠eftarro÷ࡏightarrow»ཝऀAHabcdfghlmoprstuw㟐㟓㟗㟤㟰㟼㠎㠜㠣㠴㡑㡝㡫㢩㣌㣒㣪㣶ròϭar;楣Ācr㟜㟢ute耻ú䃺òᅐrǣ㟪\0㟭y;䑞ve;䅭Āiy㟵㟺rc耻û䃻;䑃ƀabh㠃㠆㠋ròᎭlac;䅱aòᏃĀir㠓㠘sht;楾;쀀𝔲rave耻ù䃹š㠧㠱rĀlr㠬㠮»ॗ»ႃlk;斀Āct㠹㡍ɯ㠿\0\0㡊rnĀ;e㡅㡆挜r»㡆op;挏ri;旸Āal㡖㡚cr;䅫肻¨͉Āgp㡢㡦on;䅳f;쀀𝕦̀adhlsuᅋ㡸㡽፲㢑㢠ownáᎳarpoonĀlr㢈㢌efô㠭ighô㠯iƀ;hl㢙㢚㢜䏅»ᏺon»㢚parrows;懈ƀcit㢰㣄㣈ɯ㢶\0\0㣁rnĀ;e㢼㢽挝r»㢽op;挎ng;䅯ri;旹cr;쀀𝓊ƀdir㣙㣝㣢ot;拰lde;䅩iĀ;f㜰㣨»᠓Āam㣯㣲rò㢨l耻ü䃼angle;榧ހABDacdeflnoprsz㤜㤟㤩㤭㦵㦸㦽㧟㧤㧨㧳㧹㧽㨁㨠ròϷarĀ;v㤦㤧櫨;櫩asèϡĀnr㤲㤷grt;榜΀eknprst㓣㥆㥋㥒㥝㥤㦖appá␕othinçẖƀhir㓫⻈㥙opô⾵Ā;hᎷ㥢ïㆍĀiu㥩㥭gmá㎳Ābp㥲㦄setneqĀ;q㥽㦀쀀⊊︀;쀀⫋︀setneqĀ;q㦏㦒쀀⊋︀;쀀⫌︀Āhr㦛㦟etá㚜iangleĀlr㦪㦯eft»थight»ၑy;䐲ash»ံƀelr㧄㧒㧗ƀ;beⷪ㧋㧏ar;抻q;扚lip;拮Ābt㧜ᑨaòᑩr;쀀𝔳tré㦮suĀbp㧯㧱»ജ»൙pf;쀀𝕧roð໻tré㦴Ācu㨆㨋r;쀀𝓋Ābp㨐㨘nĀEe㦀㨖»㥾nĀEe㦒㨞»㦐igzag;榚΀cefoprs㨶㨻㩖㩛㩔㩡㩪irc;䅵Ādi㩀㩑Ābg㩅㩉ar;機eĀ;qᗺ㩏;扙erp;愘r;쀀𝔴pf;쀀𝕨Ā;eᑹ㩦atèᑹcr;쀀𝓌ૣណ㪇\0㪋\0㪐㪛\0\0㪝㪨㪫㪯\0\0㫃㫎\0㫘ៜ៟tré៑r;쀀𝔵ĀAa㪔㪗ròσrò৶;䎾ĀAa㪡㪤ròθrò৫að✓is;拻ƀdptឤ㪵㪾Āfl㪺ឩ;쀀𝕩imåឲĀAa㫇㫊ròώròਁĀcq㫒ីr;쀀𝓍Āpt៖㫜ré។Ѐacefiosu㫰㫽㬈㬌㬑㬕㬛㬡cĀuy㫶㫻te耻ý䃽;䑏Āiy㬂㬆rc;䅷;䑋n耻¥䂥r;쀀𝔶cy;䑗pf;쀀𝕪cr;쀀𝓎Ācm㬦㬩y;䑎l耻ÿ䃿Ԁacdefhiosw㭂㭈㭔㭘㭤㭩㭭㭴㭺㮀cute;䅺Āay㭍㭒ron;䅾;䐷ot;䅼Āet㭝㭡træᕟa;䎶r;쀀𝔷cy;䐶grarr;懝pf;쀀𝕫cr;쀀𝓏Ājn㮅㮇;怍j;怌`.split(``).map(e=>e.charCodeAt(0))),vv=new Map([[0,65533],[128,8364],[130,8218],[131,402],[132,8222],[133,8230],[134,8224],[135,8225],[136,710],[137,8240],[138,352],[139,8249],[140,338],[142,381],[145,8216],[146,8217],[147,8220],[148,8221],[149,8226],[150,8211],[151,8212],[152,732],[153,8482],[154,353],[155,8250],[156,339],[158,382],[159,376]]);String.fromCodePoint;function yv(e){return e>=55296&&e<=57343||e>1114111?65533:vv.get(e)??e}var bv;(function(e){e[e.NUM=35]=`NUM`,e[e.SEMI=59]=`SEMI`,e[e.EQUALS=61]=`EQUALS`,e[e.ZERO=48]=`ZERO`,e[e.NINE=57]=`NINE`,e[e.LOWER_A=97]=`LOWER_A`,e[e.LOWER_F=102]=`LOWER_F`,e[e.LOWER_X=120]=`LOWER_X`,e[e.LOWER_Z=122]=`LOWER_Z`,e[e.UPPER_A=65]=`UPPER_A`,e[e.UPPER_F=70]=`UPPER_F`,e[e.UPPER_Z=90]=`UPPER_Z`})(bv||={});var xv=32,Sv;(function(e){e[e.VALUE_LENGTH=49152]=`VALUE_LENGTH`,e[e.BRANCH_LENGTH=16256]=`BRANCH_LENGTH`,e[e.JUMP_TABLE=127]=`JUMP_TABLE`})(Sv||={});function Cv(e){return e>=bv.ZERO&&e<=bv.NINE}function wv(e){return e>=bv.UPPER_A&&e<=bv.UPPER_F||e>=bv.LOWER_A&&e<=bv.LOWER_F}function Tv(e){return e>=bv.UPPER_A&&e<=bv.UPPER_Z||e>=bv.LOWER_A&&e<=bv.LOWER_Z||Cv(e)}function Ev(e){return e===bv.EQUALS||Tv(e)}var Dv;(function(e){e[e.EntityStart=0]=`EntityStart`,e[e.NumericStart=1]=`NumericStart`,e[e.NumericDecimal=2]=`NumericDecimal`,e[e.NumericHex=3]=`NumericHex`,e[e.NamedEntity=4]=`NamedEntity`})(Dv||={});var Ov;(function(e){e[e.Legacy=0]=`Legacy`,e[e.Strict=1]=`Strict`,e[e.Attribute=2]=`Attribute`})(Ov||={});var kv=class{constructor(e,t,n){this.decodeTree=e,this.emitCodePoint=t,this.errors=n,this.state=Dv.EntityStart,this.consumed=1,this.result=0,this.treeIndex=0,this.excess=1,this.decodeMode=Ov.Strict}startEntity(e){this.decodeMode=e,this.state=Dv.EntityStart,this.result=0,this.treeIndex=0,this.excess=1,this.consumed=1}write(e,t){switch(this.state){case Dv.EntityStart:return e.charCodeAt(t)===bv.NUM?(this.state=Dv.NumericStart,this.consumed+=1,this.stateNumericStart(e,t+1)):(this.state=Dv.NamedEntity,this.stateNamedEntity(e,t));case Dv.NumericStart:return this.stateNumericStart(e,t);case Dv.NumericDecimal:return this.stateNumericDecimal(e,t);case Dv.NumericHex:return this.stateNumericHex(e,t);case Dv.NamedEntity:return this.stateNamedEntity(e,t)}}stateNumericStart(e,t){return t>=e.length?-1:(e.charCodeAt(t)|xv)===bv.LOWER_X?(this.state=Dv.NumericHex,this.consumed+=1,this.stateNumericHex(e,t+1)):(this.state=Dv.NumericDecimal,this.stateNumericDecimal(e,t))}addToNumericResult(e,t,n,r){if(t!==n){let i=n-t;this.result=this.result*r**+i+Number.parseInt(e.substr(t,i),r),this.consumed+=i}}stateNumericHex(e,t){let n=t;for(;t<e.length;){let r=e.charCodeAt(t);if(Cv(r)||wv(r))t+=1;else return this.addToNumericResult(e,n,t,16),this.emitNumericEntity(r,3)}return this.addToNumericResult(e,n,t,16),-1}stateNumericDecimal(e,t){let n=t;for(;t<e.length;){let r=e.charCodeAt(t);if(Cv(r))t+=1;else return this.addToNumericResult(e,n,t,10),this.emitNumericEntity(r,2)}return this.addToNumericResult(e,n,t,10),-1}emitNumericEntity(e,t){var n;if(this.consumed<=t)return(n=this.errors)==null||n.absenceOfDigitsInNumericCharacterReference(this.consumed),0;if(e===bv.SEMI)this.consumed+=1;else if(this.decodeMode===Ov.Strict)return 0;return this.emitCodePoint(yv(this.result),this.consumed),this.errors&&(e!==bv.SEMI&&this.errors.missingSemicolonAfterCharacterReference(),this.errors.validateNumericCharacterReference(this.result)),this.consumed}stateNamedEntity(e,t){let{decodeTree:n}=this,r=n[this.treeIndex],i=(r&Sv.VALUE_LENGTH)>>14;for(;t<e.length;t++,this.excess++){let a=e.charCodeAt(t);if(this.treeIndex=Av(n,r,this.treeIndex+Math.max(1,i),a),this.treeIndex<0)return this.result===0||this.decodeMode===Ov.Attribute&&(i===0||Ev(a))?0:this.emitNotTerminatedNamedEntity();if(r=n[this.treeIndex],i=(r&Sv.VALUE_LENGTH)>>14,i!==0){if(a===bv.SEMI)return this.emitNamedEntityData(this.treeIndex,i,this.consumed+this.excess);this.decodeMode!==Ov.Strict&&(this.result=this.treeIndex,this.consumed+=this.excess,this.excess=0)}}return-1}emitNotTerminatedNamedEntity(){var e;let{result:t,decodeTree:n}=this,r=(n[t]&Sv.VALUE_LENGTH)>>14;return this.emitNamedEntityData(t,r,this.consumed),(e=this.errors)==null||e.missingSemicolonAfterCharacterReference(),this.consumed}emitNamedEntityData(e,t,n){let{decodeTree:r}=this;return this.emitCodePoint(t===1?r[e]&~Sv.VALUE_LENGTH:r[e+1],n),t===3&&this.emitCodePoint(r[e+2],n),n}end(){var e;switch(this.state){case Dv.NamedEntity:return this.result!==0&&(this.decodeMode!==Ov.Attribute||this.result===this.treeIndex)?this.emitNotTerminatedNamedEntity():0;case Dv.NumericDecimal:return this.emitNumericEntity(0,2);case Dv.NumericHex:return this.emitNumericEntity(0,3);case Dv.NumericStart:return(e=this.errors)==null||e.absenceOfDigitsInNumericCharacterReference(this.consumed),0;case Dv.EntityStart:return 0}}};function Av(e,t,n,r){let i=(t&Sv.BRANCH_LENGTH)>>7,a=t&Sv.JUMP_TABLE;if(i===0)return a!==0&&r===a?n:-1;if(a){let t=r-a;return t<0||t>=i?-1:e[n+t]-1}let o=n,s=o+i-1;for(;o<=s;){let t=o+s>>>1,n=e[t];if(n<r)o=t+1;else if(n>r)s=t-1;else return e[t+i]}return-1}var J;(function(e){e.HTML=`http://www.w3.org/1999/xhtml`,e.MATHML=`http://www.w3.org/1998/Math/MathML`,e.SVG=`http://www.w3.org/2000/svg`,e.XLINK=`http://www.w3.org/1999/xlink`,e.XML=`http://www.w3.org/XML/1998/namespace`,e.XMLNS=`http://www.w3.org/2000/xmlns/`})(J||={});var jv;(function(e){e.TYPE=`type`,e.ACTION=`action`,e.ENCODING=`encoding`,e.PROMPT=`prompt`,e.NAME=`name`,e.COLOR=`color`,e.FACE=`face`,e.SIZE=`size`})(jv||={});var Mv;(function(e){e.NO_QUIRKS=`no-quirks`,e.QUIRKS=`quirks`,e.LIMITED_QUIRKS=`limited-quirks`})(Mv||={});var Y;(function(e){e.A=`a`,e.ADDRESS=`address`,e.ANNOTATION_XML=`annotation-xml`,e.APPLET=`applet`,e.AREA=`area`,e.ARTICLE=`article`,e.ASIDE=`aside`,e.B=`b`,e.BASE=`base`,e.BASEFONT=`basefont`,e.BGSOUND=`bgsound`,e.BIG=`big`,e.BLOCKQUOTE=`blockquote`,e.BODY=`body`,e.BR=`br`,e.BUTTON=`button`,e.CAPTION=`caption`,e.CENTER=`center`,e.CODE=`code`,e.COL=`col`,e.COLGROUP=`colgroup`,e.DD=`dd`,e.DESC=`desc`,e.DETAILS=`details`,e.DIALOG=`dialog`,e.DIR=`dir`,e.DIV=`div`,e.DL=`dl`,e.DT=`dt`,e.EM=`em`,e.EMBED=`embed`,e.FIELDSET=`fieldset`,e.FIGCAPTION=`figcaption`,e.FIGURE=`figure`,e.FONT=`font`,e.FOOTER=`footer`,e.FOREIGN_OBJECT=`foreignObject`,e.FORM=`form`,e.FRAME=`frame`,e.FRAMESET=`frameset`,e.H1=`h1`,e.H2=`h2`,e.H3=`h3`,e.H4=`h4`,e.H5=`h5`,e.H6=`h6`,e.HEAD=`head`,e.HEADER=`header`,e.HGROUP=`hgroup`,e.HR=`hr`,e.HTML=`html`,e.I=`i`,e.IMG=`img`,e.IMAGE=`image`,e.INPUT=`input`,e.IFRAME=`iframe`,e.KEYGEN=`keygen`,e.LABEL=`label`,e.LI=`li`,e.LINK=`link`,e.LISTING=`listing`,e.MAIN=`main`,e.MALIGNMARK=`malignmark`,e.MARQUEE=`marquee`,e.MATH=`math`,e.MENU=`menu`,e.META=`meta`,e.MGLYPH=`mglyph`,e.MI=`mi`,e.MO=`mo`,e.MN=`mn`,e.MS=`ms`,e.MTEXT=`mtext`,e.NAV=`nav`,e.NOBR=`nobr`,e.NOFRAMES=`noframes`,e.NOEMBED=`noembed`,e.NOSCRIPT=`noscript`,e.OBJECT=`object`,e.OL=`ol`,e.OPTGROUP=`optgroup`,e.OPTION=`option`,e.P=`p`,e.PARAM=`param`,e.PLAINTEXT=`plaintext`,e.PRE=`pre`,e.RB=`rb`,e.RP=`rp`,e.RT=`rt`,e.RTC=`rtc`,e.RUBY=`ruby`,e.S=`s`,e.SCRIPT=`script`,e.SEARCH=`search`,e.SECTION=`section`,e.SELECT=`select`,e.SOURCE=`source`,e.SMALL=`small`,e.SPAN=`span`,e.STRIKE=`strike`,e.STRONG=`strong`,e.STYLE=`style`,e.SUB=`sub`,e.SUMMARY=`summary`,e.SUP=`sup`,e.TABLE=`table`,e.TBODY=`tbody`,e.TEMPLATE=`template`,e.TEXTAREA=`textarea`,e.TFOOT=`tfoot`,e.TD=`td`,e.TH=`th`,e.THEAD=`thead`,e.TITLE=`title`,e.TR=`tr`,e.TRACK=`track`,e.TT=`tt`,e.U=`u`,e.UL=`ul`,e.SVG=`svg`,e.VAR=`var`,e.WBR=`wbr`,e.XMP=`xmp`})(Y||={});var X;(function(e){e[e.UNKNOWN=0]=`UNKNOWN`,e[e.A=1]=`A`,e[e.ADDRESS=2]=`ADDRESS`,e[e.ANNOTATION_XML=3]=`ANNOTATION_XML`,e[e.APPLET=4]=`APPLET`,e[e.AREA=5]=`AREA`,e[e.ARTICLE=6]=`ARTICLE`,e[e.ASIDE=7]=`ASIDE`,e[e.B=8]=`B`,e[e.BASE=9]=`BASE`,e[e.BASEFONT=10]=`BASEFONT`,e[e.BGSOUND=11]=`BGSOUND`,e[e.BIG=12]=`BIG`,e[e.BLOCKQUOTE=13]=`BLOCKQUOTE`,e[e.BODY=14]=`BODY`,e[e.BR=15]=`BR`,e[e.BUTTON=16]=`BUTTON`,e[e.CAPTION=17]=`CAPTION`,e[e.CENTER=18]=`CENTER`,e[e.CODE=19]=`CODE`,e[e.COL=20]=`COL`,e[e.COLGROUP=21]=`COLGROUP`,e[e.DD=22]=`DD`,e[e.DESC=23]=`DESC`,e[e.DETAILS=24]=`DETAILS`,e[e.DIALOG=25]=`DIALOG`,e[e.DIR=26]=`DIR`,e[e.DIV=27]=`DIV`,e[e.DL=28]=`DL`,e[e.DT=29]=`DT`,e[e.EM=30]=`EM`,e[e.EMBED=31]=`EMBED`,e[e.FIELDSET=32]=`FIELDSET`,e[e.FIGCAPTION=33]=`FIGCAPTION`,e[e.FIGURE=34]=`FIGURE`,e[e.FONT=35]=`FONT`,e[e.FOOTER=36]=`FOOTER`,e[e.FOREIGN_OBJECT=37]=`FOREIGN_OBJECT`,e[e.FORM=38]=`FORM`,e[e.FRAME=39]=`FRAME`,e[e.FRAMESET=40]=`FRAMESET`,e[e.H1=41]=`H1`,e[e.H2=42]=`H2`,e[e.H3=43]=`H3`,e[e.H4=44]=`H4`,e[e.H5=45]=`H5`,e[e.H6=46]=`H6`,e[e.HEAD=47]=`HEAD`,e[e.HEADER=48]=`HEADER`,e[e.HGROUP=49]=`HGROUP`,e[e.HR=50]=`HR`,e[e.HTML=51]=`HTML`,e[e.I=52]=`I`,e[e.IMG=53]=`IMG`,e[e.IMAGE=54]=`IMAGE`,e[e.INPUT=55]=`INPUT`,e[e.IFRAME=56]=`IFRAME`,e[e.KEYGEN=57]=`KEYGEN`,e[e.LABEL=58]=`LABEL`,e[e.LI=59]=`LI`,e[e.LINK=60]=`LINK`,e[e.LISTING=61]=`LISTING`,e[e.MAIN=62]=`MAIN`,e[e.MALIGNMARK=63]=`MALIGNMARK`,e[e.MARQUEE=64]=`MARQUEE`,e[e.MATH=65]=`MATH`,e[e.MENU=66]=`MENU`,e[e.META=67]=`META`,e[e.MGLYPH=68]=`MGLYPH`,e[e.MI=69]=`MI`,e[e.MO=70]=`MO`,e[e.MN=71]=`MN`,e[e.MS=72]=`MS`,e[e.MTEXT=73]=`MTEXT`,e[e.NAV=74]=`NAV`,e[e.NOBR=75]=`NOBR`,e[e.NOFRAMES=76]=`NOFRAMES`,e[e.NOEMBED=77]=`NOEMBED`,e[e.NOSCRIPT=78]=`NOSCRIPT`,e[e.OBJECT=79]=`OBJECT`,e[e.OL=80]=`OL`,e[e.OPTGROUP=81]=`OPTGROUP`,e[e.OPTION=82]=`OPTION`,e[e.P=83]=`P`,e[e.PARAM=84]=`PARAM`,e[e.PLAINTEXT=85]=`PLAINTEXT`,e[e.PRE=86]=`PRE`,e[e.RB=87]=`RB`,e[e.RP=88]=`RP`,e[e.RT=89]=`RT`,e[e.RTC=90]=`RTC`,e[e.RUBY=91]=`RUBY`,e[e.S=92]=`S`,e[e.SCRIPT=93]=`SCRIPT`,e[e.SEARCH=94]=`SEARCH`,e[e.SECTION=95]=`SECTION`,e[e.SELECT=96]=`SELECT`,e[e.SOURCE=97]=`SOURCE`,e[e.SMALL=98]=`SMALL`,e[e.SPAN=99]=`SPAN`,e[e.STRIKE=100]=`STRIKE`,e[e.STRONG=101]=`STRONG`,e[e.STYLE=102]=`STYLE`,e[e.SUB=103]=`SUB`,e[e.SUMMARY=104]=`SUMMARY`,e[e.SUP=105]=`SUP`,e[e.TABLE=106]=`TABLE`,e[e.TBODY=107]=`TBODY`,e[e.TEMPLATE=108]=`TEMPLATE`,e[e.TEXTAREA=109]=`TEXTAREA`,e[e.TFOOT=110]=`TFOOT`,e[e.TD=111]=`TD`,e[e.TH=112]=`TH`,e[e.THEAD=113]=`THEAD`,e[e.TITLE=114]=`TITLE`,e[e.TR=115]=`TR`,e[e.TRACK=116]=`TRACK`,e[e.TT=117]=`TT`,e[e.U=118]=`U`,e[e.UL=119]=`UL`,e[e.SVG=120]=`SVG`,e[e.VAR=121]=`VAR`,e[e.WBR=122]=`WBR`,e[e.XMP=123]=`XMP`})(X||={});var Nv=new Map([[Y.A,X.A],[Y.ADDRESS,X.ADDRESS],[Y.ANNOTATION_XML,X.ANNOTATION_XML],[Y.APPLET,X.APPLET],[Y.AREA,X.AREA],[Y.ARTICLE,X.ARTICLE],[Y.ASIDE,X.ASIDE],[Y.B,X.B],[Y.BASE,X.BASE],[Y.BASEFONT,X.BASEFONT],[Y.BGSOUND,X.BGSOUND],[Y.BIG,X.BIG],[Y.BLOCKQUOTE,X.BLOCKQUOTE],[Y.BODY,X.BODY],[Y.BR,X.BR],[Y.BUTTON,X.BUTTON],[Y.CAPTION,X.CAPTION],[Y.CENTER,X.CENTER],[Y.CODE,X.CODE],[Y.COL,X.COL],[Y.COLGROUP,X.COLGROUP],[Y.DD,X.DD],[Y.DESC,X.DESC],[Y.DETAILS,X.DETAILS],[Y.DIALOG,X.DIALOG],[Y.DIR,X.DIR],[Y.DIV,X.DIV],[Y.DL,X.DL],[Y.DT,X.DT],[Y.EM,X.EM],[Y.EMBED,X.EMBED],[Y.FIELDSET,X.FIELDSET],[Y.FIGCAPTION,X.FIGCAPTION],[Y.FIGURE,X.FIGURE],[Y.FONT,X.FONT],[Y.FOOTER,X.FOOTER],[Y.FOREIGN_OBJECT,X.FOREIGN_OBJECT],[Y.FORM,X.FORM],[Y.FRAME,X.FRAME],[Y.FRAMESET,X.FRAMESET],[Y.H1,X.H1],[Y.H2,X.H2],[Y.H3,X.H3],[Y.H4,X.H4],[Y.H5,X.H5],[Y.H6,X.H6],[Y.HEAD,X.HEAD],[Y.HEADER,X.HEADER],[Y.HGROUP,X.HGROUP],[Y.HR,X.HR],[Y.HTML,X.HTML],[Y.I,X.I],[Y.IMG,X.IMG],[Y.IMAGE,X.IMAGE],[Y.INPUT,X.INPUT],[Y.IFRAME,X.IFRAME],[Y.KEYGEN,X.KEYGEN],[Y.LABEL,X.LABEL],[Y.LI,X.LI],[Y.LINK,X.LINK],[Y.LISTING,X.LISTING],[Y.MAIN,X.MAIN],[Y.MALIGNMARK,X.MALIGNMARK],[Y.MARQUEE,X.MARQUEE],[Y.MATH,X.MATH],[Y.MENU,X.MENU],[Y.META,X.META],[Y.MGLYPH,X.MGLYPH],[Y.MI,X.MI],[Y.MO,X.MO],[Y.MN,X.MN],[Y.MS,X.MS],[Y.MTEXT,X.MTEXT],[Y.NAV,X.NAV],[Y.NOBR,X.NOBR],[Y.NOFRAMES,X.NOFRAMES],[Y.NOEMBED,X.NOEMBED],[Y.NOSCRIPT,X.NOSCRIPT],[Y.OBJECT,X.OBJECT],[Y.OL,X.OL],[Y.OPTGROUP,X.OPTGROUP],[Y.OPTION,X.OPTION],[Y.P,X.P],[Y.PARAM,X.PARAM],[Y.PLAINTEXT,X.PLAINTEXT],[Y.PRE,X.PRE],[Y.RB,X.RB],[Y.RP,X.RP],[Y.RT,X.RT],[Y.RTC,X.RTC],[Y.RUBY,X.RUBY],[Y.S,X.S],[Y.SCRIPT,X.SCRIPT],[Y.SEARCH,X.SEARCH],[Y.SECTION,X.SECTION],[Y.SELECT,X.SELECT],[Y.SOURCE,X.SOURCE],[Y.SMALL,X.SMALL],[Y.SPAN,X.SPAN],[Y.STRIKE,X.STRIKE],[Y.STRONG,X.STRONG],[Y.STYLE,X.STYLE],[Y.SUB,X.SUB],[Y.SUMMARY,X.SUMMARY],[Y.SUP,X.SUP],[Y.TABLE,X.TABLE],[Y.TBODY,X.TBODY],[Y.TEMPLATE,X.TEMPLATE],[Y.TEXTAREA,X.TEXTAREA],[Y.TFOOT,X.TFOOT],[Y.TD,X.TD],[Y.TH,X.TH],[Y.THEAD,X.THEAD],[Y.TITLE,X.TITLE],[Y.TR,X.TR],[Y.TRACK,X.TRACK],[Y.TT,X.TT],[Y.U,X.U],[Y.UL,X.UL],[Y.SVG,X.SVG],[Y.VAR,X.VAR],[Y.WBR,X.WBR],[Y.XMP,X.XMP]]);function Pv(e){return Nv.get(e)??X.UNKNOWN}var Z=X,Fv={[J.HTML]:new Set([Z.ADDRESS,Z.APPLET,Z.AREA,Z.ARTICLE,Z.ASIDE,Z.BASE,Z.BASEFONT,Z.BGSOUND,Z.BLOCKQUOTE,Z.BODY,Z.BR,Z.BUTTON,Z.CAPTION,Z.CENTER,Z.COL,Z.COLGROUP,Z.DD,Z.DETAILS,Z.DIR,Z.DIV,Z.DL,Z.DT,Z.EMBED,Z.FIELDSET,Z.FIGCAPTION,Z.FIGURE,Z.FOOTER,Z.FORM,Z.FRAME,Z.FRAMESET,Z.H1,Z.H2,Z.H3,Z.H4,Z.H5,Z.H6,Z.HEAD,Z.HEADER,Z.HGROUP,Z.HR,Z.HTML,Z.IFRAME,Z.IMG,Z.INPUT,Z.LI,Z.LINK,Z.LISTING,Z.MAIN,Z.MARQUEE,Z.MENU,Z.META,Z.NAV,Z.NOEMBED,Z.NOFRAMES,Z.NOSCRIPT,Z.OBJECT,Z.OL,Z.P,Z.PARAM,Z.PLAINTEXT,Z.PRE,Z.SCRIPT,Z.SECTION,Z.SELECT,Z.SOURCE,Z.STYLE,Z.SUMMARY,Z.TABLE,Z.TBODY,Z.TD,Z.TEMPLATE,Z.TEXTAREA,Z.TFOOT,Z.TH,Z.THEAD,Z.TITLE,Z.TR,Z.TRACK,Z.UL,Z.WBR,Z.XMP]),[J.MATHML]:new Set([Z.MI,Z.MO,Z.MN,Z.MS,Z.MTEXT,Z.ANNOTATION_XML]),[J.SVG]:new Set([Z.TITLE,Z.FOREIGN_OBJECT,Z.DESC]),[J.XLINK]:new Set,[J.XML]:new Set,[J.XMLNS]:new Set},Iv=new Set([Z.H1,Z.H2,Z.H3,Z.H4,Z.H5,Z.H6]);new Set([Y.STYLE,Y.SCRIPT,Y.XMP,Y.IFRAME,Y.NOEMBED,Y.NOFRAMES,Y.PLAINTEXT]);var Q;(function(e){e[e.DATA=0]=`DATA`,e[e.RCDATA=1]=`RCDATA`,e[e.RAWTEXT=2]=`RAWTEXT`,e[e.SCRIPT_DATA=3]=`SCRIPT_DATA`,e[e.PLAINTEXT=4]=`PLAINTEXT`,e[e.TAG_OPEN=5]=`TAG_OPEN`,e[e.END_TAG_OPEN=6]=`END_TAG_OPEN`,e[e.TAG_NAME=7]=`TAG_NAME`,e[e.RCDATA_LESS_THAN_SIGN=8]=`RCDATA_LESS_THAN_SIGN`,e[e.RCDATA_END_TAG_OPEN=9]=`RCDATA_END_TAG_OPEN`,e[e.RCDATA_END_TAG_NAME=10]=`RCDATA_END_TAG_NAME`,e[e.RAWTEXT_LESS_THAN_SIGN=11]=`RAWTEXT_LESS_THAN_SIGN`,e[e.RAWTEXT_END_TAG_OPEN=12]=`RAWTEXT_END_TAG_OPEN`,e[e.RAWTEXT_END_TAG_NAME=13]=`RAWTEXT_END_TAG_NAME`,e[e.SCRIPT_DATA_LESS_THAN_SIGN=14]=`SCRIPT_DATA_LESS_THAN_SIGN`,e[e.SCRIPT_DATA_END_TAG_OPEN=15]=`SCRIPT_DATA_END_TAG_OPEN`,e[e.SCRIPT_DATA_END_TAG_NAME=16]=`SCRIPT_DATA_END_TAG_NAME`,e[e.SCRIPT_DATA_ESCAPE_START=17]=`SCRIPT_DATA_ESCAPE_START`,e[e.SCRIPT_DATA_ESCAPE_START_DASH=18]=`SCRIPT_DATA_ESCAPE_START_DASH`,e[e.SCRIPT_DATA_ESCAPED=19]=`SCRIPT_DATA_ESCAPED`,e[e.SCRIPT_DATA_ESCAPED_DASH=20]=`SCRIPT_DATA_ESCAPED_DASH`,e[e.SCRIPT_DATA_ESCAPED_DASH_DASH=21]=`SCRIPT_DATA_ESCAPED_DASH_DASH`,e[e.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN=22]=`SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN`,e[e.SCRIPT_DATA_ESCAPED_END_TAG_OPEN=23]=`SCRIPT_DATA_ESCAPED_END_TAG_OPEN`,e[e.SCRIPT_DATA_ESCAPED_END_TAG_NAME=24]=`SCRIPT_DATA_ESCAPED_END_TAG_NAME`,e[e.SCRIPT_DATA_DOUBLE_ESCAPE_START=25]=`SCRIPT_DATA_DOUBLE_ESCAPE_START`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED=26]=`SCRIPT_DATA_DOUBLE_ESCAPED`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED_DASH=27]=`SCRIPT_DATA_DOUBLE_ESCAPED_DASH`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH=28]=`SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH`,e[e.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN=29]=`SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN`,e[e.SCRIPT_DATA_DOUBLE_ESCAPE_END=30]=`SCRIPT_DATA_DOUBLE_ESCAPE_END`,e[e.BEFORE_ATTRIBUTE_NAME=31]=`BEFORE_ATTRIBUTE_NAME`,e[e.ATTRIBUTE_NAME=32]=`ATTRIBUTE_NAME`,e[e.AFTER_ATTRIBUTE_NAME=33]=`AFTER_ATTRIBUTE_NAME`,e[e.BEFORE_ATTRIBUTE_VALUE=34]=`BEFORE_ATTRIBUTE_VALUE`,e[e.ATTRIBUTE_VALUE_DOUBLE_QUOTED=35]=`ATTRIBUTE_VALUE_DOUBLE_QUOTED`,e[e.ATTRIBUTE_VALUE_SINGLE_QUOTED=36]=`ATTRIBUTE_VALUE_SINGLE_QUOTED`,e[e.ATTRIBUTE_VALUE_UNQUOTED=37]=`ATTRIBUTE_VALUE_UNQUOTED`,e[e.AFTER_ATTRIBUTE_VALUE_QUOTED=38]=`AFTER_ATTRIBUTE_VALUE_QUOTED`,e[e.SELF_CLOSING_START_TAG=39]=`SELF_CLOSING_START_TAG`,e[e.BOGUS_COMMENT=40]=`BOGUS_COMMENT`,e[e.MARKUP_DECLARATION_OPEN=41]=`MARKUP_DECLARATION_OPEN`,e[e.COMMENT_START=42]=`COMMENT_START`,e[e.COMMENT_START_DASH=43]=`COMMENT_START_DASH`,e[e.COMMENT=44]=`COMMENT`,e[e.COMMENT_LESS_THAN_SIGN=45]=`COMMENT_LESS_THAN_SIGN`,e[e.COMMENT_LESS_THAN_SIGN_BANG=46]=`COMMENT_LESS_THAN_SIGN_BANG`,e[e.COMMENT_LESS_THAN_SIGN_BANG_DASH=47]=`COMMENT_LESS_THAN_SIGN_BANG_DASH`,e[e.COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH=48]=`COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH`,e[e.COMMENT_END_DASH=49]=`COMMENT_END_DASH`,e[e.COMMENT_END=50]=`COMMENT_END`,e[e.COMMENT_END_BANG=51]=`COMMENT_END_BANG`,e[e.DOCTYPE=52]=`DOCTYPE`,e[e.BEFORE_DOCTYPE_NAME=53]=`BEFORE_DOCTYPE_NAME`,e[e.DOCTYPE_NAME=54]=`DOCTYPE_NAME`,e[e.AFTER_DOCTYPE_NAME=55]=`AFTER_DOCTYPE_NAME`,e[e.AFTER_DOCTYPE_PUBLIC_KEYWORD=56]=`AFTER_DOCTYPE_PUBLIC_KEYWORD`,e[e.BEFORE_DOCTYPE_PUBLIC_IDENTIFIER=57]=`BEFORE_DOCTYPE_PUBLIC_IDENTIFIER`,e[e.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED=58]=`DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED`,e[e.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED=59]=`DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED`,e[e.AFTER_DOCTYPE_PUBLIC_IDENTIFIER=60]=`AFTER_DOCTYPE_PUBLIC_IDENTIFIER`,e[e.BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS=61]=`BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS`,e[e.AFTER_DOCTYPE_SYSTEM_KEYWORD=62]=`AFTER_DOCTYPE_SYSTEM_KEYWORD`,e[e.BEFORE_DOCTYPE_SYSTEM_IDENTIFIER=63]=`BEFORE_DOCTYPE_SYSTEM_IDENTIFIER`,e[e.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED=64]=`DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED`,e[e.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED=65]=`DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED`,e[e.AFTER_DOCTYPE_SYSTEM_IDENTIFIER=66]=`AFTER_DOCTYPE_SYSTEM_IDENTIFIER`,e[e.BOGUS_DOCTYPE=67]=`BOGUS_DOCTYPE`,e[e.CDATA_SECTION=68]=`CDATA_SECTION`,e[e.CDATA_SECTION_BRACKET=69]=`CDATA_SECTION_BRACKET`,e[e.CDATA_SECTION_END=70]=`CDATA_SECTION_END`,e[e.CHARACTER_REFERENCE=71]=`CHARACTER_REFERENCE`,e[e.AMBIGUOUS_AMPERSAND=72]=`AMBIGUOUS_AMPERSAND`})(Q||={});var Lv={DATA:Q.DATA,RCDATA:Q.RCDATA,RAWTEXT:Q.RAWTEXT,SCRIPT_DATA:Q.SCRIPT_DATA,PLAINTEXT:Q.PLAINTEXT,CDATA_SECTION:Q.CDATA_SECTION};function Rv(e){return e>=K.DIGIT_0&&e<=K.DIGIT_9}function zv(e){return e>=K.LATIN_CAPITAL_A&&e<=K.LATIN_CAPITAL_Z}function Bv(e){return e>=K.LATIN_SMALL_A&&e<=K.LATIN_SMALL_Z}function Vv(e){return Bv(e)||zv(e)}function Hv(e){return Vv(e)||Rv(e)}function Uv(e){return e+32}function Wv(e){return e===K.SPACE||e===K.LINE_FEED||e===K.TABULATION||e===K.FORM_FEED}function Gv(e){return Wv(e)||e===K.SOLIDUS||e===K.GREATER_THAN_SIGN}function Kv(e){return e===K.NULL?q.nullCharacterReference:e>1114111?q.characterReferenceOutsideUnicodeRange:cv(e)?q.surrogateCharacterReference:fv(e)?q.noncharacterCharacterReference:dv(e)||e===K.CARRIAGE_RETURN?q.controlCharacterReference:null}var qv=class{constructor(e,t){this.options=e,this.handler=t,this.paused=!1,this.inLoop=!1,this.inForeignNode=!1,this.lastStartTagName=``,this.active=!1,this.state=Q.DATA,this.returnState=Q.DATA,this.entityStartPos=0,this.consumedAfterSnapshot=-1,this.currentCharacterToken=null,this.currentToken=null,this.currentAttr={name:``,value:``},this.preprocessor=new mv(t),this.currentLocation=this.getCurrentLocation(-1),this.entityDecoder=new kv(_v,(e,t)=>{this.preprocessor.pos=this.entityStartPos+t-1,this._flushCodePointConsumedAsCharacterReference(e)},t.onParseError?{missingSemicolonAfterCharacterReference:()=>{this._err(q.missingSemicolonAfterCharacterReference,1)},absenceOfDigitsInNumericCharacterReference:e=>{this._err(q.absenceOfDigitsInNumericCharacterReference,this.entityStartPos-this.preprocessor.pos+e)},validateNumericCharacterReference:e=>{let t=Kv(e);t&&this._err(t,1)}}:void 0)}_err(e,t=0){var n,r;(r=(n=this.handler).onParseError)==null||r.call(n,this.preprocessor.getError(e,t))}getCurrentLocation(e){return this.options.sourceCodeLocationInfo?{startLine:this.preprocessor.line,startCol:this.preprocessor.col-e,startOffset:this.preprocessor.offset-e,endLine:-1,endCol:-1,endOffset:-1}:null}_runParsingLoop(){if(!this.inLoop){for(this.inLoop=!0;this.active&&!this.paused;){this.consumedAfterSnapshot=0;let e=this._consume();this._ensureHibernation()||this._callState(e)}this.inLoop=!1}}pause(){this.paused=!0}resume(e){if(!this.paused)throw Error(`Parser was already resumed`);this.paused=!1,!this.inLoop&&(this._runParsingLoop(),this.paused||e?.())}write(e,t,n){this.active=!0,this.preprocessor.write(e,t),this._runParsingLoop(),this.paused||n?.()}insertHtmlAtCurrentPos(e){this.active=!0,this.preprocessor.insertHtmlAtCurrentPos(e),this._runParsingLoop()}_ensureHibernation(){return this.preprocessor.endOfChunkHit?(this.preprocessor.retreat(this.consumedAfterSnapshot),this.consumedAfterSnapshot=0,this.active=!1,!0):!1}_consume(){return this.consumedAfterSnapshot++,this.preprocessor.advance()}_advanceBy(e){this.consumedAfterSnapshot+=e;for(let t=0;t<e;t++)this.preprocessor.advance()}_consumeSequenceIfMatch(e,t){return this.preprocessor.startsWith(e,t)?(this._advanceBy(e.length-1),!0):!1}_createStartTagToken(){this.currentToken={type:hv.START_TAG,tagName:``,tagID:X.UNKNOWN,selfClosing:!1,ackSelfClosing:!1,attrs:[],location:this.getCurrentLocation(1)}}_createEndTagToken(){this.currentToken={type:hv.END_TAG,tagName:``,tagID:X.UNKNOWN,selfClosing:!1,ackSelfClosing:!1,attrs:[],location:this.getCurrentLocation(2)}}_createCommentToken(e){this.currentToken={type:hv.COMMENT,data:``,location:this.getCurrentLocation(e)}}_createDoctypeToken(e){this.currentToken={type:hv.DOCTYPE,name:e,forceQuirks:!1,publicId:null,systemId:null,location:this.currentLocation}}_createCharacterToken(e,t){this.currentCharacterToken={type:e,chars:t,location:this.currentLocation}}_createAttr(e){this.currentAttr={name:e,value:``},this.currentLocation=this.getCurrentLocation(0)}_leaveAttrName(){var e;let t=this.currentToken;if(gv(t,this.currentAttr.name)===null){if(t.attrs.push(this.currentAttr),t.location&&this.currentLocation){let n=(e=t.location).attrs??(e.attrs=Object.create(null));n[this.currentAttr.name]=this.currentLocation,this._leaveAttrValue()}}else this._err(q.duplicateAttribute)}_leaveAttrValue(){this.currentLocation&&(this.currentLocation.endLine=this.preprocessor.line,this.currentLocation.endCol=this.preprocessor.col,this.currentLocation.endOffset=this.preprocessor.offset)}prepareToken(e){this._emitCurrentCharacterToken(e.location),this.currentToken=null,e.location&&(e.location.endLine=this.preprocessor.line,e.location.endCol=this.preprocessor.col+1,e.location.endOffset=this.preprocessor.offset+1),this.currentLocation=this.getCurrentLocation(-1)}emitCurrentTagToken(){let e=this.currentToken;this.prepareToken(e),e.tagID=Pv(e.tagName),e.type===hv.START_TAG?(this.lastStartTagName=e.tagName,this.handler.onStartTag(e)):(e.attrs.length>0&&this._err(q.endTagWithAttributes),e.selfClosing&&this._err(q.endTagWithTrailingSolidus),this.handler.onEndTag(e)),this.preprocessor.dropParsedChunk()}emitCurrentComment(e){this.prepareToken(e),this.handler.onComment(e),this.preprocessor.dropParsedChunk()}emitCurrentDoctype(e){this.prepareToken(e),this.handler.onDoctype(e),this.preprocessor.dropParsedChunk()}_emitCurrentCharacterToken(e){if(this.currentCharacterToken){switch(e&&this.currentCharacterToken.location&&(this.currentCharacterToken.location.endLine=e.startLine,this.currentCharacterToken.location.endCol=e.startCol,this.currentCharacterToken.location.endOffset=e.startOffset),this.currentCharacterToken.type){case hv.CHARACTER:this.handler.onCharacter(this.currentCharacterToken);break;case hv.NULL_CHARACTER:this.handler.onNullCharacter(this.currentCharacterToken);break;case hv.WHITESPACE_CHARACTER:this.handler.onWhitespaceCharacter(this.currentCharacterToken);break}this.currentCharacterToken=null}}_emitEOFToken(){let e=this.getCurrentLocation(0);e&&(e.endLine=e.startLine,e.endCol=e.startCol,e.endOffset=e.startOffset),this._emitCurrentCharacterToken(e),this.handler.onEof({type:hv.EOF,location:e}),this.active=!1}_appendCharToCurrentCharacterToken(e,t){if(this.currentCharacterToken)if(this.currentCharacterToken.type===e){this.currentCharacterToken.chars+=t;return}else this.currentLocation=this.getCurrentLocation(0),this._emitCurrentCharacterToken(this.currentLocation),this.preprocessor.dropParsedChunk();this._createCharacterToken(e,t)}_emitCodePoint(e){let t=Wv(e)?hv.WHITESPACE_CHARACTER:e===K.NULL?hv.NULL_CHARACTER:hv.CHARACTER;this._appendCharToCurrentCharacterToken(t,String.fromCodePoint(e))}_emitChars(e){this._appendCharToCurrentCharacterToken(hv.CHARACTER,e)}_startCharacterReference(){this.returnState=this.state,this.state=Q.CHARACTER_REFERENCE,this.entityStartPos=this.preprocessor.pos,this.entityDecoder.startEntity(this._isCharacterReferenceInAttribute()?Ov.Attribute:Ov.Legacy)}_isCharacterReferenceInAttribute(){return this.returnState===Q.ATTRIBUTE_VALUE_DOUBLE_QUOTED||this.returnState===Q.ATTRIBUTE_VALUE_SINGLE_QUOTED||this.returnState===Q.ATTRIBUTE_VALUE_UNQUOTED}_flushCodePointConsumedAsCharacterReference(e){this._isCharacterReferenceInAttribute()?this.currentAttr.value+=String.fromCodePoint(e):this._emitCodePoint(e)}_callState(e){switch(this.state){case Q.DATA:this._stateData(e);break;case Q.RCDATA:this._stateRcdata(e);break;case Q.RAWTEXT:this._stateRawtext(e);break;case Q.SCRIPT_DATA:this._stateScriptData(e);break;case Q.PLAINTEXT:this._statePlaintext(e);break;case Q.TAG_OPEN:this._stateTagOpen(e);break;case Q.END_TAG_OPEN:this._stateEndTagOpen(e);break;case Q.TAG_NAME:this._stateTagName(e);break;case Q.RCDATA_LESS_THAN_SIGN:this._stateRcdataLessThanSign(e);break;case Q.RCDATA_END_TAG_OPEN:this._stateRcdataEndTagOpen(e);break;case Q.RCDATA_END_TAG_NAME:this._stateRcdataEndTagName(e);break;case Q.RAWTEXT_LESS_THAN_SIGN:this._stateRawtextLessThanSign(e);break;case Q.RAWTEXT_END_TAG_OPEN:this._stateRawtextEndTagOpen(e);break;case Q.RAWTEXT_END_TAG_NAME:this._stateRawtextEndTagName(e);break;case Q.SCRIPT_DATA_LESS_THAN_SIGN:this._stateScriptDataLessThanSign(e);break;case Q.SCRIPT_DATA_END_TAG_OPEN:this._stateScriptDataEndTagOpen(e);break;case Q.SCRIPT_DATA_END_TAG_NAME:this._stateScriptDataEndTagName(e);break;case Q.SCRIPT_DATA_ESCAPE_START:this._stateScriptDataEscapeStart(e);break;case Q.SCRIPT_DATA_ESCAPE_START_DASH:this._stateScriptDataEscapeStartDash(e);break;case Q.SCRIPT_DATA_ESCAPED:this._stateScriptDataEscaped(e);break;case Q.SCRIPT_DATA_ESCAPED_DASH:this._stateScriptDataEscapedDash(e);break;case Q.SCRIPT_DATA_ESCAPED_DASH_DASH:this._stateScriptDataEscapedDashDash(e);break;case Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN:this._stateScriptDataEscapedLessThanSign(e);break;case Q.SCRIPT_DATA_ESCAPED_END_TAG_OPEN:this._stateScriptDataEscapedEndTagOpen(e);break;case Q.SCRIPT_DATA_ESCAPED_END_TAG_NAME:this._stateScriptDataEscapedEndTagName(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPE_START:this._stateScriptDataDoubleEscapeStart(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED:this._stateScriptDataDoubleEscaped(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH:this._stateScriptDataDoubleEscapedDash(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH:this._stateScriptDataDoubleEscapedDashDash(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN:this._stateScriptDataDoubleEscapedLessThanSign(e);break;case Q.SCRIPT_DATA_DOUBLE_ESCAPE_END:this._stateScriptDataDoubleEscapeEnd(e);break;case Q.BEFORE_ATTRIBUTE_NAME:this._stateBeforeAttributeName(e);break;case Q.ATTRIBUTE_NAME:this._stateAttributeName(e);break;case Q.AFTER_ATTRIBUTE_NAME:this._stateAfterAttributeName(e);break;case Q.BEFORE_ATTRIBUTE_VALUE:this._stateBeforeAttributeValue(e);break;case Q.ATTRIBUTE_VALUE_DOUBLE_QUOTED:this._stateAttributeValueDoubleQuoted(e);break;case Q.ATTRIBUTE_VALUE_SINGLE_QUOTED:this._stateAttributeValueSingleQuoted(e);break;case Q.ATTRIBUTE_VALUE_UNQUOTED:this._stateAttributeValueUnquoted(e);break;case Q.AFTER_ATTRIBUTE_VALUE_QUOTED:this._stateAfterAttributeValueQuoted(e);break;case Q.SELF_CLOSING_START_TAG:this._stateSelfClosingStartTag(e);break;case Q.BOGUS_COMMENT:this._stateBogusComment(e);break;case Q.MARKUP_DECLARATION_OPEN:this._stateMarkupDeclarationOpen(e);break;case Q.COMMENT_START:this._stateCommentStart(e);break;case Q.COMMENT_START_DASH:this._stateCommentStartDash(e);break;case Q.COMMENT:this._stateComment(e);break;case Q.COMMENT_LESS_THAN_SIGN:this._stateCommentLessThanSign(e);break;case Q.COMMENT_LESS_THAN_SIGN_BANG:this._stateCommentLessThanSignBang(e);break;case Q.COMMENT_LESS_THAN_SIGN_BANG_DASH:this._stateCommentLessThanSignBangDash(e);break;case Q.COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH:this._stateCommentLessThanSignBangDashDash(e);break;case Q.COMMENT_END_DASH:this._stateCommentEndDash(e);break;case Q.COMMENT_END:this._stateCommentEnd(e);break;case Q.COMMENT_END_BANG:this._stateCommentEndBang(e);break;case Q.DOCTYPE:this._stateDoctype(e);break;case Q.BEFORE_DOCTYPE_NAME:this._stateBeforeDoctypeName(e);break;case Q.DOCTYPE_NAME:this._stateDoctypeName(e);break;case Q.AFTER_DOCTYPE_NAME:this._stateAfterDoctypeName(e);break;case Q.AFTER_DOCTYPE_PUBLIC_KEYWORD:this._stateAfterDoctypePublicKeyword(e);break;case Q.BEFORE_DOCTYPE_PUBLIC_IDENTIFIER:this._stateBeforeDoctypePublicIdentifier(e);break;case Q.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED:this._stateDoctypePublicIdentifierDoubleQuoted(e);break;case Q.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED:this._stateDoctypePublicIdentifierSingleQuoted(e);break;case Q.AFTER_DOCTYPE_PUBLIC_IDENTIFIER:this._stateAfterDoctypePublicIdentifier(e);break;case Q.BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS:this._stateBetweenDoctypePublicAndSystemIdentifiers(e);break;case Q.AFTER_DOCTYPE_SYSTEM_KEYWORD:this._stateAfterDoctypeSystemKeyword(e);break;case Q.BEFORE_DOCTYPE_SYSTEM_IDENTIFIER:this._stateBeforeDoctypeSystemIdentifier(e);break;case Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED:this._stateDoctypeSystemIdentifierDoubleQuoted(e);break;case Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED:this._stateDoctypeSystemIdentifierSingleQuoted(e);break;case Q.AFTER_DOCTYPE_SYSTEM_IDENTIFIER:this._stateAfterDoctypeSystemIdentifier(e);break;case Q.BOGUS_DOCTYPE:this._stateBogusDoctype(e);break;case Q.CDATA_SECTION:this._stateCdataSection(e);break;case Q.CDATA_SECTION_BRACKET:this._stateCdataSectionBracket(e);break;case Q.CDATA_SECTION_END:this._stateCdataSectionEnd(e);break;case Q.CHARACTER_REFERENCE:this._stateCharacterReference();break;case Q.AMBIGUOUS_AMPERSAND:this._stateAmbiguousAmpersand(e);break;default:throw Error(`Unknown state`)}}_stateData(e){switch(e){case K.LESS_THAN_SIGN:this.state=Q.TAG_OPEN;break;case K.AMPERSAND:this._startCharacterReference();break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitCodePoint(e);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateRcdata(e){switch(e){case K.AMPERSAND:this._startCharacterReference();break;case K.LESS_THAN_SIGN:this.state=Q.RCDATA_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateRawtext(e){switch(e){case K.LESS_THAN_SIGN:this.state=Q.RAWTEXT_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateScriptData(e){switch(e){case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_statePlaintext(e){switch(e){case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateTagOpen(e){if(Vv(e))this._createStartTagToken(),this.state=Q.TAG_NAME,this._stateTagName(e);else switch(e){case K.EXCLAMATION_MARK:this.state=Q.MARKUP_DECLARATION_OPEN;break;case K.SOLIDUS:this.state=Q.END_TAG_OPEN;break;case K.QUESTION_MARK:this._err(q.unexpectedQuestionMarkInsteadOfTagName),this._createCommentToken(1),this.state=Q.BOGUS_COMMENT,this._stateBogusComment(e);break;case K.EOF:this._err(q.eofBeforeTagName),this._emitChars(`<`),this._emitEOFToken();break;default:this._err(q.invalidFirstCharacterOfTagName),this._emitChars(`<`),this.state=Q.DATA,this._stateData(e)}}_stateEndTagOpen(e){if(Vv(e))this._createEndTagToken(),this.state=Q.TAG_NAME,this._stateTagName(e);else switch(e){case K.GREATER_THAN_SIGN:this._err(q.missingEndTagName),this.state=Q.DATA;break;case K.EOF:this._err(q.eofBeforeTagName),this._emitChars(`</`),this._emitEOFToken();break;default:this._err(q.invalidFirstCharacterOfTagName),this._createCommentToken(2),this.state=Q.BOGUS_COMMENT,this._stateBogusComment(e)}}_stateTagName(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_ATTRIBUTE_NAME;break;case K.SOLIDUS:this.state=Q.SELF_CLOSING_START_TAG;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentTagToken();break;case K.NULL:this._err(q.unexpectedNullCharacter),t.tagName+=`�`;break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:t.tagName+=String.fromCodePoint(zv(e)?Uv(e):e)}}_stateRcdataLessThanSign(e){e===K.SOLIDUS?this.state=Q.RCDATA_END_TAG_OPEN:(this._emitChars(`<`),this.state=Q.RCDATA,this._stateRcdata(e))}_stateRcdataEndTagOpen(e){Vv(e)?(this.state=Q.RCDATA_END_TAG_NAME,this._stateRcdataEndTagName(e)):(this._emitChars(`</`),this.state=Q.RCDATA,this._stateRcdata(e))}handleSpecialEndTag(e){if(!this.preprocessor.startsWith(this.lastStartTagName,!1))return!this._ensureHibernation();this._createEndTagToken();let t=this.currentToken;switch(t.tagName=this.lastStartTagName,this.preprocessor.peek(this.lastStartTagName.length)){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:return this._advanceBy(this.lastStartTagName.length),this.state=Q.BEFORE_ATTRIBUTE_NAME,!1;case K.SOLIDUS:return this._advanceBy(this.lastStartTagName.length),this.state=Q.SELF_CLOSING_START_TAG,!1;case K.GREATER_THAN_SIGN:return this._advanceBy(this.lastStartTagName.length),this.emitCurrentTagToken(),this.state=Q.DATA,!1;default:return!this._ensureHibernation()}}_stateRcdataEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.RCDATA,this._stateRcdata(e))}_stateRawtextLessThanSign(e){e===K.SOLIDUS?this.state=Q.RAWTEXT_END_TAG_OPEN:(this._emitChars(`<`),this.state=Q.RAWTEXT,this._stateRawtext(e))}_stateRawtextEndTagOpen(e){Vv(e)?(this.state=Q.RAWTEXT_END_TAG_NAME,this._stateRawtextEndTagName(e)):(this._emitChars(`</`),this.state=Q.RAWTEXT,this._stateRawtext(e))}_stateRawtextEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.RAWTEXT,this._stateRawtext(e))}_stateScriptDataLessThanSign(e){switch(e){case K.SOLIDUS:this.state=Q.SCRIPT_DATA_END_TAG_OPEN;break;case K.EXCLAMATION_MARK:this.state=Q.SCRIPT_DATA_ESCAPE_START,this._emitChars(`<!`);break;default:this._emitChars(`<`),this.state=Q.SCRIPT_DATA,this._stateScriptData(e)}}_stateScriptDataEndTagOpen(e){Vv(e)?(this.state=Q.SCRIPT_DATA_END_TAG_NAME,this._stateScriptDataEndTagName(e)):(this._emitChars(`</`),this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEscapeStart(e){e===K.HYPHEN_MINUS?(this.state=Q.SCRIPT_DATA_ESCAPE_START_DASH,this._emitChars(`-`)):(this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEscapeStartDash(e){e===K.HYPHEN_MINUS?(this.state=Q.SCRIPT_DATA_ESCAPED_DASH_DASH,this._emitChars(`-`)):(this.state=Q.SCRIPT_DATA,this._stateScriptData(e))}_stateScriptDataEscaped(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_ESCAPED_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateScriptDataEscapedDash(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_ESCAPED_DASH_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataEscapedDashDash(e){switch(e){case K.HYPHEN_MINUS:this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_ESCAPED_LESS_THAN_SIGN;break;case K.GREATER_THAN_SIGN:this.state=Q.SCRIPT_DATA,this._emitChars(`>`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataEscapedLessThanSign(e){e===K.SOLIDUS?this.state=Q.SCRIPT_DATA_ESCAPED_END_TAG_OPEN:Vv(e)?(this._emitChars(`<`),this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPE_START,this._stateScriptDataDoubleEscapeStart(e)):(this._emitChars(`<`),this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataEscapedEndTagOpen(e){Vv(e)?(this.state=Q.SCRIPT_DATA_ESCAPED_END_TAG_NAME,this._stateScriptDataEscapedEndTagName(e)):(this._emitChars(`</`),this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataEscapedEndTagName(e){this.handleSpecialEndTag(e)&&(this._emitChars(`</`),this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataDoubleEscapeStart(e){if(this.preprocessor.startsWith(sv.SCRIPT,!1)&&Gv(this.preprocessor.peek(sv.SCRIPT.length))){this._emitCodePoint(e);for(let e=0;e<sv.SCRIPT.length;e++)this._emitCodePoint(this._consume());this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED}else this._ensureHibernation()||(this.state=Q.SCRIPT_DATA_ESCAPED,this._stateScriptDataEscaped(e))}_stateScriptDataDoubleEscaped(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN,this._emitChars(`<`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateScriptDataDoubleEscapedDash(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_DASH_DASH,this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN,this._emitChars(`<`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataDoubleEscapedDashDash(e){switch(e){case K.HYPHEN_MINUS:this._emitChars(`-`);break;case K.LESS_THAN_SIGN:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED_LESS_THAN_SIGN,this._emitChars(`<`);break;case K.GREATER_THAN_SIGN:this.state=Q.SCRIPT_DATA,this._emitChars(`>`);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitChars(`�`);break;case K.EOF:this._err(q.eofInScriptHtmlCommentLikeText),this._emitEOFToken();break;default:this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._emitCodePoint(e)}}_stateScriptDataDoubleEscapedLessThanSign(e){e===K.SOLIDUS?(this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPE_END,this._emitChars(`/`)):(this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._stateScriptDataDoubleEscaped(e))}_stateScriptDataDoubleEscapeEnd(e){if(this.preprocessor.startsWith(sv.SCRIPT,!1)&&Gv(this.preprocessor.peek(sv.SCRIPT.length))){this._emitCodePoint(e);for(let e=0;e<sv.SCRIPT.length;e++)this._emitCodePoint(this._consume());this.state=Q.SCRIPT_DATA_ESCAPED}else this._ensureHibernation()||(this.state=Q.SCRIPT_DATA_DOUBLE_ESCAPED,this._stateScriptDataDoubleEscaped(e))}_stateBeforeAttributeName(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.SOLIDUS:case K.GREATER_THAN_SIGN:case K.EOF:this.state=Q.AFTER_ATTRIBUTE_NAME,this._stateAfterAttributeName(e);break;case K.EQUALS_SIGN:this._err(q.unexpectedEqualsSignBeforeAttributeName),this._createAttr(`=`),this.state=Q.ATTRIBUTE_NAME;break;default:this._createAttr(``),this.state=Q.ATTRIBUTE_NAME,this._stateAttributeName(e)}}_stateAttributeName(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:case K.SOLIDUS:case K.GREATER_THAN_SIGN:case K.EOF:this._leaveAttrName(),this.state=Q.AFTER_ATTRIBUTE_NAME,this._stateAfterAttributeName(e);break;case K.EQUALS_SIGN:this._leaveAttrName(),this.state=Q.BEFORE_ATTRIBUTE_VALUE;break;case K.QUOTATION_MARK:case K.APOSTROPHE:case K.LESS_THAN_SIGN:this._err(q.unexpectedCharacterInAttributeName),this.currentAttr.name+=String.fromCodePoint(e);break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.name+=`�`;break;default:this.currentAttr.name+=String.fromCodePoint(zv(e)?Uv(e):e)}}_stateAfterAttributeName(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.SOLIDUS:this.state=Q.SELF_CLOSING_START_TAG;break;case K.EQUALS_SIGN:this.state=Q.BEFORE_ATTRIBUTE_VALUE;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentTagToken();break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this._createAttr(``),this.state=Q.ATTRIBUTE_NAME,this._stateAttributeName(e)}}_stateBeforeAttributeValue(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.QUOTATION_MARK:this.state=Q.ATTRIBUTE_VALUE_DOUBLE_QUOTED;break;case K.APOSTROPHE:this.state=Q.ATTRIBUTE_VALUE_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingAttributeValue),this.state=Q.DATA,this.emitCurrentTagToken();break;default:this.state=Q.ATTRIBUTE_VALUE_UNQUOTED,this._stateAttributeValueUnquoted(e)}}_stateAttributeValueDoubleQuoted(e){switch(e){case K.QUOTATION_MARK:this.state=Q.AFTER_ATTRIBUTE_VALUE_QUOTED;break;case K.AMPERSAND:this._startCharacterReference();break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.value+=`�`;break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this.currentAttr.value+=String.fromCodePoint(e)}}_stateAttributeValueSingleQuoted(e){switch(e){case K.APOSTROPHE:this.state=Q.AFTER_ATTRIBUTE_VALUE_QUOTED;break;case K.AMPERSAND:this._startCharacterReference();break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.value+=`�`;break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this.currentAttr.value+=String.fromCodePoint(e)}}_stateAttributeValueUnquoted(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this._leaveAttrValue(),this.state=Q.BEFORE_ATTRIBUTE_NAME;break;case K.AMPERSAND:this._startCharacterReference();break;case K.GREATER_THAN_SIGN:this._leaveAttrValue(),this.state=Q.DATA,this.emitCurrentTagToken();break;case K.NULL:this._err(q.unexpectedNullCharacter),this.currentAttr.value+=`�`;break;case K.QUOTATION_MARK:case K.APOSTROPHE:case K.LESS_THAN_SIGN:case K.EQUALS_SIGN:case K.GRAVE_ACCENT:this._err(q.unexpectedCharacterInUnquotedAttributeValue),this.currentAttr.value+=String.fromCodePoint(e);break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this.currentAttr.value+=String.fromCodePoint(e)}}_stateAfterAttributeValueQuoted(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this._leaveAttrValue(),this.state=Q.BEFORE_ATTRIBUTE_NAME;break;case K.SOLIDUS:this._leaveAttrValue(),this.state=Q.SELF_CLOSING_START_TAG;break;case K.GREATER_THAN_SIGN:this._leaveAttrValue(),this.state=Q.DATA,this.emitCurrentTagToken();break;case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this._err(q.missingWhitespaceBetweenAttributes),this.state=Q.BEFORE_ATTRIBUTE_NAME,this._stateBeforeAttributeName(e)}}_stateSelfClosingStartTag(e){switch(e){case K.GREATER_THAN_SIGN:{let e=this.currentToken;e.selfClosing=!0,this.state=Q.DATA,this.emitCurrentTagToken();break}case K.EOF:this._err(q.eofInTag),this._emitEOFToken();break;default:this._err(q.unexpectedSolidusInTag),this.state=Q.BEFORE_ATTRIBUTE_NAME,this._stateBeforeAttributeName(e)}}_stateBogusComment(e){let t=this.currentToken;switch(e){case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EOF:this.emitCurrentComment(t),this._emitEOFToken();break;case K.NULL:this._err(q.unexpectedNullCharacter),t.data+=`�`;break;default:t.data+=String.fromCodePoint(e)}}_stateMarkupDeclarationOpen(e){this._consumeSequenceIfMatch(sv.DASH_DASH,!0)?(this._createCommentToken(sv.DASH_DASH.length+1),this.state=Q.COMMENT_START):this._consumeSequenceIfMatch(sv.DOCTYPE,!1)?(this.currentLocation=this.getCurrentLocation(sv.DOCTYPE.length+1),this.state=Q.DOCTYPE):this._consumeSequenceIfMatch(sv.CDATA_START,!0)?this.inForeignNode?this.state=Q.CDATA_SECTION:(this._err(q.cdataInHtmlContent),this._createCommentToken(sv.CDATA_START.length+1),this.currentToken.data=`[CDATA[`,this.state=Q.BOGUS_COMMENT):this._ensureHibernation()||(this._err(q.incorrectlyOpenedComment),this._createCommentToken(2),this.state=Q.BOGUS_COMMENT,this._stateBogusComment(e))}_stateCommentStart(e){switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_START_DASH;break;case K.GREATER_THAN_SIGN:{this._err(q.abruptClosingOfEmptyComment),this.state=Q.DATA;let e=this.currentToken;this.emitCurrentComment(e);break}default:this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentStartDash(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_END;break;case K.GREATER_THAN_SIGN:this._err(q.abruptClosingOfEmptyComment),this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`-`,this.state=Q.COMMENT,this._stateComment(e)}}_stateComment(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_END_DASH;break;case K.LESS_THAN_SIGN:t.data+=`<`,this.state=Q.COMMENT_LESS_THAN_SIGN;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.data+=`�`;break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=String.fromCodePoint(e)}}_stateCommentLessThanSign(e){let t=this.currentToken;switch(e){case K.EXCLAMATION_MARK:t.data+=`!`,this.state=Q.COMMENT_LESS_THAN_SIGN_BANG;break;case K.LESS_THAN_SIGN:t.data+=`<`;break;default:this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentLessThanSignBang(e){e===K.HYPHEN_MINUS?this.state=Q.COMMENT_LESS_THAN_SIGN_BANG_DASH:(this.state=Q.COMMENT,this._stateComment(e))}_stateCommentLessThanSignBangDash(e){e===K.HYPHEN_MINUS?this.state=Q.COMMENT_LESS_THAN_SIGN_BANG_DASH_DASH:(this.state=Q.COMMENT_END_DASH,this._stateCommentEndDash(e))}_stateCommentLessThanSignBangDashDash(e){e!==K.GREATER_THAN_SIGN&&e!==K.EOF&&this._err(q.nestedComment),this.state=Q.COMMENT_END,this._stateCommentEnd(e)}_stateCommentEndDash(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:this.state=Q.COMMENT_END;break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`-`,this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentEnd(e){let t=this.currentToken;switch(e){case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EXCLAMATION_MARK:this.state=Q.COMMENT_END_BANG;break;case K.HYPHEN_MINUS:t.data+=`-`;break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`--`,this.state=Q.COMMENT,this._stateComment(e)}}_stateCommentEndBang(e){let t=this.currentToken;switch(e){case K.HYPHEN_MINUS:t.data+=`--!`,this.state=Q.COMMENT_END_DASH;break;case K.GREATER_THAN_SIGN:this._err(q.incorrectlyClosedComment),this.state=Q.DATA,this.emitCurrentComment(t);break;case K.EOF:this._err(q.eofInComment),this.emitCurrentComment(t),this._emitEOFToken();break;default:t.data+=`--!`,this.state=Q.COMMENT,this._stateComment(e)}}_stateDoctype(e){switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_DOCTYPE_NAME;break;case K.GREATER_THAN_SIGN:this.state=Q.BEFORE_DOCTYPE_NAME,this._stateBeforeDoctypeName(e);break;case K.EOF:{this._err(q.eofInDoctype),this._createDoctypeToken(null);let e=this.currentToken;e.forceQuirks=!0,this.emitCurrentDoctype(e),this._emitEOFToken();break}default:this._err(q.missingWhitespaceBeforeDoctypeName),this.state=Q.BEFORE_DOCTYPE_NAME,this._stateBeforeDoctypeName(e)}}_stateBeforeDoctypeName(e){if(zv(e))this._createDoctypeToken(String.fromCharCode(Uv(e))),this.state=Q.DOCTYPE_NAME;else switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.NULL:this._err(q.unexpectedNullCharacter),this._createDoctypeToken(`�`),this.state=Q.DOCTYPE_NAME;break;case K.GREATER_THAN_SIGN:{this._err(q.missingDoctypeName),this._createDoctypeToken(null);let e=this.currentToken;e.forceQuirks=!0,this.emitCurrentDoctype(e),this.state=Q.DATA;break}case K.EOF:{this._err(q.eofInDoctype),this._createDoctypeToken(null);let e=this.currentToken;e.forceQuirks=!0,this.emitCurrentDoctype(e),this._emitEOFToken();break}default:this._createDoctypeToken(String.fromCodePoint(e)),this.state=Q.DOCTYPE_NAME}}_stateDoctypeName(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.AFTER_DOCTYPE_NAME;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.NULL:this._err(q.unexpectedNullCharacter),t.name+=`�`;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.name+=String.fromCodePoint(zv(e)?Uv(e):e)}}_stateAfterDoctypeName(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._consumeSequenceIfMatch(sv.PUBLIC,!1)?this.state=Q.AFTER_DOCTYPE_PUBLIC_KEYWORD:this._consumeSequenceIfMatch(sv.SYSTEM,!1)?this.state=Q.AFTER_DOCTYPE_SYSTEM_KEYWORD:this._ensureHibernation()||(this._err(q.invalidCharacterSequenceAfterDoctypeName),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e))}}_stateAfterDoctypePublicKeyword(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_DOCTYPE_PUBLIC_IDENTIFIER;break;case K.QUOTATION_MARK:this._err(q.missingWhitespaceAfterDoctypePublicKeyword),t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:this._err(q.missingWhitespaceAfterDoctypePublicKeyword),t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBeforeDoctypePublicIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.QUOTATION_MARK:t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:t.publicId=``,this.state=Q.DOCTYPE_PUBLIC_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypePublicIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateDoctypePublicIdentifierDoubleQuoted(e){let t=this.currentToken;switch(e){case K.QUOTATION_MARK:this.state=Q.AFTER_DOCTYPE_PUBLIC_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.publicId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypePublicIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.publicId+=String.fromCodePoint(e)}}_stateDoctypePublicIdentifierSingleQuoted(e){let t=this.currentToken;switch(e){case K.APOSTROPHE:this.state=Q.AFTER_DOCTYPE_PUBLIC_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.publicId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypePublicIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.publicId+=String.fromCodePoint(e)}}_stateAfterDoctypePublicIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BETWEEN_DOCTYPE_PUBLIC_AND_SYSTEM_IDENTIFIERS;break;case K.GREATER_THAN_SIGN:this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.QUOTATION_MARK:this._err(q.missingWhitespaceBetweenDoctypePublicAndSystemIdentifiers),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:this._err(q.missingWhitespaceBetweenDoctypePublicAndSystemIdentifiers),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBetweenDoctypePublicAndSystemIdentifiers(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.GREATER_THAN_SIGN:this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.QUOTATION_MARK:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateAfterDoctypeSystemKeyword(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:this.state=Q.BEFORE_DOCTYPE_SYSTEM_IDENTIFIER;break;case K.QUOTATION_MARK:this._err(q.missingWhitespaceAfterDoctypeSystemKeyword),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:this._err(q.missingWhitespaceAfterDoctypeSystemKeyword),t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBeforeDoctypeSystemIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.QUOTATION_MARK:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_DOUBLE_QUOTED;break;case K.APOSTROPHE:t.systemId=``,this.state=Q.DOCTYPE_SYSTEM_IDENTIFIER_SINGLE_QUOTED;break;case K.GREATER_THAN_SIGN:this._err(q.missingDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.DATA,this.emitCurrentDoctype(t);break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.missingQuoteBeforeDoctypeSystemIdentifier),t.forceQuirks=!0,this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateDoctypeSystemIdentifierDoubleQuoted(e){let t=this.currentToken;switch(e){case K.QUOTATION_MARK:this.state=Q.AFTER_DOCTYPE_SYSTEM_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.systemId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypeSystemIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.systemId+=String.fromCodePoint(e)}}_stateDoctypeSystemIdentifierSingleQuoted(e){let t=this.currentToken;switch(e){case K.APOSTROPHE:this.state=Q.AFTER_DOCTYPE_SYSTEM_IDENTIFIER;break;case K.NULL:this._err(q.unexpectedNullCharacter),t.systemId+=`�`;break;case K.GREATER_THAN_SIGN:this._err(q.abruptDoctypeSystemIdentifier),t.forceQuirks=!0,this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:t.systemId+=String.fromCodePoint(e)}}_stateAfterDoctypeSystemIdentifier(e){let t=this.currentToken;switch(e){case K.SPACE:case K.LINE_FEED:case K.TABULATION:case K.FORM_FEED:break;case K.GREATER_THAN_SIGN:this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.EOF:this._err(q.eofInDoctype),t.forceQuirks=!0,this.emitCurrentDoctype(t),this._emitEOFToken();break;default:this._err(q.unexpectedCharacterAfterDoctypeSystemIdentifier),this.state=Q.BOGUS_DOCTYPE,this._stateBogusDoctype(e)}}_stateBogusDoctype(e){let t=this.currentToken;switch(e){case K.GREATER_THAN_SIGN:this.emitCurrentDoctype(t),this.state=Q.DATA;break;case K.NULL:this._err(q.unexpectedNullCharacter);break;case K.EOF:this.emitCurrentDoctype(t),this._emitEOFToken();break;default:}}_stateCdataSection(e){switch(e){case K.RIGHT_SQUARE_BRACKET:this.state=Q.CDATA_SECTION_BRACKET;break;case K.EOF:this._err(q.eofInCdata),this._emitEOFToken();break;default:this._emitCodePoint(e)}}_stateCdataSectionBracket(e){e===K.RIGHT_SQUARE_BRACKET?this.state=Q.CDATA_SECTION_END:(this._emitChars(`]`),this.state=Q.CDATA_SECTION,this._stateCdataSection(e))}_stateCdataSectionEnd(e){switch(e){case K.GREATER_THAN_SIGN:this.state=Q.DATA;break;case K.RIGHT_SQUARE_BRACKET:this._emitChars(`]`);break;default:this._emitChars(`]]`),this.state=Q.CDATA_SECTION,this._stateCdataSection(e)}}_stateCharacterReference(){let e=this.entityDecoder.write(this.preprocessor.html,this.preprocessor.pos);if(e<0)if(this.preprocessor.lastChunkWritten)e=this.entityDecoder.end();else{this.active=!1,this.preprocessor.pos=this.preprocessor.html.length-1,this.consumedAfterSnapshot=0,this.preprocessor.endOfChunkHit=!0;return}e===0?(this.preprocessor.pos=this.entityStartPos,this._flushCodePointConsumedAsCharacterReference(K.AMPERSAND),this.state=!this._isCharacterReferenceInAttribute()&&Hv(this.preprocessor.peek(1))?Q.AMBIGUOUS_AMPERSAND:this.returnState):this.state=this.returnState}_stateAmbiguousAmpersand(e){Hv(e)?this._flushCodePointConsumedAsCharacterReference(e):(e===K.SEMICOLON&&this._err(q.unknownNamedCharacterReference),this.state=this.returnState,this._callState(e))}},Jv=new Set([X.DD,X.DT,X.LI,X.OPTGROUP,X.OPTION,X.P,X.RB,X.RP,X.RT,X.RTC]),Yv=new Set([...Jv,X.CAPTION,X.COLGROUP,X.TBODY,X.TD,X.TFOOT,X.TH,X.THEAD,X.TR]),Xv=new Set([X.APPLET,X.CAPTION,X.HTML,X.MARQUEE,X.OBJECT,X.TABLE,X.TD,X.TEMPLATE,X.TH]),Zv=new Set([...Xv,X.OL,X.UL]),Qv=new Set([...Xv,X.BUTTON]),$v=new Set([X.ANNOTATION_XML,X.MI,X.MN,X.MO,X.MS,X.MTEXT]),ey=new Set([X.DESC,X.FOREIGN_OBJECT,X.TITLE]),ty=new Set([X.TR,X.TEMPLATE,X.HTML]),ny=new Set([X.TBODY,X.TFOOT,X.THEAD,X.TEMPLATE,X.HTML]),ry=new Set([X.TABLE,X.TEMPLATE,X.HTML]),iy=new Set([X.TD,X.TH]),ay=class{get currentTmplContentOrNode(){return this._isInTemplate()?this.treeAdapter.getTemplateContent(this.current):this.current}constructor(e,t,n){this.treeAdapter=t,this.handler=n,this.items=[],this.tagIDs=[],this.stackTop=-1,this.tmplCount=0,this.currentTagId=X.UNKNOWN,this.current=e}_indexOf(e){return this.items.lastIndexOf(e,this.stackTop)}_isInTemplate(){return this.currentTagId===X.TEMPLATE&&this.treeAdapter.getNamespaceURI(this.current)===J.HTML}_updateCurrentElement(){this.current=this.items[this.stackTop],this.currentTagId=this.tagIDs[this.stackTop]}push(e,t){this.stackTop++,this.items[this.stackTop]=e,this.current=e,this.tagIDs[this.stackTop]=t,this.currentTagId=t,this._isInTemplate()&&this.tmplCount++,this.handler.onItemPush(e,t,!0)}pop(){let e=this.current;this.tmplCount>0&&this._isInTemplate()&&this.tmplCount--,this.stackTop--,this._updateCurrentElement(),this.handler.onItemPop(e,!0)}replace(e,t){let n=this._indexOf(e);this.items[n]=t,n===this.stackTop&&(this.current=t)}insertAfter(e,t,n){let r=this._indexOf(e)+1;this.items.splice(r,0,t),this.tagIDs.splice(r,0,n),this.stackTop++,r===this.stackTop&&this._updateCurrentElement(),this.current&&this.currentTagId!==void 0&&this.handler.onItemPush(this.current,this.currentTagId,r===this.stackTop)}popUntilTagNamePopped(e){let t=this.stackTop+1;do t=this.tagIDs.lastIndexOf(e,t-1);while(t>0&&this.treeAdapter.getNamespaceURI(this.items[t])!==J.HTML);this.shortenToLength(Math.max(t,0))}shortenToLength(e){for(;this.stackTop>=e;){let t=this.current;this.tmplCount>0&&this._isInTemplate()&&--this.tmplCount,this.stackTop--,this._updateCurrentElement(),this.handler.onItemPop(t,this.stackTop<e)}}popUntilElementPopped(e){let t=this._indexOf(e);this.shortenToLength(Math.max(t,0))}popUntilPopped(e,t){let n=this._indexOfTagNames(e,t);this.shortenToLength(Math.max(n,0))}popUntilNumberedHeaderPopped(){this.popUntilPopped(Iv,J.HTML)}popUntilTableCellPopped(){this.popUntilPopped(iy,J.HTML)}popAllUpToHtmlElement(){this.tmplCount=0,this.shortenToLength(1)}_indexOfTagNames(e,t){for(let n=this.stackTop;n>=0;n--)if(e.has(this.tagIDs[n])&&this.treeAdapter.getNamespaceURI(this.items[n])===t)return n;return-1}clearBackTo(e,t){let n=this._indexOfTagNames(e,t);this.shortenToLength(n+1)}clearBackToTableContext(){this.clearBackTo(ry,J.HTML)}clearBackToTableBodyContext(){this.clearBackTo(ny,J.HTML)}clearBackToTableRowContext(){this.clearBackTo(ty,J.HTML)}remove(e){let t=this._indexOf(e);t>=0&&(t===this.stackTop?this.pop():(this.items.splice(t,1),this.tagIDs.splice(t,1),this.stackTop--,this._updateCurrentElement(),this.handler.onItemPop(e,!1)))}tryPeekProperlyNestedBodyElement(){return this.stackTop>=1&&this.tagIDs[1]===X.BODY?this.items[1]:null}contains(e){return this._indexOf(e)>-1}getCommonAncestor(e){let t=this._indexOf(e)-1;return t>=0?this.items[t]:null}isRootHtmlElementCurrent(){return this.stackTop===0&&this.tagIDs[0]===X.HTML}hasInDynamicScope(e,t){for(let n=this.stackTop;n>=0;n--){let r=this.tagIDs[n];switch(this.treeAdapter.getNamespaceURI(this.items[n])){case J.HTML:if(r===e)return!0;if(t.has(r))return!1;break;case J.SVG:if(ey.has(r))return!1;break;case J.MATHML:if($v.has(r))return!1;break}}return!0}hasInScope(e){return this.hasInDynamicScope(e,Xv)}hasInListItemScope(e){return this.hasInDynamicScope(e,Zv)}hasInButtonScope(e){return this.hasInDynamicScope(e,Qv)}hasNumberedHeaderInScope(){for(let e=this.stackTop;e>=0;e--){let t=this.tagIDs[e];switch(this.treeAdapter.getNamespaceURI(this.items[e])){case J.HTML:if(Iv.has(t))return!0;if(Xv.has(t))return!1;break;case J.SVG:if(ey.has(t))return!1;break;case J.MATHML:if($v.has(t))return!1;break}}return!0}hasInTableScope(e){for(let t=this.stackTop;t>=0;t--)if(this.treeAdapter.getNamespaceURI(this.items[t])===J.HTML)switch(this.tagIDs[t]){case e:return!0;case X.TABLE:case X.HTML:return!1}return!0}hasTableBodyContextInTableScope(){for(let e=this.stackTop;e>=0;e--)if(this.treeAdapter.getNamespaceURI(this.items[e])===J.HTML)switch(this.tagIDs[e]){case X.TBODY:case X.THEAD:case X.TFOOT:return!0;case X.TABLE:case X.HTML:return!1}return!0}hasInSelectScope(e){for(let t=this.stackTop;t>=0;t--)if(this.treeAdapter.getNamespaceURI(this.items[t])===J.HTML)switch(this.tagIDs[t]){case e:return!0;case X.OPTION:case X.OPTGROUP:break;default:return!1}return!0}generateImpliedEndTags(){for(;this.currentTagId!==void 0&&Jv.has(this.currentTagId);)this.pop()}generateImpliedEndTagsThoroughly(){for(;this.currentTagId!==void 0&&Yv.has(this.currentTagId);)this.pop()}generateImpliedEndTagsWithExclusion(e){for(;this.currentTagId!==void 0&&this.currentTagId!==e&&Yv.has(this.currentTagId);)this.pop()}},oy=3,sy;(function(e){e[e.Marker=0]=`Marker`,e[e.Element=1]=`Element`})(sy||={});var cy={type:sy.Marker},ly=class{constructor(e){this.treeAdapter=e,this.entries=[],this.bookmark=null}_getNoahArkConditionCandidates(e,t){let n=[],r=t.length,i=this.treeAdapter.getTagName(e),a=this.treeAdapter.getNamespaceURI(e);for(let e=0;e<this.entries.length;e++){let t=this.entries[e];if(t.type===sy.Marker)break;let{element:o}=t;if(this.treeAdapter.getTagName(o)===i&&this.treeAdapter.getNamespaceURI(o)===a){let t=this.treeAdapter.getAttrList(o);t.length===r&&n.push({idx:e,attrs:t})}}return n}_ensureNoahArkCondition(e){if(this.entries.length<oy)return;let t=this.treeAdapter.getAttrList(e),n=this._getNoahArkConditionCandidates(e,t);if(n.length<oy)return;let r=new Map(t.map(e=>[e.name,e.value])),i=0;for(let e=0;e<n.length;e++){let t=n[e];t.attrs.every(e=>r.get(e.name)===e.value)&&(i+=1,i>=oy&&this.entries.splice(t.idx,1))}}insertMarker(){this.entries.unshift(cy)}pushElement(e,t){this._ensureNoahArkCondition(e),this.entries.unshift({type:sy.Element,element:e,token:t})}insertElementAfterBookmark(e,t){let n=this.entries.indexOf(this.bookmark);this.entries.splice(n,0,{type:sy.Element,element:e,token:t})}removeEntry(e){let t=this.entries.indexOf(e);t!==-1&&this.entries.splice(t,1)}clearToLastMarker(){let e=this.entries.indexOf(cy);e===-1?this.entries.length=0:this.entries.splice(0,e+1)}getElementEntryInScopeWithTagName(e){let t=this.entries.find(t=>t.type===sy.Marker||this.treeAdapter.getTagName(t.element)===e);return t&&t.type===sy.Element?t:null}getElementEntry(e){return this.entries.find(t=>t.type===sy.Element&&t.element===e)}},uy={createDocument(){return{nodeName:`#document`,mode:Mv.NO_QUIRKS,childNodes:[]}},createDocumentFragment(){return{nodeName:`#document-fragment`,childNodes:[]}},createElement(e,t,n){return{nodeName:e,tagName:e,attrs:n,namespaceURI:t,childNodes:[],parentNode:null}},createCommentNode(e){return{nodeName:`#comment`,data:e,parentNode:null}},createTextNode(e){return{nodeName:`#text`,value:e,parentNode:null}},appendChild(e,t){e.childNodes.push(t),t.parentNode=e},insertBefore(e,t,n){let r=e.childNodes.indexOf(n);e.childNodes.splice(r,0,t),t.parentNode=e},setTemplateContent(e,t){e.content=t},getTemplateContent(e){return e.content},setDocumentType(e,t,n,r){let i=e.childNodes.find(e=>e.nodeName===`#documentType`);if(i)i.name=t,i.publicId=n,i.systemId=r;else{let i={nodeName:`#documentType`,name:t,publicId:n,systemId:r,parentNode:null};uy.appendChild(e,i)}},setDocumentMode(e,t){e.mode=t},getDocumentMode(e){return e.mode},detachNode(e){if(e.parentNode){let t=e.parentNode.childNodes.indexOf(e);e.parentNode.childNodes.splice(t,1),e.parentNode=null}},insertText(e,t){if(e.childNodes.length>0){let n=e.childNodes[e.childNodes.length-1];if(uy.isTextNode(n)){n.value+=t;return}}uy.appendChild(e,uy.createTextNode(t))},insertTextBefore(e,t,n){let r=e.childNodes[e.childNodes.indexOf(n)-1];r&&uy.isTextNode(r)?r.value+=t:uy.insertBefore(e,uy.createTextNode(t),n)},adoptAttributes(e,t){let n=new Set(e.attrs.map(e=>e.name));for(let r=0;r<t.length;r++)n.has(t[r].name)||e.attrs.push(t[r])},getFirstChild(e){return e.childNodes[0]},getChildNodes(e){return e.childNodes},getParentNode(e){return e.parentNode},getAttrList(e){return e.attrs},getTagName(e){return e.tagName},getNamespaceURI(e){return e.namespaceURI},getTextNodeContent(e){return e.value},getCommentNodeContent(e){return e.data},getDocumentTypeNodeName(e){return e.name},getDocumentTypeNodePublicId(e){return e.publicId},getDocumentTypeNodeSystemId(e){return e.systemId},isTextNode(e){return e.nodeName===`#text`},isCommentNode(e){return e.nodeName===`#comment`},isDocumentTypeNode(e){return e.nodeName===`#documentType`},isElementNode(e){return Object.prototype.hasOwnProperty.call(e,`tagName`)},setNodeSourceCodeLocation(e,t){e.sourceCodeLocation=t},getNodeSourceCodeLocation(e){return e.sourceCodeLocation},updateNodeSourceCodeLocation(e,t){e.sourceCodeLocation={...e.sourceCodeLocation,...t}}},dy=`html`,fy=`about:legacy-compat`,py=`http://www.ibm.com/data/dtd/v11/ibmxhtml1-transitional.dtd`,my=`+//silmaril//dtd html pro v0r11 19970101//,-//as//dtd html 3.0 aswedit + extensions//,-//advasoft ltd//dtd html 3.0 aswedit + extensions//,-//ietf//dtd html 2.0 level 1//,-//ietf//dtd html 2.0 level 2//,-//ietf//dtd html 2.0 strict level 1//,-//ietf//dtd html 2.0 strict level 2//,-//ietf//dtd html 2.0 strict//,-//ietf//dtd html 2.0//,-//ietf//dtd html 2.1e//,-//ietf//dtd html 3.0//,-//ietf//dtd html 3.2 final//,-//ietf//dtd html 3.2//,-//ietf//dtd html 3//,-//ietf//dtd html level 0//,-//ietf//dtd html level 1//,-//ietf//dtd html level 2//,-//ietf//dtd html level 3//,-//ietf//dtd html strict level 0//,-//ietf//dtd html strict level 1//,-//ietf//dtd html strict level 2//,-//ietf//dtd html strict level 3//,-//ietf//dtd html strict//,-//ietf//dtd html//,-//metrius//dtd metrius presentational//,-//microsoft//dtd internet explorer 2.0 html strict//,-//microsoft//dtd internet explorer 2.0 html//,-//microsoft//dtd internet explorer 2.0 tables//,-//microsoft//dtd internet explorer 3.0 html strict//,-//microsoft//dtd internet explorer 3.0 html//,-//microsoft//dtd internet explorer 3.0 tables//,-//netscape comm. corp.//dtd html//,-//netscape comm. corp.//dtd strict html//,-//o'reilly and associates//dtd html 2.0//,-//o'reilly and associates//dtd html extended 1.0//,-//o'reilly and associates//dtd html extended relaxed 1.0//,-//sq//dtd html 2.0 hotmetal + extensions//,-//softquad software//dtd hotmetal pro 6.0::19990601::extensions to html 4.0//,-//softquad//dtd hotmetal pro 4.0::19971010::extensions to html 4.0//,-//spyglass//dtd html 2.0 extended//,-//sun microsystems corp.//dtd hotjava html//,-//sun microsystems corp.//dtd hotjava strict html//,-//w3c//dtd html 3 1995-03-24//,-//w3c//dtd html 3.2 draft//,-//w3c//dtd html 3.2 final//,-//w3c//dtd html 3.2//,-//w3c//dtd html 3.2s draft//,-//w3c//dtd html 4.0 frameset//,-//w3c//dtd html 4.0 transitional//,-//w3c//dtd html experimental 19960712//,-//w3c//dtd html experimental 970421//,-//w3c//dtd w3 html//,-//w3o//dtd w3 html 3.0//,-//webtechs//dtd mozilla html 2.0//,-//webtechs//dtd mozilla html//`.split(`,`),hy=[...my,`-//w3c//dtd html 4.01 frameset//`,`-//w3c//dtd html 4.01 transitional//`],gy=new Set([`-//w3o//dtd w3 html strict 3.0//en//`,`-/w3c/dtd html 4.0 transitional/en`,`html`]),_y=[`-//w3c//dtd xhtml 1.0 frameset//`,`-//w3c//dtd xhtml 1.0 transitional//`],vy=[..._y,`-//w3c//dtd html 4.01 frameset//`,`-//w3c//dtd html 4.01 transitional//`];function yy(e,t){return t.some(t=>e.startsWith(t))}function by(e){return e.name===dy&&e.publicId===null&&(e.systemId===null||e.systemId===fy)}function xy(e){if(e.name!==dy)return Mv.QUIRKS;let{systemId:t}=e;if(t&&t.toLowerCase()===py)return Mv.QUIRKS;let{publicId:n}=e;if(n!==null){if(n=n.toLowerCase(),gy.has(n))return Mv.QUIRKS;let e=t===null?hy:my;if(yy(n,e))return Mv.QUIRKS;if(e=t===null?_y:vy,yy(n,e))return Mv.LIMITED_QUIRKS}return Mv.NO_QUIRKS}var Sy={TEXT_HTML:`text/html`,APPLICATION_XML:`application/xhtml+xml`},Cy=`definitionurl`,wy=`definitionURL`,Ty=new Map(`attributeName.attributeType.baseFrequency.baseProfile.calcMode.clipPathUnits.diffuseConstant.edgeMode.filterUnits.glyphRef.gradientTransform.gradientUnits.kernelMatrix.kernelUnitLength.keyPoints.keySplines.keyTimes.lengthAdjust.limitingConeAngle.markerHeight.markerUnits.markerWidth.maskContentUnits.maskUnits.numOctaves.pathLength.patternContentUnits.patternTransform.patternUnits.pointsAtX.pointsAtY.pointsAtZ.preserveAlpha.preserveAspectRatio.primitiveUnits.refX.refY.repeatCount.repeatDur.requiredExtensions.requiredFeatures.specularConstant.specularExponent.spreadMethod.startOffset.stdDeviation.stitchTiles.surfaceScale.systemLanguage.tableValues.targetX.targetY.textLength.viewBox.viewTarget.xChannelSelector.yChannelSelector.zoomAndPan`.split(`.`).map(e=>[e.toLowerCase(),e])),Ey=new Map([[`xlink:actuate`,{prefix:`xlink`,name:`actuate`,namespace:J.XLINK}],[`xlink:arcrole`,{prefix:`xlink`,name:`arcrole`,namespace:J.XLINK}],[`xlink:href`,{prefix:`xlink`,name:`href`,namespace:J.XLINK}],[`xlink:role`,{prefix:`xlink`,name:`role`,namespace:J.XLINK}],[`xlink:show`,{prefix:`xlink`,name:`show`,namespace:J.XLINK}],[`xlink:title`,{prefix:`xlink`,name:`title`,namespace:J.XLINK}],[`xlink:type`,{prefix:`xlink`,name:`type`,namespace:J.XLINK}],[`xml:lang`,{prefix:`xml`,name:`lang`,namespace:J.XML}],[`xml:space`,{prefix:`xml`,name:`space`,namespace:J.XML}],[`xmlns`,{prefix:``,name:`xmlns`,namespace:J.XMLNS}],[`xmlns:xlink`,{prefix:`xmlns`,name:`xlink`,namespace:J.XMLNS}]]),Dy=new Map(`altGlyph.altGlyphDef.altGlyphItem.animateColor.animateMotion.animateTransform.clipPath.feBlend.feColorMatrix.feComponentTransfer.feComposite.feConvolveMatrix.feDiffuseLighting.feDisplacementMap.feDistantLight.feFlood.feFuncA.feFuncB.feFuncG.feFuncR.feGaussianBlur.feImage.feMerge.feMergeNode.feMorphology.feOffset.fePointLight.feSpecularLighting.feSpotLight.feTile.feTurbulence.foreignObject.glyphRef.linearGradient.radialGradient.textPath`.split(`.`).map(e=>[e.toLowerCase(),e])),Oy=new Set([X.B,X.BIG,X.BLOCKQUOTE,X.BODY,X.BR,X.CENTER,X.CODE,X.DD,X.DIV,X.DL,X.DT,X.EM,X.EMBED,X.H1,X.H2,X.H3,X.H4,X.H5,X.H6,X.HEAD,X.HR,X.I,X.IMG,X.LI,X.LISTING,X.MENU,X.META,X.NOBR,X.OL,X.P,X.PRE,X.RUBY,X.S,X.SMALL,X.SPAN,X.STRONG,X.STRIKE,X.SUB,X.SUP,X.TABLE,X.TT,X.U,X.UL,X.VAR]);function ky(e){let t=e.tagID;return t===X.FONT&&e.attrs.some(({name:e})=>e===jv.COLOR||e===jv.SIZE||e===jv.FACE)||Oy.has(t)}function Ay(e){for(let t=0;t<e.attrs.length;t++)if(e.attrs[t].name===Cy){e.attrs[t].name=wy;break}}function jy(e){for(let t=0;t<e.attrs.length;t++){let n=Ty.get(e.attrs[t].name);n!=null&&(e.attrs[t].name=n)}}function My(e){for(let t=0;t<e.attrs.length;t++){let n=Ey.get(e.attrs[t].name);n&&(e.attrs[t].prefix=n.prefix,e.attrs[t].name=n.name,e.attrs[t].namespace=n.namespace)}}function Ny(e){let t=Dy.get(e.tagName);t!=null&&(e.tagName=t,e.tagID=Pv(e.tagName))}function Py(e,t){return t===J.MATHML&&(e===X.MI||e===X.MO||e===X.MN||e===X.MS||e===X.MTEXT)}function Fy(e,t,n){if(t===J.MATHML&&e===X.ANNOTATION_XML){for(let e=0;e<n.length;e++)if(n[e].name===jv.ENCODING){let t=n[e].value.toLowerCase();return t===Sy.TEXT_HTML||t===Sy.APPLICATION_XML}}return t===J.SVG&&(e===X.FOREIGN_OBJECT||e===X.DESC||e===X.TITLE)}function Iy(e,t,n,r){return(!r||r===J.HTML)&&Fy(e,t,n)||(!r||r===J.MATHML)&&Py(e,t)}var Ly=`hidden`,Ry=8,zy=3,$;(function(e){e[e.INITIAL=0]=`INITIAL`,e[e.BEFORE_HTML=1]=`BEFORE_HTML`,e[e.BEFORE_HEAD=2]=`BEFORE_HEAD`,e[e.IN_HEAD=3]=`IN_HEAD`,e[e.IN_HEAD_NO_SCRIPT=4]=`IN_HEAD_NO_SCRIPT`,e[e.AFTER_HEAD=5]=`AFTER_HEAD`,e[e.IN_BODY=6]=`IN_BODY`,e[e.TEXT=7]=`TEXT`,e[e.IN_TABLE=8]=`IN_TABLE`,e[e.IN_TABLE_TEXT=9]=`IN_TABLE_TEXT`,e[e.IN_CAPTION=10]=`IN_CAPTION`,e[e.IN_COLUMN_GROUP=11]=`IN_COLUMN_GROUP`,e[e.IN_TABLE_BODY=12]=`IN_TABLE_BODY`,e[e.IN_ROW=13]=`IN_ROW`,e[e.IN_CELL=14]=`IN_CELL`,e[e.IN_SELECT=15]=`IN_SELECT`,e[e.IN_SELECT_IN_TABLE=16]=`IN_SELECT_IN_TABLE`,e[e.IN_TEMPLATE=17]=`IN_TEMPLATE`,e[e.AFTER_BODY=18]=`AFTER_BODY`,e[e.IN_FRAMESET=19]=`IN_FRAMESET`,e[e.AFTER_FRAMESET=20]=`AFTER_FRAMESET`,e[e.AFTER_AFTER_BODY=21]=`AFTER_AFTER_BODY`,e[e.AFTER_AFTER_FRAMESET=22]=`AFTER_AFTER_FRAMESET`})($||={});var By={startLine:-1,startCol:-1,startOffset:-1,endLine:-1,endCol:-1,endOffset:-1},Vy=new Set([X.TABLE,X.TBODY,X.TFOOT,X.THEAD,X.TR]),Hy={scriptingEnabled:!0,sourceCodeLocationInfo:!1,treeAdapter:uy,onParseError:null},Uy=class{constructor(e,t,n=null,r=null){this.fragmentContext=n,this.scriptHandler=r,this.currentToken=null,this.stopped=!1,this.insertionMode=$.INITIAL,this.originalInsertionMode=$.INITIAL,this.headElement=null,this.formElement=null,this.currentNotInHTML=!1,this.tmplInsertionModeStack=[],this.pendingCharacterTokens=[],this.hasNonWhitespacePendingCharacterToken=!1,this.framesetOk=!0,this.skipNextNewLine=!1,this.fosterParentingEnabled=!1,this.options={...Hy,...e},this.treeAdapter=this.options.treeAdapter,this.onParseError=this.options.onParseError,this.onParseError&&(this.options.sourceCodeLocationInfo=!0),this.document=t??this.treeAdapter.createDocument(),this.tokenizer=new qv(this.options,this),this.activeFormattingElements=new ly(this.treeAdapter),this.fragmentContextID=n?Pv(this.treeAdapter.getTagName(n)):X.UNKNOWN,this._setContextModes(n??this.document,this.fragmentContextID),this.openElements=new ay(this.document,this.treeAdapter,this)}static parse(e,t){let n=new this(t);return n.tokenizer.write(e,!0),n.document}static getFragmentParser(e,t){let n={...Hy,...t};e??=n.treeAdapter.createElement(Y.TEMPLATE,J.HTML,[]);let r=n.treeAdapter.createElement(`documentmock`,J.HTML,[]),i=new this(n,r,e);return i.fragmentContextID===X.TEMPLATE&&i.tmplInsertionModeStack.unshift($.IN_TEMPLATE),i._initTokenizerForFragmentParsing(),i._insertFakeRootElement(),i._resetInsertionMode(),i._findFormInFragmentContext(),i}getFragment(){let e=this.treeAdapter.getFirstChild(this.document),t=this.treeAdapter.createDocumentFragment();return this._adoptNodes(e,t),t}_err(e,t,n){if(!this.onParseError)return;let r=e.location??By,i={code:t,startLine:r.startLine,startCol:r.startCol,startOffset:r.startOffset,endLine:n?r.startLine:r.endLine,endCol:n?r.startCol:r.endCol,endOffset:n?r.startOffset:r.endOffset};this.onParseError(i)}onItemPush(e,t,n){var r,i;(i=(r=this.treeAdapter).onItemPush)==null||i.call(r,e),n&&this.openElements.stackTop>0&&this._setContextModes(e,t)}onItemPop(e,t){var n,r;if(this.options.sourceCodeLocationInfo&&this._setEndLocation(e,this.currentToken),(r=(n=this.treeAdapter).onItemPop)==null||r.call(n,e,this.openElements.current),t){let e,t;this.openElements.stackTop===0&&this.fragmentContext?(e=this.fragmentContext,t=this.fragmentContextID):{current:e,currentTagId:t}=this.openElements,this._setContextModes(e,t)}}_setContextModes(e,t){let n=e===this.document||e&&this.treeAdapter.getNamespaceURI(e)===J.HTML;this.currentNotInHTML=!n,this.tokenizer.inForeignNode=!n&&e!==void 0&&t!==void 0&&!this._isIntegrationPoint(t,e)}_switchToTextParsing(e,t){this._insertElement(e,J.HTML),this.tokenizer.state=t,this.originalInsertionMode=this.insertionMode,this.insertionMode=$.TEXT}switchToPlaintextParsing(){this.insertionMode=$.TEXT,this.originalInsertionMode=$.IN_BODY,this.tokenizer.state=Lv.PLAINTEXT}_getAdjustedCurrentElement(){return this.openElements.stackTop===0&&this.fragmentContext?this.fragmentContext:this.openElements.current}_findFormInFragmentContext(){let e=this.fragmentContext;for(;e;){if(this.treeAdapter.getTagName(e)===Y.FORM){this.formElement=e;break}e=this.treeAdapter.getParentNode(e)}}_initTokenizerForFragmentParsing(){if(!(!this.fragmentContext||this.treeAdapter.getNamespaceURI(this.fragmentContext)!==J.HTML))switch(this.fragmentContextID){case X.TITLE:case X.TEXTAREA:this.tokenizer.state=Lv.RCDATA;break;case X.STYLE:case X.XMP:case X.IFRAME:case X.NOEMBED:case X.NOFRAMES:case X.NOSCRIPT:this.tokenizer.state=Lv.RAWTEXT;break;case X.SCRIPT:this.tokenizer.state=Lv.SCRIPT_DATA;break;case X.PLAINTEXT:this.tokenizer.state=Lv.PLAINTEXT;break;default:}}_setDocumentType(e){let t=e.name||``,n=e.publicId||``,r=e.systemId||``;if(this.treeAdapter.setDocumentType(this.document,t,n,r),e.location){let t=this.treeAdapter.getChildNodes(this.document).find(e=>this.treeAdapter.isDocumentTypeNode(e));t&&this.treeAdapter.setNodeSourceCodeLocation(t,e.location)}}_attachElementToTree(e,t){if(this.options.sourceCodeLocationInfo){let n=t&&{...t,startTag:t};this.treeAdapter.setNodeSourceCodeLocation(e,n)}if(this._shouldFosterParentOnInsertion())this._fosterParentElement(e);else{let t=this.openElements.currentTmplContentOrNode;this.treeAdapter.appendChild(t??this.document,e)}}_appendElement(e,t){let n=this.treeAdapter.createElement(e.tagName,t,e.attrs);this._attachElementToTree(n,e.location)}_insertElement(e,t){let n=this.treeAdapter.createElement(e.tagName,t,e.attrs);this._attachElementToTree(n,e.location),this.openElements.push(n,e.tagID)}_insertFakeElement(e,t){let n=this.treeAdapter.createElement(e,J.HTML,[]);this._attachElementToTree(n,null),this.openElements.push(n,t)}_insertTemplate(e){let t=this.treeAdapter.createElement(e.tagName,J.HTML,e.attrs),n=this.treeAdapter.createDocumentFragment();this.treeAdapter.setTemplateContent(t,n),this._attachElementToTree(t,e.location),this.openElements.push(t,e.tagID),this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(n,null)}_insertFakeRootElement(){let e=this.treeAdapter.createElement(Y.HTML,J.HTML,[]);this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(e,null),this.treeAdapter.appendChild(this.openElements.current,e),this.openElements.push(e,X.HTML)}_appendCommentNode(e,t){let n=this.treeAdapter.createCommentNode(e.data);this.treeAdapter.appendChild(t,n),this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(n,e.location)}_insertCharacters(e){let t,n;if(this._shouldFosterParentOnInsertion()?({parent:t,beforeElement:n}=this._findFosterParentingLocation(),n?this.treeAdapter.insertTextBefore(t,e.chars,n):this.treeAdapter.insertText(t,e.chars)):(t=this.openElements.currentTmplContentOrNode,this.treeAdapter.insertText(t,e.chars)),!e.location)return;let r=this.treeAdapter.getChildNodes(t),i=r[(n?r.lastIndexOf(n):r.length)-1];if(this.treeAdapter.getNodeSourceCodeLocation(i)){let{endLine:t,endCol:n,endOffset:r}=e.location;this.treeAdapter.updateNodeSourceCodeLocation(i,{endLine:t,endCol:n,endOffset:r})}else this.options.sourceCodeLocationInfo&&this.treeAdapter.setNodeSourceCodeLocation(i,e.location)}_adoptNodes(e,t){for(let n=this.treeAdapter.getFirstChild(e);n;n=this.treeAdapter.getFirstChild(e))this.treeAdapter.detachNode(n),this.treeAdapter.appendChild(t,n)}_setEndLocation(e,t){if(this.treeAdapter.getNodeSourceCodeLocation(e)&&t.location){let n=t.location,r=this.treeAdapter.getTagName(e),i=t.type===hv.END_TAG&&r===t.tagName?{endTag:{...n},endLine:n.endLine,endCol:n.endCol,endOffset:n.endOffset}:{endLine:n.startLine,endCol:n.startCol,endOffset:n.startOffset};this.treeAdapter.updateNodeSourceCodeLocation(e,i)}}shouldProcessStartTagTokenInForeignContent(e){if(!this.currentNotInHTML)return!1;let t,n;return this.openElements.stackTop===0&&this.fragmentContext?(t=this.fragmentContext,n=this.fragmentContextID):{current:t,currentTagId:n}=this.openElements,e.tagID===X.SVG&&this.treeAdapter.getTagName(t)===Y.ANNOTATION_XML&&this.treeAdapter.getNamespaceURI(t)===J.MATHML?!1:this.tokenizer.inForeignNode||(e.tagID===X.MGLYPH||e.tagID===X.MALIGNMARK)&&n!==void 0&&!this._isIntegrationPoint(n,t,J.HTML)}_processToken(e){switch(e.type){case hv.CHARACTER:this.onCharacter(e);break;case hv.NULL_CHARACTER:this.onNullCharacter(e);break;case hv.COMMENT:this.onComment(e);break;case hv.DOCTYPE:this.onDoctype(e);break;case hv.START_TAG:this._processStartTag(e);break;case hv.END_TAG:this.onEndTag(e);break;case hv.EOF:this.onEof(e);break;case hv.WHITESPACE_CHARACTER:this.onWhitespaceCharacter(e);break}}_isIntegrationPoint(e,t,n){return Iy(e,this.treeAdapter.getNamespaceURI(t),this.treeAdapter.getAttrList(t),n)}_reconstructActiveFormattingElements(){let e=this.activeFormattingElements.entries.length;if(e){let t=this.activeFormattingElements.entries.findIndex(e=>e.type===sy.Marker||this.openElements.contains(e.element)),n=t===-1?e-1:t-1;for(let e=n;e>=0;e--){let t=this.activeFormattingElements.entries[e];this._insertElement(t.token,this.treeAdapter.getNamespaceURI(t.element)),t.element=this.openElements.current}}}_closeTableCell(){this.openElements.generateImpliedEndTags(),this.openElements.popUntilTableCellPopped(),this.activeFormattingElements.clearToLastMarker(),this.insertionMode=$.IN_ROW}_closePElement(){this.openElements.generateImpliedEndTagsWithExclusion(X.P),this.openElements.popUntilTagNamePopped(X.P)}_resetInsertionMode(){for(let e=this.openElements.stackTop;e>=0;e--)switch(e===0&&this.fragmentContext?this.fragmentContextID:this.openElements.tagIDs[e]){case X.TR:this.insertionMode=$.IN_ROW;return;case X.TBODY:case X.THEAD:case X.TFOOT:this.insertionMode=$.IN_TABLE_BODY;return;case X.CAPTION:this.insertionMode=$.IN_CAPTION;return;case X.COLGROUP:this.insertionMode=$.IN_COLUMN_GROUP;return;case X.TABLE:this.insertionMode=$.IN_TABLE;return;case X.BODY:this.insertionMode=$.IN_BODY;return;case X.FRAMESET:this.insertionMode=$.IN_FRAMESET;return;case X.SELECT:this._resetInsertionModeForSelect(e);return;case X.TEMPLATE:this.insertionMode=this.tmplInsertionModeStack[0];return;case X.HTML:this.insertionMode=this.headElement?$.AFTER_HEAD:$.BEFORE_HEAD;return;case X.TD:case X.TH:if(e>0){this.insertionMode=$.IN_CELL;return}break;case X.HEAD:if(e>0){this.insertionMode=$.IN_HEAD;return}break}this.insertionMode=$.IN_BODY}_resetInsertionModeForSelect(e){if(e>0)for(let t=e-1;t>0;t--){let e=this.openElements.tagIDs[t];if(e===X.TEMPLATE)break;if(e===X.TABLE){this.insertionMode=$.IN_SELECT_IN_TABLE;return}}this.insertionMode=$.IN_SELECT}_isElementCausesFosterParenting(e){return Vy.has(e)}_shouldFosterParentOnInsertion(){return this.fosterParentingEnabled&&this.openElements.currentTagId!==void 0&&this._isElementCausesFosterParenting(this.openElements.currentTagId)}_findFosterParentingLocation(){for(let e=this.openElements.stackTop;e>=0;e--){let t=this.openElements.items[e];switch(this.openElements.tagIDs[e]){case X.TEMPLATE:if(this.treeAdapter.getNamespaceURI(t)===J.HTML)return{parent:this.treeAdapter.getTemplateContent(t),beforeElement:null};break;case X.TABLE:{let n=this.treeAdapter.getParentNode(t);return n?{parent:n,beforeElement:t}:{parent:this.openElements.items[e-1],beforeElement:null}}default:}}return{parent:this.openElements.items[0],beforeElement:null}}_fosterParentElement(e){let t=this._findFosterParentingLocation();t.beforeElement?this.treeAdapter.insertBefore(t.parent,e,t.beforeElement):this.treeAdapter.appendChild(t.parent,e)}_isSpecialElement(e,t){return Fv[this.treeAdapter.getNamespaceURI(e)].has(t)}onCharacter(e){if(this.skipNextNewLine=!1,this.tokenizer.inForeignNode){sS(this,e);return}switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ab(this,e);break;case $.BEFORE_HEAD:cb(this,e);break;case $.IN_HEAD:fb(this,e);break;case $.IN_HEAD_NO_SCRIPT:hb(this,e);break;case $.AFTER_HEAD:vb(this,e);break;case $.IN_BODY:case $.IN_CAPTION:case $.IN_CELL:case $.IN_TEMPLATE:xb(this,e);break;case $.TEXT:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:this._insertCharacters(e);break;case $.IN_TABLE:case $.IN_TABLE_BODY:case $.IN_ROW:gx(this,e);break;case $.IN_TABLE_TEXT:kx(this,e);break;case $.IN_COLUMN_GROUP:Ix(this,e);break;case $.AFTER_BODY:Qx(this,e);break;case $.AFTER_AFTER_BODY:iS(this,e);break;default:}}onNullCharacter(e){if(this.skipNextNewLine=!1,this.tokenizer.inForeignNode){oS(this,e);return}switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ab(this,e);break;case $.BEFORE_HEAD:cb(this,e);break;case $.IN_HEAD:fb(this,e);break;case $.IN_HEAD_NO_SCRIPT:hb(this,e);break;case $.AFTER_HEAD:vb(this,e);break;case $.TEXT:this._insertCharacters(e);break;case $.IN_TABLE:case $.IN_TABLE_BODY:case $.IN_ROW:gx(this,e);break;case $.IN_COLUMN_GROUP:Ix(this,e);break;case $.AFTER_BODY:Qx(this,e);break;case $.AFTER_AFTER_BODY:iS(this,e);break;default:}}onComment(e){if(this.skipNextNewLine=!1,this.currentNotInHTML){Zy(this,e);return}switch(this.insertionMode){case $.INITIAL:case $.BEFORE_HTML:case $.BEFORE_HEAD:case $.IN_HEAD:case $.IN_HEAD_NO_SCRIPT:case $.AFTER_HEAD:case $.IN_BODY:case $.IN_TABLE:case $.IN_CAPTION:case $.IN_COLUMN_GROUP:case $.IN_TABLE_BODY:case $.IN_ROW:case $.IN_CELL:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:case $.IN_TEMPLATE:case $.IN_FRAMESET:case $.AFTER_FRAMESET:Zy(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.AFTER_BODY:Qy(this,e);break;case $.AFTER_AFTER_BODY:case $.AFTER_AFTER_FRAMESET:$y(this,e);break;default:}}onDoctype(e){switch(this.skipNextNewLine=!1,this.insertionMode){case $.INITIAL:tb(this,e);break;case $.BEFORE_HEAD:case $.IN_HEAD:case $.IN_HEAD_NO_SCRIPT:case $.AFTER_HEAD:this._err(e,q.misplacedDoctype);break;case $.IN_TABLE_TEXT:Ax(this,e);break;default:}}onStartTag(e){this.skipNextNewLine=!1,this.currentToken=e,this._processStartTag(e),e.selfClosing&&!e.ackSelfClosing&&this._err(e,q.nonVoidHtmlElementStartTagWithTrailingSolidus)}_processStartTag(e){this.shouldProcessStartTagTokenInForeignContent(e)?lS(this,e):this._startTagOutsideForeignContent(e)}_startTagOutsideForeignContent(e){switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:rb(this,e);break;case $.BEFORE_HEAD:ob(this,e);break;case $.IN_HEAD:lb(this,e);break;case $.IN_HEAD_NO_SCRIPT:pb(this,e);break;case $.AFTER_HEAD:gb(this,e);break;case $.IN_BODY:ex(this,e);break;case $.IN_TABLE:Tx(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.IN_CAPTION:Mx(this,e);break;case $.IN_COLUMN_GROUP:Px(this,e);break;case $.IN_TABLE_BODY:Lx(this,e);break;case $.IN_ROW:zx(this,e);break;case $.IN_CELL:Vx(this,e);break;case $.IN_SELECT:Ux(this,e);break;case $.IN_SELECT_IN_TABLE:Gx(this,e);break;case $.IN_TEMPLATE:qx(this,e);break;case $.AFTER_BODY:Xx(this,e);break;case $.IN_FRAMESET:$x(this,e);break;case $.AFTER_FRAMESET:tS(this,e);break;case $.AFTER_AFTER_BODY:rS(this,e);break;case $.AFTER_AFTER_FRAMESET:aS(this,e);break;default:}}onEndTag(e){this.skipNextNewLine=!1,this.currentToken=e,this.currentNotInHTML?uS(this,e):this._endTagOutsideForeignContent(e)}_endTagOutsideForeignContent(e){switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ib(this,e);break;case $.BEFORE_HEAD:sb(this,e);break;case $.IN_HEAD:ub(this,e);break;case $.IN_HEAD_NO_SCRIPT:mb(this,e);break;case $.AFTER_HEAD:_b(this,e);break;case $.IN_BODY:fx(this,e);break;case $.TEXT:mx(this,e);break;case $.IN_TABLE:Ex(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.IN_CAPTION:Nx(this,e);break;case $.IN_COLUMN_GROUP:Fx(this,e);break;case $.IN_TABLE_BODY:Rx(this,e);break;case $.IN_ROW:Bx(this,e);break;case $.IN_CELL:Hx(this,e);break;case $.IN_SELECT:Wx(this,e);break;case $.IN_SELECT_IN_TABLE:Kx(this,e);break;case $.IN_TEMPLATE:Jx(this,e);break;case $.AFTER_BODY:Zx(this,e);break;case $.IN_FRAMESET:eS(this,e);break;case $.AFTER_FRAMESET:nS(this,e);break;case $.AFTER_AFTER_BODY:iS(this,e);break;default:}}onEof(e){switch(this.insertionMode){case $.INITIAL:nb(this,e);break;case $.BEFORE_HTML:ab(this,e);break;case $.BEFORE_HEAD:cb(this,e);break;case $.IN_HEAD:fb(this,e);break;case $.IN_HEAD_NO_SCRIPT:hb(this,e);break;case $.AFTER_HEAD:vb(this,e);break;case $.IN_BODY:case $.IN_TABLE:case $.IN_CAPTION:case $.IN_COLUMN_GROUP:case $.IN_TABLE_BODY:case $.IN_ROW:case $.IN_CELL:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:px(this,e);break;case $.TEXT:hx(this,e);break;case $.IN_TABLE_TEXT:Ax(this,e);break;case $.IN_TEMPLATE:Yx(this,e);break;case $.AFTER_BODY:case $.IN_FRAMESET:case $.AFTER_FRAMESET:case $.AFTER_AFTER_BODY:case $.AFTER_AFTER_FRAMESET:eb(this,e);break;default:}}onWhitespaceCharacter(e){if(this.skipNextNewLine&&(this.skipNextNewLine=!1,e.chars.charCodeAt(0)===K.LINE_FEED)){if(e.chars.length===1)return;e.chars=e.chars.substr(1)}if(this.tokenizer.inForeignNode){this._insertCharacters(e);return}switch(this.insertionMode){case $.IN_HEAD:case $.IN_HEAD_NO_SCRIPT:case $.AFTER_HEAD:case $.TEXT:case $.IN_COLUMN_GROUP:case $.IN_SELECT:case $.IN_SELECT_IN_TABLE:case $.IN_FRAMESET:case $.AFTER_FRAMESET:this._insertCharacters(e);break;case $.IN_BODY:case $.IN_CAPTION:case $.IN_CELL:case $.IN_TEMPLATE:case $.AFTER_BODY:case $.AFTER_AFTER_BODY:case $.AFTER_AFTER_FRAMESET:bb(this,e);break;case $.IN_TABLE:case $.IN_TABLE_BODY:case $.IN_ROW:gx(this,e);break;case $.IN_TABLE_TEXT:Ox(this,e);break;default:}}};function Wy(e,t){let n=e.activeFormattingElements.getElementEntryInScopeWithTagName(t.tagName);return n?e.openElements.contains(n.element)?e.openElements.hasInScope(t.tagID)||(n=null):(e.activeFormattingElements.removeEntry(n),n=null):dx(e,t),n}function Gy(e,t){let n=null,r=e.openElements.stackTop;for(;r>=0;r--){let i=e.openElements.items[r];if(i===t.element)break;e._isSpecialElement(i,e.openElements.tagIDs[r])&&(n=i)}return n||(e.openElements.shortenToLength(Math.max(r,0)),e.activeFormattingElements.removeEntry(t)),n}function Ky(e,t,n){let r=t,i=e.openElements.getCommonAncestor(t);for(let a=0,o=i;o!==n;a++,o=i){i=e.openElements.getCommonAncestor(o);let n=e.activeFormattingElements.getElementEntry(o),s=n&&a>=zy;!n||s?(s&&e.activeFormattingElements.removeEntry(n),e.openElements.remove(o)):(o=qy(e,n),r===t&&(e.activeFormattingElements.bookmark=n),e.treeAdapter.detachNode(r),e.treeAdapter.appendChild(o,r),r=o)}return r}function qy(e,t){let n=e.treeAdapter.getNamespaceURI(t.element),r=e.treeAdapter.createElement(t.token.tagName,n,t.token.attrs);return e.openElements.replace(t.element,r),t.element=r,r}function Jy(e,t,n){let r=Pv(e.treeAdapter.getTagName(t));if(e._isElementCausesFosterParenting(r))e._fosterParentElement(n);else{let i=e.treeAdapter.getNamespaceURI(t);r===X.TEMPLATE&&i===J.HTML&&(t=e.treeAdapter.getTemplateContent(t)),e.treeAdapter.appendChild(t,n)}}function Yy(e,t,n){let r=e.treeAdapter.getNamespaceURI(n.element),{token:i}=n,a=e.treeAdapter.createElement(i.tagName,r,i.attrs);e._adoptNodes(t,a),e.treeAdapter.appendChild(t,a),e.activeFormattingElements.insertElementAfterBookmark(a,i),e.activeFormattingElements.removeEntry(n),e.openElements.remove(n.element),e.openElements.insertAfter(t,a,i.tagID)}function Xy(e,t){for(let n=0;n<Ry;n++){let n=Wy(e,t);if(!n)break;let r=Gy(e,n);if(!r)break;e.activeFormattingElements.bookmark=n;let i=Ky(e,r,n.element),a=e.openElements.getCommonAncestor(n.element);e.treeAdapter.detachNode(i),a&&Jy(e,a,i),Yy(e,r,n)}}function Zy(e,t){e._appendCommentNode(t,e.openElements.currentTmplContentOrNode)}function Qy(e,t){e._appendCommentNode(t,e.openElements.items[0])}function $y(e,t){e._appendCommentNode(t,e.document)}function eb(e,t){if(e.stopped=!0,t.location){let n=e.fragmentContext?0:2;for(let r=e.openElements.stackTop;r>=n;r--)e._setEndLocation(e.openElements.items[r],t);if(!e.fragmentContext&&e.openElements.stackTop>=0){let n=e.openElements.items[0],r=e.treeAdapter.getNodeSourceCodeLocation(n);if(r&&!r.endTag&&(e._setEndLocation(n,t),e.openElements.stackTop>=1)){let n=e.openElements.items[1],r=e.treeAdapter.getNodeSourceCodeLocation(n);r&&!r.endTag&&e._setEndLocation(n,t)}}}}function tb(e,t){e._setDocumentType(t);let n=t.forceQuirks?Mv.QUIRKS:xy(t);by(t)||e._err(t,q.nonConformingDoctype),e.treeAdapter.setDocumentMode(e.document,n),e.insertionMode=$.BEFORE_HTML}function nb(e,t){e._err(t,q.missingDoctype,!0),e.treeAdapter.setDocumentMode(e.document,Mv.QUIRKS),e.insertionMode=$.BEFORE_HTML,e._processToken(t)}function rb(e,t){t.tagID===X.HTML?(e._insertElement(t,J.HTML),e.insertionMode=$.BEFORE_HEAD):ab(e,t)}function ib(e,t){let n=t.tagID;(n===X.HTML||n===X.HEAD||n===X.BODY||n===X.BR)&&ab(e,t)}function ab(e,t){e._insertFakeRootElement(),e.insertionMode=$.BEFORE_HEAD,e._processToken(t)}function ob(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.HEAD:e._insertElement(t,J.HTML),e.headElement=e.openElements.current,e.insertionMode=$.IN_HEAD;break;default:cb(e,t)}}function sb(e,t){let n=t.tagID;n===X.HEAD||n===X.BODY||n===X.HTML||n===X.BR?cb(e,t):e._err(t,q.endTagWithoutMatchingOpenElement)}function cb(e,t){e._insertFakeElement(Y.HEAD,X.HEAD),e.headElement=e.openElements.current,e.insertionMode=$.IN_HEAD,e._processToken(t)}function lb(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.BASE:case X.BASEFONT:case X.BGSOUND:case X.LINK:case X.META:e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.TITLE:e._switchToTextParsing(t,Lv.RCDATA);break;case X.NOSCRIPT:e.options.scriptingEnabled?e._switchToTextParsing(t,Lv.RAWTEXT):(e._insertElement(t,J.HTML),e.insertionMode=$.IN_HEAD_NO_SCRIPT);break;case X.NOFRAMES:case X.STYLE:e._switchToTextParsing(t,Lv.RAWTEXT);break;case X.SCRIPT:e._switchToTextParsing(t,Lv.SCRIPT_DATA);break;case X.TEMPLATE:e._insertTemplate(t),e.activeFormattingElements.insertMarker(),e.framesetOk=!1,e.insertionMode=$.IN_TEMPLATE,e.tmplInsertionModeStack.unshift($.IN_TEMPLATE);break;case X.HEAD:e._err(t,q.misplacedStartTagForHeadElement);break;default:fb(e,t)}}function ub(e,t){switch(t.tagID){case X.HEAD:e.openElements.pop(),e.insertionMode=$.AFTER_HEAD;break;case X.BODY:case X.BR:case X.HTML:fb(e,t);break;case X.TEMPLATE:db(e,t);break;default:e._err(t,q.endTagWithoutMatchingOpenElement)}}function db(e,t){e.openElements.tmplCount>0?(e.openElements.generateImpliedEndTagsThoroughly(),e.openElements.currentTagId!==X.TEMPLATE&&e._err(t,q.closingOfElementWithOpenChildElements),e.openElements.popUntilTagNamePopped(X.TEMPLATE),e.activeFormattingElements.clearToLastMarker(),e.tmplInsertionModeStack.shift(),e._resetInsertionMode()):e._err(t,q.endTagWithoutMatchingOpenElement)}function fb(e,t){e.openElements.pop(),e.insertionMode=$.AFTER_HEAD,e._processToken(t)}function pb(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.BASEFONT:case X.BGSOUND:case X.HEAD:case X.LINK:case X.META:case X.NOFRAMES:case X.STYLE:lb(e,t);break;case X.NOSCRIPT:e._err(t,q.nestedNoscriptInHead);break;default:hb(e,t)}}function mb(e,t){switch(t.tagID){case X.NOSCRIPT:e.openElements.pop(),e.insertionMode=$.IN_HEAD;break;case X.BR:hb(e,t);break;default:e._err(t,q.endTagWithoutMatchingOpenElement)}}function hb(e,t){let n=t.type===hv.EOF?q.openElementsLeftAfterEof:q.disallowedContentInNoscriptInHead;e._err(t,n),e.openElements.pop(),e.insertionMode=$.IN_HEAD,e._processToken(t)}function gb(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.BODY:e._insertElement(t,J.HTML),e.framesetOk=!1,e.insertionMode=$.IN_BODY;break;case X.FRAMESET:e._insertElement(t,J.HTML),e.insertionMode=$.IN_FRAMESET;break;case X.BASE:case X.BASEFONT:case X.BGSOUND:case X.LINK:case X.META:case X.NOFRAMES:case X.SCRIPT:case X.STYLE:case X.TEMPLATE:case X.TITLE:e._err(t,q.abandonedHeadElementChild),e.openElements.push(e.headElement,X.HEAD),lb(e,t),e.openElements.remove(e.headElement);break;case X.HEAD:e._err(t,q.misplacedStartTagForHeadElement);break;default:vb(e,t)}}function _b(e,t){switch(t.tagID){case X.BODY:case X.HTML:case X.BR:vb(e,t);break;case X.TEMPLATE:db(e,t);break;default:e._err(t,q.endTagWithoutMatchingOpenElement)}}function vb(e,t){e._insertFakeElement(Y.BODY,X.BODY),e.insertionMode=$.IN_BODY,yb(e,t)}function yb(e,t){switch(t.type){case hv.CHARACTER:xb(e,t);break;case hv.WHITESPACE_CHARACTER:bb(e,t);break;case hv.COMMENT:Zy(e,t);break;case hv.START_TAG:ex(e,t);break;case hv.END_TAG:fx(e,t);break;case hv.EOF:px(e,t);break;default:}}function bb(e,t){e._reconstructActiveFormattingElements(),e._insertCharacters(t)}function xb(e,t){e._reconstructActiveFormattingElements(),e._insertCharacters(t),e.framesetOk=!1}function Sb(e,t){e.openElements.tmplCount===0&&e.treeAdapter.adoptAttributes(e.openElements.items[0],t.attrs)}function Cb(e,t){let n=e.openElements.tryPeekProperlyNestedBodyElement();n&&e.openElements.tmplCount===0&&(e.framesetOk=!1,e.treeAdapter.adoptAttributes(n,t.attrs))}function wb(e,t){let n=e.openElements.tryPeekProperlyNestedBodyElement();e.framesetOk&&n&&(e.treeAdapter.detachNode(n),e.openElements.popAllUpToHtmlElement(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_FRAMESET)}function Tb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML)}function Eb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e.openElements.currentTagId!==void 0&&Iv.has(e.openElements.currentTagId)&&e.openElements.pop(),e._insertElement(t,J.HTML)}function Db(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),e.skipNextNewLine=!0,e.framesetOk=!1}function Ob(e,t){let n=e.openElements.tmplCount>0;(!e.formElement||n)&&(e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),n||(e.formElement=e.openElements.current))}function kb(e,t){e.framesetOk=!1;let n=t.tagID;for(let t=e.openElements.stackTop;t>=0;t--){let r=e.openElements.tagIDs[t];if(n===X.LI&&r===X.LI||(n===X.DD||n===X.DT)&&(r===X.DD||r===X.DT)){e.openElements.generateImpliedEndTagsWithExclusion(r),e.openElements.popUntilTagNamePopped(r);break}if(r!==X.ADDRESS&&r!==X.DIV&&r!==X.P&&e._isSpecialElement(e.openElements.items[t],r))break}e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML)}function Ab(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),e.tokenizer.state=Lv.PLAINTEXT}function jb(e,t){e.openElements.hasInScope(X.BUTTON)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(X.BUTTON)),e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.framesetOk=!1}function Mb(e,t){let n=e.activeFormattingElements.getElementEntryInScopeWithTagName(Y.A);n&&(Xy(e,t),e.openElements.remove(n.element),e.activeFormattingElements.removeEntry(n)),e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.activeFormattingElements.pushElement(e.openElements.current,t)}function Nb(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.activeFormattingElements.pushElement(e.openElements.current,t)}function Pb(e,t){e._reconstructActiveFormattingElements(),e.openElements.hasInScope(X.NOBR)&&(Xy(e,t),e._reconstructActiveFormattingElements()),e._insertElement(t,J.HTML),e.activeFormattingElements.pushElement(e.openElements.current,t)}function Fb(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.activeFormattingElements.insertMarker(),e.framesetOk=!1}function Ib(e,t){e.treeAdapter.getDocumentMode(e.document)!==Mv.QUIRKS&&e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._insertElement(t,J.HTML),e.framesetOk=!1,e.insertionMode=$.IN_TABLE}function Lb(e,t){e._reconstructActiveFormattingElements(),e._appendElement(t,J.HTML),e.framesetOk=!1,t.ackSelfClosing=!0}function Rb(e){let t=gv(e,jv.TYPE);return t!=null&&t.toLowerCase()===Ly}function zb(e,t){e._reconstructActiveFormattingElements(),e._appendElement(t,J.HTML),Rb(t)||(e.framesetOk=!1),t.ackSelfClosing=!0}function Bb(e,t){e._appendElement(t,J.HTML),t.ackSelfClosing=!0}function Vb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._appendElement(t,J.HTML),e.framesetOk=!1,t.ackSelfClosing=!0}function Hb(e,t){t.tagName=Y.IMG,t.tagID=X.IMG,Lb(e,t)}function Ub(e,t){e._insertElement(t,J.HTML),e.skipNextNewLine=!0,e.tokenizer.state=Lv.RCDATA,e.originalInsertionMode=e.insertionMode,e.framesetOk=!1,e.insertionMode=$.TEXT}function Wb(e,t){e.openElements.hasInButtonScope(X.P)&&e._closePElement(),e._reconstructActiveFormattingElements(),e.framesetOk=!1,e._switchToTextParsing(t,Lv.RAWTEXT)}function Gb(e,t){e.framesetOk=!1,e._switchToTextParsing(t,Lv.RAWTEXT)}function Kb(e,t){e._switchToTextParsing(t,Lv.RAWTEXT)}function qb(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML),e.framesetOk=!1,e.insertionMode=e.insertionMode===$.IN_TABLE||e.insertionMode===$.IN_CAPTION||e.insertionMode===$.IN_TABLE_BODY||e.insertionMode===$.IN_ROW||e.insertionMode===$.IN_CELL?$.IN_SELECT_IN_TABLE:$.IN_SELECT}function Jb(e,t){e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML)}function Yb(e,t){e.openElements.hasInScope(X.RUBY)&&e.openElements.generateImpliedEndTags(),e._insertElement(t,J.HTML)}function Xb(e,t){e.openElements.hasInScope(X.RUBY)&&e.openElements.generateImpliedEndTagsWithExclusion(X.RTC),e._insertElement(t,J.HTML)}function Zb(e,t){e._reconstructActiveFormattingElements(),Ay(t),My(t),t.selfClosing?e._appendElement(t,J.MATHML):e._insertElement(t,J.MATHML),t.ackSelfClosing=!0}function Qb(e,t){e._reconstructActiveFormattingElements(),jy(t),My(t),t.selfClosing?e._appendElement(t,J.SVG):e._insertElement(t,J.SVG),t.ackSelfClosing=!0}function $b(e,t){e._reconstructActiveFormattingElements(),e._insertElement(t,J.HTML)}function ex(e,t){switch(t.tagID){case X.I:case X.S:case X.B:case X.U:case X.EM:case X.TT:case X.BIG:case X.CODE:case X.FONT:case X.SMALL:case X.STRIKE:case X.STRONG:Nb(e,t);break;case X.A:Mb(e,t);break;case X.H1:case X.H2:case X.H3:case X.H4:case X.H5:case X.H6:Eb(e,t);break;case X.P:case X.DL:case X.OL:case X.UL:case X.DIV:case X.DIR:case X.NAV:case X.MAIN:case X.MENU:case X.ASIDE:case X.CENTER:case X.FIGURE:case X.FOOTER:case X.HEADER:case X.HGROUP:case X.DIALOG:case X.DETAILS:case X.ADDRESS:case X.ARTICLE:case X.SEARCH:case X.SECTION:case X.SUMMARY:case X.FIELDSET:case X.BLOCKQUOTE:case X.FIGCAPTION:Tb(e,t);break;case X.LI:case X.DD:case X.DT:kb(e,t);break;case X.BR:case X.IMG:case X.WBR:case X.AREA:case X.EMBED:case X.KEYGEN:Lb(e,t);break;case X.HR:Vb(e,t);break;case X.RB:case X.RTC:Yb(e,t);break;case X.RT:case X.RP:Xb(e,t);break;case X.PRE:case X.LISTING:Db(e,t);break;case X.XMP:Wb(e,t);break;case X.SVG:Qb(e,t);break;case X.HTML:Sb(e,t);break;case X.BASE:case X.LINK:case X.META:case X.STYLE:case X.TITLE:case X.SCRIPT:case X.BGSOUND:case X.BASEFONT:case X.TEMPLATE:lb(e,t);break;case X.BODY:Cb(e,t);break;case X.FORM:Ob(e,t);break;case X.NOBR:Pb(e,t);break;case X.MATH:Zb(e,t);break;case X.TABLE:Ib(e,t);break;case X.INPUT:zb(e,t);break;case X.PARAM:case X.TRACK:case X.SOURCE:Bb(e,t);break;case X.IMAGE:Hb(e,t);break;case X.BUTTON:jb(e,t);break;case X.APPLET:case X.OBJECT:case X.MARQUEE:Fb(e,t);break;case X.IFRAME:Gb(e,t);break;case X.SELECT:qb(e,t);break;case X.OPTION:case X.OPTGROUP:Jb(e,t);break;case X.NOEMBED:case X.NOFRAMES:Kb(e,t);break;case X.FRAMESET:wb(e,t);break;case X.TEXTAREA:Ub(e,t);break;case X.NOSCRIPT:e.options.scriptingEnabled?Kb(e,t):$b(e,t);break;case X.PLAINTEXT:Ab(e,t);break;case X.COL:case X.TH:case X.TD:case X.TR:case X.HEAD:case X.FRAME:case X.TBODY:case X.TFOOT:case X.THEAD:case X.CAPTION:case X.COLGROUP:break;default:$b(e,t)}}function tx(e,t){if(e.openElements.hasInScope(X.BODY)&&(e.insertionMode=$.AFTER_BODY,e.options.sourceCodeLocationInfo)){let n=e.openElements.tryPeekProperlyNestedBodyElement();n&&e._setEndLocation(n,t)}}function nx(e,t){e.openElements.hasInScope(X.BODY)&&(e.insertionMode=$.AFTER_BODY,Zx(e,t))}function rx(e,t){let n=t.tagID;e.openElements.hasInScope(n)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(n))}function ix(e){let t=e.openElements.tmplCount>0,{formElement:n}=e;t||(e.formElement=null),(n||t)&&e.openElements.hasInScope(X.FORM)&&(e.openElements.generateImpliedEndTags(),t?e.openElements.popUntilTagNamePopped(X.FORM):n&&e.openElements.remove(n))}function ax(e){e.openElements.hasInButtonScope(X.P)||e._insertFakeElement(Y.P,X.P),e._closePElement()}function ox(e){e.openElements.hasInListItemScope(X.LI)&&(e.openElements.generateImpliedEndTagsWithExclusion(X.LI),e.openElements.popUntilTagNamePopped(X.LI))}function sx(e,t){let n=t.tagID;e.openElements.hasInScope(n)&&(e.openElements.generateImpliedEndTagsWithExclusion(n),e.openElements.popUntilTagNamePopped(n))}function cx(e){e.openElements.hasNumberedHeaderInScope()&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilNumberedHeaderPopped())}function lx(e,t){let n=t.tagID;e.openElements.hasInScope(n)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(n),e.activeFormattingElements.clearToLastMarker())}function ux(e){e._reconstructActiveFormattingElements(),e._insertFakeElement(Y.BR,X.BR),e.openElements.pop(),e.framesetOk=!1}function dx(e,t){let n=t.tagName,r=t.tagID;for(let t=e.openElements.stackTop;t>0;t--){let i=e.openElements.items[t],a=e.openElements.tagIDs[t];if(r===a&&(r!==X.UNKNOWN||e.treeAdapter.getTagName(i)===n)){e.openElements.generateImpliedEndTagsWithExclusion(r),e.openElements.stackTop>=t&&e.openElements.shortenToLength(t);break}if(e._isSpecialElement(i,a))break}}function fx(e,t){switch(t.tagID){case X.A:case X.B:case X.I:case X.S:case X.U:case X.EM:case X.TT:case X.BIG:case X.CODE:case X.FONT:case X.NOBR:case X.SMALL:case X.STRIKE:case X.STRONG:Xy(e,t);break;case X.P:ax(e);break;case X.DL:case X.UL:case X.OL:case X.DIR:case X.DIV:case X.NAV:case X.PRE:case X.MAIN:case X.MENU:case X.ASIDE:case X.BUTTON:case X.CENTER:case X.FIGURE:case X.FOOTER:case X.HEADER:case X.HGROUP:case X.DIALOG:case X.ADDRESS:case X.ARTICLE:case X.DETAILS:case X.SEARCH:case X.SECTION:case X.SUMMARY:case X.LISTING:case X.FIELDSET:case X.BLOCKQUOTE:case X.FIGCAPTION:rx(e,t);break;case X.LI:ox(e);break;case X.DD:case X.DT:sx(e,t);break;case X.H1:case X.H2:case X.H3:case X.H4:case X.H5:case X.H6:cx(e);break;case X.BR:ux(e);break;case X.BODY:tx(e,t);break;case X.HTML:nx(e,t);break;case X.FORM:ix(e);break;case X.APPLET:case X.OBJECT:case X.MARQUEE:lx(e,t);break;case X.TEMPLATE:db(e,t);break;default:dx(e,t)}}function px(e,t){e.tmplInsertionModeStack.length>0?Yx(e,t):eb(e,t)}function mx(e,t){var n;t.tagID===X.SCRIPT&&((n=e.scriptHandler)==null||n.call(e,e.openElements.current)),e.openElements.pop(),e.insertionMode=e.originalInsertionMode}function hx(e,t){e._err(t,q.eofInElementThatCanContainOnlyText),e.openElements.pop(),e.insertionMode=e.originalInsertionMode,e.onEof(t)}function gx(e,t){if(e.openElements.currentTagId!==void 0&&Vy.has(e.openElements.currentTagId))switch(e.pendingCharacterTokens.length=0,e.hasNonWhitespacePendingCharacterToken=!1,e.originalInsertionMode=e.insertionMode,e.insertionMode=$.IN_TABLE_TEXT,t.type){case hv.CHARACTER:kx(e,t);break;case hv.WHITESPACE_CHARACTER:Ox(e,t);break}else Dx(e,t)}function _x(e,t){e.openElements.clearBackToTableContext(),e.activeFormattingElements.insertMarker(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_CAPTION}function vx(e,t){e.openElements.clearBackToTableContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_COLUMN_GROUP}function yx(e,t){e.openElements.clearBackToTableContext(),e._insertFakeElement(Y.COLGROUP,X.COLGROUP),e.insertionMode=$.IN_COLUMN_GROUP,Px(e,t)}function bx(e,t){e.openElements.clearBackToTableContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_TABLE_BODY}function xx(e,t){e.openElements.clearBackToTableContext(),e._insertFakeElement(Y.TBODY,X.TBODY),e.insertionMode=$.IN_TABLE_BODY,Lx(e,t)}function Sx(e,t){e.openElements.hasInTableScope(X.TABLE)&&(e.openElements.popUntilTagNamePopped(X.TABLE),e._resetInsertionMode(),e._processStartTag(t))}function Cx(e,t){Rb(t)?e._appendElement(t,J.HTML):Dx(e,t),t.ackSelfClosing=!0}function wx(e,t){!e.formElement&&e.openElements.tmplCount===0&&(e._insertElement(t,J.HTML),e.formElement=e.openElements.current,e.openElements.pop())}function Tx(e,t){switch(t.tagID){case X.TD:case X.TH:case X.TR:xx(e,t);break;case X.STYLE:case X.SCRIPT:case X.TEMPLATE:lb(e,t);break;case X.COL:yx(e,t);break;case X.FORM:wx(e,t);break;case X.TABLE:Sx(e,t);break;case X.TBODY:case X.TFOOT:case X.THEAD:bx(e,t);break;case X.INPUT:Cx(e,t);break;case X.CAPTION:_x(e,t);break;case X.COLGROUP:vx(e,t);break;default:Dx(e,t)}}function Ex(e,t){switch(t.tagID){case X.TABLE:e.openElements.hasInTableScope(X.TABLE)&&(e.openElements.popUntilTagNamePopped(X.TABLE),e._resetInsertionMode());break;case X.TEMPLATE:db(e,t);break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:case X.TBODY:case X.TD:case X.TFOOT:case X.TH:case X.THEAD:case X.TR:break;default:Dx(e,t)}}function Dx(e,t){let n=e.fosterParentingEnabled;e.fosterParentingEnabled=!0,yb(e,t),e.fosterParentingEnabled=n}function Ox(e,t){e.pendingCharacterTokens.push(t)}function kx(e,t){e.pendingCharacterTokens.push(t),e.hasNonWhitespacePendingCharacterToken=!0}function Ax(e,t){let n=0;if(e.hasNonWhitespacePendingCharacterToken)for(;n<e.pendingCharacterTokens.length;n++)Dx(e,e.pendingCharacterTokens[n]);else for(;n<e.pendingCharacterTokens.length;n++)e._insertCharacters(e.pendingCharacterTokens[n]);e.insertionMode=e.originalInsertionMode,e._processToken(t)}var jx=new Set([X.CAPTION,X.COL,X.COLGROUP,X.TBODY,X.TD,X.TFOOT,X.TH,X.THEAD,X.TR]);function Mx(e,t){let n=t.tagID;jx.has(n)?e.openElements.hasInTableScope(X.CAPTION)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(X.CAPTION),e.activeFormattingElements.clearToLastMarker(),e.insertionMode=$.IN_TABLE,Tx(e,t)):ex(e,t)}function Nx(e,t){let n=t.tagID;switch(n){case X.CAPTION:case X.TABLE:e.openElements.hasInTableScope(X.CAPTION)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(X.CAPTION),e.activeFormattingElements.clearToLastMarker(),e.insertionMode=$.IN_TABLE,n===X.TABLE&&Ex(e,t));break;case X.BODY:case X.COL:case X.COLGROUP:case X.HTML:case X.TBODY:case X.TD:case X.TFOOT:case X.TH:case X.THEAD:case X.TR:break;default:fx(e,t)}}function Px(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.COL:e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.TEMPLATE:lb(e,t);break;default:Ix(e,t)}}function Fx(e,t){switch(t.tagID){case X.COLGROUP:e.openElements.currentTagId===X.COLGROUP&&(e.openElements.pop(),e.insertionMode=$.IN_TABLE);break;case X.TEMPLATE:db(e,t);break;case X.COL:break;default:Ix(e,t)}}function Ix(e,t){e.openElements.currentTagId===X.COLGROUP&&(e.openElements.pop(),e.insertionMode=$.IN_TABLE,e._processToken(t))}function Lx(e,t){switch(t.tagID){case X.TR:e.openElements.clearBackToTableBodyContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_ROW;break;case X.TH:case X.TD:e.openElements.clearBackToTableBodyContext(),e._insertFakeElement(Y.TR,X.TR),e.insertionMode=$.IN_ROW,zx(e,t);break;case X.CAPTION:case X.COL:case X.COLGROUP:case X.TBODY:case X.TFOOT:case X.THEAD:e.openElements.hasTableBodyContextInTableScope()&&(e.openElements.clearBackToTableBodyContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE,Tx(e,t));break;default:Tx(e,t)}}function Rx(e,t){let n=t.tagID;switch(t.tagID){case X.TBODY:case X.TFOOT:case X.THEAD:e.openElements.hasInTableScope(n)&&(e.openElements.clearBackToTableBodyContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE);break;case X.TABLE:e.openElements.hasTableBodyContextInTableScope()&&(e.openElements.clearBackToTableBodyContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE,Ex(e,t));break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:case X.TD:case X.TH:case X.TR:break;default:Ex(e,t)}}function zx(e,t){switch(t.tagID){case X.TH:case X.TD:e.openElements.clearBackToTableRowContext(),e._insertElement(t,J.HTML),e.insertionMode=$.IN_CELL,e.activeFormattingElements.insertMarker();break;case X.CAPTION:case X.COL:case X.COLGROUP:case X.TBODY:case X.TFOOT:case X.THEAD:case X.TR:e.openElements.hasInTableScope(X.TR)&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY,Lx(e,t));break;default:Tx(e,t)}}function Bx(e,t){switch(t.tagID){case X.TR:e.openElements.hasInTableScope(X.TR)&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY);break;case X.TABLE:e.openElements.hasInTableScope(X.TR)&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY,Rx(e,t));break;case X.TBODY:case X.TFOOT:case X.THEAD:(e.openElements.hasInTableScope(t.tagID)||e.openElements.hasInTableScope(X.TR))&&(e.openElements.clearBackToTableRowContext(),e.openElements.pop(),e.insertionMode=$.IN_TABLE_BODY,Rx(e,t));break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:case X.TD:case X.TH:break;default:Ex(e,t)}}function Vx(e,t){let n=t.tagID;jx.has(n)?(e.openElements.hasInTableScope(X.TD)||e.openElements.hasInTableScope(X.TH))&&(e._closeTableCell(),zx(e,t)):ex(e,t)}function Hx(e,t){let n=t.tagID;switch(n){case X.TD:case X.TH:e.openElements.hasInTableScope(n)&&(e.openElements.generateImpliedEndTags(),e.openElements.popUntilTagNamePopped(n),e.activeFormattingElements.clearToLastMarker(),e.insertionMode=$.IN_ROW);break;case X.TABLE:case X.TBODY:case X.TFOOT:case X.THEAD:case X.TR:e.openElements.hasInTableScope(n)&&(e._closeTableCell(),Bx(e,t));break;case X.BODY:case X.CAPTION:case X.COL:case X.COLGROUP:case X.HTML:break;default:fx(e,t)}}function Ux(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.OPTION:e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e._insertElement(t,J.HTML);break;case X.OPTGROUP:e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e.openElements.currentTagId===X.OPTGROUP&&e.openElements.pop(),e._insertElement(t,J.HTML);break;case X.HR:e.openElements.currentTagId===X.OPTION&&e.openElements.pop(),e.openElements.currentTagId===X.OPTGROUP&&e.openElements.pop(),e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.INPUT:case X.KEYGEN:case X.TEXTAREA:case X.SELECT:e.openElements.hasInSelectScope(X.SELECT)&&(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode(),t.tagID!==X.SELECT&&e._processStartTag(t));break;case X.SCRIPT:case X.TEMPLATE:lb(e,t);break;default:}}function Wx(e,t){switch(t.tagID){case X.OPTGROUP:e.openElements.stackTop>0&&e.openElements.currentTagId===X.OPTION&&e.openElements.tagIDs[e.openElements.stackTop-1]===X.OPTGROUP&&e.openElements.pop(),e.openElements.currentTagId===X.OPTGROUP&&e.openElements.pop();break;case X.OPTION:e.openElements.currentTagId===X.OPTION&&e.openElements.pop();break;case X.SELECT:e.openElements.hasInSelectScope(X.SELECT)&&(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode());break;case X.TEMPLATE:db(e,t);break;default:}}function Gx(e,t){let n=t.tagID;n===X.CAPTION||n===X.TABLE||n===X.TBODY||n===X.TFOOT||n===X.THEAD||n===X.TR||n===X.TD||n===X.TH?(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode(),e._processStartTag(t)):Ux(e,t)}function Kx(e,t){let n=t.tagID;n===X.CAPTION||n===X.TABLE||n===X.TBODY||n===X.TFOOT||n===X.THEAD||n===X.TR||n===X.TD||n===X.TH?e.openElements.hasInTableScope(n)&&(e.openElements.popUntilTagNamePopped(X.SELECT),e._resetInsertionMode(),e.onEndTag(t)):Wx(e,t)}function qx(e,t){switch(t.tagID){case X.BASE:case X.BASEFONT:case X.BGSOUND:case X.LINK:case X.META:case X.NOFRAMES:case X.SCRIPT:case X.STYLE:case X.TEMPLATE:case X.TITLE:lb(e,t);break;case X.CAPTION:case X.COLGROUP:case X.TBODY:case X.TFOOT:case X.THEAD:e.tmplInsertionModeStack[0]=$.IN_TABLE,e.insertionMode=$.IN_TABLE,Tx(e,t);break;case X.COL:e.tmplInsertionModeStack[0]=$.IN_COLUMN_GROUP,e.insertionMode=$.IN_COLUMN_GROUP,Px(e,t);break;case X.TR:e.tmplInsertionModeStack[0]=$.IN_TABLE_BODY,e.insertionMode=$.IN_TABLE_BODY,Lx(e,t);break;case X.TD:case X.TH:e.tmplInsertionModeStack[0]=$.IN_ROW,e.insertionMode=$.IN_ROW,zx(e,t);break;default:e.tmplInsertionModeStack[0]=$.IN_BODY,e.insertionMode=$.IN_BODY,ex(e,t)}}function Jx(e,t){t.tagID===X.TEMPLATE&&db(e,t)}function Yx(e,t){e.openElements.tmplCount>0?(e.openElements.popUntilTagNamePopped(X.TEMPLATE),e.activeFormattingElements.clearToLastMarker(),e.tmplInsertionModeStack.shift(),e._resetInsertionMode(),e.onEof(t)):eb(e,t)}function Xx(e,t){t.tagID===X.HTML?ex(e,t):Qx(e,t)}function Zx(e,t){if(t.tagID===X.HTML){if(e.fragmentContext||(e.insertionMode=$.AFTER_AFTER_BODY),e.options.sourceCodeLocationInfo&&e.openElements.tagIDs[0]===X.HTML){e._setEndLocation(e.openElements.items[0],t);let n=e.openElements.items[1];n&&!e.treeAdapter.getNodeSourceCodeLocation(n)?.endTag&&e._setEndLocation(n,t)}}else Qx(e,t)}function Qx(e,t){e.insertionMode=$.IN_BODY,yb(e,t)}function $x(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.FRAMESET:e._insertElement(t,J.HTML);break;case X.FRAME:e._appendElement(t,J.HTML),t.ackSelfClosing=!0;break;case X.NOFRAMES:lb(e,t);break;default:}}function eS(e,t){t.tagID===X.FRAMESET&&!e.openElements.isRootHtmlElementCurrent()&&(e.openElements.pop(),!e.fragmentContext&&e.openElements.currentTagId!==X.FRAMESET&&(e.insertionMode=$.AFTER_FRAMESET))}function tS(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.NOFRAMES:lb(e,t);break;default:}}function nS(e,t){t.tagID===X.HTML&&(e.insertionMode=$.AFTER_AFTER_FRAMESET)}function rS(e,t){t.tagID===X.HTML?ex(e,t):iS(e,t)}function iS(e,t){e.insertionMode=$.IN_BODY,yb(e,t)}function aS(e,t){switch(t.tagID){case X.HTML:ex(e,t);break;case X.NOFRAMES:lb(e,t);break;default:}}function oS(e,t){t.chars=`�`,e._insertCharacters(t)}function sS(e,t){e._insertCharacters(t),e.framesetOk=!1}function cS(e){for(;e.treeAdapter.getNamespaceURI(e.openElements.current)!==J.HTML&&e.openElements.currentTagId!==void 0&&!e._isIntegrationPoint(e.openElements.currentTagId,e.openElements.current);)e.openElements.pop()}function lS(e,t){if(ky(t))cS(e),e._startTagOutsideForeignContent(t);else{let n=e._getAdjustedCurrentElement(),r=e.treeAdapter.getNamespaceURI(n);r===J.MATHML?Ay(t):r===J.SVG&&(Ny(t),jy(t)),My(t),t.selfClosing?e._appendElement(t,r):e._insertElement(t,r),t.ackSelfClosing=!0}}function uS(e,t){if(t.tagID===X.P||t.tagID===X.BR){cS(e),e._endTagOutsideForeignContent(t);return}for(let n=e.openElements.stackTop;n>0;n--){let r=e.openElements.items[n];if(e.treeAdapter.getNamespaceURI(r)===J.HTML){e._endTagOutsideForeignContent(t);break}let i=e.treeAdapter.getTagName(r);if(i.toLowerCase()===t.tagName){t.tagName=i,e.openElements.shortenToLength(n);break}}}new Set([Y.AREA,Y.BASE,Y.BASEFONT,Y.BGSOUND,Y.BR,Y.COL,Y.EMBED,Y.FRAME,Y.HR,Y.IMG,Y.INPUT,Y.KEYGEN,Y.LINK,Y.META,Y.PARAM,Y.SOURCE,Y.TRACK,Y.WBR]);var dS=/<(\/?)(iframe|noembed|noframes|plaintext|script|style|textarea|title|xmp)(?=[\t\n\f\r />])/gi,fS=new Set([`mdxFlowExpression`,`mdxJsxFlowElement`,`mdxJsxTextElement`,`mdxTextExpression`,`mdxjsEsm`]),pS={sourceCodeLocationInfo:!0,scriptingEnabled:!1};function mS(e,t){let n=OS(e),r=Om(`type`,{handlers:{root:gS,element:_S,text:vS,comment:xS,doctype:yS,raw:SS},unknown:CS}),i={parser:n?new Uy(pS):Uy.getFragmentParser(void 0,pS),handle(e){r(e,i)},stitches:!1,options:t||{}};r(e,i),wS(i,dt());let a=R_(n?i.parser.document:i.parser.getFragment(),{file:i.options.file});return i.stitches&&so(a,`comment`,function(e,t,n){let r=e;if(r.value.stitch&&n&&t!==void 0){let e=n.children;return e[t]=r.value.stitch,t}}),a.type===`root`&&a.children.length===1&&a.children[0].type===e.type?a.children[0]:a}function hS(e,t){let n=-1;if(e)for(;++n<e.length;)t.handle(e[n])}function gS(e,t){hS(e.children,t)}function _S(e,t){ES(e,t),hS(e.children,t),DS(e,t)}function vS(e,t){t.parser.tokenizer.state>4&&(t.parser.tokenizer.state=0);let n={type:hv.CHARACTER,chars:e.value,location:kS(e)};wS(t,dt(e)),t.parser.currentToken=n,t.parser._processToken(t.parser.currentToken)}function yS(e,t){let n={type:hv.DOCTYPE,name:`html`,forceQuirks:!1,publicId:``,systemId:``,location:kS(e)};wS(t,dt(e)),t.parser.currentToken=n,t.parser._processToken(t.parser.currentToken)}function bS(e,t){t.stitches=!0;let n=AS(e);`children`in e&&`children`in n&&(n.children=mS({type:`root`,children:e.children},t.options).children),xS({type:`comment`,value:{stitch:n}},t)}function xS(e,t){let n=e.value,r={type:hv.COMMENT,data:n,location:kS(e)};wS(t,dt(e)),t.parser.currentToken=r,t.parser._processToken(t.parser.currentToken)}function SS(e,t){if(t.parser.tokenizer.preprocessor.html=``,t.parser.tokenizer.preprocessor.pos=-1,t.parser.tokenizer.preprocessor.lastGapPos=-2,t.parser.tokenizer.preprocessor.gapStack=[],t.parser.tokenizer.preprocessor.skipNextNewLine=!1,t.parser.tokenizer.preprocessor.lastChunkWritten=!1,t.parser.tokenizer.preprocessor.endOfChunkHit=!1,t.parser.tokenizer.preprocessor.isEol=!1,TS(t,dt(e)),t.parser.tokenizer.write(t.options.tagfilter?e.value.replace(dS,`&lt;$1$2`):e.value,!1),t.parser.tokenizer._runParsingLoop(),t.parser.tokenizer.state===72||t.parser.tokenizer.state===78){t.parser.tokenizer.preprocessor.lastChunkWritten=!0;let e=t.parser.tokenizer._consume();t.parser.tokenizer._callState(e)}}function CS(e,t){let n=e;if(t.options.passThrough&&t.options.passThrough.includes(n.type))bS(n,t);else{let e=``;throw fS.has(n.type)&&(e=". It looks like you are using MDX nodes with `hast-util-raw` (or `rehype-raw`). If you use this because you are using remark or rehype plugins that inject `'html'` nodes, then please raise an issue with that plugin, as its a bad and slow idea. If you use this because you are using markdown syntax, then you have to configure this utility (or plugin) to pass through these nodes (see `passThrough` in docs), but you can also migrate to use the MDX syntax"),Error("Cannot compile `"+n.type+"` node"+e)}}function wS(e,t){TS(e,t);let n=e.parser.tokenizer.currentCharacterToken;n&&n.location&&(n.location.endLine=e.parser.tokenizer.preprocessor.line,n.location.endCol=e.parser.tokenizer.preprocessor.col+1,n.location.endOffset=e.parser.tokenizer.preprocessor.offset+1,e.parser.currentToken=n,e.parser._processToken(e.parser.currentToken)),e.parser.tokenizer.paused=!1,e.parser.tokenizer.inLoop=!1,e.parser.tokenizer.active=!1,e.parser.tokenizer.returnState=Lv.DATA,e.parser.tokenizer.charRefCode=-1,e.parser.tokenizer.consumedAfterSnapshot=-1,e.parser.tokenizer.currentLocation=null,e.parser.tokenizer.currentCharacterToken=null,e.parser.tokenizer.currentToken=null,e.parser.tokenizer.currentAttr={name:``,value:``}}function TS(e,t){if(t&&t.offset!==void 0){let n={startLine:t.line,startCol:t.column,startOffset:t.offset,endLine:-1,endCol:-1,endOffset:-1};e.parser.tokenizer.preprocessor.lineStartPos=-t.column+1,e.parser.tokenizer.preprocessor.droppedBufferSize=t.offset,e.parser.tokenizer.preprocessor.line=t.line,e.parser.tokenizer.currentLocation=n}}function ES(e,t){let n=e.tagName.toLowerCase();if(t.parser.tokenizer.state===Lv.PLAINTEXT)return;wS(t,dt(e));let r=t.parser.openElements.current,i=`namespaceURI`in r?r.namespaceURI:qg.html;i===qg.html&&n===`svg`&&(i=qg.svg);let a=Y_({...e,children:[]},{space:i===qg.svg?`svg`:`html`}),o={type:hv.START_TAG,tagName:n,tagID:Pv(n),selfClosing:!1,ackSelfClosing:!1,attrs:`attrs`in a?a.attrs:[],location:kS(e)};t.parser.currentToken=o,t.parser._processToken(t.parser.currentToken),t.parser.tokenizer.lastStartTagName=n}function DS(e,t){let n=e.tagName.toLowerCase();if(!t.parser.tokenizer.inForeignNode&&av.includes(n)||t.parser.tokenizer.state===Lv.PLAINTEXT)return;wS(t,ut(e));let r={type:hv.END_TAG,tagName:n,tagID:Pv(n),selfClosing:!1,ackSelfClosing:!1,attrs:[],location:kS(e)};t.parser.currentToken=r,t.parser._processToken(t.parser.currentToken),n===t.parser.tokenizer.lastStartTagName&&(t.parser.tokenizer.state===Lv.RCDATA||t.parser.tokenizer.state===Lv.RAWTEXT||t.parser.tokenizer.state===Lv.SCRIPT_DATA)&&(t.parser.tokenizer.state=Lv.DATA)}function OS(e){let t=e.type===`root`?e.children[0]:e;return!!(t&&(t.type===`doctype`||t.type===`element`&&t.tagName.toLowerCase()===`html`))}function kS(e){let t=dt(e)||{line:void 0,column:void 0,offset:void 0},n=ut(e)||{line:void 0,column:void 0,offset:void 0};return{startLine:t.line,startCol:t.column,startOffset:t.offset,endLine:n.line,endCol:n.column,endOffset:n.offset}}function AS(e){return`children`in e?Ga({...e,children:[]}):Ga(e)}function jS(e){return function(t,n){return mS(t,{...e,file:n})}}var MS=_(),NS=[{questionNumber:41,id:`ds-real-2009-41`,title:`2009 真题 · 贪心选择最近邻能否求得最短路径`,type:`题目`,date:`2026-10-21`,chapter:`图 · 最短路径与贪心策略`,tags:[`408真题`,`最短路径`,`贪心`,`反例构造`,`非算法应用题`],summary:`题目给出一种“每步只选当前顶点最近未访问邻点”的求路方法，要求判断它能否求得最短路径，并给出证明或反例。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（两处文字一致）；未取得官方原卷，属第三方转录而非官方勘验。两个反例由本站自行构造并脚本验证，官方答案同样给出“不能”与两个反例，但图形未逐点核对。`,content:String.raw`带权图（权值非负，表示边连接的两顶点间的距离）的最短路径问题是找出从初始顶点到目标顶点之间的一条最短路径。假设从初始顶点到目标顶点之间存在路径，现有一种解决该问题的方法：
+
+① 设最短路径初始时仅包含初始顶点，令当前顶点 u 为初始顶点；
+
+② 选择离 u 最近且尚未在最短路径中的一个顶点 v，加入到最短路径中，修改当前顶点 u = v；
+
+③ 重复步骤 ②，直到 u 是目标顶点时为止。
+
+![方法的执行流程：只看当前顶点的一条邻接边，没有全局距离估计，也没有回退](ds-real-2009-41/greedy-procedure.svg)
+
+请问上述方法能否求得最短路径？若该方法可行，请证明之；否则，请举例说明。
+
+题源核对：[CodeBrick 2009 年第 41 题](https://www.codebrick.tech/exam-408/q/ds/2009/41)、[计算机考研杂货铺 2009 年真题](https://csgraduates.com/study_methods/408quiz/2009/)`,solution:{answer:String.raw`**不能求得最短路径。** 该方法每一步只看“当前顶点的一条邻接边”，一旦走进某个顶点就不再回头，属于典型的局部最优选择；而最短路径是全局性质。
+
+给出两个反例即可（一个说明“走得通但更长”，一个说明“根本走不到”）：
+
+- **反例一**：顶点 1、2、3、4，边 1—2 权 1、2—3 权 1、3—4 权 1、1—4 权 2。目标为 4。方法走 1→2→3→4，总费用 1+1+1 = 3；而真正的最短路是 1→4，费用 2。
+- **反例二**：顶点 1、2、3、4，边 1—2 权 1、2—4 权 1、1—3 权 2。目标为 3。方法先取 1→2（1），再取 2→4（1）；到 4 后已无未访问邻接点，方法终止，**目标 3 始终没有加入路径**。
+
+![两个反例：左图方法绕远路，右图方法中途停死](ds-real-2009-41/counterexamples.svg)`,explanation:String.raw`### 一、先把方法翻译成一句话
+
+方法是：从起点出发，反复执行“在当前顶点的邻接边里挑最小的一条往前走”，走到目标就停。
+
+它有两个致命特征：
+
+- **只看一条边**：比较对象是“当前顶点到各个未访问邻点的边权”，而不是“起点到各个顶点的当前最短距离”；
+- **不做松弛、不回退**：一旦某个顶点被加入路径就不再修改，也无法推倒重来。
+
+最短路径的困难恰恰在于“前面多走一点、后面省很多”。只看下一步的边权，无法判断这一步是不是通向目标的正确方向。
+
+### 二、反例一：走得通，但更长
+
+图的边为 1—2 = 1、2—3 = 1、3—4 = 1、1—4 = 2：
+
+- 方法：从 1 出发，未访问邻点 2（权 1）、4（权 2），选最近的 2；从 2 出发只能去 3；从 3 只能去 4。路径 1→2→3→4，费用 3。
+- 真实最短路：1→4 直达，费用 2。
+
+差的这 1 不是算错，而是**方法根本没有比较“1 直接到 4”与“绕一圈到 4”的总代价**。它在第 1 步就已经把 1→4 这条更优的边排除在视野之外（4 一旦未访问，本可以选，但它不是“离 1 最近”的）。
+
+### 三、反例二：走不到目标
+
+图的边为 1—2 = 1、2—4 = 1、1—3 = 2，目标是 3：
+
+- 方法：从 1 出发，未访问邻点为 2（1）、3（2），选 2；从 2 出发，未访问邻点只有 4，选 4；从 4 出发，未访问邻点为空，**方法无路可走**。
+- 真实最短路：1→3，费用 2，本来存在。
+
+这说明该方法连“一定能终止在目标顶点”都不保证，更谈不上最优。
+
+### 四、为什么不能靠“证明它正确”拿分
+
+要证明它正确，需要说明：每一步选出的边都一定在某条最短路径上。反例一直接否定了这一命题 —— 1→2 这条边不属于任何一条 1 到 4 的最短路径（唯一最短路是 1→4）。
+
+按第三方转录附带的评分说明，答“能”的考生无论给出何种证明都不给分；本题的得分点就是**反例 + 说清费用**。
+
+### 五、与 Dijkstra 的区别（这是本题真正想考的东西）
+
+两者最根本的差别在于**比较对象**与**是否修正**：
+
+- **比较对象**：题中方法比的是“当前顶点的一条出边权”；Dijkstra 比的是“源点到各未确定顶点的当前距离估计”。
+- **全局估计**：题中方法不维护任何距离数组；Dijkstra 始终维护 dist 数组。
+- **松弛**：题中方法选完就走，不更新任何东西；Dijkstra 每确定一个顶点，就用它更新所有邻居的估计。
+- **可修正性**：题中方法一旦把某个顶点加入路径就不再回头；Dijkstra 虽然也不改已确定的顶点，但会不断修正**未确定**顶点的估计。
+
+Dijkstra 之所以正确，靠的是“非负权 + 每次取当前估计最小的顶点 + 松弛”：一旦某顶点的估计成为最小，它就不可能再被更短的路径改写。题中方法把“估计”换成了“一条边的权”，整套正确性论证随之失效。`,pitfalls:String.raw`- 答“能求得”，再补一段看似合理的证明：本题的反例是决定性的，任何证明都不成立。
+- 只画图不说费用：反例必须给出“方法得到多少、最短是多少”这两个数，否则无法说明“不是最短”。
+- 反例一里让方法走到 1→4：那就直接取到了最短路，反例不成立；必须保证方法在第 1 步选的是 1→2。
+- 混淆“边权非负”与“贪心正确”：非负只保证 Dijkstra 一类算法正确，不保证任意贪心正确。
+- 用 Dijkstra 的结论来论证该方法的正确性：两者比较的对象完全不同。
+- 只说“局部最优不等于全局最优”却不给具体图：这是口号，不是举例说明。`,extension:String.raw`**问：这个方法在什么图上一试就灵？**
+
+**答：** 没有一般性的图类能保证它正确，即使是很简单的结构也会失败。反例二只用了 4 个顶点、3 条边，它是树（1—2—4 是一条链，1—3 是另一条分支），方法依然走进分支后停死。所以不能靠“图很小”“权都相等”来救它。
+
+**问：把规则改成“每次在所有已加入顶点的出边里取最小”能求最短路吗？**
+
+**答：** 不能，那是 Prim 求最小生成树。反例：三角形 1—2 = 2、2—3 = 2、1—3 = 3。MST 取 1—2 与 2—3，树中 1 到 3 的距离是 4；而真正最短路是 1→3 直达，费用 3。MST 优化的是“全树总权最小”，不是“两点间距离最小”。
+
+**问：若把规则换成“维护起点到每个顶点的距离估计，每步取估计最小者并松弛邻居”，需要什么前提？**
+
+**答：** 权值非负。这正是 Dijkstra 算法；出现负权边时，已确定顶点的距离可能被后来的负边改小，算法失效，需要改用 Bellman-Ford 之类的方法。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先让学生把方法读成一句操作口令：**“站在这儿，挑最近的一条路走，不回头。”** 然后问：最短路径需要知道什么？需要知道“从起点到目标整体怎么走最省”，而不是“下一步哪条边最短”。
+
+### 2. 如何带学生讲解
+
+1. 画一个只有 4 个点的小图，现场按方法走一遍，让学生看到它“选了就走”。
+2. 再画出 1→4 的直达边，问：方法为什么没选它？因为它在第 1 步比较的是 1 的两条出边，1→2 更小。
+3. 引出反例二：连“走到目标”都不保证。两个反例一个打“最优性”，一个打“可达性”，覆盖面完整。
+4. 最后用表格对比 Dijkstra 的三个要素：全局估计、取最小、松弛。
+
+### 3. 下次遇到同类题怎么办
+
+判断“某种贪心能否求最短路”，固定三步：**先找反例，再看它有没有全局估计，最后看有没有松弛**。只要缺其中任何一环，就优先怀疑它不正确，并构造“多走一步省很多”或“走进分支卡死”的小图。`}},{questionNumber:41,id:`ds-real-2010-41`,title:`2010 真题 · 线性探测散列表的构造与两个平均查找长度`,type:`题目`,date:`2026-10-21`,chapter:`查找 · 散列表与线性探测`,tags:[`408真题`,`散列表`,`线性探测`,`装填因子`,`平均查找长度`,`非算法应用题`],summary:`7 个关键字、H(key)=(3×key) mod 7、装填因子 0.7、线性探测：画表并分别求查找成功与不成功的平均查找长度。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（关键字、散列函数与装填因子一致）；未取得官方原卷，属第三方转录。表、探测次数与两个 ASL 均由本站脚本独立模拟。`,content:String.raw`将关键字序列 ⟨7, 8, 30, 11, 18, 9, 14⟩ 散列存储到散列表中。散列表的存储空间是一个下标从 0 开始的一维数组，散列函数为 H(key) = (key × 3) mod 7，处理冲突采用线性探测再散列法，要求装填（载）因子为 0.7。
+
+![散列表初始状态：长度 m 没有直接给出，要先由装填因子推出](ds-real-2010-41/hash-table-empty.svg)
+
+(1) 请画出所构造的散列表。
+
+(2) 分别计算等概率情况下查找成功和查找不成功的平均查找长度。
+
+题源核对：[CodeBrick 2010 年第 41 题](https://www.codebrick.tech/exam-408/q/ds/2010/41)、[计算机考研杂货铺 2010 年真题](https://csgraduates.com/study_methods/408quiz/2010/)`,solution:{answer:String.raw`**(1)** 由装填因子 0.7 与元素个数 7 得表长
+
+$$
+m=\frac{7}{0.7}=10,
+$$
+
+下标 0～9。各关键字的散列地址为 H(7)=0、H(8)=3、H(30)=6、H(11)=5、H(18)=5、H(9)=6、H(14)=0；按序列顺序插入、冲突后线性向后探测，得到：
+
+- 地址 0：7（1 次）
+- 地址 1：14（2 次，0 被占）
+- 地址 2：空
+- 地址 3：8（1 次）
+- 地址 4：空
+- 地址 5：11（1 次）
+- 地址 6：30（1 次）
+- 地址 7：18（3 次，5、6 被占）
+- 地址 8：9（3 次，6、7 被占）
+- 地址 9：空
+
+![最终散列表与每个关键字的探测次数](ds-real-2010-41/hash-table-filled.svg)
+
+**(2)** 查找成功：总探测次数 1+2+1+1+1+3+3 = 12，故
+
+$$
+ASL_{\text{成功}}=\frac{12}{7}\approx 1.71.
+$$
+
+查找不成功：初始散列地址只可能是 0～6，探测到第一个空位为止，次数依次为 3、2、1、2、1、5、4，合计 18，故
+
+$$
+ASL_{\text{失败}}=\frac{18}{7}\approx 2.57.
+$$`,explanation:String.raw`### 一、先求表长，再求散列地址
+
+装填因子定义为 $\alpha=\dfrac{\text{已存元素数}}{\text{表长}}$，所以
+
+$$
+m=\frac{7}{0.7}=10.
+$$
+
+这一步是整题的入口：表长算错，后面的地址、冲突链、ASL 全部错。
+
+散列函数 $H(key)=(3key)\bmod 7$ 的值域只有 0～6，逐个算出：
+
+- 7：21 mod 7 = 0
+- 8：24 mod 7 = 3
+- 30：90 mod 7 = 6
+- 11：33 mod 7 = 5
+- 18：54 mod 7 = 5
+- 9：27 mod 7 = 6
+- 14：42 mod 7 = 0
+
+### 二、按序列顺序插入，冲突就向后找
+
+线性探测：地址被占就试 $(i+1)\bmod m$，直到遇到空单元。注意“按关键字序列的顺序插”，不是按散列地址的大小插。
+
+- 7 → 0 空，放 0。
+- 8 → 3 空，放 3。
+- 30 → 6 空，放 6。
+- 11 → 5 空，放 5。
+- 18 → 5 被 11 占，试 6 被 30 占，试 7 空，放 7。探测 3 次。
+- 9 → 6 被 30 占，7 被 18 占，8 空，放 8。探测 3 次。
+- 14 → 0 被 7 占，1 空，放 1。探测 2 次。
+
+得到的表：0:7、1:14、2:空、3:8、4:空、5:11、6:30、7:18、8:9、9:空。
+
+**自查一**：7 个关键字各占一格，空槽 3 个，装填因子 7/10 = 0.7 ✓。
+
+**自查二**：每个关键字的探测次数等于它在探针序列里走的步数，正好可以从表里逐格回数。
+
+### 三、查找成功的 ASL
+
+成功查找的探测次数 = 该关键字插入时的探测次数（因为探测路径只由散列地址与已有元素决定）。所以直接查上一步的记录：
+
+$$
+ASL_{\text{成功}}=\frac{1+1+1+1+3+3+2}{7}=\frac{12}{7}\approx1.71.
+$$
+
+注意：这里的分母是**元素个数 7**，不是表长 10。成功查找只可能查到已存在的关键字。
+
+### 四、查找不成功的 ASL：分母为什么是 7
+
+这是本题最大的坑。查找不成功时，“初始散列地址”只可能是散列函数的值域 0～6，**不可能是 7、8、9** —— 那三个槽只能由冲突探测到达，不会成为起点。
+
+对每个初始地址 $h\in\{0,\dots,6\}$，沿探测序列向后数，直到遇到第一个空槽（含这次比较）：
+
+- h=0：0 占、1 占、2 空 → 3 次
+- h=1：1 占、2 空 → 2 次
+- h=2：2 空 → 1 次
+- h=3：3 占、4 空 → 2 次
+- h=4：4 空 → 1 次
+- h=5：5、6、7、8 占，9 空 → 5 次
+- h=6：6、7、8 占，9 空 → 4 次
+
+$$
+ASL_{\text{失败}}=\frac{3+2+1+2+1+5+4}{7}=\frac{18}{7}\approx2.57.
+$$
+
+注意 h=5 和 h=6 都要一直数到 9，因为 9 才是第一个空位；不能只数到 8。
+
+### 五、两个 ASL 的口径对照
+
+- 成功：分母 = 关键字个数 = 7；分子 = 每个关键字各自的探测次数之和。
+- 失败：分母 = 散列函数值域大小 = 7（本题恰好也是 7，但含义不同）；分子 = 每个初始地址探到第一个空位的次数之和。
+
+本题两个分母数值相同，容易让人误以为“分母永远等于元素个数”。换一个散列函数值域不为 7 的题就会立刻暴露：例如 H(key) = key mod 13、表长 16 时，失败分母是 13。`,pitfalls:String.raw`- 把表长算成 11 或 7：0.7 是 7/10，不是 7/11；也不要用元素个数当表长。
+- 按散列地址大小顺序插入：必须按题给关键字序列顺序插入，否则冲突链完全不同。
+- 查找失败的分母写成 10：失败起点只有 0～6，槽 7、8、9 不可能是初始地址。
+- 数探测次数时漏算“检查到空槽”的那一次：遇到空槽也算一次比较。
+- 认为 18 和 9 的探测次数相同：18 是 5→6→7（3 次），9 是 6→7→8（3 次），恰好都是 3，但路径不同，写解析时要写清。
+- 把装填因子 0.7 误当成“必须留 3 个空位所以表长是 10”的巧合，而不写推导。`,extension:String.raw`**问：为什么查找失败的分母是 7 而不是表长 10？**
+
+**答：** 失败的查找只可能从某个初始散列地址出发，而 $H(key)$ 的值域是 $\{0,1,\dots,6\}$，共 7 个可能起点；槽 7、8、9 是冲突溢出后才会到达的位置，不会有人“从那里开始查”。所以取平均的对象是 7 个初始地址。
+
+**问：如果这时要删除关键字 18，能不能直接把槽 7 置空？**
+
+**答：** 不能。9 的探测路径是 6→7→8，若槽 7 变成空位，查找 9 时会在 7 处判定“查找失败”，把本来存在的 9 漏掉。线性探测的正确删除是**逻辑删除**：给该槽打“已删除”标记，查找遇到标记继续向后探测，插入时可以复用第一个标记位置。
+
+**问：若改用拉链法存这 7 个关键字，ASL 会怎么变？**
+
+**答：** 成功查找的比较次数等于它在链中的位次：链 0 上 7、14 → 1、2 次；链 3 上 8 → 1 次；链 5 上 11、18 → 1、2 次；链 6 上 30、9 → 1、2 次，合计 10，故 $ASL_{\text{成功}}=10/7\approx1.43$。失败查找的口径依教材而定（是否把“判空”计入一次比较），答题时必须写明所采用的口径，否则数字对不上。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先问一句：散列表的长度从哪来？很多学生上来就画 7 个格子，题面给的 0.7 直接没用。**装填因子是入口，不是装饰。**
+
+### 2. 如何带学生讲解
+
+1. 先算 $m=7/0.7=10$，写清“元素数 / 表长”。
+2. 把所有 $H(key)$ 一次算完列在旁边，避免插入到一半再回头算。
+3. 按序列顺序插，每插一个就在右上角记“探测次数”，后面求 ASL 时直接抄。
+4. 讲失败 ASL 时强调起点只有 0～6，并把 5、6 两条长链完整数一遍（5→6→7→8→9 是 5 次）。
+
+### 3. 下次遇到同类题怎么办
+
+固定四步：**表长 → 全部散列地址 → 按序列插入并记次数 → 成功除元素数、失败除值域大小**。最后用“装填因子 = 元素数/表长”和“空槽数 = 表长 − 元素数”两个等式自查。`}},{questionNumber:41,id:`ds-real-2011-41`,title:`2011 真题 · 上三角压缩数组还原邻接矩阵并求关键路径`,type:`题目`,date:`2026-10-21`,chapter:`图 · 压缩存储与关键路径`,tags:[`408真题`,`上三角矩阵`,`压缩存储`,`邻接矩阵`,`AOE`,`关键路径`,`非算法应用题`],summary:`6 个顶点的有向带权图邻接矩阵按行优先存进 15 个元素的一维数组，要求还原矩阵、画图并求关键路径及长度。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（一维数组内容一致）；未取得官方原卷，属第三方转录。矩阵还原、ve/vl 与关键路径均由本站脚本独立计算。`,content:String.raw`已知有 6 个顶点（顶点编号为 0～5）的有向带权图 G，其邻接矩阵 A 为上三角矩阵，按行为主序（行优先）保存在如下的一维数组中。
+
+~~~text
+4  6  ∞  ∞  ∞  5  ∞  ∞  ∞  4  3  ∞  ∞  3  3
+~~~
+
+![15 个元素按行优先对应到上三角的各行，对角线不存储](ds-real-2011-41/triangular-array.svg)
+
+要求：
+
+(1) 写出图 G 的邻接矩阵 A。
+
+(2) 画出有向带权图 G。
+
+(3) 求图 G 的关键路径，并计算该关键路径的长度。
+
+题源核对：[CodeBrick 2011 年第 41 题](https://www.codebrick.tech/exam-408/q/ds/2011/41)、[计算机考研杂货铺 2011 年真题](https://csgraduates.com/study_methods/408quiz/2011/)`,solution:{answer:String.raw`**(1)** 邻接矩阵（行、列均为 0～5，对角线为 0，下三角为 ∞）：
+
+- 第 0 行：0, 4, 6, ∞, ∞, ∞
+- 第 1 行：∞, 0, 5, ∞, ∞, ∞
+- 第 2 行：∞, ∞, 0, 4, 3, ∞
+- 第 3 行：∞, ∞, ∞, 0, ∞, 3
+- 第 4 行：∞, ∞, ∞, ∞, 0, 3
+- 第 5 行：∞, ∞, ∞, ∞, ∞, 0
+
+![还原后的邻接矩阵，浅色格是数组中实际存放的 15 个元素](ds-real-2011-41/adjacency-matrix.svg)
+
+**(2)** 7 条弧：0→1 权 4、0→2 权 6、1→2 权 5、2→3 权 4、2→4 权 3、3→5 权 3、4→5 权 3。
+
+**(3)** 关键路径为 **0→1→2→3→5**，长度为
+
+$$
+4+5+4+3=16.
+$$
+
+各事件的最近发生时间与最迟发生时间：ve = (0, 4, 9, 13, 12, 16)，vl = (0, 4, 9, 13, 13, 16)。
+
+![图 G 与各顶点的 ve/vl；红色为关键活动，虚线为非关键活动](ds-real-2011-41/critical-path.svg)`,explanation:String.raw`### 一、先数清每行存了多少个元素
+
+6×6 的上三角矩阵，去掉对角线后，各行待存的元素个数依次是 5、4、3、2、1，合计 15，正好等于一维数组的长度。这说明压缩存储**不存对角线**，对角线元素单独规定为 0（本题的非对角线上，∞ 表示无弧）。
+
+按行优先依次填入：
+
+- 第 0 行存 A[0][1]…A[0][5] ← 前 5 个：4, 6, ∞, ∞, ∞
+- 第 1 行存 A[1][2]…A[1][5] ← 接下来 4 个：5, ∞, ∞, ∞
+- 第 2 行存 A[2][3]…A[2][5] ← 接下来 3 个：4, 3, ∞
+- 第 3 行存 A[3][4]、A[3][5] ← 接下来 2 个：∞, 3
+- 第 4 行存 A[4][5] ← 最后 1 个：3
+
+于是得到七条有向弧：0→1(4)、0→2(6)、1→2(5)、2→3(4)、2→4(3)、3→5(3)、4→5(3)。下三角全为 ∞、对角线全为 0。
+
+**自查**：15 个元素全部用完，没有多也没有少；每条弧都是“小下标 → 大下标”，符合上三角的形状。
+
+### 二、关键路径要算两组数
+
+**(1) 事件最早发生时间 ve（正向递推）**
+
+ve 表示“以该事件为起点的所有活动最早能什么时候开始”，取所有入边“前驱 ve + 边权”的最大值：
+
+- ve(0) = 0
+- ve(1) = ve(0) + 4 = 4
+- ve(2) = max(ve(0)+6, ve(1)+5) = max(6, 9) = 9
+- ve(3) = ve(2) + 4 = 13
+- ve(4) = ve(2) + 3 = 12
+- ve(5) = max(ve(3)+3, ve(4)+3) = max(16, 15) = 16
+
+**(2) 事件最迟发生时间 vl（逆向递推）**
+
+vl 表示“在不推迟工期前提下，该事件最晚可以什么时候发生”，取所有出边“后继 vl − 边权”的最小值，汇点 vl = ve：
+
+- vl(5) = 16
+- vl(4) = 16 − 3 = 13
+- vl(3) = 16 − 3 = 13
+- vl(2) = min(vl(3)−4, vl(4)−3) = min(9, 10) = 9
+- vl(1) = vl(2) − 5 = 4
+- vl(0) = min(vl(2)−6, vl(1)−4) = min(3, 0) = 0
+
+**(3) 活动的 e 与 l**
+
+活动 ⟨u,v⟩ 的最早开始时间 e = ve(u)，最迟开始时间 l = vl(v) − w，两者相等即关键活动：
+
+- 0→1(4)：e = 0，l = 4−4 = 0 → 关键
+- 0→2(6)：e = 0，l = 9−6 = 3 → 非关键（余量 3）
+- 1→2(5)：e = 4，l = 9−5 = 4 → 关键
+- 2→3(4)：e = 9，l = 13−4 = 9 → 关键
+- 2→4(3)：e = 9，l = 13−3 = 10 → 非关键（余量 1）
+- 3→5(3)：e = 13，l = 16−3 = 13 → 关键
+- 4→5(3)：e = 12，l = 16−3 = 13 → 非关键（余量 1）
+
+关键活动串起来就是 **0→1→2→3→5**，长度 4+5+4+3 = 16。
+
+### 三、为什么 0→2 的权更大却不是关键活动
+
+0→2 的权是 6，比 0→1 的 4 大，很容易误以为它更“关键”。但关键路径看的是**从源点到汇点的最长路**，不是单条边的权：
+
+- 走 0→2→3→5：6 + 4 + 3 = 13
+- 走 0→2→4→5：6 + 3 + 3 = 12
+- 走 0→1→2→3→5：4 + 5 + 4 + 3 = 16
+
+第一条边再大，只要后续“起跑早、跑得慢”，总长度就短。0→2 的余量 3 正是它比关键路径少的那 3。
+
+### 四、复核
+
+脚本按邻接矩阵正推 ve、逆推 vl，并枚举 0 到 5 的全部路径：路径长度最大值为 16，与 ve(5) 相等；关键活动集合为 {0→1, 1→2, 2→3, 3→5}，与手算一致。`,pitfalls:String.raw`- 把 15 个元素摊到 6×6 的 36 格里：压缩存储只存严格上三角，对角线不占数组。
+- 每行元素的起点搞错（例如第 2 行从 A[2][2] 开始）：应从 A[i][i+1] 开始。
+- ve(2) 取 6 而不是 9：ve 取所有入边的最大值，0→2 的 6 与 1→2 的 4+5=9 中取 9。
+- 把关键路径写成“权最大的边”：关键路径是整条最长路，单条边大不代表关键。
+- 只写关键活动不写顶点序列：题目问“关键路径”，应给出完整序列。
+- 逆向递推时用 ve 代替 vl 去减边权：vl 必须从汇点的 vl 开始倒推。`,extension:String.raw`**问：为什么压缩存储只存上三角、还要单独规定对角线为 0？**
+
+**答：** 上三角矩阵的下三角元素全部相同（本题全是 ∞ 或全 0 之类），存一份就够了；对角线在本题表示“自己到自己”，没有实际弧，统一记 0 便于算法判断。数组只保存 15 个“可能不同”的元素，空间从 36 降到 15。
+
+**问：若把 2→4 的权从 3 改成 4，关键路径会怎样？**
+
+**答：** 重新计算得 ve = (0,4,9,13,13,16)、vl = (0,4,9,13,13,16)，此时 0→1、1→2、2→3、2→4、3→5、4→5 全部成为关键活动，关键路径变为两条：0→1→2→3→5 与 0→1→2→4→5，长度都是 16，工期不变。这说明“关键活动变多”不等于“工期变长”。
+
+**问：缩短 0→1 的权能缩短工期吗？**
+
+**答：** 能。0→1 位于唯一的关键路径上，缩短 1 使关键路径变成 15；但缩短到一定程度后，另一条路（0→2→3→5，13）会顶上来成为新的关键路径，此时再缩短 0→1 就不再生效。关键路径题要一直盯住“当前最长路”，而不是盯住某条边。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先解决“数组怎么摊回矩阵”这个纯记账问题，再谈关键路径。学生卡住通常不在算法，而在“第 2 行的第一个元素到底对应哪一格”。
+
+### 2. 如何带学生讲解
+
+1. 写 6×6 的格子，把对角线涂灰（不存），数出每行剩下几格：5、4、3、2、1。
+2. 用“切段”的方式把 15 个数依次填进去，每填一行就在数组上划掉一段。
+3. 按邻接矩阵读出 7 条弧，画图时只画小下标指向大下标的弧。
+4. 算 ve 时强调“取最大”，算 vl 时强调“取最小”，最后用 e = l 判关键活动。
+5. 用 0→2 这个“权大但不关键”的边做反例，纠正“大边即关键”的直觉。
+
+### 3. 下次遇到同类题怎么办
+
+压缩存储题先算每行元素个数并核对总长；关键路径题固定四步：**拓扑正推 ve → 逆推 vl → 逐活动算 e、l → e = l 的活动串成路径**。最后用“最长路径长度 = ve(汇点)”自查。`}},{questionNumber:41,id:`ds-real-2012-41`,title:`2012 真题 · 六个有序表的最佳两两合并顺序`,type:`题目`,date:`2026-10-21`,chapter:`排序 · 归并与最佳归并树`,tags:[`408真题`,`归并`,`最佳归并树`,`哈夫曼思想`,`比较次数`,`非算法应用题`],summary:`6 个长度 10、35、40、50、60、200 的升序表经 5 次两两合并成一个表，要求给出使最坏比较次数最小的合并过程与总次数。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（表长一致）；未取得官方原卷，属第三方转录。合并顺序与 825 次比较由本站脚本按小根堆独立重算，并核对“总比较次数 = 各次合并后表长之和 − 合并次数”。`,content:String.raw`设有 6 个有序表 A、B、C、D、E、F，分别含有 10、35、40、50、60 和 200 个数据元素，各表中元素按升序排列。要求通过 5 次两两合并，将这 6 个表最终合并成 1 个升序表，并在最坏情况下比较的总次数达到最小。
+
+![六个升序表：每次只能挑两个合并，合并后的新表继续参与](ds-real-2012-41/six-lists.svg)
+
+请回答下列问题：
+
+(1) 给出完整的合并过程，并求出最坏情况下比较的总次数。
+
+(2) 根据你的合并过程，描述 N（N ≥ 2）个不等长升序表的合并策略，并说明理由。
+
+题源核对：[CodeBrick 2012 年第 41 题](https://www.codebrick.tech/exam-408/q/ds/2012/41)、[计算机考研杂货铺 2012 年真题](https://csgraduates.com/study_methods/408quiz/2012/)`,solution:{answer:String.raw`**核心公式**：长度分别为 m、n 的两个有序表归并，最坏情况下要比较到其中一个表耗尽，比较次数为
+
+$$
+m+n-1.
+$$
+
+**(1)** 按“每次取最短的两个表合并”（哈夫曼思想）执行：
+
+- 第 1 次：A(10) + B(35) = 45，最多 10+35−1 = 44 次
+- 第 2 次：AB(45) + C(40) = 85，最多 45+40−1 = 84 次
+- 第 3 次：D(50) + E(60) = 110，最多 50+60−1 = 109 次
+- 第 4 次：ABC(85) + DE(110) = 195，最多 85+110−1 = 194 次
+- 第 5 次：ABCDE(195) + F(200) = 395，最多 195+200−1 = 394 次
+
+总比较次数
+
+$$
+44+84+109+194+394=825.
+$$
+
+![合并树：内部结点权值是合并后的表长，边上标出该次的最坏比较次数](ds-real-2012-41/merge-tree.svg)
+
+**(2)** 策略：**把 N 个表看成 N 个带权叶结点，权值为表长，反复取权值最小的两个合并，直到只剩一个表**（即按哈夫曼树／最佳归并树构造）。理由：总比较次数 = 各次合并后表长之和 − 合并次数，而“各次合并后表长之和”正是这棵合并树的带权路径长度；哈夫曼树使带权路径长度最小，故比较次数最少。实现时用小根堆每次取两个最小值，时间 $O(N\log N)$。`,explanation:String.raw`### 一、为什么是 m+n−1
+
+两个有序表归并时，每比较一次就输出一个较小元素，直到其中一个表被取空；此时另一个表的剩余元素直接接上，不再比较。最坏情况是两边交替取到某一方耗尽：
+
+$$
+\underbrace{(m+n-1)}_{\text{比较次数}}+\underbrace{1}_{\text{最后剩下的元素}}=m+n.
+$$
+
+所以最坏比较次数是 $m+n-1$，它**只取决于两表的长度**，与元素的具体值无关。这就把“使比较次数最小”转化成了“使每次合并的表长之和最小”。
+
+### 二、为什么“先合并最短的两个”最优
+
+把合并过程画成一棵二叉树：叶子是原始表（权值为表长），内部结点是新生成的表（权值为两个孩子的权值之和）。一次合并的比较次数是 $m+n-1$，即“新结点权值 − 1”。于是
+
+$$
+\text{总比较次数}=\sum_{\text{内部结点}}w-\#\text{内部结点}=WPL-(N-1).
+$$
+
+$N$ 固定时，$N-1$ 是常数，所以“总比较次数最小”等价于“带权路径长度 WPL 最小”。而哈夫曼算法（每次合并权最小的两个）正是 WPL 最小的构造方法，可用交换论证证明：若某最优树中两个最小权叶子不在最深处且不是兄弟，把它们与最深处的两个叶子交换，WPL 不会增大。
+
+### 三、按部就班算一遍
+
+初始：10、35、40、50、60、200。
+
+- 取最小的 10 与 35 → 45。最坏比较 10+35−1 = 44。剩余：40、45、50、60、200。
+- 取 40 与 45 → 85。比较 40+45−1 = 84。剩余：50、60、85、200。
+- 取 50 与 60 → 110。比较 50+60−1 = 109。剩余：85、110、200。
+- 取 85 与 110 → 195。比较 85+110−1 = 194。剩余：195、200。
+- 取 195 与 200 → 395。比较 195+200−1 = 394。
+
+总比较次数 44+84+109+194+394 = 825。
+
+**自查**：内部结点权值之和 = 45+85+110+195+395 = 830，减去合并次数 5，得 825，与逐项相加一致。
+
+### 四、对照：随便合并会差多少
+
+若按原顺序从左到右串行合并：10+35=45、45+40=85、85+50=135、135+60=195、195+200=395，权值和 = 45+85+135+195+395 = 855，比较次数 855−5 = 850，比最优多 25 次。
+
+差别来自 200 这个“大表”：在哈夫曼方案里它最后才被合并一次，在最左到右方案里它虽然也只合并一次，但前面的 195 被反复计入多次。表越长、被合并的次数越少越好。
+
+### 五、第 (2) 问的答题要点
+
+- 必须点明“每次选最短的两个”这一策略；
+- 必须说明理由：总比较次数对应合并树的 WPL，哈夫曼构造使 WPL 最小；
+- 提一句实现：用最小堆维护表长，每次弹出两个、压回一个，$O(N\log N)$。`,pitfalls:String.raw`- 把最坏比较次数写成 m+n：并归时有一方耗尽后剩余元素直接接上，不比较，所以是 m+n−1。
+- 按原始顺序从左到右合并：这不是最优，会得到 850 次。
+- 每次取最长的两个合并：WPL 反而更大。
+- 漏掉 200 这个表：题目有 6 个表、5 次合并，很容易只处理前 5 个。
+- 只给合并过程不给比较次数，或次数与过程不对应（评分按“与合并过程一致”给分）。
+- 把“5 次两两合并”误读成“合并成 5 个表”。`,extension:String.raw`**问：为什么总比较次数等于“各次合并后表长之和减去合并次数”？**
+
+**答：** 第 i 次合并两个长度 $m_i$、$n_i$ 的表，比较次数为 $m_i+n_i-1$；把所有合并相加，$\sum(m_i+n_i)$ 正是每次新生成表的长度之和，共 $N-1$ 项，每项都被减了 1，所以减去 $N-1$。
+
+**问：如果有表长相等，最优方案唯一吗？**
+
+**答：** 一般不唯一。例如出现多个相同最小权值时，取哪两个都不改变最终的 WPL，会得到不同的合并次序但相同的最坏比较次数。答题时给出任意一种最优过程即可。
+
+**问：把归并改成 k 路归并，策略要怎么改？**
+
+**答：** 仍按“每次取 k 个最短的合并”，但需要补“虚段”（权为 0 的假表），使 $(N-1)\bmod(k-1)=0$，否则最后一趟可能不足 k 路，WPL 不是最小。这与外部排序里构造最佳归并树的处理方法完全一致。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先给出“两个有序表归并最坏比较 m+n−1”这一条，然后把题目翻译成：**怎样安排合并次序，使各次生成的表长之和最小**。剩下来就是哈夫曼。
+
+### 2. 如何带学生讲解
+
+1. 现场算一次 10 与 35 的归并，让学生自己数出 44 次，理解 −1 的来源。
+2. 把合并过程画成树，内部结点写表长，让学生看到“长表被合并的次数少，短表被合并的次数多”。
+3. 用“从左到右串行合并”得到 850 做对照，说明顺序确实影响结果。
+4. 最后归纳：总比较 = WPL − (N−1)，所以用哈夫曼。
+
+### 3. 下次遇到同类题怎么办
+
+看到“合并次序使比较次数最小”，直接套三步：**写 m+n−1 → 用最小堆反复取两个最小 → 用 WPL−(N−1) 复核**。若题目改成外部排序的 k 路归并，记得先补虚段。`}},{questionNumber:42,id:`ds-real-2013-42`,title:`2013 真题 · 按查找概率重排元素以缩短平均查找长度`,type:`题目`,date:`2026-10-21`,chapter:`查找 · 平均查找长度与查找方法选择`,tags:[`408真题`,`平均查找长度`,`顺序查找`,`折半查找`,`二叉排序树`,`非算法应用题`],summary:`4 个单词的查找概率依次为 0.35、0.15、0.15、0.35，折半查找的 ASL 为 2.2；要求分别用顺序存储和链式存储设计 ASL 更短的方案。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（概率与 2.2 一致）；未取得官方原卷，属第三方转录。各方案 ASL 与“二叉排序树最优值”由本站脚本重算（枚举全部 24 种插入次序）。`,content:String.raw`设包含 4 个数据元素的集合 S = { "do", "for", "repeat", "while" }，各元素的查找概率依次为 p1 = 0.35，p2 = 0.15，p3 = 0.15，p4 = 0.35。将 S 保存在一个长度为 4 的顺序表中，采用折半查找法，查找成功时的平均查找长度为 2.2。
+
+![当前按字母序存放的顺序表与各元素概率](ds-real-2013-42/table.svg)
+
+请回答：
+
+(1) 若采用顺序存储结构保存 S，且要求平均查找长度更短，则元素应如何排列？应使用何种查找方法？查找成功时的平均查找长度是多少？
+
+(2) 若采用链式存储结构保存 S，且要求平均查找长度更短，则元素应如何排列？应使用何种查找方法？查找成功时的平均查找长度是多少？
+
+题源核对：[CodeBrick 2013 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2013/42)、[计算机考研杂货铺 2013 年真题](https://csgraduates.com/study_methods/408quiz/2013/)`,solution:{answer:String.raw`**(1) 顺序存储**：按查找概率**从高到低**排列（do、while 在前两位，for、repeat 在后两位，两个 0.35 之间可互换），采用**顺序查找**。平均查找长度
+
+$$
+ASL=0.35\times1+0.35\times2+0.15\times3+0.15\times4=2.1,
+$$
+
+比折半查找的 2.2 更短。
+
+**(2) 链式存储**有两种答法，都能得到比 2.2 更短的 ASL：
+
+- **单链表 + 顺序查找**：结点按概率从高到低排列，ASL 同样为 2.1。
+- **二叉排序树 + 二叉排序树查找**：按 do < for < repeat < while 的中序次序建树，让概率 0.15 的 for 做根、两个 0.35 的 do 与 while 在第二层、repeat 在第三层，则
+
+$$
+ASL=0.15\times1+0.35\times2+0.35\times2+0.15\times3=2.0.
+$$
+
+![两种方案：左侧按概率降序做顺序查找，右侧按概率构造二叉排序树](ds-real-2013-42/asl-compare.svg)`,explanation:String.raw`### 一、先把题给的 2.2 拆开看
+
+折半查找的判定树由**元素在有序表中的位置**唯一确定，与元素的值、与查找概率都无关。4 个元素按字母序 do、for、repeat、while 存放，折半的判定树是：中点取第 2 个（for）为根，左孩子 do，右孩子 repeat，repeat 的右孩子 while。对应深度为：for 1 层、do 2 层、repeat 2 层、while 3 层。
+
+按题给概率加权：
+
+$$
+0.35\times2+0.15\times1+0.15\times2+0.35\times3=0.7+0.15+0.3+1.05=2.2.
+$$
+
+与题给一致。**关键观察**：概率最大的 do 与 while 分别在第 2、3 层，而概率最小的 for 却在第 1 层 —— 这正是折半查找“不理会概率”的代价。
+
+### 二、顺序存储：为什么只能顺序查找
+
+顺序存储本身既能折半也能顺序查找，但折半要求元素**有序**；一旦按概率降序重排（do、while、for、repeat），字母序就被破坏，折半的前提不再成立。
+
+而顺序查找的 ASL 恰好只与“元素在表中的位置”和概率有关：
+
+$$
+ASL=\sum_{i=1}^{n}i\cdot p_i .
+$$
+
+要让这个和最小，就把概率大的放前面 —— 由排序不等式，降序配对得到最小和。于是
+
+$$
+ASL=1\times0.35+2\times0.35+3\times0.15+4\times0.15=0.35+0.7+0.45+0.6=2.1<2.2 .
+$$
+
+两个 0.35 的元素（do、while）占据前两位后，第三、四位放 for、repeat 的哪一种都可以，ASL 不变。
+
+### 三、链式存储：两条路
+
+**(a) 单链表 + 顺序查找。** 链表不能随机访问，折半查找无法进行；按概率降序建链，查找时从头逐个比较，ASL 与顺序表完全相同，仍为 2.1。
+
+**(b) 二叉排序树 + 树查找。** 链式结构可以组织成二叉排序树，只要中序序列保持字母序即可（这是二叉排序树的定义要求）。此时每个元素的比较次数 = 它的深度，于是问题变成“在保持中序次序的前提下，怎样安排树形使 $\sum p_i\cdot depth_i$ 最小”。
+
+把概率 0.15 的 for 放在根（深度 1），两个 0.35 的 do、while 放在深度 2，剩下的 repeat 放在深度 3：
+
+- 根 for（0.15，1 层），左孩子 do（0.35，2 层），右孩子 while（0.35，2 层），while 的左孩子 repeat（0.15，3 层）。
+- 中序为 do、for、repeat、while ✓ 满足二叉排序树。
+
+$$
+ASL=0.15\times1+0.35\times2+0.35\times2+0.15\times3=2.0 .
+$$
+
+**为什么把最小的概率放根上反而更优**：根只有 1 次比较，但根的左、右两侧各贡献一棵子树；把“小概率”放在浅层、“大概率”放在稍深但能被两个孩子平摊的位置，整体加权和更小。这与“最优二叉查找树”的思想一致。
+
+**是否还有更优的树形**：枚举 4 个元素的全部 24 种插入次序（得到全部可能的二叉排序树形态），最小加权 ASL 为 2.0，没有更低的方案。
+
+### 四、三组数字放在一起比较
+
+- 折半查找（字母序）：2.2
+- 顺序查找（概率降序）：2.1
+- 二叉排序树（按概率构造）：2.0
+
+结论：**折半查找虽然比较次数“看起来”更少（$\lceil\log_2 5\rceil$ 级别），但在概率分布不均匀时，未必优于按概率排列的顺序查找**；这正是本题想纠正的惯性思维。`,pitfalls:String.raw`- 认为“折半查找一定优于顺序查找”：折半的比较次数只由位置决定，完全无视概率。
+- 把概率降序写成升序：那样最大的概率落在最后一位，ASL 会变成 2.9。
+- 顺序存储下仍坚持用折半：按概率重排后数组不再有序，折半的前提被破坏。
+- 二叉排序树违反了中序有序：例如把 do 放根、for 放右孩子，中序就不是 do < for < repeat < while。
+- 只答一种链式方案就停：本题“链式存储”允许单链表顺序查找，也允许二叉排序树，两种都正确。
+- 把 ASL 2.0 的树画成完全二叉树：完全二叉树与“按概率最优”不是一回事。`,extension:String.raw`**问：为什么折半查找的 ASL 与查找概率无关？**
+
+**答：** 折半查找每次比较的是“区间中点”位置上的元素，比较次数只取决于该元素在有序表中的下标，与它的值、与它被查到的概率都无关。所以改变概率分布不会改变任何元素的比较次数，加权和自然也不变 —— 变的只是权重，而权重乘的是固定的深度序列。
+
+**问：如果要求“必须保持字母序”，还能不能比 2.2 更好？**
+
+**答：** 能。保持字母序（即中序有序）时仍可自由选择树形：把 for 做根、do 与 while 放第二层、repeat 放第三层，就得到 2.0；这实际是一棵按概率构造的最优二叉排序树，而不是折半的判定树。折半的判定树只是“中序有序”的树中的一种特殊形态（尽量平衡），它并不针对概率优化。
+
+**问：如果概率变成 0.25、0.25、0.25、0.25（等概率），结论会怎样？**
+
+**答：** 此时按概率降序与按字母序没有区别，顺序查找的 ASL = (1+2+3+4)/4 = 2.5，折半 ASL 仍为 2.2，折半更优。**概率均匀时折半占优，概率集中时顺序查找可能反超** —— 这就是本题的一般结论。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先用题给的 2.2 把折半的判定树画出来，让学生看到“最不可能被查的 for 坐在根上”。这一眼就能解释为什么要重排。
+
+### 2. 如何带学生讲解
+
+1. 画判定树，标出每个元素的深度，按概率加权算出 2.2，验证题给数据。
+2. 问：想更短该把谁放前面？引出“概率降序”——用排序不等式说明。
+3. 强调顺序存储重排后**不能再折半**，只能顺序查找，这是本题的隐藏条件。
+4. 链式部分先给单链表方案（2.1），再引到二叉排序树（2.0），并现场验证中序有序。
+5. 用等概率的例子做对照，说明“折半 vs 顺序”没有绝对优劣。
+
+### 3. 下次遇到同类题怎么办
+
+ASL 题固定三问：**查找方法与存储结构是否相容（折半要求有序+随机访问）→ 比较次数由什么决定（位置还是概率）→ 按加权和最小化排列**。链式存储时记得二叉排序树这条额外路径。`}},{questionNumber:42,id:`ds-real-2014-42`,title:`2014 真题 · OSPF 链路状态信息的链式存储与 Dijkstra 求路`,type:`题目`,date:`2026-10-21`,chapter:`图 · 图的存储与最短路径`,tags:[`408真题`,`图`,`邻接表`,`链式存储`,`Dijkstra`,`最短路径`,`非算法应用题`],summary:`给出 4 台路由器的链路状态信息与网络拓扑，要求抽象数据结构、设计链式存储并画出示意图、按 Dijkstra 策略求 R1 到各子网的最短路径与费用。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理。第三方转录的 LSI 文字表把子网写成 192.168.x.0/24，而题图与第 (3) 问统一使用 192.1.x.0/24；本页按题图与问法统一记为 192.1.x.0/24，并在解析中说明这一差异。未取得官方原卷，属第三方转录。最短路径与费用由本站脚本独立运行 Dijkstra 复核。`,content:String.raw`某网络中的路由器运行 OSPF 路由协议，下表是路由器 R1 维护的主要链路状态信息（LSI），下图是根据 LSI 的接口名构造出来的网络拓扑。
+
+R1 的 LSI：
+
+- 路由器标识（Router ID）：10.1.1.1
+- Link1：对端 Router ID 10.1.1.2，本接口 IP 10.1.1.1，费用 3
+- Link2：对端 Router ID 10.1.1.5，本接口 IP 10.1.1.9，费用 2
+- Net1：前缀 192.1.1.0/24，费用 1
+
+R2 的 LSI：
+
+- Router ID：10.1.1.2
+- Link1：对端 10.1.1.1，本接口 IP 10.1.1.2，费用 3
+- Link2：对端 10.1.1.6，本接口 IP 10.1.1.13，费用 4
+- Net1：前缀 192.1.6.0/24，费用 1
+
+R3 的 LSI：
+
+- Router ID：10.1.1.5
+- Link1：对端 10.1.1.6，本接口 IP 10.1.1.5，费用 6
+- Link2：对端 10.1.1.1，本接口 IP 10.1.1.10，费用 2
+- Net1：前缀 192.1.5.0/24，费用 1
+
+R4 的 LSI：
+
+- Router ID：10.1.1.6
+- Link1：对端 10.1.1.5，本接口 IP 10.1.1.6，费用 6
+- Link2：对端 10.1.1.2，本接口 IP 10.1.1.14，费用 4
+- Net1：前缀 192.1.7.0/24，费用 1
+
+![根据 LSI 构造的网络拓扑（边旁数字为链路费用）](ds-real-2014-42/topology.svg)
+
+请回答下列问题。
+
+(1) 本题中的网络可抽象为数据结构中的哪种结构？
+
+(2) 针对表中的内容，设计合理的链式存储结构，以保存链路状态信息（LSI）。要求给出链式存储结构的数据定义，并画出对应 LSI 的链式存储结构示意图（示意图中仅以 ID 标识结点）。
+
+(3) 按照迪杰斯特拉（Dijkstra）算法的策略，依次给出 R1 到达图中子网 192.1.x.x 的最短路径及费用。
+
+题源核对：[CodeBrick 2014 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2014/42)、[计算机考研杂货铺 2014 年真题](https://csgraduates.com/study_methods/408quiz/2014/)`,solution:{answer:String.raw`**(1)** 可抽象为**无向带权图**（网状结构、非线性结构）。路由器与子网都是顶点，路由器之间的链路和路由器到直连子网的链路是边，费用是边权。
+
+**(2)** 采用**邻接表**：每个路由器一个表头结点，其链表按 LSI 的 Link 顺序存放该路由器的各条链路；链结点需能同时表示“连到另一个路由器”和“连到一个子网”两类情况，用类型标志区分。
+
+~~~c
+typedef struct Arc {          /* 链路连到另一台路由器 */
+    unsigned int id;          /* 对端 Router ID */
+    unsigned int ip;          /* 本接口 IP */
+    int metric;               /* 链路费用 */
+} Arc;
+
+typedef struct Net {          /* 链路连到一个直连子网 */
+    unsigned int prefix;      /* 网络前缀 */
+    unsigned int mask;        /* 掩码 */
+    int metric;               /* 到达该子网的费用 */
+} Net;
+
+typedef struct LNode {
+    struct LNode *next;       /* 下一条链路 */
+    int flag;                 /* 1 = 连路由器，2 = 连子网 */
+    union { Arc arc; Net net; } info;
+} LNode;
+
+typedef struct HNode {
+    unsigned int router_id;   /* 本路由器的 Router ID */
+    LNode *first;             /* 第一条链路 */
+    struct HNode *next;       /* 下一台路由器的表头 */
+} HNode, *LSIList;
+~~~
+
+![链式存储示意图：4 个表头结点，每条链按 Link1、Link2、Net1 顺序挂接](ds-real-2014-42/chain-storage.svg)
+
+**(3)** 按 Dijkstra 策略依次确定（费用非递减）：
+
+- 子网 192.1.1.0/24：R1 直达，费用 **1**
+- 子网 192.1.5.0/24：R1→R3，费用 2+1 = **3**
+- 子网 192.1.6.0/24：R1→R2，费用 3+1 = **4**
+- 子网 192.1.7.0/24：R1→R2→R4，费用 3+4+1 = **8**
+
+![Dijkstra 以 R1 为根的最短路径树，以及四个子网的费用](ds-real-2014-42/dijkstra-paths.svg)`,explanation:String.raw`### 一、第 (1) 问：为什么是“无向带权图”
+
+- **无向**：R1 的 Link1 指向 R2、R2 的 Link1 指回 R1，同一条物理链路被两端各记一次，方向对称；
+- **带权**：每条链路有费用（metric），子网也有到达费用；
+- **图**：路由器与子网是顶点，链路是边，符合“多对多、网状”的非线性结构。
+
+答题时写“无向图（或网状结构、非线性结构）”都能得分；只写“树”是错的 —— 路由器 R1、R2、R3、R4 之间构成了 R1—R2—R4—R3—R1 的环。
+
+### 二、第 (2) 问：链式结构怎么设计
+
+LSI 的特点是“每台路由器有不定条数的链路，每条链路又可能是路由器或子网”，正好对应**邻接表**：表头数组（链表）按路由器组织，每个表头挂一条链，链上的每个结点是一条链路。
+
+设计要点：
+
+1. **表头结点**保存 Router ID（本题用 10.1.1.x 标识）与第一条链路的指针；
+2. **链结点**保存“对端是谁 + 本端 IP + 费用 + next”，对端既可能是 Router ID，也可能是网络前缀；
+3. 用 **flag + union** 把两类链结点合并成一种结构，既省空间又便于统一遍历；也可以用两个并列的结构体加一个类型标志，同样正确；
+4. 图上只画 ID，不画完整 IP，符合题目“仅以 ID 标识结点”的要求。
+
+![示意图中每条链都按 LSI 的行顺序排列，最后以 ∧ 结束](ds-real-2014-42/chain-storage.svg)
+
+**为什么不选邻接矩阵**：路由器与子网数量可变，且每个顶点只与少数几条链路相连（稀疏），矩阵会浪费大量空间，也无法直接表达“这条链路在本端的 IP 是多少”这类附加信息。
+
+### 三、第 (3) 问：Dijkstra 逐步执行
+
+先由 LSI 读出路由器之间的边（两端费用一致，取一次）：
+
+- R1—R2：3
+- R1—R3：2
+- R2—R4：4
+- R3—R4：6
+
+再读出每个子网挂在谁身上：192.1.1.0/24 挂 R1，192.1.6.0/24 挂 R2，192.1.5.0/24 挂 R3，192.1.7.0/24 挂 R4，费用都是 1。
+
+Dijkstra 从 R1 出发：
+
+1. 初始距离：R1 = 0，R2 = 3，R3 = 2，R4 = ∞。
+2. 取当前最小且未确定的 R3（2）。用 R3 松弛：R4 ← min(∞, 2+6) = 8。
+3. 取 R2（3）。用 R2 松弛：R4 ← min(8, 3+4) = 7。
+4. 取 R4（7）。全部确定。
+
+**子网距离 = 所挂路由器的距离 + 子网链路的费用 1**，所以：
+
+- 192.1.1.0/24：0 + 1 = 1（R1 直达）
+- 192.1.5.0/24：2 + 1 = 3（R1→R3）
+- 192.1.6.0/24：3 + 1 = 4（R1→R2）
+- 192.1.7.0/24：7 + 1 = 8（R1→R2→R4）
+
+按费用非递减排列即 1、3、4、8，与题目要求的“依次给出”一致。
+
+### 四、易混点：R4 走哪条路
+
+两条候选路径：
+
+- R1→R3→R4：2 + 6 = 8
+- R1→R2→R4：3 + 4 = 7
+
+**后者更短**，虽然 R1 到 R3 只有 2（比到 R2 的 3 更小）。这正是 Dijkstra 要“每确定一个顶点就松弛一次”的原因：先确定的 R3 给出的 8 是当时的估计，后面 R2 被确定时会把 R4 的估计改成 7。
+
+### 五、复核
+
+脚本按上述 4 条边运行 Dijkstra，确定顺序为 R1(0)、R3(2)、R2(3)、R4(7)，四个子网费用为 1、3、4、8，与手算一致。`,pitfalls:String.raw`- 把网络抽象成“树”：四台路由器之间存在环，树不能表示；写“图”“网状结构”才对。
+- 第 (2) 问只写结构体不画图：题目明确要求“画出链式存储结构示意图”，两问都要答。
+- 链结点只存对端 ID 不存费用：遍历时无法得到边权，Dijkstra 无从下手。
+- 把子网当作普通顶点却忘了加“子网链路的费用 1”。
+- 认为 R4 的最短路是 R1→R3→R4（8）：R1→R2→R4 只要 7。
+- 把图当作有向图：LSI 两端各记一次同一条链路，方向是对称的。
+- 用邻接矩阵：稀疏图 + 需要保存接口 IP 等附加信息，邻接表更合适。`,extension:String.raw`**问：若把 R2—R4 的链路费用从 4 改成 6，各子网费用如何变化？**
+
+**答：** 路由器距离变为 R2 = 3、R3 = 2、R4 = min(2+6, 3+6) = 8，子网费用依次为 1、3、4、**9**（192.1.7.0/24 = 8+1）。原来 R1→R2→R4 的 7 变成 9，此时两条候选路径（8 与 9）已经由 R1→R3→R4 更短，最短路径树也随之改变。
+
+**问：为什么树形结构不能表示这个网络？**
+
+**答：** 树要求任意两点间只有一条简单路径。而 R1—R2—R4—R3—R1 构成一个环，R1 到 R4 有两条不同的路径（经 R2 或经 R3），树无法同时表示这两条，也就无法比较它们的费用。
+
+**问：如果要求“LSI 的链结点按费用升序排列”，值得吗？**
+
+**答：** 一般不值得。OSPF 的 LSI 按链路顺序组织即可；若每次收到新的链路状态都要重排，代价是 $O(d\log d)$（$d$ 为该路由器的链路数），而 Dijkstra 本身已能处理任意顺序。除非题目明确要求按费用有序，否则保持插入顺序更简单。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先说一句定心话：**这题看起来是网络题，实际考的是数据结构。** 把“路由器 + 子网”翻译成“顶点 + 边”，把 LSI 翻译成“邻接表”，剩下的就是 Dijkstra。
+
+### 2. 如何带学生讲解
+
+1. 读 LSI：一条 Link 给出一端路由器、对端、本端 IP、费用；两端的同一条链路费用相同，取一次。
+2. 画拓扑：4 个路由器成环，每个路由器外挂一个子网。
+3. 设计链式结构：表头 + 链结点 + flag/union，现场写出结构体，并说明为什么不用矩阵。
+4. 跑 Dijkstra：把距离数组每一步写出来，重点看 R4 的估计从 ∞ 变成 8、再变成 7。
+5. 最后把子网费用 = 路由器距离 + 1 这一步单独强调，最容易漏。
+
+### 3. 下次遇到同类题怎么办
+
+“网络拓扑 + 求最短路”固定四步：**LSI → 边表（去重）→ 附加顶点（子网、主机）→ Dijkstra**。若还要求存储结构，优先写邻接表，并强调稀疏图与附加字段。`}},{questionNumber:42,id:`ds-real-2015-42`,title:`2015 真题 · 图的邻接矩阵、A² 与路径条数`,type:`题目`,date:`2026-10-21`,chapter:`图 · 邻接矩阵与路径计数`,tags:[`408真题`,`非算法应用题`,`图`,`邻接矩阵`,`矩阵乘法`,`路径条数`],summary:`给出 5 个顶点、7 条边的无向图，写出邻接矩阵，求出 A² 并解释其中某个元素的实际含义，最后把结论推广到任意幂次。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（两侧给出的邻接矩阵一致）；未取得官方原卷，属第三方转录，非官方勘验。解析、矩阵与路径条数由本站独立推导，并用 Python 脚本重算。`,content:String.raw`已知含有 5 个顶点的图 G 如下图所示。
+
+![2015 年第 42 题图 G：5 个顶点 0～4、7 条无向边](ds-real-2015-42/graph.svg)
+
+顶点编号为 0、1、2、3、4，无向边共 7 条：0—1、0—2、0—4、1—3、1—4、2—3、3—4。图中两条对角边在中部交叉，交点不是顶点。
+
+请回答下列问题：
+
+(1) 写出图 G 的邻接矩阵 A（行、列下标均从 0 开始）。
+
+(2) 求 A²，矩阵 A² 中位于 0 行 3 列元素值的含义是什么？
+
+(3) 若已知具有 n（n ≥ 2）个顶点的图的邻接矩阵为 B，则 $B^m$（2 ≤ m ≤ n）中非零元素的含义是什么？
+
+题源核对：[CodeBrick 2015 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2015/42)、[计算机考研杂货铺 2015 年真题](https://csgraduates.com/study_methods/408quiz/2015/)`,attachments:[{name:`查看题图 SVG（可放大）`,path:`ds-real-2015-42/graph.svg`},{name:`查看解析图 SVG（可放大）`,path:`ds-real-2015-42/a-square.svg`}],solution:{answer:String.raw`**(1)** 邻接矩阵（行列下标均为 0～4）：
+
+$$
+A=\begin{pmatrix}0&1&1&0&1\\1&0&0&1&1\\1&0&0&1&0\\0&1&1&0&1\\1&1&0&1&0\end{pmatrix}
+$$
+
+![邻接矩阵 A：第 i 行非零元素个数等于顶点 i 的度](ds-real-2015-42/adjacency-matrix.svg)
+
+**(2)**
+
+$$
+A^2=\begin{pmatrix}3&1&0&3&1\\1&3&2&1&2\\0&2&2&0&2\\3&1&0&3&1\\1&2&2&1&3\end{pmatrix}
+$$
+
+![A² 的第 0 行第 3 列用红框标出，等于 3，对应 0→1→3、0→2→3、0→4→3 三条长度为 2 的路径](ds-real-2015-42/a-square.svg)
+
+A² 中 0 行 3 列的元素值为 **3**，含义是：**从顶点 0 到顶点 3 的长度为 2 的路径（允许重复经过顶点与边的游走）共有 3 条**，即 0→1→3、0→2→3、0→4→3。
+
+**(3)** $B^m$（2 ≤ m ≤ n）第 i 行第 j 列的非零元素表示：**从顶点 i 到顶点 j 存在长度为 m 的路径（游走，允许重复顶点）**；该元素的数值等于这样的路径条数（为 0 则表示不存在长度为 m 的游走）。`,explanation:String.raw`### (1) 逐行填矩阵
+
+邻接矩阵 $A[i][j]=1$ 当且仅当存在边 $i\to j$。图无向，所以 $A$ 关于主对角线对称，每条边贡献两个 1：
+
+- 第 0 行：0 与 1、2、4 相邻 → 0 1 1 0 1
+- 第 1 行：1 与 0、3、4 相邻 → 1 0 0 1 1
+- 第 2 行：2 与 0、3 相邻 → 1 0 0 1 0
+- 第 3 行：3 与 1、2、4 相邻 → 0 1 1 0 1
+- 第 4 行：4 与 0、1、3 相邻 → 1 1 0 1 0
+
+7 条边对应 14 个非零元素，数目恰好对得上，这是自查一步。
+
+### (2) A² 的算法与含义
+
+按定义 $A^2[i][j]=\sum_{k=0}^{4} A[i][k]\cdot A[k][j]$：求和号在数「存在多少个 $k$，使 $i\to k$ 且 $k\to j$」，也就是**以 $k$ 为中转点的长度 2 路径条数**。
+
+取 $i=0,\ j=3$：$A[0][\cdot]=(0,1,1,0,1)$，$A[\cdot][3]=(0,1,1,0,1)^{T}$，逐项相乘得 $0+1+1+0+1=3$。三个中转点就是 $k=1,2,4$，于是三条路径为 0→1→3、0→2→3、0→4→3。
+
+同法可读出 $A^2[0][0]=3$：0→1→0、0→2→0、0→4→0，都是「走出去再原路回来」的折返路径 —— 题目没有禁止重复经过顶点，所以折返算路径。这正说明 $A^2$ 的对角线元素等于该顶点的度。
+
+### (3) 从 $m=2$ 推到一般 $m$
+
+把 $A^m[i][j]$ 写成「长度为 $m$ 的路径条数」，用对 $m$ 的归纳证明：$m=1$ 时即邻接矩阵本身；设对 $m-1$ 成立，则
+
+$$
+A^{m}[i][j]=\sum_{k} A^{m-1}[i][k]\cdot A[k][j]
+$$
+
+求和号把「先走 $m-1$ 步到 $k$、再从 $k$ 走 1 步到 $j$」的所有走法累加，每条长度为 $m$ 的路径按它的倒数第二个顶点唯一归类，故计数既不重也不漏。
+
+因此 $B^m$ 中**非零元素**表示「存在长度为 $m$ 的路径」，元素值表示这类路径的条数。题目限定 $2\le m\le n$ 只是为了避免讨论平凡情形，结论对任意正整数 $m$ 都成立。
+
+### 自查脚本的输出
+
+- 邻接矩阵非零元素 14 个 = 2×7 条边；
+- $A^2[0][3]=3$，且 0 到 3 的长度 2 路径确实只有 0-1-3、0-2-3、0-4-3 三条；
+- 用 BFS 逐层计数与 $A^m$（$m=2,3,4$）逐元素比对，结果完全一致。`,pitfalls:String.raw`- 把「长度为 2 的路径条数」答成「是否存在路径」：题目问的是**含义**，必须同时说清「存在性」与「条数」。
+- 把这里的「路径」理解成简单路径（顶点不重复）：那样 0→1→0 这类折返不能算，$A^2[0][0]$ 会变成 0，与矩阵乘法结果矛盾。
+- 行列下标从 1 开始编号：题目明确从 0 开始，写错整题全错。
+- 把 $A^2$ 当成「走两步能到达的顶点集合」的 0/1 矩阵：那是对 $A^2$ 取布尔值，会丢掉条数信息。
+- 忘记无向图 $A$ 对称，只填了一半。`,extension:String.raw`## 追问一：无向图中 $A^2[i][i]$ 一定等于顶点 $i$ 的度吗？
+
+**一定。** $A^2[i][i]=\sum_k A[i][k]A[k][i]=\sum_k A[i][k]^2=\sum_k A[i][k]$，因为 $A$ 只取 0/1。这正是「走一步出去再走一步回来」的条数，等于度。
+
+## 追问二：把图换成有向图，结论要改吗？
+
+**不改。** $A^m[i][j]$ 仍然是「$i$ 到 $j$ 长度为 $m$ 的有向路径条数」。只是有向图 $A$ 不再对称，$B^m$ 也不对称；而且 $A^m[i][i]>0$ 说明存在长度为 $m$ 的回路，不再等于「度」。
+
+## 追问三：怎么用 $B^m$ 判断图的连通性？
+
+$n$ 个顶点的图中，若 $i$、$j$ 之间存在路径，则一定存在长度不超过 $n-1$ 的简单路径。所以计算
+
+$$
+S=I+B+B^2+\cdots+B^{n-1}
+$$
+
+则 $S[i][j]>0$ 等价于「$i$ 可到达 $j$」。**必须加上单位矩阵 $I$**：$i$ 到自身存在长度为 0 的平凡可达，而 $B^m$ 只数长度 $m\ge1$ 的走法，若某个顶点没有任何回路，$i\ne j$ 又互不可达，漏掉 $I$ 就会把它误判为不可达。若只想判断「不同顶点间可达」，也可以只算 $B+\cdots+B^{n-1}$ 并限定 $i\ne j$。
+
+## 追问四：为什么不要求 $m\le n$？
+
+$m>n$ 时路径必然重复顶点，矩阵乘法照样能数出条数，结论不变。题目写 $2\le m\le n$ 只是把讨论范围收在「可能有简单路径」的区间里。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先把「矩阵乘法」翻译成「走两步」：$A^2[i][j]$ 数的是中转点，而不是边。学生只要接受这句话，整题就变成填表。
+
+### 2. 如何带学生讲解
+
+1. 先按行读图填 $A$，用「非零元素 = 2×边数」自查。
+2. 只算 $A^2$ 的第 0 行：分别乘 $A$ 的五列，让学生看到「中转点」逐个登场。
+3. 特别看 $A^2[0][0]=3$，逼学生承认折返路径合法，从而理解为什么不能把路径理解为简单路径。
+4. 归纳推广到 $A^m$，强调「按倒数第二个顶点分类」这一不重不漏的论证套路。
+
+### 3. 下次遇到同类题怎么办
+
+凡是「矩阵的幂」，先问三件事：元素是计数还是布尔、路径是否允许重复顶点、图是有向还是无向。答案写「存在性 + 条数」两句，只写一句必失分。`}},{questionNumber:42,id:`ds-real-2016-42`,title:`2016 真题 · 正则 k 叉树的叶结点数与结点数上下界`,type:`题目`,date:`2026-10-21`,chapter:`树 · 树的性质与结点计数`,tags:[`408真题`,`非算法应用题`,`树`,`正则k叉树`,`结点计数`,`公式推导`],summary:`正则 k 叉树的每个非叶结点都恰好有 k 个孩子：先求非叶结点数 m 与叶结点数的定量关系，再求给定高度下结点数的最大值与最小值。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（两侧文字一致）；未取得官方原卷，属第三方转录。推导与全部数值由本站独立重算。`,content:String.raw`如果一棵非空 k（k ≥ 2）叉树 T 中每个非叶结点都有 k 个孩子，则称 T 为正则 k 叉树。请回答下列问题并给出推导过程。
+
+![正则 3 叉树示意：每个非叶结点恰有 3 个孩子，深色为非叶结点](ds-real-2016-42/regular-k-ary.svg)
+
+(1) 若 T 有 m 个非叶结点，则 T 中的叶结点有多少个？
+
+(2) 若 T 的高度为 h（单结点的树 h = 1），则 T 的结点数最多为多少个？最少为多少个？
+
+题源核对：[CodeBrick 2016 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2016/42)、[计算机考研杂货铺 2016 年真题](https://csgraduates.com/study_methods/408quiz/2016/)`,attachments:[{name:`查看结构示意图 SVG（可放大）`,path:`ds-real-2016-42/regular-k-ary.svg`},{name:`查看解析图 SVG（可放大）`,path:`ds-real-2016-42/leaf-bounds.svg`}],solution:{answer:String.raw`**(1)** 叶结点数为
+
+$$
+n_0=(k-1)m+1
+$$
+
+**(2)** 高度为 h 时，结点数**最多**为
+
+$$
+N_{max}=\frac{k^{h}-1}{k-1}=\sum_{j=1}^{h}k^{\,j-1}
+$$
+
+结点数**最少**为
+
+$$
+N_{min}=1+(h-1)k
+$$`,explanation:String.raw`### (1) 叶结点数：两种数边的方法
+
+设叶结点数为 $n_0$，非叶结点数为 $m$，总结点数 $n=n_0+m$。
+
+**数边法一（按树的性质）**：任何含 $n$ 个结点的树恰有 $n-1$ 条边。
+
+**数边法二（按定义）**：每个非叶结点恰好射出 $k$ 个孩子，叶结点不射边，所以边数又是 $mk$。
+
+两式相等：$n_0+m-1=mk$，即
+
+$$
+n_0=(k-1)m+1
+$$
+
+**自查**：$k=3$、$m=2$ 时 $n_0=5$，与示意图中 5 片叶子吻合；$k=2$ 时 $n_0=m+1$，即「每个非叶结点恰有 2 个孩子的二叉树，其叶结点数 = 度为 2 的结点数 + 1」。注意 $k=2$ 的正则树只是**严格二叉树（每个非叶结点恰有 2 个孩子）**，与 408 教材里的**满二叉树（每一层都排满）**是两回事：满二叉树一定是正则二叉树，正则二叉树不一定是满二叉树。
+
+### (2) 结点数最多：把每一层塞满
+
+高度固定为 $h$，要让结点最多，就让第 1 层到第 $h-1$ 层全部是度为 $k$ 的非叶结点，第 $h$ 层全部是叶结点 —— 这就是满 k 叉树。第 $j$ 层有 $k^{j-1}$ 个结点，于是
+
+$$
+N_{max}=1+k+k^2+\cdots+k^{h-1}=\frac{k^{h}-1}{k-1}
+$$
+
+**为什么不能再多**：第 $j$ 层的结点数上限就是第 $j-1$ 层结点数乘以 $k$，逐层归纳即得上界，而满树正好取到。
+
+### (2) 结点数最少：每层只留一个「继续长」的结点
+
+记第 $j$ 层有 $c_j$ 个结点。树高恰为 $h$ 意味着第 1 到第 $h-1$ 层每层至少有一个非叶结点（否则树在第 $j$ 层就断了，高度不够）。每个非叶结点都恰有 $k$ 个孩子，所以
+
+$$
+c_{j+1}=k\cdot(\text{第 } j \text{ 层的非叶结点数})\ \ge\ k\quad (1\le j\le h-1)
+$$
+
+即第 2 层到第 $h$ 层每层至少 $k$ 个结点，加上第 1 层的根：
+
+$$
+N_{min}\ \ge\ 1+(h-1)k
+$$
+
+**构造取到等号**：第 1 至 $h-1$ 层各只留 1 个非叶结点继续长孩子（其余 $k-1$ 个直接作叶结点），第 $h$ 层全是叶结点。此时第 2 至 $h$ 层每层恰好 $k$ 个结点（$h=3$ 时第 2 层也只有 1 个非叶结点），总数为 $1+(h-1)k$，且高度确实为 $h$。
+
+![高度 h=3、k=3 的两种极端树形：左为满 3 叉树 13 个结点，右为最少 7 个结点](ds-real-2016-42/leaf-bounds.svg)
+
+### 边界情形
+
+$h=1$ 时树只有根，根同时是叶结点：$N_{max}=\frac{k-1}{k-1}=1$，$N_{min}=1+(1-1)k=1$，两式同时成立，不需要特判。
+
+### 自查脚本的输出
+
+枚举含 1～5 个非叶结点的全部正则 $k$ 叉树（$k=2,3,4$），叶结点数集合恒为单元素 $\{(k-1)m+1\}$；再对所有树形求「高度恰为 $h$ 的最少结点数」，$k=2,3$、$h=1\sim6$ 全部等于 $1+(h-1)k$。`,pitfalls:String.raw`- 只给结果不写推导：题干已写明「请回答下列问题**并给出推导过程**」，只写结论会大幅失分（第三方转录里附有评分说明，但非官方文件，别把它当精确分值背）。
+- 把「最少」误解成「一条链」：正则 k 叉树的非叶结点必须一次长出 k 个孩子，不能只长 1 个，所以下界是 $1+(h-1)k$ 而不是 $h$。
+- 高度定义混乱：本题按「结点层数」计，单结点树 $h=1$；若按边数计会整体差 1。
+- 上界公式写成 $k^h-1$（漏除 $k-1$）。
+- 忘记 $k\ge2$ 的前提，用 $k=1$ 代入会得到 $N_{max}=h$，与「$\frac{k^h-1}{k-1}$」在 $k=1$ 处未定义相矛盾。`,extension:String.raw`## 追问一：已知叶结点数 $n_0$，总结点数是多少？
+
+由 (1) 反解 $m=\frac{n_0-1}{k-1}$，故
+
+$$
+n=m+n_0=\frac{n_0-1}{k-1}+n_0=\frac{kn_0-1}{k-1}
+$$
+
+所以叶结点数必须满足 $n_0\equiv 1 \pmod{k-1}$，否则这样的正则 $k$ 叉树不存在。例如 $k=3$ 时 $n_0$ 只能取 1、3、5、7……，$n_0=2$ 无解。
+
+## 追问二：高度为 $h$ 的满 k 叉树有多少片叶子？
+
+满树的第 $h$ 层全是叶结点，故 $n_0=k^{h-1}$；代入 (1) 反解 $m=\frac{k^{h-1}-1}{k-1}$，正好是前 $h-1$ 层的结点总数，自洽。
+
+## 追问三：把「恰好 k 个」换成「至多 k 个」，结论怎么变？
+
+此时正则性消失，$e=mk$ 不再成立，叶数公式失效；但对结点数上下界仍可完整回答：
+
+- **最少**：每个非叶结点只长 1 个孩子就够（$1\le k$），于是退化成一条长链，$N_{min}=h$；
+- **最多**：仍让前 $h-1$ 层全部长满 $k$ 个孩子，得到满 k 叉树，$N_{max}=\frac{k^{h}-1}{k-1}$。
+
+## 追问四：若改为「每个非叶结点至少有 k 个孩子」且对孩子数不设上界呢？
+
+叶数公式同样失效，结点数下界也变了：
+
+- **最少**：根至少长 $k$ 个孩子，故第 2 层已有 $k$ 个结点；为把高度撑到 $h$，第 1 至 $h-1$ 层每层至少要有一个非叶结点，它至少长 $k$ 个孩子，于是第 2 至 $h$ 层每层至少 $k$ 个结点，$N_{min}=1+(h-1)k$（与「恰好 $k$ 个」时相同）；
+- **最多**：**不存在有限上界**。$h\ge2$ 时让第 2 层的某个结点长出任意多个孩子即可，结点数可任意大；只有 $h=1$（单结点树）时上界才是 1。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先让学生用 $k=2$ 的特例热身：满二叉树里叶结点数 = 度为 2 的结点数 + 1，是背过的结论。本题就是把这条结论一般化到 k 叉树。
+
+### 2. 如何带学生讲解
+
+1. 数边两次（树的边数 $n-1$ vs 每个非叶结点射出 $k$ 条），等式一列就出结果。
+2. 讲最多时先画满树，再解释「第 $j$ 层 ≤ $k^{j-1}$」是上界而满树取到。
+3. 讲最少时抓关键不等式 $c_{j+1}=k\cdot t_j\ge k$，再画构造图证明能取到等号。
+4. 最后用 $h=1$ 代入检验两个公式，训练「代入边界自检」的习惯。
+
+### 3. 下次遇到同类题怎么办
+
+树的计数题先分清三件事：度是「恰好」还是「至少」、高度按结点数还是边数、问的是上界还是可达值。然后固定套路：数边两次得等式，逐层不等式得上界，构造验证可达。`}},{questionNumber:42,id:`ds-real-2017-42`,title:`2017 真题 · Prim 选边顺序与最小生成树的唯一性`,type:`题目`,date:`2026-10-21`,chapter:`图 · 最小生成树`,tags:[`408真题`,`非算法应用题`,`图`,`Prim`,`最小生成树`,`唯一性`],summary:`在 5 个顶点、7 条边的带权图上从 A 出发执行 Prim，写出依次选出的边；再判断该图的 MST 是否唯一，并给出一般图的判定条件。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（两侧的边权与选边结论一致）；未取得官方原卷，属第三方转录。选边过程与唯一性由本站独立复算（穷举全部 24 棵生成树）。`,content:String.raw`使用 Prim（普里姆）算法求带权连通图的最小（代价）生成树（MST）。请回答下列问题：
+
+![2017 年第 42 题带权图 G：A—B 6、A—D 4、A—E 5、B—C 4、C—D 6、C—E 5、D—E 4](ds-real-2017-42/graph.svg)
+
+图的顶点为 A、B、C、D、E，7 条边的权值为 A—B = 6、A—D = 4、A—E = 5、B—C = 4、C—D = 6、C—E = 5、D—E = 4（图中 A—D 与 C—E 交叉，交点不是顶点）。
+
+(1) 对下列图 G，从顶点 A 开始求 G 的 MST，依次给出按算法选出的边。
+
+(2) 图 G 的 MST 是唯一的吗？
+
+(3) 对任意的带权连通图，满足什么条件时，其 MST 是唯一的？
+
+题源核对：[CodeBrick 2017 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2017/42)、[计算机考研杂货铺 2017 年真题](https://csgraduates.com/study_methods/408quiz/2017/)`,attachments:[{name:`查看题图 SVG（可放大）`,path:`ds-real-2017-42/graph.svg`},{name:`查看解析图 SVG（可放大）`,path:`ds-real-2017-42/prim-steps.svg`}],solution:{answer:String.raw`**(1)** 依次选出的边为：**(A, D) 权 4 → (D, E) 权 4 → (C, E) 权 5 → (B, C) 权 4**，MST 的总代价为 4 + 4 + 5 + 4 = **17**。
+
+**(2)** 是唯一的。
+
+**(3)** 一个常用的充分条件：**若带权连通图中任意一个环上的各边权值互不相同（更强的说法是全部边权互不相同），则其 MST 唯一。**
+
+更精确的充要条件（本题不要求，但更严谨）：设 T 是一棵 MST，则 T 唯一当且仅当对每条非树边 e，e 的权值都**严格大于** T 中连接 e 两端点的路径上的最大边权。`,explanation:String.raw`### (1) 逐步执行 Prim
+
+Prim 每次在「一个端点在 S 内、另一个在 S 外」的边里取权最小者。
+
+- **S = {A}**：候选 A—B(6)、A—D(4)、A—E(5) → 选 **A—D(4)**，S = {A, D}
+- **S = {A, D}**：候选 A—B(6)、A—E(5)、D—E(4)、C—D(6) → 选 **D—E(4)**，S = {A, D, E}
+- **S = {A, D, E}**：候选 A—B(6)、C—D(6)、C—E(5) → 选 **C—E(5)**，S = {A, D, E, C}
+- **S = {A, D, E, C}**：候选 A—B(6)、B—C(4) → 选 **B—C(4)**，S 覆盖全部 5 个顶点，结束
+
+总代价 17。注意第 3 步时 B—C(4) 还不是候选边（B、C 都在 S 外），这是最容易写错的一步。
+
+![Prim 四步选边：蓝线为已加入 MST 的边，红线为本步新加入的边，浅灰为尚未选中的边](ds-real-2017-42/prim-steps.svg)
+
+### (2) 唯一性的两条论证
+
+**论证一（考场写法）**：把 7 条边按权排序为 4, 4, 4, 5, 5, 6, 6。一棵生成树要 4 条边，其代价至少是 4+4+4+5 = 17。取权 4 的三条边 {A—D, D—E, B—C} 后，剩下的 A—E(5) 与它们构成回路 A—D—E—A，只有 C—E(5) 能接上且不成环，所以代价 17 的树只有这一棵。
+
+**论证二（脚本穷举）**：7 条边中取 4 条共有 35 种组合，其中 24 种能构成生成树；最小代价 17（1 棵），次小代价 18，故 MST 唯一。
+
+### (3) 为什么那个条件能保证唯一
+
+**环性质**：对任一环，若其中权值最大的边唯一，则这条边一定不在任何 MST 里 —— 把它换成环上任意另一条边，总代价严格下降。
+
+**由此得到充分条件的证明**：设 T 是任一 MST，$e$ 是任一条非树边，$P$ 是 T 中连接 $e$ 两端点的路径，$C=e\cup P$ 是一个环。由环性质可知 $w(e)\ge\max(P)$。假如取等号，那么环 $C$ 上的最大权同时出现在 $e$ 和 $P$ 的某条边上，即「环内最大权不唯一」，与假设矛盾。所以必有 $w(e)>\max(P)$ —— 这正是判定 MST 唯一的**交换判据**，于是 T 唯一。
+
+**注意本题自身的反例价值**：图中有环 A—B—C—D—A，四条边权为 6、4、6、4，最大权 6 出现两次（A—B 与 C—D），并不满足「环内权值互不相同」，但这个图的 MST 仍然唯一。所以该条件是**充分而不必要**的：题目只要求给一个充分条件，写「所有边权互不相同」或「每个环内边权互不相同」都算对。
+
+**充要条件怎么用**：上面那棵 MST 有 7 条边中的 4 条，剩下**三条**非树边，逐条核对「非树边权 > 树中两端点路径上的最大边权」：
+
+- A—B(6)：树路径 A—D—E—C—B，最大边权 5 < 6 ✓
+- A—E(5)：树路径 A—D—E，最大边权 4 < 5 ✓
+- C—D(6)：树路径 C—E—D，最大边权 5 < 6 ✓
+
+三条都严格更大，所以这棵 MST 唯一（这也是「交换判据」：任何非树边都换不进树里降代价）。漏掉 A—E 是最常见的疏漏 —— 它权 5，和 C—E 同权，容易看漏。`,pitfalls:String.raw`- 第 3 步把 B—C(4) 误当候选边：候选边必须一端在 S 内、一端在 S 外。
+- 选边正确但顺序写错：本题按「每条边且次序正确」给分，顺序错要扣分。
+- 认为「权值有重复 ⇒ MST 不唯一」：重复权值只在构成回路、且恰好能互换时才产生多解，本题就不是。
+- 把 (3) 答成「图是连通的」：连通只保证生成树存在，不保证唯一。注意别把「$n$ 个顶点、$n-1$ 条边 + 连通」也当成反例 —— 满足它的图本身就是一棵树，生成树当然唯一。
+- 只答「所有边权互不相同」，但 (2) 里又说图有相同权值所以不唯一，自相矛盾。`,extension:String.raw`## 追问一：把 A—D 的权改为 7，选边顺序会变吗？
+
+会。第 1 步候选变为 A—B(6)、A—D(7)、A—E(5) → 选 A—E(5)；再在候选 A—B(6)、A—D(7)、E—C(5)、E—D(4) 中选 E—D(4)；然后 E—C(5)；最后 C—B(4)。总代价 5+4+5+4 = 18，MST 仍然唯一。
+
+## 追问二：Kruskal 在这张图上会得到同一棵 MST 吗？
+
+会。Kruskal 按权升序取边：A—D(4)、B—C(4)、D—E(4)（三条权 4 可任意排序，都无环）；接着 A—E(5) 成环弃掉，C—E(5) 加入，得到同一棵 {A—D, D—E, C—E, B—C}。MST 唯一时，任何正确的 MST 算法结果都相同。
+
+## 追问三：若图中出现两条权相同的边且能互换，会发生什么？
+
+用三角形做最小反例，结论和直觉并不一样：
+
+- **权 1、2、2**：三棵生成树分别是 {1,2}、{1,2}、{2,2}，代价 3、3、4，于是**有两棵 MST，费用都是 3**。原因是两条权 2 的边并列最大且可互换。
+- **权 1、1、2**：三棵生成树代价 2、3、3，**MST 唯一，费用 2**。虽然两条权 1 并列，但并列的是最小边，一棵 MST 会把它们都收进去，不产生分歧。
+
+所以「有权值并列」不等于「MST 多解」：要看并列的边是否**恰好都是某个环上的最大边且能互换**。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先把 Prim 讲成一句操作口令：**S 内到 S 外的边里挑最便宜的，把新顶点并进来**。然后强调候选边的定义，因为丢分几乎都在这里。
+
+### 2. 如何带学生讲解
+
+1. 画一张四步的图，每步只更新候选集，边讲边划掉已失效的候选边。
+2. 第 3 步停下来问：B—C(4) 为什么现在不能选？让学生自己说出「B、C 都在 S 外」。
+3. 唯一性先用「最小四条边组合」证，再用穷举结果背书。
+4. 最后讲 (3)，一定要点明本题自身不满足「环内权值互不相同」却仍然唯一，避免学生背成充要条件。
+
+### 3. 下次遇到同类题怎么办
+
+MST 题按三步走：排序看最小 $n-1$ 条能否成树 → 不能就把下一条抬上来 → 反复直到连通。唯一性问题统一用**交换判据**讲：把每条非树边放回树里会形成一个环，若这条边的权严格大于该环上其余边的最大权，它就不能进任何 MST；所有非树边都满足这个「严格大于」，树才唯一。回答「充分条件」这类问法时再补一句「所有边权互不相同 ⇒ 唯一」，但不要把它当成判据，也别把「环上最大权唯一」说成必要条件（本题就是反例：环最大权并列，树却唯一）。`}},{questionNumber:42,id:`ds-real-2018-42`,title:`2018 真题 · 光缆网络的最经济方案与 TTL 判定`,type:`题目`,date:`2026-10-21`,chapter:`图 · 最小生成树及其网络应用`,tags:[`408真题`,`非算法应用题`,`图`,`最小生成树`,`Kruskal`,`Prim`,`TTL`],summary:`为 8 个城市建设总费用最低的光缆网络：列出所有方案与总费用，说明所用存储结构和算法，再判断一个给定 TTL 的 IP 分组能否送达。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理（12 条边权两侧一致）；未取得官方原卷，属第三方转录。全部最小生成树由本站脚本枚举 216 棵生成树独立确认。`,content:String.raw`拟建设一个光通信骨干网络连通 BJ、CS、XA、QD、JN、NJ、TL 和 WH 等 8 个城市，题 42 图中无向边上的权值表示两个城市间备选光缆的铺设费用。
+
+![2018 年第 42 题光缆网络：8 个城市、12 条带权备选边](ds-real-2018-42/network.svg)
+
+12 条备选边的权值为：XA—BJ = 2、BJ—TL = 3、XA—WH = 2、BJ—WH = 3、BJ—JN = 4、TL—JN = 2、WH—CS = 4、WH—QD = 3、QD—JN = 2、JN—NJ = 3、CS—QD = 3、QD—NJ = 2。
+
+请回答下列问题：
+
+(1) 仅从铺设费用角度出发，给出所有可能的最经济的光缆铺设方案（用带权图表示），并计算相应方案的总费用。
+
+(2) 题 42 图可采用图的哪一种存储结构？给出求解问题 (1) 所使用的算法名称。
+
+(3) 假设每个城市采用一个路由器按 (1) 中得到的最经济方案组网，主机 H1 直接连接在 TL 的路由器上，主机 H2 直接连接在 BJ 的路由器上。若 H1 向 H2 发送一个 TTL = 5 的 IP 分组，则 H2 是否可以收到该 IP 分组？
+
+题源核对：[CodeBrick 2018 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2018/42)、[计算机考研杂货铺 2018 年真题](https://csgraduates.com/study_methods/408quiz/2018/)`,attachments:[{name:`查看题图 SVG（可放大）`,path:`ds-real-2018-42/network.svg`},{name:`查看解析图 SVG（可放大）`,path:`ds-real-2018-42/mst-schemes.svg`},{name:`查看 TTL 图解 SVG（可放大）`,path:`ds-real-2018-42/ttl-path.svg`}],solution:{answer:String.raw`**(1)** 最经济方案有两套，总费用都是 **16**：
+
+- **方案一**：XA—BJ(2)、BJ—TL(3)、XA—WH(2)、TL—JN(2)、QD—JN(2)、QD—NJ(2)、CS—QD(3)
+- **方案二**：XA—BJ(2)、XA—WH(2)、WH—QD(3)、QD—JN(2)、QD—NJ(2)、CS—QD(3)、TL—JN(2)
+
+两套方案都用了 5 条权 2 的边和 2 条权 3 的边，故总费用 5×2 + 2×3 = 16，且都是 7 条边、连通 8 个城市。
+
+![全部最经济方案：方案一保留 TL—BJ 直连，方案二改走 WH—QD](ds-real-2018-42/mst-schemes.svg)
+
+**(2)** 可采用**邻接矩阵**（也可用邻接表）；求解 (1) 使用 **Prim 算法**（或 **Kruskal 算法**）。
+
+**(3)** 结论依方案而定：
+
+- 按**方案一**组网：TL 的路由器与 BJ 的路由器直接相连，H1→H2 只经过 TL、BJ 两个路由器，TTL = 5 够用，**H2 能收到**。
+- 按**方案二**组网：TL 到 BJ 的路径是 TL→JN→QD→WH→XA→BJ，共 6 个路由器；分组每经过一个路由器 TTL 减 1，到第 5 个路由器 XA 时 TTL 由 1 减到 0，分组被丢弃，**H2 收不到**。
+
+因此严格回答是：**取方案一时收得到，取方案二时收不到**；若只写「能收到」或「收不到」都不完整。
+
+![两种方案下 TL→BJ 的转发路径：逐跳标注到达时的 TTL，方案二在第 5 个路由器归零被丢弃](ds-real-2018-42/ttl-path.svg)`,explanation:String.raw`### (1) 先建模，再求最小生成树
+
+「连通所有城市 + 总铺设费用最小」正是最小生成树：8 个城市、7 条电缆。
+
+按 Kruskal 从小到大取边：权 2 的边有 5 条，先全取（XA—BJ、XA—WH、TL—JN、QD—JN、QD—NJ），它们各自把城市两两并起来，且不构成回路；
+
+此时还需要 2 条权 3 的边把三个连通块接起来：
+
+- 块一 {XA, BJ, WH}、块二 {TL, JN, QD, NJ}，中间的桥边可选 BJ—TL(3) 或 WH—QD(3)，两者权相同，于是出现**两套方案**；
+- CS 只与 WH(4)、QD(3) 相邻，取 CS—QD(3)。
+
+所以两套方案的区别只在于「用哪条权 3 的边连接东西两侧」。
+
+**为什么权 3 的 BJ—WH 不能用**：XA—BJ 与 XA—WH 已经把 XA、BJ、WH 连成三角形，再取 BJ—WH 只会成环；若用它对换一条权 2 的边，费用反而涨到 17。
+
+脚本穷举结果：该图共 216 棵生成树，费用全集为 16、17、18、19、20、21、22，其中费用 16 的恰好 2 棵 —— 与上面两套方案一一对应。
+
+**提醒**：不同教材、不同解析给这两套方案编号可能相反（有的把「走 WH—QD」叫方案 1）。判卷看的是边集而不是编号，答题时把两条权 3 的边写清楚即可。
+
+### (2) 存储结构与算法怎么答
+
+- **邻接矩阵**：8 个顶点、12 条边，稠密程度一般，但矩阵实现 Prim 的 $O(n^2)$ 写法最省事，考试也最好写。
+- **邻接表**：更适合配合 Kruskal 的边表排序，$O(E\log E)$。
+
+两种存储都能答题，关键是「还能说出配套算法」。注意只说算法不说存储、或只说存储不说算法，都会漏一半分。
+
+### (3) TTL 到底怎么数
+
+TTL（生存时间）只有一种转发语义：源主机发出时给出初值，**每经过一个路由器就减 1（含目的端路由器把它交给主机那一步）；减到 0 即丢弃**，不再转发。所以判断标准是「路径上要经过多少个路由器，其中每一个都要减 1」。
+
+- 方案一：H1—TL 路由器—BJ 路由器—H2。TL 收到 TTL=5，转发时减为 4；BJ 收到 4，交付前不再是 0，正常送达。
+- 方案二：H1—TL—JN—QD—WH—XA—BJ—H2，中间 6 个路由器。TL 收到 5→转发 4；JN 收 4→3；QD 收 3→2；WH 收 2→1；XA 收 1→减为 0，**在此丢弃**，BJ 永远收不到。
+
+用链路条数描述路径也可以（方案一 1 条链路、方案二 5 条链路），但**判断 TTL 时一律数路由器**：链路数加 1 才是要减 1 的次数。方案二共 6 个路由器，TTL = 5 必然在中途归零。`,pitfalls:String.raw`- 只画出一棵最小生成树：本题明确问「所有可能」，漏一套直接丢一半分。
+- 用 BJ—WH(3) 去连三角形，导致总费用变成 17，不是最经济。
+- CS 用 WH—CS(4) 而不是 CS—QD(3)，多花 1。
+- (3) 只答「能」或「不能」：题目给的方案有两套，必须分别讨论。
+- TTL 的计算把「链路条数」当成「路由器个数」，或忘记 TTL 减到 0 时是被丢弃而不是继续转发。
+- 把「最经济」理解成「每个城市只连一条最短边」，忽略整体连通性。`,extension:String.raw`## 追问一：若 BJ—TL 的费用改成 4，还剩几套最经济方案？
+
+只剩一套：权 3 的桥边只有 WH—QD，于是唯一的 MST 是 {XA—BJ, XA—WH, TL—JN, QD—JN, QD—NJ, WH—QD, CS—QD}，总费用 5×2 + 2×3 = 16 不变（桥边仍取权 3 的 WH—QD）。BJ—TL 变成 4 后再也进不了 MST。
+
+## 追问二：把 TTL 改成 6 或 7，方案二能否送达？
+
+按标准转发语义（路由器收到分组即减 1、减到 0 丢弃），方案二的路径要经过 TL、JN、QD、WH、XA、BJ 共 6 个路由器，即需要减 6 次：
+
+- TTL = 5：XA 收到 1，减为 0 → 在 XA 丢弃；
+- TTL = 6：BJ 收到 1，减为 0 → 在 BJ 丢弃，仍送不到 H2；
+- TTL = 7：BJ 收到 2，减为 1 → 正常交付，H2 收到。
+
+注意不要引入所谓「TTL 表示最多经过几个路由器」的宽松解释：那样 TTL = 6 会被算成够用，与「减到 0 就丢弃」矛盾。按标准语义，TTL = 6 在 BJ 处减到 0 仍被丢弃，必须 TTL = 7 才能交付给 H2。
+
+## 追问三：如果要求「任意两个城市之间最多中转 3 个路由器」，最小生成树还够用吗？
+
+不一定。MST 只保证总费用最小，不保证任意两点路径短。方案二里 TL 到 BJ 要经过 6 个路由器，就超出限制。这类需求要建的是「最小直径生成树」或直接做最短路，属于另一类问题。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先说结论：这是一道「最小生成树 + 网络层 TTL」的跨章题，数据结构部分只占一半分。让学生先把它当纯图论题做，再补 TTL 的规则。
+
+### 2. 如何带学生讲解
+
+1. 把 12 条边按权排序，直观看出 5 条权 2 的边必然全取。
+2. 数一数还差几条边、哪两个连通块没接上，此时自然浮出两套方案。
+3. 用「8 个顶点、7 条边」检查方案合法性，用 5×2+2×3=16 检查费用。
+4. 讲 TTL 时画一条链，把每个路由器上的 TTL 值标出来，学生就不会数错。
+
+### 3. 下次遇到同类题怎么办
+
+题目问「所有最经济方案」时，答案**可能只有一套，也可能多套**，不能先假定多解：正确做法是列出权值相同的边，检查它们是否能互换而不抬高总价（必要时枚举或穷举），再据实给出一套或几套。跨到网络层的部分，一律按「每经一个路由器减 1」数路由器个数。`}},{questionNumber:42,id:`ds-real-2019-42`,title:`2019 真题 · 只增不减且两端 O(1) 的队列设计`,type:`题目`,date:`2026-10-21`,chapter:`栈与队列 · 队列的存储结构与判定条件`,tags:[`408真题`,`非算法应用题`,`队列`,`循环单链表`,`队空队满判定`,`结构设计`],summary:`设计要求有四条：初始为空、入队可扩容、出队空间可复用且总量只增不减、两端操作恒为 O(1)。据此选择存储结构，画初始与首个元素入队后的状态，并给出判定条件与操作过程。`,source:`题面据 CodeBrick 408 真题库与「计算机考研杂货铺」两个第三方公开转录整理；未取得官方原卷，属第三方转录。方案与状态推演由本站独立设计并用脚本模拟验证（含结点复用与扩容计数）。`,content:String.raw`请设计一个队列，要求满足：
+
+① 初始时队列为空；
+
+② 入队时，允许增加队列占用空间；
+
+③ 出队后，出队元素所占用的空间可重复使用，即整个队列所占用的空间只增不减；
+
+④ 入队操作和出队操作的时间复杂度始终保持为 O(1)。
+
+![题目四条要求的直观含义：出队后格子变空闲但不回收，新元素写回旧位置](ds-real-2019-42/space-reuse.svg)
+
+请回答下列问题：
+
+(1) 该队列是应选择链式存储结构，还是应选择顺序存储结构？
+
+(2) 画出队列的初始状态，并给出判断队空和队满的条件。
+
+(3) 画出第一个元素入队后的队列状态。
+
+(4) 给出入队操作和出队操作的基本过程。
+
+题源核对：[CodeBrick 2019 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2019/42)、[计算机考研杂货铺 2019 年真题](https://csgraduates.com/study_methods/408quiz/2019/)`,attachments:[{name:`查看要求示意图 SVG（可放大）`,path:`ds-real-2019-42/space-reuse.svg`},{name:`查看状态图 SVG（可放大）`,path:`ds-real-2019-42/queue-ring.svg`}],solution:{answer:String.raw`**(1)** 应选择**链式存储结构**（具体实现：带「空位」结点的循环单链表）。
+
+**(2)** 设队头指针为 front、队尾指针为 rear，约定 **front 指向环上的「空位」结点，rear 指向队尾元素结点**。
+
+初始状态：只有一个结点，front 与 rear 都指向它，且该结点的 next 指向自身（环长 1）。
+
+$$
+\text{队空：}\ front=rear\qquad \text{队满：}\ rear\rightarrow next=front
+$$
+
+**(3)** 第一个元素 x 入队后：环上变成两个结点，front 仍指向原来的空位结点，rear 指向新结点（存 x），且新结点的 next 指回 front。
+
+**(4)** 入队与出队的基本过程：
+
+- **入队 ENQUEUE(x)**：若 $rear\rightarrow next=front$（满），先新建结点 p，令 $p\rightarrow next=front$、$rear\rightarrow next=p$，把 p 接入环以补出新的空位；然后 $rear=rear\rightarrow next$，再把 $x$ 写入 $rear$ 所指结点。
+- **出队 DEQUEUE()**：若 $front=rear$（空），报错返回；否则令 $x=front\rightarrow next\rightarrow data$，再令 $front=front\rightarrow next$ —— 原队头结点留在环中成为新的空位，不释放。
+
+![循环单链表队列的三种状态：初始自环、第一个元素入队后、出队后再入队复用空位](ds-real-2019-42/queue-ring.svg)`,explanation:String.raw`### (1) 为什么不能选顺序存储
+
+顺序存储要固定数组，四条要求逐条撞墙：
+
+- 要求 ②「入队时允许增加占用空间」：数组装满了必须扩容，而扩容要把元素搬到新数组，单次代价 $O(n)$，直接违背要求 ④「始终保持 $O(1)$」。
+- 要求 ③「空间只增不减」：一般的循环队列靠「预留一个空位」在**同一块**数组里循环复用，空间确实不增，但也就不能扩；要扩就必须搬移。
+- 折中方案（满了就整体搬到 2 倍大的新数组）只有**均摊** $O(1)$，题目要求的是每一步都 $O(1)$，不满足。
+
+链式存储每次入队只需新建一个结点、改两个指针，天然满足 ②③④。
+
+### (2) 为什么让 front 指向「空位」
+
+若照搬普通链队列（front 指向队头元素、rear 指向队尾元素），则：
+
+- 队空时 front 与 rear 都为空（或都指向头结点）；
+- 链式队列「不会满」，于是「队满」条件无从写起。
+
+本题的做法是把队列组织成**环形单链表**，规定 front 指向一个「不存数据」的空位结点，队内元素依次排在 front 之后、以 rear 结束：
+
+$$
+\text{环上结点数}\ \ge\ n+1,\quad n\ \text{为队内元素个数}
+$$
+
+- $front=rear$：front 与 rear 落在同一结点，环上没有元素 → **队空**；
+- $rear\rightarrow next=front$：rear 的下一个结点就是 front 所指的空位，说明**没有腾空过的结点可写** → **队满**，此时必须新建结点才能继续入队；
+- 若 $rear\rightarrow next\ne front$，那个结点一定是从前的队头出队后腾出来的，直接写进去即可 —— 这就是要求 ③ 的「空间重复使用」。
+
+初始时环上只有一个结点，它既是空位又是队尾，所以 $front=rear$ 且 $rear\rightarrow next=front$ 同时成立。算法**先判满再判空**（入队只看满、出队只看空），因此不会冲突：第一次入队会新建结点。
+
+### (3) 第一个元素入队后的状态
+
+按 (4) 的过程：初态判为满 → 新建结点 p，令 p 的 next 指回 front，把 p 接到 front 之后，再令 rear = p，最后把 x 写入 p。于是环长 2：front（空位）→ p(x) → front。
+
+此时 $front\ne rear$ 且 $rear\rightarrow next=front$：队列非空，且 rear 后面紧邻的就是 front 所指的空位，没有第三个结点可以写，因此**下一次入队仍要先补结点**。等以后发生出队、front 前移腾出结点，后续入队才会改成复用这些已腾出的结点。
+
+### (4) 两个操作为什么都是 O(1)
+
+入队：判满（比较两个指针）→ 可能新建 1 个结点（$O(1)$ 的 malloc）→ 推进 rear → 写值。全程固定几步。
+
+出队：判空 → 读 front 的下一个结点 → front 前移一格。结点**不 free**，所以连释放的开销都没有。
+
+### 脚本模拟核对
+
+按上面的规则模拟 13 次操作（入队 10、20、30；出队 10、20；入队 40、50、60；出队 30、40、50、60；入队 70）：环上结点数依次为 2、3、4、4、4、4、4、5、5、5、5、5、5，只增不减；其中入队 40、50、70 三次都是**复用已腾出的结点**，没有新建；最终结点总数 5（初始空位 1 个 + 新建 4 个），队内只剩 70。说明「空间只增不减 + 复用」与 $O(1)$ 同时成立。`,pitfalls:String.raw`- 答「顺序存储」：扩容搬移破坏 $O(1)$，是最常见的错答。
+- 只写「链式」不写具体形态：题目要画状态图、给判定条件，必须有明确的环结构。
+- 队空与队满条件写反，或写成「front == NULL」这类对空位结点不成立的条件。
+- 出队时把结点 free 掉：空间总量减少，直接违背要求 ③。
+- 入队时不管满不满都新建结点：空间浪费，且「队满」条件形同虚设。
+- 忘记画图：本题 (2)(3) 各占分，纯文字描述拿不到画图分。`,extension:String.raw`## 追问一：不搞环，用「普通链队列 + 空闲结点链」行不行？
+
+行，也满足四条要求：出队时把结点摘下挂到空闲链，入队时优先从空闲链取结点，取不到才申请新空间。该方案同样入队出队各 $O(1)$、空间只增不减。**不需要给结点新增 free 字段**：空闲链直接复用结点原有的 next 指针（出队时把它的 next 改成指向空闲链首，入队时再改回来），只是要额外维护一个空闲链头指针 freeHead；本方案的环结构则是用 front 充当这个「空位」指针。
+
+## 追问二：这个队列的队长怎么求？
+
+若无额外计数变量，需要从 front 沿 next 走到 rear 数结点，$O(n)$。想要 $O(1)$ 求队长，就加一个 count 变量，入队 +1、出队 -1。注意 count 与环上结点数不是一回事：环长 $\ge count+1$，只有「刚判满、还没有结点出队」的那一刻才恰好等于 $count+1$；一旦出队，腾出的结点会变成额外的空闲结点堆在 rear 与 front 之间，环长就大于 $count+1$。所以不能用环长倒推队长。
+
+## 追问三：为什么「判满时补结点」不会破坏 O(1)？
+
+每次入队至多新建 1 个结点，操作次数与队内元素个数无关，是常数上界；而且补出来的结点马上被写值，不会空转。所以最坏情况仍是 $O(1)$，不是均摊。
+
+## 追问四：如果要求「同一块内存里既能当栈又能当队列」，思路会怎么变？
+
+那是双端队列（deque）问题：用两端都能伸缩的循环数组或双向链表实现，判空判满要同时看两端指针，思路与本题相同 —— 先想清楚「空位在哪里、如何判满」，再谈操作。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先把四条要求翻译成一句人话：**要一个能长大、又不浪费、还每步都很快的队列**。然后让学生自己说顺序存储卡在哪一条上，答案自然浮现。
+
+### 2. 如何带学生讲解
+
+1. 顺序存储逐条对照四条要求，重点讲「扩容搬移是 $O(n)$」这一条致命伤。
+2. 引出「环上永远留一个空位」的想法：先讲普通循环队列怎么留空位，再迁移到链表。
+3. 画三个状态的图（初始 / 首元素入队 / 出队再入队），每画一次都标 front、rear 与空位。
+4. 让学生自己推「为什么判满要新建结点」，理解「补空位」的动机。
+
+### 3. 下次遇到同类题怎么办
+
+凡是「设计与判定条件」题，固定三步：先定空位规则 → 由空位推空/满条件 → 再写操作过程。画图时一定要把指针指向画出来，别只写名字。`}},{questionNumber:42,id:`ds-real-2020-42`,title:`2020 真题 · 前缀编码的存储、译码与判定`,type:`题目`,date:`2026-10-21`,chapter:`树 · 哈夫曼树与前缀编码`,tags:[`408真题`,`非算法应用题`,`哈夫曼`,`前缀编码`,`字典树`,`译码`],summary:`为具有前缀特性的不等长 0/1 编码选择合适的数据结构，说明从 0/1 串到字符串的译码过程，并给出判定某编码集是否具有前缀特性的方法。`,source:`题面据 CodeBrick 408 真题库第三方转录整理；未取得官方原卷，属第三方转录。数据结构选择、译码与判定流程由本站独立设计，并用脚本实现字典树验证。`,content:String.raw`任一个字符的编码都不是其它字符编码的前缀，则称这种编码具有前缀特性。现有某字符集（字符个数 ≥ 2）的不等长编码，每个字符的编码均为二进制的 0、1 序列，最长为 L 位，且具有前缀特性。请回答下列问题：
+
+![前缀特性的含义：A=0 与 B=10 合法；A=0 与 B=01 不合法](ds-real-2020-42/prefix-definition.svg)
+
+(1) 哪种数据结构适宜保存上述具有前缀特性的不等长编码？
+
+(2) 基于你所设计的数据结构，简述从 0/1 串到字符串的译码过程。
+
+(3) 简述判定某字符集的不等长编码是否具有前缀特性的过程。
+
+题源核对：[CodeBrick 2020 年第 42 题](https://www.codebrick.tech/exam-408/q/ds/2020/42)、[计算机考研杂货铺 2020 年真题](https://csgraduates.com/study_methods/408quiz/2020/)`,attachments:[{name:`查看前缀特性示意图 SVG（可放大）`,path:`ds-real-2020-42/prefix-definition.svg`},{name:`查看字典树与译码 SVG（可放大）`,path:`ds-real-2020-42/trie-decode.svg`},{name:`查看判定流程图 SVG（可放大）`,path:`ds-real-2020-42/prefix-check.svg`}],solution:{answer:String.raw`**(1)** 用**二叉树**（字典树 / 编码树，哈夫曼树是它的典型来源）：
+
+- 每个字符存放在**叶结点**；
+- 从根到该叶结点的路径上，每经过一条左分支记 0、右分支记 1，这条 0/1 序列就是该字符的编码；
+- 根不存字符；字符个数 ≥ 2 时树至少有两片叶子；最长码长为 L ⇒ 按**层数**计树高不超过 $L+1$（按边数计的高度不超过 $L$），这两种口径差 1，答题写清用哪一种。
+
+**(2)** 译码过程：从根出发，逐位读入 0/1 —— 读到 0 走向左孩子，读到 1 走向右孩子；**一旦走到叶结点，就输出该叶结点上的字符，并立刻回到根**，继续读下一位；整个 0/1 串读完即得到字符串。因为前缀特性保证「字符只出现在叶上」，任何 0/1 串的划分方式唯一，译码不会歧义。两类非法输入都要报错：一是**中途走到空孩子**（该串无法按此码表切分）；二是**串读完时停在内部结点**（末段码字不完整，不是任何字符的编码）。
+
+**(3)** 判定过程（边插入边检查，一趟完成）：
+
+1. 建一棵空二叉树，只有根；
+2. 依次取出每个字符的编码，从根开始逐位下行，缺失的孩子就新建结点；
+3. 下行途中若经过一个**已标记为「字符结点」的结点**，说明这个已有码字是当前编码的前缀 → 不满足前缀特性；
+4. 若整个编码走完后落到的结点**已有的孩子或已被标记为字符结点**，说明当前编码是某个已有码字的前缀（或编码重复）→ 不满足前缀特性；
+5. 否则把该结点标记为字符结点并存上字符。全部编码插完都没有冲突 ⇒ 具有前缀特性。
+
+等价的事后检查法：先建完树，再检查「是否存在既是字符结点、又有孩子的结点」以及「是否有重复编码」—— 有则不满足，没有则满足。`,explanation:String.raw`### (1) 为什么是树，而不是数组或哈希表
+
+编码是「0/1 序列」，天然对应一棵二叉树的分支路径：每读一位就是往下走一层。前缀特性恰好等价于「字符只能挂在叶子上」，于是「找编码」变成「沿路径走」，代价是码长而不是字符个数。
+
+![字典树：字符只放在叶结点，根到叶的路径即编码；下方为 01011 的逐位译码](ds-real-2020-42/trie-decode.svg)
+
+几个直接推论：
+
+- 字符个数 $n_c$ 与叶结点数相等，因此树至少有 $n_c$ 片叶子；
+- 最长码长 $L$ ⇒ 按层数计树高 ≤ $L+1$、按边数计高度 ≤ $L$；对应满二叉树的结点数上限 $2^{L+1}-1$（$L=8$ 时是 $2^{9}-1=511$）；
+- 哈夫曼树正是一棵这样的树：构造时每次合并最小的两棵树，得到的编码必然是前缀码。
+
+### (2) 译码的三个细节
+
+1. **起点的选择**：每次都从根开始，而不是从上次停下的地方继续；
+2. **停止条件**：走到叶结点立刻输出并回根，不能等到串读完；
+3. **非法输入**：中途走到空孩子说明这个 0/1 串无法按该编码表切分，应报错而不是强行输出。
+
+示例（讲解用例，非原题数据）：编码 A=0、B=10、C=11，对 01011 译码：读 0 → 到叶 A，输出 A 回根；读 10 → 到叶 B，输出 B 回根；读 11 → 到叶 C，输出 C 回根。结果为 ABC。
+
+总代价 $O(\text{0/1 串长度})$ —— 每读一位只走一条边，与字符表大小无关。
+
+### (3) 为什么会冲突，以及怎么查
+
+前缀特性被破坏只有两种可能，它们都表现为字典树上的同一个特征 —— **存在「是字符结点、却还有孩子」的结点**：
+
+![两种违反前缀特性的情形：插入途中撞上字符结点；字符结点仍带着孩子](ds-real-2020-42/prefix-check.svg)
+
+- 情形一：插入新编码时途经某个已有字符结点。例如已有 A=0，再插入 01，走到 A 时它已是完整码字，却还要往下走 ⇒ A 是 01 的前缀；
+- 情形二：插入完成后落到的结点还有孩子。例如先有 AB=01，再插入 A=0，A 所在结点下面还挂着 1 分支 ⇒ A 是 AB 的前缀。
+
+再加一个边界：两条编码完全相同，第二次插入时落点已被标记为字符结点，同样判为冲突。
+
+脚本验证（另取一组四字符用例）：对 A=0、B=10、C=110、D=111 判定为 True（满足），译码 010110111 得 ABCD；对 A=0、B=01 判定为 False（不满足）；0101 判为「停在内部结点、码字不完整」。均与手工分析一致。
+
+### 复杂度的两种说法
+
+- 边插入边判：时间 $O(\sum |code_i|)$，即所有编码的总长度；空间 $O(\text{树中结点数})$。
+- 先排序再两两比较：**必须按字典序排序**后比较相邻两条（前者是后者的前缀即冲突），时间 $O(nL\log n)$；按长度排序不行 —— 例如码表 0、11、01 按长度排完仍是 0、11、01，相邻对没有前缀关系，但 0 却是 01 的前缀。此外还要单独查重复码字，比建树更容易漏判。`,pitfalls:String.raw`- 把字符放在内部结点：这是「非前缀码」的典型形态，直接违背题目条件。
+- 译码时走到叶结点后忘记回到根，导致后续位全部错位。
+- 只检查「有没有重复编码」，漏掉「一条是另一条前缀」的情况。
+- 只按长度排序后比较相邻两条，却忘了长度相同但内容相同的重复码。
+- 答「用数组按长度顺序存」：能存，但译码要逐条比较，不符合「适宜」，也答不出 (2)(3) 的树结构。
+- 忽略「最长为 L 位」这一条件：它是树高上界，也是判定与译码复杂度的依据，答题时可以引用。`,extension:String.raw`## 追问一：为什么前缀码一定能唯一译码？
+
+反证：若某个 0/1 串有两种切分，取第一次出现分歧的位置，则两条码字中必有一条是另一条的前缀（它们读的是同一段 0/1 序列，较短的那条必然是较长那条的前缀），与前缀特性矛盾。
+
+## 追问二：给定编码 A=0、B=10、C=11，求 0110 的译码结果。
+
+读 0 → A，读 11 → C，读 0 → A，结果为 ACA。注意不能读成 01+10（01 不是任何字符的编码）。
+
+## 追问三：哈夫曼编码为什么一定是前缀码？
+
+哈夫曼树中字符只出现在叶结点（每次合并都生成新的内部结点，原结点下沉为子树），而「字符只在叶上」正是前缀特性的等价条件。所以哈夫曼编码天然前缀，且是给定频率下的最优前缀码。
+
+## 追问四：如果编码有 256 个字符、最长 8 位，判定要多少空间？
+
+按层数计树高不超过 $L+1=9$，满二叉树结点数上限 $2^{9}-1=511$。**但不要说它一定比「256 条码字串全存」更省**：码字串最坏 256×8 位 = 2048 位 ≈ 256 字节（未计长度字节）；511 个结点按「两个 4 字节指针 + 1 字节标记」约 9 字节/结点算，约 4.6 KB。两者量级差了一个数量级，谁更省取决于码长分布与实现（用数组存子结点下标能明显压缩字典树）。字典树的真正优势是译码与判定都只与码长成正比，与字符个数无关。`,teachingFramework:String.raw`### 1. 如何介绍这道题
+
+先问学生：为什么前缀码好译码？让他们说出「读到叶就知道一个字符结束」这句话，树结构就自然浮现了。
+
+### 2. 如何带学生讲解
+
+1. 画一棵三叶的字典树，边标 0/1，叶标字符，让学生自己读出编码。
+2. 现场译一段 0/1 串，强调「到叶就输出 + 回根」。
+3. 故意给一个非法码表（A=0、B=01），让学生在树上找冲突点，从而自己总结出判定规则。
+4. 最后把 (3) 写成可执行的五步流程，训练「把定义转成检查步骤」的能力。
+
+### 3. 下次遇到同类题怎么办
+
+编码题一律先画树：树形定下来，存储、译码、判定三问都是在树上走一遍。判断前缀特性只认一个特征 —— 字符结点是否还有孩子。`}},{questionNumber:42,id:`ds-real-2021-42`,title:`2021 真题 · 比较计数排序的输出、比较次数与稳定性`,type:`题目`,date:`2026-10-21`,chapter:`排序 · 排序算法的性质`,tags:[`408真题`,`非算法应用题`,`排序`,`比较计数排序`,`计数排序`,`稳定性`,`比较次数`],summary:`给出一个用两两比较直接算出每个元素位次的排序函数，要求手算一组输入的结果、统计元素比较次数，并判断算法是否稳定、必要时给出修正。`,source:`题面据 CodeBrick 真题库与「计算机考研杂货铺」两个第三方公开转录整理（两处函数代码与数组数值逐字一致）；未取得官方原卷，属第三方转录，非官方勘验。解析、count 数组、b 的内容与稳定性判断均由本站独立推导，并用 Python 脚本对同一数组重跑该函数核验。`,content:String.raw`已知某排序算法如下：
+
+~~~c
+void cmpCountSort(int a[], int b[], int n) {
+    int i, j, *count;
+    count = (int *)malloc(sizeof(int) * n);   // C++ 语言：count = new int[n];
+    for (i = 0; i < n; i++) count[i] = 0;
+    for (i = 0; i < n - 1; i++)
+        for (j = i + 1; j < n; j++)
+            if (a[i] < a[j]) count[j]++;
+            else            count[i]++;
+    for (i = 0; i < n; i++) b[count[i]] = a[i];
+    free(count);   // C++ 语言：delete count;
+}
+~~~
+
+算法先做两两比较并把结果记入 count 数组，再按 count 的值把元素写入结果数组 b。
+
+![a 的 6 个元素与双重循环枚举出的 15 个下标对](ds-real-2021-42/compare-pairs.svg)
+
+图中上排是数组 a 的下标与取值；下方三角格标出外层 i（0 到 n−2）与内层 j（i+1 到 n−1）枚举到的下标对。
+
+请回答下列问题：
+
+(1) 若有 int a[] = {25, -10, 25, 10, 11, 19}, b[6];，则调用 cmpCountSort(a, b, 6) 后数组 b 中的内容是什么？
+
+(2) 若 a 中含有 n 个元素，则算法执行过程中，元素之间的比较次数是多少？
+
+(3) 该算法是稳定的吗？若是，则阐述理由；否则，修改为稳定排序算法。
+
+题源核对：[CodeBrick 第 42 题](https://www.codebrick.tech/exam-408/q/ds/2021/42)、[计算机考研杂货铺 2021 年真题](https://csgraduates.com/study_methods/408quiz/2021/)`,attachments:[{name:`查看题面结构图 SVG（可放大）`,path:`ds-real-2021-42/compare-pairs.svg`},{name:`查看 count 与 b 的填写图 SVG（可放大）`,path:`ds-real-2021-42/count-and-placement.svg`},{name:`查看稳定性对照图 SVG（可放大）`,path:`ds-real-2021-42/stability.svg`}],solution:{answer:String.raw`(1) b 中内容为 **{-10, 10, 11, 19, 25, 25}**（从小到大），对应的 count 数组为 **{5, 0, 4, 1, 2, 3}**。
+
+(2) 比较次数恒为 **$\frac{n(n-1)}{2}$**，与数据是否已有序无关；本题 n = 6 时是 **15** 次。
+
+(3) **不稳定**。原因：相等时走 else 分支、让前面的元素加一，两个 25 的位次被交换。修正只需把条件改成小于等于：
+
+~~~c
+if (a[i] <= a[j]) count[j]++;
+else              count[i]++;
+~~~`,explanation:String.raw`## 1. count[i] 到底是什么
+
+内层循环每比较一对 (i, j)（$i<j$），就只让一个计数器加一：
+
+- 若 $a[i]<a[j]$，说明 $a[j]$ 比 $a[i]$ 大，a[j] 的位次要往后挪，于是 count[j]++；
+- 否则（含相等），让 count[i]++。
+
+因此 count[i] 统计的是“排在 a[i] 前面（更小）的元素个数”，它正好是 a[i] 在升序结果中应放的**下标**。最后一个语句 b[count[i]] = a[i] 就是按位次直接落座。
+
+## 2. 逐个算 count
+
+以 a = {25, -10, 25, 10, 11, 19} 为例，15 对全部列出：
+
+- (0,1)：25 与 -10，25 大，走 else → count[0]++，count[0] = 1
+- (0,2)：25 与 25，相等，走 else → count[0]++，count[0] = 2
+- (0,3)：25 比 10 大 → count[0] = 3；(0,4)：→ 4；(0,5)：→ 5
+- (1,2)：-10 比 25 小 → count[2] = 1
+- (1,3)：-10 比 10 小 → count[3] = 1；(1,4)：→ count[4] = 1；(1,5)：→ count[5] = 1
+- (2,3)：25 比 10 大 → count[2] = 2；(2,4)：→ 3；(2,5)：→ 4
+- (3,4)：10 比 11 小 → count[4] = 2；(3,5)：10 比 19 小 → count[5] = 2
+- (4,5)：11 比 19 小 → count[5] = 3
+
+得到 count = {5, 0, 4, 1, 2, 3}，于是：
+
+- b[5] = a[0] = 25，b[0] = a[1] = -10，b[4] = a[2] = 25
+- b[1] = a[3] = 10，b[2] = a[4] = 11，b[3] = a[5] = 19
+
+即 b = {-10, 10, 11, 19, 25, 25}。
+
+![count 数组与 b 的落座位置](ds-real-2021-42/count-and-placement.svg)
+
+## 3. 比较次数
+
+外层 i 从 0 到 n−2，内层 j 从 i+1 到 n−1，比较对数是
+
+$$
+\frac{n(n-1)}{2}=(n-1)+(n-2)+\cdots+1
+$$
+
+本题 6 个元素为 15 次。注意题目问的是“次数”，不是“复杂度”：答案要写成 $n(n-1)/2$，只写 $O(n^2)$ 会被扣分。这个次数与输入无关——即使数组已经有序，循环照样跑满。
+
+## 4. 稳定性：只看数值会漏，必须看来源下标
+
+排序结果里两个 25 看不出区别，所以稳定性要看“哪个 25 先出现”。
+
+- 原程序比较 (0,2) 时 $25<25$ 为假，走 else，于是 count[0] 被抬高到 5、count[2] 停在 4。
+- 落座时 b[4] = a[2]（后出现的 25）、b[5] = a[0]（先出现的 25），相对次序被颠倒 → **不稳定**。
+
+把条件改成 a[i] ≤ a[j] 后，相等时改为 count[j]++，先出现的 25 得到较小的位次 4：
+
+- count[0] = 4、count[2] = 5 → b[4] = a[0]、b[5] = a[2]，先后次序保持 → **稳定**，且结果仍然正确。
+
+![改一个不等号前后的差别](ds-real-2021-42/stability.svg)
+
+这样改的合法性：新 count[i] = （严格小于 a[i] 的个数）+（等于 a[i] 且下标更小的个数），正是“稳定排序后的位次”，所以既有序又不重位。`,pitfalls:String.raw`- **把相等的元素当成“比较大的那个”**。原程序用严格小于，相等必然走 else，等于主动把先出现的元素推到后面；这是本题唯一的不稳定来源，也是本题的考点。
+- **只比较数值、不追来源**。两个 25 的值相同，直接写“b 中是 25、25”看不出稳定性问题，必须写明 b[4]、b[5] 分别来自 a[2]、a[0]。
+- **把比较次数答成 O(n²)**。题目问的是具体次数 $n(n-1)/2$；本题实测 15 次。
+- **误以为比较次数与初始有序性有关**。两重循环与数据无关，最好、最坏、平均都是 $n(n-1)/2$，这一点与插入排序、冒泡排序不同。
+- **说成原地排序**。count 需要额外 n 个 int，是 $O(n)$ 辅助空间，不算原地。
+- **改稳定时把条件改成 a[i] >= a[j】**。那会让相等时给 i 加一，方向反了，仍然不稳定。`,extension:String.raw`**问：** 若把修正后的条件（a[i] ≤ a[j]）用于一组互不相同的关键字，结果与原程序有什么区别？
+
+**答：** 完全没有区别。关键字互不相等时，“相等”分支永远走不到，两个版本对每一对 (i, j) 都落在同一个分支上，count 数组逐元素相同，b 也相同。所以这个不等号的修正只对含重复关键字的输入起作用，代价为零。
+
+**问：** 该算法写元素只写 n 次，为什么仍不实用？
+
+**答：** 因为比较次数是 $n(n-1)/2$，比基于比较的下界 $\Theta(n\log n)$ 高一个数量级。它的优点是“移动次数只有 n 次、且不依赖数据”，代价是比较太多；与计数排序（$O(n+k)$、靠下标直接定位）相比，它省掉了关键字必须是小整数的限制。`,teachingFramework:String.raw`**开场**：先把函数拆成两段——“统计位次”和“按位次落座”，让学生复述 count[i] 的含义。这一步答不出，后面全是背答案。
+
+**带算**：不要一次给出全表。先算 (0,1) 与 (0,2) 两对，重点让学生看到“相等也走 else”，这一步就是第 (3) 问的伏笔。再让学生自己补完 15 对，最后核对 count = {5,0,4,1,2,3}。
+
+**讲次数**：把双重循环的边界写在黑板上，直接数出 1+2+…+(n−1)，强调“次数”与“复杂度”是两种问法。
+
+**讲稳定**：先在 b 的下标 4、5 处标出来源（a[2]、a[0]），再问“如果先出现的 25 应该排在前面，count 应该怎么变”，自然引出把比较条件改成小于等于。
+
+**迁移**：遇到“给定一段排序代码，问某组输入的结果/稳定性/次数”的题，固定三步——画出每次比较写了哪个计数器、写出落座映射、用下标而不是数值判断稳定性。`}},{questionNumber:42,id:`ds-real-2023-42`,title:`2023 真题 · 置换-选择排序生成初始归并段`,type:`题目`,date:`2026-10-21`,chapter:`排序 · 外部排序`,tags:[`408真题`,`非算法应用题`,`外部排序`,`置换-选择排序`,`初始归并段`,`工作区`,`胜者树`],summary:`给定 19 个记录与容量 4 的工作区，要求逐步执行置换-选择排序、写出全部初始归并段，并给出任意 m 下第一段长度的上界与下界。`,source:`题面据 CodeBrick 真题库与「计算机考研杂货铺」两个第三方公开转录整理（19 个关键字与 m = 4 两处一致）；未取得官方原卷，属第三方转录。归并段划分由本站按“每次选不小于刚输出关键字的最小记录、无可选则换段”的规则独立模拟，脚本输出三段长度 6/9/4 与两处转录的答案一致。`,content:String.raw`对含有 n（n > 0）个记录的文件进行外部排序，采用置换-选择排序生成初始归并段时需要使用一个工作区，工作区中能保存 m 个记录。请回答下列问题：
+
+(1) 如果文件中有 19 个记录，其关键字是 51, 94, 37, 92, 14, 63, 15, 99, 48, 56, 23, 60, 31, 17, 43, 8, 90, 166, 100；当 m = 4 时，可以生成几个初始归并段，各是什么？
+
+(2) 对任意的 m（n > m > 0），生成的第一个初始归并段的长度最大值和最小值分别是多少？
+
+![19 个记录按给定次序进入容量为 4 的工作区](ds-real-2023-42/work-area.svg)
+
+工作区一次只装得下 m 个记录：初始读入 4 个，此后每输出一个就从文件补一个；关键字小于“刚输出记录”的记录本轮被冻结，要留到下一个归并段。
+
+题源核对：[CodeBrick 第 42 题](https://www.codebrick.tech/exam-408/q/ds/2023/42)、[计算机考研杂货铺 2023 年真题](https://csgraduates.com/study_methods/408quiz/2023/)`,attachments:[{name:`查看题面结构图 SVG（可放大）`,path:`ds-real-2023-42/work-area.svg`},{name:`查看逐步执行图 SVG（可放大）`,path:`ds-real-2023-42/buffer-trace.svg`},{name:`查看三个归并段图 SVG（可放大）`,path:`ds-real-2023-42/runs.svg`}],solution:{answer:String.raw`(1) 共生成 **3 个**初始归并段：
+
+- 第 1 段：37, 51, 63, 92, 94, 99（6 个）
+- 第 2 段：14, 15, 23, 31, 48, 56, 60, 90, 166（9 个）
+- 第 3 段：8, 17, 43, 100（4 个）
+
+(2) 第一段长度的**最大值是 n**，**最小值是 m**。`,explanation:String.raw`## 1. 规则先讲清楚
+
+置换-选择排序的工作区相当于一个小根堆，但它有个关键限制：**本段输出的关键字必须递增**。于是每一步只能在“未冻结”的记录里选最小的，而且这个最小值还要不小于刚输出的值；被选中的记录输出后，从文件中补入一个新记录，凡小于“刚输出值”的记录立刻冻结，本段不再考虑。
+
+工作区里已经没有可选的记录（全部冻结）时，本段结束，所有记录解冻，开始下一段。
+
+## 2. 逐段推演
+
+初始装入 51、94、37、92，最后输出值记为 −∞。
+
+第 1 段：
+
+- 选最小 37 输出；补入 14（14 小于 37，冻结）
+- 剩 51、94、92 可选，选 51；补入 63（63 ≥ 51，可选）
+- 选 63；补入 15（15 小于 63，冻结）
+- 选 92；补入 99
+- 选 94；补入 48（48 小于 94，冻结）
+- 选 99；补入 56（56 小于 99，冻结）
+- 工作区剩下 14、15、48、56 全部小于 99，无可选记录 → 第 1 段结束：37, 51, 63, 92, 94, 99
+
+第 2 段（全部解冻）：
+
+- 选 14，补 23；选 15，补 60；选 23，补 31；选 31，补 17（冻结）
+- 选 48，补 43（冻结）；选 56，补 8（冻结）；选 60，补 90
+- 选 90，补 166；选 166，补 100（冻结）
+- 工作区剩 17、43、8、100 全部小于 166 → 第 2 段结束：14, 15, 23, 31, 48, 56, 60, 90, 166
+
+第 3 段（输入已读尽，只剩工作区内容）：
+
+- 依次选出 8、17、43、100 → 第 3 段：8, 17, 43, 100
+
+![三步执行后工作区里的冻结状态](ds-real-2023-42/buffer-trace.svg)
+
+三段长度 6 + 9 + 4 = 19，恰好覆盖全部记录；每段内部严格递增，这就是后续多路归并的输入。
+
+![三个初始归并段](ds-real-2023-42/runs.svg)
+
+## 3. 第一段长度的上下界
+
+**下界 m。** 初始工作区有 m 个记录，且它们互不相同，所以第 1 次输出后，剩下的 m−1 个都大于刚输出的值，仍是“可选”的；一般地，已经输出了 j 个记录后，工作区里至少还有 m−j 个未冻结记录（每输出一个最多减少一个未冻结记录，补入的新记录即使可选也只可能增加）。只要 $j<m$ 就还有可选记录，本段必然继续。所以第一段至少 m 个。
+
+**上界 n。** 一段不可能超过文件总记录数，所以 n 就是硬上界；而它确实能取到：若输入文件本身按关键字**升序**排列，每读入的新记录都不小于刚输出的值，永远不会被冻结，整份文件只生成一段，长度正好 n。
+
+两个界都能构造出来：升序输入取到 n；而“先给 m 个递减记录、后面全给更小的记录”（如 m = 4 时 4, 3, 2, 1, −1, −2, −3, −4）第一段恰好只输出 1、2、3、4 这 m 个。
+
+顺带一个常见结论：置换-选择排序的初始归并段平均长度约为 2m（本题 m = 4 时约 8）；本题实际是 19/3 ≈ 6.3，低于这个平均值，说明这份数据里局部逆序较多、记录冻结得比较早。段长只是“期望上”比内部排序的 m 长，并不保证每一段都超过 m。`,pitfalls:String.raw`- **每一步都在整个工作区里挑最小值**。那样输出根本不递增（第 1 段会在 37 之后输出 14），得到的不是初始归并段。若退化成“每装满 4 个就在内存里排好落盘”，那是内部排序法，本题要 5 段（4+4+4+4+3），远多于置换-选择的 3 段。冻结记录必须排除在本段之外。
+- **先排好 4 个再读下一个**。置换-选择是“输出一个、立刻补一个”，输出与读入交替进行；顺序错了整条链就跟着错。
+- **忘记补入的新记录也会被冻结**。补入的关键字若小于刚输出的值，同样本轮不可用（例如第 1 段补入的 14、15、48、56）。
+- **把“段内递增”当成“全局有序”**。第 2 段整体比第 1 段小是正常的，各段只需自己有序，最后靠多路归并合并。
+- **第一段下界答成 1 或 m−1**。每输出一个至少消耗一个未冻结记录，而初始有 m 个，所以下界是 m。
+- **上界答成 2m**。2m 只是平均段长，本题的硬上界是 n（升序输入时一整段），与 m 无关。`,extension:String.raw`**问：** 若把 m 改成 8，同样这 19 个关键字会生成几段？第一段变长还是变短？
+
+**答：** 生成 2 段，第一段 13 个（14, 15, 37, 48, 51, 56, 60, 63, 92, 94, 99, 100, 166），第二段 6 个；比 m = 4 时的首段 6 个明显变长。原因是工作区越大，未冻结的候选越多，一段能容纳的关键字更多（平均段长约 2m）。但“段数一定减少”不是定理：具体段数仍取决于输入关键字的局部升序结构，换一组数据要重新模拟。
+
+**问：** 升序输入时为什么只生成一段？
+
+**答：** 因为每次读入的关键字都不小于刚输出的关键字，没有记录会被冻结，工作区永远不会出现“全部冻结”的局面，19 个记录一次性走完，第一段长度取到上界 n。
+
+**问：** 若把本题 19 个关键字按从大到小重排（166, 100, 99, 94, 92, 90, 63, 60, 56, 51, 48, 43, 37, 31, 23, 17, 15, 14, 8），第一段长度是多少？
+
+**答：** 恰好 4，即取到下界 m。初始 4 个是最大的 4 个，最优选择是从 94 开始依次输出 94、99、100、166；此后补入的都是更小的记录、全部冻结，工作区再没有可选记录，第一段就停在 4 个。这份逆序输入一共生成 5 段：94,99,100,166 / 60,63,90,92 / 43,48,51,56 / 17,23,31,37 / 8,14,15。`,teachingFramework:String.raw`**开场**：先问“如果工作区只能放 4 个记录，为什么能生成比 4 长得多的初始段？”让学生自己想出“边输出边补充”这个机制，再引出冻结。
+
+**带算**：拿一张纸，画 4 个格子，每输出一个就划掉、补一个、把小于输出值的格子涂灰。**只讲前 6 步（第 1 段）**，让学生看清“涂灰的格子本轮不再参与”。
+
+**放手**：第 2 段让全班一起报数，教师只在黑板上记录；第 3 段学生独立完成。最后核对 6+9+4=19 与“每段递增”。
+
+**讲边界**：用“每输出一个至少消耗一个可选记录”推出下界 m；用升序输入与逆序输入两个极端构造出 n 与 m，说明边界都能达到。
+
+**迁移**：凡是外部排序的初始段题，固定四问——每步选谁、冻结了谁、何时换段、段长边界怎么证。`}},{questionNumber:42,id:`ds-real-2024-42`,title:`2024 真题 · 二次探查散列表的构造、查找与失败地址`,type:`题目`,date:`2026-10-21`,chapter:`查找 · 散列表`,tags:[`408真题`,`非算法应用题`,`散列表`,`开放定址`,`二次探查`,`装填因子`,`查找长度`],summary:`把 7 个关键字按给定次序插入长度为 11 的散列表，写出整张表与装填因子，再给出一次成功查找的比较序列和一次失败查找的落空地址。`,source:`题面据 CodeBrick 真题库与「计算机考研杂货铺」两个第三方公开转录整理（关键字序列、散列函数、探查公式三处一致）；未取得官方原卷，属第三方转录。整张表、两次查找的探查序列由本站独立按公式重算，并用脚本逐个模拟插入核验；杂货铺在讲述“查找 8”时把 HT[2] 的内容写成 18（实为 14），其最终答案 7 与本站推导一致。`,content:String.raw`将关键字 20, 3, 11, 18, 9, 14, 7 依次存储到长度为 11 的散列表 HT 中，散列函数为
+
+$$
+H(\text{key}) = (\text{key} \times 3) \bmod 11
+$$
+
+H₀ 为初始散列地址，H₁、H₂、H₃、…、$H_k$ 分别为第 1 次冲突、第 2 次冲突、第 3 次冲突、…、第 k 次冲突时探测的地址，
+
+$$
+H_k = (H_0 + k^2) \bmod 11
+$$
+
+请回答下列问题：
+
+(1) 画出所构造的 HT，并计算 HT 的装填因子。
+
+(2) 给出在 HT 中查找关键字 14 的关键字比较序列。
+
+(3) 在 HT 中查找关键字 8，确认查找失败时的散列地址是多少？
+
+![长度为 11 的空散列表与插入次序](ds-real-2024-42/empty-table.svg)
+
+注意“依次存储”四个字：后插入的关键字只能落在前面留下的空槽上，插入次序一变，落槽结果就可能不同。
+
+题源核对：[CodeBrick 第 42 题](https://www.codebrick.tech/exam-408/q/ds/2024/42)、[计算机考研杂货铺 2024 年真题](https://csgraduates.com/study_methods/408quiz/2024/)`,attachments:[{name:`查看空表与插入次序 SVG（可放大）`,path:`ds-real-2024-42/empty-table.svg`},{name:`查看逐个插入的探测链 SVG（可放大）`,path:`ds-real-2024-42/insert-chains.svg`},{name:`查看最终表与查找路线 SVG（可放大）`,path:`ds-real-2024-42/final-table.svg`}],solution:{answer:String.raw`(1) 散列表（地址 0～10）为：
+
+- HT[0] = 11，HT[1] 空，HT[2] = 14，HT[3] = 7，HT[4] 空
+- HT[5] = 20，HT[6] = 9，HT[7] 空，HT[8] 空，HT[9] = 3，HT[10] = 18
+
+装填因子 $\alpha = \dfrac{7}{11} \approx 0.636$。
+
+(2) 查找 14：依次比较 **3、18、14**（探测地址 9 → 10 → 2，第 3 次比较成功）。
+
+(3) 查找 8：探测地址依次为 2 → 3 → 6 → 0 → 7，HT[7] 为空，**确认查找失败时的散列地址是 7**。`,explanation:String.raw`## 1. 逐个插入
+
+散列函数只决定“起点”，冲突后按平方数跳。7 个关键字依次处理：
+
+- 20：H₀ = (20×3) mod 11 = 60 mod 11 = 5，HT[5] 空 → 存入 5
+- 3：H₀ = 9 mod 11 = 9，空 → 存入 9
+- 11：H₀ = 33 mod 11 = 0，空 → 存入 0
+- 18：H₀ = 54 mod 11 = 10，空 → 存入 10
+- 9：H₀ = 27 mod 11 = 5，被 20 占；H₁ = (5+1) mod 11 = 6，空 → 存入 6
+- 14：H₀ = 42 mod 11 = 9，被 3 占；H₁ = (9+1) mod 11 = 10，被 18 占；H₂ = (9+4) mod 11 = 2，空 → 存入 2
+- 7：H₀ = 21 mod 11 = 10，被 18 占；H₁ = (10+1) mod 11 = 0，被 11 占；H₂ = (10+4) mod 11 = 3，空 → 存入 3
+
+![七个关键字各自的探测链与最终地址](ds-real-2024-42/insert-chains.svg)
+
+最终表：0:11、1:空、2:14、3:7、4:空、5:20、6:9、7:空、8:空、9:3、10:18。
+
+装填因子 α = 表中关键字个数 / 表长 = 7/11 ≈ 0.636。
+
+## 2. 查找 14：比较序列 3、18、14
+
+- H₀ = 9，取 HT[9] = 3，与 14 不等 → 第 1 次比较
+- H₁ = 10，取 HT[10] = 18，与 14 不等 → 第 2 次比较
+- H₂ = (9+4) mod 11 = 2，取 HT[2] = 14，命中 → 第 3 次比较
+
+所以“关键字比较序列”是 3、18、14；查找长度 3。
+
+## 3. 查找 8：落空地址是 7
+
+- H₀ = (8×3) mod 11 = 24 mod 11 = 2，HT[2] = 14，不等
+- H₁ = (2+1) mod 11 = 3，HT[3] = 7，不等
+- H₂ = (2+4) mod 11 = 6，HT[6] = 9，不等
+- H₃ = (2+9) mod 11 = 0，HT[0] = 11，不等
+- H₄ = (2+16) mod 11 = 7，HT[7] 为空 → 查找失败，**失败地址 = 7**
+
+共比较 4 个关键字，探查 5 个地址。
+
+![最终表与两次查找的访问次序](ds-real-2024-42/final-table.svg)
+
+关键区别：题目问的是“确认失败时的散列地址”，即最后一个探查到的地址，而不是初始地址 2，也不是比较次数 4。
+
+这里要纠正一个常见误解：表长 11 虽是素数，(H₀ + k²) mod 11 也**不能**走遍全部 11 个地址。因为 k 与 11−k 的平方同余，k² mod 11 只取 0、1、4、9、5、3 六个值，所以从任一初始地址出发最多只能到达 6 个地址（从 0 出发是 0、1、3、4、5、9）。本题 8 号的路径 2 → 3 → 6 → 0 → 7 正好落在这套可达地址里，而且 7 号槽为空，失败判定才成立。如果那 6 个可达地址恰好都被占，就会出现“表还没满、探测链却走不到空槽”的情况——这是 +k² 版本的真实死角，不能拿“表长是素数”当万能保证。`,pitfalls:String.raw`- **把探查增量当成 1、2、3**。题目给的是 k²，即 0、1、4、9、16…；写成线性探测会得到完全不同的表。
+- **把失败地址答成 H₀ = 2**。失败地址是“遇到空槽的那个地址”，本题要一路探到 HT[7]。
+- **把“冲突次数”和“比较次数”混为一谈**。查找 14 冲突 2 次、比较 3 次；查找 8 冲突 4 次、比较 4 次、探查 5 个地址。
+- **忽略插入次序**。若先插 9 再插 20，两者会互换槽位（9 占 5、20 被挤到 6），后续关键字的探测路径也可能跟着变；题目给的“依次”不能省。
+- **装填因子写成分数不化简或口径错误**。α = 已存关键字数 / 表长 = 7/11，不是 7/7，也不是 7/10。
+- **以为探查序列一定能覆盖全表**。只取 +k² 的二次探查，从某个地址出发可达的地址数不超过 (m+1)/2 个左右（m = 11 时只有 6 个），即使表未满也可能走不到空槽。教材上“二次探查能遍历全表”的结论，适用的是交替取 ±k² 且表长为素数、并满足 m ≡ 3 (mod 4) 的变体，不能直接搬到本题的 +k² 公式上。`,extension:String.raw`**问：** 查找 8 时一共比较了几个关键字？为什么只有一个“失败地址”？
+
+**答：** 比较了 4 个（14、7、9、11）。第 5 次探查 H₄ = 7 时槽为空，此时不发生关键字比较，只依据“空槽”判定失败，所以失败地址是 7、比较次数是 4，两者相差 1。
+
+**问：** 若查找的关键字是 2（H₀ = 6），会比较几次？
+
+**答：** 探查 2 个地址、比较 1 个关键字，失败地址仍是 7：H₀ = (2×3) mod 11 = 6，HT[6] = 9 已被占用，与 9 比较一次不相等；H₁ = (6+1) mod 11 = 7，HT[7] 为空 → 判定失败。可见“比较次数”由路径上已占槽的个数决定，与关键字本身的大小无关。`,teachingFramework:String.raw`**开场**：先让学生只算 7 个 H₀，写出 5、9、0、10、5、9、10，指出 5、9、10 各被算了两次——冲突不可避免，问题变成“往哪放”。
+
+**带算**：只做 9、14、7 三个有冲突的。每做一个，画出“起点 → 跳 1² → 跳 2²”的箭头，强调 mod 11 会把越界的地址折回表头（如 14 的 9+4=13 → 2）。
+
+**讲查找**：把查找画成同一条探测链，只是终点从“空槽”变成“目标值”。14 落在链尾命中，8 走到链尾还是空，于是失败。
+
+**抠字眼**：反复问“失败时的散列地址是哪个数”，让学生在 2、4、7 三个候选里排除，明确“地址”不是“次数”也不是“起点”。
+
+**迁移**：遇到开放定址题，固定顺序——算 H₀、按公式跳、写表、再按同一公式重走查找路径；先写表再查找，不要边插边查。`}},{questionNumber:42,id:`ds-real-2025-42`,title:`2025 真题 · AOE 网的最短工期、关键活动与时间余量`,type:`题目`,date:`2026-10-21`,chapter:`图 · 拓扑排序与关键路径`,tags:[`408真题`,`非算法应用题`,`AOE 网`,`关键路径`,`时间余量`,`拓扑排序`,`最早最晚发生时间`],summary:`给出 7 个顶点、12 个活动的 AOE 网，求最短工期与关键活动、可与活动 e 并行的活动、时间余量最大的活动，并在活动 b 推迟开始的情况下重新判断工期。`,source:`题面据 CodeBrick 真题库中公开的图边表与「计算机考研杂货铺」两处第三方转录整理（12 条边的名称、方向、权值一一对应）；未取得官方原卷，属第三方转录，原卷图按边表在本站重绘。ve、vl、关键活动、时间余量与第 (4) 问的重新计算全部由脚本按 CPM 独立求解，结果与两处转录的答案一致。`,content:String.raw`某 AOE 网描述了 12 个工程活动及其持续时间（活动名跳过 i、l 避免与数字 1、字母 l 混淆）。
+
+![2025 年第 42 题 AOE 网：顶点 1～7、活动 a～n](ds-real-2025-42/aoe-network.svg)
+
+图中共 7 个顶点、12 条带权有向边（顶点 1 为源点，顶点 5 为汇点）：
+
+- a：1 → 3，持续时间 2
+- b：1 → 2，持续时间 5
+- c：3 → 6，持续时间 1
+- d：1 → 4，持续时间 3
+- e：3 → 4，持续时间 3
+- f：4 → 2，持续时间 4
+- g：4 → 6，持续时间 1
+- h：6 → 7，持续时间 1
+- j：4 → 5，持续时间 1
+- k：2 → 5，持续时间 2
+- m：4 → 7，持续时间 4
+- n：7 → 5，持续时间 3
+
+请回答下列问题：
+
+(1) 完成该工程的最短时间是多少？哪些是关键活动？
+
+(2) 若以最短时间完成工程，则与活动 e 同时进行的活动可能有哪些？
+
+(3) 时间余量最大的活动是哪个？其时间余量是多少？
+
+(4) 假设工程从时刻 0 启动，因某种原因，活动 b 在时刻 6 开始，为保证工程不延期，在其它活动持续时间保持不变的情况下，b 的持续时间最多是多少？若不改变 b 的持续时间，则压缩哪个活动的持续时间也能保证工程不延期？
+
+题源核对：[CodeBrick 第 42 题](https://www.codebrick.tech/exam-408/q/ds/2025/42)、[计算机考研杂货铺 2025 年真题](https://csgraduates.com/study_methods/408quiz/2025/)`,attachments:[{name:`查看 AOE 网 SVG（可放大）`,path:`ds-real-2025-42/aoe-network.svg`},{name:`查看活动时间窗 SVG（可放大）`,path:`ds-real-2025-42/activity-windows.svg`}],solution:{answer:String.raw`(1) 最短时间 **12**；关键活动是 **a、e、m、n**（关键路径 1 → 3 → 4 → 7 → 5，长度 2 + 3 + 4 + 3 = 12）。
+
+(2) 可以与 e 同时进行的活动是 **b、c、d**。
+
+(3) 时间余量最大的是 **j**，余量为 **6**。
+
+(4) b 的持续时间最多为 **4**；若 b 仍为 5，则把 **k 压缩到 1** 即可保证工程不延期。`,explanation:String.raw`## 1. 先求顶点的最早发生时间 ve（按拓扑序取最大）
+
+拓扑序之一：1、3、4、2、6、7、5。
+
+- ve(1) = 0
+- ve(3) = ve(1) + 2 = 2（只有 a 进入 3）
+- ve(4) = max{ve(1) + 3 = 3（d），ve(3) + 3 = 5（e）} = 5
+- ve(2) = max{ve(1) + 5 = 5（b），ve(4) + 4 = 9（f）} = 9
+- ve(6) = max{ve(3) + 1 = 3（c），ve(4) + 1 = 6（g）} = 6
+- ve(7) = max{ve(6) + 1 = 7（h），ve(4) + 4 = 9（m）} = 9
+- ve(5) = max{ve(4) + 1 = 6（j），ve(2) + 2 = 11（k），ve(7) + 3 = 12（n）} = 12
+
+工期 T = ve(5) = 12。
+
+## 2. 再逆拓扑序求最晚发生时间 vl（取最小）
+
+- vl(5) = 12
+- vl(7) = vl(5) − 3 = 9（n）
+- vl(6) = vl(7) − 1 = 8（h）
+- vl(2) = vl(5) − 2 = 10（k）
+- vl(4) = min{vl(2) − 4 = 6（f），vl(6) − 1 = 7（g），vl(5) − 1 = 11（j），vl(7) − 4 = 5（m）} = 5
+- vl(3) = min{vl(6) − 1 = 7（c），vl(4) − 3 = 2（e）} = 2
+- vl(1) = min{vl(3) − 2 = 0（a），vl(2) − 5 = 5（b），vl(4) − 3 = 2（d）} = 0
+
+## 3. 关键活动：e(i) = l(i)
+
+活动的**最早开始** e = ve(起点)，**最晚开始** l = vl(终点) − 持续时间，时间余量 = l − e：
+
+- a：e = 0，l = vl(3) − 2 = 0，余量 0 → **关键**
+- b：e = 0，l = vl(2) − 5 = 5，余量 5
+- c：e = 2，l = vl(6) − 1 = 7，余量 5
+- d：e = 0，l = vl(4) − 3 = 2，余量 2
+- e：e = 2，l = vl(4) − 3 = 2，余量 0 → **关键**
+- f：e = 5，l = vl(2) − 4 = 6，余量 1
+- g：e = 5，l = vl(6) − 1 = 7，余量 2
+- h：e = 6，l = vl(7) − 1 = 8，余量 2
+- j：e = 5，l = vl(5) − 1 = 11，余量 6
+- k：e = 9，l = vl(5) − 2 = 10，余量 1
+- m：e = 5，l = vl(7) − 4 = 5，余量 0 → **关键**
+- n：e = 9，l = vl(5) − 3 = 9，余量 0 → **关键**
+
+关键活动 a、e、m、n 串成 1 → 3 → 4 → 7 → 5，长度正是 12。
+
+![各活动的可执行时间窗与余量](ds-real-2025-42/activity-windows.svg)
+
+## 4. 与 e 同时进行的活动
+
+e 占用 [2, 5]（ve(3) = 2，vl(4) = 5，持续时间 3 恰好填满，无法挪动）。一个活动能否与 e 同时进行，要看它的**整个可执行窗口** [ve(起点), vl(终点)] 能否与 (2, 5) 相交，而不是只看它最早什么时候开始：
+
+- b：窗口 [0, 10]，长 5，可排在 [2, 7] → **可以**
+- c：窗口 [2, 8]，长 1，可排在 [4, 5] → **可以**
+- d：窗口 [0, 5]，长 3，可排在 [2, 5] → **可以**
+- a：窗口 [0, 2]，最晚也要在时刻 2 结束，与 e 只在端点相接 → 不算同时
+- f、g、j：最早开始都是 ve(4) = 5，e 恰在 5 结束 → 不算同时
+- h：ve(6) = 6；k：ve(2) = 9；m：ve(4) = 5；n：ve(7) = 9 → 都在 e 之后
+
+## 5. 余量最大与第 (4) 问
+
+余量最大的是 j，为 6（上面第 3 步已算出）。
+
+b 原本最早可在 0 开始；现在推迟到 6 开始，则顶点 2 的最早发生时间变成 6 + w(b)。从 2 出发只有 k（2 → 5，持续 2），所以必须满足
+
+$$
+6 + w(b) + 2 \le 12 \;\Rightarrow\; w(b) \le 4
+$$
+
+即 b 最长只能持续 4。
+
+若 b 仍为 5，则 6 + 5 + 2 = 13，超出工期 1。要补回这 1 个单位，只能压缩这条超长路径 1 → 2 → 5 上的活动，而 b 不动，就只能压 **k**：k 由 2 减到 1，使 6 + 5 + 1 = 12。压缩其他活动（如 m 或 n）没有用，因为它们不在 1 → 2 → 5 这条链上。`,pitfalls:String.raw`- **ve 取最小值 / vl 取最大值**。ve 是“所有前驱都完成后才能开始”，取 max；vl 是“不影响后继最晚时间”，取 min。方向反了会得到完全不同的表。
+- **只看两端顶点是不是关键顶点就断言活动关键**。本题的反例是 j：起点 4 和终点 5 都在关键路径上，但 j 的余量是 6，不是关键活动。判断只能看该活动的 e 与 l 是否相等。
+- **时间余量算成 vl(终点) − ve(起点)**。漏掉了活动自身的持续时间，正确的是 vl(终点) − ve(起点) − 持续时间。
+- **第 (2) 问只按“最早开始”比较**。e 占 [2, 5]，d 的最早开始是 0 但可以推到 [2, 5] 执行，若只看到 e 之前开始就漏掉 d；反过来把 a 算进去也错，因为 a 最晚必须 2 结束。
+- **第 (4) 问忘了把 k 加上**。b 推迟后走的是 1 → 2 → 5，必须连 k 一起算进路径长度。
+- **第 (4) 问去压缩 m 或 n**。它们属于另一条关键路径 1 → 3 → 4 → 7 → 5，压缩它们不会让 1 → 2 → 5 变短。`,extension:String.raw`**问：** 为什么 j 不是关键活动，尽管它的两端顶点 4、5 都在关键路径上？
+
+**答：** 关键路径 1 → 3 → 4 → 7 → 5 走的是 m（4 → 7）和 n（7 → 5），并没有经过 j。j 的 e = ve(4) = 5、l = vl(5) − 1 = 11，余量 6，说明它可以推迟 6 个单位而不影响工期。判断关键活动只有一条标准：e = l。
+
+**问：** 若把活动 b 的持续时间改成 6（仍从时刻 6 开始），最短工期会变成多少？
+
+**答：** 14。此时 1 → 2 → 5 的长度为 6 + 6 + 2 = 14，而另一条链 1 → 3 → 4 → 7 → 5 仍是 12，所以工期由 14 决定，比原工期推迟 2。对照来看：b 原本余量 5，推迟 6 个单位已经超出 1，工期就推迟 1（此时 b = 5、k = 2，得 13）；再把 b 拉长到 6，又多出 1，工期变 14。`,teachingFramework:String.raw`**开场**：先问“这个工程最快多久完工”，让学生意识到必须找最长路径，而不是把 12 个活动的时间加起来（加起来是 30）。
+
+**带算**：按拓扑序原地推 ve，每一步只写 max 的取值与来源（例如 ve(2) = max{5, 9} = 9，来自 f）。**务必标出来源**，第 (4) 问就靠这张来源表。
+
+**逆推**：vl 从汇点 12 往回推，取 min，同样标来源。ve 与 vl 相等的顶点圈出来：1、3、4、5、7。
+
+**判关键活动**：不要用“两端都是关键顶点”这种捷径，直接算 e、l。用 j 做反例，让学生自己发现捷径会错。
+
+**讲同时进行**：把每个活动的窗口 [ve(起点), vl(终点)] 画成时间轴上的横条，e 固定占 [2, 5]，谁与它相交一目了然。
+
+**讲第 (4) 问**：把“推迟开始”翻译成“顶点 2 的时间被抬高”，再沿 2 → 5 这条唯一出路重算长度。`}},{questionNumber:42,id:`ds-real-2026-42`,title:`2026 真题 · 出栈序列的可行性、312 模式与卡特兰计数`,type:`题目`,date:`2026-10-21`,chapter:`栈、队列和数组 · 栈`,tags:[`408真题`,`非算法应用题`,`栈`,`出栈序列`,`卡特兰数`,`312 模式`,`组合计数`],summary:`给定 1..n 依次入栈的规则，判断两条 n = 9 的序列能否出现，写出不可行序列的三元大小关系，并统计 n = 4 以 2 开头的序列数、n = k 时各类序列的个数。`,source:`题面据两个第三方公开转录整理：CodeBrick 真题库（两条序列各含 9 个元素）与「计算机考研杂货铺」（第一条只列出 8 个元素、第二条为 2,3,1,4,6,5,7,8）。两处均未附官方原卷，本题按 2026 年回忆整理版处理，采用与 n = 9 自洽的 CodeBrick 版本。本站对两种转录分别做了栈模拟与 312 模式检测，四种组合的判断结论完全一致（第一条不可行、第二条可行）。全部计数由脚本穷举 n ≤ 6 的全部出栈序列核验。`,content:String.raw`栈的基本操作有出栈和入栈。将序列 1, 2, 3, …, n 依次入栈，回答下列问题：
+
+(1) 当 n = 9 时，可以得到出栈序列 {2, 3, 1, 6, 4, 7, 5, 9, 8} 吗？可以得到出栈序列 {2, 3, 1, 5, 6, 7, 4, 9, 8} 吗？（2 分）
+
+(2) 假设 1, 2, …, n 组成任意序列的出栈序列 P₁, P₂, …, Pₙ，在序列中有 $P_i$、$P_j$、$P_k$（$i<j<k$），若该出栈序列不能由栈得到，则 $P_i$、$P_j$、$P_k$ 的大小关系是？（2 分）
+
+(3) 若 n = 4，则以 2 开头的序列个数有多少个？（2 分）
+
+(4) 若 n = k−1 时，出栈序列总共共有 M 个，如果 n = k，那么以 1 开头的出栈序列个数有多少个？以 2 开头的出栈序列有多少个？总共的出栈序列有多少个？（4 分）
+
+![入栈次序固定、出栈次序可选的栈模型](ds-real-2026-42/stack-model.svg)
+
+规则只有一条：入栈次序固定为 1, 2, …, n，任何时刻都可以选择入栈或出栈，但栈是后进先出的。
+
+题源核对：[CodeBrick 第 42 题](https://www.codebrick.tech/exam-408/q/ds/2026/42)、[计算机考研杂货铺 2026 年真题](https://csgraduates.com/study_methods/408quiz/2026/)
+
+本题未获官方原卷，属第三方回忆整理版；两处转录的序列数字略有差异，详见来源说明。`,attachments:[{name:`查看栈模型 SVG（可放大）`,path:`ds-real-2026-42/stack-model.svg`},{name:`查看两条序列的栈轨迹 SVG（可放大）`,path:`ds-real-2026-42/stack-trace.svg`},{name:`查看卡特兰计数表 SVG（可放大）`,path:`ds-real-2026-42/catalan-counts.svg`}],solution:{answer:String.raw`(1) {2, 3, 1, 6, 4, 7, 5, 9, 8} **不可以**得到；{2, 3, 1, 5, 6, 7, 4, 9, 8} **可以**得到。
+
+(2) **$P_j<P_k<P_i$**（第二个最小、第三个居中、第一个最大，即所谓 312 模式）。
+
+(3) **5 个**。
+
+(4) 以 1 开头的有 **M** 个，以 2 开头的也有 **M** 个，总数是
+
+$$
+C_k = \frac{2(2k-1)}{k+1}\,M = \frac{1}{k+1}\binom{2k}{k}
+$$
+
+（M 是 n = k−1 时的卡特兰数 $C_{k-1}$）。`,explanation:String.raw`## 1. 两条序列逐条模拟
+
+**序列一 {2, 3, 1, 6, 4, 7, 5, 9, 8}：**
+
+- 压 1、压 2，弹出 2 → 栈 [1]
+- 压 3，弹出 3 → 栈 [1]
+- 弹出 1 → 栈空
+- 压 4、压 5、压 6，弹出 6 → 栈 [4, 5]（5 在栈顶）
+- 下一个要输出 4，但 5 压在 4 上面，只能先弹 5，与序列矛盾 → **不可行**
+
+**序列二 {2, 3, 1, 5, 6, 7, 4, 9, 8}：**
+
+- 压 1、压 2，弹 2 → [1]；压 3，弹 3 → [1]；弹 1 → []
+- 压 4、压 5，弹 5 → [4]；压 6，弹 6 → [4]；压 7，弹 7 → [4]
+- 弹 4 → []；压 8、压 9，弹 9 → [8]；弹 8 → []
+- 全部 9 个元素按序列输出，栈最终为空 → **可行**
+
+![两条序列的栈轨迹](ds-real-2026-42/stack-trace.svg)
+
+## 2. 不可行的判据：312 模式
+
+在序列一中取第 4、5、7 个元素：P₄ = 6、P₅ = 4、P₇ = 5（$i=4<j=5<k=7$），恰好满足
+
+$$
+P_j < P_k < P_i
+$$
+
+直观解释：6 先出，说明比它小的 4、5 当时都在栈里，且 5 是后入栈的，压在 4 上面；于是 4 必须等 5 先出，输出次序只能是 6, 5, 4，不可能出现 6, 4, 5。“大的先走、最小的垫底、中间值夹在中间”这种相对次序，栈永远做不出来。
+
+反过来可以证明：**一个排列能由栈得到，当且仅当它不含任何 $i<j<k$ 且 $P_j<P_k<P_i$ 的三元组**。本站对 n ≤ 7 的全部排列逐一比对“栈模拟结果”与“是否含 312 模式”，两者完全一致。
+
+## 3. n = 4 且以 2 开头：5 个
+
+以 2 开头意味着前缀必须是：压 1、压 2、弹出 2。之后剩余元素是栈里的 1 和尚未入栈的 3、4。逐个枚举：
+
+- 2, 1, 3, 4
+- 2, 1, 4, 3
+- 2, 3, 1, 4
+- 2, 3, 4, 1
+- 2, 4, 3, 1
+
+共 5 个。对照 n = 4 的出栈序列总数 14（卡特兰数 C₄ = 14），这 5 个占比约三分之一。
+
+## 4. 一般情形：为什么都是 M
+
+设 n = k−1 时总数为 M = $C_{k-1}$。
+
+**以 1 开头：** 第一步只能压 1、立刻弹 1，之后 2..k 的入栈出栈与规模 k−1 的问题完全同构 → 恰好 M 个。
+
+**以 2 开头：** 前缀只能是压 1、压 2、弹 2，此时 1 留在栈底，3..k 尚未入栈。把 1 看作“最小的 1”、把 3..k 依次映射成 2..k−1，整个过程与规模 k−1 的问题一一对应 → 也恰好 M 个。
+
+**总数：** 全部合法序列的个数是卡特兰数
+
+$$
+C_k=\frac{1}{k+1}\binom{2k}{k}=\frac{(2k)!}{k!\,(k+1)!}
+$$
+
+用 $M=C_{k-1}$ 表示就是
+
+$$
+C_k=\frac{2(2k-1)}{k+1}\,M
+$$
+
+代入检验：k = 4 时 M = C₃ = 5，C₄ = 5 × 14/5 = 14；k = 6 时 M = C₅ = 42，C₆ = 42 × 22/7 = 132，都对得上。
+
+![按首元素统计的出栈序列数与 n = 4 的枚举](ds-real-2026-42/catalan-counts.svg)`,pitfalls:String.raw`- **用“有没有逆序”判断可行性**。2, 1 是逆序但完全合法（压 1、压 2、弹 2、弹 1）；判据是 312 模式，不是逆序数。
+- **第 (2) 问把大小关系写反**。要写 $P_j<P_k<P_i$：三个位置从左到右依次是“最大、最小、居中”。写成 $P_i<P_j<P_k$（递增）或 $P_i>P_j>P_k$（递减）都不对。
+- **把第 (3) 问答成 14**。14 是 n = 4 的全部序列数，题目问的是“以 2 开头”的那一部分。
+- **第 (4) 问把总数写成 2M**。只有 k = 2 时 2M 才等于 $C_k$；k = 4 时是 14 ≠ 10。总数必须用卡特兰数递推或通项算。
+- **卡特兰数下标错位**。n = k−1 时总数是 $C_{k-1}$，也就是题目给的 M；n = k 时才是 $C_k$。把 M 当成 k 个元素的总数、或写成 $C_{k+1}$，都会错。
+- **以为“以 1 开头”和“以 2 开头”的个数不相等**。两者都等于 M，这一点可以用上面的双射说明，也可以用 n = 5、6 的穷举结果印证（14 与 14、42 与 42）。`,extension:String.raw`**问：** n = 5 时以 3 开头的出栈序列有几个？
+
+**答：** 9 个。穷举 n = 5 的全部 42 个序列，按首元素统计为：以 1 开头 14 个、以 2 开头 14 个、以 3 开头 9 个、以 4 开头 4 个、以 5 开头 1 个，合计 42。可见“以 1 / 以 2 开头都等于 M”这条规律不能推广到以 3 开头。
+
+**问：** 第 (2) 问给出的 312 判据，是不是只要检查任意三个下标就够？
+
+**答：** 是。判据是“存在”某个 $i<j<k$ 使 $P_j<P_k<P_i$：找到一个就足以判定不可行，一个都找不到就一定可行。本站对 n ≤ 7 的全部排列逐一比对“是否含 312 模式”与“栈模拟是否失败”，两个判断完全一致；n = 9 另取 2000 个随机排列比对，结果同样 2000/2000 一致。`,teachingFramework:String.raw`**开场**：先做小规模热身——n = 3 时哪些序列可以？学生很快能排除 3, 1, 2，此时追问“3, 1, 2 和 3, 2, 1 差在哪”，引出“大的先出之后，小的必须按后进先出”。
+
+**带算**：把两条 n = 9 的序列画成“栈内（底 → 顶）”的轨迹，一条走到底，一条卡在 6 之后要 4。**只写到卡住那一步**，让学生自己说出原因。
+
+**提炼判据**：从卡住的 6, 4, 5 三个数出发，标出它们在序列中的位置 4、5、7，写出 $P_j<P_k<P_i$。强调“位置递增、数值 312”。
+
+**讲计数**：n = 4 以 2 开头，先写死前缀（压 1、压 2、弹 2），再枚举剩下的 5 种，不要用公式硬套。
+
+**讲递推**：用“压 1 弹 1 之后规模减一”和“压 1 压 2 弹 2 之后规模减一”两个双射，说明以 1、以 2 开头都是 M；最后给出卡特兰通项与比值公式。
+
+**迁移**：凡是“入栈次序固定、问出栈序列”的题，固定三板斧——栈模拟、312 判据、卡特兰计数。`}},{id:`ds-application-mock-guide`,title:`模拟题补充 · 7 道非算法设计应用大题`,type:`知识点`,date:`2026-10-21`,chapter:`数据结构 · 应用大题专题`,tags:[`模拟题`,`非算法应用题`,`专题导航`],summary:`从已有模拟卷精选七道非算法设计大题，直接跳转原题、完整解析与 SVG 图解；保留原题 ID 和个人补充。`,source:`来自本站已收录的用户提供模拟卷。模拟题与全国统考真题分开标注；本专题复用原题链接，不伪造真题年份，不重复创建题卡。`,content:String.raw`## 按知识点进入原题
+
+以下均为已有模拟卷中的大题，不是真题。点击题名即可打开完整题面、答案、讲解与基础知识；原有的个人补充仍保留在原题下。
+
+| 模拟卷与题号 | 题目入口 | 图解内容 |
+| --- | --- | --- |
+| lion 卷一 · 41 | [并查集：按高度合并、按大小合并与路径压缩](#lesson=mock-exam-1&material=mock-exam-1-ds-q41) | 两种最终森林、双亲关系 |
+| lion 卷三 · 42 | [外部归并排序：归并段、块 I/O 与败者树](#lesson=mock-exam-3&material=mock-exam-3-ds-q42) | 归并段收拢过程与败者树 |
+| lion 卷五 · 42 | [存储表还原二叉树与先序线索化](#lesson=mock-exam-5&material=mock-exam-5-ds-q42) | 树形、先序线索存储表 |
+| lion 卷六 · 42 | [散列表统计字符频次与哈夫曼编码](#lesson=mock-exam-6&material=mock-exam-6-ds-q42) | 散列表、哈夫曼树 |
+| lion 卷七 · 42 | [AOE 网：拓扑排序、事件时间与关键路径](#lesson=mock-exam-7&material=mock-exam-7-ds-q42) | 原网与关键路径着色图 |
+| lion 卷八 · 42 | [最大堆：建堆、插入、删除与稳定性](#lesson=mock-exam-8&material=mock-exam-8-ds-q42) | 初始树、建堆及三次插入/删除状态 |
+| 王道第一套 · 41 | [邻接矩阵：强连通分量、度数与最小生成树](#lesson=wangdao-mock-set-1-major&material=wangdao-mock1-major-41) | 带权图与最小生成树对照 |
+
+## 为什么没有把其他数据结构大题放进来？
+
+本专题按整道大题筛选：要求设计算法、编写程序或补全程序的题不纳入；需要手算已有算法的执行过程、解释给定代码含义、画结构或分析性质的应用题可纳入。
+
+lion 卷二第 42 题要求补全指针语句，卷四第 42 题还要求设计查找预处理方案，因此不列入这里。它们和其他算法设计大题仍保留在原模拟卷中。`}],PS=[`题目`,`知识点`],FS=[{id:`forest-to-binary-min-height`,questionNumber:4,title:`森林转换为二叉树：最小高度如何判断？`,type:`题目`,date:`2026-09-29`,chapter:`树与二叉树 · 森林转换`,tags:[`森林与二叉树转换`,`左孩子右兄弟`,`树的高度`],summary:`5 棵树分别有 2、3、4、5、7 个结点。树的次序可任意安排，如何判断转换后二叉树的最小高度？`,source:`用户提供的题目截图，标注为“2026 · 第4题 · 2分”；未独立核验原始试卷出处。解析为本站推导，并非引用官方答案。`,content:String.raw`森林 $F$ 中有 5 棵树，其结点个数分别为 2、3、4、5、7，森林中树的次序可以任意，问 $F$ 对应的二叉树最小高度为多少？
 
 - **A．** 5
 - **B．** 6
@@ -693,7 +2599,7 @@ int main(void) {
 - 以为代码段一定是私有的：只读可共享，fork 后父子通常共享代码段，写时复制主要作用在数据页上。
 - 以为「数据段装的是所有变量」：局部变量在栈，动态分配在堆。
 - 以为页表在进程的地址空间里：每个进程一套页表，但页表本身放在内核中，由 PCB 的存储管理信息指向。
-- 把「进程切换」与「线程切换」等同：前者要换页表/地址空间，后者不换。`}],FS=[{id:`wangdao-mock1-major-41`,questionNumber:41,title:`邻接矩阵的强连通分量、顶点度数与最小生成树`,type:`题目`,date:`2026-09-30`,chapter:`图 · 邻接矩阵 / 连通性 / 最小生成树`,tags:[`邻接矩阵`,`强连通分量`,`出度与入度`,`最小生成树`,`Prim`,`Kruskal`],summary:`给一个 5 阶邻接矩阵，三问：强连通分量个数、读一段 C 函数的功能并求返回值、无向图最小生成树的算法选择与权值。`,source:`用户提供的截图，页脚为「408 模拟 · 26 王道 8 套卷」（含公众号水印）；截图未附官方答案，本页结论均由本站独立复算：强连通分量用可达矩阵、函数返回值按 C 代码逐项模拟、最小生成树用 Prüfer 序列穷举 125 棵生成树验证。`,content:String.raw`## 二、综合应用题
+- 把「进程切换」与「线程切换」等同：前者要换页表/地址空间，后者不换。`}],IS=[{id:`wangdao-mock1-major-41`,questionNumber:41,title:`邻接矩阵的强连通分量、顶点度数与最小生成树`,type:`题目`,date:`2026-09-30`,chapter:`图 · 邻接矩阵 / 连通性 / 最小生成树`,tags:[`邻接矩阵`,`强连通分量`,`出度与入度`,`最小生成树`,`Prim`,`Kruskal`],summary:`给一个 5 阶邻接矩阵，三问：强连通分量个数、读一段 C 函数的功能并求返回值、无向图最小生成树的算法选择与权值。`,source:`用户提供的截图，页脚为「408 模拟 · 26 王道 8 套卷」（含公众号水印）；截图未附官方答案，本页结论均由本站独立复算：强连通分量用可达矩阵、函数返回值按 C 代码逐项模拟、最小生成树用 Prüfer 序列穷举 125 棵生成树验证。`,content:String.raw`## 二、综合应用题
 
 (41)（10 分）某有向图 $G$ 的邻接矩阵如下所示，顶点从 0 开始编号，回答下列问题。
 
@@ -729,6 +2635,8 @@ int f(MGraph *G, int i){
 **3）应采用 Prim（普里姆）算法**：该图 $n=5$、$E=10=C(5,2)$，是完全图 $K_5$，属稠密图，邻接矩阵实现的 Prim 是 $O(n^2)$，优于 Kruskal 的 $O(E\log E)$。**最小生成树权值 = 4**（四条权值全为 1 的边，如 $2-0,\ 2-1,\ 2-3,\ 2-4$ 构成的星形树）。`,explanation:String.raw`**1）邻接矩阵对称（a_ij=a_ji），每条边双向、权值相同，5 个顶点两两可达，整个图是一个强连通分量，即 {0,1,2,3,4}，强连通分量个数为 1**。
 
 2）G->edges[i][j] 非零时数第 i 行非零元素，即顶点 i 的出度；G->edges[j][i] 非零时数第 i 列非零元素，即入度。函数返回出度与入度之和，也就是有向图中顶点 i 的度。第 3 行 [3,2,1,0,1] 非零 4 个，第 3 列同样非零 4 个，故 f(&G,3)=4+4=8。
+
+![原邻接矩阵对应的带权图与一棵总权值为 4 的最小生成树](wangdao-mock1-major-41/graph-mst.svg)
 
 3）该图 n=5、E=10=n(n−1)/2 是完全图 K5，属稠密图；Prim（邻接矩阵）是 O(n^2)，与边数无关，而 Kruskal 需先排序为 O(E log E)，故从节省时间考虑应选 Prim。权值为 1 的边有 0-2、1-2、2-3、2-4、3-4 共 5 条，取 4 条构成以 2 为中心的星形树，权值 1+1+1+1=4；生成树必须恰好 4 条边且每条权不小于 1，故下界为 4，最小值就是 4（最小生成树不唯一）。
 
@@ -1157,7 +3065,7 @@ $$
 
 ### 3. 下次遇到同类题怎么办
 
-混合页大小题先做**目录判型→选地址划分→检查有效位→转换／异常处理**。页框基址、表项位置与最终数据位置是三个不同地址，置换也不能跨大小直接挪用页框。`}}],IS=[{id:`wangdao-mock2-major-01`,questionNumber:1,title:`二叉树递归求高度的时间复杂度`,type:`题目`,date:`2026-09-30`,chapter:`树 · 二叉树遍历与复杂度`,tags:[`二叉树`,`递归`,`时间复杂度`,`树高`],summary:`分析递归计算二叉树高度的 maxFunc：判断每个结点的访问次数，并区分时间复杂度与递归栈空间复杂度。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
+混合页大小题先做**目录判型→选地址划分→检查有效位→转换／异常处理**。页框基址、表项位置与最终数据位置是三个不同地址，置换也不能跨大小直接挪用页框。`}}],LS=[{id:`wangdao-mock2-major-01`,questionNumber:1,title:`二叉树递归求高度的时间复杂度`,type:`题目`,date:`2026-09-30`,chapter:`树 · 二叉树遍历与复杂度`,tags:[`二叉树`,`递归`,`时间复杂度`,`树高`],summary:`分析递归计算二叉树高度的 maxFunc：判断每个结点的访问次数，并区分时间复杂度与递归栈空间复杂度。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
 
 (01) 设二叉树共有 $n$ 个结点，则下列程序段的时间复杂度是（ ）。
 
@@ -1983,7 +3891,7 @@ C 是本题教材层面的概念性描述：符号链以路径名做间接引用
 
 **问：** 把置换策略从 LRU 换成 FIFO，会影响正确性吗？
 
-**答：** 在两种策略都正确处理脏块写回、访问一致性和必要同步的前提下，改换淘汰策略主要改变命中率及写回时机，不应改变正常运行时读取到的逻辑内容。淘汰脏块前必须保留或写回其修改；不能用「最终会写回」替代这一要求。`}}],LS=[{id:`io-interrupt-dma-bus-clock`,questionNumber:44,title:`中断与 DMA 的请求次数和 I/O 总线时钟`,type:`题目`,date:`2026-10-01`,chapter:`输入/输出系统 · 中断与 DMA`,tags:[`中断方式`,`DMA`,`周期窃取`,`I/O 总线`,`访存次数`],summary:`由主频、CPI 与 Cache 命中率求每秒访主存次数，再由字符设备中断与块设备 DMA 的传输率求每秒请求次数和 I/O 总线时钟下限。`,source:`学生提供的试卷照片（第 6 页，第 44 题），图上未显示答案；解析为本站推导。K/M 按十进制（1KB=1000B、1MB=10^6 B）取值，与 2009 年 408 真题官方解法同一口径；1024 进制下的结果见解析与追问。`,content:String.raw`（44）某计算机主频为 200MHz，CPI 为 5，存储器总线宽度为 32 位。准备连接一个数据传输率为 20KB/s 的字符设备，及 1 个数据传输率为 1MB/s 的块设备；字符设备采用中断方式 I/O，块设备采用 DMA 方式 I/O，DMA 传送方式为周期窃取方式，每次 DMA 传送数据块大小为 4000B。请回答：
+**答：** 在两种策略都正确处理脏块写回、访问一致性和必要同步的前提下，改换淘汰策略主要改变命中率及写回时机，不应改变正常运行时读取到的逻辑内容。淘汰脏块前必须保留或写回其修改；不能用「最终会写回」替代这一要求。`}}],RS=[{id:`io-interrupt-dma-bus-clock`,questionNumber:44,title:`中断与 DMA 的请求次数和 I/O 总线时钟`,type:`题目`,date:`2026-10-01`,chapter:`输入/输出系统 · 中断与 DMA`,tags:[`中断方式`,`DMA`,`周期窃取`,`I/O 总线`,`访存次数`],summary:`由主频、CPI 与 Cache 命中率求每秒访主存次数，再由字符设备中断与块设备 DMA 的传输率求每秒请求次数和 I/O 总线时钟下限。`,source:`学生提供的试卷照片（第 6 页，第 44 题），图上未显示答案；解析为本站推导。K/M 按十进制（1KB=1000B、1MB=10^6 B）取值，与 2009 年 408 真题官方解法同一口径；1024 进制下的结果见解析与追问。`,content:String.raw`（44）某计算机主频为 200MHz，CPI 为 5，存储器总线宽度为 32 位。准备连接一个数据传输率为 20KB/s 的字符设备，及 1 个数据传输率为 1MB/s 的块设备；字符设备采用中断方式 I/O，块设备采用 DMA 方式 I/O，DMA 传送方式为周期窃取方式，每次 DMA 传送数据块大小为 4000B。请回答：
 
 1）若 CPU 平均每条指令访存 1.2 次，Cache 命中率为 0.98，则 CPU 平均每秒访问主存次数是多少？
 
@@ -2100,7 +4008,7 @@ $$
 
 ### 3. 下次遇到同类题怎么办
 
-虚存题按**地址到页号→初始驻留→逐次更新→时间模型**走。题给“一次交换”的耗时按其定义使用，替换策略变化时重新分析淘汰对象。`}}],RS=[{id:`mock-exam-1-ds-q01`,questionNumber:1,title:`循环队列 tag 判空与判满`,type:`题目`,date:`2026-10-02`,chapter:`栈、队列和数组 · 循环队列`,tags:[`循环队列`,`队空队满判定`,`tag 标记法`],summary:`循环队列用 tag 区分队空与队满，给 MAXSIZE、front、rear、tag 求元素个数。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站独立推导并由脚本枚举复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（1）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设循环队列的存储结构如下，其中 $front$ 指向队头元素，$rear$ 指向下一个可插入位置；$tag=0$ 表示最近一次对队列的操作是删除，$tag=1$ 表示最近一次操作是插入。当 $front=rear$ 时，由 $tag$ 区分队空与队满。若 $MAXSIZE=24$，$front=7$，$rear=19$，$tag=1$，则队列中的元素个数为（　）。
+虚存题按**地址到页号→初始驻留→逐次更新→时间模型**走。题给“一次交换”的耗时按其定义使用，替换策略变化时重新分析淘汰对象。`}}],zS=[{id:`mock-exam-1-ds-q01`,questionNumber:1,title:`循环队列 tag 判空与判满`,type:`题目`,date:`2026-10-02`,chapter:`栈、队列和数组 · 循环队列`,tags:[`循环队列`,`队空队满判定`,`tag 标记法`],summary:`循环队列用 tag 区分队空与队满，给 MAXSIZE、front、rear、tag 求元素个数。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站独立推导并由脚本枚举复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（1）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设循环队列的存储结构如下，其中 $front$ 指向队头元素，$rear$ 指向下一个可插入位置；$tag=0$ 表示最近一次对队列的操作是删除，$tag=1$ 表示最近一次操作是插入。当 $front=rear$ 时，由 $tag$ 区分队空与队满。若 $MAXSIZE=24$，$front=7$，$rear=19$，$tag=1$，则队列中的元素个数为（　）。
 
 - A．11
 - B．12
@@ -3603,7 +5511,7 @@ D() { consumer(fullD); }
 
 ### 3. 下次遇到同类题怎么办
 
-**先比较源 IP 与目的 IP 是否同网段**，再决定下一跳是目的主机还是默认网关；凡是跨网段，发送方 ARP 的永远是网关接口的 MAC，而能与对端直接 ARP 的永远是「与对端同网段的那个路由器接口」。`}}],zS=[{id:`mock-exam-2-ds-q01`,questionNumber:1,title:`循环累加平方和的时间复杂度`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 算法的时间复杂度分析`,tags:[`时间复杂度`,`循环次数估计`,`平方和求和`],summary:`给定一个累加平方和、返回首个使累加和超过 n 的 i 的函数，判断其时间复杂度量级。`,source:`2027 年 408 模拟试题（二）第 1 题，扫描版试卷（无文字层）。原卷未印参考答案，本页答案由本地独立推导并用脚本实跑验证，非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（2）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设 $n$ 为正整数，且不考虑整数溢出，函数 findMinI 的时间复杂度为（　）。
+**先比较源 IP 与目的 IP 是否同网段**，再决定下一跳是目的主机还是默认网关；凡是跨网段，发送方 ARP 的永远是网关接口的 MAC，而能与对端直接 ARP 的永远是「与对端同网段的那个路由器接口」。`}}],BS=[{id:`mock-exam-2-ds-q01`,questionNumber:1,title:`循环累加平方和的时间复杂度`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 算法的时间复杂度分析`,tags:[`时间复杂度`,`循环次数估计`,`平方和求和`],summary:`给定一个累加平方和、返回首个使累加和超过 n 的 i 的函数，判断其时间复杂度量级。`,source:`2027 年 408 模拟试题（二）第 1 题，扫描版试卷（无文字层）。原卷未印参考答案，本页答案由本地独立推导并用脚本实跑验证，非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（2）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设 $n$ 为正整数，且不考虑整数溢出，函数 findMinI 的时间复杂度为（　）。
 
 ~~~c
 int findMinI(int n) {
@@ -4843,7 +6751,7 @@ $$
 
 **先确定下一跳和出接口，再套"换 MAC 不换 IP"模板，最后判断是否需要 ARP。** 判断 ARP 对象时只盯"本链路的下一跳"，不要被最终目的地址带偏。`,extension:String.raw`**问：** 若 R 的 ARP 表中已有 172.16.0.2 的条目，R 转发该帧时是否还会发送 ARP 请求？为什么？
 
-**答：** 不会。ARP 表已有 172.16.0.2 到 00-22-22-22-22-02 的映射，R 可直接用该 MAC 封装并转发，无需广播请求；只有表项缺失或过期时才发 ARP 请求。`}}],BS=[{id:`mock-exam-3-ds-q01`,questionNumber:1,title:`线性结构的存储方式`,type:`题目`,date:`2026-10-02`,chapter:`栈和队列 · 存储结构`,tags:[`循环队列`,`共享栈`,`静态链表`,`十字链表`],summary:`循环队列、共享栈、静态链表、稀疏矩阵十字链表四种存储方式的叙述，找出错误的一项。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（3）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`下列关于线性结构存储方式的叙述中，错误的是（　）。
+**答：** 不会。ARP 表已有 172.16.0.2 到 00-22-22-22-22-02 的映射，R 可直接用该 MAC 封装并转发，无需广播请求；只有表项缺失或过期时才发 ARP 请求。`}}],VS=[{id:`mock-exam-3-ds-q01`,questionNumber:1,title:`线性结构的存储方式`,type:`题目`,date:`2026-10-02`,chapter:`栈和队列 · 存储结构`,tags:[`循环队列`,`共享栈`,`静态链表`,`十字链表`],summary:`循环队列、共享栈、静态链表、稀疏矩阵十字链表四种存储方式的叙述，找出错误的一项。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（3）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`下列关于线性结构存储方式的叙述中，错误的是（　）。
 
 - **A．** 循环队列采用“牺牲一个存储单元”法时，front=rear 表示队满
 - **B．** 共享栈的两个栈顶指针分别为 top1 和 top2，且分别从数组两端向中间增长时，top1+1=top2 表示栈满
@@ -6349,7 +8257,7 @@ RouterA 删除该路由前的主要收敛过程：C 泛洪 Type 1 → B 收到�
 
 ### 3. 下次遇到同类题怎么办
 
-先分区、再定角色（内部路由器/ABR/ASBR）、后判 LSA 作用范围，最后才做开销累加与收敛分析；避免把“区域内泛洪”和“跨区通告”的 LSA 类型弄混。`}}],VS=[{id:`mock-exam-4-ds-q01`,questionNumber:1,title:`数据结构应用特性判断`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 数据结构与算法的应用`,tags:[`栈与函数调用`,`BFS队列`,`哈希表装填因子`,`线索二叉树`],summary:`判断关于栈、BFS 队列、哈希表装填因子与线索二叉树的四条应用特性陈述中，哪些正确。`,source:`题目来自用户提供的「模拟试题（四）」扫描件（数据结构第 1～11 题）；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（4）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`以下关于数据结构应用特性的描述中，正确的是（　）。
+先分区、再定角色（内部路由器/ABR/ASBR）、后判 LSA 作用范围，最后才做开销累加与收敛分析；避免把“区域内泛洪”和“跨区通告”的 LSA 类型弄混。`}}],HS=[{id:`mock-exam-4-ds-q01`,questionNumber:1,title:`数据结构应用特性判断`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 数据结构与算法的应用`,tags:[`栈与函数调用`,`BFS队列`,`哈希表装填因子`,`线索二叉树`],summary:`判断关于栈、BFS 队列、哈希表装填因子与线索二叉树的四条应用特性陈述中，哪些正确。`,source:`题目来自用户提供的「模拟试题（四）」扫描件（数据结构第 1～11 题）；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（4）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`以下关于数据结构应用特性的描述中，正确的是（　）。
 
 - Ⅰ．在操作系统函数调用机制中，栈用于实现函数递归调用时局部变量、返回地址等信息的顺序存取与管理，遵循后进先出原则
 - Ⅱ．BFS执行过程中，队列用于保存已经被发现、但其邻接点尚未全部检查的顶点，使顶点按发现的先后次序接受扩展，从而实现逐层遍历
@@ -7765,7 +9673,7 @@ $$
 2. 用总长 −40 得数据长度，再解读数据开头的 "HTTP/1.1" 印证这是 B→A 的响应。
 3. 明确"谁是发送方"：源端口 80 = 服务器 B，目的端口 = 客户端 A。
 4. 序号题统一用"SYN 占 1 个序号"把起点对齐到 1，再算累计字节。
-5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],HS=[{id:`mock-exam-5-ds-q01`,questionNumber:1,title:`邻接表存储与操作的时间空间分析`,type:`题目`,date:`2026-10-11`,chapter:`图 · 图的存储结构`,tags:[`邻接表`,`空间复杂度`,`出边表`,`有向图操作`],summary:`稀疏有向图用邻接表存储，判断关于空间复杂度与枚举、判边、删边时间的四个说法。`,source:`用户提供的扫描件 docs/book/5.pdf（lion模拟卷5）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（5）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`某三维场景包含 $n$ 个对象，对象之间的“依赖”关系构成有向图 $G=(V,E)$，其中 $|E|=e$，且 $e\ll n^2$。现采用邻接表存储该图：顶点表采用顺序存储，每个顶点的出边表采用无序单链表，且不设置其他辅助索引。设顶点 $v$ 的出度为 $d^+(v)$，下列说法正确的是（　）。
+5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],US=[{id:`mock-exam-5-ds-q01`,questionNumber:1,title:`邻接表存储与操作的时间空间分析`,type:`题目`,date:`2026-10-11`,chapter:`图 · 图的存储结构`,tags:[`邻接表`,`空间复杂度`,`出边表`,`有向图操作`],summary:`稀疏有向图用邻接表存储，判断关于空间复杂度与枚举、判边、删边时间的四个说法。`,source:`用户提供的扫描件 docs/book/5.pdf（lion模拟卷5）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（5）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`某三维场景包含 $n$ 个对象，对象之间的“依赖”关系构成有向图 $G=(V,E)$，其中 $|E|=e$，且 $e\ll n^2$。现采用邻接表存储该图：顶点表采用顺序存储，每个顶点的出边表采用无序单链表，且不设置其他辅助索引。设顶点 $v$ 的出度为 $d^+(v)$，下列说法正确的是（　）。
 
 - A．存储该图所需的空间复杂度为 $O(n^2)$
 - B．枚举顶点 $v$ 直接依赖的全部对象所需的时间复杂度为 $O(d^+(v))$
@@ -9583,7 +11491,7 @@ $$
 
 ### 3. 下次遇到同类题怎么办
 
-**一律先画「事件—状态」两列表格，逐行填 ack、cwnd、在途数据，再回答任何小问。** 判阶段看 cwnd 与 ssthresh 的大小关系；判重复确认只看「确认号有没有前进」；判重传类型看「是 3 个重复确认触发（快重传，cwnd 不打回 1）还是超时触发（cwnd 打回 1）」。最后回答「还能发多少」时，永远记得同时受拥塞窗口与接收方通告窗口两个约束。`}}],US=[{id:`mock-exam-6-ds-q01`,questionNumber:1,title:`斐波那契递归与迭代的时空复杂度`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 算法与复杂度分析`,tags:[`时间复杂度`,`空间复杂度`,`递归与迭代`,`备忘录法`],summary:`对比斐波那契的递归、循环与备忘录实现，判断关于时空复杂度的错误描述。`,source:`用户提供的扫描件 docs/book/6.pdf（lion模拟卷6）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（6）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`以下两段代码分别采用递归和循环方式计算斐波那契数。设 $n\ge 2$，两段代码分别独立运行，忽略整数溢出。关于这两段代码的描述，错误的是（　）。
+**一律先画「事件—状态」两列表格，逐行填 ack、cwnd、在途数据，再回答任何小问。** 判阶段看 cwnd 与 ssthresh 的大小关系；判重复确认只看「确认号有没有前进」；判重传类型看「是 3 个重复确认触发（快重传，cwnd 不打回 1）还是超时触发（cwnd 打回 1）」。最后回答「还能发多少」时，永远记得同时受拥塞窗口与接收方通告窗口两个约束。`}}],WS=[{id:`mock-exam-6-ds-q01`,questionNumber:1,title:`斐波那契递归与迭代的时空复杂度`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 算法与复杂度分析`,tags:[`时间复杂度`,`空间复杂度`,`递归与迭代`,`备忘录法`],summary:`对比斐波那契的递归、循环与备忘录实现，判断关于时空复杂度的错误描述。`,source:`用户提供的扫描件 docs/book/6.pdf（lion模拟卷6）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（6）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`以下两段代码分别采用递归和循环方式计算斐波那契数。设 $n\ge 2$，两段代码分别独立运行，忽略整数溢出。关于这两段代码的描述，错误的是（　）。
 
 ~~~c
 // 递归实现
@@ -10881,7 +12789,7 @@ int widthOfBinaryTree(TreeNode *root) {
 
 **（4）删除 G**
 
-不能把 G 所在位置直接置空——那会截断线性探测的探测链，使原本排在它后面的同义词被误判为"不存在"。正确做法是**逻辑删除**：把该表项标记为"已删除"（墓碑标记），位置不置空。后续**查找**遇到删除标记时必须继续沿探测序列向后比较，直到真正遇到空位置才能判定查找失败；**插入**时可以把新记录写入第一个遇到的删除标记位置（继续找空位也同样正确）。`,explanation:String.raw`### （1）频次、哈夫曼树与编码
+不能在一般开放定址散列表中把被删除记录直接置空，否则可能截断后续记录的探测链。应把 G 所在表项标记为“已删除”（墓碑）。**查找**遇到墓碑仍继续探测；**插入或更新频次**先记住第一个墓碑，再继续查重，已有字符只增加频次，确认字符不存在后才复用墓碑或真正的空槽。本题当前表中没有其他字符的查找路径经过 G 的槽位，但通用删除规则仍是逻辑删除。`,explanation:String.raw`### （1）频次、哈夫曼树与编码
 
 ![完整扫描字符串后的散列表](mock-exam-6-ds-q42/hash-table.svg)
 
@@ -10893,7 +12801,7 @@ int widthOfBinaryTree(TreeNode *root) {
 - 现有权值为 2 的结点有三个：C(C=67)、G 所在的 DG 子树（子树内最小字符 D=68）、E(E=69）。按最小 ASCII 取前两个 C 与 DG，合并得 C(左)＋DG(右)，权值 4。
 - 剩下 E(2)、B(3)、F(3)、CDG 子树(4)、A(5)：取最小的 E(2)，再在权值同为 3 的 B(66) 与 F(70) 中取 B，合并得 E(左)＋B(右)，权值 5。
 - 剩下 F(3)、CDG 子树(4)、A(5)、EB 子树(5)：取 F(3) 与 CDG 子树(4)，合并得 F(左)＋CDG(右)，权值 7。
-- 剩下 A(5)、EB 子树(5)、FCDG 子树(7)：A(65) 与 EB 子树（子树内最小字符 E=69）同权 5，取 A 与 EB，合并得 A(左)＋EB(右)，权值 10。
+- 剩下 A(5)、EB 子树(5)、FCDG 子树(7)：A(65) 与 EB 子树（子树内最小字符 B=66）同权 5，取 A 与 EB，合并得 A(左)＋EB(右)，权值 10。
 - 最后 FCDG(7) 与 AEB(10) 合并，根权值 17。
 
 ![第 42 题哈夫曼树（权值 = 频次，左 0 右 1）](mock-exam-6-ds-q42/huffman-tree.svg)
@@ -10935,13 +12843,13 @@ $$
 ASL_{\text{成功}} = \frac{1+1+2+1+3+2+1}{7} = \frac{11}{7} \approx 1.57.
 $$
 
-**查找失败**时按 10 个初始散列地址等概率计算。对每个初始地址向后探测，遇到第一个空位置即失败，探测次数分别为：第 0 号 5 次（9 号被占需绕回，沿 0→1→2→3 到空槽 4）、第 1 号 4 次、第 2 号 3 次、第 3 号 2 次、第 4 号 1 次、第 5 号 3 次（5→6→7）、第 6 号 2 次、第 7 号 1 次、第 8 号 1 次、第 9 号 6 次，合计 28 次：
+**查找失败**时按 10 个初始散列地址等概率计算。对每个初始地址向后探测，遇到第一个空位置即失败，探测次数分别为：第 0 号 5 次（0→1→2→3→空槽 4，不发生回绕）、第 1 号 4 次、第 2 号 3 次、第 3 号 2 次、第 4 号 1 次、第 5 号 3 次（5→6→7）、第 6 号 2 次、第 7 号 1 次、第 8 号 1 次、第 9 号 6 次（9→0→1→2→3→空槽 4），合计 28 次：
 
 $$
 ASL_{\text{失败}} = \frac{28}{10} = 2.8.
 $$
 
-**易错点**：第 0 号初始地址的探测会绕回环尾，必须把槽 1、2、3 全部数进去；第 9 号起始地址要一路数到槽 4 的空位。
+**易错点**：失败探测要计入最后检查的空槽。第 0 号起始地址顺序探测到槽 4，共 5 次；第 9 号起始地址先回绕到槽 0，再探测到槽 4，共 6 次。
 
 ### （3）总位数与压缩率
 
@@ -10964,7 +12872,7 @@ $$
 正确做法是**逻辑删除**：在记录中增加一个删除标记，把该表项标记为"已删除"而不置空（墓碑）。此后：
 
 - **查找**遇到删除标记要继续沿探测序列向后比较，不能在此停止判失败；只有真正遇到空位置才判失败。
-- **插入**可以直接复用第一个遇到的删除标记位置（继续向后找空位也同样正确，只是浪费一些空间）。
+- **插入或更新频次**先记住第一个墓碑位置，但必须继续探测以检查字符是否已存在。若找到同一字符，只增加其频次；若遇到真正空槽或扫描完整个表仍未命中，才把新记录写入记住的墓碑（没有墓碑则使用空槽，无可用槽则表满）。不能见墓碑就立即插入，否则可能产生同一字符的重复记录。
 
 本题表里 G 位于槽 5、起始地址也是 5，删掉 G 后没有任何剩余字符的探测路径经过槽 5，所以"直接置空"在本例中恰好不出错；但这种方法在一般情况下会造成漏查，考试要求的是通用做法，仍应回答逻辑删除。若要回收墓碑空间，可在适当时机对该位置之后、到下一个空位之间的元素做局部重散列。
 
@@ -10973,7 +12881,7 @@ $$
 **先算 H(key) 再按扫描顺序插入，冲突一律线性向后探测；ASL 成功按每个键独立数探测次数再平均，ASL 失败按每个初始地址数到第一个空位再平均。** 哈夫曼部分固定"每次取权最小的两个、先取者做左孩子记 0"，平局按题给规则定序，最后用"各码长 × 频次之和"与"所有非叶结点权值之和"两个口径互相校验 WPL。`,pitfalls:String.raw`- 漏掉字符串中某个字符或数错频次：17 个字符，A5 B3 C2 D1 E2 F3 G1，务必用总数 17 校验。
 - 把 H(key) 里的 2×(key mod 3) 记成 key mod 3，或把 mod 10 漏掉，导致散列地址全错。
 - 散列表冲突时忘记"线性探测是循环的"：C、E 的起始地址都是 9，被占后要绕回槽 0、1。
-- ASL 失败的探测次数漏算绕回：第 0 号初始地址要经过槽 1、2、3 才到空槽 4，共 5 次而非 2 次。
+- ASL 失败漏算末尾空槽：第 0 号初始地址经过 0、1、2、3、4 共 5 次；第 9 号初始地址回绕后共 6 次。
 - 哈夫曼平局不按题给规则：权值同为 2 时要比较子树内最小 ASCII 字符（C=67 先于 DG 子树的 D=68，E=69 排最后），否则会构造出另一棵树、编码不同。
 - 左右孩子写反：题面规定第一个选取的结点是左孩子、对应 0，反了会使所有编码的 0/1 互换。
 - 把压缩率算成 $136/45$：压缩率是压缩后与压缩前的比值（或节省比例），两者都要写清口径。
@@ -11475,7 +13383,7 @@ $$T=0.4+0.2+0.1+0.049152=0.749152\ \mathrm{s}\approx 0.749\ \mathrm{s}.$$
 
 ### 3. 下次遇到同类题怎么办
 
-**把大题拆成小题、小题各自成段，每段算完立刻写结论。** 见到 TCP 首部十六进制就按字节切分并对照首部图；见到「RTT $+$ 传输时间」就把两者分清、只加一次；见到 cwnd 变化就先写「当前是慢开始还是拥塞避免，是否刚发生超时/快重传」，再按规则推进。`}}],WS=[{id:`mock-exam-7-ds-q01`,questionNumber:1,title:`最大优先队列的数据结构选型`,type:`题目`,date:`2026-10-11`,chapter:`栈、队列和数组 · 优先队列`,tags:[`优先队列`,`最大堆`,`建堆时间复杂度`,`插入删除复杂度`],summary:`要求建队 O(n)、插入与删除最大元素最坏 O(log n)，选出最合适的数据结构。`,source:`用户提供的扫描件 docs/book/7.pdf（lion模拟卷7）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（7）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`将一个含 $n$ 个关键字的无序序列建立为最大优先队列，之后需要频繁执行插入元素和删除最大关键字元素的操作。若要求建队时间为 $O(n)$，且插入和删除最大关键字元素的最坏时间复杂度均为 $O(\log n)$，则最适合采用（　）。
+**把大题拆成小题、小题各自成段，每段算完立刻写结论。** 见到 TCP 首部十六进制就按字节切分并对照首部图；见到「RTT $+$ 传输时间」就把两者分清、只加一次；见到 cwnd 变化就先写「当前是慢开始还是拥塞避免，是否刚发生超时/快重传」，再按规则推进。`}}],GS=[{id:`mock-exam-7-ds-q01`,questionNumber:1,title:`最大优先队列的数据结构选型`,type:`题目`,date:`2026-10-11`,chapter:`栈、队列和数组 · 优先队列`,tags:[`优先队列`,`最大堆`,`建堆时间复杂度`,`插入删除复杂度`],summary:`要求建队 O(n)、插入与删除最大元素最坏 O(log n)，选出最合适的数据结构。`,source:`用户提供的扫描件 docs/book/7.pdf（lion模拟卷7）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（7）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`将一个含 $n$ 个关键字的无序序列建立为最大优先队列，之后需要频繁执行插入元素和删除最大关键字元素的操作。若要求建队时间为 $O(n)$，且插入和删除最大关键字元素的最坏时间复杂度均为 $O(\log n)$，则最适合采用（　）。
 
 - A．无序顺序表
 - B．有序顺序表
@@ -12800,7 +14708,7 @@ int findKthLargest(int nums[], int n, int k) {
 
 牢记「划分返回枢轴最终下标 → 与 k−1 比较 → 只保留一半」。写答案时把枢轴方向、k−1 对齐、非递归三处逐条自查，并用完整排序结果做一次端到端核对。`}},{id:`mock-exam-7-ds-q42`,questionNumber:42,title:`AOE 网关键路径：拓扑序列、ve/vl、关键活动与最短工期`,type:`题目`,date:`2026-10-11`,chapter:`数据结构 · 图 · 关键路径（AOE 网，综合应用题）`,tags:[`AOE网`,`关键路径`,`拓扑排序`,`最早发生时间`,`最迟发生时间`,`关键活动`,`综合应用题`],summary:`按「入度为 0 取最小编号」求拓扑序列，计算各事件 V1～V10 的 ve/vl 与各活动的 e/l，列出全部关键活动、关键路径与最短工期，并讨论缩短单个关键活动是否一定能缩短工期。`,source:`用户提供的扫描件 docs/book/7.pdf（lion模拟卷7）第 7 页（扫描件 PDF 第 8 页）；原卷未印参考答案，解析为本站独立推导并用脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（7）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`（42）（15 分）某工程的 AOE 网如图所示，顶点表示事件，边表示活动，边权表示活动持续时间。假定所有活动均可在其前驱事件发生后立即开始。
 
-![AOE 网：顶点 V1～V10 表示事件，边旁标注活动代号与持续时间](/courses/mock-exam-7-ds-q42/q42-aoe-graph.png)
+![AOE 网 SVG 重绘：14 条活动的方向、代号与持续时间](mock-exam-7-ds-q42/aoe.svg)
 
 （1）采用拓扑排序。当同时存在多个入度为 0 的顶点时，优先选择编号较小的顶点。写出由此得到的拓扑序列，并计算各事件 V1～V10 的最早发生时间 ve 和最迟发生时间 vl。（6 分）
 
@@ -12812,6 +14720,8 @@ int findKthLargest(int nums[], int n, int k) {
 
 - ve：V1=0、V2=5、V3=6、V4=9、V5=12、V6=16、V7=14、V8=13、V9=19、V10=21
 - vl：V1=0、V2=9、V3=6、V4=9、V5=12、V6=17、V7=14、V8=17、V9=19、V10=21
+
+![红色标出关键活动，结点下方标出 ve 与 vl；保留全部非关键活动便于对照](mock-exam-7-ds-q42/critical-path.svg)
 
 **（2）关键活动（e = l，松弛为 0）**：b(V1→V3)、c(V3→V4)、d(V4→V5)、e(V3→V5)、h(V5→V7)、l(V7→V9)、m(V9→V10)。
 
@@ -12832,7 +14742,7 @@ int findKthLargest(int nums[], int n, int k) {
 
 ### （1）拓扑序列
 
-编号已满足「每条边 u<v」，故任何顶点入度为 0 时都只有它可选：从 V1 起依次出队，得到唯一序列 **V1 V2 V3 V4 V5 V6 V7 V8 V9 V10**。（「取最小编号」的规则在本图中不产生分叉。）
+按题设“入度为 0 时取最小编号”，得到 **V1 V2 V3 V4 V5 V6 V7 V8 V9 V10**。这不表示图的拓扑序列唯一：移除 V1 后，V2 与 V3 同时入度为 0，必须按规则先取 V2；移除 V5 后，V6、V7、V8 也可同时候选。每条边满足 $u<v$ 只能说明编号升序是一个合法拓扑序列，不能推出唯一性。按前驱集合枚举，本图共有 36 个合法拓扑序列；本问指定的最小编号规则确定其中一个。
 
 ### ve 与 vl
 
@@ -13448,7 +15358,7 @@ PPP 的链路建立与使用分阶段进行（物理层链路接通之后）：
 - 见到点到点链路先想到 /30，并牢记"网络地址一定是块起始地址"。
 - 聚合路由先列出全部子网，再用"能覆盖它们的最长前缀"试算，并检查是否越界覆盖了别人的地址。
 - ARP 问题先画完整转发路径，逐段判断链路类型（PPP / 以太网）。
-- PPP 问题记死三段式：LCP（链路层）→ 认证（可选）→ NCP（网络层），缺哪一段就断在哪一层。`}}],GS=[{id:`mock-exam-8-ds-q01`,questionNumber:1,title:`数据结构与算法基本概念辨析`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 数据结构与算法`,tags:[`逻辑结构`,`存储结构`,`空间复杂度`,`时间复杂度`],summary:`四条关于数据结构与算法的说法，选出正确的一项。`,source:`用户提供的扫描件 docs/book/八.pdf（lion模拟卷8）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（8）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`下列关于数据结构与算法的说法中，正确的是（　）。
+- PPP 问题记死三段式：LCP（链路层）→ 认证（可选）→ NCP（网络层），缺哪一段就断在哪一层。`}}],KS=[{id:`mock-exam-8-ds-q01`,questionNumber:1,title:`数据结构与算法基本概念辨析`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 数据结构与算法`,tags:[`逻辑结构`,`存储结构`,`空间复杂度`,`时间复杂度`],summary:`四条关于数据结构与算法的说法，选出正确的一项。`,source:`用户提供的扫描件 docs/book/八.pdf（lion模拟卷8）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（8）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`下列关于数据结构与算法的说法中，正确的是（　）。
 
 - A．数据的逻辑结构描述数据元素之间的逻辑关系，与具体存储实现无关
 - B．一种逻辑结构只能采用一种存储结构实现
@@ -14997,6 +16907,8 @@ int repeatedMatch(const char *a, const char *b) {
 
 ### (1) 自底向上建堆
 
+![初始数组与自底向上建堆后的二叉树，结点标注编号、胜率和数组下标](mock-exam-8-ds-q42/build.svg)
+
 初始数组（下标 1～10）：[1,52]，[2,48]，[3,55]，[4,45]，[5,50]，[6,58]，[7,42]，[8,60]，[9,47]，[10,53]。
 
 $n=10$，从 $i=\lfloor n/2\rfloor=5$ 起，$i$ 依次取 5、4、3、2、1，对每个 $i$ 做一次下沉（与优先级更高的孩子交换，直到孩子都不比它高）：
@@ -15011,11 +16923,15 @@ $n=10$，从 $i=\lfloor n/2\rfloor=5$ 起，$i$ 依次取 5、4、3、2、1，�
 
 ### (2) 依次插入：新元素放末尾，只与父结点比较上浮
 
-- **插入 [11,62]**：放到 11 号位，父为 5 号位 [1,52]，62>52 → 交换；到 5 号位，父为 2 号位 [10,53]，62>53 → 交换；到 2 号位，父为 1 号位 [8,60]，62>60 → 交换。结果 1 号位 = [11,62]，其余整体下移一位：[11,62]，[8,60]，[6,58]，[2,48]，[10,53]，[3,55]，[7,42]，[4,45]，[9,47]，[5,50]，[1,52]。
+![依次插入三位英雄后，每一步的最大堆结构](mock-exam-8-ds-q42/insert.svg)
+
+- **插入 [11,62]**：放到 11 号位，父为 5 号位 [1,52]，62>52 → 交换；到 5 号位，父为 2 号位 [10,53]，62>53 → 交换；到 2 号位，父为 1 号位 [8,60]，62>60 → 交换。只有路径 11→5→2→1 上的元素发生移动，其他位置不变：[11,62]，[8,60]，[6,58]，[2,48]，[10,53]，[3,55]，[7,42]，[4,45]，[9,47]，[5,50]，[1,52]。
 - **插入 [12,40]**：放到 12 号位，父为 6 号位 [3,55]，40<55，不需要交换，直接停在 12 号位。数组只在末尾多出 [12,40]。
 - **插入 [13,58]**：放到 13 号位，父为 6 号位 [3,55]，58>55 → 交换，[13,58] 升到 6 号位、[3,55] 落到 13 号位；再与 6 号位的父 3 号位 [6,58] 比，胜率同为 58，按规则比编号（6<13），父更大，**不交换**，上浮结束。数组为 [11,62]，[8,60]，[6,58]，[2,48]，[10,53]，[13,58]，[7,42]，[4,45]，[9,47]，[5,50]，[1,52]，[12,40]，[3,55]。
 
 ### (3) 连续 3 次删除堆顶：尾元素补顶后再下沉
+
+![连续删除三个堆顶后，每一步的最大堆结构](mock-exam-8-ds-q42/delete.svg)
 
 第 (2) 问结束时堆含 13 个元素。
 
@@ -15623,7 +17539,7 @@ $$
 - **VLSM**：口诀「需求 = 主机 + 接口，取最小 $2^h-2$，块首必对齐」。
 - **NAPT**：口诀「只改源、目的不动，回程反查定唯一」。
 - **分片**：口诀「上限 = ⌊(MTU−首部)/8⌋×8，偏移 = 字节偏移 ÷8，末片 MF=0」。
-`}}],KS=[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
+`}}],qS=[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
 
 红黑树是一棵二叉搜索树，每个实结点额外记录红或黑的颜色（理论上只需 1 bit，实际内存占用由实现决定），并满足：
 
@@ -17671,7 +19587,7 @@ Kruskal 从五个单点开始，按顺序检查边。两端不在同一集合时
 
 ### 3. 下次遇到同类题怎么办
 
-区分原图边、生成树边、双亲指针三类关系；到 n−1 条提前结束。静态删边可重建，在线增量与在线全动态问题不要混用结论。`}}],qS=[{id:`graph-20261016-topo-kp`,title:`拓扑排序：AOV 网、Kahn 入度法、唯一性判据与矩阵上三角`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 拓扑排序`,tags:[`拓扑排序`,`AOV网`,`入度`,`零入度缓冲区`,`DAG`,`拓扑序唯一性`,`邻接矩阵上三角`,`复杂度`],summary:`掌握 AOV 网、Kahn 入度更新、DAG 判环、拓扑序唯一性与计数、矩阵重排，以及普通队列和最小堆的复杂度差异。`,source:`本站原创 408 风格知识点整理（不是历年真题，也不是任何官方答案）；本组题目、答案与代码均由本站独立编写；答案已用独立 Python 脚本穷举全排列复核，综合题的 C 程序已用 TinyCC 0.9.27 win64 实际编译运行（编译返回码 0），并与穷举参考解逐图比对。基础知识依据 Princeton《Algorithms》4th ed. 在线教材 4.1 无向图 https://algs4.cs.princeton.edu/41graph/ 与 4.2 有向图 https://algs4.cs.princeton.edu/42digraph/`,content:String.raw`## AOV 网与拓扑序列
+区分原图边、生成树边、双亲指针三类关系；到 n−1 条提前结束。静态删边可重建，在线增量与在线全动态问题不要混用结论。`}}],JS=[{id:`graph-20261016-topo-kp`,title:`拓扑排序：AOV 网、Kahn 入度法、唯一性判据与矩阵上三角`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 拓扑排序`,tags:[`拓扑排序`,`AOV网`,`入度`,`零入度缓冲区`,`DAG`,`拓扑序唯一性`,`邻接矩阵上三角`,`复杂度`],summary:`掌握 AOV 网、Kahn 入度更新、DAG 判环、拓扑序唯一性与计数、矩阵重排，以及普通队列和最小堆的复杂度差异。`,source:`本站原创 408 风格知识点整理（不是历年真题，也不是任何官方答案）；本组题目、答案与代码均由本站独立编写；答案已用独立 Python 脚本穷举全排列复核，综合题的 C 程序已用 TinyCC 0.9.27 win64 实际编译运行（编译返回码 0），并与穷举参考解逐图比对。基础知识依据 Princeton《Algorithms》4th ed. 在线教材 4.1 无向图 https://algs4.cs.princeton.edu/41graph/ 与 4.2 有向图 https://algs4.cs.princeton.edu/42digraph/`,content:String.raw`## AOV 网与拓扑序列
 
 - **AOV 网**（Activity On Vertex）：顶点表示活动，有向边 $u \to v$ 表示 u 是 v 的直接前驱，也就是 u 完成后 v 才能开始。
 - **拓扑序列**：把图中全部 $n$ 个顶点排成 $v_1, v_2, \dots, v_n$，使每条边 $(u,v)$ 都满足 u 排在 v 前面。顶点在序列中只出现一次。
@@ -18259,7 +20175,7 @@ DFS 逆后序（对每个未访问顶点 DFS，后序压栈、最后整体逆序
 
 ### 3. 下次遇到同类题
 
-凡是"多状态输出"的算法题，先问一句"这些状态可以同时为真吗？它们的先后层次是什么？"，把优先级最高的判据放在最前面，再写代码。本例的最高优先级就是有环。`}}],JS=[{id:`graph-20261016-bfs-basics`,title:`BFS 队列机制与最短路径：FIFO、入队即标记、dist 与统计口径`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 广度优先搜索`,tags:[`BFS`,`FIFO队列`,`入队即标记`,`dist距离`,`层次性质`,`BFS生成树`,`邻接表复杂度`,`非连通图与不可达`,`无权图与等权图`],summary:`掌握 FIFO、入队标记、层次距离、生成森林、存储结构复杂度，以及无权最短路径与路径条数的区别。`,source:`本站原创 408 风格知识点整理，非历年真题、非官方答案；结论与示例由本站独立程序模拟复核，本页代码片段已用 tcc 实际编译运行验证。基础结论对照 Princeton《Algorithms》在线讲义 4.1 Undirected Graphs https://algs4.cs.princeton.edu/41graph/ 与 4.2 Directed Graphs https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、算法骨架与队列不变式
+凡是"多状态输出"的算法题，先问一句"这些状态可以同时为真吗？它们的先后层次是什么？"，把优先级最高的判据放在最前面，再写代码。本例的最高优先级就是有环。`}}],YS=[{id:`graph-20261016-bfs-basics`,title:`BFS 队列机制与最短路径：FIFO、入队即标记、dist 与统计口径`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 广度优先搜索`,tags:[`BFS`,`FIFO队列`,`入队即标记`,`dist距离`,`层次性质`,`BFS生成树`,`邻接表复杂度`,`非连通图与不可达`,`无权图与等权图`],summary:`掌握 FIFO、入队标记、层次距离、生成森林、存储结构复杂度，以及无权最短路径与路径条数的区别。`,source:`本站原创 408 风格知识点整理，非历年真题、非官方答案；结论与示例由本站独立程序模拟复核，本页代码片段已用 tcc 实际编译运行验证。基础结论对照 Princeton《Algorithms》在线讲义 4.1 Undirected Graphs https://algs4.cs.princeton.edu/41graph/ 与 4.2 Directed Graphs https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、算法骨架与队列不变式
 
 BFS 从源点出发，按“距离源点的边数”由近及远逐层访问顶点，只需要一个**先进先出（FIFO）队列**：每次取出队头顶点，把它尚未发现的邻接点依次放到队尾。三条不变式：
 
@@ -18752,7 +20668,7 @@ Q3  dist 与 cnt 全部一致 ? True 不一致顶点: []
 
 ### 3. 下次遇到同类题
 
-先确定计数口径（是否允许中途重复经过顶点、条数是否取模），再套 BFS 的两个数组。凡是要“数条数”的题，都要在第一次发现与再次发现之间划清界线：**距离只在第一次写，条数在每一次等长时加**。`}}],YS=[{id:`graph-20261016-dfs-kp`,title:`深度优先搜索：递归栈、发现与完成时间、生成森林与回边`,type:`知识点`,date:`2026-10-16`,chapter:`数据结构 · 图 · 深度优先搜索`,tags:[`深度优先搜索`,`递归栈`,`发现时间与完成时间`,`生成森林`,`回边`,`逆后序`],summary:`掌握递归栈、发现与完成次序、生成森林，以及无向图父边和有向图灰点判环的区别。`,source:`本站原创知识点整理，配套三道原创 408 风格练习；结论由本站独立推导并用自建 Python 复核脚本从零实跑核验（递归与显式栈逐项对拍、暴力可达性判环、Kahn 判环、3000 组随机小图）。非历年真题、非官方答案。参考 Princeton《Algorithms》第 4 版 §4.1 https://algs4.cs.princeton.edu/41graph/ 与 §4.2 https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、一次 DFS 访问做了什么
+先确定计数口径（是否允许中途重复经过顶点、条数是否取模），再套 BFS 的两个数组。凡是要“数条数”的题，都要在第一次发现与再次发现之间划清界线：**距离只在第一次写，条数在每一次等长时加**。`}}],XS=[{id:`graph-20261016-dfs-kp`,title:`深度优先搜索：递归栈、发现与完成时间、生成森林与回边`,type:`知识点`,date:`2026-10-16`,chapter:`数据结构 · 图 · 深度优先搜索`,tags:[`深度优先搜索`,`递归栈`,`发现时间与完成时间`,`生成森林`,`回边`,`逆后序`],summary:`掌握递归栈、发现与完成次序、生成森林，以及无向图父边和有向图灰点判环的区别。`,source:`本站原创知识点整理，配套三道原创 408 风格练习；结论由本站独立推导并用自建 Python 复核脚本从零实跑核验（递归与显式栈逐项对拍、暴力可达性判环、Kahn 判环、3000 组随机小图）。非历年真题、非官方答案。参考 Princeton《Algorithms》第 4 版 §4.1 https://algs4.cs.princeton.edu/41graph/ 与 §4.2 https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、一次 DFS 访问做了什么
 
 从顶点 $u$ 出发，先"发现"它，再依次检查它的每个邻接点 $v$：若 $v$ 没被访问过，就立刻递归进入 $v$；等 $v$ 整棵子树处理完，再回到 $u$ 检查下一个邻接点。$u$ 的邻接点全部检查完毕，$u$ 本身才算"完成"。
 
@@ -19253,7 +21169,384 @@ Python 侧的随机对拍：
 
 ### 3. 下次遇到同类题怎么办
 
-记住三步：**三色 + 帧（顶点、边下标）→ 灰点判环 → 无环时完成序倒序输出**。自查三点：栈帧信息是否完整、判环条件是否只认灰点、外层是否扫过所有顶点。`}}],XS=[{id:`graph-traversal-topology-20261016`,title:`图专题 · BFS、DFS 与拓扑排序`,date:`2026-10-16`,summary:`3 张知识点卡、6 道原创单选与 3 道综合算法题；覆盖遍历模拟、最短路径、生成森林、判环、拓扑序计数与唯一性，附完整解析和程序复核。`,materials:[...JS,...YS,...qS]},{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-09`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:KS},{id:`mock-exam-5`,title:`lion模拟卷5`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:HS},{id:`mock-exam-6`,title:`lion模拟卷6`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:US},{id:`mock-exam-7`,title:`lion模拟卷7`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:WS},{id:`mock-exam-8`,title:`lion模拟卷8`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:GS},{id:`mock-exam-1`,title:`lion模拟卷1`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:RS},{id:`mock-exam-2`,title:`lion模拟卷2`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:zS},{id:`mock-exam-3`,title:`lion模拟卷3`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:BS},{id:`mock-exam-4`,title:`lion模拟卷4`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:VS},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:LS},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:IS},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:FS},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:PS}],ZS=String.raw`### 循环队列与指针约定
+记住三步：**三色 + 帧（顶点、边下标）→ 灰点判环 → 无环时完成序倒序输出**。自查三点：栈帧信息是否完整、判环条件是否只认灰点、外层是否扫过所有顶点。`}}],ZS=[{id:`ds-application-major-20261021`,title:`数据结构应用大题专题 · 2009–2026 真题与模拟`,date:`2026-10-21`,summary:`逐年核对 2009–2026 数据结构两道综合题：纳入 17 道非算法设计大题（手算、画结构、性质分析），排除要求写算法的大题；另附 7 道模拟应用大题导航。每题配完整题面、逐问详解、基础知识与 SVG 图解。`,materials:NS},{id:`graph-traversal-topology-20261016`,title:`图专题 · BFS、DFS 与拓扑排序`,date:`2026-10-16`,summary:`3 张知识点卡、6 道原创单选与 3 道综合算法题；覆盖遍历模拟、最短路径、生成森林、判环、拓扑序计数与唯一性，附完整解析和程序复核。`,materials:[...YS,...XS,...JS]},{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-09`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:qS},{id:`mock-exam-5`,title:`lion模拟卷5`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:US},{id:`mock-exam-6`,title:`lion模拟卷6`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:WS},{id:`mock-exam-7`,title:`lion模拟卷7`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:GS},{id:`mock-exam-8`,title:`lion模拟卷8`,date:`2026-10-11`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:KS},{id:`mock-exam-1`,title:`lion模拟卷1`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:zS},{id:`mock-exam-2`,title:`lion模拟卷2`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:BS},{id:`mock-exam-3`,title:`lion模拟卷3`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:VS},{id:`mock-exam-4`,title:`lion模拟卷4`,date:`2026-10-07`,summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:HS},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:RS},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套大题`,date:`2026-09-30`,materials:LS},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套大题`,date:`2026-09-30`,materials:IS},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,materials:FS}],QS={"ds-real-2009-41":String.raw`### 最短路径问题
+
+带权图 $G=(V,E)$，边权 $w(u,v)\ge 0$ 表示两点间距离。最短路径是使路径上边权之和最小的路径。注意“路径”在算法语境里通常指简单路径（顶点不重复），但在带权最短路中，非负权保证最优解一定可以取成简单路径，因为绕环只会增加长度。
+
+### 贪心算法的两个前提
+
+一个贪心策略要正确，通常需要同时满足：
+
+- **贪心选择性质**：每一步的局部最优选择都属于某个全局最优解；
+- **最优子结构**：做出选择后，剩余问题的最优解能与该选择拼成全局最优。
+
+题中方法只比较“当前顶点的一条出边”，既没有全局距离估计，也没有“用新信息修正旧估计”的机制，两个前提都不满足。
+
+### Dijkstra 的三要素
+
+1. 维护 「dist[v]」：源点到 $v$ 的当前最短距离估计，初值为 $\infty$（源点为 0）；
+2. 每步选出**未确定顶点中 dist 最小者** $u$，把它标记为已确定；
+3. **松弛**：对 $u$ 的每条出边 $(u,v)$，若 $dist[u]+w(u,v)<dist[v]$，则更新 $dist[v]$。
+
+正确性依赖“边权非负”：若存在负权边，已确定的顶点仍可能被后来的负边改小，算法失效。
+
+### 常见错误类型
+
+- 把“每步选最近的邻居”当成最短路（本题）；
+- 把 Prim（最小生成树）当成最短路：前者优化全树总权，后者优化两点间距离；
+- 认为非负权就足以让任何贪心正确。`,"ds-real-2010-41":String.raw`### 散列表与装填因子
+
+散列表用散列函数 $H(key)$ 把关键字映射到地址，理想情况下一次查找命中。**装填因子**
+
+$$
+\alpha=\frac{n}{m},
+$$
+
+$n$ 为已存元素数，$m$ 为表长。$\alpha$ 越大冲突越多、查找越慢；$\alpha$ 越小空间浪费越多。本题由 $\alpha=0.7$、$n=7$ 反解出 $m=10$。
+
+### 线性探测再散列
+
+冲突时依次检查 $(H(key)+i)\bmod m$，$i=1,2,\dots$，直到找到空单元。特点是**探测序列连续**、实现简单，但容易产生“堆积”（一次聚集）：一段连续被占的槽会让后续所有映射到其中的关键字都排到这段之后。
+
+### 两个平均查找长度
+
+**查找成功**：对每个已存关键字，数它插入时（等价于查找时）的比较次数，再除以元素个数：
+
+$$
+ASL_{\text{成功}}=\frac{1}{n}\sum_{i=1}^{n}c_i .
+$$
+
+**查找失败**：失败的起点只可能是 $H$ 的值域（本题 0～6），对每个起点沿探测序列数到第一个空槽（含这次比较），再除以**值域大小**：
+
+$$
+ASL_{\text{失败}}=\frac{1}{\,|\text{值域}|\,}\sum_{h\in\text{值域}}d_h .
+$$
+
+易错点：失败的分母不是表长 $m$；遇到空槽的那次比较也要计入。
+
+### 删除与逻辑删除
+
+开放定址法（线性探测、二次探测等）不能直接把被删记录置空，否则会截断探测链，使排在后面的同义词被误判为不存在。正确做法是打“已删除”标记：查找遇到标记继续探测，插入时可复用第一个标记位置。`,"ds-real-2011-41":String.raw`### 特殊矩阵的压缩存储
+
+上三角矩阵（不含对角线）共需 $\dfrac{n(n-1)}{2}$ 个存储单元。按行优先存放时，第 $i$ 行（$0\le i\le n-2$）存放 $A[i][i+1]\dots A[i][n-1]$，共 $n-1-i$ 个元素。元素 $A[i][j]$（$i<j$）在一维数组中的下标为
+
+$$
+k=\sum_{t=0}^{i-1}(n-1-t)+(j-i-1)=\frac{i(2n-i-1)}{2}+j-i-1 .
+$$
+
+下三角元素全部相同，只存一份；对角线元素另按约定处理（本题视为 0）。这类题第一步永远是“数每行存几个”，再按段切分数组。
+
+### AOE 网与关键路径
+
+AOE 网是有向带权无环图：顶点是事件，边是活动，边权是持续时间。
+
+- **事件最早发生时间** $ve(v)=\max_{(u,v)\in E}\{ve(u)+w(u,v)\}$，按拓扑序正推，源点 $ve=0$；
+- **事件最迟发生时间** $vl(u)=\min_{(u,v)\in E}\{vl(v)-w(u,v)\}$，按逆拓扑序倒推，汇点 $vl=ve$；
+- **活动** $a=\langle u,v\rangle$ 的最早开始 $e(a)=ve(u)$，最迟开始 $l(a)=vl(v)-w$；
+- $l(a)=e(a)$ 的活动是**关键活动**，全部由关键活动组成的源点到汇点路径是**关键路径**，其长度等于工期。
+
+关键路径可能不唯一；缩短某个关键活动不一定缩短工期（若它不在所有关键路径上）。`,"ds-real-2012-41":String.raw`### 两路归并的比较次数
+
+两个长度分别为 $m$、$n$ 的有序表归并，每比较一次输出一个元素；当一方耗尽时另一方剩余元素直接接上。最坏情况比较次数为 $m+n-1$，与元素具体取值无关。这就是“使比较次数最小”可以转化为“使合并次序最优”的原因。
+
+### 最佳归并树（哈夫曼思想）
+
+把 $N$ 个表看成 $N$ 个叶子，权值为表长；每次选两个最小的合并，新结点权值为两者之和。总比较次数
+
+$$
+\sum_{\text{内部结点}}w-(N-1)=WPL-(N-1).
+$$
+
+$N$ 固定时最小化总比较次数等价于最小化 WPL，而哈夫曼树正是 WPL 最小的二叉树。实现时用小根堆，时间 $O(N\log N)$。
+
+### 与外部排序的关系
+
+外部排序的 k 路归并同样用“最佳归并树”：把初始归并段长度当权值，每次取 k 个最短的合并。若 $(N-1)\bmod(k-1)\ne 0$，需要补长度 0 的虚段，使每趟都能满 k 路，否则最后一趟路数不足会使 WPL 变大。`,"ds-real-2013-42":String.raw`### 平均查找长度
+
+$$
+ASL=\sum_{i=1}^{n}p_i\,c_i ,
+$$
+
+$p_i$ 是查找第 $i$ 个元素的概率，$c_i$ 是找到它所需的比较次数。等概率时 $p_i=1/n$，退化为“平均比较次数”。
+
+### 查找方法的比较次数由什么决定
+
+- **顺序查找**：$c_i$ 等于元素在表中的位次，$1,2,\dots,n$。因此**按概率降序排列**可使 $\sum p_i c_i$ 最小（排序不等式）。
+- **折半查找**：$c_i$ 只由元素在有序表中的**位置**决定（判定树的深度），与元素的值、与概率都无关；代价是必须有序且能随机访问。
+- **二叉排序树查找**：$c_i$ 等于结点**深度**，树形可自由选择，只要中序序列保持有序。
+
+### 存储结构对可行方法的限制
+
+- 顺序存储：支持随机访问，可折半、可顺序；但折半要求有序，按概率重排后通常不再有序。
+- 链式存储：只能顺序访问，不能折半；可顺序查找，也可组织成二叉排序树做树查找。
+
+### 最优二叉查找树
+
+在“中序次序固定、每个键有查找概率”的前提下，使 $\sum p_i\,depth_i$ 最小的二叉排序树称为最优二叉查找树。本题 4 个元素的最优值为 2.0，可用枚举或动态规划求得。概率分布越不均匀，“把大概率放浅层、小概率放深层”的收益越大。`,"ds-real-2014-42":String.raw`### 网络拓扑的图抽象
+
+路由器与子网都可视为顶点，链路视为无向边，链路费用（metric）视为边权。LSI 两端各记一次同一条链路，说明边是对称的；路由器之间的环（如 R1—R2—R4—R3—R1）说明该结构不是树。
+
+### 邻接表与附加字段
+
+邻接表用“顶点表 + 边链表”存储：空间 $O(n+e)$，适合稀疏图。相比邻接矩阵，邻接表的结点可以附带任意字段（对端 ID、本端 IP、费用、类型标志），因此更适合保存 LSI 这类带属性的边。若边结点要表示两类对端（路由器 / 子网），可用 「flag」 加 「union」，或分成两种结点类型。
+
+### Dijkstra 的执行框架
+
+1. 初始化：「dist[源]=0」，其余为 $\infty$，所有顶点未确定；
+2. 重复 $n$ 次：在未确定顶点中取 「dist」 最小者 $u$ 并标记确定；对 $u$ 的每条出边松弛 「dist[v] = min(dist[v], dist[u]+w)」；
+3. 结束时可得到源点到所有顶点的最短距离，以及最短路径树。
+
+每个顶点只被取出一次，因此“确定顺序”天然按距离非递减排列 —— 这正是 OSPF 计算路由表、题目要求“依次给出”的依据。
+
+### 子网距离的加法
+
+若子网通过一条费用为 $c$ 的链路挂在路由器 $R$ 上，则源点到该子网的距离 = 源点到 $R$ 的距离 + $c$。子网相当于一个只与 $R$ 相邻的叶子顶点，按普通顶点处理即可，不要漏掉这条边的费用。`,"ds-real-2015-42":String.raw`### 邻接矩阵
+
+设图 $G=(V,E)$，$|V|=n$，则邻接矩阵 $A$ 是 $n\times n$ 矩阵，$A[i][j]=1$ 表示存在边 $i\to j$，否则为 0。带权图把 1 换成权值（不存在用 $\infty$）。
+
+- 无向图：$A=A^{T}$，非零元素个数等于 $2|E|$；顶点 $i$ 的度等于第 $i$ 行之和。
+- 有向图：第 $i$ 行之和是出度，第 $i$ 列之和是入度。
+- 空间代价 $O(n^2)$，与边数无关，适合稠密图；判断两点是否相邻是 $O(1)$。
+- 前提：顶点必须编号，且编号方式决定行列顺序；自环会让 $A[i][i]=1$。
+
+### 矩阵幂与路径计数
+
+统一约定：矩阵幂数的是**游走（walk）**—— 允许重复顶点、允许重复边、允许 $i\to k\to i$ 折返；它不等于教材里有时专指的「简单路径（simple path）」。很多教材把这种走法也叫「路径」，答题时写「长度 m 的路径（允许重复经过顶点）」即可避免歧义。
+
+$$
+A^{m}[i][j]=\sum_{k=0}^{n-1} A^{m-1}[i][k]\cdot A[k][j]
+$$
+
+变量含义：$m$ 是路径长度（边的条数，不是顶点数）；$k$ 是倒数第二个顶点。
+
+**适用条件：** 简单图（无重边）时元素值才直接等于条数；有重边时把 $A[i][j]$ 记成重数即可，结论不变。
+
+### 路径、简单路径与回路
+
+- 游走（walk）：顶点序列 $v_0,v_1,\dots,v_m$，相邻顶点间有边，允许重复顶点与边；长度指边的条数 $m$。不少教材直接把这叫「路径」，而把不重复顶点的情形叫「简单路径」。
+- 简单路径：顶点互不重复。长度为 2 的路径允许折返 $i\to k\to i$，所以它不是简单路径。
+- 回路：$v_0=v_m$ 的路径。$A^m[i][i]>0$ 表示存在长度为 $m$ 的回路。
+
+### 复杂度口径
+
+朴素矩阵乘法求 $A^m$ 需 $O(mn^3)$；只做布尔传递闭包用 Warshall，$O(n^3)$。考试中「$A^2$ 怎么算」按三次循环的逐元素求和书写即可。`,"ds-real-2016-42":String.raw`### 树的基本性质
+
+含 $n$ 个结点的树有且仅有 $n-1$ 条边；所有结点的度数之和等于 $2(n-1)$。这两个等式是树计数的全部出发点。
+
+- **结点的度**：结点拥有的孩子个数（在一般树中）；叶结点度为 0。
+- **高度（深度）**：本题按结点层数计，单结点树 $h=1$；有的教材按边数计，此时单结点树高度为 0。做题必须先看题目定义，两边差 1。
+- **第 $j$ 层结点数上限**：$k^{j-1}$（$k$ 叉树）。
+
+### 正则 k 叉树与满 k 叉树
+
+- **正则 k 叉树**：每个非叶结点恰好有 $k$ 个孩子，$k\ge2$。结论：叶结点 $n_0=(k-1)m+1$，$m$ 为非叶结点数。
+- **满 k 叉树**：高度为 $h$ 且第 1 至 $h-1$ 层全为非叶结点的正则 k 叉树，结点数 $\frac{k^h-1}{k-1}$，是高度 $h$ 下的最大值；叶结点 $k^{h-1}$。
+
+$$
+n=m+n_0,\qquad n-1=mk\ \Longrightarrow\ n_0=(k-1)m+1
+$$
+
+变量含义：$n$ 为结点总数，$m$ 为非叶结点数，$n_0$ 为叶结点数，$k$ 为孩子数。
+
+**适用条件**：必须是「恰好 $k$ 个孩子」。若改成「至少 $k$ 个」，等式 $e=mk$ 不成立，整个推导失效。
+
+### 高度与结点数的关系
+
+高度为 $h$ 的 $k$ 叉树：$\ 1+(h-1)k\ \le\ n\ \le\ \frac{k^{h}-1}{k-1}$。
+
+下界来自「前 $h-1$ 层每层至少 1 个非叶结点 ⇒ 第 2 至 $h$ 层每层至少 $k$ 个结点」。
+
+### 常见变形
+
+- 已知叶结点数求结点总数：$n=\frac{kn_0-1}{k-1}$，且必须 $n_0\equiv1\pmod{k-1}$。
+- 二叉树专用：$n_0=n_2+1$（$n_2$ 为度为 2 的结点数），是 $k=2$ 的特例。
+- 完全二叉树：结点按层序编号连续，$n_0$ 与 $n_1$ 的关系按 $n$ 的奇偶分类讨论，与正则 k 叉树不是同一概念，不要混用。`,"ds-real-2017-42":String.raw`### 最小生成树（MST）
+
+带权连通无向图 $G=(V,E)$ 的生成树是含全部 $n$ 个顶点、恰好 $n-1$ 条边的连通子图；边权之和最小的生成树称为最小生成树。
+
+$$
+W(T)=\sum_{e\in T} w(e)\ \longrightarrow\ \min
+$$
+
+**前提**：图必须连通且无向（有向图对应的是最小树形图，另一套算法）。边权可以为负，结论不变；若边权全为正，MST 也是「连接所有点的最省方案」。
+
+### Prim 算法
+
+从一个顶点出发，维护已选集合 $S$；每步在「一端在 $S$、一端不在 $S$」的边中取权最小者，把新顶点并入 $S$。重复 $n-1$ 次。
+
+- 朴素实现 $O(n^2)$，与边数无关，适合稠密图；用堆优化为 $O(E\log V)$。
+- 关键细节：**候选边必须跨割**。两端都在 $S$ 内会成环，两端都在 $S$ 外则暂时不合法。
+- 从不同顶点出发可能选出不同的边序，但代价相同。
+
+### Kruskal 算法
+
+把所有边按权升序排列，依次取边，若两端尚未连通（用并查集判断）就加入，直到取满 $n-1$ 条。复杂度 $O(E\log E)$，适合稀疏图。
+
+### 唯一性
+
+- **充分条件**：所有边权互不相同 ⇒ MST 唯一；更弱一些，任意环上的边权互不相同也够。
+- **充要条件**：$T$ 是唯一 MST ⟺ 对每条非树边 $e=(u,v)$，$w(e)$ 严格大于 $T$ 中 $u$ 到 $v$ 路径上的最大边权。
+- **直观判据**：若存在一个环，环上有两条（或以上）并列的最大权边，并且它们可以互换而不影响其他部分，才会出现多棵 MST。
+
+### 与最短路径的区别
+
+MST 求「总代价最小」，Dijkstra 求「到源点距离最小」。同一个图两者的结果通常不同：MST 里两点的路径一般不是最短路径。答题时不要把 Prim 与 Dijkstra 的数组含义混写。`,"ds-real-2018-42":String.raw`### 图的存储结构
+
+- **邻接矩阵**：$n\times n$ 数组，空间 $O(n^2)$，判断相邻 $O(1)$，适合稠密图；Prim 的朴素实现靠它做到 $O(n^2)$。
+- **邻接表**：每个顶点一条链表存出边，空间 $O(n+e)$，适合稀疏图；Kruskal 需要把所有边排序，常配合边集数组使用。
+- 无向图的邻接矩阵对称，邻接表中每条边存两次。
+
+### 最小生成树的应用建模
+
+把「连接所有点、总代价最小」抽象为 MST：顶点 = 城市，边 = 可铺设线路，权 = 费用。要求**连通**，否则问题无解（森林只覆盖部分顶点）。
+
+$$
+\min\ \sum_{e\in T} w(e),\qquad |T|=n-1,\ T\ \text{连通}
+$$
+
+**多解条件**：当图中存在权值相同、且交换后仍能保持树形的边时，MST 不唯一，题目问「所有方案」时必须逐一列出。判据是：两棵 MST 的对称差可分解为若干「权值相同边的交换环」。
+
+### IP 分组的 TTL
+
+TTL（Time To Live，生存时间）是 IP 首部中的 8 位字段，初值由源主机设置（常见 64、128）。
+
+- **每经过一个路由器，TTL 减 1**；若减到 0，路由器丢弃该分组并向源主机发送 ICMP 超时报文。
+- 作用：防止路由环路导致分组在网中无限循环。
+- 判断能否送达：路径上经过的路由器数（含目的端路由器）不能超过 TTL 能支撑的跳数。
+
+**常见口径差异**：有的教材按「链路条数」计跳数，有的按「路由器个数」计。两者相差 1，答题时写明口径即可，结论通常一致。
+
+### 与最短路的关系
+
+MST 保证总费用最小，不保证任意两点间路径最短。若题目追加「两点间最多中转 $k$ 个路由器」这类约束，就不再是 MST 问题，需要考虑直径受限生成树或直接求最短路。`,"ds-real-2019-42":String.raw`### 队列的基本概念
+
+队列是只允许在队尾插入、队头删除的线性表，先进先出（FIFO）。基本操作：入队（enqueue）、出队（dequeue）、判空、判满、取队头。
+
+**存储方式两类**：顺序存储（循环数组）与链式存储（链队列）。选择依据是「是否需要在运行中扩容」与「是否要求严格 $O(1)$」。
+
+### 循环队列的三种判空判满方案
+
+设数组长度 $N$，front 指向队头元素、rear 指向下次写入位置：
+
+- **预留一个空位**：队空 $front=rear$，队满 $(rear+1)\bmod N=front$，最多存 $N-1$ 个。
+- **增加 count**：队空 $count=0$，队满 $count=N$，可存满 $N$ 个。
+- **增加 tag**：$front=rear$ 时用 tag 区分最近一次是插入还是删除。
+
+$$
+n=(rear-front+N)\bmod N
+$$
+
+变量含义：$n$ 为队内元素个数，$N$ 为数组容量。公式仅在「预留一个空位」方案下与判满条件自洽。
+
+### 链队列
+
+带头结点的单链表，front 指向头结点（队头元素的前驱），rear 指向队尾结点。入队 $O(1)$，出队 $O(1)$，不会「满」（除非内存耗尽）。
+
+**只增不减的变体**：把链表首尾相接成环，并让 front 指向一个「空位」结点，出队时 front 只前移不释放结点，于是空间被循环复用、总量只增不减。判空 $front=rear$，判满 $rear\rightarrow next=front$。
+
+### 复杂度口径
+
+- 「$O(1)$」指最坏情况的常数上界；
+- 「均摊 $O(1)$」允许个别操作 $O(n)$（如顺序表扩容），题目若强调「始终保持」就不能用均摊方案。`,"ds-real-2020-42":String.raw`### 前缀编码
+
+若字符集 $C$ 的编码满足：任一字符的编码都不是另一个字符编码的前缀，则称该编码为前缀编码（prefix code）。
+
+**作用**：使 0/1 串的切分唯一，从而可无歧义地译码。定长编码是前缀编码的特例。
+
+### 二叉树（字典树）表示
+
+用一棵二叉树表示编码表：
+
+- 左分支记 0，右分支记 1；
+- 字符只放在叶结点，根到叶的路径即编码；
+- 前缀特性 ⇔ 字符结点没有孩子（都是叶结点）。
+
+**关键对应**：字符个数 = 叶结点数；最长码长 $L$ = 层数上限减 1（按层数计树高 ≤ $L+1$，按边数计 ≤ $L$）；平均码长 = $\sum p_i \cdot |code_i|$（$p_i$ 为字符频率）。
+
+$$
+\bar L=\sum_{i=1}^{n} p_i\,\ell_i,\qquad \ell_i=\text{第 } i \text{ 个字符的码长}
+$$
+
+### 哈夫曼树与哈夫曼编码
+
+把 $n$ 个字符看成权值为频率的叶结点，反复取权最小的两棵子树合并为新结点，直到只剩一棵树。得到的树带权路径长度 $\mathrm{WPL}=\sum w_i\ell_i$ 最小，因此平均码长最短。
+
+**性质**：
+
+- 哈夫曼树中字符全在叶上 ⇒ 哈夫曼编码必为前缀码；
+- 每次合并产生一个新的内部结点，故 $n$ 个字符的哈夫曼树共有 $2n-1$ 个结点；
+- 权值相同的结点可能产生不同的树形，因此哈夫曼编码不唯一，但 WPL 唯一。
+
+### 译码与判定
+
+- **译码**：从根逐位下行，落到叶结点即输出字符并回根；走到空指针说明该串非法。时间 $O(\text{串长})$。
+- **判定前缀特性**：把每条编码插入字典树；出现「途经字符结点」或「字符结点仍有孩子」或「编码重复」即不满足；全部插完无冲突则满足。时间 $O(\sum |code_i|)$。
+
+### 常见混淆
+
+- 前缀码 vs 唯一可译码：前缀码一定是唯一可译码，反之不成立（如 A=0、B=01、C=10 不是前缀码，但某些串仍可唯一译码）。考试默认考前缀码。
+- 定长码 vs 不等长码：定长码译码不需要树，但不能压缩；哈夫曼码是不等长前缀码。`,"ds-real-2021-42":String.raw`**比较计数排序**（comparison counting sort）：不移动元素，而是先数出每个元素“比它小的有多少个”，把这个数当作最终下标，再一次性写入结果数组。
+
+- 变量：a 为待排数组（长度 n）；b 为结果数组；count[i] 记录 a[i] 的最终位次；循环变量 i < j 保证每对元素只比较一次。
+- 核心公式：count[i] = |{ j : a[j] < a[i] }|（严格小于版本）；若把条件写成 a[i] <= a[j]，则为 count[i] = |{ j : a[j] < a[i] }| + |{ j < i : a[j] = a[i] }|，后者正是稳定位次。
+- 比较次数：外层 n−1 轮、内层长度依次为 n−1, n−2, …, 1，合计 n(n−1)/2，与输入无关。
+- 移动次数：每个元素只写一次，共 n 次；另有 n 个计数器的额外空间，空间复杂度 O(n)。
+- 位次唯一性：只用严格小于时，相等元素会算出相同位次并互相覆盖——这是原程序不稳定的根源，也是“有重复关键字时必须处理相等”的通用教训。
+
+**稳定性**：若排序前后关键字相等的元素相对次序不变，则称该排序算法稳定。判断稳定性不能看结果数值，必须追踪相等元素来自原数组的哪个下标。
+
+**与计数排序的区别**：计数排序（counting sort）用关键字值直接当下标统计频次，要求关键字是范围有限的整数，时间 O(n+k)；比较计数排序只用比较结果定位次，关键字可以是任意可比较类型，但比较次数是 n(n−1)/2。两者都靠“算位次”而不是“反复交换”。
+
+**适用条件**：元素可两两比较；允许 O(n) 辅助空间；需要一次性得到稳定结果时必须让相等元素按原下标定序。`,"ds-real-2023-42":String.raw`**置换-选择排序**（replacement selection）：外部排序第一阶段生成初始归并段的方法。工作区容量为 m，把它组织成小根堆，反复取出堆顶输出，再用文件中的下一个记录补位，从而让一个归并段的长度超过 m。
+
+- 变量：m 为工作区容量（也是初始读入的记录数）；n 为文件记录总数；last 为刚输出的关键字。
+- 选择规则：在未冻结记录中取“关键字不小于 last 的最小者”输出；补入的新记录若小于 last，立即冻结。
+- 换段条件：工作区里没有任何未冻结记录（全部小于 last）时，本段结束，所有记录解冻，last 重置为 −∞。
+- 段长结论：单段长度下界 m、上界 n；输入随机时平均段长约 2m（教材结论）。段内严格递增，段间无序。
+- 与“内部排序后写盘”的区别：内部排序每次固定产生 m 个记录的段，共约 n/m 段；置换-选择利用输入中的局部有序性，段数更少、平均段更长，后续归并趟数更少。
+
+**为什么用堆**：m 个候选里反复取最小，用堆可把每次选择降到 O(log m)，总代价 O(n log m)；教材用胜者树描述同一过程，二者等价。
+
+**冻结的含义**：关键字小于 last 的记录如果强行放进本段就会破坏段内递增，所以只能留到下一段。冻结不是丢弃，解冻后仍要参与后续归并。
+
+**适用条件**：文件存放在外存、记录数远大于内存容量；关键字可比较；能顺序读取文件并在工作区随机访问。初始段生成后，需配合多路归并（常与败者树、最佳归并树一起考）。`,"ds-real-2024-42":String.raw`**散列表**（hash table）：用散列函数把关键字直接映射到存储地址，使查找的期望时间与表长无关。本题用**开放定址法**处理冲突——冲突时就地另找空槽，所有元素都存表内，不用链表。
+
+- 变量：HT 为散列表（长度 11）；key 为关键字；H₀ = H(key) 为初始散列地址；k 为冲突次数；$H_k$ 为第 k 次冲突时探测的地址。
+- 散列函数：H(key) = (key × 3) mod 11。乘 3 是为了把关键字打散，mod 11 保证地址落在 0..10。
+- 探查公式（二次探查 / 平方探测）：$H_k=(H_0+k^2)\bmod 11$，增量依次为 0、1、4、9、16…，即 1²、2²、3²…，而不是 1、2、3。也有教材写成 $H_k=(H_0\pm k^2)\bmod m$ 的交替形式，本题只取加号。
+- 装填因子：α = 表中已存元素个数 / 表长。α 越大冲突越多，开放定址要求 α < 1。本题 α = 7/11。
+- 查找长度：成功查找的比较次数 = 探测路径上已占槽的个数（含命中那次）；失败查找的比较次数 = 路径上已占槽的个数，失败地址 = 第一个空槽的地址。
+- 判定终止：探查到空槽即可判定“不存在”，这是开放定址能停下来的依据；链地址法则要走到链尾。
+
+**二次探查的覆盖性**：只取 +k² 时，k² 在 mod m 下只有约 (m+1)/2 种不同余数，所以从任一初始地址出发可达的地址数上限约为 (m+1)/2（m = 11 时是 6 个：0、1、3、4、5、9），并不是整张表。这意味着“表未满就一定插得进去”对 +k² 版本不成立，探测链可能绕开所有空槽。要保证遍历全表，需要改用交替的 ±k²，并且表长取素数、满足 m ≡ 3 (mod 4)。
+
+**适用条件**：关键字可散列；表长最好取素数；装填因子不宜过高（一般控制在 0.75 以下）；删除元素需用惰性删除标记，否则会截断探查链。`,"ds-real-2025-42":String.raw`**AOE 网**（Activity On Edge network）：用带权有向边表示活动、用顶点表示事件的工程网络。边的权是活动持续时间，源点表示工程开始，汇点表示工程结束。
+
+- 顶点最早发生时间 ve(v)：从源点到 v 的最长路径长度，按拓扑序递推 ve(v) = max{ ve(u) + w(u,v) }，ve(源点) = 0。
+- 顶点最晚发生时间 vl(v)：在不推迟工期的前提下 v 允许的最晚时刻，按逆拓扑序递推 vl(v) = min{ vl(w) − w(v,w) }，vl(汇点) = 工期。
+- 工期 T = ve(汇点) = vl(汇点)。
+- 活动最早开始 e(a) = ve(起点)；活动最晚开始 l(a) = vl(终点) − 持续时间(a)。
+- 时间余量（松弛时间）d(a) = l(a) − e(a)。d = 0 的活动是关键活动，由关键活动组成的从源点到汇点的路径是关键路径。
+- 关键路径长度等于工期，且一个 AOE 网可以有多条关键路径。
+
+**常见误区**：①把 ve 当最短路（应为最长路，因为所有前驱都要完成）；②用“两端顶点都在关键路径上”判断关键活动（必要不充分，反例见 2025 年第 42 题的 j）；③余量漏减持续时间；④多条关键路径时只压缩其中一条上的活动，工期不会变。
+
+**“同时进行”的判定**：活动 a 可以在区间 [ve(起点), vl(终点) − w] 内的任意时刻开始，所以它的可执行窗口是 [ve(起点), vl(终点)]。两个活动的窗口有正长度交集，才可能被安排在时间上重叠。
+
+**适用条件**：有向无环图；只有一个源点和一个汇点（多源多汇需加虚边）；活动持续时间确定。求关键路径的前提是拓扑排序可行（无环），因此这类题常与拓扑排序一起考。`,"ds-real-2026-42":String.raw`**栈**：只允许在同一端（栈顶）插入和删除的线性表，后进先出（LIFO）。本题的输入次序固定为 1, 2, …, n，允许入栈与出栈任意交错，问哪些输出排列可以实现。
+
+- 变量：n 为元素个数；P₁…Pₙ 为输出序列；$i<j<k$ 为三个输出位置；$C_n$ 为第 n 个卡特兰数。
+- 判定方法（模拟）：维护一个栈，按 1..n 依次压栈，每压一个就尽量弹出与当前输出序列匹配的元素；若某个输出元素既不在栈顶、也无法再压入，则不可行。时间 O(n)。
+- 判定方法（模式）：输出序列不可行，当且仅当存在 $i<j<k$ 使 $P_j<P_k<P_i$（312 模式）。这是“不含 312 模式”类的模式避免结论，等价于栈可实现性。
+- 计数公式：合法输出序列总数为卡特兰数 $C_n=\dfrac{1}{n+1}\dbinom{2n}{n}=\dfrac{(2n)!}{n!(n+1)!}$，满足递推 $C_n=\dfrac{2(2n-1)}{n+1}C_{n-1}$。
+- 首元素计数：以 1 开头、以 2 开头的序列数都等于 $C_{n-1}$；以 m 开头的一般不再是 $C_{n-1}$（n = 5 时以 3 开头是 9 个）。
+- 前几个值：C₁=1、C₂=2、C₃=5、C₄=14、C₅=42、C₆=132。
+
+**直觉解释**：若某元素 x 已经入栈而未被弹出，则所有比 x 晚入栈、且小于 x 的元素都会压在它上面，必须先于 x 输出。312 模式正是“大的先出、最小的垫底、中间值夹在中间”，栈无法实现。
+
+**同一模型的其它外壳**：括号匹配（n 对括号的合法序列数也是 $C_n$）、二叉树形态计数（n 个结点的不同二叉树个数）、n 个元素进栈的出栈序列数，三者是同一个卡特兰结构。
+
+**适用条件**：入栈次序固定且元素互不相同；出栈只能在栈顶；允许入栈与出栈任意交错（若限制“不允许连续三次出栈”等附加条件，计数会改变，不能直接套 $C_n$）。`},$S=String.raw`### 循环队列与指针约定
 
 循环队列把长度为 $N$ 的数组首尾相接。**这里约定 front 指向队头元素，rear 指向下一次入队的写入位置**；若题目采用别的指针含义，公式也要重新推导。下标范围为 $0$ 至 $N-1$，推进一步都要对 $N$ 取模。
 
@@ -19322,7 +21615,7 @@ $$
 f_{\text{new}}=(f+1)\bmod N.
 $$
 
-**预留空位法的容量是 $N-1$；count 和 tag 法的容量是 $N$。三种方案的判满条件不能互相套用。**`,QS=String.raw`### 栈与后进先出
+**预留空位法的容量是 $N-1$；count 和 tag 法的容量是 $N$。三种方案的判满条件不能互相套用。**`,eC=String.raw`### 栈与后进先出
 
 栈只允许在一端（栈顶）插入和删除，后进先出（LIFO）。它描述的是访问顺序，与是否连续存储无关。
 
@@ -19461,7 +21754,7 @@ $$
 
 处理完第一个 \* 时栈为 6 5 40，栈顶是 40、次栈顶是 5；最终结果为 **288**，选 B。
 
-**减号与除号的次序**：先出栈的是右操作数。若栈顶为 2、次栈顶为 6，遇到 / 必须算 $6/2=3$ 而不是 $2/6$；− 同理。本例只有加法与乘法，不受影响，但同源题型常在这里设错。`,$S=String.raw`### 三种遍历序列
+**减号与除号的次序**：先出栈的是右操作数。若栈顶为 2、次栈顶为 6，遇到 / 必须算 $6/2=3$ 而不是 $2/6$；− 同理。本例只有加法与乘法，不受影响，但同源题型常在这里设错。`,tC=String.raw`### 三种遍历序列
 
 - 前序：根、左、右，序列首元素是根；
 - 中序：左、根、右；
@@ -19495,7 +21788,7 @@ $$
 
 ### 核对方法
 
-每轮切分都检查两段包含的元素**多重集合（multiset）相同**——关键字可能重复，只比较集合会把数量不同也当成相等；重建后再遍历一次，确认序列吻合。`,eC=String.raw`### 构造哈夫曼树
+每轮切分都检查两段包含的元素**多重集合（multiset）相同**——关键字可能重复，只比较集合会把数量不同也当成相等；重建后再遍历一次，确认序列吻合。`,nC=String.raw`### 构造哈夫曼树
 
 - 每次取出权值最小的两棵树合并，新结点权值为两棵子树权值之和；
 - n 个叶子需要合并 n-1 次，得到 n-1 个内部结点。
@@ -19523,7 +21816,7 @@ $$
 
 ### 与判定树的关系
 
-哈夫曼树是带权路径长度最小的二叉树，也用在判定问题里。**这里的"最优判定树"指叶子不必按关键字有序排列的二叉判定情形**，也就是只要求加权路径长度最小；普通查找判定树还要求保持关键字有序，不能把哈夫曼树的结论直接套到那种有序判定树上。`,tC=String.raw`### 朴素匹配的不足
+哈夫曼树是带权路径长度最小的二叉树，也用在判定问题里。**这里的"最优判定树"指叶子不必按关键字有序排列的二叉判定情形**，也就是只要求加权路径长度最小；普通查找判定树还要求保持关键字有序，不能把哈夫曼树的结论直接套到那种有序判定树上。`,rC=String.raw`### 朴素匹配的不足
 
 模式串在失配后若整体只右移一位，会丢弃已经匹配过的信息。KMP 利用"已匹配部分的最长相等真前后缀"，一次跳过若干位置。
 
@@ -19548,7 +21841,7 @@ $$
 ### 边界
 
 - 前缀与后缀必须"真"（不能取整个串），否则会得到错误的最长长度；
-- nextval 是进一步优化：当 T[j] 与 T[next[j]] 相同时可继续压缩回退位置。`,nC=String.raw`### 邻接矩阵
+- nextval 是进一步优化：当 T[j] 与 T[next[j]] 相同时可继续压缩回退位置。`,iC=String.raw`### 邻接矩阵
 
 - 用 n 乘 n 数组 A，A[i][j] 表示边或弧 (i,j)（带权时存权值，0 或无穷表示无边）；
 - 空间 O(n^2)，与边数无关；
@@ -19574,7 +21867,7 @@ $$
 
 - 稀疏图且主要操作是查邻边、出边：选邻接表；
 - 稠密图或需要 O(1) 判断两点是否相邻：选邻接矩阵；
-- **十字链表对应有向图、邻接多重表对应无向图，不能对调**；顺序表本身没有出边语义。`,rC=String.raw`### 术语
+- **十字链表对应有向图、邻接多重表对应无向图，不能对调**；顺序表本身没有出边语义。`,aC=String.raw`### 术语
 
 AOE 网是带权有向图：顶点表示事件，有向边表示活动，边权表示活动持续时间。入度为 0 的顶点是源点（工程开始），出度为 0 的顶点是汇点（工程结束）。
 
@@ -19628,7 +21921,7 @@ $$
 
 ### 常见误区
 
-不要用"事件的最迟减最早"代替一条活动的余量；活动余量要分别取起点的事件最早时间和终点的事件最迟时间再减去边权。`,iC=String.raw`### 二叉搜索树（BST）
+不要用"事件的最迟减最早"代替一条活动的余量；活动余量要分别取起点的事件最早时间和终点的事件最迟时间再减去边权。`,oC=String.raw`### 二叉搜索树（BST）
 
 左子树所有关键字小于根、右子树所有关键字大于根；中序遍历得到递增序列。查找、插入、删除的时间与树高成正比：**平均 O(log n) 需要"输入随机或树形随机"的假设**；插入有序序列会退化成单链，最坏 O(n)。结点只需数据域和左右指针。
 
@@ -19655,7 +21948,7 @@ $$
 - 三者中序遍历都有序，但只有 AVL 与红黑树保证高度 O(log n)；
 - AVL 与红黑树平衡条件不同：AVL 更严格（高度差不超过 1），红黑树是近似平衡；
 - 两者最坏查找都是 O(log n)，只是常数因子不同，**不能断言红黑树查询一定优于 AVL**；
-- 一棵合法的红黑树不一定是 AVL 树。`,aC=String.raw`### 先区分搜索顺序与颜色约束
+- 一棵合法的红黑树不一定是 AVL 树。`,sC=String.raw`### 先区分搜索顺序与颜色约束
 
 红黑树首先是**二叉搜索树（BST）**：任一结点的左子树关键字都小于它，右子树关键字都大于它。只检查相邻父子大小不够；检查整棵树的中序序列是否严格递增，是另一种等价办法。本专题约定关键字互异。
 
@@ -19683,7 +21976,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 
 ### 数颜色不要混入 NIL
 
-设 B、R 分别为黑、红实结点数。每个红实结点都有唯一的黑父结点，而一个黑父最多带两个红孩子，所以 R≤2B；**不能反推 R≤B**。NIL 不计入 n、B、R。`,oC=String.raw`### 修复的对象
+设 B、R 分别为黑、红实结点数。每个红实结点都有唯一的黑父结点，而一个黑父最多带两个红孩子，所以 R≤2B；**不能反推 R≤B**。NIL 不计入 n、B、R。`,cC=String.raw`### 修复的对象
 
 旋转保留 BST 中序顺序，只调整局部父子关系。新结点通常先按 BST 插入并标红，以免直接增加某条路径的黑高；若产生红父红子，再修复。以下采用一般红黑树的 CLRS 风格自底向上算法，不是左倾红黑树的另一套规则。
 
@@ -19712,7 +22005,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 3. **兄弟黑、近侄红、远侄黑**：近侄染黑、兄弟染红，转兄弟，把它化成情况 4；不能漏掉下一步。
 4. **兄弟黑、远侄红**：兄弟取父原颜色，父和远侄染黑，向 x 的反方向转父，缺黑消除。
 
-按上述标准算法一次删除至多 3 次旋转，情况 2 的变色却可能多次上移。**常数次旋转不意味着一次删除只需常数时间**；查找、后继定位和修复的最坏总时间仍为 O(log n)。`,sC=String.raw`### 开放定址法
+按上述标准算法一次删除至多 3 次旋转，情况 2 的变色却可能多次上移。**常数次旋转不意味着一次删除只需常数时间**；查找、后继定位和修复的最坏总时间仍为 O(log n)。`,lC=String.raw`### 开放定址法
 
 发生冲突时按一个探测序列在表内寻找下一个空槽。表长记 m，装填因子=已存关键字数除以 m。
 
@@ -19738,7 +22031,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 
 ### 逻辑删除（DELETED）
 
-**逻辑删除的槽不是空槽**：查找成功或失败遇到它都要继续往后探测，只有遇到从未使用过的空槽才停。因此删除标记会拉长失败查找长度，也影响成功查找的探测次数。表末尾要绕回表头继续数。`,cC=String.raw`### 稳定性的含义与判定
+**逻辑删除的槽不是空槽**：查找成功或失败遇到它都要继续往后探测，只有遇到从未使用过的空槽才停。因此删除标记会拉长失败查找长度，也影响成功查找的探测次数。表末尾要绕回表头继续数。`,uC=String.raw`### 稳定性的含义与判定
 
 排序前后，关键字相等的记录如果相对次序保持不变，则算法稳定；否则不稳定。判定方法：给相等关键字加不同标记，按该算法模拟一趟或若干趟，观察标记是否被交换跨越。
 
@@ -19762,7 +22055,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 - **从优先级最低的关键字开始，逐趟排到优先级最高的关键字，且每趟都用稳定排序**；
 - 稳定排序会保留上一趟已经排好的次序，处理更高优先级关键字时，相等记录内部仍是上一趟的结果，于是整体等价于一次多关键字比较；
 - 若某趟算法本身不稳定，可以改用在语义上稳定的等价实现，使该趟不破坏已排好的次序；直接"比较时同时带上全部关键字"做一次排序，也是另一种正确做法；
-- 升序或降序只改变每趟内部的比较方向，不改变关键字的先后处理次序。`,lC=String.raw`### 堆的定义
+- 升序或降序只改变每趟内部的比较方向，不改变关键字的先后处理次序。`,dC=String.raw`### 堆的定义
 
 大根堆中每个结点不小于其孩子，小根堆反之。逻辑结构是完全二叉树，通常顺序存储；按下标从 1 起算时，结点 i 的孩子是 2i 与 2i+1，父结点是 i 除以 2 下取整。
 
@@ -19784,7 +22077,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 
 从 m 个元素中选相关度最高的 n 个（n 远小于 m）：维护一个大小为 n 的小根堆，堆顶是当前入选者里最小的。顺序扫描每个元素，比堆顶大就替换堆顶并调整，否则丢弃。总代价 O(m log(n+1))（n=1 时也退化为 O(m)，与一次线性扫描同阶）。
 
-堆顶恰好是"当前候选中最差的"，所以能 O(1) 判断是否需要替换；若取最小的 n 个则改用大根堆。若最终还要求有序输出，需要另外对 n 个候选排序。`,uC=String.raw`### 从循环轮数到数量级
+堆顶恰好是"当前候选中最差的"，所以能 O(1) 判断是否需要替换；若取最小的 n 个则改用大根堆。若最终还要求有序输出，需要另外对 n 个候选排序。`,fC=String.raw`### 从循环轮数到数量级
 
 一层循环不等于线性。若循环的累计量随变量变化，应求"累计量达到输入规模时需要多少轮"，而不是数语句条数。
 
@@ -19807,7 +22100,7 @@ $$
 
 ### 边界处理
 
-常数系数、低阶项、循环内常数次操作都不改变渐近阶；只保留主导项。判断数量级时把循环次数写成关于 n 的式子，再取主导项。`,dC=String.raw`### 结点的度与树的度
+常数系数、低阶项、循环内常数次操作都不改变渐近阶；只保留主导项。判断数量级时把循环次数写成关于 n 的式子，再取主导项。`,pC=String.raw`### 结点的度与树的度
 
 结点的度等于它的孩子（子树）个数；树的度等于所有结点度的最大值。n 个结点的树必有 n-1 条边（除根外每个结点对应一条边），边数也等于各结点度数之和。
 
@@ -19824,7 +22117,7 @@ $$
 - **正则（严格）m 叉树**：只要求每个内部结点（非叶结点）恰有 m 个孩子，对叶子深度没有要求；
 - **满 m 叉树**：在教材约定里要求更严，除了每个内部结点恰有 m 个孩子，还要求所有叶子在同一层（等价于每层都排满）。
 
-因此"每个非叶结点都恰有 m 个孩子"只是正则 m 叉树，并不等同于满 m 叉树；只有再满足叶子同层才是满 m 叉树。二叉树中不存在度大于 2 的结点。`,fC=String.raw`### 定义与平衡因子
+因此"每个非叶结点都恰有 m 个孩子"只是正则 m 叉树，并不等同于满 m 叉树；只有再满足叶子同层才是满 m 叉树。二叉树中不存在度大于 2 的结点。`,mC=String.raw`### 定义与平衡因子
 
 AVL 树任意结点左右子树高度差不超过 1。平衡因子常定义为左子树高减右子树高，取值范围负一、零、正一；**有些教材用相反定义，按题面约定**。
 
@@ -19851,7 +22144,7 @@ $$
 
 ### 判断是否平衡
 
-一次后序遍历即可：空树高度 0、视为平衡；非空结点高度取左右子树高度的较大者加一，平衡当且仅当左右都平衡且高度差绝对值不超过 1。每个结点只处理一次，时间 O(n)，递归栈空间 O(h)。`,pC=String.raw`### 矩阵元素的含义
+一次后序遍历即可：空树高度 0、视为平衡；非空结点高度取左右子树高度的较大者加一，平衡当且仅当左右都平衡且高度差绝对值不超过 1。每个结点只处理一次，时间 O(n)，递归栈空间 O(h)。`,hC=String.raw`### 矩阵元素的含义
 
 A[i][j] 取 1（或权值）表示有弧 i 到 j，取 0（或无穷）表示无边。带权图把权值直接存入矩阵。
 
@@ -19880,7 +22173,7 @@ $$
 
 ### 稠密图的最小生成树选择
 
-完全图 K 有 n(n-1)/2 条边，邻接矩阵是满的。稠密图上**邻接矩阵实现的 Prim** 是 O(n^2)、与边数无关，通常优于 Kruskal 的 O(E log E)。但这不是算法的绝对优劣：堆优化的 Prim 复杂度为 O(E log V)，在稀疏图上同样适用；Kruskal 的长处在于稀疏图和对边排序的直观。`,mC=String.raw`### 前提
+完全图 K 有 n(n-1)/2 条边，邻接矩阵是满的。稠密图上**邻接矩阵实现的 Prim** 是 O(n^2)、与边数无关，通常优于 Kruskal 的 O(E log E)。但这不是算法的绝对优劣：堆优化的 Prim 复杂度为 O(E log V)，在稀疏图上同样适用；Kruskal 的长处在于稀疏图和对边排序的直观。`,gC=String.raw`### 前提
 
 顺序存储且按关键字有序，能随机访问任一元素。
 
@@ -19907,7 +22200,7 @@ $$
 
 ### 平均查找长度
 
-等概率成功时，把所有结点层数求和再除以结点数。`,hC=String.raw`### 外部排序框架
+等概率成功时，把所有结点层数求和再除以结点数。`,_C=String.raw`### 外部排序框架
 
 内存装不下全部记录时，先产生若干初始归并段，再反复做 k 路归并。
 
@@ -19930,7 +22223,7 @@ $$
 - 用于 k 路归并中反复选取当前最小元素。它是一棵完全二叉树：k 个归并段的当前元素放在叶结点，内部结点记录每次比较中的**败者**（胜者继续向上），另设结点保存最终胜者即全局最小。
 - 某段输出元素、换入下一个元素后，只需从对应叶结点沿路径重赛，比较次数不超过树高，即 O(log k)，就能拿到新的全局最小。
 - 朴素做法每输出一个元素要在 k 个元素之间完整比较，是 O(k)；败者树把这一步降到 O(log k)。
-- **败者树节省的是比较时间，辅助空间仍是 O(k)**，并不降为 O(1)。`,gC=String.raw`### 逻辑结构与存储结构
+- **败者树节省的是比较时间，辅助空间仍是 O(k)**，并不降为 O(1)。`,vC=String.raw`### 逻辑结构与存储结构
 
 逻辑结构（线性、树、图）描述数据元素之间的关系；同一逻辑结构可以有多种存储实现。**"线性结构"不等于"连续存储"**，链式存储也不只用于线性结构。
 
@@ -19951,7 +22244,7 @@ $$
 
 ### 判断题做法
 
-先看数据元素之间的逻辑关系，再看采用哪种物理存储；名字里带"顺序"的未必连续，带"链"的也未必与线性结构绑定。`,_C=String.raw`### 栈与函数调用
+先看数据元素之间的逻辑关系，再看采用哪种物理存储；名字里带"顺序"的未必连续，带"链"的也未必与线性结构绑定。`,yC=String.raw`### 栈与函数调用
 
 函数（含递归）调用时用栈保存返回地址、参数和局部变量。返回次序与调用次序相反，正符合后进先出。
 
@@ -19983,7 +22276,7 @@ $$
 
 ### 线索二叉树的遍历
 
-线索指向前驱或后继，找后继不需递归栈，也不需要访问标记数组，可沿线索顺序遍历。`,vC=String.raw`### 空指针域的数量
+线索指向前驱或后继，找后继不需递归栈，也不需要访问标记数组，可沿线索顺序遍历。`,bC=String.raw`### 空指针域的数量
 
 对非空二叉树（n≥1），n 个结点共有 2n 个孩子指针域，其中非空指针恰好对应 n-1 条父子边，所以空指针域为
 
@@ -20007,7 +22300,7 @@ $$
 
 ### 遍历方法
 
-从中序最左结点出发，反复取中序后继即可遍历全树。找后继：若右标志是线索，右指针就是后继；否则后继是右子树中最左的结点。找前驱对称。`,yC=String.raw`### 生成树与生成森林
+从中序最左结点出发，反复取中序后继即可遍历全树。找后继：若右标志是线索，右指针就是后继；否则后继是右子树中最左的结点。找前驱对称。`,xC=String.raw`### 生成树与生成森林
 
 连通图的生成树包含全部 n 个顶点和 n-1 条边，是极小的连通子图。非连通图的生成森林是各连通分量生成树之并；设共 n 个顶点、k 个连通分量，边数为
 
@@ -20027,7 +22320,7 @@ $$
 
 ### 辨析
 
-**Kruskal 按边扩展并且必须判环；Prim 按顶点扩展，每次看割边。** 两者都是贪心算法，都能得到最小生成树。最小生成树的总权值总是唯一确定的数值，但树的形态可能不唯一；所有边权互异是 MST 唯一的充分条件，不是必要条件。非连通图只能得到最小生成森林。`,bC=String.raw`### Dijkstra：单源最短路径
+**Kruskal 按边扩展并且必须判环；Prim 按顶点扩展，每次看割边。** 两者都是贪心算法，都能得到最小生成树。最小生成树的总权值总是唯一确定的数值，但树的形态可能不唯一；所有边权互异是 MST 唯一的充分条件，不是必要条件。非连通图只能得到最小生成森林。`,SC=String.raw`### Dijkstra：单源最短路径
 
 维护暂定距离，每轮从尚未确定的顶点中取出距离最小者并标记确定，再用它的出边松弛：
 
@@ -20057,7 +22350,7 @@ $$
 
 ### 选用
 
-单源、非负权用 Dijkstra；全源、可能有负权（无负环）用 Floyd。`,xC=String.raw`### 稀疏矩阵与压缩存储
+单源、非负权用 Dijkstra；全源、可能有负权（无负环）用 Floyd。`,CC=String.raw`### 稀疏矩阵与压缩存储
 
 非零元很少时按原矩阵存储浪费大量空间，需要压缩。稀疏指的是非零元数量少，与矩阵是否对称无关。
 
@@ -20071,7 +22364,7 @@ $$
 
 ### 选择依据
 
-只需顺序保存、按行遍历时用三元组表；需要沿行或列整体遍历、或频繁动态插入删除时用十字链表。十字链表**不提供按坐标 O(1) 的随机访问**，取某个元素 A[i][j] 仍要沿链查找。`,SC=String.raw`### 树、森林转二叉树（左孩子右兄弟）
+只需顺序保存、按行遍历时用三元组表；需要沿行或列整体遍历、或频繁动态插入删除时用十字链表。十字链表**不提供按坐标 O(1) 的随机访问**，取某个元素 A[i][j] 仍要沿链查找。`,wC=String.raw`### 树、森林转二叉树（左孩子右兄弟）
 
 - 每个结点：左孩子指向它的第一个孩子，右孩子指向它的下一个兄弟；
 - 森林转换时，第 k 棵树的根成为第 k-1 棵树根的右孩子；
@@ -20107,7 +22400,7 @@ $$
 
 ### 求最小高度的思路
 
-先证下界，再构造达到下界的安排。下界不只看层数：若最后一棵树的结点数大于 1，它的根下面至少还要有一层孩子。`,CC=String.raw`### 存储结构
+先证下界，再构造达到下界的安排。下界不只看层数：若最后一棵树的结点数大于 1，它的根下面至少还要有一层孩子。`,TC=String.raw`### 存储结构
 
 并查集用双亲表示法的森林实现：数组 parent 的下标表示元素，值表示父结点的下标，根指向自身（也可把根的值存成集合大小的相反数，便于按大小合并）。
 
@@ -20124,7 +22417,7 @@ $$
 
 ### 能力边界
 
-并查集**只高效支持合并与"是否同属一类"的查询，不支持高效删除或分裂**，也不记录元素之间的路径长度。Find 返回的是代表元，不是集合元素个数；用负的集合大小作为根的值只是一种存储技巧。`,wC=String.raw`### 定义（m 阶 B 树）
+并查集**只高效支持合并与"是否同属一类"的查询，不支持高效删除或分裂**，也不记录元素之间的路径长度。Find 返回的是代表元，不是集合元素个数；用负的集合大小作为根的值只是一种存储技巧。`,EC=String.raw`### 定义（m 阶 B 树）
 
 以下按**非空、m≥3** 的模型讨论。
 
@@ -20148,7 +22441,7 @@ $$
 
 根的特殊处理：若根变成 0 个关键字、但还有唯一一个孩子，就用这个孩子作为新的根，树高减 1；若根本来就是唯一的叶结点、删除后为空，则整棵树变成空树。
 
-借位时向左还是向右兄弟借，属于实现细节，**B 树的定义并没有强制优先向左兄弟借**。`,TC=String.raw`### 划分过程
+借位时向左还是向右兄弟借，属于实现细节，**B 树的定义并没有强制优先向左兄弟借**。`,DC=String.raw`### 划分过程
 
 取一个枢轴，一趟划分把子表分成小于枢轴与大于枢轴的两段。双向交替扫描的常见做法：右指针左移找第一个小于枢轴的元素，把它移到左端空位；左指针右移找第一个大于枢轴的元素，移到右端空位；重复直到两指针相遇，最后把枢轴放入相遇位置。相等元素的归属按题给方案。
 
@@ -20177,7 +22470,7 @@ $$
 
 ### 变体提醒
 
-三路划分、双枢轴等会改变相等元素的处理方式，稳定性与具体划分结果随之变化，必须按题目给出的划分方案模拟。`,EC=String.raw`### 二路归并
+三路划分、双枢轴等会改变相等元素的处理方式，稳定性与具体划分结果随之变化，必须按题目给出的划分方案模拟。`,OC=String.raw`### 二路归并
 
 把两个有序段合并成一个有序段：反复比较两段当前首元素，取较小者输出，代价与两段长度之和成正比。
 
@@ -20193,7 +22486,7 @@ $$
 
 ### 性质
 
-时间 O(n log n)，与初始序列无关；空间 O(n)；**稳定**（合并时相等元素取前一段的，保持相对次序）。`,DC=String.raw`### 递归求高度
+时间 O(n log n)，与初始序列无关；空间 O(n)；**稳定**（合并时相等元素取前一段的，保持相对次序）。`,kC=String.raw`### 递归求高度
 
 空树高度为 0；非空树高度为左右子树高度的较大者加一：
 
@@ -20217,7 +22510,7 @@ $$
 
 每个结点只处理一次，时间 O(n)、空间 O(h)。
 
-**如果先写一个求高度的函数，再对每个结点分别调用它检查，最坏会重复遍历后代，复杂度退化到 O(n^2)**，单链时最明显。`,OC=String.raw`### 基本性质
+**如果先写一个求高度的函数，再对每个结点分别调用它检查，最坏会重复遍历后代，复杂度退化到 O(n^2)**，单链时最明显。`,AC=String.raw`### 基本性质
 
 - 第 i 层最多有 2 的 i-1 次方个结点（根为第 1 层）；
 - 高度为 h 的二叉树最多有 2 的 h 次方减 1 个结点，最少有 h 个结点（单链）；
@@ -20257,7 +22550,7 @@ $$
 
 ### 高度与层数约定
 
-有的题目根在第 1 层、高度等于最大层数，有的按边数计高度，两者相差 1，做题前先确认。`,kC=String.raw`### 定义
+有的题目根在第 1 层、高度等于最大层数，有的按边数计高度，两者相差 1，做题前先确认。`,jC=String.raw`### 定义
 
 左子树所有关键字小于根、右子树所有关键字大于根（是否允许相等按题面）。**中序遍历得到递增序列**，这是 BST 最重要的性质。
 
@@ -20280,7 +22573,7 @@ $$
 
 ### 与中序线索树的联系
 
-中序线索树把空的左、右指针改指向前驱、后继。从中序最左结点出发反复取后继，可以遍历全树；**线索只是改变了空指针的指向，不改变 BST 的有序性，也不自动带来平衡**，查找仍然与树高有关。`,AC=String.raw`### 拓扑排序与有向环
+中序线索树把空的左、右指针改指向前驱、后继。从中序最左结点出发反复取后继，可以遍历全树；**线索只是改变了空指针的指向，不改变 BST 的有序性，也不自动带来平衡**，查找仍然与树高有关。`,MC=String.raw`### 拓扑排序与有向环
 
 拓扑排序每轮找一个入度为 0 的顶点删除，并把它出发的边删掉。存在有向环时无法删除全部顶点，**有环有向图不存在拓扑序列**。判断方法是拓扑排序输出的顶点数少于 n，或深度优先搜索中遇到回边。
 
@@ -20298,7 +22591,7 @@ $$
 
 ### 把字符串问题改写为路径问题
 
-字符串长度等于走过的边数，单顶点路径对应空串。判断一个字符串是否可能由某条路径拼出，可逐字符推进"当前可达顶点集合"，比凭图形直觉找路更可靠。端点、能否重复经过顶点都要按题面定义处理。`,jC=String.raw`### 基本思想
+字符串长度等于走过的边数，单顶点路径对应空串。判断一个字符串是否可能由某条路径拼出，可逐字符推进"当前可达顶点集合"，比凭图形直觉找路更可靠。端点、能否重复经过顶点都要按题面定义处理。`,NC=String.raw`### 基本思想
 
 从第 2 个元素起，把当前元素插入到前面已经排好序的部分中，始终维持前缀有序。
 
@@ -20324,7 +22617,7 @@ $$
 
 ### 相关变体
 
-用折半查找确定插入位置得到折半插入排序，比较次数降到 O(n log n) 量级，但元素移动次数不变，整体仍是 O(n^2)。`,MC=String.raw`### 一、程序语言与翻译
+用折半查找确定插入位置得到折半插入排序，比较次数降到 O(n log n) 量级，但元素移动次数不变，整体仍是 O(n^2)。`,PC=String.raw`### 一、程序语言与翻译
 - 机器语言：二进制机器指令序列，是 CPU 唯一能直接执行的语言，与具体机器绑定。
 - 汇编语言：用助记符和符号地址书写，与具体机器结构（指令集、可用寄存器、寻址方式）密切相关，须经汇编程序翻译成机器码；普通汇编语句一般一条对应一条机器指令，宏指令汇编时展开为多条机器指令，伪指令只用于指示汇编程序（定义数据、设定段），不产生机器指令。
 - 高级语言：与机器结构关系较松，但编译得到的目标代码仍依赖目标体系结构，CPU 不能直接执行源程序。
@@ -20341,7 +22634,7 @@ $$
 - 机器字长：CPU 一次能直接处理的二进制位数，通常由通用寄存器位数与 ALU 位数决定。
 - **机器字长不等于总线宽度**：CPU 外部数据总线宽度可能小于机器字长（8088 内部 16 位、外部数据总线 8 位）；机器字长也**不等于**指令字长、存储字长。
 - 存储字长：一次读写的位数；可编址单元宽度由编址方式决定——按字节编址时一个可编址单元是 8 位，与机器字长无关。
-- 术语口径按题面：题面说“主存单元”时要分清指可编址单元还是一次读写宽度，不能自动替换成机器字长。`,NC=String.raw`### 一、CPU 执行时间的三要素
+- 术语口径按题面：题面说“主存单元”时要分清指可编址单元还是一次读写宽度，不能自动替换成机器字长。`,FC=String.raw`### 一、CPU 执行时间的三要素
 $$
 T_{CPU}=\text{指令数}\times CPI\times \text{时钟周期}=\frac{\text{指令数}\times CPI}{\text{主频}}
 $$
@@ -20361,7 +22654,7 @@ n\ge \frac{p}{D},\qquad D=\frac{1}{S_0}-(1-p)
 $$
 **$D\le 0$ 时不存在有限线程数能达到目标**（$D=0$ 对应只能渐近逼近的极限；例如 p=0.8、S0=6 时 D<0，6 倍不可达）；p=0 时 S 恒为 1，目标 S0≤1 可达，否则不可达。
 - **线程数必须是整数，要用不等式边界核对，不能对近似小数随意取整；n=16 与 n=15 的结果可能刚好跨越目标加速比。**
-- 适用前提：问题规模固定、串行比例不变、忽略通信与调度开销。边界：p=0 时 S≡1；p=1 时 S=n（理想线性）。`,PC=String.raw`### 一、补码表示与定长运算
+- 适用前提：问题规模固定、串行比例不变、忽略通信与调度开销。边界：p=0 时 S≡1；p=1 时 S=n（理想线性）。`,IC=String.raw`### 一、补码表示与定长运算
 - n 位补码范围 −2^(n−1) ~ 2^(n−1)−1；负数补码 = 2^n − x 的绝对值；最高位为 1 时真值 = 编码 − 2^n。
 - 加减统一用加法器：$[x-y]_{\text{补}}=[x]_{\text{补}}+[-y]_{\text{补}}$，$[-y]_{\text{补}}$ 由 $[y]_{\text{补}}$ 连同符号位取反加 1 得到。
 - 拆字节：高字节 = 编码右移 8 位，低字节 = 编码与 0FFH 相与。
@@ -20380,7 +22673,7 @@ $$
 ### 四、结构体对齐
 - 每个成员的起始偏移必须是其对齐值（通常为自身长度）的整数倍，编译器插入填充字节；结构体总大小补齐为最大对齐值的整数倍。
 - **成员内某字节的地址 = 成员起始偏移 + 该字节在字段内的序号**，不要把对齐空隙当成字段数据。
-- 对齐浪费空间，但使成员按边界对齐、一次访存即可取出，提高访问速度。`,FC=String.raw`### 一、编码布局与真值公式
+- 对齐浪费空间，但使成员按边界对齐、一次访存即可取出，提高访问速度。`,LC=String.raw`### 一、编码布局与真值公式
 单精度 32 位 = 1 位符号 S + 8 位阶码 E + 23 位尾数 M；双精度 = 1 + 11 + 52。按 E 的取值分四类：
 - 规格化数（1≤E≤254）：隐含位为 1，
 $$
@@ -20404,7 +22697,7 @@ $$
 
 ### 三、规格化操作
 - 尾数左移消去前导 0（小数点右移）时必须同步减小阶码，才能保持数值不变；反之右移要增加阶码。
-- 解码流程：拆 S/E/M → 定类型 → 按对应公式求真值；阶码字段全 0 与非规格化、全 1 与特殊值要一起看。`,IC=String.raw`### 一、十进制到二进制的转换与舍入
+- 解码流程：拆 S/E/M → 定类型 → 按对应公式求真值；阶码字段全 0 与非规格化、全 1 与特殊值要一起看。`,RC=String.raw`### 一、十进制到二进制的转换与舍入
 步骤：
 1. 把十进制数写成二进制规格化形式，形如 1.f × 2^E（整数部分与小数部分分别转换）。
 2. 阶码字段 = E + bias（单精度 bias=127）。
@@ -20424,7 +22717,7 @@ $$
 - 单精度有效数含隐含位共 24 位（编号 0~23），对阶时保留两位附加位（G、R），其后信息由粘着位概括。以大阶数的 ULP 为单位，小阶数第 i 位右移 $\lvert\Delta E\rvert$ 后落到位置 $i+\lvert\Delta E\rvert$。
 - **单精度、就近取偶舍入下，同号相加时，$\lvert\Delta E\rvert\ge 25$ 可直接取大阶数；$\lvert\Delta E\rvert=25$ 时小阶数的最高有效位落在 R 位，$\lvert\Delta E\rvert>25$ 时才落在 R 位之后。** $\lvert\Delta E\rvert=24$ 时最高位可能落到 G 位，余数可达半个 ULP 或更大，仍可能改变大阶数。
 - **对减法或异号相加不能无条件套用 25**：大数绝对值恰为 2 的幂时，其下方浮点间距减半，阶差 25 仍可能改变结果（单精度下 $1-1.5\times 2^{-25}$ 的精确值 $1-3\times 2^{-26}$ 更靠近前驱 $1-2^{-24}$，正确舍入结果是前驱而非 1）。若要求覆盖一般有限规格化数的加减，统一充分界限为 $\lvert\Delta E\rvert\ge 26$。
-- 边界：本题所用教材口径是“就近舍入 + 两位附加位”的单精度简化约定，其界限 25 属该口径；尾数位宽、舍入方式或是否只讨论同号相加不同时，须按上面的条件重新推导。`,LC=String.raw`### 一、半导体存储器的分类与性质
+- 边界：本题所用教材口径是“就近舍入 + 两位附加位”的单精度简化约定，其界限 25 属该口径；尾数位宽、舍入方式或是否只讨论同号相加不同时，须按上面的条件重新推导。`,zC=String.raw`### 一、半导体存储器的分类与性质
 - DRAM：用电容电荷存信息，会漏电，需要周期性刷新；破坏性读出，读出后要重写；随机存取，行、列地址分两次送入（引脚复用）。
 - SRAM：触发器存储，速度快、集成度低、不需刷新，多用作 Cache。
 - ROM/FLASH：非易失，断电保持数据；**FLASH 属 EEPROM 一类，可电擦写、可重写，并非无法更新存储单元**；写入前以块为单位擦除、以页为单位读写，每块擦写次数有限。
@@ -20446,7 +22739,7 @@ $$
 - 闪存块有擦除次数上限，磨损均衡使各块擦除次数尽量平均，避免少数块先失效。
 - 动态磨损均衡：写入时在空闲块中优先选择擦除次数较少的块。
 - 静态磨损均衡：还会主动迁移长期不变的冷数据，释放年轻块承担写入，使各块擦除次数更均衡。
-- **两者针对的都是写与擦除（擦除次数才是寿命限制），与读无关；区别在于是否搬移冷数据，而不是读写分工。**`,RC=String.raw`### 一、存储芯片扩展
+- **两者针对的都是写与擦除（擦除次数才是寿命限制），与读无关；区别在于是否搬移冷数据，而不是读写分工。**`,BC=String.raw`### 一、存储芯片扩展
 - 位扩展：多片并联，地址线共用、数据线分别接不同数据位，增加数据位宽（字数不变）；片数 = 目标位宽 / 单片位宽。
 - 字扩展：多片分用不同地址范围，增加字数，需要片选译码。
 - 总容量 = 字数 × 位宽，所需芯片数 = 目标容量 / 单片容量；**先按字数判断是否需要字扩展、再按位宽判断位扩展，若单片字数已等于模块字数则只需位扩展。**
@@ -20465,7 +22758,7 @@ $$
 T=(N-1)\,t+d
 $$
 - 约束：t 不能小于“单模块访问周期 / 模块数”，否则模块来不及完成上一次访问。
-- **每次访问传输的位数由数据总线宽度和模块数据位宽决定；总线宽度与模块数不是同一回事。**`,zC=String.raw`### 一、三种映射方式
+- **每次访问传输的位数由数据总线宽度和模块数据位宽决定；总线宽度与模块数不是同一回事。**`,VC=String.raw`### 一、三种映射方式
 - 直接映射：每个主存块只能映射到唯一 Cache 行；行号 = 块号 mod 行数。
 - 全相联：主存块可放入任意一行，查找需比较全部标记。
 - k 路组相联：先由 组号 = 块号 mod 组数 定位到唯一一组，再在该组的 k 个行中任选；**“可进入任意一组的任意块”是全相联的说法，组相联只能进对应那一组。**
@@ -20494,7 +22787,7 @@ $$
 - 脏位（修改位）：写回法需要 1 位，替换时据此决定是否写回主存；写直达法不需要。
 - 替换算法状态：如 LRU 需要为组内 k 个块记录新旧次序。**LRU 状态位数依实现而定，不能把“每行 log2 k 位”当成所有 LRU 的最小信息量**：按组内全序（k! 种顺序）至少需 log2(k!) 位；按两两新旧关系实现需 k(k−1)/2 位；题面若直接给出“每行若干位 LRU 计数域”，则按该实现的口径计数。
 - 数据位 = 块大小（按字节计）× 8。
-- 行总位数 = 数据位 + 标记位 + 有效位 +（写回时）脏位 + 替换状态位。`,BC=String.raw`### 一、平均访存时间 AMAT
+- 行总位数 = 数据位 + 标记位 + 有效位 +（写回时）脏位 + 替换状态位。`,HC=String.raw`### 一、平均访存时间 AMAT
 设命中率为 h、缺失率为 1−h、Cache 访问时间 t_c、主存访问时间 t_m，**两种访问组织公式不同，不能混用**：
 - 串行（先查 Cache，未命中再访存）：
 $$
@@ -20516,7 +22809,7 @@ $$
 - 强制缺失（首次访问）、容量缺失（工作集超过容量）、冲突缺失（映射冲突，多块竞争同一行或同组）。
 - **提高关联度主要减轻冲突缺失，不能消除强制缺失与容量缺失。**
 - 直接映射与组相联都可能发生“刚被替换出的块马上又被访问”：冲突块交替访问且超过每组可容纳块数时，缺失率可达 100%。
-- 块大小的影响：块增大可减少强制缺失，但传输代价与冲突、容量缺失可能上升，需要综合权衡。`,VC=String.raw`### 一、局部性原理
+- 块大小的影响：块增大可减少强制缺失，但传输代价与冲突、容量缺失可能上升，需要综合权衡。`,UC=String.raw`### 一、局部性原理
 - 时间局部性：刚被访问的信息很快会被再次访问（循环变量、循环体）。
 - 空间局部性：某地址被访问后，其相邻地址很快会被访问（按行扫描数组）。
 - **按行优先存放的二维数组，按行扫描时相邻两次访问地址连续，空间局部性好；每个元素只访问一次的遍历，时间局部性差；保存在寄存器中并被循环反复读写的变量（下标、累加和）时间局部性好。**
@@ -20541,7 +22834,7 @@ $$
 $$
 \text{目标地址}=(\text{转移指令地址}+\text{指令字节数})+\text{偏移}
 $$
-再用目标地址反推位移：偏移 = 目标 − 基准，基准是“取指结束后的 PC”，按题面确定。`,HC=String.raw`### 一、页式虚拟存储器的地址转换
+再用目标地址反推位移：偏移 = 目标 − 基准，基准是“取指结束后的 PC”，按题面确定。`,WC=String.raw`### 一、页式虚拟存储器的地址转换
 - 虚拟地址 = 虚页号 VPN ∥ 页内偏移；物理地址 = 物理页号 PPN ∥ 页内偏移（页内偏移不变）。
 - 页大小 P = 2^d 时页内偏移 d 位，虚拟页数 = 虚拟地址空间大小 / P。
 - 页表项含物理页号与有效位，另有修改位、访问位等辅助字段；**有效位为 0 表示该页不在内存**，访问会触发缺页。
@@ -20563,7 +22856,7 @@ $$
 ### 四、页大小变化的影响
 - 页越大 → 页数（页表项数）越少 → 页表占用内存越少。
 - 页是分配单位，页越大，进程最后一页平均浪费的空间越大，内部碎片增大；分页系统不产生外部碎片。
-- **不能只凭“页更大”就断言整体性能更好**：缺页传输代价与访问局部性也会随页大小与访问模式变化。`,UC=String.raw`### 一、映射方式的适用范围
+- **不能只凭“页更大”就断言整体性能更好**：缺页传输代价与访问局部性也会随页大小与访问模式变化。`,GC=String.raw`### 一、映射方式的适用范围
 - 二路组相联中，主存块先由 组号 = 块号 mod 组数 定位到唯一一组，只能落在该组的两个行之一；**“可映射到任意一组的任意块”是全相联的描述。**
 - 直接映射则是每个块只有唯一行。关联度提高只减轻冲突缺失。
 
@@ -20576,7 +22869,7 @@ $$
 
 ### 四、结构体对齐
 - 插入填充字节会浪费内存，但成员按边界对齐后，一次访存即可取出，提高 CPU 访问速度。
-- **判据：先分清叙述说的是映射规则、页表组织、地址转换还是数据布局，再逐项核对，避免把“任意一组”与“某一组的任意块”混为一谈。**`,WC=String.raw`### 一、指令字长与操作码
+- **判据：先分清叙述说的是映射规则、页表组织、地址转换还是数据布局，再逐项核对，避免把“任意一组”与“某一组的任意块”混为一谈。**`,KC=String.raw`### 一、指令字长与操作码
 - 指令字长指一条指令的位数；机器字长是 CPU 一次处理的位数，**两者无必然相等或整数倍关系**；定长指令字与变长指令字都是常见设计。
 - 操作码与地址字段共享指令字长：
 $$
@@ -20597,7 +22890,7 @@ $$
 
 ### 四、移位操作
 - 算术右移空出的高位补符号位，保持负数语义；逻辑右移补 0；算术左移、逻辑左移都低位补 0。
-- 右移对应整除 2^k（对负数向下取整）；**算完之后再按定长补码求真值与溢出。**`,GC=String.raw`### 一、常见寻址方式与有效地址
+- 右移对应整除 2^k（对负数向下取整）；**算完之后再按定长补码求真值与溢出。**`,qC=String.raw`### 一、常见寻址方式与有效地址
 - 立即寻址：操作数 = 形式地址 A（指令中直接给出）。
 - 寄存器寻址：操作数 = (Rn)；直接寻址：EA = A。
 - 寄存器间接寻址：EA = (Rn)；变址寻址：EA = (IX) + A（IX 可变、A 不变）。
@@ -20617,7 +22910,7 @@ $$
 ### 三、数组元素地址
 - 一维数组：元素地址 = 基址 + 下标 × 元素字节数，故 下标 = (地址 − 基址) / 元素字节数。
 - 二维数组按行优先：线性偏移 = (i × 列数 + j) × 元素字节数。
-- 若地址差不是元素大小的整数倍，说明地址指向元素内部或首址不是元素边界，需要检查。`,KC=String.raw`### 一、时间并行与空间并行
+- 若地址差不是元素大小的整数倍，说明地址指向元素内部或首址不是元素边界，需要检查。`,JC=String.raw`### 一、时间并行与空间并行
 - 时间并行：同一套硬件在时间上重叠使用，典型是流水线；各子过程由不同功能部件承担、在时间上有序重叠。
 - 空间并行：重复设置资源让多个部件同时工作，典型是超标量（同一时刻发射多条指令）和增加处理器个数。
 - **判据：用“不同阶段是否重叠执行”判断流水线，用“每周期能发射几条指令”判断超标量。有重叠不自动意味着每周期能发射多条指令。**
@@ -20632,7 +22925,7 @@ $$
 ### 三、多处理器系统
 - 多处理器系统的常见所指是共享存储多处理器（SMP）：主存属于单一地址空间，必须解决共享存储的同步互斥问题。
 - **共享同一地址空间不等于访问时间一致**：UMA 各处理器访问时间一致；NUMA 也共享地址空间，但访问本地内存通常快于访问远程内存。
-- 增加处理器个数主要提高吞吐率或并行任务能力，未并行化的单个程序不会自动变快。`,qC=String.raw`### 一、流水线基本指标
+- 增加处理器个数主要提高吞吐率或并行任务能力，未并行化的单个程序不会自动变快。`,YC=String.raw`### 一、流水线基本指标
 - 时钟周期由最慢的流水段决定：T = max(各段时延)（是否另加锁存器开销按题面），**不能用平均时延或最快段**。
 - k 段流水线执行 n 条指令的理想周期数为 k + (n−1)；忽略启动与排空时常用 n 近似。
 $$
@@ -20651,7 +22944,7 @@ $$
 - 总周期 = 理想周期数 + 预测失败次数 × 罚时；预测失败次数 = 分支条数 × (1−准确率)。
 - **先把“失败次数”与“每次罚时”分开算再相乘，不要把分支比例直接当成预测错误率。**
 - 各种“气泡”（结构冒险、控制冒险、缺页等待）都按“每条指令平均分摊”累加到 CPI 上；若流水线 CPI 基线不是 1，用题给基线加额外项。
-- 按期望（平均值）计算时用次数 × 概率，不必穷举所有实际路径，但要说明采用的是期望口径。`,JC=String.raw`### 一、冒险的分类
+- 按期望（平均值）计算时用次数 × 概率，不必穷举所有实际路径，但要说明采用的是期望口径。`,XC=String.raw`### 一、冒险的分类
 - 结构冒险：硬件资源冲突，同一部件被多条指令争用（如取指与访存抢存储器）。
 - 数据冒险：RAW（写后读，真相关，必须处理）、WAR（读后写，反相关）、WAW（写后写，输出相关）；后两者主要在乱序执行中出现。
 - 控制冒险：分支、跳转等在取指阶段还不能确定下一条指令地址时产生。
@@ -20671,7 +22964,7 @@ $$
 - 多条相关链同时存在时取所有约束中最紧的一个；**不能靠交换指令顺序消除依赖**（程序语义不允许）。
 - **控制冒险只由会改变 PC 的转移类指令引起**；ADD、LW 等之间的相关属数据冒险，不计入控制冒险条数。
 - 分支结果与目标地址确定得越早，需要冲刷的指令越少；延迟槽、静态/动态预测、提前计算目标地址都能减少损失。
-- 是否算作冒险与“实际是否需要停顿”是两件事：后者还取决于转发通路、读取与写回所处的流水段。`,YC=String.raw`### 一、CPU 的组成划分
+- 是否算作冒险与“实际是否需要停顿”是两件事：后者还取决于转发通路、读取与写回所处的流水段。`,ZC=String.raw`### 一、CPU 的组成划分
 - CPU = 运算器 + 控制器。
 - 运算器：ALU、累加器、通用寄存器、程序状态字 PSW 等。
 - 控制器：程序计数器 PC、指令寄存器 IR、指令译码器 ID、微操作信号发生器、时序系统等。
@@ -20697,7 +22990,7 @@ $$
 - **以下 PC 更新规则仅针对“单周期取指部件、PC 只保存指令字地址”的模型**（32 位指令按 4 字节对齐时 PC 只存高 30 位，实际指令地址 = 字地址拼接两位 00）：顺序执行时 字地址 +1；分支成立时 字地址 +1+符号扩展位移；跳转由 PC 高位与目标字段拼接形成目标地址（伪直接寻址）。
 - **该单周期模型每周期完成一条指令、无需停顿，因此 PC 每周期都要更新，不另设写使能信号。** 这些结论随模型改变：若 PC 保存完整字节地址，4 字节定长指令的顺序下一条地址是 PC+4；多周期或流水线中因停顿需要保持 PC 时，才需要保持控制或写使能。
 - 符号扩展把短立即数按符号位扩展到位宽一致的位数，使位移可正可负。
-- 跳转范围：目标字段 26 位且 4 字节对齐时覆盖 2^28 字节，共 2^26 条指令。`,XC=String.raw`### 一、微程序控制的基本概念
+- 跳转范围：目标字段 26 位且 4 字节对齐时覆盖 2^28 字节，共 2^26 条指令。`,QC=String.raw`### 一、微程序控制的基本概念
 - 微命令：控制器发出、控制部件执行一个微操作的控制信号。
 - 微指令：一个节拍内发出的若干微命令，加上后继地址等控制信息。
 - 微程序：完成一条机器指令的一组微指令序列，存放在控制存储器 CM 中。
@@ -20720,7 +23013,7 @@ $$
 \lceil \log_2 N\rceil
 $$
 - 增量法（顺序执行，靠计数器）、计数器法等其他方式按题面编码形式分别计算。
-- **微指令长度 = 操作控制字段 + 下址字段 + 判别测试字段（题面给出才计）**，各字段分开算再相加，不要互相混算。`,ZC=String.raw`### 一、总线的分类与结构
+- **微指令长度 = 操作控制字段 + 下址字段 + 判别测试字段（题面给出才计）**，各字段分开算再相加，不要互相混算。`,$C=String.raw`### 一、总线的分类与结构
 - 按连接对象分：片内总线、系统总线（数据总线、地址总线、控制总线）、通信总线。
 - 单总线结构：一条系统总线连接 CPU、主存和所有 I/O 设备，**同一时刻只能有一对设备传送数据**，主存与外设共享该总线。
 - 多总线结构：另设存储总线、局部总线、I/O 总线等，主存可经专用高速总线访问。
@@ -20737,7 +23030,7 @@ $$
 - 非分离事务：主设备发出请求后一直占用总线，直到从设备准备好并完成数据传送。
 - **分离事务：把一次事务拆成“请求”和“回答”两段，中间释放总线**，让其他主设备在从设备准备数据期间使用总线。
 - 突发（猝发）传送：一次给出起始地址和突发控制信息，随后连续传送多个数据拍，后续地址按约定递增或按指定模式生成，从而减少逐拍传送地址的开销。
-- **判据：定时方式解决“何时采样数据”，事务方式解决“一次总线能干什么”；两者不要混为一谈。**`,QC=String.raw`### 一、I/O 编址方式
+- **判据：定时方式解决“何时采样数据”，事务方式解决“一次总线能干什么”；两者不要混为一谈。**`,ew=String.raw`### 一、I/O 编址方式
 - 统一编址（存储器映射 I/O）：I/O 端口与主存共用同一地址空间，用普通访存指令访问，**不需要专用 I/O 指令**；代价是占用（减少）主存地址空间，接口需与内存统一译码、译码逻辑相对复杂。
 - 独立编址：I/O 与主存各有独立地址空间，**必须用专用 I/O 指令**，接口只译码端口地址并结合读写控制信号，不占用主存地址空间、译码较简单。
 - **判据：先看 I/O 寄存器是否占用统一地址空间，再看访问它用哪类指令。** 编址方式不直接决定外设速度，也不能由它推出是否采用中断。
@@ -20755,7 +23048,7 @@ $$
 $$
 f_{总线}\ge \frac{\sum \text{各设备字节率}}{\text{每个总线周期字节数}}\times \text{每个总线周期的时钟数}
 $$
-- **单位口径（1KB 取 1000B 还是 1024B、读写是否各占一个总线周期）会改变结果，按题面声明并在答案中注明。**`,$C=String.raw`### 一、中断的类型与控制位
+- **单位口径（1KB 取 1000B 还是 1024B、读写是否各占一个总线周期）会改变结果，按题面声明并在答案中注明。**`,tw=String.raw`### 一、中断的类型与控制位
 - 按来源分：内部异常（故障、自陷、终止）与外部中断；外部中断又分可屏蔽中断（INTR）与不可屏蔽中断（NMI）。
 - 中断请求由设备通过中断请求信号提出，记录在中断请求触发器中。
 - **开中断与关中断设置的是中断允许触发器（x86 的 IF 位）**：置位允许响应可屏蔽中断、清零屏蔽之。它不是中断请求寄存器、屏蔽寄存器，也不是向量寄存器。
@@ -20775,7 +23068,7 @@ $$
 - 中断向量是中断服务程序的入口地址；**中断向量表按中断类型号集中存放各入口地址**，CPU 以类型号作索引取入口地址（表项内容是入口地址，类型号只是索引）。
 - 多重中断（中断嵌套）标准顺序：关中断 → 保护现场 → 设置中断屏蔽字 → 开中断 → 执行服务程序 → 关中断 → 恢复现场与屏蔽字 → 开中断 → 中断返回。
 - 中断屏蔽字按中断源控制哪些请求可被屏蔽，用于实现嵌套优先级；优先级本身由优先级排队电路或优先级寄存器决定。
-- **中断响应造成的动作（硬件）与中断服务程序的软件动作要分开叙述。**`,ew=String.raw`### 一、DMA 工作过程
+- **中断响应造成的动作（硬件）与中断服务程序的软件动作要分开叙述。**`,nw=String.raw`### 一、DMA 工作过程
 - 传送前 CPU 初始化 DMA 控制器：把主存起始地址写入主存地址寄存器，把传送字数写入传送长度计数器，并设置传送方向、设备地址等。
 - 传送期间 DMA 控制器接管总线，直接在主存与设备之间搬数据。
 - **DMA 请求走“总线请求 / 总线响应”握手，与 CPU 是否开中断无关**；开中断只影响可屏蔽中断的响应。
@@ -20795,7 +23088,7 @@ $$
 对应计数器初值 = N − 1。
 - 每次传送后主存地址增加“每次传送字节数”；**必须保证所有字节地址不越界、不回绕，故要用末地址反推最大字数。**
 - 数据量 = 传送个数 × 每次传送的位数。
-- 边界：若题面把计数器初值直接定义为传送个数，或按“计满回绕溢出”终止，公式随之调整，按题面口径计算。`,tw=String.raw`### 操作系统的发展与基本特征
+- 边界：若题面把计数器初值直接定义为传送个数，或按“计满回绕溢出”终止，公式随之调整，按题面口径计算。`,rw=String.raw`### 操作系统的发展与基本特征
 
 - **单道批处理**：内存中只驻留一道作业，CPU 等待慢速 I/O 时闲置；采用**脱机 I/O**——外围机先把数据输入到磁带、磁盘，主机再从该设备读入，使主机计算与外围机 I/O 并行，减少 CPU 等待并提高吞吐量。
 - **多道批处理**：内存中同时驻留多道作业，CPU 与 I/O、作业与作业并发执行。
@@ -20816,7 +23109,7 @@ $$
 - **空间复用**：把存储空间划分给多个进程或多个逻辑空间同时使用，例如把内存分区给多道程序驻留。**但"内存中同时驻留多个进程"只是多道并发，本身不等于虚拟内存**；虚拟内存要求只装入程序的一部分、其余按需从辅存调入，是逻辑地址空间可大于物理内存的机制，依赖请求调页、对换等内外存结合的机制。
 - 虚拟技术提供的是逻辑视图，并不改变物理资源的实际总量。
 
-判据：把"资源在同一时刻被多个使用者共同占用"与"系统提供了小于物理资源规模也成立的功能"分开看；判断虚拟内存要看是否存在按需调页或内外存交换。`,nw=String.raw`### 用户态、内核态与特权指令
+判据：把"资源在同一时刻被多个使用者共同占用"与"系统提供了小于物理资源规模也成立的功能"分开看；判断虚拟内存要看是否存在按需调页或内外存交换。`,iw=String.raw`### 用户态、内核态与特权指令
 
 CPU 用程序状态字（PSW）中的模式位区分用户态与内核态。
 
@@ -20840,7 +23133,7 @@ CPU 用程序状态字（PSW）中的模式位区分用户态与内核态。
 
 内核模式执行的是涉及特权指令或核心资源的操作。把可执行文件装入内存并启动进程（分配内存、建立页表与地址映射、创建进程、设置入口）属于此类。
 
-编译程序、链接程序、命令解释程序（shell）本身都是用户态程序；**shell 只是解析命令并代为发起 fork、exec 等系统调用，不等于 shell 自身在内核态执行**。`,rw=String.raw`### 进程的基本状态与转换
+编译程序、链接程序、命令解释程序（shell）本身都是用户态程序；**shell 只是解析命令并代为发起 fork、exec 等系统调用，不等于 shell 自身在内核态执行**。`,aw=String.raw`### 进程的基本状态与转换
 
 以下结论的适用范围是**标准三态模型**（就绪、运行、阻塞）且不引入挂起、实时抢占等额外机制的情况。
 
@@ -20857,14 +23150,14 @@ CPU 用程序状态字（PSW）中的模式位区分用户态与内核态。
 在就绪、阻塞之外引入挂起（静止）状态，形成就绪挂起、阻塞挂起，可用两个维度描述：活动性（在内存还是在外存）与就绪性（就绪还是阻塞）。
 
 - **只有涉及内存与辅存之间调出、调入的转换才发生内外存数据交换**，典型如就绪到就绪挂起（换出）、就绪挂起到就绪（换入）。
-- 运行到就绪、运行到阻塞、就绪到运行只改变 CPU 归属或等待条件，进程始终在内存中，不引起内外存交换。`,iw=String.raw`### 进程的创建与父子进程的共享关系
+- 运行到就绪、运行到阻塞、就绪到运行只改变 CPU 归属或等待条件，进程始终在内存中，不引起内外存交换。`,ow=String.raw`### 进程的创建与父子进程的共享关系
 
 fork 之后子进程获得父进程地址空间的一份逻辑副本；现代 UNIX 采用**写时复制**（COW）：只有某一方写入时才真正复制页，在此之前物理页可被父子共享。
 
 - **共享**：子进程复制父进程的打开文件描述符表，指向**同一系统打开文件表项**，从而共享文件偏移量等状态；只读的代码段（正文段）通常也被父子进程共享。
 - **不共享**：进程的执行上下文（通用寄存器、PC、PSW、栈、内核栈）各自独立，否则无法被独立调度；栈空间与可写数据也各自独立。
 
-判据：区分"进程自己地址空间中的对象"与"继承后仍指向同一内核对象"的资源。父子进程变量初值相同只说明复制发生，并不表示普通内存被直接共享。`,aw=String.raw`### 进程通信方式与共享内存
+判据：区分"进程自己地址空间中的对象"与"继承后仍指向同一内核对象"的资源。父子进程变量初值相同只说明复制发生，并不表示普通内存被直接共享。`,sw=String.raw`### 进程通信方式与共享内存
 
 常见通信方式有共享内存、管道、消息队列、信号量等。
 
@@ -20876,7 +23169,7 @@ fork 之后子进程获得父进程地址空间的一份逻辑副本；现代 UN
 
 共享内存只提供"共同可见的存储"，**不提供互斥，也不限制并发**。多个进程对同一区域做"读—改—写"会产生竞态；某一方的写何时被另一方观察到，还取决于同步与内存可见性约定（加锁、内存栅栏等），**共享物理页本身并不保证任意写都立刻、有序地对其他进程可见**。
 
-判据：把数据传输方式与访问同步协议分开分析；内核不代替程序做同步，共享地址也不会自动防止竞态。`,ow=String.raw`### 线程与进程
+判据：把数据传输方式与访问同步协议分开分析；内核不代替程序做同步，共享地址也不会自动防止竞态。`,cw=String.raw`### 线程与进程
 
 线程是 CPU 调度的基本单位，进程是资源分配的基本单位；同一进程内的线程共享地址空间、代码段和打开文件等资源，但各有自己的栈、寄存器和线程控制块。
 
@@ -20890,7 +23183,7 @@ fork 之后子进程获得父进程地址空间的一份逻辑副本；现代 UN
 多线程的价值在于把可并行的工作分开执行，或让多个任务在等待与处理期间交错推进。典型场景：矩阵乘法等可分割计算、Web 服务器并发处理请求、GUI 调试程序把输入、计算和跟踪分开处理。
 
 - 键盘输入来自单一设备，是**单一事件流**，为每个正在运行的应用各配一个驱动线程既无必要也不能让键盘事件并行产生，**不是多线程的特长**，还会带来调度与管理开销。
-- 多线程不自动消除同步开销；能否真正并行还取决于硬件核数与线程到处理机的映射。`,sw=String.raw`### 调度性能指标
+- 多线程不自动消除同步开销；能否真正并行还取决于硬件核数与线程到处理机的映射。`,lw=String.raw`### 调度性能指标
 
 设进程从提交到完成的全部时间单位为同一量纲。
 
@@ -20915,7 +23208,7 @@ $$
 - 在"一批作业同时到达、服务时间已知、非抢占、忽略调度开销"的前提下，SJF 使该批作业的平均等待时间和平均周转时间最小。
 - 局限：**SJF 要求服务时间已知或能被估计**，抢不到 CPU 的长作业可能长期得不到服务（饥饿）；**高响应比优先（HRRN）能缓解饥饿**，兼顾长短作业。
 
-判据：先分清优化目标（平均等待/平均周转），再讨论算法优劣；长作业的公平性问题不能与平均时间最优混为一谈。`,cw=String.raw`### 时间片轮转（RR）
+判据：先分清优化目标（平均等待/平均周转），再讨论算法优劣；长作业的公平性问题不能与平均时间最优混为一谈。`,uw=String.raw`### 时间片轮转（RR）
 
 就绪进程按 FIFO 排队，每个进程一次占用一个时间片 q，用完未完成则回到队尾。
 
@@ -20937,7 +23230,7 @@ $$
 $$
 
 - 被抢占进程的处理（回到原队列队首并保留本轮剩余时间片，或重新计时）必须按题给规则执行；同一时刻多个事件并发时也按题给优先级处理。
-- 增加一个紧急进程时，它按题给优先级插入并立即抢占，其余进程的相对顺序通常整体后移，但要按各自剩余时间片逐个重排。`,lw=String.raw`### 语句的数据依赖与前驱图
+- 增加一个紧急进程时，它按题给优先级插入并立即抢占，其余进程的相对顺序通常整体后移，但要按各自剩余时间片逐个重排。`,dw=String.raw`### 语句的数据依赖与前驱图
 
 把每条语句抽象为**读集合**与**写集合**，只有存在冲突时才必须规定先后次序。
 
@@ -20948,7 +23241,7 @@ $$
 
 前驱图用来表示必须保持的偏序关系；**题目没有要求"最简"时，前驱图不必去掉可由传递性推出的冗余边**，只要求它所规定的次序满足所有依赖即可。
 
-判据：先逐句列出读、写集合，再连接存在冲突的依赖边。若题目给出多条合法拓扑序，只说明这些语句之间**没有强制的先后**，并不表示它们一定能全部并行（还受处理机、资源等条件限制）。`,uw=String.raw`### 信号量与 P、V 操作
+判据：先逐句列出读、写集合，再连接存在冲突的依赖边。若题目给出多条合法拓扑序，只说明这些语句之间**没有强制的先后**，并不表示它们一定能全部并行（还受处理机、资源等条件限制）。`,fw=String.raw`### 信号量与 P、V 操作
 
 信号量是含整数值与等待队列的同步原语。
 
@@ -20977,7 +23270,7 @@ $$
 
 ### 用计数信号量表达资源与先后
 
-计数信号量的值可以表示"空闲医生数"一类资源数量；用信号量描述先后关系时，把事件图上的每一条等待依赖配一个初值为 0 的通知信号量，阻塞前先释放互斥锁，避免持锁等待后续事件。`,dw=String.raw`### 单缓冲区广播给多个消费者：通知必须每人一份
+计数信号量的值可以表示"空闲医生数"一类资源数量；用信号量描述先后关系时，把事件图上的每一条等待依赖配一个初值为 0 的通知信号量，阻塞前先释放互斥锁，避免持锁等待后续事件。`,pw=String.raw`### 单缓冲区广播给多个消费者：通知必须每人一份
 
 当一条消息必须被 k 个消费者各读一次时，**不能只用一个共享的计数信号量**：若 full 初值为 k，任一消费者都可能连续 k 次 P(full) 成功，把同一条消息读走多次，其他消费者一次也读不到。
 
@@ -20985,7 +23278,7 @@ $$
 - "缓冲区何时可被覆盖"由一个只有等所有消费者读完才成立的同步信号控制，例如用受 mutex 保护的共享计数记录尚未读取的人数，减到 0 的那名消费者执行 V(empty)。
 - 缓冲区互斥用 mutex；数据读写与计数在临界区内，生产与后续处理放在临界区外。
 
-判据：把"可写条件"与"哪个消费者可读"分别用信号量表达；逐一检查通知错发、同一消息被重复取走、消息被提前覆盖三种错误。`,fw=String.raw`### 合并缓冲区：信号量重新设置
+判据：把"可写条件"与"哪个消费者可读"分别用信号量表达；逐一检查通知错发、同一消息被重复取走、消息被提前覆盖三种错误。`,mw=String.raw`### 合并缓冲区：信号量重新设置
 
 两个独立缓冲区合并为一个共享缓冲区后，容量与产品不再按来源区分。
 
@@ -21002,7 +23295,7 @@ $$
 - 所有计数与缓冲区操作由同一 mutex 保护，产品数量改由共享计数管理，full 不再单独承担消费者排队；
 - 统一分配规则在锁内执行：只要有未预留产品和等待者，优先选择目标消费者，将其等待计数减 1、预留名额加 1，再 V 对应的私有信号量；消费者先释放 mutex 再去等待私有通知。
 
-判据：改变 CPU 优先级只影响谁先运行，不改变被唤醒者；要控制"谁先拿到产品"，需要私有通知与预留机制。`,pw=String.raw`### 管程与条件变量
+判据：改变 CPU 优先级只影响谁先运行，不改变被唤醒者；要控制"谁先拿到产品"，需要私有通知与预留机制。`,hw=String.raw`### 管程与条件变量
 
 管程把共享数据与操作封装在一起，**同一时刻只允许一个进程在管程内活动**（互斥由语言或运行时保证），管程内部的同步靠条件变量。
 
@@ -21018,7 +23311,7 @@ Swait(a,b) 是原子操作：**仅当 a、b 均大于 0 时，才同时将二者
 - 生产者：Swait(empty, mutex)，写入后 Ssignal(mutex, full)；
 - 消费者：Swait(full, mutex)，取出后 Ssignal(mutex, empty)。
 - **AND 信号量不等于两个普通 wait 依次执行**：两次独立 wait 之间不原子，可能在获得一个信号量后被阻塞而"部分占用资源"；AND 语义是"全得或全不得"。
-- 注意边界：普通 P 操作只要所有进程**统一申请顺序**（都先申请 empty/full，再申请 mutex），同样能正确解决生产者—消费者问题而不死锁；两者真正的区别只在原子性与是否可能部分占用，不能据此断言任何普通 P 顺序都必然死锁。`,mw=String.raw`### 用信号量表达累计产量的额度约束
+- 注意边界：普通 P 操作只要所有进程**统一申请顺序**（都先申请 empty/full，再申请 mutex），同样能正确解决生产者—消费者问题而不死锁；两者真正的区别只在原子性与是否可能部分占用，不能据此断言任何普通 P 顺序都必然死锁。`,gw=String.raw`### 用信号量表达累计产量的额度约束
 
 当约束的对象是两个生产者的**累计产量之差**，而不是仓库中各类产品的存量时，建模方法不同。
 
@@ -21061,7 +23354,7 @@ C:  while (1) {
     }
 ~~~
 
-判据：**不能用裸信号量的当前值直接等同于产量差**——当某进程已取得许可但尚未完成生产，或已在等待队列中阻塞时，信号量值与静态的产量差并不相等；正确论证要沿"许可如何流转"追踪累计产量。额度在每个生产事件上更新，生产动作放在 P(mutex) 之前，临界区只含实际的入库或出库。`,hw=String.raw`### 死锁的必要条件与预防
+判据：**不能用裸信号量的当前值直接等同于产量差**——当某进程已取得许可但尚未完成生产，或已在等待队列中阻塞时，信号量值与静态的产量差并不相等；正确论证要沿"许可如何流转"追踪累计产量。额度在每个生产事件上更新，生产动作放在 P(mutex) 之前，临界区只含实际的入库或出库。`,_w=String.raw`### 死锁的必要条件与预防
 
 死锁四个必要条件：**互斥、请求并保持、不可剥夺、循环等待**；破坏其中任一条件即可预防死锁。
 
@@ -21089,7 +23382,7 @@ $$
 R\ge n\times(m-1)+1
 $$
 
-时**一定不会发生死锁**；资源总数低于该下界时只是**可能**死锁，并非必然。`,gw=String.raw`### 动态分区分配算法
+时**一定不会发生死锁**；资源总数低于该下界时只是**可能**死锁，并非必然。`,vw=String.raw`### 动态分区分配算法
 
 分区分配按空闲分区链（或表）的查找策略区分：
 
@@ -21104,7 +23397,7 @@ $$
 
 - 判断算法要同时看**查找起点**与**最终选中的分区**：起点必须是题目给定位置的只有循环首次适应；按容量从小到大查找的是最佳适应，从大到小的是最坏适应。
 - 连续多次申请时，每分配一次就要更新空闲表，后续申请在**当前的**空闲分区上继续判断，不能用初始表重复计算。
-- 剩余空闲分区 = 未被触及的分区 + 被切分后剩下的尾部；注意切分后起始地址随分配位置变化，不能沿用原分区起始地址。`,_w=String.raw`### 伙伴算法
+- 剩余空闲分区 = 未被触及的分区 + 被切分后剩下的尾部；注意切分后起始地址随分配位置变化，不能沿用原分区起始地址。`,yw=String.raw`### 伙伴算法
 
 把内存按 2 的幂次划分成块，块大小为 2 的 k 次方个单位，**块的起始地址按块大小对齐**。
 
@@ -21113,7 +23406,7 @@ $$
 - **回收**：释放时若伙伴空闲就立即合并，并继续向上检查更高一阶的伙伴，直到伙伴被占用或已到最大块。
 - **内部碎片** = 实际获得块大小 − 请求大小；统计"已分配块的内部碎片总量"时只累加当前已分配的块。
 
-判据：**空闲总量足够不代表能分配成功**，还必须存在一个满足请求大小的连续空闲块。`,vw=String.raw`### 分页地址变换
+判据：**空闲总量足够不代表能分配成功**，还必须存在一个满足请求大小的连续空闲块。`,bw=String.raw`### 分页地址变换
 
 按字节编址时，页面大小为 2 的 p 次方字节，页内偏移占 p 位：
 
@@ -21138,7 +23431,7 @@ $$
 - **修改位（脏位）**：指示页面调入后是否被修改，决定换出时是否写回外存；
 - **外存地址**：记录页面在外存中的位置，缺页时按它调入。
 
-判据：**缺页发生的直接依据是状态位为 0，而不是访问跨过了页边界**。一次访问落在不同的页，只说明这次访问的对象在另一页；该页是否缺页，仍取决于它是否已在内存。把字段与它要回答的问题对应起来，存在位答"是否在内存"，修改位答"换出是否写回"，访问位答"淘汰谁"。`,yw=String.raw`### 多级页表
+判据：**缺页发生的直接依据是状态位为 0，而不是访问跨过了页边界**。一次访问落在不同的页，只说明这次访问的对象在另一页；该页是否缺页，仍取决于它是否已在内存。把字段与它要回答的问题对应起来，存在位答"是否在内存"，修改位答"换出是否写回"，访问位答"淘汰谁"。`,xw=String.raw`### 多级页表
 
 把虚拟页号再分成若干级索引，两级页表的逻辑地址形如
 
@@ -21170,7 +23463,7 @@ $$
 当页表项（如页目录项）中的大页标志位置 1 时，该表项**直接指向一个大页框，绕过下级页表**，地址的低若干位直接作为大页内偏移。此时地址转换所需访存次数减少，页内偏移位数相应增加。
 
 - **按页面类型分别用独立队列做 FIFO 是题目给出的策略**，便于按各自队列的装入时刻淘汰；它不是说任何系统都绝对不能让不同大小的页进入统一置换，实际系统可以把它们放在同一框架下管理。
-- 更新表项时按其所在表的基址与索引定位：页目录项地址 = 页目录基址 + 目录号 × 页目录项大小。`,bw=String.raw`### 常用页面置换算法
+- 更新表项时按其所在表的基址与索引定位：页目录项地址 = 页目录基址 + 目录号 × 页目录项大小。`,Sw=String.raw`### 常用页面置换算法
 
 - **OPT（最佳置换）**：淘汰未来最长时间不再被访问的页，缺页数是**理想下界（最少）**，但不需预知未来，实际不可实现，只作比较基准；
 - **FIFO**：淘汰最早调入内存的页，**命中时不改变装入顺序**，实现简单但不考虑使用情况；
@@ -21199,7 +23492,7 @@ $$
 
 p 为缺页率。
 
-判据：**时间单位必须统一**，ns 与 ms 相差 10 的 6 次方倍；缺页服务时间通常远大于访存时间，平均访问时间往往由它主导。`,xw=String.raw`### 数组访问的页号序列
+判据：**时间单位必须统一**，ns 与 ms 相差 10 的 6 次方倍；缺页服务时间通常远大于访存时间，平均访问时间往往由它主导。`,Cw=String.raw`### 数组访问的页号序列
 
 下面的元素下标公式在**数组首元素页对齐**、且**每页恰好存放 P 个完整元素**时成立：按行优先存放的 m×n 二维数组，从 0 编号时元素 (i,j) 的线性下标为 i×n+j，页号为
 
@@ -21228,7 +23521,7 @@ $$
 
 - 页框数 = 可用物理内存 ÷ 页大小；
 - 把普通访存、缺页服务与缺页后的重试分别列出：命中按访存时间计，缺页按题给的磁盘交换时间计，最后求和或按缺页率加权；
-- 对"每页只被访问一次、跨越大量页的顺序访问"，每次访问都可能缺页，总时间由缺页服务主导；具体页数与时间按题给的页大小与页框数计算。`,Sw=String.raw`### 局部性原理与虚拟存储
+- 对"每页只被访问一次、跨越大量页的顺序访问"，每次访问都可能缺页，总时间由缺页服务主导；具体页数与时间按题给的页大小与页框数计算。`,ww=String.raw`### 局部性原理与虚拟存储
 
 局部性原理：程序在一段时间内往往只访问其地址空间的一部分。
 
@@ -21251,7 +23544,7 @@ $$
 - **可变分配全局置换**：块数可变；缺页时先看系统有无空闲物理块，有就直接分配给该进程（块数增加），无则从**整个系统所有进程**的页面中选一页换出，可能换出其他进程的页；
 - **可变分配局部置换**：块数可变，但只在本进程内置换，并按缺页率调整块数。
 
-判据：先看置换候选来自本进程还是全系统，再看块数是否可变；被锁定页、共享页等限制按题设处理。`,Cw=String.raw`### 先区分两类“链接”
+判据：先看置换候选来自本进程还是全系统，再看块数是否可变；被锁定页、共享页等限制按题设处理。`,Tw=String.raw`### 先区分两类“链接”
 
 **成组链接法管理文件系统尚未分配的空闲盘块**；文件的链接分配、FAT、索引分配解决的是“一个文件已经占用了哪些盘块、如何找到它们”。两者回答的问题不同，不能因为名字里都有“链接”就混用。
 
@@ -21308,7 +23601,7 @@ $$
 
 第一轮只有 $C-1$ 个真实块能与终止标记一起留在内存，第 $C$ 次回收写出；以后每 $C$ 次回收写出一次。随后把这 $F$ 个块全部分配出去，会读回这 $W$ 份组记录。**这个单向批处理计数不能直接套给任意交替分配与回收序列**：在满栈边界反复回收、又立即申请组长块，可以每轮都发生一次写出和一次读入。
 
-核对状态时只沿**当前内存栈可达的组链**数非零块号，不能把已经消费的旧记录再算一次。每次成功分配使真实空闲块总数减 1，每次合法回收使它加 1；换组本身不会凭空增加盘块。`,ww=String.raw`### 先把块数、位数和字节数分开
+核对状态时只沿**当前内存栈可达的组链**数非零块号，不能把已经消费的旧记录再算一次。每次成功分配使真实空闲块总数减 1，每次合法回收使它加 1；换组本身不会凭空增加盘块。`,Ew=String.raw`### 先把块数、位数和字节数分开
 
 磁盘或卷的容量为 $D$ 字节，盘块大小为 $B$ 字节。若题设恰好整除，盘块总数为
 
@@ -21350,7 +23643,7 @@ $$
 - **计数法**：对连续空闲区间保存“起始块号、连续块数”；只有真正相邻的块才能合并成一个记录。
 - **FAT 等文件物理分配结构**：描述文件所占块的链接或映射。某些结构也记录空闲状态，但它与本专题的成组空闲栈不是同一种算法。
 
-若块号和长度字段各占 $a$ 字节，$F$ 个空闲块逐个列真实地址需要 $Fa$ 字节；若恰好组成 $r$ 个连续区间，计数法的成对字段需要 $2ra$ 字节。**这里只比较真实空闲块地址与区间字段**，不含计数头、终止标记、组间链接、对齐及盘块填充等开销，不是完整实现的内存或磁盘占用量。字段开销更小的条件是 $F>2r$，即平均区间长度大于 2。**成组链接法中的“组”是地址记录的打包，计数法中的“区间”才是物理连续性**。`,Tw=String.raw`### 文件的逻辑结构与访问方式
+若块号和长度字段各占 $a$ 字节，$F$ 个空闲块逐个列真实地址需要 $Fa$ 字节；若恰好组成 $r$ 个连续区间，计数法的成对字段需要 $2ra$ 字节。**这里只比较真实空闲块地址与区间字段**，不含计数头、终止标记、组间链接、对齐及盘块填充等开销，不是完整实现的内存或磁盘占用量。字段开销更小的条件是 $F>2r$，即平均区间长度大于 2。**成组链接法中的“组”是地址记录的打包，计数法中的“区间”才是物理连续性**。`,Dw=String.raw`### 文件的逻辑结构与访问方式
 
 逻辑结构是面向用户的组织形式。
 
@@ -21366,7 +23659,7 @@ $$
 - **目录结构**：单级、两级、多级（树形）。多级目录中不同目录下可存在同名文件，用路径名唯一标识，**解决了文件命名冲突**；
 - **打开文件**：读写文件前必须先打开，把文件信息读入内存的打开文件表；修改文件内容同样需要先打开。
 
-判据：分开文件内容、文件元数据、打开状态与目录组织四层对象；题目混用逻辑结构与物理结构的名词时逐项纠正。`,Ew=String.raw`### 文件的物理结构
+判据：分开文件内容、文件元数据、打开状态与目录组织四层对象；题目混用逻辑结构与物理结构的名词时逐项纠正。`,Ow=String.raw`### 文件的物理结构
 
 - **连续分配**：文件占用一段连续磁盘块，支持顺序与随机访问、速度快。典型的基本方案需要在建立文件时确定初始空间或预估文件大小；**文件增长时若紧邻的后续块已被占用，可能需要搬迁整个文件**（具体是否搬迁取决于实现与当时是否能为文件重新分配连续区）。
 - **隐式链接分配**：每块末尾保存下一块指针，块可散布在磁盘任意位置；增长时申请新块接到链尾，不移动已有数据块；只能顺序访问，且指针占用块内空间。
@@ -21396,7 +23689,7 @@ $$
 - **索引块内部若有头部、校验字段等题给保留空间，要先从索引块大小中扣除**；不能整除时向下取整，剩余不足一项的字节被浪费。
 - 最大可寻址数据块数 = 直接地址项数 + 各间接地址项的可覆盖块数（一级间接为 1 个索引块的地址数，二级间接为地址数的平方，依此类推）；
 - 最大文件长度 = 可寻址数据块数 × 数据块大小，**索引块本身不计入文件数据**；
-- 记录成组时每块可存记录数按题设给出的可用容量计算，已另行预留指针空间的不再重复扣减。`,Dw=String.raw`### 硬链接与符号链接
+- 记录成组时每块可存记录数按题设给出的可用容量计算，已另行预留指针空间的不再重复扣减。`,kw=String.raw`### 硬链接与符号链接
 
 - **硬链接**：多个目录项指向同一索引结点（inode），建立硬链接只让该 inode 的**链接计数加 1，不复制文件内容**；inode 号只在单个文件系统内唯一，所以**硬链接不能跨文件系统**；**POSIX 中只有当链接计数为 0 且没有进程仍打开该文件时，文件才真正被回收**。新增内容写在同一 inode 下，后续追加的部分同样被共享。
 - **符号链接（软链接）**：是一个独立的新文件，有自己的 inode，内容是**目标路径名字符串**，自身链接计数从 1 开始；删除符号链接只是删掉这个路径名引用，**原文件本体仍在，可正常访问**。**短路径名通常直接内嵌在 inode 中，因此符号链接不一定额外占用数据块**。
@@ -21410,7 +23703,7 @@ $$
 
 **POSIX 现实**：符号链接的内容只作字符串处理，内核在本地命名空间做路径名解析；要指向另一台机器上的文件，需要 NFS、SMB 之类的网络文件服务把远端目录挂载为本地可解析路径，**符号链接不会因为写了远程地址就自动跨机取值**。考试按教材口径作答，理解时注意这一区别。
 
-判据：讨论磁盘空间、删除行为与引用计数时，区分目录项、链接自身与目标文件三者的生命周期。`,Ow=String.raw`### I/O 软件的层次结构
+判据：讨论磁盘空间、删除行为与引用计数时，区分目录项、链接自身与目标文件三者的生命周期。`,Aw=String.raw`### I/O 软件的层次结构
 
 按教材的抽象层次，自下而上为：硬件、中断处理程序、设备驱动程序、设备独立性软件、用户层 I/O 软件。
 
@@ -21425,7 +23718,7 @@ $$
 
 操作系统隐藏硬件实现细节，向上提供抽象模型。以磁盘为例，一个数据块的物理位置由柱面（磁道）号、盘面（磁头）号、扇区号共同确定，这三者是**被抽象掉的硬件细节**；文件系统把磁盘数据组织成文件，用户用**文件路径名**定位数据，路径名是抽象后提供给用户的逻辑描述方式，不是被抽象掉的对象。
 
-判据：区分文件系统的逻辑块位置、设备接口给出的地址与磁盘内部的几何位置；若题目给出柱面、磁头、扇区参数，则按该模型推导，不自行替换为另一种接口。`,kw=String.raw`### 三种 I/O 控制方式
+判据：区分文件系统的逻辑块位置、设备接口给出的地址与磁盘内部的几何位置；若题目给出柱面、磁头、扇区参数，则按该模型推导，不自行替换为另一种接口。`,jw=String.raw`### 三种 I/O 控制方式
 
 - **程序直接控制（查询）**：CPU 反复读设备状态寄存器直到设备就绪，再由 CPU 亲自把数据在设备控制器与主存之间搬运，**CPU 全程被占用**；
 - **中断控制方式**：CPU 发出 I/O 请求后可执行其他进程，设备完成时用中断通知，再由 CPU（中断服务程序）搬运数据，省掉等待但搬运仍由 CPU 参与；
@@ -21441,7 +23734,7 @@ $$
 - 中断控制方式：调用者发起请求后挂起等待，设备中断通知后由内核唤醒到就绪态，**阻塞**；
 - DMA 方式：数据传送由 DMA 控制器完成，但发起本次 I/O 的用户进程仍要等整块数据传完（在等待队列挂起），**阻塞**。
 
-判据：**中断、DMA 减少的是 CPU 的忙等，不等于调用进程不阻塞**；控制机制（查询、中断、DMA）与调用语义（阻塞、非阻塞）是两回事，采用中断或 DMA 不自动保证用户进程不阻塞。`,Aw=String.raw`### 缓冲技术
+判据：**中断、DMA 减少的是 CPU 的忙等，不等于调用进程不阻塞**；控制机制（查询、中断、DMA）与调用语义（阻塞、非阻塞）是两回事，采用中断或 DMA 不自动保证用户进程不阻塞。`,Mw=String.raw`### 缓冲技术
 
 缓冲在低速设备与高速 CPU 之间设置中间存储，缓解速度不匹配、减少中断频率、提高设备与 CPU 的并行度。
 
@@ -21460,7 +23753,7 @@ $$
 - 当 t_cpu 大于 t_in 时 CPU 侧是瓶颈，max 取 t_cpu，末块仍需完整的 t_cpu；
 - 公式已包含首块启动与末块排空。
 
-判据：画出设备输入、传送到用户工作区、CPU 处理各阶段的时间线，标出缓冲区何时释放，再数可重叠区间；所有时间用同一单位，并检查题设给出的阶段是否都能并行。`,jw=String.raw`### 磁盘访问时间与调度目标
+判据：画出设备输入、传送到用户工作区、CPU 处理各阶段的时间线，标出缓冲区何时释放，再数可重叠区间；所有时间用同一单位，并检查题设给出的阶段是否都能并行。`,Nw=String.raw`### 磁盘访问时间与调度目标
 
 磁盘访问时间由寻道时间（磁头移到目标磁道）、旋转延迟（目标扇区转到磁头下）和传输时间组成；调度算法通过改变服务顺序减少寻道距离。
 
@@ -21469,7 +23762,7 @@ $$
 - **SCAN（电梯算法）**：磁头沿一个方向移动并服务沿途请求，到端点折返，**不会饥饿**，但对刚被扫描过、等待折返一端的磁道不利。
 - **C-SCAN**：只沿一个方向服务，到端点后直接快速返回起点、返回途中不服务，再重新同向扫描，消除 SCAN 对两端磁道的不公平，使各磁道等待时间更均匀。
 
-判据：画出磁道位置与当前移动方向，按算法规则排列请求，总移动距离沿执行序列相邻位置求和。FCFS 看到达顺序，SSTF 看当前位置距离，SCAN 类还要看方向与端点规则（端点是否服务按题设）。`,Mw=String.raw`### 磁盘高速缓存与提高磁盘 I/O 速度的途径
+判据：画出磁道位置与当前移动方向，按算法规则排列请求，总移动距离沿执行序列相邻位置求和。FCFS 看到达顺序，SSTF 看当前位置距离，SCAN 类还要看方向与端点规则（端点是否服务按题设）。`,Pw=String.raw`### 磁盘高速缓存与提高磁盘 I/O 速度的途径
 
 - **磁盘高速缓存（Disk Cache）**：在**内存**中为磁盘盘块设置缓冲区，保存某些盘块的副本；访问时先查缓存，命中则省去启动磁盘的操作。设计时需考虑数据如何交付给请求进程、采用什么置换策略、已修改的盘块何时写回磁盘。注意它位于内存，不要与磁盘控制器内部的缓存混为一谈。
 - **预读与延迟写**：预读提前把后续可能用到的盘块读入缓存；延迟写把修改暂留缓存、合并后再写回，减少实际磁盘写次数。
@@ -21477,7 +23770,7 @@ $$
 - **优化文件物理块分布**：减少寻道与旋转延迟。
 - **逻辑分区**：把物理盘划分为多个管理范围。**单纯做逻辑分区通常不改变文件的物理块分布，因而不保证提高 I/O 性能**；不过分区会影响磁盘空间的分配与管理方式，不能笼统断言分区对任何负载都毫无影响，只是它本身不是"提高 I/O 性能"的手段。
 
-判据：区分减少请求次数、减少寻道、缩短传输等待等不同的优化位置；缓存不保证所有请求命中，也不意味着每次修改都已持久化；只增加缓冲数量并不在所有工作负载下都保证更快。`,Nw=String.raw`### 分层模型
+判据：区分减少请求次数、减少寻道、缩短传输等待等不同的优化位置；缓存不保证所有请求命中，也不意味着每次修改都已持久化；只增加缓冲数量并不在所有工作负载下都保证更快。`,Fw=String.raw`### 分层模型
 
 **OSI 七层自下而上为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层；TCP/IP 体系通常概括为四层：网络接口层、网际层（IP 层）、传输层、应用层。**
 
@@ -21501,7 +23794,7 @@ $$
 
 - **差错控制与帧同步属于数据链路层，不属于物理层。**
 - **路由选择属于网络层；端到端的可靠传输、流量控制、拥塞控制属于传输层。**
-- 不同层次都可以做流量控制，但对象不同：数据链路层控制相邻结点之间，传输层控制端到端进程之间。`,Pw=String.raw`### 基本概念
+- 不同层次都可以做流量控制，但对象不同：数据链路层控制相邻结点之间，传输层控制端到端进程之间。`,Iw=String.raw`### 基本概念
 
 - 码元：承载信息的基本信号单位，一个码元可携带 1 位或多位比特。
 - 数据率、波特率与每码元比特数 $n$ 的关系：
@@ -21526,7 +23819,7 @@ $$
 - 要求自同步、可容忍带宽加倍 → 曼彻斯特或差分曼彻斯特；若题目强调普通双极性 RZ（0 也是脉冲），则 RZ 也能自同步。
 - 环境噪声大、可能接线使电平整体翻转 → 差分曼彻斯特。
 - 传统 10 Mbit/s 以太网（10BASE-5/2/T）→ 曼彻斯特编码。
-- **判断“每个码元中点是否跳变”时，必须分别检查 0、1 两类码元；只看到名称含“归零”不能想当然。**`,Fw=String.raw`### 比特差错的类型
+- **判断“每个码元中点是否跳变”时，必须分别检查 0、1 两类码元；只看到名称含“归零”不能想当然。**`,Lw=String.raw`### 比特差错的类型
 
 - **随机差错**：由信道热噪声引起，错误位在时间上独立、分散。
 - **突发差错**：由外部干扰等引起，一段连续比特内出现多个错误。
@@ -21558,7 +23851,7 @@ $$
 
 自动重传请求 ARQ 分为停止-等待、后退 N 帧、选择重传三种，靠确认、超时重传与序号实现可靠传输。
 
-**关于“绝对可靠”的判断：在检错码、信道与重试时间都理想的前提下，ARQ 可提供可靠传输；但检错码可能漏检、信道持续故障、重试次数与等待时间受限时数据仍可能无法送达，因此不能说“绝对可靠”。**`,Iw=String.raw`### 停止等待协议
+**关于“绝对可靠”的判断：在检错码、信道与重试时间都理想的前提下，ARQ 可提供可靠传输；但检错码可能漏检、信道持续故障、重试次数与等待时间受限时数据仍可能无法送达，因此不能说“绝对可靠”。**`,Rw=String.raw`### 停止等待协议
 
 发送方每发一帧就等待确认，收到确认才发下一帧。一个成功周期为
 
@@ -21595,7 +23888,7 @@ $$
 
 其中 $RTT=2t_p$（忽略确认帧时延）。取满足上式的最小整数即最小窗口，再用 SR 或 GBN 的序号约束定位数。
 
-**易混：GBN 的窗口上限是 $2^{n}-1$，SR 等窗时是 $2^{n-1}$，两者不能混用。**`,Lw=String.raw`### CSMA/CD 与最小帧长
+**易混：GBN 的窗口上限是 $2^{n}-1$，SR 等窗时是 $2^{n-1}$，两者不能混用。**`,zw=String.raw`### CSMA/CD 与最小帧长
 
 CSMA/CD 用于共享式（半双工）以太网：先听后发、边发边听、冲突停发、随机退避。**全双工链路不存在冲突，不运行 CSMA/CD。**
 
@@ -21621,7 +23914,7 @@ $$
 
 ### VLAN
 
-VLAN 在二层把一台交换机（或互联的交换机群）在逻辑上划分为多个广播域，每个 VLAN 内的广播帧不会串到其他 VLAN；VLAN 之间通信需要三层设备。**判断广播域个数，先看是否划分 VLAN。**`,Rw=String.raw`### 码分多址 CDMA
+VLAN 在二层把一台交换机（或互联的交换机群）在逻辑上划分为多个广播域，每个 VLAN 内的广播帧不会串到其他 VLAN；VLAN 之间通信需要三层设备。**判断广播域个数，先看是否划分 VLAN。**`,Bw=String.raw`### 码分多址 CDMA
 
 每站分配一个长度为 $n$ 的码片序列，各分量取 $+1$ 或 $-1$。规格化内积定义为
 
@@ -21640,7 +23933,7 @@ $$
 
 **判断一个候选码片能不能分配给某组，只需把它与每个已分配码片逐位相乘求和（等价于判断规格化内积）：只要有一项非 0 就不正交、不可用。** 若某站码片全为 $+1$，与它正交等价于候选序列各位之和为 0。
 
-**注意：严格“两两正交”是题目采用的理想模型。真实 CDMA 使用异步伪随机码，互相关只能做到很低、未必严格为零，接收时存在多址干扰；做题仍按“内积为 0”判正交。**`,zw=String.raw`### IPv4 地址与掩码
+**注意：严格“两两正交”是题目采用的理想模型。真实 CDMA 使用异步伪随机码，互相关只能做到很低、未必严格为零，接收时存在多址干扰；做题仍按“内积为 0”判正交。**`,Vw=String.raw`### IPv4 地址与掩码
 
 IPv4 地址 32 位，分为网络号与主机号。子网掩码中 1 对应网络位、0 对应主机位，前缀长度 $/p$ 表示前 $p$ 位是网络位。
 
@@ -21675,7 +23968,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 - **0.0.0.0**：本网络本主机，用于源地址未知时（如 DHCP 发现）。
 - **私有地址**：10.0.0.0/8、172.16.0.0/12、192.168.0.0/16，全局不唯一，**不能在公网直接路由**，通常经 NAT 后才能访问公网。
 
-**易错：直连的两台设备若配了不同前缀长度，某地址是否在“本网段”要按发送方自己的掩码判断；若双方按各自掩码都认为对方落在本网段内，仍可直接通信。结论要落到具体掩码与路由，不可一概而论。**`,Bw=String.raw`### 基本特性
+**易错：直连的两台设备若配了不同前缀长度，某地址是否在“本网段”要按发送方自己的掩码判断；若双方按各自掩码都认为对方落在本网段内，仍可直接通信。结论要落到具体掩码与路由，不可一概而论。**`,Hw=String.raw`### 基本特性
 
 - 地址长度 **128 位**，基本首部长度**固定 40 字节**；可选信息放到扩展首部，用“下一个首部”字段串联，扩展首部不改变基本首部长度。
 - IPv4 的首部校验和、选项字段在 IPv6 中被取消或改造。
@@ -21696,7 +23989,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 
 - **双栈**：设备同时运行 IPv4 与 IPv6 协议栈。
 - **隧道**：把 IPv6 数据报整体作为 IPv4 数据报的载荷，穿过只支持 IPv4 的网络，在隧道两端还原。
-- 也可用协议转换等方式过渡。`,Vw=String.raw`### ARP 地址解析
+- 也可用协议转换等方式过渡。`,Uw=String.raw`### ARP 地址解析
 
 作用：把同一链路（同一广播域）上的 IP 地址解析为 MAC 地址。
 
@@ -21716,7 +24009,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 
 - **MAC 地址逐跳更换**：每经过一条链路，帧的源 MAC 换成出接口 MAC，目的 MAC 换成下一跳 MAC。
 - **IP 地址端到端不变**：路由器只按目的 IP 转发，不改写源、目的 IP（除 NAT 等特殊情况）。
-- 需要发送分组而 ARP 缓存中没有下一跳的表项时，就对**下一跳 IP**发 ARP 请求，而不是对最终目的 IP。`,Hw=String.raw`### NAT 与 NAPT
+- 需要发送分组而 ARP 缓存中没有下一跳的表项时，就对**下一跳 IP**发 ARP 请求，而不是对最终目的 IP。`,Ww=String.raw`### NAT 与 NAPT
 
 - **NAT**：在私网与公网边界上转换 IP 地址，使多台私网主机可共享少量公网地址。
 - **NAPT（网络地址端口转换）**：在转换 IP 地址的同时转换传输层端口号，用“公网 IP 加端口”区分不同私网主机。
@@ -21735,7 +24028,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 ### 与普通路由器的区别
 
 - 普通路由器转发时至少要把 TTL 减 1 并重算 IP 首部校验和，不能说“不改任何字段”。
-- **选择下一跳路由依据目的 IP（网络前缀），而端口映射属于地址转换，不是选路的依据；NAPT 的映射表是“私网地址加端口 ↔ 公网地址加端口”的转换关系，与路由选路是两回事。**`,Uw=String.raw`### RIP
+- **选择下一跳路由依据目的 IP（网络前缀），而端口映射属于地址转换，不是选路的依据；NAPT 的映射表是“私网地址加端口 ↔ 公网地址加端口”的转换关系，与路由选路是两回事。**`,Gw=String.raw`### RIP
 
 - **距离向量算法**，基于 Bellman-Ford，只与相邻路由器交换自己的整张路由表。
 - 度量是**跳数**，**最大有效跳数为 15，16 表示不可达**，因此只适合小型网络。
@@ -21766,7 +24059,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 3. ABR 在骨干区（或其他区域）把对应的 **Type 3 Summary-LSA 置为 MaxAge 并重新泛洪**，即撤销通告。
 4. 其他区域的路由器收到 Type 3 更新后更新链路状态数据库，重算**区域间**路由并删除该路由。
 
-**要点：Type 1、Type 2 这类描述区内拓扑的 LSA 发生变化，才会牵动区内 SPF 重算；Type 3 是跨区摘要，逻辑上只需重算区域间路由，不必重跑骨干区内部的 Dijkstra。**`,Ww=String.raw`### TCP 首部关键字段
+**要点：Type 1、Type 2 这类描述区内拓扑的 LSA 发生变化，才会牵动区内 SPF 重算；Type 3 是跨区摘要，逻辑上只需重算区域间路由，不必重跑骨干区内部的 Dijkstra。**`,Kw=String.raw`### TCP 首部关键字段
 
 - 源端口、目的端口：各 16 位。
 - 序号：32 位，本报文段数据首字节的序号。
@@ -21796,7 +24089,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 
 已知 IPv4 分组与 TCP 首部时：应用层数据长度 $=$ IP 总长度 $-$ IP 首部长度 $-$ TCP 首部长度（TCP 首部长度等于数据偏移字段乘 4，可含选项，不总是 20B）。
 
-**确认号减 1 是“已按序收到的最后一个字节的序号”，不是已收字节数。** 要得到字节数，须取“最后序号 $-$ 初始序号”，并按 32 位模回绕处理；初始序号连同 SYN 占用的 1 个序号要一并扣除。`,Gw=String.raw`### 基本量
+**确认号减 1 是“已按序收到的最后一个字节的序号”，不是已收字节数。** 要得到字节数，须取“最后序号 $-$ 初始序号”，并按 32 位模回绕处理；初始序号连同 SYN 占用的 1 个序号要一并扣除。`,qw=String.raw`### 基本量
 
 - 拥塞窗口 cwnd 与接收窗口 rwnd 共同决定发送窗口：
 
@@ -21820,7 +24113,7 @@ $$
 ### 题型的两个提醒
 
 - 408 题常按“理想逐 RTT 窗口模型”统计：每 RTT 发送量为当前 cwnd，然后按所处阶段更新 cwnd；把超时与快恢复当作拥塞周期边界，分别数清慢开始段与拥塞避免段的 RTT 数，最后乘 RTT 得时间。
-- **实际 RTO 由 RTT 的测量与安全边距共同决定，不能由理想化的固定 RTT 直接推断墙钟时间；理想模型只给出“理想往返、无额外排队”下的下限。**`,Kw=String.raw`### 域名系统与服务器层次
+- **实际 RTO 由 RTT 的测量与安全边距共同决定，不能由理想化的固定 RTT 直接推断墙钟时间；理想模型只给出“理想往返、无额外排队”下的下限。**`,Jw=String.raw`### 域名系统与服务器层次
 
 域名自右向左分级：根、顶级域、权限域名。DNS 服务器分为根域名服务器、顶级域名服务器、权限域名服务器，以及主机配置的本地域名服务器。
 
@@ -21845,7 +24138,7 @@ $$
 
 - 只有当 **DNS 服务器与目标 Web 服务器都在其他网段、且 ARP 与 DNS 缓存均为空**时，才表现为“先 ARP 默认网关（供 DNS 报文出去）→ DNS → 再处理 Web 服务器”。
 - 更一般地：每一跳只解析**该跳的下一跳** MAC——DNS 报文解析 DNS 服务器一侧的下一跳，HTTP 报文解析 Web 服务器一侧的下一跳。
-- 若 ARP 缓存或 DNS 缓存命中，就无需再次 ARP 或再次解析域名。`,qw=String.raw`### 报文格式（HTTP/1.x）
+- 若 ARP 缓存或 DNS 缓存命中，就无需再次 ARP 或再次解析域名。`,Yw=String.raw`### 报文格式（HTTP/1.x）
 
 - 请求报文：请求行（方法、请求目标、版本）＋首部行＋空行＋实体。
 - 响应报文：状态行（版本、状态码、短语）＋首部行＋空行＋实体。
@@ -21864,7 +24157,7 @@ $$
 - **Connection: close**：服务器发完本响应后关闭 TCP 连接，该连接不再用于后续请求。
 - **HTTP/1.1 默认持久连接**，不发送 keep-alive 首部也可在同一 TCP 连接上复用；HTTP/1.0 需显式 keep-alive 才能复用。
 
-**易错：看到 Content-Length 先问它描述的是“本报文实体”还是“整个资源”；描述整个资源的是 Content-Range 斜杠后的数字。**`,Jw=String.raw`### 端口分类
+**易错：看到 Content-Length 先问它描述的是“本报文实体”还是“整个资源”；描述整个资源的是 Content-Range 斜杠后的数字。**`,Xw=String.raw`### 端口分类
 
 - 熟知端口：0 至 1023，分配给常用服务。
 - 登记端口：1024 至 49151。
@@ -21887,7 +24180,7 @@ $$
 FTP 使用两条连接，控制连接固定 21 端口，**控制连接永远由客户端主动发起**。两种模式的区别只在数据连接由谁发起：
 
 - **主动模式（PORT）**：客户端用 PORT 命令告知自己的数据端口，服务器从自己的 20 端口**主动**连接客户端指定端口。
-- **被动模式（PASV）**：服务器打开一个临时端口并回给客户端，**等待客户端主动**连上该端口建立数据连接，适合客户端在防火墙或 NAT 之后的情形。`,Yw=String.raw`### 作用与端口
+- **被动模式（PASV）**：服务器打开一个临时端口并回给客户端，**等待客户端主动**连上该端口建立数据连接，适合客户端在防火墙或 NAT 之后的情形。`,Zw=String.raw`### 作用与端口
 
 DHCP 为主机动态分配 IP 地址、子网掩码、默认网关、DNS 服务器等配置。**服务器使用 UDP 67，客户端使用 UDP 68**，早期交互多采用广播。
 
@@ -21901,7 +24194,7 @@ DHCP 为主机动态分配 IP 地址、子网掩码、默认网关、DNS 服务�
 - 一个广播域内可部署多台 DHCP 服务器，客户端只选定一个；续租阶段可单播。
 - **客户端首次申请不需要预先知道 DHCP 服务器的 IP 地址**，靠广播发现。
 - **DHCP 支持地址保留（静态绑定）**，把某 MAC 与固定 IP 绑定，使指定主机总是获得同一地址。
-- 跨网段时可由 DHCP 中继代理转发请求。`,Xw=String.raw`![以当前顶点 B 为例，切换边走字段](rare-adjacency-multilist/field-switch.svg)
+- 跨网段时可由 DHCP 中继代理转发请求。`,Qw=String.raw`![以当前顶点 B 为例，切换边走字段](rare-adjacency-multilist/field-switch.svg)
 
 ### 真题怎么考（2024 年第 4 题）
 
@@ -21936,7 +24229,7 @@ ivex 与 ilink 必须配套，jvex 与 jlink 必须配套，不能交叉。两�
 
 ### 删除一条边
 
-先把它从**两端**的顶点链上摘掉：沿每条链找到它的前驱边结点，改前驱对应方向的指针域；若它本身就是链首，则改该顶点的 firstedge。两条链都摘干净，最后才释放这个边结点——顺序反了会留下悬空指针。边结点里没有前驱字段，仅有目标边地址时仍需沿链查找前驱；最坏为 O(deg(u)+deg(v))。已知两端前驱时，修改指针本身是 O(1)。`,Zw=String.raw`![顶点结点与弧结点的字段布局](rare-orthogonal-list/ol-records.svg)
+先把它从**两端**的顶点链上摘掉：沿每条链找到它的前驱边结点，改前驱对应方向的指针域；若它本身就是链首，则改该顶点的 firstedge。两条链都摘干净，最后才释放这个边结点——顺序反了会留下悬空指针。边结点里没有前驱字段，仅有目标边地址时仍需沿链查找前驱；最坏为 O(deg(u)+deg(v))。已知两端前驱时，修改指针本身是 O(1)。`,$w=String.raw`![顶点结点与弧结点的字段布局](rare-orthogonal-list/ol-records.svg)
 
 **先分清两个词：** 图里的箭头是**弧**（有向边），记录里的箭头是**指针**（存的是地址）。弧的方向写进结点里，指针只负责把同类结点串成链。
 
@@ -21952,13 +24245,13 @@ ivex 与 ilink 必须配套，jvex 与 jlink 必须配套，不能交叉。两�
 
 **两条核对原则：** 出度之和 = 入度之和 = 弧数；链上的先后顺序由插入历史决定，图本身不规定。
 
-**头插一条新弧**要写 4 处：新结点的 hlink、tlink 先取两条旧链首，再把两个顶点入口改成新结点。顺序不能颠倒：先改入口再取旧值，读回的是新结点自己，旧链首从此丢失。`,Qw=String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
+**头插一条新弧**要写 4 处：新结点的 hlink、tlink 先取两条旧链首，再把两个顶点入口改成新结点。顺序不能颠倒：先改入口再取旧值，读回的是新结点自己，旧链首从此丢失。`,eT=String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
 
-**规格数：** $(-1)^s2^{E-127}(1+F/2^{23})$。**非规格数：** $(-1)^s2^{-126}(F/2^{23})$，其中 F 是 23 位字段的无符号整数值；最小正非规格数为 $2^{-149}$。`,$w=String.raw`![从进位线区分CF借位与OF溢出](rare-comparison-flags/carry.svg)
+**规格数：** $(-1)^s2^{E-127}(1+F/2^{23})$。**非规格数：** $(-1)^s2^{-126}(F/2^{23})$，其中 F 是 23 位字段的无符号整数值；最小正非规格数为 $2^{-149}$。`,tT=String.raw`![从进位线区分CF借位与OF溢出](rare-comparison-flags/carry.svg)
 
 **对象是同宽 a−b。** CF 服务无符号解释；SF 与 OF 一起服务补码解释；ZF 管相等。
 
-设输入符号位为 $s_a,s_b$，截断差值符号位为 $s_r$：$OF=(s_a\oplus s_b)\land(s_a\oplus s_r)$。因此有符号小于用 $SF\oplus OF$，不是只用 OF。`,eT=String.raw`### 单链表的改链与删除
+设输入符号位为 $s_a,s_b$，截断差值符号位为 $s_r$：$OF=(s_a\oplus s_b)\land(s_a\oplus s_r)$。因此有符号小于用 $SF\oplus OF$，不是只用 OF。`,nT=String.raw`### 单链表的改链与删除
 
 next 只能向后走；改 next 前先保存原后继。删除非首结点时，先令前驱跳过待删结点，再释放它。释放后不能再访问其字段。头结点被删时，头指针必须相应改变。
 
@@ -21966,7 +24259,7 @@ next 只能向后走；改 next 前先保存原后继。删除非首结点时，
 
 “右侧存在更大值”可用右侧最大值判定：当前值严格小于右侧最大值才删除；相等保留。原地逆置把从右到左变为沿 next 前进，维护一个最大值即可；再逆置恢复原相对次序。
 
-迭代逆置用固定个数的指针，额外空间 O(1)；递归向尾部深入需要 O(n) 调用栈。结点由 new 分配时用 delete，malloc 分配时用 free。`,tT=String.raw`### 带头结点的双向链表
+迭代逆置用固定个数的指针，额外空间 O(1)；递归向尾部深入需要 O(n) 调用栈。结点由 new 分配时用 delete，malloc 分配时用 free。`,rT=String.raw`### 带头结点的双向链表
 
 头结点 L 不存数据，L->next 指向首个数据结点。每个数据结点有 next 与 prior，插入时必须同时修正正向和反向链接；原后继不存在时，不能访问它的 prior。
 
@@ -21978,7 +24271,7 @@ next 只能向后走；改 next 前先保存原后继。删除非首结点时，
 
 ### 按题给代码计数
 
-只算 pre->next->data <= p->data 的求值；成功后移与失败停止的比较都计入，判空不计入。最好和最坏情况依赖扫描起点、方向与停止条件：本题每轮 pre=L，递增输入要扫描整个有序前缀；不能直接套从有序段末端向前扫描的数组版结论。`,nT=String.raw`### 换乘次数与边数
+只算 pre->next->data <= p->data 的求值；成功后移与失败停止的比较都计入，判空不计入。最好和最坏情况依赖扫描起点、方向与停止条件：本题每轮 pre=L，递增输入要扫描整个有序前缀；不能直接套从有序段末端向前扫描的数组版结论。`,iT=String.raw`### 换乘次数与边数
 
 从起点到终点每经过一个中间顶点换乘一次，h 条边对应 h−1 次换乘。换乘上限 r 次，就限制最多 r+1 条边；这不是无约束最短路，也不是最小化换乘次数。
 
@@ -21988,7 +24281,7 @@ d[k][v] 表示至多 k 条边到 v 的最小权和。转移既保留上一层的
 
 ### 无边与整数范围
 
-矩阵 INF 只表示那一对顶点没有直达边，不是所有有限路径和的上界。不可达用独立标记；非负 int 边的多边权和可超过 int，需要宽类型累加。若最小合法结果超出题定返回类型，不能用 -1 冒充不可达。`,rT=String.raw`### 保留原数组下标
+矩阵 INF 只表示那一对顶点没有直达边，不是所有有限路径和的上界。不可达用独立标记；非负 int 边的多边权和可超过 int，需要宽类型累加。若最小合法结果超出题定返回类型，不能用 -1 冒充不可达。`,aT=String.raw`### 保留原数组下标
 
 排序原数组会改变元素位置。若必须保持原数组，辅助数组 idx 可存原下标，再按 a[idx[i]] 的值排序；原数组只读，查到后返回 idx[mid]，不是 mid 或元素值。
 
@@ -21998,7 +24291,7 @@ d[k][v] 表示至多 k 条边到 v 的最小权和。转移既保留上一层的
 
 ### 一次预处理，多次查询
 
-选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,iT=String.raw`### 对称矩阵的压缩存储
+选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,oT=String.raw`### 对称矩阵的压缩存储
 
 $n$ 阶对称矩阵满足 $A[i][j]=A[j][i]$，只需存下三角（含主对角线）的 $n(n+1)/2$ 个元素，另一半由对称性还原。压缩的依据是**元素值成对重复**，与「非零元很少」的稀疏矩阵是两回事。
 
@@ -22033,7 +24326,7 @@ $$
 - 只存上三角并按行优先（1 起下标）：$k(i,j)=\dfrac{(i-1)(2n-i+2)}{2}+(j-i)$；
 - 按下三角列优先（1 起下标）：$k(i,j)=\dfrac{j(j-1)}{2}+(i-1)$。
 
-**判据：先定三件事——①存下三角还是上三角、②行优先还是列优先、③下标从 0 还是从 1——三者都确定后再代公式。** $i<j$ 时必须先交换行列；选项里常见的错误公式往往只差最后的行内偏移。`,aT=String.raw`### 深度优先遍历的规则
+**判据：先定三件事——①存下三角还是上三角、②行优先还是列优先、③下标从 0 还是从 1——三者都确定后再代公式。** $i<j$ 时必须先交换行列；选项里常见的错误公式往往只差最后的行内偏移。`,sT=String.raw`### 深度优先遍历的规则
 
 从起点出发，先访问起点并做访问标记；随后依次查看当前顶点的每个邻接点，遇到尚未访问的邻接点就立刻深入递归，直到当前顶点的邻接点全部访问过，再回溯到最近一个仍有未访问邻接点的祖先。
 
@@ -22055,7 +24348,7 @@ $$
 
 ### 与广度优先遍历的区别
 
-广度优先遍历用队列逐层扩展，序列中相邻两项通常属于同一层或相邻两层；深度优先遍历用栈（递归）深入到底再回溯，序列中相邻两项在图上往往相隔很远，但它们在递归栈中始终处于同一条路径上。`,oT=String.raw`### 问题的实质
+广度优先遍历用队列逐层扩展，序列中相邻两项通常属于同一层或相邻两层；深度优先遍历用栈（递归）深入到底再回溯，序列中相邻两项在图上往往相隔很远，但它们在递归栈中始终处于同一条路径上。`,cT=String.raw`### 问题的实质
 
 给定结点个数 $n$，高度能否唯一确定，等价于问："形状是否由 $n$ 唯一确定？" 只有形状固定了，高度才算得出来。
 
@@ -22082,7 +24375,7 @@ $$h=\lfloor\log_2 n\rfloor+1$$
 
 给定 $n$ 时，只有满二叉树与完全二叉树的高度能确定；哈夫曼树与二叉排序树只能给出高度的取值范围（从接近平衡的形状到单链）。
 
-判据：问自己"给定 $n$，树的形状唯一吗"。受结点数严格约束的（满、完全）唯一；由权值或插入次序决定的（哈夫曼、二叉排序）不唯一。**不要把"完全二叉树高度确定"的结论顺手套到哈夫曼树或二叉排序树上。**`,sT=String.raw`### 从快速排序到快速选择
+判据：问自己"给定 $n$，树的形状唯一吗"。受结点数严格约束的（满、完全）唯一；由权值或插入次序决定的（哈夫曼、二叉排序）不唯一。**不要把"完全二叉树高度确定"的结论顺手套到哈夫曼树或二叉排序树上。**`,lT=String.raw`### 从快速排序到快速选择
 
 求第 $k$ 大（或第 $k$ 小）的快速选择复用快速排序的划分：一趟划分之后枢轴归位，**它的下标本身就说明了它的名次**。
 
@@ -22112,7 +24405,7 @@ $$\text{平均 } O(nL),\qquad \text{最坏 } O(n^{2}L).$$
 
 ### 与直接排序的取舍
 
-先排序再取下标 $k-1$ 也正确，但要用自定义比较函数，时间约 $O(nL\log n)$，比快速选择慢。题目若明确"算法可以修改数组"，指向的就是原地划分的快速选择。`,cT=String.raw`### 一、低位交叉编址的最大带宽
+先排序再取下标 $k-1$ 也正确，但要用自定义比较函数，时间约 $O(nL\log n)$，比快速选择慢。题目若明确"算法可以修改数组"，指向的就是原地划分的快速选择。`,uT=String.raw`### 一、低位交叉编址的最大带宽
 
 低位交叉编址把连续的地址按模块号交替分配到各存储模块，控制器按固定节拍轮流启动各模块，使多次访问在时间上重叠。进入稳态后，每经过一个总线传输周期就向总线送出一个数据字。
 
@@ -22142,7 +24435,7 @@ $$B=\frac{W}{t_{bus}},\qquad \text{可完全流水的条件}\quad m\times t_{bus
 - **向后兼容**：旧机器上的软件能在新机器上运行（新机器兼容旧的软件），这是换代时必须保证的方向；
 - **向前兼容**：新机器上的软件能在旧机器上运行，一般不要求。
 
-判据：机器换代首先要保证已有软件继续可用，因此向后兼容比向前兼容重要，不要把两个方向写反。`,lT=String.raw`### 一、片内 Cache 与片外 Cache
+判据：机器换代首先要保证已有软件继续可用，因此向后兼容比向前兼容重要，不要把两个方向写反。`,dT=String.raw`### 一、片内 Cache 与片外 Cache
 
 Cache 按位置分片内（与 CPU 同一芯片）与片外。片内 Cache 与 CPU 同频工作、访问延迟小；片外 Cache 容量可以更大但延迟高。**"所有 CPU 都包含片内 Cache"这类绝对化说法不成立**：早期机器的 Cache 位于主板或 CPU 之外的芯片中，现代 CPU 才普遍把一级 Cache 做进片内。
 
@@ -22162,7 +24455,7 @@ Cache 按位置分片内（与 CPU 同一芯片）与片外。片内 Cache 与 C
 - **写直达（写直通，Write Through）**：写命中时同时修改 Cache 与主存，主存始终是最新数据，实现简单；代价是每次写都要访存，通常配合写缓冲；
 - **写回（Write Back）**：只修改 Cache 并置该行的修改位（脏位），该行被替换出去时才写回主存，访存次数少；代价是需要修改位，替换时要判断是否写回。
 
-**判据："数据修改只写入 Cache、不写入主存"是写回（配合修改位）的说法，不是写直达。** 写未命中时是否把该块调入 Cache（写分配与非写分配）是另一个独立维度，与写直达、写回不是同一件事。`,uT=String.raw`### 一、两种实现
+**判据："数据修改只写入 Cache、不写入主存"是写回（配合修改位）的说法，不是写直达。** 写未命中时是否把该块调入 Cache（写分配与非写分配）是另一个独立维度，与写直达、写回不是同一件事。`,fT=String.raw`### 一、两种实现
 
 - **寄存器堆栈（硬堆栈）**：用一组寄存器串接成栈，进出栈时数据在寄存器之间移动，速度最快，但寄存器数量有限，**容量小**；
 - **存储器堆栈（软堆栈）**：在主存中划出一段区域作栈，**栈顶由堆栈指针 SP 指示**，进出栈只改写 SP 与栈顶单元，**栈内其余数据不移动**。容量大，但每次访问都要访存，速度慢。
@@ -22187,7 +24480,7 @@ $$SP_{\text{new}}=SP-C;$$
 
 ### 四、可见性与容量
 
-寄存器堆栈随 CPU 内部寄存器数量受限，通常只保存很少的嵌套层次；存储器堆栈的深度只受内存容量限制，是子程序调用、保存现场与表达式求值的主要实现方式。`,dT=String.raw`### 一、多道批处理的时间账
+寄存器堆栈随 CPU 内部寄存器数量受限，通常只保存很少的嵌套层次；存储器堆栈的深度只受内存容量限制，是子程序调用、保存现场与表达式求值的主要实现方式。`,pT=String.raw`### 一、多道批处理的时间账
 
 多道批处理把多道作业同时驻留内存，使**处理机计算与 I/O 并行**：某作业做 I/O 时，处理机可以运行另一作业。收益来自这种重叠，而不是让两道计算同时进行——只有一台处理机时，各作业的计算阶段必须排队。
 
@@ -22214,7 +24507,7 @@ $$C=\sum_{i=1}^{k}c_i .$$
 - 把"I/O 与处理机可以并行"误解成"两道计算可以并行"，于是算出小于 $C$ 的结果；
 - 忘记最早到达的作业在 $0$ 时刻就要投入处理机，误以为可以等另一作业到达后统一安排，使处理机白白空转；
 - 只比较两道作业的 I/O 总时间来判断重叠程度，而忽略处理机才是决定完成时刻的瓶颈资源；
-- 若只有一台 I/O 设备，两道作业的 I/O 阶段也不能同时进行，此时要把它当作需要排队的第二个资源重新画时间线。`,fT=String.raw`### 三级调度
+- 若只有一台 I/O 设备，两道作业的 I/O 阶段也不能同时进行，此时要把它当作需要排队的第二个资源重新画时间线。`,mT=String.raw`### 三级调度
 
 - **高级调度（作业调度、长程调度）**：从外存的后备队列中挑选作业调入内存并建立进程，决定多道程度。**它主要用于批处理系统**；分时与实时系统一般不设高级调度。
 - **中级调度（内存调度、中程调度）**：把暂时不能运行的进程（如长期等待 I/O 的进程）调至外存挂起，条件具备时再换回内存。目的是**提高内存利用率与系统吞吐量**。
@@ -22238,7 +24531,7 @@ $$C=\sum_{i=1}^{k}c_i .$$
 
 ### 易混点
 
-中级调度是**进程级**的内外存对换（把整个进程换出、换入），与虚拟存储中**页级**的页面置换不是一回事；不要把中级调度当成页面置换。`,pT=String.raw`### 一、为什么需要重定位
+中级调度是**进程级**的内外存对换（把整个进程换出、换入），与虚拟存储中**页级**的页面置换不是一回事；不要把中级调度当成页面置换。`,hT=String.raw`### 一、为什么需要重定位
 
 程序中的地址是相对其自身起始位置而言的**逻辑地址（相对地址）**；装入内存后程序实际占用的起点是**物理地址**。把逻辑地址换算成物理地址的过程叫重定位，换算所用的基准值放在**重定位寄存器**中：
 
@@ -22266,7 +24559,7 @@ $$10000+5000=15000;$$
 - 静态：装入时由软件改写指令中的地址，改写后地址变了，程序不能移动；
 - 动态：运行时由硬件加基准值，指令不变，程序可以移动。
 
-**"运行时加基准"不等于"运行时修改指令"**，这是最常见的混淆点。"指令的操作数变成 15000"是静态重定位的结果，不是动态重定位。重定位寄存器由操作系统在调度该进程时装入，进程切换时必须更新。`,mT=String.raw`### 一、分页与碎片
+**"运行时加基准"不等于"运行时修改指令"**，这是最常见的混淆点。"指令的操作数变成 15000"是静态重定位的结果，不是动态重定位。重定位寄存器由操作系统在调度该进程时装入，进程切换时必须更新。`,gT=String.raw`### 一、分页与碎片
 
 分页把逻辑地址空间与物理内存都划分成大小相等的页与页框，**页的大小由机器决定，对用户透明**。
 
@@ -22290,7 +24583,7 @@ $$10000+5000=15000;$$
 
 ### 四、虚拟地址空间与物理地址空间
 
-**两者没有必然的大小关系。** 虚拟地址空间的大小由地址位数与操作系统约定决定，物理地址空间的大小由实际内存容量决定。虚拟空间可以大于物理空间（请求分页、交换），也可以小于或等于物理空间。见到"虚拟地址空间总是大于物理地址空间"这类绝对化表述即可判错。`,hT=String.raw`### 一、定义
+**两者没有必然的大小关系。** 虚拟地址空间的大小由地址位数与操作系统约定决定，物理地址空间的大小由实际内存容量决定。虚拟空间可以大于物理空间（请求分页、交换），也可以小于或等于物理空间。见到"虚拟地址空间总是大于物理地址空间"这类绝对化表述即可判错。`,_T=String.raw`### 一、定义
 
 进程在时刻 $t$ 的**工作集** $W(t,\Delta)$ 是指**从 $t$ 往前数 $\Delta$ 个时间单位（或 $\Delta$ 次访问）内，进程实际访问过的那些页面的集合**。
 
@@ -22313,7 +24606,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 四、与置换状态的区别
 
-有的置换算法也用窗口 $\Delta$ 判断页面的"年龄"（例如工作集算法、WSClock），但计算工作集本身只需要"窗口内出现过的页面"这一条定义，不要把它与 FIFO 的装入次序、LRU 的最近使用次序混为一谈。`,gT=String.raw`### 一、通道是什么
+有的置换算法也用窗口 $\Delta$ 判断页面的"年龄"（例如工作集算法、WSClock），但计算工作集本身只需要"窗口内出现过的页面"这一条定义，不要把它与 FIFO 的装入次序、LRU 的最近使用次序混为一谈。`,vT=String.raw`### 一、通道是什么
 
 通道（I/O 处理机）是一种**有限功能的处理机**，有自己的一套通道指令（通道程序）。它接受 CPU 的委托，独立控制一台或多台外围设备与主存之间的数据传送，把 CPU 从繁琐的 I/O 控制中解脱出来。
 
@@ -22334,7 +24627,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 四、判据
 
-问三件事：谁发起、谁搬运、谁善后。凡是要求某一级部件"完全脱离上一级自行发起"的说法都不成立；凡是"两级并行工作"的说法在通道方式下通常成立。另外不要把通道与设备控制器混为一谈：通道是比控制器更高级的 I/O 处理机，控制器只负责驱动具体设备。`,_T=String.raw`### 一、两种服务
+问三件事：谁发起、谁搬运、谁善后。凡是要求某一级部件"完全脱离上一级自行发起"的说法都不成立；凡是"两级并行工作"的说法在通道方式下通常成立。另外不要把通道与设备控制器混为一谈：通道是比控制器更高级的 I/O 处理机，控制器只负责驱动具体设备。`,yT=String.raw`### 一、两种服务
 
 - **虚电路服务**：通信前必须先建立一条逻辑连接（虚电路），路径上的每台路由器都要为这条连接保存状态（表项）；分组沿同一条路径按序到达，通信结束后拆除连接。它是**面向连接**的服务。
 - **数据报服务**：每个分组独立选路，路由器不保存连接状态；同一报文的不同分组可能走不同路径、到达次序可能颠倒，也可能丢失。它是**无连接、尽力而为**的服务。
@@ -22354,7 +24647,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 四、互联网为什么采用数据报
 
-虚电路要在路径上保存状态，链路或结点故障时经过它的所有虚电路都要重新建立，故障影响面大；数据报中每个分组独立选路，某结点故障时其余分组可以绕行，网络的可扩展性与健壮性更好。可靠性可以交给端系统（TCP）实现——"网络层尽力而为、传输层保证可靠"正是这一分工。虚电路在有明确服务质量与资源预留需求的场合（如 ATM、MPLS 的某些用法）中仍有价值。`,vT=String.raw`### 一、导向传输介质
+虚电路要在路径上保存状态，链路或结点故障时经过它的所有虚电路都要重新建立，故障影响面大；数据报中每个分组独立选路，某结点故障时其余分组可以绕行，网络的可扩展性与健壮性更好。可靠性可以交给端系统（TCP）实现——"网络层尽力而为、传输层保证可靠"正是这一分工。虚电路在有明确服务质量与资源预留需求的场合（如 ATM、MPLS 的某些用法）中仍有价值。`,bT=String.raw`### 一、导向传输介质
 
 - **双绞线**：两根绝缘铜线绞合以抵消部分干扰。**非屏蔽双绞线（UTP）**没有屏蔽层，抗电磁干扰能力最弱，但便宜、端接简单，多用于接入段；**屏蔽双绞线（STP）**增加了屏蔽层，抗干扰能力有改善，但屏蔽层必须良好接地才有效，而且**传输的仍是电信号**，强电磁场中仍会感应出干扰电压。
 - **同轴电缆**：铜芯外裹金属屏蔽层，抗干扰能力优于双绞线，但仍靠电信号传输，强电磁干扰下无法保证信号不受影响。
@@ -22371,7 +24664,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 三、成本与施工的现实取舍
 
-双绞线便宜、端接简单，还能在同一条线上同时传数据与供电（如给无线接入点、摄像头供电）；光纤两端需要光模块与激光器，端接要熔接或研磨。因此常见做法是"光纤到楼、双绞线入户到桌面"：主干、长距离与强干扰环境用光纤，末端几十米、成本敏感的接入段用双绞线；只有干扰极强的工业现场、变电站等场合才全段使用光纤。`,yT=String.raw`### 一、PPP 的组成与功能
+双绞线便宜、端接简单，还能在同一条线上同时传数据与供电（如给无线接入点、摄像头供电）；光纤两端需要光模块与激光器，端接要熔接或研磨。因此常见做法是"光纤到楼、双绞线入户到桌面"：主干、长距离与强干扰环境用光纤，末端几十米、成本敏感的接入段用双绞线；只有干扰极强的工业现场、变电站等场合才全段使用光纤。`,xT=String.raw`### 一、PPP 的组成与功能
 
 点对点协议 PPP 用于两个结点之间的**点对点链路**，由三部分组成：
 
@@ -22393,7 +24686,7 @@ PPP 既可运行在**同步链路**（如 SDH、SONET）上，也可运行在**�
 
 ### 四、与 HDLC 的区别
 
-HDLC 面向比特、有滑动窗口与序号，可提供可靠传输；PPP 不可靠、无序号无确认。两者都把 FCS 放在帧尾，但只有前者做重传。`,bT=String.raw`### 一、算法：16 位字的二进制反码求和
+HDLC 面向比特、有滑动窗口与序号，可提供可靠传输；PPP 不可靠、无序号无确认。两者都把 FCS 放在帧尾，但只有前者做重传。`,ST=String.raw`### 一、算法：16 位字的二进制反码求和
 
 IP 与 UDP（以及 TCP）的检验和都用同一套算法：
 
@@ -22420,7 +24713,7 @@ IP 与 UDP（以及 TCP）的检验和都用同一套算法：
 - IPv4 中 **UDP 的检验和是可选的**：字段置 0 表示发送方未计算，接收方跳过校验；为区分"不校验"与"算出来恰好为 0"，协议规定计算结果为 0 时发送方把它写成全 1；
 - IP 首部检验和必须计算，校验失败即丢弃该分组；
 - UDP 校验失败也丢弃（TCP 校验失败则丢弃并且不予确认）；
-- IPv6 取消了 IP 首部检验和，把差错检测交给链路层与传输层。`,xT=String.raw`### 调用次数与递归深度是两回事
+- IPv6 取消了 IP 首部检验和，把差错检测交给链路层与传输层。`,CT=String.raw`### 调用次数与递归深度是两回事
 
 递归写法的"时间复杂度"看**总调用次数**，"额外空间复杂度"看**递归栈的最大深度**，两条线不能互相替代。
 
@@ -22453,7 +24746,7 @@ $$
 
 ### 判据
 
-把"时间"和"空间"两条线分开核对：数调用次数得时间，数递归链深度得栈空间，数缓存条目得记忆化的空间；迭代写法则数循环次数与所用变量个数。任何把两条线混起来的描述（例如"深度 $O(n)$ 所以时间 $O(n)$"）都判为错误。`,ST=String.raw`### 栈与队列的典型应用
+把"时间"和"空间"两条线分开核对：数调用次数得时间，数递归链深度得栈空间，数缓存条目得记忆化的空间；迭代写法则数循环次数与所用变量个数。任何把两条线混起来的描述（例如"深度 $O(n)$ 所以时间 $O(n)$"）都判为错误。`,wT=String.raw`### 栈与队列的典型应用
 
 - **栈**（后进先出）：函数递归调用（保存返回地址与局部变量）、表达式括号匹配、中缀转后缀与后缀表达式求值、深度优先搜索的显式实现；
 - **队列**（先进先出）：二叉树的层序遍历、图的广度优先遍历、进程调度中的先来先服务与时间片轮转、打印缓冲。
@@ -22470,7 +24763,7 @@ $$
 
 链队列由动态结点构成、没有固定容量，**本就不会出现假溢出**。它必须同时维护队头指针和队尾指针，目的是让入队、出队都保持 $O(1)$，不是为了"避免假溢出"。
 
-**判据：分清三条线——栈/队列说的是访问顺序，双端队列说的是允许操作的两端，"假溢出"只与顺序存储的下标位置有关，链式结构不存在该问题。把链队列的指针维护说成"为避免假溢出"即错。`,CT=String.raw`### 完全图的边数
+**判据：分清三条线——栈/队列说的是访问顺序，双端队列说的是允许操作的两端，"假溢出"只与顺序存储的下标位置有关，链式结构不存在该问题。把链队列的指针维护说成"为避免假溢出"即错。`,TT=String.raw`### 完全图的边数
 
 - 无向完全图任意两顶点之间都有一条边，边数为组合数
 
@@ -22499,7 +24792,7 @@ $$
 - 邻接矩阵无论边有多少都开 $n$ 乘 $n$ 的数组，空间 $O(n^{2})$，**与边数无关**；
 - 邻接表空间 $O(n+E)$，适合稀疏图。
 
-**判据：完全图数边用组合数（无向还要除以 2）；有向图的度必须分开数入度、出度；生成树"含全部顶点、$n-1$ 条边"，不是原图所有边；邻接矩阵空间只由顶点数决定，写成 $O(n+E)$ 即错。`,wT=String.raw`### 分块查找（索引顺序查找）
+**判据：完全图数边用组合数（无向还要除以 2）；有向图的度必须分开数入度、出度；生成树"含全部顶点、$n-1$ 条边"，不是原图所有边；邻接矩阵空间只由顶点数决定，写成 $O(n+E)$ 即错。`,ET=String.raw`### 分块查找（索引顺序查找）
 
 把有序或分块有序的表分成若干块，另建索引表，每项存放该块的**最大关键字**与该块首地址。索引表中各块的最大关键字仍必须递增有序；块内可以无序。
 
@@ -22524,7 +24817,7 @@ $$
 
 ### 适用条件
 
-索引表必须按块的最大关键字有序；块数 $b$ 与块长 $s$ 的取值影响 ASL，块长与块数相近（约 $\sqrt{n}$）时较优。**判据：先按题面确认索引表与块内各自用顺序还是折半，再按每块实际元素个数加权，不能把块数直接当成块长。`,TT=String.raw`### 直接插入排序的第一趟
+索引表必须按块的最大关键字有序；块数 $b$ 与块长 $s$ 的取值影响 ASL，块长与块数相近（约 $\sqrt{n}$）时较优。**判据：先按题面确认索引表与块内各自用顺序还是折半，再按每块实际元素个数加权，不能把块数直接当成块长。`,DT=String.raw`### 直接插入排序的第一趟
 
 从第 2 个元素起，把当前元素插入到前面已排好序的前缀中，前缀始终有序。**第一趟只处理第 2 个元素**：把它与前一个元素比较并插入正确位置。
 
@@ -22545,7 +24838,7 @@ $$
 
 ### 判据
 
-**先把"分组"画出来再排序**：同一组内元素的下标相差 $d$，排序只在组内发生交换，不跨组。直接插入排序的第一趟只动前两个元素；希尔排序的第一趟动的是每一组自第二个元素起往后的同组元素。写下"分组—组内有序—回填"三步就不容易把两组结果拼错位。`,ET=String.raw`### 层序遍历与队列
+**先把"分组"画出来再排序**：同一组内元素的下标相差 $d$，排序只在组内发生交换，不跨组。直接插入排序的第一趟只动前两个元素；希尔排序的第一趟动的是每一组自第二个元素起往后的同组元素。写下"分组—组内有序—回填"三步就不容易把两组结果拼错位。`,OT=String.raw`### 层序遍历与队列
 
 二叉树层序遍历借助一个队列：根入队，然后每轮取队头结点访问，并把它的非空左、右孩子依次入队。队列天然把结点按层排好——队里总是"本层剩余结点"后面跟着"下一层已入队的结点"。
 
@@ -22567,7 +24860,7 @@ $$
 
 每个结点入队、出队各一次，时间 $O(n)$；队列最坏同时存放最宽一层的全部结点，空间 $O(n)$（若用深度优先的递归改写，额外空间为树高 $O(h)$，最坏仍是 $O(n)$）。
 
-**判据：先判空返回 0，再"按层冻结长度"——每轮用 cnt 锁定本层，出队 cnt 次并顺手入队非空孩子，用 cnt 更新最大值。凡把两个非空结点之间的空位置算进宽度、或把下一层结点混进本轮计数的写法都错。`,DT=String.raw`### 虚拟存储器与局部性
+**判据：先判空返回 0，再"按层冻结长度"——每轮用 cnt 锁定本层，出队 cnt 次并顺手入队非空孩子，用 cnt 更新最大值。凡把两个非空结点之间的空位置算进宽度、或把下一层结点混进本轮计数的写法都错。`,kT=String.raw`### 虚拟存储器与局部性
 
 虚拟存储器建立在局部性原理之上：程序在一段时间内只访问地址空间的一部分，因此可以只装入当前用到的页，其余按需从辅存调入，使逻辑地址空间可以大于物理内存。时间局部性指刚访问过的指令或数据很快会被再次访问，空间局部性指被访问的地址集中在邻近区域。
 
@@ -22583,7 +24876,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 
 主存与 Cache 之间以**块（行）为单位**交换数据。块越大，一次调入覆盖的相邻数据越多，可减少强制缺失；但块太大时块数变少，冲突缺失与容量缺失上升，传输代价也增大，**块大小会显著影响命中率**，需要综合权衡。
 
-**判据：逐条核对每句话的主体——局部性问的是访问模式，DRAM 刷新问的是以行为单位的周期性操作，SRAM/Cache 问的是器件特性，块大小问的是缺失率。不能把某一层的结论套到另一层。`,OT=String.raw`### 数值数据与逻辑数据在形式上没有差别
+**判据：逐条核对每句话的主体——局部性问的是访问模式，DRAM 刷新问的是以行为单位的周期性操作，SRAM/Cache 问的是器件特性，块大小问的是缺失率。不能把某一层的结论套到另一层。`,AT=String.raw`### 数值数据与逻辑数据在形式上没有差别
 
 同一串二进制位既可以解释为数值，也可以解释为逻辑数据，其位模式完全相同：
 
@@ -22594,7 +24887,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 
 计算机**不靠专门的标识位、也不靠分开存放或不同的运算器**来区分二者，而是由**指令的操作码**决定本指令按算术规律还是按位运算处理这串位：同一个加法器既能做算术加、也能做按位逻辑运算，由控制器按操作码发出的控制信号决定。
 
-**判据：数据本身不带类型标签，类型由"谁在用它、用什么指令用它"决定。凡声称用标识位、分开的寄存器或专用运算器来区分数值与逻辑数据的说法都不成立。`,kT=String.raw`### CISC 与 RISC 的指令特点
+**判据：数据本身不带类型标签，类型由"谁在用它、用什么指令用它"决定。凡声称用标识位、分开的寄存器或专用运算器来区分数值与逻辑数据的说法都不成立。`,jT=String.raw`### CISC 与 RISC 的指令特点
 
 - **CISC（复杂指令集）**：指令数量多、功能复杂，指令长度可以不等、格式规整性差，寻址方式多，一条指令可以完成较复杂的操作，甚至直接访存。
 - **RISC（精简指令集）**：指令数量少、格式规整、长度较固定，寻址方式少，采用 **Load/Store 结构**——只有取数、存数指令访问主存，运算指令只在寄存器之间进行；指令大多在一个时钟周期内完成，便于流水线。
@@ -22605,7 +24898,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 
 **但二者没有强制对应关系**：CISC 也可以用硬布线实现，RISC 也可以用微程序实现，只是从设计难度与速度考虑各有偏好。凡说"必须"的都不成立。
 
-**判据：RISC 的特征落在"指令规整、长度固定、寻址方式少、Load/Store"；CISC 落在"指令多而复杂、长度可变"；控制器实现方式只是通常偏好，不是定义，不能用它去否定某个特征。`,AT=String.raw`### 操作系统的四种基本结构
+**判据：RISC 的特征落在"指令规整、长度固定、寻址方式少、Load/Store"；CISC 落在"指令多而复杂、长度可变"；控制器实现方式只是通常偏好，不是定义，不能用它去否定某个特征。`,MT=String.raw`### 操作系统的四种基本结构
 
 - **分层结构**：把系统功能划分为若干层，**每层只依赖相邻下层提供的服务**，自下而上逐层抽象；结构清晰、便于验证，但层次划分困难、层间调用影响效率。
 - **模块化结构**：把功能拆成若干模块，模块之间通过接口调用，**支持按需动态加载与卸载模块**，灵活性好。
@@ -22618,7 +24911,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 - 模块化强调"可按需动态加载模块"，不是要求全部静态链接；
 - 分层强调"逐层单向依赖下层"。
 
-把"大部分服务放在用户空间"说成宏内核、或把"文件系统"算作微内核内核之内的功能，都是错的。`,jT=String.raw`### 缺页异常的识别
+把"大部分服务放在用户空间"说成宏内核、或把"文件系统"算作微内核内核之内的功能，都是错的。`,NT=String.raw`### 缺页异常的识别
 
 进程访问的页面不在内存（页表项状态位为 0）时，硬件产生缺页异常。缺页属于**内部异常（故障）**，在一条指令的执行过程中被检测到。
 
@@ -22639,7 +24932,7 @@ $$
 \text{恢复地址}=\text{引发缺页指令的地址}.
 $$
 
-**判据：缺页是"指令未完成"，所以断点回退到原指令；这与外部中断（在指令边界发生、返回的是下一条指令）不同。把断点改成"下一条指令"即错。`,MT=String.raw`### 程序的链接
+**判据：缺页是"指令未完成"，所以断点回退到原指令；这与外部中断（在指令边界发生、返回的是下一条指令）不同。把断点改成"下一条指令"即错。`,PT=String.raw`### 程序的链接
 
 把若干目标模块与库函数装配成完整程序的过程叫链接，按链接发生的时间分为三种：
 
@@ -22649,7 +24942,7 @@ $$
 
 ### 判据
 
-三者的区别在"什么时候链接、什么时候装入"：静态链接在运行前；装入时动态链接在装入阶段、把全部模块装入并链接；运行时动态链接把装入与链接**推迟到模块第一次被调用**。题面强调"仅当用户触发某功能时才装入并链接该模块"，对应的是**运行时动态链接**，而不是装入时动态链接——后者在装入阶段就会把模块装进来。`,NT=String.raw`### 文件系统的层次结构
+三者的区别在"什么时候链接、什么时候装入"：静态链接在运行前；装入时动态链接在装入阶段、把全部模块装入并链接；运行时动态链接把装入与链接**推迟到模块第一次被调用**。题面强调"仅当用户触发某功能时才装入并链接该模块"，对应的是**运行时动态链接**，而不是装入时动态链接——后者在装入阶段就会把模块装进来。`,FT=String.raw`### 文件系统的层次结构
 
 文件系统自上而下（或自下而上）可划分成若干层，靠近硬件的一端更接近 I/O 与盘块。**由近硬件到远硬件的顺序**为：
 
@@ -22661,7 +24954,7 @@ $$
 
 ### 判据
 
-越靠近硬件的一端越"物理"（设备、盘块、具体 I/O 命令），越远离硬件的一端越"逻辑"（文件名、目录、权限）。做题时按"谁直接与设备打交道"排序：设备排在最前，逻辑文件系统排在最后。`,PT=String.raw`### 目录项与文件控制块
+越靠近硬件的一端越"物理"（设备、盘块、具体 I/O 命令），越远离硬件的一端越"逻辑"（文件名、目录、权限）。做题时按"谁直接与设备打交道"排序：设备排在最前，逻辑文件系统排在最后。`,IT=String.raw`### 目录项与文件控制块
 
 文件控制块记录文件的全部说明与控制信息（文件名、物理位置、大小、权限、时间等），**不含文件内容**。目录由若干目录项组成，目录项与文件控制块的关系有两种实现：
 
@@ -22692,7 +24985,7 @@ $$
 
 ### 判据
 
-**把"读到目录项"和"读到文件控制块"当成两件事**：没有索引结点时目录项里就含文件控制块，平均次数只算目录检索；有索引结点时目录项只给编号，必须再加一次读索引结点的开销。先算一个盘块能放多少个目录项，再算总盘块数。`,FT=String.raw`### 位示图的位号与块号
+**把"读到目录项"和"读到文件控制块"当成两件事**：没有索引结点时目录项里就含文件控制块，平均次数只算目录检索；有索引结点时目录项只给编号，必须再加一次读索引结点的开销。先算一个盘块能放多少个目录项，再算总盘块数。`,LT=String.raw`### 位示图的位号与块号
 
 位示图用 1 位记录一个物理块的空闲情况，0 与 1 的含义按题面约定（常见是 0 空闲、1 已分配）。位号按**行优先**（从上到下、每行从左到右）依次对应物理块 0、1、2、…。若每行 $L$ 位，第 $r$ 行第 $c$ 列（均从 0 计）对应
 
@@ -22730,7 +25023,7 @@ $$
 
 例如 64MB 内存、4KB 页：$64\times1024\times1024/(4\times1024)=16384$ 块，位示图 $16384/8=2048\text{B}=2\text{KB}$。
 
-**判据：先把"位号 → 块号"的行优先换算写清楚，再按题给策略取块；校验方法是看取出的空闲块个数是否等于所需页数，并把最后一页的装入量与页大小相减核对碎片。`,IT=String.raw`### 时延带宽积
+**判据：先把"位号 → 块号"的行优先换算写清楚，再按题给策略取块；校验方法是看取出的空闲块个数是否等于所需页数，并把最后一页的装入量与页大小相减核对碎片。`,RT=String.raw`### 时延带宽积
 
 时延带宽积是"传播时延乘带宽"，表示链路上"正在飞行"的比特数，即链路能容纳的比特总量：
 
@@ -22752,7 +25045,7 @@ RTT 是从发送方发出数据到收到确认所经历的全部时间，**包�
 
 丢包率是分组在传输中丢失的比例，主要来源是路由器缓冲区溢出与传输差错。丢包率高通常说明网络拥塞，**但丢包率为 0 不等于没有拥塞**：排队时延可能已经很大，只是缓冲区尚未溢出；拥塞也可以表现为时延增大而非丢包。
 
-**判据：时延带宽积问"链路能装多少比特"，RTT 必须包含往返两段，利用率与时延同向变化，丢包率只是拥塞的一种表现而不是充要条件。`,LT=String.raw`### 物理层接口的四大特性
+**判据：时延带宽积问"链路能装多少比特"，RTT 必须包含往返两段，利用率与时延同向变化，丢包率只是拥塞的一种表现而不是充要条件。`,zT=String.raw`### 物理层接口的四大特性
 
 物理层接口标准从四个方面规定接口：
 
@@ -22768,7 +25061,7 @@ RTT 是从发送方发出数据到收到确认所经历的全部时间，**包�
 - 看到"某电平表示什么含义"归于功能特性；
 - 看到"先后顺序、时序"归于过程特性。
 
-四者中只有机械特性描述看得见摸得着的物理外形；凡涉及电压、含义、时序的都归入另外三项。`,RT=String.raw`### 使用场景
+四者中只有机械特性描述看得见摸得着的物理外形；凡涉及电压、含义、时序的都归入另外三项。`,BT=String.raw`### 使用场景
 
 CSMA/CA（冲突避免）用于 IEEE 802.11 无线局域网。无线环境难以像有线网那样"边发边听"检测冲突，因此改用**避免**而不是检测：先监听信道，空闲时再按规则等待一个帧间间隔后发送。
 
@@ -22794,7 +25087,7 @@ CSMA/CA（冲突避免）用于 IEEE 802.11 无线局域网。无线环境难以
 
 隐藏终端指两个站点彼此听不到、却同时向同一接收方发送而冲突。RTS/CTS 机制先由发送方向接收方发 RTS，接收方回 CTS，听到 CTS 的其他站点据此推迟发送，从而缓解隐藏终端问题；代价是增加握手开销与时延。
 
-**判据：IEEE 802.11 中 SIFS 短、DIFS 长；退避计时器"忙则冻结、闲则续减"；RTS/CTS 解决隐藏终端但增加开销。`,zT=String.raw`### 移动 IP 的基本角色
+**判据：IEEE 802.11 中 SIFS 短、DIFS 长；退避计时器"忙则冻结、闲则续减"；RTS/CTS 解决隐藏终端但增加开销。`,VT=String.raw`### 移动 IP 的基本角色
 
 移动 IP 让移动站在改变接入网络时仍能用**永久地址（归属地址）**被访问，涉及：
 
@@ -22810,7 +25103,7 @@ CSMA/CA（冲突避免）用于 IEEE 802.11 无线局域网。无线环境难以
 
 移动站发送时，在最基本的"三角路由"下可以以永久地址为源地址把分组交给外地代理转发给通信者，**不必先绕回归属代理**。只有当外地网络实施入口过滤、源地址不属于本网的分组会被丢弃时，才需要启用**反向隧道**：把报文先隧道送回归属代理，再由归属代理以永久地址为源转发。**反向隧道不是默认行为，题目未声明启用时，不能认为移动站发往通信者的分组必须先经过归属代理。**
 
-**判据：入方向"先到归属网络、由归属代理隧道转给外地代理"；出方向默认直接交给外地代理转发，只有启用反向隧道才绕回归属代理；内层源地址始终是永久地址。**`,BT=String.raw`### 优先队列与堆的复杂度
+**判据：入方向"先到归属网络、由归属代理隧道转给外地代理"；出方向默认直接交给外地代理转发，只有启用反向隧道才绕回归属代理；内层源地址始终是永久地址。**`,HT=String.raw`### 优先队列与堆的复杂度
 
 优先队列是「插入元素」与「取出最值」两种基本操作的抽象数据类型：最大优先队列每次取出最大关键字，最小优先队列取出最小关键字。它不规定实现方式，选型只看各项操作的时间要求。
 
@@ -22833,7 +25126,7 @@ $$
 - 平衡二叉排序树：查找、插入、删除都是 O(log n)，但把 n 个关键字逐个插入建树是 O(n log n)，做不到 O(n) 建队。
 - 只有堆同时满足**建队 O(n)** 与**插入、删除最值最坏 O(log n)**。
 
-判据：把「建队」「插入」「删除最值」三项要求分开核对，再取交集；只盯住其中一项就会把只满足部分要求的结构选进来。`,VT=String.raw`### 双端队列与受限形式
+判据：把「建队」「插入」「删除最值」三项要求分开核对，再取交集；只盯住其中一项就会把只满足部分要求的结构选进来。`,UT=String.raw`### 双端队列与受限形式
 
 双端队列允许在两端插入和删除。加上限制后就退化为更常见的结构：
 
@@ -22854,7 +25147,7 @@ $$
 
 栈的合法输出序列数是卡特兰数；双端队列的输出序列集合包含栈的输出序列，队列只得一种。两端插入、只从一端删除的形式介于两者之间，**不能直接套卡特兰数**，必须按限制逐项模拟枚举。
 
-判据：把「哪端可插入、哪端可删除」先写清，再逐元素模拟；用「序列是否看起来单调」之类的直觉代替模拟最容易漏掉合法或错认非法。`,HT=String.raw`### 二叉排序树的构造
+判据：把「哪端可插入、哪端可删除」先写清，再逐元素模拟；用「序列是否看起来单调」之类的直觉代替模拟最容易漏掉合法或错认非法。`,WT=String.raw`### 二叉排序树的构造
 
 按给定顺序把关键字逐个插入初始为空的二叉排序树：小于当前结点走左孩子，大于走右孩子，新结点总作为叶结点插入。**插入顺序不同则树形不同，平均查找长度也不同**，必须严格按题给顺序建树。
 
@@ -22880,7 +25173,7 @@ $$
 
 平衡二叉树与红黑树把树高控制在 O(log n)，ASL 为 O(log n)；插入有序序列会退化成单链，树高 n，成功 ASL 退化为 (n+1)/2 量级，失败仅有 n 个外部结点位置。折半查找的判定树与平衡二叉排序树同形，两者的 ASL 一致。
 
-判据：先按题给顺序画出树、标出每个关键字的层数再求和除以 n；建完树后用中序序列是否递增复核树形，比重新数一遍更可靠。`,UT=String.raw`### 有符号整型的转换：截断与扩展
+判据：先按题给顺序画出树、标出每个关键字的层数再求和除以 n；建完树后用中序序列是否递增复核树形，比重新数一遍更可靠。`,GT=String.raw`### 有符号整型的转换：截断与扩展
 
 定长补码的整型转换分两拍：**先按目标位数截断或扩展位模式，再按目标类型的符号性解释真值**。
 
@@ -22907,7 +25200,7 @@ $$
 
 以 32 位 int、16 位 short 为例：65535 的 32 位机器数是 0000FFFFH；截断为 16 位得 FFFFH，按有符号 16 位解释为 −1；符号扩展回 32 位得 FFFFFFFFH，真值仍为 −1。
 
-判据：**截断只看低位、扩展只看符号位**。不要把「数值超出目标类型范围」当成未定义行为而放弃按位推导——这类题只要求截断后复现补码；也不要在符号扩展时把高位补 0。`,WT=String.raw`### 磁盘存取时间的组成
+判据：**截断只看低位、扩展只看符号位**。不要把「数值超出目标类型范围」当成未定义行为而放弃按位推导——这类题只要求截断后复现补码；也不要在符号扩展时把高位补 0。`,KT=String.raw`### 磁盘存取时间的组成
 
 读或写一次数据的时间由三部分相加：
 
@@ -22946,7 +25239,7 @@ $$
 - 随机读多个块：每块都要重新计入寻道与旋转延迟；
 - 盘面数、磁道数这类参数只决定容量，**不进入存取时间公式**。
 
-判据：先把转速换算成「一圈多少毫秒」，再取半圈，最后加传输时间。最常见的错法是把整圈当成平均旋转延迟，或对连续文件重复计寻道。`,GT=String.raw`### Cache 的写策略
+判据：先把转速换算成「一圈多少毫秒」，再取半圈，最后加传输时间。最常见的错法是把整圈当成平均旋转延迟，或对连续文件重复计寻道。`,qT=String.raw`### Cache 的写策略
 
 写命中与写不命中各有两种策略，组合后共四种方案。
 
@@ -22970,7 +25263,7 @@ $$
 
 写回法需要 1 位脏位（修改位），写直达法不需要；替换时按脏位决定是否把该行写回主存。行总位数等于数据位加标记位加有效位，写回时再加脏位与替换状态位。
 
-判据：先判「写命中还是写不命中」，再判「写回还是写直达」，最后看是否写分配；把每一步「是否访存、是否调入块、是否置脏位」写出来，避免把写回法的写未命中漏计成缺失或把它误当写直达。`,KT=String.raw`### RISC 与 CISC 的设计取向
+判据：先判「写命中还是写不命中」，再判「写回还是写直达」，最后看是否写分配；把每一步「是否访存、是否调入块、是否置脏位」写出来，避免把写回法的写未命中漏计成缺失或把它误当写直达。`,JT=String.raw`### RISC 与 CISC 的设计取向
 
 CISC（复杂指令集）追求用一条指令完成较复杂的功能：指令数量多、长度不固定、寻址方式多、各条指令执行周期数差异大，实现上多用微程序控制器。
 
@@ -22990,7 +25283,7 @@ RISC（精简指令集）的典型特征：
 - **RISC 完成同样功能所需的指令条数通常比 CISC 多**（程序更长），不能反过来说 RISC 程序更短；
 - RISC 每条指令更简单，平均 CPI 更接近 1，配合流水线获得高性能，而不是靠单条指令的功能复杂。
 
-判据：逐条问「这属于哪一种设计取舍」；把「指令少」理解成「程序短」是最常见的概念错位。`,qT=String.raw`### 单周期数据通路的时钟周期
+判据：逐条问「这属于哪一种设计取舍」；把「指令少」理解成「程序短」是最常见的概念错位。`,YT=String.raw`### 单周期数据通路的时钟周期
 
 单周期 CPU 在一个时钟周期内完成一条指令，**时钟周期必须能容纳最慢的那类指令**：
 
@@ -23018,7 +25311,7 @@ $$
 - 寄存器堆的写延迟是否计入按题面：写回阶段只需保证数据在下一个时钟上升沿前就绪时，常不计入这条路径；
 - **时钟周期由最长路径决定，不能用平均延迟、也不能用最快的那条指令。**
 
-判据：为每类指令画一条串行链、分别求和、取最大值；核对时重点检查是否漏掉「多一次数据存储器访问」以及是否把取指重复计入。`,JT=String.raw`### 操作系统向用户提供的接口
+判据：为每类指令画一条串行链、分别求和、取最大值；核对时重点检查是否漏掉「多一次数据存储器访问」以及是否把取指重复计入。`,XT=String.raw`### 操作系统向用户提供的接口
 
 操作系统通过接口把服务提供给使用者。判断某项是否算接口的标准是：**这一步是否进入操作系统、是否跨越用户态与内核态去请求服务**。
 
@@ -23032,7 +25325,7 @@ $$
 - 不封装系统调用的库函数（纯计算、字符串处理）同样不构成操作系统接口；
 - 系统调用本身就是操作系统提供的接口，不能把它当成「操作系统的内部实现」而排除在外。
 
-判据：逐项问「这一步会不会交给操作系统去做」；答案为否就排除。命令接口与图形接口面向用户，系统调用接口面向程序，三者都属于操作系统对外提供的接口。`,YT=String.raw`### 读者-写者问题
+判据：逐项问「这一步会不会交给操作系统去做」；答案为否就排除。命令接口与图形接口面向用户，系统调用接口面向程序，三者都属于操作系统对外提供的接口。`,ZT=String.raw`### 读者-写者问题
 
 多个进程共享一份数据：读者只读、写者只写。约束是**写者与任何其他进程互斥**（写者独占），**读者之间可以同时访问**。读者与写者的优先次序由题给方案决定，方案不同则信号量设置不同。
 
@@ -23050,7 +25343,7 @@ $$
 - 等待队列为 FIFO 时，先到的请求先被唤醒，能避免某类进程长期得不到服务；队列不保证 FIFO 时，单靠信号量的 P、V 顺序不能保证公平；
 - 只保读者优先的方案里，读者不断到达会让写者饥饿；加入写者优先锁后，写者一到达就能挡住后来的读者。
 
-判据：把每个信号量「谁 P、谁 V、保护什么」列成一张对应表，再看题目问的量对应表中哪一项。`,XT=String.raw`### 连续分配中的两类碎片
+判据：把每个信号量「谁 P、谁 V、保护什么」列成一张对应表，再看题目问的量对应表中哪一项。`,QT=String.raw`### 连续分配中的两类碎片
 
 - **内部碎片**：分配给进程的分区大于其请求，分区内部未被使用的部分。固定分区与分页的最后一页都会产生内部碎片。
 - **外部碎片**：可变分区在反复分配与回收后，内存中出现大量彼此分散的小空闲区，**总容量足够却凑不出一块足够大的连续空间**给新作业。
@@ -23067,7 +25360,7 @@ $$
 
 分页把内存划分成固定大小的页框，进程按页离散装入，**不产生外部碎片**，只有最后一页的内部碎片；分段与可变分区一样会产生外部碎片，可用紧凑缓解，也可用离散分配从根本上避免。
 
-判据：先分清内、外碎片的成因（分配单位大于需求对应内部碎片，空闲区分散对应外部碎片），再由成因挑选对策；凡是「移动已用内存块、把空闲区合并」的技术，目标都指向外部碎片。`,ZT=String.raw`### 日志与崩溃一致性
+判据：先分清内、外碎片的成因（分配单位大于需求对应内部碎片，空闲区分散对应外部碎片），再由成因挑选对策；凡是「移动已用内存块、把空闲区合并」的技术，目标都指向外部碎片。`,$T=String.raw`### 日志与崩溃一致性
 
 文件系统的一次元数据修改往往要写多个块（位图、索引结点、目录项等），中途掉电会留下**部分更新**的不一致状态。日志（write-ahead log）的做法是：**先把即将执行的修改作为日志记录写入磁盘并提交，再真正把元数据写回最终位置**；崩溃后按日志回放，未提交的记录直接丢弃。
 
@@ -23085,7 +25378,7 @@ $$
 2. 再把**元数据日志记录**写入日志，并写入**提交记录**；
 3. 最后把日志中的元数据写回它们在磁盘上的最终位置（检查点），这一步可与后续操作重叠。
 
-判据：记住两条依赖——**日志记录必须先于对应元数据落盘，数据块必须先于元数据日志的提交落盘**；把「数据、日志提交、元数据落盘」排成顺序再与选项逐项比对，顺序颠倒或把数据块放到提交之后的都不满足一致性。`,QT=String.raw`### 目录的本质
+判据：记住两条依赖——**日志记录必须先于对应元数据落盘，数据块必须先于元数据日志的提交落盘**；把「数据、日志提交、元数据落盘」排成顺序再与选项逐项比对，顺序颠倒或把数据块放到提交之后的都不满足一致性。`,eE=String.raw`### 目录的本质
 
 **目录在实现上就是一种文件**：它的内容是一系列**目录项**（例如「文件名加索引结点号」），占用盘块存放，访问方式与普通文件一致，即按文件名查目录项。UNIX/Linux 正是把目录作为一种文件类型；目录项本身不含文件内容。
 
@@ -23109,7 +25402,7 @@ $$
 
 一个目录能容纳的目录项数受**目录项长度与目录所占盘块数**限制：已分配的盘块装满且不允许扩展时，目录项数就有上限，并非只受磁盘容量限制。
 
-判据：把「目录就是内容为目录项的文件」作为基本认识；凡把「磁盘容量」当作唯一限制的选项，都要用索引结构与目录项长度去反驳。`,$T=String.raw`### 设备管理涉及的数据结构
+判据：把「目录就是内容为目录项的文件」作为基本认识；凡把「磁盘容量」当作唯一限制的选项，都要用索引结构与目录项长度去反驳。`,tE=String.raw`### 设备管理涉及的数据结构
 
 设备分配是「为某个进程分配一台设备」，既要查系统的设备资源表，又要把结果登记到进程身上，还要沿控制器、通道逐级检查，因此会涉及以下几种数据结构。
 
@@ -23123,7 +25416,7 @@ $$
 
 SDT 找设备 → DCT 看设备状态 → COCT 看控制器是否空闲 → CHCT 看通道是否空闲 → 结果记入进程的 PCB。链条上任一环节被用到，就说明该数据结构被涉及。
 
-判据：逐级问「这一步要不要查表、要不要登记」；设备是分配给进程的，分配结果必须落到 PCB，不能只记在设备表里。`,eE=String.raw`### 调制与载波的三要素
+判据：逐级问「这一步要不要查表、要不要登记」；设备是分配给进程的，分配结果必须落到 PCB，不能只记在设备表里。`,nE=String.raw`### 调制与载波的三要素
 
 调制用基带信号改变载波的参量，而载波只有三个参量可调：**振幅、频率、相位**。按「改变了哪一个参量」即可给调制方式归类。
 
@@ -23146,7 +25439,7 @@ $$
 
 同样的带宽下提高 M 可以换取更高的数据率，但星座点更密集、点间距离更小，抵抗噪声的能力下降，对信噪比的要求提高，这是折中而不是无代价的收益。
 
-判据：题目出现「同时调整振幅与相位」「一个码元携带多个比特」「星座图」等措辞即可锁定 QAM；只看数据率高低而不问「改变了哪个参量」容易误选 PSK 或 AM。`,tE=String.raw`### PPP 的帧格式
+判据：题目出现「同时调整振幅与相位」「一个码元携带多个比特」「星座图」等措辞即可锁定 QAM；只看数据率高低而不问「改变了哪个参量」容易误选 PSK 或 AM。`,rE=String.raw`### PPP 的帧格式
 
 PPP 用于点对点链路，帧以标志字段 7E（01111110）作帧定界符，首尾各一个；地址字段固定为 FF、控制字段固定为 03；信息字段长度可变，末尾是校验字段。
 
@@ -23172,7 +25465,7 @@ $$
 
 同步链路按比特填充（零比特填充）：信息流中每出现 5 个连续 1 就插入一个 0，接收端把每 5 个连续 1 之后的 0 删去，以保证不会出现与标志字段相同的比特模式。这与字节填充是两套规则，不能混用。
 
-判据：**先剥掉帧首尾的 7E，再逐字节扫描**；遇到 7D 就与后一个字节成对还原。最容易错的是漏掉「7D 自身也要被转义」以及对整串数据统一异或。`,nE=String.raw`### 软件定义网络的基本思想
+判据：**先剥掉帧首尾的 7E，再逐字节扫描**；遇到 7D 就与后一个字节成对还原。最容易错的是漏掉「7D 自身也要被转义」以及对整串数据统一异或。`,iE=String.raw`### 软件定义网络的基本思想
 
 SDN 把传统路由器的**控制平面与数据平面分离**：
 
@@ -23192,7 +25485,7 @@ SDN 把传统路由器的**控制平面与数据平面分离**：
 - 「每台路由器独立运行分布式路由协议、自行维护路由表」是传统网络的模式，不是 SDN；
 - 控制器逻辑上集中，物理上可以做成分层或多副本以提高可靠性，这不改变其集中控制的本质。
 
-判据：先看转发决策由谁做出——设备自己算就是传统网络，由集中控制器下发流表就是 SDN。`,rE=String.raw`### UDP 的特性
+判据：先看转发决策由谁做出——设备自己算就是传统网络，由集中控制器下发流表就是 SDN。`,aE=String.raw`### UDP 的特性
 
 - **无连接**：发送数据前不需要建立连接，省去约一个往返时延的建连开销，也不维护连接状态；
 - **不可靠**：没有确认、重传与按序交付机制，报文可能丢失、重复或乱序；
@@ -23213,7 +25506,7 @@ SDN 把传统路由器的**控制平面与数据平面分离**：
 
 音视频与在线游戏能容忍少量丢包，但要求低时延、低抖动。TCP 的重传会引入额外时延，拥塞控制在大丢包时大幅降速，反而放大抖动；UDP 无连接、首部小、不做重传与拥塞控制，正好匹配这一类需求。
 
-判据：逐项反问「这是 UDP 的特征还是 TCP 的特征」，凡把「可靠传输」「拥塞控制」写到 UDP 头上的选项都是错的；需要低时延又要有可靠性与拥塞控制时，可在 UDP 之上由应用层补足（如 QUIC）。`,iE=String.raw`### 连接释放的状态转换
+判据：逐项反问「这是 UDP 的特征还是 TCP 的特征」，凡把「可靠传输」「拥塞控制」写到 UDP 头上的选项都是错的；需要低时延又要有可靠性与拥塞控制时，可在 UDP 之上由应用层补足（如 QUIC）。`,oE=String.raw`### 连接释放的状态转换
 
 TCP 释放连接通常需要四个报文段（FIN 与 ACK 分开发送）。约定：**FIN 占 1 个序号，纯 ACK 不占序号**。主动关闭方与被动关闭方的状态路径不同。
 
@@ -23231,7 +25524,7 @@ TCP 释放连接通常需要四个报文段（FIN 与 ACK 分开发送）。约�
 - **被动关闭方**：收到 FIN 后回 ACK，进入 CLOSE-WAIT（半关闭状态，仍可继续发送数据）；需要关闭时发送 FIN，进入 LAST-ACK，收到对方 ACK 后进入 CLOSED。
 - **CLOSE-WAIT 与 LAST-ACK 只出现在被动关闭方**；FIN-WAIT-1、FIN-WAIT-2、CLOSING、TIME-WAIT 只出现在主动关闭方（同时关闭是例外）。
 
-判据：先分清自己是主动关闭方还是被动关闭方，再看收到的报文段是否确认己方 FIN、是否置了 FIN，按上述情形查下一状态；用排除法时记住 CLOSE-WAIT、LAST-ACK 属于被动方，可先排除。`,aE=String.raw`### 逻辑结构与存储结构的关系
+判据：先分清自己是主动关闭方还是被动关闭方，再看收到的报文段是否确认己方 FIN、是否置了 FIN，按上述情形查下一状态；用排除法时记住 CLOSE-WAIT、LAST-ACK 属于被动方，可先排除。`,sE=String.raw`### 逻辑结构与存储结构的关系
 
 ### 一、逻辑结构与存储结构是一对多的关系
 
@@ -23267,7 +25560,7 @@ $$
 
 ### 四、四项辨析汇总
 
-"逻辑结构描述元素之间的逻辑关系、与具体存储实现无关"正确；"一种逻辑结构只能有一种存储结构"错误；"额外空间必须包含输入数据"错误；"$O(n^2)$ 表示恰好执行 $n^2$ 次"错误。`,oE=String.raw`### 有向无环图与公共子表达式
+"逻辑结构描述元素之间的逻辑关系、与具体存储实现无关"正确；"一种逻辑结构只能有一种存储结构"错误；"额外空间必须包含输入数据"错误；"$O(n^2)$ 表示恰好执行 $n^2$ 次"错误。`,cE=String.raw`### 有向无环图与公共子表达式
 
 ### 一、DAG 与表达式树的区别
 
@@ -23302,7 +25595,7 @@ $$
 
 - 操作数输出名字、算符输出算符，拼成的串就是该 DAG 的一种后缀（逆波兰）写法；
 - 用表达式树做后序会得到含重复片段的串，两者不一致是正常的，DAG 的结果串更短；
-- 核对时先画出结点及共享关系，标清每个结点的左右孩子，再按"左、右、根"逐层写出；被共享的结点第二次出现的位置不输出任何字符。`,sE=String.raw`### 置换选择排序与初始归并段
+- 核对时先画出结点及共享关系，标清每个结点的左右孩子，再按"左、右、根"逐层写出；被共享的结点第二次出现的位置不输出任何字符。`,lE=String.raw`### 置换选择排序与初始归并段
 
 ### 一、要解决的问题
 
@@ -23338,7 +25631,7 @@ $$
 
 - 阈值比较是"不小于"还是"大于"按题面规定：相等记录归入当前段还是下一段会改变段数；
 - 每段结束时工作区里通常还压着 w 条"小于阈值"的记录，它们直接成为下一段的初始内容，不再重新读入；
-- 与后续的 k 路归并、败者树是两件事：置换选择排序只负责生成初始归并段。`,cE=String.raw`### 周期串与最小重复次数
+- 与后续的 k 路归并、败者树是两件事：置换选择排序只负责生成初始归并段。`,uE=String.raw`### 周期串与最小重复次数
 
 ### 一、朴素子串匹配的代价
 
@@ -23392,7 +25685,7 @@ $$
 - 时间：外层 n 个起点、内层最多 m 次比较，为 $O(nm)$，失配提前退出只会更快；
 - 额外空间 $O(1)$：只用若干整型变量，不必真的拼出 $a^{k}$ 与 $a^{k+1}$；
 - 若先拼出 $a^{k}$、$a^{k+1}$ 再做两次子串匹配，时间同为 $O(nm)$，但要多花 $O(m)$ 的空间；
-- 边界：取模的模数是 n 而不是 m；b 含有 a 中不出现的字符时无可行起点，应返回 $-1$。`,lE=String.raw`### 磁盘记录的存放顺序与处理时间
+- 边界：取模的模数是 n 而不是 m；b 含有 a 中不出现的字符时无可行起点，应返回 $-1$。`,dE=String.raw`### 磁盘记录的存放顺序与处理时间
 
 ### 一、为什么"顺序存放"可能很慢
 
@@ -23419,7 +25712,7 @@ $$
 - 先算处理一条记录的时间相当于多少块（$t_{proc}/T_{rev}\times s$），据此决定每条记录后面要隔开几块；
 - 题目给若干候选存放顺序时逐个模拟：从当前块读出、处理、再看下一条记录在若干块之后，累加各自的等待时间；
 - 比较的是**按逻辑顺序处理完全部记录的总时间**，含读入时间、处理时间与旋转等待，取最小者；
-- 变量口径：转速为 r 转/分时 $T_{rev}=60/r$ 秒，每块旋转时间为 $T_{rev}/s$。`,uE=String.raw`### 双端口存储器与读写冲突
+- 变量口径：转速为 r 转/分时 $T_{rev}=60/r$ 秒，每块旋转时间为 $T_{rev}/s$。`,fE=String.raw`### 双端口存储器与读写冲突
 
 ### 一、结构特点
 
@@ -23443,7 +25736,7 @@ $$
 
 ### 四、判据
 
-题目给出若干访问组合时，逐项检查"地址是否相同"与"是否含写操作"，两项都成立才判为冲突；地址不同时必须判为不冲突，不能不加区分地一律判冲突。`,dE=String.raw`### Flynn 分类：指令流与数据流
+题目给出若干访问组合时，逐项检查"地址是否相同"与"是否含写操作"，两项都成立才判为冲突；地址不同时必须判为不冲突，不能不加区分地一律判冲突。`,pE=String.raw`### Flynn 分类：指令流与数据流
 
 ### 一、两个维度
 
@@ -23469,7 +25762,7 @@ $$
 
 - 流水线、超标量属于单处理器**内部**的并行（时间并行、指令级并行），不改变"一条指令流"这一事实，仍在 SISD 范畴；
 - 多核不是 MISD：MISD 是"多条指令流共享一条数据流"，而多核中每个核心各有自己的指令流与数据流；
-- 共享同一地址空间（SMP、UMA、NUMA）说的是存储与访存模型，不改变 Flynn 的分类结论。`,fE=String.raw`### 内部异常与外部中断的分类
+- 共享同一地址空间（SMP、UMA、NUMA）说的是存储与访存模型，不改变 Flynn 的分类结论。`,mE=String.raw`### 内部异常与外部中断的分类
 
 ### 一、按来源分两大类
 
@@ -23488,7 +25781,7 @@ $$
 
 - 故障与自陷由当前指令引起，同步发生；外部中断在**一条指令执行结束后**才可能被响应，与具体执行的是哪条指令无关；
 - 故障处理程序返回后可重执行引起异常的指令，自陷处理程序返回后从下一条指令继续；
-- 中断向量表的表项是中断服务程序的入口地址，中断类型号只是查表的索引。`,pE=String.raw`### 一般浮点数格式与规格化
+- 中断向量表的表项是中断服务程序的入口地址，中断类型号只是查表的索引。`,hE=String.raw`### 一般浮点数格式与规格化
 
 ### 一、格式的组成
 
@@ -23528,7 +25821,7 @@ $$
 3. **规格化**：结果尾数前导零过多时左规（阶码减一），尾数绝对值不小于 1 时右规（阶码加一）；
 4. **溢出判断**：阶码超出可表示范围即上溢；阶码小于最小可表示真值则下溢，按下溢规则处理。
 
-判据：先对阶再运算，最后一定要回到规格化形式，再判阶码是否越界——只做尾数运算而不判阶码会漏掉上溢。`,mE=String.raw`### TLB、页表与 Cache 的地址转换
+判据：先对阶再运算，最后一定要回到规格化形式，再判阶码是否越界——只做尾数运算而不判阶码会漏掉上溢。`,gE=String.raw`### TLB、页表与 Cache 的地址转换
 
 ### 一、虚拟地址与物理地址的字段
 
@@ -23575,7 +25868,7 @@ $$
 
 - 地址转换（虚到实）在访问 Cache 之前完成；用物理地址访存时按物理地址划分字段，不能用虚页号算 Cache 组号；
 - 数位宽的顺序是：先定页内偏移，再定组索引，最后用总位数减出标记位数；
-- 两处都要检查有效位：TLB 项有效才给出物理页框号，Cache 行有效才算命中。`,hE=String.raw`### 磁盘的物理格式化与逻辑格式化
+- 两处都要检查有效位：TLB 项有效才给出物理页框号，Cache 行有效才算命中。`,_E=String.raw`### 磁盘的物理格式化与逻辑格式化
 
 ### 一、物理格式化（低级格式化）
 
@@ -23599,7 +25892,7 @@ $$
 
 - "建立文件系统根目录""初始化磁盘空闲空间管理的数据结构""建立管理已分配空间的数据结构"都是**逻辑格式化**的工作；
 - 只有"初始化扇区的数据结构（扇区头尾与校验信息）"属于**物理格式化**；
-- 两者顺序固定：先物理格式化、再逻辑格式化；同一磁盘可以重做逻辑格式化而不必重做物理格式化。`,gE=String.raw`### 假脱机（SPOOLing）技术
+- 两者顺序固定：先物理格式化、再逻辑格式化；同一磁盘可以重做逻辑格式化而不必重做物理格式化。`,vE=String.raw`### 假脱机（SPOOLing）技术
 
 ### 一、组成
 
@@ -23622,7 +25915,7 @@ SPOOLing 在磁盘上开辟**输入井与输出井**，用磁盘缓冲区把低�
 - SPOOLing 本身**不提高 I/O 设备的物理传输速度**，只是把等待时间与其他活动重叠；
 - SPOOLing 的实现依赖**多道程序**与磁盘，单道批处理系统无法使用它。
 
-判据：把"共享设备、虚拟设备、并行"与"提高内存利用率、提高设备传输速率"分开，后者不是它的特点。`,_E=String.raw`### 磁盘阵列（RAID）
+判据：把"共享设备、虚拟设备、并行"与"提高内存利用率、提高设备传输速率"分开，后者不是它的特点。`,yE=String.raw`### 磁盘阵列（RAID）
 
 ### 一、RAID 能做什么
 
@@ -23644,7 +25937,7 @@ RAID 把多个独立的物理磁盘组合成一个逻辑磁盘，对外提供统
 - RAID1：镜像，可靠性高、空间利用率约 50%；
 - RAID5：分布式奇偶校验，兼顾速度、容量与可靠性。
 
-判据：区分"并行访问提高速度"与"冗余提高可靠性"两件事，再看选项谈的是容量、速度还是可靠性；提高单个磁盘容量这一类说法一定错。`,vE=String.raw`### 死锁检测与解除
+判据：区分"并行访问提高速度"与"冗余提高可靠性"两件事，再看选项谈的是容量、速度还是可靠性；提高单个磁盘容量这一类说法一定错。`,bE=String.raw`### 死锁检测与解除
 
 ### 一、数据结构
 
@@ -23684,7 +25977,7 @@ $$
 
 常用方法：**终止（撤销）进程**、**剥夺资源**、**回退（按检查点回滚）**。
 
-求"至少增加多少资源才能解除死锁"时：对某类资源逐个增加 1 个单位并重做检测，直到出现能全部完成的序列为止，取所需的最小增量。增加资源后必须**整表重算**，不能只看原先卡住的那一个进程。`,yE=String.raw`### 整批预留空间为什么需要额外的信号量
+求"至少增加多少资源才能解除死锁"时：对某类资源逐个增加 1 个单位并重做检测，直到出现能全部完成的序列为止，取所需的最小增量。增加资源后必须**整表重算**，不能只看原先卡住的那一个进程。`,xE=String.raw`### 整批预留空间为什么需要额外的信号量
 
 ### 一、问题
 
@@ -23711,7 +26004,7 @@ $$
 
 - P、V 各自是原语，但**多个 P 操作连写不构成一个原子动作**，需要额外互斥才能整体化；
 - 临界区内不得因等待资源而持锁睡眠：原有 mutex 只保护缓冲区读写与指针，不能兼任"预留"的互斥；
-- 若题面把"整批空间"当作一个资源单位（例如以批为单位的额度信号量），所需个数可能减少，须按题面给定的资源划分判断。`,bE=String.raw`### 磁盘存取时间与单/双缓冲
+- 若题面把"整批空间"当作一个资源单位（例如以批为单位的额度信号量），所需个数可能减少，须按题面给定的资源划分判断。`,SE=String.raw`### 磁盘存取时间与单/双缓冲
 
 ### 一、平均存取时间
 
@@ -23754,7 +26047,7 @@ $$
 - **双缓冲**下磁盘可在前一块进行"校验＋发送"的同时读入下一块，两个阶段重叠，故中间块取 $\max(t_{in},t_{cpu})$ 作为节拍；
 - 公式已含首块启动（$t_{in}$）与末块排空（$t_{cpu}$）；$t_{in}$ 明显大于 $t_{cpu}$ 时磁盘是瓶颈，反之 CPU 侧是瓶颈。
 
-判据：先算清每个阶段的单块时间，再画时间线数可重叠区间；所有时间用同一单位，注意转速与每道扇区数的换算。`,xE=String.raw`### 分组交换的传送时间
+判据：先算清每个阶段的单块时间，再画时间线数可重叠区间；所有时间用同一单位，注意转速与每道扇区数的换算。`,CE=String.raw`### 分组交换的传送时间
 
 ### 一、两个基本时延
 
@@ -23791,7 +26084,7 @@ $$
 
 ### 四、判据
 
-先算分组数（注意扣除分组头），再算单段的发送时延与传播时延，最后按"首分组走完全程、其余分组依次跟上"写总时间；传播时延是**每段各一次**，不要按分组数相乘，也不要把传播时延漏掉。`,SE=String.raw`### 奈氏准则与香农公式
+先算分组数（注意扣除分组头），再算单段的发送时延与传播时延，最后按"首分组走完全程、其余分组依次跟上"写总时间；传播时延是**每段各一次**，不要按分组数相乘，也不要把传播时延漏掉。`,wE=String.raw`### 奈氏准则与香农公式
 
 ### 一、码元、波特率与数据率
 
@@ -23835,7 +26128,7 @@ $$
 
 - 题给"带宽 W"时用奈氏公式或香农公式；
 - 题给"最高码元速率 B"与"振幅等级数 V"时，直接用 $R_b=B\log_2 V$，**不必再乘 2**；
-- 等级数与每码元比特数的换算：$V=2^{n}$，如 16 个等级对应每码元 4 位比特。`,CE=String.raw`### CSMA/CD 的退避时延
+- 等级数与每码元比特数的换算：$V=2^{n}$，如 16 个等级对应每码元 4 位比特。`,TE=String.raw`### CSMA/CD 的退避时延
 
 ### 一、争用期与时隙
 
@@ -23871,7 +26164,7 @@ $$
 
 - 第 1 次冲突时集合是 $\{0,1\}$，第 2 次是 $\{0,1,2,3\}$，依此类推；
 - 题给"退避时隙为 512 比特时间"时，先按数据率把 512 比特换算成时间，再乘题给的随机数 r；
-- 比特时间是"发送 1 比特所需的时间"，等于 $1/R$，不要把它与传播时延混为一谈。`,wE=String.raw`### IEEE 802.11 的 BSS 与 AP
+- 比特时间是"发送 1 比特所需的时间"，等于 $1/R$，不要把它与传播时延混为一谈。`,EE=String.raw`### IEEE 802.11 的 BSS 与 AP
 
 ### 一、基本术语
 
@@ -23898,7 +26191,7 @@ $$
 
 - 有 AP 的 BSS 内通信必须经 AP 中继，不能直发；
 - AP 的转发是**单播**给目的站点，不是广播；
-- 无线帧有多个地址字段（收地址、发地址、源地址、目的地址），经 AP 转发时源地址与目的地址仍是原始站点的地址，只有收地址与发地址逐段改变。`,TE=String.raw`### ICMP 报文与差错报告
+- 无线帧有多个地址字段（收地址、发地址、源地址、目的地址），经 AP 转发时源地址与目的地址仍是原始站点的地址，只有收地址与发地址逐段改变。`,DE=String.raw`### ICMP 报文与差错报告
 
 ### 一、定位与封装
 
@@ -23925,7 +26218,7 @@ ICMP 差错报告报文的目的 IP 地址通常是**引发该差错的那个数
 - **回送请求与回答**：用于测试两台主机之间的连通性（ping 使用它）；
 - 时间戳请求与回答、路由器询问与通告等。
 
-判据：先分清"差错报告"与"询问"两类，再逐条核对差错报告的触发条件与被禁止发送的情形。`,EE=String.raw`### VLSM 划分子网与 IPv4 分片
+判据：先分清"差错报告"与"询问"两类，再逐条核对差错报告的触发条件与被禁止发送的情形。`,OE=String.raw`### VLSM 划分子网与 IPv4 分片
 
 ### 一、VLSM 的基本做法
 
@@ -23972,7 +26265,7 @@ $$
 
 ### 四、判据
 
-VLSM 的关键是"够用即取最小 h、按需求从大到小排"，分片的关键是"片偏移除以 8、看清 MF 标志与新总长度"；两处都不能沿用等长子网划分或整包大小的直觉。`,DE=String.raw`### 一、BFS 走的是什么
+VLSM 的关键是"够用即取最小 h、按需求从大到小排"，分片的关键是"片偏移除以 8、看清 MF 标志与新总长度"；两处都不能沿用等长子网划分或整包大小的直觉。`,kE=String.raw`### 一、BFS 走的是什么
 
 广度优先搜索（BFS）从源点出发，按“距源点的边数”由近及远逐层访问顶点。它只需要一个**先进先出（FIFO）队列**：每次取队头顶点 $u$，把 $u$ 的、**尚未被发现**的邻接点依次放到队尾。
 
@@ -24028,7 +26321,7 @@ $$
 
 ### 六、还要记住的两点
 
-**自环与重边**不改变最短边数距离。无权图的自环不能增加最短路径条数；重边是否分别计为不同路径，要按题目约定。遍历序列仍以实际邻接表的扫描次序为准，边数统计也须明确重边口径。**队列空判据**是 front 与 rear 相等，不能拿 dist 或标记数组当判据。`,OE=String.raw`### DFS 的递归模型（本组三题共用）
+**自环与重边**不改变最短边数距离。无权图的自环不能增加最短路径条数；重边是否分别计为不同路径，要按题目约定。遍历序列仍以实际邻接表的扫描次序为准，边数统计也须明确重边口径。**队列空判据**是 front 与 rear 相等，不能拿 dist 或标记数组当判据。`,AE=String.raw`### DFS 的递归模型（本组三题共用）
 
 访问 $u$ 时按邻接表次序检查每个邻接点 $v$：$v$ 未访问就立即递归进入，$v$ 的子树处理完再回来检查下一个邻接点；$u$ 的邻接点全部检查完，$u$ 才算完成。三种颜色刻画进度：白 = 未发现，灰 = 已发现且邻接点未检查完（处在搜索路径上），黑 = 邻接点已全部检查完。
 
@@ -24074,7 +26367,7 @@ $$
 ### 参考
 
 - Princeton, *Algorithms, 4th Edition*, §4.1 Undirected Graphs：[algs4.cs.princeton.edu/41graph](https://algs4.cs.princeton.edu/41graph/)
-- Princeton, *Algorithms, 4th Edition*, §4.2 Directed Graphs：[algs4.cs.princeton.edu/42digraph](https://algs4.cs.princeton.edu/42digraph/)`,kE=String.raw`## 这一组三题共用的基础
+- Princeton, *Algorithms, 4th Edition*, §4.2 Directed Graphs：[algs4.cs.princeton.edu/42digraph](https://algs4.cs.princeton.edu/42digraph/)`,jE=String.raw`## 这一组三题共用的基础
 
 **1. 有向图的四个基本量。** 入度 indeg(v) = 指向 v 的边数；出度 = v 指出去的边数；重边按条数计，自环 $u\to u$ 同时算 1 入度 1 出度。路径是顶点序列，环是首尾重合的路径。可达关系沿有向边单向传播。
 
@@ -24093,9 +26386,9 @@ $$
 **8. 计数口径。** 拓扑序的个数 = 满足全部边约束的顶点排列个数（线性扩展数），顶点按编号区分，同一排列只数一次，与算法执行过程无关；上界是 $n!$。n 很小时可以直接穷举 $n!$ 个排列来核对。
 
 **9. 复杂度。** 邻接表 + 队列/栈：$O(V+E)$ 时间（建表与统计入度 $O(V+E)$，顶点各进出缓冲区一次，边各扫描一次）；辅助空间 $O(V)$，含邻接表共 $O(V+E)$。邻接矩阵：$O(V^2)$。缓冲区换成小根堆每次取最小编号：$O(E + V\log V)$，辅助空间 $O(V)$。DFS 逆后序也能求出拓扑序，但默认不带环检测，需额外维护"当前递归栈中"标记来发现回边。
-`,AE={"graph-20261016-bfs-order":DE,"graph-20261016-bfs-distance":DE,"graph-20261016-bfs-count":DE,"graph-20261016-dfs-q01":OE,"graph-20261016-dfs-q02":OE,"graph-20261016-dfs-q03":OE,"graph-20261016-topo-q1":kE,"graph-20261016-topo-q2":kE,"graph-20261016-topo-q3":kE,"mock-exam-1-ds-q01":ZS,"mock-exam-1-ds-q02":QS,"mock-exam-1-ds-q03":$S,"mock-exam-1-ds-q04":eC,"mock-exam-1-ds-q05":tC,"mock-exam-1-ds-q06":nC,"mock-exam-1-ds-q07":rC,"mock-exam-1-ds-q08":iC,"mock-exam-1-ds-q09":sC,"mock-exam-1-ds-q10":cC,"mock-exam-1-ds-q11":lC,"mock-exam-1-co-q12":MC,"mock-exam-1-co-q13":PC,"mock-exam-1-co-q14":FC,"mock-exam-1-co-q15":LC,"mock-exam-1-co-q16":zC,"mock-exam-1-co-q17":BC,"mock-exam-1-co-q18":WC,"mock-exam-1-co-q19":GC,"mock-exam-1-co-q20":XC,"mock-exam-1-co-q21":KC,"mock-exam-1-co-q22":QC,"mock-exam-1-os-q23":tw,"mock-exam-1-os-q24":uw,"mock-exam-1-os-q25":aw,"mock-exam-1-os-q26":sw,"mock-exam-1-os-q27":yw,"mock-exam-1-os-q28":vw,"mock-exam-1-os-q29":Dw,"mock-exam-1-os-q30":Ew,"mock-exam-1-os-q31":jw,"mock-exam-1-os-q32":kw,"mock-exam-1-cn-q33":Nw,"mock-exam-1-cn-q34":Pw,"mock-exam-1-cn-q35":Iw,"mock-exam-1-cn-q36":zw,"mock-exam-1-cn-q37":Uw,"mock-exam-1-cn-q38":Lw,"mock-exam-1-cn-q39":Gw,"mock-exam-1-cn-q40":Kw,"mock-exam-1-co-q43":VC,"mock-exam-1-co-q44":JC,"mock-exam-1-os-q45":bw,"mock-exam-1-os-q46":dw,"mock-exam-1-cn-q47":Vw,"mock-exam-2-ds-q01":uC,"mock-exam-2-ds-q02":QS,"mock-exam-2-ds-q03":dC,"mock-exam-2-ds-q04":fC,"mock-exam-2-ds-q05":nC,"mock-exam-2-ds-q06":pC,"mock-exam-2-ds-q07":sC,"mock-exam-2-ds-q08":eC,"mock-exam-2-ds-q09":TC,"mock-exam-2-ds-q10":mC,"mock-exam-2-ds-q11":hC,"mock-exam-2-co-q12":MC,"mock-exam-2-co-q13":PC,"mock-exam-2-co-q14":PC,"mock-exam-2-co-q15":LC,"mock-exam-2-co-q16":zC,"mock-exam-2-co-q17":HC,"mock-exam-2-co-q18":GC,"mock-exam-2-co-q19":qC,"mock-exam-2-co-q20":ZC,"mock-exam-2-co-q21":ew,"mock-exam-2-co-q22":$C,"mock-exam-2-os-q23":tw,"mock-exam-2-os-q24":ow,"mock-exam-2-os-q25":rw,"mock-exam-2-os-q26":gw,"mock-exam-2-os-q27":Sw,"mock-exam-2-os-q28":vw,"mock-exam-2-os-q29":Mw,"mock-exam-2-os-q30":Tw,"mock-exam-2-os-q31":Ew,"mock-exam-2-os-q32":Ow,"mock-exam-2-cn-q33":Nw,"mock-exam-2-cn-q34":Fw,"mock-exam-2-cn-q35":Lw,"mock-exam-2-cn-q36":zw,"mock-exam-2-cn-q37":Bw,"mock-exam-2-cn-q38":Ww,"mock-exam-2-cn-q39":Gw,"mock-exam-2-cn-q40":Jw,"mock-exam-2-co-q43":QC,"mock-exam-2-co-q44":YC,"mock-exam-2-os-q45":uw,"mock-exam-2-os-q46":_w,"mock-exam-2-cn-q47":Vw,"mock-exam-3-ds-q01":gC,"mock-exam-3-ds-q02":_C,"mock-exam-3-ds-q03":vC,"mock-exam-3-ds-q04":$S,"mock-exam-3-ds-q05":yC,"mock-exam-3-ds-q06":bC,"mock-exam-3-ds-q07":yC,"mock-exam-3-ds-q08":fC,"mock-exam-3-ds-q09":hC,"mock-exam-3-ds-q10":cC,"mock-exam-3-ds-q11":lC,"mock-exam-3-co-q12":FC,"mock-exam-3-co-q13":UC,"mock-exam-3-co-q14":HC,"mock-exam-3-co-q15":VC,"mock-exam-3-co-q16":KC,"mock-exam-3-co-q17":GC,"mock-exam-3-co-q18":YC,"mock-exam-3-co-q19":JC,"mock-exam-3-co-q20":$C,"mock-exam-3-co-q21":ew,"mock-exam-3-co-q22":ZC,"mock-exam-3-os-q23":nw,"mock-exam-3-os-q24":hw,"mock-exam-3-os-q25":hw,"mock-exam-3-os-q26":iw,"mock-exam-3-os-q27":bw,"mock-exam-3-os-q28":Sw,"mock-exam-3-os-q29":Aw,"mock-exam-3-os-q30":Ow,"mock-exam-3-os-q31":Sw,"mock-exam-3-os-q32":Ew,"mock-exam-3-cn-q33":Lw,"mock-exam-3-cn-q34":Iw,"mock-exam-3-cn-q35":Lw,"mock-exam-3-cn-q36":Bw,"mock-exam-3-cn-q37":zw,"mock-exam-3-cn-q38":Ww,"mock-exam-3-cn-q39":Kw,"mock-exam-3-cn-q40":qw,"mock-exam-3-co-q43":VC,"mock-exam-3-co-q44":RC,"mock-exam-3-os-q45":pw,"mock-exam-3-os-q46":xw,"mock-exam-3-cn-q47":Uw,"mock-exam-4-ds-q01":_C,"mock-exam-4-ds-q02":xC,"mock-exam-4-ds-q03":vC,"mock-exam-4-ds-q04":SC,"mock-exam-4-ds-q05":CC,"mock-exam-4-ds-q06":bC,"mock-exam-4-ds-q07":wC,"mock-exam-4-ds-q08":fC,"mock-exam-4-ds-q09":sC,"mock-exam-4-ds-q10":TC,"mock-exam-4-ds-q11":EC,"mock-exam-4-co-q12":NC,"mock-exam-4-co-q13":FC,"mock-exam-4-co-q14":PC,"mock-exam-4-co-q15":LC,"mock-exam-4-co-q16":HC,"mock-exam-4-co-q17":LC,"mock-exam-4-co-q18":XC,"mock-exam-4-co-q19":GC,"mock-exam-4-co-q20":qC,"mock-exam-4-co-q21":ew,"mock-exam-4-co-q22":$C,"mock-exam-4-os-q23":tw,"mock-exam-4-os-q24":aw,"mock-exam-4-os-q25":sw,"mock-exam-4-os-q26":gw,"mock-exam-4-os-q27":hw,"mock-exam-4-os-q28":yw,"mock-exam-4-os-q29":Dw,"mock-exam-4-os-q30":Tw,"mock-exam-4-os-q31":Ew,"mock-exam-4-os-q32":Ow,"mock-exam-4-cn-q33":Pw,"mock-exam-4-cn-q34":Fw,"mock-exam-4-cn-q35":Rw,"mock-exam-4-cn-q36":Hw,"mock-exam-4-cn-q37":Bw,"mock-exam-4-cn-q38":Jw,"mock-exam-4-cn-q39":Yw,"mock-exam-4-cn-q40":Kw,"mock-exam-4-co-q43":WC,"mock-exam-4-co-q44":YC,"mock-exam-4-os-q45":fw,"mock-exam-4-os-q46":cw,"mock-exam-4-cn-q47":Ww,"io-interrupt-dma-bus-clock":QC,"vm-lru-array-page-faults":xw,"wangdao-mock2-major-01":DC,"wangdao-mock2-major-02":$S,"wangdao-mock2-major-03":OC,"wangdao-mock2-major-04":OC,"wangdao-mock2-major-05":kC,"wangdao-mock2-major-06":AC,"wangdao-mock2-major-07":rC,"wangdao-mock2-major-08":iC,"wangdao-mock2-major-09":wC,"wangdao-mock2-major-10":TC,"wangdao-mock2-major-11":lC,"wangdao-mock2-major-12":NC,"wangdao-mock2-major-13":PC,"wangdao-mock2-major-14":IC,"wangdao-mock2-major-15":RC,"wangdao-mock2-major-16":RC,"wangdao-mock2-major-17":BC,"wangdao-mock2-major-18":WC,"wangdao-mock2-major-19":JC,"wangdao-mock2-major-20":KC,"wangdao-mock2-major-21":ZC,"wangdao-mock2-major-22":$C,"wangdao-mock2-major-23":nw,"wangdao-mock2-major-24":nw,"wangdao-mock2-major-25":rw,"wangdao-mock2-major-26":ow,"wangdao-mock2-major-27":cw,"wangdao-mock2-major-28":lw,"wangdao-mock2-major-29":xw,"wangdao-mock2-major-30":Dw,"wangdao-mock2-major-31":kw,"wangdao-mock2-major-32":Mw,"wangdao-mock1-major-41":pC,"wangdao-mock1-major-42":DC,"wangdao-mock1-major-43":VC,"wangdao-mock1-major-44":YC,"wangdao-mock1-major-45":mw,"wangdao-mock1-major-46":yw,"forest-to-binary-min-height":SC,"directed-graph-path-strings":AC,"insertion-sort-comparison-counts":jC,"system-hierarchy-levels":MC,"float32-12-1-rounding":IC,"isa-specified-things":MC,"kernel-mode-operations":nw,"rare-rbt-validity":aC,"rare-rbt-black-height":aC,"rare-rbt-insertion":oC,"rare-rbt-deletion":oC,"rare-rbt-recolor-cost":oC,"rare-grouped-allocation":Cw,"rare-grouped-release":Cw,"rare-grouped-empty":Cw,"rare-grouped-batch-io":Cw,"rare-grouped-capacity":ww,"rare-adjacency-multilist-trace":Xw,"rare-orthogonal-list-trace":Zw,"rare-ieee754-special-decode":Qw,"rare-comparison-flags-trace":$w,"mock-exam-1-ds-q41":CC,"mock-exam-1-ds-q42":eT,"mock-exam-2-ds-q41":yC,"mock-exam-2-ds-q42":tT,"mock-exam-3-ds-q41":nT,"mock-exam-3-ds-q42":hC,"mock-exam-4-ds-q41":bC,"mock-exam-4-ds-q42":rT,"rare-union-find-parent-trace":CC,"rare-union-find-rank-height":CC,"rare-union-find-kruskal":CC,"mock-exam-5-ds-q01":nC,"mock-exam-5-ds-q02":gC,"mock-exam-5-ds-q03":QS,"mock-exam-5-ds-q04":$S,"mock-exam-5-ds-q05":aT,"mock-exam-5-ds-q06":AC,"mock-exam-5-ds-q07":bC,"mock-exam-5-ds-q08":wC,"mock-exam-5-ds-q09":oT,"mock-exam-5-ds-q10":sC,"mock-exam-5-ds-q11":cC,"mock-exam-5-co-q12":cT,"mock-exam-5-co-q13":FC,"mock-exam-5-co-q14":PC,"mock-exam-5-co-q15":lT,"mock-exam-5-co-q16":yw,"mock-exam-5-co-q17":YC,"mock-exam-5-co-q18":uT,"mock-exam-5-co-q19":$w,"mock-exam-5-co-q20":XC,"mock-exam-5-co-q21":ew,"mock-exam-5-co-q22":QC,"mock-exam-5-os-q23":dT,"mock-exam-5-os-q24":aw,"mock-exam-5-os-q25":fT,"mock-exam-5-os-q26":pT,"mock-exam-5-os-q27":mT,"mock-exam-5-os-q28":hT,"mock-exam-5-os-q29":Tw,"mock-exam-5-os-q30":ww,"mock-exam-5-os-q31":jw,"mock-exam-5-os-q32":gT,"mock-exam-5-cn-q33":_T,"mock-exam-5-cn-q34":vT,"mock-exam-5-cn-q35":yT,"mock-exam-5-cn-q36":zw,"mock-exam-5-cn-q37":Vw,"mock-exam-5-cn-q38":Lw,"mock-exam-5-cn-q39":bT,"mock-exam-5-cn-q40":Yw,"mock-exam-5-ds-q41":sT,"mock-exam-5-ds-q42":vC,"mock-exam-5-co-q43":zC,"mock-exam-5-co-q44":qC,"mock-exam-5-os-q45":uw,"mock-exam-5-os-q46":Ew,"mock-exam-5-cn-q47":Gw,"mock-exam-6-ds-q01":xT,"mock-exam-6-ds-q02":iT,"mock-exam-6-ds-q03":ST,"mock-exam-6-ds-q04":vC,"mock-exam-6-ds-q05":OC,"mock-exam-6-ds-q06":CT,"mock-exam-6-ds-q07":bC,"mock-exam-6-ds-q08":yC,"mock-exam-6-ds-q09":wT,"mock-exam-6-ds-q10":cC,"mock-exam-6-ds-q11":TT,"mock-exam-6-co-q12":NC,"mock-exam-6-co-q13":FC,"mock-exam-6-co-q14":BC,"mock-exam-6-co-q15":DT,"mock-exam-6-co-q16":HC,"mock-exam-6-co-q17":GC,"mock-exam-6-co-q18":OT,"mock-exam-6-co-q19":kT,"mock-exam-6-co-q20":JC,"mock-exam-6-co-q21":XC,"mock-exam-6-co-q22":$C,"mock-exam-6-os-q23":AT,"mock-exam-6-os-q24":sw,"mock-exam-6-os-q25":rw,"mock-exam-6-os-q26":hw,"mock-exam-6-os-q27":jT,"mock-exam-6-os-q28":yw,"mock-exam-6-os-q29":MT,"mock-exam-6-os-q30":NT,"mock-exam-6-os-q31":PT,"mock-exam-6-os-q32":jw,"mock-exam-6-cn-q33":IT,"mock-exam-6-cn-q34":LT,"mock-exam-6-cn-q35":Fw,"mock-exam-6-cn-q36":RT,"mock-exam-6-cn-q37":Fw,"mock-exam-6-cn-q38":Uw,"mock-exam-6-cn-q39":zw,"mock-exam-6-cn-q40":zT,"mock-exam-6-ds-q41":ET,"mock-exam-6-ds-q42":sC,"mock-exam-6-co-q43":QC,"mock-exam-6-co-q44":YC,"mock-exam-6-os-q45":FT,"mock-exam-6-os-q46":uw,"mock-exam-6-cn-q47":Ww,"mock-exam-7-ds-q01":BT,"mock-exam-7-ds-q02":gC,"mock-exam-7-ds-q03":iT,"mock-exam-7-ds-q04":VT,"mock-exam-7-ds-q05":eC,"mock-exam-7-ds-q06":dC,"mock-exam-7-ds-q07":tC,"mock-exam-7-ds-q08":yC,"mock-exam-7-ds-q09":HT,"mock-exam-7-ds-q10":hC,"mock-exam-7-ds-q11":mC,"mock-exam-7-co-q12":UT,"mock-exam-7-co-q13":VC,"mock-exam-7-co-q14":WT,"mock-exam-7-co-q15":GT,"mock-exam-7-co-q16":KT,"mock-exam-7-co-q17":WC,"mock-exam-7-co-q18":qC,"mock-exam-7-co-q19":qT,"mock-exam-7-co-q20":JC,"mock-exam-7-co-q21":ZC,"mock-exam-7-co-q22":WC,"mock-exam-7-os-q23":JT,"mock-exam-7-os-q24":hw,"mock-exam-7-os-q25":sw,"mock-exam-7-os-q26":YT,"mock-exam-7-os-q27":bw,"mock-exam-7-os-q28":XT,"mock-exam-7-os-q29":ZT,"mock-exam-7-os-q30":QT,"mock-exam-7-os-q31":$T,"mock-exam-7-os-q32":QC,"mock-exam-7-cn-q33":eE,"mock-exam-7-cn-q34":tE,"mock-exam-7-cn-q35":Iw,"mock-exam-7-cn-q36":nE,"mock-exam-7-cn-q37":Uw,"mock-exam-7-cn-q38":rE,"mock-exam-7-cn-q39":Jw,"mock-exam-7-cn-q40":iE,"mock-exam-7-ds-q41":TC,"mock-exam-7-ds-q42":rC,"mock-exam-7-co-q43":XC,"mock-exam-7-co-q44":GC,"mock-exam-7-os-q45":Ew,"mock-exam-7-os-q46":vw,"mock-exam-7-cn-q47":zw,"mock-exam-8-ds-q01":aE,"mock-exam-8-ds-q02":tT,"mock-exam-8-ds-q03":oE,"mock-exam-8-ds-q04":$S,"mock-exam-8-ds-q05":aC,"mock-exam-8-ds-q06":pC,"mock-exam-8-ds-q07":yC,"mock-exam-8-ds-q08":mC,"mock-exam-8-ds-q09":wC,"mock-exam-8-ds-q10":TC,"mock-exam-8-ds-q11":sE,"mock-exam-8-co-q12":PC,"mock-exam-8-co-q13":lE,"mock-exam-8-co-q14":RC,"mock-exam-8-co-q15":VC,"mock-exam-8-co-q16":BC,"mock-exam-8-co-q17":RC,"mock-exam-8-co-q18":PC,"mock-exam-8-co-q19":uE,"mock-exam-8-co-q20":dE,"mock-exam-8-co-q21":ZC,"mock-exam-8-co-q22":fE,"mock-exam-8-os-q23":tw,"mock-exam-8-os-q24":iw,"mock-exam-8-os-q25":rw,"mock-exam-8-os-q26":yE,"mock-exam-8-os-q27":gw,"mock-exam-8-os-q28":Cw,"mock-exam-8-os-q29":hE,"mock-exam-8-os-q30":Tw,"mock-exam-8-os-q31":gE,"mock-exam-8-os-q32":_E,"mock-exam-8-cn-q33":xE,"mock-exam-8-cn-q34":SE,"mock-exam-8-cn-q35":CE,"mock-exam-8-cn-q36":wE,"mock-exam-8-cn-q37":TE,"mock-exam-8-cn-q38":Hw,"mock-exam-8-cn-q39":Gw,"mock-exam-8-cn-q40":qw,"mock-exam-8-ds-q41":cE,"mock-exam-8-ds-q42":lC,"mock-exam-8-co-q43":pE,"mock-exam-8-co-q44":mE,"mock-exam-8-os-q45":vE,"mock-exam-8-os-q46":bE,"mock-exam-8-cn-q47":EE},jE;function ME(){return jE||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{jE=void 0,t(n.error)},n.onblocked=()=>{r=!0,jE=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),jE=void 0},e(t)}}),jE}async function NE(e,t){let n=await ME();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function PE(e){return NE(`readonly`,t=>t.index(`materialId`).getAll(e))}async function FE(e){e.length&&await NE(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function IE(e){await NE(`readwrite`,t=>t.delete(e))}var LE={ds:`数据结构`,co:`计算机组成原理`,os:`操作系统`,cn:`计算机网络`,rare:`冷门专区`,other:`单题收录`},RE=[`ds`,`co`,`os`,`cn`,`rare`,`other`],zE=/^\s*(?:[（(]\s*[一二三四五六七八九十]+\s*[)）]|[一二三四五六七八九十]+\s*[、.．]|\d+\s*[、.．)])\s*/;function BE(e){for(let t of e.split(`
-`)){let e=t.trim();if(!e)continue;let n=(/^#{1,6}\s+(\S.*)$/.exec(e)?.[1]??e.replace(/^[*_>]+/,``).trim()).replace(zE,``).replace(/[：:]\s*$/,``).trim();if(n)return n.length>48?`${n.slice(0,47)}…`:n}return`未命名知识点`}function VE(e,t){let n=/-(ds|co|os|cn)-q\d+$/.exec(e);return n?.[1]?n[1]:t===`rare-topics`?`rare`:`other`}var HE=new Map;for(let e of XS)for(let t of e.materials)t.type===`题目`&&HE.set(t.id,{id:t.id,title:t.title,lessonId:e.id,lessonTitle:e.title,chapter:t.chapter,subject:VE(t.id,e.id),questionNumber:t.questionNumber});var UE=[...HE.values()],WE=new Map;for(let[e,t]of Object.entries(AE)){let n=WE.get(t);n?n.push(e):WE.set(t,[e])}var GE=[...WE].map(([e,t])=>{let n=[...t].sort(),r=[...new Set(n.map(e=>HE.get(e)?.subject??`other`))].sort((e,t)=>RE.indexOf(e)-RE.indexOf(t));return{key:n[0],label:BE(e),body:e,questionIds:n,subjects:r}}).sort((e,t)=>e.key.localeCompare(t.key));function KE(e,t){let n=new Map(t.map(e=>[e.id,e])),r=[...e].sort((e,t)=>{let n=RE.indexOf(e.subjects[0])-RE.indexOf(t.subjects[0]);return n===0?e.label.localeCompare(t.label,`zh-CN`):n}),i=e=>{let t=new Map(e.map((e,t)=>[e.key,t])),r=new Map;for(let i of e)for(let e of i.questionIds){if(!n.has(e))continue;let a=r.get(e);a?a.push(t.get(i.key)):r.set(e,[t.get(i.key)])}return[...n.values()].sort((t,n)=>{let i=r.get(t.id)??[e.length],a=r.get(n.id)??[e.length],o=i.reduce((e,t)=>e+t,0)/i.length-a.reduce((e,t)=>e+t,0)/a.length;return o===0?t.id.localeCompare(n.id):o})},a=i(r);for(let e=0;e<2;e+=1){let e=new Map(a.map((e,t)=>[e.id,t])),t=new Map;for(let n of r){let r=n.questionIds.filter(t=>e.has(t)).map(t=>e.get(t));t.set(n.key,r.length?r.reduce((e,t)=>e+t,0)/r.length:a.length)}r=[...r].sort((e,n)=>{let r=RE.indexOf(e.subjects[0])-RE.indexOf(n.subjects[0]);return r===0?t.get(e.key)-t.get(n.key):r}),a=i(r)}let o=new Set(a.map(e=>e.id)),s=r.flatMap(e=>e.questionIds.filter(e=>o.has(e)).map(t=>({from:e,to:n.get(t)})));return{knowledge:r,questions:a,edges:s}}var qE=296,JE=336,YE=168,XE=16,ZE=24,QE=32,$E=11,eD=62,tD=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function nD(e,t){let n=(e.match(tD)??[]).length;return n*t+(e.length-n)*t*.56}function rD(e,t,n){if(nD(e,n)<=t)return e;let r=e.length;for(;r>1&&nD(`${e.slice(0,r)}…`,n)>t;)--r;return`${e.slice(0,r)}…`}var iD=e=>XE+e*QE+ZE/2,aD=[`all`,`ds`,`co`,`os`,`cn`,`rare`,`other`],oD={all:UE.length};for(let e of UE)oD[e.subject]=(oD[e.subject]??0)+1;var sD=GE.filter(e=>e.questionIds.length>1).length;function cD({hrefFor:e}){let[t,n]=(0,S.useState)(`all`),[r,i]=(0,S.useState)(``),[a,o]=(0,S.useState)(!0),[s,c]=(0,S.useState)(null),[l,u]=(0,S.useState)(null);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)).get(`p`);c(e&&GE.some(t=>t.key===e)?e:null)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]);let d=l??s,{layout:f,counts:p,truncated:m}=(0,S.useMemo)(()=>{let e=r.trim().toLowerCase(),n=new Set;if(e){for(let t of GE)if(t.label.toLowerCase().includes(e))for(let e of t.questionIds)n.add(e)}let i=UE.filter(r=>(t===`all`||r.subject===t)&&(!e||n.has(r.id)||`${r.title} ${r.chapter} ${r.lessonTitle}`.toLowerCase().includes(e))),o=new Set(i.map(e=>e.id)),s=new Map,c=GE.filter(e=>{let t=e.questionIds.reduce((e,t)=>e+ +!!o.has(t),0);return s.set(e.key,t),t>0&&(!a||t>1)}),l=new Set;for(let e of c)for(let t of e.questionIds)o.has(t)&&l.add(t);let u=KE(c,i.filter(e=>l.has(e.id)));return{layout:u,counts:s,truncated:GE.length>u.knowledge.length||UE.length>u.questions.length}},[t,r,a]),h=new Map(f.knowledge.map((e,t)=>[e.key,t])),g=new Map(f.questions.map((e,t)=>[e.id,t])),_=d==null?null:h.has(d)?`knowledge`:`question`,v=new Set,y=new Set;for(let e of f.edges)_===`knowledge`&&e.from.key===d?y.add(e.to.id):_===`question`&&e.to.id===d&&v.add(e.from.key);let b=(e,t)=>_===`knowledge`?e===d:t===d,x=e=>!!d&&!(_===`knowledge`?e.key===d:v.has(e.key)),ee=e=>!!d&&!(_===`question`?e.id===d:y.has(e.id)),te=XE*2+qE+YE+JE,ne=XE*2+Math.max(f.knowledge.length,f.questions.length)*QE,re=XE+qE+YE;return(0,D.jsxs)(`section`,{className:`mb-6 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`知识点关联图`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-end justify-between gap-4`,children:[(0,D.jsxs)(`div`,{children:[(0,D.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`知识点关联图`}),(0,D.jsx)(`p`,{className:`mt-2 max-w-2xl text-sm leading-7 text-muted-foreground`,children:`左列是题下的「基础知识」块，右列是复用同一块的题目，连线表示这道题确实挂了这条知识点。一条线跨到多个题目，就是反复被考的位置。`})]}),(0,D.jsxs)(`output`,{className:`text-sm text-muted-foreground`,children:[f.knowledge.length,` 个知识点 · `,f.questions.length,` 道题 ·`,` `,f.edges.length,` 条连线`]})]}),(0,D.jsx)(`div`,{className:`mt-5 flex flex-wrap gap-2`,"aria-label":`按科目筛选`,children:aD.map(e=>(0,D.jsxs)(`button`,{className:`filter-chip ${t===e?`active`:``}`,"aria-pressed":t===e,onClick:()=>n(e),children:[e===`all`?`全部科目`:LE[e],(0,D.jsx)(`span`,{className:`ml-2 text-xs text-muted-foreground`,children:oD[e]??0})]},e))}),(0,D.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-3`,children:[(0,D.jsxs)(`div`,{className:`relative min-w-64 flex-1`,children:[(0,D.jsx)(pe,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,D.jsx)(`input`,{className:`search-input`,"aria-label":`搜索知识点或题目`,placeholder:`搜索知识点或题目…`,value:r,onChange:e=>i(e.target.value)})]}),(0,D.jsx)(`button`,{className:`filter-chip ${a?`active`:``}`,"aria-pressed":a,onClick:()=>o(!a),children:a?`只看被多题共用`:`显示全部（含 ${GE.length-sD} 个单题知识点）`}),s&&(0,D.jsx)(`a`,{className:`filter-chip`,href:`#view=graph`,children:`取消锁定`})]}),f.knowledge.length===0?(0,D.jsx)(`p`,{className:`mt-6 rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground`,children:`没有符合条件的知识点。换个科目或关键词，或放开「只看被多题共用」。`}):(0,D.jsxs)(D.Fragment,{children:[(0,D.jsx)(`div`,{className:`mt-5 max-h-[70vh] overflow-auto rounded-xl border border-border bg-background`,children:(0,D.jsxs)(`svg`,{width:te,height:ne,viewBox:`0 0 ${te} ${ne}`,"aria-label":`知识点关联图：${f.knowledge.length} 个知识点关联 ${f.questions.length} 道题`,children:[(0,D.jsx)(`g`,{fill:`none`,children:f.edges.map(e=>{let t=b(e.from.key,e.to.id),n=iD(h.get(e.from.key)),r=iD(g.get(e.to.id));return(0,D.jsx)(`path`,{d:`M ${XE+qE} ${n} C ${XE+qE+eD} ${n}, ${re-eD} ${r}, ${re} ${r}`,stroke:t&&d?`var(--primary)`:`var(--muted-foreground)`,strokeWidth:t&&d?1.8:1.1,style:{opacity:d?t?.85:.06:.2}},`${e.from.key}:${e.to.id}`)})}),(0,D.jsx)(`g`,{children:f.knowledge.map((e,t)=>{let n=_===`knowledge`&&d===e.key;return(0,D.jsxs)(`a`,{href:`#view=graph&p=${encodeURIComponent(e.key)}`,onMouseEnter:()=>u(e.key),onMouseLeave:()=>u(null),onFocus:()=>u(e.key),onBlur:()=>u(null),"aria-current":s===e.key?`true`:void 0,style:{cursor:`pointer`,opacity:x(e)?.35:1},children:[(0,D.jsx)(`title`,{children:`${e.label} · ${p.get(e.key)??0} 道题`}),(0,D.jsx)(`rect`,{x:XE,y:iD(t)-ZE/2,width:qE,height:ZE,rx:7,style:{fill:n?`var(--primary)`:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:n?1.6:.9}}),(0,D.jsx)(`text`,{x:XE+10,y:iD(t)+4,fontSize:$E,style:{fill:n?`var(--primary-foreground)`:`var(--accent-foreground)`},children:rD(e.label,qE-20,$E)}),(0,D.jsx)(`text`,{x:XE+qE+8,y:iD(t)+4,fontSize:$E-1,style:{fill:`var(--muted-foreground)`},children:p.get(e.key)??0})]},e.key)})}),(0,D.jsx)(`g`,{children:f.questions.map((t,n)=>{let r=_===`question`&&d===t.id,i=t.questionNumber===void 0?``:`第 ${t.questionNumber} 题 · `;return(0,D.jsxs)(`a`,{href:e(t.lessonId,t.id),onMouseEnter:()=>u(t.id),onMouseLeave:()=>u(null),style:{cursor:`pointer`,opacity:ee(t)?.35:1},children:[(0,D.jsx)(`title`,{children:`${t.lessonTitle} · ${i}${t.title}`}),(0,D.jsx)(`rect`,{x:re,y:iD(n)-ZE/2,width:JE,height:ZE,rx:7,style:{fill:r?`var(--primary)`:`var(--secondary)`,stroke:r?`var(--primary)`:`var(--border)`,strokeWidth:r?1.6:.9}}),(0,D.jsx)(`text`,{x:re+10,y:iD(n)+4,fontSize:$E,style:{fill:r?`var(--primary-foreground)`:`var(--foreground)`},children:rD(`${i}${t.title}`,JE-20,$E)})]},t.id)})})]})}),(0,D.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`悬停任一节点高亮它的连线；点左侧知识点可锁定并生成可分享的链接，点右侧题目直接跳到该题。`,m&&` 当前筛选隐藏了其余节点。`,a&&` 已隐藏 ${GE.length-sD} 个只服务单道题的知识点。`]})]})]})}var lD=`/courses/`,uD={题目:se,知识点:de},dD=XS.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),fD=dD.filter(({material:e})=>e.type===`题目`).length;function pD(e,t){let n=new URLSearchParams;return e!==`all`&&n.set(`lesson`,e),t&&n.set(`material`,t),`#${n}`}function mD(e){return e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&!e.defaultPrevented}function hD(e,t){return e===`rare-topics`?[{type:`知识点`,title:`知识点讲解`,items:t.filter(e=>e.type===`知识点`)},{type:`题目`,title:`配套题目`,items:t.filter(e=>e.type===`题目`)}].filter(e=>e.items.length>0):[{type:`全部`,title:null,items:t}]}var gD=28,_D=64,vD=26,yD=16,bD=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function xD(e){let t=(e.match(bD)??[]).length;return(e.length-t)*7.4+t*13+18}function SD(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
-`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function CD({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=SD(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>xD(e.label))),s=o+vD,c=i*s-vD+yD*2,l=(a+1)*_D+yD*2-(_D-gD),u=e=>({x:yD+o/2+e.column*s,y:yD+e.depth*_D+gD/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,D.jsxs)(`figure`,{className:`my-4`,children:[(0,D.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,D.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
-`).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,D.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,D.jsx)(`path`,{d:`M ${e.x} ${e.y+gD/2} C ${e.x} ${e.y+gD/2+18}, ${t.x} ${t.y-gD/2-18}, ${t.x} ${t.y-gD/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,D.jsxs)(`g`,{children:[(0,D.jsx)(`rect`,{x:n-o/2,y:r-gD/2,width:o,height:gD,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,D.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,D.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function wD({children:e,allowHtml:t=!1}){return(0,D.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,D.jsx)(os,{remarkPlugins:[jp,Pg],rehypePlugins:t?[jS,N_]:[N_],urlTransform:e=>{let t=us(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${lD}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,S.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,D.jsx)(CD,{source:n,kind:r})}return(0,D.jsx)(`pre`,{children:e})}},children:e})})}var TD={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function ED({image:e}){let t=(0,S.useRef)(null);return(0,S.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,D.jsxs)(`figure`,{className:`min-w-0`,children:[(0,D.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&window.open(t.src,`_blank`,`noopener,noreferrer`)}}),(0,D.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name})]})}function DD({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,S.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,S.useState)(!1),[o,s]=(0,S.useState)([]),[c,l]=(0,S.useState)(!1),[u,d]=(0,S.useState)(`正在读取补充图片…`),f=(0,S.useRef)(null);(0,S.useEffect)(()=>{let t=!0;return PE(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>TD[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await FE(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await IE(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,D.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,D.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,D.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,D.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,D.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,D.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,D.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,D.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,D.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,D.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 rounded-xl border border-border p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,D.jsx)(wD,{children:n.content}):(0,D.jsx)(`div`,{className:`whitespace-pre-wrap text-sm leading-7 [overflow-wrap:anywhere]`,children:n.content}):(0,D.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,D.jsxs)(`div`,{className:`mt-4`,children:[(0,D.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,D.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
+`,ME={...QS,"graph-20261016-bfs-order":kE,"graph-20261016-bfs-distance":kE,"graph-20261016-bfs-count":kE,"graph-20261016-dfs-q01":AE,"graph-20261016-dfs-q02":AE,"graph-20261016-dfs-q03":AE,"graph-20261016-topo-q1":jE,"graph-20261016-topo-q2":jE,"graph-20261016-topo-q3":jE,"mock-exam-1-ds-q01":$S,"mock-exam-1-ds-q02":eC,"mock-exam-1-ds-q03":tC,"mock-exam-1-ds-q04":nC,"mock-exam-1-ds-q05":rC,"mock-exam-1-ds-q06":iC,"mock-exam-1-ds-q07":aC,"mock-exam-1-ds-q08":oC,"mock-exam-1-ds-q09":lC,"mock-exam-1-ds-q10":uC,"mock-exam-1-ds-q11":dC,"mock-exam-1-co-q12":PC,"mock-exam-1-co-q13":IC,"mock-exam-1-co-q14":LC,"mock-exam-1-co-q15":zC,"mock-exam-1-co-q16":VC,"mock-exam-1-co-q17":HC,"mock-exam-1-co-q18":KC,"mock-exam-1-co-q19":qC,"mock-exam-1-co-q20":QC,"mock-exam-1-co-q21":JC,"mock-exam-1-co-q22":ew,"mock-exam-1-os-q23":rw,"mock-exam-1-os-q24":fw,"mock-exam-1-os-q25":sw,"mock-exam-1-os-q26":lw,"mock-exam-1-os-q27":xw,"mock-exam-1-os-q28":bw,"mock-exam-1-os-q29":kw,"mock-exam-1-os-q30":Ow,"mock-exam-1-os-q31":Nw,"mock-exam-1-os-q32":jw,"mock-exam-1-cn-q33":Fw,"mock-exam-1-cn-q34":Iw,"mock-exam-1-cn-q35":Rw,"mock-exam-1-cn-q36":Vw,"mock-exam-1-cn-q37":Gw,"mock-exam-1-cn-q38":zw,"mock-exam-1-cn-q39":qw,"mock-exam-1-cn-q40":Jw,"mock-exam-1-co-q43":UC,"mock-exam-1-co-q44":XC,"mock-exam-1-os-q45":Sw,"mock-exam-1-os-q46":pw,"mock-exam-1-cn-q47":Uw,"mock-exam-2-ds-q01":fC,"mock-exam-2-ds-q02":eC,"mock-exam-2-ds-q03":pC,"mock-exam-2-ds-q04":mC,"mock-exam-2-ds-q05":iC,"mock-exam-2-ds-q06":hC,"mock-exam-2-ds-q07":lC,"mock-exam-2-ds-q08":nC,"mock-exam-2-ds-q09":DC,"mock-exam-2-ds-q10":gC,"mock-exam-2-ds-q11":_C,"mock-exam-2-co-q12":PC,"mock-exam-2-co-q13":IC,"mock-exam-2-co-q14":IC,"mock-exam-2-co-q15":zC,"mock-exam-2-co-q16":VC,"mock-exam-2-co-q17":WC,"mock-exam-2-co-q18":qC,"mock-exam-2-co-q19":YC,"mock-exam-2-co-q20":$C,"mock-exam-2-co-q21":nw,"mock-exam-2-co-q22":tw,"mock-exam-2-os-q23":rw,"mock-exam-2-os-q24":cw,"mock-exam-2-os-q25":aw,"mock-exam-2-os-q26":vw,"mock-exam-2-os-q27":ww,"mock-exam-2-os-q28":bw,"mock-exam-2-os-q29":Pw,"mock-exam-2-os-q30":Dw,"mock-exam-2-os-q31":Ow,"mock-exam-2-os-q32":Aw,"mock-exam-2-cn-q33":Fw,"mock-exam-2-cn-q34":Lw,"mock-exam-2-cn-q35":zw,"mock-exam-2-cn-q36":Vw,"mock-exam-2-cn-q37":Hw,"mock-exam-2-cn-q38":Kw,"mock-exam-2-cn-q39":qw,"mock-exam-2-cn-q40":Xw,"mock-exam-2-co-q43":ew,"mock-exam-2-co-q44":ZC,"mock-exam-2-os-q45":fw,"mock-exam-2-os-q46":yw,"mock-exam-2-cn-q47":Uw,"mock-exam-3-ds-q01":vC,"mock-exam-3-ds-q02":yC,"mock-exam-3-ds-q03":bC,"mock-exam-3-ds-q04":tC,"mock-exam-3-ds-q05":xC,"mock-exam-3-ds-q06":SC,"mock-exam-3-ds-q07":xC,"mock-exam-3-ds-q08":mC,"mock-exam-3-ds-q09":_C,"mock-exam-3-ds-q10":uC,"mock-exam-3-ds-q11":dC,"mock-exam-3-co-q12":LC,"mock-exam-3-co-q13":GC,"mock-exam-3-co-q14":WC,"mock-exam-3-co-q15":UC,"mock-exam-3-co-q16":JC,"mock-exam-3-co-q17":qC,"mock-exam-3-co-q18":ZC,"mock-exam-3-co-q19":XC,"mock-exam-3-co-q20":tw,"mock-exam-3-co-q21":nw,"mock-exam-3-co-q22":$C,"mock-exam-3-os-q23":iw,"mock-exam-3-os-q24":_w,"mock-exam-3-os-q25":_w,"mock-exam-3-os-q26":ow,"mock-exam-3-os-q27":Sw,"mock-exam-3-os-q28":ww,"mock-exam-3-os-q29":Mw,"mock-exam-3-os-q30":Aw,"mock-exam-3-os-q31":ww,"mock-exam-3-os-q32":Ow,"mock-exam-3-cn-q33":zw,"mock-exam-3-cn-q34":Rw,"mock-exam-3-cn-q35":zw,"mock-exam-3-cn-q36":Hw,"mock-exam-3-cn-q37":Vw,"mock-exam-3-cn-q38":Kw,"mock-exam-3-cn-q39":Jw,"mock-exam-3-cn-q40":Yw,"mock-exam-3-co-q43":UC,"mock-exam-3-co-q44":BC,"mock-exam-3-os-q45":hw,"mock-exam-3-os-q46":Cw,"mock-exam-3-cn-q47":Gw,"mock-exam-4-ds-q01":yC,"mock-exam-4-ds-q02":CC,"mock-exam-4-ds-q03":bC,"mock-exam-4-ds-q04":wC,"mock-exam-4-ds-q05":TC,"mock-exam-4-ds-q06":SC,"mock-exam-4-ds-q07":EC,"mock-exam-4-ds-q08":mC,"mock-exam-4-ds-q09":lC,"mock-exam-4-ds-q10":DC,"mock-exam-4-ds-q11":OC,"mock-exam-4-co-q12":FC,"mock-exam-4-co-q13":LC,"mock-exam-4-co-q14":IC,"mock-exam-4-co-q15":zC,"mock-exam-4-co-q16":WC,"mock-exam-4-co-q17":zC,"mock-exam-4-co-q18":QC,"mock-exam-4-co-q19":qC,"mock-exam-4-co-q20":YC,"mock-exam-4-co-q21":nw,"mock-exam-4-co-q22":tw,"mock-exam-4-os-q23":rw,"mock-exam-4-os-q24":sw,"mock-exam-4-os-q25":lw,"mock-exam-4-os-q26":vw,"mock-exam-4-os-q27":_w,"mock-exam-4-os-q28":xw,"mock-exam-4-os-q29":kw,"mock-exam-4-os-q30":Dw,"mock-exam-4-os-q31":Ow,"mock-exam-4-os-q32":Aw,"mock-exam-4-cn-q33":Iw,"mock-exam-4-cn-q34":Lw,"mock-exam-4-cn-q35":Bw,"mock-exam-4-cn-q36":Ww,"mock-exam-4-cn-q37":Hw,"mock-exam-4-cn-q38":Xw,"mock-exam-4-cn-q39":Zw,"mock-exam-4-cn-q40":Jw,"mock-exam-4-co-q43":KC,"mock-exam-4-co-q44":ZC,"mock-exam-4-os-q45":mw,"mock-exam-4-os-q46":uw,"mock-exam-4-cn-q47":Kw,"io-interrupt-dma-bus-clock":ew,"vm-lru-array-page-faults":Cw,"wangdao-mock2-major-01":kC,"wangdao-mock2-major-02":tC,"wangdao-mock2-major-03":AC,"wangdao-mock2-major-04":AC,"wangdao-mock2-major-05":jC,"wangdao-mock2-major-06":MC,"wangdao-mock2-major-07":aC,"wangdao-mock2-major-08":oC,"wangdao-mock2-major-09":EC,"wangdao-mock2-major-10":DC,"wangdao-mock2-major-11":dC,"wangdao-mock2-major-12":FC,"wangdao-mock2-major-13":IC,"wangdao-mock2-major-14":RC,"wangdao-mock2-major-15":BC,"wangdao-mock2-major-16":BC,"wangdao-mock2-major-17":HC,"wangdao-mock2-major-18":KC,"wangdao-mock2-major-19":XC,"wangdao-mock2-major-20":JC,"wangdao-mock2-major-21":$C,"wangdao-mock2-major-22":tw,"wangdao-mock2-major-23":iw,"wangdao-mock2-major-24":iw,"wangdao-mock2-major-25":aw,"wangdao-mock2-major-26":cw,"wangdao-mock2-major-27":uw,"wangdao-mock2-major-28":dw,"wangdao-mock2-major-29":Cw,"wangdao-mock2-major-30":kw,"wangdao-mock2-major-31":jw,"wangdao-mock2-major-32":Pw,"wangdao-mock1-major-41":hC,"wangdao-mock1-major-42":kC,"wangdao-mock1-major-43":UC,"wangdao-mock1-major-44":ZC,"wangdao-mock1-major-45":gw,"wangdao-mock1-major-46":xw,"forest-to-binary-min-height":wC,"directed-graph-path-strings":MC,"insertion-sort-comparison-counts":NC,"system-hierarchy-levels":PC,"float32-12-1-rounding":RC,"isa-specified-things":PC,"kernel-mode-operations":iw,"rare-rbt-validity":sC,"rare-rbt-black-height":sC,"rare-rbt-insertion":cC,"rare-rbt-deletion":cC,"rare-rbt-recolor-cost":cC,"rare-grouped-allocation":Tw,"rare-grouped-release":Tw,"rare-grouped-empty":Tw,"rare-grouped-batch-io":Tw,"rare-grouped-capacity":Ew,"rare-adjacency-multilist-trace":Qw,"rare-orthogonal-list-trace":$w,"rare-ieee754-special-decode":eT,"rare-comparison-flags-trace":tT,"mock-exam-1-ds-q41":TC,"mock-exam-1-ds-q42":nT,"mock-exam-2-ds-q41":xC,"mock-exam-2-ds-q42":rT,"mock-exam-3-ds-q41":iT,"mock-exam-3-ds-q42":_C,"mock-exam-4-ds-q41":SC,"mock-exam-4-ds-q42":aT,"rare-union-find-parent-trace":TC,"rare-union-find-rank-height":TC,"rare-union-find-kruskal":TC,"mock-exam-5-ds-q01":iC,"mock-exam-5-ds-q02":vC,"mock-exam-5-ds-q03":eC,"mock-exam-5-ds-q04":tC,"mock-exam-5-ds-q05":sT,"mock-exam-5-ds-q06":MC,"mock-exam-5-ds-q07":SC,"mock-exam-5-ds-q08":EC,"mock-exam-5-ds-q09":cT,"mock-exam-5-ds-q10":lC,"mock-exam-5-ds-q11":uC,"mock-exam-5-co-q12":uT,"mock-exam-5-co-q13":LC,"mock-exam-5-co-q14":IC,"mock-exam-5-co-q15":dT,"mock-exam-5-co-q16":xw,"mock-exam-5-co-q17":ZC,"mock-exam-5-co-q18":fT,"mock-exam-5-co-q19":tT,"mock-exam-5-co-q20":QC,"mock-exam-5-co-q21":nw,"mock-exam-5-co-q22":ew,"mock-exam-5-os-q23":pT,"mock-exam-5-os-q24":sw,"mock-exam-5-os-q25":mT,"mock-exam-5-os-q26":hT,"mock-exam-5-os-q27":gT,"mock-exam-5-os-q28":_T,"mock-exam-5-os-q29":Dw,"mock-exam-5-os-q30":Ew,"mock-exam-5-os-q31":Nw,"mock-exam-5-os-q32":vT,"mock-exam-5-cn-q33":yT,"mock-exam-5-cn-q34":bT,"mock-exam-5-cn-q35":xT,"mock-exam-5-cn-q36":Vw,"mock-exam-5-cn-q37":Uw,"mock-exam-5-cn-q38":zw,"mock-exam-5-cn-q39":ST,"mock-exam-5-cn-q40":Zw,"mock-exam-5-ds-q41":lT,"mock-exam-5-ds-q42":bC,"mock-exam-5-co-q43":VC,"mock-exam-5-co-q44":YC,"mock-exam-5-os-q45":fw,"mock-exam-5-os-q46":Ow,"mock-exam-5-cn-q47":qw,"mock-exam-6-ds-q01":CT,"mock-exam-6-ds-q02":oT,"mock-exam-6-ds-q03":wT,"mock-exam-6-ds-q04":bC,"mock-exam-6-ds-q05":AC,"mock-exam-6-ds-q06":TT,"mock-exam-6-ds-q07":SC,"mock-exam-6-ds-q08":xC,"mock-exam-6-ds-q09":ET,"mock-exam-6-ds-q10":uC,"mock-exam-6-ds-q11":DT,"mock-exam-6-co-q12":FC,"mock-exam-6-co-q13":LC,"mock-exam-6-co-q14":HC,"mock-exam-6-co-q15":kT,"mock-exam-6-co-q16":WC,"mock-exam-6-co-q17":qC,"mock-exam-6-co-q18":AT,"mock-exam-6-co-q19":jT,"mock-exam-6-co-q20":XC,"mock-exam-6-co-q21":QC,"mock-exam-6-co-q22":tw,"mock-exam-6-os-q23":MT,"mock-exam-6-os-q24":lw,"mock-exam-6-os-q25":aw,"mock-exam-6-os-q26":_w,"mock-exam-6-os-q27":NT,"mock-exam-6-os-q28":xw,"mock-exam-6-os-q29":PT,"mock-exam-6-os-q30":FT,"mock-exam-6-os-q31":IT,"mock-exam-6-os-q32":Nw,"mock-exam-6-cn-q33":RT,"mock-exam-6-cn-q34":zT,"mock-exam-6-cn-q35":Lw,"mock-exam-6-cn-q36":BT,"mock-exam-6-cn-q37":Lw,"mock-exam-6-cn-q38":Gw,"mock-exam-6-cn-q39":Vw,"mock-exam-6-cn-q40":VT,"mock-exam-6-ds-q41":OT,"mock-exam-6-ds-q42":lC,"mock-exam-6-co-q43":ew,"mock-exam-6-co-q44":ZC,"mock-exam-6-os-q45":LT,"mock-exam-6-os-q46":fw,"mock-exam-6-cn-q47":Kw,"mock-exam-7-ds-q01":HT,"mock-exam-7-ds-q02":vC,"mock-exam-7-ds-q03":oT,"mock-exam-7-ds-q04":UT,"mock-exam-7-ds-q05":nC,"mock-exam-7-ds-q06":pC,"mock-exam-7-ds-q07":rC,"mock-exam-7-ds-q08":xC,"mock-exam-7-ds-q09":WT,"mock-exam-7-ds-q10":_C,"mock-exam-7-ds-q11":gC,"mock-exam-7-co-q12":GT,"mock-exam-7-co-q13":UC,"mock-exam-7-co-q14":KT,"mock-exam-7-co-q15":qT,"mock-exam-7-co-q16":JT,"mock-exam-7-co-q17":KC,"mock-exam-7-co-q18":YC,"mock-exam-7-co-q19":YT,"mock-exam-7-co-q20":XC,"mock-exam-7-co-q21":$C,"mock-exam-7-co-q22":KC,"mock-exam-7-os-q23":XT,"mock-exam-7-os-q24":_w,"mock-exam-7-os-q25":lw,"mock-exam-7-os-q26":ZT,"mock-exam-7-os-q27":Sw,"mock-exam-7-os-q28":QT,"mock-exam-7-os-q29":$T,"mock-exam-7-os-q30":eE,"mock-exam-7-os-q31":tE,"mock-exam-7-os-q32":ew,"mock-exam-7-cn-q33":nE,"mock-exam-7-cn-q34":rE,"mock-exam-7-cn-q35":Rw,"mock-exam-7-cn-q36":iE,"mock-exam-7-cn-q37":Gw,"mock-exam-7-cn-q38":aE,"mock-exam-7-cn-q39":Xw,"mock-exam-7-cn-q40":oE,"mock-exam-7-ds-q41":DC,"mock-exam-7-ds-q42":aC,"mock-exam-7-co-q43":QC,"mock-exam-7-co-q44":qC,"mock-exam-7-os-q45":Ow,"mock-exam-7-os-q46":bw,"mock-exam-7-cn-q47":Vw,"mock-exam-8-ds-q01":sE,"mock-exam-8-ds-q02":rT,"mock-exam-8-ds-q03":cE,"mock-exam-8-ds-q04":tC,"mock-exam-8-ds-q05":sC,"mock-exam-8-ds-q06":hC,"mock-exam-8-ds-q07":xC,"mock-exam-8-ds-q08":gC,"mock-exam-8-ds-q09":EC,"mock-exam-8-ds-q10":DC,"mock-exam-8-ds-q11":lE,"mock-exam-8-co-q12":IC,"mock-exam-8-co-q13":dE,"mock-exam-8-co-q14":BC,"mock-exam-8-co-q15":UC,"mock-exam-8-co-q16":HC,"mock-exam-8-co-q17":BC,"mock-exam-8-co-q18":IC,"mock-exam-8-co-q19":fE,"mock-exam-8-co-q20":pE,"mock-exam-8-co-q21":$C,"mock-exam-8-co-q22":mE,"mock-exam-8-os-q23":rw,"mock-exam-8-os-q24":ow,"mock-exam-8-os-q25":aw,"mock-exam-8-os-q26":xE,"mock-exam-8-os-q27":vw,"mock-exam-8-os-q28":Tw,"mock-exam-8-os-q29":_E,"mock-exam-8-os-q30":Dw,"mock-exam-8-os-q31":vE,"mock-exam-8-os-q32":yE,"mock-exam-8-cn-q33":CE,"mock-exam-8-cn-q34":wE,"mock-exam-8-cn-q35":TE,"mock-exam-8-cn-q36":EE,"mock-exam-8-cn-q37":DE,"mock-exam-8-cn-q38":Ww,"mock-exam-8-cn-q39":qw,"mock-exam-8-cn-q40":Yw,"mock-exam-8-ds-q41":uE,"mock-exam-8-ds-q42":dC,"mock-exam-8-co-q43":hE,"mock-exam-8-co-q44":gE,"mock-exam-8-os-q45":bE,"mock-exam-8-os-q46":SE,"mock-exam-8-cn-q47":OE},NE;function PE(){return NE||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{NE=void 0,t(n.error)},n.onblocked=()=>{r=!0,NE=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),NE=void 0},e(t)}}),NE}async function FE(e,t){let n=await PE();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function IE(e){return FE(`readonly`,t=>t.index(`materialId`).getAll(e))}async function LE(e){e.length&&await FE(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function RE(e){await FE(`readwrite`,t=>t.delete(e))}var zE={ds:`数据结构`,co:`计算机组成原理`,os:`操作系统`,cn:`计算机网络`,rare:`冷门专区`,other:`单题收录`},BE=[`ds`,`co`,`os`,`cn`,`rare`,`other`],VE=/^\s*(?:[（(]\s*[一二三四五六七八九十]+\s*[)）]|[一二三四五六七八九十]+\s*[、.．]|\d+\s*[、.．)])\s*/;function HE(e){for(let t of e.split(`
+`)){let e=t.trim();if(!e)continue;let n=(/^#{1,6}\s+(\S.*)$/.exec(e)?.[1]??e.replace(/^[*_>]+/,``).trim()).replace(VE,``).replace(/[：:]\s*$/,``).trim();if(n)return n.length>48?`${n.slice(0,47)}…`:n}return`未命名知识点`}function UE(e,t){let n=/-(ds|co|os|cn)-q\d+$/.exec(e);return n?.[1]?n[1]:t===`rare-topics`?`rare`:`other`}var WE=new Map;for(let e of ZS)for(let t of e.materials)t.type===`题目`&&WE.set(t.id,{id:t.id,title:t.title,lessonId:e.id,lessonTitle:e.title,chapter:t.chapter,subject:UE(t.id,e.id),questionNumber:t.questionNumber});var GE=[...WE.values()],KE=new Map;for(let[e,t]of Object.entries(ME)){let n=KE.get(t);n?n.push(e):KE.set(t,[e])}var qE=[...KE].map(([e,t])=>{let n=[...t].sort(),r=[...new Set(n.map(e=>WE.get(e)?.subject??`other`))].sort((e,t)=>BE.indexOf(e)-BE.indexOf(t));return{key:n[0],label:HE(e),body:e,questionIds:n,subjects:r}}).sort((e,t)=>e.key.localeCompare(t.key));function JE(e,t){let n=new Map(t.map(e=>[e.id,e])),r=[...e].sort((e,t)=>{let n=BE.indexOf(e.subjects[0])-BE.indexOf(t.subjects[0]);return n===0?e.label.localeCompare(t.label,`zh-CN`):n}),i=e=>{let t=new Map(e.map((e,t)=>[e.key,t])),r=new Map;for(let i of e)for(let e of i.questionIds){if(!n.has(e))continue;let a=r.get(e);a?a.push(t.get(i.key)):r.set(e,[t.get(i.key)])}return[...n.values()].sort((t,n)=>{let i=r.get(t.id)??[e.length],a=r.get(n.id)??[e.length],o=i.reduce((e,t)=>e+t,0)/i.length-a.reduce((e,t)=>e+t,0)/a.length;return o===0?t.id.localeCompare(n.id):o})},a=i(r);for(let e=0;e<2;e+=1){let e=new Map(a.map((e,t)=>[e.id,t])),t=new Map;for(let n of r){let r=n.questionIds.filter(t=>e.has(t)).map(t=>e.get(t));t.set(n.key,r.length?r.reduce((e,t)=>e+t,0)/r.length:a.length)}r=[...r].sort((e,n)=>{let r=BE.indexOf(e.subjects[0])-BE.indexOf(n.subjects[0]);return r===0?t.get(e.key)-t.get(n.key):r}),a=i(r)}let o=new Set(a.map(e=>e.id)),s=r.flatMap(e=>e.questionIds.filter(e=>o.has(e)).map(t=>({from:e,to:n.get(t)})));return{knowledge:r,questions:a,edges:s}}var YE=296,XE=336,ZE=168,QE=16,$E=24,eD=32,tD=11,nD=62,rD=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function iD(e,t){let n=(e.match(rD)??[]).length;return n*t+(e.length-n)*t*.56}function aD(e,t,n){if(iD(e,n)<=t)return e;let r=e.length;for(;r>1&&iD(`${e.slice(0,r)}…`,n)>t;)--r;return`${e.slice(0,r)}…`}var oD=e=>QE+e*eD+$E/2,sD=[`all`,`ds`,`co`,`os`,`cn`,`rare`,`other`],cD={all:GE.length};for(let e of GE)cD[e.subject]=(cD[e.subject]??0)+1;var lD=qE.filter(e=>e.questionIds.length>1).length;function uD({hrefFor:e}){let[t,n]=(0,S.useState)(`all`),[r,i]=(0,S.useState)(``),[a,o]=(0,S.useState)(!0),[s,c]=(0,S.useState)(null),[l,u]=(0,S.useState)(null);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)).get(`p`);c(e&&qE.some(t=>t.key===e)?e:null)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]);let d=l??s,{layout:f,counts:p,truncated:m}=(0,S.useMemo)(()=>{let e=r.trim().toLowerCase(),n=new Set;if(e){for(let t of qE)if(t.label.toLowerCase().includes(e))for(let e of t.questionIds)n.add(e)}let i=GE.filter(r=>(t===`all`||r.subject===t)&&(!e||n.has(r.id)||`${r.title} ${r.chapter} ${r.lessonTitle}`.toLowerCase().includes(e))),o=new Set(i.map(e=>e.id)),s=new Map,c=qE.filter(e=>{let t=e.questionIds.reduce((e,t)=>e+ +!!o.has(t),0);return s.set(e.key,t),t>0&&(!a||t>1)}),l=new Set;for(let e of c)for(let t of e.questionIds)o.has(t)&&l.add(t);let u=JE(c,i.filter(e=>l.has(e.id)));return{layout:u,counts:s,truncated:qE.length>u.knowledge.length||GE.length>u.questions.length}},[t,r,a]),h=new Map(f.knowledge.map((e,t)=>[e.key,t])),g=new Map(f.questions.map((e,t)=>[e.id,t])),_=d==null?null:h.has(d)?`knowledge`:`question`,v=new Set,y=new Set;for(let e of f.edges)_===`knowledge`&&e.from.key===d?y.add(e.to.id):_===`question`&&e.to.id===d&&v.add(e.from.key);let b=(e,t)=>_===`knowledge`?e===d:t===d,x=e=>!!d&&!(_===`knowledge`?e.key===d:v.has(e.key)),ee=e=>!!d&&!(_===`question`?e.id===d:y.has(e.id)),te=QE*2+YE+ZE+XE,ne=QE*2+Math.max(f.knowledge.length,f.questions.length)*eD,re=QE+YE+ZE;return(0,D.jsxs)(`section`,{className:`mb-6 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`知识点关联图`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-end justify-between gap-4`,children:[(0,D.jsxs)(`div`,{children:[(0,D.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`知识点关联图`}),(0,D.jsx)(`p`,{className:`mt-2 max-w-2xl text-sm leading-7 text-muted-foreground`,children:`左列是题下的「基础知识」块，右列是复用同一块的题目，连线表示这道题确实挂了这条知识点。一条线跨到多个题目，就是反复被考的位置。`})]}),(0,D.jsxs)(`output`,{className:`text-sm text-muted-foreground`,children:[f.knowledge.length,` 个知识点 · `,f.questions.length,` 道题 ·`,` `,f.edges.length,` 条连线`]})]}),(0,D.jsx)(`div`,{className:`mt-5 flex flex-wrap gap-2`,"aria-label":`按科目筛选`,children:sD.map(e=>(0,D.jsxs)(`button`,{className:`filter-chip ${t===e?`active`:``}`,"aria-pressed":t===e,onClick:()=>n(e),children:[e===`all`?`全部科目`:zE[e],(0,D.jsx)(`span`,{className:`ml-2 text-xs text-muted-foreground`,children:cD[e]??0})]},e))}),(0,D.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-3`,children:[(0,D.jsxs)(`div`,{className:`relative min-w-64 flex-1`,children:[(0,D.jsx)(pe,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,D.jsx)(`input`,{className:`search-input`,"aria-label":`搜索知识点或题目`,placeholder:`搜索知识点或题目…`,value:r,onChange:e=>i(e.target.value)})]}),(0,D.jsx)(`button`,{className:`filter-chip ${a?`active`:``}`,"aria-pressed":a,onClick:()=>o(!a),children:a?`只看被多题共用`:`显示全部（含 ${qE.length-lD} 个单题知识点）`}),s&&(0,D.jsx)(`a`,{className:`filter-chip`,href:`#view=graph`,children:`取消锁定`})]}),f.knowledge.length===0?(0,D.jsx)(`p`,{className:`mt-6 rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground`,children:`没有符合条件的知识点。换个科目或关键词，或放开「只看被多题共用」。`}):(0,D.jsxs)(D.Fragment,{children:[(0,D.jsx)(`div`,{className:`mt-5 max-h-[70vh] overflow-auto rounded-xl border border-border bg-background`,children:(0,D.jsxs)(`svg`,{width:te,height:ne,viewBox:`0 0 ${te} ${ne}`,"aria-label":`知识点关联图：${f.knowledge.length} 个知识点关联 ${f.questions.length} 道题`,children:[(0,D.jsx)(`g`,{fill:`none`,children:f.edges.map(e=>{let t=b(e.from.key,e.to.id),n=oD(h.get(e.from.key)),r=oD(g.get(e.to.id));return(0,D.jsx)(`path`,{d:`M ${QE+YE} ${n} C ${QE+YE+nD} ${n}, ${re-nD} ${r}, ${re} ${r}`,stroke:t&&d?`var(--primary)`:`var(--muted-foreground)`,strokeWidth:t&&d?1.8:1.1,style:{opacity:d?t?.85:.06:.2}},`${e.from.key}:${e.to.id}`)})}),(0,D.jsx)(`g`,{children:f.knowledge.map((e,t)=>{let n=_===`knowledge`&&d===e.key;return(0,D.jsxs)(`a`,{href:`#view=graph&p=${encodeURIComponent(e.key)}`,onMouseEnter:()=>u(e.key),onMouseLeave:()=>u(null),onFocus:()=>u(e.key),onBlur:()=>u(null),"aria-current":s===e.key?`true`:void 0,style:{cursor:`pointer`,opacity:x(e)?.35:1},children:[(0,D.jsx)(`title`,{children:`${e.label} · ${p.get(e.key)??0} 道题`}),(0,D.jsx)(`rect`,{x:QE,y:oD(t)-$E/2,width:YE,height:$E,rx:7,style:{fill:n?`var(--primary)`:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:n?1.6:.9}}),(0,D.jsx)(`text`,{x:QE+10,y:oD(t)+4,fontSize:tD,style:{fill:n?`var(--primary-foreground)`:`var(--accent-foreground)`},children:aD(e.label,YE-20,tD)}),(0,D.jsx)(`text`,{x:QE+YE+8,y:oD(t)+4,fontSize:tD-1,style:{fill:`var(--muted-foreground)`},children:p.get(e.key)??0})]},e.key)})}),(0,D.jsx)(`g`,{children:f.questions.map((t,n)=>{let r=_===`question`&&d===t.id,i=t.questionNumber===void 0?``:`第 ${t.questionNumber} 题 · `;return(0,D.jsxs)(`a`,{href:e(t.lessonId,t.id),onMouseEnter:()=>u(t.id),onMouseLeave:()=>u(null),style:{cursor:`pointer`,opacity:ee(t)?.35:1},children:[(0,D.jsx)(`title`,{children:`${t.lessonTitle} · ${i}${t.title}`}),(0,D.jsx)(`rect`,{x:re,y:oD(n)-$E/2,width:XE,height:$E,rx:7,style:{fill:r?`var(--primary)`:`var(--secondary)`,stroke:r?`var(--primary)`:`var(--border)`,strokeWidth:r?1.6:.9}}),(0,D.jsx)(`text`,{x:re+10,y:oD(n)+4,fontSize:tD,style:{fill:r?`var(--primary-foreground)`:`var(--foreground)`},children:aD(`${i}${t.title}`,XE-20,tD)})]},t.id)})})]})}),(0,D.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`悬停任一节点高亮它的连线；点左侧知识点可锁定并生成可分享的链接，点右侧题目直接跳到该题。`,m&&` 当前筛选隐藏了其余节点。`,a&&` 已隐藏 ${qE.length-lD} 个只服务单道题的知识点。`]})]})]})}var dD=`/courses/`,fD={题目:se,知识点:de},pD=ZS.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),mD=pD.filter(({material:e})=>e.type===`题目`).length;function hD(e,t){let n=new URLSearchParams;return e!==`all`&&n.set(`lesson`,e),t&&n.set(`material`,t),`#${n}`}function gD(e){return e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&!e.defaultPrevented}function _D(e,t){return e===`rare-topics`?[{type:`知识点`,title:`知识点讲解`,items:t.filter(e=>e.type===`知识点`)},{type:`题目`,title:`配套题目`,items:t.filter(e=>e.type===`题目`)}].filter(e=>e.items.length>0):[{type:`全部`,title:null,items:t}]}var vD=28,yD=64,bD=26,xD=16,SD=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function CD(e){let t=(e.match(SD)??[]).length;return(e.length-t)*7.4+t*13+18}function wD(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function TD({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=wD(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>CD(e.label))),s=o+bD,c=i*s-bD+xD*2,l=(a+1)*yD+xD*2-(yD-vD),u=e=>({x:xD+o/2+e.column*s,y:xD+e.depth*yD+vD/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,D.jsxs)(`figure`,{className:`my-4`,children:[(0,D.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,D.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
+`).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,D.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,D.jsx)(`path`,{d:`M ${e.x} ${e.y+vD/2} C ${e.x} ${e.y+vD/2+18}, ${t.x} ${t.y-vD/2-18}, ${t.x} ${t.y-vD/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,D.jsxs)(`g`,{children:[(0,D.jsx)(`rect`,{x:n-o/2,y:r-vD/2,width:o,height:vD,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,D.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,D.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function ED({children:e,allowHtml:t=!1}){return(0,D.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere]`,children:(0,D.jsx)(os,{remarkPlugins:[jp,Pg],rehypePlugins:t?[jS,N_]:[N_],urlTransform:e=>{let t=us(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${dD}${t}`:t},components:{pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,S.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,D.jsx)(TD,{source:n,kind:r})}return(0,D.jsx)(`pre`,{children:e})}},children:e})})}var DD={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function OD({image:e}){let t=(0,S.useRef)(null);return(0,S.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,D.jsxs)(`figure`,{className:`min-w-0`,children:[(0,D.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&window.open(t.src,`_blank`,`noopener,noreferrer`)}}),(0,D.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name})]})}function kD({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,S.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,S.useState)(!1),[o,s]=(0,S.useState)([]),[c,l]=(0,S.useState)(!1),[u,d]=(0,S.useState)(`正在读取补充图片…`),f=(0,S.useRef)(null);(0,S.useEffect)(()=>{let t=!0;return IE(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>DD[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await LE(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await RE(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,D.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,D.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,D.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,D.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,D.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,D.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,D.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,D.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,D.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,D.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 rounded-xl border border-border p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,D.jsx)(ED,{children:n.content}):(0,D.jsx)(`div`,{className:`whitespace-pre-wrap text-sm leading-7 [overflow-wrap:anywhere]`,children:n.content}):(0,D.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,D.jsxs)(`div`,{className:`mt-4`,children:[(0,D.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,D.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
 ## 课堂提醒
-- **重点**：先判断适用条件`:`直接输入补充内容，保留换行；不会解析 Markdown 符号。`,onChange:e=>h({content:e.target.value,format:n.format})}),(0,D.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:n.format===`markdown`?`点击预览查看排版；公式可用 $…$ 或独占一行的 $$。`:`普通文字按原样展示，包括 *、# 等符号。`})]}),(0,D.jsxs)(`section`,{className:`mt-4 min-w-0 border-t border-border pt-4`,"aria-label":`补充图片`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-center justify-between gap-2`,children:[(0,D.jsxs)(`h3`,{className:`text-sm font-semibold`,children:[`补充图片`,o.length>0?` · ${o.length} 张`:``]}),!i&&(0,D.jsxs)(D.Fragment,{children:[(0,D.jsx)(`input`,{ref:f,type:`file`,accept:Object.keys(TD).join(`,`),multiple:!0,className:`hidden`,"aria-label":`选择补充图片`,onChange:e=>{let t=Array.from(e.target.files||[]);e.target.value=``,p(t)}}),(0,D.jsx)(`button`,{className:`action-button disabled:cursor-not-allowed disabled:opacity-50`,disabled:!c,onClick:()=>f.current?.click(),children:`添加图片`})]})]}),(0,D.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`在补充输入框内直接粘贴截图，也可选择图片；点击图片查看原图。两种文字格式均支持。`}),o.length>0&&(0,D.jsx)(`div`,{className:`mt-3 space-y-4`,children:o.map(e=>(0,D.jsxs)(`div`,{className:`min-w-0 rounded-xl border border-border p-3`,children:[(0,D.jsx)(ED,{image:e}),!i&&(0,D.jsx)(`button`,{className:`action-button mt-2`,"aria-label":`移除图片：${e.name}`,onClick:()=>{m(e)},children:`移除图片`})]},e.id))}),(0,D.jsx)(`output`,{className:`mt-2 block text-xs leading-6 text-muted-foreground`,children:u})]}),(0,D.jsx)(`output`,{className:`mt-3 block text-xs leading-6 text-muted-foreground`,children:n.status})]})}function OD(){let[e,t]=(0,S.useState)(`all`),[n,r]=(0,S.useState)(`全部`),[i,a]=(0,S.useState)(``),[o,s]=(0,S.useState)(``),[c,l]=(0,S.useState)(null),[u,d]=(0,S.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,S.useRef)(null),p=(0,S.useRef)(null),m=(0,S.useRef)(null),[h,g]=(0,S.useState)(!1),[_,v]=(0,S.useState)(!1);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)),n=e.get(`lesson`),r=e.get(`material`);t(XS.some(e=>e.id===n)?n:`all`),l(dD.some(({material:e})=>e.id===r)?r:null),v(!r&&e.get(`view`)===`graph`),g(!1)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]),(0,S.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,S.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,S.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]),(0,S.useEffect)(()=>{let e=p.current,t=m.current;if(!e||!t||!e.clientHeight)return;let n=e.getBoundingClientRect(),r=t.getBoundingClientRect();r.top<n.top?e.scrollTop+=r.top-n.top:r.bottom>n.bottom&&(e.scrollTop+=r.bottom-n.bottom)},[c,h]);let y=XS.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),b=y.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),x=e!==`all`,ee=o.trim().toLocaleLowerCase(),te=y.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!ee||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(ee)))})).filter(({items:e})=>e.length>0),ne=te.reduce((e,t)=>e+t.items.length,0),re=e===`rare-topics`&&y[0]?.lesson.materials.length===0,C=c?dD.find(({material:e})=>e.id===c)??null:null,ie=C?.material.type===`题目`?AE[C.material.id]:void 0,he=C?hD(C.lesson.id,C.lesson.materials):[],ge=he.find(e=>e.type===`全部`||e.type===C?.material.type)?.items??[],_e=C?ge.findIndex(e=>e.id===C.material.id):-1,ve=ge[_e-1],ye=ge[_e+1],be=C?.material.type===`题目`?`题`:`张`;function xe(){t(`all`),r(`全部`),a(``),s(``),window.history.replaceState(null,``,pD(`all`))}function Se(t){let n=uD[t.type];return(0,D.jsxs)(`a`,{href:pD(e,t.id),className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,children:[(0,D.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-xs text-muted-foreground`,children:[(0,D.jsx)(n,{size:15}),(0,D.jsx)(`span`,{className:`text-primary`,children:t.type}),(0,D.jsxs)(`span`,{children:[`· `,t.chapter]})]}),t.type===`题目`&&t.questionNumber!==void 0&&(0,D.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,t.questionNumber,` 题`]}),(0,D.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:t.title}),(0,D.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:t.summary}),t.tags.length>0&&(0,D.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[t.tags.slice(0,2).map(e=>(0,D.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e)),t.tags.length>2&&(0,D.jsxs)(`span`,{className:`py-1 text-xs text-muted-foreground`,children:[`+`,t.tags.length-2]})]})]},t.id)}return(0,D.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,D.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,D.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,D.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,D.jsx)(ae,{size:16}),`返回博客`]}),!C&&(0,D.jsxs)(`a`,{className:`action-button`,href:_?pD(e):`#view=graph`,"aria-current":_?`page`:void 0,children:[(0,D.jsx)(fe,{}),_?`返回讲义列表`:`知识点关联图`]}),C&&(0,D.jsxs)(`a`,{className:`action-button`,href:pD(e),children:[(0,D.jsx)(ae,{}),`返回讲义列表`]}),C&&(0,D.jsxs)(`nav`,{className:`flex items-center gap-2`,"aria-label":`讲义切换`,children:[ve?(0,D.jsxs)(`a`,{className:`action-button`,href:pD(e,ve.id),title:`上一${be}：${ve.title}`,children:[(0,D.jsx)(ae,{}),`上一`,be]}):(0,D.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课第一${be}`,children:[(0,D.jsx)(ae,{}),`上一`,be]}),ye?(0,D.jsxs)(`a`,{className:`action-button`,href:pD(e,ye.id),title:`下一${be}：${ye.title}`,children:[`下一`,be,(0,D.jsx)(oe,{})]}):(0,D.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课最后一${be}`,children:[`下一`,be,(0,D.jsx)(oe,{})]})]})]}),(0,D.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,D.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,D.jsx)(ue,{size:19}),`408 备课讲义`]}),(0,D.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,D.jsx)(me,{}):(0,D.jsx)(w,{})})]})]})}),(0,D.jsxs)(`main`,{className:`mx-auto px-5 py-8 sm:px-8 sm:py-10 ${C||_?`max-w-[1600px]`:`max-w-6xl`}`,children:[!C&&!_&&(0,D.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,D.jsxs)(`div`,{children:[(0,D.jsx)(`p`,{className:`mb-3 text-xs font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,D.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,D.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,D.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,D.jsxs)(`p`,{children:[(0,D.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:XS.length}),`次课`]}),(0,D.jsxs)(`p`,{children:[(0,D.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:fD}),`道题目`]})]})]}),(0,D.jsxs)(`div`,{className:_?``:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[_?null:C?(0,D.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`当前课次目录`,children:[(0,D.jsx)(`h2`,{className:`px-2 text-sm font-semibold text-primary`,children:C.lesson.title}),(0,D.jsxs)(`p`,{className:`mt-2 px-2 text-xs leading-6 text-muted-foreground`,children:[C.lesson.id===`rare-topics`?`分区目录`:`本课题目目录`,` · `,C.lesson.materials.length,` 条内容`]}),(0,D.jsx)(`div`,{className:`lg:hidden`,children:(0,D.jsxs)(`button`,{className:`action-button mt-3 w-full justify-between`,"aria-expanded":h,"aria-controls":`current-lesson-materials`,onClick:()=>g(!h),children:[h?`收起`:`展开`,C.lesson.id===`rare-topics`?`分区目录`:`题目目录`,(0,D.jsx)(ce,{size:16,className:h?`rotate-180`:``})]})}),(0,D.jsx)(`nav`,{id:`current-lesson-materials`,ref:p,className:`mt-3 max-h-64 overflow-y-auto overscroll-contain lg:max-h-[calc(100dvh-13rem)] ${h?``:`hidden lg:block`}`,"aria-label":C.lesson.id===`rare-topics`?`冷门专区分区目录`:`本课题目`,children:he.map(t=>(0,D.jsxs)(`div`,{className:t.title?`mt-4 first:mt-0`:void 0,children:[t.title&&(0,D.jsxs)(`h3`,{className:`mb-2 flex items-center justify-between px-3 text-xs font-semibold text-primary`,children:[t.title,(0,D.jsxs)(`span`,{className:`font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),t.items.map((t,n)=>(0,D.jsxs)(`a`,{href:pD(e,t.id),ref:t.id===c?m:void 0,"aria-current":t.id===c?`page`:void 0,onClick:e=>{mD(e)&&g(!1)},className:`mb-1 block w-full rounded-xl px-3 py-3 text-left ${t.id===c?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,children:[(0,D.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:t.type===`题目`&&t.questionNumber!==void 0?`第 ${t.questionNumber} 题`:t.type===`知识点`?`知识点 · 第 ${n+1} 张`:`题目 · 第 ${n+1} 张`}),(0,D.jsx)(`span`,{className:`mt-1 block break-words text-sm leading-6`,children:t.title})]},t.id))]},t.type))})]}):(0,D.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`课次导航`,children:[(0,D.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,D.jsxs)(`a`,{href:pD(`all`),className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-current":e===`all`?`page`:void 0,onClick:e=>{mD(e)&&a(``)},children:[`全部课次`,(0,D.jsx)(`span`,{className:`text-xs`,children:dD.length})]}),XS.map(t=>(0,D.jsxs)(`a`,{href:pD(t.id),"aria-current":e===t.id?`page`:void 0,onClick:e=>{mD(e)&&a(``)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===t.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,D.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[t.title,(0,D.jsx)(`span`,{className:`text-xs font-normal`,children:t.materials.length})]}),(0,D.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:t.date})]},t.id)),(0,D.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-xs leading-6 text-muted-foreground`,children:[(0,D.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,D.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,D.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认展开，可点击标题手动收起。公开讲义由维护者收录；「我的补充」中的文字和图片只保存在当前浏览器。`})]})]}),(0,D.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:_?(0,D.jsx)(cD,{hrefFor:pD}):C?(0,D.jsxs)(`div`,{className:`grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_320px]`,children:[(0,D.jsxs)(`article`,{ref:f,tabIndex:-1,className:`min-w-0 scroll-mt-44 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-32 sm:p-8 lg:scroll-mt-24`,children:[(0,D.jsx)(`p`,{className:`mb-6 text-xs text-muted-foreground`,children:C.lesson.id===`rare-topics`?`${C.material.type}第 ${_e+1} / ${ge.length} ${be}`:`本课第 ${_e+1} / ${ge.length} 张`}),(0,D.jsxs)(`p`,{className:`text-xs text-primary`,children:[C.lesson.title,` · `,C.material.chapter,` · `,C.material.type]}),(0,D.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[C.material.type===`题目`&&C.material.questionNumber!==void 0&&(0,D.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,C.material.questionNumber,` 题 ·`]}),C.material.title]}),(0,D.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:C.material.tags.map(e=>(0,D.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground`,children:e},e))}),C.material.source&&(0,D.jsxs)(`details`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,"aria-label":`题目来源`,children:[(0,D.jsx)(`summary`,{className:`cursor-pointer`,children:`来源与资料说明`}),(0,D.jsx)(`p`,{className:`mt-2`,children:C.material.source})]}),(0,D.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":C.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,D.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:C.material.type===`题目`?`题目`:`知识点讲解`}),(0,D.jsx)(wD,{allowHtml:C.material.type===`知识点`,children:C.material.content})]}),C.material.attachments&&C.material.attachments.length>0&&(0,D.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:C.material.attachments.map(e=>(0,D.jsxs)(`a`,{className:`action-button max-w-full`,href:`${lD}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,D.jsx)(le,{}),(0,D.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),C.material.type===`题目`&&(C.material.solution?(0,D.jsxs)(`details`,{open:!0,className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,D.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,D.jsxs)(`span`,{children:[`答案与解析`,(0,D.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,D.jsx)(ce,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,D.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,D.jsxs)(`section`,{children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,D.jsx)(wD,{children:C.material.solution.answer})]}),C.material.solution.teachingFramework&&(0,D.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`讲题框架`}),(0,D.jsx)(wD,{children:C.material.solution.teachingFramework})]}),(0,D.jsxs)(`section`,{children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题步骤`}),(0,D.jsx)(wD,{children:C.material.solution.explanation})]}),C.material.solution.pitfalls&&(0,D.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错提醒`}),(0,D.jsx)(wD,{children:C.material.solution.pitfalls})]}),C.material.solution.extension&&(0,D.jsxs)(`section`,{children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,D.jsx)(wD,{children:C.material.solution.extension})]})]})]}):(0,D.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`})),ie&&(0,D.jsxs)(`section`,{className:`mt-8 min-w-0 rounded-xl border border-border bg-secondary/40 p-5 sm:p-6`,"aria-label":`基础知识`,children:[(0,D.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center justify-between gap-2`,children:[(0,D.jsx)(`h2`,{className:`text-lg font-semibold text-primary`,children:`基础知识`}),(0,D.jsxs)(`a`,{className:`action-button`,href:`#view=graph`,title:`在关联图里看这条知识块还挂在哪些题下`,children:[(0,D.jsx)(fe,{}),`看关联图`]})]}),(0,D.jsx)(wD,{allowHtml:!0,children:ie})]})]},C.material.id),(0,D.jsx)(DD,{materialId:C.material.id},`supplement:${C.material.id}`)]}):(0,D.jsxs)(D.Fragment,{children:[e===`rare-topics`&&(0,D.jsxs)(`section`,{className:`mb-5 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`冷门知识专区`,children:[(0,D.jsx)(`h2`,{className:`font-display text-2xl font-semibold text-primary`,children:`冷门知识专区`}),(0,D.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-muted-foreground`,children:`发来一个冷门考点、一道题或一张截图，从这里积累可直接用于讲课的专题。`}),(0,D.jsxs)(`ol`,{className:`mt-4 list-decimal space-y-3 pl-5 text-sm leading-7`,children:[(0,D.jsxs)(`li`,{children:[(0,D.jsx)(`strong`,{children:`讲清原考点：`}),`介绍定义、公式、适用前提和容易遗漏的边界。`]}),(0,D.jsxs)(`li`,{children:[(0,D.jsx)(`strong`,{children:`拓展相近考点：`}),`查找相关知识点，说明联系、区别与常见混淆。`]}),(0,D.jsxs)(`li`,{children:[(0,D.jsx)(`strong`,{children:`配例题并讲透：`}),`给出完整题面、答案、推导和变式答案；可核验的真题注明出处，改编题或自拟题明确标注，不冒充真题。`]})]}),(0,D.jsx)(`p`,{className:`mt-4 text-xs leading-6 text-muted-foreground`,children:`先核对概念与解答，再收录发布。不把未经核实的答案或题源当成事实。`})]}),(0,D.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,D.jsxs)(`div`,{className:`relative`,children:[(0,D.jsx)(pe,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,D.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,D.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...NS].map(e=>(0,D.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),b.length>0&&(0,D.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,D.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,D.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,D.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,D.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,D.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),x&&b.flatMap(e=>e.tags).map(e=>(0,D.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!x&&b.map(e=>(0,D.jsxs)(`div`,{children:[(0,D.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,D.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,D.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n),window.history.replaceState(null,``,pD(e.lesson.id))},children:n},n))})]},e.lesson.id))]})]})]}),(0,D.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,D.jsxs)(`output`,{children:[e===`all`?`全部课次`:XS.find(t=>t.id===e)?.title,` · `,ne,` 条内容`]}),(0,D.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:e===`rare-topics`?`知识点与题目分区 · 各区按收录顺序排列`:`按备课顺序排列`})]}),dD.length===0?(0,D.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,D.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,D.jsx)(de,{size:24})}),(0,D.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,D.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,D.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,D.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,D.jsx)(se,{className:`mb-3 text-primary`,size:19}),(0,D.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,D.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,D.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,D.jsx)(de,{className:`mb-3 text-primary`,size:19}),(0,D.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 题面与解析分区`}),(0,D.jsx)(`p`,{className:`mt-2 text-xs leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点默认展开，需要时可手动收起。`})]})]})]}):te.length===0?(0,D.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,D.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`rare-topics`?re?`尚未收录冷门考点`:`没有找到匹配的冷门考点`:e===`all`?`没有找到匹配的内容`:`${XS.find(t=>t.id===e)?.title} 还没有内容`}),(0,D.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`rare-topics`?re?`把第一个冷门考点发来；核验后的知识点和例题会单独收录在本专区。`:`换个关键词，或调整类型与标签筛选。`:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,D.jsx)(`button`,{className:`action-button`,onClick:xe,children:`清除筛选`}):(0,D.jsx)(`a`,{className:`action-button`,href:pD(`all`),children:`看全部课次`})]}):(0,D.jsx)(`div`,{className:`grid gap-6`,children:te.map(({lesson:e,items:t})=>{let n=hD(e.id,t);return(0,D.jsxs)(`section`,{"aria-label":e.title,children:[(0,D.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,D.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,D.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,D.jsx)(`p`,{className:`mb-3 text-xs leading-6 text-muted-foreground`,children:e.summary}),(0,D.jsx)(`div`,{className:`grid items-start gap-5 ${n.length>1?`xl:grid-cols-2`:``}`,children:n.map(e=>{if(e.type===`全部`)return(0,D.jsx)(`div`,{className:`grid gap-3`,children:e.items.map(e=>Se(e))},e.type);let t=uD[e.type];return(0,D.jsxs)(`section`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4`,"aria-label":e.title,children:[(0,D.jsxs)(`h3`,{className:`mb-4 flex flex-wrap items-center gap-2 text-sm font-semibold text-primary`,children:[(0,D.jsx)(t,{size:17}),e.title,(0,D.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[e.items.length,` `,e.type===`题目`?`道`:`张`]})]}),(0,D.jsx)(`div`,{className:`grid gap-3`,children:e.items.map(e=>Se(e))})]},e.type)})})]},e.id)})})]})})]})]})]})}(0,MS.createRoot)(document.getElementById(`root`)).render((0,D.jsx)(S.StrictMode,{children:(0,D.jsx)(OD,{})}));
+- **重点**：先判断适用条件`:`直接输入补充内容，保留换行；不会解析 Markdown 符号。`,onChange:e=>h({content:e.target.value,format:n.format})}),(0,D.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:n.format===`markdown`?`点击预览查看排版；公式可用 $…$ 或独占一行的 $$。`:`普通文字按原样展示，包括 *、# 等符号。`})]}),(0,D.jsxs)(`section`,{className:`mt-4 min-w-0 border-t border-border pt-4`,"aria-label":`补充图片`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-center justify-between gap-2`,children:[(0,D.jsxs)(`h3`,{className:`text-sm font-semibold`,children:[`补充图片`,o.length>0?` · ${o.length} 张`:``]}),!i&&(0,D.jsxs)(D.Fragment,{children:[(0,D.jsx)(`input`,{ref:f,type:`file`,accept:Object.keys(DD).join(`,`),multiple:!0,className:`hidden`,"aria-label":`选择补充图片`,onChange:e=>{let t=Array.from(e.target.files||[]);e.target.value=``,p(t)}}),(0,D.jsx)(`button`,{className:`action-button disabled:cursor-not-allowed disabled:opacity-50`,disabled:!c,onClick:()=>f.current?.click(),children:`添加图片`})]})]}),(0,D.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:`在补充输入框内直接粘贴截图，也可选择图片；点击图片查看原图。两种文字格式均支持。`}),o.length>0&&(0,D.jsx)(`div`,{className:`mt-3 space-y-4`,children:o.map(e=>(0,D.jsxs)(`div`,{className:`min-w-0 rounded-xl border border-border p-3`,children:[(0,D.jsx)(OD,{image:e}),!i&&(0,D.jsx)(`button`,{className:`action-button mt-2`,"aria-label":`移除图片：${e.name}`,onClick:()=>{m(e)},children:`移除图片`})]},e.id))}),(0,D.jsx)(`output`,{className:`mt-2 block text-[13px] leading-6 text-muted-foreground`,children:u})]}),(0,D.jsx)(`output`,{className:`mt-3 block text-[13px] leading-6 text-muted-foreground`,children:n.status})]})}function AD(){let[e,t]=(0,S.useState)(`all`),[n,r]=(0,S.useState)(`全部`),[i,a]=(0,S.useState)(``),[o,s]=(0,S.useState)(``),[c,l]=(0,S.useState)(null),[u,d]=(0,S.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,S.useRef)(null),p=(0,S.useRef)(null),m=(0,S.useRef)(null),[h,g]=(0,S.useState)(!1),[_,v]=(0,S.useState)(!1);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)),n=e.get(`lesson`),r=e.get(`material`);t(ZS.some(e=>e.id===n)?n:`all`),l(pD.some(({material:e})=>e.id===r)?r:null),v(!r&&e.get(`view`)===`graph`),g(!1)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]),(0,S.useEffect)(()=>{let e=document.title;return document.title=`408 备课讲义 · 凯鑫的个人博客`,()=>{document.title=e}},[]),(0,S.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,S.useEffect)(()=>{c&&(f.current?.focus({preventScroll:!0}),f.current?.scrollIntoView({block:`start`}))},[c]),(0,S.useEffect)(()=>{let e=p.current,t=m.current;if(!e||!t||!e.clientHeight)return;let n=e.getBoundingClientRect(),r=t.getBoundingClientRect();r.top<n.top?e.scrollTop+=r.top-n.top:r.bottom>n.bottom&&(e.scrollTop+=r.bottom-n.bottom)},[c,h]);let y=ZS.filter(t=>e===`all`||t.id===e).map(e=>({lesson:e,items:e.materials.filter(e=>n===`全部`||e.type===n)})),b=y.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),x=e!==`all`,ee=o.trim().toLocaleLowerCase(),te=y.map(({lesson:e,items:t})=>({lesson:e,items:t.filter(t=>(!i||t.tags.includes(i))&&(!ee||[t.title,t.chapter,t.summary,t.content,e.title,...t.tags].join(` `).toLocaleLowerCase().includes(ee)))})).filter(({items:e})=>e.length>0),ne=te.reduce((e,t)=>e+t.items.length,0),re=e===`rare-topics`&&y[0]?.lesson.materials.length===0,C=c?pD.find(({material:e})=>e.id===c)??null:null,ie=C?.material.type===`题目`?ME[C.material.id]:void 0,he=C?_D(C.lesson.id,C.lesson.materials):[],ge=he.find(e=>e.type===`全部`||e.type===C?.material.type)?.items??[],_e=C?ge.findIndex(e=>e.id===C.material.id):-1,ve=ge[_e-1],ye=ge[_e+1],be=C?.material.type===`题目`?`题`:`张`;function xe(){t(`all`),r(`全部`),a(``),s(``),window.history.replaceState(null,``,hD(`all`))}function Se(t){let n=fD[t.type];return(0,D.jsxs)(`a`,{href:hD(e,t.id),className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,children:[(0,D.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground`,children:[(0,D.jsx)(n,{size:15}),(0,D.jsx)(`span`,{className:`text-primary`,children:t.type}),(0,D.jsxs)(`span`,{children:[`· `,t.chapter]})]}),t.type===`题目`&&t.questionNumber!==void 0&&(0,D.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,t.questionNumber,` 题`]}),(0,D.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:t.title}),(0,D.jsx)(`p`,{className:`mt-2 text-[15px] leading-7 text-muted-foreground`,children:t.summary}),t.tags.length>0&&(0,D.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[t.tags.slice(0,2).map(e=>(0,D.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-[12.5px] text-muted-foreground`,children:e},e)),t.tags.length>2&&(0,D.jsxs)(`span`,{className:`py-1 text-[12.5px] text-muted-foreground`,children:[`+`,t.tags.length-2]})]})]},t.id)}return(0,D.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,D.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,D.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-5xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,D.jsxs)(`a`,{href:`https://www.cathy47.online/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,D.jsx)(ae,{size:16}),`返回博客`]}),!C&&(0,D.jsxs)(`a`,{className:`action-button`,href:_?hD(e):`#view=graph`,"aria-current":_?`page`:void 0,children:[(0,D.jsx)(fe,{}),_?`返回讲义列表`:`知识点关联图`]}),C&&(0,D.jsxs)(`a`,{className:`action-button`,href:hD(e),children:[(0,D.jsx)(ae,{}),`返回讲义列表`]}),C&&(0,D.jsxs)(`nav`,{className:`flex items-center gap-2`,"aria-label":`讲义切换`,children:[ve?(0,D.jsxs)(`a`,{className:`action-button`,href:hD(e,ve.id),title:`上一${be}：${ve.title}`,children:[(0,D.jsx)(ae,{}),`上一`,be]}):(0,D.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课第一${be}`,children:[(0,D.jsx)(ae,{}),`上一`,be]}),ye?(0,D.jsxs)(`a`,{className:`action-button`,href:hD(e,ye.id),title:`下一${be}：${ye.title}`,children:[`下一`,be,(0,D.jsx)(oe,{})]}):(0,D.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课最后一${be}`,children:[`下一`,be,(0,D.jsx)(oe,{})]})]})]}),(0,D.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,D.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,D.jsx)(ue,{size:19}),`408 备课讲义`]}),(0,D.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,D.jsx)(me,{}):(0,D.jsx)(w,{})})]})]})}),(0,D.jsxs)(`main`,{className:`mx-auto px-5 py-8 sm:px-8 sm:py-10 ${C||_?`max-w-[1600px]`:`max-w-5xl`}`,children:[!C&&!_&&(0,D.jsxs)(`section`,{className:`mb-8 flex flex-wrap items-end justify-between gap-5`,"aria-labelledby":`lesson-heading`,children:[(0,D.jsxs)(`div`,{children:[(0,D.jsx)(`p`,{className:`mb-3 text-[13px] font-semibold tracking-[.15em] text-primary`,children:`408 LESSON NOTES · 按课次备课`}),(0,D.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold tracking-tight sm:text-4xl`,children:`一次课，一组题。`}),(0,D.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-muted-foreground`,children:`每次备课单独归一组：今天准备讲什么，就把它整理成一课。下次复用、备课、加题，都从这一课开始。`})]}),(0,D.jsxs)(`div`,{className:`flex gap-6 text-sm text-muted-foreground`,"aria-label":`讲义统计`,children:[(0,D.jsxs)(`p`,{children:[(0,D.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:ZS.length}),`次课`]}),(0,D.jsxs)(`p`,{children:[(0,D.jsx)(`strong`,{className:`mr-2 text-2xl font-semibold text-foreground`,children:mD}),`道题目`]})]})]}),(0,D.jsxs)(`div`,{className:_?``:`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`,children:[_?null:C?(0,D.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`当前课次目录`,children:[(0,D.jsx)(`h2`,{className:`px-2 text-sm font-semibold text-primary`,children:C.lesson.title}),(0,D.jsxs)(`p`,{className:`mt-2 px-2 text-[13px] leading-6 text-muted-foreground`,children:[C.lesson.id===`rare-topics`?`分区目录`:`本课题目目录`,` · `,C.lesson.materials.length,` 条内容`]}),(0,D.jsx)(`div`,{className:`lg:hidden`,children:(0,D.jsxs)(`button`,{className:`action-button mt-3 w-full justify-between`,"aria-expanded":h,"aria-controls":`current-lesson-materials`,onClick:()=>g(!h),children:[h?`收起`:`展开`,C.lesson.id===`rare-topics`?`分区目录`:`题目目录`,(0,D.jsx)(ce,{size:16,className:h?`rotate-180`:``})]})}),(0,D.jsx)(`nav`,{id:`current-lesson-materials`,ref:p,className:`mt-3 max-h-64 overflow-y-auto overscroll-contain lg:max-h-[calc(100dvh-13rem)] ${h?``:`hidden lg:block`}`,"aria-label":C.lesson.id===`rare-topics`?`冷门专区分区目录`:`本课题目`,children:he.map(t=>(0,D.jsxs)(`div`,{className:t.title?`mt-4 first:mt-0`:void 0,children:[t.title&&(0,D.jsxs)(`h3`,{className:`mb-2 flex items-center justify-between px-3 text-xs font-semibold text-primary`,children:[t.title,(0,D.jsxs)(`span`,{className:`font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),t.items.map((t,n)=>(0,D.jsxs)(`a`,{href:hD(e,t.id),ref:t.id===c?m:void 0,"aria-current":t.id===c?`page`:void 0,onClick:e=>{gD(e)&&g(!1)},className:`mb-1 block w-full rounded-xl px-3 py-3 text-left ${t.id===c?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,children:[(0,D.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:t.type===`题目`&&t.questionNumber!==void 0?`第 ${t.questionNumber} 题`:t.type===`知识点`?`知识点 · 第 ${n+1} 张`:`题目 · 第 ${n+1} 张`}),(0,D.jsx)(`span`,{className:`mt-1 block break-words text-sm leading-6`,children:t.title})]},t.id))]},t.type))})]}):(0,D.jsxs)(`aside`,{className:`rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24`,"aria-label":`课次导航`,children:[(0,D.jsx)(`h2`,{className:`mb-3 px-2 text-xs font-semibold tracking-wide text-muted-foreground`,children:`按课次查找`}),(0,D.jsxs)(`a`,{href:hD(`all`),className:`flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm ${e===`all`?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,"aria-current":e===`all`?`page`:void 0,onClick:e=>{gD(e)&&a(``)},children:[`全部课次`,(0,D.jsx)(`span`,{className:`text-xs`,children:pD.length})]}),ZS.map(t=>(0,D.jsxs)(`a`,{href:hD(t.id),"aria-current":e===t.id?`page`:void 0,onClick:e=>{gD(e)&&a(``)},className:`mt-2 block w-full rounded-xl px-3 py-3 text-left ${e===t.id?`bg-accent text-primary`:`hover:bg-secondary`}`,children:[(0,D.jsxs)(`span`,{className:`flex items-center justify-between gap-2 text-sm font-semibold`,children:[t.title,(0,D.jsx)(`span`,{className:`text-xs font-normal`,children:t.materials.length})]}),(0,D.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:t.date})]},t.id)),(0,D.jsxs)(`details`,{className:`mt-4 border-t border-border px-2 pt-4 text-[13px] leading-6 text-muted-foreground`,children:[(0,D.jsx)(`summary`,{className:`cursor-pointer font-semibold text-foreground`,children:`讲义怎么收录`}),(0,D.jsx)(`p`,{className:`mt-2`,children:`把这次课要讲的题目、截图或知识点发来即可，不必先整理。收到后归入对应课次，并附上答案与解析。`}),(0,D.jsx)(`p`,{className:`mt-2`,children:`答案与解析默认展开，可点击标题手动收起。公开讲义由维护者收录；「我的补充」中的文字和图片只保存在当前浏览器。`})]})]}),(0,D.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:_?(0,D.jsx)(uD,{hrefFor:hD}):C?(0,D.jsxs)(`div`,{className:`grid items-start justify-center gap-6 xl:grid-cols-[minmax(0,760px)_320px]`,children:[(0,D.jsxs)(`article`,{ref:f,tabIndex:-1,className:`min-w-0 scroll-mt-44 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-32 sm:p-8 lg:scroll-mt-24`,children:[(0,D.jsx)(`p`,{className:`mb-6 text-xs text-muted-foreground`,children:C.lesson.id===`rare-topics`?`${C.material.type}第 ${_e+1} / ${ge.length} ${be}`:`本课第 ${_e+1} / ${ge.length} 张`}),(0,D.jsxs)(`p`,{className:`text-xs text-primary`,children:[C.lesson.title,` · `,C.material.chapter,` · `,C.material.type]}),(0,D.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[C.material.type===`题目`&&C.material.questionNumber!==void 0&&(0,D.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,C.material.questionNumber,` 题 ·`]}),C.material.title]}),(0,D.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:C.material.tags.map(e=>(0,D.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-[12.5px] text-muted-foreground`,children:e},e))}),C.material.source&&(0,D.jsxs)(`details`,{className:`mt-3 text-[13px] leading-6 text-muted-foreground`,"aria-label":`题目来源`,children:[(0,D.jsx)(`summary`,{className:`cursor-pointer`,children:`来源与资料说明`}),(0,D.jsx)(`p`,{className:`mt-2`,children:C.material.source})]}),(0,D.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":C.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,D.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:C.material.type===`题目`?`题目`:`知识点讲解`}),(0,D.jsx)(ED,{allowHtml:C.material.type===`知识点`,children:C.material.content})]}),C.material.attachments&&C.material.attachments.length>0&&(0,D.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:C.material.attachments.map(e=>(0,D.jsxs)(`a`,{className:`action-button max-w-full`,href:`${dD}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,D.jsx)(le,{}),(0,D.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),C.material.type===`题目`&&(C.material.solution?(0,D.jsxs)(`details`,{open:!0,className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,D.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,D.jsxs)(`span`,{children:[`答案与解析`,(0,D.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,D.jsx)(ce,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,D.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[(0,D.jsxs)(`section`,{children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,D.jsx)(ED,{children:C.material.solution.answer})]}),C.material.solution.teachingFramework&&(0,D.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`讲题框架`}),(0,D.jsx)(ED,{children:C.material.solution.teachingFramework})]}),(0,D.jsxs)(`section`,{children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题步骤`}),(0,D.jsx)(ED,{children:C.material.solution.explanation})]}),C.material.solution.pitfalls&&(0,D.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错提醒`}),(0,D.jsx)(ED,{children:C.material.solution.pitfalls})]}),C.material.solution.extension&&(0,D.jsxs)(`section`,{children:[(0,D.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,D.jsx)(ED,{children:C.material.solution.extension})]})]})]}):(0,D.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`})),ie&&(0,D.jsxs)(`section`,{className:`mt-8 min-w-0 rounded-xl border border-border bg-secondary/40 p-5 sm:p-6`,"aria-label":`基础知识`,children:[(0,D.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center justify-between gap-2`,children:[(0,D.jsx)(`h2`,{className:`text-lg font-semibold text-primary`,children:`基础知识`}),(0,D.jsxs)(`a`,{className:`action-button`,href:`#view=graph`,title:`在关联图里看这条知识块还挂在哪些题下`,children:[(0,D.jsx)(fe,{}),`看关联图`]})]}),(0,D.jsx)(ED,{allowHtml:!0,children:ie})]})]},C.material.id),(0,D.jsx)(kD,{materialId:C.material.id},`supplement:${C.material.id}`)]}):(0,D.jsxs)(D.Fragment,{children:[e===`rare-topics`&&(0,D.jsxs)(`section`,{className:`mb-5 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`冷门知识专区`,children:[(0,D.jsx)(`h2`,{className:`font-display text-2xl font-semibold text-primary`,children:`冷门知识专区`}),(0,D.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-muted-foreground`,children:`发来一个冷门考点、一道题或一张截图，从这里积累可直接用于讲课的专题。`}),(0,D.jsxs)(`ol`,{className:`mt-4 list-decimal space-y-3 pl-5 text-sm leading-7`,children:[(0,D.jsxs)(`li`,{children:[(0,D.jsx)(`strong`,{children:`讲清原考点：`}),`介绍定义、公式、适用前提和容易遗漏的边界。`]}),(0,D.jsxs)(`li`,{children:[(0,D.jsx)(`strong`,{children:`拓展相近考点：`}),`查找相关知识点，说明联系、区别与常见混淆。`]}),(0,D.jsxs)(`li`,{children:[(0,D.jsx)(`strong`,{children:`配例题并讲透：`}),`给出完整题面、答案、推导和变式答案；可核验的真题注明出处，改编题或自拟题明确标注，不冒充真题。`]})]}),(0,D.jsx)(`p`,{className:`mt-4 text-[13px] leading-6 text-muted-foreground`,children:`先核对概念与解答，再收录发布。不把未经核实的答案或题源当成事实。`})]}),(0,D.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,D.jsxs)(`div`,{className:`relative`,children:[(0,D.jsx)(pe,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,D.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:`搜索题目、知识点或标签…`,value:o,onChange:e=>s(e.target.value)})]}),(0,D.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...PS].map(e=>(0,D.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),b.length>0&&(0,D.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,D.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,D.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,D.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,D.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,D.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,D.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),x&&b.flatMap(e=>e.tags).map(e=>(0,D.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!x&&b.map(e=>(0,D.jsxs)(`div`,{children:[(0,D.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,D.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,D.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n),window.history.replaceState(null,``,hD(e.lesson.id))},children:n},n))})]},e.lesson.id))]})]})]}),(0,D.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,D.jsxs)(`output`,{children:[e===`all`?`全部课次`:ZS.find(t=>t.id===e)?.title,` · `,ne,` 条内容`]}),(0,D.jsx)(`span`,{children:e===`all`?`按课次浏览 · 最新课次在前`:e===`rare-topics`?`知识点与题目分区 · 各区按收录顺序排列`:`按备课顺序排列`})]}),pD.length===0?(0,D.jsxs)(`div`,{className:`rounded-2xl border border-dashed border-border bg-card px-6 py-10 sm:px-8`,children:[(0,D.jsx)(`div`,{className:`mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-primary`,children:(0,D.jsx)(de,{size:24})}),(0,D.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`从这一次课开始`}),(0,D.jsx)(`p`,{className:`mt-3 max-w-lg text-sm leading-7 text-muted-foreground`,children:`还没有讲义。把今天要讲的题目发来，就生成一课，之后备同样的课、加新的题，都在这课里继续。`}),(0,D.jsxs)(`div`,{className:`mt-7 grid gap-4 sm:grid-cols-2`,children:[(0,D.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,D.jsx)(se,{className:`mb-3 text-primary`,size:19}),(0,D.jsx)(`h3`,{className:`text-sm font-semibold`,children:`一次课 · 一个分组`}),(0,D.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:`按课次归档，讲过的内容不会散落在不同科目里，复用同一套课直接打开。`})]}),(0,D.jsxs)(`div`,{className:`rounded-xl bg-secondary/60 p-5`,children:[(0,D.jsx)(de,{className:`mb-3 text-primary`,size:19}),(0,D.jsx)(`h3`,{className:`text-sm font-semibold`,children:`题目 · 题面与解析分区`}),(0,D.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:`题面独立展示；答案、解题思路、易错点默认展开，需要时可手动收起。`})]})]})]}):te.length===0?(0,D.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,D.jsx)(`h2`,{className:`text-lg font-semibold`,children:e===`rare-topics`?re?`尚未收录冷门考点`:`没有找到匹配的冷门考点`:e===`all`?`没有找到匹配的内容`:`${ZS.find(t=>t.id===e)?.title} 还没有内容`}),(0,D.jsx)(`p`,{className:`my-3 text-sm text-muted-foreground`,children:e===`rare-topics`?re?`把第一个冷门考点发来；核验后的知识点和例题会单独收录在本专区。`:`换个关键词，或调整类型与标签筛选。`:e===`all`?`换个关键词，或清除课次、类型与标签筛选。`:`把这一课要讲的题目发来，就会被收录到这里。`}),e===`all`?(0,D.jsx)(`button`,{className:`action-button`,onClick:xe,children:`清除筛选`}):(0,D.jsx)(`a`,{className:`action-button`,href:hD(`all`),children:`看全部课次`})]}):(0,D.jsx)(`div`,{className:`grid gap-6`,children:te.map(({lesson:e,items:t})=>{let n=_D(e.id,t);return(0,D.jsxs)(`section`,{"aria-label":e.title,children:[(0,D.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,D.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:e.title}),(0,D.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[e.date,` · `,t.length,` 条`]})]}),e.summary&&(0,D.jsx)(`p`,{className:`mb-3 max-w-[46em] text-[13px] leading-6 text-muted-foreground`,children:e.summary}),(0,D.jsx)(`div`,{className:`grid items-start gap-5 ${n.length>1?`xl:grid-cols-2`:``}`,children:n.map(e=>{if(e.type===`全部`)return(0,D.jsx)(`div`,{className:`grid gap-3`,children:e.items.map(e=>Se(e))},e.type);let t=fD[e.type];return(0,D.jsxs)(`section`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4`,"aria-label":e.title,children:[(0,D.jsxs)(`h3`,{className:`mb-4 flex flex-wrap items-center gap-2 text-sm font-semibold text-primary`,children:[(0,D.jsx)(t,{size:17}),e.title,(0,D.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[e.items.length,` `,e.type===`题目`?`道`:`张`]})]}),(0,D.jsx)(`div`,{className:`grid gap-3`,children:e.items.map(e=>Se(e))})]},e.type)})})]},e.id)})})]})})]})]})]})}(0,MS.createRoot)(document.getElementById(`root`)).render((0,D.jsx)(S.StrictMode,{children:(0,D.jsx)(AD,{})}));

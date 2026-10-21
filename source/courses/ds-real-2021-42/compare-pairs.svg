@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="372" viewBox="0 0 800 372" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">cmpCountSort 的比较对象：每个元素只与它后面的元素比较</title>
+  <desc id="dsc">数组 a 的 6 个元素依次为 25、-10、25、10、11、19，下标 0 到 5。双重循环枚举全部 i 小于 j 的下标对，每对只比较一次，并只让其中一个计数器加一。</desc>
+  <rect width="800" height="372" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif" fill="#132c40">
+    <text x="24" y="30" font-size="15" font-weight="bold">2021 · 第 42 题：a[6] 与双重循环枚举的下标对</text>
+
+    <!-- array -->
+    <g font-size="13" text-anchor="middle">
+      <text x="24" y="94" fill="#5b6b7a">下标</text>
+      <text x="24" y="126" fill="#5b6b7a">a</text>
+    </g>
+    <g font-size="12" fill="#5b6b7a" text-anchor="middle">
+      <text x="108" y="94">0</text><text x="220" y="94">1</text><text x="332" y="94">2</text>
+      <text x="444" y="94">3</text><text x="556" y="94">4</text><text x="668" y="94">5</text>
+    </g>
+    <g stroke="#356c91" stroke-width="1.6" fill="#e8f1f8">
+      <rect x="60" y="104" width="96" height="44"/>
+      <rect x="172" y="104" width="96" height="44"/>
+      <rect x="284" y="104" width="96" height="44"/>
+      <rect x="396" y="104" width="96" height="44"/>
+      <rect x="508" y="104" width="96" height="44"/>
+      <rect x="620" y="104" width="96" height="44"/>
+    </g>
+    <g font-size="17" font-weight="bold" text-anchor="middle">
+      <text x="108" y="133">25</text><text x="220" y="133">-10</text><text x="332" y="133">25</text>
+      <text x="444" y="133">10</text><text x="556" y="133">11</text><text x="668" y="133">19</text>
+    </g>
+
+    <!-- pair grid -->
+    <text x="236" y="186" font-size="12" fill="#5b6b7a">内层 j 从 i+1 走到 n−1，只有右上三角的下标对参与比较</text>
+    <g font-size="11" fill="#5b6b7a" text-anchor="middle">
+      <text x="330" y="206">j=0</text><text x="386" y="206">j=1</text><text x="442" y="206">j=2</text>
+      <text x="498" y="206">j=3</text><text x="554" y="206">j=4</text><text x="610" y="206">j=5</text>
+    </g>
+    <g stroke="#a8bfd2" stroke-width="1" fill="#ffffff">
+      <rect x="304" y="214" width="52" height="22"/><rect x="360" y="214" width="52" height="22"/>
+      <rect x="416" y="214" width="52" height="22"/><rect x="472" y="214" width="52" height="22"/>
+      <rect x="528" y="214" width="52" height="22"/><rect x="584" y="214" width="52" height="22"/>
+      <rect x="304" y="238" width="52" height="22"/><rect x="360" y="238" width="52" height="22"/>
+      <rect x="416" y="238" width="52" height="22"/><rect x="472" y="238" width="52" height="22"/>
+      <rect x="528" y="238" width="52" height="22"/><rect x="584" y="238" width="52" height="22"/>
+      <rect x="304" y="262" width="52" height="22"/><rect x="360" y="262" width="52" height="22"/>
+      <rect x="416" y="262" width="52" height="22"/><rect x="472" y="262" width="52" height="22"/>
+      <rect x="528" y="262" width="52" height="22"/><rect x="584" y="262" width="52" height="22"/>
+      <rect x="304" y="286" width="52" height="22"/><rect x="360" y="286" width="52" height="22"/>
+      <rect x="416" y="286" width="52" height="22"/><rect x="472" y="286" width="52" height="22"/>
+      <rect x="528" y="286" width="52" height="22"/><rect x="584" y="286" width="52" height="22"/>
+    </g>
+    <g stroke="#356c91" stroke-width="1.4" fill="#dcebf5">
+      <rect x="360" y="214" width="52" height="22"/><rect x="416" y="214" width="52" height="22"/>
+      <rect x="472" y="214" width="52" height="22"/><rect x="528" y="214" width="52" height="22"/>
+      <rect x="584" y="214" width="52" height="22"/>
+      <rect x="416" y="238" width="52" height="22"/><rect x="472" y="238" width="52" height="22"/>
+      <rect x="528" y="238" width="52" height="22"/><rect x="584" y="238" width="52" height="22"/>
+      <rect x="472" y="262" width="52" height="22"/><rect x="528" y="262" width="52" height="22"/>
+      <rect x="584" y="262" width="52" height="22"/>
+      <rect x="528" y="286" width="52" height="22"/><rect x="584" y="286" width="52" height="22"/>
+      <rect x="584" y="310" width="52" height="22"/>
+    </g>
+    <g font-size="10.5" fill="#132c40" text-anchor="middle">
+      <text x="386" y="229">(0,1)</text><text x="442" y="229">(0,2)</text><text x="498" y="229">(0,3)</text>
+      <text x="554" y="229">(0,4)</text><text x="610" y="229">(0,5)</text>
+      <text x="442" y="253">(1,2)</text><text x="498" y="253">(1,3)</text><text x="554" y="253">(1,4)</text>
+      <text x="610" y="253">(1,5)</text>
+      <text x="498" y="277">(2,3)</text><text x="554" y="277">(2,4)</text><text x="610" y="277">(2,5)</text>
+      <text x="554" y="301">(3,4)</text><text x="610" y="301">(3,5)</text>
+      <text x="610" y="325">(4,5)</text>
+    </g>
+    <g font-size="11" fill="#5b6b7a">
+      <text x="304" y="229">—</text><text x="304" y="253">—</text><text x="304" y="277">—</text>
+      <text x="304" y="301">—</text><text x="304" y="325">—</text>
+      <text x="212" y="229">i=0</text><text x="212" y="253">i=1</text><text x="212" y="277">i=2</text>
+      <text x="212" y="301">i=3</text><text x="212" y="325">i=4</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 462" width="500" height="462" font-family="'Helvetica Neue',Arial,sans-serif" role="img" aria-label="2019 年第 42 题：空间只增不减与重复使用">
+  <title>2019 年第 42 题：空间只增不减与重复使用</title>
+  <desc>格子示意图：入队三格、出队两格变空闲、再入队复用第一格。</desc>
+  <rect width="500" height="462" fill="#f5f8fc"/>
+  <text x="16" y="26" font-size="15" font-weight="bold" fill="#1f2d3d">2019 年第 42 题：空间只增不减与重复使用</text>
+  <text x="18.0" y="50.0" font-size="11.5" fill="#5a6b7b" text-anchor="start">题目要求的效果：空间只增不减，但出队的格子必须能再次被写入</text>
+  <rect x="28" y="94" width="64" height="52" rx="6" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="60.0" y="125.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">元素0</text>
+  <rect x="120" y="94" width="64" height="52" rx="6" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="152.0" y="125.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">元素1</text>
+  <rect x="212" y="94" width="64" height="52" rx="6" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="244.0" y="125.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">元素2</text>
+  <rect x="304" y="94" width="64" height="52" rx="6" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="336.0" y="125.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">空闲3</text>
+  <text x="18.0" y="172.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">① 连续入队 3 个元素：占用 3 格</text>
+  <rect x="28" y="214" width="64" height="52" rx="6" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="60.0" y="245.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">空闲0</text>
+  <rect x="120" y="214" width="64" height="52" rx="6" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="152.0" y="245.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">空闲1</text>
+  <rect x="212" y="214" width="64" height="52" rx="6" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="244.0" y="245.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">元素2</text>
+  <rect x="304" y="214" width="64" height="52" rx="6" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="336.0" y="245.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">空闲3</text>
+  <text x="18.0" y="292.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">② 出队 2 个元素：格 0、1 变空闲，但空间不回收</text>
+  <rect x="28" y="334" width="64" height="52" rx="6" fill="#ffe2dc" stroke="#c0392b" stroke-width="1.8"/>
+  <text x="60.0" y="365.0" font-size="10.5" fill="#c0392b" text-anchor="middle" font-weight="bold">复用0</text>
+  <rect x="120" y="334" width="64" height="52" rx="6" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="152.0" y="365.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">空闲1</text>
+  <rect x="212" y="334" width="64" height="52" rx="6" fill="#dbe6f7" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="244.0" y="365.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">元素2</text>
+  <rect x="304" y="334" width="64" height="52" rx="6" fill="#ffffff" stroke="#1f2d3d" stroke-width="1.8"/>
+  <text x="336.0" y="365.0" font-size="10.5" fill="#1f2d3d" text-anchor="middle">空闲3</text>
+  <text x="18.0" y="412.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">③ 再入队 1 个元素：直接写回格 0 的空闲位置</text>
+  <text x="18.0" y="440.0" font-size="10.5" fill="#5a6b7b" text-anchor="start">顺序存储要靠整体搬移或扩容才能既省空间又保 O(1)，这正是本题要你权衡的地方。</text>
+</svg>

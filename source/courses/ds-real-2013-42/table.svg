@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="280" viewBox="0 0 560 280" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">集合 S 的元素、顺序与查找概率</title>
+  <desc id="dsc">四个元素 do、for、repeat、while 按字母序存放，查找概率依次为 0.35、0.15、0.15、0.35；折半查找成功平均查找长度为 2.2。</desc>
+  <rect width="560" height="280" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <text x="20" y="26" font-size="14" font-weight="bold" fill="#132c40">长度为 4 的顺序表（当前按字母序存放）</text>
+
+    <rect x="40" y="52" width="480" height="36" fill="#e8f1f8" stroke="#356c91"/>
+    <rect x="40" y="88" width="480" height="40" fill="#ffffff" stroke="#c9d4de"/>
+    <rect x="40" y="128" width="480" height="40" fill="#f7fafc" stroke="#c9d4de"/>
+    <rect x="40" y="168" width="480" height="40" fill="#ffffff" stroke="#c9d4de"/>
+    <rect x="40" y="208" width="480" height="40" fill="#f7fafc" stroke="#c9d4de"/>
+
+    <g stroke="#c9d4de">
+      <line x1="160" y1="52" x2="160" y2="248"/>
+      <line x1="360" y1="52" x2="360" y2="248"/>
+    </g>
+
+    <g font-size="13" fill="#132c40">
+      <text x="62" y="76">位置</text>
+      <text x="182" y="76">元素</text>
+      <text x="382" y="76">查找概率</text>
+    </g>
+    <g font-size="14" fill="#132c40">
+      <text x="62" y="114">1</text>
+      <text x="182" y="114">do</text>
+      <text x="382" y="114">0.35</text>
+
+      <text x="62" y="154">2</text>
+      <text x="182" y="154">for</text>
+      <text x="382" y="154">0.15</text>
+
+      <text x="62" y="194">3</text>
+      <text x="182" y="194">repeat</text>
+      <text x="382" y="194">0.15</text>
+
+      <text x="62" y="234">4</text>
+      <text x="182" y="234">while</text>
+      <text x="382" y="234">0.35</text>
+    </g>
+
+    <text x="40" y="270" font-size="12" fill="#5b6b7a">按此排列做折半查找，查找成功 ASL 为 2.2（题给）。</text>
+  </g>
+</svg>

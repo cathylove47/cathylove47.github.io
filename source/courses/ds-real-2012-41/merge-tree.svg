@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="440" viewBox="0 0 560 440" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">最佳合并树与每次合并的最坏比较次数</title>
+  <desc id="dsc">叶结点为 10、35、40、50、60、200；内部结点为 45、85、110、195、395，对应最坏比较次数 44、84、109、194、394，总计 825。</desc>
+  <defs>
+    <marker id="e" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L7 3L0 6Z" fill="#8a9aa8"/></marker>
+  </defs>
+  <rect width="560" height="440" fill="#ffffff"/>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <text x="20" y="26" font-size="14" font-weight="bold" fill="#132c40">按哈夫曼思想自底向上合并</text>
+
+    <g stroke="#8a9aa8" stroke-width="1.6" marker-end="url(#e)">
+      <line x1="87" y1="291" x2="55" y2="332"/>
+      <line x1="87" y1="291" x2="120" y2="332"/>
+      <line x1="143" y1="221" x2="105" y2="259"/>
+      <line x1="143" y1="221" x2="185" y2="332"/>
+      <line x1="327" y1="291" x2="295" y2="332"/>
+      <line x1="327" y1="291" x2="360" y2="332"/>
+      <line x1="235" y1="146" x2="163" y2="189"/>
+      <line x1="235" y1="146" x2="308" y2="259"/>
+      <line x1="350" y1="76" x2="253" y2="114"/>
+      <line x1="350" y1="76" x2="455" y2="331"/>
+    </g>
+
+    <g fill="#dfeaf3" stroke="#356c91">
+      <rect x="60" y="259" width="54" height="32" rx="6"/>
+      <rect x="116" y="189" width="54" height="32" rx="6"/>
+      <rect x="300" y="259" width="54" height="32" rx="6"/>
+      <rect x="208" y="114" width="54" height="32" rx="6"/>
+      <rect x="323" y="44" width="54" height="32" rx="6"/>
+    </g>
+    <g font-size="14" fill="#132c40" text-anchor="middle">
+      <text x="87" y="281">45</text>
+      <text x="143" y="211">85</text>
+      <text x="327" y="281">110</text>
+      <text x="235" y="136">195</text>
+      <text x="350" y="66">395</text>
+    </g>
+
+    <g font-size="11" fill="#c0392b" text-anchor="middle">
+      <text x="118" y="279" text-anchor="start">44 次</text>
+      <text x="174" y="213" text-anchor="start">84 次</text>
+      <text x="358" y="283" text-anchor="start">109 次</text>
+      <text x="266" y="138" text-anchor="start">194 次</text>
+      <text x="381" y="68" text-anchor="start">394 次</text>
+    </g>
+
+    <g>
+      <circle cx="50" cy="352" r="20" fill="#eef4fa" stroke="#356c91"/>
+      <text x="50" y="357" text-anchor="middle" font-size="13" fill="#132c40">10</text>
+      <circle cx="125" cy="352" r="20" fill="#eef4fa" stroke="#356c91"/>
+      <text x="125" y="357" text-anchor="middle" font-size="13" fill="#132c40">35</text>
+      <circle cx="200" cy="352" r="20" fill="#eef4fa" stroke="#356c91"/>
+      <text x="200" y="357" text-anchor="middle" font-size="13" fill="#132c40">40</text>
+      <circle cx="290" cy="352" r="20" fill="#eef4fa" stroke="#356c91"/>
+      <text x="290" y="357" text-anchor="middle" font-size="13" fill="#132c40">50</text>
+      <circle cx="365" cy="352" r="20" fill="#eef4fa" stroke="#356c91"/>
+      <text x="365" y="357" text-anchor="middle" font-size="13" fill="#132c40">60</text>
+      <circle cx="470" cy="352" r="24" fill="#eef4fa" stroke="#356c91"/>
+      <text x="470" y="357" text-anchor="middle" font-size="13" fill="#132c40">200</text>
+    </g>
+
+    <text x="20" y="412" font-size="13" fill="#1e7a4f">总比较次数 = 44 + 84 + 109 + 194 + 394 = 825</text>
+    <text x="20" y="432" font-size="12" fill="#5b6b7a">内部结点权值 = 合并后的表长；长度 m、n 合并的最坏比较次数为 m + n − 1。</text>
+  </g>
+</svg>
