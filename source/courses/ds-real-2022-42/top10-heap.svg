@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="934" viewBox="0 0 600 934" role="img" aria-labelledby="title"><title id="title">2022 年第 42 题：容量 10 的大根堆</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#526575"/></marker></defs><rect width="600" height="934" rx="12" fill="#fff"/><g font-family="Arial,Microsoft YaHei,sans-serif" fill="#172b3a" font-size="15"><text x="20" y="30" font-size="19" fill="#172b3a" text-anchor="start" font-weight="normal">2022 · 第 42 题：容量 10 的大根堆找最小的 10 个数</text>
+<text x="20" y="56" font-size="14.5" fill="#526575" text-anchor="start" font-weight="normal">数组 M 有 n &gt; 100000 个数，只能顺序读；要求平均比较次数尽可能少。</text>
+<text x="20" y="110" font-size="16" fill="#356c91" text-anchor="start" font-weight="bold">一、三步走</text>
+<rect x="20" y="122" width="560" height="44" rx="9" fill="#f4f8fb" stroke="#c9dcea"/>
+<text x="32" y="142" font-size="15" fill="#172b3a" text-anchor="start" font-weight="normal">① 取前 10 个建大根堆</text>
+<text x="32" y="160" font-size="13.5" fill="#526575" text-anchor="start" font-weight="normal">10 个元素自底向上建堆，最多约 16 次比较</text>
+<rect x="20" y="174" width="560" height="44" rx="9" fill="#f4f8fb" stroke="#c9dcea"/>
+<text x="32" y="194" font-size="15" fill="#172b3a" text-anchor="start" font-weight="normal">② 从第 11 个起逐个与堆顶比较</text>
+<text x="32" y="212" font-size="13.5" fill="#526575" text-anchor="start" font-weight="normal">x ≥ 堆顶：一定是较大的数，直接丢弃（1 次比较）</text>
+<rect x="20" y="226" width="560" height="44" rx="9" fill="#f4f8fb" stroke="#c9dcea"/>
+<text x="32" y="246" font-size="15" fill="#172b3a" text-anchor="start" font-weight="normal">③ x &lt; 堆顶：替换堆顶并下沉</text>
+<text x="32" y="264" font-size="13.5" fill="#526575" text-anchor="start" font-weight="normal">换掉堆顶后向下调整，恢复大根堆性质</text>
+<text x="20" y="314" font-size="16" fill="#356c91" text-anchor="start" font-weight="bold">二、堆里始终是“已见过的数中最小的 10 个”</text>
+<path d="M300,378L200,402" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M300,378L400,402" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M200,438L145,462" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M200,438L255,462" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M400,438L345,462" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M400,438L455,462" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M145,498L110,522" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M145,498L180,522" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<path d="M255,498L255,522" stroke="#9fb3c4" stroke-width="1.6" fill="none"/>
+<circle cx="300" cy="360" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="300" y="366" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">88</text>
+<circle cx="200" cy="420" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="200" y="426" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">71</text>
+<circle cx="400" cy="420" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="400" y="426" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">64</text>
+<circle cx="145" cy="480" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="145" y="486" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">52</text>
+<circle cx="255" cy="480" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="255" y="486" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">60</text>
+<circle cx="345" cy="480" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="345" y="486" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">37</text>
+<circle cx="455" cy="480" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="455" y="486" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">45</text>
+<circle cx="110" cy="540" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="110" y="546" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">12</text>
+<circle cx="180" cy="540" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="180" y="546" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">30</text>
+<circle cx="255" cy="540" r="19" fill="#eef5fa" stroke="#356c91" stroke-width="2"/>
+<text x="255" y="546" font-size="16" fill="#172b3a" text-anchor="middle" font-weight="normal">25</text>
+<circle cx="300" cy="360" r="26" fill="none" stroke="#b42318" stroke-width="2.4" stroke-dasharray="5 4"/>
+<text x="300" y="331" font-size="13.5" fill="#b42318" text-anchor="middle" font-weight="normal">堆顶 = 当前候选中的最大值</text>
+<text x="20" y="584" font-size="14" fill="#526575" text-anchor="start" font-weight="normal">容量固定 10 ⇒ 空间 O(1)。堆里存的是“当前最大的候选”，较大的新元素只需 1 </text>
+<text x="20" y="605" font-size="14" fill="#526575" text-anchor="start" font-weight="normal">次比较就被挡掉。</text>
+<text x="20" y="642" font-size="16" fill="#356c91" text-anchor="start" font-weight="bold">三、一次替换（新读入 x = 37）</text>
+<text x="20" y="668" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">37 &lt; 88 ⇒ 用 37 覆盖堆顶，再与较大的孩子比较、下沉，直到不小于两个孩子；</text>
+<text x="20" y="689" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">88 出堆，37 落到叶子。</text>
+<text x="20" y="710" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">下沉最多 3 层，每层“先比两个孩子、再与较大孩子比” ⇒ 至多 2 × 3 = 6 次比</text>
+<text x="20" y="731" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">较。</text>
+<text x="20" y="772" font-size="16" fill="#356c91" text-anchor="start" font-weight="bold">四、比较次数与复杂度</text>
+<text x="20" y="798" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">与堆顶比较 n − 10 次（每个元素恰一次）；替换次数的期望为 10·ln(n/10) ≈ </text>
+<text x="20" y="819" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">92，n = 100000 实测 89.2。</text>
+<text x="20" y="840" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal">总比较 ≈ (n − 10) + 92 × 6 ≈ n + 540 ⇒ O(n log 10) = O(n)；额外空间仅</text>
+<text x="20" y="861" font-size="14" fill="#172b3a" text-anchor="start" font-weight="normal"> 10 个元素，O(1)。</text>
+<text x="20" y="882" font-size="14" fill="#b42318" text-anchor="start" font-weight="normal">最坏：输入递减时每个元素都替换 ⇒ O(n log 10)；输入递增时 0 次替换，仍要 </text>
+<text x="20" y="903" font-size="14" fill="#b42318" text-anchor="start" font-weight="normal">n − 10 次比较。</text></g></svg>
