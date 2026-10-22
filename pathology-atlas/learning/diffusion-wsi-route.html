@@ -1,157 +1,724 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>扩散模型在 WSI 的应用 · 汇总</title><link rel="stylesheet" href="dds-story.css"><style>
-.wsi-main{max-width:1080px;margin:0 auto;padding:55px 28px}
-.wsi-main h1{font:clamp(32px,4.6vw,54px)/1.42 var(--serif);margin:22px 0}
-.deck{max-width:720px;color:var(--muted);font-size:15px}
-.starting{margin:38px 0;background:var(--ink);color:var(--paper);padding:34px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
-.starting h2{font:26px/1.6 var(--serif);margin:14px 0}
-.starting p{color:#bdcdc5;font-size:13px;max-width:660px;margin:0 0 8px}
-.starting .mini-label{color:var(--lime)}
-.starting .solid-button{background:var(--lime);color:var(--ink);white-space:nowrap}
-.section{margin:64px 0 0}
-.section>h2{font:26px/1.5 var(--serif);margin:0 0 6px}
-.section>p.lead{color:var(--muted);font-size:14px;max-width:760px;margin:0 0 26px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px}
-.card{border:1px solid var(--line);background:var(--white);padding:20px 20px 18px;display:flex;flex-direction:column;gap:10px}
-.card h3{font:19px/1.5 var(--serif);margin:0}
-.card .meta{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
-.card p{font-size:13.5px;color:var(--muted);margin:0}
-.card ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--muted)}
-.card ul li{margin:4px 0}
-.card .links{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;margin-top:auto}
-.card .links a{color:var(--green)}
-.tag{display:inline-block;font-size:11px;letter-spacing:.05em;border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--muted);background:var(--soft)}
-.tag.live{background:var(--lime);border-color:var(--lime);color:var(--ink)}
-.tag.out{background:var(--paper);border-style:dashed}
-.lane{border-left:3px solid var(--green);padding:2px 0 2px 16px;margin:0 0 22px}
-.lane h3{font:18px/1.5 var(--serif);margin:0 0 4px}
-.lane p{font-size:13.5px;color:var(--muted);margin:0 0 6px}
-.lane .who{font-size:12.5px;color:var(--ink)}
-.timeline{margin:0;padding:0;list-style:none;border-left:2px solid var(--line)}
-.timeline li{position:relative;padding:0 0 22px 22px}
-.timeline li::before{content:'';position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:99px;background:var(--green)}
-.timeline .when{font-size:12px;letter-spacing:.06em;color:var(--green);text-transform:uppercase}
-.timeline strong{display:block;font-size:14.5px}
-.timeline span.detail{font-size:13.5px;color:var(--muted)}
-table{display:block;width:100%;overflow-x:auto;border-collapse:collapse;font-size:13.5px;margin:0 0 8px}
-th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
-th{background:var(--soft);font-weight:600}
-.aside-note{margin:34px 0 0;padding:18px 20px;background:var(--soft);border-left:3px solid var(--coral);font-size:13.5px;color:var(--muted)}
-.order li{margin:8px 0;font-size:14px}
-.wsi-main code{background:var(--soft);padding:1px 5px;font-size:.9em}
-@media(max-width:820px){.starting{grid-template-columns:1fr}.wsi-main{padding:38px 20px}}
-</style></head><body>
-<header class="topbar"><div class="topbar-inner"><a class="brand" target="_top" href="../?view=library"><span class="brand-symbol">P</span>论文精读地图 / 论文集合</a><a target="_top" href="../?view=library" style="font-size:12px;color:var(--green)">返回论文集合 →</a></div></header>
-<main class="wsi-main">
-<p class="eyebrow">DIFFUSION × WHOLE SLIDE IMAGING / SUMMARY</p>
-<h1>千兆像素的病理图，<br>扩散模型能做什么。</h1>
-<p class="deck">按任务区分<strong>伪影修复、质量检测、组织生成、虚拟染色与超分、分割监督</strong>。保留 7 篇起步主线，本次另补入 9 篇中文导读；生成式扩散、flow matching 与反应—扩散图模型分开标注，不把旧文修订或库内补漏冒充新首发。</p>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>扩散模型在 WSI 中的应用 · 论文集合</title>
+<link rel="stylesheet" href="dds-story.css">
+<link rel="stylesheet" href="diffusion-wsi-route.css">
+</head>
+<body class="collection-page">
+<a class="skip-link" href="#reader-content">跳到正文</a>
+<div class="topbar">
+<div class="topbar-inner">
+<a class="brand" target="_top" href="../?view=library"><span class="brand-symbol">P</span>论文精读地图 / 论文集合</a>
+<a target="_top" href="../?view=library">返回论文集合 →</a>
+</div>
+</div>
 
-<section class="section" id="updates">
-<h2>2026-10-22 更新 · 新首发与补漏分开看</h2>
-<p class="lead">增量窗口为 2026-10-15 至 2026-10-22，并回溯近一年方法与必要前作。在本次公开检索覆盖内，未核实窗口中新首发的病理图像扩散/流匹配方法；找到一篇 10 月 16 日首发的伪影分割基准，作为掩码来源的辅助参考。BigCell 是 10 月 9 日首发的漏项，STREAM 是 6 月旧文于 10 月 14 日更新到 v3。</p>
-<h3>补入精读库的 9 篇方法</h3>
-<table><thead><tr><th>论文 / 首发</th><th>扩散承担什么角色</th><th>复现入口与边界</th><th>精读</th></tr></thead><tbody>
-<tr><td><strong>BigCell</strong><br>2026-10-09 · NeurIPS 2026</td><td>流匹配 + UNI-2 条件网格；共享滑窗速度融合，生成到 32768²；文本条件另经 CGM 达 8192²。不是伪影修复。</td><td>训练/推理代码、模型与样本入口已核验；FLUX.2 VAE、UNI2-h、TITAN 有外部授权依赖。32k 自适应生成作者仍报告约 4.97 小时。</td><td><a target="_top" href="../?domain=pathology&amp;paper=64-bigcell">64 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2610.14261">arXiv ↗</a></td></tr>
-<tr><td><strong>STREAM</strong><br>2026-06-05 · v3 2026-10-14</td><td>在归一化 UNI token 空间直接做黎曼流匹配，再用各向异性 decoder 解码；不是用 UNI 作为额外条件。</td><td>训练、谱基提取、解码与评测代码已公开；BRCA checkpoint 需联系作者获取。多卡训练成本不作为排除理由。</td><td><a target="_top" href="../?domain=pathology&amp;paper=65-stream">65 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2606.07036">arXiv ↗</a></td></tr>
-<tr><td><strong>CHIS</strong><br>2026-06-26 · MICCAI 2026</td><td>冻结 PixCell；mask 相位初始化 + 小波纹理调制，生成结构可控的图像-mask 对。</td><td>单图脚本与依赖已发布；training-free 指不微调骨干，不是没有预训练模型或访问权限要求。</td><td><a target="_top" href="../?domain=pathology&amp;paper=61-chis">61 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2606.27935">arXiv ↗</a></td></tr>
-<tr><td><strong>HistDiT</strong><br>2026-04-09 · ICPR 2026</td><td>H&amp;E→IHC；VAE 空间条件经 cross-attention，UNI2-h 语义经 adaLN，分开注入 DiT。</td><td>推理、评价和权重链接已公开；完整训练入口仍需核查。BCI SSIM 并非最优，不把低 FID 当作正确染色证明。</td><td><a target="_top" href="../?domain=pathology&amp;paper=62-histdit">62 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2604.08305">arXiv ↗</a></td></tr>
-<tr><td><strong>CoDiR</strong><br>2026-08-12 · MICCAI COMPAYL Workshop</td><td>扩散对象是分割 mask：仅修正低置信伪标签，学生推理不需要扩散模块。</td><td>训练/测试代码与 GlaS、CRAG 配置已公开；需 UNI 授权并核对 labeled split。不是 MICCAI 主会论文或 RGB 图像修复。</td><td><a target="_top" href="../?domain=pathology&amp;paper=63-codir">63 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2608.11807">arXiv ↗</a></td></tr>
-<tr><td><strong>CytoSyn</strong><br>2026-03-18 · 技术报告</td><td>REPA-E/SiT；H0-mini 同时提供条件与表征对齐，联合训练病理 VAE；检查 JPEG 与跨切片评价。</td><td>模型、数据及合成样本在官方 Hugging Face；gated 且 license=other。CytoSyn-v2 是模型名，不是论文 v2。</td><td><a target="_top" href="../?domain=pathology&amp;paper=66-cytosyn">66 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2603.18089">arXiv ↗</a></td></tr>
-<tr><td><strong>Conditioning Noise</strong><br>2026-09-11 · 仍为 v1</td><td>训练时给交叉注意力匹配统计的高斯条件，推理仍为 null 条件误差打分；这是 QC 正则化，不是语义修复。</td><td>代码、数据 DOI 与协议已核验；从候选升级。外部 ΔF1 约 0.0073/0.0129，应保留种子与不确定性口径。</td><td><a target="_top" href="../?domain=pathology&amp;paper=67-conditioning-noise">67 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2609.16032">arXiv ↗</a></td></tr>
-<tr><td><strong>PathoGen</strong><br>2026-01-13 · v2 2026-07-01</td><td>在良性组织里合成病变，用局部 inpainting 生成带像素标注的增强数据；不能当作患者伪影修复。</td><td>训练/推理实现与 attention 权重已发布，还需要 SD inpainting 基座。专家真伪辨认不是临床诊断验证。</td><td><a target="_top" href="../?domain=pathology&amp;paper=68-pathogen">68 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2601.08127">arXiv ↗</a></td></tr>
-<tr><td><strong>LPFM</strong><br>2025-09-01 · 较早前作</td><td>粗恢复 + 条件扩散细化，统一超分、去模糊、去噪与虚拟染色。</td><td>公开任务权重与推理入口；完整预训练闭环未核验。已超出当前近一年窗口，不放进近一年候选。</td><td><a target="_top" href="../?domain=pathology&amp;paper=69-lpfm">69 · 中文导读 →</a><br><a href="https://arxiv.org/abs/2509.01071">arXiv ↗</a></td></tr>
-</tbody></table>
-<h3>本周新首发 · 辅助参考，不占方法主推荐</h3>
-<p><a href="https://arxiv.org/abs/2610.24037"><strong>Benchmarking and Improvement of Artifact Segmentation Methods in H&amp;E-Stained Whole Slide Imaging</strong></a>（v1 2026-10-16）比较六种可用 QC 算法，评估 mask 来源、类型误差与时间。它没有提出新的扩散修复模型；DiffusionQC 出现在文献梳理中，未进入六方法实测对比。新 Dataset C 声明发表后公开，不能称为当前全套数据已可复现。HTML 的 “Journal: Medical Image Analysis” 不作为已接收依据。已加入近一年候选的<strong>辅助参考</strong>，取消“只看已核验优先阅读”可见。</p>
-<h3>新增补充线索 · 已核验摘要，尚不冒充完整精读</h3>
-<table><thead><tr><th>论文 / 首发</th><th>与本方向的关系</th><th>阅读或复现边界</th></tr></thead><tbody>
-<tr><td><a href="https://arxiv.org/abs/2603.18513">CAFlow · 2026-03-19</a></td><td>单步 flow matching 的病理超分；pixel-unshuffle + 自适应 early exit。</td><td>未核实公开作者代码；需自行重实现并验证协议，不能以模型小就声称复现容易或已完成。</td></tr>
-<tr><td><a href="https://arxiv.org/abs/2604.03635">MuPD · 2026-04-04</a></td><td>病理图像、RNA 与文本的统一多模态生成基础模型。</td><td>摘要与方法入口已核验；代码/权重发布条件尚未完整打通，不因规模大排除其机制价值。</td></tr>
-<tr><td><a href="https://arxiv.org/abs/2608.06240">PRISM · 2026-08-06</a></td><td>逐特征门控的无配对流匹配，含虚拟染色与冰冻→石蜡切片转换。</td><td>属于与扩散相邻的 flow matching，不写成 DDPM；此处仅摘要级核验。</td></tr>
-<tr><td><a href="https://arxiv.org/abs/2605.08276">CMD · 2026-05-08</a></td><td>masked-diffusion 预训练卷积病理表征，用于细胞级稠密预测。</td><td>预训练表征不等于推理时修复图像；完整实现与下游协议待深核。</td></tr>
-<tr><td><a href="https://arxiv.org/abs/2503.12399">MoP · 2025-03-16</a></td><td>Transformer 粗修复 + diffusion 细化的去失焦前作。</td><td>公开仓库部分阶段可用，P-diffusion 训练/权重缺口仍在；多焦面数据可得性未解决。</td></tr>
-<tr><td><a href="https://arxiv.org/abs/2608.30835">Reliable Benchmarking · 2026-08-31</a></td><td>DiffusionQC 独立重建，检查测试采样、训练种子、切分组成与前处理。</td><td>评价协议辅助参考，独立实现不是原作者 reference implementation。</td></tr>
-<tr><td><a href="https://arxiv.org/abs/2608.24626">Reliable Histological Staining · 2026-08-25</a></td><td>六种无配对染色架构、54 组规模配置与集成不确定性比较。</td><td>benchmark/资源型参考，不占方法首选；感知、任务误差与不确定性不能互相替代。</td></tr>
-</tbody></table>
-<p class="lead">概念排除：<a href="https://arxiv.org/abs/2609.34451">TMEvolve</a> 是反应—扩散启发的图表征演化，不是 DDPM/score/flow 图像生成；<a href="https://arxiv.org/abs/2610.29322">OpenMAP-HIE</a> 虽为本周 score-based diffusion 新文，但处理新生儿 ADC MRI，不计作病理图像修复论文。</p>
-<p class="lead">检索来源：arXiv 官方 “diffusion histopathology”“diffusion histology”“diffusion pathology”“diffusion whole slide”“diffusion virtual staining”“flow matching histopathology”等简单查询、近期 cs.CV/eess.IV 列表与作者项目；关键词检索并非全年穷尽。API 限流时改查官方页面，再逐篇核对 abs 的 v1/修订日期。全部模型资源核验均为静态检查，未训练、未下载模型权重。</p>
-</section>
+<header class="collection-header">
+<p class="eyebrow">计算病理 / 专题阅读</p>
+<h1>扩散模型在 WSI 中的应用</h1>
+<p class="deck">以伪影修复为主线，串起质量检测、组织生成、虚拟染色与超分、分割监督。先读 RestorePath，再比较相邻方法。</p>
+<p class="paper-meta">16 篇站内导读 · 10 篇经典补充 · 更新于 2026-10-22</p>
+<div class="hero-actions">
+<a class="button button-primary" target="_top" href="../?domain=pathology&amp;paper=49-restorepath">进入 RestorePath ↗</a>
+<a class="button button-secondary" href="#start">先看阅读顺序</a>
+</div>
+</header>
 
-<div class="starting"><div><span class="mini-label">START HERE / 建议第一步</span><h2>以 RestorePath 为修复主线，<br>再比较生成与评价。</h2><p>ArtiFusion 适合理解掩码约束采样；RestorePath 适合理解邻域条件与共享潜画布。两者的图像补全均不能证明找回了患者真实的被遮挡组织。</p><p>下一层看 BigCell 的全局滑窗和 STREAM 的生成空间选择，再用 QC 与染色评价论文检查“图好看”是否对应任务正确。</p></div><a class="solid-button" target="_top" href="../?domain=pathology&amp;paper=49-restorepath">进入 RestorePath ↗</a></div>
+<div class="collection-layout">
+<nav class="collection-nav" aria-label="本页目录">
+<p class="collection-nav-label">本页目录</p>
+<a href="#start">01 从这里开始</a>
+<a href="#tasks">02 五个任务</a>
+<a href="#core">03 核心 7 篇</a>
+<a href="#updates">04 新补 9 篇</a>
+<a href="#references">05 经典 10 篇</a>
+<a href="#timeline">06 时间线</a>
+<a href="#evaluation">07 评估口径</a>
+<a href="#reproduction">08 复现顺序</a>
+</nav>
 
-<section class="section">
-<h2>一、为什么 WSI 上的扩散模型和自然图像不一样</h2>
-<p class="lead">四个约束决定了这条支线的全部方法选择。理解它们，比记住模型名字更有用。</p>
+<main class="wsi-main" id="reader-content">
+
+<section class="start-here" id="start">
+<p class="eyebrow">START HERE / 建议第一步</p>
+<h2>以 RestorePath 为修复主线，<br>再比较生成与评价。</h2>
+<p>ArtiFusion 适合理解掩码约束采样；RestorePath 适合理解邻域条件与共享潜画布。两者的图像补全均不能证明找回了患者真实的被遮挡组织。</p>
+<p>下一层看 BigCell 的全局滑窗和 STREAM 的生成空间选择，再用 QC 与染色评价论文检查“图好看”是否对应任务正确。</p>
+<details class="section-fold">
+<summary>四个约束：为什么 WSI 上的扩散模型和自然图像不一样</summary>
+<div class="section-content">
+<p class="section-lead">四个约束决定了这条支线的全部方法选择。理解它们，比记住模型名字更有用。</p>
 <ul class="order">
 <li><strong>尺度：</strong>单张 WSI 可达千兆像素，无法整体训练或整体采样。所有方法最终都要回答“patch 之间怎么接”——LRDM/ZoomLDM 用嵌入网格 + MultiDiffusion 平均，RestorePath 用随机 patch 扩散 + 距离加权插值。</li>
 <li><strong>掩码未知：</strong>修复需要一个“哪里坏了”的掩码。ArtiFusion 用阈值法、RestorePath 用 GrandQC，都是外部输入；只有 MedIA 2026 那篇把掩码变成无监督产出。这一环常被当成已知条件，实际是复现里最容易失败的地方。</li>
 <li><strong>“修好”没有唯一答案：</strong>自然图像修复可以对像素，病理图上必须对<strong>诊断信息</strong>。所以这条支线的评估必须同时有感知/分布指标（FID、LPIPS）与病理特征或下游任务指标（CONCH/UNI 相似度、MIL AUC）。</li>
 <li><strong>生成即证据：</strong>修出来的细胞结构是模型造的，不是切片里原有的。任何把修复结果喂给下游或阅片的流程，都要保留伪影掩码与“此处为重建”的标注。</li>
 </ul>
+</div>
+</details>
 </section>
 
-<section class="section">
-<h2>二、五个赛道</h2>
-<p class="lead">同一批方法在不同任务上被反复借用。按“它在这个赛道里负责哪一环”来读，比按论文年份读更清楚。</p>
-<div class="lane"><h3>赛道 A · 伪影修复（inpainting）</h3><p>目标：借助可见组织补全受损区域，尽量保留未损区域；是否逐像素不变要检查具体实现。</p><p class="who">ArtiFusion → ArtiDiffuser → RestorePath；Two-Stage Residual Diffusion 与 LPFM 扩展去模糊/低层增强。PathoGen 虽用 inpainting，但用于合成病变，应放在赛道 C。</p></div>
-<div class="lane"><h3>赛道 B · 伪影检测与定位（QC）</h3><p>目标：识别伪影与生成掩码，供修复系统使用；输出分数图、patch 判定与像素 mask 的粒度需分清。</p><p class="who">无监督检测—定位—修复流水线、DiffusionQC、Conditioning Noise；Tissue Detection 与本周的 Artifact Segmentation Benchmark 提供前处理和掩码可靠性的证据。</p></div>
-<div class="lane"><h3>赛道 C · 生成与数据增广</h3><p>目标：造新图、可控反事实或训练数据，而不是恢复患者已知缺损。</p><p class="who">LRDM、ZoomLDM → PixCell/CytoSyn → BigCell；STREAM 改为生成 UNI tokens；CHIS、PathoGen、TopoCellGen、CPathOGen 与 Destroy Me 分别控制结构、病变、布局、干预和伪影。</p></div>
-<div class="lane"><h3>赛道 D · 染色与超分</h3><p>目标：改变染色域或提高分辨率，保持形态并检查诊断语义，不能只凭视觉逼真验收。</p><p class="who">HistDiT、StainDiffuser、LPFM、PixCell 的虚拟 IHC；Histo-Diffusion/SuperDiff、S³-Diff 与 flow matching 邻近路线 CAFlow 的超分。</p></div>
-<div class="lane"><h3>赛道 E · 分割监督与表征学习</h3><p>目标：利用生成先验改善 mask 或模型特征，而非输出一张修复 RGB 图。</p><p class="who">CoDiR 修正低置信伪标签；CMD 做 masked-diffusion 预训练；ZoomLDM 的中间特征用于 MIL。TMEvolve 的反应—扩散图演化只作为概念相邻参考。</p></div>
-</section>
-
-<section class="section">
-<h2>三、已入库 7 篇 · 逐篇卡片</h2>
-<p class="lead">所有数字均来自各篇论文正文或摘要，逐字核对；每张卡片可点进站内精读。</p>
-<div class="grid">
-<div class="card"><span class="tag live">已入库 55</span><h3>ArtiFusion</h3><div class="meta">MICCAI 2023 · 修复</div><p>首个把 DDPM 用于病理伪影修复的工作：把修复表述为受掩码约束的渐进去噪重采样，只用 2445 张无伪影图像训练。</p><ul><li>Swin-Transformer 全 U 形骨干 + time token 拼接</li><li>T=250，Adam lr 1e-4，2×RTX A4000</li><li>L2/MSE 相对 CycleGAN 降 50%+；推理 30.71 s vs CycleGAN 1.065 s</li><li>下游 NCT-CRC 分类：伪影 80.3→修复 92.4（ResNet18）</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=55-artifusion">站内精读 →</a><a href="https://arxiv.org/abs/2307.14262">arXiv ↗</a><a href="https://github.com/zhenqi-he/ArtiFusion">代码 ↗</a></div></div>
-<div class="card"><span class="tag live">已入库 56</span><h3>LRDM</h3><div class="meta">CVPR 2024 · 生成/增广</div><p>用自监督嵌入替代逐 patch 人工标注：嵌入经 cross-attention 注入 LDM，再用 MultiDiffusion 平均拼出 1024×1024 大图。</p><ul><li>条件：HIPT / iBOT / CTransPath（384·768→512 维）</li><li>条件消融 FID：无条件 25.62 → HIPT 6.98</li><li>增广使 NCT-CRC patch 准确率 93.8→96.27%；TCGA-BRCA 亚型 1% 数据 AUC 0.725→0.812</li><li>直训 1024² 每 epoch 300 h vs patch 法 45 h</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=56-lrdm">站内精读 →</a><a href="https://arxiv.org/abs/2312.07330">arXiv ↗</a><a href="https://github.com/cvlab-stonybrook/Large-Image-Diffusion">代码 ↗</a></div></div>
-<div class="card"><span class="tag live">已入库 57</span><h3>ArtiDiffuser</h3><div class="meta">Medical Image Analysis 2025 · 修复 + 合成</div><p>反事实扩散：只重建被伪影扭曲的区域，同时把“合成伪影”当作增广，用一个模型统一两条方向。</p><ul><li>Swin 骨干 + 类别引导 MoE + 类别特定 token</li><li>掩码加权损失处理区域不平衡</li><li>下游一致性正则：原图与增广图预测保持一致</li><li>贡献 723 张跨类别标注 patch（首个）</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=57-artidiffuser">站内精读 →</a><a href="https://doi.org/10.1016/j.media.2025.103567">DOI ↗</a><a href="https://github.com/wagnchogn/ArtiDiffuser">代码 ↗</a></div></div>
-<div class="card"><span class="tag live">已入库 58</span><h3>ZoomLDM</h3><div class="meta">CVPR 2025 · 多尺度生成</div><p>一个模型管 8 个倍率：条件从单个嵌入升级为“该 patch 覆盖的 20× 嵌入矩阵”，经 Summarizer 压成定长 token，并另训 CDM 让条件可凭空采样。</p><ul><li>倍率 20×→0.15625×；联合采样到 4096×4096、4× 超分</li><li>低倍率 patch FID 13.42 vs 单倍率基线 106.14</li><li>4096² 上质量落后（CLIP FID 6.75），但 8 min vs 4 h</li><li>自陈弱点：均匀区域可见拼缝、低尺度不引导处细结构不连贯</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=58-zoomldm">站内精读 →</a><a href="https://arxiv.org/abs/2411.16969">arXiv ↗</a><a href="https://github.com/cvlab-stonybrook/ZoomLDM">代码 ↗</a></div></div>
-<div class="card"><span class="tag live">已入库 59</span><h3>Two-Stage Residual Diffusion</h3><div class="meta">ICEIC 2026 · 修复（失焦模糊）</div><p>第一阶段用截断扩散调度快速出“结构对但糊”的粗修复；第二阶段以粗输出与真值的<strong>潜空间残差</strong>为条件合成细节。</p><ul><li>只处理失焦模糊这一类退化</li><li>报告指标为 LPIPS 与 CLIP-IQA（感知类，无保真度指标）</li><li>两阶段方法的固有风险：粗修复的结构错误无法被第二阶段纠正</li><li>正文在付费墙后，站内精读标注为摘要级核验</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=59-residual-guided-diffusion">站内精读 →</a><a href="https://doi.org/10.1109/ICEIC69189.2026.11386037">DOI ↗</a></div></div>
-<div class="card"><span class="tag live">已入库 60</span><h3>Unsupervised Artifact Pipeline</h3><div class="meta">Medical Image Analysis 2026 · 检测→定位→修复</div><p>把三件事串成一条无监督流水线：HFM 特征上训归一化流得异常热图 → 异常热图 + 无监督语义分割得像素级掩码 → 掩码引导扩散修复。</p><ul><li>只用正常训练数据，同时覆盖合成与真实伪影</li><li>下游：BCSS 分割与 TCGA-BLCA 肿瘤分期均提升</li><li>串联系统的风险：检测漏掉的真伪影永远修不回来</li><li>无公开代码（2026-10 核查）</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=60-unsupervised-artifact-restoration">站内精读 →</a><a href="https://doi.org/10.1016/j.media.2026.104215">DOI ↗</a></div></div>
-<div class="card"><span class="tag live">已入库 49</span><h3>RestorePath</h3><div class="meta">MICCAI 2026 · 百万像素修复</div><p>把修复从 patch 级推到百万像素级：以病理基础模型嵌入为条件，结合随机 patch 扩散、距离加权插值（DWI）与自适应引导尺度（AGS）改善跨 patch 一致性。</p><ul><li>动机数字：TCGA-BRCA 中 63.7% 的 WSI 含 megapixel 级伪影</li><li>去 DWI 后 FID_C 29.66 → 110.48（该数据上退化最明显）</li><li>下游 MIL：ABMIL 82.3（伪影）→ 90.3（修复），Origin 89.6</li><li>LPIPS 在 Camelyon16/BACH 上不如 LaMa；不是患者真实组织恢复保证</li></ul><div class="links"><a target="_top" href="../?domain=pathology&amp;paper=49-restorepath">站内精读 →</a><a href="https://arxiv.org/abs/2609.24116">arXiv ↗</a><a href="https://github.com/PathfinderLab/RestorePath">代码 ↗</a></div></div>
+<section class="section" id="tasks">
+<div class="section-heading">
+<p class="eyebrow">TASKS / 五个赛道</p>
+<h2>五个赛道</h2>
+<p class="section-lead">同一批方法在不同任务上被反复借用。按“它在这个赛道里负责哪一环”来读，比按论文年份读更清楚。</p>
+</div>
+<div class="task-grid">
+<article class="task-card">
+<p class="tag">赛道 A</p>
+<h3>伪影修复（inpainting）</h3>
+<p>目标：借助可见组织补全受损区域，尽量保留未损区域；是否逐像素不变要检查具体实现。</p>
+<p class="who">ArtiFusion → ArtiDiffuser → RestorePath；Two-Stage Residual Diffusion 与 LPFM 扩展去模糊/低层增强。PathoGen 虽用 inpainting，但用于合成病变，应放在赛道 C。</p>
+</article>
+<article class="task-card">
+<p class="tag">赛道 B</p>
+<h3>伪影检测与定位（QC）</h3>
+<p>目标：识别伪影与生成掩码，供修复系统使用；输出分数图、patch 判定与像素 mask 的粒度需分清。</p>
+<p class="who">无监督检测—定位—修复流水线、DiffusionQC、Conditioning Noise；Tissue Detection 与本周的 Artifact Segmentation Benchmark 提供前处理和掩码可靠性的证据。</p>
+</article>
+<article class="task-card">
+<p class="tag">赛道 C</p>
+<h3>生成与数据增广</h3>
+<p>目标：造新图、可控反事实或训练数据，而不是恢复患者已知缺损。</p>
+<p class="who">LRDM、ZoomLDM → PixCell/CytoSyn → BigCell；STREAM 改为生成 UNI tokens；CHIS、PathoGen、TopoCellGen、CPathOGen 与 Destroy Me 分别控制结构、病变、布局、干预和伪影。</p>
+</article>
+<article class="task-card">
+<p class="tag">赛道 D</p>
+<h3>染色与超分</h3>
+<p>目标：改变染色域或提高分辨率，保持形态并检查诊断语义，不能只凭视觉逼真验收。</p>
+<p class="who">HistDiT、StainDiffuser、LPFM、PixCell 的虚拟 IHC；Histo-Diffusion/SuperDiff、S³-Diff 与 flow matching 邻近路线 CAFlow 的超分。</p>
+</article>
+<article class="task-card">
+<p class="tag">赛道 E</p>
+<h3>分割监督与表征学习</h3>
+<p>目标：利用生成先验改善 mask 或模型特征，而非输出一张修复 RGB 图。</p>
+<p class="who">CoDiR 修正低置信伪标签；CMD 做 masked-diffusion 预训练；ZoomLDM 的中间特征用于 MIL。TMEvolve 的反应—扩散图演化只作为概念相邻参考。</p>
+</article>
 </div>
 </section>
 
-<section class="section">
-<h2>四、库外补充 10 篇 · 已核验元数据</h2>
-<p class="lead">这些论文尚未入库精读，只登记元数据与要点；每条都给出核验来源，venue 无法证实的明确写“未确认”，不按标题或二手转载推测。</p>
-<table><thead><tr><th>论文</th><th>年份 / venue</th><th>赛道</th><th>机制与关键数字</th><th>入口</th></tr></thead><tbody>
-<tr><td><strong>DiffInfinite</strong><br><span class="en">Large Mask-Image Synthesis via Parallel Random Patch Diffusion</span></td><td>2023<br>NeurIPS 2023（Datasets &amp; Benchmarks Track）</td><td>C 生成</td><td>先生成合成分割掩膜，再以此为条件做<strong>并行随机 patch 扩散</strong>，生成任意大尺寸且保留长程结构的病理图。</td><td><a href="https://arxiv.org/abs/2306.13384">arXiv ↗</a><br><a href="https://github.com/marcoaversa/diffinfinite">代码 ↗</a></td></tr>
-<tr><td><strong>PathLDM</strong><br><span class="en">Text conditioned Latent Diffusion Model for Histopathology</span></td><td>2024<br>WACV 2024</td><td>C 生成</td><td>首个文本条件潜扩散：以病理报告文本（经 GPT 蒸馏摘要）为条件，在 TCGA-BRCA 上取得 SoTA FID <strong>7.64</strong>（最近的文本条件基线为 30.1）。</td><td><a href="https://arxiv.org/abs/2309.00748">arXiv ↗</a><br><a href="https://github.com/cvlab-stonybrook/PathLDM">代码 ↗</a></td></tr>
-<tr><td><strong>LatentArtiFusion</strong><br><span class="en">An Effective and Efficient Histological Artifacts Restoration Framework</span></td><td>2024<br>venue 未确认（预印本）</td><td>A 修复</td><td>把伪影修复搬到潜空间并做区域化重建：作者称比像素级扩散框架快 <strong>30× 以上</strong>，多个指标上超过 GAN 类方法至少 5%。它是 ArtiFusion 的效率续作。</td><td><a href="https://arxiv.org/abs/2407.20172">arXiv ↗</a><br><a href="https://github.com/bugs-creator/LatentArtiFusion">代码 ↗</a></td></tr>
-<tr><td><strong>PixCell</strong><br><span class="en">A generative foundation model for digital histopathology images</span></td><td>2025<br>venue 未确认（预印本）</td><td>C/D 生成 + 虚拟染色</td><td>首个病理生成基础模型：在 <strong>PanCan-30M</strong>（来自 69,184 张 H&E WSI）上渐进训练，支持隐私保护合成数据，并把条件从 H&E 迁移到多种 IHC 染色（虚拟染色）。DiffusionQC 直接以 PixCell-1024 为骨干。</td><td><a href="https://arxiv.org/abs/2506.05127">arXiv ↗</a><br><a href="https://github.com/cvlab-stonybrook/PixCell">代码 ↗</a><br><a href="https://huggingface.co/StonyBrook-CVLab/PixCell-1024">权重 ↗</a></td></tr>
-<tr><td><strong>DiffusionQC</strong><br><span class="en">Artifact Detection and Quality Control in Histopathology Images via Diffusion Model</span></td><td>2026<br>venue 未确认（预印本）</td><td>B 检测</td><td>一类（one-class）离群检测：只学干净 patch 的分布，推理时用噪声预测残差当 OOD 分数。骨干为 PixCell-1024 + LoRA，滑窗遍历整张 WSI（10× 下 1024×1024 patch），数据为 TCGA 50 张 H&E。不需要像素级伪影标注。</td><td><a href="https://arxiv.org/abs/2601.12233">arXiv ↗</a></td></tr>
-<tr><td><strong>The Effect of Tissue Detection on False Positives of Diffusion-Based Artifact Detection</strong></td><td>2026<br>venue 未确认（预印本，v2 标题）</td><td>B 检测</td><td>拆穿一个被当作“中性”的前处理步骤：替换组织检测方法后，干净切片上的<strong>假阳性比例从 0.102 降到 0.016</strong>，灵敏度不损失，且增益来自干净池的组成而非规模。</td><td><a href="https://arxiv.org/abs/2609.40083">arXiv ↗</a><br><a href="https://doi.org/10.5281/zenodo.23016733">代码与数据 ↗</a></td></tr>
-<tr><td><strong>Destroy Me</strong><br><span class="en">Automatic Artifact Generation for Histopathology Images</span></td><td>2026<br>venue 未确认（预印本）</td><td>C 增广</td><td>反向用法：用 SD 1.5 Inpainting（在专家标注的 TCGA-LUAD 上微调）加物理程序化建模合成 6 类伪影（折叠、沉淀、模糊、拼接错位、灰尘、记号笔），训练更鲁棒的分类模型。LUAD 模式分类上宏观 F1 相对提升 <strong>10.5%</strong>、Cohen's κ 相对提升 <strong>15%</strong>。</td><td><a href="https://arxiv.org/abs/2608.27516">arXiv ↗</a></td></tr>
-<tr><td><strong>StainDiffuser</strong><br><span class="en">MultiTask Dual Diffusion Model for Virtual Staining</span></td><td>2024<br>venue 未确认（预印本，代码未发布）</td><td>D 虚拟染色</td><td>多任务双扩散：同时训「H&E→IHC 虚拟染色」与「H&E 细胞分割」（分割粗标签仅训练时用），使小数据集可收敛；覆盖 CK8/18 与 CD3 两个标记。注意是 patch 级转换，无 WSI 级实验。</td><td><a href="https://arxiv.org/abs/2403.11340">arXiv ↗</a></td></tr>
-<tr><td><strong>Histo-Diffusion / SuperDiff</strong><br><span class="en">A Diffusion Super-Resolution Method for Digital Pathology</span></td><td>2024 arXiv / 2025 期刊</td><td>D 超分</td><td>面向数字病理的扩散超分：组织学先验修复模块 + 可控扩散生成模块，并配套一套生成式超分的质量评估流程。</td><td><a href="https://arxiv.org/abs/2408.15218">arXiv ↗</a><br><a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841525003548">期刊 ↗</a></td></tr>
-<tr><td><strong>S³-Diff</strong><br><span class="en">Structural Semantic Synergy Diffusion Model for High Fidelity Super Resolution of Pathological Images</span></td><td>2026<br>venue 未确认（预印本）</td><td>D 超分</td><td>latent diffusion + ControlNet 做 4× 超分，用 SAM 组织支撑 + LR-HR 梯度差构造结构锚点以抑制随机伪影。TCGA 上 LPIPS / ST-LPIPS 相对最强基线提升 <strong>23.49% / 23.63%</strong>，并用下游生存分析验证临床语义保留。</td><td><a href="https://arxiv.org/abs/2608.03540">arXiv ↗</a></td></tr>
-</tbody></table>
-<p class="lead" style="margin-top:14px">说明：表中「venue 未确认」指 arXiv/会议页面均无公开收录字段，不代表论文质量；这类条目不要按二手转载补写会议名。</p>
+<section class="section" id="core">
+<div class="section-heading">
+<p class="eyebrow">CORE / 7 篇</p>
+<h2>已入库 7 篇 · 逐篇卡片</h2>
+<p class="section-lead">所有数字均来自各篇论文正文或摘要，逐字核对；每张卡片可点进站内精读。</p>
+</div>
+<div class="paper-grid">
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 49</span> MICCAI 2026 · 百万像素修复</p>
+<h3 class="paper-title">RestorePath</h3>
+<p class="paper-description">把修复从 patch 级推到百万像素级：以病理基础模型嵌入为条件，结合随机 patch 扩散、距离加权插值（DWI）与自适应引导尺度（AGS）改善跨 patch 一致性。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=49-restorepath">站内精读 →</a>
+<a href="https://arxiv.org/abs/2609.24116">arXiv ↗</a>
+<a href="https://github.com/PathfinderLab/RestorePath">代码 ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>动机数字：TCGA-BRCA 中 63.7% 的 WSI 含 megapixel 级伪影</li>
+<li>去 DWI 后 FID_C 29.66 → 110.48（该数据上退化最明显）</li>
+<li>下游 MIL：ABMIL 82.3（伪影）→ 90.3（修复），Origin 89.6</li>
+<li>LPIPS 在 Camelyon16/BACH 上不如 LaMa；不是患者真实组织恢复保证</li>
+</ul>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 56</span> CVPR 2024 · 生成/增广</p>
+<h3 class="paper-title">LRDM</h3>
+<p class="paper-description">用自监督嵌入替代逐 patch 人工标注：嵌入经 cross-attention 注入 LDM，再用 MultiDiffusion 平均拼出 1024×1024 大图。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=56-lrdm">站内精读 →</a>
+<a href="https://arxiv.org/abs/2312.07330">arXiv ↗</a>
+<a href="https://github.com/cvlab-stonybrook/Large-Image-Diffusion">代码 ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>条件：HIPT / iBOT / CTransPath（384·768→512 维）</li>
+<li>条件消融 FID：无条件 25.62 → HIPT 6.98</li>
+<li>增广使 NCT-CRC patch 准确率 93.8→96.27%；TCGA-BRCA 亚型 1% 数据 AUC 0.725→0.812</li>
+<li>直训 1024² 每 epoch 300 h vs patch 法 45 h</li>
+</ul>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 55</span> MICCAI 2023 · 修复</p>
+<h3 class="paper-title">ArtiFusion</h3>
+<p class="paper-description">首个把 DDPM 用于病理伪影修复的工作：把修复表述为受掩码约束的渐进去噪重采样，只用 2445 张无伪影图像训练。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=55-artifusion">站内精读 →</a>
+<a href="https://arxiv.org/abs/2307.14262">arXiv ↗</a>
+<a href="https://github.com/zhenqi-he/ArtiFusion">代码 ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>Swin-Transformer 全 U 形骨干 + time token 拼接</li>
+<li>T=250，Adam lr 1e-4，2×RTX A4000</li>
+<li>L2/MSE 相对 CycleGAN 降 50%+；推理 30.71 s vs CycleGAN 1.065 s</li>
+<li>下游 NCT-CRC 分类：伪影 80.3→修复 92.4（ResNet18）</li>
+</ul>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 57</span> Medical Image Analysis 2025 · 修复 + 合成</p>
+<h3 class="paper-title">ArtiDiffuser</h3>
+<p class="paper-description">反事实扩散：只重建被伪影扭曲的区域，同时把“合成伪影”当作增广，用一个模型统一两条方向。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=57-artidiffuser">站内精读 →</a>
+<a href="https://doi.org/10.1016/j.media.2025.103567">DOI ↗</a>
+<a href="https://github.com/wagnchogn/ArtiDiffuser">代码 ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>Swin 骨干 + 类别引导 MoE + 类别特定 token</li>
+<li>掩码加权损失处理区域不平衡</li>
+<li>下游一致性正则：原图与增广图预测保持一致</li>
+<li>贡献 723 张跨类别标注 patch（首个）</li>
+</ul>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 58</span> CVPR 2025 · 多尺度生成</p>
+<h3 class="paper-title">ZoomLDM</h3>
+<p class="paper-description">一个模型管 8 个倍率：条件从单个嵌入升级为“该 patch 覆盖的 20× 嵌入矩阵”，经 Summarizer 压成定长 token，并另训 CDM 让条件可凭空采样。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=58-zoomldm">站内精读 →</a>
+<a href="https://arxiv.org/abs/2411.16969">arXiv ↗</a>
+<a href="https://github.com/cvlab-stonybrook/ZoomLDM">代码 ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>倍率 20×→0.15625×；联合采样到 4096×4096、4× 超分</li>
+<li>低倍率 patch FID 13.42 vs 单倍率基线 106.14</li>
+<li>4096² 上质量落后（CLIP FID 6.75），但 8 min vs 4 h</li>
+<li>自陈弱点：均匀区域可见拼缝、低尺度不引导处细结构不连贯</li>
+</ul>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 59</span> ICEIC 2026 · 修复（失焦模糊）</p>
+<h3 class="paper-title">Two-Stage Residual Diffusion</h3>
+<p class="paper-description">第一阶段用截断扩散调度快速出“结构对但糊”的粗修复；第二阶段以粗输出与真值的<strong>潜空间残差</strong>为条件合成细节。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=59-residual-guided-diffusion">站内精读 →</a>
+<a href="https://doi.org/10.1109/ICEIC69189.2026.11386037">DOI ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>只处理失焦模糊这一类退化</li>
+<li>报告指标为 LPIPS 与 CLIP-IQA（感知类，无保真度指标）</li>
+<li>两阶段方法的固有风险：粗修复的结构错误无法被第二阶段纠正</li>
+<li>正文在付费墙后，站内精读标注为摘要级核验</li>
+</ul>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已入库 60</span> Medical Image Analysis 2026 · 检测→定位→修复</p>
+<h3 class="paper-title">Unsupervised Artifact Pipeline</h3>
+<p class="paper-description">把三件事串成一条无监督流水线：HFM 特征上训归一化流得异常热图 → 异常热图 + 无监督语义分割得像素级掩码 → 掩码引导扩散修复。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=60-unsupervised-artifact-restoration">站内精读 →</a>
+<a href="https://doi.org/10.1016/j.media.2026.104215">DOI ↗</a>
+</div>
+<details class="evidence">
+<summary>方法细节与论文结果</summary>
+<div class="evidence-content">
+<ul>
+<li>只用正常训练数据，同时覆盖合成与真实伪影</li>
+<li>下游：BCSS 分割与 TCGA-BLCA 肿瘤分期均提升</li>
+<li>串联系统的风险：检测漏掉的真伪影永远修不回来</li>
+<li>无公开代码（2026-10 核查）</li>
+</ul>
+</div>
+</details>
+</article>
+
+</div>
 </section>
 
-<section class="section">
-<h2>五、时间线</h2>
+<section class="section" id="updates">
+<div class="section-heading">
+<p class="eyebrow">UPDATES / 2026-10-22</p>
+<h2>2026-10-22 更新 · 新首发与补漏分开看</h2>
+<p class="section-lead">增量窗口为 2026-10-15 至 2026-10-22，并回溯近一年方法与必要前作。在本次公开检索覆盖内，未核实窗口中新首发的病理图像扩散/流匹配方法；找到一篇 10 月 16 日首发的伪影分割基准，作为掩码来源的辅助参考。BigCell 是 10 月 9 日首发的漏项，STREAM 是 6 月旧文于 10 月 14 日更新到 v3。</p>
+</div>
+<h3>补入精读库的 9 篇方法</h3>
+<div class="paper-grid">
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-10-09 · NeurIPS 2026</p>
+<h3 class="paper-title">BigCell</h3>
+<p class="paper-description">流匹配 + UNI-2 条件网格；共享滑窗速度融合，生成到 32768²；文本条件另经 CGM 达 8192²。不是伪影修复。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=64-bigcell">64 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2610.14261">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>训练/推理代码、模型与样本入口已核验；FLUX.2 VAE、UNI2-h、TITAN 有外部授权依赖。32k 自适应生成作者仍报告约 4.97 小时。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-06-05 · v3 2026-10-14</p>
+<h3 class="paper-title">STREAM</h3>
+<p class="paper-description">在归一化 UNI token 空间直接做黎曼流匹配，再用各向异性 decoder 解码；不是用 UNI 作为额外条件。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=65-stream">65 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2606.07036">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>训练、谱基提取、解码与评测代码已公开；BRCA checkpoint 需联系作者获取。多卡训练成本不作为排除理由。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-06-26 · MICCAI 2026</p>
+<h3 class="paper-title">CHIS</h3>
+<p class="paper-description">冻结 PixCell；mask 相位初始化 + 小波纹理调制，生成结构可控的图像-mask 对。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=61-chis">61 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2606.27935">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>单图脚本与依赖已发布；training-free 指不微调骨干，不是没有预训练模型或访问权限要求。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-04-09 · ICPR 2026</p>
+<h3 class="paper-title">HistDiT</h3>
+<p class="paper-description">H&amp;E→IHC；VAE 空间条件经 cross-attention，UNI2-h 语义经 adaLN，分开注入 DiT。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=62-histdit">62 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2604.08305">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>推理、评价和权重链接已公开；完整训练入口仍需核查。BCI SSIM 并非最优，不把低 FID 当作正确染色证明。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-08-12 · MICCAI COMPAYL Workshop</p>
+<h3 class="paper-title">CoDiR</h3>
+<p class="paper-description">扩散对象是分割 mask：仅修正低置信伪标签，学生推理不需要扩散模块。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=63-codir">63 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2608.11807">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>训练/测试代码与 GlaS、CRAG 配置已公开；需 UNI 授权并核对 labeled split。不是 MICCAI 主会论文或 RGB 图像修复。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-03-18 · 技术报告</p>
+<h3 class="paper-title">CytoSyn</h3>
+<p class="paper-description">REPA-E/SiT；H0-mini 同时提供条件与表征对齐，联合训练病理 VAE；检查 JPEG 与跨切片评价。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=66-cytosyn">66 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2603.18089">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>模型、数据及合成样本在官方 Hugging Face；gated 且 license=other。CytoSyn-v2 是模型名，不是论文 v2。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-09-11 · 仍为 v1</p>
+<h3 class="paper-title">Conditioning Noise</h3>
+<p class="paper-description">训练时给交叉注意力匹配统计的高斯条件，推理仍为 null 条件误差打分；这是 QC 正则化，不是语义修复。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=67-conditioning-noise">67 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2609.16032">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>代码、数据 DOI 与协议已核验；从候选升级。外部 ΔF1 约 0.0073/0.0129，应保留种子与不确定性口径。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2026-01-13 · v2 2026-07-01</p>
+<h3 class="paper-title">PathoGen</h3>
+<p class="paper-description">在良性组织里合成病变，用局部 inpainting 生成带像素标注的增强数据；不能当作患者伪影修复。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=68-pathogen">68 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2601.08127">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>训练/推理实现与 attention 权重已发布，还需要 SD inpainting 基座。专家真伪辨认不是临床诊断验证。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">补入</span> 2025-09-01 · 较早前作</p>
+<h3 class="paper-title">LPFM</h3>
+<p class="paper-description">粗恢复 + 条件扩散细化，统一超分、去模糊、去噪与虚拟染色。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=69-lpfm">69 · 中文导读 →</a>
+<a href="https://arxiv.org/abs/2509.01071">arXiv ↗</a>
+</div>
+<details class="evidence">
+<summary>复现条件与阅读边界</summary>
+<div class="evidence-content">
+<p>公开任务权重与推理入口；完整预训练闭环未核验。已超出当前近一年窗口，不放进近一年候选。</p>
+</div>
+</details>
+</article>
+
+</div>
+
+<h3>本周新首发 · 辅助参考，不占方法主推荐</h3>
+<div class="paper-grid">
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">QC 基准</span> 辅助参考，不占方法主推荐</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2610.24037">Benchmarking and Improvement of Artifact Segmentation Methods in H&amp;E-Stained Whole Slide Imaging</a></h3>
+<p class="paper-description">（v1 2026-10-16）比较六种可用 QC 算法，评估 mask 来源、类型误差与时间。它没有提出新的扩散修复模型；DiffusionQC 出现在文献梳理中，未进入六方法实测对比。新 Dataset C 声明发表后公开，不能称为当前全套数据已可复现。HTML 的 “Journal: Medical Image Analysis” 不作为已接收依据。已加入近一年候选的<strong>辅助参考</strong>，取消“只看已核验优先阅读”可见。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2610.24037">arXiv ↗</a>
+</div>
+</article>
+</div>
+
+<h3>新增补充线索 · 已核验摘要，尚不冒充完整精读</h3>
+<div class="paper-grid">
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2026-03-19</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2603.18513">CAFlow</a></h3>
+<p class="paper-description">单步 flow matching 的病理超分；pixel-unshuffle + 自适应 early exit。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>未核实公开作者代码；需自行重实现并验证协议，不能以模型小就声称复现容易或已完成。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2026-04-04</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2604.03635">MuPD</a></h3>
+<p class="paper-description">病理图像、RNA 与文本的统一多模态生成基础模型。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>摘要与方法入口已核验；代码/权重发布条件尚未完整打通，不因规模大排除其机制价值。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2026-08-06</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2608.06240">PRISM</a></h3>
+<p class="paper-description">逐特征门控的无配对流匹配，含虚拟染色与冰冻→石蜡切片转换。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>属于与扩散相邻的 flow matching，不写成 DDPM；此处仅摘要级核验。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2026-05-08</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2605.08276">CMD</a></h3>
+<p class="paper-description">masked-diffusion 预训练卷积病理表征，用于细胞级稠密预测。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>预训练表征不等于推理时修复图像；完整实现与下游协议待深核。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2025-03-16</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2503.12399">MoP</a></h3>
+<p class="paper-description">Transformer 粗修复 + diffusion 细化的去失焦前作。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>公开仓库部分阶段可用，P-diffusion 训练/权重缺口仍在；多焦面数据可得性未解决。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2026-08-31</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2608.30835">Reliable Benchmarking</a></h3>
+<p class="paper-description">DiffusionQC 独立重建，检查测试采样、训练种子、切分组成与前处理。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>评价协议辅助参考，独立实现不是原作者 reference implementation。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">线索</span> 2026-08-25</p>
+<h3 class="paper-title"><a href="https://arxiv.org/abs/2608.24626">Reliable Histological Staining</a></h3>
+<p class="paper-description">六种无配对染色架构、54 组规模配置与集成不确定性比较。</p>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>benchmark/资源型参考，不占方法首选；感知、任务误差与不确定性不能互相替代。</p>
+</div>
+</details>
+</article>
+
+</div>
+
+<div class="callout">
+<p>概念排除：<a href="https://arxiv.org/abs/2609.34451">TMEvolve</a> 是反应—扩散启发的图表征演化，不是 DDPM/score/flow 图像生成；<a href="https://arxiv.org/abs/2610.29322">OpenMAP-HIE</a> 虽为本周 score-based diffusion 新文，但处理新生儿 ADC MRI，不计作病理图像修复论文。</p>
+</div>
+<p class="aside-note">检索来源：arXiv 官方 “diffusion histopathology”“diffusion histology”“diffusion pathology”“diffusion whole slide”“diffusion virtual staining”“flow matching histopathology”等简单查询、近期 cs.CV/eess.IV 列表与作者项目；关键词检索并非全年穷尽。API 限流时改查官方页面，再逐篇核对 abs 的 v1/修订日期。全部模型资源核验均为静态检查，未训练、未下载模型权重。</p>
+</section>
+
+<section class="section" id="references">
+<div class="section-heading">
+<p class="eyebrow">REFERENCES / 10 篇</p>
+<h2>库外补充 10 篇 · 已核验元数据</h2>
+<p class="section-lead">这些论文尚未入库精读，只登记元数据与要点；每条都给出核验来源，venue 无法证实的明确写“未确认”，不按标题或二手转载推测。</p>
+</div>
+<div class="paper-grid">
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">C 生成</span> 2023 · NeurIPS 2023（Datasets &amp; Benchmarks Track）</p>
+<h3 class="paper-title">DiffInfinite</h3>
+<p class="paper-description en">Large Mask-Image Synthesis via Parallel Random Patch Diffusion</p>
+<p class="paper-description">先生成合成分割掩膜，再以此为条件做<strong>并行随机 patch 扩散</strong>，生成任意大尺寸且保留长程结构的病理图。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2306.13384">arXiv ↗</a>
+<a href="https://github.com/marcoaversa/diffinfinite">代码 ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">C 生成</span> 2024 · WACV 2024</p>
+<h3 class="paper-title">PathLDM</h3>
+<p class="paper-description en">Text conditioned Latent Diffusion Model for Histopathology</p>
+<p class="paper-description">首个文本条件潜扩散：以病理报告文本（经 GPT 蒸馏摘要）为条件，在 TCGA-BRCA 上取得 SoTA FID <strong>7.64</strong>（最近的文本条件基线为 30.1）。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2309.00748">arXiv ↗</a>
+<a href="https://github.com/cvlab-stonybrook/PathLDM">代码 ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">A 修复</span> 2024 · venue 未确认（预印本）</p>
+<h3 class="paper-title">LatentArtiFusion</h3>
+<p class="paper-description en">An Effective and Efficient Histological Artifacts Restoration Framework</p>
+<p class="paper-description">把伪影修复搬到潜空间并做区域化重建：作者称比像素级扩散框架快 <strong>30× 以上</strong>，多个指标上超过 GAN 类方法至少 5%。它是 ArtiFusion 的效率续作。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2407.20172">arXiv ↗</a>
+<a href="https://github.com/bugs-creator/LatentArtiFusion">代码 ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">C/D 生成 + 虚拟染色</span> 2025 · venue 未确认（预印本）</p>
+<h3 class="paper-title">PixCell</h3>
+<p class="paper-description en">A generative foundation model for digital histopathology images</p>
+<p class="paper-description">首个病理生成基础模型：在 <strong>PanCan-30M</strong>（来自 69,184 张 H&amp;E WSI）上渐进训练，支持隐私保护合成数据，并把条件从 H&amp;E 迁移到多种 IHC 染色（虚拟染色）。DiffusionQC 直接以 PixCell-1024 为骨干。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2506.05127">arXiv ↗</a>
+<a href="https://github.com/cvlab-stonybrook/PixCell">代码 ↗</a>
+<a href="https://huggingface.co/StonyBrook-CVLab/PixCell-1024">权重 ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">B 检测</span> 2026 · venue 未确认（预印本）</p>
+<h3 class="paper-title">DiffusionQC</h3>
+<p class="paper-description en">Artifact Detection and Quality Control in Histopathology Images via Diffusion Model</p>
+<p class="paper-description">一类（one-class）离群检测：只学干净 patch 的分布，推理时用噪声预测残差当 OOD 分数。骨干为 PixCell-1024 + LoRA，滑窗遍历整张 WSI（10× 下 1024×1024 patch），数据为 TCGA 50 张 H&amp;E。不需要像素级伪影标注。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2601.12233">arXiv ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">B 检测</span> 2026 · venue 未确认（预印本，v2 标题）</p>
+<h3 class="paper-title">The Effect of Tissue Detection on False Positives of Diffusion-Based Artifact Detection</h3>
+<p class="paper-description">拆穿一个被当作“中性”的前处理步骤：替换组织检测方法后，干净切片上的<strong>假阳性比例从 0.102 降到 0.016</strong>，灵敏度不损失，且增益来自干净池的组成而非规模。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2609.40083">arXiv ↗</a>
+<a href="https://doi.org/10.5281/zenodo.23016733">代码与数据 ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">C 增广</span> 2026 · venue 未确认（预印本）</p>
+<h3 class="paper-title">Destroy Me</h3>
+<p class="paper-description en">Automatic Artifact Generation for Histopathology Images</p>
+<p class="paper-description">反向用法：用 SD 1.5 Inpainting（在专家标注的 TCGA-LUAD 上微调）加物理程序化建模合成 6 类伪影（折叠、沉淀、模糊、拼接错位、灰尘、记号笔），训练更鲁棒的分类模型。LUAD 模式分类上宏观 F1 相对提升 <strong>10.5%</strong>、Cohen's κ 相对提升 <strong>15%</strong>。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2608.27516">arXiv ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">D 虚拟染色</span> 2024 · venue 未确认（预印本，代码未发布）</p>
+<h3 class="paper-title">StainDiffuser</h3>
+<p class="paper-description en">MultiTask Dual Diffusion Model for Virtual Staining</p>
+<p class="paper-description">多任务双扩散：同时训「H&amp;E→IHC 虚拟染色」与「H&amp;E 细胞分割」（分割粗标签仅训练时用），使小数据集可收敛；覆盖 CK8/18 与 CD3 两个标记。注意是 patch 级转换，无 WSI 级实验。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2403.11340">arXiv ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">D 超分</span> 2024 arXiv / 2025 期刊</p>
+<h3 class="paper-title">Histo-Diffusion / SuperDiff</h3>
+<p class="paper-description en">A Diffusion Super-Resolution Method for Digital Pathology</p>
+<p class="paper-description">面向数字病理的扩散超分：组织学先验修复模块 + 可控扩散生成模块，并配套一套生成式超分的质量评估流程。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2408.15218">arXiv ↗</a>
+<a href="https://www.sciencedirect.com/science/article/abs/pii/S1361841525003548">期刊 ↗</a>
+</div>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag">D 超分</span> 2026 · venue 未确认（预印本）</p>
+<h3 class="paper-title">S³-Diff</h3>
+<p class="paper-description en">Structural Semantic Synergy Diffusion Model for High Fidelity Super Resolution of Pathological Images</p>
+<p class="paper-description">latent diffusion + ControlNet 做 4× 超分，用 SAM 组织支撑 + LR-HR 梯度差构造结构锚点以抑制随机伪影。TCGA 上 LPIPS / ST-LPIPS 相对最强基线提升 <strong>23.49% / 23.63%</strong>，并用下游生存分析验证临床语义保留。</p>
+<div class="paper-links">
+<a href="https://arxiv.org/abs/2608.03540">arXiv ↗</a>
+</div>
+</article>
+
+</div>
+<p class="section-lead">说明：「venue 未确认」指 arXiv/会议页面均无公开收录字段，不代表论文质量；这类条目不要按二手转载补写会议名。</p>
+</section>
+
+<section class="section" id="timeline">
+<div class="section-heading">
+<p class="eyebrow">TIMELINE / 2023—2026</p>
+<h2>时间线</h2>
+</div>
 <ul class="timeline">
-<li><span class="when">2023</span><strong>起点：修复与生成同时出现</strong><span class="detail">ArtiFusion（MICCAI 2023）首次把 DDPM 用于病理伪影修复，只用无伪影图像训练；DiffInfinite（NeurIPS 2023 D&amp;B）用合成分割掩膜作条件 + 并行随机 patch 扩散生成任意大图；PathLDM 的文本条件路线同期出现（WACV 2024 发表，arXiv 2023-09）。</span></li>
-<li><span class="when">2024</span><strong>条件化：用自监督嵌入替代人工标注</strong><span class="detail">LRDM（CVPR 2024）证明 SSL 嵌入足以当条件，并把 patch 模型拼成大图；LatentArtiFusion 把修复搬进潜空间，把推理成本压下来。</span></li>
-<li><span class="when">2025</span><strong>分化：修复统一化 vs 生成多尺度 vs 生成基础模型</strong><span class="detail">ArtiDiffuser（MedIA 2025）统一修复与合成并加下游一致性正则；ZoomLDM（CVPR 2025）用倍率感知条件把生成推到 4096×4096；PixCell 把生成推到基础模型规模（PanCan-30M，69,184 张 WSI）。</span></li>
-<li><span class="when">2026</span><strong>走向系统：掩码自动化、百万像素与检测可靠性</strong><span class="detail">MedIA 2026 的无监督流水线补上“掩码从哪来”；RestorePath（MICCAI 2026）把修复推到百万像素并要求跨 patch 全局一致；ICEIC 2026 的两阶段残差扩散专治细节丢失；DiffusionQC 把检测也做成扩散模型，而 Tissue Detection 那篇指出检测器的假阳性主要来自前处理的组织检测步骤。</span></li>
+<li>
+<span class="when">2023</span>
+<strong>起点：修复与生成同时出现</strong>
+<span class="detail">ArtiFusion（MICCAI 2023）首次把 DDPM 用于病理伪影修复，只用无伪影图像训练；DiffInfinite（NeurIPS 2023 D&amp;B）用合成分割掩膜作条件 + 并行随机 patch 扩散生成任意大图；PathLDM 的文本条件路线同期出现（WACV 2024 发表，arXiv 2023-09）。</span>
+</li>
+<li>
+<span class="when">2024</span>
+<strong>条件化：用自监督嵌入替代人工标注</strong>
+<span class="detail">LRDM（CVPR 2024）证明 SSL 嵌入足以当条件，并把 patch 模型拼成大图；LatentArtiFusion 把修复搬进潜空间，把推理成本压下来。</span>
+</li>
+<li>
+<span class="when">2025</span>
+<strong>分化：修复统一化 vs 生成多尺度 vs 生成基础模型</strong>
+<span class="detail">ArtiDiffuser（MedIA 2025）统一修复与合成并加下游一致性正则；ZoomLDM（CVPR 2025）用倍率感知条件把生成推到 4096×4096；PixCell 把生成推到基础模型规模（PanCan-30M，69,184 张 WSI）。</span>
+</li>
+<li>
+<span class="when">2026</span>
+<strong>走向系统：掩码自动化、百万像素与检测可靠性</strong>
+<span class="detail">MedIA 2026 的无监督流水线补上“掩码从哪来”；RestorePath（MICCAI 2026）把修复推到百万像素并要求跨 patch 全局一致；ICEIC 2026 的两阶段残差扩散专治细节丢失；DiffusionQC 把检测也做成扩散模型，而 Tissue Detection 那篇指出检测器的假阳性主要来自前处理的组织检测步骤。</span>
+</li>
 </ul>
 </section>
 
-<section class="section">
-<h2>六、评估口径：最容易出错的三处</h2>
-<div class="lane"><h3>1 · 指标与条件的独立性</h3><p>RestorePath 条件用 UNI，FID_C 与 Emb Sim 用 CONCH：是不同编码器，不能仅因同属病理基础模型就断言分数必然被美化。共享训练分布或偏好仍需检查。使用条件编码器自身计算相似度时，尤其需要独立编码器、下游任务或人工判读交叉验证。</p></div>
-<div class="lane"><h3>2 · 合成伪影 ≠ 真实伪影</h3><p>ArtiFusion 的测试集伪影来自手工合成方法；RestorePath 的验证掩码来自 failure modes / 气泡合成。这两类实验衡量的是“去合成伪影”，真实扫描伪影需要另测。</p></div>
-<div class="lane"><h3>3 · FID 口径不统一</h3><p>同一句“FID”在不同论文里可能指 Vanilla / Crop / CLIP 三种（LRDM 的 BRCA 20× 分别是 6.98 / 15.51 / 7.43）。跨论文比数字前必须先对齐口径，否则结论会反向。</p></div>
-<table><thead><tr><th>评估目标</th><th>可用指标</th><th>已知陷阱</th></tr></thead><tbody><tr><td>修复保真度</td><td>L2 / MSE / SSIM / PSNR / FSIM / SRE</td><td>偏袒模糊结果；对细胞级错误不敏感</td></tr><tr><td>修复感知质量</td><td>LPIPS / CLIP-IQA</td><td>伪影类型不同结论反转（透光气泡 vs 不透明墨迹）</td></tr><tr><td>病理语义一致性</td><td>CONCH / UNI / CTransPath 嵌入相似度</td><td>与条件编码器同源时失去独立性</td></tr><tr><td>是否真的有临床价值</td><td>下游 MIL 分类/分割 AUC、注意力是否回到病灶</td><td>需与 Detect-and-Discard 对照，否则分不清“修复”与“剔除”的贡献</td></tr></tbody></table>
+<section class="section" id="evaluation">
+<div class="section-heading">
+<p class="eyebrow">EVALUATION / 三处易错点</p>
+<h2>评估口径：最容易出错的三处</h2>
+</div>
+<div class="lane">
+<h3>1 · 指标与条件的独立性</h3>
+<p>RestorePath 条件用 UNI，FID_C 与 Emb Sim 用 CONCH：是不同编码器，不能仅因同属病理基础模型就断言分数必然被美化。共享训练分布或偏好仍需检查。使用条件编码器自身计算相似度时，尤其需要独立编码器、下游任务或人工判读交叉验证。</p>
+</div>
+<div class="lane">
+<h3>2 · 合成伪影 ≠ 真实伪影</h3>
+<p>ArtiFusion 的测试集伪影来自手工合成方法；RestorePath 的验证掩码来自 failure modes / 气泡合成。这两类实验衡量的是“去合成伪影”，真实扫描伪影需要另测。</p>
+</div>
+<div class="lane">
+<h3>3 · FID 口径不统一</h3>
+<p>同一句“FID”在不同论文里可能指 Vanilla / Crop / CLIP 三种（LRDM 的 BRCA 20× 分别是 6.98 / 15.51 / 7.43）。跨论文比数字前必须先对齐口径，否则结论会反向。</p>
+</div>
+<div class="metric-grid">
+<article class="metric-card">
+<h3>修复保真度</h3>
+<p><strong>可用指标：</strong>L2 / MSE / SSIM / PSNR / FSIM / SRE</p>
+<p><strong>已知陷阱：</strong>偏袒模糊结果；对细胞级错误不敏感</p>
+</article>
+<article class="metric-card">
+<h3>修复感知质量</h3>
+<p><strong>可用指标：</strong>LPIPS / CLIP-IQA</p>
+<p><strong>已知陷阱：</strong>伪影类型不同结论反转（透光气泡 vs 不透明墨迹）</p>
+</article>
+<article class="metric-card">
+<h3>病理语义一致性</h3>
+<p><strong>可用指标：</strong>CONCH / UNI / CTransPath 嵌入相似度</p>
+<p><strong>已知陷阱：</strong>与条件编码器同源时失去独立性</p>
+</article>
+<article class="metric-card">
+<h3>是否真的有临床价值</h3>
+<p><strong>可用指标：</strong>下游 MIL 分类/分割 AUC、注意力是否回到病灶</p>
+<p><strong>已知陷阱：</strong>需与 Detect-and-Discard 对照，否则分不清“修复”与“剔除”的贡献</p>
+</article>
+</div>
 </section>
 
-<section class="section">
-<h2>七、复现优先级（面向“读懂机制 → 复现 → 改进”）</h2>
+<section class="section" id="reproduction">
+<div class="section-heading">
+<p class="eyebrow">REPRODUCTION / 读懂 → 复现 → 改进</p>
+<h2>复现优先级（面向“读懂机制 → 复现 → 改进”）</h2>
+</div>
 <ol class="order">
 <li><strong>第一档 · ArtiFusion：</strong>最小闭环。掩码约束重采样（Eq. 2）、Swin 骨干、T=250、两张 A4000；先跑通修复指标，再补下游分类，确认“掩码大小”这一旋钮对结论的影响。</li>
 <li><strong>第二档 · LRDM：</strong>条件化骨架。先复现“SSL 嵌入 → cross-attention → 256 patch”，再上 MultiDiffusion 拼 1024²；条件来源消融（无条件 / ImageNet ViT / CLIP / HIPT）是验证机制是否成立的关键实验，成本可控。</li>
@@ -161,6 +728,14 @@ th{background:var(--soft);font-weight:600}
 </ol>
 </section>
 
-<div class="aside-note">2026-10-22 更新：保留 7 篇起步主线与 10 篇经典补充，新增 9 篇中文方法导读、7 条补充线索及 1 篇本周 QC 基准；不同条目注明摘要、方法或项目页的实际核验范围。论文作者报告、本站学习建议和待验证改进分开；预印本不补造接收信息，模型入口不等于已运行或已复现。完整的近期检索范围见页首更新区。</div>
-<footer class="page-footer"><span>任务版图 → 逐篇证据 → 评估口径 → 复现优先级</span><a target="_top" href="../?domain=pathology">返回病理论文库 →</a></footer>
-</main></body></html>
+<p class="aside-note">2026-10-22 更新：保留 7 篇起步主线与 10 篇经典补充，新增 9 篇中文方法导读、7 条补充线索及 1 篇本周 QC 基准；不同条目注明摘要、方法或项目页的实际核验范围。论文作者报告、本站学习建议和待验证改进分开；预印本不补造接收信息，模型入口不等于已运行或已复现。完整的近期检索范围见页首更新区。</p>
+
+<footer class="page-footer">
+<span>任务版图 → 逐篇证据 → 评估口径 → 复现优先级</span>
+<a target="_top" href="../?domain=pathology">返回病理论文库 →</a>
+</footer>
+
+</main>
+</div>
+</body>
+</html>
