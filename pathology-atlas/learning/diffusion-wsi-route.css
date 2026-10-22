@@ -1304,3 +1304,70 @@ a.button-primary:hover {
     text-decoration: underline;
   }
 }
+
+/* ---------- Scale boundary table ---------- */
+
+.scale-table {
+  width: 100%;
+  margin: 22px 0 10px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.scale-table caption {
+  caption-side: top;
+  padding-bottom: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: left;
+}
+
+.scale-table th,
+.scale-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.scale-table thead th {
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.scale-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.scale-table td:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .scale-table {
+    font-size: 14px;
+  }
+
+  .scale-table th,
+  .scale-table td {
+    padding: 8px 7px;
+  }
+
+  .scale-table td:first-child {
+    white-space: normal;
+  }
+}
+
+.scale-table-wrap {
+  margin: 22px 0 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scale-table-wrap .scale-table {
+  margin: 0;
+  min-width: 620px;
+}

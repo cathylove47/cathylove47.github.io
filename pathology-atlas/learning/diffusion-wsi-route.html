@@ -31,13 +31,14 @@
 <nav class="collection-nav" aria-label="本页目录">
 <p class="collection-nav-label">本页目录</p>
 <a href="#start">01 从这里开始</a>
-<a href="#tasks">02 五种用途</a>
-<a href="#core">03 核心 7 篇</a>
-<a href="#updates">04 录用入库与近期补充</a>
-<a href="#references">05 经典补充 10 篇</a>
-<a href="#timeline">06 时间线</a>
-<a href="#evaluation">07 评估口径</a>
-<a href="#reproduction">08 复现顺序</a>
+<a href="#scale">02 尺度边界</a>
+<a href="#tasks">03 五种用途</a>
+<a href="#core">04 核心 7 篇</a>
+<a href="#updates">05 录用入库与近期补充</a>
+<a href="#references">06 经典补充 10 篇</a>
+<a href="#timeline">07 时间线</a>
+<a href="#evaluation">08 评估口径</a>
+<a href="#reproduction">09 复现顺序</a>
 </nav>
 
 <main class="wsi-main" id="reader-content">
@@ -52,13 +53,59 @@
 <div class="section-content">
 <p class="section-lead">四个约束决定了这条支线的全部方法选择。理解它们，比记住模型名字更有用。</p>
 <ul class="order">
-<li><strong>尺度：</strong>单张 WSI 可达千兆像素，无法整体训练或整体采样。所有方法最终都要回答“patch 之间怎么接”——LRDM/ZoomLDM 用嵌入网格 + MultiDiffusion 平均，RestorePath 用随机 patch 扩散 + 距离加权插值。</li>
+<li><strong>尺度：</strong>单张 WSI 可达千兆像素，无法整体训练或整体采样。所有方法最终都要回答“patch 之间怎么接”——LRDM/ZoomLDM 用嵌入网格 + MultiDiffusion 平均，RestorePath 用随机 patch 扩散 + 距离加权插值。<a href="#scale">下一节的尺度边界</a>把“图块 / 窗口 / 整片”三层拆开讲。</li>
 <li><strong>掩码未知：</strong>修复需要一个“哪里坏了”的掩码。ArtiFusion 用阈值法、RestorePath 用 GrandQC，都是外部输入；只有 MedIA 2026 那篇把掩码变成无监督产出。这一环常被当成已知条件，实际是复现里最容易失败的地方。</li>
 <li><strong>“修好”没有唯一答案：</strong>自然图像修复可以对像素，病理图上必须对<strong>诊断信息</strong>。所以这条支线的评估必须同时有感知/分布指标（FID、LPIPS）与病理特征或下游任务指标（CONCH/UNI 相似度、MIL AUC）。</li>
 <li><strong>生成即证据：</strong>修出来的细胞结构是模型造的，不是切片里原有的。任何把修复结果喂给下游或阅片的流程，都要保留伪影掩码与“此处为重建”的标注。</li>
 </ul>
 </div>
 </details>
+</section>
+
+<section class="section" id="scale">
+<div class="section-heading">
+<p class="eyebrow">SCALE / 先搞清尺度，再读方法</p>
+<h2>尺度边界：修复的基本单位是窗口，不是整片切片</h2>
+<p class="section-lead">论文里的“百万像素级大图”指的是从切片上裁下来的一块区域，尺寸 512–4608 像素。没有哪个扩散模型一次处理整张 WSI，RestorePath 也不例外。</p>
+</div>
+
+<div class="scale-table-wrap">
+<table class="scale-table">
+<caption>同一篇论文里出现的三个尺度，不要混用</caption>
+<thead>
+<tr><th>尺度</th><th>典型尺寸</th><th>代表</th><th>这一层在做什么</th></tr>
+</thead>
+<tbody>
+<tr><td>训练图块</td><td>256 × 256</td><td>RestorePath、LRDM</td><td>模型真正学习与推理的单位，潜空间 64 × 64</td></tr>
+<tr><td>推理窗口</td><td>512 – 4608</td><td>RestorePath 所说的“大图”</td><td>窗口内部由多个重叠图块协商；窗口之间不共享状态</td></tr>
+<tr><td>整张 WSI</td><td>约 100 000 × 80 000</td><td>不作为模型输入</td><td>只能由程序循环调用模型，再把结果贴回原图</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="lane">
+<h3>1 · 为什么整片进不去</h3>
+<p>一张 100 000 × 80 000 的 WSI 约 8 Gpx，仅 RGB 原图就 24 GB，单卡放不下。而 4608² 只有 21.2 Mpx、约 64 MB。两者差三个数量级，不是靠调 batch 能补上的。</p>
+</div>
+
+<div class="lane">
+<h3>2 · 显存不跟着图变大，时间才涨</h3>
+<p>模型每次只处理一个 64 × 64 的潜窗口，整张大图只是躺在显存里的一块数组。实测 2048²、50 步、单卡 4090D 峰值显存 4.6–5.0 GB；换到 4608² 显存几乎不变，但窗口数按面积增长，耗时大约翻 5 倍。</p>
+</div>
+
+<div class="lane">
+<h3>3 · “修整片”是流程，不是模型能力</h3>
+<p>真实用法是四步循环：GrandQC 找伪影 → 以伪影为中心裁窗口（要包含周围健康组织）→ 修复该窗口 → 用 pyvips 贴回 WSI。贴回属于工程代码，模型本身对“整片”一无所知。</p>
+</div>
+
+<div class="lane">
+<h3>4 · 而且通常不需要修整片</h3>
+<p>GrandQC 统计伪影只占切片面积的 2–10%。修整片等于把九成算力花在重画本来没坏的组织上，还会改动原始诊断像素，得不偿失。</p>
+</div>
+
+<div class="callout">
+<p><strong>要警惕的边界：</strong>DWI、重叠窗口这类机制只保证<strong>一个窗口内部</strong>的结构连贯。跨窗口的接缝没有任何模型在做全局优化——所以“整片修复”目前仍是拼接问题，不是生成问题。</p>
+</div>
 </section>
 
 <section class="section" id="tasks">
