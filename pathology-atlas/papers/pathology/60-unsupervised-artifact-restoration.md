@@ -39,7 +39,7 @@
 
 - 与 QC 检测类（HistoQC、GrandQC 等）相比：**无监督 + 像素级掩码**，输出可直接驱动修复。
 - 与 [ArtiFusion](55-artifusion.md) / [ArtiDiffuser](57-artidiffuser.md) 相比：那两篇默认「已知伪影区掩码」，本篇的贡献正在于**自动产出这个掩码**。
-- 与 [RestorePath](49-restorepath.md) 相比：RestorePath 同样依赖 GrandQC 与 failure modes 给出的掩码，并且只在 patch 级做修复；本篇是三段式完整流程，但摘要未声称百万像素级一致性。
+- 与 [RestorePath](49-restorepath.md) 相比：RestorePath 使用 GrandQC / failure modes 相关掩码，以 patch 训练、随机重叠窗口推理实现百万像素级修复；本篇强调三段式自动化流程，但摘要未声称相同的大图一致性能力。
 
 把两者叠起来读，能得到这条支线最完整的工程图景：**检测/定位 → 掩码 → 扩散修复 → 下游任务**。
 
