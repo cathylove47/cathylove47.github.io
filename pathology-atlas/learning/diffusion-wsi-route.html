@@ -31,7 +31,7 @@
 <nav class="collection-nav" aria-label="本页目录">
 <p class="collection-nav-label">本页目录</p>
 <a href="#start">01 从这里开始</a>
-<a href="#tasks">02 五个任务</a>
+<a href="#tasks">02 五种用途</a>
 <a href="#core">03 核心 7 篇</a>
 <a href="#updates">04 新补 9 篇</a>
 <a href="#references">05 经典 10 篇</a>
@@ -63,40 +63,78 @@
 
 <section class="section" id="tasks">
 <div class="section-heading">
-<p class="eyebrow">TASKS / 五个赛道</p>
-<h2>五个赛道</h2>
-<p class="section-lead">同一批方法在不同任务上被反复借用。按“它在这个赛道里负责哪一环”来读，比按论文年份读更清楚。</p>
+<p class="eyebrow">先分清用途，再比较模型</p>
+<h2>五种用途：你想让模型帮你做什么？</h2>
+<p class="section-lead">这不是五种扩散模型结构，而是五种不同的用途。先看“遇到了什么问题、给模型什么、希望得到什么”，再去读模型细节；同一种模型也可能用于不同任务。</p>
+</div>
+<div class="callout">
+<p><strong>你正在学的主线：</strong><a href="#task-detection">先找到受损区域</a> → <a href="#task-restoration">用 RestorePath 尝试修复</a> → <a href="#evaluation">检查修复后是否有利于病理分析</a>。对应下面的第 2 类 → 第 1 类 → 下游验证；其余三类先作为对照。</p>
 </div>
 <div class="task-grid">
-<article class="task-card">
-<p class="tag">赛道 A</p>
-<h3>伪影修复（inpainting）</h3>
-<p>目标：借助可见组织补全受损区域，尽量保留未损区域；是否逐像素不变要检查具体实现。</p>
-<p class="who">ArtiFusion → ArtiDiffuser → RestorePath；Two-Stage Residual Diffusion 与 LPFM 扩展去模糊/低层增强。PathoGen 虽用 inpainting，但用于合成病变，应放在赛道 C。</p>
+<article class="task-card" id="task-restoration">
+<p class="tag">1 · 图像修复 · RestorePath 所在的方向</p>
+<h3>这张切片有一块坏了，能不能补好？</h3>
+<p><strong>举个例子：</strong>扫描时产生气泡，遮住了部分组织。我们想修好这张图，而不是另造一张无关的新图。</p>
+<p><strong>给模型什么：</strong>一张受损图像，以及标出“哪里需要修”的区域图；这张区域图就叫<strong>掩码（mask）</strong>。</p>
+<p><strong>希望得到什么：</strong>尽量保留周围正常区域，把受损区域补成与周围协调的组织图像；是否逐像素保留正常区域，要检查具体实现。</p>
+<p><strong>读 RestorePath 时抓住：</strong>它怎样利用周围组织补全缺损，又怎样让大图里相邻小块的结果接得上？<a target="_top" href="../?domain=pathology&amp;paper=49-restorepath">进入 RestorePath 导读 →</a></p>
+<p><strong>“补得合理”不等于“找回真相”：</strong>被遮住的真实细胞并不可见，生成结果不能当作患者原本组织的证明。</p>
+<details class="evidence">
+<summary>对应论文与技术线索</summary>
+<div class="evidence-content"><p>ArtiFusion → ArtiDiffuser → RestorePath；Two-Stage Residual Diffusion 与 LPFM 扩展去模糊/低层增强。PathoGen 虽用 inpainting，但用于合成病变，应放在第 3 类。</p></div>
+</details>
 </article>
-<article class="task-card">
-<p class="tag">赛道 B</p>
-<h3>伪影检测与定位（QC）</h3>
-<p>目标：识别伪影与生成掩码，供修复系统使用；输出分数图、patch 判定与像素 mask 的粒度需分清。</p>
-<p class="who">无监督检测—定位—修复流水线、DiffusionQC、Conditioning Noise；Tissue Detection 与本周的 Artifact Segmentation Benchmark 提供前处理和掩码可靠性的证据。</p>
+<article class="task-card" id="task-detection">
+<p class="tag">2 · 质量检测与定位</p>
+<h3>先别修，告诉我这张切片哪里有问题</h3>
+<p><strong>举个例子：</strong>拿到一张很大的切片，我们还不知道哪里有气泡、模糊或折叠。修复之前，得先找到这些位置。</p>
+<p><strong>给模型什么：</strong>一张待检查的切片图像。</p>
+<p><strong>希望得到什么：</strong>指出哪些位置可能有问题。不同方法可能给出异常分数、用颜色表示可疑程度的热图，或直接标出受损区域的掩码；它们的精细程度并不相同。</p>
+<p><strong>与第 1 类的区别：</strong>这一类负责<strong>找出哪里坏了</strong>，不一定修改图像；第 1 类才负责<strong>尝试把那里修好</strong>。DiffusionQC 是检测方向的例子。</p>
+<details class="evidence">
+<summary>对应论文与技术线索</summary>
+<div class="evidence-content"><p>无监督检测—定位—修复流水线、DiffusionQC、Conditioning Noise；Tissue Detection 与本周的 Artifact Segmentation Benchmark 提供前处理和掩码可靠性的证据。</p></div>
+</details>
 </article>
-<article class="task-card">
-<p class="tag">赛道 C</p>
-<h3>生成与数据增广</h3>
-<p>目标：造新图、可控反事实或训练数据，而不是恢复患者已知缺损。</p>
-<p class="who">LRDM、ZoomLDM → PixCell/CytoSyn → BigCell；STREAM 改为生成 UNI tokens；CHIS、PathoGen、TopoCellGen、CPathOGen 与 Destroy Me 分别控制结构、病变、布局、干预和伪影。</p>
+<article class="task-card" id="task-generation">
+<p class="tag">3 · 图像生成与数据增广</p>
+<h3>真实训练图不够，能不能再造一些？</h3>
+<p><strong>举个例子：</strong>想训练一个识别肿瘤的模型，但某类组织的样本很少。可以尝试生成一些新样本，补充训练数据；这就叫<strong>数据增广</strong>。</p>
+<p><strong>给模型什么：</strong>随机噪声，也可以加上组织类型、病变类型或细胞布局等要求；有些方法从已有图像出发，按要求修改局部。</p>
+<p><strong>希望得到什么：</strong>新的病理图像或可控修改的训练样本。BigCell 研究大幅病理图像生成；PathoGen 可以在良性组织里合成病变，用于增广。生成样本能否真正改善训练，还需要实验验证。</p>
+<p><strong>与修复的区别：</strong>修复要补好<strong>这位患者的这张图</strong>；生成与增广要制造<strong>可用的新样本</strong>，不要求对应患者原本的组织。所以，PathoGen 虽然也做局部补全，用途仍是合成病变，而不是去除伪影。</p>
+<details class="evidence">
+<summary>对应论文与技术线索</summary>
+<div class="evidence-content"><p>LRDM、ZoomLDM → PixCell/CytoSyn → BigCell；STREAM 改为生成 UNI tokens；CHIS、PathoGen、TopoCellGen、CPathOGen 与 Destroy Me 分别控制结构、病变、布局、干预和伪影。</p></div>
+</details>
 </article>
-<article class="task-card">
-<p class="tag">赛道 D</p>
-<h3>染色与超分</h3>
-<p>目标：改变染色域或提高分辨率，保持形态并检查诊断语义，不能只凭视觉逼真验收。</p>
-<p class="who">HistDiT、StainDiffuser、LPFM、PixCell 的虚拟 IHC；Histo-Diffusion/SuperDiff、S³-Diff 与 flow matching 邻近路线 CAFlow 的超分。</p>
+<article class="task-card" id="task-staining">
+<p class="tag">4 · 染色转换与超分辨率</p>
+<h3>组织已经拍到了，能不能换种染色或看得更精细？</h3>
+<p>这里实际上包含<strong>两件不同的事</strong>，读论文时要分开看。它们都在改造已有图像，而不是专门寻找、填补一块被遮住的区域。</p>
+<h4>① 虚拟染色：预测另一种染色的样子</h4>
+<p><strong>给模型什么：</strong>例如一张 H&amp;E 图像。<strong>希望得到什么：</strong>预测同一组织在某种 IHC 染色下可能呈现的图像。HistDiT 属于这个方向。</p>
+<p><strong>要分清：</strong>这是图像预测，不等于真的对组织做了一次 IHC 实验，也不能仅凭图像逼真就认定染色结果正确。</p>
+<h4>② 超分辨率：生成更高分辨率的版本</h4>
+<p><strong>给模型什么：</strong>一张分辨率较低、细节不足的图。<strong>希望得到什么：</strong>分辨率更高的版本。</p>
+<p><strong>要检查：</strong>新增细节是否保留了可靠的组织形态与诊断信息，而不只是看起来更锐利；生成细节不等于重新扫描得到的真实细节。</p>
+<details class="evidence">
+<summary>对应论文与技术线索</summary>
+<div class="evidence-content"><p>HistDiT、StainDiffuser、LPFM、PixCell 的虚拟 IHC；Histo-Diffusion/SuperDiff、S³-Diff 与 flow matching 邻近路线 CAFlow 的超分。</p></div>
+</details>
 </article>
-<article class="task-card">
-<p class="tag">赛道 E</p>
-<h3>分割监督与表征学习</h3>
-<p>目标：利用生成先验改善 mask 或模型特征，而非输出一张修复 RGB 图。</p>
-<p class="who">CoDiR 修正低置信伪标签；CMD 做 masked-diffusion 预训练；ZoomLDM 的中间特征用于 MIL。TMEvolve 的反应—扩散图演化只作为概念相邻参考。</p>
+<article class="task-card" id="task-analysis">
+<p class="tag">5 · 辅助分割与表征学习</p>
+<h3>不一定给人看一张新图，而是帮助分析模型认得更准</h3>
+<p><strong>举个例子：</strong>我们想让模型画出细胞或组织的边界，这叫<strong>分割</strong>。但人工标注不够，模型自动画出的标注又可能有错。</p>
+<p><strong>给模型什么：</strong>以修正分割标注为例，输入病理图像及粗糙的区域标注；其他方法也可能在图像特征上学习。</p>
+<p><strong>希望得到什么：</strong>更可靠的区域标注，或者更适合后续分类的图像特征。“表征”可以先理解为<strong>模型用来描述、区分一张图的内部信息</strong>，不是一张供人阅片的新图。</p>
+<p><strong>CoDiR 的做法：</strong>用扩散模型修正不可靠的分割伪标签，再拿这些标注训练分割模型；最终学生模型推理时不需要扩散模块。这里的“伪标签”就是模型自动产生、未经逐一人工确认的标注。</p>
+<p><strong>与第 2 类的区别：</strong>质量检测主要找<strong>哪里是伪影</strong>；这一类通常帮助识别<strong>哪里是细胞、组织或病变</strong>。目的不是把受损图像补好。</p>
+<details class="evidence">
+<summary>对应论文与技术线索</summary>
+<div class="evidence-content"><p>CoDiR 修正低置信伪标签；CMD 做 masked-diffusion 预训练；ZoomLDM 的中间特征用于 MIL。TMEvolve 的反应—扩散图演化只作为概念相邻参考。</p></div>
+</details>
 </article>
 </div>
 </section>
