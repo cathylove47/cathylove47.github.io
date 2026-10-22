@@ -1,6 +1,6 @@
 # 63｜CoDiR：用扩散修正低置信伪标签，而不是重画病理图像
 
-**论文**：CoDiR: Confidence-Guided Diffusion Refinement for Semi-Supervised Histopathology Segmentation；arXiv:2608.11807v1，首发 2026-08-12；arXiv 标注 MICCAI COMPAYL Workshop 2026 接收，不是 MICCAI 主会。  
+**论文**：CoDiR: Confidence-Guided Diffusion Refinement for Semi-Supervised Histopathology Segmentation；arXiv:2608.11807v1，首发 2026-08-12；MICCAI COMPAYL Workshop 2026 正式收录，已核对 MICCAI Satellite Events Open Access，不是 MICCAI 主会。
 **定位**：半监督腺体分割、Mean Teacher、图像条件的 mask 扩散、置信门控。  
 **精读核验**：2026-10-22 核对完整摘要、§2–3、Table 1–3 和官方训练/测试入口；本次补漏入库，非本周新首发；未运行作者代码。
 
@@ -72,3 +72,4 @@ Fig. 1 → §2.2 条件 mask 扩散与 Eq. 6 门控融合 → §2.3 置信损失
 - [摘要与版本](https://arxiv.org/abs/2608.11807)
 - [方法、实现与原表](https://arxiv.org/html/2608.11807v1)
 - [官方训练、测试与推理代码](https://github.com/vongla345/codir)
+- [COMPAYL Workshop 正式收录与全文](https://papers.miccai.org/miccai-2026-sat/COMPAYL_020.html)

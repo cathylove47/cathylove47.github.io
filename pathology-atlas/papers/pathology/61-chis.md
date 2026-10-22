@@ -1,6 +1,6 @@
 # 61｜CHIS：不改扩散模型权重，用频域初始化与小波调制控制细胞结构
 
-**论文**：Controllable Histopathology Image Synthesis with Training-free Structural Initialization and Textural Modulation；MICCAI 2026（接收信息来自 arXiv 与作者仓库）。arXiv:2606.27935，首发 2026-06-26，核验版本 v2（2026-06-30）。  
+**论文**：Controllable Histopathology Image Synthesis with Training-free Structural Initialization and Textural Modulation；MICCAI 2026 主会正式收录，已核对 MICCAI Open Access 的论文与 BibTeX。arXiv:2606.27935，首发 2026-06-26，核验版本 v2（2026-06-30）。
 **定位**：病理图像与细胞掩码配对生成；冻结 PixCell 的采样期控制，不是伪影修复，也不是全 WSI 生成。  
 **精读核验**：2026-10-22 核对 arXiv 题录、§2–3、Table 1–3 与官方仓库的依赖/推理入口；本次补漏入库，并非本周新首发；未运行作者模型。
 
@@ -77,3 +77,4 @@ Fig. 1 → §2.3 相位初始化 → §2.4 小波纹理调制 → §3.1 冻结�
 - [方法与原表：v2](https://arxiv.org/html/2606.27935v2)
 - [官方代码与依赖/资源入口](https://github.com/IBIL-Code/CHIS)
 - [公开推理脚本](https://github.com/IBIL-Code/CHIS/blob/main/image_generation.py)
+- [MICCAI 2026 正式收录与全文入口](https://papers.miccai.org/miccai-2026/0204-Paper1821.html)

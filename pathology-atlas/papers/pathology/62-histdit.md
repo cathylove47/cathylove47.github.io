@@ -1,6 +1,6 @@
 # 62｜HistDiT：把组织结构与形态语义分开注入扩散 Transformer
 
-**论文**：HistDiT: A Structure-Aware Latent Conditional Diffusion Model for High-Fidelity Virtual Staining in Histopathology；arXiv:2604.08305v1，首发 2026-04-09；arXiv 与作者仓库标注 ICPR 2026 接收。  
+**论文**：HistDiT: A Structure-Aware Latent Conditional Diffusion Model for High-Fidelity Virtual Staining in Histopathology；arXiv:2604.08305v1，首发 2026-04-09；ICPR 2026 正式接收，已核对官方 accepted papers 列表，论文编号 1353。
 **定位**：H&E→IHC 虚拟染色；DiT 双流条件、噪声 MSE+L1、结构相关指标 SCM。不是 WSI 伪影 inpainting。  
 **精读核验**：2026-10-22 核对摘要、§3–5、Table 1 与官方推理/评价及权重入口；本次为补漏入库，非本周新首发；未进行模型复现。
 
@@ -71,3 +71,4 @@ Fig. 1 两路条件 → §3.1 adaLN 与 cross-attention → §3.2 噪声混合�
 - [题录、摘要与版本](https://arxiv.org/abs/2604.08305)
 - [完整方法与表格](https://arxiv.org/html/2604.08305v1)
 - [官方代码、数据及权重入口](https://github.com/AasimBinSaleem/HistDiT)
+- [ICPR 2026 官方录用清单（1353，HistDiT）](https://icpr2026.org/acceptedPapers.html)
