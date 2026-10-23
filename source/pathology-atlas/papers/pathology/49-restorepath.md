@@ -1,8 +1,8 @@
 # 49｜RestorePath：用病理基础模型条件扩散做百万像素级伪影修复
 
-**论文**：Patch-to-Global: Random Patch Diffusion for Globally Consistent Megapixel Artifact Inpainting in Whole Slide Images，MICCAI 2026（arXiv:2609.24116v1）  
+**论文**：Patch-to-Global: Random Patch Diffusion for Globally Consistent Megapixel Artifact Inpainting in Whole Slide Images，MICCAI 2026，LNCS vol. 16891, pp. 353–363，DOI [10.1007/978-3-032-38224-5_34](https://doi.org/10.1007/978-3-032-38224-5_34)（arXiv:2609.24116v1）  
 **定位**：WSI 伪影修复、随机 patch 扩散 inpainting、PFM 条件与下游可靠性  
-**精读核验**：依据 arXiv v1 的摘要、方法与版本记录整理（2026-09-25）；尚未进行复现实验。
+**精读核验**：依据 arXiv v1 的摘要、方法与版本记录整理（2026-09-25）；会议出版记录已于 2026-10-23 经 SpringerLink 核验；本地 PDF 为 arXiv v1 投稿排版，非 Springer 正式版；尚未进行复现实验。
 
 ## 原文摘要
 
@@ -91,6 +91,7 @@ RestorePath 的位置：把「修复」的判据从「单块看起来像组织�
 
 ## 8. 链接
 
+- [SpringerLink 正式版（MICCAI 2026，LNCS 16891，pp. 353–363）](https://doi.org/10.1007/978-3-032-38224-5_34)（订阅墙，未获取 PDF）
 - [arXiv 摘要与版本记录](https://arxiv.org/abs/2609.24116)
 - [arXiv HTML 正文](https://arxiv.org/html/2609.24116v1)
 - [官方代码 RestorePath](https://github.com/PathfinderLab/RestorePath)

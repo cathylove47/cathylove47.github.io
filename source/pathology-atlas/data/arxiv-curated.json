@@ -2,6 +2,35 @@
   "policy": "近一年候选：保留病理、MRI、医学Agent核心检索，并广搜非医学通用方法，不要求标题/摘要含医学关键词。domain仅表示预期迁移目标，不代表已验证有效。按读懂核心机制→复现→发现问题→验证改进→形成自己论文筛选；算力充足，不因模型规模、训练成本或作者人数降级。主推荐须有全文方法与复现入口证据；未核验记录明确待核验；纯benchmark/数据集/综述或核心条件不可得的工作为辅助参考。",
   "candidates": [
     {
+      "id": "2610.24037",
+      "domain": "pathology",
+      "title": "Benchmarking and Improvement of Artifact Segmentation Methods in H&E-Stained Whole Slide Imaging",
+      "titleZh": "H&E 全切片伪影分割方法的基准评测与改进",
+      "authors": ["Julia Merta", "Daniel Mendelsohn", "Benedikt Schoser", "Joanna Polanska", "Michal Marczyk"],
+      "summary": "Technical artifacts introduced during tissue preparation or slide scanning remain a major obstacle to developing robust computational pathology algorithms for hematoxylin and eosin (HE)-stained whole-slide images (WSIs). Despite the growing number of quality-control tools, their real-world utility remains hard to assess because of the limited number of publicly available implementations and the lack of systematic, multi-dataset comparisons. This paper presents a benchmark of artifact segmentation methods for HE-stained WSIs. After a literature review, six publicly available algorithms were selected and compared in terms of their ability to segment artifact-free tissue and selected artifact classes. Two publicly available datasets and a newly introduced dataset released to support further research were used for evaluation. Tissue samples from multiple medical centers and different organs are included, enabling evaluation across heterogeneous data sources. Segmentation performance was assessed using Dice Index, pixel-level recall, and false discovery rate for artifact-free tissue segmentation. For algorithms supporting multiclass artifact segmentation, class-wise Dice Index and inter-class misclassification were evaluated. In addition to segmentation quality, processing time was assessed. Statistical analysis revealed significant differences in segmentation performance between methods. HistoKit, which incorporates a modified version of the GrandQC, was identified as the best-performing algorithm, while HistoQC was the worst. In terms of artifact types, dark spots and out of focus regions were harder to segment than others. Finally, a simple post-processing step was introduced for HistoKit, which further improved segmentation performance. The benchmark establishes a reference for evaluating and developing artifact segmentation methods for HE-stained WSIs.",
+      "published": "2026-10-16T12:03:15Z",
+      "updated": "2026-10-16T12:03:15Z",
+      "url": "https://arxiv.org/abs/2610.24037",
+      "pdfUrl": "https://arxiv.org/pdf/2610.24037",
+      "dateSource": "https://arxiv.org/abs/2610.24037",
+      "matchedKeywords": ["pathology", "whole slide", "artifact"],
+      "firstSeen": "2026-10-22",
+      "lastSeen": "2026-10-22",
+      "screening": {
+        "status": "not-prioritized",
+        "priority": 3,
+        "paperType": "pure benchmark",
+        "checkedAt": "2026-10-22",
+        "reason": "本周新首发的辅助参考，不是扩散修复方法：对六种公开伪影分割算法做跨数据集评价，并改进 HistoKit 后处理。对 RestorePath 的价值在于核查 mask 来源与误差；不能将其列成新扩散模型。代码仅含统计/可视化，新 Dataset C 声明发表后公开，当前不可据此承诺完整三数据集复现；HTML 的 Journal 字样未构成正式接收证据。",
+        "codeUrl": "https://github.com/julimer228/BenchmarkingArtifactSegmenationHE",
+        "evidence": [
+          {"url": "https://arxiv.org/abs/2610.24037", "note": "核对完整摘要、v1 首发 2026-10-16；未见 journal reference 或已接收声明。"},
+          {"url": "https://arxiv.org/html/2610.24037v1", "note": "正文评测六个实际可用方法；Code/Data Availability 区分统计脚本与 Dataset C 的未来公开。"},
+          {"url": "https://github.com/julimer228/BenchmarkingArtifactSegmenationHE", "note": "作者代码入口，主要为统计与可视化，不等于六种模型的完整统一实现。"}
+        ]
+      }
+    },
+    {
       "id": "2610.11183",
       "domain": "medical-agent",
       "title": "RAG-Stress: Probing the Limits of Evidence Reliance in Retrieval-Augmented Generation",
@@ -719,52 +748,6 @@
       "firstSeen": "2026-09-17T13:09:31.104Z",
       "lastSeen": "2026-10-13T08:13:27.160Z",
       "titleZh": "Lumen：面向零样本计算病理的预训练视觉与语言编码器参数高效对齐"
-    },
-    {
-      "id": "2609.16032",
-      "domain": "pathology",
-      "title": "Conditioning noise is a free regularizer for LoRA fine-tuning: no pathology encoder required for diffusion-based artifact detection in histopathology",
-      "authors": [
-        "Konstantinos Moutselos",
-        "Ilias Maglogiannis"
-      ],
-      "summary": "Diffusion-based artifact detectors score whole-slide image patches by reconstruction error under a model fine-tuned on clean tissue. We show that conditioning this fine-tuning on random Gaussian embeddings -- resampled at every step from approx. 200 KB of precomputed embedding statistics, with no encoder, no cache, and no change to inference -- consistently widens the clean/artifact separation. A four-step ablation chain shows the benefit requires neither content (shuffled real embeddings), provenance (synthetic Gaussians), a tuned intensity (flat across an 8x variance range), nor per-patch identity (fresh per-step noise); a LoRA-dropout control shows the conditioning pathway specifically, not generic weight perturbation, carries the effect. Patch-level gains of +0.25-0.48 Cohen's d replicate across nine trainings; honest leave-one-slide-out evaluation clears a pre-registered bar in 2/2 seeds; and two pre-registered external endpoints on a 281-case set confirm pooled Delta F1 = +0.0073 (95% CI) and +0.0129 (97.5% CI, two-look corrected). We release the full evaluation protocol, including measured seed noise and selection-optimism pricing.",
-      "published": "2026-09-11T07:16:38Z",
-      "updated": "2026-09-11T07:16:38Z",
-      "url": "https://arxiv.org/abs/2609.16032",
-      "pdfUrl": "https://arxiv.org/pdf/2609.16032",
-      "matchedKeywords": [
-        "pathology",
-        "histopathology"
-      ],
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-10-13T08:13:27.160Z",
-      "screening": {
-        "status": "recommended",
-        "priority": 1,
-        "reason": "机制：在 PixCell-1024 隐扩散骨架上用 LoRA（rank16/alpha16、224 个注意力投影、8.26M 参数、1000 步）对 2,185 张干净 patch 做 ε-预测微调，训练时把交叉注意力条件换成由预计算 UNI2-h 嵌入统计（μ,σ∈R^{16×1536}，约 200KB）采样的高斯噪声 e=μ+σ·ε，推理端与打分完全不变。复现入口：官方代码 github.com/kmouts/condnoise-histoqc（HTTP 200，含 train_enhanced.py、score、eval）并归档 Zenodo 10.5281/zenodo.22702198；数据为 TCGA WSI + AIRAQc 公开标注（16/2/24 划分）及 GrandQC MPP10 281 例外部集。首个对比实验：以无条件下 LoRA 微调的 DiffusionQC 式检测器为基线，patch 级 Cohen's d（基线≈1.755，种子噪声 0.126）与滑片级 pooled F1（s_slide=0.0112）。已知限制：外部收益贴近噪声底（配对外部 ΔF1=+0.0073 与 +0.0129，需两看校正），只是训练端正则且仅验证 artifact 检测单一任务。",
-        "checkedAt": "2026-10-13",
-        "paperType": "pure method",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/pdf/2609.16032",
-            "note": "PDF 全文（该文 v1 无 HTML）：3.1 节 LoRA rank16/alpha16/8.26M 参数/1000 步/batch4/lr1e-5/A100 约 2h、ε-预测重建误差打分；3.3 节 e=μ+σ·ε 与 μ,σ∈R^{16×1536}≈200KB、无新损失项、推理字节级不变"
-          },
-          {
-            "url": "https://arxiv.org/pdf/2609.16032",
-            "note": "3.2 节数据：TCGA 50 张 WSI 中 42 张按 16 训练/2 验证/24 测试、GrandQC 281 例外部集；3.5 节预注册与实测种子噪声；摘要报 patch 级 +0.25~0.48 Cohen's d、外部 ΔF1=+0.0073(95%CI) 与 +0.0129(97.5%CI)；Data/Code availability 给出 Zenodo DOI"
-          },
-          {
-            "url": "https://github.com/kmouts/condnoise-histoqc",
-            "note": "HTTP 200；仓库含 train_enhanced.py、uni2h_embed_train.py、score/、eval/、paper/、record/ 等真实代码目录（README 352 字节级链接到 Zenodo 10.5281/zenodo.22702198）"
-          },
-          {
-            "url": "https://api.github.com/repos/kmouts/condnoise-histoqc",
-            "note": "GitHub API 返回 403（限流），改用仓库 HTML 页面核验文件列表，命中 train/eval/score 目录"
-          }
-        ],
-        "codeUrl": "https://github.com/kmouts/condnoise-histoqc"
-      }
     },
     {
       "id": "2609.08419",
