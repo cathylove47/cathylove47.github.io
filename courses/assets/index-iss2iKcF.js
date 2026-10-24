@@ -3043,16 +3043,16 @@ E 收到的距离向量（跳数）：
 
 3. $8 \times  2 = 16$ 个 RTT。`,pitfalls:String.raw`只数 7 幅图忘了主页（14，选项 C）；认为请求可以搭在握手上（8~9，选项 B）。非持久连接恰恰不允许复用。`,extension:String.raw`题眼是「非持久 + 不支持并行」；一旦允许并行（通常 5~6 条连接），时间会明显下降，这时才是「主页 2 RTT + 图像分批发」。`}},{id:`net-mock-guide`,title:`配套模拟卷 · 计网选择题索引`,type:`知识点`,date:`2026-10-24`,chapter:`计算机网络 · 模拟题索引`,tags:[`模拟卷`,`索引`],summary:`本课只讲真题；模拟卷里的计网选择题按卷次收纳在「lion模拟卷1–8」课次，题号 33–40。`,content:String.raw`### 到哪里找模拟题
 
-模拟卷的计算机网络选择题（每题 33–40）已经逐题整理在下面 8 个课次里，每卷 8 题，含答案与推导：
+模拟卷的计算机网络选择题（第 33–40 题）已经逐题整理在下面 8 个课次里，每卷 8 题，含答案与推导：
 
-- 第 1 卷：#lesson=mock-exam-1
-- 第 2 卷：#lesson=mock-exam-2
-- 第 3 卷：#lesson=mock-exam-3
-- 第 4 卷：#lesson=mock-exam-4
-- 第 5 卷：#lesson=mock-exam-5
-- 第 6 卷：#lesson=mock-exam-6
-- 第 7 卷：#lesson=mock-exam-7
-- 第 8 卷：#lesson=mock-exam-8
+- [lion模拟卷 1 · 计网 33–40](#lesson=mock-exam-1)
+- [lion模拟卷 2 · 计网 33–40](#lesson=mock-exam-2)
+- [lion模拟卷 3 · 计网 33–40](#lesson=mock-exam-3)
+- [lion模拟卷 4 · 计网 33–40](#lesson=mock-exam-4)
+- [lion模拟卷 5 · 计网 33–40](#lesson=mock-exam-5)
+- [lion模拟卷 6 · 计网 33–40](#lesson=mock-exam-6)
+- [lion模拟卷 7 · 计网 33–40](#lesson=mock-exam-7)
+- [lion模拟卷 8 · 计网 33–40](#lesson=mock-exam-8)
 
 本课次只收真题；模拟卷里挑出的 15 道难题另见讲义 PDF（只含题面），解析仍在上面的课次里。`}],IS=[`题目`,`知识点`],LS=[{id:`forest-to-binary-min-height`,questionNumber:4,title:`森林转换为二叉树：最小高度如何判断？`,type:`题目`,date:`2026-09-29`,chapter:`树与二叉树 · 森林转换`,tags:[`森林与二叉树转换`,`左孩子右兄弟`,`树的高度`],summary:`5 棵树分别有 2、3、4、5、7 个结点。树的次序可任意安排，如何判断转换后二叉树的最小高度？`,source:`用户提供的题目截图，标注为“2026 · 第4题 · 2分”；未独立核验原始试卷出处。解析为本站推导，并非引用官方答案。`,content:String.raw`森林 $F$ 中有 5 棵树，其结点个数分别为 2、3、4、5、7，森林中树的次序可以任意，问 $F$ 对应的二叉树最小高度为多少？
 
