@@ -20,7 +20,7 @@
 <p class="eyebrow">计算病理 / 专题阅读</p>
 <h1>扩散模型在 WSI 中的应用</h1>
 <p class="deck">以伪影修复为主线，串起质量检测、组织生成、虚拟染色与超分、分割监督。先读 RestorePath，再比较相邻方法。</p>
-<p class="paper-meta">23 篇站内精读 · 补充论文中 12 篇已确认录用 · 更新于 2026-10-22</p>
+<p class="paper-meta">24 篇站内精读 · 补充论文中 13 篇已确认录用 · 更新于 2026-10-25</p>
 <div class="hero-actions">
 <a class="button button-primary" target="_top" href="../?domain=pathology&amp;paper=49-restorepath">进入 RestorePath ↗</a>
 <a class="button button-secondary" href="#start">先看阅读顺序</a>
@@ -356,7 +356,7 @@
 <p class="section-lead">增量窗口为 2026-10-15 至 2026-10-22，并回溯近一年方法与必要前作。在本次公开检索覆盖内，未核实窗口中新首发的病理图像扩散/流匹配方法；找到一篇 10 月 16 日首发的伪影分割基准，作为掩码来源的辅助参考。BigCell 是 10 月 9 日首发的漏项，STREAM 是 6 月旧文于 10 月 14 日更新到 v3。</p>
 </div>
 <h3 id="accepted-additions">本次新增精读 · 点击进入论文库</h3>
-<p class="section-lead">从此前补入的经典论文和近期线索中，确认 7 篇具有正式录用或出版证据，现已补齐全文方法、实验表格、复现入口和阅读顺序。加上此前已入库的 5 篇，补充论文共有 12 篇已录用精读；未确认录用的条目仍保留为线索，既有预印本导读不删除。</p>
+<p class="section-lead">从此前补入的经典论文和近期线索中，确认 8 篇具有正式录用或出版证据，现已补齐全文方法、实验表格、复现入口和阅读顺序。加上此前已入库的 5 篇，补充论文共有 13 篇已录用精读；未确认录用的条目仍保留为线索，既有预印本导读不删除。</p>
 <div class="callout">
 <p><strong>贴近你的修复主线：</strong><a target="_top" href="../?domain=pathology&amp;paper=72-latentartifusion">72 · LatentArtiFusion：掩码内怎样修</a>；<a target="_top" href="../?domain=pathology&amp;paper=74-diffusionqc">74 · DiffusionQC：先找哪里坏了</a>；<a target="_top" href="../?domain=pathology&amp;paper=78-histo-diffusion">78 · SuperDiff：低分辨率怎样补细节</a>。</p>
 <p><strong>理解条件与大图生成：</strong><a target="_top" href="../?domain=pathology&amp;paper=70-diffinfinite">70 · DiffInfinite：小窗口怎样合成大图</a>；<a target="_top" href="../?domain=pathology&amp;paper=71-pathldm">71 · PathLDM：病理报告怎样控制生成</a>。</p>
@@ -582,6 +582,24 @@
 <summary>阅读边界与复现风险</summary>
 <div class="evidence-content">
 <p>已核对正文、附录和实验表。官方匿名项目入口本次返回 401，未核实公开代码可用；不把一个项目链接当作可直接复现的实现。</p>
+</div>
+</details>
+</article>
+
+<article class="paper-card">
+<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> NeurIPS 2026 · arXiv 首发 2026-06-10 · v2 2026-09-30</p>
+<h3 class="paper-title">SheafStain</h3>
+<p class="paper-description">把 VFM 的 token 图当层论截面，用空间图 + 邻域 CLS 做条件，再以 sheaf/cocycle 损失惩罚相邻 patch 在重叠区的不一致；在拼好的 1024² 上评测拼接质量。不是又换一个生成骨干。</p>
+<div class="paper-links">
+<a target="_top" href="../?domain=pathology&amp;paper=91-sheafstain">91 · 中文精读 →</a>
+<a href="https://arxiv.org/abs/2606.11846">arXiv ↗</a>
+<a href="https://neurips.cc/virtual/2026/poster/155872">正式录用 ↗</a>
+<a href="https://github.com/deepnoid-ai/SheafStain">代码 ↗</a>
+</div>
+<details class="evidence">
+<summary>阅读边界与复现风险</summary>
+<div class="evidence-content">
+<p>已核对全文与附录，官方代码仓库与项目页可访问。评测尺度是 1024²（16 块拼接），不是 WSI；弱配对下 PSNR/SSIM 会奖励平滑解，结论要看 FID/KID/DAB-r。</p>
 </div>
 </details>
 </article>
