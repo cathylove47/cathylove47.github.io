@@ -13,7 +13,82 @@
 <section class="chapter" id="ags"><div class="chapter-heading"><span class="chapter-number">05</span><h2>AGS：什么时候依赖上下文，什么时候加强语义先验？</h2></div><p>先在未遮挡区域计算 Laplacian 方差，作为图像细节复杂度的代理，再映射到基础条件强度 s_base∈[2,7]。随后根据当前窗口的伪影占比决定是否启用：</p><div class="formula">Eq.(4)　sₜ = s_base，当 r_patch &gt; 0.99；否则 sₜ = 0<br>Eq.(5)　ε̃ = ε_uncond + sₜ(ε_cond − ε_uncond)</div><p><strong>占比等于 0.99 时仍关闭，超过才开启。</strong>只有几乎完全受损的窗口才使用这个强 PFM 条件。当 sₜ=0，“unconditional”只表示没有 PFM 向量引导，<strong>仍然保留遮罩图像与 mask 输入</strong>，不是完全没有条件。</p><div class="demo"><h3>实际看看 99% 这道门</h3><label for="ratio">局部伪影占比：<output id="ratio-value">99.00%</output><br><input id="ratio" type="range" min="0" max="10000" step="1" value="9900"></label><label for="complexity">未遮挡区域 Laplacian 方差（教学输入）<select id="complexity"><option value="50">50：低复杂度</option><option value="1275" selected>1275：中等复杂度</option><option value="2500">2500：高复杂度</option></select></label><div class="result" id="ags-result" aria-live="polite"></div><p>基础尺度按公开代码的线性归一化与截断计算；只演示门控和数值，不代表生成质量越大越好。用键盘方向键可以检查 99.00% 与 99.01% 的边界。</p></div><p>复杂度不是病理诊断标签；图像纹理、噪声和遮罩边界都可能影响这种代理量。该策略提供一个可执行的启发式门控，不是对条件可靠性的概率估计。</p></section>
 <section class="chapter" id="compare"><div class="chapter-heading"><span class="chapter-number">06</span><h2>与刚读过的 LRDM，究竟差在哪里？</h2></div><div class="table-wrap"><table><thead><tr><th>维度</th><th>LRDM</th><th>RestorePath</th></tr></thead><tbody><tr><td>目的</td><td>生成语义与布局受控的大图、制作变体</td><td>依据可见组织修复已知伪影区域</td></tr><tr><td>输入约束</td><td>空间排列的 SSL 条件网格</td><td>遮罩图像 + mask + PFM 条件</td></tr><tr><td>条件缺失</td><td>参考图或辅助模型提供条件网格</td><td>从污染较少的网格做距离加权插值</td></tr><tr><td>公开大图调度</td><td>固定重叠窗口，每步融合局部预测</td><td>随机窗口 + 每位置进度追踪</td></tr><tr><td>新增机制</td><td>SSL 引导与 MultiDiffusion 组合</td><td>LKA、DWI、基于复杂度和占比的 AGS</td></tr><tr><td>共有边界</td><td colspan="2">局部模型可扩展不等于恒定成本；生成的形态不等于患者真实组织。</td></tr></tbody></table></div><p><a href="lrdm-story.html">回看 LRDM 技术精读 →</a>　两篇之间有技术联系，但 RestorePath 不是把 LRDM notebook 换一个输入路径就完成的修复任务。</p></section>
 <section class="chapter" id="evidence"><div class="chapter-heading"><span class="chapter-number">07</span><h2>结果要看分工，也要看反例</h2></div><p>作者分别为 TCGA-BRCA、Camelyon16、BACH 训练模型，而非一个 checkpoint 统一零样本泛化到三个数据集。主要定量测试使用合成伪影：BRCA 包含多种退化，Camelyon16 与 BACH 限定气泡。不能把这组结果直接当作所有真实伪影上的临床验证。</p><h3>Table 1：三个完整模型结果</h3><p>FID_C 使用 CONCH 特征，与 LRDM 的 FID 不能直接放在一起比较；LPIPS_M 与 Emb Sim 也应按原论文评估定义复算，而不是仅凭同名指标替换实现。下表仅转录作者报告。</p><div class="table-wrap"><table><thead><tr><th>数据集</th><th>LPIPS_M ↓</th><th>FID_C ↓</th><th>Emb Sim ↑</th></tr></thead><tbody><tr><td>TCGA-BRCA</td><td>0.4467</td><td>29.66</td><td>0.9317</td></tr><tr><td>Camelyon16</td><td>0.3754</td><td>44.57</td><td>0.9308</td></tr><tr><td>BACH</td><td>0.4418</td><td>44.37</td><td>0.9201</td></tr></tbody></table></div><p><strong>并非所有指标都最佳：</strong>LaMa 在 Camelyon16 和 BACH 的 LPIPS 更低；BACH 去掉 DWI 的 FID_C 为 44.03、Emb Sim 为 0.9232，均略优于完整模型。BRCA 去掉 DWI 则 FID_C 恶化到 110.48。DWI 的价值与伪影类型、剩余纹理和邻域结构有关，不能总结成“任何数据都必须插值”。</p><h3>下游证据：挽回损失，不是普遍超过干净图</h3><div class="table-wrap"><table><thead><tr><th>输入状态</th><th>Camelyon16 ABMIL Acc.（%）</th><th>BACH ResNet50 Acc.（%）</th></tr></thead><tbody><tr><td>原始干净图</td><td>85.0 ± 1.6</td><td>86.2 ± 1.8</td></tr><tr><td>受损图</td><td>73.5 ± 4.6</td><td>61.0 ± 3.7</td></tr><tr><td>检测后丢弃</td><td>55.0 ± 2.2</td><td>64.2 ± 4.1</td></tr><tr><td>修复图</td><td>84.0 ± 1.2</td><td>75.5 ± 1.3</td></tr></tbody></table></div><p>分别摘自 Table 2 与 Table 3，两列属于不同数据与分类任务，不互相比排名。结果支持在作者设置下修复优于直接用受损图或丢弃，但 BACH 仍明显低于干净图。表中的 ± 按原表保留，不自行解释为置信区间或显著性。</p></section>
-<section class="chapter" id="code"><div class="chapter-heading"><span class="chapter-number">08</span><h2>服务器恢复后，我们从哪里开始？</h2></div><p>上游已固定在 <code>/data1/kxchen/RestorePath</code>（gpu04），版本 <code>463442d4a21da8bdf96c9b3e093d9cc93758b433</code>。推理链路已跑通，实测数字、逐图清单与局限见<a href="restorepath-repro.html">复现记录</a>。</p><div class="table-wrap"><table><thead><tr><th>资源</th><th>现在的状态</th><th>仍缺</th></tr></thead><tbody><tr><td>RestorePath 权重</td><td>bach、camelyon16、tcga_brca 三套已下载并加载（各 1.88 GB）</td><td>—</td></tr><tr><td>基础模型</td><td>真 UNI ViT-L 已就位（再分发版，342 个 key 核验）；VAE 权重来自 ckpt 本身</td><td>官方 gated 入口仍需本人同意条款</td></tr><tr><td>推理</td><td>官方样例 2048²、50 步、6 分 20 秒，峰值显存 5.0 GB</td><td>—</td></tr><tr><td>测试集</td><td>BACH 合成伪影两组各 10 张，带 GT 与 mask，可算 LPIPS</td><td>论文规模的 80 张、原生 2048×1536</td></tr><tr><td>下游任务</td><td>未开始</td><td>Camelyon16 MIL 与 BACH 分类（Table 2/3）</td></tr><tr><td>基线</td><td>未开始</td><td>LaMa / SDM / CoordFill</td></tr></tbody></table></div><h3>静态核对已经发现的注意点</h3><ul><li><strong>依赖文件拼写：</strong>README 写 <code>requirements.txt</code>，仓库实际文件为 <code>requrements.txt</code>。</li><li><strong>CLI 参数接线：</strong><code>inference_large_image.py:34</code> 原为 <code>eta = args["sampling_steps"]</code>，没有读取已声明的 <code>--eta</code>；该值直接进 DDIM 采样参数，等于按步数放大噪声。已改为读取 <code>args["eta"]</code>，实测可正常运行。</li><li><strong>图像和 mask 配对：</strong>脚本将路径中的 <code>art_images</code> 替换为 <code>masks</code>；mask 灰度 &gt;127 转为 1，表示待修复区域。不能把白黑语义反过来。</li><li><strong>权重目录约定：</strong><code>get_model</code> 读取 <code>configs/*-project.yaml</code> 和 <code>checkpoints/last.ckpt</code>；只给一个任意 YAML 路径不符合当前加载方式。</li><li><strong>边界条件：</strong>有效邻居为空、非方形图像坐标映射、输入尺寸整除约束需要专项核对。当前不声称这些情况已通过。</li><li><strong>已知像素保真：</strong>当前 CLI 解码后直接保存整幅输出，没有最后把原图非 mask 区域逐像素贴回。因此“利用原图上下文”不等于代码保证已知像素完全不变。</li></ul><p>已完成的部分只到「推理与指标可重算」这一步：单一数据集的合成伪影、10 张规模，没有下游任务、没有基线。方法与论文的逐项差异、实测结果和下一步见<a href="restorepath-repro.html">复现记录</a>，本页不把未执行项标记为完成。</p></section>
+<section class="chapter" id="code"><div class="chapter-heading"><span class="chapter-number">08</span><h2>服务器恢复后，我们从哪里开始？</h2></div><p>上游已固定在 <code>/data1/kxchen/RestorePath</code>（gpu04），版本 <code>463442d4a21da8bdf96c9b3e093d9cc93758b433</code>。推理链路已跑通，实测数字、逐图清单与局限见<a href="restorepath-repro.html">复现记录</a>。</p><div class="table-wrap"><table><thead><tr><th>资源</th><th>现在的状态</th><th>仍缺</th></tr></thead><tbody><tr><td>RestorePath 权重</td><td>bach、camelyon16、tcga_brca 三套已下载并加载（各 1.88 GB）</td><td>—</td></tr><tr><td>基础模型</td><td>真 UNI ViT-L 已就位（再分发版，342 个 key 核验）；VAE 权重来自 ckpt 本身</td><td>官方 gated 入口仍需本人同意条款</td></tr><tr><td>推理</td><td>官方样例 2048²、50 步、6 分 20 秒，峰值显存 5.0 GB</td><td>—</td></tr><tr><td>测试集</td><td>BACH 合成伪影两组各 10 张，带 GT 与 mask，可算 LPIPS</td><td>论文规模的 80 张、原生 2048×1536</td></tr><tr><td>下游任务</td><td>未开始</td><td>Camelyon16 MIL 与 BACH 分类（Table 2/3）</td></tr><tr><td>基线</td><td>未开始</td><td>LaMa / SDM / CoordFill</td></tr></tbody></table></div><h3>静态核对已经发现的注意点</h3><ul><li><strong>依赖文件拼写：</strong>README 写 <code>requirements.txt</code>，仓库实际文件为 <code>requrements.txt</code>。</li><li><strong>CLI 参数接线：</strong><code>inference_large_image.py:34</code> 原为 <code>eta = args["sampling_steps"]</code>，没有读取已声明的 <code>--eta</code>；该值直接进 DDIM 采样参数，等于按步数放大噪声。已改为读取 <code>args["eta"]</code>，实测可正常运行。</li><li><strong>图像和 mask 配对：</strong>脚本将路径中的 <code>art_images</code> 替换为 <code>masks</code>；mask 灰度 &gt;127 转为 1，表示待修复区域。不能把白黑语义反过来。</li><li><strong>权重目录约定：</strong><code>get_model</code> 读取 <code>configs/*-project.yaml</code> 和 <code>checkpoints/last.ckpt</code>；只给一个任意 YAML 路径不符合当前加载方式。</li><li><strong>边界条件：</strong>有效邻居为空、非方形图像坐标映射、输入尺寸整除约束需要专项核对。当前不声称这些情况已通过。</li><li><strong>已知像素保真：</strong>当前 CLI 解码后直接保存整幅输出，没有最后把原图非 mask 区域逐像素贴回。因此“利用原图上下文”不等于代码保证已知像素完全不变。</li></ul><p>已完成的部分只到「推理与指标可重算」这一步：单一数据集的合成伪影、10 张规模，没有下游任务、没有基线。方法与论文的逐项差异、实测结果和下一步见<a href="restorepath-repro.html">复现记录</a>，本页不把未执行项标记为完成。</p><details><summary>逐行注释：interp_sample_one()（26 行，四条贡献里三条在这里交汇）</summary>
+<p>只负责"窗口里这一小步怎么走"：选窗口、推进进度、拼回全图都在外面的 while 循环里。行号对应 commit 463442d 的 <code>util.py</code>。</p>
+<pre class="code-box">151  @torch.no_grad()
+     # 推理期不需要梯度：省显存、省时间。也意味着不能在这里做任何需要反传的调试。
+
+152  def interp_sample_one(self, x_t, x_stack, x_real, masks, times, embedding, complexity=None):
+     # x_t        窗口潜变量 [1,3,64,64]（512 图像像素 = 512/8 潜像素）
+     # x_stack    全图缓冲 [b,2,3,H/4,W/4]：[:,0]=已提交快照，[:,1]=工作状态
+     # x_real     窗口对应的真实输入图（512²，[-1,1]，被遮的版本）
+     # masks      窗口 mask（512²，{-1,+1}）
+     # times      窗口进度（步数），与 x_t 同分辨率
+     # embedding  DWI 算好的条件向量（UNI 1024 维）
+     # complexity 全局 s_base ∈ [2,7]
+
+156  img = x_t.clone()
+     # 备份&quot;进入本函数时&quot;的窗口状态。最后要靠它把不归本步管的位置原样吐回去。
+
+157  uniques = torch.unique(times)
+     # 窗口宽 64 潜像素，跨越多个进度区，所以里面不止一个步数。unique 返回升序。
+
+159  vmin = uniques[0]
+     # 本步只处理最落后的那一档。其余档位先不动。
+
+160  if len(uniques) &gt; 1:
+161      for unique in uniques[1:]:
+162          to_change = torch.where(times == unique, 1, 0)
+163          x_t = x_stack[:,0] * to_change + x_t * (to_change == 0)
+     # 关键：把&quot;进度更靠前&quot;的位置，用【已提交快照】覆盖掉。
+     # 为什么必须做：DDIM 的一步依赖当前噪声水平 t。窗口里若混着不同 t 的位置，
+     # 一起送进网络等于把不同噪声水平混为一谈。所以先把它们拉回一致的起点。
+     # 注意 x_t 被改写，但 156 行的 img 没被改写 —— 写回时用 img，不会被这步污染。
+
+165  if self.cond_scale is not None:
+166      cond_scale = self.cond_scale
+     # 命令行显式给了 --cond_scale 就用它。⚠️ 一旦传值，AGS 被整体绕过，
+     # 传 0 就等价于 direct 分支。（inference_large_image.py 默认 None，正常走 AGS）
+
+167  else:
+168      cond_scale = complexity if torch.mean((masks+1)/2).float().item() &gt; 0.99 else 0
+     # AGS 的全部实现就这一行。
+     # masks ∈ [-1,+1] → (masks+1)/2 ∈ [0,1]，均值即覆盖率；&gt; 0.99 才给 s_base，否则 0。
+     # ⚠️ 论文写&quot;按 patch&quot;，代码是【整个 512² 窗口】求平均，粒度更粗 ——
+     #    这是小气泡测试集上 interp/direct 逐字节相同的原因（AGS 从未触发）。
+
+170  # Downsample masks for latent space
+171  cc, uc = self.get_conditioning(x_real, masks, embedding)
+     # 条件组装（util.py:115）：
+     #   VAE encode(x_real) → z_m；mask 双线性下采样到 latent 尺寸；两者逐通道 concat → c_concat
+     #   cc 的 crossattn 用 DWI 向量；uc 的 crossattn 用全零
+     # ⚠️ 每步都把同一窗口重新 VAE 编码一遍，属于上游的重复计算（可按窗口缓存）。
+
+172  t = torch.full((x_t.shape[0],),
+                    self.time_list[len(self.time_list) - vmin.item() - 1], ...)
+     # vmin 是&quot;已完成步数&quot;，时间戳要反着取：
+     # time_list = linspace(1,1001,51)[:-1] → [1,21,...,981]
+     # vmin=0 → 索引 49 → t=981（最噪）；vmin=49 → 索引 0 → t=1（几乎干净）。
+
+173  pred, _ = self.ddim_sampler.p_sample_ddim(
+         x_t, cc, t,
+         len(self.time_list) - vmin.item() - 1,   # 当前 DDIM 索引（取 alphas/sigmas 用）
+         unconditional_guidance_scale=cond_scale,
+         unconditional_conditioning=uc)
+     # 一次 DDIM 采样步。cond_scale=0 时 CFG 退化为 ε_uncond + 0×(ε_cond−ε_uncond) = ε_uncond，
+     # 即&quot;不听 PFM 向量&quot;。但 c_concat 里仍有被遮图像与 mask ——
+     # 所以&quot;无条件&quot;只是没有组织语义引导，不是凭空生成。
+
+175  time_mask = torch.where(times == vmin, 1, 0).to(self.device)
+176  return pred * time_mask + img * (time_mask == 0)
+     # 局部写回的边界控制：pred 只落在 vmin 位置，其余位置原样返回 img。
+     # img 是 156 行的备份，所以窗口内其他进度区一个像素都没被动。</pre>
+<h4>五个值得记住的点</h4>
+<ol><li><strong>两次状态操作是核心</strong>：163 行把混着的进度拉回一致起点，176 行只交出本步负责的位置；去掉任一，随机 patch 扩散会在窗口边界露馅。</li><li><strong><code>x_stack[:,0]</code> 是滞后快照</strong>：只在全图 <code>times</code> 都到达当前最大值时整体刷新，快照越旧，"拉齐"后的起点越不代表真实状态。</li><li><strong>AGS 的粒度是窗口不是 patch</strong>：一行 <code>torch.mean</code> 决定整块 512² 用不用条件；窗口里只要局部被遮死，平均值也可能到不了 0.99。</li><li><strong><code>--cond_scale</code> 是隐藏消融开关</strong>：传任意值就废掉 AGS；复现论文结果时不要传。</li><li><strong>只做一次去噪步</strong>：不解码、不推进 times、不融合；输入输出都是 latent，比较数字时别和像素混淆。</li></ol>
+<h4>改这里之前先看三处</h4>
+<div class="table-wrap"><table><thead><tr><th>想改什么</th><th>落点</th><th>风险</th></tr></thead><tbody><tr><td>AGS 改成 patch 级判断</td><td>168 行，按窗口内每 256 块的覆盖率分别判断</td><td>与 <code>p_sample_ddim</code> 粒度不匹配，需按块分别采样</td></tr><tr><td>让 cond_scale 连续变化</td><td>168 行改成按覆盖率插值到 <code>[0, s_base]</code></td><td>会同时改变 interp/direct 的对比结论</td></tr><tr><td>省掉重复 VAE 编码</td><td>171 行的 <code>get_conditioning</code>，按窗口缓存</td><td>缓存键要含窗口坐标与进度，否则读到过期状态</td></tr></tbody></table></div>
+</details>
+</section>
 <section class="chapter" id="quiz"><div class="chapter-heading"><span class="chapter-number">09</span><h2>三个自测问题</h2></div><details><summary>全遮挡图块的条件向量从哪里来？</summary><p>不是从不存在的真实组织提取，而是从伪影占比较低的有效网格提取 UNI 特征，按距离加权插值。若没有可靠来源，不能假装条件仍包含真实诊断信息。</p></details><details><summary>AGS 取 0 是否意味着完全无条件生成？</summary><p>不是。它关闭 PFM 向量的 CFG 引导，但网络仍接收遮罩图像潜变量和 mask。且论文门槛是严格大于 0.99，不是大于等于。</p></details><details><summary>分类准确率恢复，为什么还不能宣称病理组织被真实还原？</summary><p>分类器可以受益于统计上合理的合成形态，但局部细胞、罕见病灶或个体特异细节仍可能被错误生成。分类指标不是逐细胞真值，也不是临床安全保证。</p></details></section>
 <section class="chapter" id="sources"><h2>原文与代码来源</h2><ol><li><a href="https://arxiv.org/html/2609.24116v1">论文 v1 全文</a>：2026-09-21 首发；方法 §2、实验 §3、Table 1–3。MICCAI 2026 标识来自官方仓库，本页未核查会议评审记录。</li><li><a href="https://github.com/PathfinderLab/RestorePath/tree/463442d4a21da8bdf96c9b3e093d9cc93758b433">官方仓库固定版本</a>：README、资源与原始框架图。</li><li><a href="https://github.com/PathfinderLab/RestorePath/blob/463442d4a21da8bdf96c9b3e093d9cc93758b433/util.py">util.py</a>：DWI、AGS、随机采样进度与 Hann 融合。</li><li><a href="https://github.com/PathfinderLab/RestorePath/blob/463442d4a21da8bdf96c9b3e093d9cc93758b433/inference_large_image.py">CLI 推理入口</a>：输入配对、mask 阈值、参数读取与保存。</li><li><a href="https://drive.google.com/drive/folders/1TmD9dLqjRUrhQeI8w4LrbJQwl_GaxdBR">作者预训练模型目录</a>；<a href="https://huggingface.co/MahmoodLab/UNI">UNI</a>；<a href="https://ommer-lab.com/files/latent-diffusion/vq-f4.zip">VQ-f4</a>。</li></ol><p>核查日期：2026-10-15。本文只讲解与静态核对，未运行 GPU 实验；交互采用教学输入，不生成医学图像。</p><a href="../?domain=pathology&amp;paper=49-restorepath">返回 RestorePath 条目 →</a></section>
 </main></div><script>
