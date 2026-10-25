@@ -1,6 +1,6 @@
 # 64｜BigCell：用流匹配与共享滑窗，从 2048² 图块走向 32768² WSI 生成
 
-**论文**：BigCell: Generating Gigapixel Whole-Slide Images；arXiv:2610.14261v1，首发 2026-10-09；NeurIPS 2026 正式接收，已核对官方论文展示页及其 OpenReview 链接。
+**论文**：BigCell: Generating Gigapixel Whole-Slide Images；arXiv:2610.14261v1，首发 2026-10-09；NeurIPS 2026 正式接收（decision: Accept (poster)，Atlanta Poster Session 1，2026-12-10；官方收录页 poster/152972，OpenReview forum `OyI7kjl92B`）。**track 未核实**：NeurIPS 公开数据只写 eventtype=Poster、track 字段为空，主会与 Evaluations & Datasets 轨在官方站点上不可区分；要确认需登录 OpenReview 查看 venueid（该站有验证码，未绕过）。
 **定位**：flow matching 条件生成、UNI-2 嵌入网格、全局潜画布速度融合、自适应窗口调度与 8k 文生图。不是伪影修复。  
 **精读核验**：2026-10-22 核对完整摘要、主文 §3–6、Table 1–4、Fig. 3 与作者代码/资源说明；区分原文与 README 的数据计数差异，未运行模型。是 10 月补漏，不是 10 月 15 日后的新首发。
 
@@ -93,4 +93,4 @@ Fig. 2 → §3.1 局部生成器 → §3.2 每步速度融合 → §3.3 缓存�
 - [作者方法、结果与样例](https://histodiffusion.github.io/docs/projects/bigcell/)
 - [官方代码](https://github.com/cvlab-stonybrook/BigCell)
 - [模型](https://huggingface.co/StonyBrook-CVLab/BigCell) · [样本数据](https://huggingface.co/datasets/StonyBrook-CVLab/BigCell-sample-data)
-- [NeurIPS 2026 官方收录页](https://neurips.cc/virtual/2026/poster/152972)
+- [NeurIPS 2026 官方收录页](https://neurips.cc/virtual/2026/poster/152972) · [OpenReview forum](https://openreview.net/forum?id=OyI7kjl92B)
