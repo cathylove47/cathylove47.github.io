@@ -2,7 +2,7 @@
 
 **论文**：Toward robust histopathology imaging: An unsupervised framework for artifact detection, localization, and restoration；Medical Image Analysis 2026, 113:104215，DOI [10.1016/j.media.2026.104215](https://doi.org/10.1016/j.media.2026.104215)；2026-07-13 在线，2025-10-06 投稿。
 **定位**：WSI 伪影的三段式无监督流水线（检测 → 定位 → 修复），只用正常样本训练。与 [RestorePath](49-restorepath.md) 同属"掩膜 + 扩散修复"，但多出完整检测与定位链，且不做 patch 间全局一致约束。
-**精读核验**：2026-10-26 依 Springer 官方排版 PDF（本地 `1-s2.0-S1361841526002847-main.pdf`）核对摘要、§3 方法、§4 设置、Table 1–14、Fig. 3–11、§5.8 局限；未运行代码。所有数字为论文报告值，未经复算。
+**精读核验**：2026-10-26 依 Springer 官方排版 PDF（本地 `~/code/papers/MedIA-2026-104215-Yang-unsupervised-artifact-pipeline.pdf`）核对摘要、§3 方法、§4 设置、Table 1–14、Fig. 3–11、§5.8 局限；未运行代码。所有数字为论文报告值，未经复算。
 
 ## 原文摘要
 
@@ -245,6 +245,7 @@ Fig. 2 总览 → §3.1（只看热图公式和 3% 规则）→ Table 2（特征
 - [ArtiFusion](55-artifusion.md)、[ArtiDiffuser](57-artidiffuser.md)：本文修复段的直系前作，Table 5 里都是对照。
 - [DiffusionQC](74-diffusionqc.md)：另一条"用扩散模型做质控检测"的路线，可对照无监督异常检测的两种实现。
 - [SheafStain](91-sheafstain.md)：同样处理"切片质量问题"，但方向是染色归一化而非伪影修复。
+- [SuperDiff](78-histo-diffusion.md)：**前后工序**。本文假设输入图像没有质量问题，SuperDiff 假设输入没有伪影；实际流程应先清伪影再提分辨率。两篇的 "quality assessment" 含义相反：本文是检测，它是评价方案。
 
 **链接**
 
