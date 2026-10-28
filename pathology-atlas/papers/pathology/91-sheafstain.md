@@ -4,24 +4,33 @@
 **定位**：虚拟染色（H&E → IHC）的**拼接一致性**专治方案。不是"生成更好看的染色图"，而是让相邻 patch 在重叠区给出可胶合的同一段输出。
 **精读核验**：2026-10-25 读 arXiv v2 全文 HTML（§1–5 与附录 A–M）、Table 1–3、Table 8–9、附录 I（层论公理的经验验证）、附录 J（弱配对下的指标口径）、附录 K（延迟—质量 Pareto）；核对官方代码仓库与项目页可访问；未训练、未运行模型。
 
-## 原文摘要
+## 30 秒看懂
 
-> Current virtual staining approaches offer the potential for time- and cost-efficient biomarker quantification in cancer diagnostics and prognostics. However, patch-wise inference for gigapixel whole-slide images (WSIs) fails to maintain spatial continuity, yielding artifacts that cause catastrophic mismatches with ground-truth images. Although pathology Vision Foundation Models (VFMs) offer rich representations, their self-attention causes varying global contexts to produce inconsistent embeddings for the same physical region. We formalize and validate this "context contamination" as a sheaf-theoretic problem where these embeddings form a presheaf whose sections disagree on overlaps, so no global section restricts to them. To address this, we propose SheafStain, a new approach that reinterprets VFM features as sheaf-like sections for spatially and biologically coherent virtual staining. Specifically, SheafStain integrates class and patch tokens into a Schrödinger Bridge framework as sheaf-like sections. While the class token anchors biological consistency, patch tokens form a per-position spatial map. An encoder co-pretrained on Hematoxylin & Eosin (H&E) and Immunohistochemistry (IHC) yields cross-stain sections, so a single VFM feature space supervises both input conditioning and output stain alignment. Departing from prior work that evaluates on isolated $256\times256$ patches and either random-crops or resizes the $1024\times1024$ ground truth, we translate at $256\times256$ and evaluate on the stitched $1024\times1024$ outputs across HER2, ER, PR, and Ki-67. SheafStain demonstrates promising results against six prior methods while mitigating patch-boundary stitching artifacts. Code is available at https://github.com/deepnoid-ai/SheafStain.
+**一句话**：SheafStain 把"相邻 patch 拼不上"形式化成层论问题——同一个物理区域，VFM 在两次不同窗口里读出两种 token，重叠区因此永远对不齐。
 
-*来源：[arXiv v2 摘要页](https://arxiv.org/abs/2606.11846v2)，与 NeurIPS poster 页摘要一致；保留源摘要的 TeX 写法。*
+**问题**：WSI 只能逐 patch 生成再拼回整图，重叠区对不上就是接缝、色调漂移、染色质错位；而 H&E–IHC 是弱配对，PSNR / SSIM 反而会奖励"糊成平均色"的解。
 
-## 1. 三分钟摘要与推荐理由
+**瓶颈**：评测尺度是 1024²（16 块、24 条内部边界），不是整张 WSI；α 与各损失权重只在附录；六条基线全是自己重训，数字不能与原文表格直接比。
 
-虚拟染色要解决的问题很具体：一张切片只能染一种色，HER2/ER/PR/Ki-67 想同时看，就得靠算法从 H&E 推 IHC。工程上绕不过两件事：
+**insight**：不一致的根源不在生成器强弱，而在 VFM 的自注意力——同一个物理 token 在不同窗口里聚合了不同上下文。实测 stride 192 时重叠区两次读数平均余弦只有 0.63，把重叠率提到 86% 也只到 0.92。所以条件必须给"逐位置"的空间图而不是压成一个全局向量，一致性必须写进训练损失而不是靠后处理拼接。
 
-- **H&E–IHC 是弱配对**：常规数据里两张图来自相邻切片，不是同一物理平面，像素级对应根本不存在。所以 PSNR/SSIM 这类指标在本文语境里会奖励"糊成平均色"的解。
-- **WSI 是千兆像素，只能切 patch 生成**：每个 256² patch 独立生成、再拼回整图，相邻输出在重叠区对不上 → 接缝、色调漂移、染色质分布错位。临床不接受的正是这个。
+## 3 分钟讲清
 
-作者把第二件事**形式化**了：把图像看成开覆盖 `{U_i}`，VFM 对每块 patch 出的 token 图是局部截面 `s_i`，那么"拼接一致"就是要满足胶合条件 `ρ_{U1→U12}(s1) = ρ_{U2→U12}(s2)`。实测不满足——BCI 4,873 张图上，stride 192 时 overlap 处两次读数的平均余弦只有 **0.63**，把重叠率提到 86% 也只到 0.92，永远到不了 1。原因是 ViT 全局自注意力的 `context contamination`（式 1）：同一个物理 token 在 U1 里聚合了 U1 特有的上下文，在 U2 里聚合了另一套。
+**方法（按顺序）**：
+1. 每步采一个参考块与两个相邻目标块，要求三重交叠 $O_3$ 非空。
+2. 冻结 VFM（默认 Prov-GigaPath）对参考块周围 5–16 个 224² 重叠块做一次前向：patch token 平均得空间条件图 $M\in\mathbb{R}^{d\times16\times16}$，CLS 平均得邻域向量 $c_n$。
+3. $M$ 按 token 网格平移到相邻帧，保证 $O_3$ 上条件完全相同；$c_n$ 共享——这是"不用后处理修 VFM"的关键。
+4. 三次共享权重生成器前向（UNSB 的 Schrödinger Bridge 框架 + ResNet 骨干），每层残差 $h'=h+W_{time}(e_t)+W_{spatial}(M\uparrow)+W_{cls}(c_n)$，后两项零初始化。
+5. 损失：sheaf（重叠区通道均值差 + α·像素差，L1）+ cocycle（三重交叠两两施加）+ Fourier 边缘 + DAB 强度 + 跨染色 VFM 对齐，叠在基线的对抗与重建项上。
+6. 推理：按 256² 窗口、stride 192 铺参考网格，用 FFT 中频能量的高低两端补采参考块，整图一次 VFM 前向给每块取 $(M,c_n)$，逐块生成后 soft-kernel 加权融合。
 
-一句话区别，避免混淆：**这不是"用更强的生成器"，而是"把 VFM 的空间上下文当条件注进去，并显式惩罚相邻输出在重叠区的不一致"。** 生成器换成任意 SB/扩散骨干都成立，VFM 也可换（论文跑了 Prov-GigaPath / UNI v1 / UNI2-h / Virchow2 四种）。
+**作者证据在哪**：Table 3（BCI/HER2：FID 36.36 对 D-VST 87.31 / UNIStainNet 67.63，KID 4.21 对 29.30，TS 0.0146）、Table 2 左的逐项累加（UNSB 227.79 → 加条件 55.25 → +Pixel Sheaf 41.54 → +Cocycle 38.01 → 完整 36.36：一条条件注入拿走 80% 收益）、Table 2 右的下游 HER2 Low/High（AUROC 0.794，最强对手 0.737、UNSB 0.460）、附录 I 的经验验证（0.63 的胶合失败）、附录 K（单图约 18 s，VFM 占 90% 墙钟）。
 
-## 2. 问题及研究位置
+**和上一代的区别**：起点是 UNSB，加一组层论正则——不改采样策略，改"条件里有没有邻域"与"损失里有没有相容性"；与 D-VST 的课程学习 + 频率采样是两条路；与 BigCell 的"速度按位置平均"是同一个拼接问题的两种解法；与 RestorePath 可对照拼接策略。
+
+**讲 PPT 用这张**：Table 2 左的逐项累加（谁贡献最大一目了然）+ 附录 I 的 0.63；下游 AUROC 从 0.524 到 0.766 那格留着收尾。
+
+## 1. 问题及研究位置
 
 - **三类现有方法各自缺一环**：GAN 路线（pix2pix、CycleGAN、PSPStain、CC-WSI-Net）解决拼接靠专用模块（内容/色彩一致性、中心裁剪），不是通用机制；扩散路线（D-VST）用 DiT + 课程学习解耦色调，靠频率感知采样缓解马赛克；SB 路线（UNSB、PASB）把翻译看成两个分布之间的熵正则随机桥，但**没有把空间重叠的相容性写进目标**。
 - **本文的起点是 UNSB**：因为它天然处理无配对翻译、且两个端点分布都已知（虚拟染色不是"从高斯噪声生成"，起点就是 H&E 分布）。这决定了它的定位不是"又一个扩散模型"，而是"给 UNSB 加一组层论正则"。
@@ -34,7 +43,7 @@
 | CC-WSI-Net | 专设内容/色彩一致性模块、中心裁剪拼图 | 一致性写进训练目标（重叠区像素 + 通道均值 L1）＋推理时补丁选点 |
 | 图上的 sheaf 网络（NSD/SHN/CSNN） | 用可学习 restriction map 缓解过平滑 | 首次把 sheaf 用于图像生成；restriction 在本文里是**位置索引**而非学出来的算子 |
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 训练（每步）:
@@ -68,7 +77,7 @@
 
 **（f）评测口径是本文最值得抄的部分。** 在 256² 上翻译、在拼好的 1024² 上评测（16 块、24 条内部边界），对手方法一律 4×4 行主序拼图。指标分四族：分布级（FID/KID）、全参考（LPIPS/DISTS/SSIM/PSNR）、拼接级（Tiling Score）、病理级（DAB-r、DAB-KL/JSD、mIOD、FOD）。下游还接了一步 HER2 Low/High 分类（BCI 上用 ResNet-50 分类器、在真测试集上评估）。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 **Table 3：1024² 拼接输出的主对比（摘关键列；HER2 在 BCI 与 MIST 都有，ER/PR/Ki-67 仅 MIST）**
 
@@ -116,7 +125,7 @@
 
 **附录 I 的经验验证（值得单读）**：局部性成立（截面由 token 位置决定）；胶合失败（stride 192 平均余弦 0.63，86% 重叠也只 0.92）；H&E 与 IHC 上的缺口幅度差 <0.02，说明该现象与染色无关，是编码器的结构性问题。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. **代码可用性（2026-10-25 核对）**：官方仓库 `deepnoid-ai/SheafStain` 存在，项目页 `doodleima.github.io/SheafStain-Patho` 可访问；正文与 arXiv 都给了链接。这是本批 NeurIPS 2026 虚拟染色工作里唯一有实码可查的。
 2. **指标口径要带着读**：弱配对下 PSNR/SSIM 会奖励"糊成平均"的解（附录 J 明说 pix2pix 在多数格子里 PSNR/SSIM 最高但 DAB-r 排第六）。引用本文结论时用 FID/KID/TS/DAB-r，别用 PSNR。
@@ -126,11 +135,11 @@
 6. **可复现缺口**：α（mean 与 pixel 项的平衡）、各损失权重与课程表只在附录 E 给出，正文未列；推理时 FFT 高低能量端补采的块数与阈值在附录 G。这些是重实现时最先踩的坑。
 7. **首个可做的实验**：在一对相邻 256² patch 上验证 context contamination——同一物理位置在两次不同窗口的 VFM 前向里余弦是否显著小于 1。不需要训练，一小时能做完，结论直接决定你要不要采用本文的条件注入方案。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 Fig. 1（三种拼接失败长什么样）→ §3.2（层论形式化 + 0.63 那个数字）→ 附录 I（经验验证：局部性成立、胶合失败）→ §3.4（M 与 c_n 怎么来、怎么注入）→ §3.5 式(4)(5)（两个损失）→ Table 2 左（谁贡献最大）→ Table 3 → Table 2 右（下游分类）→ 附录 J（指标口径）→ 附录 K（延迟—质量 Pareto）→ Limitations。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [STREAM](65-stream.md)：同为 NeurIPS 2026 病理生成工作，STREAM 生成基础模型特征，本文做跨染色翻译；对照看"生成什么"。
 - [BigCell](64-bigcell.md)：千兆像素生成的另一条路（自适应滑窗 + 共享画布），与本文"重叠区相容性"是同一个拼接问题的两种解法。
@@ -138,12 +147,16 @@ Fig. 1（三种拼接失败长什么样）→ §3.2（层论形式化 + 0.63 那
 - [RestorePath](49-restorepath.md)：同样要处理"局部生成拼回大图"，可对照其拼接策略。
 - [PFM 综述](50-pfm-survey.md)：Prov-GigaPath 作为冻结 VFM 在这里的角色是"条件源"，不是分类器。
 
-## 8. 链接
+## 原文摘要
+
+> Current virtual staining approaches offer the potential for time- and cost-efficient biomarker quantification in cancer diagnostics and prognostics. However, patch-wise inference for gigapixel whole-slide images (WSIs) fails to maintain spatial continuity, yielding artifacts that cause catastrophic mismatches with ground-truth images. Although pathology Vision Foundation Models (VFMs) offer rich representations, their self-attention causes varying global contexts to produce inconsistent embeddings for the same physical region. We formalize and validate this "context contamination" as a sheaf-theoretic problem where these embeddings form a presheaf whose sections disagree on overlaps, so no global section restricts to them. To address this, we propose SheafStain, a new approach that reinterprets VFM features as sheaf-like sections for spatially and biologically coherent virtual staining. Specifically, SheafStain integrates class and patch tokens into a Schrödinger Bridge framework as sheaf-like sections. While the class token anchors biological consistency, patch tokens form a per-position spatial map. An encoder co-pretrained on Hematoxylin & Eosin (H&E) and Immunohistochemistry (IHC) yields cross-stain sections, so a single VFM feature space supervises both input conditioning and output stain alignment. Departing from prior work that evaluates on isolated $256\times256$ patches and either random-crops or resizes the $1024\times1024$ ground truth, we translate at $256\times256$ and evaluate on the stitched $1024\times1024$ outputs across HER2, ER, PR, and Ki-67. SheafStain demonstrates promising results against six prior methods while mitigating patch-boundary stitching artifacts. Code is available at https://github.com/deepnoid-ai/SheafStain.
+
+*来源：[arXiv v2 摘要页](https://arxiv.org/abs/2606.11846v2)，与 NeurIPS poster 页摘要一致；保留源摘要的 TeX 写法。*
+
+## 7. 链接
 
 - [NeurIPS 2026 官方 poster 页](https://neurips.cc/virtual/2026/poster/155872)
 - [arXiv abs（v2）](https://arxiv.org/abs/2606.11846v2) · [HTML 全文](https://arxiv.org/html/2606.11846v2)
 - [官方代码](https://github.com/deepnoid-ai/SheafStain)
 - [项目页](https://doodleima.github.io/SheafStain-Patho/)
 - [OpenReview forum](https://openreview.net/forum?id=2DhyeIm0FC)
-
-

@@ -4,32 +4,33 @@
 **定位**：文本条件的小图（256×256）生成与合成数据增广，不是修复、不是大图/WSI 生成。它是 [LRDM](56-lrdm.md) 等后续工作直接沿用的 VAE 配置来源。  
 **精读核验**：2026-10-22 核对 CVF 正式版 PDF 全文（§1–6、Table 1–6、§5 消融）与官方仓库 README（数据、权重、训练/采样入口）；未下载权重、未训练、未复算 FID。
 
-## 原文摘要
+## 30 秒看懂
 
-> To achieve high-quality results, diffusion models must be trained on large datasets. This can be notably prohibitive for models in specialized domains, such as computational pathology. Conditioning on labeled data is known to help in data-efficient model training. Therefore, histopathology reports, which are rich in valuable clinical information, are an ideal choice as guidance for a histopathology generative model. In this paper, we introduce PathLDM, the first text-conditioned Latent Diffusion Model tailored for generating high-quality histopathology images. Leveraging the rich contextual information provided by pathology text reports, our approach fuses image and textual data to enhance the generation process. By utilizing GPT's capabilities to distill and summarize complex text reports, we establish an effective conditioning mechanism. Through strategic conditioning and necessary architectural enhancements, we achieved a SoTA FID score of 7.64 for text-to-image generation on the TCGA-BRCA dataset, significantly outperforming the closest text-conditioned competitor with FID 30.1.
+**一句话**：PathLDM 把病理报告蒸馏成约 150 个 token 当条件，并把 VAE 下采样从 8 改成 4——FID 从 48.14 一路降到 7.64。
 
-*来源：[CVF Open Access 正式版 PDF](https://openaccess.thecvf.com/content/WACV2024/papers/Yellapragada_PathLDM_Text_Conditioned_Latent_Diffusion_Model_for_Histopathology_WACV_2024_paper.pdf)，摘要完整照录。*
+**问题**：扩散要大数据才出好结果，病理拿不到；但每个病例都有 WSI 和一份报告，缺的是细粒度标签。
 
-**摘要中文解释**：扩散模型要大量数据才出好结果，病理这种专门领域拿不到那么多。已知“有标签的条件”能让训练更省数据，而病理报告正好是信息密集的现成文本，于是作者做了第一个文本条件的病理潜扩散模型：用 GPT 把冗长的报告蒸馏成摘要，作为条件融合进生成过程；再配合若干架构改动，在 TCGA-BRCA 上做出 FID 7.64，明显好于最接近的文本条件对手（FID 30.1）。
+**瓶颈**：条件是"整张切片一份摘要"，与某个 patch 的语义对齐是粗粒度的；而且 7.64 是在训练集提示上算的，held-out 报告的泛化没测（作者 §6 自陈）。正文的数据划分还有 977+199≠1,136 的内部矛盾。
 
-## 1. 三分钟摘要与推荐理由
+**insight**：条件的选型比架构更值钱。类别标签只有 4 类，报告文本带亚型、分级、受体状态；同时 VAE 下采样因子决定潜空间里还剩不剩细胞结构——两处一起改，才有那张 7.64。
 
-**具体问题**：你有一批 TCGA 乳腺癌 WSI 和对应的病理报告，但没有细粒度标签。想让扩散模型生成“符合这份报告描述的组织”，怎么办？
+## 3 分钟讲清
 
-**输入/输出**：输入 = 一段由报告摘要 + patch 级肿瘤/TIL 等级拼成的短句，例如 `"high tumor; low til; <GPT summary>"`；输出 = 一张 256×256、10× 放大倍率的 H&E patch。注意条件里的“报告”是**整张切片一份**，不是每个 patch 一条描述——这是理解这篇局限的关键。
+**方法（按顺序）**：
+1. 报告 OCR 后用 GPT-3.5 两次调用：先列要点，再写 75 词摘要（max_tokens=154），5% 由病理医生抽查。
+2. WSI 用 DSMIL 切 256² / 10× patch；wsinfer 判每个 patch 的 Tumor / TIL 概率，阈值 0.5 离散成 Low / High。
+3. caption 拼成一句 `"high tumor; low til; <summary>"`，patch 级标签本身来自分类器预测而非人工标注。
+4. PLIP 文本编码（77 token 窗口切两段编码再拼接 + 循环位置编码），经 cross-attention 注入 U-Net。
+5. VAE 换 f=4（latent 64×64×3），U-Net 用 ImageNet 类别条件权重初始化，只训 U-Net。
+6. 推理 DDIM 50 步、CFG 1.75（0.1–3 扫描后取）。
 
-**核心机制（一句话）**：把报告压成 ~150 token 的摘要，用 PLIP（病理版 CLIP）编码成向量，通过 cross-attention 注入 U-Net；再把 VAE 的下采样从 8 改成 4、U-Net 用 ImageNet 权重初始化，让潜空间里的细胞结构不被压没。
+**作者证据在哪**：Table 1 的逐项消融最能说明贡献分配——f8/从零/类别 48.14 → f4 39.72 → ImageNet 初始化 29.45 → 换成报告文本条件 10.64 → 换 PLIP 7.64；Table 2 VAE 重建（f=4 的 SSIM 0.961 / MSE 11.503）；Table 5 CAS（真实 90.31、纯合成 83.32、混合 90.74）；Table 6 把摘要换成别的 WSI 的随机摘要后 FID 22.16——这是"条件真的被用上了"最硬的证据。
 
-**四个可迁移的决策**：
+**和上一代的区别**：LRDM 直接沿用它的 4× VAE，把条件从文本换成 SSL 嵌入；ZoomLDM、BigCell 是"文本 → 倍率 → 密集网格"的条件演化；DiffInfinite 用的是分割掩码当条件。
 
-1. **条件选“文本报告”而不是类别标签**：类别只有 4 类（肿瘤×TIL），文本能携带亚型、分级、受体状态等语义。
-2. **两级提示工程**：先让 GPT 罗列要点，再让它写 75 词摘要（chain-of-thought），比一次性摘要更稳；5% 摘要经病理医生抽查。
-3. **VAE 下采样因子是生成质量的一等公民**：f=8（32×32×4）→ f=4（64×64×3），FID 48.14→39.72，重建 SSIM 0.874→0.961。
-4. **编码器要换域内模型**：OpenAI CLIP → PLIP，FID 10.64→7.64，纯靠换文本编码器。
+**讲 PPT 用这张**：Table 1 逐项消融 + Table 6 的随机摘要对照；一张说明每步改动的量级，一张证明不是编码器容量在起作用。
 
-**必须保留的怀疑**：FID 7.64 是在**训练集提示**上算的（§6 明确说没用 held-out 报告）；FID 对病理本就争议大；而且这套“每张 WSI 一个摘要”的条件，理论上允许多个 patch 共享同一句描述，语义对齐是粗粒度的。
-
-## 2. 问题及研究位置
+## 1. 问题及研究位置
 
 **任务定义**：条件图像生成 + 合成数据增广。评价三件事：生成分布像不像（FID）、只拿合成数据能不能训出可用分类器（CAS）、加进真实数据有没有增益。
 
@@ -52,7 +53,7 @@ PathLDM 的位置：**第一个把文本报告当条件**的病理 LDM，并顺�
 - **FID**：用 Inception 特征比较真实/生成分布的距离，越低越好，但对医学图像的可解释性有限。
 - **CAS（Classification Accuracy Score）**：只用合成数据训分类器，再到真实验证集上测准确率——比 FID 更贴近“合成数据有没有用”。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 TCGA-BRCA WSI（1,136 张） + 病理报告 PDF
@@ -79,7 +80,7 @@ caption → PLIP 文本编码器（77 token 窗口，两段拼接 + 循环位置
 
 **条件的融合方式（§3.2.2）**：整片级信息（报告摘要）+ patch 级信息（肿瘤/TIL 等级）拼进同一句话。这是全文最巧妙也最脆弱的一步：patch 级标签其实来自另一个分类器的预测，不是人工标注，误差会直接进入条件。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 **数据（§4.1）**：正文写 TCGA-BRCA 共 1,136 张 WSI，同时写 977 训练 / 199 测试；但 977+199=1,176，与总数不相符。这里保留原文差异，不擅自把训练数改成 937；复现需核对作者的 slide 清单。图块为 256×256、10×，训练共 3.2M patch；报告平均约 2,800 字符（≈700 BPE token）。
 
@@ -128,7 +129,7 @@ caption → PLIP 文本编码器（77 token 窗口，两段拼接 + 循环位置
 
 **一处文本不一致**：结论段写 "FID score of 7.76"，与摘要/Table 1/Table 4 的 7.64 冲突，按表格记 7.64。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. **官方仓库结构已核**：`configs/latent-diffusion/text_cond/plip_imagenet_finetune.yaml` 训练配置、`ldm/data/text_cond/tumor_til_in_text.py` 数据集类、`main.py` 训练入口、`example_sampling.ipynb` 采样入口、`environment.yaml` conda 环境；代码基于 CompVis/latent-diffusion。
 2. **权重可得**：README 列出三个条件的预训练权重（类别嵌入 FID 29.45 / OpenAI CLIP 10.64 / PLIP 7.64），均为 Google Drive 链接；**VAE 不在仓库里**，要按原 LDM 仓库说明另下。
@@ -138,11 +139,11 @@ caption → PLIP 文本编码器（77 token 窗口，两段拼接 + 循环位置
 6. **第二个实验（更关键）**：用 **held-out 报告**生成图像，让人工判断图文一致性；这正好补上论文 §6 自认的缺口。评价可用报告里的实体（分级、受体状态）做弱监督一致性打分，而不是只看 FID。
 7. **不要声称**：FID 7.64 不代表"生成图与真实图不可区分"；83.32% CAS 只在肿瘤二分类上成立；模型不会"读懂"报告里的全部临床信息，条件只有约 154 token。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 Fig. 1（GPT 两次调用的提示词，最直观）→ §3.1 摘要生成与 5% 医生校验 → §3.2.1 VAE 下采样因子的论证 → §3.2.2 条件拼接 → §3.2.3 77 token 循环位置编码 → Table 1 逐项消融（重点看 29.45→10.64 这一步）→ Table 2 VAE 重建 → Table 4 横向对比（注意可比性）→ Table 6 随机摘要对照 → §6 局限。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [LRDM](56-lrdm.md)：直接沿用 PathLDM 的 4× 下采样 VAE 配置，把条件从文本换成了病理基础模型特征；读 LRDM 前先理解这篇的 VAE 论证。
 - [ZoomLDM](58-zoomldm.md)、[BigCell](64-bigcell.md)：同一 lab 路线向大图/多倍率扩展，可看"条件从文本→倍率→密集网格"的演化。
@@ -150,7 +151,15 @@ Fig. 1（GPT 两次调用的提示词，最直观）→ §3.1 摘要生成与 5%
 - [CytoSyn](66-cytosyn.md)：把评价从 FID 换成病理专用 FD，可用来检验 PathLDM 的 FID 7.64 在更合理指标下是否仍然领先。
 - [CHIS](61-chis.md)：都用冻结骨干 + 采样期控制，但 CHIS 不改权重、PathLDM 只训 U-Net，可对比"训练什么"的成本差异。
 
-## 8. 链接
+## 原文摘要
+
+> To achieve high-quality results, diffusion models must be trained on large datasets. This can be notably prohibitive for models in specialized domains, such as computational pathology. Conditioning on labeled data is known to help in data-efficient model training. Therefore, histopathology reports, which are rich in valuable clinical information, are an ideal choice as guidance for a histopathology generative model. In this paper, we introduce PathLDM, the first text-conditioned Latent Diffusion Model tailored for generating high-quality histopathology images. Leveraging the rich contextual information provided by pathology text reports, our approach fuses image and textual data to enhance the generation process. By utilizing GPT's capabilities to distill and summarize complex text reports, we establish an effective conditioning mechanism. Through strategic conditioning and necessary architectural enhancements, we achieved a SoTA FID score of 7.64 for text-to-image generation on the TCGA-BRCA dataset, significantly outperforming the closest text-conditioned competitor with FID 30.1.
+
+*来源：[CVF Open Access 正式版 PDF](https://openaccess.thecvf.com/content/WACV2024/papers/Yellapragada_PathLDM_Text_Conditioned_Latent_Diffusion_Model_for_Histopathology_WACV_2024_paper.pdf)，摘要完整照录。*
+
+**摘要中文解释**：扩散模型要大量数据才出好结果，病理这种专门领域拿不到那么多。已知“有标签的条件”能让训练更省数据，而病理报告正好是信息密集的现成文本，于是作者做了第一个文本条件的病理潜扩散模型：用 GPT 把冗长的报告蒸馏成摘要，作为条件融合进生成过程；再配合若干架构改动，在 TCGA-BRCA 上做出 FID 7.64，明显好于最接近的文本条件对手（FID 30.1）。
+
+## 7. 链接
 
 - [CVF 正式版 PDF（WACV 2024）](https://openaccess.thecvf.com/content/WACV2024/papers/Yellapragada_PathLDM_Text_Conditioned_Latent_Diffusion_Model_for_Histopathology_WACV_2024_paper.pdf)
 - [CVF 论文页](https://openaccess.thecvf.com/content/WACV2024/html/Yellapragada_PathLDM_Text_Conditioned_Latent_Diffusion_Model_for_Histopathology_WACV_2024_paper.html)

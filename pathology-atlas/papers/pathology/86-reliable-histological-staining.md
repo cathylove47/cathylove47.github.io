@@ -4,34 +4,39 @@
 **定位**：benchmark + 资源型研究。任务是 H&E → Sirius Red（小鼠肝）的**无配对**图像翻译；它不提出新的生成架构，而是把六种已有架构在"容量 × 数据量"上做全因子扫描，并第一次系统比较无配对染色翻译的认知不确定性。属辅助参考，不是方法首选。
 **精读核验**：2026-10-22 核对 BMVC 官方接受列表、arXiv 摘要、正文 §1–8、Supplementary S1–S6，Table 1–2、S1–S8，Figure 2–4；核验公开仓库 README 与文件存在性（`pyproject.toml`、`i2i_stain_zoo/train.py`、`i2i_stain_zoo/base_models.py`）；未下载数据/权重，未训练。
 
-## 原文摘要
+## 30 秒看懂
 
-> Liver fibrosis, the principal predictor of long-term outcome in chronic liver disease, is staged from histological estimates of collagen content. Sirius Red (SR) provides the standard quantitative readout (collagen proportionate area, CPA) but is not acquired at every clinical centre and consumes tissue, time, and reagent cost beyond the routine Hematoxylin and eosin (H&E) stain. AI-based virtual staining can generate SR directly from H&E, yet systematic benchmarks of unsupervised models are scarce and their predictive uncertainty has not been quantified, even though visually plausible outputs may not faithfully reproduce the underlying tissue structure. We therefore benchmark six unsupervised image-to-image architectures (GAN-based and diffusion-based) across 54 scaling configurations on a newly released paired H&E to SR mouse liver dataset, the first open resource for this translation task. Each configuration is evaluated jointly on perceptual, distributional, and task-specific axes plus a blinded expert reader study; the best per family is then retrained as a deep ensemble, the first systematic comparison of epistemic uncertainty across unsupervised stain-to-stain architectures. Across families, perceptual quality, task-specific error, and ensemble agreement measure largely independent axes of model fitness: GAN-based methods cluster tightly on perceptual metrics yet differ substantially on task error and ensemble agreement, while the diffusion-based method (CycleDiffusion) is qualitatively different on all three. No single metric captures these differences, so reliable virtual staining requires reporting and selecting on all three jointly. The dataset, tiling pipeline, models, and evaluation code are released publicly.
+**一句话**：六种无配对染色架构 × 3 种容量 × 3 种数据比例 = 54 组配置，第一次系统比较病理无配对翻译的认知不确定性。
 
-*来源：[arXiv v1 摘要](https://arxiv.org/abs/2608.24626v1)。*
+**问题**：肝纤维化要靠 Sirius Red 量胶原面积，但很多中心只有 H&E；虚拟染色能补——可两张切片来自相邻而非连续切面，没有像素级配对真值，视觉可信不等于生物量正确。
 
-## 1. 三分钟摘要与推荐理由
+**瓶颈**：54 组各 750k 步、再加 6 个家族 × 10 个种子的集成重训；测试集只有 5 个配对样本，CPA MAE 的标准差常与均值同量级，相邻配置的排名差异不该当真。
 
-具体场景：肝纤维化的分级靠胶原含量。临床金标准染色是 Sirius Red（天狼星红，SR），它和胶原结合专一，能算出 CPA（collagen proportionate area，胶原面积占组织面积的比例，排除背景）。但很多中心只有常规 H&E，补做一张 SR 要再切一片组织、再耗试剂和时间。虚拟染色就是：**只拿 H&E，直接"生成"对应的 SR**，然后在这张生成的 SR 上量 CPA。
+**insight**：感知指标会饱和，任务误差不会。37 个稳定 GAN 配置的 Patch-SSIM 全挤在 0.298–0.349，CPA MAE 却横跨 0.008–0.171；而集成分歧只能做软性分诊——图块内几乎无空间校准，CycleDiffusion 的不确定性与误差完全不相关。
 
-难点在于两张切片不是同一张：论文的数据来自同一组织块的**相邻但非连续**切片，H&E 和 SR 之间存在组织形变，所以**没有像素级配对真值**。这决定了整篇论文的方法论——不能算像素误差，只能算 (1) 生物量层面的误差（CPA）、(2) 分布/感知层指标、(3) 跨随机种子的分歧。
+## 3 分钟讲清
 
-三件可带走的事：
+**方法（按顺序）**：
+1. 70 张 WSI（35 只小鼠，H&E 与 SR 取自同一组织块的相邻切面，因此天然无配对）；512² 无重叠切块后双线性降到 256²。
+2. 按动物划分：30 只训练（约 20 万 tile / 域），5 只测试；25% / 50% 是严格子集。
+3. 六种架构（CycleGAN / UNIT / MUNIT / DCLGAN / UVCGAN / CycleDiffusion）× 三档容量（约 10M / 50M / 100M）× 三档数据比例，各训 750k 步、batch 1。
+4. 主指标 CPA MAE：把冻结的 nnU-Net v2 胶原分割模型同样地用在真 SR 与虚拟 SR 上，量胶原面积占比再算绝对误差——绕开像素对齐问题。
+5. 副轴三条：Patch-SSIM / LPIPS / FID，三人盲评，以及每家族最佳配置的 10 种子深度集成分歧（式 2）与 cycle 误差校准。
 
-1. **感知指标会饱和，任务误差不会。** 37 个稳定 GAN 配置的 Patch-SSIM 都挤在 0.298–0.349，但 CPA MAE 横跨 0.008–0.171（§5.2、§7）。CycleGAN 的中号与大号在 100% 数据下 Patch-SSIM 几乎相同（0.334 vs 0.342），CPA MAE 却差一个数量级（0.008 vs 0.085）。
-2. **扩大模型不一定更好，而且可能崩。** DCLGAN 大模型在 25%/50% 数据下直接崩（FID 327–363，Patch-SSIM 0.126–0.143）；UVCGAN 的中/大模型在所有数据比例下都退化。
-3. **集成不确定性只提供弱信号，且分家族不同。** GAN 家族的跨图块 Pearson 相关 0.50–0.66，但图块内几乎无空间校准（Spearman 0.058–0.165）；CycleDiffusion 的不确定性与误差完全不相关（Pearson −0.025，ECE 0.214）。
+**作者证据在哪**：Table 1（每家族最佳配置：CycleGAN 的 CPA MAE 0.008、UNIT 的 FID 195.2、DCLGAN 的 Patch-SSIM 0.339——**没有一族四项全胜**）、Table 2（54 组上的 Spearman：感知两项 0.82，但它们与 CPA MAE 只有 0.63 / 0.64，FID 与 CPA 只有 0.55）、§5.2 崩塌案例（DCLGAN-L 在 25%/50% 数据 FID 327–363）、Table S7（CycleDiffusion 的 Pearson −0.025、ECE 0.214）。
 
-为什么值得读：它是目前少见的把"模型选型"当成实验设计问题来做的病理生成研究，给出了 54 组配置的公开对照与一套可复用的三轴评估协议。
+**和上一代的区别**：它不提出新架构，是基准与协议。对 HistDiT、SuperDiff 这类方法论文，它回答的是"该用什么尺子"；与 HESCAPE 的基准设计可对照。全部结论来自单一小鼠 BDL 模型，作者明确不外推到人 NASH 或跨中心。
 
-## 2. 问题及研究位置
+**讲 PPT 用这张**：Table 2 的指标间相关性 + DCLGAN-L 的崩塌行——一张说明 FID 与任务误差不是一回事，一张说明"加大模型"会反向。
+
+## 1. 问题及研究位置
 
 - **任务定义**：无配对图像到图像翻译（unpaired I2I）。训练集是两组互不对应的图像集合（一批 H&E、一批 SR），没有成对样本；监督方法需要相邻切片的像素级配准，成本高且受组织形变影响（§1）。
 - **为什么是肝**：纤维化分期是慢性肝病长期结局的主预测因子；SR 的 CPA 比 Masson 三色更贴合血清纤维化标志物（§1 引 Huang et al. 2013）。
 - **已有基准的缺口**：(a) 以往比较几乎集中在 H&E→IHC 或非肝组织；(b) 已有基准固定单一模型规模和数据预算，没回答"容量和数据量如何共同影响质量"；(c) 无配对场景下**从未系统量化**认知不确定性（§1、§2）。
 - **与最近邻工作的区别**：UGAC 把不确定性写进损失（MRI 模态翻译，广义高斯似然），本文是训练后**用集成分歧事后测量**；监督虚拟细胞染色的集成工作（Imboden et al. 2023）有配对真值可算误差，本文没有（§2）。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 70 张 WSI（35 只小鼠，H&E 与 SR 各 35 张；同块相邻切片，天然无配对）
@@ -61,7 +66,7 @@
 3. **专家盲评**：3 位读者（2 位外部肝病专家 + 1 位有组织学经验的作者），任务一判 45 张 SR 图块真/假（15 真 + 15 最佳配置 + 15 最差配置，比例不告知）；任务二给 30 组"同一 H&E + A/B 两张生成 SR"，按四点量表评胶原分布是否生物学合理。
 4. **认知不确定性**：每家族选 CPA MAE 最低的 100% 数据配置，重训 K=10 个不同种子，逐像素算跨成员方差并按通道求和（式 2、S10–S11），图块级取组织区均值 σ̄；再与 **cycle 重建误差**（前向翻译再逆向还原的差，式 S12）做校准——注意这只是误差**代理**，不是真值误差。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 **每家族最佳配置（Table 1，100% 数据，按 CPA MAE 选）**
 
@@ -102,7 +107,7 @@
 - 图块内空间校准：全部很弱，Spearman 0.058–0.165。作者直接下结论：**像素级不确定性不能当质量门**；跨图块也只能做软性分诊。
 - 所有家族可靠性曲线都在对角线下方（集成给的不确定性高于归一化 cycle 误差），作者解释为"所有模型都在最小化循环损失，误差代理被压缩"。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. **代码与资源声明**：结论段给出 I2I-Stain-Zoo（`https://github.com/HoehmeLab/I2I-Stain-Zoo`）。本次核验：仓库 README 可读，明确写 "BMVC 2026"、六架构统一接口、`i2i-train`/`i2i-inference` 命令、三种评估轴；`pyproject.toml`、`i2i_stain_zoo/train.py`、`i2i_stain_zoo/base_models.py` 三个文件返回 200（存在）。**未**克隆代码、未读训练脚本细节、未跑任何命令。
 2. **数据**：README 与 S1 称 70 张 WSI、tiling 管线、切分与模型权重一并发布（CC BY 4.0，受原研究数据共享条款约束），下载入口指向 `hoehmecloud.izbi.uni-leipzig.de` 的分享链接。该链接在本次核验中无法建立连接（curl 返回 000），**可下载性未证实**。
@@ -113,11 +118,11 @@
 7. **首个可做的实验**：不必复现 54 组。先复现 CycleGAN-M @100%（Table 1 最优）与 DCLGAN-L @25%（崩塌案例），验证 (a) 数据管线与 CPA 计算是否对得上，(b) 崩塌是否可重现。这两点决定后续所有结论是否可信。
 8. **领域外推**：全部结论来自单一小鼠 BDL 模型、单一实验室、单一组织。作者明确不主张迁移到人 NASH/NAFLD 或跨中心（§7 Limitations）。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 §1 任务动机 → §3 数据与"为什么无配对"→ §4 六个家族各自的机制 → §5.1 四条评估轴（尤其 CPA MAE 怎么算）→ Table 2（指标间相关性）→ §5.2 崩塌案例 → §6 集成与校准（式 2、S5.2 的误差代理）→ Table S7 → §7 Limitations。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [HistDiT](62-histdit.md)：同样是虚拟染色（H&E→IHC），但用结构条件 DiT 做方法创新；本文可作为它的评估协议参照。
 - [CHIS](61-chis.md)：可控病理图像合成；对读能看出"生成质量"在不同任务里该用什么尺子量。
@@ -125,7 +130,13 @@
 - [HESCAPE](17-hescape.md)：跨模态基准研究；方法论上可对照它如何设计切分与公平比较。
 - [Two-Stage Residual-Guided Diffusion](59-residual-guided-diffusion.md)：病理图像复原的两阶段扩散；如果要做"虚拟染色 + 复原"的组合，这里是另一半拼图。
 
-## 8. 链接
+## 原文摘要
+
+> Liver fibrosis, the principal predictor of long-term outcome in chronic liver disease, is staged from histological estimates of collagen content. Sirius Red (SR) provides the standard quantitative readout (collagen proportionate area, CPA) but is not acquired at every clinical centre and consumes tissue, time, and reagent cost beyond the routine Hematoxylin and eosin (H&E) stain. AI-based virtual staining can generate SR directly from H&E, yet systematic benchmarks of unsupervised models are scarce and their predictive uncertainty has not been quantified, even though visually plausible outputs may not faithfully reproduce the underlying tissue structure. We therefore benchmark six unsupervised image-to-image architectures (GAN-based and diffusion-based) across 54 scaling configurations on a newly released paired H&E to SR mouse liver dataset, the first open resource for this translation task. Each configuration is evaluated jointly on perceptual, distributional, and task-specific axes plus a blinded expert reader study; the best per family is then retrained as a deep ensemble, the first systematic comparison of epistemic uncertainty across unsupervised stain-to-stain architectures. Across families, perceptual quality, task-specific error, and ensemble agreement measure largely independent axes of model fitness: GAN-based methods cluster tightly on perceptual metrics yet differ substantially on task error and ensemble agreement, while the diffusion-based method (CycleDiffusion) is qualitatively different on all three. No single metric captures these differences, so reliable virtual staining requires reporting and selecting on all three jointly. The dataset, tiling pipeline, models, and evaluation code are released publicly.
+
+*来源：[arXiv v1 摘要](https://arxiv.org/abs/2608.24626v1)。*
+
+## 7. 链接
 
 - [BMVC 2026 官方 accepted papers 列表](https://bmvc2026.bmva.org/programme/accepted_papers)
 - [题录与完整摘要](https://arxiv.org/abs/2608.24626)

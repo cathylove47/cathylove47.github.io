@@ -4,26 +4,32 @@
 **定位**：WSI 质控中的**伪影检测**，输出像素级伪影热图/掩码；不修改图像，不生成新组织。  
 **精读核验**：2026-10-22 核对 arXiv v1 全文（§1–4、Table 1、Fig. 1–4）、IEEE 题录与 OpenAlex 记录；IEEE Xplore 正文被反爬拦截，本文数值均取自 arXiv v1，正式版可能有措辞/排版差异；未运行模型、未下载权重。
 
-## 原文摘要
+## 30 秒看懂
 
-> Digital pathology plays a vital role across modern medicine, offering critical insights for disease diagnosis, prognosis, and treatment. However, histopathology images often contain artifacts introduced during slide preparation and digitization. Detecting and excluding them is essential to ensure reliable downstream analysis. Traditional supervised models typically require large annotated datasets, which is resource-intensive and not generalizable to novel artifact types. To address this, we propose DiffusionQC, which detects artifacts as outliers among clean images using a diffusion model. It requires only a set of clean images for training rather than pixel-level artifact annotations and predefined artifact types. Furthermore, we introduce a contrastive learning module to explicitly enlarge the distribution separation between artifact and clean images, yielding an enhanced version of our method. Empirical results demonstrate superior performance to state-of-the-art and offer cross-stain generalization capacity, with significantly less data and annotations.
+**一句话**：DiffusionQC 只学干净 patch 的噪声预测误差，把伪影当分布外样本，输出可直接当修复掩码用的像素级热图。
 
-*来源：[arXiv v1 摘要页](https://arxiv.org/abs/2601.12233)，完整原文；正式版在 IEEE Xplore（同上 DOI），本次未取到可读全文。*
+**问题**：监督分割要大量像素级伪影标注，还只认识预定义的那几类伪影；换中心、换染色就得重标。
 
-摘要说的是：传统监督模型要大量像素级标注，而且只认识预定义伪影类型；DiffusionQC 只用“干净图像”训练一个扩散模型，把伪影视为偏离干净分布的离群样本；再加一个对比学习模块把伪影和干净图像的潜变量推开，得到增强版。训练不需要像素级伪影标注，也不需要事先定义伪影类别。
+**瓶颈**：固定 $t^*=800$ 是经验设定，论文没给选择曲线；per-slide Otsu 加 $[v_{min},v_{max}]$ 裁剪本身就是性能的一部分；气泡这类低对比伪影直接失效。
 
-## 1. 三分钟摘要与推荐理由
+**insight**：训练只需要"这块是干净的"这一粗标注。推理时在同一噪声级比较"模型预测的噪声"与"实际加入的噪声"，误差大的位置就是不像正常组织的位置——检测因此变成一类分类，而且误差图天然是 1/8 分辨率的定位信号。
 
-设想一张 WSI 里有一块折叠组织。折叠处的纹理和颜色都不属于“正常组织”的统计规律，但你又不想为每一种伪影都标一遍像素。DiffusionQC 的做法是：先让模型只看干净 patch，学会“正常组织加噪后应该怎样被去噪”；推理时给一张可疑 patch 加噪，再看模型预测的噪声和真实加入的噪声差多少。差得越大，这块越不像正常组织。
+## 3 分钟讲清
 
-- **输入**：一张 1024×1024、10× 的 H&E patch（推理时滑窗遍历 WSI）。
-- **输出**：与 patch 对应的二维误差热图，经阈值化后成为伪影掩码。
-- **训练输入**：只有干净 patch；增强版额外给 400 张含伪影 patch 但不给逐像素标签。
-- **不算什么**：它不修复伪影，也不判断伪影类型；输出的是“这里不正常”的信号。
+**方法（按顺序）**：
+1. 干净 patch 经冻结 VAE 编码，随机 $t$ 加噪，ViT（LoRA 微调）预测噪声，MSE 训练。
+2. 增强版额外给 400 张含伪影 patch（仍不给逐像素标签），加单层卷积 adaptor 的对比项；注意式 (6) 印成 $\max(0,d^2-m)$，与文字"距离小于 margin 时惩罚"方向相反，复现前必须决定按哪一支。
+3. 推理固定 $t^*=800$ 加噪，逐像素算噪声预测误差，通道平均得 1/8 分辨率误差图。
+4. 高斯平滑后做 per-slide Otsu（先把值裁到 $[v_{min},v_{max}]$），形态学先闭后开得到伪影掩码。
+5. 骨干是 PixCell-1024，VAE 冻结、ViT 走 LoRA。
 
-推荐理由：它把“检测”从监督分割改成了一类分类（one-class）问题，和数据效率直接相关；误差热图又天然可以当作修复掩码的来源。这个“检测器输出掩码→修复器使用掩码”的串联是合理的研究切口，但本文没有验证，属于未测试设想。
+**作者证据在哪**：Table 1（GrandQC 对比 basic / enhanced 的 OOF、记号笔、折叠、气泡、灵敏度、精确率、F1）。两个读法必须先记住：enhanced 在失焦上 0.953 明显好于 GrandQC 0.838，但**气泡从 0.099 掉到 0.026**（GrandQC 0.884）；另外正文对 WSI 数有 14 / 16 / 24 三处互相冲突，不能挑一个当确定的训练规模。全文只报灵敏度/精确率/F1，没有像素级 Dice / IoU / AUROC。
 
-## 2. 问题及研究位置
+**和上一代的区别**：与 Conditioning Noise 同样把噪声预测当检测信号，但那篇研究"条件是否必要"；与 60 的无监督流水线相比只覆盖检测与定位两步；对 ArtiFusion / LatentArtiFusion 而言它是前置工序——"检测器出掩码 → 修复器吃掩码"这条串联还没有任何一篇验证过。
+
+**讲 PPT 用这张**：Table 1 的气泡那一列（0.099 → 0.026 vs GrandQC 0.884）；只报平均值会把这类失败藏起来。
+
+## 1. 问题及研究位置
 
 - **任务边界**：WSI 质控（QC）中的伪影识别。论文明确与“伪影修复”区分：修复需要改像素，检测只决定哪些区域应被排除或送修。
 - **监督设定**：训练只需干净图像；增强版需要少量含伪影图像，但仍不需要像素级标注和类别标签。
@@ -31,7 +37,7 @@
 - **与扩散 OOD 检测的关系**：论文引用 Linmans et al. 2024 的扩散 OOD 检测，但强调自己的场景是异质病理图像中的伪影，而修复类扩散工作默认已知伪影区域。
 - **一个容易误读的点**：它仍需要“哪些 patch 是干净的”这一粗标注来构建训练池；不是完全无标注。论文自己把这点写成 “coarse delineations of artifact-free regions”。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 训练（basic）:
@@ -61,7 +67,7 @@
 
 **后处理的关键**：阈值不是全数据集一个固定值，而是每张 slide 内先把误差值限制到 [v_min, v_max] 再做 Otsu。v_min/v_max 按模型版本和染色模态调，在同一设定内跨 slide 固定。迁移到新扫描仪或染色分布时，应验证这两个界限能否沿用，而不是假定误差分数天然跨域可比。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 **数据**：TCGA 的 50 张 H&E WSI，覆盖乳腺、肺、宫颈、胃；伪影标注（记号笔、折叠、失焦、气泡）来自 AIRAQC。训练集 16 张 WSI，测试 24 张。干净训练 patch 为 63,000 张 1024×1024、10×；增强版另取 400 张含伪影 patch。
 
@@ -86,7 +92,7 @@
 
 **消融**：论文没有单独做“basic vs enhanced”的完整消融表；Table 1 的两行就是全部对比。对比学习模块的增益与 400 张伪影 patch 的贡献混在一起，无法分离。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. **代码**：arXiv 全文与公开搜索均未发现 DiffusionQC 的官方实现；公开搜索可见骨干 PixCell 的仓库与 PixCell-1024 权重入口，但本次未逐项打开核验。没有代码就不能把“可复现”写成既成事实。
 2. **权重与依赖**：骨干是 PixCell-1024（LDM + ViT），Hugging Face 有 PixCell-1024 入口；VAE 冻结，ViT 用 LoRA 微调。PixCell 权重的许可、是否需要授权、以及 LoRA 配置论文未给全，复现前必须逐项核对。
@@ -101,11 +107,11 @@
 - 在增强版中加入伪影类型不可知的难例挖掘，专门针对气泡这类低对比伪影，而不是只加 margin。
 - 报告 per-slide AUROC 和像素级 Dice，检验“检测分数高”是否等于“定位准”。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 Fig. 2 框架图 → §2.1 式 (5) 的噪声 MSE → §2.1 推理的 t*=800 与逐像素误差 → §2.2 对比损失与 adaptor → §3 数据与后处理 → Table 1 的气泡失败项 → §4 局限。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [Conditioning Noise](67-conditioning-noise.md)：同样把扩散噪声预测当检测信号，但那篇研究的是“条件是否必要”，可作为方法学对照。
 - [无监督检测—定位—修复流水线](60-unsupervised-artifact-restoration.md)：把检测、定位、修复串成一条流程；DiffusionQC 只覆盖前两步。
@@ -113,7 +119,15 @@ Fig. 2 框架图 → §2.1 式 (5) 的噪声 MSE → §2.1 推理的 t*=800 与�
 - [LatentArtiFusion](72-latentartifusion.md)：把修复搬进潜空间；与 DiffusionQC 组合时要注意两者都依赖 VAE 的 8× 分辨率。
 - [RestorePath](49-restorepath.md)：百万像素级修复对掩码质量更敏感，检测器的定位误差会被放大。
 
-## 8. 链接
+## 原文摘要
+
+> Digital pathology plays a vital role across modern medicine, offering critical insights for disease diagnosis, prognosis, and treatment. However, histopathology images often contain artifacts introduced during slide preparation and digitization. Detecting and excluding them is essential to ensure reliable downstream analysis. Traditional supervised models typically require large annotated datasets, which is resource-intensive and not generalizable to novel artifact types. To address this, we propose DiffusionQC, which detects artifacts as outliers among clean images using a diffusion model. It requires only a set of clean images for training rather than pixel-level artifact annotations and predefined artifact types. Furthermore, we introduce a contrastive learning module to explicitly enlarge the distribution separation between artifact and clean images, yielding an enhanced version of our method. Empirical results demonstrate superior performance to state-of-the-art and offer cross-stain generalization capacity, with significantly less data and annotations.
+
+*来源：[arXiv v1 摘要页](https://arxiv.org/abs/2601.12233)，完整原文；正式版在 IEEE Xplore（同上 DOI），本次未取到可读全文。*
+
+摘要说的是：传统监督模型要大量像素级标注，而且只认识预定义伪影类型；DiffusionQC 只用“干净图像”训练一个扩散模型，把伪影视为偏离干净分布的离群样本；再加一个对比学习模块把伪影和干净图像的潜变量推开，得到增强版。训练不需要像素级伪影标注，也不需要事先定义伪影类别。
+
+## 7. 链接
 
 - [arXiv 摘要与版本](https://arxiv.org/abs/2601.12233)
 - [arXiv v1 全文（方法与 Table 1）](https://arxiv.org/html/2601.12233v1)

@@ -4,27 +4,33 @@
 **定位**：WSI 伪影修复、随机 patch 扩散 inpainting、PFM 条件与下游可靠性  
 **精读核验**：依据 arXiv v1 的摘要、方法与版本记录整理（2026-09-25）；会议出版记录已于 2026-10-23 经 SpringerLink 核验；本地 PDF 为 arXiv v1 投稿排版，非 Springer 正式版；尚未进行复现实验。
 
-## 原文摘要
+## 30 秒看懂
 
-> Although deep learning has advanced Whole Slide Image (WSI) Analysis, tissue artifacts like bubbles and folds often cause silent failures by concealing essential morphology. Current pathology image restoration methods are mostly restricted to small patches, struggling to maintain global structural coherence at a megapixel scale. We introduce RestorePath, a framework for globally consistent megapixel scale inpainting that reconstructs diagnostic structures in histological image to prevent incorrect high-confidence predictions and lower error rates. Our model utilizes a Latent Diffusion Model (LDM) conditioned on Pathology Foundation Model (PFM) embeddings, integrating Large Kernel Attention (LKA) to manage long-range dependencies during random patch diffusion. Enhanced by Distance-Weighted Interpolation (DWI) and an Adaptive Guidance Scale (AGS), RestorePath ensures structural consistency and fidelity by modulating information from surrounding patches. Evaluations across TCGA-BRCA, BACH, and Camelyon16 datasets for images ranging from 512 to 4608 pixels demonstrate state-of-the-art performance in maintaining histological consistency. RestorePath significantly improves downstream Computational Pathology (CP) tasks, outperforming both raw artifact images and the conventional Detect-and-Discard (D&D) approach. The code is available at https://github.com/PathfinderLab/RestorePath
+**一句话**：RestorePath 把伪影修复从"单块修补"改成"百万像素级、与周围健康组织对齐的 inpainting"，条件来自病理基础模型嵌入。
 
-*来源：arXiv:2609.24116；逐字原文，未改写、未压缩。*
+**问题**：气泡、折叠、墨迹遮住形态，模型会高置信度地给出错误答案；而 Detect-and-Discard 在病灶只占极小面积的场景里等于丢掉诊断证据。TCGA-BRCA 里 63.7% 的 WSI 至少有一处百万像素级伪影。
 
-## 中文摘要
+**瓶颈**：patch 级修复（ArtiFusion / ArtiDiffuser）接不上跨 patch 结构；大图生成（LRDM / ZoomLDM / DiffInfinite）造的是新组织，没有"与周围组织严格对齐"这一约束。
 
-> 尽管深度学习推动了全切片图像（WSI）分析，但气泡与折叠等组织伪影常因遮蔽关键形态而导致静默失败。当前的病理图像修复方法大多局限于小 patch，难以在百万像素尺度上维持全局结构连贯性。我们提出 RestorePath，一个用于全局一致的百万像素级 inpainting 的框架，它重建组织学图像中的诊断结构，以防止错误的高置信度预测并降低错误率。我们的模型采用一个以病理基础模型（PFM）嵌入为条件的潜在扩散模型（LDM），并整合大核注意力（LKA）以在随机 patch 扩散过程中处理长程依赖。借助距离加权插值（DWI）与自适应引导尺度（AGS），RestorePath 通过调制来自周围 patch 的信息来确保结构一致性与保真度。在 TCGA-BRCA、BACH 与 Camelyon16 数据集上针对 512 至 4608 像素图像的评估，展示了在维持组织学一致性方面达到最先进的性能。RestorePath 显著提升下游计算病理学（CP）任务，优于原始伪影图像与传统的检测并丢弃（D&D）方法。代码公开于 https://github.com/PathfinderLab/RestorePath
+**insight**：把"从邻域借上下文"显式建模成检索——每个采样位置的条件向量由周边无伪影网格的 UNI 嵌入按距离加权插值得到（DWI），再用自适应引导尺度（AGS）决定什么时候才施加条件，从而区分"修复"与"生成"。
 
-*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+## 3 分钟讲清
 
-## 1. 三分钟摘要与推荐理由
+**方法（按顺序）**：
+1. 训练：只从 GrandQC 判定的无伪影区取 256² patch，掩码来自 GrandQC + failure modes，条件 $c$ = UNI 嵌入，损失是常规噪声 MSE。
+2. 骨干：LDM 的 U-Net 里，middle stage 与 decoder 首块的 cross-attention 换成 Large Kernel Attention（LKA），扩大感受野而不付全局注意力代价。
+3. 推理：大图切 256² 网格，每格提 PFM 嵌入；有效格集合 $r\le\tau=0.3$。
+4. DWI：$c_p=\sum w_i y_i/\sum w_i$，$w=1/(\lVert q_i-p\rVert^\alpha+\delta)$，$\alpha=2$、$\delta=10^{-6}$。
+5. AGS：$s_{base}$ 由周边健康区 Laplacian 方差映射到 $[2,7]$；该窗口伪影占比 $r_{patch}>0.99$ 才用 $s_t=s_{base}$，否则置 0。
+6. 逐步分类器无关引导去噪，窗口拼回大图。
 
-切片上的气泡、折叠、墨迹会遮住形态，让模型高置信度地给出错误答案（silent failure）。现有 QC 做法是 Detect-and-Discard：把可疑区域丢掉不管；但在“病灶只占极小面积”的场景里，丢掉就等于丢掉诊断证据。patch 级修复（[ArtiFusion](55-artifusion.md)、[ArtiDiffuser](57-artidiffuser.md)）又接不上跨 patch 的全局结构。
+**作者证据在哪**：Table 1 修复质量（TCGA-BRCA FID_C 29.66 / Emb Sim 0.9317 / LPIPS_M 0.4467，用 CONCH 特征）、w/o LKA 与 w/o DWI 两行消融（去 DWI 后 FID_C 升到 110.48）、Table 2 小病灶 MIL（ABMIL AUC 89.6 → 82.3 带伪影 → 90.3 修复）、Table 3 BACH 分类与 t-SNE ARI。LPIPS_M 在 Camelyon16 / BACH 上不如 LaMa，作者归因于气泡可透光。
 
-RestorePath 把这件事重新定义成**全局一致的百万像素级 inpainting**：以外科修复的方式，用周围健康组织的特征去填补伪影区，并把条件信号做成“检索 + 插值”，而不是让模型凭空生成。训练用 256×256 patch 与掩码，推理时在大图上随机采 patch、逐块去噪再拼回整图。
+**和上一代的区别**：与 DiffInfinite 同一套"冻结已确定内容 + 逐位置推进"的骨架，但冻结的是真实观测而非合成进度；与 LRDM / ZoomLDM 共享"LDM + PFM 嵌入条件 + 大图 patch 扩散"，把生成目标换成了对齐原有组织，并补上 DWI/AGS 两个条件机制。
 
-它和已有笔记的关系很直接：条件编码来自病理基础模型（实验用 UNI，评价用 CONCH），下游验证用的是 CLAM/TransMIL/ABMIL 这套 MIL 评估链路，正是本仓库主线模型的可靠性问题。
+**讲 PPT 用这张**：Fig. 1 的 63.7% 伪影统计 + Table 2 的 MIL AUC 四行（Origin / Artifact / D&D / Restored）；D&D 掉到 70.8 是最有说服力的一格。
 
-## 2. 问题及研究位置
+## 1. 问题及研究位置
 
 论文给出的动机很硬：TCGA-BRCA 中 **63.7%** 的 WSI 至少含一处 megapixel 级伪影（Fig. 1），说明“patch 级修复足够”的假设不成立。作者把已有工作分成三类并指出缺口：
 
@@ -34,7 +40,7 @@ RestorePath 把这件事重新定义成**全局一致的百万像素级 inpainti
 
 RestorePath 的位置：把「修复」的判据从「单块看起来像组织」改成「整图与周围健康区域结构一致」，并用距离加权插值（DWI）显式建模“从邻域借上下文”这件事。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 训练（H=256 patch，20×）
@@ -60,7 +66,7 @@ RestorePath 的位置：把「修复」的判据从「单块看起来像组织�
 2. **DWI 解决“整块被盖住”**：即使采样到的 patch 全被伪影遮住，条件向量仍由邻域无伪影格的 embedding 加权得到，权重随距离按 α 次方衰减。
 3. **AGS 区分“修复”与“生成”**：整块几乎全毁（r_patch > 0.99）时才施加条件引导；否则引导强度置 0，优先保留原始像素。s_base 由周围健康区的 Laplacian 方差映射到 [2, 7]，纹理越复杂的切片引导越强。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 - **修复质量（Table 1，作者报告）**：TCGA-BRCA 上 FID_C 29.66、Emb Sim 0.9317、LPIPS_M 0.4467，均优于 SDM（39.69 / 0.9103 / 0.4555）与 LaMa（117.54 / 0.7995 / 0.4492）；FID_C 用 CONCH 特征替代 Inception，Emb Sim 为 CONCH 特征余弦相似度。
 - **指标并非全胜**：Camelyon16 与 BACH 的 LPIPS_M 上 LaMa 更好（0.3610 / 0.4199，对比 0.3754 / 0.4418）。作者解释为气泡可透出局部纹理，偏纹理的方法占优；RestorePath 的优势出现在伪影不透明、只能靠邻域推断时。
@@ -69,7 +75,7 @@ RestorePath 的位置：把「修复」的判据从「单块看起来像组织�
 - **下游分类（Table 3，BACH）**：ResNet50 准确率 86.2（Origin）→ 61.0（Artifact）→ 64.2（D&D）→ 75.5（Restored）；t-SNE 的 ARI 由 0.1256 回升到 0.3656（Origin 0.5822，Fig. 5）。
 - **范围限制**：训练数据为 TCGA-BRCA（1105 例，884/221 划分）、Camelyon16、BACH，**每个数据集单独训练一套模型**；验证用的伪影多为合成掩码（failure modes / 气泡），真实扫描伪影的泛化未在摘要中给出。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 - 超参需逐个核对：H=256、τ=0.3、α=2、δ=1e-6、s∈[2,7]、k=0.99。τ 与 k 直接决定“哪些格可当上下文”和“何时不引导”，是最该做敏感性分析的旋钮。
 - 训练 patch 只取自 GrandQC 判定的无伪影区域，掩码质量直接决定模型输入分布；应先单独评估掩码（GrandQC + failure modes）误差对修复结果的影响。
@@ -78,18 +84,30 @@ RestorePath 的位置：把「修复」的判据从「单块看起来像组织�
 - 修复产物是**生成出来的诊断结构**。用于下游或阅片时，必须同时保留原始伪影掩码与“此处为重建”的标注，避免把 inpainting 结果当作原始证据使用。
 - 计算成本与可扩展性：论文正文 10 页 5 图（MICCAI 2026），报告了逐数据集训练；跨数据集统一模型、单张 WSI 的推理耗时与显存占用需要自行测量。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 `Abstract` → `Fig. 1`（63.7% 伪影统计与分布）→ `Fig. 3`（训练/推理总览）→ `2.1 Training`（LKA 位置与损失）→ `2.2 Inference`（Eq. 2–5：DWI 与 AGS）→ `3.1 Datasets and implementation details` → `Table 1` 与 w/o LKA / w/o DWI 两行 → `Table 2`、`Table 3` 与作者在 3.2 末尾对 LPIPS 差异的解释。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - 与 [CLAM](29-clam.md) 对照：同样的弱监督链路与注意力热图，这篇把它用作“修复是否让注意力回到病灶”的判据（Fig. 4），并直接对比 D&D 与零填充。
 - 与 [CONCH](31-conch.md) 对照：病理基础模型特征在这篇里承担三重角色——训练条件（UNI）、FID_C 的分布度量、Emb Sim 的特征一致性。
 - 与 [TopoCellGen](21-topocellgen.md) 对照：同属病理生成式建模，但目标相反——一个造新细胞拓扑，一个只在伪影区对齐原有组织。
-- 论文引用的 Artifusion / ArtiDiffuser / LRDM / ZoomLDM 现已入库：[ArtiFusion](55-artifusion.md)（首个 DDPM 病理修复、仅用无伪影图像训练）、[ArtiDiffuser](57-artidiffuser.md)（反事实扩散统一修复与合成）、[LRDM](56-lrdm.md)（SSL 嵌入条件 + MultiDiffusion 拼大图）、[ZoomLDM](58-zoomldm.md)（倍率感知条件与多尺度生成）；DiffInfinite（随机 patch 扩散的源头）尚未入库，仍是这条支线的缺口。
+- 论文引用的扩散工作均已入库：[ArtiFusion](55-artifusion.md)（首个 DDPM 病理修复、仅用无伪影图像训练）、[ArtiDiffuser](57-artidiffuser.md)（反事实扩散统一修复与合成）、[LRDM](56-lrdm.md)（SSL 嵌入条件 + MultiDiffusion 拼大图）、[ZoomLDM](58-zoomldm.md)（倍率感知条件与多尺度生成）、[DiffInfinite](70-diffinfinite.md)（随机 patch 扩散）。
 
-## 8. 链接
+## 原文摘要
+
+> Although deep learning has advanced Whole Slide Image (WSI) Analysis, tissue artifacts like bubbles and folds often cause silent failures by concealing essential morphology. Current pathology image restoration methods are mostly restricted to small patches, struggling to maintain global structural coherence at a megapixel scale. We introduce RestorePath, a framework for globally consistent megapixel scale inpainting that reconstructs diagnostic structures in histological image to prevent incorrect high-confidence predictions and lower error rates. Our model utilizes a Latent Diffusion Model (LDM) conditioned on Pathology Foundation Model (PFM) embeddings, integrating Large Kernel Attention (LKA) to manage long-range dependencies during random patch diffusion. Enhanced by Distance-Weighted Interpolation (DWI) and an Adaptive Guidance Scale (AGS), RestorePath ensures structural consistency and fidelity by modulating information from surrounding patches. Evaluations across TCGA-BRCA, BACH, and Camelyon16 datasets for images ranging from 512 to 4608 pixels demonstrate state-of-the-art performance in maintaining histological consistency. RestorePath significantly improves downstream Computational Pathology (CP) tasks, outperforming both raw artifact images and the conventional Detect-and-Discard (D&D) approach. The code is available at https://github.com/PathfinderLab/RestorePath
+
+*来源：arXiv:2609.24116；逐字原文，未改写、未压缩。*
+
+## 中文摘要
+
+> 尽管深度学习推动了全切片图像（WSI）分析，但气泡与折叠等组织伪影常因遮蔽关键形态而导致静默失败。当前的病理图像修复方法大多局限于小 patch，难以在百万像素尺度上维持全局结构连贯性。我们提出 RestorePath，一个用于全局一致的百万像素级 inpainting 的框架，它重建组织学图像中的诊断结构，以防止错误的高置信度预测并降低错误率。我们的模型采用一个以病理基础模型（PFM）嵌入为条件的潜在扩散模型（LDM），并整合大核注意力（LKA）以在随机 patch 扩散过程中处理长程依赖。借助距离加权插值（DWI）与自适应引导尺度（AGS），RestorePath 通过调制来自周围 patch 的信息来确保结构一致性与保真度。在 TCGA-BRCA、BACH 与 Camelyon16 数据集上针对 512 至 4608 像素图像的评估，展示了在维持组织学一致性方面达到最先进的性能。RestorePath 显著提升下游计算病理学（CP）任务，优于原始伪影图像与传统的检测并丢弃（D&D）方法。代码公开于 https://github.com/PathfinderLab/RestorePath
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
+## 7. 链接
 
 - [SpringerLink 正式版（MICCAI 2026，LNCS 16891，pp. 353–363）](https://doi.org/10.1007/978-3-032-38224-5_34)（订阅墙，未获取 PDF）
 - [arXiv 摘要与版本记录](https://arxiv.org/abs/2609.24116)
