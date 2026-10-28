@@ -4,11 +4,31 @@
 **定位**：flow matching 条件生成、UNI-2 嵌入网格、全局潜画布速度融合、自适应窗口调度与 8k 文生图。不是伪影修复。
 **精读核验**：2026-10-22 核对完整摘要、主文 §3–6、Table 1–4、Fig. 3 与作者代码/资源说明；2026-10-26 补跑官方权重的推理实测（见 §5），并重写为可自学的版本。数据计数差异（正文 15,996,332 vs README 15,966,332）仍未消解。
 
-## 原文摘要
+## 30 秒看懂
 
-> Whole-slide images (WSIs) are gigapixel-scale digital scans of histopathology tissue and serve as the primary basis for cancer diagnosis. Existing histopathology generative models operate at the patch scale, producing fixed-size tiles of at most 1024$\times$1024 pixels which encompass only a small fraction of the WSI. In contrast, text reports for clinical diagnoses and slide-level diagnostic labels -- the supervision that exists at scale -- operate at the whole-slide level. We present BigCell, the first approach to generate coherent whole-slide histopathology images at native gigapixel resolution. BigCell trains a flow-matching transformer at 2048$\times$2048 pixels on over 120,000 publicly available WSIs spanning multiple organ types. Conditioning on embeddings from pathology foundation models and using an inference-time sliding-window pipeline, BigCell generates coherent images of up to 32,768$\times$32,768 pixels, outperforming prior tile generators on both tile-level and slide-level fidelity metrics. To make gigapixel synthesis practical, we introduce an adaptive scheduling strategy that prioritizes important slide regions, speeding up image generation by over 3\ttimes with minimal quality degradation. Furthermore, we propose the first text-to-image synthesis at 8k resolution by training a separate model that produces dense conditioning grids directly from pathology text reports. We demonstrate that augmenting with synthetic samples improves slide-level few-shot classification performance by up to $18 \%$ over baselines trained on real data.
+**一句话**：BigCell 用一个只会画 2048² 的流匹配模型 + 一张全局蓝图，在推理期把重叠窗口每一步的"速度"融合到同一张 canvas 上，一直画到 32768²。
 
-*来源：[arXiv v1 摘要页](https://arxiv.org/abs/2610.14261v1)，完整原文；保留源摘要中的 TeX 写法，包括 `3\ttimes`，不自行改写原文。*
+**问题**：生成模型停在 patch 级（原生最多 1024²），而切片级监督——诊断报告、癌种、分级——在临床天天产出，却挂不到某个 256² 小块上。监督粒度与生成粒度对不上。
+
+**瓶颈**：训练成本。1600 万张 2048² tile，单卡乐观 10 tile/s，一个 epoch 约 18.5 天；而且分布指标与配对相似度会打架——它的 Virchow-2 FD 907 差于 LRDM 的 731，但配对相似度更高。
+
+**insight**：重叠窗口平均的是**速度**而不是像素。每一步所有窗口各自给意见、按位置平均成全局速度场，整张画布一起走一步：没有哪个窗口能单方面决定某个位置，接缝因此消失；共享画布又让下一步所有窗口都看得见变化——不是"各画一块再拼"，是每步都在重新协商。
+
+## 3 分钟讲清
+
+**方法（按顺序）**：
+1. 条件：每 256² 提一个 UNI-2 特征，拼成 8×8×1536 蓝图网格；只有纯文本场景才经过 CGM（报告 → TITAN → 327M 流匹配）生成网格。
+2. 画师：2048² 经 FLUX.2 VAE 压成 256×256×32 latent，SiT（DiT 变体）学速度 $\varepsilon-x$，20 步 Euler 就够。
+3. 大图：维护全局 latent 画布与全局蓝图，取重叠 2048² 窗口（步长 1024），每步按位置平均各窗口速度。
+4. 加速：用 CFG 有条件/无条件速度差的 L1 范数当重要性，第一步全算，之后只重算前 $r$ 比例窗口、其余复用缓存。
+5. 解码：分块 VAE 解码成大图或金字塔 TIFF。
+6. 可选增广：真实图加噪到 $t'=0.5$（布局在、形态糊），再用本类别文本条件往 $t=0$ 去噪。
+
+**作者证据在哪**：Table 1（8k 相似度 TITAN 0.956 / MOOZY 0.973，尾部 tile V2-5th 0.737 对 PixCell 0.632；Virchow-2 FD 907 对 LRDM 731）、Fig. 3（32k 调度 $r=0.25$：4.97 h / TITAN 0.951 对全量 15.6 h / 0.957）、Table 2（MedGemma 报告一致率 46%）、Table 3–4（文生图与 PANDA 4-shot）、§4 的病理医生实验（总体检测准确率 55.3%，95% CI 50–61%，医生间 κ=0.020）。本机实测见第 5 节。
+
+**和上一代的区别**：同组 LRDM → ZoomLDM → PixCell 的尺度扩展；与 RestorePath 共享"全局画布"思想，但一个生成新图、一个修复已有受损图——BigCell 没有"保留原纹理"这一约束；与 STREAM 相反，它仍把基础模型特征当条件而非生成对象。
+
+**讲 PPT 用这张**：Fig. 3 的调度表（15.6 h / 0.957 → 4.97 h / 0.951），配 Table 1 里"相似度高但 FD 差"的背离——一张说加速是真的，一张说指标测的不是同一件事。
 
 ## 0. 零基础导读：先看懂三个词
 
@@ -22,23 +42,7 @@
 
 **摘要只需要记住一句话**：怎么让只会画小块的模型，画出一整张 32k 的图。
 
-## 1. 三分钟摘要与推荐理由
-
-BigCell 是 LRDM、ZoomLDM、PixCell 同组路线的新尺度扩展（LRDM 和 PixCell 的作者名单与本文高度重叠，见 §2）。核心比喻：**一个只会画 2048² 的局部画师 + 一张全局蓝图，在推理期用重叠滑窗把每一步的意见融合到同一张画布上。**
-
-三个模型角色别搞混：
-
-| 组件 | 干什么 | 规模 |
-|---|---|---|
-| UNI-2（外部编码器，冻结） | 每 256² 提一个 1536 维特征 → 拼成条件网格，即"蓝图" | 不训练 |
-| BigCell tile | 流匹配 Transformer，学"带噪 latent 下一步往哪走" | SiT-XL/2，845M |
-| CGM（可选） | 从报告文本直接生成蓝图网格 | 327M |
-
-有真实 WSI 的时候**完全不经过 CGM**，直接从切片提蓝图。CGM 只服务两种场景：只有文字时画图，以及数据增广时造"同类别的新网格"。
-
-值得学的是三样可迁移的技术：渐进提分辨率、滑窗**速度**融合、用 CFG 差值做窗口调度。这三样移到别的任务（包括修复）是研究方向，不是作者验证过的能力。
-
-## 2. 问题及研究位置
+## 1. 问题及研究位置
 
 **核心矛盾不是图不够大，是监督粒度对不上。**
 
@@ -52,7 +56,7 @@ BigCell 是 LRDM、ZoomLDM、PixCell 同组路线的新尺度扩展（LRDM 和 P
 
 **同组前作谱系**（重要，影响怎么读实验）：LRDM → ZoomLDM → PixCell → BigCell，全部出自 Stony Brook 的 Samaras 组。Table 1 里五个基线中三个是自家前作，用的都是公开权重、同一评测流程，合规；但真正独立的对手只有 CytoSyn 和 MuPaD。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 真实 WSI → 每 256² 提 UNI-2 → 密集条件网格（蓝图）
@@ -66,7 +70,7 @@ BigCell 是 LRDM、ZoomLDM、PixCell 同组路线的新尺度扩展（LRDM 和 P
 
 ### 3.1 画师本体
 
-2048² 图经 VAE 压成 256×256×32 的 latent（空间缩 8 倍）。模型是 SiT，输出**速度**不是图像：
+2048² 图经 VAE 压成 256×256×32 的 latent（空间缩 8 倍）。模型是 SiT（SiT-XL/2，845M 参数），输出**速度**不是图像：
 
 $$v_\theta(z_t,\,t,\,y)\;\approx\;\varepsilon - x$$
 
@@ -116,7 +120,7 @@ CGM 是 UNI 特征空间里的生成器，把 TITAN 文本嵌入映射成蓝图�
 
 **为什么是 0.5**：$t'\approx0$ 时去噪基本回到原图，多样性为零；$t'\approx1$ 时布局全丢，标签不一定还对。0.5 是折中。**主文没给 $t'$ 的消融**，所以这是默认选择，不是调出来的最优值。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 以下为主文原表及 Fig. 3 的作者报告，未复算。8k 条件生成比较用 100 个 held-out ROI；32k 调度比较用 256 张 held-out 切片；文生图评价用 150 份未参与训练的患者报告。
 
@@ -155,7 +159,7 @@ LRDM、ZoomLDM 拿到最好的 FD 和最差的相似度（TITAN 0.531 / 0.708）
 
 诚实之处在于主动报了三件不利事实：CI 包含 50（与随机猜统计上不可区分）、医生之间互相都不一致（说明任务本身没分辨力）、0.57 有任务设计的天花板。**反过来也不能过度解读**：55.3% 只说明人眼在这个任务上分辨不出，不能反推"合成图可用于诊断"。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 ### 我实测到的（2026-10-26，gpu04 RTX 4090D 24G，共享卡）
 
@@ -179,12 +183,12 @@ LRDM、ZoomLDM 拿到最好的 FD 和最差的相似度（TITAN 0.531 / 0.708）
 - 8k 图像条件生成只需两样外部件：**FLUX.2-dev VAE + UNI2-h**。不需要 TITAN、不需要 CGM——起步门槛比想象低。
 - 文本条件那条才需要 TITAN，且 README 要求 transformers 4.56.2。TITAN、UNI2-h 都有访问门槛，"有下载链接"不等于"无授权"。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 零基础：§0 三个词 → Fig. 2 总览 → §3.1 画师 → §3.2 滑窗（只看平均公式）→ §3.3 调度（只看重要性公式）。
 有基础：Fig. 2 → §3.1–3.3 → §4 指标口径 → Table 1–2（相似度与 FD 的背离）→ Fig. 3 → Table 3–4 → §6。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [LRDM](56-lrdm.md)：条件网格 + 每步重叠窗口共识的前序，同组。
 - [ZoomLDM](58-zoomldm.md)：跨尺度联合生成 vs 更大 native tile 的路线差别。
@@ -193,7 +197,13 @@ LRDM、ZoomLDM 拿到最好的 FD 和最差的相似度（TITAN 0.531 / 0.708）
 - [STREAM](65-stream.md)：BigCell 仍把基础模型特征当条件；STREAM 改成直接生成特征。
 - [CytoSyn](66-cytosyn.md)：原生分辨率低（224²）导致大图全局结构崩坏的对照。
 
-## 8. 链接
+## 原文摘要
+
+> Whole-slide images (WSIs) are gigapixel-scale digital scans of histopathology tissue and serve as the primary basis for cancer diagnosis. Existing histopathology generative models operate at the patch scale, producing fixed-size tiles of at most 1024$\times$1024 pixels which encompass only a small fraction of the WSI. In contrast, text reports for clinical diagnoses and slide-level diagnostic labels -- the supervision that exists at scale -- operate at the whole-slide level. We present BigCell, the first approach to generate coherent whole-slide histopathology images at native gigapixel resolution. BigCell trains a flow-matching transformer at 2048$\times$2048 pixels on over 120,000 publicly available WSIs spanning multiple organ types. Conditioning on embeddings from pathology foundation models and using an inference-time sliding-window pipeline, BigCell generates coherent images of up to 32,768$\times$32,768 pixels, outperforming prior tile generators on both tile-level and slide-level fidelity metrics. To make gigapixel synthesis practical, we introduce an adaptive scheduling strategy that prioritizes important slide regions, speeding up image generation by over 3\ttimes with minimal quality degradation. Furthermore, we propose the first text-to-image synthesis at 8k resolution by training a separate model that produces dense conditioning grids directly from pathology text reports. We demonstrate that augmenting with synthetic samples improves slide-level few-shot classification performance by up to $18 \%$ over baselines trained on real data.
+
+*来源：[arXiv v1 摘要页](https://arxiv.org/abs/2610.14261v1)，完整原文；保留源摘要中的 TeX 写法，包括 `3\ttimes`，不自行改写原文。*
+
+## 7. 链接
 
 - [摘要与首发日期](https://arxiv.org/abs/2610.14261)
 - [完整论文](https://arxiv.org/html/2610.14261v1)

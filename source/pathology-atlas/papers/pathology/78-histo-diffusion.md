@@ -4,33 +4,39 @@
 **定位**：低倍→高倍的**超分辨率/分辨率恢复**，不是伪影修复；输出是“更清晰的高倍图”，不是找回被遮挡的真实组织。  
 **精读核验**：2026-10-22 核对 arXiv v1 全文（§1–5、Table 1–5、Fig. 1–12）；2026-10-26 取得期刊正式版 PDF（本地 `~/code/papers/MedIA-2026-103808-Xu-SuperDiff-super-resolution.pdf`）并核对 Table 1–19、Fig. 1–19。**正式版比 v1 明显扩写**：新增 CAMELYON17 真实倍率数据、OCELOT/BRACS 泛化测试、UNI 嵌入下游分类与病理医生读者研究；本文表号一律以正式版为准。未运行模型，未找到官方代码。
 
-## 原文摘要
+## 30 秒看懂
 
-> Digital pathology has advanced significantly over the last decade, with Whole Slide Images (WSIs) encompassing vast amounts of data essential for accurate disease diagnosis. High-resolution WSIs are essential for precise diagnosis but technical limitations in scanning equipment and variability in slide preparation can hinder obtaining these images. Super-resolution techniques can enhance low-resolution images; while Generative Adversarial Networks (GANs) have been effective in natural image super-resolution tasks, they often struggle with histopathology due to overfitting and mode collapse. Traditional evaluation metrics fall short in assessing the complex characteristics of histopathology images, necessitating robust histology-specific evaluation methods. We introduce SuperDiff, a novel diffusion-based method specially designed for generating and evaluating super-resolution images in digital pathology. It includes a restoration module for histopathology prior and a controllable diffusion module for generating high-quality images. We have curated two histopathology datasets and proposed a comprehensive evaluation strategy which incorporates both full-reference and no-reference metrics to thoroughly assess the quality of digital pathology images. Comparative analyses on multiple datasets with state-of-the-art methods reveal that SuperDiff outperforms GANs. Our method offers a versatile solution for histopathology image super-resolution, capable of handling multi-resolution generation from varied input sizes, providing valuable support in diagnostic processes.
+**一句话**：SuperDiff 做的是 4× 超分，但它真正的贡献是让"评价指标也会选错模型"这件事变成方法的一半。
 
-*来源：[PubMed 41027251](https://pubmed.ncbi.nlm.nih.gov/41027251/)（期刊版完整摘要）；[arXiv v1 摘要](https://arxiv.org/abs/2408.15218) 内容基本一致，但方法名写作 Histo-Diffusion。*
+**问题**：高倍 WSI 难拿，低倍图放大后细胞核边缘、染色质纹理、间质细节都缺；GAN 超分能把边缘画锐，却常把染色风格画偏或补出不存在的腺体。
 
-摘要的中文要点：高倍 WSI 对诊断重要，但扫描设备与制片差异使低倍图常见；GAN 超分在病理上容易过拟合与模式崩溃，传统指标又测不出病理图像的关键结构；作者提出 SuperDiff，由“病理先验恢复模块 + 可控扩散生成模块”组成，并配套一套同时包含全参考与无参考指标的评价方案；在多个数据集上优于 GAN 类方法，且支持不同输入尺寸与多倍率生成。
+**瓶颈**：PSNR / SSIM 会奖励模糊解——bicubic 的像素值反而更接近 HR 真值，导致"越糊分越高"，生成模型在这一口径下必然吃亏。
 
-## 1. 三分钟摘要与推荐理由
+**insight**：两阶段（SwinIR 先恢复到目标尺寸当结构先验，再用 ControlNet 条件扩散补细节）；同时补一套病理专属指标——HoVer-Net 分割细胞核后比对核内强度与纹理统计，以及用病理微调的 CLIP-IQA 做无参考打分。
 
-一张 10× 的 H&E 图块只有 128×128 像素，放大到 40× 的 512×512 后，细胞核边缘、染色质纹理和间质细节都缺失。GAN 超分能把边缘“画锐”，但常把染色风格画偏，或者把不存在的腺体结构补出来。SuperDiff 的思路是两步：
+## 3 分钟讲清
 
-1. **先恢复，再生成**：用 SwinIR 把低倍图恢复到目标尺寸，得到一个“病理先验”图，减少模糊和压缩噪声。
-2. **用扩散模型生成细节**：把恢复图编码进 Stable Diffusion 的潜空间，作为 ControlNet 的条件，冻结原 UNet，只训练控制分支，让模型在保留组织结构的前提下补细节。
+**方法（按顺序）**：
+1. HR 图模拟退化得到 LR，双三次插值到 4× 后送 SwinIR（pixel unshuffle ×8 + RSTB + 最近邻上采样）得到恢复图。
+2. 恢复图经冻结 SD 2.1 VAE 编码成条件潜变量，与加噪的目标潜变量通道拼接。
+3. ControlNet 复制 UNet encoder + middle 作为可训练旁路，zero convolution 接回冻结 UNet；文本条件固定为空串。
+4. 只训 ControlNet 与特征调制层：恢复模块 150k iter、扩散模块 205k iter，AdamW lr 1e-4。
+5. 推理：50 步 spaced DDPM + VAE 解码 + 颜色修正（论文未给公式）。
 
-它最值得学的不是“又一个扩散超分”，而是**把评价方法当成贡献的一部分**：作者指出 PSNR/SSIM 会被 bicubic 的模糊图“骗高”，于是补了基于细胞核的纹理/强度 L1 指标，以及用病理图像微调过的 CLIP-IQA。这个“指标也会选错模型”的教训，对做修复和生成的读者都直接有用。
+**作者证据在哪**：Table 2 是 PSNR 悖论的原表（SuperDiff PSNR 24.86 低于 bicubic 26.48，但 ST-LPIPS 0.2079 / MUSIQ 45.00 / NIQE 4.95 最好）；Table 3 是核内 L1_texture / L1_intensity；Table 4–7 是消融与"只跑 stage-1 vs 两阶段"（stage-1 像素指标更高、两阶段感知指标反超）；Table 13 扩到 CAMELYON17 真实倍率与 OCELOT 跨器官；Table 19 是 BRACS 下游 linear probe。
 
-边界要清楚：它做的是分辨率提升，不判断伪影，也不修复折叠/气泡；如果输入本身有伪影，超分可能把伪影也放大。
+**和上一代的区别**：骨架借自 DiffBIR（恢复 + ControlNet），增量在病理数据、病理专属指标与多倍率适配；与 ZoomLDM 的"倍率当条件"不同，它是固定 4× + 任意尺寸输入；与 LPFM 的差别是"专用两阶段"对"统一多任务"。
 
-## 2. 问题及研究位置
+**讲 PPT 用这张**：Table 2 的 PSNR 悖论（同一张表里 SuperDiff 像素指标垫底、感知指标最好），配 Table 19 的下游分类只差 0.006。OCELOT 上 ST-LPIPS 输给 SwinIR-GAN 也要一起说。
+
+## 1. 问题及研究位置
 
 - **任务**：给定低分辨率（LR）病理图，生成 4× 高分辨率（HR）图；训练时用 HR 下采样构造 LR，属于成对超分设定。
 - **与伪影修复的区别**：修复的目标是“把坏区域恢复成可信组织”，评价依赖伪影掩码和未受损参考；超分的目标是“同一组织在更高分辨率下的样子”，评价依赖 HR 真值。两者都可能用扩散先验，但失败模式不同：修复怕“编造不存在的组织”，超分怕“过度锐化/风格漂移”。
 - **与 GAN 超分的区别**：GAN 一次前向、快，但模式崩溃和染色偏差明显；扩散多步采样、慢，但作者主张感知指标和无参考指标更好。
 - **与同期扩散超分的关系**：方法骨架借自 DiffBIR（恢复模块 + ControlNet），论文的增量主要在病理数据、病理专属指标与多倍率适配，而不是全新的扩散架构。这一点对判断创新性很重要。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 先解释两个术语。**ControlNet** 是给一个冻结的扩散模型加“空间条件”的旁路：复制原 UNet 的编码器，单独接收条件图，再通过零初始化卷积把特征加回原模型；这样原模型不用重训，也能被条件图控制。**spaced DDPM** 指从训练时的总步数中均匀取 50 个时间步做采样，而不是每步都走。
 
@@ -62,7 +68,7 @@ LR 128×128 → 插值到 512×512 → SwinIR 恢复 → VAE 编码 c_RM
 
 **推理细节**：论文明确说 UNet 能处理 8 的倍数尺寸，因此支持任意尺寸和多倍率；条件图尺寸必须是 64 的倍数，不满足时 padding。采样用 50 步 spaced DDPM。颜色修正的具体算法论文没有展开，这是复现时的一个不确定点。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 **数据（Table 1）**：训练集 TCGA-PRAD 200 张 WSI、200,000 patch；验证 100 patch（36 张 WSI）；测试 70 张 WSI，含 PRAD-2000（2,000 patch）与 PRAD-100；跨癌种测试 LUAD-100（6 张 WSI，40× HR 512² / 10× LR 128²）与 GBM-100（17 张 WSI，20× HR 512² / 5× LR 128²）。训练与测试 WSI 不重叠。所有实验为 4× 放大。
 
@@ -149,7 +155,7 @@ BRACS 上 **bicubic 的 UNI 嵌入相似度 0.9570，远高于本文的 0.8141**
 
 **病理医生读者研究（§4.5.4）**：1 位 30 年经验病理医生，5 个来自 PRAD-100 的病例，HR 与 SR 图盲评，三个准则。样本量很小（1 人 5 例），只能当作定性佐证。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. **代码与权重**：本次在 arXiv 全文和公开搜索中都没有找到官方实现或权重；论文只给方法，没有给仓库链接。Stable Diffusion 2.1-base、SwinIR、HoVer-Net（CoNSeP 预训练）都是公开组件，但训练脚本、ControlNet 初始化、颜色修正和指标实现需要自行补齐。
 2. **数据可复现性**：TCGA 是公开的，但论文的 WSI 列表在“supplementary materials”，本次未取得正式版补充材料；arXiv 版没有附完整清单。没有 WSI 清单就无法保证与作者同一划分。另有一处内部不一致：正文说验证集 100 patch 从 200 张训练 WSI 中抽，Table 1 却写验证集来自 36 张 WSI，复现时应以作者补充清单为准。
@@ -165,11 +171,11 @@ BRACS 上 **bicubic 的 UNI 嵌入相似度 0.9570，远高于本文的 0.8141**
 - 把 L1_texture/L1_intensity 扩展到核边界与腺体结构，而不只核内统计。
 - 在超分后接一个伪影检测器，量化“超分是否放大折叠/气泡”，这是本文没有覆盖的风险。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 Fig. 4 两阶段框架 → §3.1 恢复模块与退化模拟 → §3.2 ControlNet 条件拼接 → §3.3 两类指标（尤其 HoVer-Net 核内统计）→ Table 2 的 PSNR 悖论 → Table 3 病理指标 → Table 4 消融的反例 → §5 局限。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [LPFM](69-lpfm.md)：同样把超分、去模糊、去噪放进统一修复框架；可对比“统一模型”与“两阶段专用模型”的取舍。
 - [ZoomLDM](58-zoomldm.md)：把倍率当条件做多尺度生成；SuperDiff 则用固定 4× + 任意尺寸输入。
@@ -179,7 +185,15 @@ Fig. 4 两阶段框架 → §3.1 恢复模块与退化模拟 → §3.2 ControlNe
 - [RestorePath](49-restorepath.md)：百万像素修复与超分都涉及大图拼接和跨 patch 一致性，评价思路可互相借用。
 - [无监督伪影流水线](92-unsup-artifact.md)：**前后工序，不是竞争关系**。本文假设输入没有伪影，而作者自己在局限里承认有伪影的输入会被一起放大；所以合理流程是先跑 92 清伪影、再跑本文提分辨率。注意两篇的 "quality assessment" 指相反的事：92 的 QA 是**检测**，本文的 QA 是**评价方案**。
 
-## 8. 链接
+## 原文摘要
+
+> Digital pathology has advanced significantly over the last decade, with Whole Slide Images (WSIs) encompassing vast amounts of data essential for accurate disease diagnosis. High-resolution WSIs are essential for precise diagnosis but technical limitations in scanning equipment and variability in slide preparation can hinder obtaining these images. Super-resolution techniques can enhance low-resolution images; while Generative Adversarial Networks (GANs) have been effective in natural image super-resolution tasks, they often struggle with histopathology due to overfitting and mode collapse. Traditional evaluation metrics fall short in assessing the complex characteristics of histopathology images, necessitating robust histology-specific evaluation methods. We introduce SuperDiff, a novel diffusion-based method specially designed for generating and evaluating super-resolution images in digital pathology. It includes a restoration module for histopathology prior and a controllable diffusion module for generating high-quality images. We have curated two histopathology datasets and proposed a comprehensive evaluation strategy which incorporates both full-reference and no-reference metrics to thoroughly assess the quality of digital pathology images. Comparative analyses on multiple datasets with state-of-the-art methods reveal that SuperDiff outperforms GANs. Our method offers a versatile solution for histopathology image super-resolution, capable of handling multi-resolution generation from varied input sizes, providing valuable support in diagnostic processes.
+
+*来源：[PubMed 41027251](https://pubmed.ncbi.nlm.nih.gov/41027251/)（期刊版完整摘要）；[arXiv v1 摘要](https://arxiv.org/abs/2408.15218) 内容基本一致，但方法名写作 Histo-Diffusion。*
+
+摘要的中文要点：高倍 WSI 对诊断重要，但扫描设备与制片差异使低倍图常见；GAN 超分在病理上容易过拟合与模式崩溃，传统指标又测不出病理图像的关键结构；作者提出 SuperDiff，由“病理先验恢复模块 + 可控扩散生成模块”组成，并配套一套同时包含全参考与无参考指标的评价方案；在多个数据集上优于 GAN 类方法，且支持不同输入尺寸与多倍率生成。
+
+## 7. 链接
 
 - [期刊正式版 DOI](https://doi.org/10.1016/j.media.2025.103808)
 - [PubMed 摘要与题录](https://pubmed.ncbi.nlm.nih.gov/41027251/)

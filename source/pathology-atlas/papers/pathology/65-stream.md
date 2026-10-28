@@ -4,25 +4,38 @@
 **定位**：归一化病理基础模型 token 空间上的黎曼流匹配；随机桥训练与各向异性解码器。不是图像修复。  
 **精读核验**：2026-10-22 核对 v3 主文 §3–6、Table 1–3 与 §6 方法消融表、项目说明及官方训练/评价配置；未逐页核验全部附录证明，未运行模型。属于旧文近期修订与补漏入库，不是 10 月新首发。
 
-## 原文摘要
+## 30 秒看懂
 
-> Synthetic histopathology image generation addresses patient-privacy concerns and the growing data demands of foundation models. Existing state-of-the-art histopathology generative models use pretrained Vision Foundation Models (VFMs) as conditioning signals. We show this yields conditioning-dominated diversity: on TCGA-BRCA, 62-75% of their output diversity is attributable to the conditioning signal rather than the learned latent space, while de novo synthesis still requires a VFM at inference. We instead use histopathology VFMs as the latent space itself: their patch tokens are $\ell_2$-normalized on the unit hypersphere $\mathcal{S}^{d-1}$ with strong angular dominance and intrinsic curvature, motivating a Riemannian formulation. We present STREAM, the first framework to apply Riemannian flow matching in the histopathology domain, in two stages: 1) a bridge-type stochastic perturbation that establishes per-token rectifiability on $\mathcal{S}^{d-1}$ for training a Diffusion Transformer, and 2) a novel decoder training design whose noise covariance is anisotropic in the left-singular basis of the per-token tangent-projected velocity-field Jacobian, spending a large robustness budget on its low-response directions and a small one on its high-response directions. Across TCGA-BRCA and TCGA-COADREAD, STREAM achieves state-of-the-art gFID and ranks first on nearly all histopathology-specific metrics as well. Code and a public gallery of generated images are available at https://chokevin8.github.io/STREAM-Patho/.
+**一句话**：STREAM 不在 VAE latent 里画图再用 UNI 引导，而是直接在 UNI patch token 的单位球面上学生成分布。
 
-*来源：[arXiv v3 摘要页](https://arxiv.org/abs/2606.07036v3)，完整原文。*
+**问题**：现有病理生成模型把 VFM 当条件。作者量化出在 BRCA 上 62–75% 的输出多样性其实来自条件信号本身，而且"从头合成"时推理链上仍必须挂一个 VFM。
 
-## 1. 三分钟摘要与推荐理由
+**瓶颈**：ℓ2 归一化的 token 落在球面上，用欧氏直线插值会穿出球体；而生成 token 与真实 token 存在偏差，只解码干净特征的 decoder 会失效；权重还要联系作者、UNI 本身也门控。
 
-RestorePath、PixCell、ZoomLDM 的常见路径是：在 VAE latent 中生成，用病理基础模型特征引导。STREAM 改变了生成对象：直接学习 UNI patch token 的分布，再把生成 token 解码成图像。推理时不必先给一张参考图来提取条件。
+**insight**：几何对上之后再谈生成。用 SLERP 走测地线，用两端为零的切空间随机桥扩大中间覆盖；解码端则用 DiT 速度场 Jacobian 的谱方向决定"哪些方向少加噪、哪些多加噪"——两件事一起做才有效。
 
-它适合帮助理解“基础模型与扩散如何搭配”并没有唯一答案。方法的关键不只是更换编码器，还包括球面上的生成路径与适应生成误差的解码器训练。
+## 3 分钟讲清
 
-## 2. 问题及研究位置
+**方法（按顺序）**：
+1. 256² 图块过冻结 UNI → 256 个 1024 维 token，ℓ2 归一化到单位球面。
+2. 阶段一：球面均匀噪声 → SLERP 路径 + 随机桥扰动（$\sigma(t)=\sigma_{\max}\sin\pi t$，中间强、两端零）训 DiT；实现用归一化终点预测，损失 $\lVert\hat x_1-x_1\rVert^2/(1-t)^2$。
+3. 阶段二：对训练好的 DiT 速度场 Jacobian 做 SVD，按左奇异方向分组：高响应方向加小噪声、低响应方向加大噪声。
+4. 单独训 ViT-XL decoder 从带各向异性噪声的特征重建像素（L1 + LPIPS + 重编码余弦 + 对抗）。
+5. 生成：25 个 midpoint 步沿球面方向积分 → 生成 UNI tokens → 解码回 H&E。
+
+**作者证据在哪**：Table 1（条件主导多样性估计：ZoomLDM 75%、PixCell 62%）、Table 2（良恶性线性 probe：UNI 0.995 对 PixCell VAE 0.640 / ZoomLDM VAE 0.624，比较的是表征信息而非画质）、Table 3（BRCA gFID 6.16 对 ZoomLDM 7.43，COADREAD 7.68 对 8.09）、§6 消融（随机桥单独加不改善 gFID 9.07→9.37，两模块组合才到 6.86；注意是 45k decoder steps）。**重建**任务上它并不最优：COADREAD rFID 5.64，SVG 1.81。
+
+**和上一代的区别**：与 ZoomLDM / PixCell 的"VAE latent 生成 + 特征条件"是两种角色分配；与 CytoSyn 的 REPA-E 表征对齐不同（对齐 ≠ 直接在特征空间生成）；与 BigCell 的条件网格目标也不同。
+
+**讲 PPT 用这张**：Table 1（多样性归因）加 Table 3（生成质量），再单独一页讲"生成好 ≠ 重建好"——对做 WSI 修复的人，rFID 那一列才是相关的。
+
+## 1. 问题及研究位置
 
 - 作者在 BRCA 的指定评价中估计 ZoomLDM/PixCell 的多样性中 75%/62% 与条件有关；这不是对所有数据、所有条件扩散模型的普遍定理，也不是证明条件没有价值。
 - ℓ2 归一化使 token 位于单位球面，使用欧氏直线可能偏离目标几何；STREAM 采用球面测地线与黎曼流匹配。
 - 能无条件合成新 patch，不等于支持组织位置受控的大图修复；不可与 BigCell 的 WSI 尺度能力直接混排。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 256² 真实病理图块（包括肿瘤组织）→ 冻结 UNI → 256 个 1024 维 patch tokens → ℓ2 归一化
@@ -44,7 +57,7 @@ RestorePath、PixCell、ZoomLDM 的常见路径是：在 VAE latent 中生成，
 4. **为什么解码器还要训练（§4.3–4.4）：** 生成特征与训练时提取的真实特征会有偏差，只会解码干净特征的模型容易失效。作者用训练好的 DiT 的速度场 Jacobian 做 SVD，把方向按响应强弱分组：高响应方向少加噪，低响应方向多加噪。这里使用左奇异方向，不能误写成“找到输入误差最大的方向”。
 5. **如何把特征变回图像（§4.4）：** ViT-XL decoder 从带各向异性噪声的特征重建像素，同时使用 L1、LPIPS、重新编码后的余弦约束与对抗损失。余弦项对齐的是干净目标特征，而非加噪输入；两种噪声机制都在训练期使用，生成时不额外扰动输出 token。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 先看“能否重建输入图”和“能否从噪声生成新图”两种不同任务。下面数字来自 v3 主文，均为作者报告，未复算。
 
@@ -83,7 +96,7 @@ BRCA 使用 12.2M 个、COADREAD 使用 3.4M 个 20×、256² 图块。论文对
 
 随机桥单独加入没有改善 gFID，两个模块组合才得到这里的最佳结果。应复现这组交互，而不是只对比“完整 STREAM”与一个不同编码器、不同训练预算的模型。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. 公开仓库有 `stream.train_dit`、`extract_svd`、`train_decoder`、`evaluate`、特征提取与 matched index 流程；训练和评测入口可检查。
 2. 项目页的 BRCA checkpoint 需联系作者获取，不能写成可匿名直接下载；UNI 本身也门控。代码公开不等于即时可运行已有权重。
@@ -91,18 +104,24 @@ BRCA 使用 12.2M 个、COADREAD 使用 3.4M 个 20×、256² 图块。论文对
 4. 同时报告 rFID 与 gFID：解码重建上限与生成特征偏差应分开。特征 shard 必须与原图 matched index 对齐，不能重新随机排列。
 5. 用户算力充足，不因多卡训练排除本方法；真正需要先解决的是权重访问、数据拆分、谱基提取与评价协议是否完整。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 §3 Table 1 的多样性定义 → Fig. 1 三段结构 → §4.1 生成 token 而非条件向量 → §4.2 随机桥与终点预测 → §4.3–4.4 decoder → §5 Table 3 区分生成与重建 → §6 两模块消融 → 仓库三阶段训练/评价流程；数学附录可在机制理解后再读。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [RestorePath](49-restorepath.md)：基础模型作为条件，与作为生成空间的区别。
 - [ZoomLDM](58-zoomldm.md)：本文直接分析的条件生成对照。
 - [BigCell](64-bigcell.md)：条件网格大图生成，与无条件 token 分布建模的目标不同。
 - [CytoSyn](66-cytosyn.md)：对比 representation alignment 与直接在基础模型空间中生成。
 
-## 8. 链接
+## 原文摘要
+
+> Synthetic histopathology image generation addresses patient-privacy concerns and the growing data demands of foundation models. Existing state-of-the-art histopathology generative models use pretrained Vision Foundation Models (VFMs) as conditioning signals. We show this yields conditioning-dominated diversity: on TCGA-BRCA, 62-75% of their output diversity is attributable to the conditioning signal rather than the learned latent space, while de novo synthesis still requires a VFM at inference. We instead use histopathology VFMs as the latent space itself: their patch tokens are $\ell_2$-normalized on the unit hypersphere $\mathcal{S}^{d-1}$ with strong angular dominance and intrinsic curvature, motivating a Riemannian formulation. We present STREAM, the first framework to apply Riemannian flow matching in the histopathology domain, in two stages: 1) a bridge-type stochastic perturbation that establishes per-token rectifiability on $\mathcal{S}^{d-1}$ for training a Diffusion Transformer, and 2) a novel decoder training design whose noise covariance is anisotropic in the left-singular basis of the per-token tangent-projected velocity-field Jacobian, spending a large robustness budget on its low-response directions and a small one on its high-response directions. Across TCGA-BRCA and TCGA-COADREAD, STREAM achieves state-of-the-art gFID and ranks first on nearly all histopathology-specific metrics as well. Code and a public gallery of generated images are available at https://chokevin8.github.io/STREAM-Patho/.
+
+*来源：[arXiv v3 摘要页](https://arxiv.org/abs/2606.07036v3)，完整原文。*
+
+## 7. 链接
 
 - [题录与三个版本日期](https://arxiv.org/abs/2606.07036)
 - [v3 方法与表格](https://arxiv.org/html/2606.07036v3)

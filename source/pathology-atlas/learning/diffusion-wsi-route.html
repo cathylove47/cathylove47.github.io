@@ -19,11 +19,11 @@
 <header class="collection-header">
 <p class="eyebrow">计算病理 / 专题阅读</p>
 <h1>扩散模型在 WSI 中的应用</h1>
-<p class="deck">以伪影修复为主线，串起质量检测、组织生成、虚拟染色与超分、分割监督。先读 RestorePath，再比较相邻方法。</p>
-<p class="paper-meta">24 篇站内精读 · 补充论文中 13 篇已确认录用 · 更新于 2026-10-25</p>
+<p class="deck">按最近阅读、实际运行记录和本次 PPT 汇报组织研究；方法地图保留为参考，不再替代你的汇报顺序。</p>
+<p class="paper-meta">病理扩散精读 · 发表信息按官方来源逐篇核验 · 更新于 2026-10-28</p>
 <div class="hero-actions">
-<a class="button button-primary" target="_top" href="../?domain=pathology&amp;paper=49-restorepath">进入 RestorePath ↗</a>
-<a class="button button-secondary" href="#start">先看阅读顺序</a>
+<a class="button button-primary" target="_top" href="../?domain=pathology&amp;view=topic&amp;topic=pathology">进入近期研究与汇报工作台 ↗</a>
+<a class="button button-secondary" href="#publications">查看发表核验</a>
 </div>
 </header>
 
@@ -42,6 +42,37 @@
 </nav>
 
 <main class="wsi-main" id="reader-content">
+
+<!-- DIFFUSION_PUBLICATIONS_START -->
+<section class="section" id="publications"><h2>28 篇发表信息核验</h2><p>已录用不等于已出版；Workshop 单独标注。点击论文进入新版精读。</p><div style="overflow-x:auto"><table><thead><tr><th>论文</th><th>发表状态</th><th>来源与核验日期</th></tr></thead><tbody><tr><td><a target="_top" href="../?domain=pathology&amp;paper=88-rad">RAD：给每个像素不同的噪声日程，把 inpainting 变成并行生成</a></td><td>已发表 · CVPR 2025</td><td><a href="https://doi.org/10.1109/CVPR52734.2025.00233">官方来源 ↗</a> · 2026-10-28<br>正式版 CVPR 2025 proceedings pp. 2439–2448；CVF Open Access 与 CVPR 2025 poster 33149 均可查。arXiv:2412.09191 首版 2024-12-12、最新 v5 2026-02-05，题录无 journal-ref，站内旧标 “arXiv 2026” 已过期。实验全在自然图像（FFHQ/LSUN Bedroom/ImageNet），无病理数据。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=55-artifusion">ArtiFusion：第一次把 DDPM 用在病理伪影修复，且只用无伪影图像训练</a></td><td>已发表 · MICCAI 2023</td><td><a href="https://doi.org/10.1007/978-3-031-43987-2_50">官方来源 ↗</a> · 2026-10-28<br>Springer LNCS pp. 518–527；arXiv:2307.14262 题录注明 “Accepted by MICCAI2023”。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=72-latentartifusion">LatentArtiFusion：把伪影修复搬进潜空间，只用掩码去噪坏区域</a></td><td>已发表 · MICCAI DGM4MICCAI Workshop 2024</td><td><a href="https://doi.org/10.1007/978-3-031-72744-3_20">官方来源 ↗</a> · 2026-10-28<br>Deep Generative Models（DGM4MICCAI 2024）LNCS pp. 202–211，出版日 2024-10-09；是 MICCAI 2024 的 workshop，不是主会。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=57-artidiffuser">ArtiDiffuser：用一个反事实扩散模型同时做伪影修复与伪影合成</a></td><td>已发表 · Medical Image Analysis 2025</td><td><a href="https://doi.org/10.1016/j.media.2025.103567">官方来源 ↗</a> · 2026-10-28<br>MedIA vol. 102, 103567（2025-05）。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=49-restorepath">RestorePath：用病理基础模型条件扩散做百万像素级伪影修复</a></td><td>已发表 · MICCAI 2026</td><td><a href="https://doi.org/10.1007/978-3-032-38224-5_34">官方来源 ↗</a> · 2026-10-28<br>Springer LNCS vol. 16891, pp. 353–363，出版日 2026-09-25；arXiv:2609.24116v1 为投稿排版。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=69-lpfm">LPFM：把病理超分、去模糊、去噪和虚拟染色放进统一修复框架</a></td><td>录用未确认 · arXiv 2025</td><td><a href="https://arxiv.org/abs/2509.01071">官方来源 ↗</a> · 2026-10-28<br>arXiv:2509.01071v1（2025-09-01，仅 v1）题录无 journal-ref、无会议注记；Crossref/OpenAlex 查不到正式题录，作者主页亦未列该篇会议接收。仍为预印本。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=78-histo-diffusion">SuperDiff（原 Histo-Diffusion）：两阶段扩散超分，把“病理专属评价”当成方法的一半</a></td><td>已发表 · Medical Image Analysis 2026</td><td><a href="https://doi.org/10.1016/j.media.2025.103808">官方来源 ↗</a> · 2026-10-28<br>MedIA vol. 107, 103808（2026-01，Epub 2025-09-20）；期刊版改名 SuperDiff，arXiv:2408.15218 仍题 Histo-Diffusion。条目名与卷期年份不一致属正常，勿按 arXiv 标题找正式版。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=59-residual-guided-diffusion">Two-Stage Residual-Guided Diffusion：先粗后细，用潜空间残差补回细胞细节</a></td><td>已发表 · ICEIC 2026</td><td><a href="https://doi.org/10.1109/ICEIC69189.2026.11386037">官方来源 ↗</a> · 2026-10-28<br>IEEE Xplore proceedings-article，pp. 1–4，出版日 2026-01-18。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=60-unsupervised-artifact-restoration">Toward Robust Histopathology Imaging：用归一化流做无监督检测—定位—修复</a></td><td>已发表 · Medical Image Analysis 2026</td><td><a href="https://doi.org/10.1016/j.media.2026.104215">官方来源 ↗</a> · 2026-10-28<br>MedIA vol. 113, 104215（2026-09）。本站 60 与 92 是同一篇，DOI 相同，专题统一使用 60。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=74-diffusionqc">DiffusionQC：只学干净 patch 的噪声预测误差，把伪影当分布外样本</a></td><td>已发表 · IEEE ISBI 2026</td><td><a href="https://doi.org/10.1109/ISBI61048.2026.11515418">官方来源 ↗</a> · 2026-10-28<br>IEEE proceedings-article，pp. 1–5，出版日 2026-04-08。正式版标题为 “DiffusionQC: Artifact Detection and Quality Control in Histopathology Images via Diffusion Model”，比 arXiv:2601.12233 多了 “Quality Control”。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=67-conditioning-noise">Conditioning Noise：随机条件也能改善扩散伪影检测，但不代表语义条件无用</a></td><td>录用未确认 · arXiv 2026</td><td><a href="https://arxiv.org/abs/2609.16032">官方来源 ↗</a> · 2026-10-28<br>arXiv:2609.16032v1（2026-09-11，仅 v1）题录无 journal-ref；配套代码与数据只有 Zenodo DOI，不是论文题录。仍为预印本。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=89-pixcell">PixCell：第一个病理生成式基础模型——30M patch、渐进训练与 SSL 条件</a></td><td>录用未确认 · arXiv 2025</td><td><a href="https://arxiv.org/abs/2506.05127">官方来源 ↗</a> · 2026-10-28<br>arXiv:2506.05127（v1 2025-06-05，v2 2025-12-03）无 journal-ref、无 DOI；截至核验日未检索到正式会议或期刊题录，年份按首发 2025 记录。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=87-patch-diffusion">Patch Diffusion：把扩散训练切片化——坐标条件与尺寸调度</a></td><td>已发表 · NeurIPS 2023</td><td><a href="https://doi.org/10.52202/075280-3158">官方来源 ↗</a> · 2026-10-28<br>Advances in NeurIPS 36, pp. 72137–72154。是自然图像方法论文（非病理），在本专题里充当坐标条件的代价基准。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=56-lrdm">LRDM：用自监督嵌入当条件，把扩散模型从 patch 推向大图</a></td><td>已发表 · CVPR 2024</td><td><a href="https://doi.org/10.1109/CVPR52733.2024.00815">官方来源 ↗</a> · 2026-10-28<br>CVPR 2024 proceedings pp. 8532–8542；arXiv:2312.07330v2 题录未写会议，正式版以 CVF/IEEE 为准。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=70-diffinfinite">DiffInfinite：随机 patch 并行扩散，把“掩码—图像”成对合成推到 WSI 尺度</a></td><td>已发表 · NeurIPS 2023 Datasets &amp; Benchmarks Track</td><td><a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/f64927f5de00c47899e6e58c731966b6-Abstract-Datasets_and_Benchmarks.html">官方来源 ↗</a> · 2026-10-28<br>NeurIPS 2023 官方摘要页与 PDF 均标 Datasets_and_Benchmarks；DOI 10.52202/075280-3413，pp. 78126–78141。是主会的 D&amp;B track，不是独立 workshop。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=58-zoomldm">ZoomLDM：把倍率变成条件，一个模型生成从 20× 到 0.15625× 的多尺度图</a></td><td>已发表 · CVPR 2025</td><td><a href="https://doi.org/10.1109/CVPR52734.2025.02184">官方来源 ↗</a> · 2026-10-28<br>CVPR 2025 proceedings pp. 23453–23463；arXiv:2411.16969v2 题录未写会议。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=64-bigcell">BigCell：用流匹配与共享滑窗，从 2048² 图块走向 32768² WSI 生成</a></td><td>已录用 · NeurIPS 2026</td><td><a href="https://neurips.cc/virtual/2026/poster/152972">官方来源 ↗</a> · 2026-10-28<br>官方 virtual 站 poster 页（Atlanta，2026-12-10）确认接收；proceedings.neurips.cc/paper_files/paper/2026 仍 404，论文集未上线故记 accepted。track 未定：官方只写 eventtype=Poster，主会与 Evaluations &amp; Datasets 在站点上不可区分。arXiv:2610.14261v1（2026-10-09）。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=65-stream">STREAM：不把 UNI 当条件，而是在 UNI 特征空间里直接生成</a></td><td>已录用 · NeurIPS 2026</td><td><a href="https://neurips.cc/virtual/2026/poster/149538">官方来源 ↗</a> · 2026-10-28<br>官方 virtual 站 poster 页确认接收，但页面只标 “NeurIPS Poster”，没有 Spotlight 字样；Spotlight 来自 arXiv:2606.07036 题录与作者项目页。论文集未上线。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=66-cytosyn">CytoSyn：联合训练病理 VAE 与生成器，并审计条件和预处理的影响</a></td><td>录用未确认 · arXiv 2026</td><td><a href="https://arxiv.org/abs/2603.18089">官方来源 ↗</a> · 2026-10-28<br>arXiv:2603.18089v1（2026-03-18）自标 tech report，题录无 journal-ref、无会议注记；OpenAlex 只收 arXiv 版本。模型卡在 Hugging Face，不等于论文发表。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=62-histdit">HistDiT：把组织结构与形态语义分开注入扩散 Transformer</a></td><td>已发表 · ICPR 2026</td><td><a href="https://doi.org/10.1007/978-3-032-31927-2_28">官方来源 ↗</a> · 2026-10-28<br>Springer LNCS vol. 16824（ICPR 2026, Lyon, 2026-08-17–22）pp. 416–431，First Online 2026-08-03；arXiv:2604.08305 题录亦写 “Accepted to ICPR 2026”。论文集已出，故不是 accepted。年份口径：会议年/上线年为 2026，Springer 该卷版权页标 © 2027（citation_publication_date 亦为 2027），引用时两说都存在。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=61-chis">CHIS：不改扩散模型权重，用频域初始化与小波调制控制细胞结构</a></td><td>已发表 · MICCAI 2026</td><td><a href="https://doi.org/10.1007/978-3-032-38224-5_9">官方来源 ↗</a> · 2026-10-28<br>MICCAI 2026 主会，Springer LNCS pp. 87–96，出版日 2026-09-25（与 RestorePath 同卷 978-3-032-38224-5）。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=71-pathldm">PathLDM：把病理报告压缩成 154 个 token，当作潜空间扩散的条件</a></td><td>已发表 · WACV 2024</td><td><a href="https://doi.org/10.1109/WACV57701.2024.00510">官方来源 ↗</a> · 2026-10-28<br>IEEE WACV 2024 proceedings pp. 5170–5179；CVF Open Access 页面注明与接收版一致。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=68-pathogen">PathoGen：在良性组织里合成病变，用 inpainting 生成带标注训练样本</a></td><td>录用未确认 · arXiv 2026</td><td><a href="https://arxiv.org/abs/2601.08127">官方来源 ↗</a> · 2026-10-28<br>arXiv:2601.08127（v1 2026-01-13，v2 2026-07-01）题录只有页数/图表数，无会议注记、无 journal-ref；OpenAlex 只收 arXiv 版本。仍为预印本。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=86-reliable-histological-staining">I2I-Stain-Zoo：六种无配对染色架构、54 组规模配置与集成不确定性</a></td><td>已录用 · BMVC 2026</td><td><a href="https://bmvc2026.bmva.org/programme/accepted_papers">官方来源 ↗</a> · 2026-10-28<br>BMVC 2026 官方 accepted-papers 列表收录该题名；会议 2026-11-23–26（Lancaster），BMVA 论文集尚未发布，故记 accepted。arXiv:2608.24626v1 题录写 “37th BMVC, November 2026, Lancaster”。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=83-cmd">CMD：把扩散模型当&quot;残缺图像的填空器&quot;，预训练出卷积病理表征</a></td><td>已录用 · NeurIPS 2026</td><td><a href="https://neurips.cc/virtual/2026/poster/148943">官方来源 ↗</a> · 2026-10-28<br>官方 virtual 站 poster 页（Sydney，2026-12-10；OpenReview forum u0riwBjIls）确认接收；arXiv:2605.08276v1 题录未写会议。论文集未上线。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=63-codir">CoDiR：用扩散修正低置信伪标签，而不是重画病理图像</a></td><td>已发表 · MICCAI COMPAYL Workshop 2026</td><td><a href="https://papers.miccai.org/miccai-2026-sat/COMPAYL_020.html">官方来源 ↗</a> · 2026-10-28<br>MICCAI 2026 Satellite Events Open Access 正式条目（发布 2026-09-21），BibTeX booktitle 为 “MICCAI 2026 Workshops and Challenges”（LNCS 17251）。Springer DOI 与页码仍标 “not yet available”，所以是 workshop 开放获取版已出、Springer 卷未出；若只认 Springer 卷，则应记 accepted。不是 MICCAI 主会。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=52-cpathogen">CPathOGen：把病理模型的“看”拆成三个可控旋钮</a></td><td>录用未确认 · arXiv 2026</td><td><a href="https://arxiv.org/abs/2610.00602">官方来源 ↗</a> · 2026-10-28<br>arXiv:2610.00602v1（2026-09-30，eess.IV/q-bio.QM）题录无 journal-ref、无会议注记；代码与 HF 模型卡不等于发表。</td></tr>
+<tr><td><a target="_top" href="../?domain=pathology&amp;paper=91-sheafstain">SheafStain：把&quot;patch 拼接不一致&quot;写成层论问题，用 Schrödinger Bridge 修 H&amp;E→IHC 虚拟染色</a></td><td>已录用 · NeurIPS 2026</td><td><a href="https://neurips.cc/virtual/2026/poster/155872">官方来源 ↗</a> · 2026-10-28<br>官方 virtual 站 poster 页确认接收（arXiv:2606.11846 题录亦写 Accepted at NeurIPS 2026）；论文集未上线，故记 accepted。</td></tr></tbody></table></div></section>
+<!-- DIFFUSION_PUBLICATIONS_END -->
 
 <section class="start-here" id="start">
 <p class="eyebrow">START HERE / 建议第一步</p>
@@ -195,7 +226,7 @@
 <div class="paper-grid">
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 49</span> MICCAI 2026 · 百万像素修复</p>
+<p class="paper-meta">已发表 · MICCAI 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">RestorePath</h3>
 <p class="paper-description">把修复从 patch 级推到百万像素级：以病理基础模型嵌入为条件，结合随机 patch 扩散、距离加权插值（DWI）与自适应引导尺度（AGS）改善跨 patch 一致性。</p>
 <div class="paper-links">
@@ -217,7 +248,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 56</span> CVPR 2024 · 生成/增广</p>
+<p class="paper-meta">已发表 · CVPR 2024 · 核验 2026-10-28</p>
 <h3 class="paper-title">LRDM</h3>
 <p class="paper-description">用自监督嵌入替代逐 patch 人工标注：嵌入经 cross-attention 注入 LDM，再用 MultiDiffusion 平均拼出 1024×1024 大图。</p>
 <div class="paper-links">
@@ -239,7 +270,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 55</span> MICCAI 2023 · 修复</p>
+<p class="paper-meta">已发表 · MICCAI 2023 · 核验 2026-10-28</p>
 <h3 class="paper-title">ArtiFusion</h3>
 <p class="paper-description">首个把 DDPM 用于病理伪影修复的工作：把修复表述为受掩码约束的渐进去噪重采样，只用 2445 张无伪影图像训练。</p>
 <div class="paper-links">
@@ -261,7 +292,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 57</span> Medical Image Analysis 2025 · 修复 + 合成</p>
+<p class="paper-meta">已发表 · Medical Image Analysis 2025 · 核验 2026-10-28</p>
 <h3 class="paper-title">ArtiDiffuser</h3>
 <p class="paper-description">反事实扩散：只重建被伪影扭曲的区域，同时把“合成伪影”当作增广，用一个模型统一两条方向。</p>
 <div class="paper-links">
@@ -283,7 +314,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 58</span> CVPR 2025 · 多尺度生成</p>
+<p class="paper-meta">已发表 · CVPR 2025 · 核验 2026-10-28</p>
 <h3 class="paper-title">ZoomLDM</h3>
 <p class="paper-description">一个模型管 8 个倍率：条件从单个嵌入升级为“该 patch 覆盖的 20× 嵌入矩阵”，经 Summarizer 压成定长 token，并另训 CDM 让条件可凭空采样。</p>
 <div class="paper-links">
@@ -305,7 +336,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 59</span> ICEIC 2026 · 修复（失焦模糊）</p>
+<p class="paper-meta">已发表 · ICEIC 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">Two-Stage Residual Diffusion</h3>
 <p class="paper-description">第一阶段用截断扩散调度快速出“结构对但糊”的粗修复；第二阶段以粗输出与真值的<strong>潜空间残差</strong>为条件合成细节。</p>
 <div class="paper-links">
@@ -326,7 +357,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已入库 60</span> Medical Image Analysis 2026 · 检测→定位→修复</p>
+<p class="paper-meta">已发表 · Medical Image Analysis 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">Unsupervised Artifact Pipeline</h3>
 <p class="paper-description">把三件事串成一条无监督流水线：HFM 特征上训归一化流得异常热图 → 异常热图 + 无监督语义分割得像素级掩码 → 掩码引导扩散修复。</p>
 <div class="paper-links">
@@ -352,11 +383,11 @@
 <section class="section" id="updates">
 <div class="section-heading">
 <p class="eyebrow">UPDATES / 2026-10-22</p>
-<h2>补充论文按录用入库 · 新增 7 篇精读</h2>
-<p class="section-lead">增量窗口为 2026-10-15 至 2026-10-22，并回溯近一年方法与必要前作。在本次公开检索覆盖内，未核实窗口中新首发的病理图像扩散/流匹配方法；找到一篇 10 月 16 日首发的伪影分割基准，作为掩码来源的辅助参考。BigCell 是 10 月 9 日首发的漏项，STREAM 是 6 月旧文于 10 月 14 日更新到 v3。</p>
+<h2>补充论文与研究线索</h2>
+<p class="section-lead">以下保留研究脉络与复现入口。发表状态统一取自本页上方的逐篇核验表；阅读和汇报顺序在研究工作台中管理。</p>
 </div>
 <h3 id="accepted-additions">本次新增精读 · 点击进入论文库</h3>
-<p class="section-lead">从此前补入的经典论文和近期线索中，确认 8 篇具有正式录用或出版证据，现已补齐全文方法、实验表格、复现入口和阅读顺序。加上此前已入库的 5 篇，补充论文共有 13 篇已录用精读；未确认录用的条目仍保留为线索，既有预印本导读不删除。</p>
+<p class="section-lead">已发表、已录用和录用未确认分开显示；Workshop 不作为主会。每篇均可查看来源与核验日期。</p>
 <div class="callout">
 <p><strong>贴近你的修复主线：</strong><a target="_top" href="../?domain=pathology&amp;paper=72-latentartifusion">72 · LatentArtiFusion：掩码内怎样修</a>；<a target="_top" href="../?domain=pathology&amp;paper=74-diffusionqc">74 · DiffusionQC：先找哪里坏了</a>；<a target="_top" href="../?domain=pathology&amp;paper=78-histo-diffusion">78 · SuperDiff：低分辨率怎样补细节</a>。</p>
 <p><strong>理解条件与大图生成：</strong><a target="_top" href="../?domain=pathology&amp;paper=70-diffinfinite">70 · DiffInfinite：小窗口怎样合成大图</a>；<a target="_top" href="../?domain=pathology&amp;paper=71-pathldm">71 · PathLDM：病理报告怎样控制生成</a>。</p>
@@ -368,7 +399,7 @@
 <div class="paper-grid">
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> 2026-10-09 · NeurIPS 2026</p>
+<p class="paper-meta">已录用 · NeurIPS 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">BigCell</h3>
 <p class="paper-description">流匹配 + UNI-2 条件网格；共享滑窗速度融合，生成到 32768²；文本条件另经 CGM 达 8192²。不是伪影修复。</p>
 <div class="paper-links">
@@ -386,7 +417,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> NeurIPS 2026 · 首发 2026-06-05 · v3 2026-10-14</p>
+<p class="paper-meta">已录用 · NeurIPS 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">STREAM</h3>
 <p class="paper-description">在归一化 UNI token 空间直接做黎曼流匹配，再用各向异性 decoder 解码；不是用 UNI 作为额外条件。</p>
 <div class="paper-links">
@@ -403,7 +434,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> 2026-06-26 · MICCAI 2026 主会</p>
+<p class="paper-meta">已发表 · MICCAI 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">CHIS</h3>
 <p class="paper-description">冻结 PixCell；mask 相位初始化 + 小波纹理调制，生成结构可控的图像-mask 对。</p>
 <div class="paper-links">
@@ -420,7 +451,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> 2026-04-09 · ICPR 2026</p>
+<p class="paper-meta">已发表 · ICPR 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">HistDiT</h3>
 <p class="paper-description">H&amp;E→IHC；VAE 空间条件经 cross-attention，UNI2-h 语义经 adaLN，分开注入 DiT。</p>
 <div class="paper-links">
@@ -437,7 +468,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> 2026-08-12 · MICCAI COMPAYL Workshop</p>
+<p class="paper-meta">已发表 · MICCAI COMPAYL Workshop 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">CoDiR</h3>
 <p class="paper-description">扩散对象是分割 mask：仅修正低置信伪标签，学生推理不需要扩散模块。</p>
 <div class="paper-links">
@@ -454,7 +485,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag">既有预印本导读</span> 2026-03-18 · 技术报告 · 未确认录用</p>
+<p class="paper-meta">录用未确认 · arXiv 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">CytoSyn</h3>
 <p class="paper-description">REPA-E/SiT；H0-mini 同时提供条件与表征对齐，联合训练病理 VAE；检查 JPEG 与跨切片评价。</p>
 <div class="paper-links">
@@ -470,7 +501,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag">既有预印本导读</span> 2026-09-11 · 未确认录用</p>
+<p class="paper-meta">录用未确认 · arXiv 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">Conditioning Noise</h3>
 <p class="paper-description">训练时给交叉注意力匹配统计的高斯条件，推理仍为 null 条件误差打分；这是 QC 正则化，不是语义修复。</p>
 <div class="paper-links">
@@ -486,7 +517,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag">既有预印本导读</span> 2026-01-13 · v2 2026-07-01 · 未确认录用</p>
+<p class="paper-meta">录用未确认 · arXiv 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">PathoGen</h3>
 <p class="paper-description">在良性组织里合成病变，用局部 inpainting 生成带像素标注的增强数据；不能当作患者伪影修复。</p>
 <div class="paper-links">
@@ -502,7 +533,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag">既有预印本导读</span> 2025-09-01 · 较早前作 · 未确认录用</p>
+<p class="paper-meta">录用未确认 · arXiv 2025 · 核验 2026-10-28</p>
 <h3 class="paper-title">LPFM</h3>
 <p class="paper-description">粗恢复 + 条件扩散细化，统一超分、去模糊、去噪与虚拟染色。</p>
 <div class="paper-links">
@@ -571,7 +602,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> NeurIPS 2026 · arXiv 首发 2026-05-08</p>
+<p class="paper-meta">已录用 · NeurIPS 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">CMD</h3>
 <p class="paper-description">先遮住图像小块，再训练卷积网络还原原图，获得细胞级分割特征；下游冻结骨干，只训练分割头。不是推理时修复患者图像。</p>
 <div class="paper-links">
@@ -588,7 +619,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> NeurIPS 2026 · arXiv 首发 2026-06-10 · v2 2026-09-30</p>
+<p class="paper-meta">已录用 · NeurIPS 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">SheafStain</h3>
 <p class="paper-description">把 VFM 的 token 图当层论截面，用空间图 + 邻域 CLS 做条件，再以 sheaf/cocycle 损失惩罚相邻 patch 在重叠区的不一致；在拼好的 1024² 上评测拼接质量。不是又换一个生成骨干。</p>
 <div class="paper-links">
@@ -630,7 +661,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> BMVC 2026 · arXiv 首发 2026-08-25</p>
+<p class="paper-meta">已录用 · BMVC 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">Reliable Histological Staining</h3>
 <p class="paper-description">把 H&amp;E 转成虚拟 Sirius Red，用胶原含量误差检验“图像看起来像”是否真的有用；比较六种无配对架构、54 组配置与集成不确定性。</p>
 <div class="paper-links">
@@ -663,7 +694,7 @@
 <div class="paper-grid">
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> C 生成 · NeurIPS 2023 Datasets &amp; Benchmarks Track</p>
+<p class="paper-meta">已发表 · NeurIPS 2023 Datasets &amp; Benchmarks Track · 核验 2026-10-28</p>
 <h3 class="paper-title">DiffInfinite</h3>
 <p class="paper-description en">Large Mask-Image Synthesis via Parallel Random Patch Diffusion</p>
 <p class="paper-description">先生成组织分割掩码，再让随机重叠窗口逐轮写回同一画布，合成配对病理大图。重点是采样调度；主实验不是按患者真实邻域修复。</p>
@@ -676,7 +707,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> C 生成 · WACV 2024</p>
+<p class="paper-meta">已发表 · WACV 2024 · 核验 2026-10-28</p>
 <h3 class="paper-title">PathLDM</h3>
 <p class="paper-description en">Text conditioned Latent Diffusion Model for Histopathology</p>
 <p class="paper-description">病理报告先由 GPT-3.5 压缩成摘要，再由文本编码器作为去噪条件；同时比较 VAE 下采样倍率与病理文本编码器。作者 TCGA-BRCA 评测 FID 为 7.64，不等于任意报告都能准确生成。</p>
@@ -689,7 +720,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> A 修复 · MICCAI DGM4MICCAI Workshop 2024（非主会）</p>
+<p class="paper-meta">已发表 · MICCAI DGM4MICCAI Workshop 2024 · 核验 2026-10-28</p>
 <h3 class="paper-title">LatentArtiFusion</h3>
 <p class="paper-description en">An Effective and Efficient Histological Artifacts Restoration Framework</p>
 <p class="paper-description">把伪影修复搬到潜空间并做区域化重建：作者称比像素级扩散框架快 <strong>30× 以上</strong>，多个指标上超过 GAN 类方法至少 5%。它是 ArtiFusion 的效率续作。</p>
@@ -714,7 +745,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> B 检测 · IEEE ISBI 2026</p>
+<p class="paper-meta">已发表 · IEEE ISBI 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">DiffusionQC</h3>
 <p class="paper-description en">Artifact Detection and Quality Control in Histopathology Images via Diffusion Model</p>
 <p class="paper-description">先让 PixCell-1024 + LoRA 学干净 patch 的噪声预测，推理时把预测误差铺成热图，定位可能的伪影；basic 只用干净图训练，enhanced 另用 400 张含伪影图块。它负责找坏区域，不负责生成修复后的图像。</p>
@@ -756,7 +787,7 @@
 </article>
 
 <article class="paper-card">
-<p class="paper-meta"><span class="tag live">已录用 · 已入库</span> D 超分 · MedIA 2026 · 2025 在线发表</p>
+<p class="paper-meta">已发表 · Medical Image Analysis 2026 · 核验 2026-10-28</p>
 <h3 class="paper-title">Histo-Diffusion / SuperDiff</h3>
 <p class="paper-description en">A Diffusion Super-Resolution Method for Digital Pathology</p>
 <p class="paper-description">面向数字病理的扩散超分：组织学先验修复模块 + 可控扩散生成模块，并配套一套生成式超分的质量评估流程。</p>
@@ -861,12 +892,12 @@
 <li><strong>第一档 · ArtiFusion：</strong>最小闭环。掩码约束重采样（Eq. 2）、Swin 骨干、T=250、两张 A4000；先跑通修复指标，再补下游分类，确认“掩码大小”这一旋钮对结论的影响。</li>
 <li><strong>第二档 · LRDM：</strong>条件化骨架。先复现“SSL 嵌入 → cross-attention → 256 patch”，再上 MultiDiffusion 拼 1024²；条件来源消融（无条件 / ImageNet ViT / CLIP / HIPT）是验证机制是否成立的关键实验，成本可控。</li>
 <li><strong>机制扩展 · ZoomLDM / BigCell / STREAM：</strong>分别研究倍率条件、全局速度融合、生成表征空间。作者的多卡与大 batch 是实验配置，不是未经测量的最低门槛；用户算力充足，不因训练规模降级这些方法。</li>
-<li><strong>暂不优先：</strong>ICEIC 2026（正文付费墙、仅感知指标）与 MedIA 2026 无监督流水线（无公开代码，需从零实现三段式）。两篇适合作为“读机制、找缺口”的对象，而不是第一批评测目标。</li>
+<li><strong>核验实现再定优先级：</strong>ICEIC 2026 的正文存在付费墙；MedIA 2026 无监督流水线已有作者代码入口，但本次没有运行。两篇的模型入口和作者指标都不等于本站已完成复现。</li>
 <li><strong>复现切口：</strong>CHIS 检查结构初始化与小波调制；PathoGen 区分病变合成和伪影修复；CoDiR 检查 mask refinement 消融；LPFM 对比粗恢复与扩散细化。优先级取决于机制、协议和资源可达性，而非单纯选择最小模型。</li>
 </ol>
 </section>
 
-<p class="aside-note">2026-10-22 录用入库：本次从补充清单新增 7 篇全文精读，连同此前 5 篇已有录用证据的导读归入“病理扩散精读”；BigCell、STREAM 同时补全正文方法与消融细节。全页保留 7 篇起步主线、原有 9 篇导读、10 篇经典补充、7 条近期线索和 1 篇 QC 基准；条目原位升级、不重复计卡，站内精读由 16 篇增至 23 篇。未确认录用的条目不补造会议名；作者结果、本站解释和未验证改进分开，模型入口不等于已运行或已复现。</p>
+<p class="aside-note">2026-10-28：专题工作台按近期研究、复现进展、本次汇报和方法地图组织。精读先呈现「30 秒看懂」与「3 分钟讲清」，完整摘要与深读正文保留。作者报告的结果不等于本站已经复现；实际运行范围以保存的运行记录为准。</p>
 
 <footer class="page-footer">
 <span>任务版图 → 逐篇证据 → 评估口径 → 复现优先级</span>

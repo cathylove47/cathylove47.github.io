@@ -4,28 +4,32 @@
 **定位**：**伪影修复**（改像素、只改坏区域），是 ArtiFusion 的潜空间效率续作；不负责检测，也不合成伪影。  
 **精读核验**：2026-10-22 核对 arXiv v1 全文（§1–4、Table 1–3、Fig. 1–3）、Springer/OpenAlex 题录与官方仓库 README/入口脚本；出版社正文未取到，数值以 arXiv v1 为准；未下载权重、未运行模型。会议为 **MICCAI 2024 的 DGM4MICCAI workshop**，不是 MICCAI 主会。
 
-## 原文摘要
+## 30 秒看懂
 
-> Histological artifacts pose challenges for both pathologists and Computer-Aided Diagnosis (CAD) systems, leading to errors in analysis. Current approaches for histological artifact restoration, based on Generative Adversarial Networks (GANs) and pixel-level Diffusion Models, suffer from performance limitations and computational inefficiencies. In this paper, we propose a novel framework, LatentArtiFusion, which leverages the latent diffusion model (LDM) to reconstruct histological artifacts with high performance and computational efficiency. Unlike traditional pixel-level diffusion frameworks, LatentArtiFusion executes the restoration process in a lower-dimensional latent space, significantly improving computational efficiency. Moreover, we introduce a novel regional artifact reconstruction algorithm in latent space to prevent mistransfer in non-artifact regions, distinguishing our approach from GAN-based methods. Through extensive experiments on real-world histology datasets, LatentArtiFusion demonstrates remarkable speed, outperforming state-of-the-art pixel-level diffusion frameworks by more than 30X. It also consistently surpasses GAN-based methods by at least 5% across multiple evaluation metrics. Furthermore, we evaluate the effectiveness of our proposed framework in downstream tissue classification tasks, showcasing its practical utility. Code is available at https://github.com/bugs-creator/LatentArtiFusion.
+**一句话**：LatentArtiFusion 把"只修掩码内"搬到冻结 VAE 的潜空间，50 步、单图 0.83 s，比像素级扩散快约 37 倍。
 
-*来源：[arXiv v1 摘要页](https://arxiv.org/abs/2407.20172)，完整原文；Springer 正式版题录指向同一论文，但本次未取得出版社正文，不能确认排版/措辞是否完全一致。*
+**问题**：像素级扩散修复要在 256×256×3 上跑 250 步（ArtiFusion 30.7 s），而 GAN 会顺手改掉非伪影区的染色。
 
-摘要的中文要点：现有 GAN 与像素级扩散修复各有性能/效率问题；LatentArtiFusion 在低维潜空间做修复，并设计“潜空间区域重建”算法，避免非伪影区域被误改；在真实病理数据上比像素级扩散快 30 倍以上，多个指标至少超过 GAN 类方法 5%；还验证了下游组织分类的收益。
+**瓶颈**：效率与"只改坏区域"这两件事在像素空间互相拉扯；潜空间能省算力，但 8× 下采样让掩码边界和细节一起变粗。
 
-## 1. 三分钟摘要与推荐理由
+**insight**：每一步不只喂掩码区——把"非伪影区按当前噪声等级重新加噪的潜变量"和"伪影区上一步的输出"按掩码拼起来再整张去噪，网络因此始终看得到周围干净组织在当前噪声下的样子。
 
-一张 256×256 的 H&E patch 上有一道折叠。你只想改折叠覆盖的那一小块，其他区域一个像素都不要动。像素级扩散（ArtiFusion）能做到“只去噪掩码内”，但要在 256×256×3 的空间里跑 250 步；LatentArtiFusion 先把整张图压进 32×32×4 的潜空间（8× 下采样），在潜空间里跑 50 步，再把结果解码回来。
+## 3 分钟讲清
 
-- **输入**：带伪影的图像 + 二值伪影掩码。
-- **输出**：同尺寸修复图，掩码外尽量保持原样。
-- **训练数据**：只需要无伪影图像；模型学“干净病理图在潜空间里的分布”。
-- **推理数据**：测试集本身是干净图，作者**人工合成**伪影后再修复，因此有像素级真值可算 PSNR/SSIM。
+**方法（按顺序）**：
+1. 冻结 SD1.5 VAE，把 256×256×3 压成 32×32×4（8× 下采样）。
+2. 只用 2445 张无伪影图画 256² 图训练潜空间 U-Net（从零训，50 步线性调度，batch 16，lr 1e-4）。
+3. 推理时把布尔掩码下采样到潜空间分辨率。
+4. 逐步做区域组合：$Z_{in}=Z_{sample}\odot M + Z_{prev}\odot(1-M)$，再整张去噪（式 (1)，注意式里的 M 实际是"保留区"，与正文文字相反）。
+5. 最后一步同样组合后解码回像素。
 
-它和检测类工作（DiffusionQC）正好互补：检测负责“哪里坏了”，LatentArtiFusion 负责“把那里补成可信组织”。但它不解决“掩码从哪来”，也不证明修复后的组织在生物学上正确。
+**作者证据在哪**：Table 1 两个测试集（Histology 462 张、MoNuSAC 154 张，伪影是人造的）上的 L2 / MSE / SSIM / PSNR / FSIM；Table 2 单图耗时与扩散步数（0.8341 s / 50 步）；Table 3 NCT-CRC 下游分类。要纠正正文一句"所有指标全面更优"：Histology 上 SSIM 0.9810 与 PSNR 46.92 都低于 ArtiFusion 的 0.9860 / 48.08。
 
-**为什么值得读**：它把“效率”当成一等公民，给出了 30× 加速的具体来源（潜空间 + 50 步），也暴露了潜空间修复的代价（VAE 重建误差、掩码分辨率、非伪影区域并非严格不变）。这些正是后续 RestorePath 等大图修复要面对的问题。
+**和上一代的区别**：它是 ArtiFusion 的潜空间加速版——同样的"只用干净图 + 掩码引导"，换空间、砍步数；与 RestorePath 的分工是"单 patch 效率"对"百万像素跨 patch 一致"。
 
-## 2. 问题及研究位置
+**讲 PPT 用这张**：Table 2 的效率对照（30.71 s / 250 步 → 0.8341 s / 50 步），配 Table 1 里 SSIM/PSNR 的反例，说明"快"与"全面更好"不是一回事。
+
+## 1. 问题及研究位置
 
 - **任务边界**：给定带伪影图和伪影掩码，输出修复图。不是检测、不是分类、不是无条件生成。
 - **与 ArtiFusion 的关系**：ArtiFusion（MICCAI 2023）首次把 DDPM 用于病理伪影修复，在像素空间做掩码内去噪，250 步；LatentArtiFusion 沿用“只用干净图训练 + 掩码引导”的思想，把去噪搬到冻结 VAE 的潜空间，步数降到 50。
@@ -33,7 +37,7 @@
 - **与后续工作的关系**：ArtiDiffuser 把“修复”和“伪影合成”统一；RestorePath 把修复推到百万像素并强调跨 patch 全局一致；LatentArtiFusion 的贡献主要是**单 patch 的潜空间效率**，不是大图一致性。
 - **一个术语澄清**：论文里的 “regional denoising” 不是“只把掩码区域送进网络”，而是每一步把“非伪影区的加噪版本”和“伪影区的上一步输出”按掩码拼起来，再对整张潜变量去噪。理解这一点才能看懂它的保留机制和局限。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 先把两个术语说清楚。**VAE** 是一个“编码器—解码器”组合：编码器把 256×256×3 的图像压成 32×32×4 的特征图，解码器再把它还原成图像；扩散过程只在这个小特征图（潜空间）里做，所以计算量小。**掩码引导的区域去噪**指每一步只让伪影区的像素自由变化，非伪影区则不断被“拉回”原始图像对应的噪声状态。
 
@@ -66,7 +70,7 @@
 
 **掩码怎么进潜空间**：论文只说“把布尔掩码编码到潜空间（记为 M）”，没有给具体算子（最近邻下采样、卷积下采样还是 VAE 编码）。这是复现时必须自己决定的细节，也会直接影响边界行为。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 **训练集**：Camelyon17 的一个子集，2,445 张 256×256 无伪影图。  
 **测试集**：Histology（462 张，密集细胞核）与 MoNuSAC 2020（154 张，多器官）。两者原本都是无伪影图，作者**人工合成伪影**得到配对数据。  
@@ -107,7 +111,7 @@
 
 **实验范围的关键限制**：所有测试伪影都是合成的，不是真实扫描伪影；没有按伪影类型（折叠、气泡、记号笔、失焦）分层报告；没有 WSI 级实验；没有与更新的修复方法（ArtiDiffuser、RestorePath）对比。因此它能证明“在合成伪影上、单 patch、256² 的修复有效且快”，不能证明“真实 WSI 伪影修复已达到临床可用”。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 1. **仓库状态**：官方仓库有完整代码结构：`generate_image.py`、`generate_impainting.py`、`pipeline_latent_diffusion.py`、`train_latent_diffusion.py`、`train_latent_swinunet.py`、`model_training/`、`inference/` 与 `imgtrainer/`（后者更像作者另一套实验代码）。README 给出预训练 U-Net 的 Google Drive 链接、训练数据 Google Drive 链接，以及 SD1.5 VAE 的 Hugging Face 入口。
 2. **入口脚本的实际行为**：`generate_impainting.py` 接收 `--vae`、`--unet`、`--seed`、`--image`、`--mask`，把输入强制 `Resize(256)` + `CenterCrop(256)`，硬编码 `cuda:0`，推理固定 `num_inference_steps=50`；调度器从 `./scheduler` 目录读取，README 未说明该目录如何获得。这三处都会让“换尺寸/换机器/缺目录”直接失败。
@@ -123,11 +127,11 @@
 - 把 VAE 换成病理域微调的 VAE，比较重建误差与修复指标，检验“潜空间瓶颈”是否主要来自 VAE。
 - 在 WSI 上按 patch 修复后做重叠融合，检验跨 patch 染色/结构一致性；这是 RestorePath 已经在做、本文没有做的事。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 Fig. 1(a) 总览 → §2.2 训练目标 → §2.2 式 (1) 区域去噪 → Fig. 2 潜空间掩码 → §3.1 超参 → Table 1（注意 SSIM/PSNR 反例）→ Table 2 效率 → Table 3 下游 → 仓库 `generate_impainting.py`。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - [ArtiFusion](55-artifusion.md)：像素空间前作，250 步；本文是它的潜空间加速版，对比读能看清“效率换来了什么、失去了什么”。
 - [RestorePath](49-restorepath.md)：百万像素、跨 patch 一致；本文是单 patch 效率路线，两者解决的是不同尺度的问题。
@@ -136,7 +140,15 @@ Fig. 1(a) 总览 → §2.2 训练目标 → §2.2 式 (1) 区域去噪 → Fig. 
 - [DiffusionQC](74-diffusionqc.md)：检测器输出误差热图，可作为本文修复器的掩码来源；两者串联尚未被任何一篇验证。
 - [Two-Stage Residual-Guided Diffusion](59-residual-guided-diffusion.md)：同样关注细节恢复，但走“粗修复 + 残差扩散”，可对比单阶段潜空间修复的细节上限。
 
-## 8. 链接
+## 原文摘要
+
+> Histological artifacts pose challenges for both pathologists and Computer-Aided Diagnosis (CAD) systems, leading to errors in analysis. Current approaches for histological artifact restoration, based on Generative Adversarial Networks (GANs) and pixel-level Diffusion Models, suffer from performance limitations and computational inefficiencies. In this paper, we propose a novel framework, LatentArtiFusion, which leverages the latent diffusion model (LDM) to reconstruct histological artifacts with high performance and computational efficiency. Unlike traditional pixel-level diffusion frameworks, LatentArtiFusion executes the restoration process in a lower-dimensional latent space, significantly improving computational efficiency. Moreover, we introduce a novel regional artifact reconstruction algorithm in latent space to prevent mistransfer in non-artifact regions, distinguishing our approach from GAN-based methods. Through extensive experiments on real-world histology datasets, LatentArtiFusion demonstrates remarkable speed, outperforming state-of-the-art pixel-level diffusion frameworks by more than 30X. It also consistently surpasses GAN-based methods by at least 5% across multiple evaluation metrics. Furthermore, we evaluate the effectiveness of our proposed framework in downstream tissue classification tasks, showcasing its practical utility. Code is available at https://github.com/bugs-creator/LatentArtiFusion.
+
+*来源：[arXiv v1 摘要页](https://arxiv.org/abs/2407.20172)，完整原文；Springer 正式版题录指向同一论文，但本次未取得出版社正文，不能确认排版/措辞是否完全一致。*
+
+摘要的中文要点：现有 GAN 与像素级扩散修复各有性能/效率问题；LatentArtiFusion 在低维潜空间做修复，并设计“潜空间区域重建”算法，避免非伪影区域被误改；在真实病理数据上比像素级扩散快 30 倍以上，多个指标至少超过 GAN 类方法 5%；还验证了下游组织分类的收益。
+
+## 7. 链接
 
 - [Springer 正式版（LNCS，DGM4MICCAI 2024）](https://doi.org/10.1007/978-3-031-72744-3_20)
 - [arXiv 摘要与版本](https://arxiv.org/abs/2407.20172)

@@ -6,17 +6,31 @@
 
 **[打开完整的故事式 HTML 精读页](/pathology-atlas/learning/cpathogen-story.html)** — 含三处交互（细胞地图构造、Table 1–3 原表条形图、BNR 计算器）、七张公式卡与官方仓库的真实命令。
 
-## 原文摘要
+## 30 秒看懂
 
-> Computational pathology models infer biologically and clinically meaningful outcomes from histology, but their predictions are shaped by complex, intertwined tissue signals whose roles are important to understand. Common pixel- and feature-space perturbations can produce implausible tissue, making model responses difficult to interpret. We introduce CPathOGen, a conditional latent-diffusion framework for generating paired H&E counterfactuals with explicit controls over cellular spatial organization, nuclear morphology, and stain appearance. Cellular maps condition spatial structure through a spatial encoder, while a morphology/appearance vector modulates denoising through blockwise feature-wise linear modulation (FiLM). On held-out H&E tiles, CPathOGen generates visually plausible tissue with improved distributional agreement after spatially guided selection, as reflected by lower Fréchet Inception Distance (FID) and Kernel Inception Distance (KID); generated cells track requested abundance and position, and measured morphology and color vary monotonically with their controls. We use these verified interventions to probe pathology encoders with endpoint heads, task-specific classifiers, and survival models. Responses are quantified using total variation distance and prediction-flip rate. We further introduce the Biology-Nuisance Sensitivity Ratio, a metric that contrasts model sensitivity to biologically motivated morphology and spatial factors with sensitivity to non-biological, stain-related nuisance variation. CPathOGen provides a practical, fidelity-audited framework for evaluating robustness and controlled feature sensitivity in computational pathology model.
+**一句话**：CPathOGen 把"模型在看什么"拆成三个能分别拨动的旋钮——细胞空间组织、核形态、染色外观——再生成只差一个旋钮的配对图去问模型。
 
-*来源：arXiv:2610.00602v1（https://arxiv.org/abs/2610.00602）。逐字原文，未改写、未压缩；原文末句的语法与用词保持原样。*
+**问题**：注意力热图只回答"看向哪里"，回答不了"那一片里哪条属性起作用"；而在像素或特征空间直接加噪，会造出不真实的组织，让"预测变了"这件事失去意义。
 
-## 中文摘要
+**瓶颈**：官方标准化器没保存，发布版不提供可信的"原始特征 → 16 维条件"转换；结论来自单队列单癌种（TCGA-BRCA），真实性也没做病理医生读者研究。
 
-> 计算病理模型能从组织学图像推断具有生物学与临床意义的结果，但它们的预测由复杂且相互交织的组织信号塑造，理解这些信号的作用很重要。常见的像素空间与特征空间扰动会产生不真实的组织，使模型响应难以解释。我们提出 CPathOGen，一个条件潜空间扩散框架，用于生成配对的 H&E 反事实图像，并对细胞空间组织、核形态与染色外观提供显式控制。细胞地图通过空间编码器为空间结构提供条件，而一个形态/外观向量通过逐块的 FiLM（feature-wise linear modulation）调制去噪过程。在留出的 H&E 图块上，CPathOGen 生成视觉上合理的组织，并在空间引导筛选之后取得更好的分布一致性，表现为更低的 Fréchet Inception Distance（FID）与 Kernel Inception Distance（KID）；生成的细胞跟踪了请求的数量与位置，测得的形态与颜色随其控制量单调变化。我们用这些经过验证的干预去探测带有终点头的病理编码器、任务特定分类器与生存模型，响应用总变差距离（TVD）与预测翻转率量化。我们进一步提出 Biology-Nuisance Sensitivity Ratio（BNR），该指标对比模型对生物学动机的形态与空间因素的敏感度，与其对非生物学染色相关干扰变化的敏感度。CPathOGen 提供了一个实用的、经过保真度审计的框架，用于评估计算病理模型的稳健性与可控特征敏感度。
+**insight**：反事实应该是请求驱动的，而不是朝目标预测优化的。先声明改哪一项、其余锁死，才能做可归因的单因子干预；而干预必须先用独立分析器验证"请求的变化真的出现了"，再去探测模型——先验证、后使用。
 
-*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+## 3 分钟讲清
+
+**方法（按顺序）**：
+1. TCGA-BRCA 1114 张 WSI、512² 图块（>2 个肿瘤细胞），用 CellViT++ 弱标签取质心 / 类别 / 轮廓。
+2. 空间条件 $S$：5 通道质心光栅化图（肿瘤/炎症/结缔/死亡/上皮）；形态/外观条件 $m$：核大小、周长、偏心率、紧致度、核内梯度与 RGB 统计标准化成 16 维。
+3. 基座 SD2.1 潜扩散：$S$ 经可训练编码器压到 4×64×64 与 $z_t$ 拼接（首层 4→8 通道，新通道零初始化），$m$ 经每个残差块的 FiLM 调制；文本条件固定，不用提示词。
+4. 训练就是常规 ε-预测 MSE。
+5. 推理：同一条件出 8 个候选，用细胞分析器打分筛选——**不看被审计模型的预测、表征或梯度**，候选数与打分函数在评估前固定。
+6. 配对干预：固定种子与非目标条件，剂量 $\delta\in\{-2,-1,0,+1,+2\}$（训练集标准差）；用 TVD 与预测翻转率量化冻结模型的响应，并提出 BNR（生物干预 TVD ÷ 干扰 TVD）。
+
+**作者证据在哪**：Table 1（不筛种子 FID 42.923 / KID 0.02466 → 筛选后 36.717 / 0.01964；真实对真实 16.369）、Table 2（总计数 ρ 0.952 / 0.908 / 0.928，随机真实图块对照 −0.031；质心 F1@25px 0.726 / 0.625 / 0.798）、Table 3（剂量内 macro ρ 0.986 / 0.986 / 0.929）、Table 4（PAM50 AUC 0.7577 / 0.8323 / 0.8687 与 BNR 1.0736 / 1.1434 / 1.2787）。两个负结果必须一起讲：主导因素因编码器而异；只重排、不改数量的干预在三个编码器上响应都是最低（0.1126 / 0.1194 / 0.1582）。
+
+**和上一代的区别**：与 TopoCellGen 目标相反——一个造新布局做增强，一个把布局当审计输入仪器；与 DVCE / DiME / MoPaDi 的"朝目标类优化"不同，这里只按请求改一个因子；与 RestorePath 都是病理扩散，但一个改伪影区、一个只改被请求的属性。
+
+**讲 PPT 用这张**：Table 4（三个编码器的 AUC 与 BNR）+ "只重排"那一行；负面发现比正面结果更有信息量。
 
 ## 论文 Pipeline 原图
 
@@ -28,7 +42,7 @@
 
 ## 0. 零基础导读：先读这一节
 
-> 这一节只讲直觉，不要求你懂公式。看完本节和第 1 节就可以先停，需要动手时再往下读。
+> 这一节只讲直觉，不要求你懂公式。看完「30 秒看懂」「3 分钟讲清」和本节就可以先停，需要动手时再往下读。
 
 ### 0.1 把它想成什么？
 
@@ -67,15 +81,7 @@
 
 **现在只记住一句话：CPathOGen = 先请求一个干预，造出只差这一项的配对图，再拿它去问模型。**
 
-## 1. 三分钟摘要与推荐理由
-
-已有的病理反事实方法（文献里的 DVCE、DiME、DiG-IN，以及病理方向的 MoPaDi）都朝目标预测优化，多属性同时改变导致归因不清；而像素/特征空间的加噪扰动会产生不真实组织，使“预测变了”失去意义。CPathOGen 把反事实重新定义为**请求驱动的干预**：细胞空间组织、核形态、染色外观是三个可分别调节的旋钮，动其中一个、其余保持不变，同一种子生成配对图。
-
-技术上它并不追求新架构，而是把两个条件通道分得很干净：空间图走“潜空间拼接 + 零初始化扩展通道”，形态/外观走“逐块 FiLM 调制”。方法之外，这篇论文有两个值得学的做法：**候选筛选是免预测的**（打分只用细胞分析器，绝不看被审计模型的预测、表征或梯度，且候选数与打分函数在评估前固定），以及**先验证干预、再拿去探测**。
-
-读它的理由：这是目前少见的、把“可解释性”做成一条可执行审计流程的病理工作，而且权重与推理代码公开、L4 级别 GPU 就能跑；它同时给出了一个负面发现（当前 patch 级编码器对“只换排布”的干预几乎不敏感），这比正面结果更有信息量。
-
-## 2. 问题及研究位置
+## 1. 问题及研究位置
 
 问题的核心是**归因**。热图类解释只回答“模型看向哪里”，回答不了“那一片里哪条属性起了作用”；Adebayo 等人的 sanity check 还说明热图在参数或标签被随机化后可能几乎不变。病理场景另有混杂：染色、医院与扫描仪差异会留在图像里（Howard 等人），模型可能部分依赖这些线索。作者因此把目标定在“扰动可控 + 图像可信”两个条件同时成立的反事实。
 
@@ -86,7 +92,7 @@
 
 本文的位置：不追求生成更逼真的图，而是把生成器当**输入仪器**，用可控、可验证的干预去测外部模型。
 
-## 3. 核心方法和数据流
+## 2. 核心方法和数据流
 
 ```text
 训练（TCGA-BRCA，1114 张 WSI，20×，512×512 图块，>2 个肿瘤细胞，约 140 万块）
@@ -115,7 +121,7 @@
 2. **筛选不看被审计模型**：候选数量与打分函数 Q 都在下游评估前固定，否则解释会退化成“挑出模型爱看的样本”。
 3. **干预后先验证再使用**：论文用 CellViT++、HoVer-Net、StarDist 三个分析器与“随机真实图块”对照，确认请求的变化确实出现在生成图里，之后才做探测。
 
-## 4. 论文证据与实验范围
+## 3. 论文证据与实验范围
 
 - **分布真实性（Table 1，N_R=10,000，与等量独立真实图块比较）**：不筛种子 FID 42.923 / KID 0.02466；八候选空间引导筛选后 FID 36.717 / KID 0.01964；真实对真实 16.369 / 0.00647（用于说明有限样本的残留差异）。
 - **空间保真（Table 2，N=1,000）**：总计数 ρ 为 CellViT++ 0.952 / HoVer-Net 0.908 / StarDist 0.928，随机真实图块对照 −0.031；分类型 ρ 依次 0.612 / 0.525 / N/A（StarDist 无类型）；质心 F1@25px 为 0.726 / 0.625 / 0.798（StarDist 只看位置），F1@50px 为 0.773 / 0.668 / 0.831，对照 0.134 / 0.255。
@@ -124,7 +130,7 @@
 - **论文自己报告的两个非正面结果**：其一，主导的生物干预因编码器而异（形状不规则 / 免疫负荷 / 核增大），没有统一答案；其二，**肿瘤–免疫混合（只重排、不改数量）在三个编码器上响应都是生物组最低**（0.1126 / 0.1194 / 0.1582），说明这些 patch 级编码器对空间排布本身不敏感。
 - **范围限制**：单队列（TCGA-BRCA）、单癌种，无外部验证；Table 1 只与自身设置和 real-vs-real 比较，未与其他病理生成方法同表对照；真实性无病理医生读者研究；训练硬件为 8×Tesla V100。
 
-## 5. 复现与审计重点
+## 4. 复现与审计重点
 
 - **标准化器缺失是第一道墙**：官方 README 与模型卡都写明，历史预处理脚本拟合过 `StandardScaler` 却没有保存，因此本次发布**不提供**可信的“原始特征 → 16 维条件”的转换，并警告不要在一张图或新队列上重拟合后假定与训练一致。任何“换队列做同样干预”的计划都要先解决这一条。
 - **条件语义要按发布说明读**：论文图 4 的 eccentricity 列使用的是绝对标准化坐标（20 步、spatial strength 1），与其余列的相对剂量不同；`--set g_mean=-1` 设置的是绝对标准化值，不是相对基线的减一。剂量扫描必须自己算 baseline + dose。
@@ -134,11 +140,11 @@
 - **成本分层**：推理级复现（单图、自定义条件、配对编辑，权重约 4.16 GB、L4 级可用）今天就能做；训练级复现需要 TCGA-BRCA 全量 WSI、CellViT++ 对约 140 万图块的推理，以及 8×V100 量级训练。筛选实验还必须具备 CellViT++ 权重与打分协议。
 - **仓库状态**：仓库名为 `PathOGen`（README 明确它就是论文的 CPathOGen）；官方提示活跃实验分支存在更晚的协议，复现某张表要用当时记录的分支与配置。
 
-## 6. 建议阅读顺序
+## 5. 建议阅读顺序
 
 `Abstract` → `Fig. 1`（干预 → 配对图 → 预测变化的总体用法）→ `Fig. 2`（条件构造与合成总览）→ `§3.2`（Eq.1–3：弱标签、空间图、形态向量）→ `§3.3–3.5`（Eq.4–10：潜空间条件、拼接与 FiLM）→ `§3.6`（Eq.11：免预测筛选）→ `§3.7`（Eq.12–14：配对干预）→ `§4.1`（数据与探针设置）→ `Table 1`（真实性）→ `Table 2–3`（保真度与对照）→ `§4.5` 与 `Table 4`（Eq.15–17：TVD、翻转率、BNR）→ `§5`（作者自陈的边界与未来工作）。
 
-## 7. 前后关联
+## 6. 前后关联
 
 - 与 [TopoCellGen](21-topocellgen.md) 对照：同属病理生成式建模，但目标相反——一个用拓扑约束生成新的细胞布局做数据增强，一个把细胞布局当成**审计模型的输入仪器**，并要求可分离的单因子控制。
 - 与 [CellViT](08-cellvit.md) 和 [CTransPath](07-ctranspath.md) 对照：CellViT++ 在这篇里是条件来源（弱标签）兼筛选器，CTransPath 是被审计的三个编码器之一；读完可以理解“分析器的偏差如何进入条件的定义”。
@@ -146,7 +152,19 @@
 - 与 [RestorePath](49-restorepath.md) 对照：同属病理扩散生成，但一个改写伪影区、保持与周围组织对齐，一个只改被请求的那一项属性、其余锁死；两者都需要警惕“生成出来的结构被当作原始证据使用”。
 - 论文引用的 MoPaDi（Žigutytė 等，Cancer Research 2026）不在本仓库，若要补齐“病理反事实”支线，可优先补这一篇作为直接对照。
 
-## 8. 链接
+## 原文摘要
+
+> Computational pathology models infer biologically and clinically meaningful outcomes from histology, but their predictions are shaped by complex, intertwined tissue signals whose roles are important to understand. Common pixel- and feature-space perturbations can produce implausible tissue, making model responses difficult to interpret. We introduce CPathOGen, a conditional latent-diffusion framework for generating paired H&E counterfactuals with explicit controls over cellular spatial organization, nuclear morphology, and stain appearance. Cellular maps condition spatial structure through a spatial encoder, while a morphology/appearance vector modulates denoising through blockwise feature-wise linear modulation (FiLM). On held-out H&E tiles, CPathOGen generates visually plausible tissue with improved distributional agreement after spatially guided selection, as reflected by lower Fréchet Inception Distance (FID) and Kernel Inception Distance (KID); generated cells track requested abundance and position, and measured morphology and color vary monotonically with their controls. We use these verified interventions to probe pathology encoders with endpoint heads, task-specific classifiers, and survival models. Responses are quantified using total variation distance and prediction-flip rate. We further introduce the Biology-Nuisance Sensitivity Ratio, a metric that contrasts model sensitivity to biologically motivated morphology and spatial factors with sensitivity to non-biological, stain-related nuisance variation. CPathOGen provides a practical, fidelity-audited framework for evaluating robustness and controlled feature sensitivity in computational pathology model.
+
+*来源：arXiv:2610.00602v1（https://arxiv.org/abs/2610.00602）。逐字原文，未改写、未压缩；原文末句的语法与用词保持原样。*
+
+## 中文摘要
+
+> 计算病理模型能从组织学图像推断具有生物学与临床意义的结果，但它们的预测由复杂且相互交织的组织信号塑造，理解这些信号的作用很重要。常见的像素空间与特征空间扰动会产生不真实的组织，使模型响应难以解释。我们提出 CPathOGen，一个条件潜空间扩散框架，用于生成配对的 H&E 反事实图像，并对细胞空间组织、核形态与染色外观提供显式控制。细胞地图通过空间编码器为空间结构提供条件，而一个形态/外观向量通过逐块的 FiLM（feature-wise linear modulation）调制去噪过程。在留出的 H&E 图块上，CPathOGen 生成视觉上合理的组织，并在空间引导筛选之后取得更好的分布一致性，表现为更低的 Fréchet Inception Distance（FID）与 Kernel Inception Distance（KID）；生成的细胞跟踪了请求的数量与位置，测得的形态与颜色随其控制量单调变化。我们用这些经过验证的干预去探测带有终点头的病理编码器、任务特定分类器与生存模型，响应用总变差距离（TVD）与预测翻转率量化。我们进一步提出 Biology-Nuisance Sensitivity Ratio（BNR），该指标对比模型对生物学动机的形态与空间因素的敏感度，与其对非生物学染色相关干扰变化的敏感度。CPathOGen 提供了一个实用的、经过保真度审计的框架，用于评估计算病理模型的稳健性与可控特征敏感度。
+
+*译文：对应上方「原文摘要」逐句对译，未增删内容、未压缩。专有名词与数字以英文原文为准。*
+
+## 7. 链接
 
 - [arXiv 摘要与版本记录](https://arxiv.org/abs/2610.00602)
 - [arXiv HTML 正文](https://arxiv.org/html/2610.00602v1)
