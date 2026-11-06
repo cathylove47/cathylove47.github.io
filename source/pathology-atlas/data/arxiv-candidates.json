@@ -7298,55 +7298,6 @@
       "lastSeen": "2026-11-06T05:11:23.167Z"
     },
     {
-      "id": "2604.22557",
-      "domain": "mri",
-      "title": "Are Natural-Domain Foundation Models Effective for Accelerated Cardiac MRI Reconstruction?",
-      "authors": [
-        "Anam Hashmi",
-        "Mayug Maniparambil",
-        "Julia Dietlmeier",
-        "Kathleen M. Curran",
-        "Noel E. O'Connor"
-      ],
-      "summary": "The emergence of large-scale pretrained foundation models has transformed computer vision, enabling strong performance across diverse downstream tasks. However, their potential for physics-based inverse problems, such as accelerated cardiac MRI reconstruction, remains largely underexplored. In this work, we investigate whether natural-domain foundation models can serve as effective image priors for accelerated cardiac MRI reconstruction, and compare the performance obtained against domain-specific counterparts such as BiomedCLIP. We propose an unrolled reconstruction framework that incorporates pretrained, frozen visual encoders, such as CLIP, DINOv2, and BiomedCLIP, within each cascade to guide the reconstruction process. Through extensive experiments, we show that while task-specific state-of-the-art reconstruction models such as E2E-VarNet achieve superior performance in standard in-distribution settings, foundation-model-based approaches remain competitive. More importantly, in challenging cross-domain scenarios, where models are trained on cardiac MRI and evaluated on anatomically distinct knee and brain datasets--foundation models exhibit improved robustness, particularly under high acceleration factors and limited low-frequency sampling. We further observe that natural-image-pretrained models, such as CLIP, learn highly transferable structural representations, while domain-specific pretraining (BiomedCLIP) provides modest additional gains in more ill-posed regimes. Overall, our results suggest that pretrained foundation models offer a promising source of transferable priors, enabling improved robustness and generalization in accelerated MRI reconstruction.",
-      "published": "2026-04-24T13:52:25Z",
-      "updated": "2026-04-24T13:52:25Z",
-      "url": "https://arxiv.org/abs/2604.22557",
-      "pdfUrl": "https://arxiv.org/pdf/2604.22557",
-      "matchedKeywords": [
-        "mri",
-        "reconstruction"
-      ],
-      "screening": {
-        "status": "recommended",
-        "priority": 2,
-        "reason": "机制：在E2E-VarNet式展开重建的每个cascade里，用冻结的视觉基础模型（CLIP/DINOv2/BiomedCLIP，ViT-B）作去噪先验——取前6层特征经LayerNorm+softmax可学习权重融合，接UNETR式深度可分离卷积解码器，DC步在k-space做数据一致性（全文HTML第3节完整读到）。复现入口：CMRxRecon（官方仓库已核验，HTTP 200，含下载/评测/ModelPool）与fastMRI（fastmri.org 200）均为公开数据；官方代码github.com/Hashmi360/CMR-Recon经HTTP核验存在，但仓库仅有README.md一行标题，为README占位，未核实到可用实现，需按论文自实现（可复用E2E-VarNet公开实现）。首个对比实验：CMRxRecon上4x/8x/10x均匀欠采样，CMR-CLIP/DINOv2/BiomedCLIP vs E2E-VarNet比SSIM/PSNR/NMSE，再做fastMRI knee/brain跨域（center fraction 0.04/0.08）泛化对照。已知限制：官方无可用代码；论文自认in-distribution下任务专用模型持续更优，仅在高加速/跨域时基础模型才追平或反超；全文无独立Limitations节；输入统一resize到224x224与ImageNet统计，可能损失细节。",
-        "checkedAt": "2026-10-13",
-        "paperType": "method + benchmark",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/abs/2604.22557",
-            "note": "论文abs页，HTTP 200；HTML全文（方法3节、实验4节、结果5节）用于本判定"
-          },
-          {
-            "url": "https://github.com/Hashmi360/CMR-Recon",
-            "note": "论文给出的官方代码入口，HTTP 200，但文件树仅README.md，README内容仅一行标题，属占位仓库"
-          },
-          {
-            "url": "https://github.com/CmrxRecon/CMRxRecon",
-            "note": "CMRxRecon官方数据仓库，HTTP 200，含ChallengeDataFormat/Evaluation/ModelPool等，确认公开数据存在"
-          },
-          {
-            "url": "https://fastmri.org/",
-            "note": "fastMRI跨域测试数据官方入口，HTTP 200，确认公开数据存在"
-          }
-        ],
-        "codeUrl": "https://github.com/Hashmi360/CMR-Recon"
-      },
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-11-06T05:11:23.167Z"
-    },
-    {
       "id": "2604.14800",
       "domain": "mri",
       "title": "Generative Modeling of Complex-Valued Brain MRI Data",

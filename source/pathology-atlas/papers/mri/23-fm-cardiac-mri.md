@@ -1,6 +1,6 @@
 # 23｜不要再从头训练：把视觉基础模型当作心脏 MRI 重建先验
 
-**论文**：Beyond Training from Scratch: Foundation Models for Data-Efficient and Generalizable Cardiac MRI Reconstruction，arXiv:2610.08109v1（cs.CV，2026-10-06 提交；已被 ECCVW 2026 接收）  
+**论文**：Beyond Training from Scratch: Foundation Models for Data-Efficient and Generalizable Cardiac MRI Reconstruction，arXiv:2610.08109v1（cs.CV，2026-10-06 提交；正文版式为 LNCS 会议稿，据称被 ECCVW 2026 接收——2026-11-06 复查 ECCV 2026 官方 workshop 日程与接收列表未找到公开佐证，暂按未核实处理）  
 **定位**：心脏 MRI 加速重建的表示迁移研究、冻结编码器与 LoRA 参数高效适配的系统对比、低数据监督与跨数据集泛化  
 **精读核验**：依据 arXiv v1 全文（§1–6、Table 1–4、补充材料 Table 5–7）与论文自述的官方仓库 `Hashmi360/BeyondScratch-CMR`（2026-10-13 打开确认：公开仓库、2 次提交、仅 `README.md`、0 star / 0 fork，**没有任何可运行实现、权重或数据脚本**）；**本站未做复现实验，也未运行任何代码**（该仓库当前不存在可运行的代码）。
 
@@ -179,7 +179,7 @@ MRI 重建模型是出名的“吃数据”：换医院、换扫描仪、换序�
 - 与 [MC-VarNet](08-mc-varnet.md)、[PromptMR+](10-promptmr-plus.md) 对照：这两个也面向多线圈/挑战赛场景，但讨论的是展开网络与提示机制；本文给出的判据（数据量少 → 冻结，数据量多或要迁移 → 适配）可以直接拿来检验它们的初始化与预训练策略。
 - 与 [DDS](20-dds.md)、[Score-MRI](06-score-mri.md) 对照：那一支用**生成式先验**（扩散/分数模型）做逆问题求解，本文用**判别式视觉编码器**当先验。同为“先验从哪来”的问题，一个来自非配对预训练分布，一个来自大规模视觉预训练的表征，比较两者在低数据与跨域下的表现是一个自然的实验。
 - 与本仓库其他 patient-level 划分的挑战赛工作对照：本文强调按患者划分以避免泄漏、并将 CMRxRecon2023 只有 120 例病例切出 2,940 个样本这件事写清楚，是评估可比性的好样板。
-- 论文中两条重要的直接前作：作者团队的 CVPR 2026 工作（Are Natural-Domain Foundation Models Effective for Accelerated Cardiac MRI Reconstruction?）与 MIDL 2025 短文；本文相对它们的推进是**加入 LoRA 这一维度并做低数据/跨域切片**。若要补齐这条支线，可优先补 CVPR 2026 那篇。
+- 论文中两条重要的直接前作：作者团队的 **CVPR 2026 Workshops** 论文（[30 号](30-natural-domain-fm.md)，Are Natural-Domain Foundation Models Effective for Accelerated Cardiac MRI Reconstruction?，pp. 6202–6211——注意是 workshop，不是 CVPR 正会）与 MIDL 2025 短文；本文相对它们的推进是**加入 LoRA 这一维度并做低数据/跨域切片**。两篇的结论需要对照读：那边（12 级展开 + 数据一致性）里 E2E-VarNet 同分布占优、DINOv2 反而是最差 backbone；本文（单次图像域、无 DC 步）里冻结预训练全面胜过从头训练、DINOv2 最强。
 
 ## 8. 链接
 
