@@ -517,54 +517,6 @@
       "titleZh": "MoSPR：结合形态空间宏观状态与低秩分子程序，从组织学预测基因表达"
     },
     {
-      "id": "2609.30985",
-      "domain": "pathology",
-      "title": "Predicting Mutational Signature Exposures from H&E Whole Slide Images: A Pan-Cancer Feasibility Study",
-      "authors": [
-        "Flavio Sartori",
-        "Cesare Rollo",
-        "Isabella Caranzano",
-        "Tiziana Sanavia",
-        "Piero Fariselli",
-        "Corrado Pancotti"
-      ],
-      "summary": "Mutational signatures reveal cancer-driving processes with clinical relevance: MMR-deficient tumors respond better to immunotherapy, HRD tumors are sensitive to PARP inhibitors, and POLE-mutant tumors often have high mutation burdens influencing treatment response. Yet signature profiling remains limited by the cost, complexity, and turnaround time of whole-genome sequencing (WGS) or whole-exome sequencing. Histopathology is widely available and cost-effective, and H&E morphology has been linked to MSI, HRD, POLE-related processes, and driver mutations. Whether histology can recover the broader landscape of mutational signature exposures in a pan-cancer setting remains unknown. Here we introduce Hist2Sig, a deep learning framework predicting exposures to 30 COSMIC SBS signatures from H&E-stained slides. Trained on matched WGS and histology data from 7,063 TCGA patients across 29 cancer types, Hist2Sig was compared with a tumor type-only baseline to separate morphology-derived signal from tissue-of-origin priors. In internal cross-validation, it recovered relative signature compositions across most tumor types and achieved higher mean top-three overlap than the baseline in 19 of 29, with the largest gains in COAD, PRAD, GBM, and UCEC. It also recurrently recovered signatures of poorly characterized etiology, including SBS8, SBS12, SBS39, and SBS40a. In an external CPTAC cohort of 193 patients across five tumor types, Hist2Sig retained moderate concordance with observed compositions and outperformed the baseline in glioblastoma and pancreatic adenocarcinoma. These results support the feasibility of inferring mutational signature exposures from routine histology, while highlighting variation across tumor types. Hist2Sig provides a foundation for tumor-specific models that could complement sequencing in pre-sequencing triage or support decisions where WGS is unavailable.",
-      "published": "2026-09-25T08:32:03Z",
-      "updated": "2026-09-25T08:32:03Z",
-      "url": "https://arxiv.org/abs/2609.30985",
-      "pdfUrl": "https://arxiv.org/pdf/2609.30985",
-      "matchedKeywords": [
-        "pathology",
-        "histopathology",
-        "whole slide"
-      ],
-      "screening": {
-        "status": "recommended",
-        "priority": 1,
-        "reason": "机制=Hist2Sig 用 attention-MIL 从 H-optimus-v1 切块特征回归单切片30维COSMIC SBS暴露，损失为 ZINB（过离散计数+零膨胀）+重建项+top-3 SoftRank 排序项，并用注意力×梯度做逐patch归因。复现入口=官方仓库 github.com/flavio141/Hist2Sig-paper（含 Paper_reproducibility/、models/、checkpoints/，已核验有代码与权重），TCGA 7,063患者/29癌种训练、CPTAC 193例外测，均公开（受控访问）。首个改进实验：逐癌种/逐signature单独建模加绝对暴露校准，并对三项损失权重做消融。已知限制：论文属可行性研究，外部队列一致性中等、各signature可靠性差异大；正文未给损失权重与优化器细节（代码里可查）。",
-        "checkedAt": "2026-10-13",
-        "paperType": "pure method",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/abs/2609.30985",
-            "note": "arXiv abs（主记录，2026-10-13 读取）"
-          },
-          {
-            "url": "https://arxiv.org/html/2609.30985v1",
-            "note": "arXiv v1 全文，方法/数据集章节已逐节核对"
-          },
-          {
-            "url": "https://github.com/flavio141/Hist2Sig-paper",
-            "note": "官方仓库，含 Paper_reproducibility/ 与 checkpoints/（2026-10-13 核验）"
-          }
-        ],
-        "codeUrl": "https://github.com/flavio141/Hist2Sig-paper"
-      },
-      "firstSeen": "2026-10-04T03:44:12.578Z",
-      "lastSeen": "2026-11-06T05:11:23.167Z",
-      "titleZh": "从 H&E 全切片图像预测突变特征贡献：泛癌种可行性研究"
-    },
-    {
       "id": "2609.24057",
       "domain": "pathology",
       "title": "Representation-guided in-context learning for medical image interpretation with multimodal large language models",
@@ -721,58 +673,6 @@
       "firstSeen": "2026-09-17T13:09:31.104Z",
       "lastSeen": "2026-10-13T08:13:27.160Z",
       "titleZh": "Lumen：面向零样本计算病理的预训练视觉与语言编码器参数高效对齐"
-    },
-    {
-      "id": "2609.08419",
-      "domain": "pathology",
-      "title": "CAR-MIL: Counterfactual Attention Regularization for Multiple Instance Learning",
-      "authors": [
-        "Imane Chraki",
-        "Pierre Marza",
-        "Stergios Christodoulidis",
-        "Maria Vakalopoulou"
-      ],
-      "summary": "Multiple Instance Learning (MIL) is widely used for weakly supervised learning, particularly in digital pathology, where fine-grained annotations are costly. Most MIL methods aggregate instance features via attention mechanisms. However, attention weights do not always faithfully reflect instance importance and may focus on spuriously correlated regions. In this work, we propose CAR-MIL, a framework that explicitly guides attention learning through a counterfactual attention regularization objective inspired by counterfactual explanations. Built on a standard attention-based MIL architecture, our approach introduces a lightweight counterfactual attention branch trained to produce an alternative prediction while remaining close to the factual attention distribution. This encourages prediction changes to arise from minimal, structured redistributions of attention, leading to more informative evidence allocation. The resulting factual and counterfactual attention maps capture complementary evidence: the former highlights regions supporting the prediction, while the latter reveals regions whose reweighting would challenge it. We evaluate our method on synthetic MIL benchmarks with instance-level ground truth enabling controlled analysis of attention behavior and on five digital pathology datasets across four tasks. CAR-MIL maintains competitive classification performance, with the largest gains observed on more challenging tasks, while improving attention reliability, demonstrating the benefits of integrating counterfactual explainability reasoning into attention learning. Code is available at: https://github.com/ImaneCR/CAR-MIL/.",
-      "published": "2026-09-08T08:27:22Z",
-      "updated": "2026-09-08T08:27:22Z",
-      "url": "https://arxiv.org/abs/2609.08419",
-      "pdfUrl": "https://arxiv.org/pdf/2609.08419",
-      "matchedKeywords": [
-        "multiple instance learning",
-        "weakly supervised"
-      ],
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-10-13T08:13:27.160Z",
-      "screening": {
-        "status": "recommended",
-        "priority": 1,
-        "reason": "机制：双分支注意力 MIL（事实/反事实两支共用编码器与分类器，仅注意力模块权重不同），损失由三项组成——事实分支的交叉熵、反事实证据差分损失（推高真实类上两支的 logit 差）、注意力 logit 邻近正则（L1 稀疏或 cosine 方向型），加权为 CE + w1·差分 + w2·邻近，使事实注意力聚焦支持性实例、反事实分支转向非支持区域，获得可解释的“正/负证据”分离。复现入口：官方仓库已核验可用（github.com/ImaneCR/CAR-MIL，src/main_car.py、main_cia.py、modules/attmil_cf.py、dataloader.py、eval.py，并含 clam/dsmil/transmil 基线），数据全公开（TCGA-NSCLC/BRCA/LUAD、CAMELYON16、BRACS），特征用 UNI-V1，可低成本直接复跑。首个对比实验：以 ABMIL/CLAM/DSMIL/TransMIL/ACMIL/CIA-MIL 为基线，在 CAMELYON16 报 AUPRC+，在 BRACS/LUAD/BRCA/NSCLC 报 AUC、F1、平衡准确率与配对 t 检验。已知限制：论文自述无任何注意力 MIL 方法在任一数据集上显著优于 CAR-MIL，增益主要出现在 LUAD/BRACS，二分类子型任务上仅持平；且 TransMIL 的 Nyström 注意力不暴露 pre-softmax logit，难以直接接入该正则。",
-        "checkedAt": "2026-10-13",
-        "paperType": "pure method",
-        "evidence": [
-          {
-            "url": "https://github.com/ImaneCR/CAR-MIL",
-            "note": "GitHub HTML 200；根目录含 README.md、src/、docs/；src/ 下有 main.py、main_car.py、main_cia.py、dataloader.py、eval.py、utils.py、modules/（attmil.py、attmil_cf.py、clam.py、dsmil.py、transmil.py、nystrom_attention.py）。README 声明为 CAR-MIL（ECCV 2026）参考实现并含 CIA-MIL（MIDL 2026）训练代码，日常数据/权重未随仓库提供。（GitHub API 403 限流，改用 HTML 核验。）"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2609.08419.txt:190-260",
-            "note": "正文第 3.2/3.3 节：事实与反事实两条 ABMIL 分支共享编码器与分类器；定义反事实证据差分；三项损失 = 分类 CE（式 5）+ 证据差分损失（式 6/7，推高真实类上的 logit 差）+ 注意力 logit 邻近正则（式 8-10，L1 或 cosine）；总目标式 11，w1/w2 为超参。"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2609.08419.txt:346-354",
-            "note": "正文第 4 节数据与实现：公开数据集 TCGA-NSCLC、TCGA-BRCA、TCGA-LUAD（TP53 突变）、CAMELYON16、BRACS；256×256@20X patch，UNI-V1 预抽取特征，TCGA 类用 5 折交叉验证，BRACS/CAMELYON16 用官方划分各跑 3 次，Adam 优化器；基线 CLAM、ACMIL、DSMIL、TransMIL、AddMIL、CIA-MIL，指标 AUC / balanced accuracy / F1，CAMELYON16 额外报 AUPRC+。"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2609.08419.txt:527-545",
-            "note": "结果与讨论：CAR-MIL 在五个任务上取得“相当或更好”的表现，配对 t 检验显示无任何注意力 MIL 方法在任一数据集上显著优于 CAR-MIL，增益集中于 LUAD/BRACS；另给出将 CAR 接入 DSMIL/TransMIL 与 ResNet50 特征的正向消融。"
-          },
-          {
-            "url": "E:/tmp/pscreen/abs/2609.08419.html",
-            "note": "abs 页 Comments 字段：Accepted at ECCV 2026；正文摘要标注 “Code is available at: https://github.com/ImaneCR/CAR-MIL/”。"
-          }
-        ],
-        "codeUrl": "https://github.com/ImaneCR/CAR-MIL"
-      }
     },
     {
       "id": "2609.05182",
@@ -1064,59 +964,6 @@
           }
         ],
         "codeUrl": "https://github.com/imsb-uke/expose"
-      }
-    },
-    {
-      "id": "2608.27004",
-      "domain": "pathology",
-      "title": "MVC-Bench: Benchmarking Calibration of Medical Vision-Language Models",
-      "authors": [
-        "Ashshak Sharifdeen",
-        "Shihab Aaqil Ahamed",
-        "Ufaq Khan",
-        "Muhammad Akhtar Munir",
-        "Sujair Ibrahim",
-        "Mohamed Rafeek Mareer Ahamed",
-        "Yutong Xie",
-        "Imran Razzak",
-        "Muhammad Haris Khan"
-      ],
-      "summary": "Reliable evaluation of vision-language models (VLMs) and medical vision-language models (Medical-VLMs) requires calibrated confidence, particularly under realistic clinical conditions. However, existing efforts mainly focused on improving accuracy, leaving calibration in the medical domain underexplored. To this end, we propose MVC-Bench, a calibration-centric benchmark for medical image classification with VLMs and Medical-VLMs. MVC-Bench assesses the calibration across three axes: (i) robustness to modality, backbone, and domain shift (ii) effectiveness of calibration strategies and prompt-tuning methods (iii) stability under prompt-template and random-seed variations. The benchmark covers eight different backbones, three medical modalities, including fundus imaging, histopathology, and chest X-ray under in-domain and domain shift settings. It compares post-hoc calibration, train-time calibration, and zero-shot inference methods, together with six prompt-tuning methods. Across more than 1638 controlled experiments, we report accuracy and Expected Calibration Error (ECE) as primary metrics, and further report results with complementary calibration measures, including Maximum Calibration Error (MCE) and Adaptive Calibration Error (ACE). We further investigate the underlying causes of miscalibration in VLMs and Medical-VLMs and propose a simple train-time calibration method, Multi-Class Margin (MCM) regularization, which achieves lowest ECE on 10 out of 12 settings in in-domain and remains competitive under domain shifts. Collectively, MVC-Bench provides a structured evaluation framework and actionable guidance for improving calibration in safety-critical medical workflows.",
-      "published": "2026-08-27T11:49:46Z",
-      "updated": "2026-08-31T12:39:07Z",
-      "url": "https://arxiv.org/abs/2608.27004",
-      "pdfUrl": "https://arxiv.org/pdf/2608.27004",
-      "matchedKeywords": [
-        "pathology",
-        "histopathology"
-      ],
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-10-13T08:13:27.160Z",
-      "screening": {
-        "status": "recommended",
-        "priority": 1,
-        "reason": "机制：MCM 训练期正则（真类-vs-其余类 margin 均值项 + 全对 margin 方差项）重塑类间 logit 间距，缓解低 margin 欠自信。复现入口：公开数据集 APTOS/EyePACS/Messidor/Kather/PaNuke/DigestPath/COVIDX/RSNA18 + 已验证官方仓库（GitHub 200，含 train.py/trainers//configs//datasets//clip//scripts）。首个对比实验：在 CLIP-ViT-B/16 等 8 个骨干上，与 MDCA/LS/MBLS/ECCV-ZS/ECCV-Penalty/Temperature Scaling 比 20-bin ECE（ID 与跨域两类设置）。已知限制：MCM 只针对低 margin 欠自信，PLIP-Histo./QuiltNet-Histo. 过自信场景反而升高 ECE，跨域仅 4/12 最优（ID 为 10/12），本质仍是 calibration-benchmark。",
-        "checkedAt": "2026-10-13",
-        "paperType": "method + benchmark",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/abs/2608.27004",
-            "note": "摘要页：MVC-Bench 校准基准 + MCM 正则，摘要给出 Code: github.com/ashshaksharifdeen/MVC-Bench"
-          },
-          {
-            "url": "https://github.com/ashshaksharifdeen/MVC-Bench",
-            "note": "GitHub HTML 200（346KB，default_branch=main）；仓库文件含 train.py、trainers/、configs/、datasets/、clip/、lpclip/、scripts/、parse_test_res.py"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2608.27004.txt",
-            "note": "正文 §3 数据集（APTOS/EyePACS/Messidor/Kather/PaNuke/DigestPath/COVIDX/RSNA18，8 骨干，1638+ 组实验，RTX A6000）"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2608.27004.txt",
-            "note": "正文 §5 式(1)-(2) 定义 MCM loss；Tab.2 与 §5 结果：ID 10/12 最低 ECE、DS 4/12；附录 A3 超参 0.1/0.01"
-          }
-        ],
-        "codeUrl": "https://github.com/ashshaksharifdeen/MVC-Bench"
       }
     },
     {
@@ -1456,57 +1303,6 @@
             "note": "代码核实：HTTP 200；默认分支 master；src/ 下确认 dataset.py、models.py、dynamicHPF.py、evaluate.py、measures_csv.py、restormer.py、*.sh 等实现文件，README 给出数据集/掩膜目录约定与依赖，非占位仓库。"
           }
         ]
-      },
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-11-06T05:11:23.167Z"
-    },
-    {
-      "id": "2607.09521",
-      "domain": "medical-agent",
-      "title": "SAGEAgent: A Self-Evolving Agent for Cost-Aware Modality Acquisition in Multimodal Survival Prediction",
-      "authors": [
-        "Chongyu Qu",
-        "Can Cui",
-        "Zhengyi Lu",
-        "Junchao Zhu",
-        "Tianyuan Yao",
-        "Junlin Guo",
-        "Juming Xiong",
-        "Yanfan Zhu",
-        "Yuechen Yang",
-        "Bennett A. Landman",
-        "Yuankai Huo"
-      ],
-      "summary": "Does every cancer patient truly need a complete diagnostic workup for accurate survival prediction? In multimodal clinical oncology, diagnostic modalities follow a clinically mandated order of escalating burden -- from demographics collected at intake to genomic profiling requiring specialized tissue analysis. Current multimodal survival methods either assume all modalities are available or passively handle missing data, but none actively reason about whether acquiring the next modality is justified for a given patient along this ordered workflow. We formulate this as a sequential decision problem and propose SAGEAgent (Sequential Acquisition Guided by Experience), a self-evolving LLM-based clinical agent that decides which diagnostic modalities to acquire for each patient, balancing predictive accuracy against clinical invasiveness. SAGEAgent reasons about each patient's evolving diagnostic state through clinical tools that translate numerical predictions into text, an episodic memory that retrieves similar past cases, and a semantic memory that accumulates reusable decision patterns from experience. Experiments on a glioma cohort combining TCGA-LGG, TCGA-GBM, and BraTS with four diagnostic modalities demonstrate that SAGEAgent achieves competitive survival prediction accuracy while reducing average acquisition burden by 55%.",
-      "published": "2026-07-10T15:32:11Z",
-      "updated": "2026-07-10T15:32:11Z",
-      "url": "https://arxiv.org/abs/2607.09521",
-      "pdfUrl": "https://arxiv.org/pdf/2607.09521",
-      "matchedKeywords": [
-        "clinical",
-        "agent"
-      ],
-      "screening": {
-        "status": "recommended",
-        "priority": 1,
-        "reason": "机制：免训练自演化 LLM agent——冻结 2 层 Transformer 多模态编码器+Cox 头给风险 r_t，轻量不确定性头给 u_t=σ(f_φ([e_t,a_t]))（标签=补全模态后风险变化超 τ），冻结 Qwen2.5-7B 结合三类信号（临床工具把 u_t/r_t 文本化；情节记忆用 FAISS 取 top-3 同阶段相似病例与自身历史 episode，按相似度+归一化奖励重排；语义记忆每 10 例一次自反思提出/废弃 stop|acquire 规则，最多 10 条），沿 demographics→radiology→pathology→genomics 每步决定 acquire 或 stop，奖励含 R_stage=-b+max(0,u_t-u_{t+1}) 与 R_term=(1-u_t)-B_t。 → 复现入口：官方实现已验证为真实代码（github.com/Chongyu1117/SAGEAgent：run_agent.py、train_predictor.py、train_uncertainty.py、sageagent/{agent,pipeline,config}.py、configs/、prompts/、rules/glioma.json、embedding/ 预抽取特征、tests/、docs/），MICCAI 2026，Apache-2.0；数据源 TCGA-LGG/TCGA-GBM（GDC 公开）+ BraTS，且已放出预抽取 embedding 与学到的规则，单卡 A6000 可跑。 → 首个对比实验：直接用 releases 的 embedding+规则复跑 nested 5×5，对照 Reflexion 与 Base LLM，报告 C-index/平均负担/HV，核对 0.813 C-index 与 0.451 burden（-55%）；再消融不确定性头阈值 τ 看 burden 敏感度。 → 已知限制：各模态负担由作者 MCDA 定义（0.03/0.14/0.53/0.30）而非实测临床成本，换权重结论可能翻转；仅 170 例全模态患者，且单次决策由 5 个内层模型多数票聚合，统计功效弱（全模态融合 0.812–0.825 与 0.813 无显著差异，收益只在成本侧）；消融非单调——加 episodic+semantic 记忆后 C-index 从 0.827 降到 0.813，且 self-evolution 规则在 4/5 fold 中一条 “acquire pathology” 规则被 churn。",
-        "checkedAt": "2026-10-13",
-        "paperType": "system/tool",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/html/2607.09521",
-            "note": "HTML 全文：摘要（55% 减负、代码链接）、§1 贡献三条、§2 方法（2.1 序贯决策与负担、2.2 预测器+校准不确定性头 Eq.1、2.3 工具/情节记忆/语义记忆+奖励与自反思、Table 3 学到的规则）、§3.1 数据与 nested 5×5 协议（962 例、170 例全模态、负担权重）、§3.2 实现（458K+6.5K 参数、τ=0.3、AUROC .908/ECE .110、Qwen-2.5-7B 冻结单卡 A6000、k=3、≤10 规则/每10例反思）、§3.3 Table 1、§3.4 Table 2 消融、§3.5 自演化分析"
-          },
-          {
-            "url": "https://github.com/Chongyu1117/SAGEAgent",
-            "note": "repo 已验证：文件含 run_agent.py/train_predictor.py/train_uncertainty.py/evaluate.py/requirements.txt + sageagent/、configs/、prompts/、rules/glioma.json、embedding/、tests/、docs/；README 声明 MICCAI 2026、2026-09 已放出预抽取 embedding 与论文学到规则、Apache-2.0"
-          },
-          {
-            "url": "https://raw.githubusercontent.com/Chongyu1117/SAGEAgent/main/run_agent.py",
-            "note": "抽查源码：真实经验累积/自反思脚本，导入 sageagent.agent 的 ChatLLM/Reflection/SemanticMemory/accumulate_experience 与 sageagent.pipeline，非占位"
-          }
-        ],
-        "codeUrl": "https://github.com/Chongyu1117/SAGEAgent"
       },
       "firstSeen": "2026-10-13T07:46:18.765Z",
       "lastSeen": "2026-11-06T05:11:23.167Z"
@@ -4371,52 +4167,6 @@
       "titleZh": "高倍放大知识为何能够迁移？全切片成像中的跨分辨率蒸馏研究"
     },
     {
-      "id": "2609.36158",
-      "domain": "pathology",
-      "title": "Voronoi-Markov chain and spatial entropy for point pattern analysis",
-      "authors": [
-        "James C. Mathews",
-        "Francisco Couzo",
-        "Aleksandr Petrov",
-        "Avijit Chatterjee",
-        "Saad Nadeem"
-      ],
-      "summary": "In this paper, we revisit the concept of entropy in the spatial context with the aim of deriving computable and interpretable metrics for point pattern analysis in domains such as histopathology. We discuss stochastic point process assumptions like Poisson homogeneity and Simple Sequential Inhibition (SSI) and review established results for Voronoi and Delaunay tilings of point sets for their potential to provide null distributions for rigorous empirical hypothesis testing. We present (1) a novel \"dense basin entropy\" defined in terms of the Ord distribution supported on Voronoi basins, which is shown to be sensitive to clustering, and (2) a related Markov chain designed as a simplification or approximation of Brownian motion in the underlying planar domain. We investigate bounds on the dense basin entropy in the SSI regime and in empirical data, and show that the entropy rate and spectral gap of the Markov chain lead to sharp discrimination metrics. Finally, we demonstrate a generalization to multiple-set analysis via aggregation of one set over the Markov invariant measure for another. Simulations and experiments in histopathology show that our proposed metrics offer insights complementary to other instantiations of entropy in spatial analysis. The code can be found on our SMProfiler GitHub: https://github.com/nadeemlab/SMProfiler.",
-      "published": "2026-09-28T19:28:01Z",
-      "updated": "2026-09-28T19:28:01Z",
-      "url": "https://arxiv.org/abs/2609.36158",
-      "pdfUrl": "https://arxiv.org/pdf/2609.36158",
-      "matchedKeywords": [
-        "pathology",
-        "histopathology"
-      ],
-      "screening": {
-        "status": "recommended",
-        "priority": 2,
-        "reason": "机制=在Voronoi流域上定义 dense basin entropy（Ord分布），并构造近似平面布朗运动的Markov链，用熵率与谱隙做点模式判别，并推广到多集聚合分析。复现入口=代码并入 github.com/nadeemlab/SMProfiler（contents API 确认有实际代码，NeurIPS 2026），可用公开组织病理点模式数据复现统计与仿真实验；正文给出熵形式化、界与判别指标。首个改进实验：把新熵指标接到空间域识别/预后任务，对比现有熵与空间统计量。已知限制：偏理论工具，缺少大规模病理下游端到端验证；指标对点检测质量敏感。",
-        "checkedAt": "2026-10-13",
-        "paperType": "theory/proof",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/abs/2609.36158",
-            "note": "arXiv abs（主记录，2026-10-13 读取）"
-          },
-          {
-            "url": "https://arxiv.org/html/2609.36158v1",
-            "note": "arXiv v1 全文，方法/数据集章节已逐节核对"
-          },
-          {
-            "url": "https://github.com/nadeemlab/SMProfiler",
-            "note": "官方工具仓库（含本方法的实现），2026-10-13 核验 HTTP 200"
-          }
-        ],
-        "codeUrl": "https://github.com/nadeemlab/SMProfiler"
-      },
-      "firstSeen": "2026-10-04T03:44:12.578Z",
-      "lastSeen": "2026-11-06T05:11:23.167Z",
-      "titleZh": "用于点模式分析的 Voronoi–Markov 链与空间熵"
-    },
-    {
       "id": "2609.34897",
       "domain": "pathology",
       "title": "Role-Guided MOE for Encoder-Level Pathology Representation Learning in WSI Classification",
@@ -5835,58 +5585,6 @@
       }
     },
     {
-      "id": "2609.00396",
-      "domain": "pathology",
-      "title": "SlideMix: Enhancing Whole Slide Image Analysis via Multimodal Shuffling",
-      "authors": [
-        "Chad Wong",
-        "Sicheng Chen",
-        "Tianyi Zhang",
-        "Enhui Chai",
-        "Yueming Jin",
-        "Zeyu Liu",
-        "Fei Xia"
-      ],
-      "summary": "Histopathological whole slide images (WSIs) are central to cancer diagnosis, but their gigapixel scale, tissue heterogeneity, weak slide-level supervision, sparse diagnostic regions, and multi-scale evidence make robust automated analysis challenging. Multiple instance learning (MIL) is widely used to aggregate tile-level features into slide-level predictions, yet existing augmentation strategies often perturb tissue regions without preserving diagnostic relevance, slide context, or cross-scale structure. We propose SlideMix, a model-agnostic multimodal augmentation framework for MIL-based WSI analysis. SlideMix uses a retrieval-augmented vision-language model (VLM)-based Visual-Language Adaptive Region selector to identify diagnostically relevant regions and reduce weak-label noise. It then performs In-place Tile Shuffling within meaningful tissue regions to mix feature embeddings while preserving slide-level context. A VLM-based soft-labeling module supervises mixed samples, while a multi-factor, loss-driven online Curriculum-Learning Feedback scheme adaptively controls shuffle granularity, feature similarity, and shuffle ratio to promote cross-scale representation learning. Across 11 WSI datasets comprising 20,523 slides, 8 diagnostic tasks, and 10 WSI backbones, SlideMix improves accuracy and generalization in most settings and compares favorably with established augmentation baselines, providing a simple plug-and-play approach for more robust and scalable digital pathology models. Source code: https://github.com/Xia-Research-Lab/SlideMix",
-      "published": "2026-08-31T21:25:02Z",
-      "updated": "2026-08-31T21:25:02Z",
-      "url": "https://arxiv.org/abs/2609.00396",
-      "pdfUrl": "https://arxiv.org/pdf/2609.00396",
-      "matchedKeywords": [
-        "pathology",
-        "whole slide",
-        "wsi"
-      ],
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-10-13T08:13:27.160Z",
-      "screening": {
-        "status": "recommended",
-        "priority": 2,
-        "reason": "机制：检索增强Gemini的VLM选诊断相关ROI，In-place Tile Shuffling跨切片原位重组tile特征并由VLM生成软标签，Curriculum Learning Feedback按训练损失调度打乱粒度/相似度阈值/比例做跨尺度课程学习。复现入口：11个公开数据集(PANDA、CAMELYON16、TCGA系列等)与公开嵌入(GigaPath/CONCH)；官方仓库仅README占位、无训练/推理代码，需自实现。首个对比实验：ABMIL骨干下SlideMix vs CutMix/ResizeMix/UnPuzzle，指标accuracy(5次重复)。已知限制：依赖Gemini闭源API与PubMed-RAG，软标签对罕见亚型不可靠，小数据集下CLF课程不稳定。",
-        "checkedAt": "2026-10-13",
-        "paperType": "method + benchmark",
-        "evidence": [
-          {
-            "url": "E:/tmp/pscreen/txt/2609.00396.txt",
-            "note": "正文3.2-3.4节：VAR选择器(检索增强Gemini+BiomedCLIP/FAISS)、CLF三调度器、ITS原位tile打乱；4.1节11数据集8任务，4.2节ABMIL骨干、100epoch、GigaPath/CONCH嵌入。"
-          },
-          {
-            "url": "https://github.com/Xia-Research-Lab/SlideMix",
-            "note": "HTTP 200，仓库树仅含README.md(内容仅'# SlideMix\\nSlideMix')，为占位仓库而非可用实现。"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2609.00396.txt",
-            "note": "line124：论文声明source code在github.com/Xia-Research-Lab/SlideMix；5.5.1限制：小数据集下CLF不稳定、VLM软标签对罕见亚型可靠性下降。"
-          },
-          {
-            "url": "E:/tmp/pscreen/txt/2609.00396.txt",
-            "note": "表4/5消融：VLM/RAG、打乱粒度等比Fixed提升1.1-2.5个百分点，说明机制贡献可对照验证。"
-          }
-        ],
-        "codeUrl": "https://github.com/Xia-Research-Lab/SlideMix"
-      }
-    },
-    {
       "id": "2608.27516",
       "domain": "pathology",
       "title": "Destroy Me: Automatic Artifact Generation for Histopathology Images",
@@ -6127,53 +5825,6 @@
           }
         ],
         "codeUrl": null
-      },
-      "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-11-06T05:11:23.167Z"
-    },
-    {
-      "id": "2608.08693",
-      "domain": "mri",
-      "title": "CUPA-T2*: Covariance-Aware Uncertainty Propagation and Alignment for T2* Mapping in Accelerated MRI",
-      "authors": [
-        "Gideon N. L. Rouwendaal",
-        "Natascha Niessen",
-        "Hannah Eichhorn",
-        "Dirk H. J. Poot",
-        "Christine Preibisch",
-        "Julia A. Schnabel"
-      ],
-      "summary": "Quantitative T2* maps have strong potential for biomarker discovery but are limited by long scan times, rendering them impractical in clinical settings. Significant acceleration can be achieved through undersampling in k-space combined with learning-based reconstruction. However, reconstruction artifacts and noise can propagate into downstream T2* fitting, degrading its accuracy. We introduce CUPA-T2*, a framework that explicitly propagates voxel-wise inter-echo uncertainty from stochastic Monte Carlo dropout reconstructions to downstream T2* fitting via covariance-aware sampling. T2* fitting is performed with a heteroscedastic MLP and a correlation-based regularizer that encourages alignment between predicted variance and reconstruction uncertainty. Experiments on accelerated brain MRI data show tissue-dependent behavior: CUPA-T2* achieves competitive overall T2* fitting performance and improves white-matter performance at higher accelerations. Compared with a heteroscedastic baseline, the proposed framework substantially increases alignment between reconstruction uncertainty and predicted T2* variance, while also revealing a trade-off with calibration (ECE) and selective prediction performance (AURC). CUPA-T2* enables reconstruction uncertainty-aware T2* fitting and delivers voxel-wise uncertainty maps to support the interpretation of quantitative T2* estimates.",
-      "published": "2026-08-09T13:13:54Z",
-      "updated": "2026-08-29T09:34:52Z",
-      "url": "https://arxiv.org/abs/2608.08693",
-      "pdfUrl": "https://arxiv.org/pdf/2608.08693",
-      "matchedKeywords": [
-        "mri",
-        "k-space",
-        "reconstruction"
-      ],
-      "screening": {
-        "status": "recommended",
-        "priority": 2,
-        "reason": "机制：把MC-dropout重建得到的逐体素跨回波协方差Cholesky因子L_v注入异方差MLP的T2*拟合（式1，协方差感知采样），并用RMS相关正则 λ(1−ρ) 对齐重建不确定性与预测方差（式2的β-NLL+正则）。复现入口：官方代码 github.com/compai-lab/2026-miccai-rouwendaal + 公开T2*-MOVE数据集（含回波协方差估计）。首个对比实验：R∈{2,3,4}下与PUQ、异方差基线(Het)比NRMSE/SSIM及ECE/AURC/ρ（Tab.1-2）。限制：整体T2*指标未超PUQ，仅高加速下WM更好；对齐增强与ECE/AURC标定存在权衡。",
-        "checkedAt": "2026-10-13",
-        "paperType": "method + benchmark",
-        "evidence": [
-          {
-            "url": "https://arxiv.org/abs/2608.08693",
-            "note": "题录：code可用 compai-lab/2026-miccai-rouwendaal。"
-          },
-          {
-            "url": "https://arxiv.org/html/2608.08693v1",
-            "note": "全文已核对：§2.1 展开多回波重建+MC dropout(S=100)；§2.2 协方差估计/RMS(式1)；§2.3 异方差MLP+β-NLL(式2)+RMS相关正则；§3.1 数据T2*-MOVE公开，R∈{2,3,4}；§3.3 结果(Tab.1-2)与权衡。"
-          },
-          {
-            "url": "https://github.com/compai-lab/2026-miccai-rouwendaal",
-            "note": "HTTP 200；repo页面核实顶层含 README.md、conda_env.yml、iml-dl 目录；README说明用iml-dl/MERLIN/PHIMO+框架、数据为公开T2*-MOVE(doi:10.15134/2kek-3553)。"
-          }
-        ],
-        "codeUrl": "https://github.com/compai-lab/2026-miccai-rouwendaal"
       },
       "firstSeen": "2026-10-13T07:46:18.765Z",
       "lastSeen": "2026-11-06T05:11:23.167Z"
