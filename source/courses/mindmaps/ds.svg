@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 724 1142" width="724" height="1142" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<path d="M92,550.5 C151,550.5 151,78 210,78" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
+<path d="M273,78 C371.5,78 371.5,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
+<path d="M273,78 C371.5,78 371.5,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
+<path d="M273,78 C371.5,78 371.5,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
+<path d="M273,78 C371.5,78 371.5,141 470,141" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
+<path d="M92,550.5 C151,550.5 151,246 210,246" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
+<path d="M325,246 C397.5,246 397.5,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
+<path d="M325,246 C397.5,246 397.5,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
+<path d="M325,246 C397.5,246 397.5,267 470,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
+<path d="M325,246 C397.5,246 397.5,309 470,309" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
+<path d="M92,550.5 C151,550.5 151,435 210,435" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
+<path d="M299,435 C384.5,435 384.5,351 470,351" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
+<path d="M299,435 C384.5,435 384.5,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
+<path d="M299,435 C384.5,435 384.5,435 470,435" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
+<path d="M299,435 C384.5,435 384.5,477 470,477" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
+<path d="M299,435 C384.5,435 384.5,519 470,519" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
+<path d="M92,550.5 C151,550.5 151,645 210,645" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M247,645 C358.5,645 358.5,561 470,561" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M247,645 C358.5,645 358.5,603 470,603" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M247,645 C358.5,645 358.5,645 470,645" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M247,645 C358.5,645 358.5,687 470,687" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M247,645 C358.5,645 358.5,729 470,729" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M92,550.5 C151,550.5 151,834 210,834" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,834 C365,834 365,771 470,771" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,834 C365,834 365,813 470,813" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,834 C365,834 365,855 470,855" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,834 C365,834 365,897 470,897" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
+<path d="M92,550.5 C151,550.5 151,1023 210,1023" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,1023 C365,1023 365,939 470,939" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,1023 C365,1023 365,981 470,981" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,1023 C365,1023 365,1023 470,1023" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,1023 C365,1023 365,1065 470,1065" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
+<path d="M260,1023 C365,1023 365,1107 470,1107" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
+<g><rect x="210" y="63" width="63" height="30" rx="8" fill="#f6f8fa" stroke="var(--c1, #2f6f4f)" stroke-width="1.2"/><text x="241.5" y="82.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c1, #2f6f4f)">线性表</text></g>
+<g><rect x="470" y="0" width="229.4" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="584.7" y="19.68" text-anchor="middle" font-size="13"  fill="#1f2328">顺序表：随机存取、插入删除 O(n)</text></g>
+<g><rect x="470" y="42" width="180" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="560" y="61.68" text-anchor="middle" font-size="13"  fill="#1f2328">单链表：头插尾插、双指针</text></g>
+<g><rect x="470" y="84" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="103.68" text-anchor="middle" font-size="13"  fill="#1f2328">双链表与循环链表</text></g>
+<g><rect x="470" y="126" width="76" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="508" y="145.68" text-anchor="middle" font-size="13"  fill="#1f2328">静态链表</text></g>
+<g><rect x="210" y="231" width="115" height="30" rx="8" fill="#f6f8fa" stroke="var(--c2, #3b6ea5)" stroke-width="1.2"/><text x="267.5" y="250.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c2, #3b6ea5)">栈、队列和数组</text></g>
+<g><rect x="470" y="168" width="193" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="566.5" y="187.68" text-anchor="middle" font-size="13"  fill="#1f2328">栈：顺序栈、链栈、括号匹配</text></g>
+<g><rect x="470" y="210" width="180" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="560" y="229.68" text-anchor="middle" font-size="13"  fill="#1f2328">队列：循环队列、双端队列</text></g>
+<g><rect x="470" y="252" width="154" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="547" y="271.68" text-anchor="middle" font-size="13"  fill="#1f2328">栈与递归、表达式求值</text></g>
+<g><rect x="470" y="294" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="313.68" text-anchor="middle" font-size="13"  fill="#1f2328">特殊矩阵压缩存储</text></g>
+<g><rect x="210" y="420" width="89" height="30" rx="8" fill="#f6f8fa" stroke="var(--c3, #8a5a00)" stroke-width="1.2"/><text x="254.5" y="439.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c3, #8a5a00)">树与二叉树</text></g>
+<g><rect x="470" y="336" width="154" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="547" y="355.68" text-anchor="middle" font-size="13"  fill="#1f2328">二叉树性质与五种遍历</text></g>
+<g><rect x="470" y="378" width="89" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="514.5" y="397.68" text-anchor="middle" font-size="13"  fill="#1f2328">线索二叉树</text></g>
+<g><rect x="470" y="420" width="154" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="547" y="439.68" text-anchor="middle" font-size="13"  fill="#1f2328">树、森林与二叉树转换</text></g>
+<g><rect x="470" y="462" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="481.68" text-anchor="middle" font-size="13"  fill="#1f2328">哈夫曼树与编码</text></g>
+<g><rect x="470" y="504" width="63" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="501.5" y="523.68" text-anchor="middle" font-size="13"  fill="#1f2328">并查集</text></g>
+<g><rect x="210" y="630" width="37" height="30" rx="8" fill="#f6f8fa" stroke="var(--c4, #7a3f7a)" stroke-width="1.2"/><text x="228.5" y="649.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c4, #7a3f7a)">图</text></g>
+<g><rect x="470" y="546" width="193" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="566.5" y="565.68" text-anchor="middle" font-size="13"  fill="#1f2328">邻接矩阵、邻接表、十字链表</text></g>
+<g><rect x="470" y="588" width="148.8" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="544.4" y="607.68" text-anchor="middle" font-size="13"  fill="#1f2328">BFS / DFS 与连通性</text></g>
+<g><rect x="470" y="630" width="198.20000000000002" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="569.1" y="649.68" text-anchor="middle" font-size="13"  fill="#1f2328">Prim / Kruskal 最小生成树</text></g>
+<g><rect x="470" y="672" width="199.76000000000002" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="569.88" y="691.68" text-anchor="middle" font-size="13"  fill="#1f2328">Dijkstra / Floyd 最短路径</text></g>
+<g><rect x="470" y="714" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="733.68" text-anchor="middle" font-size="13"  fill="#1f2328">拓扑排序、关键路径</text></g>
+<g><rect x="210" y="819" width="50" height="30" rx="8" fill="#f6f8fa" stroke="var(--c5, #a33b3b)" stroke-width="1.2"/><text x="235" y="838.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c5, #a33b3b)">查找</text></g>
+<g><rect x="470" y="756" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="775.68" text-anchor="middle" font-size="13"  fill="#1f2328">顺序查找与折半查找</text></g>
+<g><rect x="470" y="798" width="76" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="508" y="817.68" text-anchor="middle" font-size="13"  fill="#1f2328">分块查找</text></g>
+<g><rect x="470" y="840" width="106.68" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="523.34" y="859.68" text-anchor="middle" font-size="13"  fill="#1f2328">B 树与 B+ 树</text></g>
+<g><rect x="470" y="882" width="170.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="555.06" y="901.68" text-anchor="middle" font-size="13"  fill="#1f2328">散列表：冲突处理与 ASL</text></g>
+<g><rect x="210" y="1008" width="50" height="30" rx="8" fill="#f6f8fa" stroke="var(--c6, #2f6f7a)" stroke-width="1.2"/><text x="235" y="1027.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c6, #2f6f7a)">排序</text></g>
+<g><rect x="470" y="924" width="167" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="553.5" y="943.68" text-anchor="middle" font-size="13"  fill="#1f2328">插入：直接、折半、希尔</text></g>
+<g><rect x="470" y="966" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="985.68" text-anchor="middle" font-size="13"  fill="#1f2328">交换：冒泡、快速</text></g>
+<g><rect x="470" y="1008" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="1027.68" text-anchor="middle" font-size="13"  fill="#1f2328">选择：简单、堆</text></g>
+<g><rect x="470" y="1050" width="89" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="514.5" y="1069.68" text-anchor="middle" font-size="13"  fill="#1f2328">归并、基数</text></g>
+<g><rect x="470" y="1092" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="1111.68" text-anchor="middle" font-size="13"  fill="#1f2328">外部排序与多路归并</text></g>
+<g><rect x="0" y="531.5" width="92" height="38" rx="8" fill="#2f6f4f" stroke="#2f6f4f" stroke-width="1.2"/><text x="46" y="556.62" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">数据结构</text></g>
+</svg>
