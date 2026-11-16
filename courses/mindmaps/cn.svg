@@ -1,60 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 724 932" width="724" height="932" font-family="Microsoft YaHei, PingFang SC, sans-serif">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<path d="M109,445.5 C159.5,445.5 159.5,57 210,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,57 C378,57 378,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,57 C378,57 378,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,57 C378,57 378,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M109,445.5 C159.5,445.5 159.5,183 210,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,183 C371.5,183 371.5,141 470,141" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,183 C371.5,183 371.5,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,183 C371.5,183 371.5,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M109,445.5 C159.5,445.5 159.5,330 210,330" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,330 C384.5,330 384.5,267 470,267" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,330 C384.5,330 384.5,309 470,309" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,330 C384.5,330 384.5,351 470,351" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,330 C384.5,330 384.5,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M109,445.5 C159.5,445.5 159.5,498 210,498" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,498 C371.5,498 371.5,435 470,435" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,498 C371.5,498 371.5,477 470,477" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,498 C371.5,498 371.5,519 470,519" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,498 C371.5,498 371.5,561 470,561" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M109,445.5 C159.5,445.5 159.5,666 210,666" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,666 C371.5,666 371.5,603 470,603" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,666 C371.5,666 371.5,645 470,645" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,666 C371.5,666 371.5,687 470,687" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,666 C371.5,666 371.5,729 470,729" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M109,445.5 C159.5,445.5 159.5,834 210,834" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,834 C371.5,834 371.5,771 470,771" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,834 C371.5,834 371.5,813 470,813" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,834 C371.5,834 371.5,855 470,855" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M273,834 C371.5,834 371.5,897 470,897" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<g><rect x="210" y="42" width="76" height="30" rx="8" fill="#f6f8fa" stroke="var(--c1, #2f6f4f)" stroke-width="1.2"/><text x="248" y="61.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c1, #2f6f4f)">体系结构</text></g>
-<g><rect x="470" y="0" width="151.4" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="545.7" y="19.68" text-anchor="middle" font-size="13"  fill="#1f2328">分层模型与 OSI 七层</text></g>
-<g><rect x="470" y="42" width="100.96000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="520.48" y="61.68" text-anchor="middle" font-size="13"  fill="#1f2328">TCP/IP 四层</text></g>
-<g><rect x="470" y="84" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="103.68" text-anchor="middle" font-size="13"  fill="#1f2328">时延、带宽、吞吐量</text></g>
-<g><rect x="210" y="168" width="63" height="30" rx="8" fill="#f6f8fa" stroke="var(--c2, #3b6ea5)" stroke-width="1.2"/><text x="241.5" y="187.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c2, #3b6ea5)">物理层</text></g>
-<g><rect x="470" y="126" width="76" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="508" y="145.68" text-anchor="middle" font-size="13"  fill="#1f2328">传输介质</text></g>
-<g><rect x="470" y="168" width="89" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="514.5" y="187.68" text-anchor="middle" font-size="13"  fill="#1f2328">编码与调制</text></g>
-<g><rect x="470" y="210" width="76" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="508" y="229.68" text-anchor="middle" font-size="13"  fill="#1f2328">信道复用</text></g>
-<g><rect x="210" y="315" width="89" height="30" rx="8" fill="#f6f8fa" stroke="var(--c3, #8a5a00)" stroke-width="1.2"/><text x="254.5" y="334.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c3, #8a5a00)">数据链路层</text></g>
-<g><rect x="470" y="252" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="271.68" text-anchor="middle" font-size="13"  fill="#1f2328">组帧与差错控制</text></g>
-<g><rect x="470" y="294" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="313.68" text-anchor="middle" font-size="13"  fill="#1f2328">流量控制与滑动窗口</text></g>
-<g><rect x="470" y="336" width="229.92000000000002" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="584.96" y="355.68" text-anchor="middle" font-size="13"  fill="#1f2328">介质访问控制：CSMA/CD、CSMA/CA</text></g>
-<g><rect x="470" y="378" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="397.68" text-anchor="middle" font-size="13"  fill="#1f2328">以太网与交换机</text></g>
-<g><rect x="210" y="483" width="63" height="30" rx="8" fill="#f6f8fa" stroke="var(--c4, #7a3f7a)" stroke-width="1.2"/><text x="241.5" y="502.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c4, #7a3f7a)">网络层</text></g>
-<g><rect x="470" y="420" width="167.52" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="553.76" y="439.68" text-anchor="middle" font-size="13"  fill="#1f2328">IPv4 与子网划分、CIDR</text></g>
-<g><rect x="470" y="462" width="130.08" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="535.04" y="481.68" text-anchor="middle" font-size="13"  fill="#1f2328">ARP、ICMP、DHCP</text></g>
-<g><rect x="470" y="504" width="187.8" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="563.9" y="523.68" text-anchor="middle" font-size="13"  fill="#1f2328">路由协议：RIP、OSPF、BGP</text></g>
-<g><rect x="470" y="546" width="102.52000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="521.26" y="565.68" text-anchor="middle" font-size="13"  fill="#1f2328">IPv6 与 NAT</text></g>
-<g><rect x="210" y="651" width="63" height="30" rx="8" fill="#f6f8fa" stroke="var(--c5, #a33b3b)" stroke-width="1.2"/><text x="241.5" y="670.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c5, #a33b3b)">传输层</text></g>
-<g><rect x="470" y="588" width="95.24000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="517.62" y="607.68" text-anchor="middle" font-size="13"  fill="#1f2328">TCP 与 UDP</text></g>
-<g><rect x="470" y="630" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="649.68" text-anchor="middle" font-size="13"  fill="#1f2328">三次握手、四次挥手</text></g>
-<g><rect x="470" y="672" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="691.68" text-anchor="middle" font-size="13"  fill="#1f2328">流量控制与拥塞控制</text></g>
-<g><rect x="470" y="714" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="733.68" text-anchor="middle" font-size="13"  fill="#1f2328">可靠传输与序号确认</text></g>
-<g><rect x="210" y="819" width="63" height="30" rx="8" fill="#f6f8fa" stroke="var(--c6, #2f6f7a)" stroke-width="1.2"/><text x="241.5" y="838.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c6, #2f6f7a)">应用层</text></g>
-<g><rect x="470" y="756" width="105.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="522.56" y="775.68" text-anchor="middle" font-size="13"  fill="#1f2328">DNS 解析过程</text></g>
-<g><rect x="470" y="798" width="117.08000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="528.54" y="817.68" text-anchor="middle" font-size="13"  fill="#1f2328">HTTP 与 HTTPS</text></g>
-<g><rect x="470" y="840" width="130.08" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="535.04" y="859.68" text-anchor="middle" font-size="13"  fill="#1f2328">FTP、SMTP、POP3</text></g>
-<g><rect x="470" y="882" width="95.24000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="517.62" y="901.68" text-anchor="middle" font-size="13"  fill="#1f2328">P2P 与 CDN</text></g>
-<g><rect x="0" y="426.5" width="109" height="38" rx="8" fill="#2f6f4f" stroke="#2f6f4f" stroke-width="1.2"/><text x="54.5" y="451.62" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">计算机网络</text></g>
+<path d="M109,445.5 C159.5,445.5 159.5,57 210,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,57 C378,57 378,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,57 C378,57 378,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,57 C378,57 378,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M109,445.5 C159.5,445.5 159.5,183 210,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,183 C371.5,183 371.5,141 470,141" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,183 C371.5,183 371.5,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,183 C371.5,183 371.5,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M109,445.5 C159.5,445.5 159.5,330 210,330" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,330 C384.5,330 384.5,267 470,267" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,330 C384.5,330 384.5,309 470,309" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,330 C384.5,330 384.5,351 470,351" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,330 C384.5,330 384.5,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M109,445.5 C159.5,445.5 159.5,498 210,498" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,498 C371.5,498 371.5,435 470,435" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,498 C371.5,498 371.5,477 470,477" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,498 C371.5,498 371.5,519 470,519" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,498 C371.5,498 371.5,561 470,561" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M109,445.5 C159.5,445.5 159.5,666 210,666" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,666 C371.5,666 371.5,603 470,603" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,666 C371.5,666 371.5,645 470,645" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,666 C371.5,666 371.5,687 470,687" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,666 C371.5,666 371.5,729 470,729" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M109,445.5 C159.5,445.5 159.5,834 210,834" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,834 C371.5,834 371.5,771 470,771" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,834 C371.5,834 371.5,813 470,813" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,834 C371.5,834 371.5,855 470,855" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M273,834 C371.5,834 371.5,897 470,897" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<text x="210" y="62.04" font-size="14" font-weight="700" fill="var(--c1, #2f6f4f)">体系结构</text>
+<text x="470" y="19.68" font-size="13"  fill="#1f2328">分层模型与 OSI 七层</text>
+<text x="470" y="61.68" font-size="13"  fill="#1f2328">TCP/IP 四层</text>
+<text x="470" y="103.68" font-size="13"  fill="#1f2328">时延、带宽、吞吐量</text>
+<text x="210" y="188.04" font-size="14" font-weight="700" fill="var(--c2, #3b6ea5)">物理层</text>
+<text x="470" y="145.68" font-size="13"  fill="#1f2328">传输介质</text>
+<text x="470" y="187.68" font-size="13"  fill="#1f2328">编码与调制</text>
+<text x="470" y="229.68" font-size="13"  fill="#1f2328">信道复用</text>
+<text x="210" y="335.04" font-size="14" font-weight="700" fill="var(--c3, #8a5a00)">数据链路层</text>
+<text x="470" y="271.68" font-size="13"  fill="#1f2328">组帧与差错控制</text>
+<text x="470" y="313.68" font-size="13"  fill="#1f2328">流量控制与滑动窗口</text>
+<text x="470" y="355.68" font-size="13"  fill="#1f2328">介质访问控制：CSMA/CD、CSMA/CA</text>
+<text x="470" y="397.68" font-size="13"  fill="#1f2328">以太网与交换机</text>
+<text x="210" y="503.04" font-size="14" font-weight="700" fill="var(--c4, #7a3f7a)">网络层</text>
+<text x="470" y="439.68" font-size="13"  fill="#1f2328">IPv4 与子网划分、CIDR</text>
+<text x="470" y="481.68" font-size="13"  fill="#1f2328">ARP、ICMP、DHCP</text>
+<text x="470" y="523.68" font-size="13"  fill="#1f2328">路由协议：RIP、OSPF、BGP</text>
+<text x="470" y="565.68" font-size="13"  fill="#1f2328">IPv6 与 NAT</text>
+<text x="210" y="671.04" font-size="14" font-weight="700" fill="var(--c5, #a33b3b)">传输层</text>
+<text x="470" y="607.68" font-size="13"  fill="#1f2328">TCP 与 UDP</text>
+<text x="470" y="649.68" font-size="13"  fill="#1f2328">三次握手、四次挥手</text>
+<text x="470" y="691.68" font-size="13"  fill="#1f2328">流量控制与拥塞控制</text>
+<text x="470" y="733.68" font-size="13"  fill="#1f2328">可靠传输与序号确认</text>
+<text x="210" y="839.04" font-size="14" font-weight="700" fill="var(--c6, #2f6f7a)">应用层</text>
+<text x="470" y="775.68" font-size="13"  fill="#1f2328">DNS 解析过程</text>
+<text x="470" y="817.68" font-size="13"  fill="#1f2328">HTTP 与 HTTPS</text>
+<text x="470" y="859.68" font-size="13"  fill="#1f2328">FTP、SMTP、POP3</text>
+<text x="470" y="901.68" font-size="13"  fill="#1f2328">P2P 与 CDN</text>
+<text x="0" y="451.62" font-size="17" font-weight="700" fill="#2f6f4f">计算机网络</text>
 </svg>
