@@ -1,70 +1,69 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 712 1100" width="712" height="1100" font-family="Microsoft YaHei, PingFang SC, sans-serif">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<path d="M143,529.5 C176.5,529.5 176.5,57 210,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,57 C378,57 378,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,57 C378,57 378,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,57 C378,57 378,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M143,529.5 C176.5,529.5 176.5,204 210,204" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M338,204 C404,204 404,141 470,141" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M338,204 C404,204 404,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M338,204 C404,204 404,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M338,204 C404,204 404,267 470,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M143,529.5 C176.5,529.5 176.5,372 210,372" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,372 C378,372 378,309 470,309" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,372 C378,372 378,351 470,351" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,372 C378,372 378,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,372 C378,372 378,435 470,435" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M143,529.5 C176.5,529.5 176.5,519 210,519" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,519 C378,519 378,477 470,477" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,519 C378,519 378,519 470,519" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,519 C378,519 378,561 470,561" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M143,529.5 C176.5,529.5 176.5,687 210,687" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,687 C384.5,687 384.5,603 470,603" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,687 C384.5,687 384.5,645 470,645" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,687 C384.5,687 384.5,687 470,687" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,687 C384.5,687 384.5,729 470,729" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,687 C384.5,687 384.5,771 470,771" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M143,529.5 C176.5,529.5 176.5,855 210,855" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,855 C365,855 365,813 470,813" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,855 C365,855 365,855 470,855" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,855 C365,855 365,897 470,897" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M143,529.5 C176.5,529.5 176.5,1002 210,1002" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M312,1002 C391,1002 391,939 470,939" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M312,1002 C391,1002 391,981 470,981" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M312,1002 C391,1002 391,1023 470,1023" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M312,1002 C391,1002 391,1065 470,1065" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.6" opacity="0.55"/>
-<g><rect x="210" y="42" width="76" height="30" rx="8" fill="#f6f8fa" stroke="var(--c1, #2f6f4f)" stroke-width="1.2"/><text x="248" y="61.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c1, #2f6f4f)">系统概述</text></g>
-<g><rect x="470" y="0" width="148.28" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="544.14" y="19.68" text-anchor="middle" font-size="13"  fill="#1f2328">冯·诺依曼结构与层次</text></g>
-<g><rect x="470" y="42" width="217.96" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="578.98" y="61.68" text-anchor="middle" font-size="13"  fill="#1f2328">性能指标：CPI、MIPS、执行时间</text></g>
-<g><rect x="470" y="84" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="103.68" text-anchor="middle" font-size="13"  fill="#1f2328">多处理器与并行</text></g>
-<g><rect x="210" y="189" width="128" height="30" rx="8" fill="#f6f8fa" stroke="var(--c2, #3b6ea5)" stroke-width="1.2"/><text x="274" y="208.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c2, #3b6ea5)">数据的表示和运算</text></g>
-<g><rect x="470" y="126" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="145.68" text-anchor="middle" font-size="13"  fill="#1f2328">进制转换与定点编码</text></g>
-<g><rect x="470" y="168" width="115.52000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.76" y="187.68" text-anchor="middle" font-size="13"  fill="#1f2328">IEEE 754 浮点</text></g>
-<g><rect x="470" y="210" width="149.84" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="544.92" y="229.68" text-anchor="middle" font-size="13"  fill="#1f2328">ALU、加法器与标志位</text></g>
-<g><rect x="470" y="252" width="76" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="508" y="271.68" text-anchor="middle" font-size="13"  fill="#1f2328">乘除运算</text></g>
-<g><rect x="210" y="357" width="76" height="30" rx="8" fill="#f6f8fa" stroke="var(--c3, #8a5a00)" stroke-width="1.2"/><text x="248" y="376.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c3, #8a5a00)">存储系统</text></g>
-<g><rect x="470" y="294" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="313.68" text-anchor="middle" font-size="13"  fill="#1f2328">层次结构与局部性</text></g>
-<g><rect x="470" y="336" width="190.4" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="565.2" y="355.68" text-anchor="middle" font-size="13"  fill="#1f2328">Cache：映射、替换、写策略</text></g>
-<g><rect x="470" y="378" width="162.84" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="551.42" y="397.68" text-anchor="middle" font-size="13"  fill="#1f2328">虚拟存储器：页表、TLB</text></g>
-<g><rect x="470" y="420" width="89" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="514.5" y="439.68" text-anchor="middle" font-size="13"  fill="#1f2328">外存与磁盘</text></g>
-<g><rect x="210" y="504" width="76" height="30" rx="8" fill="#f6f8fa" stroke="var(--c4, #7a3f7a)" stroke-width="1.2"/><text x="248" y="523.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c4, #7a3f7a)">指令系统</text></g>
-<g><rect x="470" y="462" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="481.68" text-anchor="middle" font-size="13"  fill="#1f2328">指令格式与寻址方式</text></g>
-<g><rect x="470" y="504" width="109.80000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="524.9" y="523.68" text-anchor="middle" font-size="13"  fill="#1f2328">CISC 与 RISC</text></g>
-<g><rect x="470" y="546" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="565.68" text-anchor="middle" font-size="13"  fill="#1f2328">机器级代码与汇编</text></g>
-<g><rect x="210" y="672" width="89" height="30" rx="8" fill="#f6f8fa" stroke="var(--c5, #a33b3b)" stroke-width="1.2"/><text x="254.5" y="691.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c5, #a33b3b)">中央处理器</text></g>
-<g><rect x="470" y="588" width="131.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="535.56" y="607.68" text-anchor="middle" font-size="13"  fill="#1f2328">CPU 结构与寄存器</text></g>
-<g><rect x="470" y="630" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="649.68" text-anchor="middle" font-size="13"  fill="#1f2328">数据通路与控制信号</text></g>
-<g><rect x="470" y="672" width="167" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="553.5" y="691.68" text-anchor="middle" font-size="13"  fill="#1f2328">控制器：硬布线、微程序</text></g>
-<g><rect x="470" y="714" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="733.68" text-anchor="middle" font-size="13"  fill="#1f2328">指令流水线与冒险</text></g>
-<g><rect x="470" y="756" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="775.68" text-anchor="middle" font-size="13"  fill="#1f2328">多处理器与多核</text></g>
-<g><rect x="210" y="840" width="50" height="30" rx="8" fill="#f6f8fa" stroke="var(--c6, #2f6f7a)" stroke-width="1.2"/><text x="235" y="859.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c6, #2f6f7a)">总线</text></g>
-<g><rect x="470" y="798" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="817.68" text-anchor="middle" font-size="13"  fill="#1f2328">总线分类与结构</text></g>
-<g><rect x="470" y="840" width="154" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="547" y="859.68" text-anchor="middle" font-size="13"  fill="#1f2328">性能指标：带宽、宽度</text></g>
-<g><rect x="470" y="882" width="89" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="514.5" y="901.68" text-anchor="middle" font-size="13"  fill="#1f2328">仲裁与定时</text></g>
-<g><rect x="210" y="987" width="102" height="30" rx="8" fill="#f6f8fa" stroke="var(--c7, #5a5a8a)" stroke-width="1.2"/><text x="261" y="1006.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c7, #5a5a8a)">输入输出系统</text></g>
-<g><rect x="470" y="924" width="118.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="529.06" y="943.68" text-anchor="middle" font-size="13"  fill="#1f2328">I/O 接口与编址</text></g>
-<g><rect x="470" y="966" width="102" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="521" y="985.68" text-anchor="middle" font-size="13"  fill="#1f2328">程序查询方式</text></g>
-<g><rect x="470" y="1008" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="1027.68" text-anchor="middle" font-size="13"  fill="#1f2328">中断方式与中断处理</text></g>
-<g><rect x="470" y="1050" width="79.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="509.56" y="1069.68" text-anchor="middle" font-size="13"  fill="#1f2328">DMA 方式</text></g>
-<g><rect x="0" y="510.5" width="143" height="38" rx="8" fill="#2f6f4f" stroke="#2f6f4f" stroke-width="1.2"/><text x="71.5" y="535.62" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">计算机组成原理</text></g>
+<path d="M143,529.5 C176.5,529.5 176.5,57 210,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,57 C378,57 378,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,57 C378,57 378,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,57 C378,57 378,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M143,529.5 C176.5,529.5 176.5,204 210,204" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M338,204 C404,204 404,141 470,141" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M338,204 C404,204 404,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M338,204 C404,204 404,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M338,204 C404,204 404,267 470,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M143,529.5 C176.5,529.5 176.5,372 210,372" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,372 C378,372 378,309 470,309" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,372 C378,372 378,351 470,351" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,372 C378,372 378,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,372 C378,372 378,435 470,435" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M143,529.5 C176.5,529.5 176.5,519 210,519" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,519 C378,519 378,477 470,477" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,519 C378,519 378,519 470,519" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,519 C378,519 378,561 470,561" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M143,529.5 C176.5,529.5 176.5,687 210,687" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,687 C384.5,687 384.5,603 470,603" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,687 C384.5,687 384.5,645 470,645" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,687 C384.5,687 384.5,687 470,687" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,687 C384.5,687 384.5,729 470,729" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,687 C384.5,687 384.5,771 470,771" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M143,529.5 C176.5,529.5 176.5,855 210,855" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,855 C365,855 365,813 470,813" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,855 C365,855 365,855 470,855" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,855 C365,855 365,897 470,897" fill="none" stroke="var(--c6, #2f6f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M143,529.5 C176.5,529.5 176.5,1002 210,1002" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M312,1002 C391,1002 391,939 470,939" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M312,1002 C391,1002 391,981 470,981" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M312,1002 C391,1002 391,1023 470,1023" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M312,1002 C391,1002 391,1065 470,1065" fill="none" stroke="var(--c7, #5a5a8a)" stroke-width="1.5" opacity="0.45"/>
+<text x="210" y="62.04" font-size="14" font-weight="700" fill="var(--c1, #2f6f4f)">系统概述</text>
+<text x="470" y="19.68" font-size="13"  fill="#1f2328">冯·诺依曼结构与层次</text>
+<text x="470" y="61.68" font-size="13"  fill="#1f2328">性能指标：CPI、MIPS、执行时间</text>
+<text x="470" y="103.68" font-size="13"  fill="#1f2328">多处理器与并行</text>
+<text x="210" y="209.04" font-size="14" font-weight="700" fill="var(--c2, #3b6ea5)">数据的表示和运算</text>
+<text x="470" y="145.68" font-size="13"  fill="#1f2328">进制转换与定点编码</text>
+<text x="470" y="187.68" font-size="13"  fill="#1f2328">IEEE 754 浮点</text>
+<text x="470" y="229.68" font-size="13"  fill="#1f2328">ALU、加法器与标志位</text>
+<text x="470" y="271.68" font-size="13"  fill="#1f2328">乘除运算</text>
+<text x="210" y="377.04" font-size="14" font-weight="700" fill="var(--c3, #8a5a00)">存储系统</text>
+<text x="470" y="313.68" font-size="13"  fill="#1f2328">层次结构与局部性</text>
+<text x="470" y="355.68" font-size="13"  fill="#1f2328">Cache：映射、替换、写策略</text>
+<text x="470" y="397.68" font-size="13"  fill="#1f2328">虚拟存储器：页表、TLB</text>
+<text x="470" y="439.68" font-size="13"  fill="#1f2328">外存与磁盘</text>
+<text x="210" y="524.04" font-size="14" font-weight="700" fill="var(--c4, #7a3f7a)">指令系统</text>
+<text x="470" y="481.68" font-size="13"  fill="#1f2328">指令格式与寻址方式</text>
+<text x="470" y="523.68" font-size="13"  fill="#1f2328">CISC 与 RISC</text>
+<text x="470" y="565.68" font-size="13"  fill="#1f2328">机器级代码与汇编</text>
+<text x="210" y="692.04" font-size="14" font-weight="700" fill="var(--c5, #a33b3b)">中央处理器</text>
+<text x="470" y="607.68" font-size="13"  fill="#1f2328">CPU 结构与寄存器</text>
+<text x="470" y="649.68" font-size="13"  fill="#1f2328">数据通路与控制信号</text>
+<text x="470" y="691.68" font-size="13"  fill="#1f2328">控制器：硬布线、微程序</text>
+<text x="470" y="733.68" font-size="13"  fill="#1f2328">指令流水线与冒险</text>
+<text x="470" y="775.68" font-size="13"  fill="#1f2328">多处理器与多核</text>
+<text x="210" y="860.04" font-size="14" font-weight="700" fill="var(--c6, #2f6f7a)">总线</text>
+<text x="470" y="817.68" font-size="13"  fill="#1f2328">总线分类与结构</text>
+<text x="470" y="859.68" font-size="13"  fill="#1f2328">性能指标：带宽、宽度</text>
+<text x="470" y="901.68" font-size="13"  fill="#1f2328">仲裁与定时</text>
+<text x="210" y="1007.04" font-size="14" font-weight="700" fill="var(--c7, #5a5a8a)">输入输出系统</text>
+<text x="470" y="943.68" font-size="13"  fill="#1f2328">I/O 接口与编址</text>
+<text x="470" y="985.68" font-size="13"  fill="#1f2328">程序查询方式</text>
+<text x="470" y="1027.68" font-size="13"  fill="#1f2328">中断方式与中断处理</text>
+<text x="470" y="1069.68" font-size="13"  fill="#1f2328">DMA 方式</text>
+<text x="0" y="535.62" font-size="17" font-weight="700" fill="#2f6f4f">计算机组成原理</text>
 </svg>

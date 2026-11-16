@@ -1,58 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 932" width="700" height="932" font-family="Microsoft YaHei, PingFang SC, sans-serif">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<path d="M92,456 C151,456 151,78 210,78" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,78 C365,78 365,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,78 C365,78 365,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,78 C365,78 365,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M260,78 C365,78 365,141 470,141" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.6" opacity="0.55"/>
-<path d="M92,456 C151,456 151,267 210,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,267 C384.5,267 384.5,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,267 C384.5,267 384.5,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,267 C384.5,267 384.5,267 470,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,267 C384.5,267 384.5,309 470,309" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M299,267 C384.5,267 384.5,351 470,351" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.6" opacity="0.55"/>
-<path d="M92,456 C151,456 151,477 210,477" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,477 C378,477 378,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,477 C378,477 378,435 470,435" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,477 C378,477 378,477 470,477" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,477 C378,477 378,519 470,519" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,477 C378,477 378,561 470,561" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.6" opacity="0.55"/>
-<path d="M92,456 C151,456 151,666 210,666" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,666 C378,666 378,603 470,603" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,666 C378,666 378,645 470,645" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,666 C378,666 378,687 470,687" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M286,666 C378,666 378,729 470,729" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.6" opacity="0.55"/>
-<path d="M92,456 C151,456 151,834 210,834" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M289.12,834 C379.56,834 379.56,771 470,771" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M289.12,834 C379.56,834 379.56,813 470,813" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M289.12,834 C379.56,834 379.56,855 470,855" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<path d="M289.12,834 C379.56,834 379.56,897 470,897" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.6" opacity="0.55"/>
-<g><rect x="210" y="63" width="50" height="30" rx="8" fill="#f6f8fa" stroke="var(--c1, #2f6f4f)" stroke-width="1.2"/><text x="235" y="82.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c1, #2f6f4f)">概述</text></g>
-<g><rect x="470" y="0" width="206" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="573" y="19.68" text-anchor="middle" font-size="13"  fill="#1f2328">特征：并发、共享、虚拟、异步</text></g>
-<g><rect x="470" y="42" width="180" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="560" y="61.68" text-anchor="middle" font-size="13"  fill="#1f2328">内核态与用户态、特权指令</text></g>
-<g><rect x="470" y="84" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="103.68" text-anchor="middle" font-size="13"  fill="#1f2328">系统调用与中断异常</text></g>
-<g><rect x="470" y="126" width="175.84" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="557.92" y="145.68" text-anchor="middle" font-size="13"  fill="#1f2328">OS 结构：宏内核、微内核</text></g>
-<g><rect x="210" y="252" width="89" height="30" rx="8" fill="#f6f8fa" stroke="var(--c2, #3b6ea5)" stroke-width="1.2"/><text x="254.5" y="271.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c2, #3b6ea5)">进程与线程</text></g>
-<g><rect x="470" y="168" width="118.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="529.06" y="187.68" text-anchor="middle" font-size="13"  fill="#1f2328">进程状态与 PCB</text></g>
-<g><rect x="470" y="210" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="229.68" text-anchor="middle" font-size="13"  fill="#1f2328">线程与多线程模型</text></g>
-<g><rect x="470" y="252" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="271.68" text-anchor="middle" font-size="13"  fill="#1f2328">调度算法与指标</text></g>
-<g><rect x="470" y="294" width="167" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="553.5" y="313.68" text-anchor="middle" font-size="13"  fill="#1f2328">同步互斥：信号量、管程</text></g>
-<g><rect x="470" y="336" width="206" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="573" y="355.68" text-anchor="middle" font-size="13"  fill="#1f2328">死锁：条件、预防、银行家算法</text></g>
-<g><rect x="210" y="462" width="76" height="30" rx="8" fill="#f6f8fa" stroke="var(--c3, #8a5a00)" stroke-width="1.2"/><text x="248" y="481.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c3, #8a5a00)">内存管理</text></g>
-<g><rect x="470" y="378" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="397.68" text-anchor="middle" font-size="13"  fill="#1f2328">连续分配与碎片</text></g>
-<g><rect x="470" y="420" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="439.68" text-anchor="middle" font-size="13"  fill="#1f2328">分页、分段、段页式</text></g>
-<g><rect x="470" y="462" width="115" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.5" y="481.68" text-anchor="middle" font-size="13"  fill="#1f2328">虚拟内存与页表</text></g>
-<g><rect x="470" y="504" width="202.36" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="571.1800000000001" y="523.68" text-anchor="middle" font-size="13"  fill="#1f2328">页面置换：FIFO、LRU、Clock</text></g>
-<g><rect x="470" y="546" width="102" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="521" y="565.68" text-anchor="middle" font-size="13"  fill="#1f2328">工作集与抖动</text></g>
-<g><rect x="210" y="651" width="76" height="30" rx="8" fill="#f6f8fa" stroke="var(--c4, #7a3f7a)" stroke-width="1.2"/><text x="248" y="670.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c4, #7a3f7a)">文件管理</text></g>
-<g><rect x="470" y="588" width="141" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="540.5" y="607.68" text-anchor="middle" font-size="13"  fill="#1f2328">文件逻辑结构与目录</text></g>
-<g><rect x="470" y="630" width="154" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="547" y="649.68" text-anchor="middle" font-size="13"  fill="#1f2328">连续、链接、索引分配</text></g>
-<g><rect x="470" y="672" width="102" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="521" y="691.68" text-anchor="middle" font-size="13"  fill="#1f2328">空闲空间管理</text></g>
-<g><rect x="470" y="714" width="167.52" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="553.76" y="733.68" text-anchor="middle" font-size="13"  fill="#1f2328">磁盘调度：SCAN、CSCAN</text></g>
-<g><rect x="210" y="819" width="79.12" height="30" rx="8" fill="#f6f8fa" stroke="var(--c5, #a33b3b)" stroke-width="1.2"/><text x="249.56" y="838.68" text-anchor="middle" font-size="13" font-weight="700" fill="var(--c5, #a33b3b)">I/O 管理</text></g>
-<g><rect x="470" y="756" width="105.12" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="522.56" y="775.68" text-anchor="middle" font-size="13"  fill="#1f2328">I/O 软件层次</text></g>
-<g><rect x="470" y="798" width="135.28" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="537.64" y="817.68" text-anchor="middle" font-size="13"  fill="#1f2328">缓冲区：单/双缓冲</text></g>
-<g><rect x="470" y="840" width="115.52000000000001" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="527.76" y="859.68" text-anchor="middle" font-size="13"  fill="#1f2328">SPOOLing 技术</text></g>
-<g><rect x="470" y="882" width="128" height="30" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2"/><text x="534" y="901.68" text-anchor="middle" font-size="13"  fill="#1f2328">设备分配与独立性</text></g>
-<g><rect x="0" y="437" width="92" height="38" rx="8" fill="#2f6f4f" stroke="#2f6f4f" stroke-width="1.2"/><text x="46" y="462.12" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">操作系统</text></g>
+<path d="M92,456 C151,456 151,78 210,78" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,78 C365,78 365,15 470,15" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,78 C365,78 365,57 470,57" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,78 C365,78 365,99 470,99" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M260,78 C365,78 365,141 470,141" fill="none" stroke="var(--c1, #2f6f4f)" stroke-width="1.5" opacity="0.45"/>
+<path d="M92,456 C151,456 151,267 210,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,267 C384.5,267 384.5,183 470,183" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,267 C384.5,267 384.5,225 470,225" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,267 C384.5,267 384.5,267 470,267" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,267 C384.5,267 384.5,309 470,309" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M299,267 C384.5,267 384.5,351 470,351" fill="none" stroke="var(--c2, #3b6ea5)" stroke-width="1.5" opacity="0.45"/>
+<path d="M92,456 C151,456 151,477 210,477" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,477 C378,477 378,393 470,393" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,477 C378,477 378,435 470,435" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,477 C378,477 378,477 470,477" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,477 C378,477 378,519 470,519" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,477 C378,477 378,561 470,561" fill="none" stroke="var(--c3, #8a5a00)" stroke-width="1.5" opacity="0.45"/>
+<path d="M92,456 C151,456 151,666 210,666" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,666 C378,666 378,603 470,603" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,666 C378,666 378,645 470,645" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,666 C378,666 378,687 470,687" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M286,666 C378,666 378,729 470,729" fill="none" stroke="var(--c4, #7a3f7a)" stroke-width="1.5" opacity="0.45"/>
+<path d="M92,456 C151,456 151,834 210,834" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M289.12,834 C379.56,834 379.56,771 470,771" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M289.12,834 C379.56,834 379.56,813 470,813" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M289.12,834 C379.56,834 379.56,855 470,855" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<path d="M289.12,834 C379.56,834 379.56,897 470,897" fill="none" stroke="var(--c5, #a33b3b)" stroke-width="1.5" opacity="0.45"/>
+<text x="210" y="83.04" font-size="14" font-weight="700" fill="var(--c1, #2f6f4f)">概述</text>
+<text x="470" y="19.68" font-size="13"  fill="#1f2328">特征：并发、共享、虚拟、异步</text>
+<text x="470" y="61.68" font-size="13"  fill="#1f2328">内核态与用户态、特权指令</text>
+<text x="470" y="103.68" font-size="13"  fill="#1f2328">系统调用与中断异常</text>
+<text x="470" y="145.68" font-size="13"  fill="#1f2328">OS 结构：宏内核、微内核</text>
+<text x="210" y="272.04" font-size="14" font-weight="700" fill="var(--c2, #3b6ea5)">进程与线程</text>
+<text x="470" y="187.68" font-size="13"  fill="#1f2328">进程状态与 PCB</text>
+<text x="470" y="229.68" font-size="13"  fill="#1f2328">线程与多线程模型</text>
+<text x="470" y="271.68" font-size="13"  fill="#1f2328">调度算法与指标</text>
+<text x="470" y="313.68" font-size="13"  fill="#1f2328">同步互斥：信号量、管程</text>
+<text x="470" y="355.68" font-size="13"  fill="#1f2328">死锁：条件、预防、银行家算法</text>
+<text x="210" y="482.04" font-size="14" font-weight="700" fill="var(--c3, #8a5a00)">内存管理</text>
+<text x="470" y="397.68" font-size="13"  fill="#1f2328">连续分配与碎片</text>
+<text x="470" y="439.68" font-size="13"  fill="#1f2328">分页、分段、段页式</text>
+<text x="470" y="481.68" font-size="13"  fill="#1f2328">虚拟内存与页表</text>
+<text x="470" y="523.68" font-size="13"  fill="#1f2328">页面置换：FIFO、LRU、Clock</text>
+<text x="470" y="565.68" font-size="13"  fill="#1f2328">工作集与抖动</text>
+<text x="210" y="671.04" font-size="14" font-weight="700" fill="var(--c4, #7a3f7a)">文件管理</text>
+<text x="470" y="607.68" font-size="13"  fill="#1f2328">文件逻辑结构与目录</text>
+<text x="470" y="649.68" font-size="13"  fill="#1f2328">连续、链接、索引分配</text>
+<text x="470" y="691.68" font-size="13"  fill="#1f2328">空闲空间管理</text>
+<text x="470" y="733.68" font-size="13"  fill="#1f2328">磁盘调度：SCAN、CSCAN</text>
+<text x="210" y="839.04" font-size="14" font-weight="700" fill="var(--c5, #a33b3b)">I/O 管理</text>
+<text x="470" y="775.68" font-size="13"  fill="#1f2328">I/O 软件层次</text>
+<text x="470" y="817.68" font-size="13"  fill="#1f2328">缓冲区：单/双缓冲</text>
+<text x="470" y="859.68" font-size="13"  fill="#1f2328">SPOOLing 技术</text>
+<text x="470" y="901.68" font-size="13"  fill="#1f2328">设备分配与独立性</text>
+<text x="0" y="462.12" font-size="17" font-weight="700" fill="#2f6f4f">操作系统</text>
 </svg>
