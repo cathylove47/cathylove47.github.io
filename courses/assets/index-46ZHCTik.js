@@ -5015,7 +5015,7 @@ $$
 
 从左到右是**科目 → 章节 → 知识点**。下方每个知识点配有例题，点击知识点展开题图，点击图片在本页放大；「查看解析」进入原题，「返回导图」回到当前知识点。
 
-[下载四科导图与例题 PDF](handouts/408-mindmaps.pdf)
+[下载画布版导图 PDF](handouts/408-mindmaps.pdf) · [下载配套答案讲义](handouts/408-mindmaps-answers.pdf)
 
 ## 线性表
 
@@ -5456,7 +5456,7 @@ $$
 
 从左到右是**科目 → 章节 → 知识点**。下方每个知识点配有例题，点击知识点展开题图，点击图片在本页放大；「查看解析」进入原题，「返回导图」回到当前知识点。
 
-[下载四科导图与例题 PDF](handouts/408-mindmaps.pdf)
+[下载画布版导图 PDF](handouts/408-mindmaps.pdf) · [下载配套答案讲义](handouts/408-mindmaps-answers.pdf)
 
 ## 系统概述
 
@@ -5846,7 +5846,7 @@ $$
 
 从左到右是**科目 → 章节 → 知识点**。下方每个知识点配有例题，点击知识点展开题图，点击图片在本页放大；「查看解析」进入原题，「返回导图」回到当前知识点。
 
-[下载四科导图与例题 PDF](handouts/408-mindmaps.pdf)
+[下载画布版导图 PDF](handouts/408-mindmaps.pdf) · [下载配套答案讲义](handouts/408-mindmaps-answers.pdf)
 
 ## 概述
 
@@ -6148,7 +6148,7 @@ $$
 
 从左到右是**科目 → 章节 → 知识点**。下方每个知识点配有例题，点击知识点展开题图，点击图片在本页放大；「查看解析」进入原题，「返回导图」回到当前知识点。
 
-[下载四科导图与例题 PDF](handouts/408-mindmaps.pdf)
+[下载画布版导图 PDF](handouts/408-mindmaps.pdf) · [下载配套答案讲义](handouts/408-mindmaps-answers.pdf)
 
 ## 体系结构
 
