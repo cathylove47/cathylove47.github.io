@@ -6489,6 +6489,7 @@ CDN 用可控的边缘基础设施换时延与稳定性，服务质量由运营�
 
 - [下载学生版（25 页，仅题面）](handouts/real-concepts-ds-student.pdf)
 - [下载教师版（46 页，含答案与解析）](handouts/real-concepts-ds-teacher.pdf)
+- [下载答案速查（四科合订，4 页）](handouts/real-concepts-answer-key.pdf)
 
 ## 选题口径
 
@@ -6622,6 +6623,7 @@ CDN 用可控的边缘基础设施换时延与稳定性，服务质量由运营�
 
 - [下载学生版（35 页，仅题面）](handouts/real-concepts-co-student.pdf)
 - [下载教师版（56 页，含答案与解析）](handouts/real-concepts-co-teacher.pdf)
+- [下载答案速查（四科合订，4 页）](handouts/real-concepts-answer-key.pdf)
 
 ## 选题口径
 
@@ -6788,6 +6790,7 @@ CDN 用可控的边缘基础设施换时延与稳定性，服务质量由运营�
 
 - [下载学生版（49 页，仅题面）](handouts/real-concepts-os-student.pdf)
 - [下载教师版（80 页，含答案与解析）](handouts/real-concepts-os-teacher.pdf)
+- [下载答案速查（四科合订，4 页）](handouts/real-concepts-answer-key.pdf)
 
 ## 选题口径
 
@@ -6992,6 +6995,7 @@ CDN 用可控的边缘基础设施换时延与稳定性，服务质量由运营�
 
 - [下载学生版（19 页，仅题面）](handouts/real-concepts-cn-student.pdf)
 - [下载教师版（30 页，含答案与解析）](handouts/real-concepts-cn-teacher.pdf)
+- [下载答案速查（四科合订，4 页）](handouts/real-concepts-answer-key.pdf)
 
 ## 选题口径
 
