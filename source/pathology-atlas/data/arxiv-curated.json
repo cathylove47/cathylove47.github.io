@@ -6,14 +6,24 @@
       "domain": "pathology",
       "title": "Benchmarking and Improvement of Artifact Segmentation Methods in H&E-Stained Whole Slide Imaging",
       "titleZh": "H&E 全切片伪影分割方法的基准评测与改进",
-      "authors": ["Julia Merta", "Daniel Mendelsohn", "Benedikt Schoser", "Joanna Polanska", "Michal Marczyk"],
+      "authors": [
+        "Julia Merta",
+        "Daniel Mendelsohn",
+        "Benedikt Schoser",
+        "Joanna Polanska",
+        "Michal Marczyk"
+      ],
       "summary": "Technical artifacts introduced during tissue preparation or slide scanning remain a major obstacle to developing robust computational pathology algorithms for hematoxylin and eosin (HE)-stained whole-slide images (WSIs). Despite the growing number of quality-control tools, their real-world utility remains hard to assess because of the limited number of publicly available implementations and the lack of systematic, multi-dataset comparisons. This paper presents a benchmark of artifact segmentation methods for HE-stained WSIs. After a literature review, six publicly available algorithms were selected and compared in terms of their ability to segment artifact-free tissue and selected artifact classes. Two publicly available datasets and a newly introduced dataset released to support further research were used for evaluation. Tissue samples from multiple medical centers and different organs are included, enabling evaluation across heterogeneous data sources. Segmentation performance was assessed using Dice Index, pixel-level recall, and false discovery rate for artifact-free tissue segmentation. For algorithms supporting multiclass artifact segmentation, class-wise Dice Index and inter-class misclassification were evaluated. In addition to segmentation quality, processing time was assessed. Statistical analysis revealed significant differences in segmentation performance between methods. HistoKit, which incorporates a modified version of the GrandQC, was identified as the best-performing algorithm, while HistoQC was the worst. In terms of artifact types, dark spots and out of focus regions were harder to segment than others. Finally, a simple post-processing step was introduced for HistoKit, which further improved segmentation performance. The benchmark establishes a reference for evaluating and developing artifact segmentation methods for HE-stained WSIs.",
       "published": "2026-10-16T12:03:15Z",
       "updated": "2026-10-16T12:03:15Z",
       "url": "https://arxiv.org/abs/2610.24037",
       "pdfUrl": "https://arxiv.org/pdf/2610.24037",
       "dateSource": "https://arxiv.org/abs/2610.24037",
-      "matchedKeywords": ["pathology", "whole slide", "artifact"],
+      "matchedKeywords": [
+        "pathology",
+        "whole slide",
+        "artifact"
+      ],
       "firstSeen": "2026-10-22",
       "lastSeen": "2026-10-22",
       "screening": {
@@ -24,9 +34,18 @@
         "reason": "本周新首发的辅助参考，不是扩散修复方法：对六种公开伪影分割算法做跨数据集评价，并改进 HistoKit 后处理。对 RestorePath 的价值在于核查 mask 来源与误差；不能将其列成新扩散模型。代码仅含统计/可视化，新 Dataset C 声明发表后公开，当前不可据此承诺完整三数据集复现；HTML 的 Journal 字样未构成正式接收证据。",
         "codeUrl": "https://github.com/julimer228/BenchmarkingArtifactSegmenationHE",
         "evidence": [
-          {"url": "https://arxiv.org/abs/2610.24037", "note": "核对完整摘要、v1 首发 2026-10-16；未见 journal reference 或已接收声明。"},
-          {"url": "https://arxiv.org/html/2610.24037v1", "note": "正文评测六个实际可用方法；Code/Data Availability 区分统计脚本与 Dataset C 的未来公开。"},
-          {"url": "https://github.com/julimer228/BenchmarkingArtifactSegmenationHE", "note": "作者代码入口，主要为统计与可视化，不等于六种模型的完整统一实现。"}
+          {
+            "url": "https://arxiv.org/abs/2610.24037",
+            "note": "核对完整摘要、v1 首发 2026-10-16；未见 journal reference 或已接收声明。"
+          },
+          {
+            "url": "https://arxiv.org/html/2610.24037v1",
+            "note": "正文评测六个实际可用方法；Code/Data Availability 区分统计脚本与 Dataset C 的未来公开。"
+          },
+          {
+            "url": "https://github.com/julimer228/BenchmarkingArtifactSegmenationHE",
+            "note": "作者代码入口，主要为统计与可视化，不等于六种模型的完整统一实现。"
+          }
         ]
       }
     },
@@ -1544,44 +1563,42 @@
         "Dimitris Visvikis",
         "Alexandre Bousse"
       ],
-      "summary": "High-resolution three-dimensional (3-D) medical diffusion models remain constrained by the cost of processing full volumes, even when denoising is performed in a compact latent space. We introduce a continuous 3-D latent diffusion model (LDM) framework for computed tomography (CT) and magnetic resonance imaging (MRI) generation and measurement-guided reconstruction. Its central component is a compact autoencoder (AE) with a coordinate-conditioned local implicit image function (LIIF) decoder that represents a volume as a continuous function of spatial coordinates. By evaluating the convolutional decoder once on the latent grid and restricting repeated computation to a lightweight implicit head, the proposed design avoids overlapping sub-volume decoding while remaining differentiable for inverse-problem optimization. We evaluate the framework on CT volumes of 512^3 voxels and MRI volumes of 256^3 voxels. On high-resolution CT, the proposed AE is approximately x12-32 faster than the evaluated reference autoencoders, achieves the lowest peak graphics processing unit (GPU) memory use, and retains comparable structural fidelity despite a moderate reduction in voxel-level accuracy. The resulting frozen 3-D latent prior generates coherent full volumes without visible patch seams and can be applied, without task-specific retraining, to sparse-view CT and accelerated MRI reconstruction through hard data consistency. Although direct pixel-domain reconstruction remains more accurate, the results demonstrate that a single volumetric latent prior can support both unconditional generation and measurement-conditioned reconstruction on one GPU. Overall, the framework provides a practical trade-off between continuous volumetric decoding, computational efficiency, and fine-detail preservation. Our code will be made available at https://github.com/mellak/.",
+      "summary": "High-resolution three-dimensional (3-D) medical latent diffusion remains limited by the cost of decoding full volumes, which existing latent autoencoders (AEs) handle through overlapping sub-volume decoding. We propose a continuous 3-D latent diffusion model framework for computed tomography (CT) and magnetic resonance imaging (MRI) generation and measurement-guided reconstruction, built on a coordinate-rendering autoencoder (CoRe-AE). Its decoder applies its convolutional stage once on the compact latent grid and renders voxel intensities from spatial coordinates through a lightweight implicit head, evaluated in memory-bounded chunks. This design avoids overlapping sub-volumes and remains differentiable with respect to the latent, so that the decoder can be used inside measurement-guided reconstruction. The framework was evaluated on CT volumes of 512\\textsuperscript{3} voxels and MRI volumes of 256\\textsuperscript{3} voxels. At 512\\textsuperscript{3}, the decoder was 4--18 times faster than the MAISI and 3D MedDiffusion AEs and required the lowest peak graphics processing unit (GPU) memory, including when its gradient was computed. CoRe-AE also achieved the highest peak signal-to-noise ratio (PSNR) and structural similarity index (SSIM) among the evaluated AEs on both modalities. The resulting frozen 3-D latent prior generated full volumes without patch seams and, without retraining, reconstructed sparse-view CT and accelerated MRI through hard data consistency, within 2.4--4.9 dB PSNR of the pixel-domain decomposed diffusion sampler (DDS). A single volumetric latent prior thus supports both generation and reconstruction of high-resolution medical volumes on one GPU. Our code and pretrained weights are available at https://github.com/Mellak/continuous-3d-latent-diffusion.",
       "published": "2026-07-17T20:32:13Z",
-      "updated": "2026-08-17T11:20:53Z",
+      "updated": "2026-11-06T22:13:40Z",
       "url": "https://arxiv.org/abs/2607.16491",
       "pdfUrl": "https://arxiv.org/pdf/2607.16491",
       "matchedKeywords": [
+        "diffusion",
         "mri",
-        "magnetic resonance",
-        "reconstruction"
+        "medical image",
+        "ct"
       ],
       "firstSeen": "2026-10-13T07:46:18.765Z",
-      "lastSeen": "2026-10-13T08:13:27.160Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
       "screening": {
         "status": "recommended",
-        "priority": 1,
-        "reason": "机制：连续 3D 隐式自编码器（坐标条件 LIIF 解码器：卷积解码在 latent 网格只执行一次，记忆受限的坐标 chunk 只重复轻量隐式头，且对 latent 可微）+ 冻结 3D latent diffusion 先验，同一先验经 ReSample 式硬数据一致性直接用于稀疏视角 CT 与加速 MRI 重建，无需按任务重训。复现入口：官方代码已核实（仓库含 c3d/、autoencoder.ipynb、generate.ipynb、inference/、configs/、tests/ 等实现），数据为公开 LIDC-IDRI CT 与 IXI T1 MRI。首个对比实验：256^3 MRI 在中心 8% 全采样 + 变密度 Cartesian R=4/8 下，与零填充 IFFT 及 DDS 比较 PSNR/SSIM；并就 512^3 CT 自编码报告时延/显存（9.55s/3.27GB vs MAISI 302s/3.55GB）。限制：重建精度明显低于像素域全分辨率扩散（30 views：34.20 vs DDS 42.17 dB），紧凑 latent 使高频细节变平滑，CT 生成 FID 也落后 3D MedDiffusion。",
-        "codeUrl": "https://github.com/mellak/continuous-3d-latent-diffusion",
-        "checkedAt": "2026-10-13",
+        "priority": 2,
+        "reason": "机制：CoRe-AE 把重卷积全部放到 r=4 隐网格跑一次，解码器只用坐标渲染头（LIIF 的 8 邻域 MLP 或带 halo 的 CLIF 小 CNN）逐块渲染，无重叠子体积与拼缝且对隐变量可微（§II-B2 Eq.10–11）；重建复用冻结 3D 潜先验加 ReSample 三段式一致性，中噪声图像域 CG 后重编码、低噪声在潜空间对 A∘D 反传（§II-D Alg.1）。复现入口：github.com/Mellak/continuous-3d-latent-diffusion（Apache-2.0），权重在 Google Drive，但逆问题代码明确未发布。首个对比实验：用 core-ae-liif-ct512 对自有 512³ 数据 encode/decode，测 PSNR 与峰值显存（论文 42.32 dB、7.8 s/1.7 GiB）。已知限制：重建比 DDS 低 2.4–4.9 dB、高频仅留 90–92%。关联：病理大图/体数据的拼缝与可微解码器加数据一致性。",
+        "checkedAt": "2026-11-17",
         "paperType": "pure method",
         "evidence": [
           {
             "url": "https://arxiv.org/abs/2607.16491",
-            "note": "题录与摘要已核对；摘要给出代码位置 github.com/mellak/continuous-3d-latent-diffusion/。"
+            "note": "v1 2026-07-17（v4 2026-11-06）、physics.med-ph、摘要给出 code 链接、512³ CT / 256³ MRI 与 4–18× 解码加速"
           },
           {
-            "url": "https://arxiv.org/html/2607.16491v1",
-            "note": "全文已核对：§II-A/II-B/II-C 给出问题形式化(式1–4)、分两阶段编码器(式5–6)、latent 与 LIIF 坐标解码；§III-B–III-D 给出自编码对比、无条件生成与重建实验(式与表 I–III)及 §IV 限制讨论。"
-          },
-          {
-            "url": "https://arxiv.org/html/2607.16491v1",
-            "note": "§III 实验数据：CT 用 LIDC-IDRI(512^3)、MRI 用 IXI T1(256^3，公开数据集)；重建用 TorchRadon 平行束(30/60 视角)与变密度 Cartesian 掩膜(R=4/8)；单卡 48GB。"
+            "url": "https://arxiv.org/html/2607.16491",
+            "note": "核对 §II-B2 两个渲染头、§II-D 重建流程与超参、Table I/II（AE 保真与成本）、Table IV/V（CT 38.3 dB、MRI 33.5/31.2 dB，低于 DDS）、§5 局限讨论"
           },
           {
             "url": "https://github.com/Mellak/continuous-3d-latent-diffusion",
-            "note": "代码核实 HTTP 200：含 c3d/、configs/、inference/、scripts/、tests/、autoencoder.ipynb、generate.ipynb、data.md、pyproject.toml、LICENSE/MODEL_LICENSE，属真实实现而非占位。"
+            "note": "确认官方实现含 c3d/models/heads、configs、inference 脚本与权重清单；README 明确逆问题（稀疏视角 CT、加速 MRI）尚未发布"
           }
-        ]
-      }
+        ],
+        "codeUrl": "https://github.com/Mellak/continuous-3d-latent-diffusion"
+      },
+      "titleZh": "面向医学图像生成与重建的连续三维潜扩散"
     },
     {
       "id": "2607.09521",
@@ -8800,6 +8817,894 @@
         ],
         "codeUrl": ""
       }
+    },
+    {
+      "id": "2604.03635",
+      "domain": "pathology",
+      "title": "A Generative Foundation Model for Multimodal Histopathology",
+      "authors": [
+        "Jinxi Xiang",
+        "Mingjie Li",
+        "Siyu Hou",
+        "Yijiang Chen",
+        "Xiangde Luo",
+        "Yuanfeng Ji",
+        "Xiang Zhou",
+        "Ehsan Adeli",
+        "Akshay Chaudhari",
+        "Curtis P. Langlotz",
+        "Kilian M. Pohl",
+        "Ruijiang Li"
+      ],
+      "summary": "Accurate diagnosis and treatment of complex diseases require integrating histological, molecular, and clinical data, yet in practice these modalities are often incomplete owing to tissue scarcity, assay cost, and workflow constraints. Existing computational approaches attempt to impute missing modalities from available data but rely on task-specific models trained on narrow, single source-target pairs, limiting their generalizability. Here we introduce MuPD (Multimodal Pathology Diffusion), a generative foundation model that embeds hematoxylin and eosin (H&E)-stained histology, molecular RNA profiles, and clinical text into a shared latent space through a diffusion transformer with decoupled cross-modal attention. Pretrained on 100 million histology image patches, 1.6 million text-histology pairs, and 10.8 million RNA-histology pairs spanning 34 human organs, MuPD supports diverse cross-modal synthesis tasks with minimal or no task-specific fine-tuning. For text-conditioned and image-to-image generation, MuPD synthesizes histologically faithful tissue architectures, reducing Fréchet inception distance (FID) scores by 50% relative to domain-specific models and improving few-shot classification accuracy by up to 47% through synthetic data augmentation. For RNA-conditioned histology generation, MuPD reduces FID by 23% compared with the next-best method while preserving cell-type distributions across five cancer types. As a virtual stainer, MuPD translates H&E images to immunohistochemistry and multiplex immunofluorescence, improving average marker correlation by 37% over existing approaches. These results demonstrate that a single, unified generative model pretrained across heterogeneous pathology modalities can substantially outperform specialized alternatives, providing a scalable computational framework for multimodal histopathology.",
+      "published": "2026-04-04T08:09:11Z",
+      "updated": "2026-04-04T08:09:11Z",
+      "url": "https://arxiv.org/abs/2604.03635",
+      "pdfUrl": "https://arxiv.org/pdf/2604.03635",
+      "matchedKeywords": [
+        "diffusion",
+        "generative",
+        "synthesis",
+        "histopathology",
+        "pathology"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "机制：DiT 将 H&E 潜变量/文本/RNA 送入解耦跨模态注意力（DCA），各模态独立并行注意力流再加性融合，并叠加 CNN 空间对齐与 CLS token 去噪损失；SiT-B/2 消融中共享 cross-attn 的 FID 641.72/480.12/439.01 降至 554.43/442.31/384.54。复现入口：论文称代码为审稿补充材料、发表后公开，abs 与正文均无仓库，权重与 100M patch 语料不可得。首个对比实验：用公开 IHC4BC 的 H&E→ER 单 marker，在 SiT-B/2 规模复现 DCA 与共享注意力方案的 FID 差距（原文 124.18 vs CycleGAN 256.76）。已知限制：8×H100 训 500K 步，RNA 以 bulk 预训练再迁到 ST，作者自承分布外可生成解剖不合理输出、需前瞻验证。关联：虚拟染色 H&E→IHC/mIF，patch PCC 0.238 超 GigaTIME 0.198。",
+        "checkedAt": "2026-11-17",
+        "paperType": "method + benchmark",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2604.03635",
+            "note": "核对标题、作者、v1 日期 2026-04-04、comments 无、代码声明为审稿补充材料"
+          },
+          {
+            "url": "https://arxiv.org/html/2604.03635v1",
+            "note": "读方法与实验：DCA 结构、SiT-B/2 消融数字、Figure 2 的 FID、IHC4BC/mIF/RNA 各任务结果、8×H100 训练设置与 Limitations"
+          },
+          {
+            "url": "https://github.com/search?q=MuPD+Multimodal+Pathology+Diffusion&type=repositories",
+            "note": "按标题检索未发现作者官方仓库，故不给出 codeUrl"
+          }
+        ]
+      },
+      "titleZh": "面向多模态组织病理的生成式基础模型"
+    },
+    {
+      "id": "2603.04565",
+      "domain": "pathology",
+      "title": "Structure-Guided Histopathology Synthesis via Dual-LoRA Diffusion",
+      "authors": [
+        "Xuan Xu",
+        "Prateek Prasanna"
+      ],
+      "summary": "Histopathology image synthesis plays an important role in tissue restoration, data augmentation, and modeling of tumor microenvironments. However, existing generative methods typically address restoration and generation as separate tasks, although both share the same objective of structure-consistent tissue synthesis under varying degrees of missingness, and often rely on weak or inconsistent structural priors that limit realistic cellular organization. We propose Dual-LoRA Controllable Diffusion, a unified centroid-guided diffusion framework that jointly supports Local Structure Completion and Global Structure Synthesis within a single model. Multi-class nuclei centroids serve as lightweight and annotation-efficient spatial priors, providing biologically meaningful guidance under both partial and complete image absence. Two task-specific LoRA adapters specialize the shared backbone for local and global objectives without retraining separate diffusion models. Extensive experiments demonstrate consistent improvements over state-of-the-art GAN and diffusion baselines across restoration and synthesis tasks. For local completion, LPIPS computed within the masked region improves from 0.1797 (HARP) to 0.1524, and for global synthesis, FID improves from 225.15 (CoSys) to 76.04, indicating improved structural fidelity and realism. Our approach achieves more faithful structural recovery in masked regions and substantially improved realism and morphology consistency in full synthesis, supporting scalable pan-cancer histopathology modeling.",
+      "published": "2026-03-04T19:50:23Z",
+      "updated": "2026-03-04T19:50:23Z",
+      "url": "https://arxiv.org/abs/2603.04565",
+      "pdfUrl": "https://arxiv.org/pdf/2603.04565",
+      "matchedKeywords": [
+        "diffusion",
+        "generative",
+        "synthesis",
+        "histopathology",
+        "pathology"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：冻结 SD1.5+ControlNet，用五类细胞核质心图作为统一空间条件，两个 rank-256 LoRA（113M 可训练参数，<10% 全模型）分别承担局部补全与全局合成，并加质心加权 Min-SNR 扩散损失与布局头（§2.2）。复现入口：未提供代码/权重，GitHub 按标题检索无官方仓库；训练数据为 TCGA 214,030 patch、31 癌种，可自建。首个对比实验：在自有 WSI 上挖 40% 以上不规则掩膜，复现 Table 1 的掩膜内 LPIPS 0.1432 vs HARP 0.1797，并测无质心输入时的退化幅度。已知限制：仅 patch 级、依赖细胞核检测器给质心，掩膜内 PSNR 低于 Pix2Pix（15.90 vs 17.53），全图指标改善部分来自分布而非像素保真。关联：正是她的病理修复/大区域缺失补全方向，且与无质心推理的实用性讨论直接相关。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2603.04565",
+            "note": "核对标题、作者、v1 日期 2026-03-04、comments 无、无代码链接"
+          },
+          {
+            "url": "https://arxiv.org/html/2603.04565v1",
+            "note": "读方法与 Table 1/2/3：质心条件、双 LoRA、局部 LPIPS 0.1432、全局 FID 76.04 vs CoSys 225.15、3×RTX8000 训练"
+          },
+          {
+            "url": "https://github.com/search?q=Dual-LoRA+histopathology+diffusion&type=repositories",
+            "note": "标题检索无作者仓库，故省略 codeUrl"
+          }
+        ]
+      },
+      "titleZh": "基于双 LoRA 扩散的结构引导组织病理合成"
+    },
+    {
+      "id": "2611.01141",
+      "domain": "pathology",
+      "title": "GESTALT: Fast, Generalizable Histopathology Image Synthesis from Gene Expression with Pretrained Pathology Foundation Models",
+      "authors": [
+        "Felix Ho",
+        "Alexandros Graikos",
+        "Dimitris Samaras"
+      ],
+      "summary": "Spatial transcriptomics measures gene expression while preserving where each cell sits in the tissue. The inverse, what a given transcriptomic state looks like, is less explored but equally useful: it lets researchers visualize the morphological consequence of a molecular state and interpret a spatial assay's molecular calls against real tissue structure. GeneFlow, the current state of the art on the Xenium gene expression-to-image benchmark, trains a model from scratch, incurring a high cost on every new target dataset it is applied to. We instead propose GESTALT, which reformulates gene expression-to-image synthesis as predicting a pathology foundation model's image embedding. A lightweight gene-token transformer predicts this embedding from multi-cell gene expression, and a frozen or LoRA-adapted diffusion decoder (PixCell) renders it as an image. Because this visual knowledge is reused rather than relearned, GESTALT trains in a fraction of the time. In both multi-cell and single-cell settings, our method outperforms the SoTA on perceptual metrics across all three Xenium datasets. Beyond improved image quality, GESTALT natively synthesizes at 1024 x 1024, and is evaluated in three generalization settings: zero-shot transfer across gene panels and datasets, held-out patients and disease states, and transfer across studies and tissue sources. Coupled with a statistical model of spatial expression, GESTALT also provides, to our knowledge, the first paired synthesis of cell-resolved transcriptomic fields and tissue images with explicit control over cell type, density, and composition. Code is available at https://github.com/trongnhandev1011/Gestalt.",
+      "published": "2026-10-31T17:31:24Z",
+      "updated": "2026-10-31T17:31:24Z",
+      "url": "https://arxiv.org/abs/2611.01141",
+      "pdfUrl": "https://arxiv.org/pdf/2611.01141",
+      "matchedKeywords": [
+        "diffusion",
+        "synthesis",
+        "histopathology",
+        "pathology",
+        "spatial transcriptomics"
+      ],
+      "firstSeen": "2026-11-06T05:11:23.167Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：不直接回归像素，而是用轻量 gene-token transformer 预测 UNI2-h 的图块嵌入，再由冻结或 rank-32 LoRA 适配的 PixCell 解码（§3）；1024² 通过网格读出一次解码、无拼缝。复现入口：github.com/trongnhandev1011/Gestalt 已打开，含 mapper/LoRA/benchmark 完整脚本与数据下载命令，MIT，权重需按 README 自行训练（单卡 48GB，训练 19–40 分钟，峰值 3.4/6.4GB）。首个对比实验：在 Xenium C1 上复现 Table 1 的 FID 15.75（GeneFlow 47.95）与 oracle 14.27，比较冻结 vs LoRA 解码。已知限制：作者自承合成视野多样性低于真实（场嵌入平均成对余弦偏低），剩余误差多来自解码器本身；仅 patch/区域级，未涉 WSI 修复。关联：为她的条件合成提供“预测基础模型嵌入 + 复用解码器”的高效范式。",
+        "checkedAt": "2026-11-17",
+        "paperType": "method + benchmark",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2611.01141",
+            "note": "核对标题、作者、v1 日期 2026-10-31、comments 无、摘要给出代码链接"
+          },
+          {
+            "url": "https://arxiv.org/html/2611.01141v1",
+            "note": "读方法、Table 1/2/4/5、成本表与 Limitations：FID 15.75/18.03/13.15、oracle 对照、训练时长与显存"
+          },
+          {
+            "url": "https://github.com/trongnhandev1011/Gestalt",
+            "note": "确认是作者官方实现：含 gestalt/tile256、region1024、data 等代码与 README 复现命令，非空占位"
+          }
+        ],
+        "codeUrl": "https://github.com/trongnhandev1011/Gestalt"
+      },
+      "titleZh": "GESTALT：借助病理基础模型从基因表达快速可泛化合成组织病理图像"
+    },
+    {
+      "id": "2611.06701",
+      "domain": "pathology",
+      "title": "Agent-Driven Generative Priors for Pathology Image Synthesis and Segmentation",
+      "authors": [
+        "Sicheng Yang",
+        "Rui Tang",
+        "Haipeng Zhou",
+        "Hongqiu Wang",
+        "Zhaohu Xing",
+        "Jianda Ma",
+        "Lie Dai",
+        "Guang Yang",
+        "Lei Zhu"
+      ],
+      "summary": "Deep learning methods for pathology are constrained by the limited availability and high cost of large-scale pixel-level annotations. Synthetic data can alleviate this limitation, but existing pipelines often lack reliable quality control and remain weakly connected to downstream analysis. To address these issues, we propose a three-stage framework that integrates automated data screening, generative representation learning, and efficient adaptation to downstream tasks. First, we develop a pathology agent system to assess image quality and filter samples, resulting in TCGA-200K, a dataset containing 217,030 pathology patches selected from the public TCGA repository. Second, we train a generative model on the screened data. In addition to image synthesis, its backbone learns structural and semantic representations that can be transferred to downstream tasks. Third, we adapt the pretrained generative backbone to semantic segmentation using a lightweight task-specific head. We further introduce PathSeg-380K, a semantic segmentation dataset with expert annotations for approximately 380,000 cells across 12 cell types. Experiments on multiple pathology datasets show that the proposed framework achieves state-of-the-art segmentation performance. Our code is publicly available at https://github.com/script-Yang/Agent-GenPath.",
+      "published": "2026-11-04T16:02:29Z",
+      "updated": "2026-11-04T16:02:29Z",
+      "url": "https://arxiv.org/abs/2611.06701",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06701",
+      "matchedKeywords": [
+        "generative",
+        "synthesis",
+        "pathology"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：三阶段——GPT-4.1 mini 病理智能体按细胞量/染色质量/组织清晰度三维打分并自校验，再用 ResNet-50 回归器蒸馏（与智能体 Spearman 0.909），按分位数取 top-k 得 TCGA-200K（217,030 patch）；再用 DiT+flow matching 预训练，最后取第 2/5/8/11 块多级特征接轻量分割头。复现入口：github.com/script-Yang/Agent-GenPath 已打开，含 DiT、分割与采样脚本，权重在 HF yscript/agent-genpath；PathSeg-380K 未放出。首个对比实验：用其权重在自有 H&E patch 上复现 top-10% 筛选与全量的 FID 23.96 vs 38.75。已知限制：筛选收益可能部分来自“好 patch 更易生成”的分布偏移，PathSeg-380K 私有使分割结论难独立核验。关联：数据质量到生成保真度的可复用结论，直接服务她的训练集筛选。",
+        "checkedAt": "2026-11-17",
+        "paperType": "method + benchmark",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2611.06701",
+            "note": "核对标题、作者、v1 日期 2026-11-04、comments 给出代码链接"
+          },
+          {
+            "url": "https://arxiv.org/html/2611.06701v1",
+            "note": "读三阶段方法与 Table II/III/IV：智能体可靠性、top-k 筛选的 FID 38.75→23.96、mIoU 53.41→55.46、DiT 768 维 12 块 200K 迭代"
+          },
+          {
+            "url": "https://github.com/script-Yang/Agent-GenPath",
+            "note": "确认官方仓库：models/dit.py、segmentation/、configs、examples/samples 均在，README 给出 HF 权重地址"
+          }
+        ],
+        "codeUrl": "https://github.com/script-Yang/Agent-GenPath"
+      },
+      "titleZh": "智能体驱动的生成先验用于病理图像合成与分割"
+    },
+    {
+      "id": "2608.03540",
+      "domain": "pathology",
+      "title": "S$^3$-Diff: Structural Semantic Synergy Diffusion Model for High Fidelity Super Resolution of Pathological Images",
+      "authors": [
+        "Jiaming Liang",
+        "QiHui Han",
+        "Guangye Ou",
+        "Jiawen Liu",
+        "Haolin Chen",
+        "Xi Zhong",
+        "Jiazhou Chen",
+        "Xiaoqi Sheng",
+        "Hongmin Cai"
+      ],
+      "summary": "Digital pathology relies on high-resolution whole slide images for accurate diagnosis, yet limitations in imaging devices, storage, and transmission often make lower-resolution pathology images more common in clinical workflows. Current super-resolution techniques often tend to smooth diagnostically relevant morphology, leading to over-smoothed textures and semantic drift that compromise downstream clinical interpretation. To this end, we develop the Structural Semantic Synergy Diffusion Model (S3-Diff), a diffusion framework for high-fidelity super-resolution of pathological images. The core of S3-Diff is Specimen-aware Structural Anchoring (SSA), which combines prognosis-aware tissue support extracted by a fixed SAM with LR-HR gradient discrepancies to generate a specimen-specific structural anchor to preserve pathological morphology. Concurrently, we introduce Structure-guided Semantic Fidelity Tuning (SSFT) to adapt DINOv3 representations using SSA-derived structural supervision. SSFT combines the adapted semantic energy with LR-derived edge and grayscale cues. The resulting control guides denoising to suppress stochastic artifacts and maintain structural consistency. Extensive experimental results demonstrate that S3-Diff consistently outperforms state-of-the-art methods in both reconstruction quality and downstream survival analysis performance. The source code will be made public.",
+      "published": "2026-08-04T12:16:36Z",
+      "updated": "2026-08-04T12:16:36Z",
+      "url": "https://arxiv.org/abs/2608.03540",
+      "pdfUrl": "https://arxiv.org/pdf/2608.03540",
+      "matchedKeywords": [
+        "diffusion",
+        "pathology",
+        "whole slide"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：SSA 用固定 SAM 在预后风险系数 R（Eq.2）调节的 prompt 密度与置信阈值下取组织掩膜，再与 HR/Bicubic 的 Sobel 梯度差相乘得到结构锚 A_str（Eq.4），仅训练期用于重加权扩散去噪损失（Eq.8）；SSFT 用 A_str 监督微调 DINOv3 ViT-B/16 的末层与 LayerNorm，输出语义能量并与边缘、灰度拼成 ControlNet 控制流（Eq.5-6），SD1.5 骨干冻结。复现入口：未找到代码，GitHub 检索 0 结果，文中仅称将公开。首个对比实验：按 512→128 的 4× 设定在 TCGA-LUAD 复现，先做把 A_str 权重置零的消融，比较 Grad-L1 与 LPIPS。已知限制：仅 4× 双三次退化、150 张 WSI、batch=2 训 6 万步；SR 图生存 CI 0.8044 反超 HR 的 0.7843，推断评估偏乐观。关联：病理超分结构保真与生成幻觉抑制。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2608.03540",
+            "note": "核对标题、作者、2026-08-04 提交、无 comments 字段（无录用信息）、摘要称代码将公开"
+          },
+          {
+            "url": "https://arxiv.org/html/2608.03540",
+            "note": "读方法 §3.3-3.4 的 SSA/SSFT 公式与 Table 1 指标，§4.1 训练配置，§5 限制"
+          },
+          {
+            "url": "https://api.github.com/search/repositories?q=S3-Diff+pathology",
+            "note": "GitHub 检索 0 结果，确认无官方仓库"
+          }
+        ]
+      },
+      "titleZh": "S3-Diff：面向病理图像高保真超分辨的结构-语义协同扩散模型"
+    },
+    {
+      "id": "2603.18513",
+      "domain": "pathology",
+      "title": "CAFlow: Adaptive-Depth Single-Step Flow Matching for Efficient Histopathology Super-Resolution",
+      "authors": [
+        "Elad Yoshai",
+        "Ariel D. Yoshai",
+        "Natan T. Shaked"
+      ],
+      "summary": "In digital pathology, whole-slide images routinely exceed gigapixel resolution, making computationally intensive generative super-resolution (SR) impractical for routine deployment. We introduce CAFlow, an adaptive-depth single-step flow-matching framework that routes each image tile to the shallowest network exit that preserves reconstruction quality. CAFlow performs flow matching in pixel-unshuffled rearranged space, reducing spatial computation by 16x while enabling direct inference. We show that dedicating half of training to exact t=0 samples is essential for single-step quality (-1.5 dB without it). The backbone, FlowResNet (1.90M parameters), mixes convolution and window self-attention blocks across four early exits spanning 3.1 to 13.3 GFLOPs. A lightweight exit classifier (~6K parameters) achieves 33% compute savings at only 0.12 dB cost. On multi-organ histopathology x4 SR, adaptive routing achieves 31.72 dB PSNR versus 31.84 dB at full depth, while the shallowest exit exceeds bicubic by +1.9 dB at 2.8x less compute than SwinIR-light. The method generalizes to held-out colon tissue with minimal quality loss (-0.02 dB), and at x8 upscaling it outperforms all comparable-compute baselines while remaining competitive with the much larger SwinIR-Medium model. Downstream nuclei segmentation confirms preservation of clinically relevant structure. The model trains in under 5 hours on a single GPU, and adaptive routing can reduce whole-slide inference from minutes to seconds.",
+      "published": "2026-03-19T05:45:58Z",
+      "updated": "2026-03-19T05:45:58Z",
+      "url": "https://arxiv.org/abs/2603.18513",
+      "pdfUrl": "https://arxiv.org/pdf/2603.18513",
+      "matchedKeywords": [
+        "flow matching",
+        "generative",
+        "histopathology",
+        "pathology"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：在 pixel-unshuffle 的 48 通道 64×64 空间做 flow matching，推理只在 t=0 单步预测速度再 pixel-shuffle 还原（Eq.2-4）；训练半 batch 固定 t=0，去掉该项掉 1.54 dB（Table 4）。FlowResNet 16 块仅 1.9M 参数，4 个出口 3.1–13.3 GFLOPs，6K 参数出口分类器按 ε=0.02 的 oracle 标签训练，自适应路由省 33% 算力只掉 0.12 dB。复现入口：未发现官方代码，但模型极小、单卡 5 小时训完，可按配置重写。首个对比实验：在自己 WSI 瓦片上重训，等 GFLOPs 下与 SwinIR-light 比 PSNR/SSIM 与 StarDist 检测 F1。已知限制：目标为 L1+SSIM，LPIPS 略逊 SR3；仅 256 裁剪与组织学验证；batch=1 时省算力打折。关联：flow matching 生成与 gigapixel WSI 高效复原。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2603.18513",
+            "note": "核对标题、作者、2026-03-19 提交、无录用信息"
+          },
+          {
+            "url": "https://arxiv.org/html/2603.18513",
+            "note": "读 §3 单步流匹配与路由公式、§4.2-4.13 的 Table 1/3/4/6 数字与 §5 限制；全文无 github 链接"
+          }
+        ]
+      },
+      "titleZh": "CAFlow：面向组织病理超分辨的自适应深度单步流匹配"
+    },
+    {
+      "id": "2512.21058",
+      "domain": "pathology",
+      "title": "Beyond Pixel Simulation: Pathology Image Generation via Diagnostic Semantic Tokens and Prototype Control",
+      "authors": [
+        "Minghao Han",
+        "Yichen Liu",
+        "Yizhou Liu",
+        "Zizhi Chen",
+        "Jingqun Tang",
+        "Xuecheng Wu",
+        "Dingkang Yang",
+        "Lihua Zhang"
+      ],
+      "summary": "In computational pathology, understanding and generation have evolved along disparate paths: advanced understanding models already exhibit diagnostic-level competence, whereas generative models largely simulate pixels. Progress remains hindered by three coupled factors: the scarcity of large, high-quality image-text corpora; the lack of precise, fine-grained semantic control, which forces reliance on non-semantic cues; and terminological heterogeneity, where diverse phrasings for the same diagnostic concept impede reliable text conditioning. We introduce UniPath, a semantics-driven pathology image generation framework that leverages mature diagnostic understanding to enable controllable generation. UniPath implements Multi-Stream Control: a Raw-Text stream; a High-Level Semantics stream that uses learnable queries to a frozen pathology MLLM to distill paraphrase-robust Diagnostic Semantic Tokens and to expand prompts into diagnosis-aware attribute bundles; and a Prototype stream that affords component-level morphological control via a prototype bank. On the data front, we curate a 2.65M image-text corpus and a finely annotated, high-quality 68K subset to alleviate data scarcity. For a comprehensive assessment, we establish a four-tier evaluation hierarchy tailored to pathology. Extensive experiments demonstrate UniPath's SOTA performance, including a Patho-FID of 80.9 (51% better than the second-best) and fine-grained semantic control achieving 98.7% of the real-image. The dataset and code can be obtained from https://github.com/Hanminghao/UniPath.",
+      "published": "2025-12-24T08:52:08Z",
+      "updated": "2026-02-26T11:05:29Z",
+      "url": "https://arxiv.org/abs/2512.21058",
+      "pdfUrl": "https://arxiv.org/pdf/2512.21058",
+      "matchedKeywords": [
+        "generative",
+        "pathology"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "机制：在冻结的病理 MLLM（Patho-R1 7B）序列尾部接 64 个可学习 query 蒸馏出对改写鲁棒的诊断语义 token（§4.2 Eq.1-2），与保留原意的文本流、以及用 CONCH 文本检索 8K 原型库（稠密索引+倒排索引混合检索，Km=16）得到的形态原型流拼接，经 cross-attention 注入 0.6B PixArt-α DiT，用 flow matching 训练（§4.4 Eq.7-9）。复现入口：github.com/Hanminghao/UniPath 已核实含 inference.py 与检索模块，HF 提供 UniPath-7B 权重及 UniPath-1M/68K 数据。首个对比实验：用发布权重在她的病理 prompt 上生成，比较有无原型流时核异型与腺体结构可控性。已知限制：CLIP-Score 0.348 仍低于 Show-o2 的 0.357；需 24GB 显存；测试集与原型库为自建。关联：病理可控合成与语义漂移/幻觉评估。",
+        "checkedAt": "2026-11-17",
+        "paperType": "method + benchmark",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2512.21058",
+            "note": "核对标题、作者、摘要给出的代码链接与 Patho-FID 80.9 声称"
+          },
+          {
+            "url": "https://arxiv.org/html/2512.21058",
+            "note": "读 §3 数据构建、§4.2-4.4 多流控制公式、Table 1（Patho-FID 80.86、FID 25.70）、Table 2（细粒度控制）与附录 A 限制"
+          },
+          {
+            "url": "https://github.com/Hanminghao/UniPath",
+            "note": "核实为作者仓库，标注 CVPR 2026，含 src/inference.py、模型权重与两个 HF 数据集链接"
+          }
+        ],
+        "codeUrl": "https://github.com/Hanminghao/UniPath"
+      },
+      "titleZh": "超越像素模拟：基于诊断语义 token 与原型控制的病理图像生成"
+    },
+    {
+      "id": "2603.12716",
+      "domain": "pathology",
+      "title": "UNIStainNet: Foundation-Model-Guided Virtual Staining of H&E to IHC",
+      "authors": [
+        "Jillur Rahman Saurav",
+        "Thuong Le Hoai Pham",
+        "Pritam Mukherjee",
+        "Paul Yi",
+        "Brent A. Orr",
+        "Jacob M. Luber"
+      ],
+      "summary": "Virtual immunohistochemistry (IHC) staining from hematoxylin and eosin (H&E) images can accelerate diagnostics by providing preliminary molecular insight directly from routine sections, reducing the need for repeat sectioning when tissue is limited. Existing methods improve realism through contrastive objectives, prototype matching, or domain alignment, yet the generator itself receives no direct guidance from pathology foundation models. We present UNIStainNet, a SPADE-UNet conditioned on dense spatial tokens from a frozen pathology foundation model (UNI), providing tissue-level semantic guidance for stain translation. A misalignment-aware loss suite preserves stain quantification accuracy, and learned stain embeddings enable a single model to serve multiple IHC markers simultaneously. On MIST, UNIStainNet achieves state-of-the-art distributional metrics on all four stains (HER2, Ki67, ER, PR) from a single unified model, where prior methods typically train separate per-stain models. On BCI, it also achieves the best distributional metrics. A tissue-type stratified failure analysis reveals that remaining errors are systematic, concentrating in non-tumor tissue. Code is available at https://github.com/facevoid/UNIStainNet.",
+      "published": "2026-03-13T07:02:28Z",
+      "updated": "2026-03-13T07:02:28Z",
+      "url": "https://arxiv.org/abs/2603.12716",
+      "pdfUrl": "https://arxiv.org/pdf/2603.12716",
+      "matchedKeywords": [
+        "virtual staining",
+        "pathology"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：把 H&E 切成 4×4 子块过冻结 UNI ViT-L/16，重排成 32×32×1024 空间 token，经 SPADE 在每个解码级做空间调制，染色身份用 FiLM 嵌入（Eq.2），单模型覆盖 HER2/Ki67/ER/PR。损失针对连续切片 10–50 px 错位设计：LPIPS 降到 128/256、L1 在 64 分辨率、无条件判别器、特征匹配，以及 Beer-Lambert 反解后的 DAB top-10% 强度损失（§3.4）。复现入口：github.com/facevoid/UNIStainNet 已核实含训练/评估脚本与 MIST、BCI 数据组织说明，但未发布权重。首个对比实验：用 train_mist.py 在 MIST 上复现统一四染模型，比较单染色专家模型与统一模型的 FID 与 DAB KL。已知限制：512 裁剪协议；SSIM 仅 0.229–0.282，像素对齐仍差；错误集中于非肿瘤组织（浸润癌失败率<3%）。关联：虚拟染色与基础模型引导生成。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2603.12716",
+            "note": "核对标题、作者、2026-03-13 提交、摘要中的代码链接与 MIST/BCI 声称"
+          },
+          {
+            "url": "https://arxiv.org/html/2603.12716",
+            "note": "读 §3.2-3.4 的 UNI 特征处理、SPADE+FiLM 公式与错位感知损失、§4.1 数据集表与指标约定"
+          },
+          {
+            "url": "https://github.com/facevoid/UNIStainNet",
+            "note": "核实为作者仓库，含 src/models、scripts/train、scripts/eval 与 README 中的 MIST 四染 FID/KID/DAB 结果表"
+          }
+        ],
+        "codeUrl": "https://github.com/facevoid/UNIStainNet"
+      },
+      "titleZh": "UNIStainNet：基础模型引导的 H&E 到 IHC 虚拟染色"
+    },
+    {
+      "id": "2607.04740",
+      "domain": "pathology",
+      "title": "DriftST: One-Step Generative Inference of Spatial Transcriptomics from H\\&E Histology",
+      "authors": [
+        "Yuhang Yang",
+        "Yonggan Bu",
+        "Shengyuan Zhou",
+        "Yiming Luo",
+        "Kai Zhang"
+      ],
+      "summary": "Spatial Transcriptomics (ST) measures gene expression while preserving spatial context, but its high cost and low throughput leave public datasets small. Inferring expression directly from widely available Hematoxylin and Eosin (H&E) stained histology offers a cost-effective alternative. However, existing approaches face several limitations: regression methods over-smooth toward the conditional mean, while generative methods are faithful but require slow multi-step inference; most methods treat genes as independent and equally important, ignoring inter-gene dependencies and heterogeneous gene informativeness; and most are tailored to a single resolution, either spot-level or cell-level. To address these issues, we propose DriftST, a unified framework for inferring spatially resolved gene expression from H&E images. DriftST builds on a Cellular Drifting generative model that learns a direct drift from a histology-conditioned source to the expression distribution, retaining generative expressiveness while enabling efficient one-step generation. To capture gene structure, we introduce the STransformer, which combines a co-expression attention module for inter-gene dependencies with a gene residual gate for differential gene importance. Operating on a generic gene-panel representation, DriftST applies directly to both spot-level and cell-level data in one framework, and extensive experiments across diverse tissues and platforms show that it achieves state-of-the-art performance at both resolutions.",
+      "published": "2026-07-06T07:22:58Z",
+      "updated": "2026-07-06T07:22:58Z",
+      "url": "https://arxiv.org/abs/2607.04740",
+      "pdfUrl": "https://arxiv.org/pdf/2607.04740",
+      "matchedKeywords": [
+        "generative",
+        "spatial transcriptomics"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "机制：H&E→ST 重写为 Cellular Drifting 单步生成：配对真值作唯一正样本，负样本取同 patch 其他 dropout 预测与历史预测库，各自 softmax 归一化后相减成多尺度漂移场（Eq.1-3），stopgrad 目标回归；STransformer 在基因维做共表达注意力（训练集相关矩阵作偏置，Eq.8）+ 基因残差门控，CONCH+UNI2 双编码器与邻域注意力（Eq.4-5）。复现入口：github.com/yyh030806/DriftST 已核验，train/test 与预处理齐全。首个对比实验：Xenium Breast 单切片按官方脚本训练，比 TRIPLEX 的 PCC-10（0.587 vs 0.539, Table 1）。已知限制：ZINB 仅训练用；HER2ST/Kidney 的 MAE 输给 GenAR（0.807 vs 0.745）；切片内空间 CV，未跨中心。关联：H&E→分子与虚拟染色的单步基线，吞吐适合 gigapixel。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2607.04740",
+            "note": "核对标题、作者（USTC/北大肿瘤）、v1 2026-07-06，CC BY-NC-ND；comments 栏空，无录用信息"
+          },
+          {
+            "url": "https://arxiv.org/html/2607.04740",
+            "note": "读 §3.1 漂移场与损失、§3.2 STransformer（共表达注意力、门控、读出头）、§4 Table1/2/3/4 与消融、下游分析"
+          },
+          {
+            "url": "https://github.com/yyh030806/DriftST",
+            "note": "打开作者仓库：src/model.py、src/drift_step.py、train.py/test.py 与 4 个 run 脚本齐全，MIT，需外部权重"
+          }
+        ],
+        "codeUrl": "https://github.com/yyh030806/DriftST"
+      },
+      "titleZh": "DriftST：从 H&E 组织学一步生成式推断空间转录组"
+    },
+    {
+      "id": "2609.22187",
+      "domain": "pathology",
+      "title": "Correlation-Guided Flow Matching with Annealed Masking for Spatial Transcriptomics Generation",
+      "authors": [
+        "Yupei Zhang",
+        "Hao Chen",
+        "Li Pan",
+        "Chao Li",
+        "Xiaohan Xing"
+      ],
+      "summary": "Spatial transcriptomics (ST) provides spatially resolved gene expression profiling but remains expensive, motivating the prediction of ST from histology images. Generative models have emerged as a mainstream paradigm for ST prediction due to their ability to model the conditional distribution of gene expression and capture its inherent stochasticity. However, these methods typically treat genes as independent prediction targets and overlook the intrinsic gene-gene interactions in biological systems, which limits their ability to preserve biologically meaningful co-expression patterns. We argue that gene-gene interactions, which reflect shared pathways and regulatory mechanisms, are essential for generating numerically accurate and biologically coherent ST profiles. In this paper, we propose CorrFlow, a correlation-guided flow matching framework for histology-to-ST prediction that explicitly models gene-gene dependencies through two complementary mechanisms. First, we introduce an annealed masked flow matching strategy, where subsets of genes are progressively masked following a timestep-dependent annealing schedule, encouraging the model to infer masked genes conditioned on the remaining genes and promoting joint conditional modeling beyond per-gene marginal estimation. Second, we devise a gene graph-regularized optimization scheme that integrates prior knowledge from the STRING database and data-driven co-expression estimated by WGCNA to construct a gene affinity graph, which enforces both local consistency and global smoothness in the predicted expression. Extensive experiments across 12 datasets show that CorrFlow achieves the best average PCC and HPCC among evaluated methods, leading to more biologically coherent ST predictions.",
+      "published": "2026-08-28T14:47:17Z",
+      "updated": "2026-08-28T14:47:17Z",
+      "url": "https://arxiv.org/abs/2609.22187",
+      "pdfUrl": "https://arxiv.org/pdf/2609.22187",
+      "matchedKeywords": [
+        "flow matching",
+        "generative",
+        "spatial transcriptomics"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：Proposition 1 证明标准 CFM 的 L2 目标按基因分解、最优解只依赖边际，跨基因协作在训练中不可辨识；再用退火掩码流匹配打破输入输出维度对应（掩码比例 p(t)=p_max·t，掩码位换可学习 token，Eq.5-8），使被掩基因最优解变为联合条件期望（Prop.2）；另以 STRING+WGCNA 融合基因图，Huber 局部项与拉普拉斯全局项正则（Eq.9-12）。复现入口：未找到官方代码；HEST-1K 十数据集有患者分层划分，STFlow 可作骨架。首个对比实验：主干换成你的 flow matching，只加退火掩码，看 COAD/IDC 的 PCC 能否从 STFlow 的 0.600 均值上抬（Table 1 平均 0.613）。已知限制：增益小（+0.013 PCC），仅 50 基因，p_max 与 α 敏感。关联：flow-matching 的基因/通道联合建模与幻觉抑制。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2609.22187",
+            "note": "核对标题、作者（Cambridge/Edinburgh/NUS）、v1 2026-08-28；comments 栏空，无录用与代码信息"
+          },
+          {
+            "url": "https://arxiv.org/html/2609.22187",
+            "note": "读 §3.1 Prop.1 分解证明、§3.2 掩码策略与 mask token、§3.3 图正则、§4.1-4.2 Table1/2/3 与消融、§5 结论"
+          },
+          {
+            "url": "https://github.com/search?q=CorrFlow+spatial+transcriptomics&type=repositories",
+            "note": "按方法名检索，0 结果，确认暂无作者仓库"
+          }
+        ]
+      },
+      "titleZh": "相关性引导的退火掩码流匹配用于空间转录组生成"
+    },
+    {
+      "id": "2609.26623",
+      "domain": "mri",
+      "title": "A Data-Interventional Framework for Auditing Privacy and Fairness in Generative Medical Imaging",
+      "authors": [
+        "Mischa Dombrowski",
+        "Bernhard Kainz"
+      ],
+      "summary": "Diffusion-based synthetic data generation offers a promising route for sharing medical imaging data without releasing sensitive patient records. However, generative models face a fundamental tension between privacy and fairness: they may memorize rare training samples, leading to privacy risks, or fail to reproduce underrepresented features, resulting in unfair synthetic distributions. While prior work has largely focused on either memorization or fairness in isolation, their interaction remains insufficiently understood. In this work, we introduce a data-interventional framework to systematically analyze privacy and fairness in diffusion models. We discuss synthetic anatomical fingerprints (SAFs), rare and manually injected image features, as controlled probes to study whether models generalize sensitive attributes across identities, memorize training samples, or suppress rare signals entirely. Across multiple conditioning modalities, we observe a consistent behavior: models either forget these fingerprints or memorize the entire image in which they appear, but do not generalize them to novel images. To support large-scale auditing where explicit sample extraction is infeasible, we further introduce the indicator metric t', which estimates a model's susceptibility to memorization by exploiting the internal structure of the diffusion process. By comparing conditioning signals of varying surprisal, we reveal a clear relationship between conditioning rarity and memorization behavior. Highly surprising conditioning signals act as retrieval keys that amplify memorization, whereas low-surprisal conditioning signals systematically suppress rare features, even when these appear repeatedly in the training data. Our findings provide actionable insights and concrete mitigation strategies for safe and fair synthetic medical data sharing. Code is available at https://github.com/MischaD/Privacy.",
+      "published": "2026-09-22T15:55:44Z",
+      "updated": "2026-09-22T15:55:44Z",
+      "url": "https://arxiv.org/abs/2609.26623",
+      "pdfUrl": "https://arxiv.org/pdf/2609.26623",
+      "matchedKeywords": [
+        "diffusion",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "机制：用合成解剖指纹 SAF（泊松插值注入罕见特征）+ Cf（指纹）与 Cid（身份）两分类器定义 q={Cf=1∧Cid=1}（Eq.1），把生成结果分为泛化/记忆/遗忘/丢失四类；核心指标 t'（§3.3）对训练样本加噪到 t' 仍被 Cid 认出，用分段积分上界近似邻域再现概率（Eq.3），M=16 条轨迹即可免穷举给出记忆容量标量；并对四类条件做 surprisal 分析（Eq.4-8）：高 surprisal 条件像检索键放大记忆，低 surprisal 条件压制罕见特征。复现入口：github.com/MischaD/Privacy 已核验，含 compute_t_dash.py 与训练/采样/分类器脚本。首个对比实验：把 t' 跑在你现有病理扩散模型上，按训练集 875→28007 复刻曲线（Table 2：0.75→0.60）。已知限制：依赖 Cid 质量，可能假安全/假警报；只能抽样。关联：生成模型记忆/幻觉审计同题。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2609.26623",
+            "note": "核对标题、作者（FAU/Michael Kainz 组）、v1 2026-09-22；comments 为已被 MELBA 接收"
+          },
+          {
+            "url": "https://arxiv.org/html/2609.26623",
+            "note": "读 §3.2 SAF 与分类器、§3.3 t' 定义与失效模式、§3.4 surprisal、§4.1 Table1/2/3/4 与结论"
+          },
+          {
+            "url": "https://github.com/MischaD/Privacy",
+            "note": "打开作者仓库：scripts/compute_t_dash.py、scripts/train_unconditional.py、src/experiments 下 5 组实验脚本齐全"
+          }
+        ],
+        "codeUrl": "https://github.com/MischaD/Privacy"
+      },
+      "titleZh": "生成式医学影像隐私与公平性审计的数据干预框架"
+    },
+    {
+      "id": "2609.33786",
+      "domain": "mri",
+      "title": "Is your uncertainty map wrong, or is its target? Exact diagnostics for the Tweedie diagonal, and a gradient-free alternative",
+      "authors": [
+        "Vicent Ribas",
+        "Anna Oliveras Tous"
+      ],
+      "summary": "A diffusion model can predict a follow-up medical scan from a baseline, but a clinician needs a per-voxel map of where that prediction can be trusted. Many such maps approximate the diagonal of the Tweedie posterior covariance, and are evaluated against another approximation of it, so whether the estimator or the target limits them is unclear. We compute the exact diagonal on six checkpoints across fourteen model-corpus conditions. Hutchinson at M=200 tracks it at rank agreement of at least 0.92 everywhere, yet in four of the fourteen the exact diagonal is anti-correlated with the denoising error, reaching -0.13, so a faithful estimator reproduces that reversal. All four are real-image conditions; on the models' own samples the reversal does not appear, so evaluating on generated samples flatters this family. What limits these maps is the target, not the estimator. We then introduce Tweedie Probe-Tangent (T-PT), a gradient-free residual probe that corrupts one model-supported prediction repeatedly and measures the voxel-wise variance of the denoiser's response. T-PT reads a different functional of the same Jacobian, and its exact second-order form ranks with the diagonal wherever the diagonal reverses; at thirty probes it returns a map too unstable to reproduce that ranking, while Hutchinson at M=5 already reproduces it, so T-PT there is not evidence against the reversal. We offer it as an instrument, not a better approximation. On brain MRI at full resolution, where every Jacobian-based estimator we test runs out of memory, T-PT leads a twenty-chain Monte-Carlo ensemble on five of eight endpoints inside tissue and trails it on none, at 16x fewer network evaluations; over the whole volume the ensemble leads, and fifty chains close the tissue gap. On lung CT the ensemble is ahead throughout. Both lose most of their discrimination where the change is, which remains open.",
+      "published": "2026-09-27T17:32:06Z",
+      "updated": "2026-09-27T17:32:06Z",
+      "url": "https://arxiv.org/abs/2609.33786",
+      "pdfUrl": "https://arxiv.org/pdf/2609.33786",
+      "matchedKeywords": [
+        "diffusion",
+        "mri",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "机制：逐坐标算出 Tweedie 后验协方差对角线的精确值（§3，d 个 Jacobian–向量积）作诊断尺，证明 Hutchinson M=200 与其秩相关≥0.92，但 14 个模型–语料条件里有 4 个精确对角线本身与去噪误差负相关（最低 −0.13），瓶颈在目标而非估计器；再给 T-PT（Eq.1–2）：对模型支持的 x0 反复加噪、取残差 r=ξ−εθ 的逐体素方差，全程免梯度。复现入口：代码随补充材料发布，权重不发布，脑 MRI 需按配置在获批 OASIS-3 上自训，无公开 GitHub。首个对比实验：自有扩散模型上跑 K=30 的 T-PT 与 20 链 MC-DDIM，比每体素 Spearman(σ,e)，看 91 vs 1220 次前向是否不输。已知限制：K=30 时 T-PT 排序不稳，不能据此反驳反转；两族估计器在变化区域都失效（OASIS 0.349→0.128）。关联：定位生成影像中不可信体素，可接病理超分/虚拟染色的幻觉定位。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2609.33786",
+            "note": "核对标题、作者（Eurecat/巴塞罗那大学）、2026-09-27 v1、comments 仅“40 pages, 3 figures, 23 tables”，无会议/期刊信息，无代码链接"
+          },
+          {
+            "url": "https://arxiv.org/html/2609.33786",
+            "note": "读 §3 精确实证（Hutchinson M=5→200 与误差相关 0.298→0.435、精确对角线 0.448；四条件反转至 −0.13）、§4 T-PT 定义与成本、§5 临床表 1（脑 MRI 组织内 0.349 vs MC 0.337，91 vs 1220 次前向；肺 CT 全面落后）、§6 局限与可复现性声明（代码在补充材料，权重不重分发）"
+          }
+        ]
+      },
+      "titleZh": "是你的不确定性图错了，还是它的目标错了？Tweedie 对角线的精确诊断与一个免梯度替代方案"
+    },
+    {
+      "id": "2610.03224",
+      "domain": "mri",
+      "title": "Uncertainty as a Proxy for Semantic Correctness in Diffusion-Based Medical Image Synthesis",
+      "authors": [
+        "Yuxuan Ou",
+        "Konstantinos Kamnitsas",
+        "OxAAA Study",
+        "AICT Consortium",
+        "Regent Lee",
+        "Vicente Grau"
+      ],
+      "summary": "Diffusion models can synthesise contrast-enhanced CT (CECT) from non-contrast CT (NCCT), avoiding contrast administration and its environmental and patient-access costs. However, visually realistic images are not necessarily anatomically correct, and the pixel-intensity and feature-space similarity metrics used to assess generation quality do not directly measure anatomical correctness. In this work, we investigate whether uncertainty can serve as a proxy for semantic correctness in diffusion-based medical image synthesis. We study NCCT-to-CECT synthesis using AortaDiff, a multitask diffusion framework that jointly generates CECT images and lumen segmentations. The segmentation output provides an explicit representation of the generated vascular anatomy, enabling segmentation-derived errors to be used as a quantitative measure of generation correctness. Six methods spanning weight (Ensemble, HyperDiff, BayesDiff), architecture-perturbation (MCDropout), generative-stochasticity (RDS) and input-perturbation (TTA) uncertainty are compared at the pixel, region and image levels, and for detection of clinically relevant out-of-distribution (OOD) cases. Uncertainty proves informative at all three spatial scales, remains informative on an external multi-centre dataset under distribution shift, and supports OOD detection. MCDropout stands out among the six: it ranks among the leading methods at every scale, generalizes well on the external dataset, and can be enabled at inference on any model already trained with dropout, so reliable uncertainty comes at no extra training cost. Uncertainty reliably flags severe failures but discriminates poorly among already high-quality images. These findings support uncertainty as a practical and computationally economical signal for quality filtering, reliability assessment and OOD detection in NCCT-to CECT synthesis.",
+      "published": "2026-10-02T12:40:26Z",
+      "updated": "2026-10-02T12:40:26Z",
+      "url": "https://arxiv.org/abs/2610.03224",
+      "pdfUrl": "https://arxiv.org/pdf/2610.03224",
+      "matchedKeywords": [
+        "diffusion",
+        "medical image",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：多任务扩散 AortaDiff 同时生成 CECT 与 lumen 分割，把生成分割与真值的差异定义为“语义正确性”（先验分割分支与 nnU-Net/UNet++/Attention U-Net 平均 Dice 0.95），再在像素、超像素、图像三级比较 6 种不确定性；MCDropout 三级均居前（像素 AUROC 0.830、区域 Spearman 0.65、Dice<0.65 时图像级>0.9），外部 AICT 最稳，支架 OOD AUROC 0.83。复现入口：评估代码未发布；基础模型代码在 github.com/yuxuanou623/AortaDiff（已打开），OxAAA/AICT 数据需审批。首个对比实验：把该协议搬到虚拟染色，用腺体/核分割替代 lumen，比 MCDropout 与 RDS 的 AUSE。已知限制：仅腹部主动脉一个任务；只对严重失败敏感；无评估代码。关联：提供“不确定性≈语义错误代理”的评估模板。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure benchmark",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2610.03224",
+            "note": "核对作者（Oxford，Y. Ou/Kamnitsas/Grau 等）、2026-10-02 v1、无 comments/录用信息、无代码链接"
+          },
+          {
+            "url": "https://github.com/yuxuanou623/AortaDiff",
+            "note": "已打开：README 标注 WACV 2026 的 AortaDiff 多任务 NCCT→CECT 框架，含 train.py、sample.py、configs、models；本论文的六种不确定性评估脚本不在其中（推断）"
+          },
+          {
+            "url": "https://arxiv.org/html/2610.03224",
+            "note": "读 §VI-A 分割代理验证（Dice 0.95、PSNR 25.37 vs 25.12）与配准鲁棒性分层、§VI-B 表 II–IV（AUSE/AUSC/AUROC 0.830、区域 Spearman 0.65、OOD 0.75–0.85、KNN 0.43）、数据集与局限"
+          }
+        ]
+      },
+      "titleZh": "不确定性作为扩散式医学图像合成中语义正确性的代理指标"
+    },
+    {
+      "id": "2604.12152",
+      "domain": "mri",
+      "title": "Domain-Specific Latent Representations Improve the Fidelity of Diffusion-Based Medical Image Super-Resolution",
+      "authors": [
+        "Sebastian Cajas",
+        "Ashaba Judith",
+        "Rahul Gorijavolu",
+        "Sahil Kapadia",
+        "Hillary Clinton Kasimbazi",
+        "Leo Kinyera",
+        "Emmanuel Paul Kwesiga",
+        "Sri Sri Jaithra Varma Manthena",
+        "Luis Filipe Nakayama",
+        "Ninsiima Doreen",
+        "Leo Anthony Celi"
+      ],
+      "summary": "Latent diffusion models for medical image super-resolution universally inherit variational autoencoders designed for natural photographs. We show that this default choice, not the diffusion architecture, is the dominant constraint on reconstruction quality. In a controlled experiment holding all other pipeline components fixed, replacing the generic Stable Diffusion VAE with MedVAE, a domain-specific autoencoder pretrained on more than 1.6 million medical images, yields +2.91 to +3.29 dB PSNR improvement across knee MRI, brain MRI, and chest X-ray (n = 1,820; Cohen's d = 1.37 to 1.86, all p < 10^{-20}, Wilcoxon signed-rank). Wavelet decomposition localises the advantage to the finest spatial frequency bands encoding anatomically relevant fine structure. Ablations across inference schedules, prediction targets, and generative architectures confirm the gap is stable within plus or minus 0.15 dB, while hallucination rates remain comparable between methods (Cohen's h < 0.02 across all datasets), establishing that reconstruction fidelity and generative hallucination are governed by independent pipeline components. These results provide a practical screening criterion: autoencoder reconstruction quality, measurable without diffusion training, predicts downstream SR performance (R^2 = 0.67), suggesting that domain-specific VAE selection should precede diffusion architecture search. Code and trained model weights are publicly available at https://github.com/sebasmos/latent-sr.",
+      "published": "2026-04-14T00:11:23Z",
+      "updated": "2026-04-14T00:11:23Z",
+      "url": "https://arxiv.org/abs/2604.12152",
+      "pdfUrl": "https://arxiv.org/pdf/2604.12152",
+      "matchedKeywords": [
+        "diffusion",
+        "mri",
+        "medical image",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：控制变量实验只换 VAE（SD-VAE→MedVAE，160 万张医学图预训练），其余组件全固定，得 +2.91~+3.29 dB PSNR（BraTS 23.51→26.42、CXR 25.58→28.87、MRNet 22.34→25.26，n=1820，d=1.37–1.86）；小波分解把增益定位到最细频带（HH1 +0.70 dB）；幻觉率几乎不变（12.9% vs 13.3%），据此提出“VAE 保真度”与“扩散幻觉”两个独立误差预算，AE 重建质量可预测 SR（R²=0.67）。复现入口：github.com/sebasmos/latent-sr 有 pipeline、reproduce_all.sh 与 slurm 脚本（已核对）。首个对比实验：病理 WSI 超分管线只把 SD-VAE 换成病理域 VAE，比 PSNR 与幻觉像素率。已知限制：仅 2D、单一 4×；BraTS/CXR 上 FID 反更差（31 vs 38）；未验下游诊断效用。关联：病理超分主线。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2604.12152",
+            "note": "核对作者（Cajas 等 11 人）、2026-04-14 v1、无 comments/录用信息，摘要中代码链接"
+          },
+          {
+            "url": "https://github.com/sebasmos/latent-sr",
+            "note": "已打开：仓库描述“Latent Geometry Shapes Fidelity…”，含 medvae_diffusion_pipeline/、reproduce_all.sh、environment.yml、slurm/，pushed_at 2026-07-11，非空占位"
+          },
+          {
+            "url": "https://arxiv.org/html/2604.12152",
+            "note": "读 §2.1 三数据集 PSNR/LPIPS 与 Wilcoxon 检验、§2.4 幻觉量化（2σ 阈值、12.9% vs 13.3%）、§2.6 消融（±0.15 dB）、§3 局限（单尺度、FID 反转、未做诊断效用）"
+          }
+        ],
+        "codeUrl": "https://github.com/sebasmos/latent-sr"
+      },
+      "titleZh": "领域特异的潜表示提升扩散式医学图像超分辨率的保真度"
+    },
+    {
+      "id": "2605.00941",
+      "domain": "mri",
+      "title": "Uncertainty in a Single Pass: A Closed-Form Identity for One-Step Flow Matching",
+      "authors": [
+        "Jiarui Xing",
+        "Song Wang",
+        "Jian Wang"
+      ],
+      "summary": "Flow matching provides a highly effective framework for generative modeling, yet estimating the uncertainty of its generated samples remains a fundamental challenge. Existing methods rely on auxiliary variance heads, model ensembles, or iterative covariance propagation, which invariably introduce accumulated errors and structural interference along the noise-to-image trajectory. We resolve these limitations by adapting Tweedie's formula to the linear flow matching interpolant, yielding an exact, closed-form identity for the posterior covariance. Because this identity relies exclusively on the divergence of the learned velocity field, it can be evaluated post hoc on pretrained models without any architectural modifications. This analytical formulation proves exceptionally powerful for single-step generative frameworks. By computing the end-to-end posterior covariance in one forward pass, our approach completely bypasses the compounding errors inherent to sequential integration. This mechanism fundamentally enhances robustness, providing highly accurate and stable uncertainty estimates while preventing the numerical degradation typical of multi-step approximations. We validate our framework across benchmark datasets, including CIFAR-10 and real brain MRI scans. The resulting divergence-based uncertainty maps are highly interpretable and tightly correlated with empirical reconstruction errors. Crucially, in medical imaging, this precise localization of structural ambiguity provides essential decision support for high-stakes clinical tasks such as tumor boundary delineation and neurosurgical planning.",
+      "published": "2026-05-01T04:25:00Z",
+      "updated": "2026-08-09T19:32:39Z",
+      "url": "https://arxiv.org/abs/2605.00941",
+      "pdfUrl": "https://arxiv.org/pdf/2605.00941",
+      "matchedKeywords": [
+        "flow matching",
+        "mri",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：把 Tweedie 公式推广到线性流匹配插值 x_t=t·x1+(1−t)·x0，得后验协方差闭式解（§3.2，Eq.12–14），只依赖速度场 Jacobian：对角线给逐像素图，迹（散度）给整样本分数，MeanFlow 等单步生成器一次前向即得端到端协方差，免方差头/集成/ODE 误差累积。复现入口：未提供代码或权重（9 页正文＋两个附录），需自训 MeanFlow；实现只需几次 JVP 或 Hutchinson 探针，可后处理套在已有模型上。首个对比实验：在自训 flow-matching 病理或 MRI 模型上算散度图与协方差对角，对重建误差算 ρ_pix 与肿瘤边界 Boundary F1，对照 MCDropout 与 UA-Flow。已知限制：CIFAR-10 上 ρ_pix 峰值仅 0.407（t=0.7），绝对相关性偏低；多步生成仍须沿 ODE 传播协方差。关联：她以 flow matching 为主干，该恒等式可用于 MRI 后验采样与肿瘤边界不确定性定位。",
+        "checkedAt": "2026-11-18",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2605.00941",
+            "note": "核对作者（Li Lv, Jiarui Xing, Xinyan Liang, Jian Wang）、v1 2026-05-01 / v5 2026-08-09、comments“9 Pages, 5 figures”无录用信息、无代码链接"
+          },
+          {
+            "url": "https://arxiv.org/html/2605.00941",
+            "note": "读 §2–3 推导（Eq.11 Tweedie 均值、Eq.12–14 协方差与速度场参数化）、§4 表 1 的 ρ_pix/hit@30%/ρ_samp（CIFAR-10 各 t 值）、表 4 BraTS 肿瘤边界 Boundary F1/ASSD/HD95（Top-20% 0.681/1.841/8.258）、§4.4 定性定位"
+          }
+        ]
+      },
+      "titleZh": "单次前向的不确定性：一步式流匹配的闭式恒等式"
+    },
+    {
+      "id": "2607.02998",
+      "domain": "mri",
+      "title": "CONFLUX: A Latent Diffusion Model for 3D Chest-CT Synthesis with RL Post-Training",
+      "authors": [
+        "Max Van Puyvelde",
+        "Halil Ibrahim Gulluk",
+        "Wim Van Criekinge",
+        "Olivier Gevaert"
+      ],
+      "summary": "Controllable generative models of 3D medical images can synthesize volumes with specified clinical attributes, but this demands samples that are simultaneously high-fidelity, natively 3D, and faithful to the requested conditioning. We present CONFLUX, a latent diffusion model for chest computed tomography (CT): a 3D variational autoencoder compresses each volume, and a rectified-flow transformer generates in the latent space. Generation is conditioned on structured radiological metadata (18 abnormality findings, sex, age, and reconstruction kernel) through adaptive layer normalization. The model leads strong volumetric baselines on tri-planar Frechet distance (FID 32.3 vs. 74.6 for MAISI) while exposing direct control over clinical attributes. To strengthen that control we add an online reinforcement-learning post-training stage (group-relative policy optimization) that rewards how reliably a classifier recovers the requested findings from each generated volume. Judged by a separate, independent classifier, post-training removes 47% of the shortfall relative to real-scan reliability. We release the model and a ~200k synthetic chest-CT dataset with conditioning metadata spanning a wide variety of clinical findings.",
+      "published": "2026-07-03T06:31:00Z",
+      "updated": "2026-07-07T11:19:28Z",
+      "url": "https://arxiv.org/abs/2607.02998",
+      "pdfUrl": "https://arxiv.org/pdf/2607.02998",
+      "matchedKeywords": [
+        "diffusion",
+        "medical image",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：3D VAE（f=8、16 通道）压缩体数据，单流 rectified-flow transformer（L=12、d=768、3D RoPE）在潜空间生成，18 个所见＋性别/年龄/重建核经 adaLN-zero 注入（Eq.1）；第三阶段 Flow-GRPO 后训练把确定性 ODE 换成保边际随机采样器取可算 log-prob（Eq.2），奖励为冻结所见分类器的加权交叉熵（Eq.3）。三平面 FID 32.3 vs MAISI 74.6，独立判官下条件忠实度 AP 0.330→0.344，补回 47% 差距。复现入口：huggingface.co/gevaertlab/conflux 权重与 conflux-chest-ct（约 20 万例＋元数据）已核对可访问。首个对比实验：用发布数据训下游分割/检测，检验是否转为下游收益。已知限制：条件仅全局元数据、无空间定位；18 标签由 NLP 抽取；仅胸部 CT。关联：3D 生成可控性量化，可迁到病理 WSI 条件生成＋RL 后训练。",
+        "checkedAt": "2026-11-18",
+        "paperType": "method + benchmark",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2607.02998",
+            "note": "核对作者（Van Puyvelde, Gulluk, Van Criekinge, Gevaert）、2026-07-03 v1、无 comments/录用信息"
+          },
+          {
+            "url": "https://huggingface.co/gevaertlab/conflux",
+            "note": "已打开模型页：tags 含 arxiv:2607.02998、3d、license cc-by-nc-sa-4.0，lastModified 2026-07-28，非空"
+          },
+          {
+            "url": "https://huggingface.co/datasets/gevaertlab/conflux-chest-ct",
+            "note": "已打开数据集页（HTTP 200），对应论文 §4.4 声称的约 20 万例合成胸部 CT 与条件元数据"
+          },
+          {
+            "url": "https://arxiv.org/html/2607.02998",
+            "note": "读 §3.1–3.3 架构与 GRPO 奖励设计、§4.1 表 1（FID 32.3/24.7、density、coverage、diversity）、§4.3 表 3（AP 0.330→0.344、headroom 47%）、§4.4 发布说明"
+          }
+        ],
+        "codeUrl": "https://huggingface.co/gevaertlab/conflux"
+      },
+      "titleZh": "CONFLUX：带强化学习后训练的 3D 胸部 CT 潜扩散模型"
+    },
+    {
+      "id": "2609.34071",
+      "domain": "mri",
+      "title": "SNaP: One-Step Posterior Sampling for Noisy Inverse Problems",
+      "authors": [
+        "Shirin Shoushtari",
+        "Edward P. Chandler",
+        "Xiao Shi",
+        "Ulugbek S. Kamilov"
+      ],
+      "summary": "Diffusion and flow-matching models can produce high-quality posterior samples for inverse problems, but typically require tens to thousands of network evaluations per draw. MeanFlow enables one-step generation, yet applying it to inverse problems leaves no intermediate steps at which to enforce measurement consistency. We introduce SNaP, a one-step MeanFlow posterior sampler for linear inverse problems with Gaussian noise. Its central innovation is a measurement-adapted source: a Gaussian distribution whose mean and anisotropic covariance are determined by the measurement operator, observation, and noise level. The source anchors well-measured directions while preserving variation where the measurements are weak or uninformative. We show that the exact conditional flow transports this source to the true posterior. Across natural-image restoration and multi-coil MRI, SNaP produces diverse, high-quality samples with one network evaluation per draw, 30 to 2250 $\\times$ faster than iterative samplers.",
+      "published": "2026-09-28T01:02:55Z",
+      "updated": "2026-09-28T01:02:55Z",
+      "url": "https://arxiv.org/abs/2609.34071",
+      "pdfUrl": "https://arxiv.org/pdf/2609.34071",
+      "matchedKeywords": [
+        "diffusion",
+        "mri",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 1,
+        "reason": "机制：用测量自适应高斯源 qτ=N(m_y,τ²W) 替换 MeanFlow 的白噪声起点，m_y 为 Tikhonov 解，各奇异方向方差按 σ_n²/(σ_n²+τ²s_i²) 收缩（§3 Eq.9–10），perturb-and-solve 免开方精确采样（Eq.13）；Prop.2 证精确一步流把该源搬到真实后验。复现入口：github.com/wustl-cig/SNaP 开源，12 个权重（HF，sha256 校验）、数据脚本、fastMRI 固定 100 例测试集与冒烟测试齐全。首个对比实验：跑 brain_r8_30db 配置，1 NFE 复现 29.12 dB/0.845 SSIM，再用 eval_avg_mri.py 的 M=1/4/16 曲线对比 DPS。已知限制：仅线性算子与高斯噪声、像素空间；MRI 权重按(加速,SNR)单格训练；校准比仅二阶统计。关联：MRI 后验采样与幻觉/不确定性度量，Δcal 可量化重建是否过度自信。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2609.34071",
+            "note": "题目、作者（UW-Madison/WashU, Kamilov 组）、v1 2026-09-28、cs.CV、无 venue 与 code 字段"
+          },
+          {
+            "url": "https://arxiv.org/html/2609.34071",
+            "note": "核对 §3 源构造与 Prop.1/2、§4 表格（fastMRI brain ×4/×8，1 NFE 28.10/29.14 dB，DPS 76 s→0.227 s）、Table 5 源消融与 Δcal 定义"
+          },
+          {
+            "url": "https://github.com/wustl-cig/SNaP",
+            "note": "确认为作者组官方仓库：methods/ 各算子、source.py、pipeline.py、pretrained configs、权重与数据下载脚本"
+          }
+        ],
+        "codeUrl": "https://github.com/wustl-cig/SNaP"
+      },
+      "titleZh": "SNaP：含噪逆问题的一步后验采样"
+    },
+    {
+      "id": "2607.18763",
+      "domain": "mri",
+      "title": "Posterior Samplings are Missing Modalities Generators for Medical Image Translation",
+      "authors": [
+        "Jonghun Kim"
+      ],
+      "summary": "Magnetic resonance imaging comes in various modality contrasts that provide complementary anatomical and pathological information. Complete multimodal acquisitions are often unavailable due to time and protocol constraints. This leads to real-world datasets with missing modalities, where conventional medical image translation methods are typically limited to fixed source-target settings or require retraining for each observed source-target pair. We propose a unified framework that formulates missing-modality generation as a linear inverse problem under a joint distribution and solves it via posterior sampling with a flow matching model. By learning a joint prior over the complete modality set, our method can reconstruct arbitrary missing modalities at inference time by guiding the sampling trajectory to enforce measurement consistency with observed modalities. We further mitigate inter-modality error propagation in multi-target generation by adopting a many-to-one sampling strategy. Experiments on BraTS and IXI datasets show that our method achieves the best performance over baselines across most missing-modality scenarios. In downstream tumor segmentation, synthesized images from our method result in higher segmentation performance, indicating better preservation of clinically relevant structures.",
+      "published": "2026-07-21T06:41:44Z",
+      "updated": "2026-07-21T06:41:44Z",
+      "url": "https://arxiv.org/abs/2607.18763",
+      "pdfUrl": "https://arxiv.org/pdf/2607.18763",
+      "matchedKeywords": [
+        "flow matching",
+        "medical image",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：把缺失模态合成写成联合分布下的线性逆问题（A 为通道选择），在四通道 BraTS 上训联合 flow matching 先验；采样用 inpainting 式观测通道速度替换 v̂=m⊙(y−x₀)+(1−m)⊙uθ 叠加 PSLD 引导（Eq.5–6），再以 many-to-one 逐目标生成切断误差串扰（§4.2 Alg.1）。复现入口：github.com/jongdory/PS-MIT 开源，含 train/sample、五种可切换采样器、BraTS 权重与数据链接。首个对比实验：BraTS 单源 T2→T1（论文 25.56 dB/90.52%）用 PSLD 与 FlowDPS 各跑一遍，重点看 T1ce 增强肿瘤区失真。已知限制：单源输出偏模糊致 SSIM 增益不显著；指标按整幅图算、被非肿瘤区主导；NFE=40 且 NEx=10 平均，成本高。关联：MRI 多对比合成/虚拟染色的统一框架与拒绝结构性幻觉的设计。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2607.18763",
+            "note": "题目、单作者（Sungkyunkwan Univ.）、v1 2026-07-21、cs.CV、摘要给出 code 链接"
+          },
+          {
+            "url": "https://arxiv.org/html/2607.18763",
+            "note": "核对 §4.1 Eq.5–6 采样干预、§4.2 many-to-one 与训练掩码策略、Table 1（BraTS 全场景 PSNR/SSIM 及显著性）、§5.1 NFE=40/NEx=10"
+          },
+          {
+            "url": "https://github.com/jongdory/PS-MIT",
+            "note": "确认作者官方仓库：flow_matching 库、train.py/sample.py、--method 可选五种后验采样器、权重与数据说明；README 标注 ECCV 2026"
+          }
+        ],
+        "codeUrl": "https://github.com/jongdory/PS-MIT"
+      },
+      "titleZh": "后验采样即缺失模态生成器：用于医学图像转换"
+    },
+    {
+      "id": "2604.15459",
+      "domain": "mri",
+      "title": "RelativeFlow: Taming Medical Image Denoising Learning with Noisy Reference",
+      "authors": [
+        "Yuxin Liu",
+        "Yiqing Dong",
+        "Wenxue Yu",
+        "Zhan Wu",
+        "Rongjun Ge",
+        "Yang Chen",
+        "Yuting He"
+      ],
+      "summary": "Medical image denoising (MID) lacks absolutely clean images for supervision, leading to a noisy reference problem that fundamentally limits denoising performance. Existing simulated-supervised discriminative learning (SimSDL) and simulated-supervised generative learning (SimSGL) treat noisy references as clean targets, causing suboptimal convergence or reference-biased learning, while self-supervised learning (SSL) imposes restrictive noise assumptions that are seldom satisfied in realistic MID scenarios. We propose \\textbf{RelativeFlow}, a flow matching framework that learns from heterogeneous noisy references and drives inputs from arbitrary quality levels toward a unified high-quality target. RelativeFlow reformulates flow matching by decomposing the absolute noise-to-clean mapping into relative noisier-to-noisy mappings, and realizes this formulation through two key components: 1) consistent transport (CoT), a displacement map that constrains relative flows to be components of and progressively compose a unified absolute flow, and 2) simulation-based velocity field (SVF), which constructs a learnable velocity field using modality-specific degradation operators to support different medical imaging modalities. Extensive experiments on Computed Tomography (CT) and Magnetic Resonance (MR) denoising demonstrate that RelativeFlow significantly outperforms existing methods, taming MID with noisy references.",
+      "published": "2026-04-16T18:18:27Z",
+      "updated": "2026-04-16T18:18:27Z",
+      "url": "https://arxiv.org/abs/2604.15459",
+      "pdfUrl": "https://arxiv.org/pdf/2604.15459",
+      "matchedKeywords": [
+        "flow matching",
+        "medical image",
+        "ct"
+      ],
+      "firstSeen": "2026-11-18T02:15:40.205Z",
+      "lastSeen": "2026-11-18T02:15:40.205Z",
+      "screening": {
+        "status": "recommended",
+        "priority": 2,
+        "reason": "机制：把噪声到干净的绝对映射改写为更噪到含噪参考的相对流，质量轴 t∈(0,∞)，指数时间插值 p_t=e^{-t}p₀+(1−e^{-t})p_∞ 保证相对流可组合（CoT §3.2 Eq.1）；监督用模态退化算子在线造 (D_Δt(x),x) 对，速度目标 (x−D_Δt(x))/(e^{Δt}−1)（SVF Eq.2/4）。复现入口：github.com/Deliver0/RelativeFlow（Apache-2.0）含 train/predict/evaluate 与退化仿真，数据公开，未放权重。首个对比实验：用 --modality mr 在自有 Rician 数据上与监督 U-Net + 标准 flow matching 比 PSNR/SSIM（36.16/93.21 vs 35.18/85.42）。已知限制：只覆盖去噪，退化算子按模态手写，未验证超分/修复；绝对干净上限未证。关联：WSI 修复同样缺绝对干净参考，相对流加物理退化监督可直接迁移。",
+        "checkedAt": "2026-11-17",
+        "paperType": "pure method",
+        "evidence": [
+          {
+            "url": "https://arxiv.org/abs/2604.15459",
+            "note": "v1 2026-04-16、eess.IV、Comments 明确 Accepted by CVPR 2026、作者（东南大学/亚利桑那/CWRU）"
+          },
+          {
+            "url": "https://arxiv.org/html/2604.15459v1",
+            "note": "核对 §3.2 CoT 插值与可组合性证明、§3.3 Eq.2/4 速度目标、Alg.1 训练细节、Table 2（CT 43.38 dB、MR 36.16 dB 对比 10 个基线）、Table 3 组件消融"
+          },
+          {
+            "url": "https://github.com/Deliver0/RelativeFlow",
+            "note": "确认官方实现：train.py/predict.py/evaluate.py + models/unet.py + utils/simulation.py，Apache-2.0，无权重发布"
+          }
+        ],
+        "codeUrl": "https://github.com/Deliver0/RelativeFlow"
+      },
+      "titleZh": "RelativeFlow：以含噪参考驯服医学图像去噪学习"
     }
   ]
 }
