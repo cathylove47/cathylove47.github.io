@@ -15,6 +15,8 @@
 
 ## 更新 atlas 的步骤
 
+默认做法：在源码仓库提交并推送后运行 `npm run publish:site`（`scripts/publish-site.mjs`，先加 `--dry-run` 看改动）。它自动完成下面 1–6 步，落后就 `--ff-only` 快进，分叉或有未提交改动就停，从不 force push。以下是脚本失败时的手动步骤。
+
 1. `git -C ~/code/myblog/paper-reading-atlas pull --ff-only`，再 `npm run build:static`（`dist/static` 是产物，必须是新构建）。
 2. 本仓库先 `git pull --ff-only`；确认不落后于 `origin/main`。
 3. 先删后拷：`rm -rf pathology-atlas && cp -R <源码>/dist/static pathology-atlas`。
