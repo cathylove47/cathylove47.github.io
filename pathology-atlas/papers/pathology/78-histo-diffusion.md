@@ -183,7 +183,7 @@ Fig. 4 两阶段框架 → §3.1 恢复模块与退化模拟 → §3.2 ControlNe
 - [LRDM](56-lrdm.md)：基础模型特征作为条件；SuperDiff 的条件是恢复图潜变量，不是 SSL 特征。
 - [Two-Stage Residual-Guided Diffusion](59-residual-guided-diffusion.md)：同样“先粗后细”，但用残差扩散补细节，可对比两阶段的信息流。
 - [RestorePath](49-restorepath.md)：百万像素修复与超分都涉及大图拼接和跨 patch 一致性，评价思路可互相借用。
-- [无监督伪影流水线](92-unsup-artifact.md)：**前后工序，不是竞争关系**。本文假设输入没有伪影，而作者自己在局限里承认有伪影的输入会被一起放大；所以合理流程是先跑 92 清伪影、再跑本文提分辨率。注意两篇的 "quality assessment" 指相反的事：92 的 QA 是**检测**，本文的 QA 是**评价方案**。
+- [无监督伪影流水线](60-unsupervised-artifact-restoration.md)：**前后工序，不是竞争关系**。本文假设输入没有伪影，而作者自己在局限里承认有伪影的输入会被一起放大；所以合理流程是先跑 60 清伪影、再跑本文提分辨率。注意两篇的 "quality assessment" 指相反的事：60 的 QA 是**检测**，本文的 QA 是**评价方案**。
 
 ## 原文摘要
 
