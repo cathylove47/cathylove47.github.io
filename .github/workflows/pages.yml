@@ -44,6 +44,9 @@ jobs:
               --jq ".artifacts[] | select(.id == $ARTIFACT_ID and .expired == false) | .id") \
               && [[ "$ready" == "$ARTIFACT_ID" ]]; then
               echo "Pages artifact $ARTIFACT_ID is visible on attempt $attempt."
+              # deploy-pages reads the Actions Results API, not the REST listing above.
+              # REST visibility can precede Results API visibility.
+              sleep 30
               exit 0
             fi
             if (( attempt < 12 )); then sleep 5; fi
