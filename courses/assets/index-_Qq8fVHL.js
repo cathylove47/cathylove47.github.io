@@ -20822,7 +20822,3892 @@ H的MAC为1C-2B-50-15-ED-3A，接交换机端口1。默认网关内网IP为192.1
 
 再用DNS解析www.abc.com。访问外网需先ARP解析下一跳网关的MAC，而非ARP远端服务器；网关从3口回复或转发回包，交换机据入帧源MAC学到网关在3口。图上其他主机没有发送帧，不凭连接线编造它们的表项。得到服务器IP后建立TCP连接，发送HTTP请求。
 
-网关做NAT/NAPT时，把H的私有源地址转换成外侧212.10.10.1，服务器回包以此为目的。第4问指外网侧收到、反向转换前；向内转发时目的地址才还原为H获租的内网IP（题未给具体值）。`,pitfalls:`MAC表学习看源MAC和入端口，不看目的MAC；广播地址不作为可学习主机项；外网服务器MAC不会穿越路由器被本地交换机学到。`,extension:`题目未显式写NAT，但私网主机借给定外网网关访问公网且解析册据此作答；若不采用NAT，回包目的应是H自己的可路由地址，须另给地址和路由条件。`,teachingFramework:`按DHCP→DNS→ARP下一跳→TCP→HTTP列事件；旁边维护交换机表，只在设备向交换机发送帧时加项；最后在网关外侧与内侧分别标回包目的IP。`}}],lC=[`题目`,`知识点`],uC=[{id:`forest-to-binary-min-height`,questionNumber:4,title:`森林转换为二叉树：最小高度如何判断？`,type:`题目`,date:`2026-09-29`,chapter:`树与二叉树 · 森林转换`,tags:[`森林与二叉树转换`,`左孩子右兄弟`,`树的高度`],summary:`5 棵树分别有 2、3、4、5、7 个结点。树的次序可任意安排，如何判断转换后二叉树的最小高度？`,source:`用户提供的题目截图，标注为“2026 · 第4题 · 2分”；未独立核验原始试卷出处。解析为本站推导，并非引用官方答案。`,content:String.raw`森林 $F$ 中有 5 棵树，其结点个数分别为 2、3、4、5、7，森林中树的次序可以任意，问 $F$ 对应的二叉树最小高度为多少？
+网关做NAT/NAPT时，把H的私有源地址转换成外侧212.10.10.1，服务器回包以此为目的。第4问指外网侧收到、反向转换前；向内转发时目的地址才还原为H获租的内网IP（题未给具体值）。`,pitfalls:`MAC表学习看源MAC和入端口，不看目的MAC；广播地址不作为可学习主机项；外网服务器MAC不会穿越路由器被本地交换机学到。`,extension:`题目未显式写NAT，但私网主机借给定外网网关访问公网且解析册据此作答；若不采用NAT，回包目的应是H自己的可路由地址，须另给地址和路由条件。`,teachingFramework:`按DHCP→DNS→ARP下一跳→TCP→HTTP列事件；旁边维护交换机表，只在设备向交换机发送帧时加项；最后在网关外侧与内侧分别标回包目的IP。`}}],lC={chapters:[{title:`操作系统概述`,topics:`系统特征与发展 · 系统调用 · 中断与异常 · 内核结构 · 系统引导`,ids:[`real-2009-23`,`mock-1-23`,`real-2010-23`,`real-2013-28`,`real-2012-24`,`real-2023-23`,`mock-8-23`,`real-2021-46`]},{title:`进程、线程与处理机调度`,topics:`进程状态与通信 · 线程 · 调度 · 同步与互斥 · 死锁`,ids:[`real-2014-26`,`real-2024-28`,`real-2019-23`,`real-2014-31`,`mock-5-25`,`real-2009-24`,`real-2020-26`,`mock-1-24`,`real-2018-28`,`mock-3-24`,`real-2013-32`,`real-2015-26`,`real-2022-46`]},{title:`内存管理与虚拟存储`,topics:`装入与链接 · 分区、分页与分段 · 页表 · 缺页与置换 · 抖动`,ids:[`mock-6-29`,`mock-7-28`,`real-2016-28`,`real-2012-25`,`real-2014-32`,`mock-2-28`,`real-2023-30`,`real-2022-29`,`real-2014-30`,`real-2015-30`,`real-2011-29`]},{title:`文件管理`,topics:`文件结构 · 目录与链接 · 打开文件 · 外存空间 · 文件系统实现`,ids:[`mock-2-30`,`real-2009-28`,`mock-4-29`,`real-2014-29`,`real-2020-23`,`mock-5-29`,`real-2024-26`,`real-2025-28`,`real-2011-46`]},{title:`输入／输出管理`,topics:`I/O 控制方式与软件层次 · 设备独立性 · 缓冲与虚拟设备 · 磁盘与存储`,ids:[`mock-1-32`,`real-2012-26`,`real-2022-32`,`real-2024-31`,`real-2020-30`,`real-2015-28`,`real-2016-31`,`mock-6-32`,`mock-8-32`]}],illustrated:[{id:`real-2016-28`,year:2016,no:28,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#28`,stem:`某进程的段表内容如下所示。
+段号 段长 内存起始地址 权限 状态
+0 100 6000 只读 在内存
+1 200 ··· 读写 不在内存
+2 300 4000 读写 在内存
+当访问段号为 2、段内地址为 400 的逻辑地址时，进行地址转换的结果是（ ）。`,stemHtml:`<p>某进程的段表内容如下所示。</p><table class="source-table"><thead><tr><th>段号</th><th>段长</th><th>内存起始地址</th><th>权限</th><th>状态</th></tr></thead><tbody><tr><td>0</td><td>100</td><td>6000</td><td>只读</td><td>在内存</td></tr><tr><td>1</td><td>200</td><td>···</td><td>读写</td><td>不在内存</td></tr><tr><td>2</td><td>300</td><td>4000</td><td>读写</td><td>在内存</td></tr></tbody></table><p>当访问段号为 2、段内地址为 400 的逻辑地址时，进行地址转换的结果是（ ）。</p>`,options:[`段缺失异常`,`得到内存地址 4400`,`越权异常`,`越界异常`],optionsHtml:[`段缺失异常`,`得到内存地址 4400`,`越权异常`,`越界异常`],choiceFormat:`separate`}],written:[{id:`real-2021-46`,year:2021,no:46,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#46`,stem:`（8 分）某计算机用硬盘作为启动盘，硬盘第一个扇区存放主引导记录，其中包含磁盘引导程序和分区表。磁盘引导程序用于选择要引导哪个分区的操作系统，分区表记录硬盘上各分区的位置等描述信息。硬盘被划分成若干个分区，每个分区的第一个扇区存放分区引导程序，用于引导该分区中的操作系统。系统采用多阶段引导方式，除了执行磁盘引导程序和分区引导程序外，还需要执行 ROM 中的引导程序。请回答下列问题。
+（1）系统启动过程中操作系统的初始化程序、分区引导程序、ROM 中的引导程序、磁盘引导程序的执行顺序是什么？
+（2）把硬盘制作为启动盘时，需要完成操作系统的安装、磁盘的物理格式化、逻辑格式化、对磁盘进行分区，执行这 4 个操作的正确顺序是什么？
+（3）磁盘扇区的划分和文件系统根目录的建立分别是在第（2）问的哪个操作中完成的？`},{id:`real-2022-46`,year:2022,no:46,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#46`,stem:`某进程的两个线程 T1 和 T2 并发执行 A、B、C、D、E 和 F 共 6 个操作，其中 T1 执行 A、E 和 F，T2 执行 B、C 和 D。题 46 图表示上述 6 个操作的执行顺序所必须满足的约束：C 在 A 和 B 完成后执行，D 和 E 在 C 完成后执行，F 在 E 完成后执行。请使用信号量的 wait()、signal() 操作描述 T1 和 T2 之间的同步关系，并说明所用信号量的作用及其初值。`,figure:`<figure><svg viewBox="-2 -2 405 125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A、B 指向 C，C 指向 D、E，E 指向 F"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs><g fill="none" stroke="#111" stroke-width="1.35"><circle cx="20" cy="20" r="20"/><circle cx="20" cy="100" r="20"/><circle cx="140" cy="60" r="20"/><circle cx="260" cy="20" r="20"/><circle cx="260" cy="100" r="20"/><circle cx="380" cy="60" r="20"/><path d="M40 20 L125 46" marker-end="url(#arrow)"/><path d="M40 100 L125 74" marker-end="url(#arrow)"/><path d="M155 46 L239 20" marker-end="url(#arrow)"/><path d="M155 74 L239 100" marker-end="url(#arrow)"/><path d="M280 100 L365 74" marker-end="url(#arrow)"/></g><g text-anchor="middle" font-size="17" font-family="Arial,sans-serif"><text x="20" y="26">A</text><text x="20" y="106">B</text><text x="140" y="66">C</text><text x="260" y="26">D</text><text x="260" y="106">E</text><text x="380" y="66">F</text></g></svg><figcaption>题 46 图</figcaption></figure>`},{id:`real-2011-46`,year:2011,no:46,sourceUrl:`https://408.foreverlink.love/raw/2011`,stem:`（7 分）某文件系统为一级目录结构，文件的数据一次性写入磁盘，已写入的文件不可修改，但可多次创建新文件。请回答如下问题。
+（1）在连续、链式、索引三种文件的数据块组织方式中，哪种更合适？要求说明理由。为定位文件数据块，需要在 FCB 中设计哪些相关描述字段？
+（2）为快速找到文件，对于 FCB，是集中存储好，还是与对应的文件数据块连续存储好？要求说明理由。`}]},uC=[{id:`mock-1-23`,volume:1,number:23,pdfPages:[4],stem:`下列关于操作系统发展阶段的叙述中，错误的是（ ）。`,options:[`单道批处理系统可通过脱机I/O减少CPU等待慢速设备的时间`,`多道批处理系统允许多个作业在内存中并发执行`,`分时系统通常采用时间片机制增强交互性`,`硬实时系统允许关键任务偶尔超过截止时间而不影响系统正确性`]},{id:`mock-1-24`,volume:1,number:24,pdfPages:[4,5],stem:`某有界缓冲区可存放n件产品，信号量mutex用于实现对缓冲区的互斥访问，empty和full分别表示缓冲区中的空闲位置数和产品数。下列关于P操作执行顺序的叙述中，正确的是（ ）。`,options:[`生产者应先执行P(mutex)，再执行P(empty)`,`消费者应先执行P(mutex)，再执行P(full)`,`生产者应先执行P(empty)，再执行P(mutex)；消费者应先执行P(full)，再执行P(mutex)`,`由于P操作具有原子性，两个P操作的执行顺序可以任意交换`]},{id:`mock-1-32`,volume:1,number:32,pdfPages:[6],stem:`某进程请求将外部设备中的一块数据传送到主存。下列关于I/O控制方式的叙述中，正确的是（　）。
+Ⅰ.采用程序查询方式时，CPU需要反复查询设备状态，并参与数据在设备控制器与主存之间的传送
+Ⅱ.采用中断方式时，CPU可以执行其他进程，因此发出I/O请求的进程必然不会被阻塞
+Ⅲ.采用DMA方式时，CPU完成必要的初始化后，可由DMA控制器控制设备与主存之间的数据传送
+Ⅳ.采用DMA方式传送数据时不需要使用系统总线，因此不会影响CPU访问主存`,options:[`Ⅰ、Ⅱ`,`Ⅰ、Ⅲ`,`Ⅱ、Ⅳ`,`Ⅲ、Ⅳ`]},{id:`mock-2-28`,volume:2,number:28,pdfPages:[5,6],stem:`在请求分页存储管理系统中，下列关于页表项相关字段作用的叙述中，正确的是（ ）。
+Ⅰ.状态位用于指示页面是否已调入内存
+Ⅱ.访问字段用于记录页面的访问情况，供页面置换算法参考
+Ⅲ.修改位用于指示页面调入内存后是否被修改
+Ⅳ.外存地址字段用于记录页面在外存中的存放位置，供调入页面时使用`,options:[`Ⅰ、Ⅱ、Ⅲ`,`Ⅰ、Ⅱ、Ⅳ`,`Ⅰ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`]},{id:`mock-2-30`,volume:2,number:30,pdfPages:[6],stem:`在文件系统中，文件的逻辑结构决定了用户对文件的访问方式。下列关于文件逻辑结构的描述中，正确的是（　）。`,options:[`记录式文件由固定长度的记录组成，支持直接访问任意记录`,`流式文件以字节序列存储，无法支持随机访问`,`索引顺序文件结合了顺序和索引结构，但需额外存储索引表`,`顺序文件必须连续存储，否则无法顺序访问`]},{id:`mock-3-24`,volume:3,number:24,pdfPages:[5],stem:`下列措施中，可以破坏死锁“请求并保持”条件的有（ ）。
+Ⅰ.进程运行前一次性申请其所需的全部资源
+Ⅱ.进程申请新资源前先释放当前已占有的资源，随后重新申请
+Ⅲ.要求进程按资源编号递增顺序申请资源
+Ⅳ.允许系统强制剥夺进程已占有的资源`,options:[`仅Ⅰ`,`仅Ⅱ`,`Ⅰ、Ⅱ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`]},{id:`mock-4-29`,volume:4,number:29,pdfPages:[6],stem:`下列关于符号链接（软链接）与硬链接的描述，正确的是（　）。`,options:[`硬链接创建时复制原文件内容`,`符号链接与原文件共享同一个inode`,`硬链接不能跨文件系统创建`,`符号链接删除后原文件无法访问`]},{id:`mock-5-25`,volume:5,number:25,pdfPages:[6],stem:`下列关于处理机调度的说法中，正确的是（ ）。`,options:[`高级调度又称作业调度，主要用于分时系统，决定哪个作业调入内存`,`低级调度的运行频率最低，因为它要处理进程的长期调度`,`中级调度是为了提高内存利用率，将暂时不能运行的进程调至外存`,`动态优先级在进程创建时确定，运行中不会改变`]},{id:`mock-5-29`,volume:5,number:29,pdfPages:[6],stem:`下列文件操作中，必然会修改文件控制块（FCB）中的文件长度字段的是（　）。`,options:[`以只读方式打开文件`,`读取文件中的一个数据块`,`覆盖写入文件中已有的一个字节且不改变文件长度`,`在文件末尾追加一个字节`]},{id:`mock-6-29`,volume:6,number:29,pdfPages:[6],stem:`某大型工业设计软件包含建模、渲染、动画制作等多个功能模块，在系统内存有限的情况下，若希望仅当用户触发特定功能（如渲染）时，才将该功能对应的模块装入内存并完成链接，以优化资源利用。这种链接方式属于（ ）。`,options:[`静态链接`,`编译时动态链接`,`装入时动态链接`,`运行时动态链接`]},{id:`mock-6-32`,volume:6,number:32,pdfPages:[6],stem:`下列 I/O 调度算法中，在不考虑“磁臂黏着”的情况下可能导致“饥饿”现象的是（　）。`,options:[`FCFS`,`SSTF`,`SCAN`,`C-SCAN`]},{id:`mock-7-28`,volume:7,number:28,pdfPages:[6],stem:`采用可变分区方式管理内存时，引入紧凑技术的主要优点是（ ）。`,options:[`减少外部碎片`,`加快内存访问速度`,`减少进程切换时间`,`降低缺页中断率`]},{id:`mock-8-23`,volume:8,number:23,pdfPages:[4,5],stem:`某Java源程序经编译生成字节码后，在通用计算机的操作系统上通过JVM（Java虚拟机）运行。下列叙述中，正确的是（ ）。
+Ⅰ.从扩充机器的观点看，操作系统屏蔽部分硬件细节，并向上层软件提供进程、虚拟地址空间和文件等抽象
+Ⅱ.JVM通常作为操作系统管理的用户进程运行，其使用的处理器、内存和I/O资源仍由操作系统管理
+Ⅲ.JVM为Java程序提供字节码执行环境，可以解释执行字节码，也可以将字节码转换为本机机器代码后执行
+Ⅳ.JVM已经为Java程序提供虚拟运行环境，因此Java进程进行地址转换时不再需要操作系统维护的页表`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ、Ⅳ`,`仅Ⅰ、Ⅱ、Ⅲ`]},{id:`mock-8-32`,volume:8,number:32,pdfPages:[6],stem:`RAID磁盘阵列做不到的是（　）。`,options:[`让多个磁盘并行工作`,`加快数据的输入输出速度`,`提高存储器的可靠性`,`提高单个磁盘的容量`]}],dC=[{id:`real-concept-2009-01`,year:2009,no:1,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#1`,sourceAnswer:`B`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`缓冲区`,stem:`为解决计算机与打印机之间速度不匹配的问题，通常设置一个打印数据缓冲区，主机将要输出的数据依次写入该缓冲区，而打印机则依次从该缓冲区中取出数据。该缓冲区的逻辑结构应该是（ ）。`,options:[`栈`,`队列`,`树`,`图`],choiceFormat:`separate`,stemHtml:`<p>为解决计算机与打印机之间速度不匹配的问题，通常设置一个打印数据缓冲区，主机将要输出的数据依次写入该缓冲区，而打印机则依次从该缓冲区中取出数据。该缓冲区的逻辑结构应该是（ ）。</p>`,optionsHtml:[`<span class="choice-text">栈</span>`,`<span class="choice-text">队列</span>`,`<span class="choice-text">树</span>`,`<span class="choice-text">图</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`1. 为解决计算机主机与打印机之间速度不匹配问题，通常设置一个打印数据缓冲区，主机将要输出的数据依次写入该缓冲区，而打印机则依次从该缓冲区中取出数据。该缓冲区的逻辑结构应该是____。\r
+\r
+A. 栈\r
+\r
+B. 队列\r
+\r
+C. 树\r
+\r
+D. 图`,images:[],hasFigure:!1},{id:`real-concept-2009-06`,year:2009,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#6`,sourceAnswer:`B`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`二叉树和森林的转换`,stem:`将森林转换为对应的二叉树，若在二叉树中，结点 u\xA0是结点 v\xA0的父结点的父结点，则在原来的森林中，u\xA0和 v\xA0可能具有的关系是（ ）。
+I. 父子关系
+II. 兄弟关系
+III. u\xA0的父结点与 v\xA0的父结点是兄弟关系`,options:[`只有 II`,`I 和 II`,`I 和 III`,`I、II 和 III`],choiceFormat:`separate`,stemHtml:`<p>将森林转换为对应的二叉树，若在二叉树中，结点 u\xA0是结点 v\xA0的父结点的父结点，则在原来的森林中，u\xA0和 v\xA0可能具有的关系是（ ）。</p>
+<p>I. 父子关系</p>
+<p>II. 兄弟关系</p>
+<p>III. u\xA0的父结点与 v\xA0的父结点是兄弟关系</p>`,optionsHtml:[`<span class="choice-text">只有 II</span>`,`<span class="choice-text">I 和 II</span>`,`<span class="choice-text">I 和 III</span>`,`<span class="choice-text">I、II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`6. 将森林转换为对应的二叉树，若在二叉树中，结点 u 是结点 v 的父结点的父结点，则在原来的森林中，u 和 v 可能具有的关系是\r
+\r
+I. 父子关系\r
+\r
+II．兄弟关系\r
+\r
+III. u的父结点与v的父结点是兄弟关系\r
+\r
+A. 只有 II\r
+\r
+B. I 和 II\r
+\r
+C. I 和III\r
+\r
+D. I 、II 和 III`,images:[],hasFigure:!1},{id:`real-concept-2009-07`,year:2009,no:7,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#7`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`图的概念`,stem:`下列关于无向连通图特性的叙述中，正确的是（）。
+I. 所有顶点的度之和为偶数
+II. 边数大于顶点个数减 1
+III. 至少有一个顶点的度为 1`,options:[`只有 I`,`只有 II`,`I 和 II`,`I 和 III`],choiceFormat:`separate`,stemHtml:`<p>下列关于无向连通图特性的叙述中，正确的是（）。</p>
+<p>I. 所有顶点的度之和为偶数</p>
+<p>II. 边数大于顶点个数减 1</p>
+<p>III. 至少有一个顶点的度为 1</p>`,optionsHtml:[`<span class="choice-text">只有 I</span>`,`<span class="choice-text">只有 II</span>`,`<span class="choice-text">I 和 II</span>`,`<span class="choice-text">I 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`7. 下列关于无向连通图特性的叙述中，正确的是________。\r
+\r
+I. 所有顶点的度之和为偶数\r
+\r
+II. 边数大于顶点个数减1\r
+\r
+III. 至少有一个顶点的度为 1\r
+\r
+A. 只有 I\r
+\r
+B. 只有 II\r
+\r
+C. I 和 II\r
+\r
+D. I 和III`,images:[],hasFigure:!1},{id:`real-concept-2009-08`,year:2009,no:8,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#8`,sourceAnswer:`D`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`B树`,stem:`下列叙述中，不符合 m 阶 B 树定义要求的是（）。`,options:[`根节点最多有 m 棵子树`,`所有叶结点都在同一层上`,`各结点内关键字均升序或降序排列`,`叶结点之间通过指针链接`],choiceFormat:`separate`,stemHtml:`<p>下列叙述中，不符合 m 阶 B 树定义要求的是（）。</p>`,optionsHtml:[`<span class="choice-text">根节点最多有 m 棵子树</span>`,`<span class="choice-text">所有叶结点都在同一层上</span>`,`<span class="choice-text">各结点内关键字均升序或降序排列</span>`,`<span class="choice-text">叶结点之间通过指针链接</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`8. 下列叙述中，不符合  $\\mathrm{m}$  阶B树定义要求的是________。\r
+\r
+A. 根节点最多有  $\\mathrm{m}$  棵子树\r
+\r
+B. 所有叶结点都在同一层上\r
+\r
+C. 各结点内关键字均升序或降序排列\r
+\r
+D. 叶结点之间通过指针链接`,images:[],hasFigure:!1},{id:`real-concept-2010-06`,year:2010,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#6`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`哈夫曼树`,stem:`对 n (n≥2)\xA0个权值均不相同的字符构成哈夫曼树。下列关于该哈夫曼树的叙述中，错误的是（ ）。`,options:[`该树一定是一棵完全二叉树`,`树中一定没有度为\xA01\xA0的结点`,`树中两个权值最小的结点一定是兄弟结点`,`树中任一非叶结点的权值一定不小于下一层任一结点的权值`],choiceFormat:`separate`,stemHtml:`<p>对 n (n≥2)\xA0个权值均不相同的字符构成哈夫曼树。下列关于该哈夫曼树的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">该树一定是一棵完全二叉树</span>`,`<span class="choice-text">树中一定没有度为\xA01\xA0的结点</span>`,`<span class="choice-text">树中两个权值最小的结点一定是兄弟结点</span>`,`<span class="choice-text">树中任一非叶结点的权值一定不小于下一层任一结点的权值</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`6. 对  $\\mathbf{n}(\\mathbf{n}\\geq 2)$  个权值均不相同的字符构造成哈夫曼树。下列关于该哈夫曼树的叙述中，错误的是\r
+\r
+A. 该树一定是一棵完全二叉树。  \r
+B. 树中一定没有度为 1 的结点。  \r
+C. 树中两个权值最小的结点一定是兄弟结点。  \r
+D. 树中任一非叶结点的权值一定不小于下一层任一结点的权值。`,images:[],hasFigure:!1},{id:`real-concept-2010-10`,year:2010,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#10`,sourceAnswer:`D`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`采用递归方式对顺序表进行快速排序。下列关于递归次数的叙述中，正确的是（）。`,options:[`递归次数与初始数据的排列次序无关。`,`每次划分后，先处理较长的分区可以减少递归次数。`,`每次划分后，先处理较短的分区可以减少递归次数。`,`递归次数与每次划分后得到的分区的处理顺序无关。`],choiceFormat:`separate`,stemHtml:`<p>采用递归方式对顺序表进行快速排序。下列关于递归次数的叙述中，正确的是（）。</p>`,optionsHtml:[`<span class="choice-text">递归次数与初始数据的排列次序无关。</span>`,`<span class="choice-text">每次划分后，先处理较长的分区可以减少递归次数。</span>`,`<span class="choice-text">每次划分后，先处理较短的分区可以减少递归次数。</span>`,`<span class="choice-text">递归次数与每次划分后得到的分区的处理顺序无关。</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`10. 采用递归方式对顺序表进行快速排序。下列关于递归次数的叙述中，正确的是______。\r
+\r
+A. 递归次数与初始数据的排列次序无关。\r
+\r
+B. 每次划分后，先处理较长的分区可以减少递归次数。  \r
+C. 每次划分后, 先处理较短的分区可以减少递归次数。  \r
+D. 递归次数与每次划分后得到的分区的处理顺序无关。\r
+\r
+11．对一组数据(2，12，16，88，5，10)进行排序，若前三趟排序结果如下：\r
+\r
+第一趟排序结果：2，12，16，5，10，88\r
+\r
+第二趟排序结果：2，12，5，10，16，88\r
+\r
+第三趟排序结果：2，5，10，12，16，88\r
+\r
+则采用的排序方法可能是\r
+\r
+A. 起泡排序\r
+\r
+B. 希尔排序\r
+\r
+C. 归并排序\r
+\r
+D. 基数排序`,images:[],hasFigure:!1},{id:`real-concept-2011-03`,year:2011,no:3,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#3`,sourceAnswer:`B`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`队列`,stem:`已知循环队列存储在一维数组 A[0..n-1] 中，且队列非空时 front 和 rear 分别指向队头元素和队尾元素。若初始时队列空，且要求第一个进入队列的元素存储在 A[0] 处，则初始时 front 和 rear 的值分别是（ ）。`,options:[`0，0`,`0，n-1`,`n-1，0`,`n-1，n-1`],choiceFormat:`separate`,stemHtml:`<p>已知循环队列存储在一维数组 <code>A[0..n-1]</code>中，且队列非空时 <code>front</code> 和 <code>rear</code> 分别指向队头元素和队尾元素。若初始时队列空，且要求第一个进入队列的元素存储在 <code>A[0]</code>处，则初始时 <code>front</code> 和 <code>rear</code> 的值分别是（ ）。</p>`,optionsHtml:[`<span class="choice-text">0，0</span>`,`<span class="choice-text">0，n-1</span>`,`<span class="choice-text">n-1，0</span>`,`<span class="choice-text">n-1，n-1</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`3. 已知循环队列存储在一维数组A[0..n-1]中，且队列非空时front和rear分别指向队头元素和队尾元素。若初始时队列为空，且要求第1个进入队列的元素存储在A[0]处，则初始时front和rear的值分别是\r
+\r
+A. 0,0\r
+\r
+B. 0, n-1\r
+\r
+C. n-1,0\r
+\r
+D. n-1, n-1\r
+\r
+解答：B。插入元素时，front不变，rear+1. 而插入第一个元素之后，队尾要指向尾元素，显然，rear初始应该为n-1, front为0。`,images:[],hasFigure:!1},{id:`real-concept-2011-05`,year:2011,no:5,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#5`,sourceAnswer:`C`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`二叉树遍历`,stem:`若一棵二叉树的前序遍历序列和后序遍历序列分别为 1,2,3,4 和 4,3,2,1，则该二叉树的中序遍历序列不会是（）`,options:[`1,2,3,4`,`2,3,4,1`,`3,2,4,1`,`4,3,2,1`],choiceFormat:`separate`,stemHtml:`<p>若一棵二叉树的前序遍历序列和后序遍历序列分别为 1,2,3,4 和 4,3,2,1，则该二叉树的中序遍历序列不会是（）</p>`,optionsHtml:[`<span class="choice-text">1,2,3,4</span>`,`<span class="choice-text">2,3,4,1</span>`,`<span class="choice-text">3,2,4,1</span>`,`<span class="choice-text">4,3,2,1</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`5. 若一棵二叉树的前序遍历序列和后序遍历序列分别为1,2,3,4和4,3,2,1，则该二叉树的中序遍历序列不会是\r
+\r
+A. 1,2,3,4\r
+\r
+B. 2,3,4,1\r
+\r
+C. 3,2,4,1\r
+\r
+D. 4,3,2,1\r
+\r
+解答：C。由前序和后序遍历序列可知3为根结点，故（1,2）为左子树，（4）为右子树，C不可能。或画图即可得出结果。`,images:[],hasFigure:!1},{id:`real-concept-2011-08`,year:2011,no:8,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#8`,sourceAnswer:`C`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`图的概念`,stem:`下列关于图的叙述中，正确的是（ ）。
+I. 回路是简单路径
+II. 存储稀疏图，用邻接矩阵比邻接表更省空间
+III. 若有向图中存在拓扑序列，则该图不存在回路`,options:[`仅 II`,`仅 Ⅰ、II`,`仅 III`,`仅 Ⅰ、III`],choiceFormat:`separate`,stemHtml:`<p>下列关于图的叙述中，正确的是（ ）。</p>
+<p>I. 回路是简单路径</p>
+<p>II. 存储稀疏图，用邻接矩阵比邻接表更省空间</p>
+<p>III. 若有向图中存在拓扑序列，则该图不存在回路</p>`,optionsHtml:[`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 Ⅰ、II</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 Ⅰ、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`8. 下列关于图的叙述中，正确的是\r
+\r
+I.回路是简单路径  \r
+II. 存储稀疏图，用邻接矩阵比邻接表更省空间  \r
+III. 若有向图中存在拓扑序列, 则该图不存在回路\r
+\r
+A. 仅 II\r
+\r
+B. 仅 I、II\r
+\r
+C. 仅III\r
+\r
+D. 仅 I、III\r
+\r
+解答：C。I.回路对应于路径，简单回路对应于简单路径；II．刚好相反；III．拓扑有序的必要条件。故选C。`,images:[],hasFigure:!1},{id:`real-concept-2011-09`,year:2011,no:9,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#9`,sourceAnswer:`D`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`散列表`,stem:`为提高哈希（Hash）表的查找效率，可以采取的正确措施是（ ）。
+I. 增大装填因子
+II. 设计冲突少的哈希函数
+III. 处理冲突时避免产生堆积现象`,options:[`仅 I`,`仅 II`,`仅 I、II`,`仅 II、III`],choiceFormat:`separate`,stemHtml:`<p>为提高哈希（Hash）表的查找效率，可以采取的正确措施是（ ）。</p>
+<p>I. 增大装填因子</p>
+<p>II. 设计冲突少的哈希函数</p>
+<p>III. 处理冲突时避免产生堆积现象</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 II、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`9. 为提高散列（Hash）表的查找效率，可以采取的正确措施是\r
+\r
+I. 增大装填（载）因子  \r
+II．设计冲突（碰撞）少的散列函数\r
+\r
+III. 处理冲突（碰撞）时避免产生聚集（堆积）现象\r
+\r
+A. 仅 I\r
+\r
+B. 仅 II\r
+\r
+C. 仅 I、II\r
+\r
+D. 仅 II、III\r
+\r
+解答：B。III错在“避免”二字。`,images:[],hasFigure:!1},{id:`real-concept-2011-10`,year:2011,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#10`,sourceAnswer:`A`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`为实现快速排序算法，待排序序列宜采用的存储方式是（）`,options:[`顺序存储`,`散列存储`,`链式存储`,`索引存储`],choiceFormat:`separate`,stemHtml:`<p>为实现快速排序算法，待排序序列宜采用的存储方式是（）</p>`,optionsHtml:[`<span class="choice-text">顺序存储</span>`,`<span class="choice-text">散列存储</span>`,`<span class="choice-text">链式存储</span>`,`<span class="choice-text">索引存储</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`10. 为实现快速排序算法，待排序序列宜采用的存储方式是\r
+\r
+A. 顺序存储  \r
+B. 散列存储  \r
+C. 链式存储  \r
+D. 索引存储\r
+\r
+解答：A。内部排序采用顺序存储结构。`,images:[],hasFigure:!1},{id:`real-concept-2012-05`,year:2012,no:5,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#5`,sourceAnswer:`C`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`图的遍历`,stem:`对有 n 个结点、e 条边且使用邻接表存储的有向图进行广度优先遍历，其算法时间复杂度是（）。`,options:[`O ( n )`,`O ( e )`,`O ( n + e )`,`O ( n × e )`],choiceFormat:`separate`,stemHtml:`<p>对有 n 个结点、e 条边且使用邻接表存储的有向图进行广度优先遍历，其算法时间复杂度是（）。</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">×</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2012-06`,year:2012,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#6`,sourceAnswer:`C`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`拓扑排序`,stem:`若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为零，则关于该图拓扑序列的结论是（ ）。`,options:[`存在，且唯一`,`存在，且不唯一`,`存在，可能不唯一`,`无法确定是否存在`],choiceFormat:`separate`,stemHtml:`<p>若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为零，则关于该图拓扑序列的结论是（ ）。</p>`,optionsHtml:[`<span class="choice-text">存在，且唯一</span>`,`<span class="choice-text">存在，且不唯一</span>`,`<span class="choice-text">存在，可能不唯一</span>`,`<span class="choice-text">无法确定是否存在</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`6. 若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为零，则关于该图拓扑序列的结论是\r
+\r
+A. 存在，且唯一\r
+\r
+B. 存在，且不唯一\r
+\r
+C. 存在，可能不唯一\r
+\r
+D. 无法确定是否存在`,images:[],hasFigure:!1},{id:`real-concept-2012-08`,year:2012,no:8,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#8`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`最小生成树`,stem:`下列关于最小生成树的叙述中，正确的是（）。
+Ⅰ．最小生成树的代价唯一
+Ⅱ．所有权值最小的边一定会出现在所有的最小生成树中
+Ⅲ．使用普里姆（Prim）算法从不同顶点开始得到的最小生成树一定相同
+Ⅳ．使用普里姆算法和克鲁斯卡尔（Kruskal）算法得到的最小生成树总不相同`,options:[`仅Ⅰ`,`仅Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列关于最小生成树的叙述中，正确的是（）。</p>
+<p>Ⅰ．最小生成树的代价唯一</p>
+<p>Ⅱ．所有权值最小的边一定会出现在所有的最小生成树中</p>
+<p>Ⅲ．使用普里姆（Prim）算法从不同顶点开始得到的最小生成树一定相同</p>
+<p>Ⅳ．使用普里姆算法和克鲁斯卡尔（Kruskal）算法得到的最小生成树总不相同</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ</span>`,`<span class="choice-text">仅Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`8. 下列关于最小生成树的叙述中，正确的是\r
+\r
+I. 最小生成树的代价唯一\r
+\r
+II．所有权值最小的边一定会出现在所有的最小生成树中\r
+\r
+III. 使用普里姆（Prim）算法从不同顶点开始得到的最小生成树一定相同  \r
+IV．使用普里姆算法和克鲁斯卡尔（Kruskal）算法得到的最小生成树总不相同\r
+\r
+A. 仅 I\r
+\r
+B. 仅 II\r
+\r
+C. 仅 I、III\r
+\r
+D. 仅 II、IV`,images:[],hasFigure:!1},{id:`real-concept-2012-10`,year:2012,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#10`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`在内部排序过程中，对尚未确定最终位置的所有元素进行一遍处理称为一趟排序。下列排序方法中，每一趟排序结束都至少能够确定一个元素最终位置的方法是（ ）。
+Ⅰ．简单选择排序
+Ⅱ．希尔排序
+Ⅲ．快速排序
+Ⅳ．堆排序
+Ⅴ．二路归并排序`,options:[`仅Ⅰ、Ⅲ、Ⅳ`,`仅Ⅰ、Ⅲ、Ⅴ`,`仅Ⅱ、Ⅲ、Ⅳ`,`仅Ⅲ、Ⅳ、Ⅴ`],choiceFormat:`separate`,stemHtml:`<p>在内部排序过程中，对尚未确定最终位置的所有元素进行一遍处理称为一趟排序。下列排序方法中，每一趟排序结束都至少能够确定一个元素最终位置的方法是（ ）。</p>
+<p>Ⅰ．简单选择排序</p>
+<p>Ⅱ．希尔排序</p>
+<p>Ⅲ．快速排序</p>
+<p>Ⅳ．堆排序</p>
+<p>Ⅴ．二路归并排序</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅴ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ、Ⅴ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`10. 在内部排序过程中，对尚未确定最终位置的所有元素进行一遍处理称为一趟排序。下列排序方法中，每一趟排序结束都至少能够确定一个元素最终位置的方法是\r
+\r
+I. 简单选择排序\r
+\r
+II. 希尔排序\r
+\r
+III. 快速排序\r
+\r
+IV. 堆排序\r
+\r
+V. 二路归并排序\r
+\r
+A. 仅 I、III、IV\r
+\r
+B. 仅 I、III、V\r
+\r
+C. 仅 II、III、IV\r
+\r
+D. 仅III、IV、V\r
+\r
+11．对一待排序序列分别进行折半插入排序和直接插入排序，两者之间可能的不同之处是\r
+\r
+A. 排序的总趟数\r
+\r
+B. 元素的移动次数\r
+\r
+C. 使用辅助空间的数量\r
+\r
+D. 元素之间的比较次数`,images:[],hasFigure:!1},{id:`real-concept-2012-11`,year:2012,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#11`,sourceAnswer:`D`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`对同一待排序序列分别进行折半插入排序和直接插入排序，两者之间可能的不同之处是（ ）。`,options:[`排序的总趟数`,`元素的移动次数`,`使用辅助空间的数量`,`元素之间的比较次数`],choiceFormat:`separate`,stemHtml:`<p>对同一待排序序列分别进行折半插入排序和直接插入排序，两者之间可能的不同之处是（ ）。</p>`,optionsHtml:[`<span class="choice-text">排序的总趟数</span>`,`<span class="choice-text">元素的移动次数</span>`,`<span class="choice-text">使用辅助空间的数量</span>`,`<span class="choice-text">元素之间的比较次数</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`11. 考查折半插入和直接插入的区别。\r
+\r
+折半插入排序与直接插入排序都是将待插入元素插入前面的有序子表，区别是：确定当前记录在前面有序子表中的位置时，直接插入排序是采用顺序查找法，而折半插入排序是采用折半查找法。排序的总趟数取决于元素个数  $n$ ，两者都是  $n - 1$  趟。元素的移动次数都取决于初试序列，两者相同。使用辅助空间的数量也都是  $O(1)$  。折半插入排序的比较次数与序列初态无关，为  $O(n\\log 2n)$ ；而直接插入排序的比较次数与序列初态有关，为  $O(n)\\sim O(n2)$ 。`,images:[],hasFigure:!1},{id:`real-concept-2013-01`,year:2013,no:1,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#1`,sourceAnswer:`D`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`复杂度分析`,stem:`已知两个长度分别为 m 和 n 的升序链表，若将它们合并为一个长度为 m+n 的降序链表，则最坏情况下的时间复杂度是（）。`,options:[`O ( n )`,`O ( m × n )`,`O ( min ( m , n ))`,`O ( max ( m , n ))`],choiceFormat:`separate`,stemHtml:`<p>已知两个长度分别为 m 和 n 的升序链表，若将它们合并为一个长度为 m+n 的降序链表，则最坏情况下的时间复杂度是（）。</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">×</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord text"><span class="mord">min</span></span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal">n</span><span class="mclose">))</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord text"><span class="mord">max</span></span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal">n</span><span class="mclose">))</span></span></span></span></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`1. 已知两个长度分别为  $m$  和  $n$  的升序链表, 若将它们合并为一个长度为  $m + n$  的降序链表, 则最坏情况下的时间复杂度是
+
+A.  $O(n)$
+
+B.  $O(m \\times n)$
+
+C.  $O(\\min (m,n))$
+
+D.  $O(\\max (m,n))$`,images:[],hasFigure:!1},{id:`real-concept-2013-05`,year:2013,no:5,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#5`,sourceAnswer:`A`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`线索二叉树`,stem:`若 X\xA0是后序线索二叉树中的叶结点，且 X\xA0存在左兄弟结点 Y\xA0。则 X\xA0的右线索指的是（ ）。`,options:[`X\xA0的父结点`,`以 Y\xA0为根的子树的最左下结点`,`X\xA0的左兄弟结点 Y`,`以 Y\xA0为根的子树的最右下结点`],choiceFormat:`separate`,stemHtml:`<p>若 X\xA0是后序线索二叉树中的叶结点，且 X\xA0存在左兄弟结点 Y\xA0。则 X\xA0的右线索指的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">X\xA0的父结点</span>`,`<span class="choice-text">以 Y\xA0为根的子树的最左下结点</span>`,`<span class="choice-text">X\xA0的左兄弟结点 Y</span>`,`<span class="choice-text">以 Y\xA0为根的子树的最右下结点</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`5. 若 X 是后序线索二叉树中的叶结点, 且 X 存在左兄弟结点 Y, 则 X 的右线索指向的是
+
+A. X 的父结点
+
+B. 以  $\\mathrm{Y}$  为根的子树的最左下结点
+
+C. X 的左兄弟结点 Y
+
+D. 以  $\\mathrm{Y}$  为根的子树的最右下结点`,images:[],hasFigure:!1},{id:`real-concept-2013-06`,year:2013,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#6`,sourceAnswer:`C`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`二叉排序树`,stem:`在任意一棵非空二叉排序树 T1\xA0中，删除某结点 v\xA0之后形成二叉排序树 T2\xA0，再将 v\xA0插入 T2\xA0形成二叉排序树 T3\xA0。下列关于 T1\xA0与 T3\xA0的叙述中，正确的是（ ）。
+I. 若 v\xA0是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0不同
+II. 若 v\xA0是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0相同
+III. 若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0不同
+IV. 若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0相同`,options:[`仅 I、III`,`仅 I、IV`,`仅 II、III`,`仅 II、IV`],choiceFormat:`separate`,stemHtml:`<p>在任意一棵非空二叉排序树 T1\xA0中，删除某结点 v\xA0之后形成二叉排序树 T2\xA0，再将 v\xA0插入 T2\xA0形成二叉排序树 T3\xA0。下列关于 T1\xA0与 T3\xA0的叙述中，正确的是（ ）。</p>
+<p>I. 若 v\xA0是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0不同</p>
+<p>II. 若 v\xA0是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0相同</p>
+<p>III. 若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0不同</p>
+<p>IV. 若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0相同</p>`,optionsHtml:[`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 I、IV</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">仅 II、IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`6. 在任意一棵非空二叉排序树  $T_{1}$  中，删除某结点  $\\nu$  之后形成二叉排序树  $T_{2}$ ，再将  $\\nu$  插入  $T_{2}$  形成二叉排序树  $T_{3}$ 。下列关于  $T_{1}$  与  $T_{3}$  的叙述中，正确的是
+
+I. 若  $v$  是  $T_{1}$  的叶结点, 则  $T_{1}$  与  $T_{3}$  不同  
+II. 若  $v$  是  $T_{1}$  的叶结点, 则  $T_{1}$  与  $T_{3}$  相同  
+III. 若  $\\nu$  不是  $T_{1}$  的叶结点, 则  $T_{1}$  与  $T_{3}$  不同  
+IV. 若  $v$  不是  $T_{1}$  的叶结点, 则  $T_{1}$  与  $T_{3}$  相同
+
+A. 仅 I、III
+
+B. 仅 I、IV
+
+C. 仅 II、III
+
+D. 仅 II、IV`,images:[],hasFigure:!1},{id:`real-concept-2014-05`,year:2014,no:5,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#5`,sourceAnswer:`C`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`二叉树和森林的转换`,stem:`将森林 F 转换为对应的二叉树 T，F 中叶子的个数等于（ ）。`,options:[`T 中叶结点的个数`,`T 中度为 1 的结点个数`,`T 中左孩子指针为空的结点个数`,`T 中右孩子指针为空的结点个数`],choiceFormat:`separate`,stemHtml:`<p>将森林 F 转换为对应的二叉树 T，F 中叶子的个数等于（ ）。</p>`,optionsHtml:[`<span class="choice-text">T 中叶结点的个数</span>`,`<span class="choice-text">T 中度为 1 的结点个数</span>`,`<span class="choice-text">T 中左孩子指针为空的结点个数</span>`,`<span class="choice-text">T 中右孩子指针为空的结点个数</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`5. 将森林 F 转换为对应的二叉树 T, F 中叶结点的个数等于____。
+
+A. T中叶结点的个数
+
+B. T 中度为 1 的结点个数
+
+C. T中左孩子指针为空的结点个数
+
+D. T 中右孩子指针为空的结点个数`,images:[],hasFigure:!1},{id:`real-concept-2014-06`,year:2014,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#6`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`前缀编码`,stem:`5 个字符有如下 4 种编码方案，不是前缀编码的是（ ）。`,options:[`01, 0000, 0001, 001, 1`,`011, 000, 001, 010, 1`,`000, 001, 010, 011, 100`,`0, 100, 110, 1110, 1100`],choiceFormat:`separate`,stemHtml:`<p>5 个字符有如下 4 种编码方案，不是前缀编码的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">01, 0000, 0001, 001, 1</span>`,`<span class="choice-text">011, 000, 001, 010, 1</span>`,`<span class="choice-text">000, 001, 010, 011, 100</span>`,`<span class="choice-text">0, 100, 110, 1110, 1100</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`6. 5 个字符有如下 4 种编码方案, 不是前缀编码的是
+
+A. 01,0000,0001,001,1
+
+B. 011,000,001,010,1
+
+C. 000,001,010,011,100
+
+D. 0,100,110,1110,1100`,images:[],hasFigure:!1},{id:`real-concept-2014-08`,year:2014,no:8,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#8`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`散列表`,stem:`用哈希（散列）方法处理冲突（碰撞）时可能出现堆积（聚集）现象，下列选项中，会受堆积现象直接影响的是（）`,options:[`存储效率`,`散列函数`,`装填（装载）因子`,`平均查找长度`],choiceFormat:`separate`,stemHtml:`<p>用哈希（散列）方法处理冲突（碰撞）时可能出现堆积（聚集）现象，下列选项中，会受堆积现象直接影响的是（）</p>`,optionsHtml:[`<span class="choice-text">存储效率</span>`,`<span class="choice-text">散列函数</span>`,`<span class="choice-text">装填（装载）因子</span>`,`<span class="choice-text">平均查找长度</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`8. 用哈希（散列）方法处理冲突（碰撞）时可能出现堆积（聚集）现象，下列选项中，会受堆积现象直接影响的是________。
+
+A. 存储效率
+
+B. 散列函数
+
+C. 装填(装载)因子
+
+D. 平均查找长度`,images:[],hasFigure:!1},{id:`real-concept-2015-01`,year:2015,no:1,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#1`,sourceAnswer:`A`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`栈`,stem:`已知程序如下：
+int S ( int n ) { return ( n <= 0 ) ? 0 : S ( n - 1 ) + n ; } void main () { cout << S ( 1 ); }
+程序运行时使用栈来保存调用过程的信息，自栈底到栈顶保存的信息依次对应的是（ ）。`,options:[`main() → S(1) → S(0)`,`S(0) → S(1) → main()`,`main() → S(0) → S(1)`,`S(1) → S(0) → main()`],choiceFormat:`separate`,stemHtml:`<p>已知程序如下：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="display:flex"><span><span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">S</span><span style="color:#000;font-weight:700">(</span><span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:700">)</span> <span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">return</span> <span style="color:#000;font-weight:700">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:700">&lt;=</span> <span style="color:#0000cf;font-weight:700">0</span><span style="color:#000;font-weight:700">)</span> <span style="color:#ce5c00;font-weight:700">?</span> <span style="color:#0000cf;font-weight:700">0</span> <span style="color:#ce5c00;font-weight:700">:</span> <span style="color:#000">S</span><span style="color:#000;font-weight:700">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:700">-</span> <span style="color:#0000cf;font-weight:700">1</span><span style="color:#000;font-weight:700">)</span> <span style="color:#ce5c00;font-weight:700">+</span> <span style="color:#000">n</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span><span style="display:flex"><span>
+</span></span><span style="display:flex"><span><span style="color:#204a87;font-weight:700">void</span> <span style="color:#000">main</span><span style="color:#000;font-weight:700">()</span> <span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:700">&lt;&lt;</span> <span style="color:#000">S</span><span style="color:#000;font-weight:700">(</span><span style="color:#0000cf;font-weight:700">1</span><span style="color:#000;font-weight:700">);</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span></code></pre></div>
+<p>程序运行时使用栈来保存调用过程的信息，自栈底到栈顶保存的信息依次对应的是（ ）。</p>`,optionsHtml:[`<span class="choice-text"><code>main()</code> → <code>S(1)</code> → <code>S(0)</code></span>`,`<span class="choice-text"><code>S(0)</code> → <code>S(1)</code> → <code>main()</code></span>`,`<span class="choice-text"><code>main()</code> → <code>S(0)</code> → <code>S(1)</code></span>`,`<span class="choice-text"><code>S(1)</code> → <code>S(0)</code> → <code>main()</code></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`1. 已知程序如下：
+
+\`\`\`txt
+int S(int n)  
+{ return  $(n <= 0)?0:s(n - 1) + n;$ }  
+void main()  
+{ cout << S(1);}
+\`\`\`
+
+程序运行时使用栈来保存调用过程的信息，自栈底到栈顶保存的信息依次对应的是________。
+
+A.  $\\operatorname{main}() \\rightarrow \\operatorname{S}(1) \\rightarrow \\operatorname{S}(0)$
+
+B.  $\\mathrm{S}(0)\\rightarrow \\mathrm{S}(1)\\rightarrow \\mathrm{main}()$
+
+B. main()  $\\rightarrow$  S(0)  $\\rightarrow$  S(1)
+
+D.  $\\mathrm{S}(1) \\rightarrow \\mathrm{S}(0) \\rightarrow \\mathrm{main}()$`,images:[],hasFigure:!1},{id:`real-concept-2015-04`,year:2015,no:4,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#4`,sourceAnswer:`D`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`平衡二叉树`,stem:`现有一棵无重复关键字的平衡二叉树（AVL 树），对其进行中序遍历可得到一个降序序列。下列关于该平衡二叉树的叙述中，正确的是（ ）。`,options:[`根结点的度一定为 2`,`树中最小元素一定是叶结点`,`最后插入的元素一定是叶结点`,`树中最大元素一定是无左子树`],choiceFormat:`separate`,stemHtml:`<p>现有一棵无重复关键字的平衡二叉树（AVL 树），对其进行中序遍历可得到一个降序序列。下列关于该平衡二叉树的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">根结点的度一定为 2</span>`,`<span class="choice-text">树中最小元素一定是叶结点</span>`,`<span class="choice-text">最后插入的元素一定是叶结点</span>`,`<span class="choice-text">树中最大元素一定是无左子树</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`4. 现有一棵无重复关键字的平衡二叉树（AVL 树），对其进行中序遍历可得到一个降序序列。下列关于该平衡二叉树的叙述中，正确的是________。
+
+A. 根结点的度一定为 2
+
+B. 树中最小元素一定是叶结点
+
+C. 最后插入的元素一定是叶结点
+
+D. 树中最大元素一定是无左子树`,images:[],hasFigure:!1},{id:`real-concept-2015-09`,year:2015,no:9,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#9`,sourceAnswer:`C`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`排序算法,基数排序`,stem:`下列排序算法中，元素的移动次数与关键字的初始排列次序无关的是（）。`,options:[`直接插入排序`,`起泡排序`,`基数排序`,`快速排序`],choiceFormat:`separate`,stemHtml:`<p>下列排序算法中，元素的移动次数与关键字的初始排列次序无关的是（）。</p>`,optionsHtml:[`<span class="choice-text">直接插入排序</span>`,`<span class="choice-text">起泡排序</span>`,`<span class="choice-text">基数排序</span>`,`<span class="choice-text">快速排序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`9. 下列排序算法中, 元素的移动次数与关键字的初始排列次序无关的是
+
+A. 直接插入排序
+
+B. 起泡排序
+
+C. 基数排序
+
+D. 快速排序
+
+10．已知小根堆为8,15,10,21,34,16,12，删除关键字8之后需重建堆，在此过程中，关键字之间的比较次数是
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4`,images:[],hasFigure:!1},{id:`real-concept-2015-11`,year:2015,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#11`,sourceAnswer:`A`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`排序算法,希尔排序`,stem:`希尔排序的组内排序采用的是（）。`,options:[`直接插入排序`,`折半插入排序`,`快速排序`,`归并排序`],choiceFormat:`separate`,stemHtml:`<p>希尔排序的组内排序采用的是（）。</p>`,optionsHtml:[`<span class="choice-text">直接插入排序</span>`,`<span class="choice-text">折半插入排序</span>`,`<span class="choice-text">快速排序</span>`,`<span class="choice-text">归并排序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`11. 希尔排序的组内排序采用的是
+
+A. 直接插入排序
+
+B. 折半插入排序
+
+C. 快速排序
+
+D. 归并排序`,images:[],hasFigure:!1},{id:`real-concept-2016-07`,year:2016,no:7,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#7`,sourceAnswer:`B`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`复杂度分析,邻接表,拓扑排序`,stem:`若将 n 个顶点 e 条弧的有向图采用邻接表存储，则拓扑排序算法的时间复杂度是（）`,options:[`O ( n )`,`O ( n + e )`,`O ( n 2 )`,`O ( n ∗ e )`],choiceFormat:`separate`,stemHtml:`<p>若将 n 个顶点 e 条弧的有向图采用邻接表存储，则拓扑排序算法的时间复杂度是（）</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord">2</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`7. 若将n个顶点e条弧的有向图采用邻接表存储，则拓扑排序算法的时间复杂度是
+
+A.  $\\mathrm{O}\\left( \\mathrm{n}\\right)$
+
+B.  $O(n + e)$
+
+C.  $\\mathrm{O}\\left( {\\mathrm{n}}^{2}\\right)$
+
+D.  $O(n \\times e)$`,images:[],hasFigure:!1},{id:`real-concept-2016-10`,year:2016,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#10`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`B树,B+树`,stem:`B+ 树不同于 B 树的特点之一是（）`,options:[`能支持顺序查找`,`结点中含有关键字`,`根结点至少有两个分支`,`所有叶结点都在同一层上`],choiceFormat:`separate`,stemHtml:`<p>B+ 树不同于 B 树的特点之一是（）</p>`,optionsHtml:[`<span class="choice-text">能支持顺序查找</span>`,`<span class="choice-text">结点中含有关键字</span>`,`<span class="choice-text">根结点至少有两个分支</span>`,`<span class="choice-text">所有叶结点都在同一层上</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`10.  $\\mathbf{B}^{+}$ 树不同于B树的特点之一是
+
+A. 能支持顺序查找  
+B. 结点中含有关键字  
+C. 根结点至少有两个分支  
+D. 所有叶结点都在同一层上`,images:[],hasFigure:!1},{id:`real-concept-2016-11`,year:2016,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#11`,sourceAnswer:`D`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`外部排序`,stem:`对 10TB 的数据文件进行排序，应使用的方法是（）`,options:[`希尔排序`,`堆排序`,`快速排序`,`归并排序`],choiceFormat:`separate`,stemHtml:`<p>对 10TB 的数据文件进行排序，应使用的方法是（）</p>`,optionsHtml:[`<span class="choice-text">希尔排序</span>`,`<span class="choice-text">堆排序</span>`,`<span class="choice-text">快速排序</span>`,`<span class="choice-text">归并排序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`11. 对10 TB的数据文件进行排序，应使用的方法是
+
+A. 希尔排序
+
+B. 堆排序
+
+C. 快速排序
+
+D. 归并排序`,images:[],hasFigure:!1},{id:`real-concept-2017-02`,year:2017,no:2,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#2`,sourceAnswer:`C`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`栈,入栈出栈序列`,stem:`下列关于栈的叙述中，错误的是（ ）。
+I. 采用非递归方式重写递归程序时必须使用栈
+II. 函数调用时，系统要用栈保存必要信息
+III. 只要确定了入栈次序，即可确定出栈次序
+IV. 栈是一种受限的线性表，允许在其两端进行操作`,options:[`仅 I`,`仅 I、II、III`,`仅 I、III、IV`,`仅 II、III、IV`],choiceFormat:`separate`,stemHtml:`<p>下列关于栈的叙述中，错误的是（ ）。</p>
+<p>I. 采用非递归方式重写递归程序时必须使用栈</p>
+<p>II. 函数调用时，系统要用栈保存必要信息</p>
+<p>III. 只要确定了入栈次序，即可确定出栈次序</p>
+<p>IV. 栈是一种受限的线性表，允许在其两端进行操作</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 I、II、III</span>`,`<span class="choice-text">仅 I、III、IV</span>`,`<span class="choice-text">仅 II、III、IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`2. 下列关于栈的叙述中，错误的是________。
+
+I. 采用非递归方式重写递归程序时必须使用栈  
+II. 函数调用时，系统要用栈保存必要的信息  
+III. 只要确定了入栈次序，即可确定出栈次序
+
+IV. 栈是一种受限的线性表，允许在其两端进行操作
+
+A. 仅 I
+
+B. 仅 I、II、III
+
+C. 仅 I、III、IV
+
+D. 仅 II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2017-03`,year:2017,no:3,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#3`,sourceAnswer:`A`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`特殊矩阵`,stem:`适用于压缩存储稀疏矩阵的两种存储结构是（）`,options:[`三元组表和十字链表`,`三元组表和邻接矩阵`,`十字链表和二叉链表`,`邻接矩阵和十字链表`],choiceFormat:`separate`,stemHtml:`<p>适用于压缩存储稀疏矩阵的两种存储结构是（）</p>`,optionsHtml:[`<span class="choice-text">三元组表和十字链表</span>`,`<span class="choice-text">三元组表和邻接矩阵</span>`,`<span class="choice-text">十字链表和二叉链表</span>`,`<span class="choice-text">邻接矩阵和十字链表</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`3. 适用于压缩存储稀疏矩阵的两种存储结构是
+
+A. 三元组表和十字链表
+
+B. 三元组表和邻接矩阵
+
+C. 十字链表和二叉链表
+
+D. 邻接矩阵和十字链表`,images:[],hasFigure:!1},{id:`real-concept-2017-04`,year:2017,no:4,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#4`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`二叉树遍历`,stem:`要使一颗非空二叉树的先序序列与中序序列相同，其所有非叶节点须满足的条件是（）`,options:[`只有左子树`,`只有右子树`,`结点的度均为 1`,`结点的度均为 2`],choiceFormat:`separate`,stemHtml:`<p>要使一颗非空二叉树的先序序列与中序序列相同，其所有非叶节点须满足的条件是（）</p>`,optionsHtml:[`<span class="choice-text">只有左子树</span>`,`<span class="choice-text">只有右子树</span>`,`<span class="choice-text">结点的度均为 1</span>`,`<span class="choice-text">结点的度均为 2</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`4. 要使一棵非空二叉树的先序序列与中序序列相同，其所有非叶结点须满足的条件是
+
+A. 只有左子树
+
+B. 只有右子树
+
+C. 结点的度均为 1
+
+D. 结点的度均为 2`,images:[],hasFigure:!1},{id:`real-concept-2017-09`,year:2017,no:9,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#9`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`B+树`,stem:`下列应用中，适合使用 B+ 树的是（）`,options:[`编译器中的词法分析`,`关系数据库系统中的索引`,`网络中的路由表快速查找`,`操作系统的磁盘空闲块管理`],choiceFormat:`separate`,stemHtml:`<p>下列应用中，适合使用 B+ 树的是（）</p>`,optionsHtml:[`<span class="choice-text">编译器中的词法分析</span>`,`<span class="choice-text">关系数据库系统中的索引</span>`,`<span class="choice-text">网络中的路由表快速查找</span>`,`<span class="choice-text">操作系统的磁盘空闲块管理</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`9. 下列应用中, 适合使用  $\\mathrm{B}+$  树的是
+
+A. 编译器中的词法分析
+
+B. 关系数据库系统中的索引
+
+C. 网络中的路由表快速查找
+
+D. 操作系统的磁盘空闲块管理`,images:[],hasFigure:!1},{id:`real-concept-2017-10`,year:2017,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#10`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`排序算法,归并排序,插入排序`,stem:`在内部排序时，若选择了归并排序而没有选择插入排序，则可能的理由是（）
+归并排序的程序代码更短 归并排序的占用空间更少 归并排序的运行效率更高`,options:[`仅 2`,`仅 3`,`仅 1、2`,`仅 1、3`],choiceFormat:`separate`,stemHtml:`<p>在内部排序时，若选择了归并排序而没有选择插入排序，则可能的理由是（）</p>
+<ol><li><p>归并排序的程序代码更短</p></li><li><p>归并排序的占用空间更少</p></li><li><p>归并排序的运行效率更高</p></li></ol>`,optionsHtml:[`<span class="choice-text">仅 2</span>`,`<span class="choice-text">仅 3</span>`,`<span class="choice-text">仅 1、2</span>`,`<span class="choice-text">仅 1、3</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`10. 在内部排序时，若选择了归并排序而没有选择插入排序，则可能的理由是________。
+
+I．归并排序的程序代码更短
+
+II. 归并排序的占用空间更少
+
+III. 归并排序的运行效率更高
+
+A. 仅 II
+
+B. 仅III
+
+C. 仅 I、II
+
+D. 仅 I、III`,images:[],hasFigure:!1},{id:`real-concept-2017-11`,year:2017,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#11`,sourceAnswer:`D`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`下列排序方法中，若将顺序存储更换为链式存储，则算法的时间效率会降低的是（）
+插入排序\xA0 2.选择排序\xA0 3.起泡排序\xA0 4.希尔排序\xA0 5.堆排序`,options:[`仅 1、2`,`仅 2、3`,`仅 3、4`,`仅 4、5`],choiceFormat:`separate`,stemHtml:`<p>下列排序方法中，若将顺序存储更换为链式存储，则算法的时间效率会降低的是（）</p>
+<ol><li>插入排序\xA0 2.选择排序\xA0 3.起泡排序\xA0 4.希尔排序\xA0 5.堆排序</li></ol>`,optionsHtml:[`<span class="choice-text">仅 1、2</span>`,`<span class="choice-text">仅 2、3</span>`,`<span class="choice-text">仅 3、4</span>`,`<span class="choice-text">仅 4、5</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`11. 下列排序方法中, 若将顺序存储更换为链式存储, 则算法的时间效率会降低的是
+
+I．插入排序II．选择排序III．起泡排序IV．希尔排序V．堆排序
+
+A. 仅 I、II
+
+B. 仅 II、III
+
+C. 仅III、IV
+
+D. 仅IV、V`,images:[],hasFigure:!1},{id:`real-concept-2018-04`,year:2018,no:4,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#4`,sourceAnswer:`A`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`满二叉树`,stem:`设一棵非空完全二叉树 T 的所有叶结点均位于同一层，且每个非叶结点都有 2\xA0个子结点。若\xA0T 有\xA0k 个叶结点，则 T 的结点总数是（ ）。`,options:[`2 k − 1`,`2 k`,`k 2`,`2 k − 1`],choiceFormat:`separate`,stemHtml:`<p>设一棵非空完全二叉树 T 的所有叶结点均位于同一层，且每个非叶结点都有 2\xA0个子结点。若\xA0T 有\xA0k 个叶结点，则 T 的结点总数是（ ）。</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.7778em;vertical-align:-.0833em"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:.03148em">k</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">1</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:.03148em">k</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8141em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.03148em">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:.8141em"><span style="top:-3.063em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.9324em;vertical-align:-.0833em"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:.8491em"><span style="top:-3.063em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:.03148em">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">1</span></span></span></span></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`4. 设一棵非空完全二叉树 T 的所有叶结点均位于同一层，且每个非叶结点都有 2 个子结点。若 T 有 k 个叶结点，则 T 的结点总数是 ________。
+
+A.  $2\\mathrm{k} - 1$
+
+B.  $2\\mathrm{k}$
+
+C.  \${\\mathrm{k}}^{2}$
+
+D.  $2^{\\mathrm{k}} - 1$`,images:[],hasFigure:!1},{id:`real-concept-2019-02`,year:2019,no:2,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#2`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`树和二叉树的转换`,stem:`若将一棵树 T 转化为对应的二又树 BT，则下列对 BT 的遍历中，其遍历序列与 T 的后根遍历序列相同的是（ ）。`,options:[`先序遍历`,`中序遍历`,`后序遍历`,`按层遍历`],choiceFormat:`separate`,stemHtml:`<p>若将一棵树 T 转化为对应的二又树 BT，则下列对 BT 的遍历中，其遍历序列与 T 的后根遍历序列相同的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">先序遍历</span>`,`<span class="choice-text">中序遍历</span>`,`<span class="choice-text">后序遍历</span>`,`<span class="choice-text">按层遍历</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`2. 若将一棵树 T 转化为对应的二叉树 BT，则下列对 BT 的遍历中，其遍历序列与 T 的后根遍历序列相同的是________。
+
+A. 先序遍历
+
+B. 中序遍历
+
+C. 后序遍历
+
+D. 按层遍历`,images:[],hasFigure:!1},{id:`real-concept-2019-04`,year:2019,no:4,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#4`,sourceAnswer:`A`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`平衡二叉树`,stem:`在任意一棵非空平衡二叉树（AVL 树）T1\xA0中，删除某结点 v\xA0之后形成平衡二叉树 T2\xA0，再将 v\xA0插入 T2\xA0形成平衡二叉树 T3\xA0。下列关于 T1\xA0与 T3\xA0的叙述中，正确的是（ ）。
+I.若 v\xA0是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0可能不相同
+II.若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0一定不相同
+III.若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0一定相同`,options:[`仅 I`,`仅 II`,`仅 I、II`,`仅 I、III`],choiceFormat:`separate`,stemHtml:`<p>在任意一棵非空平衡二叉树（AVL 树）T1\xA0中，删除某结点 v\xA0之后形成平衡二叉树 T2\xA0，再将 v\xA0插入 T2\xA0形成平衡二叉树 T3\xA0。下列关于 T1\xA0与 T3\xA0的叙述中，正确的是（ ）。</p>
+<p>I.若 v\xA0是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0可能不相同</p>
+<p>II.若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0一定不相同</p>
+<p>III.若 v\xA0不是 T1\xA0的叶结点，则 T1\xA0与 T3\xA0一定相同</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`4. 在任意一棵非空平衡二叉树（AVL 树） $\\mathrm{T}_{1}$ 中，删除某结点  $\\mathbf{v}$  之后形成平衡二叉树  $\\mathrm{T}_{2}$ ，再将  $\\mathbf{v}$  插入  $\\mathrm{T}_{2}$  形成平衡二叉树  $\\mathrm{T}_{3}$ 。下列关于  $\\mathrm{T}_{1}$ 与  $\\mathrm{T}_{3}$ 的叙述中，正确的是________。
+
+I. 若  $\\mathbf{v}$  是  $\\mathrm{T}_{1}$  的叶结点，则  $\\mathrm{T}_{1}$  与  $\\mathrm{T}_{3}$  可能不相同  
+II. 若  $\\mathrm{v}$  不是  $\\mathrm{T}_{1}$  的叶结点, 则  $\\mathrm{T}_{1}$  与  $\\mathrm{T}_{3}$  一定不相同  
+III. 若  $\\mathbf{v}$  不是  $\\mathrm{T}_{1}$  的叶结点，则  $\\mathrm{T}_{1}$  与  $\\mathrm{T}_{3}$  一定相同
+
+A. 仅 I
+
+B. 仅 II
+
+C. 仅 I、II
+
+D. 仅 I、III`,images:[],hasFigure:!1},{id:`real-concept-2019-07`,year:2019,no:7,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#7`,sourceAnswer:`D`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`选择一个排序算法时，除算法的时空效率外，下列因素中，还需要考虑的是（ ）。
+Ⅰ.数据的规模\xA0\xA0\xA0\xA0 Ⅱ.数据的存储方式\xA0 Ⅲ.算法的稳定性\xA0\xA0\xA0\xA0Ⅳ.数据的初始状态`,options:[`仅Ⅲ`,`仅Ⅰ、Ⅱ`,`仅Ⅱ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>选择一个排序算法时，除算法的时空效率外，下列因素中，还需要考虑的是（ ）。</p>
+<p>Ⅰ.数据的规模\xA0\xA0\xA0\xA0 Ⅱ.数据的存储方式\xA0 Ⅲ.算法的稳定性\xA0\xA0\xA0\xA0Ⅳ.数据的初始状态</p>`,optionsHtml:[`<span class="choice-text">仅Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`7. 选择一个排序算法时，除算法的时空效率，下列因素中，还需要考虑的是
+
+I. 数据的规模
+
+II. 数据的存储方式
+
+III. 算法的稳定性
+
+IV. 数据的初始状态
+
+A. 仅 III
+
+B. 仅 I、II
+
+C. 仅 II、III、IV
+
+D. I、II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2020-06`,year:2020,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#6`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`图的遍历`,stem:`修改递归方式实现的图的深度优先搜索（DFS）算法，将输出（访问）定点信息的语句移到退出递归前（即执行输出语句后立刻退出递归）。采用修改后的算法遍历有向无环图 G，若输出结果中包含 G 中的全部顶点，则输出的顶点序列是 G 的（ ）。`,options:[`拓扑有序序列`,`逆拓扑有序序列`,`广度优先搜索序列`,`深度优先搜索序列`],choiceFormat:`separate`,stemHtml:`<p>修改递归方式实现的图的深度优先搜索（DFS）算法，将输出（访问）定点信息的语句移到退出递归前（即执行输出语句后立刻退出递归）。采用修改后的算法遍历有向无环图 G，若输出结果中包含 G 中的全部顶点，则输出的顶点序列是 G 的（ ）。</p>`,optionsHtml:[`<span class="choice-text">拓扑有序序列</span>`,`<span class="choice-text">逆拓扑有序序列</span>`,`<span class="choice-text">广度优先搜索序列</span>`,`<span class="choice-text">深度优先搜索序列</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`6. 修改递归方式实现的图的深度优先搜索（DFS）算法，将输出（访问）定点信息的语句移到退出递归前（即执行输出语句后立刻退出递归）。采用修改后的算法遍历有向无环图 G，若输出结果中包含 G 中的全部顶点，则输出的顶点序列是 G 的：
+
+A、拓扑有序序列
+
+B、逆拓扑有序序列
+
+C、广度优先搜索序列
+
+D、深度优先搜索序列`,images:[],hasFigure:!1},{id:`real-concept-2020-08`,year:2020,no:8,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#8`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`关键路径`,stem:`若使 AOE 网估算工程进度则下列叙述中正确的是（ ）。`,options:[`关键路径是从原点到汇点边数最多的一条路径`,`关键路径是从原点到汇点路径长度最长的路径`,`增加任一关键活动的时间不会延长工程的工期`,`缩短任一关键活动的时间将会缩短工程的工期`],choiceFormat:`separate`,stemHtml:`<p>若使 AOE 网估算工程进度则下列叙述中正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">关键路径是从原点到汇点边数最多的一条路径</span>`,`<span class="choice-text">关键路径是从原点到汇点路径长度最长的路径</span>`,`<span class="choice-text">增加任一关键活动的时间不会延长工程的工期</span>`,`<span class="choice-text">缩短任一关键活动的时间将会缩短工程的工期</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`8. 若使用AOE网估算工程进度，则下列叙述中正确的是：
+
+A、关键路径是从原点到汇点边数最多的一条路径  
+B、关键路径是从原点到汇点路径长度最长的路径  
+C、增加任一关键活动的时间不会延长工程的工期  
+D、缩短任一关键活动的时间将会缩短工程的工期`,images:[],hasFigure:!1},{id:`real-concept-2020-09`,year:2020,no:9,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#9`,sourceAnswer:`C`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`堆的概念`,stem:`下列关于大根堆（至少含 2 个元素）的叙述中正确的是（ ）。
+I. 可以将堆看成一颗完全二叉树；II. 可采用顺序存储方式保存堆；
+III. 可以将堆看成一棵二叉排序树；IV. 堆中的次大值一定在根的下一层。`,options:[`仅 I，II`,`仅 II，III`,`仅 I，II，IV`,`仅 I，III，IV`],choiceFormat:`separate`,stemHtml:`<p>下列关于大根堆（至少含 2 个元素）的叙述中正确的是（ ）。</p>
+<p>I. 可以将堆看成一颗完全二叉树；II. 可采用顺序存储方式保存堆；</p>
+<p>III. 可以将堆看成一棵二叉排序树；IV. 堆中的次大值一定在根的下一层。</p>`,optionsHtml:[`<span class="choice-text">仅 I，II</span>`,`<span class="choice-text">仅 II，III</span>`,`<span class="choice-text">仅 I，II，IV</span>`,`<span class="choice-text">仅 I，III，IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`9. 下列关于大根堆（至少含 2 个元素）的叙述中正确的是：`,images:[],hasFigure:!1},{id:`real-concept-2020-11`,year:2020,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#11`,sourceAnswer:`A`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`排序算法,插入排序`,stem:`对大部分元素已有序的数组进行排序时，直接插入排序比简单选择排序效率更高，其原因是（ ）。
+I. 直接插入排序过程中元素之间的比较次数更少
+II. 直接插入排序过程中所需要的辅助空间更少
+III. 直接插入排序过程中元素的移动次数更少`,options:[`仅 I`,`仅 III`,`仅 I，II`,`仅 I，II 和 III`],choiceFormat:`separate`,stemHtml:`<p>对大部分元素已有序的数组进行排序时，直接插入排序比简单选择排序效率更高，其原因是（ ）。</p>
+<p>I. 直接插入排序过程中元素之间的比较次数更少</p>
+<p>II. 直接插入排序过程中所需要的辅助空间更少</p>
+<p>III. 直接插入排序过程中元素的移动次数更少</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 I，II</span>`,`<span class="choice-text">仅 I，II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`11. 对大部分元素已有序的数组进行排序时，直接插入排序比简单选择排序效率更高，其原因是：
+
+1、直接插入排序过程中元素之间的比较次数更少  
+II、直接插入排序过程中所需要的辅助空间更少  
+III、直接插入排序过程中元素的移动次数更少
+
+A、I
+
+B、III
+
+C、Ⅰ,Ⅱ
+
+D、I,II,III`,images:[],hasFigure:!1},{id:`real-concept-2022-02`,year:2022,no:2,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#2`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`入栈出栈序列`,stem:`给定有限符号集 S, in 和 out 均为 S 中所有元素的任意排列。对于初始为空的栈 ST, 下列叙述中，正确的是（ ）。`,options:[`若 in 是 ST 的入栈序列，则不能判断 out 是否为其可能的出栈序列`,`若 out 是 ST 的出栈序列，则不能判断 in 是否为其可能的入栈序列`,`若 in 是 ST 的入栈序列，out 是对应 in 的出栈序列，则 in 与 out 一定不同`,`若 in 是 ST 的入栈序列，out 是对应 in 的出栈序列，则 in 与 out 可能互为倒序`],choiceFormat:`separate`,stemHtml:`<p>给定有限符号集 S, in 和 out 均为 S 中所有元素的任意排列。对于初始为空的栈 ST, 下列叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">若 in 是 ST 的入栈序列，则不能判断 out 是否为其可能的出栈序列</span>`,`<span class="choice-text">若 out 是 ST 的出栈序列，则不能判断 in 是否为其可能的入栈序列</span>`,`<span class="choice-text">若 in 是 ST 的入栈序列，out 是对应 in 的出栈序列，则 in 与 out 一定不同</span>`,`<span class="choice-text">若 in 是 ST 的入栈序列，out 是对应 in 的出栈序列，则 in 与 out 可能互为倒序</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-03`,year:2022,no:3,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#3`,sourceAnswer:`B`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`二叉树遍历`,stem:`若结点 p 与 q 在二叉树 T 的中序遍历序列中相邻，且 p 在 q 之前，则下列 p 与 q 的关系中，不可能的是（ ）。
+I. q 是 p 的双亲
+II. q 是 p 的右孩子
+III. q 是 p 的右兄弟
+IV. q 是 p 的双亲的双亲`,options:[`仅 I`,`仅 III`,`仅 II、III`,`仅 II、IV`],choiceFormat:`separate`,stemHtml:`<p>若结点 p 与 q 在二叉树 T 的中序遍历序列中相邻，且 p 在 q 之前，则下列 p 与 q 的关系中，不可能的是（ ）。</p>
+<p>I. q 是 p 的双亲</p>
+<p>II. q 是 p 的右孩子</p>
+<p>III. q 是 p 的右兄弟</p>
+<p>IV. q 是 p 的双亲的双亲</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">仅 II、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-05`,year:2022,no:5,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#5`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`哈夫曼树`,stem:`对任意给定的含 n (n > 2) 个字符的有限集 S, 用二叉树表示 S 的哈夫曼编码集和定长编码集，分别得到二叉树 T1 和 T2。下列叙述中，正确的是 ( )。`,options:[`T1 与 T2 的结点数相同`,`T1 的高度大于 T2 的高度`,`出现频次不同的字符在 T1 中处于不同的层`,`出现频次不同的字符在 T2 中处于相同的层`],choiceFormat:`separate`,stemHtml:`<p>对任意给定的含 n (n &gt; 2) 个字符的有限集 S, 用二叉树表示 S 的哈夫曼编码集和定长编码集，分别得到二叉树 T1 和 T2。下列叙述中，正确的是 ( )。</p>`,optionsHtml:[`<span class="choice-text">T1 与 T2 的结点数相同</span>`,`<span class="choice-text">T1 的高度大于 T2 的高度</span>`,`<span class="choice-text">出现频次不同的字符在 T1 中处于不同的层</span>`,`<span class="choice-text">出现频次不同的字符在 T2 中处于相同的层</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-06`,year:2022,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#6`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`图的概念`,stem:`对于无向图 G=(V,E)，下列选项中，正确的是（\xA0 ）。`,options:[`当 |V| ＞|E| 时，G 一定是连通的`,`当 |V| < |E| 时，G 一定是连通的`,`当 |V| = |E|-1 时，G 一定是不连通的`,`当 |V| > |E|+1 时，G 一定是不连通的`],choiceFormat:`separate`,stemHtml:`<p>对于无向图 G=(V,E)，下列选项中，正确的是（\xA0 ）。</p>`,optionsHtml:[`<span class="choice-text">当 |V| ＞|E| 时，G 一定是连通的</span>`,`<span class="choice-text">当 |V| &lt; |E| 时，G 一定是连通的</span>`,`<span class="choice-text">当 |V| = |E|-1 时，G 一定是不连通的</span>`,`<span class="choice-text">当 |V| &gt; |E|+1 时，G 一定是不连通的</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-09`,year:2022,no:9,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#9`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`散列表`,stem:`下列因素中，影响散列（哈希）方法平均查找长度的是（ ）。
+I. 装填因子
+II. 散列函数
+III. 冲突解决策略`,options:[`仅 I、II`,`仅 I、III`,`仅 II、III`,`I、 II、 III`],choiceFormat:`separate`,stemHtml:`<p>下列因素中，影响散列（哈希）方法平均查找长度的是（ ）。</p>
+<p>I. 装填因子</p>
+<p>II. 散列函数</p>
+<p>III. 冲突解决策略</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">I、 II、 III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-10`,year:2022,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#10`,sourceAnswer:`A`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`归并排序`,stem:`使用二路归并排序对含 n 个元素的数组 M 进行排序时，二路归并操作的功能是（ ）。`,options:[`将两个有序表合并为一个新的有序表`,`将 M 划分为两部分，两部分的元素个数大致相等`,`将 M 划分为 n 个部分，每个部分中仅含有一个元素`,`将 M 划分为两部分，一部分元素的值均小于另一部分元素的值`],choiceFormat:`separate`,stemHtml:`<p>使用二路归并排序对含 n 个元素的数组 M 进行排序时，二路归并操作的功能是（ ）。</p>`,optionsHtml:[`<span class="choice-text">将两个有序表合并为一个新的有序表</span>`,`<span class="choice-text">将 M 划分为两部分，两部分的元素个数大致相等</span>`,`<span class="choice-text">将 M 划分为 n 个部分，每个部分中仅含有一个元素</span>`,`<span class="choice-text">将 M 划分为两部分，一部分元素的值均小于另一部分元素的值</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-11`,year:2022,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#11`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`对数据进行排序时，若采用直接插入排序而不采用快速排序，则可能的原因是（\xA0 ）。
+I. 大部分元素已有序
+II. 待排序元素数量很少
+III. 要求空间复杂度为 O(1)
+IV. 要求排序算法是稳定的`,options:[`仅 I、II`,`仅 III、IV`,`仅 I、II、IV`,`I、 II、 III、 IV`],choiceFormat:`separate`,stemHtml:`<p>对数据进行排序时，若采用直接插入排序而不采用快速排序，则可能的原因是（\xA0 ）。</p>
+<p>I. 大部分元素已有序</p>
+<p>II. 待排序元素数量很少</p>
+<p>III. 要求空间复杂度为 O(1)</p>
+<p>IV. 要求排序算法是稳定的</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 III、IV</span>`,`<span class="choice-text">仅 I、II、IV</span>`,`<span class="choice-text">I、 II、 III、 IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-01`,year:2023,no:1,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#1`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`顺序表`,stem:`下列对顺序存储的有序表（长度为 n）实现给定操作的算法中平均时间复杂度为 O(1) 的是（ ）。`,options:[`查找包含指定值元素的算法`,`插入包含指定值元素的算法`,`删除第 i 个元素的算法`,`获取第 i 个值的算法`],choiceFormat:`separate`,stemHtml:`<p>下列对顺序存储的有序表（长度为 n）实现给定操作的算法中平均时间复杂度为 O(1) 的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">查找包含指定值元素的算法</span>`,`<span class="choice-text">插入包含指定值元素的算法</span>`,`<span class="choice-text">删除第 i 个元素的算法</span>`,`<span class="choice-text">获取第 i 个值的算法</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-03`,year:2023,no:3,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#3`,sourceAnswer:`A`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`特殊矩阵,三元组表`,stem:`若采用三元组表存储结构存储系数矩阵 M。则除三元组外，下列数据中还需要保存的是（ ）。
+I. M 的行数
+II. M 中包含非零元素的行数
+III. M 的列数
+IV. M 中包含非零元素的列数`,options:[`仅 I 和 III`,`仅 I 和 IV`,`仅 II 和 IV`,`I, II, III, IV`],choiceFormat:`separate`,stemHtml:`<p>若采用三元组表存储结构存储系数矩阵 M。则除三元组外，下列数据中还需要保存的是（ ）。</p>
+<p>I. M 的行数</p>
+<p>II. M 中包含非零元素的行数</p>
+<p>III. M 的列数</p>
+<p>IV. M 中包含非零元素的列数</p>`,optionsHtml:[`<span class="choice-text">仅 I 和 III</span>`,`<span class="choice-text">仅 I 和 IV</span>`,`<span class="choice-text">仅 II 和 IV</span>`,`<span class="choice-text">I, II, III, IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-06`,year:2023,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#6`,sourceAnswer:`B`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`最小生成树`,stem:`已知无向连通图 G 中各边的权值均为 1，下列算法中，一定能够求出图 G 中从某顶点到其余各个顶点最短路径的是（ ）。
+I. 普利姆算法
+II. 克鲁斯卡尔算法
+III. 图的广度优先搜索`,options:[`仅 I`,`仅 III`,`仅 II 和 I`,`I,II,III`],choiceFormat:`separate`,stemHtml:`<p>已知无向连通图 G 中各边的权值均为 1，下列算法中，一定能够求出图 G 中从某顶点到其余各个顶点最短路径的是（ ）。</p>
+<p>I. 普利姆算法</p>
+<p>II. 克鲁斯卡尔算法</p>
+<p>III. 图的广度优先搜索</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 II 和 I</span>`,`<span class="choice-text">I,II,III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-07`,year:2023,no:7,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#7`,sourceAnswer:`B`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`B树`,stem:`下列关于非空 B 树的叙述中，正确的是（ ）
+I. 插入操作可能增加树的高度
+II. 删除操作一定会导致叶结点的变化
+III. 查找某关键字一定是要查找到叶结点
+IV. 插入的新关键字最终位于叶结点中`,options:[`仅 I`,`仅 I、II`,`仅 III、IV`,`仅 I、II、IV`],choiceFormat:`separate`,stemHtml:`<p>下列关于非空 B 树的叙述中，正确的是（ ）</p>
+<p>I. 插入操作可能增加树的高度</p>
+<p>II. 删除操作一定会导致叶结点的变化</p>
+<p>III. 查找某关键字一定是要查找到叶结点</p>
+<p>IV. 插入的新关键字最终位于叶结点中</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 III、IV</span>`,`<span class="choice-text">仅 I、II、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-10`,year:2023,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#10`,sourceAnswer:`C`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`下列排序算法中，不稳定的是（ ）
+I. 希尔排序
+II. 归并排序
+III. 快速排序
+IV. 堆排序
+V. 基数排序`,options:[`仅 I 和 II`,`仅 II 和 V`,`仅 I，III，IV`,`仅 III，IV，V`],choiceFormat:`separate`,stemHtml:`<p>下列排序算法中，不稳定的是（ ）</p>
+<p>I. 希尔排序</p>
+<p>II. 归并排序</p>
+<p>III. 快速排序</p>
+<p>IV. 堆排序</p>
+<p>V. 基数排序</p>`,optionsHtml:[`<span class="choice-text">仅 I 和 II</span>`,`<span class="choice-text">仅 II 和 V</span>`,`<span class="choice-text">仅 I，III，IV</span>`,`<span class="choice-text">仅 III，IV，V</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-03`,year:2024,no:3,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#3`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`二叉树遍历`,stem:`p、q、v 都是二叉树 T 中的结点，二叉树 T 的中序遍历为 ···, p，v，q，··· ，其中 v 有两个孩子结点，则下列说法正确的是（ ）。`,options:[`p 没右孩子，q 没左孩子`,`p 没右孩子，q 有左孩子`,`p 有右孩子，q 没左孩子`,`p 有右孩子，q 有左孩子`],choiceFormat:`separate`,stemHtml:`<p>p、q、v 都是二叉树 T 中的结点，二叉树 T 的中序遍历为 ···, p，v，q，··· ，其中 v 有两个孩子结点，则下列说法正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">p 没右孩子，q 没左孩子</span>`,`<span class="choice-text">p 没右孩子，q 有左孩子</span>`,`<span class="choice-text">p 有右孩子，q 没左孩子</span>`,`<span class="choice-text">p 有右孩子，q 有左孩子</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-05`,year:2024,no:5,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#5`,sourceAnswer:`D`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`数组查找`,stem:`下列数据结构中，不适合直接使用折半查找的是（）
+I 有序链表 II 无序数组 III 有序静态链表 IV 无序静态链表`,options:[`仅 I、II`,`仅 II、IV`,`仅 I、II、IV`,`I、II、III、IV`],choiceFormat:`separate`,stemHtml:`<p>下列数据结构中，不适合直接使用折半查找的是（）</p>
+<p>I 有序链表 II 无序数组 III 有序静态链表 IV 无序静态链表</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 II、IV</span>`,`<span class="choice-text">仅 I、II、IV</span>`,`<span class="choice-text">I、II、III、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-08`,year:2024,no:8,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#8`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`快速排序`,stem:`使用快速排序算法对含 N（N ≥ 3）\xA0个元素的数组 M 进行排序，若第一趟排序将除枢轴外的 N-1 个元素划分为 P 和 Q 两个部分，则下列叙述中，正确的是（ ）。`,options:[`P 和 Q 块间有序`,`P 和 Q 均块内有序`,`P 和 Q 的元素个数大致相等`,`P 和 Q 中均不存在相等的元素`],choiceFormat:`separate`,stemHtml:`<p>使用快速排序算法对含 N（N ≥ 3）\xA0个元素的数组 M 进行排序，若第一趟排序将除枢轴外的 N-1 个元素划分为 P 和 Q 两个部分，则下列叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">P 和 Q 块间有序</span>`,`<span class="choice-text">P 和 Q 均块内有序</span>`,`<span class="choice-text">P 和 Q 的元素个数大致相等</span>`,`<span class="choice-text">P 和 Q 中均不存在相等的元素</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-11`,year:2024,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#11`,sourceAnswer:`D`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`败者树`,stem:`在外排序中，利用败者树对初始为升序的归并段进行多路归并，败者树中记录"冠军"的结点保存的是（ ）`,options:[`最大关键字`,`最小关键字`,`最大关键字所在的归并段号`,`最小关键字所在的归并段号`],choiceFormat:`separate`,stemHtml:`<p>在外排序中，利用败者树对初始为升序的归并段进行多路归并，败者树中记录"冠军"的结点保存的是（ ）</p>`,optionsHtml:[`<span class="choice-text">最大关键字</span>`,`<span class="choice-text">最小关键字</span>`,`<span class="choice-text">最大关键字所在的归并段号</span>`,`<span class="choice-text">最小关键字所在的归并段号</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-06`,year:2025,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#6`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`图的概念`,stem:`下列关于图的叙述中，正确的是（ ）。`,options:[`有向图必定存在入度为 0 的顶点`,`有向无环图的拓扑排序有序序列存在且唯一`,`各顶点的度均大于等于 2 的无向图必有回路`,`可用 BFS 算法求出带权图中的每一对顶点的最短路径`],choiceFormat:`separate`,stemHtml:`<p>下列关于图的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">有向图必定存在入度为 0 的顶点</span>`,`<span class="choice-text">有向无环图的拓扑排序有序序列存在且唯一</span>`,`<span class="choice-text">各顶点的度均大于等于 2 的无向图必有回路</span>`,`<span class="choice-text">可用 BFS 算法求出带权图中的每一对顶点的最短路径</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-09`,year:2025,no:9,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#9`,sourceAnswer:`A`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`散列表`,stem:`下列关于散列法处理冲突的叙述中，正确的是（ ）。`,options:[`只要散列表不满，线性探查再散列一定能找到一个空闲位置`,`只要散列表不满，二次探查再散列一定能找到一个空闲位置`,`线性探查再散列处理的冲突，一定是发生在同义词之间`,`二次探查再散列处理的冲突，一定是发生在非同义词之间`],choiceFormat:`separate`,stemHtml:`<p>下列关于散列法处理冲突的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">只要散列表不满，线性探查再散列一定能找到一个空闲位置</span>`,`<span class="choice-text">只要散列表不满，二次探查再散列一定能找到一个空闲位置</span>`,`<span class="choice-text">线性探查再散列处理的冲突，一定是发生在同义词之间</span>`,`<span class="choice-text">二次探查再散列处理的冲突，一定是发生在非同义词之间</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-10`,year:2025,no:10,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#10`,sourceAnswer:`D`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`排序算法`,stem:`下列排序算法中，最坏情况下元素移动最少的是（ ）。`,options:[`冒泡排序`,`直接插入排序`,`快速排序`,`简单选择排序`],choiceFormat:`separate`,stemHtml:`<p>下列排序算法中，最坏情况下元素移动最少的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">冒泡排序</span>`,`<span class="choice-text">直接插入排序</span>`,`<span class="choice-text">快速排序</span>`,`<span class="choice-text">简单选择排序</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-06`,year:2026,no:6,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#6`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`邻接表,复杂度分析`,stem:`有向图 G = ( V , E ) 采用邻接表存储，求某点入度的时间复杂度为？`,options:[`O ( ∣ V ∣ )`,`O ( min ( ∣ V ∣ , ∣ E ∣ ))`,`O ( ∣ E ∣ )`,`O ( max ( ∣ V ∣ , ∣ E ∣ ))`],choiceFormat:`separate`,stemHtml:`<p>有向图
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.22222em">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal" style="margin-right:.05764em">E</span><span class="mclose">)</span></span></span></span>
+采用邻接表存储，求某点入度的时间复杂度为？</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.22222em">V</span><span class="mord">∣</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mop">min</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.22222em">V</span><span class="mord">∣</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.05764em">E</span><span class="mord">∣</span><span class="mclose">))</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.05764em">E</span><span class="mord">∣</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mop">max</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.22222em">V</span><span class="mord">∣</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.05764em">E</span><span class="mord">∣</span><span class="mclose">))</span></span></span></span></span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-07`,year:2026,no:7,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#7`,sourceAnswer:`B`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`图的概念`,stem:`设有序向图 G = ( V , E ) ，其中顶点集 V 的大小为 n = ∣ V ∣ ，每条边 e ∈ E 都标记有一个唯一的字符（不同边可标记相同字符）。定义字符串集 S 为：所有由 G 中任意一条路径（路径可包含单个顶点，对应空字符串）上的边标记按顺序拼接而成的字符串的集合。以下说法错误的是（ ）`,options:[`若 G 无环，则 S 是有限集`,`若 G 无环，则 S 中存在长度为 n 的字符串`,`若 G 有环，则 S 中存在长度大于 n 的字符串`,`若 G 有环，则 S 中存在长度小于 2 n 的字符串`],choiceFormat:`separate`,stemHtml:`<p>设有序向图
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.22222em">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal" style="margin-right:.05764em">E</span><span class="mclose">)</span></span></span></span>
+，其中顶点集
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.22222em">V</span></span></span></span>
+的大小为
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.4306em"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:.22222em">V</span><span class="mord">∣</span></span></span></span>
+，每条边
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.5782em;vertical-align:-.0391em"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.05764em">E</span></span></span></span>
+都标记有一个唯一的字符（不同边可标记相同字符）。定义字符串集
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.05764em">S</span></span></span></span>
+为：所有由
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span></span></span></span>
+中任意一条路径（路径可包含单个顶点，对应空字符串）上的边标记按顺序拼接而成的字符串的集合。以下说法错误的是（ ）</p>`,optionsHtml:[`<span class="choice-text">若
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span></span></span></span>
+无环，则
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.05764em">S</span></span></span></span>
+是有限集</span>`,`<span class="choice-text">若
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span></span></span></span>
+无环，则
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.05764em">S</span></span></span></span>
+中存在长度为
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.4306em"></span><span class="mord mathnormal">n</span></span></span></span>
+的字符串</span>`,`<span class="choice-text">若
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span></span></span></span>
+有环，则
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.05764em">S</span></span></span></span>
+中存在长度大于
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.4306em"></span><span class="mord mathnormal">n</span></span></span></span>
+的字符串</span>`,`<span class="choice-text">若
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal">G</span></span></span></span>
+有环，则
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.05764em">S</span></span></span></span>
+中存在长度小于
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">2</span><span class="mord mathnormal">n</span></span></span></span>
+的字符串</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-11`,year:2026,no:11,subject:`ds`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#11`,sourceAnswer:`C`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`外部排序,归并排序`,stem:`在外部排序的 k 路归并过程中，归并趟数为 d 。下列关于 k 、 d 、初始归并段及内存大小的说法中，正确的是（ ）
+Ⅰ. k 越大， d 越小 Ⅱ. 初始归并段数不影响 d Ⅲ. 内存大小限制初始归并段的最大长度`,options:[`Ⅰ`,`Ⅰ、Ⅱ`,`Ⅰ、Ⅲ`,`Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>在外部排序的
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal" style="margin-right:.03148em">k</span></span></span></span>
+路归并过程中，归并趟数为
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal">d</span></span></span></span>
+。下列关于
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal" style="margin-right:.03148em">k</span></span></span></span>
+、
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal">d</span></span></span></span>
+、初始归并段及内存大小的说法中，正确的是（ ）</p>
+<p>Ⅰ.
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal" style="margin-right:.03148em">k</span></span></span></span>
+越大，
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal">d</span></span></span></span>
+越小<br/>Ⅱ. 初始归并段数不影响
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6944em"></span><span class="mord mathnormal">d</span></span></span></span><br/>Ⅲ. 内存大小限制初始归并段的最大长度</p>`,optionsHtml:[`<span class="choice-text">Ⅰ</span>`,`<span class="choice-text">Ⅰ、Ⅱ</span>`,`<span class="choice-text">Ⅰ、Ⅲ</span>`,`<span class="choice-text">Ⅱ、Ⅲ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2009-11`,year:2009,no:11,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#11`,sourceAnswer:`C`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`计算机体系结构`,stem:`冯•诺依曼计算机中指令和数据均以二进制形式存放在存储器中，CPU 区分它们的依据是（ ）。`,options:[`指令操作码的译码结果`,`指令和数据的寻址方式`,`指令周期的不同阶段`,`指令和数据所在的存储单元`],choiceFormat:`separate`,stemHtml:`<p>冯•诺依曼计算机中指令和数据均以二进制形式存放在存储器中，CPU 区分它们的依据是（ ）。</p>`,optionsHtml:[`<span class="choice-text">指令操作码的译码结果</span>`,`<span class="choice-text">指令和数据的寻址方式</span>`,`<span class="choice-text">指令周期的不同阶段</span>`,`<span class="choice-text">指令和数据所在的存储单元</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`11. 冯·诺依曼计算机中指令和数据均以二进制形式存放在存储器中，CPU区分它们的依据是\r
+\r
+A. 指令操作码的译码结果\r
+\r
+B. 指令和数据的寻址方式\r
+\r
+C. 指令周期的不同阶段\r
+\r
+D. 指令和数据所在的存储单元`,images:[],hasFigure:!1},{id:`real-concept-2009-17`,year:2009,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#17`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`复杂和精简指令集,控制器种类`,stem:`下列关于 RISC 的叙述中，错误的是（）。`,options:[`RISC 普遍采用微程序控制器`,`RISC 大多数指令在一个时钟周期内完成`,`RISC 的内部通用寄存器数量相对 CISC 多`,`RISC 的指令数、寻址方式和指令格式种类相对 CISC 少`],choiceFormat:`separate`,stemHtml:`<p>下列关于 RISC 的叙述中，错误的是（）。</p>`,optionsHtml:[`<span class="choice-text">RISC 普遍采用微程序控制器</span>`,`<span class="choice-text">RISC 大多数指令在一个时钟周期内完成</span>`,`<span class="choice-text">RISC 的内部通用寄存器数量相对 CISC 多</span>`,`<span class="choice-text">RISC 的指令数、寻址方式和指令格式种类相对 CISC 少</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`17. 下列关于 RISC 的叙述中, 错误的是\r
+\r
+A. RISC普遍采用微程序控制器  \r
+B. RISC 大多数指令在一个时钟周期内完成  \r
+C. RISC 的内部通用寄存器数量相对 CISC 多  \r
+D. RISC 的指令数、寻址方式和指令格式种类相对 CISC 少`,images:[],hasFigure:!1},{id:`real-concept-2009-19`,year:2009,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#19`,sourceAnswer:`D`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`控制器种类`,stem:`相对于微程序控制器，硬布线控制器的特点是（）。`,options:[`指令执行速度慢，指令功能的修改和扩展容易`,`指令执行速度慢，指令功能的修改和扩展难`,`指令执行速度快，指令功能的修改和扩展容易`,`指令执行速度快，指令功能的修改和扩展难`],choiceFormat:`separate`,stemHtml:`<p>相对于微程序控制器，硬布线控制器的特点是（）。</p>`,optionsHtml:[`<span class="choice-text">指令执行速度慢，指令功能的修改和扩展容易</span>`,`<span class="choice-text">指令执行速度慢，指令功能的修改和扩展难</span>`,`<span class="choice-text">指令执行速度快，指令功能的修改和扩展容易</span>`,`<span class="choice-text">指令执行速度快，指令功能的修改和扩展难</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`19. 相对于微程序控制器，硬布线控制器的特点是\r
+\r
+A. 指令执行速度慢，指令功能的修改和扩展容易  \r
+B. 指令执行速度慢, 指令功能的修改和扩展难  \r
+C. 指令执行速度快, 指令功能的修改和扩展容易  \r
+D. 指令执行速度快, 指令功能的修改和扩展难`,images:[],hasFigure:!1},{id:`real-concept-2009-22`,year:2009,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#22`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`下列选项中，能引起外部中断的事件是（）。`,options:[`键盘输入`,`除数为 0`,`浮点运算下溢`,`访存缺页`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，能引起外部中断的事件是（）。\xA0</p>`,optionsHtml:[`<span class="choice-text">键盘输入</span>`,`<span class="choice-text">除数为 0</span>`,`<span class="choice-text">浮点运算下溢</span>`,`<span class="choice-text">访存缺页</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`22. 下列选项中，能引起外部中断的事件是\r
+\r
+A. 键盘输入\r
+\r
+B. 除数为 0\r
+\r
+C. 浮点运算下溢\r
+\r
+D. 访存缺页`,images:[],hasFigure:!1},{id:`real-concept-2010-12`,year:2010,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#12`,sourceAnswer:`D`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`计算机体系结构`,stem:`下列选项中，能缩短程序执行时间的措施是（）。
+I. 提高 CPU 时钟频率
+II.优化数据通路结构
+III. 对程序进行编译优化`,options:[`仅 I 和 II`,`仅 I 和 III`,`仅 II 和 III`,`I、II 和 III`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，能缩短程序执行时间的措施是（）。</p>
+<p>I. 提高 CPU 时钟频率</p>
+<p>II.优化数据通路结构</p>
+<p>III. 对程序进行编译优化</p>`,optionsHtml:[`<span class="choice-text">仅 I 和 II</span>`,`<span class="choice-text">仅 I 和 III</span>`,`<span class="choice-text">仅 II 和 III</span>`,`<span class="choice-text">I、II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`12. 下列选项中，能缩短程序执行时间的措施是\r
+\r
+I. 提高CPU时钟频率\r
+\r
+II.优化数据通路结构\r
+\r
+III. 对程序进行编译优化\r
+\r
+A. 仅 I 和 II\r
+\r
+B. 仅 I 和 III\r
+\r
+C. 仅II和III\r
+\r
+D. I 、II 和III`,images:[],hasFigure:!1},{id:`real-concept-2010-16`,year:2010,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#16`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`存储器概念`,stem:`下列有关 RAM 和 ROM 的叙述中，正确的是（ ）。
+I.\xA0RAM 是易失性存储器，ROM 是非易失性存储器
+II.\xA0RAM 和 ROM 都采用随机存取方式进行信息访问
+III.\xA0RAM 和 ROM 都可用作 Cache
+IV.\xA0RAM 和 ROM 都需要进行刷新`,options:[`仅 I 和 II`,`仅 II 和 III`,`仅 I,II 和 IV`,`仅 II，III 和 IV`],choiceFormat:`separate`,stemHtml:`<p>下列有关 RAM 和 ROM 的叙述中，正确的是（ ）。</p>
+<p>I.\xA0RAM 是易失性存储器，ROM 是非易失性存储器</p>
+<p>II.\xA0RAM 和 ROM 都采用随机存取方式进行信息访问</p>
+<p>III.\xA0RAM 和 ROM 都可用作 Cache</p>
+<p>IV.\xA0RAM 和 ROM 都需要进行刷新</p>`,optionsHtml:[`<span class="choice-text">仅 I 和 II</span>`,`<span class="choice-text">仅 II 和 III</span>`,`<span class="choice-text">仅 I,II 和 IV</span>`,`<span class="choice-text">仅 II，III 和 IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`16. 下列有关 RAM 和 ROM 的叙述中，正确的是________。\r
+\r
+IRAM是易失性存储器，ROM是非易失性存储器\r
+\r
+II RAM 和 ROM 都采用随机存取方式进行信息访问\r
+\r
+III RAM 和 ROM 都可用作 Cache\r
+\r
+IV RAM 和 ROM 都需要进行刷新\r
+\r
+A. 仅 I 和 II\r
+\r
+B. 仅 II 和 III\r
+\r
+C. 仅 I,II 和 IV\r
+\r
+D. 仅 II, III 和 IV`,images:[],hasFigure:!1},{id:`real-concept-2010-17`,year:2010,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#17`,sourceAnswer:`D`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`访存过程`,stem:`下列命中组合情况中，一次访存过程中不可能发生的是（ ）。`,options:[`TLB 未命中，Cache 未命中，Page 未命中`,`TLB 未命中，Cache 命中，Page 命中`,`TLB 命中，Cache 未命中，Page 命中`,`TLB 命中，Cache 命中，Page 未命中`],choiceFormat:`separate`,stemHtml:`<p>下列命中组合情况中，一次访存过程中不可能发生的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">TLB 未命中，Cache 未命中，Page 未命中</span>`,`<span class="choice-text">TLB 未命中，Cache 命中，Page 命中</span>`,`<span class="choice-text">TLB 命中，Cache 未命中，Page 命中</span>`,`<span class="choice-text">TLB 命中，Cache 命中，Page 未命中</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`17. 下列命中组合情况中，一次访存过程中不可能发生的是________。\r
+\r
+A. TLB 未命中，Cache 未命中，Page 未命中  \r
+B. TLB 未命中, Cache 命中, Page 命中  \r
+C. TLB 命中, Cache 未命中, Page 命中  \r
+D. TLB 命中, Cache 命中, Page 未命中`,images:[],hasFigure:!1},{id:`real-concept-2010-18`,year:2010,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#18`,sourceAnswer:`B`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`寄存器类型`,stem:`下列寄存器中，汇编语言程序员可见的是（ ）。`,options:[`存储器地址寄存器 (MAR)`,`程序计数器 (PC)`,`存储器数据寄存器 (MDR)`,`指令寄存器 (IR)`],choiceFormat:`separate`,stemHtml:`<p>下列寄存器中，汇编语言程序员可见的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">存储器地址寄存器 (MAR)</span>`,`<span class="choice-text">程序计数器 (PC)</span>`,`<span class="choice-text">存储器数据寄存器 (MDR)</span>`,`<span class="choice-text">指令寄存器 (IR)</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`18. 下列寄存器中，汇编语言程序员可见的是________。\r
+\r
+A. 存储器地址寄存器(MAR)\r
+\r
+B. 程序计数器(PC)\r
+\r
+C. 存储器数据寄存器(MDR)\r
+\r
+D. 指令寄存器(IR)`,images:[],hasFigure:!1},{id:`real-concept-2010-19`,year:2010,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#19`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`流水线冒险`,stem:`下列选项中，不会引起指令流水线阻塞的是（ ）。`,options:[`数据旁路（转发）`,`数据相关`,`条件转移`,`资源冲突`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，不会引起指令流水线阻塞的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">数据旁路（转发）</span>`,`<span class="choice-text">数据相关</span>`,`<span class="choice-text">条件转移</span>`,`<span class="choice-text">资源冲突</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`19. 下列选项中，不会引起指令流水线阻塞的是________。\r
+\r
+A. 数据旁路（转发）\r
+\r
+B. 数据相关\r
+\r
+C. 条件转移\r
+\r
+D. 资源冲突`,images:[],hasFigure:!1},{id:`real-concept-2010-20`,year:2010,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#20`,sourceAnswer:`D`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`总线类型`,stem:`下列选项中的英文缩写均为总线标准的是（ ）。`,options:[`PCI、CRT、USB、EISA`,`ISA、CPI、VESA、EISA`,`ISA、SCSI、RAM、MIPS`,`ISA、EISA、PCI、PCI-Express`],choiceFormat:`separate`,stemHtml:`<p>下列选项中的英文缩写均为总线标准的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">PCI、CRT、USB、EISA</span>`,`<span class="choice-text">ISA、CPI、VESA、EISA</span>`,`<span class="choice-text">ISA、SCSI、RAM、MIPS</span>`,`<span class="choice-text">ISA、EISA、PCI、PCI-Express</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`20. 下列选项中的英文缩写均为总线标准的是________。\r
+\r
+A. PCI、CRT、USB、EISA  \r
+B.ISA、CPI、VESA、EISA  \r
+C.ISA、SCSI、RAM、MIPS  \r
+D.ISA、EISA、PCI、PCI-Express`,images:[],hasFigure:!1},{id:`real-concept-2010-21`,year:2010,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#21`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`单级中断系统中，中断服务程序内的执行顺序是（ ）。
+I 保护现场\xA0 \xA0 II 开中断
+III 关中断\xA0 \xA0 IV 保存断点
+V 中断事件处理\xA0 \xA0 VI 恢复现场\xA0\xA0 \xA0VII 中断返回`,options:[`I→V→VI→II→VII`,`III→I→V→VII`,`III→IV→V→VI→VII`,`IV→I→V→VI→VII`],choiceFormat:`separate`,stemHtml:`<p>单级中断系统中，中断服务程序内的执行顺序是（ ）。</p>
+<p>I 保护现场\xA0 \xA0 II 开中断</p>
+<p>III 关中断\xA0 \xA0 IV 保存断点</p>
+<p>V 中断事件处理\xA0 \xA0 VI 恢复现场\xA0\xA0 \xA0VII 中断返回</p>`,optionsHtml:[`<span class="choice-text">I→V→VI→II→VII</span>`,`<span class="choice-text">III→I→V→VII</span>`,`<span class="choice-text">III→IV→V→VI→VII</span>`,`<span class="choice-text">IV→I→V→VI→VII</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`21. 单级中断系统中，中断服务程序内的执行顺序是________。\r
+\r
+I保护现场\r
+\r
+II开中断\r
+\r
+III关中断\r
+\r
+IV 保存断点\r
+\r
+V中断事件处理\r
+\r
+VI恢复现场\r
+\r
+VII中断返回\r
+\r
+A.  $\\mathrm{I} > \\mathrm{V} - > \\mathrm{VI} - > \\mathrm{II} - > \\mathrm{VII}$\r
+\r
+B. III->I->V->VII\r
+\r
+C. III->IV->V->VI->VII\r
+\r
+D. IV->I->V->VI->VII`,images:[],hasFigure:!1},{id:`real-concept-2011-12`,year:2011,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#12`,sourceAnswer:`D`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`指令执行指标`,stem:`下列选项中，描述浮点数操作速度指标的是（ ）。`,options:[`MIPS`,`CPI`,`IPC`,`MFLOPS`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，描述浮点数操作速度指标的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">MIPS</span>`,`<span class="choice-text">CPI</span>`,`<span class="choice-text">IPC</span>`,`<span class="choice-text">MFLOPS</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`12. 下列选项中，描述浮点数操作速度指标的是\r
+\r
+A. MIPS\r
+\r
+B. CPI\r
+\r
+C. IPC\r
+\r
+D. MFLOPS\r
+\r
+解答：D。送分题。`,images:[],hasFigure:!1},{id:`real-concept-2011-14`,year:2011,no:14,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#14`,sourceAnswer:`B`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`存储器概念`,stem:`下列各类存储器中，不采用随机存取方式的是（ ）。`,options:[`EPROM`,`CDROM`,`DRAM`,`SRAM`],choiceFormat:`separate`,stemHtml:`<p>下列各类存储器中，不采用随机存取方式的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">EPROM</span>`,`<span class="choice-text">CDROM</span>`,`<span class="choice-text">DRAM</span>`,`<span class="choice-text">SRAM</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`14. 下列各类存储器中，不采用随机存取方式的是\r
+\r
+A. EPROM\r
+\r
+B. CDROM\r
+\r
+C. DRAM\r
+\r
+D. SRAM\r
+\r
+解答：B。光盘采用顺序存取方式。`,images:[],hasFigure:!1},{id:`real-concept-2011-16`,year:2011,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#16`,sourceAnswer:`A`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`指令寻址方式`,stem:`偏移寻址将某个寄存器内容与一个形式地址相加而生成有效地址。下列寻址方式中，不属于偏移寻址方式的是（ ）。`,options:[`间接寻址`,`基址寻址`,`相对寻址`,`变址寻址`],choiceFormat:`separate`,stemHtml:`<p>偏移寻址将某个寄存器内容与一个形式地址相加而生成有效地址。下列寻址方式中，不属于偏移寻址方式的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">间接寻址</span>`,`<span class="choice-text">基址寻址</span>`,`<span class="choice-text">相对寻址</span>`,`<span class="choice-text">变址寻址</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`16. 偏移寻址通过将某个寄存器内容与一个形式地址相加而生成有效地址。下列寻址方式中，不属于偏移寻址方式的是\r
+\r
+A. 间接寻址\r
+\r
+B. 基址寻址\r
+\r
+C. 相对寻址\r
+\r
+D. 变址寻址\r
+\r
+解答：A。间接寻址不需要寄存器，  $\\mathrm{EA} = (\\mathrm{A})$  。基址寻址：  $\\mathrm{EA} = \\mathrm{A}+$  基址寄存器内同；相对寻址：  $\\mathrm{EA} = \\mathrm{A} + \\mathrm{PC}$  内容；变址寻址：  $\\mathrm{EA} = \\mathrm{A}+$  变址寄存器内容。`,images:[],hasFigure:!1},{id:`real-concept-2011-17`,year:2011,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#17`,sourceAnswer:`C`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`标志寄存器`,stem:`某机器有一个标志寄存器，其中有进位/借位标志 CF、零标志 ZF、符号标志 SF 和溢出标志 OF，条件转移指令 bgt（无符号整数比较大于时转移）的转移条件是 (\xA0 )`,options:[`CF + OF = 1`,`SF + ZF = 1`,`CF + ZF ​ = 1`,`CF + SF ​ = 1`],choiceFormat:`separate`,stemHtml:`<p>某机器有一个标志寄存器，其中有进位/借位标志 CF、零标志 ZF、符号标志 SF 和溢出标志 OF，条件转移指令 bgt（无符号整数比较大于时转移）的转移条件是 (\xA0 )</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.7667em;vertical-align:-.0833em"></span><span class="mord mathnormal" style="margin-right:.13889em">CF</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.13889em">OF</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">1</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.9667em;vertical-align:-.0833em"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:.8833em"><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">SF</span></span></span><span style="top:-3.8033em"><span class="pstrut" style="height:3em"></span><span class="overline-line" style="border-bottom-width:.04em"></span></span></span></span></span></span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.13889em">ZF</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">1</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.9667em;vertical-align:-.0833em"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.8833em"><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">CF</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:.2222em"></span><span class="mord mathnormal" style="margin-right:.13889em">ZF</span></span></span><span style="top:-3.8033em"><span class="pstrut" style="height:3em"></span><span class="overline-line" style="border-bottom-width:.04em"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.0833em"><span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">1</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.9667em;vertical-align:-.0833em"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.8833em"><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">CF</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:.2222em"></span><span class="mord mathnormal" style="margin-right:.13889em">SF</span></span></span><span style="top:-3.8033em"><span class="pstrut" style="height:3em"></span><span class="overline-line" style="border-bottom-width:.04em"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.0833em"><span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.6444em"></span><span class="mord">1</span></span></span></span></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`17. 某机器有一个标志寄存器，其中有进位/借位标志CF、零标志ZF、符号标志SF和溢出标志OF，条件转移指令bgt（无符号整数比较大于时转移）的转移条件是\r
+\r
+A.  $CF + OF = 1$\r
+\r
+B.  $\\overline{SF} + ZF = 1$\r
+\r
+C.  $\\overline{CF + ZF} = 1$\r
+\r
+D.  $\\overline{CF + SF} = 1$\r
+\r
+解答：C。无符号整数比较，如A>B，则A-B无进位/借位，也不为0。故而CF和ZF均为0。`,images:[],hasFigure:!1},{id:`real-concept-2011-18`,year:2011,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#18`,sourceAnswer:`D`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`流水线概念`,stem:`下列给出的指令系统特点中，有利于实现指令流水线的是（ ）。
+Ⅰ. 指令格式规整且长度一致
+Ⅱ. 指令和数据按边界对齐存放
+Ⅲ. 只有 Load/Store 指令才能对操作数进行存储访问`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅲ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列给出的指令系统特点中，有利于实现指令流水线的是（ ）。</p>
+<p>Ⅰ. 指令格式规整且长度一致</p>
+<p>Ⅱ. 指令和数据按边界对齐存放</p>
+<p>Ⅲ. 只有 Load/Store 指令才能对操作数进行存储访问</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`18. 下列给出的指令系统特点中，有利于实现指令流水线的是\r
+\r
+I. 指令格式规整且长度一致\r
+\r
+II. 指令和数据按边界对齐存放\r
+\r
+III. 只有Load/Store指令才能对操作数进行存储访问\r
+\r
+A. 仅 I、II\r
+\r
+B. 仅 II、III\r
+\r
+C. 仅 I、III\r
+\r
+D. I 、II 、III\r
+\r
+解答：D。指令定长、对齐、仅Load/Store指令访存，以上三个都是RISC的特征。均能够有效的简化流水线的复杂度。`,images:[],hasFigure:!1},{id:`real-concept-2011-19`,year:2011,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#19`,sourceAnswer:`C`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`计算机性能指标,中断屏蔽`,stem:`假定不采用 Cache 和指令预取技术，且机器处于“开中断”状态，则在下列有关指令执行的叙述中，错误的是（ ）。`,options:[`每个指令周期中 CPU 都至少访问内存一次`,`每个指令周期一定大于或等于一个 CPU 时钟周期`,`空操作指令的指令周期中任何寄存器的内容都不会被改变`,`当前程序在每条指令执行结束时都可能被外部中断打断`],choiceFormat:`separate`,stemHtml:`<p>假定不采用 Cache 和指令预取技术，且机器处于“开中断”状态，则在下列有关指令执行的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">每个指令周期中 CPU 都至少访问内存一次</span>`,`<span class="choice-text">每个指令周期一定大于或等于一个 CPU 时钟周期</span>`,`<span class="choice-text">空操作指令的指令周期中任何寄存器的内容都不会被改变</span>`,`<span class="choice-text">当前程序在每条指令执行结束时都可能被外部中断打断</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`19. 假定不采用Cache和指令预取技术，且机器处于“开中断”状态，则在下列有关指令执行的叙述中，错误的是\r
+\r
+A. 每个指令周期中CPU都至少访问内存一次  \r
+B. 每个指令周期一定大于或等于一个CPU时钟周期  \r
+C. 空操作指令的指令周期中任何寄存器的内容都不会被改变  \r
+D. 当前程序在每条指令执行结束时都可能被外部中断打断\r
+\r
+解答：C。会自动加1，A取指令要访存、B时钟周期对指令不可分割。`,images:[],hasFigure:!1},{id:`real-concept-2011-20`,year:2011,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#20`,sourceAnswer:`C`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`总线概念`,stem:`在系统总线的数据线上，不可能传输的是（ ）。`,options:[`指令`,`操作数`,`握手（应答）信号`,`中断类型号`],choiceFormat:`separate`,stemHtml:`<p>在系统总线的数据线上，不可能传输的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">指令</span>`,`<span class="choice-text">操作数</span>`,`<span class="choice-text">握手（应答）信号</span>`,`<span class="choice-text">中断类型号</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`20. 在系统总线的数据线上，不可能传输的是\r
+\r
+A. 指令\r
+\r
+B. 操作数\r
+\r
+C. 握手（应答）信号\r
+\r
+D. 中断类型号\r
+\r
+解答：C。握手（应答）信号在通信总线上传输。`,images:[],hasFigure:!1},{id:`real-concept-2012-16`,year:2012,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#16`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:``,stem:`下列关于闪存（Flash Memory）的叙述中，错误的是（ ）。`,options:[`信息可读可写，并且读、写速度一样快`,`存储元由 MOS 管组成，是一种半导体存储器`,`掉电后信息不丢失，是一种非易失性存储器`,`采用随机访问方式，可替代计算机外部存储器`],choiceFormat:`separate`,stemHtml:`<p>下列关于闪存（Flash Memory）的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">信息可读可写，并且读、写速度一样快</span>`,`<span class="choice-text">存储元由 MOS 管组成，是一种半导体存储器</span>`,`<span class="choice-text">掉电后信息不丢失，是一种非易失性存储器</span>`,`<span class="choice-text">采用随机访问方式，可替代计算机外部存储器</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`16. 下列关于闪存（Flash Memory）的叙述中，错误的是\r
+\r
+A. 信息可读可写，并且读、写速度一样快\r
+\r
+B. 存储元由MOS管组成，是一种半导体存储器  \r
+C. 掉电后信息不丢失, 是一种非易失性存储器  \r
+D. 采用随机访问方式, 可替代计算机外部存储器`,images:[],hasFigure:!1},{id:`real-concept-2012-20`,year:2012,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#20`,sourceAnswer:`D`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`总线类型`,stem:`下列关于 USB 总线特性的描述中，错误的是（ ）。`,options:[`可实现外设的即插即用和热插拔`,`可通过级联方式连接多台外设`,`是一种通信总线，可连接不同外设`,`同时可传输 2 位数据，数据传输率高`],choiceFormat:`separate`,stemHtml:`<p>下列关于 USB 总线特性的描述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">可实现外设的即插即用和热插拔</span>`,`<span class="choice-text">可通过级联方式连接多台外设</span>`,`<span class="choice-text">是一种通信总线，可连接不同外设</span>`,`<span class="choice-text">同时可传输 2 位数据，数据传输率高</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`20. 下列关于 USB 总线特性的描述中，错误的是\r
+\r
+A. 可实现外设的即插即用和热拔插  \r
+B. 可通过级联方式连接多台外设  \r
+C. 是一种通信总线，连接不同外设  \r
+D. 同时可传输 2 位数据, 数据传输率高`,images:[],hasFigure:!1},{id:`real-concept-2012-21`,year:2012,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#21`,sourceAnswer:`D`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`总线概念`,stem:`下列选项中，在 I/O 总线的数据线上传输的信息包括（ ）。
+Ⅰ. I/O 接口中的命令字
+Ⅱ. I/O 接口中的状态字
+Ⅲ. 中断类型号`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，在 I/O 总线的数据线上传输的信息包括（ ）。</p>
+<p>Ⅰ. I/O 接口中的命令字</p>
+<p>Ⅱ. I/O 接口中的状态字</p>
+<p>Ⅲ. 中断类型号</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`21. 下列选项中，在 I/O 总线的数据线上传输的信息包括 ______。\r
+\r
+I. I/O接口中的命令字\r
+\r
+II. I/O接口中的状态字\r
+\r
+III. 中断类型号\r
+\r
+A. 仅 I、II\r
+\r
+B. 仅 I、III\r
+\r
+C. 仅 II、III\r
+\r
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2012-22`,year:2012,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#22`,sourceAnswer:`B`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`中断IO,异常和中断`,stem:`响应外部中断的过程中，中断隐指令完成的操作，除保护断点外，还包括（ ）。
+Ⅰ. 关中断
+Ⅱ. 保存通用寄存器的内容
+Ⅲ. 形成中断服务程序入口地址并送 PC`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>响应外部中断的过程中，中断隐指令完成的操作，除保护断点外，还包括（ ）。</p>
+<p>Ⅰ. 关中断</p>
+<p>Ⅱ. 保存通用寄存器的内容</p>
+<p>Ⅲ. 形成中断服务程序入口地址并送 PC</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`22. 响应外部中断的过程中，中断隐指令完成的操作，除保护断点外，还包括\r
+\r
+I．关中断\r
+\r
+II. 保存通用寄存器的内容\r
+\r
+III. 形成中断服务程序入口\r
+\r
+A. 仅 I、II\r
+\r
+B. 仅 I、III\r
+\r
+C. 仅 II、III\r
+\r
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2013-19`,year:2013,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#19`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`总线类型`,stem:`下列选项中，用于设备和设备控制器（I/O 接口）之间互连的接口标准是（ ）。`,options:[`PCI`,`USB`,`AGP`,`PCI-Express`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，用于设备和设备控制器（I/O 接口）之间互连的接口标准是（ ）。</p>`,optionsHtml:[`<span class="choice-text">PCI</span>`,`<span class="choice-text">USB</span>`,`<span class="choice-text">AGP</span>`,`<span class="choice-text">PCI-Express</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`19. 下列选项中，用于设备和设备控制器（I/O接口）之间互连的接口标准是
+
+A. PCI
+
+B. USB
+
+C. AGP
+
+D. PCI-Express`,images:[],hasFigure:!1},{id:`real-concept-2013-20`,year:2013,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#20`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`RAID`,stem:`下列选项中，用于提高 RAID 可靠性的措施有（ ）。
+I. 磁盘镜像
+Ⅱ. 条带化
+Ⅲ. 奇偶校验
+Ⅳ. 增加 Cache 机制`,options:[`仅 I、Ⅱ`,`仅 I、Ⅲ`,`仅 I、Ⅲ和Ⅳ`,`仅Ⅱ、Ⅲ和Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，用于提高 RAID 可靠性的措施有（ ）。</p>
+<p>I. 磁盘镜像</p>
+<p>Ⅱ. 条带化</p>
+<p>Ⅲ. 奇偶校验</p>
+<p>Ⅳ. 增加 Cache 机制</p>`,optionsHtml:[`<span class="choice-text">仅 I、Ⅱ</span>`,`<span class="choice-text">仅 I、Ⅲ</span>`,`<span class="choice-text">仅 I、Ⅲ和Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ和Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`20. 下列选项中，用于提高 RAID 可靠性的措施有
+
+I. 磁盘镜像
+
+II. 条带化
+
+III. 奇偶校验
+
+IV. 增加 Cache 机制
+
+A.仅I、II
+
+B. 仅 I、III
+
+C. 仅 I、III 和 IV
+
+D. 仅 II、III 和 IV`,images:[],hasFigure:!1},{id:`real-concept-2013-22`,year:2013,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#22`,sourceAnswer:`D`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`中断IO,DMA`,stem:`下列关于中断 I/O 方式和 DMA 方式比较的叙述中，错误的是（ ）。`,options:[`中断 I/O 方式请求的是方式请求的是 CPU 处理时间，DMA 方式请求的是总线使用权`,`中断响应发生在一条指令执行结束后，DMA 响应发生在一个总线事务完成后`,`中断 I/O 方式下数据传送通过软件完成，DMA 方式下数据传送由硬件完成`,`中断 I/O 方式适用于所有外部设备，DMA 方式仅适用于快速外部设备`],choiceFormat:`separate`,stemHtml:`<p>下列关于中断 I/O 方式和 DMA 方式比较的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">中断 I/O 方式请求的是方式请求的是 CPU 处理时间，DMA 方式请求的是总线使用权</span>`,`<span class="choice-text">中断响应发生在一条指令执行结束后，DMA 响应发生在一个总线事务完成后</span>`,`<span class="choice-text">中断 I/O 方式下数据传送通过软件完成，DMA 方式下数据传送由硬件完成</span>`,`<span class="choice-text">中断 I/O 方式适用于所有外部设备，DMA 方式仅适用于快速外部设备</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`22. 下列关于中断 I/O 方式和 DMA 方式比较的叙述中，错误的是
+
+A. 中断 I/O 方式请求的是 CPU 处理时间, DMA 方式请求的是总线使用权
+
+B. 中断响应发生在一条指令执行结束后, DMA 响应发生在一个总线事务完成后
+
+C. 中断 I/O 方式下数据传送通过软件完成, DMA 方式下数据传送由硬件完成
+
+D. 中断 I/O 方式适用于所有外部设备, DMA 方式仅适用于快速外部设备`,images:[],hasFigure:!1},{id:`real-concept-2014-16`,year:2014,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#16`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`cache概念`,stem:`采用指令 Cache 与数据 Cache 分离的主要目的是（ ）。`,options:[`降低 Cache 的缺失损失`,`提高 Cache 的命中率`,`降低 CPU 平均访存时间`,`减少指令流水线资源冲突`],choiceFormat:`separate`,stemHtml:`<p>采用指令 Cache 与数据 Cache 分离的主要目的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">降低 Cache 的缺失损失</span>`,`<span class="choice-text">提高 Cache 的命中率</span>`,`<span class="choice-text">降低 CPU 平均访存时间</span>`,`<span class="choice-text">减少指令流水线资源冲突</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`16. 采用指令 Cache 与数据 Cache 分离的主要目的是
+
+A. 降低 Cache 的缺失损失
+
+B. 提高 Cache 的命中率
+
+C. 降低 CPU 平均访存时间
+
+D. 减少指令流水线资源冲突`,images:[],hasFigure:!1},{id:`real-concept-2014-20`,year:2014,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#20`,sourceAnswer:`C`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`总线事务`,stem:`一次总线事务中，主设备只需给出一个首地址，从设备就能从首地址开始的若干连续单元读出或写入多个数据。这种总线事务方式称为（ ）。`,options:[`并行传输`,`串行传输`,`突发传输`,`同步传输`],choiceFormat:`separate`,stemHtml:`<p>一次总线事务中，主设备只需给出一个首地址，从设备就能从首地址开始的若干连续单元读出或写入多个数据。这种总线事务方式称为（ ）。</p>`,optionsHtml:[`<span class="choice-text">并行传输</span>`,`<span class="choice-text">串行传输</span>`,`<span class="choice-text">突发传输</span>`,`<span class="choice-text">同步传输</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`20. 一次总线事务中，主设备只需给出一个首地址，从设备就能从首地址开始的若干连续单元读出或写入多个数据。这种总线事务方式称为________。
+
+A. 并行传输
+
+B. 串行传输
+
+C. 突发传输
+
+D. 同步传输`,images:[],hasFigure:!1},{id:`real-concept-2014-21`,year:2014,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#21`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`IO接口`,stem:`下列有关 I/O 接口的叙述中，错误的是（ ）。`,options:[`状态端口和控制端口可以合用同一个寄存器`,`I/O 接口中 CPU 可访问的寄存器称为 I/O 端口`,`采用独立编址方式时，I/O 端口地址和主存地址可能相同`,`采用统一编址方式时，CPU 不能用访存指令访问 I/O 端口`],choiceFormat:`separate`,stemHtml:`<p>下列有关 I/O 接口的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">状态端口和控制端口可以合用同一个寄存器</span>`,`<span class="choice-text">I/O 接口中 CPU 可访问的寄存器称为 I/O 端口</span>`,`<span class="choice-text">采用独立编址方式时，I/O 端口地址和主存地址可能相同</span>`,`<span class="choice-text">采用统一编址方式时，CPU 不能用访存指令访问 I/O 端口</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`21. 下列有关 I/O 接口的叙述中, 错误的是____。
+
+A. 状态端口和控制端口可以合用同一个寄存器  
+B. I/O 接口中 CPU 可访问的寄存器称为 I/O 端口  
+C. 采用独立编址方式时, I/O 端口地址和主存地址可能相同  
+D. 采用统一编址方式时, CPU 不能用访存指令访问 I/O 端口`,images:[],hasFigure:!1},{id:`real-concept-2015-12`,year:2015,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#12`,sourceAnswer:`A`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`计算机体系结构`,stem:`计算机硬件能够直接执行的语言是（ ）。
+I. 机器语言程序
+II. 汇编语言程序
+III. 硬件描述语言程序`,options:[`仅 I`,`仅 I、II`,`仅 I、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>计算机硬件能够直接执行的语言是（ ）。</p>
+<p>I. 机器语言程序</p>
+<p>II. 汇编语言程序</p>
+<p>III. 硬件描述语言程序</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`12. 计算机硬件能够直接执行的是
+
+I. 机器语言程序
+
+II．汇编语言程序
+
+III. 硬件描述语言程序
+
+A. 仅 I
+
+B. 仅 I、II
+
+C. 仅 I、III
+
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2015-14`,year:2015,no:14,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#14`,sourceAnswer:`D`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`浮点数加减`,stem:`下列有关浮点数加减运算的叙述中，正确的是（ ）。
+Ⅰ. 对阶操作不会引起阶码上溢或下溢
+Ⅱ. 右规和尾数舍入都可能引起阶码上溢
+Ⅲ. 左规时可能引起阶码下溢
+Ⅳ. 尾数溢出时结果不一定溢出`,options:[`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅱ、Ⅳ`,`仅Ⅰ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列有关浮点数加减运算的叙述中，正确的是（ ）。</p>
+<p>Ⅰ. 对阶操作不会引起阶码上溢或下溢</p>
+<p>Ⅱ. 右规和尾数舍入都可能引起阶码上溢</p>
+<p>Ⅲ. 左规时可能引起阶码下溢</p>
+<p>Ⅳ. 尾数溢出时结果不一定溢出</p>`,optionsHtml:[`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`14. 下列有关浮点数加减运算的叙述中，正确的是________。
+
+I. 对阶操作不会引起阶码上溢或下溢  
+II. 右规和尾数舍入都可能引起阶码上溢  
+III. 左规时可能引起阶码下溢  
+IV. 尾数溢出时结果不一定溢出
+
+A. 仅 II、III
+
+B. 仅 I、II、IV
+
+C. 仅 I、III、IV
+
+D. I、II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2015-17`,year:2015,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#17`,sourceAnswer:`B`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`存储器概念`,stem:`下列存储器中，在工作期间需要刷新的是（ ）。`,options:[`SRAM`,`SDRAM`,`ROM`,`FLASH`],choiceFormat:`separate`,stemHtml:`<p>下列存储器中，在工作期间需要刷新的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">SRAM</span>`,`<span class="choice-text">SDRAM</span>`,`<span class="choice-text">ROM</span>`,`<span class="choice-text">FLASH</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`17. 下列存储器中，在工作期间需要周期性刷新的是________。
+
+A. SRAM
+
+B. SDRAM
+
+C. ROM
+
+D. FLASH`,images:[],hasFigure:!1},{id:`real-concept-2015-19`,year:2015,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#19`,sourceAnswer:`C`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`总线定时`,stem:`下列有关总线定时的叙述中，错误的是（ ）。`,options:[`异步通信方式中，全互锁协议最慢`,`异步通信方式中，非互锁协议的可靠性最差`,`同步通信方式中，同步时钟信号可由各设备提供`,`半同步通信方式中，握手信号的采样由同步时钟控制`],choiceFormat:`separate`,stemHtml:`<p>下列有关总线定时的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">异步通信方式中，全互锁协议最慢</span>`,`<span class="choice-text">异步通信方式中，非互锁协议的可靠性最差</span>`,`<span class="choice-text">同步通信方式中，同步时钟信号可由各设备提供</span>`,`<span class="choice-text">半同步通信方式中，握手信号的采样由同步时钟控制</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`19. 下列有关总线定时的叙述中，错误的是
+
+A. 异步通信方式中, 全互锁协议最慢  
+B. 异步通信方式中, 非互锁协议的可靠性最差  
+C. 同步通信方式中, 同步时钟信号可由各设备提供  
+D. 半同步通信方式中, 握手信号的采样由同步时钟控制`,images:[],hasFigure:!1},{id:`real-concept-2015-21`,year:2015,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#21`,sourceAnswer:`B`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`在采用中断 I/O 方式控制打印输出的情况下，CPU 和打印控制接口中的 I/O 端口之间交换的信息不可能是（ ）。`,options:[`打印字符`,`主存地址`,`设备状态`,`控制命令`],choiceFormat:`separate`,stemHtml:`<p>在采用中断 I/O 方式控制打印输出的情况下，CPU 和打印控制接口中的 I/O 端口之间交换的信息不可能是（ ）。</p>`,optionsHtml:[`<span class="choice-text">打印字符</span>`,`<span class="choice-text">主存地址</span>`,`<span class="choice-text">设备状态</span>`,`<span class="choice-text">控制命令</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`21. 在采用中断I/O方式控制打印输出的情况下，CPU和打印控制接口中的I/O端口之间交换的信息不可能是________。
+
+A. 打印字符
+
+B. 主存地址
+
+C. 设备状态
+
+D. 控制命令`,images:[],hasFigure:!1},{id:`real-concept-2015-22`,year:2015,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#22`,sourceAnswer:`D`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`内部异常（内中断）可分为故障（fault）、陷阱（trap）和终止（abort）三类。下列有关内部异常的叙述中，错误的是（ ）。`,options:[`内部异常的产生与当前执行指令相关`,`内部异常的检测由 CPU 内部逻辑实现`,`内部异常的响应发生在指令执行过程中`,`内部异常处理后返回到发生异常的指令继续执行`],choiceFormat:`separate`,stemHtml:`<p>内部异常（内中断）可分为故障（fault）、陷阱（trap）和终止（abort）三类。下列有关内部异常的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">内部异常的产生与当前执行指令相关</span>`,`<span class="choice-text">内部异常的检测由 CPU 内部逻辑实现</span>`,`<span class="choice-text">内部异常的响应发生在指令执行过程中</span>`,`<span class="choice-text">内部异常处理后返回到发生异常的指令继续执行</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`22. 内部异常（内中断）可分为故障（fault）、陷阱（trap）和终止（abort）三类。下列有关内部异常的叙述中，错误的是________。
+
+A. 内部异常的产生与当前执行指令相关  
+B. 内部异常的检测由 CPU 内部逻辑实现  
+C. 内部异常的响应发生在指令执行过程中  
+D. 内部异常处理后返回到发生异常的指令继续执行`,images:[],hasFigure:!1},{id:`real-concept-2016-12`,year:2016,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#12`,sourceAnswer:`C`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`计算机体系结构`,stem:`将高级语言源程序转换为机器目标代码文件的程序是（ ）。`,options:[`汇编程序`,`链接程序`,`编译程序`,`解释程序`],choiceFormat:`separate`,stemHtml:`<p>将高级语言源程序转换为机器目标代码文件的程序是（ ）。</p>`,optionsHtml:[`<span class="choice-text">汇编程序</span>`,`<span class="choice-text">链接程序</span>`,`<span class="choice-text">编译程序</span>`,`<span class="choice-text">解释程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`12. 将高级语言源程序转换为机器级目标代码文件的程序是
+
+A. 汇编
+
+B. 链接程序
+
+C. 编译程序
+
+D. 解释程序
+
+13.有如下C语言程序段：
+
+short si=-32767;
+
+unsigned short usi=si;
+
+执行上述两条语句后，usi的值为
+
+A. -32767
+
+B. 32767
+
+C. 32768
+
+D. 32769`,images:[],hasFigure:!1},{id:`real-concept-2016-19`,year:2016,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#19`,sourceAnswer:`B`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`流水线冒险`,stem:`在无转发机制的五段基本流水线中，下列指令序列存在数据冒险的指令对是（ ）。
+I1: add R1, R2, R3;         // (R2)+(R3)→R1
+I2: add R5, R2, R4;         // (R2)+(R4)→R5
+I3: add R4, R5, R3;         // (R5)+(R3)→R4
+I4: add R5, R2, R6;         // (R2)+(R6)→R5`,options:[`I1 和 I2`,`I2 和 I3`,`I2 和 I4`,`I3 和 I4`],choiceFormat:`separate`,stemHtml:`<p>在无转发机制的五段基本流水线中，下列指令序列存在数据冒险的指令对是（ ）。</p>
+<pre><code>I1: add R1, R2, R3;         // (R2)+(R3)→R1
+I2: add R5, R2, R4;         // (R2)+(R4)→R5
+I3: add R4, R5, R3;         // (R5)+(R3)→R4
+I4: add R5, R2, R6;         // (R2)+(R6)→R5
+</code></pre>`,optionsHtml:[`<span class="choice-text">I1 和 I2</span>`,`<span class="choice-text">I2 和 I3</span>`,`<span class="choice-text">I2 和 I4</span>`,`<span class="choice-text">I3 和 I4</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`19. 在无转发机制的五段基本流水线(取指、译码/读寄存器、运算、访存、写回寄存器)中，下列指令序列存在数据冒险的指令对是
+
+I1:add R1, R2, R3; (R2)+(R3)→R1
+
+I2:add R5,R2,R4;R2)+(R4)→R5
+
+I3:add R4,R5,R3;R5+(R3)→R4
+
+I4:add R5,R2,R6;R2+(R6)→R5
+
+A.II和I2 B.I2和I3 C.I2和I4 D.I3和I4`,images:[],hasFigure:!1},{id:`real-concept-2016-20`,year:2016,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#20`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`单周期处理器,总线类型`,stem:`单周期处理器中所有指令的指令周期为一个时钟周期。下列关干单周期处理器的叙述中，错误的是（ ）。`,options:[`可以采用单总线结构数据通路`,`处理器时钟频率较低`,`在指令执行过程中控制信号不变`,`每条指令的 CPI 为 1`],choiceFormat:`separate`,stemHtml:`<p>单周期处理器中所有指令的指令周期为一个时钟周期。下列关干单周期处理器的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">可以采用单总线结构数据通路</span>`,`<span class="choice-text">处理器时钟频率较低</span>`,`<span class="choice-text">在指令执行过程中控制信号不变</span>`,`<span class="choice-text">每条指令的 CPI 为 1</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`20. 单周期处理器中所有指令的指令周期为一个时钟周期。下列关于单周期处理器的叙述中，错误的是
+
+A. 可以采用单总线结构数据通路  
+B. 处理器时钟频率较低  
+C. 在指令执行过程中控制信号不变  
+D. 每条指令的CPI为1`,images:[],hasFigure:!1},{id:`real-concept-2016-21`,year:2016,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#21`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`总线事务`,stem:`下列关于总线设计的叙述中的叙述中，错误的是（ ）。`,options:[`并行总线传输比串行总线传输速度快`,`采用信号线复用技术可减少信号线数量`,`采用突发传输方式可提高总线数据传输率`,`采用分离事务通信方式可提高总线利用率`],choiceFormat:`separate`,stemHtml:`<p>下列关于总线设计的叙述中的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">并行总线传输比串行总线传输速度快</span>`,`<span class="choice-text">采用信号线复用技术可减少信号线数量</span>`,`<span class="choice-text">采用突发传输方式可提高总线数据传输率</span>`,`<span class="choice-text">采用分离事务通信方式可提高总线利用率</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`21. 下列关于总线设计的叙述中，错误的是
+
+A. 并行总线传输比串行总线传输速度快  
+B. 采用信号线复用技术可减少信号线数量  
+C. 采用突发传输方式可提高总线数据传输率  
+D.采用分离事务通信方式可提高总线利用率`,images:[],hasFigure:!1},{id:`real-concept-2016-22`,year:2016,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#22`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`异常是指令执行过程中在处理器内部发生的特殊事件，中断是来自处理器外部的请求事件。下列关于中断或异常情况的叙述中，错误的是（ ）。`,options:[`“访存时缺页” 属于中断`,`“整数除以 0” 属于异常`,`“DMA 传送结束” 属于中断`,`“存储保护错” 属于异常`],choiceFormat:`separate`,stemHtml:`<p>异常是指令执行过程中在处理器内部发生的特殊事件，中断是来自处理器外部的请求事件。下列关于中断或异常情况的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">“访存时缺页” 属于中断</span>`,`<span class="choice-text">“整数除以 0” 属于异常</span>`,`<span class="choice-text">“DMA 传送结束” 属于中断</span>`,`<span class="choice-text">“存储保护错” 属于异常</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`22. 异常是指令执行过程中在处理器内部发生的特殊事件，中断是来自处理器外部的请求事件。下列关于中断或异常情况的叙述中，错误的是
+
+A. “访存时缺页”属于中断  
+B. “整数除以0”属于异常  
+C. “DMA传送结束”属于中断  
+D. “存储保护错”属于异常
+
+23.下列关于批处理系统的叙述中，正确的是
+
+I. 批处理系统允许多个用户与计算机直接交互
+
+II. 批处理系统分为单道批处理系统和多道批处理系统
+
+III.中断技术使得多道批处理系统的I/O设备可与CPU并行工作
+
+A. 仅Ⅱ、Ⅲ B. 仅Ⅱ C. 仅I、Ⅱ D. 仅I、Ⅲ`,images:[],hasFigure:!1},{id:`real-concept-2017-14`,year:2017,no:14,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#14`,sourceAnswer:`A`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`cache概念`,stem:`某 C 语言程序段如下：
+for ( i = 0 ; i <= 9 ; i ++ ) { temp = 1 ; for ( j = 0 ; j <= i ; j ++ ) { temp *= a [ j ]; } sum += temp ; }
+下列关于数组 a 的访问局部性的描述中，正确的是（ ）。`,options:[`时间局部性和空间局部性皆有`,`无时间局部性，有空间局部性`,`有时间局部性，无空间局部性`,`时间局部性和空间局部性皆无`],choiceFormat:`separate`,stemHtml:`<p>某 C 语言程序段如下：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="display:flex"><span><span style="color:#204a87;font-weight:700">for</span> <span style="color:#000;font-weight:700">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">0</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:700">&lt;=</span> <span style="color:#0000cf;font-weight:700">9</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">i</span><span style="color:#ce5c00;font-weight:700">++</span><span style="color:#000;font-weight:700">)</span> <span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">temp</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">1</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">for</span> <span style="color:#000;font-weight:700">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">0</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:700">&lt;=</span> <span style="color:#000">i</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">j</span><span style="color:#ce5c00;font-weight:700">++</span><span style="color:#000;font-weight:700">)</span> <span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>        <span style="color:#000">temp</span> <span style="color:#ce5c00;font-weight:700">*=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:700">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:700">];</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000;font-weight:700">}</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">sum</span> <span style="color:#ce5c00;font-weight:700">+=</span> <span style="color:#000">temp</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span></code></pre></div>
+<p>下列关于数组 a 的访问局部性的描述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">时间局部性和空间局部性皆有</span>`,`<span class="choice-text">无时间局部性，有空间局部性</span>`,`<span class="choice-text">有时间局部性，无空间局部性</span>`,`<span class="choice-text">时间局部性和空间局部性皆无</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`14. 某C语言程序段如下：
+
+\`\`\`txt
+for  $(\\mathrm{i} = 0;\\mathrm{i} <   = 9;\\mathrm{i} + + )$  { temp  $= 1$  for  $(j = 0;j <   = i;j + + )$  temp  $\\star = a[j]$  sum  $+ =$  temp;
+\`\`\`
+
+下列关于数组 a 的访问局部性的描述中, 正确的是____。
+
+A. 时间局部性和空间局部性皆有  
+B. 无时间局部性, 有空间局部性  
+C. 有时间局部性, 无空间局部性  
+D. 时间局部性和空间局部性皆无`,images:[],hasFigure:!1},{id:`real-concept-2017-15`,year:2017,no:15,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#15`,sourceAnswer:`D`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`指令寻址方式`,stem:`下列寻址方式中，最适合按下标顺序访问一维数组元素的是（ ）。`,options:[`相对寻址`,`寄存器寻址`,`直接寻址`,`变址寻址`],choiceFormat:`separate`,stemHtml:`<p>下列寻址方式中，最适合按下标顺序访问一维数组元素的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">相对寻址</span>`,`<span class="choice-text">寄存器寻址</span>`,`<span class="choice-text">直接寻址</span>`,`<span class="choice-text">变址寻址</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`15. 下列寻址方式中，最适合按下标顺序访问一维数组元素的是________。
+
+A. 相对寻址
+
+B. 寄存器寻址
+
+C. 直接寻址
+
+D. 变址寻址`,images:[],hasFigure:!1},{id:`real-concept-2017-17`,year:2017,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#17`,sourceAnswer:`C`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`超流水线`,stem:`下列关于超标量流水线特性的叙述中，正确的是（ ）。
+Ⅰ. 能缩短流水线功能段的处理时间
+Ⅱ. 能在一个时钟周期内同时发射多条指令
+Ⅲ. 能结合动态调度技术提高指令执行并行性`,options:[`仅Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ`,`Ⅰ、Ⅱ和Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列关于超标量流水线特性的叙述中，正确的是（ ）。</p>
+<p>Ⅰ. 能缩短流水线功能段的处理时间</p>
+<p>Ⅱ. 能在一个时钟周期内同时发射多条指令</p>
+<p>Ⅲ. 能结合动态调度技术提高指令执行并行性</p>`,optionsHtml:[`<span class="choice-text">仅Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ和Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`17. 下列关于超标量流水线特性的叙述中，正确的是
+
+I. 能缩短流水线功能段的处理时间  
+II. 能在一个时钟周期内同时发射多条指令  
+III. 能结合动态调度技术提高指令执行并行性
+
+A. 仅 II
+
+B. 仅 I、III
+
+C. 仅 II、III
+
+D. I、II 和III`,images:[],hasFigure:!1},{id:`real-concept-2017-18`,year:2017,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#18`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`寄存器类型`,stem:`下列关于主存储器（MM）和控制存储器（CS）的叙述中，错误的是（ ）。`,options:[`MM 在 CPU 外，CS 在 CPU 内`,`MM 按地址访问，CS 按内容访问`,`MM 存储指令和数据，CS 存储微指令`,`MM 用 RAM 和 ROM 实现，CS 用 ROM 实现`],choiceFormat:`separate`,stemHtml:`<p>下列关于主存储器（MM）和控制存储器（CS）的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">MM 在 CPU 外，CS 在 CPU 内</span>`,`<span class="choice-text">MM 按地址访问，CS 按内容访问</span>`,`<span class="choice-text">MM 存储指令和数据，CS 存储微指令</span>`,`<span class="choice-text">MM 用 RAM 和 ROM 实现，CS 用 ROM 实现</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`18. 下列关于主存储器（MM）和控制存储器（CS）的叙述中，错误的是________。
+
+A. MM 在 CPU 外, CS 在 CPU 内  
+B. MM 按地址访问, CS 按内容访问  
+C. MM存储指令和数据, CS存储微指令  
+D. MM 用 RAM 和 ROM 实现, CS 用 ROM 实现`,images:[],hasFigure:!1},{id:`real-concept-2017-19`,year:2017,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#19`,sourceAnswer:`A`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`流水线概念,数据通路`,stem:`下列关于指令流水线数据通路的叙述中，错误的是（ ）。`,options:[`包含生成控制信号的控制部件`,`包含算术逻辑运算部件（ALU）`,`包含通用寄存器组和取指部件`,`由组合逻辑电路和时序逻辑电路组合而成`],choiceFormat:`separate`,stemHtml:`<p>下列关于指令流水线数据通路的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">包含生成控制信号的控制部件</span>`,`<span class="choice-text">包含算术逻辑运算部件（ALU）</span>`,`<span class="choice-text">包含通用寄存器组和取指部件</span>`,`<span class="choice-text">由组合逻辑电路和时序逻辑电路组合而成</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`19. 下列关于指令流水线数据通路的叙述中，错误的是________。
+
+A. 包含生成控制信号的控制部件  
+B. 包含算术逻辑运算部件（ALU）  
+C. 包含通用寄存器组和取指部件  
+D. 由组合逻辑电路和时序逻辑电路组合而成`,images:[],hasFigure:!1},{id:`real-concept-2017-20`,year:2017,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#20`,sourceAnswer:`D`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`总线类型`,stem:`下列关于多总线结构的叙述中，错误的是（ ）。`,options:[`靠近 CPU 的总线速度较快`,`存储器总线可支持突发传送方式`,`总线之间须通过桥接器相连`,`PCI-Express×16 采用并行传输方式`],choiceFormat:`separate`,stemHtml:`<p>下列关于多总线结构的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">靠近 CPU 的总线速度较快</span>`,`<span class="choice-text">存储器总线可支持突发传送方式</span>`,`<span class="choice-text">总线之间须通过桥接器相连</span>`,`<span class="choice-text">PCI-Express×16 采用并行传输方式</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`20. 下列关于多总线结构的叙述中，错误的是
+
+A. 靠近 CPU 的总线速度较快  
+B. 存储器总线可支持突发传送方式  
+C. 总线之间须通过桥接器相连  
+D. PC I-Express×16 采用并行传输方式`,images:[],hasFigure:!1},{id:`real-concept-2017-21`,year:2017,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#21`,sourceAnswer:`D`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`IO接口`,stem:`I/O 指令实现的数据传送通常发生在（ ）。`,options:[`I/O 设备和 I/O 端口之间`,`通用寄存器和 I/O 设备之间`,`I/O 端口和 I/O 端口之间`,`通用寄存器和 I/O 端口之间`],choiceFormat:`separate`,stemHtml:`<p>I/O 指令实现的数据传送通常发生在（ ）。</p>`,optionsHtml:[`<span class="choice-text">I/O 设备和 I/O 端口之间</span>`,`<span class="choice-text">通用寄存器和 I/O 设备之间</span>`,`<span class="choice-text">I/O 端口和 I/O 端口之间</span>`,`<span class="choice-text">通用寄存器和 I/O 端口之间</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`21. I/O指令实现的数据传送通常发生在________。
+
+A. I/O 设备和 I/O 端口之间  
+B. 通用寄存器和 I/O 设备之间  
+C. I/O 端口和 I/O 端口之间  
+D. 通用寄存器和 I/O 端口之间`,images:[],hasFigure:!1},{id:`real-concept-2017-22`,year:2017,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#22`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`多级中断`,stem:`下列关于多重中断系统的叙述中，错误的是（ ）。`,options:[`在一条指令执行结束时响应中断`,`中断处理期间 CPU 处于关中断状态`,`中断请求的产生与当前指令的执行无关`,`CPU 通过采样中断请求信号检测中断请求`],choiceFormat:`separate`,stemHtml:`<p>下列关于多重中断系统的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">在一条指令执行结束时响应中断</span>`,`<span class="choice-text">中断处理期间 CPU 处于关中断状态</span>`,`<span class="choice-text">中断请求的产生与当前指令的执行无关</span>`,`<span class="choice-text">CPU 通过采样中断请求信号检测中断请求</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`22. 下列关于多重中断系统的叙述中, 错误的是
+
+A. 在一条指令执行结束时响应中断  
+B. 中断处理期间 CPU 处于关中断状态  
+C. 中断请求的产生与当前指令的执行无关  
+D. CPU 通过采样中断请求信号检测中断请求`,images:[],hasFigure:!1},{id:`real-concept-2018-12`,year:2018,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#12`,sourceAnswer:`D`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`计算机体系结构`,stem:`冯诺依曼结构计算机中数据采用二进制编码表示，其主要原因是（）。
+Ⅰ.二进制的运算规则简单
+Ⅱ.制造两个稳态的物理器件较容易
+Ⅲ.便于用逻辑门电路实现算术运算`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ`,`Ⅰ、Ⅱ和Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>冯诺依曼结构计算机中数据采用二进制编码表示，其主要原因是（）。</p>
+<p>Ⅰ.二进制的运算规则简单</p>
+<p>Ⅱ.制造两个稳态的物理器件较容易</p>
+<p>Ⅲ.便于用逻辑门电路实现算术运算</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ和Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`12. 冯·诺依曼结构计算机中数据采用二进制编码表示，其主要原因是
+
+I.二进制的运算规则简单
+
+II.制造两个稳态的物理器件较容易
+
+III.便于用逻辑门电路实现算术运算
+
+A. 仅 I、II
+
+B. 仅 I、III
+
+C. 仅 II、III
+
+D. I 、II 和 III`,images:[],hasFigure:!1},{id:`real-concept-2018-21`,year:2018,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#21`,sourceAnswer:`B`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`总线指标`,stem:`下列选项中，可提高同步总线数据传输率的是（ ）。
+Ⅰ. 增加总线宽度
+Ⅱ. 提高总线工作频率
+Ⅲ. 支持突发传输
+Ⅳ. 采用地址/数据线复用`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅱ、Ⅲ`,`仅Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ和Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，可提高同步总线数据传输率的是（ ）。</p>
+<p>Ⅰ. 增加总线宽度</p>
+<p>Ⅱ. 提高总线工作频率</p>
+<p>Ⅲ. 支持突发传输</p>
+<p>Ⅳ. 采用地址/数据线复用</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ和Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`21. 下列选项中，可提高同步总线数据传输率的是________。
+
+I.增加总线宽度
+
+II.提高总线工作频率
+
+Ⅲ.支持突发传输
+
+IV.采用地址/数据线复用
+
+A. 仅 I、II
+
+B. 仅 I、II、III
+
+C. 仅III、IV
+
+D. I、II、III和IV`,images:[],hasFigure:!1},{id:`real-concept-2018-22`,year:2018,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#22`,sourceAnswer:`C`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`下列关于外部 I/O 中断的叙述中，正确的是（ ）。`,options:[`中断控制器按所接收中断请求的先后次序进行中断优先级排队`,`CPU 响应中断时，通过执行中断隐指令完成通用寄存器的保护`,`CPU 只有在处于中断允许状态时，才能响应外部设备的中断请求`,`有中断请求时，CPU 立即暂停当前指令执行，转去执行中断服务程序`],choiceFormat:`separate`,stemHtml:`<p>下列关于外部 I/O 中断的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">中断控制器按所接收中断请求的先后次序进行中断优先级排队</span>`,`<span class="choice-text">CPU 响应中断时，通过执行中断隐指令完成通用寄存器的保护</span>`,`<span class="choice-text">CPU 只有在处于中断允许状态时，才能响应外部设备的中断请求</span>`,`<span class="choice-text">有中断请求时，CPU 立即暂停当前指令执行，转去执行中断服务程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`22. 下列关于外部 I/O 中断的叙述中，正确的是________。
+
+A. 中断控制器按所接收中断请求的先后次序进行中断优先级排队  
+B.CPU响应中断时，通过执行中断隐指令完成通用寄存器的保护  
+C. CPU 只有在处于中断允许状态时，才能响应外部设备的中断请求  
+D. 有中断请求时, CPU 立即暂停当前指令执行, 转去执行中断服务程序`,images:[],hasFigure:!1},{id:`real-concept-2019-12`,year:2019,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#12`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`计算机体系结构`,stem:`下列关于冯·诺依曼结构计算机基本思想的叙述中，错误的是（ ）。`,options:[`程序的功能都通过中央处理器执行指令实现`,`指令和数据都用二进制表示，形式上无差别`,`指令按地址访问，数据都在指令中直接给出`,`程序执行前，指令和数据需预先存放在存储器中`],choiceFormat:`separate`,stemHtml:`<p>下列关于冯·诺依曼结构计算机基本思想的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">程序的功能都通过中央处理器执行指令实现</span>`,`<span class="choice-text">指令和数据都用二进制表示，形式上无差别</span>`,`<span class="choice-text">指令按地址访问，数据都在指令中直接给出</span>`,`<span class="choice-text">程序执行前，指令和数据需预先存放在存储器中</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`12. 下列关于冯·诺依曼结构计算机基本思想的叙述中，错误的是________。
+
+A. 程序的功能都通过中央处理器执行指令实现  
+B. 指令和数据都用二进制数表示, 形式上无差别  
+C. 指令按地址访问, 数据都在指令中直接给出  
+D. 程序执行前, 指令和数据需预先存放在存储器中`,images:[],hasFigure:!1},{id:`real-concept-2019-14`,year:2019,no:14,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#14`,sourceAnswer:`D`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`缺页异常`,stem:`下列关于缺页处理的叙述中，错误的是（ ）。`,options:[`缺页是在地址转换时 CPU 检测到的一种异常`,`缺页处理由操作系统提供的缺页处理程序来完成`,`缺页处理程序根据页故障地址从外存读入所缺失的页`,`缺页处理完成后回到发生缺页的指令的下一条指令执行`],choiceFormat:`separate`,stemHtml:`<p>下列关于缺页处理的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">缺页是在地址转换时 CPU 检测到的一种异常</span>`,`<span class="choice-text">缺页处理由操作系统提供的缺页处理程序来完成</span>`,`<span class="choice-text">缺页处理程序根据页故障地址从外存读入所缺失的页</span>`,`<span class="choice-text">缺页处理完成后回到发生缺页的指令的下一条指令执行</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`14. 下列关于缺页处理的叙述中，错误的是
+
+A. 缺页是在地址转换时 CPU 检测到的一种异常  
+B. 缺页处理由操作系统提供的缺页处理程序来完成  
+C. 缺页处理程序根据页故障地址从外存读入所缺失的页  
+D. 缺页处理完成后回到发生缺页的指令的下一条指令执行`,images:[],hasFigure:!1},{id:`real-concept-2019-16`,year:2019,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#16`,sourceAnswer:`D`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`计算机性能指标`,stem:`下列有关处理器时钟脉冲信号的叙述中，错误的是（ ）。`,options:[`时钟脉冲信号由机器脉冲源发出的脉冲信号经整形和分频后形成`,`时钟脉冲信号的宽度称为时钟周期，时钟周期的倒数为机器主频`,`时钟周期以相邻状态单元间组合逻辑电路的最大延迟为基准确定`,`处理器总是在每来一个时钟脉冲信号时就开始执行一条新的指令`],choiceFormat:`separate`,stemHtml:`<p>下列有关处理器时钟脉冲信号的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">时钟脉冲信号由机器脉冲源发出的脉冲信号经整形和分频后形成</span>`,`<span class="choice-text">时钟脉冲信号的宽度称为时钟周期，时钟周期的倒数为机器主频</span>`,`<span class="choice-text">时钟周期以相邻状态单元间组合逻辑电路的最大延迟为基准确定</span>`,`<span class="choice-text">处理器总是在每来一个时钟脉冲信号时就开始执行一条新的指令</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`16. 下列有关处理器时钟脉冲信号的叙述中，错误的是________。
+
+A. 时钟脉冲信号由机器脉冲源发出的脉冲信号经整形和分频后形成  
+B. 时钟脉冲信号的宽度称为时钟周期, 时钟周期的倒数为机器主频  
+C. 时钟周期以相邻状态单元间组合逻辑电路的最大延迟为基准确定  
+D. 处理器总是在每来一个时钟脉冲信号时就开始执行一条新的指令`,images:[],hasFigure:!1},{id:`real-concept-2019-17`,year:2019,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#17`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`寄存器类型,指令寻址方式`,stem:`某指令功能为 R[r2] ← R[r1] + M[R[r0]] ，其两个源操作数分别采用寄存器、寄存器间接寻址方式。对于下列给定部件，该指令在取数及执行过程中需要用到的是（ ）。
+I.通用寄存器组（GPRs） \xA0\xA0\xA0\xA0 II. 算术逻辑单元（ALU）
+III. 存储器（Memory） \xA0\xA0\xA0\xA0 IV. 指令译码器（ID）`,options:[`仅 I、II`,`仅 I、II、III`,`仅 II、III、IV`,`仅 I、III、IV`],choiceFormat:`separate`,stemHtml:`<p>某指令功能为 <code>R[r2] ← R[r1] + M[R[r0]]</code>，其两个源操作数分别采用寄存器、寄存器间接寻址方式。对于下列给定部件，该指令在取数及执行过程中需要用到的是（ ）。</p>
+<p>I.通用寄存器组（GPRs） \xA0\xA0\xA0\xA0 II. 算术逻辑单元（ALU）</p>
+<p>III. 存储器（Memory） \xA0\xA0\xA0\xA0 IV. 指令译码器（ID）</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、II、III</span>`,`<span class="choice-text">仅 II、III、IV</span>`,`<span class="choice-text">仅 I、III、IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`17. 某指令功能为  $\\mathrm{R[r2]}\\leftarrow \\mathrm{R[r1] + M[R[r0]]}$ ，其两个源操作数分别采用寄存器、寄存器间接寻址方式。对于下列给定部件，该指令在取数及执行过程中需要用到的是________。
+
+I. 通用寄存器组（GPRs）
+
+II. 算术逻辑单元（ALU）
+
+III. 存储器（Memory） IV. 指令译码器（ID）
+
+A. 仅 I、II
+
+B. 仅 I、
+
+II、III
+
+C. 仅 II、III、IV
+
+D. 仅 I、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2019-18`,year:2019,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#18`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`流水线冒险`,stem:`在采用“取指、译码/取数、执行、访存、写回”5 段流水线的处理器中，执行如下指令序列，其中 s0、s1、s2、s3 和 t2 表示寄存器编号。
+I1: add s2,s1,s0    // R[s2]←R[s1]+R[s0]
+I2: load s3,0(t2)   // R[s3]←M[R[t2]+0]
+I3: add s2,s2,s3    // R[s2]←R[s2]+R[s3]
+I4: store s2,0(t2)  // M[R[t2]+0]←R[s2]
+下列指令对中，不存在数据冒险的是（ ）。`,options:[`I1 和 I3`,`I2 和 I3`,`I2 和 I4`,`I3 和 I4`],choiceFormat:`separate`,stemHtml:`<p>在采用“取指、译码/取数、执行、访存、写回”5 段流水线的处理器中，执行如下指令序列，其中 s0、s1、s2、s3 和 t2 表示寄存器编号。</p>
+<pre><code>I1: add s2,s1,s0    // R[s2]←R[s1]+R[s0]
+I2: load s3,0(t2)   // R[s3]←M[R[t2]+0]
+I3: add s2,s2,s3    // R[s2]←R[s2]+R[s3]
+I4: store s2,0(t2)  // M[R[t2]+0]←R[s2]
+</code></pre>
+<p>下列指令对中，不存在数据冒险的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">I1 和 I3</span>`,`<span class="choice-text">I2 和 I3</span>`,`<span class="choice-text">I2 和 I4</span>`,`<span class="choice-text">I3 和 I4</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`18. 在采用“取指、译码/取数、执行、访存、写回”5段流水线的处理器中，执行如下指令序列，其中s0、s1、s2、s3和t2表示寄存器编号。
+
+\`\`\`txt
+I1: add s2,s1,s0 //R[s2]←R[s1]+R[s0]  
+I2: load s3,0(t2) //R[s3]←M[R[t2]+0]  
+I3: add s2,s2,s3 //R[s2]←R[s2]+R[s3]  
+I4: store s2,0(t2) //M[R[t2]+0]←R[s2]
+\`\`\`
+
+下列指令对中，不存在数据冒险的是
+
+A. I1 和 I3
+
+B. I2 和 I3
+
+C. I2 和 I4
+
+D. I3 和 I4`,images:[],hasFigure:!1},{id:`real-concept-2019-20`,year:2019,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#20`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`磁盘概念`,stem:`下列关于磁盘存储器的叙述中，错误的是（ ）。`,options:[`磁盘的格式化容量比非格式化容量小`,`扇区中包含数据、地址和校验等信息`,`磁盘存储器的最小读写单位为一字节`,`磁盘存储器由磁盘控制器、磁盘驱动器和盘片组成`],choiceFormat:`separate`,stemHtml:`<p>下列关于磁盘存储器的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">磁盘的格式化容量比非格式化容量小</span>`,`<span class="choice-text">扇区中包含数据、地址和校验等信息</span>`,`<span class="choice-text">磁盘存储器的最小读写单位为一字节</span>`,`<span class="choice-text">磁盘存储器由磁盘控制器、磁盘驱动器和盘片组成</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`20. 下列关于磁盘存储器的叙述中，错误的是
+
+A. 磁盘的格式化容量比非格式化容量小  
+B. 扇区中包含数据、地址和校验等信息  
+C. 磁盘存储器的最小读写单位为一字节  
+D. 磁盘存储器由磁盘控制器、磁盘驱动器和盘片组成`,images:[],hasFigure:!1},{id:`real-concept-2019-22`,year:2019,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#22`,sourceAnswer:`D`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`DMA`,stem:`下列关于 DMA 方式的叙述中，正确的是（ ）。
+Ⅰ. DMA 传送前由设备驱动程序设置传送参数
+Ⅱ. 数据传送前由 DMA 控制器请求总线使用权
+Ⅲ. 数据传送由 DMA 控制器直接控制总线完成
+Ⅳ. DMA 传送结束后的处理由中断服务程序完成`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ、Ⅳ`,`仅Ⅱ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列关于 DMA 方式的叙述中，正确的是（ ）。</p>
+<p>Ⅰ. DMA 传送前由设备驱动程序设置传送参数</p>
+<p>Ⅱ. 数据传送前由 DMA 控制器请求总线使用权</p>
+<p>Ⅲ. 数据传送由 DMA 控制器直接控制总线完成</p>
+<p>Ⅳ. DMA 传送结束后的处理由中断服务程序完成</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`22. 下列关于 DMA 方式的叙述中, 正确的是
+
+I. DMA 传送前由设备驱动程序设置传送参数  
+II. 数据传送前由DMA控制器请求总线使用权  
+III. 数据传送由DMA控制器直接控制总线完成  
+IV. DMA 传送结束后的处理由中断服务程序完成
+
+A. 仅 I、II
+
+B. 仅 I、III、IV
+
+C. 仅 II、III、IV
+
+D. I、II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2020-12`,year:2020,no:12,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#12`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`寄存器类型,计算机性能指标`,stem:`下列给出的部件中其位数（宽度）一定与机器字长相同的是（ ）。
+I、ALU II、指令寄存器 III、通用寄存器 IV、浮点寄存器`,options:[`Ⅰ，Ⅱ`,`Ⅰ，Ⅲ`,`Ⅱ，Ⅲ`,`Ⅱ，Ⅲ，IV`],choiceFormat:`separate`,stemHtml:`<p>下列给出的部件中其位数（宽度）一定与机器字长相同的是（ ）。</p>
+<p>I、ALU<br/>II、指令寄存器<br/>III、通用寄存器<br/>IV、浮点寄存器</p>`,optionsHtml:[`<span class="choice-text">Ⅰ，Ⅱ</span>`,`<span class="choice-text">Ⅰ，Ⅲ</span>`,`<span class="choice-text">Ⅱ，Ⅲ</span>`,`<span class="choice-text">Ⅱ，Ⅲ，IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`12. 下列给出的部件中其位数（宽度）一定与机器字长相同的是：
+
+1、ALU；
+
+II、指令寄存器；
+
+III、通用寄存器；
+
+IV、浮点寄存器
+
+A、I, II
+
+B、I, III
+
+C、Ⅱ,Ⅲ
+
+D、II,III,IV`,images:[],hasFigure:!1},{id:`real-concept-2020-15`,year:2020,no:15,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#15`,sourceAnswer:`D`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`cache概念,TLB`,stem:`下列关于 TLB 和 Cache 的叙述中，错误的是（ ）。`,options:[`命中率都与程序局部性有关`,`缺失后都需要去访问主存`,`缺失处理都可以由硬件实现`,`都由 DRAM 存储器组成`],choiceFormat:`separate`,stemHtml:`<p>下列关于 TLB 和 Cache 的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">命中率都与程序局部性有关</span>`,`<span class="choice-text">缺失后都需要去访问主存</span>`,`<span class="choice-text">缺失处理都可以由硬件实现</span>`,`<span class="choice-text">都由 DRAM 存储器组成</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`15. 下列关于 TLB 和 Cache 的叙述中错误的是:
+
+A、命中率与程序局部性有关；  
+B、缺失后都需要去访问主存；  
+C、缺失处理都可以由硬件实现；  
+D、都由DRAM存储器组成。`,images:[],hasFigure:!1},{id:`real-concept-2020-17`,year:2020,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#17`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`流水线概念,单周期处理器`,stem:`下列给出的处理器类型中理想情况下 CPI 为 1 的是（ ）。
+I、单周期 CPU； II、多周期 CPU； III、基本流水线 CPU； IV、超标量流水线 CPU`,options:[`I、II；`,`I、III;`,`II、IV;`,`III、IV.`],choiceFormat:`separate`,stemHtml:`<p>下列给出的处理器类型中理想情况下 CPI 为 1 的是（ ）。</p>
+<p>I、单周期 CPU；<br/>II、多周期 CPU；<br/>III、基本流水线 CPU；<br/>IV、超标量流水线 CPU</p>`,optionsHtml:[`<span class="choice-text">I、II；</span>`,`<span class="choice-text">I、III;</span>`,`<span class="choice-text">II、IV;</span>`,`<span class="choice-text">III、IV.</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`17. 下列给出的处理器类型中理想情况下 CPI 为 1 的是:
+
+I、单周期CPU； II、多周期CPU；
+
+III、基本流水线 CPU; IV 超标量流水线 CPU
+
+A、I, II;
+
+B、I,III;
+
+C、II,IV;
+
+D、III,IV;`,images:[],hasFigure:!1},{id:`real-concept-2020-18`,year:2020,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#18`,sourceAnswer:`A`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`陷阱指令`,stem:`下列关于“自陷”（Trap，也称陷阱）的叙述中错误的是（ ）。`,options:[`自陷是通过陷阱指令预先设定的一类外部中断事件；`,`自陷可用于实现程序调试时的断点设置和单步跟踪；`,`自陷发生后 CPU 将转去执行操作系统内核相应程序；`,`自陷处理完成后返回到陷阱指令的下一条指令执行。`],choiceFormat:`separate`,stemHtml:`<p>下列关于“自陷”（Trap，也称陷阱）的叙述中错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">自陷是通过陷阱指令预先设定的一类外部中断事件；</span>`,`<span class="choice-text">自陷可用于实现程序调试时的断点设置和单步跟踪；</span>`,`<span class="choice-text">自陷发生后 CPU 将转去执行操作系统内核相应程序；</span>`,`<span class="choice-text">自陷处理完成后返回到陷阱指令的下一条指令执行。</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`18. 下列关于“自陷”（Trap，也称陷阱）的叙述中错误的是：
+
+A、自陷是通过陷阱指令预先设定的一类外部中断事件；  
+B、自陷可用于实现程序调试时的断点设置和单步跟踪；  
+C、自陷发生后 CPU 将转去执行操作系统内核相应程序；  
+D、自陷处理完成后返回到陷阱指令的下一条指令执行。`,images:[],hasFigure:!1},{id:`real-concept-2020-20`,year:2020,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#20`,sourceAnswer:`C`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`异常和中断,中断IO`,stem:`下列事件中属于外部中断事件的是（ ）。
+I、访存时缺页；
+II、定时器到时；
+III、网络数据包到达；`,options:[`仅 I、II`,`仅 I、III`,`仅 II、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>下列事件中属于外部中断事件的是（ ）。</p>
+<p>I、访存时缺页；</p>
+<p>II、定时器到时；</p>
+<p>III、网络数据包到达；</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`20. 下列事件中属于外部中断事件的是：
+
+I、访存时缺页；II、定时器延时（不确定）；III、网络数据包到达
+
+A、I,II;
+
+B、I,II,IV;
+
+C II,III;
+
+D II,III,IV.`,images:[],hasFigure:!1},{id:`real-concept-2020-21`,year:2020,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#21`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`中断屏蔽,异常和中断`,stem:`外部中断包括不可屏蔽中断（NMI）和可屏蔽中断，下列关于外部中断的叙述中错误的是（ ）。`,options:[`CPU 处于关中断状态时也能响应 NMI 请求；`,`一旦可屏蔽中断请求信号有效，CPU 将立即响应；`,`不可屏蔽中断的优先级比可屏蔽中断的优先级高；`,`可通过中断屏蔽字改变可屏蔽中断的处理优先级。`],choiceFormat:`separate`,stemHtml:`<p>外部中断包括不可屏蔽中断（NMI）和可屏蔽中断，下列关于外部中断的叙述中错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">CPU 处于关中断状态时也能响应 NMI 请求；</span>`,`<span class="choice-text">一旦可屏蔽中断请求信号有效，CPU 将立即响应；</span>`,`<span class="choice-text">不可屏蔽中断的优先级比可屏蔽中断的优先级高；</span>`,`<span class="choice-text">可通过中断屏蔽字改变可屏蔽中断的处理优先级。</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`21. 外部中断包括不可屏蔽中断（NMI）和可屏蔽中断，下列关于外部中断的叙述中错误的是：
+
+A、CPU 处于关中断状态时也能响应 NMI 请求；  
+B、一旦可屏蔽中断请求信号有效，CPU 将立即响应；  
+C、不可屏蔽中断的优先级比可屏蔽中断的优先级高；  
+D、可通过中断屏蔽字改变可屏蔽中断的处理优先级。`,images:[],hasFigure:!1},{id:`real-concept-2020-22`,year:2020,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#22`,sourceAnswer:`C`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`DMA`,stem:`若设备采用周期挪用 DMA 方式进行输入输出，每次 DMA 传送的数据块大小为 512 字节，相应的 I/O 接口中有一个 32 位数数据缓冲寄存器，对于数据输入过程，下列叙述中错误的是（ ）。`,options:[`每准备好 32 位数据，DMA 控制器就发出一次总线请求；`,`相对于 CPU，DMA 控制器的总线使用权的优先级更高；`,`在整个数据块的传送过过程中，CPU 不可以访问主存储器；`,`数据块传送结束时，会产生“DMA 传送结束”的中断请求。`],choiceFormat:`separate`,stemHtml:`<p>若设备采用周期挪用 DMA 方式进行输入输出，每次 DMA 传送的数据块大小为 512 字节，相应的 I/O 接口中有一个 32 位数数据缓冲寄存器，对于数据输入过程，下列叙述中错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">每准备好 32 位数据，DMA 控制器就发出一次总线请求；</span>`,`<span class="choice-text">相对于 CPU，DMA 控制器的总线使用权的优先级更高；</span>`,`<span class="choice-text">在整个数据块的传送过过程中，CPU 不可以访问主存储器；</span>`,`<span class="choice-text">数据块传送结束时，会产生“DMA 传送结束”的中断请求。</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`22. 若设备采用周期挪用 DMA 方式进行输入输出，每次 DMA 传送的数据块大小为 512 字节，相应的 I/O 接口中有一个 32 位数数据缓冲寄存器，对于数据输入过程，下列叙述中错误的是：
+
+A、每准备好 32 位数据，DMA 控制器就发出一次总线请求；  
+B、相对于 CPU，DMA 控制器的总线使用权的优先级更高；  
+C、在整个数据块的传送过过程中，CPU 不可以访问主存储器；  
+D、数据块传送结束时，会产生“DMA 传送结束”的中断请求。`,images:[],hasFigure:!1},{id:`real-concept-2021-17`,year:2021,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#17`,sourceAnswer:`D`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`寄存器类型`,stem:`下列存储器中，汇编语言程序员可见的是（ ）。
+Ⅰ. 指令寄存器
+Ⅱ. 微指令寄存器
+Ⅲ. 基址寄存器
+Ⅳ. 标志状态寄存器`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、IV`,`仅Ⅱ、Ⅳ`,`仅Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列存储器中，汇编语言程序员可见的是（ ）。</p>
+<p>Ⅰ. 指令寄存器</p>
+<p>Ⅱ. 微指令寄存器</p>
+<p>Ⅲ. 基址寄存器</p>
+<p>Ⅳ. 标志状态寄存器</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、IV</span>`,`<span class="choice-text">仅Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`17. 下列寄存器中, 汇编语言程序员可见的是
+
+I. 指令寄存器
+
+Ⅱ. 微指令寄存器
+
+Ⅲ. 基址寄存器
+
+IV. 标志/状态寄存器
+
+A. 仅 I、II
+
+B. 仅 I、IV
+
+C. 仅  $\\mathrm{II} 、 \\mathrm{IV}$
+
+D. 仅Ⅲ、IV`,images:[],hasFigure:!1},{id:`real-concept-2021-18`,year:2021,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#18`,sourceAnswer:`C`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`数据通路`,stem:`下列关于数据通路的叙述中，错误的是（ ）。`,options:[`数据通路包含 ALU 等组合逻辑（操作）元件`,`数据通路包含寄存器等时序逻辑（状态）元件`,`数据通路不包含用于异常事件检测及响应的电路`,`数据通路中的数据流动路径由控制信号进行控制`],choiceFormat:`separate`,stemHtml:`<p>下列关于数据通路的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">数据通路包含 ALU 等组合逻辑（操作）元件</span>`,`<span class="choice-text">数据通路包含寄存器等时序逻辑（状态）元件</span>`,`<span class="choice-text">数据通路不包含用于异常事件检测及响应的电路</span>`,`<span class="choice-text">数据通路中的数据流动路径由控制信号进行控制</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`18. 下列关于数据通路的叙述中, 错误的是
+
+A. 数据通路包含 ALU 等组合逻辑（操作）元件  
+B. 数据通路包含寄存器等时序逻辑 (状态) 元件  
+C. 数据通路不包含用于异常事件检测及响应的电路  
+D. 数据通路中的数据流动路径由控制信号进行控制`,images:[],hasFigure:!1},{id:`real-concept-2021-19`,year:2021,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#19`,sourceAnswer:`C`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`总线概念`,stem:`下列关于总线的叙述中，错误的是（ ）。`,options:[`总线是在两个或多个部件之间进行数据交换的传输介质`,`同步总线由时钟信号定时，时钟频率不一定等于工作频率`,`异步总线由握手信号定时，一次握手过程完成一位数据交换`,`突发（Burst）传送总线事务可以在总线上连续传送多个数据`],choiceFormat:`separate`,stemHtml:`<p>下列关于总线的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">总线是在两个或多个部件之间进行数据交换的传输介质</span>`,`<span class="choice-text">同步总线由时钟信号定时，时钟频率不一定等于工作频率</span>`,`<span class="choice-text">异步总线由握手信号定时，一次握手过程完成一位数据交换</span>`,`<span class="choice-text">突发（Burst）传送总线事务可以在总线上连续传送多个数据</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`19. 下列关于总线的叙述中, 错误的是
+
+A. 总线是在两个或多个部件之间进行数据交换的传输介质  
+B. 同步总线由时钟信号定时, 时钟频率不一定等于工作频率  
+C. 异步总线由握手信号定时,一次握手过程完成一位数据交换  
+D. 突发 (Burst) 传送总线事务可以在总线上连续传送多个数据`,images:[],hasFigure:!1},{id:`real-concept-2021-20`,year:2021,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#20`,sourceAnswer:`A`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`IO接口`,stem:`下列选项中不属于 I/O 接口的是（ ）。`,options:[`磁盘驱动器`,`打印机适配器`,`网络控制器`,`可编程中断控制器`],choiceFormat:`separate`,stemHtml:`<p>下列选项中不属于 I/O 接口的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">磁盘驱动器</span>`,`<span class="choice-text">打印机适配器</span>`,`<span class="choice-text">网络控制器</span>`,`<span class="choice-text">可编程中断控制器</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`20. 下列选项中, 不属于 I/O 接口的是
+
+A. 磁盘驱动器
+
+B. 打印机适配器
+
+C. 网络控制器
+
+D. 可编程中断控制器`,images:[],hasFigure:!1},{id:`real-concept-2021-21`,year:2021,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#21`,sourceAnswer:`B`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`异常事件在当前指令执行过程中进行检测，中断请求则在当前指令执行后进行检测。下列事件中，相应处理程序执行后，必须回到当前指令重新执行的是（ ）。`,options:[`系统调用`,`页缺失`,`DMA 传送结束`,`打印机缺纸`],choiceFormat:`separate`,stemHtml:`<p>异常事件在当前指令执行过程中进行检测，中断请求则在当前指令执行后进行检测。下列事件中，相应处理程序执行后，必须回到当前指令重新执行的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">系统调用</span>`,`<span class="choice-text">页缺失</span>`,`<span class="choice-text">DMA 传送结束</span>`,`<span class="choice-text">打印机缺纸</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`21. 异常事件在当前指令执行过程中进行检测，中断请求则在当前指令执行后进行检测。下列事件中，相应处理程序执行后，必须回到当前指令重新执行的是
+
+A. 系统调用
+
+B. 页缺失
+
+C. DMA 传送结束
+
+D. 打印机缺纸`,images:[],hasFigure:!1},{id:`real-concept-2021-22`,year:2021,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#22`,sourceAnswer:`A`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`多级中断`,stem:`下列是关于多重中断系统中 CPU 响应中断的叙述，其中错误的是（ ）。`,options:[`仅在用户态（执行用户程序）下，CPU 才能检测和响应中断`,`CPU 只有在检测到中断请求信号后，才会进入中断响应周期`,`进入中断响应周期时，CPU 一定处于中断允许（开中断）状态`,`若 CPU 检测到中断请求信号，则一定存在未被屏蔽的中断源请求信号`],choiceFormat:`separate`,stemHtml:`<p>下列是关于多重中断系统中 CPU 响应中断的叙述，其中错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">仅在用户态（执行用户程序）下，CPU 才能检测和响应中断</span>`,`<span class="choice-text">CPU 只有在检测到中断请求信号后，才会进入中断响应周期</span>`,`<span class="choice-text">进入中断响应周期时，CPU 一定处于中断允许（开中断）状态</span>`,`<span class="choice-text">若 CPU 检测到中断请求信号，则一定存在未被屏蔽的中断源请求信号</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`22. 下列是关于多重中断系统中 CPU 响应中断的叙述, 其中错误的是
+
+A. 仅在用户态(执行用户程序)下, CPU 才能检测和响应中断  
+B. CPU 只有在检测到中断请求信号后, 才会进入中断响应周期  
+C. 进入中断响应周期时, CPU 一定处于中断允许 (开中断) 状态  
+D. 若 CPU 检测到中断请求信号, 则一定存在未被屏蔽的中断源请求信号`,images:[],hasFigure:!1},{id:`real-concept-2022-18`,year:2022,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#18`,sourceAnswer:`B`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`指令体系结构`,stem:`下列选项中，属于指令集体系结构（ISA）规定的内容是（ ）。
+Ⅰ. 指令字格式和指令类型
+Ⅱ. CPU 的时钟周期
+Ⅲ. 通用寄存器个数和位数
+Ⅳ. 加法器的进位方式`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅳ`,`仅Ⅰ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，属于指令集体系结构（ISA）规定的内容是（ ）。</p>
+<p>Ⅰ. 指令字格式和指令类型</p>
+<p>Ⅱ. CPU 的时钟周期</p>
+<p>Ⅲ. 通用寄存器个数和位数</p>
+<p>Ⅳ. 加法器的进位方式</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-20`,year:2022,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#20`,sourceAnswer:`A`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`编译过程`,stem:`将高级语言源程序转换为可执行目标文件的主要过程是（ ）。`,options:[`预处理 → 编译 → 汇编 → 链接`,`预处理 → 汇编 → 编译 → 链接`,`预处理 → 编译 → 链接 → 汇编`,`预处理 → 汇编 → 链接 → 编译`],choiceFormat:`separate`,stemHtml:`<p>将高级语言源程序转换为可执行目标文件的主要过程是（ ）。</p>`,optionsHtml:[`<span class="choice-text">预处理 → 编译 → 汇编 → 链接</span>`,`<span class="choice-text">预处理 → 汇编 → 编译 → 链接</span>`,`<span class="choice-text">预处理 → 编译 → 链接 → 汇编</span>`,`<span class="choice-text">预处理 → 汇编 → 链接 → 编译</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-21`,year:2022,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#21`,sourceAnswer:`C`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`下列关于中断 I/O 方式的叙述中，不正确的是（ ）。`,options:[`适用于键盘、针式打印机等字符型设备`,`外设和主机之间的数据传送通过软件完成`,`外设准备数据的时间应小于中断处理时间`,`外设为某进程准备数据时 CPU 可运行其他进程`],choiceFormat:`separate`,stemHtml:`<p>下列关于中断 I/O 方式的叙述中，不正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">适用于键盘、针式打印机等字符型设备</span>`,`<span class="choice-text">外设和主机之间的数据传送通过软件完成</span>`,`<span class="choice-text">外设准备数据的时间应小于中断处理时间</span>`,`<span class="choice-text">外设为某进程准备数据时 CPU 可运行其他进程</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-22`,year:2022,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#22`,sourceAnswer:`C`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`多处理机`,stem:`下列关于并行处理技术的叙述中，不正确的是（ ）。`,options:[`多核处理器属于 MIMD 结构`,`向量处理器属于 SIMD 结构`,`硬件多线程技术只可用于多核处理器`,`SMP 中所有处理器共享单一物理地址空间`],choiceFormat:`separate`,stemHtml:`<p>下列关于并行处理技术的叙述中，不正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">多核处理器属于 MIMD 结构</span>`,`<span class="choice-text">向量处理器属于 SIMD 结构</span>`,`<span class="choice-text">硬件多线程技术只可用于多核处理器</span>`,`<span class="choice-text">SMP 中所有处理器共享单一物理地址空间</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-17`,year:2023,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#17`,sourceAnswer:`A`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`指令寻址方式`,stem:`某运算类型指令中有一个地址码为通用寄存器编号，对应通用寄存器中存放的是操作数或操作数地址，CPU 区分两者的依据是（ ）`,options:[`操作数的寻址方式`,`操作数的编码方式`,`通用寄存器编号`,`通用寄存器的内容`],choiceFormat:`separate`,stemHtml:`<p>某运算类型指令中有一个地址码为通用寄存器编号，对应通用寄存器中存放的是操作数或操作数地址，CPU 区分两者的依据是（ ）</p>`,optionsHtml:[`<span class="choice-text">操作数的寻址方式</span>`,`<span class="choice-text">操作数的编码方式</span>`,`<span class="choice-text">通用寄存器编号</span>`,`<span class="choice-text">通用寄存器的内容</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-18`,year:2023,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#18`,sourceAnswer:`B`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`数据通路`,stem:`数据通路由组合逻辑元件（操作元件）和时序逻辑元件（状态元件）组成。下列给出的元件中，属于操作元件的是（ ）。
+I. 算术逻辑部件（ALU）
+II. 程序计数器（PC）
+III. 通用寄存器组（GPRs）
+IV. 多路选择题（MUX）`,options:[`仅 I、II`,`仅 I、IV`,`仅 II、III`,`仅 I、II、IV`],choiceFormat:`separate`,stemHtml:`<p>数据通路由组合逻辑元件（操作元件）和时序逻辑元件（状态元件）组成。下列给出的元件中，属于操作元件的是（ ）。</p>
+<p>I. 算术逻辑部件（ALU）</p>
+<p>II. 程序计数器（PC）</p>
+<p>III. 通用寄存器组（GPRs）</p>
+<p>IV. 多路选择题（MUX）</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、IV</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">仅 I、II、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-21`,year:2023,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#21`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`下列关于硬件和异常/中断关系的叙述中，错误的是（ ）。`,options:[`CPU 在执行一条指令过程中检测异常事件`,`CPU 在执行完一条指令时检测中断请求信号`,`开中断中 CPU 检测到中断请求后就进行中断响应`,`外部设备通过中断控制器向 CPU 发中断结束信号`],choiceFormat:`separate`,stemHtml:`<p>下列关于硬件和异常/中断关系的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">CPU 在执行一条指令过程中检测异常事件</span>`,`<span class="choice-text">CPU 在执行完一条指令时检测中断请求信号</span>`,`<span class="choice-text">开中断中 CPU 检测到中断请求后就进行中断响应</span>`,`<span class="choice-text">外部设备通过中断控制器向 CPU 发中断结束信号</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-22`,year:2023,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#22`,sourceAnswer:`C`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`IO方式`,stem:`下列关于 I/O 控制方式的叙述中，错误的是（ ）。`,options:[`查询方式下，通过 CPU 执行查询程序进行 I/O 操作`,`中断方式下，通过 CPU 执行中断服务程序进行 I/O 操作`,`DMA 方式下，通过 CPU 执行 DMA 传送程序进行 I/O 操作`,`对于 SSD 网络适配器等高速设备，采用 DMA 方式输入/输出`],choiceFormat:`separate`,stemHtml:`<p>下列关于 I/O 控制方式的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">查询方式下，通过 CPU 执行查询程序进行 I/O 操作</span>`,`<span class="choice-text">中断方式下，通过 CPU 执行中断服务程序进行 I/O 操作</span>`,`<span class="choice-text">DMA 方式下，通过 CPU 执行 DMA 传送程序进行 I/O 操作</span>`,`<span class="choice-text">对于 SSD 网络适配器等高速设备，采用 DMA 方式输入/输出</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-13`,year:2024,no:13,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#13`,sourceAnswer:`B`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`微程序控制器`,stem:`将汇编语言程序中实现特定功能的指令序列定义成一条伪指令。下列选项中，CPU 能理解并直接执行的是
+Ⅰ. 伪指令 Ⅱ. 微指令 Ⅲ. 机器指令 Ⅳ. 汇编指令`,options:[`仅Ⅰ和Ⅳ`,`仅Ⅱ和Ⅲ`,`仅Ⅲ和Ⅳ`,`仅Ⅰ、Ⅲ和Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>将汇编语言程序中实现特定功能的指令序列定义成一条伪指令。下列选项中，CPU 能理解并直接执行的是</p>
+<p>Ⅰ. 伪指令 Ⅱ. 微指令 Ⅲ. 机器指令 Ⅳ. 汇编指令</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ和Ⅳ</span>`,`<span class="choice-text">仅Ⅱ和Ⅲ</span>`,`<span class="choice-text">仅Ⅲ和Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ和Ⅳ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-15`,year:2024,no:15,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#15`,sourceAnswer:`D`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`运算电路`,stem:`下列关于整数乘法运算的叙述中，错误的是（ ）。`,options:[`用阵列乘法器实现乘运算可以在一个时钟周期完成`,`用 ALU 和移位器实现的乘运算无法在一个时钟周期内完成`,`变量与常数的乘运算可编译优化为若干条移位及加/减运算指令`,`两个变量的乘运算无法编译为移位及加法等指令的循环实现`],choiceFormat:`separate`,stemHtml:`<p>下列关于整数乘法运算的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">用阵列乘法器实现乘运算可以在一个时钟周期完成</span>`,`<span class="choice-text">用 ALU 和移位器实现的乘运算无法在一个时钟周期内完成</span>`,`<span class="choice-text">变量与常数的乘运算可编译优化为若干条移位及加/减运算指令</span>`,`<span class="choice-text">两个变量的乘运算无法编译为移位及加法等指令的循环实现</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-16`,year:2024,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#16`,sourceAnswer:`D`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`对于页式虚拟存储管理系统，下列关于存储器层次结构的叙述中，错误的是（ ）。`,options:[`Cache-主存层次的交换单位为主存块，主存-外存层次的交换单位为页`,`Cache-主存层次替换算法由硬件实现，主存-外存层次由软件实现`,`Cache-主存层次可采用回写法写策略，主存-外存层次通常采用回写法`,`Cache-主存层次可采用直接映射，主存-外存层次通常采用直接映射`],choiceFormat:`separate`,stemHtml:`<p>对于页式虚拟存储管理系统，下列关于存储器层次结构的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">Cache-主存层次的交换单位为主存块，主存-外存层次的交换单位为页</span>`,`<span class="choice-text">Cache-主存层次替换算法由硬件实现，主存-外存层次由软件实现</span>`,`<span class="choice-text">Cache-主存层次可采用回写法写策略，主存-外存层次通常采用回写法</span>`,`<span class="choice-text">Cache-主存层次可采用直接映射，主存-外存层次通常采用直接映射</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-18`,year:2024,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#18`,sourceAnswer:`B`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`下列事件中，不是在 MMU 地址转换过程检测的是（）`,options:[`访问越权`,`Cache 缺失`,`页面缺失`,`TLB 缺失`],choiceFormat:`separate`,stemHtml:`<p>下列事件中，不是在 MMU 地址转换过程检测的是（）</p>`,optionsHtml:[`<span class="choice-text">访问越权</span>`,`<span class="choice-text">Cache 缺失</span>`,`<span class="choice-text">页面缺失</span>`,`<span class="choice-text">TLB 缺失</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-19`,year:2024,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#19`,sourceAnswer:`C`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`流水线冒险`,stem:`在采用“取指、译码/取数、执行、访存、写回”5 段流水线的 RISC 处理器中，下列关于指令流水线数据冒险处理的叙述中，错误的是（ ）。`,options:[`相邻两条指令中的操作数相关可能引起数据冒险`,`在数据相关的指令间插入“气泡”能避免数据冒险`,`所有数据冒险都可以通过加入转发（旁路）电路解决`,`所有数据冒险都能通过调整指令顺序和插入 nop 指令解决`],choiceFormat:`separate`,stemHtml:`<p>在采用“取指、译码/取数、执行、访存、写回”5 段流水线的 RISC 处理器中，下列关于指令流水线数据冒险处理的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">相邻两条指令中的操作数相关可能引起数据冒险</span>`,`<span class="choice-text">在数据相关的指令间插入“气泡”能避免数据冒险</span>`,`<span class="choice-text">所有数据冒险都可以通过加入转发（旁路）电路解决</span>`,`<span class="choice-text">所有数据冒险都能通过调整指令顺序和插入 nop 指令解决</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-21`,year:2024,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#21`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`下列关于中断 I/O 方式的叙述中，错误的是（ ）。`,options:[`中断屏蔽字用于确定中断响应的优先级`,`保存断点和程序状态字在中断响应阶段完成`,`保存通用寄存器和设置新中断屏蔽字由软件实现`,`单重中断方式下，中断处理时 CPU 处于关中断状态`],choiceFormat:`separate`,stemHtml:`<p>下列关于中断 I/O 方式的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">中断屏蔽字用于确定中断响应的优先级</span>`,`<span class="choice-text">保存断点和程序状态字在中断响应阶段完成</span>`,`<span class="choice-text">保存通用寄存器和设置新中断屏蔽字由软件实现</span>`,`<span class="choice-text">单重中断方式下，中断处理时 CPU 处于关中断状态</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-22`,year:2024,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#22`,sourceAnswer:`C`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`DMA`,stem:`DMA 方式中，DMA 控制器控制的数据传输通路位于（ ）。`,options:[`CPU 和主存之间`,`CPU 和 DMA 控制器之间`,`设备接口和主存之间`,`设备接口和 DMA 控制器之间`],choiceFormat:`separate`,stemHtml:`<p>DMA 方式中，DMA 控制器控制的数据传输通路位于（ ）。</p>`,optionsHtml:[`<span class="choice-text">CPU 和主存之间</span>`,`<span class="choice-text">CPU 和 DMA 控制器之间</span>`,`<span class="choice-text">设备接口和主存之间</span>`,`<span class="choice-text">设备接口和 DMA 控制器之间</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-16`,year:2025,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#16`,sourceAnswer:`B`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`指令体系结构`,stem:`下列选项中，由指令体系结构（ISA）规定的是（ ）。`,options:[`是否采用阵列乘法器`,`是否采用定长指令字格式`,`是否采用微程序控制器`,`是否采用单总线数据通路`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，由指令体系结构（ISA）规定的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">是否采用阵列乘法器</span>`,`<span class="choice-text">是否采用定长指令字格式</span>`,`<span class="choice-text">是否采用微程序控制器</span>`,`<span class="choice-text">是否采用单总线数据通路</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-17`,year:2025,no:17,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#17`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`复杂和精简指令集`,stem:`下列关于 RISC 的叙述中，错误的是（ ）。`,options:[`多采用硬连线方式实现控制器`,`通常采用 Load/Store 型指令设计风格`,`难以采用流水线数据通路实现微架构`,`多采用寄存器传递过程调用时的参数`],choiceFormat:`separate`,stemHtml:`<p>下列关于 RISC 的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">多采用硬连线方式实现控制器</span>`,`<span class="choice-text">通常采用 Load/Store 型指令设计风格</span>`,`<span class="choice-text">难以采用流水线数据通路实现微架构</span>`,`<span class="choice-text">多采用寄存器传递过程调用时的参数</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-18`,year:2025,no:18,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#18`,sourceAnswer:`B`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`计算机性能指标`,stem:`下列关于 CPI 和 CPU 时钟周期的叙述中，错误的是（ ）。`,options:[`不同类型指令的 CPI 可能不一样`,`程序的 CPI 与 Cache 缺失率无关`,`单周期 CPU 的时钟周期以最耗时指令所用的时间为准`,`流水线 CPU 的时钟周期以最长流水段所用时间为准`],choiceFormat:`separate`,stemHtml:`<p>下列关于 CPI 和 CPU 时钟周期的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">不同类型指令的 CPI 可能不一样</span>`,`<span class="choice-text">程序的 CPI 与 Cache 缺失率无关</span>`,`<span class="choice-text">单周期 CPU 的时钟周期以最耗时指令所用的时间为准</span>`,`<span class="choice-text">流水线 CPU 的时钟周期以最长流水段所用时间为准</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-19`,year:2025,no:19,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#19`,sourceAnswer:`A`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`数据通路,控制器`,stem:`下列关于 CPU 中的数据通路和控制器的叙述中，错误的是（ ）。`,options:[`通用寄存器组中应该包含程序计数器`,`控制器中一定包含指令操作码的译码电路`,`单周期 CPU 中的控制器比多周期 CPU 中的更简单`,`流水线 CPU 需解决数据相关和控制相关等冒险问题`],choiceFormat:`separate`,stemHtml:`<p>下列关于 CPU 中的数据通路和控制器的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">通用寄存器组中应该包含程序计数器</span>`,`<span class="choice-text">控制器中一定包含指令操作码的译码电路</span>`,`<span class="choice-text">单周期 CPU 中的控制器比多周期 CPU 中的更简单</span>`,`<span class="choice-text">流水线 CPU 需解决数据相关和控制相关等冒险问题</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-21`,year:2025,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#21`,sourceAnswer:`B`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`DMA`,stem:`下列设备中，适合采用 DMA 输入输出的设备是（ ）。
+I. 键盘
+II. 网卡
+III. 固态硬盘
+IV. 针式打印机`,options:[`I、II`,`II、III`,`II、IV`,`III、IV`],choiceFormat:`separate`,stemHtml:`<p>下列设备中，适合采用 DMA 输入输出的设备是（ ）。</p>
+<p>I. 键盘</p>
+<p>II. 网卡</p>
+<p>III. 固态硬盘</p>
+<p>IV. 针式打印机</p>`,optionsHtml:[`<span class="choice-text">I、II</span>`,`<span class="choice-text">II、III</span>`,`<span class="choice-text">II、IV</span>`,`<span class="choice-text">III、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-22`,year:2025,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#22`,sourceAnswer:`A`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`下列选项中，会触发外部中断请求的事件是（ ）。`,options:[`DMA 传送结束`,`总线事务结束`,`页故障处理结束`,`执行断点指令`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，会触发外部中断请求的事件是（ ）。</p>`,optionsHtml:[`<span class="choice-text">DMA 传送结束</span>`,`<span class="choice-text">总线事务结束</span>`,`<span class="choice-text">页故障处理结束</span>`,`<span class="choice-text">执行断点指令</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-16`,year:2026,no:16,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#16`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`指令体系结构`,stem:`下列不是由指令集体系结构规定的是（）`,options:[`输入输出指令`,`采用向量中断`,`虚拟存储管理方式`,`指令流水线是否使用超级流水线技术`],choiceFormat:`separate`,stemHtml:`<p>下列不是由指令集体系结构规定的是（）</p>`,optionsHtml:[`<span class="choice-text">输入输出指令</span>`,`<span class="choice-text">采用向量中断</span>`,`<span class="choice-text">虚拟存储管理方式</span>`,`<span class="choice-text">指令流水线是否使用超级流水线技术</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-20`,year:2026,no:20,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#20`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`数据通路,指令执行指标`,stem:`在不考虑异常中断处理和访存的额外开销下，下列关于数据通路结构与 CPI 之间的关系正确的为（）
+I. 单周期数据通路计算机的 CPI 等于 1 II. 多周期数据通路计算机的 CPI 大于 1 III. 流水线数据通路计算机的 CPI 等于 1`,options:[`仅 I、II`,`仅 I、III`,`仅 II、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>在不考虑异常中断处理和访存的额外开销下，下列关于数据通路结构与 CPI 之间的关系正确的为（）</p>
+<p>I. 单周期数据通路计算机的 CPI 等于 1<br/>II. 多周期数据通路计算机的 CPI 大于 1<br/>III. 流水线数据通路计算机的 CPI 等于 1</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-21`,year:2026,no:21,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#21`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`用户态和内核态,陷阱指令`,stem:`在 I/O 子系统中，驱动程序和中断服务程序直接控制外设与主机之间的输入/输出操作，这一过程需要使用一些特权指令。下列指令中，不属于特权指令的是（）`,options:[`I/O 指令`,`关中断指令`,`中断返回指令`,`系统调用指令`],choiceFormat:`separate`,stemHtml:`<p>在 I/O 子系统中，驱动程序和中断服务程序直接控制外设与主机之间的输入/输出操作，这一过程需要使用一些特权指令。下列指令中，不属于特权指令的是（）</p>`,optionsHtml:[`<span class="choice-text">I/O 指令</span>`,`<span class="choice-text">关中断指令</span>`,`<span class="choice-text">中断返回指令</span>`,`<span class="choice-text">系统调用指令</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-22`,year:2026,no:22,subject:`co`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#22`,sourceAnswer:`C`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`中断IO,异常和中断`,stem:`中断控制 I/O 方式下，实现 I/O 需要硬件和软件协同完成，中断响应和处理过程中所包含的下列工作中，必须由硬件完成的是（）`,options:[`开中断`,`中断处理`,`保存断点`,`保存通用寄存器`],choiceFormat:`separate`,stemHtml:`<p>中断控制 I/O 方式下，实现 I/O 需要硬件和软件协同完成，中断响应和处理过程中所包含的下列工作中，必须由硬件完成的是（）</p>`,optionsHtml:[`<span class="choice-text">开中断</span>`,`<span class="choice-text">中断处理</span>`,`<span class="choice-text">保存断点</span>`,`<span class="choice-text">保存通用寄存器</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2009-23`,year:2009,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#23`,sourceAnswer:`D`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`单处理机系统中，可并行的是（）。
+Ⅰ. 进程与进程 \xA0Ⅱ. 处理机与设备 \xA0Ⅲ. 处理机与通道 \xA0Ⅳ. 设备与设备`,options:[`Ⅰ、Ⅱ、Ⅲ`,`Ⅰ、Ⅱ、Ⅳ`,`Ⅰ、Ⅲ、Ⅳ`,`Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>单处理机系统中，可并行的是（）。</p>
+<p>Ⅰ. 进程与进程 \xA0Ⅱ. 处理机与设备 \xA0Ⅲ. 处理机与通道 \xA0Ⅳ. 设备与设备</p>`,optionsHtml:[`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`23. 单处理机系统中，可并行的是\r
+\r
+I 进程与进程\r
+\r
+II 处理机与设备\r
+\r
+III 处理机与通道\r
+\r
+IV 设备与设备\r
+\r
+A. I、II 和 III\r
+\r
+B. I、II 和IV\r
+\r
+C. I、III和IV\r
+\r
+D. II、III和IV`,images:[],hasFigure:!1},{id:`real-concept-2009-24`,year:2009,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#24`,sourceAnswer:`D`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`处理机调度算法`,stem:`下列进程调度算法中，综合考虑进程等待时间和执行时间的是（）。`,options:[`时间片轮转调度算法`,`短进程优先调度算法`,`先来先服务调度算法`,`高响应比优先调度算法`],choiceFormat:`separate`,stemHtml:`<p>下列进程调度算法中，综合考虑进程等待时间和执行时间的是（）。\xA0</p>`,optionsHtml:[`<span class="choice-text">时间片轮转调度算法</span>`,`<span class="choice-text">短进程优先调度算法</span>`,`<span class="choice-text">先来先服务调度算法</span>`,`<span class="choice-text">高响应比优先调度算法</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`24. 下列进程调度算法中，综合考虑进程等待时间和执行时间的是______。\r
+\r
+A. 时间片轮转调度算法\r
+\r
+B. 短进程优先调度算法\r
+\r
+C. 先来先服务调度算法\r
+\r
+D. 高响应比优先调度算法`,images:[],hasFigure:!1},{id:`real-concept-2009-26`,year:2009,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#26`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`内存管理方式`,stem:`分区分配内存管理方式的主要保护措施是（）。`,options:[`界地址保护`,`程序代码保护`,`数据保护`,`栈保护`],choiceFormat:`separate`,stemHtml:`<p>分区分配内存管理方式的主要保护措施是（）。</p>`,optionsHtml:[`<span class="choice-text">界地址保护</span>`,`<span class="choice-text">程序代码保护</span>`,`<span class="choice-text">数据保护</span>`,`<span class="choice-text">栈保护</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`26. 分区分配内存管理方式的主要保护措施是________。\r
+\r
+A. 界地址保护\r
+\r
+B. 程序代码保护\r
+\r
+C. 数据保护\r
+\r
+D. 栈保护`,images:[],hasFigure:!1},{id:`real-concept-2009-28`,year:2009,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#28`,sourceAnswer:`B`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`文件物理结构`,stem:`下列文件物理结构中，适合随机访问且易于文件扩展的是（）。`,options:[`连续结构`,`索引结构`,`链式结构且磁盘块定长`,`链式结构且磁盘块变长`],choiceFormat:`separate`,stemHtml:`<p>下列文件物理结构中，适合随机访问且易于文件扩展的是（）。</p>`,optionsHtml:[`<span class="choice-text">连续结构</span>`,`<span class="choice-text">索引结构</span>`,`<span class="choice-text">链式结构且磁盘块定长</span>`,`<span class="choice-text">链式结构且磁盘块变长</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`28. 下列文件物理结构中，适合随机访问且易于文件扩展的是________。\r
+\r
+A. 连续结构\r
+\r
+B. 索引结构\r
+\r
+C. 链式结构且磁盘块定长\r
+\r
+D. 链式结构且磁盘块变长`,images:[],hasFigure:!1},{id:`real-concept-2009-30`,year:2009,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#30`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`inode`,stem:`文件系统中，文件访问控制信息存储的合理位置是（）。`,options:[`文件控制块`,`文件分配表`,`用户口令表`,`系统注册表`],choiceFormat:`separate`,stemHtml:`<p>文件系统中，文件访问控制信息存储的合理位置是（）。</p>`,optionsHtml:[`<span class="choice-text">文件控制块</span>`,`<span class="choice-text">文件分配表</span>`,`<span class="choice-text">用户口令表</span>`,`<span class="choice-text">系统注册表</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`30. 文件系统中，文件访问控制信息存储的合理位置是________。\r
+\r
+A. 文件控制块\r
+\r
+B. 文件分配表\r
+\r
+C. 用户口令表\r
+\r
+D. 系统注册表`,images:[],hasFigure:!1},{id:`real-concept-2009-32`,year:2009,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#32`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`设备分配和回收`,stem:`程序员利用系统调用打开 I/O 设备时，通常使用的设备标识是（）。`,options:[`逻辑设备名`,`物理设备名`,`主设备号`,`从设备号`],choiceFormat:`separate`,stemHtml:`<p>程序员利用系统调用打开 I/O 设备时，通常使用的设备标识是（）。</p>`,optionsHtml:[`<span class="choice-text">逻辑设备名</span>`,`<span class="choice-text">物理设备名</span>`,`<span class="choice-text">主设备号</span>`,`<span class="choice-text">从设备号</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`32. 程序员利用系统调用打开 I/O 设备时，通常使用的设备标识是 ________。\r
+\r
+A. 逻辑设备名\r
+\r
+B. 物理设备名\r
+\r
+C. 主设备号\r
+\r
+D. 从设备号`,images:[],hasFigure:!1},{id:`real-concept-2010-23`,year:2010,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#23`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`下列选项中，操作系统提供给应用程序的接口是（ \xA0）。`,options:[`系统调用`,`中断`,`库函数`,`原语`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，操作系统提供给应用程序的接口是（ \xA0）。</p>`,optionsHtml:[`<span class="choice-text">系统调用</span>`,`<span class="choice-text">中断</span>`,`<span class="choice-text">库函数</span>`,`<span class="choice-text">原语</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`23. 下列选项中，操作系统提供给应用程序的接口是____。\r
+\r
+A. 系统调用\r
+\r
+B. 中断\r
+\r
+C. 库函数\r
+\r
+D. 原语`,images:[],hasFigure:!1},{id:`real-concept-2010-24`,year:2010,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#24`,sourceAnswer:`C`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`进程概念`,stem:`下列选项中，导致创建新进程的操作是（ ）。
+I.用户登录成功\xA0\xA0\xA0 II.设备分配\xA0\xA0\xA0 III.启动程序执行`,options:[`仅 I 和 II`,`仅 II 和 III`,`仅 I 和 III`,`I、II 和 III`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，导致创建新进程的操作是（ ）。</p>
+<p>I.用户登录成功\xA0\xA0\xA0 II.设备分配\xA0\xA0\xA0 III.启动程序执行</p>`,optionsHtml:[`<span class="choice-text">仅 I 和 II</span>`,`<span class="choice-text">仅 II 和 III</span>`,`<span class="choice-text">仅 I 和 III</span>`,`<span class="choice-text">I、II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`24. 下列选项中，导致创建新进程的操作是________。\r
+\r
+I 用户登录成功\r
+\r
+II 设备分配\r
+\r
+III 启动程序执行\r
+\r
+A. 仅 I 和 II\r
+\r
+B. 仅 II 和 III\r
+\r
+C. 仅 I 和 III\r
+\r
+D. I 、II 和III`,images:[],hasFigure:!1},{id:`real-concept-2010-25`,year:2010,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#25`,sourceAnswer:`B`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`信号量`,stem:`设与某资源关联的信号量初值为 3，当前值为 1。若 M 表示该资源的可用个数，N 表示等待该资源的进程数，则 M、N 分别是（ ）。`,options:[`0、1`,`1、0`,`1、2`,`2、0`],choiceFormat:`separate`,stemHtml:`<p>设与某资源关联的信号量初值为 3，当前值为 1。若 M 表示该资源的可用个数，N 表示等待该资源的进程数，则 M、N 分别是（ ）。</p>`,optionsHtml:[`<span class="choice-text">0、1</span>`,`<span class="choice-text">1、0</span>`,`<span class="choice-text">1、2</span>`,`<span class="choice-text">2、0</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`25. 设与某资源关联的信号量初值为 3 , 当前值为 1 。若 M 表示该资源的可用个数, N 表示等待该资源的进程数, 则 M、N 分别是_____。\r
+\r
+A. 0、1\r
+\r
+B. 1、0\r
+\r
+C. 1、2\r
+\r
+D. 2、0`,images:[],hasFigure:!1},{id:`real-concept-2010-26`,year:2010,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#26`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`处理机调度算法`,stem:`下列选项中，降低进程优先级的合理时机是（ \xA0）。`,options:[`进程时间片用完`,`进程刚完成 I/O 操作，进入就绪队列`,`进程长期处于就绪队列`,`进程从就绪状态转为运行状态`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，降低进程优先级的合理时机是（ \xA0）。</p>`,optionsHtml:[`<span class="choice-text">进程时间片用完</span>`,`<span class="choice-text">进程刚完成 I/O 操作，进入就绪队列</span>`,`<span class="choice-text">进程长期处于就绪队列</span>`,`<span class="choice-text">进程从就绪状态转为运行状态</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`26. 下列选项中，降低进程优先级的合理时机是______。\r
+\r
+A. 进程的时间片用完  \r
+B. 进程刚完成 I/O, 进入就绪列队  \r
+C. 进程长期处于就绪列队中  \r
+D. 进程从就绪态转为运行态`,images:[],hasFigure:!1},{id:`real-concept-2010-31`,year:2010,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#31`,sourceAnswer:`C`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`目录`,stem:`设置当前工作目录的的主要目的是（ ）。`,options:[`节省外存空间`,`节省内存空间`,`加快文件的检索速度`,`加快文件的读/写速度`],choiceFormat:`separate`,stemHtml:`<p>设置当前工作目录的的主要目的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">节省外存空间</span>`,`<span class="choice-text">节省内存空间</span>`,`<span class="choice-text">加快文件的检索速度</span>`,`<span class="choice-text">加快文件的读/写速度</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`31. 设置当前工作目录的主要目的是\r
+\r
+A. 节省外存空间\r
+\r
+B. 节省内存空间\r
+\r
+C. 加快文件的检索速度\r
+\r
+D. 加快文件的读/写速度`,images:[],hasFigure:!1},{id:`real-concept-2010-32`,year:2010,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#32`,sourceAnswer:`B`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`本地用户通过键盘登录系统时，首先获得键盘输入信息的程序是（ ）。`,options:[`命令解释程序`,`中断处理程序`,`系统调用服务程序`,`用户登录程序`],choiceFormat:`separate`,stemHtml:`<p>本地用户通过键盘登录系统时，首先获得键盘输入信息的程序是（ ）。</p>`,optionsHtml:[`<span class="choice-text">命令解释程序</span>`,`<span class="choice-text">中断处理程序</span>`,`<span class="choice-text">系统调用服务程序</span>`,`<span class="choice-text">用户登录程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`32. 本地用户通过键盘登陆系统时，首先获得键盘输入信息的程序是________。\r
+\r
+A. 命令解释程序\r
+\r
+B. 中断处理程序\r
+\r
+C. 系统调用服务程序\r
+\r
+D. 用户登录程序`,images:[],hasFigure:!1},{id:`real-concept-2011-23`,year:2011,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#23`,sourceAnswer:`B`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`处理机调度算法`,stem:`下列选项中，满足短任务优先且不会发生饥饿现象的调度算法是（ ）。`,options:[`先来先服务`,`高响应比优先`,`时间片轮转`,`非抢占式短任务优先`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，满足短任务优先且不会发生饥饿现象的调度算法是（ ）。</p>`,optionsHtml:[`<span class="choice-text">先来先服务</span>`,`<span class="choice-text">高响应比优先</span>`,`<span class="choice-text">时间片轮转</span>`,`<span class="choice-text">非抢占式短任务优先</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`23. 下列选项中，满足短任务优先且不会发生饥饿现象的调度算法是\r
+\r
+A. 先来先服务\r
+\r
+B. 高响应比优先\r
+\r
+C. 时间片轮转\r
+\r
+D. 非抢占式短任务优先\r
+\r
+解答：B。响应比  $=$  作业响应时间/作业执行时间  $=$  （作业执行时间  $+$  作业等待时间)/作业执行时间。高响应比算法，在等待时间相同情况下，作业执行时间越少，响应比越高，优先执行，满足短任务优先。随着等待时间增加，响应比也会变大，执行机会就增大，所以不会产生饥饿现象。先来先服务和时间片轮转不符合短任务优先，非抢占式短任务优先会产生饥饿现象。`,images:[],hasFigure:!1},{id:`real-concept-2011-24`,year:2011,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#24`,sourceAnswer:`A`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`用户态和内核态`,stem:`下列选项中，在用户态执行的是（ ）。`,options:[`命令解释程序`,`缺页处理程序`,`进程调度程序`,`时钟中断处理程序`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，在用户态执行的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">命令解释程序</span>`,`<span class="choice-text">缺页处理程序</span>`,`<span class="choice-text">进程调度程序</span>`,`<span class="choice-text">时钟中断处理程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`24. 下列选项中，在用户态执行的是\r
+\r
+A. 命令解释程序\r
+\r
+B. 缺页处理程序\r
+\r
+C. 进程调度程序\r
+\r
+D. 时钟中断处理程序\r
+\r
+解答：A。缺页处理程序和时钟中断都属于中断，在核心态执行。进程调度属于系统调用在核心态执行，命令解释程序属于命令接口，它在用户态执行。`,images:[],hasFigure:!1},{id:`real-concept-2011-25`,year:2011,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#25`,sourceAnswer:`D`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`进程和线程`,stem:`在支持多线程的系统中，进程 P 创建的若干线程不能共享的是（ ）。`,options:[`进程 P 的代码段`,`进程 P 中打开的文件`,`进程 P 的全局变量`,`进程 P 中某线程的栈指针`],choiceFormat:`separate`,stemHtml:`<p>在支持多线程的系统中，进程 P 创建的若干线程不能共享的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">进程 P 的代码段</span>`,`<span class="choice-text">进程 P 中打开的文件</span>`,`<span class="choice-text">进程 P 的全局变量</span>`,`<span class="choice-text">进程 P 中某线程的栈指针</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`25. 在支持多线程的系统中，进程P创建的若干个线程不能共享的是\r
+\r
+A. 进程P的代码段  \r
+B. 进程P中打开的文件  \r
+C. 进程P的全局变量  \r
+D. 进程P中某线程的栈指针\r
+\r
+解答：D。进程中某线程的栈指针，对其它线程透明，不能与其它线程共享。`,images:[],hasFigure:!1},{id:`real-concept-2011-26`,year:2011,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#26`,sourceAnswer:`B`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`IO软件层次`,stem:`用户程序发出磁盘 I/O 请求后，系统的正确处理流程是（ ）。`,options:[`用户程序→系统调用处理程序→中断处理程序→设备驱动程序`,`用户程序→系统调用处理程序→设备驱动程序→中断处理程序`,`用户程序→设备驱动程序→系统调用处理程序→中断处理程序`,`用户程序→设备驱动程序→中断处理程序→系统调用处理程序`],choiceFormat:`separate`,stemHtml:`<p>用户程序发出磁盘 I/O 请求后，系统的正确处理流程是（ ）。</p>`,optionsHtml:[`<span class="choice-text">用户程序→系统调用处理程序→中断处理程序→设备驱动程序</span>`,`<span class="choice-text">用户程序→系统调用处理程序→设备驱动程序→中断处理程序</span>`,`<span class="choice-text">用户程序→设备驱动程序→系统调用处理程序→中断处理程序</span>`,`<span class="choice-text">用户程序→设备驱动程序→中断处理程序→系统调用处理程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`26. 用户程序发出磁盘I/O请求后，系统的正确处理流程是\r
+\r
+A. 用户程序  $\\rightarrow$  系统调用处理程序  $\\rightarrow$  中断处理程序  $\\rightarrow$  设备驱动程序  \r
+B. 用户程序  $\\rightarrow$  系统调用处理程序  $\\rightarrow$  设备驱动程序  $\\rightarrow$  中断处理程序  \r
+C. 用户程序  $\\rightarrow$  设备驱动程序  $\\rightarrow$  系统调用处理程序  $\\rightarrow$  中断处理程序  \r
+D. 用户程序  $\\rightarrow$  设备驱动程序  $\\rightarrow$  中断处理程序  $\\rightarrow$  系统调用处理程序\r
+\r
+解答：B。输入/输出软件一般从上到下分为四个层次：用户层、与设备无关软件层、设备驱动程序以及中断处理程序。与设备无关软件层也就是系统调用的处理程序。所以争取处理流程为B选项。`,images:[],hasFigure:!1},{id:`real-concept-2011-28`,year:2011,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#28`,sourceAnswer:`D`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`缺页异常`,stem:`在缺页处理过程中，操作系统执行的操作可能是（）。
+I、修改页表
+II、磁盘 I/O
+III、分配页框`,options:[`仅 I、II`,`仅 II`,`仅 III`,`I、II 和 III`],choiceFormat:`separate`,stemHtml:`<p>在缺页处理过程中，操作系统执行的操作可能是（）。</p>
+<p>I、修改页表</p>
+<p>II、磁盘 I/O</p>
+<p>III、分配页框</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">I、II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`28. 在缺页处理过程中，操作系统执行的操作可能是\r
+\r
+I. 修改页表\r
+\r
+II. 磁盘I/O\r
+\r
+III. 分配页框\r
+\r
+A. 仅 I、II\r
+\r
+B. 仅 II\r
+\r
+C. 仅III\r
+\r
+D. I 、II 和III\r
+\r
+解答：D。缺页中断调入新页面，肯定要修改页表项和分配页框，所以I、I I I可能发生，同时内存没有页面，需要从外存读入，会发生磁盘I/O。`,images:[],hasFigure:!1},{id:`real-concept-2011-29`,year:2011,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#29`,sourceAnswer:`A`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`抖动`,stem:`当系统发生抖动 (thrashing) 时，可以采取的有效措施是（ ）。
+I. 撤销部分进程
+II. 增加磁盘交换区的容量
+III. 提高用户进程的优先级`,options:[`仅 I`,`仅 II`,`仅 III`,`仅 I、II`],choiceFormat:`separate`,stemHtml:`<p>当系统发生抖动 (thrashing) 时，可以采取的有效措施是（ ）。</p>
+<p>I. 撤销部分进程</p>
+<p>II. 增加磁盘交换区的容量</p>
+<p>III. 提高用户进程的优先级</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 I、II</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`29. 当系统发生抖动（thrashing）时，可用采取的有效措施是\r
+\r
+I. 撤销部分进程  \r
+II. 增加磁盘交换区的容量  \r
+III. 提高用户进程的优先级\r
+\r
+A. 仅 I\r
+\r
+B. 仅 II\r
+\r
+C. 仅III\r
+\r
+D. 仅 I、II\r
+\r
+解答：A。在具有对换功能的操作系统中，通常把外存分为文件区和对换区。前者用于存放文件，后者用于存放从内存换出的进程。抖动现象是指刚刚被换出的页很快又要被访问为此，又要换出其他页，而该页又快被访问，如此频繁的置换页面，以致大部分时间都花在页面置换上。撤销部分进程可以减少所要用到的页面数，防止抖动。对换区大小和进程优先级都与抖动无关。`,images:[],hasFigure:!1},{id:`real-concept-2011-30`,year:2011,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#30`,sourceAnswer:`C`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`程序的链接,程序的装入`,stem:`在虚拟内存管理中，地址变换机构将逻辑地址变换为物理地址，形成该逻辑地址的阶段是（）。`,options:[`编辑`,`编译`,`链接`,`装载`],choiceFormat:`separate`,stemHtml:`<p>在虚拟内存管理中，地址变换机构将逻辑地址变换为物理地址，形成该逻辑地址的阶段是（）。</p>`,optionsHtml:[`<span class="choice-text">编辑</span>`,`<span class="choice-text">编译</span>`,`<span class="choice-text">链接</span>`,`<span class="choice-text">装载</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`30. 在虚拟内存管理中，地址变换机构将逻辑地址变换为物理地址，形成该逻辑地址的阶段是\r
+\r
+A. 编辑\r
+\r
+B. 编译\r
+\r
+C. 链接\r
+\r
+D. 装载\r
+\r
+解答：B。编译过程指编译程序将用户源代码编译成目标模块。源地址编译成目标程序时，会形成逻辑地址。`,images:[],hasFigure:!1},{id:`real-concept-2012-23`,year:2012,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#23`,sourceAnswer:`C`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`用户态和内核态`,stem:`下列选项中，不可能在用户态发生的事件是（ ）。`,options:[`系统调用`,`外部中断`,`进程切换`,`缺页`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，不可能在用户态发生的事件是（ ）。</p>`,optionsHtml:[`<span class="choice-text">系统调用</span>`,`<span class="choice-text">外部中断</span>`,`<span class="choice-text">进程切换</span>`,`<span class="choice-text">缺页</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`23. 下列选项中，不可能在用户态发生的事件是\r
+\r
+A. 系统调用\r
+\r
+B. 外部中断\r
+\r
+C. 进程切换\r
+\r
+D. 缺页`,images:[],hasFigure:!1},{id:`real-concept-2012-24`,year:2012,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#24`,sourceAnswer:`B`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`寄存器类型`,stem:`中断处理和子程序调用都需要压栈以保护现场，中断处理一定会保存而子程序调用不需要保存其内容的是（ ）。`,options:[`程序计数器`,`程序状态字寄存器`,`通用数据寄存器`,`通用地址寄存器`],choiceFormat:`separate`,stemHtml:`<p>中断处理和子程序调用都需要压栈以保护现场，中断处理一定会保存而子程序调用不需要保存其内容的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">程序计数器</span>`,`<span class="choice-text">程序状态字寄存器</span>`,`<span class="choice-text">通用数据寄存器</span>`,`<span class="choice-text">通用地址寄存器</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`24. 中断处理和子程序调用都需要压栈以保护现场，中断处理一定会保存而子程序调用不需要保存其内容的是________。\r
+\r
+A. 程序计数器\r
+\r
+B. 程序状态字寄存器\r
+\r
+C. 通用数据寄存器\r
+\r
+D. 通用地址寄存器`,images:[],hasFigure:!1},{id:`real-concept-2012-25`,year:2012,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#25`,sourceAnswer:`B`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`下列关于虚拟存储器的叙述中，正确的是（ ）。`,options:[`虚拟存储只能基于连续分配技术`,`虚拟存储只能基于非连续分配技术`,`虚拟存储容量只受外存容量的限制`,`虚拟存储容量只受内存容量的限制`],choiceFormat:`separate`,stemHtml:`<p>下列关于虚拟存储器的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">虚拟存储只能基于连续分配技术</span>`,`<span class="choice-text">虚拟存储只能基于非连续分配技术</span>`,`<span class="choice-text">虚拟存储容量只受外存容量的限制</span>`,`<span class="choice-text">虚拟存储容量只受内存容量的限制</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`25. 下列关于虚拟存储器的叙述中，正确的是\r
+\r
+A. 虚拟存储只能基于连续分配技术\r
+\r
+B. 虚拟存储只能基于非连续分配技术\r
+\r
+C. 虚拟存储容量只受外存容量的限制\r
+\r
+D. 虚拟存储容量只受内存容量的限制`,images:[],hasFigure:!1},{id:`real-concept-2012-26`,year:2012,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#26`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`IO软件层次`,stem:`操作系统的 I/O 子系统通常由四个层次组成，每一层明确定义了与邻近层次的接口。其合理的层次组织排列顺序是（ ）。`,options:[`用户级 I/O 软件、设备无关软件、设备驱动程序、中断处理程序`,`用户级 I/O 软件、设备无关软件、中断处理程序、设备驱动程序`,`用户级 I/O 软件、设备驱动程序、设备无关软件、中断处理程序`,`用户级 I/O 软件、中断处理程序、设备无关软件、设备驱动程序`],choiceFormat:`separate`,stemHtml:`<p>操作系统的 I/O 子系统通常由四个层次组成，每一层明确定义了与邻近层次的接口。其合理的层次组织排列顺序是（ ）。</p>`,optionsHtml:[`<span class="choice-text">用户级 I/O 软件、设备无关软件、设备驱动程序、中断处理程序</span>`,`<span class="choice-text">用户级 I/O 软件、设备无关软件、中断处理程序、设备驱动程序</span>`,`<span class="choice-text">用户级 I/O 软件、设备驱动程序、设备无关软件、中断处理程序</span>`,`<span class="choice-text">用户级 I/O 软件、中断处理程序、设备无关软件、设备驱动程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`26. 操作系统的 I/O 子系统通常由四个层次组成，每一层明确定义了与邻近层次的接口。其合理的层次组织排列顺序是________。\r
+\r
+A. 用户级 I/O 软件、设备无关软件、设备驱动程序、中断处理程序  \r
+B. 用户级 I/O 软件、设备无关软件、中断处理程序、设备驱动程序  \r
+C. 用户级 I/O 软件、设备驱动程序、设备无关软件、中断处理程序  \r
+D. 用户级 I/O 软件、中断处理程序、设备无关软件、设备驱动程序`,images:[],hasFigure:!1},{id:`real-concept-2012-28`,year:2012,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#28`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`系统调用,缺页异常`,stem:`若一个用户进程通过 read 系统调用读取一个磁盘文件中的数据，则下列关于此过程的叙述中，正确的是（ ）。
+Ⅰ. 若该文件的数据不在内存中，则该进程进入睡眠等待状态
+Ⅱ. 请求 read 系统调用会导致 CPU 从用户态切换到核心态
+Ⅲ. read 系统调用的参数应包含文件的名称`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ`,`Ⅰ、Ⅱ和Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>若一个用户进程通过 read 系统调用读取一个磁盘文件中的数据，则下列关于此过程的叙述中，正确的是（ ）。</p>
+<p>Ⅰ. 若该文件的数据不在内存中，则该进程进入睡眠等待状态</p>
+<p>Ⅱ. 请求 read 系统调用会导致 CPU 从用户态切换到核心态</p>
+<p>Ⅲ. read 系统调用的参数应包含文件的名称</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ和Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2012-30`,year:2012,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#30`,sourceAnswer:`C`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`若某单处理器多进程系统中有多个就绪态进程，则下列关于处理机调度的叙述中，错误的是（ ）。`,options:[`在进程结束时能进行处理机调度`,`创建新进程后能进行处理机调度`,`在进程处于临界区时不能进行处理机调度`,`在系统调用完成并返回用户态时能进行处理机调度`],choiceFormat:`separate`,stemHtml:`<p>若某单处理器多进程系统中有多个就绪态进程，则下列关于处理机调度的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">在进程结束时能进行处理机调度</span>`,`<span class="choice-text">创建新进程后能进行处理机调度</span>`,`<span class="choice-text">在进程处于临界区时不能进行处理机调度</span>`,`<span class="choice-text">在系统调用完成并返回用户态时能进行处理机调度</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`30. 若某单处理器多进程系统中有多个就绪态进程，则下列关于处理机调度的叙述中，错误的是________。\r
+\r
+A. 在进程结束时能进行处理机调度  \r
+B. 创建新进程后能进行处理机调度  \r
+C. 在进程处于临界区时不能进行处理机调度  \r
+D. 在系统调用完成并返回用户态时能进行处理机调度`,images:[],hasFigure:!1},{id:`real-concept-2012-31`,year:2012,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#31`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`进程和线程`,stem:`下列关于进程和线程的叙述中，正确的是（ ）。`,options:[`不管系统是否支持线程，进程都是资源分配的基本单位`,`线程是资源分配的基本单位，进程是调度的基本单位`,`系统级线程和用户级线程的切换都需要内核的支持`,`同一进程中的各个线程拥有各自不同的地址空间`],choiceFormat:`separate`,stemHtml:`<p>下列关于进程和线程的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">不管系统是否支持线程，进程都是资源分配的基本单位</span>`,`<span class="choice-text">线程是资源分配的基本单位，进程是调度的基本单位</span>`,`<span class="choice-text">系统级线程和用户级线程的切换都需要内核的支持</span>`,`<span class="choice-text">同一进程中的各个线程拥有各自不同的地址空间</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`31. 下列关于进程和线程的叙述中，正确的是\r
+\r
+A. 不管系统是否支持线程，进程都是资源分配的基本单位  \r
+B. 线程是资源分配的基本单位，进程是调度的基本单位  \r
+C. 系统级线程和用户级线程的切换都需要内核的支持  \r
+D. 同一进程中的各个线程拥有各自不同的地址空间`,images:[],hasFigure:!1},{id:`real-concept-2012-32`,year:2012,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#32`,sourceAnswer:`B`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`磁盘概念`,stem:`下列选项中，不能改善磁盘设备 I/O 性能的是（ ）。`,options:[`重排 I/O 请求次序`,`在一个磁盘上设置多个分区`,`预读和滞后写`,`优化文件物理块的分布`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，不能改善磁盘设备 I/O 性能的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">重排 I/O 请求次序</span>`,`<span class="choice-text">在一个磁盘上设置多个分区</span>`,`<span class="choice-text">预读和滞后写</span>`,`<span class="choice-text">优化文件物理块的分布</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`32. 下列选项中，不能改善磁盘设备 I/O 性能的是________。\r
+\r
+A. 重排 I/O 请求次序\r
+\r
+B. 在一个磁盘上设置多个分区\r
+\r
+C. 预读和滞后写\r
+\r
+D. 优化文件物理块的分布`,images:[],hasFigure:!1},{id:`real-concept-2013-23`,year:2013,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#23`,sourceAnswer:`A`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`inode`,stem:`用户在删除某文件的过程中，操作系统不可能执行的操作是（ ）。`,options:[`删除此文件所在的目录`,`删除与此文件关联的目录项`,`删除与此文件对应的文件控制块`,`释放与此文件关联的内存缓冲区`],choiceFormat:`separate`,stemHtml:`<p>用户在删除某文件的过程中，操作系统不可能执行的操作是（ ）。</p>`,optionsHtml:[`<span class="choice-text">删除此文件所在的目录</span>`,`<span class="choice-text">删除与此文件关联的目录项</span>`,`<span class="choice-text">删除与此文件对应的文件控制块</span>`,`<span class="choice-text">释放与此文件关联的内存缓冲区</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`23. 用户在删除某文件的过程中，操作系统不可能执行的操作是
+
+A. 删除此文件所在的目录
+
+B. 删除与此文件关联的目录项
+
+C. 删除与此文件对应的文件控制块
+
+D. 释放与此文件关联的内存级冲区`,images:[],hasFigure:!1},{id:`real-concept-2013-24`,year:2013,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#24`,sourceAnswer:`A`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`文件物理结构`,stem:`为支持 CD-ROM 中视频文件的快速随机播放，播放性能最好的文件数据块组织方式是（ ）。`,options:[`连续结构`,`链式结构`,`直接索引结构`,`多级索引结构`],choiceFormat:`separate`,stemHtml:`<p>为支持 CD-ROM 中视频文件的快速随机播放，播放性能最好的文件数据块组织方式是（ ）。</p>`,optionsHtml:[`<span class="choice-text">连续结构</span>`,`<span class="choice-text">链式结构</span>`,`<span class="choice-text">直接索引结构</span>`,`<span class="choice-text">多级索引结构</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`24. 为支持 CD-ROM 中视频文件的快速随机播放，播放性能最好的文件数据块组织方式是
+
+A. 连续结构
+
+B. 链式结构
+
+C. 直接索引结构
+
+D. 多级索引结构`,images:[],hasFigure:!1},{id:`real-concept-2013-25`,year:2013,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#25`,sourceAnswer:`C`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`CHS地址,IO软件层次`,stem:`用户程序发出磁盘 I/O 请求后，系统的处理流程是：用户程序→系统调用处理程序→设备驱动程序→中断处理程序。其中，计算数据所在磁盘的柱面号、磁头号、扇区号的程序是（ ）。`,options:[`用户程序`,`系统调用处理程序`,`设备驱动程序`,`中断处理程序`],choiceFormat:`separate`,stemHtml:`<p>用户程序发出磁盘 I/O 请求后，系统的处理流程是：用户程序→系统调用处理程序→设备驱动程序→中断处理程序。其中，计算数据所在磁盘的柱面号、磁头号、扇区号的程序是（ ）。</p>`,optionsHtml:[`<span class="choice-text">用户程序</span>`,`<span class="choice-text">系统调用处理程序</span>`,`<span class="choice-text">设备驱动程序</span>`,`<span class="choice-text">中断处理程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`25. 用户程序发出磁盘 I/O 请求后，系统的处理流程是：用户程序  $\\rightarrow$  系统调用处理程序  $\\rightarrow$  设备驱动程序  $\\rightarrow$  中断处理程序。其中，计算数据所在磁盘的柱面号、磁头号、扇区号的程序是
+
+A. 用户程序
+
+B. 系统调用处理程序
+
+C. 设备驱动程序
+
+D. 中断处理程序`,images:[],hasFigure:!1},{id:`real-concept-2013-26`,year:2013,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#26`,sourceAnswer:`A`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`inode`,stem:`若某文件系统索引结点 (inode) 中有直接地址项和间接地址项，则下列选项中，与单个文件长度无关的因素是（ ）。`,options:[`索引结点的总数`,`间接地址索引的级数`,`地址项的个数`,`文件块大小`],choiceFormat:`separate`,stemHtml:`<p>若某文件系统索引结点 (inode) 中有直接地址项和间接地址项，则下列选项中，与单个文件长度无关的因素是（ ）。</p>`,optionsHtml:[`<span class="choice-text">索引结点的总数</span>`,`<span class="choice-text">间接地址索引的级数</span>`,`<span class="choice-text">地址项的个数</span>`,`<span class="choice-text">文件块大小</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`26. 若某文件系统索引结点（inode）中有直接地址项和间接地址项，则下列选项中，与单个文件长度无关的因素是
+
+A. 索引结点的总数
+
+B. 间接地址索引的级数
+
+C. 地址项的个数
+
+D. 文件块大小`,images:[],hasFigure:!1},{id:`real-concept-2013-28`,year:2013,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#28`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`用户态和内核态,系统调用`,stem:`下列选项中，会导致用户进程从用户态切换到内核态的操作是（ ）。
+I. 整数除以零
+II. sin() 函数调用
+III. read 系统调用`,options:[`仅 I、II`,`仅 I、III`,`仅 II、III`,`I、II 和 III`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，会导致用户进程从用户态切换到内核态的操作是（ ）。</p>
+<p>I. 整数除以零</p>
+<p>II. sin() 函数调用</p>
+<p>III. read 系统调用</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">I、II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`28. 下列选项中，会导致用户进程从用户态切换到内核态的操作是
+
+I. 整数除以零
+
+II. sin（）函数调用
+
+III. read 系统调用
+
+A. 仅 I、II
+
+B. 仅 I、III
+
+C. 仅 II、III
+
+D. I、II 和 III`,images:[],hasFigure:!1},{id:`real-concept-2013-29`,year:2013,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#29`,sourceAnswer:`D`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`系统引导流程`,stem:`计算机开机后，操作系统最终被加载到（ \xA0）。`,options:[`BIOS`,`ROM`,`EPROM`,`RAM`],choiceFormat:`separate`,stemHtml:`<p>计算机开机后，操作系统最终被加载到（ \xA0）。</p>`,optionsHtml:[`<span class="choice-text">BIOS</span>`,`<span class="choice-text">ROM</span>`,`<span class="choice-text">EPROM</span>`,`<span class="choice-text">RAM</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`29. 计算机开机后，操作系统最终被加载到
+
+A. BIOS
+
+B. ROM
+
+C. EPROM
+
+D. RAM`,images:[],hasFigure:!1},{id:`real-concept-2013-30`,year:2013,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#30`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`缺页异常`,stem:`若用户进程访问内存时产生缺页，则下列选项中，操作系统可能执行的操作是（ ）。
+I. 处理越界错
+II. 置换页
+III. 分配内存`,options:[`仅 I、II`,`仅 II、III`,`仅 I、III`,`I、II 和 III`],choiceFormat:`separate`,stemHtml:`<p>若用户进程访问内存时产生缺页，则下列选项中，操作系统可能执行的操作是（ ）。</p>
+<p>I. 处理越界错</p>
+<p>II. 置换页</p>
+<p>III. 分配内存</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">I、II 和 III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`30. 若用户进程访问内存时产生缺页，则下列选项中，操作系统可能执行的操作是
+
+I. 处理越界错
+
+II. 置换页
+
+III. 分配内存
+
+A. 仅 I、II
+
+B. 仅 II、III
+
+C. 仅 I、III
+
+D. I、II 和 III`,images:[],hasFigure:!1},{id:`real-concept-2013-31`,year:2013,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#31`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`处理机调度概念`,stem:`某系统正在执行三个进程 P 1 ​ 、 P 2 ​ 和 P 3 ​ ，各进程的计算 (CPU) 时间和 I/O 时间比例如下表所示。
+进程 计算时间 I/O 时间 P 1 ​ 90% 10% P 2 ​ 50% 50% P 3 ​ 15% 85%
+为提高系统资源利用率，合理的进程优先级设置应为（ ）。`,options:[`P 1 ​ > P 2 ​ > P 3 ​`,`P 3 ​ > P 2 ​ > P 1 ​`,`P 2 ​ > P 1 ​ = P 3 ​`,`P 1 ​ > P 2 ​ = P 3 ​`],choiceFormat:`separate`,stemHtml:`<p>某系统正在执行三个进程
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span>
+、
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span>
+和
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span>
+，各进程的计算 (CPU) 时间和 I/O 时间比例如下表所示。</p>
+<table class="table td-initial"><thead><tr><th>进程</th><th>计算时间</th><th>I/O 时间</th></tr></thead><tbody><tr><td><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></td><td>90%</td><td>10%</td></tr><tr><td><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></td><td>50%</td><td>50%</td></tr><tr><td><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></td><td>15%</td><td>85%</td></tr></tbody></table>
+<p>为提高系统资源利用率，合理的进程优先级设置应为（ ）。</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8333em;vertical-align:-.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:.3011em"><span style="top:-2.55em;margin-left:-.1389em;margin-right:.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:.15em"><span></span></span></span></span></span></span></span></span></span></span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`31. 某系统正在执行三个进程 P1、P2 和 P3，各进程的计算（CPU）时间和 I/O 时间比例如下表所示。
+
+<table><tr><td>进程</td><td>计算时间</td><td>I/O 时间</td></tr><tr><td>P1</td><td>90%</td><td>10%</td></tr><tr><td>P2</td><td>50%</td><td>50%</td></tr><tr><td>P3</td><td>15%</td><td>85%</td></tr></table>
+
+为提高系统资源利用率，合理的进程优先级设置应为
+
+A. P1>P2>P3
+
+B. P3>P2>P1
+
+C.  $\\mathrm{P}2 > \\mathrm{P}1 = \\mathrm{P}3$
+
+D. P1>P2=P3`,images:[],hasFigure:!1},{id:`real-concept-2013-32`,year:2013,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#32`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`银行家算法`,stem:`下列关于银行家算法的叙述中，正确的是（ ）。`,options:[`银行家算法可以预防死锁`,`当系统处于安全状态时，系统中一定无死锁进程`,`当系统处于不安全状态时，系统中一定会出现死锁进程`,`银行家算法破坏了死锁必要条件中的“请求和保持”条件`],choiceFormat:`separate`,stemHtml:`<p>下列关于银行家算法的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">银行家算法可以预防死锁</span>`,`<span class="choice-text">当系统处于安全状态时，系统中一定无死锁进程</span>`,`<span class="choice-text">当系统处于不安全状态时，系统中一定会出现死锁进程</span>`,`<span class="choice-text">银行家算法破坏了死锁必要条件中的“请求和保持”条件</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`32. 下列关于银行家算法的叙述中，正确的是
+
+A. 银行家算法可以预防死锁  
+B. 当系统处于安全状态时, 系统中一定无死锁进程  
+C. 当系统处于不安全状态时, 系统中一定会出现死锁进程  
+D. 银行家算法破坏了死锁必要条件中的“请求和保持”条件`,images:[],hasFigure:!1},{id:`real-concept-2014-23`,year:2014,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#23`,sourceAnswer:`A`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`处理机调度算法`,stem:`下列调度算法中，不可能导致饥饿现象的是（ ）。`,options:[`时间片轮转`,`静态优先数调度`,`非抢占式短作业优先`,`抢占式短作业优先`],choiceFormat:`separate`,stemHtml:`<p>下列调度算法中，不可能导致饥饿现象的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">时间片轮转</span>`,`<span class="choice-text">静态优先数调度</span>`,`<span class="choice-text">非抢占式短作业优先</span>`,`<span class="choice-text">抢占式短作业优先</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`23. 下列调度算法中，不可能导致饥饿现象的是________。
+
+A. 时间片轮转
+
+B. 静态优先数调度
+
+C. 非抢占式短作业优先
+
+D. 抢占式短作业优先`,images:[],hasFigure:!1},{id:`real-concept-2014-25`,year:2014,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#25`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`用户态和内核态,陷阱指令`,stem:`下列指令中，不能在用户态执行的是（ ）。`,options:[`trap 指令`,`跳转指令`,`压栈指令`,`关中断指令`],choiceFormat:`separate`,stemHtml:`<p>下列指令中，不能在用户态执行的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">trap 指令</span>`,`<span class="choice-text">跳转指令</span>`,`<span class="choice-text">压栈指令</span>`,`<span class="choice-text">关中断指令</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`25. 下列指令中，不能在用户态执行的是________。
+
+A．trap指令
+
+B. 跳转指令
+
+C. 压栈指令
+
+D. 关中断指令`,images:[],hasFigure:!1},{id:`real-concept-2014-26`,year:2014,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#26`,sourceAnswer:`A`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`一个进程的读磁盘操作完成后，操作系统针对该进程必做的是（ \xA0）。`,options:[`修改进程状态为就绪态`,`降低进程优先级`,`给进程分配用户内存空间`,`增加进程时间片大小`],choiceFormat:`separate`,stemHtml:`<p>一个进程的读磁盘操作完成后，操作系统针对该进程必做的是（ \xA0）。</p>`,optionsHtml:[`<span class="choice-text">修改进程状态为就绪态</span>`,`<span class="choice-text">降低进程优先级</span>`,`<span class="choice-text">给进程分配用户内存空间</span>`,`<span class="choice-text">增加进程时间片大小</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`26. 一个进程的读磁盘操作完成后，操作系统针对该进程必做的是________。
+
+A. 修改进程状态为就绪态
+
+B. 降低进程优先级
+
+C. 给进程分配用户内存空间
+
+D. 增加进程时间片大小`,images:[],hasFigure:!1},{id:`real-concept-2014-28`,year:2014,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#28`,sourceAnswer:`C`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`地址翻译,TLB,页表`,stem:`下列措施中，能加快虚实地址转换的是（ ）。
+I. 增大快表 (TLB) 容量
+II. 让页表常驻内存
+III. 增大交换区 (swap)`,options:[`仅 I`,`仅 II`,`仅 I、II`,`仅 II、IIII`],choiceFormat:`separate`,stemHtml:`<p>下列措施中，能加快虚实地址转换的是（ ）。</p>
+<p>I. 增大快表 (TLB) 容量</p>
+<p>II. 让页表常驻内存</p>
+<p>III. 增大交换区 (swap)</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 II、IIII</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`28. 下列措施中，能加快虚实地址转换的是________。
+
+I. 增大快表(TLB)容量
+
+II. 让页表常驻内存
+
+III. 增大交换区(swap)
+
+A. 仅 I
+
+B. 仅 II
+
+C. 仅 I、II
+
+D. 仅 II、III`,images:[],hasFigure:!1},{id:`real-concept-2014-29`,year:2014,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#29`,sourceAnswer:`B`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`inode`,stem:`在一个文件被用户进程首次打开的过程中，操作系统需要做的是（ ）。`,options:[`将文件内容读到内存中`,`将文件控制块读到内存中`,`修改文件控制块中的读写权限`,`将文件的数据缓冲区首指针返回给用户进程`],choiceFormat:`separate`,stemHtml:`<p>在一个文件被用户进程首次打开的过程中，操作系统需要做的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">将文件内容读到内存中</span>`,`<span class="choice-text">将文件控制块读到内存中</span>`,`<span class="choice-text">修改文件控制块中的读写权限</span>`,`<span class="choice-text">将文件的数据缓冲区首指针返回给用户进程</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`29. 在一个文件被用户进程首次打开的过程中，操作系统需做的是
+
+A. 将文件内容读到内存中  
+B. 将文件控制块读到内存中  
+C. 修改文件控制块中的读写权限  
+D. 将文件的数据缓冲区首指针返回给用户进程`,images:[],hasFigure:!1},{id:`real-concept-2014-30`,year:2014,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#30`,sourceAnswer:`A`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`Belady异常`,stem:`在页式虚拟存储管理系统中，采用某些页面置换算法，会出现 Belady 异常现象，即进程的缺页次数会随着分配给该进程的页框个数的增加而增加。下列算法中，可能出现 Belady 异常现象的是（ ）。
+I. LRU 算法
+II. FIFO 算法
+III. OPT 算法`,options:[`仅 II`,`仅 I、II`,`仅 I、III`,`仅 II、III`],choiceFormat:`separate`,stemHtml:`<p>在页式虚拟存储管理系统中，采用某些页面置换算法，会出现 Belady 异常现象，即进程的缺页次数会随着分配给该进程的页框个数的增加而增加。下列算法中，可能出现 Belady 异常现象的是（ ）。</p>
+<p>I. LRU 算法</p>
+<p>II. FIFO 算法</p>
+<p>III. OPT 算法</p>`,optionsHtml:[`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`30. 在页式虚拟存储管理系统中，采用某些页面置换算法，会出现 Belady 异常现象，即进程的缺页次数会随着分配给该进程的页框个数的增加而增加。下列算法中，可能出现 Belady 异常现象的是________。
+
+I. LRU算法
+
+II. FIFO算法
+
+III. OPT算法
+
+A. 仅 II
+
+B. 仅 I、II
+
+C. 仅 I、III
+
+D. 仅 II、III`,images:[],hasFigure:!1},{id:`real-concept-2014-31`,year:2014,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#31`,sourceAnswer:`C`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`进程间通信`,stem:`下列关于管道（Pipe）通信的叙述中，正确的是（ \xA0）。`,options:[`一个管道可实现双向数据传输`,`管道的容量仅受磁盘容量大小限制`,`进程对管道进行读操作和写操作都可能被阻塞`,`一个管道只能有一个读进程或一个写进程对其操作`],choiceFormat:`separate`,stemHtml:`<p>下列关于管道（Pipe）通信的叙述中，正确的是（ \xA0）。</p>`,optionsHtml:[`<span class="choice-text">一个管道可实现双向数据传输</span>`,`<span class="choice-text">管道的容量仅受磁盘容量大小限制</span>`,`<span class="choice-text">进程对管道进行读操作和写操作都可能被阻塞</span>`,`<span class="choice-text">一个管道只能有一个读进程或一个写进程对其操作</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`31. 下列关于管道(Pipe)通信的叙述中, 正确的是____。
+
+A. 一个管道可实现双向数据传输  
+B. 管道的容量仅受磁盘容量大小限制  
+C. 进程对管道进行读操作和写操作都可能被阻塞  
+D. 一个管道只能有一个读进程或一个写进程对其操作`,images:[],hasFigure:!1},{id:`real-concept-2014-32`,year:2014,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#32`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`页表`,stem:`下列选项中，属于多级页表优点的是（ ）。`,options:[`加快地址变换速度`,`减少缺页中断次数`,`减少页表项所占字节数`,`减少页表所占的连续内存空间`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，属于多级页表优点的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">加快地址变换速度</span>`,`<span class="choice-text">减少缺页中断次数</span>`,`<span class="choice-text">减少页表项所占字节数</span>`,`<span class="choice-text">减少页表所占的连续内存空间</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`32. 下列选项中, 属于多级页表优点的是
+
+A. 加快地址变换速度
+
+B. 减少缺页中断次数
+
+C. 减少页表项所占字节数
+
+D. 减少页表所占的连续内存空间`,images:[],hasFigure:!1},{id:`real-concept-2015-23`,year:2015,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#23`,sourceAnswer:`B`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`寄存器类型,中断IO`,stem:`处理外部中断时，应该由操作系统保存的是（ ）。`,options:[`程序计数器（PC）的内容`,`通用寄存器的内容`,`块表（TLB）中的内容`,`Cache 中的内容`],choiceFormat:`separate`,stemHtml:`<p>处理外部中断时，应该由操作系统保存的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">程序计数器（PC）的内容</span>`,`<span class="choice-text">通用寄存器的内容</span>`,`<span class="choice-text">块表（TLB）中的内容</span>`,`<span class="choice-text">Cache 中的内容</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`23. 处理外部中断时，应该由操作系统保存的是________。
+
+A. 程序计数器(PC)的内容
+
+B. 通用寄存器的内容
+
+C. 块表(TLB)中的内容
+
+D. Cache 中的内容`,images:[],hasFigure:!1},{id:`real-concept-2015-24`,year:2015,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#24`,sourceAnswer:`C`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`用户态和内核态`,stem:`假定下列指令已装入指令寄存器，则执行时不可能导致 CPU 从用户态变为内核态（系统态）的是（ ）。`,options:[`DIV R0, R1; (R0)/(R1)→R0`,`INT n; 产生软中断`,`NOT R0; 寄存器 R0 的内容取非`,`MOV R0, addr; 把地址 addr 的内存数据放入寄存器 R0 中`],choiceFormat:`separate`,stemHtml:`<p>假定下列指令已装入指令寄存器，则执行时不可能导致 CPU 从用户态变为内核态（系统态）的是（ ）。</p>`,optionsHtml:[`<span class="choice-text"><code>DIV R0, R1;</code> (R0)/(R1)→R0</span>`,`<span class="choice-text"><code>INT n;</code> 产生软中断</span>`,`<span class="choice-text"><code>NOT R0;</code> 寄存器 <code>R0</code> 的内容取非</span>`,`<span class="choice-text"><code>MOV R0, addr;</code> 把地址 <code>addr</code> 的内存数据放入寄存器 <code>R0</code> 中</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`24. 假定下列指令已装入指令寄存器。则执行时不可能导致 CPU 从用户态变为内核态(系统态)的是____。
+
+A. DIV R0,R1
+
+； (R0)/(R1)→R0
+
+B. INT n
+
+；产生软中断
+
+C. NOT RO
+
+；寄存器R0的内容取非
+
+D. MOV R0,addr
+
+；把地址 addr 处的内存数据放入寄存器 R0 中`,images:[],hasFigure:!1},{id:`real-concept-2015-25`,year:2015,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#25`,sourceAnswer:`D`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`下列选项中，会导致进程从执行态变为就绪态的事件是（ \xA0）。`,options:[`执行 P(wait) 操作`,`申请内存失败`,`启动 I/O 设备`,`被高优先级进程抢占`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，会导致进程从执行态变为就绪态的事件是（ \xA0）。</p>`,optionsHtml:[`<span class="choice-text">执行 P(wait) 操作</span>`,`<span class="choice-text">申请内存失败</span>`,`<span class="choice-text">启动 I/O 设备</span>`,`<span class="choice-text">被高优先级进程抢占</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`25. 下列选项中，会导致进程从执行态变为就绪态的事件是
+
+A. 执行 Pwait)操作
+
+B. 申请内存失败
+
+C. 启动 I/O 设备
+
+D. 被高优先级进程抢占`,images:[],hasFigure:!1},{id:`real-concept-2015-26`,year:2015,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#26`,sourceAnswer:`B`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`死锁的处理方法`,stem:`若系统 S1 采用死锁避免方法，S2 采用死锁检测方法。下列叙述中，正确的是（）。
+Ⅰ、S1 会限制用户申请资源的顺序，而 S2 不会
+Ⅱ、S1 需要进程运行所需的资源总量信息，而 S2 不需要
+Ⅲ、S1 不会给可能导致死锁的进程分配资源，而 S2 会`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅲ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>若系统 S1 采用死锁避免方法，S2 采用死锁检测方法。下列叙述中，正确的是（）。</p>
+<p>Ⅰ、S1 会限制用户申请资源的顺序，而 S2 不会</p>
+<p>Ⅱ、S1 需要进程运行所需的资源总量信息，而 S2 不需要</p>
+<p>Ⅲ、S1 不会给可能导致死锁的进程分配资源，而 S2 会</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`26. 若系统 S1 采用死锁避免方法, S2 采用死锁检测方法。下列叙述中, 正确的是
+
+I．S1会限制用户申请资源的顺序，而S2不会  
+II．S1需要进程运行所需资源总量信息，而S2不需要  
+III. S1 不会给可能导致死锁的进程分配资源，而 S2 会
+
+A. 仅 I、II
+
+B. 仅 II、III
+
+C. 仅 I、III
+
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2015-28`,year:2015,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#28`,sourceAnswer:`A`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`缓冲区`,stem:`在系统内存中设置磁盘缓冲区的主要目的是（ ）。`,options:[`减少磁盘 I/O 次数`,`减少平均寻道时间`,`提高磁盘数据可靠性`,`实现设备无关性`],choiceFormat:`separate`,stemHtml:`<p>在系统内存中设置磁盘缓冲区的主要目的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">减少磁盘 I/O 次数</span>`,`<span class="choice-text">减少平均寻道时间</span>`,`<span class="choice-text">提高磁盘数据可靠性</span>`,`<span class="choice-text">实现设备无关性</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`28. 在系统内存中设置磁盘缓冲区的主要目的是
+
+A. 减少磁盘 I/O 次数
+
+B. 减少平均寻道时间
+
+C. 提高磁盘数据可靠性
+
+D. 实现设备无关性`,images:[],hasFigure:!1},{id:`real-concept-2015-30`,year:2015,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#30`,sourceAnswer:`C`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`页框分配和置换策略`,stem:`在请求分页系统中，页面分配策略与页面置换策略不能组合使用的是（ ）。`,options:[`可变分配，全局置换`,`可变分配，局部置换`,`固定分配，全局置换`,`固定分配，局部置换`],choiceFormat:`separate`,stemHtml:`<p>在请求分页系统中，页面分配策略与页面置换策略不能组合使用的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">可变分配，全局置换</span>`,`<span class="choice-text">可变分配，局部置换</span>`,`<span class="choice-text">固定分配，全局置换</span>`,`<span class="choice-text">固定分配，局部置换</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`30. 在请求分页系统中，页面分配策略与页面置换策略不能组合使用的是________。
+
+A. 可变分配, 全局置换
+
+B. 可变分配, 局部置换
+
+C. 固定分配, 全局置换
+
+D. 固定分配，局部置换`,images:[],hasFigure:!1},{id:`real-concept-2016-23`,year:2016,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#23`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`下列关于批处理系统的叙述中，正确的是（ \xA0）
+Ⅰ.批处理系统允许多个用户与计算机直接交互
+Ⅱ.批处理系统分为单道批处理系统和多道批处理系统
+Ⅲ.中断技术使得多道批处理系统的 I/O 设备可与 CPU 并行工作`,options:[`仅Ⅱ、Ⅲ`,`仅Ⅱ`,`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列关于批处理系统的叙述中，正确的是（ \xA0）</p>
+<p>Ⅰ.批处理系统允许多个用户与计算机直接交互</p>
+<p>Ⅱ.批处理系统分为单道批处理系统和多道批处理系统</p>
+<p>Ⅲ.中断技术使得多道批处理系统的 I/O 设备可与 CPU 并行工作</p>`,optionsHtml:[`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2016-26`,year:2016,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#26`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`页面置换算法,clock算法`,stem:`某系统采用改进型 CLOCK 置换算法，页表项中字段 A 为访问位，M 为修改位。A=0 表示页最近没有被访问，A=1 表示页最近被访问过。M=0 表示页没有被修改过，M=1 表示页被修改过。按 (A, M) 所有可能的取值，将页分为四类：(0, 0)、(1, 0)、(0, 1) 和 (1, 1)，则该算法淘汰页的次序为（ ）。`,options:[`(0, 0), (0, 1), (1,0), (1, 1)`,`(0, 0), (1, 0), (0, 1), (1, 1)`,`(0, 0), (0, 1), (1, 1), (1, 0)`,`(0, 0), (1, 1), (0, 1), (1, 0)`],choiceFormat:`separate`,stemHtml:`<p>某系统采用改进型 CLOCK 置换算法，页表项中字段 A 为访问位，M 为修改位。A=0 表示页最近没有被访问，A=1 表示页最近被访问过。M=0 表示页没有被修改过，M=1 表示页被修改过。按 (A, M) 所有可能的取值，将页分为四类：(0, 0)、(1, 0)、(0, 1) 和 (1, 1)，则该算法淘汰页的次序为（ ）。</p>`,optionsHtml:[`<span class="choice-text">(0, 0), (0, 1), (1,0), (1, 1)</span>`,`<span class="choice-text">(0, 0), (1, 0), (0, 1), (1, 1)</span>`,`<span class="choice-text">(0, 0), (0, 1), (1, 1), (1, 0)</span>`,`<span class="choice-text">(0, 0), (1, 1), (0, 1), (1, 0)</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`26. 某系统采用改进型CLOCK置换算法，页表项中字段A为访问位，M为修改位。A=0表示页最近没有被访问，A=1表示页最近被访问过。M=0表示页没有被修改过，M=1表示页被修改过。按(A，M)所有可能的取值，将页分为四类：(0，0）、(1，0）、(0，1)和(1，1)，则该算法淘汰页的次序为
+
+A. (0, 0), (0, 1), (1, 0), (1, 1)  
+B. (0, 0), (1, 0), (0, 1), (1, 1)  
+C.  $(0, 0), (0, 1), (1, 1), (1, 0)$  
+D. (0, 0), (1, 1), (0, 1), (1, 0)`,images:[],hasFigure:!1},{id:`real-concept-2016-27`,year:2016,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#27`,sourceAnswer:`B`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`硬件互斥指令`,stem:`使用 TSL (Test and Set Lock) 指令实现进程互斥的伪代码如下所示。
+do { ... while ( TSL ( & lock )); critical section ; lock = FALSE ; ... } while ( TRUE );
+下列与该实现机制相关的叙述中，正确的是（ ）。`,options:[`退出临界区的进程负责唤醒阻塞态进程`,`等待进入临界区的进程不会主动放弃 CPU`,`上述伪代码满足“让权等待”的同步准则`,`while (TSL(&lock)) 应在关中断状态下执行`],choiceFormat:`separate`,stemHtml:`<p>使用 TSL (Test and Set Lock) 指令实现进程互斥的伪代码如下所示。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="display:flex"><span><span style="color:#204a87;font-weight:700">do</span> <span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000;font-weight:700">...</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">while</span> <span style="color:#000;font-weight:700">(</span><span style="color:#000">TSL</span><span style="color:#000;font-weight:700">(</span><span style="color:#ce5c00;font-weight:700">&amp;</span><span style="color:#000">lock</span><span style="color:#000;font-weight:700">));</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">critical</span> <span style="color:#000">section</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">lock</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#000">FALSE</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000;font-weight:700">...</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span> <span style="color:#204a87;font-weight:700">while</span> <span style="color:#000;font-weight:700">(</span><span style="color:#000">TRUE</span><span style="color:#000;font-weight:700">);</span>
+</span></span></code></pre></div>
+<p>下列与该实现机制相关的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">退出临界区的进程负责唤醒阻塞态进程</span>`,`<span class="choice-text">等待进入临界区的进程不会主动放弃 CPU</span>`,`<span class="choice-text">上述伪代码满足“让权等待”的同步准则</span>`,`<span class="choice-text"><code>while (TSL(&amp;lock))</code> 应在关中断状态下执行</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`27. 使用TSL(Test and Set Lock)指令实现进程互斥的伪代码如下所示。
+
+do{ while(TSL(&lock)); critical section; lock  $\\equiv$  FALSE;
+
+} whileTRUE);
+
+下列与该实现机制相关的叙述中，正确的是
+
+A. 退出临界区的进程负责唤醒阻塞态进程  
+B.等待进入临界区的进程不会主动放弃CPU  
+C. 上述伪代码满足“让权等待”的同步准则  
+D. while(TSL(&lock))语句应在关中断状态下执行`,images:[],hasFigure:!1},{id:`real-concept-2016-30`,year:2016,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#30`,sourceAnswer:`C`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`进程的互斥`,stem:`进程 P1 和 P2 均包含并发执行的线程，部分伪代码描述如下所示。
+进程 P1 int x = 0 ; Thread1 () { int a ; a = 1 ; x += 1 ; } Thread2 () { int a ; a = 2 ; x += 2 ; } 进程 P2 int x = 0 ; Thread3 () { int a ; a = x ; x += 3 ; } Thread4 () { int b ; b = x ; x += 4 ; }
+下列选项中，需要互斥执行的操作是（ ）。`,options:[`a=1 与 a=2`,`a=x 与 b=x`,`x+=1 与 x+=2`,`x+=1 与 x+=3`],choiceFormat:`separate`,stemHtml:`<p>进程 P1 和 P2 均包含并发执行的线程，部分伪代码描述如下所示。</p>
+<div class="td-card-group card-group p-0 mb-4"><div class="td-card card border me-4"><div class="card-header code">进程 P1</div><div class="card-body code p-0 m-0"><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="display:flex"><span>
+</span></span><span style="display:flex"><span><span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">0</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000">Thread1</span><span style="color:#000;font-weight:700">()</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">1</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:700">+=</span> <span style="color:#0000cf;font-weight:700">1</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span><span style="display:flex"><span><span style="color:#000">Thread2</span><span style="color:#000;font-weight:700">()</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">2</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:700">+=</span> <span style="color:#0000cf;font-weight:700">2</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span></code></pre></div></div></div><div class="td-card card border me-4"><div class="card-header code">进程 P2</div><div class="card-body code p-0 m-0"><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="display:flex"><span>
+</span></span><span style="display:flex"><span><span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#0000cf;font-weight:700">0</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000">Thread3</span><span style="color:#000;font-weight:700">()</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#000">x</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:700">+=</span> <span style="color:#0000cf;font-weight:700">3</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span><span style="display:flex"><span><span style="color:#000">Thread4</span><span style="color:#000;font-weight:700">()</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">{</span>
+</span></span><span style="display:flex"><span>    <span style="color:#204a87;font-weight:700">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span>    <span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:700">=</span> <span style="color:#000">x</span><span style="color:#000;font-weight:700">;</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:700">+=</span> <span style="color:#0000cf;font-weight:700">4</span><span style="color:#000;font-weight:700">;</span>
+</span></span><span style="display:flex"><span><span style="color:#000;font-weight:700">}</span>
+</span></span></code></pre></div></div></div></div>
+<p>下列选项中，需要互斥执行的操作是（ ）。</p>`,optionsHtml:[`<span class="choice-text">a=1 与 a=2</span>`,`<span class="choice-text">a=x 与 b=x</span>`,`<span class="choice-text">x+=1 与 x+=2</span>`,`<span class="choice-text">x+=1 与 x+=3</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`30. 进程P1和P2均包含并发执行的线程，部分伪代码描述如下所示。
+
+<table><tr><td>//进程P1
+    int x=0;
+    Thread1()
+    {
+        int a:
+        a=1;     x+=1;
+    }
+    Thread2()
+    {
+        int a:
+        a=2; x+=2;
+    }</td><td>//进程P2
+    int x=0;
+    Thread3()
+    {
+        int a:
+        a=x;     x+=3;
+    }
+    Thread4()
+    {
+        int b:
+        b=x; x+=4;
+    }</td></tr></table>
+
+下列选项中，需要互斥执行的操作是
+
+A.  $a = 1$  与  $a = 2$
+
+B.  $\\mathrm{a} = \\mathrm{x}$  与  $\\mathrm{b} = \\mathrm{x}$
+
+c.  $x+=1$  与  $x+=2$
+
+D.  $x+=1$  与  $x+=3$`,images:[],hasFigure:!1},{id:`real-concept-2016-31`,year:2016,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#31`,sourceAnswer:`D`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`SPOOLing`,stem:`下列关于 SPOOLing 技术的叙述中，错误的是（ ）。`,options:[`需要外存的支持`,`需要多道程序设计技术的支持`,`可以让多个作业共享一台独占设备`,`由用户作业控制设备与输入/输出井之间的数据传送`],choiceFormat:`separate`,stemHtml:`<p>下列关于 SPOOLing 技术的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">需要外存的支持</span>`,`<span class="choice-text">需要多道程序设计技术的支持</span>`,`<span class="choice-text">可以让多个作业共享一台独占设备</span>`,`<span class="choice-text">由用户作业控制设备与输入/输出井之间的数据传送</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`31. 下列关于SPOOLing技术的叙述中，错误的是
+
+A. 需要外存的支持  
+B. 需要多道程序设计技术的支持  
+C. 可以让多个作业共享一台独占设备  
+D. 由用户作业控制设备与输入/输出井之间的数据传送`,images:[],hasFigure:!1},{id:`real-concept-2016-32`,year:2016,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2016/#32`,sourceAnswer:`A`,sourceHtmlSha256:`65c0f028f40372a6c5cdfc466d54fe1c3712e69e0b866bf89b85b8c585763476`,retrieved:`2026-11-16`,tags:`管程`,stem:`下列关于管程的叙述中，错误的是（ ）。`,options:[`管程只能用于实现进程的互斥`,`管程是由编程语言支持的进程同步机制`,`任何时候只能有一个进程在管程中执行`,`管程中定义的变量只能被管程内的过程访问`],choiceFormat:`separate`,stemHtml:`<p>下列关于管程的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">管程只能用于实现进程的互斥</span>`,`<span class="choice-text">管程是由编程语言支持的进程同步机制</span>`,`<span class="choice-text">任何时候只能有一个进程在管程中执行</span>`,`<span class="choice-text">管程中定义的变量只能被管程内的过程访问</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2016`,alternateMarkdown:`32. 下列关于管程的叙述中，错误的是
+
+A. 管程只能用于实现进程的互斥  
+B. 管程是由编程语言支持的进程同步机制  
+C. 任何时候只能有一个进程在管程中执行  
+D. 管程中定义的变量只能被管程内的过程访问
+
+题33～41均依据题33～41图回答。`,images:[],hasFigure:!1},{id:`real-concept-2017-24`,year:2017,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#24`,sourceAnswer:`C`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`系统调用`,stem:`执行系统调用的过程包括如下主要操作：
+①返回用户态 \xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0②执行陷入（trap）指令
+③传递系统调用参数 \xA0\xA0④执行相应的服务程序
+正确的执行顺序是（ ）。`,options:[`②→③→①→④`,`②→④→③→①`,`③→②→④→①`,`③→④→②→①`],choiceFormat:`separate`,stemHtml:`<p>执行系统调用的过程包括如下主要操作：</p>
+<p>①返回用户态 \xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0②执行陷入（trap）指令</p>
+<p>③传递系统调用参数 \xA0\xA0④执行相应的服务程序</p>
+<p>正确的执行顺序是（ ）。</p>`,optionsHtml:[`<span class="choice-text">②→③→①→④</span>`,`<span class="choice-text">②→④→③→①</span>`,`<span class="choice-text">③→②→④→①</span>`,`<span class="choice-text">③→④→②→①</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`24. 执行系统调用的过程包括如下主要操作：
+
+(1)返回用户态
+
+②执行陷人(trap)指令
+
+③传递系统调用参数
+
+(4)执行相应的服务程序
+
+正确的执行顺序是
+
+A. ②->③->①->④
+
+B. ②->④->③->①
+
+C. ③->②->④>①
+
+D. ③->④->②->①`,images:[],hasFigure:!1},{id:`real-concept-2017-27`,year:2017,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#27`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`处理机调度算法,时间片轮转`,stem:`下列有关基于时间片的进程调度的叙述中，错误的是（ ）。`,options:[`时间片越短，进程切换的次数越多，系统开销也越大`,`当前进程的时间片用完后，该进程状态由执行态变为阻塞态`,`时钟中断发生后，系统会修改当前进程在时间片内的剩余时间`,`影响时间片大小的主要因素包括响应时间、系统开销和进程数量等`],choiceFormat:`separate`,stemHtml:`<p>下列有关基于时间片的进程调度的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">时间片越短，进程切换的次数越多，系统开销也越大</span>`,`<span class="choice-text">当前进程的时间片用完后，该进程状态由执行态变为阻塞态</span>`,`<span class="choice-text">时钟中断发生后，系统会修改当前进程在时间片内的剩余时间</span>`,`<span class="choice-text">影响时间片大小的主要因素包括响应时间、系统开销和进程数量等</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`27. 下列有关基于时间片的进程调度的叙述中, 错误的是
+
+A. 时间片越短, 进程切换的次数越多, 系统也越大  
+B. 当前进程的时间片用完后, 该进程状态由执行态变为阻塞态  
+C. 时钟中断发生后, 系统会修改当前进程在时间片内的剩余时间  
+D. 影响时间片大小的主要因素包括响应时间、系统开销和进程数量等`,images:[],hasFigure:!1},{id:`real-concept-2017-28`,year:2017,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#28`,sourceAnswer:`D`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`与单道程序系统相比，多道程序系统的优点是（ \xA0）
+Ⅰ.CPU 利用率高
+Ⅱ.系统开销小
+Ⅲ.系统吞吐量大
+Ⅳ.I/O 设备利用率高`,options:[`仅Ⅰ、Ⅲ`,`仅Ⅰ、Ⅳ`,`仅Ⅱ\xA0、Ⅲ`,`仅Ⅰ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>与单道程序系统相比，多道程序系统的优点是（ \xA0）</p>
+<p>Ⅰ.CPU 利用率高</p>
+<p>Ⅱ.系统开销小</p>
+<p>Ⅲ.系统吞吐量大</p>
+<p>Ⅳ.I/O 设备利用率高</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ\xA0、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`28. 与单道程序系统相比，多道程序系统的优点是
+
+I. CPU 利用率高
+
+II. 系统开销小
+
+III. 系统吞吐量大
+
+IV. I/O 设备利用率高
+
+A. 仅 I、III
+
+B. 仅 I、IV
+
+C. 仅 II、III
+
+D. 仅 I、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2017-29`,year:2017,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#29`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`磁盘格式化`,stem:`下列选项中，磁盘逻辑格式化程序所做的工作是（ ）。
+Ⅰ. 对磁盘进行分区
+Ⅱ. 建立文件系统的根目录
+Ⅲ. 确定磁盘扇区校验码所占位数
+Ⅳ. 对保存空闲磁盘块信息的数据结构进行初始化`,options:[`仅Ⅱ`,`仅Ⅱ、Ⅳ`,`仅Ⅲ、Ⅳ`,`仅Ⅰ、Ⅱ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，磁盘逻辑格式化程序所做的工作是（ ）。</p>
+<p>Ⅰ. 对磁盘进行分区</p>
+<p>Ⅱ. 建立文件系统的根目录</p>
+<p>Ⅲ. 确定磁盘扇区校验码所占位数</p>
+<p>Ⅳ. 对保存空闲磁盘块信息的数据结构进行初始化</p>`,optionsHtml:[`<span class="choice-text">仅Ⅱ</span>`,`<span class="choice-text">仅Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`29. 下列选项中，磁盘逻辑格式化程序所做的工作是
+
+I. 对磁盘进行分区
+
+II. 建立文件系统的根目录
+
+III. 确定磁盘扇区校验码所占位数
+
+IV. 对保存空闲磁盘块信息的数据结构进行初始化
+
+A. 仅 II
+
+B. 仅 II、IV
+
+C. 仅III、IV
+
+D. 仅 I、II、IV`,images:[],hasFigure:!1},{id:`real-concept-2017-31`,year:2017,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#31`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`inode,文件链接`,stem:`若文件 f1 的硬链接为 f2，两个进程分别打开 f1 和 f2，获得对应的文件描述符为 fd1 和 fd2，则下列叙述中，正确的是（ ）。
+Ⅰ. f1 和 f2 的读写指针位置保持相同
+Ⅱ. f1 和 f2 共享同一个内存索引结点
+Ⅲ. fd1 和 fd2 分别指向各自的用户打开文件表中的一项`,options:[`仅Ⅲ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅱ`,`Ⅰ、Ⅱ和Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>若文件 f1 的硬链接为 f2，两个进程分别打开 f1 和 f2，获得对应的文件描述符为 fd1 和 fd2，则下列叙述中，正确的是（ ）。</p>
+<p>Ⅰ. f1 和 f2 的读写指针位置保持相同</p>
+<p>Ⅱ. f1 和 f2 共享同一个内存索引结点</p>
+<p>Ⅲ. fd1 和 fd2 分别指向各自的用户打开文件表中的一项</p>`,optionsHtml:[`<span class="choice-text">仅Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">Ⅰ、Ⅱ和Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`31. 若文件 f1 的硬链接为 f2，两个进程分别打开 f1 和 f2，获得对应的文件描述符为 fd1 和 fd2，则下列叙述中，正确的是________。
+
+I．f1和f2的读写指针位置保持相同  
+II. f1 和 f2 共享同一个内存索引结点  
+III. fd1 和 fd2 分别指向各自的用户打开文件表中的一项
+
+A. 仅 I
+
+B. 仅 II、III
+
+C. 仅 I、II
+
+D. I、II和III`,images:[],hasFigure:!1},{id:`real-concept-2017-32`,year:2017,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#32`,sourceAnswer:`B`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`DMA`,stem:`系统将数据从磁盘读到内存的过程包括以下操作：
+① DMA 控制器发出中断请求
+② 初始化 DMA 控制器并启动磁盘
+③ 从磁盘传输一块数据到内存缓冲区
+④ 执行“DMA 结束”中断服务程序
+正确的执行顺序是（ ）。`,options:[`③→①→②→④`,`②→③→①→④`,`②→①→③→④`,`①→②→④→③`],choiceFormat:`separate`,stemHtml:`<p>系统将数据从磁盘读到内存的过程包括以下操作：</p>
+<p>① DMA 控制器发出中断请求</p>
+<p>② 初始化 DMA 控制器并启动磁盘</p>
+<p>③ 从磁盘传输一块数据到内存缓冲区</p>
+<p>④ 执行“DMA 结束”中断服务程序</p>
+<p>正确的执行顺序是（ ）。</p>`,optionsHtml:[`<span class="choice-text">③→①→②→④</span>`,`<span class="choice-text">②→③→①→④</span>`,`<span class="choice-text">②→①→③→④</span>`,`<span class="choice-text">①→②→④→③</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`32. 系统将数据从磁盘读到内存的过程包括以下操作：
+
+① DMA 控制器发出中断请求  
+②初始化DMA控制器并启动磁盘  
+(3)从磁盘传输一块数据到内存缓冲区  
+④执行“DMA结束”中断服务程序
+
+正确的执行顺序是
+
+A. ③->①->②->④
+
+B. ②->③->①->④
+
+C. ②->①->③->④
+
+D. ①-→②-→④-→③`,images:[],hasFigure:!1},{id:`real-concept-2018-23`,year:2018,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#23`,sourceAnswer:`C`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`下列关于多任务操作系统的叙述中，正确的是（ \xA0）。
+Ⅰ.具有并发和并行的特点
+Ⅱ.需要实现对共享资源的保护
+Ⅲ.需要运行在多 CPU 的硬件平台上`,options:[`仅Ⅰ`,`仅Ⅱ`,`仅Ⅰ、Ⅱ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列关于多任务操作系统的叙述中，正确的是（ \xA0）。</p>
+<p>Ⅰ.具有并发和并行的特点</p>
+<p>Ⅱ.需要实现对共享资源的保护</p>
+<p>Ⅲ.需要运行在多 CPU 的硬件平台上</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ</span>`,`<span class="choice-text">仅Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`23. 下列关于多任务操作系统的叙述中，正确的是________。
+
+I. 具有并发和并行的特点  
+II. 需要实现对共享资源的保护
+
+III. 需要运行在多CPU的硬件平台上
+
+A. 仅 I
+
+B. 仅 II
+
+C. 仅 I、II
+
+D. I 、II 、III`,images:[],hasFigure:!1},{id:`real-concept-2018-27`,year:2018,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#27`,sourceAnswer:`C`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`下列选项中，可能导致当前进程 P 阻塞的事件是（ \xA0）。
+Ⅰ.进程 P 申请临界资源
+Ⅱ.进程 P 从磁盘读数据
+Ⅲ.系统将 CPU 分配给高优先级的进程`,options:[`仅Ⅰ`,`仅Ⅱ`,`仅Ⅰ、Ⅱ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，可能导致当前进程 P 阻塞的事件是（ \xA0）。</p>
+<p>Ⅰ.进程 P 申请临界资源</p>
+<p>Ⅱ.进程 P 从磁盘读数据</p>
+<p>Ⅲ.系统将 CPU 分配给高优先级的进程</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ</span>`,`<span class="choice-text">仅Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`27. 下列选项中，可能导致当前进程P阻塞的事件是
+
+I. 进程P申请临界资源
+
+II. 进程P从磁盘读数据
+
+III. 系统将CPU分配给高优先权的进程
+
+A. 仅 I
+
+B. 仅 II
+
+C. 仅 I、II
+
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2018-28`,year:2018,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#28`,sourceAnswer:`D`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`管程,条件变量`,stem:`若 x 是管程内的条件变量，则当进程执行 x.wait() 时所做的工作是（）。`,options:[`实现对变量 x 的互斥访问`,`唤醒一个在 x 上阻塞的进程`,`根据 x 的值判断该进程是否进入阻塞态`,`阻塞该进程，并将之插入 x 的阻塞队列中`],choiceFormat:`separate`,stemHtml:`<p>若 x 是管程内的条件变量，则当进程执行 x.wait() 时所做的工作是（）。</p>`,optionsHtml:[`<span class="choice-text">实现对变量 x 的互斥访问</span>`,`<span class="choice-text">唤醒一个在 x 上阻塞的进程</span>`,`<span class="choice-text">根据 x 的值判断该进程是否进入阻塞态</span>`,`<span class="choice-text">阻塞该进程，并将之插入 x 的阻塞队列中</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`28. 若 x 是管程内的条件变量，则当进程执行 x.wait()时所做的工作是
+
+A. 实现对变量  $\\mathrm{x}$  的互斥访问  
+B. 唤醒一个在  $\\mathrm{x}$  上阻塞的进程  
+C. 根据  $\\mathbf{x}$  的值判断该进程是否进入阻塞状态  
+D. 阻塞该进程, 并将之插入  $\\mathrm{x}$  的阻塞队列中`,images:[],hasFigure:!1},{id:`real-concept-2018-29`,year:2018,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#29`,sourceAnswer:`D`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`定时器产生时钟中断后，由时钟中断服务程序更新的部分内容是（ \xA0）。
+Ⅰ.内核中时钟变量的值
+Ⅱ.当前进程占用 CPU 的时间
+Ⅲ.当前进程在时间片内的剩余执行时间`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅲ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>定时器产生时钟中断后，由时钟中断服务程序更新的部分内容是（ \xA0）。</p>
+<p>Ⅰ.内核中时钟变量的值</p>
+<p>Ⅱ.当前进程占用 CPU 的时间</p>
+<p>Ⅲ.当前进程在时间片内的剩余执行时间</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`29. 当定时器产生时钟中断后，由时钟中断服务程序更新的部分内容是
+
+I.内核中时钟变量的值
+
+II.当前进程占用CPU的时间
+
+III.当前进程在时间片内的剩余执行时间
+
+A. 仅 I、II
+
+B. 仅 II、III
+
+C. 仅 I、III
+
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2018-30`,year:2018,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#30`,sourceAnswer:`A`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`磁盘调度算法`,stem:`系统总是访问磁盘的某个磁道而不响应对其他磁道的访问请求，这种现象称为磁臂黏着。下列磁盘调度算法中，不会导致磁臂粘着的是（ ）。`,options:[`先来先服务 (FCFS)`,`最短寻道时间优先 (SSTF)`,`扫描算法 (SCAN)`,`循环扫描算法 (CSCAN)`],choiceFormat:`separate`,stemHtml:`<p>系统总是访问磁盘的某个磁道而不响应对其他磁道的访问请求，这种现象称为磁臂黏着。下列磁盘调度算法中，不会导致磁臂粘着的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">先来先服务 (FCFS)</span>`,`<span class="choice-text">最短寻道时间优先 (SSTF)</span>`,`<span class="choice-text">扫描算法 (SCAN)</span>`,`<span class="choice-text">循环扫描算法 (CSCAN)</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`30. 系统总是访问磁盘的某个磁道而不响应对其他磁道的访问请求, 这种现象称为磁臂黏着。下列磁盘调度算法中, 不会导致磁臂粘着的是
+
+A. 先来先服务（FCFS）
+
+B. 最短寻道时间优先（SSTF）
+
+C. 扫描算法（SCAN）
+
+D. 循环扫描算法（CSCAN）`,images:[],hasFigure:!1},{id:`real-concept-2018-31`,year:2018,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#31`,sourceAnswer:`D`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`缓冲区`,stem:`下列优化方法中，可以提高文件访问速度的是（ ）。
+Ⅰ. 提前读
+Ⅱ. 为文件分配连续的簇
+Ⅲ. 延迟写
+Ⅳ. 采用磁盘高速缓存`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列优化方法中，可以提高文件访问速度的是（ ）。</p>
+<p>Ⅰ. 提前读</p>
+<p>Ⅱ. 为文件分配连续的簇</p>
+<p>Ⅲ. 延迟写</p>
+<p>Ⅳ. 采用磁盘高速缓存</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`31. 下列优化方法中，可以提高文件访问速度的是________。
+
+I. 提前读
+
+II. 为文件分配连续的簇
+
+III.延迟写
+
+IV.采用磁盘高速缓存
+
+A. 仅 I、II
+
+B. 仅 II、III
+
+C. 仅 I、III、IV
+
+D. I、II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2018-32`,year:2018,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#32`,sourceAnswer:`C`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`硬件互斥指令,信号量`,stem:`在下列同步机制中，可以实现让权等待的是（ ）。`,options:[`Peterson 方法`,`swap 指令`,`信号量方法`,`TestAndSet 指令`],choiceFormat:`separate`,stemHtml:`<p>在下列同步机制中，可以实现让权等待的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">Peterson 方法</span>`,`<span class="choice-text">swap 指令</span>`,`<span class="choice-text">信号量方法</span>`,`<span class="choice-text">TestAndSet 指令</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`32. 在下列同步机制中，可以实现让权等待的是
+
+A. Peterson 方法
+
+B. swap 指令
+
+C. 信号量方法
+
+D.TestAndSet指令`,images:[],hasFigure:!1},{id:`real-concept-2019-23`,year:2019,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#23`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`用户级和内核级线程`,stem:`下列关于线程的描述中，错误的是（ ）。`,options:[`内核级线程的调度由操作系统完成`,`操作系统为每个用户级线程建立一个线程控制块`,`用户级线程间的切换比内核级线程间的切换效率高`,`用户级线程可以在不支持内核级线程的操作系统上实现`],choiceFormat:`separate`,stemHtml:`<p>下列关于线程的描述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">内核级线程的调度由操作系统完成</span>`,`<span class="choice-text">操作系统为每个用户级线程建立一个线程控制块</span>`,`<span class="choice-text">用户级线程间的切换比内核级线程间的切换效率高</span>`,`<span class="choice-text">用户级线程可以在不支持内核级线程的操作系统上实现</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`23. 下列关于线程的描述中，错误的是
+
+A. 内核级线程的调度由操作系统完成  
+B. 操作系统为每个用户级线程建立一个线程控制块  
+C. 用户级线程间的切换比内核级线程间的切换效率高  
+D. 用户级线程可以在不支持内核级线程的操作系统上实现`,images:[],hasFigure:!1},{id:`real-concept-2019-24`,year:2019,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#24`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`下列选项中，可能将进程唤醒的事件是（ ）。
+Ⅰ.I/O 结束
+Ⅱ.某进程退出临界区
+Ⅲ.当前进程的时间片用完`,options:[`仅Ⅰ`,`仅Ⅲ`,`仅Ⅰ、Ⅱ`,`Ⅰ、Ⅱ、Ⅲ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，可能将进程唤醒的事件是（ ）。</p>
+<p>Ⅰ.I/O 结束</p>
+<p>Ⅱ.某进程退出临界区</p>
+<p>Ⅲ.当前进程的时间片用完</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ</span>`,`<span class="choice-text">仅Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`24. 下列选项中，可能会将进程唤醒的事件是
+
+I. I/O结束 II. 某进程退出临界区 III. 当前进程的时间片用完
+
+A. 仅 I
+
+B. 仅 III
+
+C. 仅 I、II
+
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2019-25`,year:2019,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#25`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`系统调用,用户态和内核态`,stem:`下列关于系统调用的叙述中，正确的是（ ）。
+Ⅰ.在执行系统调用服务程序的过程中，CPU 处于内核态
+Ⅱ.操作系统通过提供系统调用避免用户程序直接访问外设
+Ⅲ.不同的操作系统为应用程序提供了统一的系统调用接口
+Ⅳ.系统调用是操作系统内核为应用程序提供服务的接口`,options:[`仅Ⅰ、Ⅳ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅱ、Ⅳ`,`Ⅰ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列关于系统调用的叙述中，正确的是（ ）。</p>
+<p>Ⅰ.在执行系统调用服务程序的过程中，CPU 处于内核态</p>
+<p>Ⅱ.操作系统通过提供系统调用避免用户程序直接访问外设</p>
+<p>Ⅲ.不同的操作系统为应用程序提供了统一的系统调用接口</p>
+<p>Ⅳ.系统调用是操作系统内核为应用程序提供服务的接口</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`25. 下列关于系统调用的叙述中，正确的是________。
+
+I. 在执行系统调用服务程序的过程中，CPU 处于内核态  
+II. 操作系统通过提供系统调用避免用户程序直接访问外设
+
+III. 不同的操作系统为应用程序提供了统一的系统调用接口
+
+IV. 系统调用是操作系统内核为应用程序提供服务的接口
+
+A. 仅 I、IV
+
+B. 仅 II、III
+
+C. 仅 I、II、IV
+
+D. 仅 I、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2019-26`,year:2019,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#26`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`外存空间管理`,stem:`下列选项中，可用于文件系统管理空闲磁盘块的数据结构是（ ）。
+Ⅰ. 位图
+Ⅱ. 索引结点
+Ⅲ. 空闲磁盘块链
+Ⅳ. 文件分配表 (FAT)`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅲ、Ⅳ`,`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，可用于文件系统管理空闲磁盘块的数据结构是（ ）。</p>
+<p>Ⅰ. 位图</p>
+<p>Ⅱ. 索引结点</p>
+<p>Ⅲ. 空闲磁盘块链</p>
+<p>Ⅳ. 文件分配表 (FAT)</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`26. 下列选项中，可用于文件系统管理空闲磁盘块的数据结构是
+
+I. 位图
+
+II. 索引结点
+
+III. 空闲磁盘块链
+
+IV. 文件分配表（FAT）
+
+A. 仅 I、II
+
+B. 仅 I、III、IV
+
+C. 仅 I、III
+
+D. 仅 II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2019-28`,year:2019,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#28`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`段式内存管理`,stem:`在分段存储管理系统中，用共享段表描述所有共享的段。若进程 P1 和 P2 共享段 S，下列叙述中，错误的是（ ）。`,options:[`在物理内存中仅保存一份段 S 的内容`,`段 S 在 P1 和 P2 中应该具有相同的段号`,`P1 和 P2 共享段 S 在共享段表中的段表项`,`P1 和 P2 都不再使用段 S 时才回收段 S 所占的内存空间`],choiceFormat:`separate`,stemHtml:`<p>在分段存储管理系统中，用共享段表描述所有共享的段。若进程 P1 和 P2 共享段 S，下列叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">在物理内存中仅保存一份段 S 的内容</span>`,`<span class="choice-text">段 S 在 P1 和 P2 中应该具有相同的段号</span>`,`<span class="choice-text">P1 和 P2 共享段 S 在共享段表中的段表项</span>`,`<span class="choice-text">P1 和 P2 都不再使用段 S 时才回收段 S 所占的内存空间</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`28. 在分段存储管理系统中，用共享段表描述所有被共享的段。若进程  $\\mathrm{P_1}$  和  $\\mathrm{P_2}$  共享段S，下列叙述中，错误的是
+
+A. 在物理内存中仅保存一份段 S 的内容  
+B. 段 S 在  $\\mathrm{P}_{1}$  和  $\\mathrm{P}_{2}$  中应该具有相同的段号  
+C.  $\\mathrm{P}_{1}$  和  $\\mathrm{P}_{2}$  共享段 S 在共享段表中的段表项  
+D.  $\\mathrm{P}_{1}$  和  $\\mathrm{P}_{2}$  都不再使用段 S 时才回收段 S 所占的内存空间`,images:[],hasFigure:!1},{id:`real-concept-2019-30`,year:2019,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#30`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`死锁产生的必要条件`,stem:`下列关于死锁的叙述中，正确的是（ ）。
+Ⅰ、可以通过剥夺进程资源解除死锁
+Ⅱ、死锁的预防方法能确保系统不发生死锁
+Ⅲ、银行家算法可以判断系统是否处于死锁状态
+Ⅳ、当系统出现死锁时，必然有两个或两个以上的进程处于阻塞态`,options:[`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅱ、Ⅳ`,`仅Ⅰ、Ⅱ、Ⅲ`,`仅Ⅰ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列关于死锁的叙述中，正确的是（ ）。</p>
+<p>Ⅰ、可以通过剥夺进程资源解除死锁</p>
+<p>Ⅱ、死锁的预防方法能确保系统不发生死锁</p>
+<p>Ⅲ、银行家算法可以判断系统是否处于死锁状态</p>
+<p>Ⅳ、当系统出现死锁时，必然有两个或两个以上的进程处于阻塞态</p>`,optionsHtml:[`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`30. 下列关于死锁的叙述中, 正确的是
+
+I. 可以通过剥夺进程资源解除死锁  
+II. 死锁的预防方法能确保系统不发生死锁  
+III. 银行家算法可以判断系统是否处于死锁状态  
+IV. 当系统出现死锁时，必然有两个或两个以上的进程处于阻塞态
+
+A. 仅 II、III
+
+B. 仅 I、II、IV
+
+C. 仅 I、II、III
+
+D. 仅 I、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2019-32`,year:2019,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#32`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`动态分区分配`,stem:`在下列动态分区分配算法中，最容易产生内存碎片的是（ ）。`,options:[`首次适应算法`,`最坏适应算法`,`最佳适应算法`,`循环首次适应算法`],choiceFormat:`separate`,stemHtml:`<p>在下列动态分区分配算法中，最容易产生内存碎片的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">首次适应算法</span>`,`<span class="choice-text">最坏适应算法</span>`,`<span class="choice-text">最佳适应算法</span>`,`<span class="choice-text">循环首次适应算法</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`32. 在下列动态分区分配算法中，最容易产生内存碎片的是________。
+
+A. 首次适应算法
+
+B. 最坏适应算法
+
+C. 最佳适应算法
+
+D. 循环首次适应算法`,images:[],hasFigure:!1},{id:`real-concept-2020-23`,year:2020,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#23`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`进程文件管理`,stem:`若多个进程共享同一个文件 F，则下列叙述中，正确的是（ ）。`,options:[`各进程只能用“读”方式打开文件 F`,`在系统打开文件表中仅有一个表项包含 F 的属性`,`各进程的用户打开文件表中关于 F 的表项内容相同`,`进程关闭 F 时，系统删除 F 在系统打开文件表中的表项`],choiceFormat:`separate`,stemHtml:`<p>若多个进程共享同一个文件 F，则下列叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">各进程只能用“读”方式打开文件 F</span>`,`<span class="choice-text">在系统打开文件表中仅有一个表项包含 F 的属性</span>`,`<span class="choice-text">各进程的用户打开文件表中关于 F 的表项内容相同</span>`,`<span class="choice-text">进程关闭 F 时，系统删除 F 在系统打开文件表中的表项</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`23. 若多个进程共享同一个文件 F，则下列叙述中正确的是：
+
+A、个进程只能用“读”方式打开文件 F;  
+B、在系统打开文件表中仅有一个表项包含 F 的属性；  
+C、各进程的用户打开文件表中关于 F 的表项内容相同；  
+D、进程关闭 F 时系统删除 F 在系统打开文件表中的表项。`,images:[],hasFigure:!1},{id:`real-concept-2020-24`,year:2020,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#24`,sourceAnswer:`A`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`文件物理结构`,stem:`下列选项中，支持文件长度可变、随机访问的磁盘存储空间分配方式是（ ）。`,options:[`索引分配`,`链接分配`,`连续分配`,`动态分区分配`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，支持文件长度可变、随机访问的磁盘存储空间分配方式是（ ）。</p>`,optionsHtml:[`<span class="choice-text">索引分配</span>`,`<span class="choice-text">链接分配</span>`,`<span class="choice-text">连续分配</span>`,`<span class="choice-text">动态分区分配</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`24. 下列选项中支持文件长度可变，随机访问的磁盘存储空间分配方式是：
+
+A、索引分配；
+
+B、链接分配；
+
+C、连续分配；
+
+D、动态分区分配。`,images:[],hasFigure:!1},{id:`real-concept-2020-25`,year:2020,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#25`,sourceAnswer:`D`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`下列与中断相关的操作中，由操作系统完成的是（）。
+Ⅰ、保存被中断程序的中断点
+Ⅱ、提供中断服务
+Ⅲ、初始化中断向量表
+Ⅳ、保存中断屏蔽字`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅰ、Ⅱ、Ⅳ`,`仅Ⅲ、Ⅳ`,`仅Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列与中断相关的操作中，由操作系统完成的是（）。</p>
+<p>Ⅰ、保存被中断程序的中断点</p>
+<p>Ⅱ、提供中断服务</p>
+<p>Ⅲ、初始化中断向量表</p>
+<p>Ⅳ、保存中断屏蔽字</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`25. 下列与中断相关的操作中，由操作系统完成的是：
+
+I、保存被中断程序的中断点 II、提供中断服务
+
+III、初始化中断向量表
+
+IV、保存中断屏蔽字
+
+A、I,II;
+
+B、I,II,IV;
+
+C III,IV;
+
+D II,III,IV.`,images:[],hasFigure:!1},{id:`real-concept-2020-26`,year:2020,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#26`,sourceAnswer:`D`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`处理机调度算法`,stem:`下列与进程调度有关的因素中，在设计多级反馈队列调度算法时需要考虑的是（ ）。
+Ⅰ. 就绪队列的数量
+Ⅱ. 就绪队列的优先级
+Ⅲ. 各就绪队列的调度算法
+Ⅳ. 进程在就绪队列间的迁移条件`,options:[`仅Ⅰ、Ⅱ`,`仅Ⅲ、Ⅳ`,`仅Ⅱ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ和Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列与进程调度有关的因素中，在设计多级反馈队列调度算法时需要考虑的是（ ）。</p>
+<p>Ⅰ. 就绪队列的数量</p>
+<p>Ⅱ. 就绪队列的优先级</p>
+<p>Ⅲ. 各就绪队列的调度算法</p>
+<p>Ⅳ. 进程在就绪队列间的迁移条件</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅱ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ和Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`26. 下列与进程调度有关的因素中在设计多级反馈队列调度算法时需要考虑的是:
+
+I 就绪队列的数量 II 就绪队列的优先级
+
+III 各就绪队列的调度算法 IV 进程在就绪队列间的迁移条件
+
+A、I,II;
+
+B、III,IV;
+
+C、II,III,IV;
+
+D I,II,III,IV`,images:[],hasFigure:!1},{id:`real-concept-2020-28`,year:2020,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#28`,sourceAnswer:`D`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`访存过程`,stem:`下列因素中，影响请求分页系统有效（平均）访存时间的是（ ）。
+Ⅰ. 缺页率
+Ⅱ. 磁盘读写时间
+Ⅲ. 内存访问时间
+Ⅳ. 执行缺页处理程序的 CPU 时间`,options:[`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅳ`,`仅Ⅰ、Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ和Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列因素中，影响请求分页系统有效（平均）访存时间的是（ ）。</p>
+<p>Ⅰ. 缺页率</p>
+<p>Ⅱ. 磁盘读写时间</p>
+<p>Ⅲ. 内存访问时间</p>
+<p>Ⅳ. 执行缺页处理程序的 CPU 时间</p>`,optionsHtml:[`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ和Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`28. 下列因素影响请求分页系统有效（平均）访存时间的是：
+
+1、缺页率；
+
+II、磁盘读写时间；
+
+III、内存访问时间；
+
+IV 执行缺页处理程序的 CPU 时间；
+
+A、Ⅱ,Ⅲ
+
+B、I,IV
+
+C、I,III,IV
+
+D、I,II,III,IV`,images:[],hasFigure:!1},{id:`real-concept-2020-29`,year:2020,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#29`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`进程概念`,stem:`下列关于父进程与子进程的叙述中，错误的是（ ）。`,options:[`父进程与子进程可以并发执行`,`父进程与子进程共享虚拟地址空间`,`父进程与子进程有不同的进程控制块`,`父进程与子进程不能同时使用同一临界资源`],choiceFormat:`separate`,stemHtml:`<p>下列关于父进程与子进程的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">父进程与子进程可以并发执行</span>`,`<span class="choice-text">父进程与子进程共享虚拟地址空间</span>`,`<span class="choice-text">父进程与子进程有不同的进程控制块</span>`,`<span class="choice-text">父进程与子进程不能同时使用同一临界资源</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`29. 下列关于父进程与子进程的叙述中错误的是:
+
+A、父进程与子进程可以并发执行  
+B、父进程与子进程共享虚拟地址空间  
+C、父进程与子进程有不同的进程控制块  
+D、父进程与子进程不能同时使用同一临界资源`,images:[],hasFigure:!1},{id:`real-concept-2020-30`,year:2020,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#30`,sourceAnswer:`D`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`设备分配和回收`,stem:`对于具备设备独立性的系统，下列叙述中，错误的是（ ）。`,options:[`可以使用文件名访问物理设备`,`用户程序使用逻辑设备名访问物理设备`,`需要建立逻辑设备与物理设备之间的映射关系`,`更换物理设备后必须修改访问该设备的应用程序`],choiceFormat:`separate`,stemHtml:`<p>对于具备设备独立性的系统，下列叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">可以使用文件名访问物理设备</span>`,`<span class="choice-text">用户程序使用逻辑设备名访问物理设备</span>`,`<span class="choice-text">需要建立逻辑设备与物理设备之间的映射关系</span>`,`<span class="choice-text">更换物理设备后必须修改访问该设备的应用程序</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`30. 对于具备设备独立性的系统下列叙述中错误的是：
+
+A、可以使用文件名访问物理设备；  
+B、用户程序使用逻辑设备与物理设备之间的映射关系  
+D、更换物理设备后必须修改访问该设备的应用程序。(缺一个选项)`,images:[],hasFigure:!1},{id:`real-concept-2020-32`,year:2020,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#32`,sourceAnswer:`C`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`同步原则`,stem:`下列准则中，实现临界区互斥机制必须遵循的是（ ）。
+Ⅰ、两个进程不能同时进入临界区
+Ⅱ、允许进程访问空闲的临界资源
+Ⅲ、进程等待进入临界区的时间是有限的
+Ⅳ、不能进入临界区的执行态进程立即放弃 CPU`,options:[`仅Ⅰ、Ⅳ`,`仅Ⅱ、Ⅲ`,`仅Ⅰ、Ⅱ、Ⅲ`,`仅Ⅰ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列准则中，实现临界区互斥机制必须遵循的是（ ）。</p>
+<p>Ⅰ、两个进程不能同时进入临界区</p>
+<p>Ⅱ、允许进程访问空闲的临界资源</p>
+<p>Ⅲ、进程等待进入临界区的时间是有限的</p>
+<p>Ⅳ、不能进入临界区的执行态进程立即放弃 CPU</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`32. 下列准则中实现临界区互斥机制必须遵循的是：
+
+I、两个进程不能同时进入临界区
+
+II、允许进程访问空闲的临界资源
+
+III、进程等待进入临界区的时间是有限的
+
+IV、不能进入临界区的执行态进程立即放弃CPU
+
+A、I,IV
+
+B、II,III
+
+C、I,II,III
+
+D、I,III,IV`,images:[],hasFigure:!1},{id:`real-concept-2021-23`,year:2021,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#23`,sourceAnswer:`B`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`用户态和内核态`,stem:`下列指令中，只能在内核态执行的是（ ）。`,options:[`trap 指令`,`I/O 指令`,`数据传送指令`,`设置断点指令`],choiceFormat:`separate`,stemHtml:`<p>下列指令中，只能在内核态执行的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">trap 指令</span>`,`<span class="choice-text">I/O 指令</span>`,`<span class="choice-text">数据传送指令</span>`,`<span class="choice-text">设置断点指令</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`23. 下列指令中, 只能在内核态执行的是
+
+A. trap 指令
+
+B. I/O 指令
+
+C. 数据传送指令
+
+D. 设置断点指令`,images:[],hasFigure:!1},{id:`real-concept-2021-24`,year:2021,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#24`,sourceAnswer:`B`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`进程概念,进程状态`,stem:`下列操作中，操作系统在创建新进程时，必须完成的是（ ）。
+I. 申请空白的进程控制块
+II. 初始化进程控制块
+III. 设置进程状态为执行态`,options:[`仅 I`,`仅 I、II`,`仅 I、III`,`仅 II、III`],choiceFormat:`separate`,stemHtml:`<p>下列操作中，操作系统在创建新进程时，必须完成的是（ ）。</p>
+<p>I. 申请空白的进程控制块</p>
+<p>II. 初始化进程控制块</p>
+<p>III. 设置进程状态为执行态</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`24. 下列操作中, 操作系统在创建新进程时, 必须完成的是
+
+I. 申请空白的进程控制块
+
+II. 初始化进程控制块
+
+Ⅲ. 设置进程状态为执行态
+
+A. 仅 I
+
+B. 仅 I、II
+
+C. 仅 I、III
+
+D. 仅Ⅱ、Ⅲ`,images:[],hasFigure:!1},{id:`real-concept-2021-25`,year:2021,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#25`,sourceAnswer:`C`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`处理机调度算法,时间片轮转`,stem:`下列内核的数据结构或程序中，分时系统实现时间片轮转调度需要使用的是（ ）。
+I. 进程控制块
+II. 时钟中断处理程序
+III. 进程就绪队列
+IV. 进程阻塞队列`,options:[`仅 II、III`,`仅 I、IV`,`仅 I、II、III`,`仅 I、II、IV`],choiceFormat:`separate`,stemHtml:`<p>下列内核的数据结构或程序中，分时系统实现时间片轮转调度需要使用的是（ ）。</p>
+<p>I. 进程控制块</p>
+<p>II. 时钟中断处理程序</p>
+<p>III. 进程就绪队列</p>
+<p>IV. 进程阻塞队列</p>`,optionsHtml:[`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">仅 I、IV</span>`,`<span class="choice-text">仅 I、II、III</span>`,`<span class="choice-text">仅 I、II、IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`25. 下列内核的数据结构或程序中, 分时系统实现时间片轮转调度需要使用的是
+
+I. 进程控制块
+
+II. 时钟中断处理程序
+
+Ⅲ. 进程就绪队列
+
+IV. 进程阻塞队列
+
+A. 仅 II、III
+
+B. 仅 I、IV
+
+C. 仅 I、II、III
+
+D. 仅 I、II、IV`,images:[],hasFigure:!1},{id:`real-concept-2021-27`,year:2021,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#27`,sourceAnswer:`D`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`下列事件中，可能引起进程调度程序执行的是（ ）。
+I. 中断处理结束
+II. 进程阻塞
+III. 进程执行结束
+IV. 进程的时间片用完`,options:[`仅 I、III`,`仅 II、IV`,`仅 III、IV`,`I、II、III、 IV`],choiceFormat:`separate`,stemHtml:`<p>下列事件中，可能引起进程调度程序执行的是（ ）。</p>
+<p>I. 中断处理结束</p>
+<p>II. 进程阻塞</p>
+<p>III. 进程执行结束</p>
+<p>IV. 进程的时间片用完</p>`,optionsHtml:[`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、IV</span>`,`<span class="choice-text">仅 III、IV</span>`,`<span class="choice-text">I、II、III、 IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`27. 下列事件中，可能引起进程调度程序执行的是
+
+I. 中断处理结束
+
+II. 进程阻塞
+
+Ⅲ. 进程执行结束
+
+IV. 进程的时间片用完
+
+A. 仅 I、III
+
+B. 仅  $\\mathrm{II} 、 \\mathrm{IV}$
+
+C. 仅Ⅲ、IV
+
+D. I、II、III 和 IV`,images:[],hasFigure:!1},{id:`real-concept-2021-29`,year:2021,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#29`,sourceAnswer:`B`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`页表`,stem:`在采用二级页表的分页系统中，CPU 页表基址寄存器中的内容是（ ）。`,options:[`当前进程的一级页表的起始虚拟地址`,`当前进程的一级页表的起始物理地址`,`当前进程的二级页表的起始虚拟地址`,`当前进程的二级页表的起始物理地址`],choiceFormat:`separate`,stemHtml:`<p>在采用二级页表的分页系统中，CPU 页表基址寄存器中的内容是（ ）。</p>`,optionsHtml:[`<span class="choice-text">当前进程的一级页表的起始虚拟地址</span>`,`<span class="choice-text">当前进程的一级页表的起始物理地址</span>`,`<span class="choice-text">当前进程的二级页表的起始虚拟地址</span>`,`<span class="choice-text">当前进程的二级页表的起始物理地址</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`29. 在采用二级页表的分页系统中, CPU 页表基址寄存器中的内容是 A. 当前进程的一级页表的起始虚拟地址
+
+B. 当前进程的一级页表的起始物理地址  
+C. 当前进程的二级页表的起始虚拟地址  
+D. 当前进程的二级页表的起始物理地址`,images:[],hasFigure:!1},{id:`real-concept-2021-30`,year:2021,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#30`,sourceAnswer:`A`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`文件链接`,stem:`若目录 dir 下有文件 file1，则为删除该文件内核不必完成的工作是（ ）。`,options:[`删除 file1 的快捷方式`,`释放 file1 的文件控制块`,`释放 file1 占用的磁盘空间`,`删除目录 dir 中与 file1 对应的目录项`],choiceFormat:`separate`,stemHtml:`<p>若目录 dir 下有文件 file1，则为删除该文件内核不必完成的工作是（ ）。</p>`,optionsHtml:[`<span class="choice-text">删除 file1 的快捷方式</span>`,`<span class="choice-text">释放 file1 的文件控制块</span>`,`<span class="choice-text">释放 file1 占用的磁盘空间</span>`,`<span class="choice-text">删除目录 dir 中与 file1 对应的目录项</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`30. 若目录 dir 下有文件 file1，则为删除该文件内核不必完成的工作是
+
+A. 删除 file1 的快捷方式  
+B. 释放 file1 的文件控制块  
+C. 释放 file1 占用的磁盘空间  
+D. 删除目录 dir 中与 file1 对应的目录项`,images:[],hasFigure:!1},{id:`real-concept-2021-31`,year:2021,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#31`,sourceAnswer:`C`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`死锁产生的必要条件`,stem:`若系统中有 n (n≥2) 个进程，每个进程均需要使用某类临界资源 2 个，则系统不会发生死锁所需的该类资源总数至少是（ ）。`,options:[`2`,`n`,`n+1`,`2n`],choiceFormat:`separate`,stemHtml:`<p>若系统中有 n (n≥2) 个进程，每个进程均需要使用某类临界资源 2 个，则系统不会发生死锁所需的该类资源总数至少是（ ）。</p>`,optionsHtml:[`<span class="choice-text">2</span>`,`<span class="choice-text">n</span>`,`<span class="choice-text">n+1</span>`,`<span class="choice-text">2n</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`31. 若系统中有  $n (n \\geqslant 2)$  个进程, 每个进程均需要使用某类临界资源 2 个, 则系统不会发生死锁所需的该类资源总数至少是
+
+A. 2
+
+B.  $n$
+
+C.  $n + 1$
+
+D.  $2 n$`,images:[],hasFigure:!1},{id:`real-concept-2021-32`,year:2021,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#32`,sourceAnswer:`C`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`系统调用`,stem:`下列选项中，通过系统调用完成的操作是（ ）。`,options:[`页置换`,`进程调度`,`创建新进程`,`生成随机整数`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，通过系统调用完成的操作是（ ）。</p>`,optionsHtml:[`<span class="choice-text">页置换</span>`,`<span class="choice-text">进程调度</span>`,`<span class="choice-text">创建新进程</span>`,`<span class="choice-text">生成随机整数</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`32. 下列选项中，通过系统调用完成的操作是
+
+A. 页置换
+
+B. 进程调度
+
+C. 创建新进程
+
+D. 生成随机整数`,images:[],hasFigure:!1},{id:`real-concept-2022-23`,year:2022,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#23`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`下列关于多道程序系统的叙述中，不正确的是（ ）。`,options:[`支持进程的并发执行`,`不必支持虚拟存储管理`,`需要实现对共享资源的管理`,`进程数越多 CPU 利用率越高`],choiceFormat:`separate`,stemHtml:`<p>下列关于多道程序系统的叙述中，不正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">支持进程的并发执行</span>`,`<span class="choice-text">不必支持虚拟存储管理</span>`,`<span class="choice-text">需要实现对共享资源的管理</span>`,`<span class="choice-text">进程数越多 CPU 利用率越高</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-24`,year:2022,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#24`,sourceAnswer:`A`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`下列选项中，需要在操作系统进行初始化过程中创建的是（ ）。`,options:[`中断向量表`,`文件系统的根目录`,`硬盘分区表`,`文件系统的索引节点表`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，需要在操作系统进行初始化过程中创建的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">中断向量表</span>`,`<span class="choice-text">文件系统的根目录</span>`,`<span class="choice-text">硬盘分区表</span>`,`<span class="choice-text">文件系统的索引节点表</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-27`,year:2022,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#27`,sourceAnswer:`C`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`用户态和内核态`,stem:`下列关于 CPU 模式的叙述中，正确的是（ ）。`,options:[`CPU 处于用户态时只能执行特权指令`,`CPU 处于内核态时只能执行特权指令`,`CPU 处于用户态时只能执行非特权指令`,`CPU 处于内核态时只能执行非特权指令`],choiceFormat:`separate`,stemHtml:`<p>下列关于 CPU 模式的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">CPU 处于用户态时只能执行特权指令</span>`,`<span class="choice-text">CPU 处于内核态时只能执行特权指令</span>`,`<span class="choice-text">CPU 处于用户态时只能执行非特权指令</span>`,`<span class="choice-text">CPU 处于内核态时只能执行非特权指令</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-28`,year:2022,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#28`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`下列事件或操作中，可能导致进程 P 由执行态变为阻塞态的是（ ）。
+Ⅰ. 进程 P 读文件
+Ⅱ. 进程 P 的时间片用完
+Ⅲ. 进程 P 申请外设
+Ⅳ. 进程 P 执行信号量的 wait() 操作`,options:[`仅Ⅰ、Ⅳ`,`仅Ⅱ、Ⅲ`,`仅Ⅲ、Ⅳ`,`仅Ⅰ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列事件或操作中，可能导致进程 P 由执行态变为阻塞态的是（ ）。</p>
+<p>Ⅰ. 进程 P 读文件</p>
+<p>Ⅱ. 进程 P 的时间片用完</p>
+<p>Ⅲ. 进程 P 申请外设</p>
+<p>Ⅳ. 进程 P 执行信号量的 wait() 操作</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅲ、Ⅳ</span>`,`<span class="choice-text">仅Ⅰ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-29`,year:2022,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#29`,sourceAnswer:`A`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`缺页异常`,stem:`某进程访问的页 b 不在内存中，导致产生缺页异常，该缺页异常处理过程中不一定包含的操作是（ ）。`,options:[`淘汰内存中的页`,`建立页号与页框号的对应关系`,`将页 b 从外存读入内存`,`修改页表中页 b 对应的存在位`],choiceFormat:`separate`,stemHtml:`<p>某进程访问的页 b 不在内存中，导致产生缺页异常，该缺页异常处理过程中不一定包含的操作是（ ）。</p>`,optionsHtml:[`<span class="choice-text">淘汰内存中的页</span>`,`<span class="choice-text">建立页号与页框号的对应关系</span>`,`<span class="choice-text">将页 b 从外存读入内存</span>`,`<span class="choice-text">修改页表中页 b 对应的存在位</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-30`,year:2022,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#30`,sourceAnswer:`D`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`页面置换算法,缓冲区`,stem:`下列选项中，不会影响系统缺页率的是（ ）。`,options:[`页面置换算法`,`工作集的大小`,`进程的数量`,`页缓冲队列的长度`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，不会影响系统缺页率的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">页面置换算法</span>`,`<span class="choice-text">工作集的大小</span>`,`<span class="choice-text">进程的数量</span>`,`<span class="choice-text">页缓冲队列的长度</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-31`,year:2022,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#31`,sourceAnswer:`B`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`系统调用`,stem:`执行系统调用的过程涉及下列操作，其中由操作系统完成的是（ ）。
+Ⅰ. 保存断点和程序状态字
+Ⅱ. 保存通用寄存器的内容
+Ⅲ. 执行系统调用服务程序
+Ⅳ. 将 CPU 模式改为内核态`,options:[`仅Ⅰ、Ⅲ`,`仅Ⅱ、Ⅲ`,`仅Ⅱ、Ⅳ`,`仅Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>执行系统调用的过程涉及下列操作，其中由操作系统完成的是（ ）。</p>
+<p>Ⅰ. 保存断点和程序状态字</p>
+<p>Ⅱ. 保存通用寄存器的内容</p>
+<p>Ⅲ. 执行系统调用服务程序</p>
+<p>Ⅳ. 将 CPU 模式改为内核态</p>`,optionsHtml:[`<span class="choice-text">仅Ⅰ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ</span>`,`<span class="choice-text">仅Ⅱ、Ⅳ</span>`,`<span class="choice-text">仅Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-32`,year:2022,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#32`,sourceAnswer:`A`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`IO软件层次`,stem:`下列关于驱动程序的叙述中，不正确的是（ ）。`,options:[`驱动程序与 I/O 控制方式无关`,`初始化设备是由驱动程序控制完成的`,`进程在执行驱动程序时可能进入阻塞态`,`读/写设备的操作是由驱动程序控制完成的`],choiceFormat:`separate`,stemHtml:`<p>下列关于驱动程序的叙述中，不正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">驱动程序与 I/O 控制方式无关</span>`,`<span class="choice-text">初始化设备是由驱动程序控制完成的</span>`,`<span class="choice-text">进程在执行驱动程序时可能进入阻塞态</span>`,`<span class="choice-text">读/写设备的操作是由驱动程序控制完成的</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-23`,year:2023,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#23`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`与宏内核操作系统相比，下列特征中微内核操作系统具有的是（ ）。
+Ⅰ. 较好的性能
+Ⅱ. 较高的可靠性
+Ⅲ. 较高的安全性
+Ⅳ. 较强的可扩展性`,options:[`Ⅱ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ`,`Ⅰ、Ⅲ、Ⅳ`,`Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>与宏内核操作系统相比，下列特征中微内核操作系统具有的是（ ）。</p>
+<p>Ⅰ. 较好的性能</p>
+<p>Ⅱ. 较高的可靠性</p>
+<p>Ⅲ. 较高的安全性</p>
+<p>Ⅳ. 较强的可扩展性</p>`,optionsHtml:[`<span class="choice-text">Ⅱ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅰ、Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-24`,year:2023,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#24`,sourceAnswer:`A`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`在操作系统内核中，中断向量表适合采用的数据结构是（ ）。`,options:[`数组`,`队列`,`单向链表`,`双向链表`],choiceFormat:`separate`,stemHtml:`<p>在操作系统内核中，中断向量表适合采用的数据结构是（ ）。</p>`,optionsHtml:[`<span class="choice-text">数组</span>`,`<span class="choice-text">队列</span>`,`<span class="choice-text">单向链表</span>`,`<span class="choice-text">双向链表</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-26`,year:2023,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#26`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`用户态和内核态`,stem:`下列操作完成时，导致 CPU 从内核态转为用户态的是（ ）。`,options:[`阻塞过程`,`执行 CPU 调度`,`唤醒进程`,`执行系统调用`],choiceFormat:`separate`,stemHtml:`<p>下列操作完成时，导致 CPU 从内核态转为用户态的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">阻塞过程</span>`,`<span class="choice-text">执行 CPU 调度</span>`,`<span class="choice-text">唤醒进程</span>`,`<span class="choice-text">执行系统调用</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-27`,year:2023,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#27`,sourceAnswer:`C`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`进程状态`,stem:`下列出当前线程引起的事件或执行的操作中，可能导致该线程由执行态变为就绪态的是（ ）。`,options:[`键盘输入`,`缺页异常`,`主动出让 CPU`,`执行信号量的 wait() 操作`],choiceFormat:`separate`,stemHtml:`<p>下列出当前线程引起的事件或执行的操作中，可能导致该线程由执行态变为就绪态的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">键盘输入</span>`,`<span class="choice-text">缺页异常</span>`,`<span class="choice-text">主动出让 CPU</span>`,`<span class="choice-text">执行信号量的 wait() 操作</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-28`,year:2023,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#28`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`对于采用虚拟内存管理方式的系统，下列关于进程虚拟地址空间的叙述中，错误的是（ ）。`,options:[`每个进程都有自己独立的虚拟地址空间`,`C 语言中 malloc() 函数返回的是虚拟地址`,`进程对数据段和代码段可以有不同的访问权限`,`虚拟地址的大小由主存和硬盘的大小决定`],choiceFormat:`separate`,stemHtml:`<p>对于采用虚拟内存管理方式的系统，下列关于进程虚拟地址空间的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">每个进程都有自己独立的虚拟地址空间</span>`,`<span class="choice-text">C 语言中 malloc() 函数返回的是虚拟地址</span>`,`<span class="choice-text">进程对数据段和代码段可以有不同的访问权限</span>`,`<span class="choice-text">虚拟地址的大小由主存和硬盘的大小决定</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-30`,year:2023,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#30`,sourceAnswer:`C`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`进程 R 和 S 共享数据 data，若 data 在 R 和 S 中所在页的页号分别为 p1 和 p2，两个页所对应的页框号分别为 f1 和 f2，则下列叙述中，正确的是（ ）。`,options:[`p1 和 p2 一定相等，f1 和 f2 一定相等`,`p1 和 p2 一定相等，f1 和 f2 不一定相等`,`p1 和 p2 不一定相等，f1 和 f2 一定相等`,`p1 和 p2 不一定相等，f1 和 f2 不一定相等`],choiceFormat:`separate`,stemHtml:`<p>进程 R 和 S 共享数据 data，若 data 在 R 和 S 中所在页的页号分别为 p1 和 p2，两个页所对应的页框号分别为 f1 和 f2，则下列叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">p1 和 p2 一定相等，f1 和 f2 一定相等</span>`,`<span class="choice-text">p1 和 p2 一定相等，f1 和 f2 不一定相等</span>`,`<span class="choice-text">p1 和 p2 不一定相等，f1 和 f2 一定相等</span>`,`<span class="choice-text">p1 和 p2 不一定相等，f1 和 f2 不一定相等</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-31`,year:2023,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#31`,sourceAnswer:`B`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`inode`,stem:`若文件 F 仅被进程 P 打开并访问，则当进程 P 关闭 F 时，下列操作中，文件系统需要完成的是（ ）。`,options:[`删除目录中文件 F 的目录项`,`释放 F 的索引节点所占的内存空间`,`释放 F 的索引节点所占的外存空间`,`将文件磁盘索引节点中的链接计数减 1`],choiceFormat:`separate`,stemHtml:`<p>若文件 F 仅被进程 P 打开并访问，则当进程 P 关闭 F 时，下列操作中，文件系统需要完成的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">删除目录中文件 F 的目录项</span>`,`<span class="choice-text">释放 F 的索引节点所占的内存空间</span>`,`<span class="choice-text">释放 F 的索引节点所占的外存空间</span>`,`<span class="choice-text">将文件磁盘索引节点中的链接计数减 1</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-32`,year:2023,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#32`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`设备分配和回收`,stem:`下列因素中，设备分配需要考虑的是（ ）。
+Ⅰ. 设备的类型
+Ⅱ. 设备的访问权限
+Ⅲ. 设备的占用状态
+Ⅳ. 逻辑设备与物理设备的映射关系`,options:[`Ⅰ、Ⅱ`,`Ⅱ、Ⅲ`,`Ⅲ、Ⅳ`,`Ⅰ、Ⅱ、Ⅲ、Ⅳ`],choiceFormat:`separate`,stemHtml:`<p>下列因素中，设备分配需要考虑的是（ ）。</p>
+<p>Ⅰ. 设备的类型</p>
+<p>Ⅱ. 设备的访问权限</p>
+<p>Ⅲ. 设备的占用状态</p>
+<p>Ⅳ. 逻辑设备与物理设备的映射关系</p>`,optionsHtml:[`<span class="choice-text">Ⅰ、Ⅱ</span>`,`<span class="choice-text">Ⅱ、Ⅲ</span>`,`<span class="choice-text">Ⅲ、Ⅳ</span>`,`<span class="choice-text">Ⅰ、Ⅱ、Ⅲ、Ⅳ</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-23`,year:2024,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#23`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`异常和中断`,stem:`下面关于中断和异常的说法中，错误的是（ ）。`,options:[`中断或异常发生时，CPU 处于内核态`,`每个系统调用都有对应的内核服务例程`,`中断处理程序开始执行时，CPU 处于内核态`,`系统添加新类型设备时，需注册相应的中断服务例程`],choiceFormat:`separate`,stemHtml:`<p>下面关于中断和异常的说法中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">中断或异常发生时，CPU 处于内核态</span>`,`<span class="choice-text">每个系统调用都有对应的内核服务例程</span>`,`<span class="choice-text">中断处理程序开始执行时，CPU 处于内核态</span>`,`<span class="choice-text">系统添加新类型设备时，需注册相应的中断服务例程</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-24`,year:2024,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#24`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`进程概念`,stem:`下列选项中，操作系统在终止进程时不一定执行的是（）。`,options:[`终止子进程`,`回收分配的内存资源`,`撤销进程 PCB`,`回收进程占用的设备`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，操作系统在终止进程时不一定执行的是（）。</p>`,optionsHtml:[`<span class="choice-text">终止子进程</span>`,`<span class="choice-text">回收分配的内存资源</span>`,`<span class="choice-text">撤销进程 PCB</span>`,`<span class="choice-text">回收进程占用的设备</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-25`,year:2024,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#25`,sourceAnswer:`D`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`虚拟页式管理,寄存器类型`,stem:`在支持页式存储管理的系统中，进程切换时 OS 要执行（）。
+I. 更新 PC（程序计数器）值 II. 更新栈基址寄存器值（ebp） III. 更新页表基址寄存器值`,options:[`仅 III`,`仅 I、II`,`仅 I、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>在支持页式存储管理的系统中，进程切换时 OS 要执行（）。</p>
+<p>I. 更新 PC（程序计数器）值<br/>II. 更新栈基址寄存器值（ebp）<br/>III. 更新页表基址寄存器值</p>`,optionsHtml:[`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-26`,year:2024,no:26,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#26`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`外存空间管理`,stem:`文件系统需要额外的外存空间记录空闲块的位置，占用外存空间大小与当前空闲块数量无关的是（）。`,options:[`位示图`,`空闲表`,`成组链接`,`空闲链表`],choiceFormat:`separate`,stemHtml:`<p>文件系统需要额外的外存空间记录空闲块的位置，占用外存空间大小与当前空闲块数量无关的是（）。</p>`,optionsHtml:[`<span class="choice-text">位示图</span>`,`<span class="choice-text">空闲表</span>`,`<span class="choice-text">成组链接</span>`,`<span class="choice-text">空闲链表</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-27`,year:2024,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#27`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`动态分区分配`,stem:`回收分区时，仅合并大小相等的空闲分区的算法是（）。`,options:[`伙伴算法`,`最佳适应算法`,`最坏适应算法`,`首次适应算法`],choiceFormat:`separate`,stemHtml:`<p>回收分区时，仅合并大小相等的空闲分区的算法是（）。</p>`,optionsHtml:[`<span class="choice-text">伙伴算法</span>`,`<span class="choice-text">最佳适应算法</span>`,`<span class="choice-text">最坏适应算法</span>`,`<span class="choice-text">首次适应算法</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-28`,year:2024,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#28`,sourceAnswer:`B`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`进程和线程`,stem:`若进程 P\xA0中有一个线程 T，打开文件后获得 fd，再创建线程 Ta、Tb，则线程 Ta、Tb 可共享的资源是（）。
+I. 进程 P 的地址空间 II. 线程 T 的栈 III. fd`,options:[`仅 I`,`仅 I、III`,`仅 II、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>若进程 P\xA0中有一个线程 T，打开文件后获得 fd，再创建线程 Ta、Tb，则线程 Ta、Tb 可共享的资源是（）。</p>
+<p>I. 进程 P 的地址空间<br/>II. 线程 T 的栈<br/>III. fd</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-29`,year:2024,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#29`,sourceAnswer:`A`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`系统调用,进程文件管理`,stem:`以下系统调用中，包含文件按名查找功能的系统调用是（）。`,options:[`open()`,`read()`,`write()`,`close()`],choiceFormat:`separate`,stemHtml:`<p>以下系统调用中，包含文件按名查找功能的系统调用是（）。</p>`,optionsHtml:[`<span class="choice-text"><code>open()</code></span>`,`<span class="choice-text"><code>read()</code></span>`,`<span class="choice-text"><code>write()</code></span>`,`<span class="choice-text"><code>close()</code></span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-31`,year:2024,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#31`,sourceAnswer:`C`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`中断IO`,stem:`键盘中断服务例程执行结束时，所输入的数据存放位置是（） 。`,options:[`用户缓冲区`,`CPU 的通用寄存器`,`内核缓冲区`,`键盘控制器的数据缓冲区`],choiceFormat:`separate`,stemHtml:`<p>键盘中断服务例程执行结束时，所输入的数据存放位置是（） 。</p>`,optionsHtml:[`<span class="choice-text">用户缓冲区</span>`,`<span class="choice-text">CPU 的通用寄存器</span>`,`<span class="choice-text">内核缓冲区</span>`,`<span class="choice-text">键盘控制器的数据缓冲区</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-23`,year:2025,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#23`,sourceAnswer:`D`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`在采用页式虚拟存储管理方式的系统中，当发生上下文切换时，下列寄存器中操作系统不需要更新的是（ ）。`,options:[`通用寄存器`,`页表基址寄存器`,`程序计数器`,`内核中断向量表基址寄存器`],choiceFormat:`separate`,stemHtml:`<p>在采用页式虚拟存储管理方式的系统中，当发生上下文切换时，下列寄存器中操作系统不需要更新的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">通用寄存器</span>`,`<span class="choice-text">页表基址寄存器</span>`,`<span class="choice-text">程序计数器</span>`,`<span class="choice-text">内核中断向量表基址寄存器</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-24`,year:2025,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#24`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`操作系统概念`,stem:`关于虚拟化技术，下列说法错误的是（ ）。`,options:[`操作系统可以在虚拟机上运行`,`一台主机可以支持多个虚拟机`,`VMM 与操作系统特权级相同`,`通过虚拟机技术，可以用一台主机上模拟多种 ISA`],choiceFormat:`separate`,stemHtml:`<p>关于虚拟化技术，下列说法错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">操作系统可以在虚拟机上运行</span>`,`<span class="choice-text">一台主机可以支持多个虚拟机</span>`,`<span class="choice-text">VMM 与操作系统特权级相同</span>`,`<span class="choice-text">通过虚拟机技术，可以用一台主机上模拟多种 ISA</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-25`,year:2025,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#25`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`处理机调度算法`,stem:`在优先权调度中，采用单链表保存进程就绪队列，高优先级进程在队头。若就绪队列长度为 n，则插入进程、选出进程的时间复杂度为（ ）。`,options:[`O ( 1 ) , O ( 1 )`,`O ( 1 ) , O ( n )`,`O ( n ) , O ( 1 )`,`O ( n ) , O ( n )`],choiceFormat:`separate`,stemHtml:`<p>在优先权调度中，采用单链表保存进程就绪队列，高优先级进程在队头。若就绪队列长度为 n，则插入进程、选出进程的时间复杂度为（ ）。</p>`,optionsHtml:[`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>`,`<span class="choice-text"><span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:.1667em"></span><span class="mord mathnormal" style="margin-right:.02778em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-27`,year:2025,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#27`,sourceAnswer:`D`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`虚拟页式管理`,stem:`确定进程运行所需的最少页框数时，要考虑的指标是（ ）。`,options:[`代码段长`,`虚拟地址空间大小`,`物理地址空间大小`,`指令系统支持的寻址方式`],choiceFormat:`separate`,stemHtml:`<p>确定进程运行所需的最少页框数时，要考虑的指标是（ ）。</p>`,optionsHtml:[`<span class="choice-text">代码段长</span>`,`<span class="choice-text">虚拟地址空间大小</span>`,`<span class="choice-text">物理地址空间大小</span>`,`<span class="choice-text">指令系统支持的寻址方式</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-28`,year:2025,no:28,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#28`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`虚拟文件系统`,stem:`关于虚拟文件系统，下列说法正确的是（ ）。`,options:[`虚拟文件系统是运行在虚拟内存的文件系统`,`VFS 可以加快文件系统的访问速度`,`VFS 定义了可访问不同文件系统的统一接口`,`VFS 只能访问本地文件系统，不能访问网络文件系统`],choiceFormat:`separate`,stemHtml:`<p>关于虚拟文件系统，下列说法正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">虚拟文件系统是运行在虚拟内存的文件系统</span>`,`<span class="choice-text">VFS 可以加快文件系统的访问速度</span>`,`<span class="choice-text">VFS 定义了可访问不同文件系统的统一接口</span>`,`<span class="choice-text">VFS 只能访问本地文件系统，不能访问网络文件系统</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-29`,year:2025,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#29`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`进程文件管理`,stem:`某文件系统采用索引节点方式。用户在目录中新建文件 F 时，文件系统不会做的是（ ）。`,options:[`初始化文件 F 的索引节点`,`在目录文件中写入 F 的索引节点号`,`在目录文件中写入 F 的访问权限信息`,`在目录文件中增加一条文件 F 对应的目录项`],choiceFormat:`separate`,stemHtml:`<p>某文件系统采用索引节点方式。用户在目录中新建文件 F 时，文件系统不会做的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">初始化文件 F 的索引节点</span>`,`<span class="choice-text">在目录文件中写入 F 的索引节点号</span>`,`<span class="choice-text">在目录文件中写入 F 的访问权限信息</span>`,`<span class="choice-text">在目录文件中增加一条文件 F 对应的目录项</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-30`,year:2025,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#30`,sourceAnswer:`A`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`内存映射文件`,stem:`关于内存映射文件，下列说法正确的是（ ）。
+I. 可实现进程间通信
+II. 实现了页面到磁盘块的映射
+III. 将文件映射到进程的虚拟地址空间
+IV. 将文件映射到系统的物理地址空间`,options:[`I、III`,`I、IV`,`II、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>关于内存映射文件，下列说法正确的是（ ）。</p>
+<p>I. 可实现进程间通信</p>
+<p>II. 实现了页面到磁盘块的映射</p>
+<p>III. 将文件映射到进程的虚拟地址空间</p>
+<p>IV. 将文件映射到系统的物理地址空间</p>`,optionsHtml:[`<span class="choice-text">I、III</span>`,`<span class="choice-text">I、IV</span>`,`<span class="choice-text">II、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-31`,year:2025,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#31`,sourceAnswer:`C`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`外存空间管理`,stem:`下列选项中，可被文件系统用于外存空间使用情况的是（ ）。`,options:[`目录`,`系统打开文件表`,`文件分配表（FAT）`,`文件控制块（FCB）`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，可被文件系统用于外存空间使用情况的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">目录</span>`,`<span class="choice-text">系统打开文件表</span>`,`<span class="choice-text">文件分配表（FAT）</span>`,`<span class="choice-text">文件控制块（FCB）</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-32`,year:2025,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#32`,sourceAnswer:`B`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`磁盘概念`,stem:`下列选项中，文件系统能为温彻斯特硬盘和固态硬盘提供的功能是（ ）。`,options:[`划分扇区`,`确定盘块大小`,`降低寻道时间`,`实现均衡磨损`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，文件系统能为温彻斯特硬盘和固态硬盘提供的功能是（ ）。</p>`,optionsHtml:[`<span class="choice-text">划分扇区</span>`,`<span class="choice-text">确定盘块大小</span>`,`<span class="choice-text">降低寻道时间</span>`,`<span class="choice-text">实现均衡磨损</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-23`,year:2026,no:23,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#23`,sourceAnswer:`C`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`用户态和内核态,程序的装入`,stem:`下列操作中，在内核模式执行的是（）`,options:[`编译程序`,`链接程序`,`装入程序`,`命令解释程序`],choiceFormat:`separate`,stemHtml:`<p>下列操作中，在内核模式执行的是（）</p>`,optionsHtml:[`<span class="choice-text">编译程序</span>`,`<span class="choice-text">链接程序</span>`,`<span class="choice-text">装入程序</span>`,`<span class="choice-text">命令解释程序</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-24`,year:2026,no:24,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#24`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`虚拟页式管理,地址翻译`,stem:`在支持虚拟存储器系统下的指令执行过程中，正确的是（）`,options:[`地址转换由操作系统完成`,`页表项的内容由编译器确定`,`缺页中断由硬件直接处理`,`异常由操作系统处理`],choiceFormat:`separate`,stemHtml:`<p>在支持虚拟存储器系统下的指令执行过程中，正确的是（）</p>`,optionsHtml:[`<span class="choice-text">地址转换由操作系统完成</span>`,`<span class="choice-text">页表项的内容由编译器确定</span>`,`<span class="choice-text">缺页中断由硬件直接处理</span>`,`<span class="choice-text">异常由操作系统处理</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-25`,year:2026,no:25,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#25`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`用户级和内核级线程`,stem:`下列关于的线程描述中，正确的是（）`,options:[`内核级线程和用户级线程都由操作系统创建`,`多个内核级线程可以映射到一个用户级线程`,`同一个进程下的多个内核级线程共享进程栈`,`同一个进程下的多个线程共享进程堆`],choiceFormat:`separate`,stemHtml:`<p>下列关于的线程描述中，正确的是（）</p>`,optionsHtml:[`<span class="choice-text">内核级线程和用户级线程都由操作系统创建</span>`,`<span class="choice-text">多个内核级线程可以映射到一个用户级线程</span>`,`<span class="choice-text">同一个进程下的多个内核级线程共享进程栈</span>`,`<span class="choice-text">同一个进程下的多个线程共享进程堆</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-27`,year:2026,no:27,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#27`,sourceAnswer:`C`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`进程的互斥,临界资源`,stem:`假设进程 P 的读、写进程集合分别是 R ( P ) 和 W ( P ) ，进程 Q 的读、写进程集合分别为 R ( Q ) 和 W ( Q ) ，则进程 P 和 Q 并发执行中，不会发生错误的并发执行充要条件是（ ）
+I. R ( Q ) ∩ W ( P ) = ∅ II. R ( P ) ∩ R ( Q ) = ∅ III. W ( P ) ∩ W ( Q ) = ∅ IV. R ( P ) ∩ W ( Q ) = ∅`,options:[`I、II`,`I、II、III`,`I、III、IV`,`II、III`],choiceFormat:`separate`,stemHtml:`<p>假设进程
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.13889em">P</span></span></span></span>
+的读、写进程集合分别是
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.00773em">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="mclose">)</span></span></span></span>
+和
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.13889em">W</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="mclose">)</span></span></span></span>
+，进程
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8778em;vertical-align:-.1944em"></span><span class="mord mathnormal">Q</span></span></span></span>
+的读、写进程集合分别为
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.00773em">R</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mclose">)</span></span></span></span>
+和
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.13889em">W</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mclose">)</span></span></span></span>
+，则进程
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.6833em"></span><span class="mord mathnormal" style="margin-right:.13889em">P</span></span></span></span>
+和
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:.8778em;vertical-align:-.1944em"></span><span class="mord mathnormal">Q</span></span></span></span>
+并发执行中，不会发生错误的并发执行充要条件是（ ）</p>
+<p>I.
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.00773em">R</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.13889em">W</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8056em;vertical-align:-.0556em"></span><span class="mord">∅</span></span></span></span><br/>II.
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.00773em">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.00773em">R</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8056em;vertical-align:-.0556em"></span><span class="mord">∅</span></span></span></span><br/>III.
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.13889em">W</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.13889em">W</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8056em;vertical-align:-.0556em"></span><span class="mord">∅</span></span></span></span><br/>IV.
+<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.00773em">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:.13889em">P</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2222em"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-.25em"></span><span class="mord mathnormal" style="margin-right:.13889em">W</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mclose">)</span><span class="mspace" style="margin-right:.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:.2778em"></span></span><span class="base"><span class="strut" style="height:.8056em;vertical-align:-.0556em"></span><span class="mord">∅</span></span></span></span></p>`,optionsHtml:[`<span class="choice-text">I、II</span>`,`<span class="choice-text">I、II、III</span>`,`<span class="choice-text">I、III、IV</span>`,`<span class="choice-text">II、III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-29`,year:2026,no:29,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#29`,sourceAnswer:`C`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`TLB,驻留集`,stem:`下列方法中能够有效降低系统平均访存时间的是（）
+I. TLB II. 多级页表 III. 工作集概念 IV. 页表缓冲队列`,options:[`I、III`,`II、III`,`I、III、IV`,`I、II、IV`],choiceFormat:`separate`,stemHtml:`<p>下列方法中能够有效降低系统平均访存时间的是（）</p>
+<p>I. TLB<br/>II. 多级页表<br/>III. 工作集概念<br/>IV. 页表缓冲队列</p>`,optionsHtml:[`<span class="choice-text">I、III</span>`,`<span class="choice-text">II、III</span>`,`<span class="choice-text">I、III、IV</span>`,`<span class="choice-text">I、II、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-30`,year:2026,no:30,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#30`,sourceAnswer:`B`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`内存映射文件`,stem:`进程 P1 和 P2 共享一个文件 R，该文件的页表项分别是 R1 和 R2，其在 2 个进程中的虚拟地址分别是 W1 和 W2，则下列说法中正确的是（ ）`,options:[`页表项 R1 和 R2 的内容完全不同`,`W1 和 W2 映射的物理地址相同`,`进程 P1 对 W1 的修改不会影响 P2 对 W2 的访问`,`W1 和 W2 虚拟地址相同`],choiceFormat:`separate`,stemHtml:`<p>进程 P1 和 P2 共享一个文件 R，该文件的页表项分别是 R1 和 R2，其在 2 个进程中的虚拟地址分别是 W1 和 W2，则下列说法中正确的是（ ）</p>`,optionsHtml:[`<span class="choice-text">页表项 R1 和 R2 的内容完全不同</span>`,`<span class="choice-text">W1 和 W2 映射的物理地址相同</span>`,`<span class="choice-text">进程 P1 对 W1 的修改不会影响 P2 对 W2 的访问</span>`,`<span class="choice-text">W1 和 W2 虚拟地址相同</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-31`,year:2026,no:31,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#31`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`IO软件层次`,stem:`下列关于驱动程序的描述中，错误的是（）`,options:[`驱动程序是硬件与操作系统之间的接口程序`,`驱动程序需根据硬件特性定制开发`,`驱动程序需要设置统一的接口`,`字符设备、块设备都是同一种 IO 方式`],choiceFormat:`separate`,stemHtml:`<p>下列关于驱动程序的描述中，错误的是（）</p>`,optionsHtml:[`<span class="choice-text">驱动程序是硬件与操作系统之间的接口程序</span>`,`<span class="choice-text">驱动程序需根据硬件特性定制开发</span>`,`<span class="choice-text">驱动程序需要设置统一的接口</span>`,`<span class="choice-text">字符设备、块设备都是同一种 IO 方式</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-32`,year:2026,no:32,subject:`os`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#32`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`IO软件层次,缓冲区`,stem:`下列操作中，鼠标中断处理程序完成的是（）`,options:[`解析鼠标的输入指令含义`,`将鼠标数据同步到用户应用程序缓冲区`,`将数据从输入设备传输到数据寄存器`,`将数据从数据寄存器传输到内核缓冲区`],choiceFormat:`separate`,stemHtml:`<p>下列操作中，鼠标中断处理程序完成的是（）</p>`,optionsHtml:[`<span class="choice-text">解析鼠标的输入指令含义</span>`,`<span class="choice-text">将鼠标数据同步到用户应用程序缓冲区</span>`,`<span class="choice-text">将数据从输入设备传输到数据寄存器</span>`,`<span class="choice-text">将数据从数据寄存器传输到内核缓冲区</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2009-33`,year:2009,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#33`,sourceAnswer:`B`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`在 OSI 参考模型中，自下而上第一个提供端到端服务的层次是（）。`,options:[`数据链路层`,`传输层`,`会话层`,`应用层`],choiceFormat:`separate`,stemHtml:`<p>在 OSI 参考模型中，自下而上第一个提供端到端服务的层次是（）。</p>`,optionsHtml:[`<span class="choice-text">数据链路层</span>`,`<span class="choice-text">传输层</span>`,`<span class="choice-text">会话层</span>`,`<span class="choice-text">应用层</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`33. 在OSI参考模型中，自下而上第一个提供端到端服务的层次是____。\r
+\r
+A. 数据链路层\r
+\r
+B. 传输层\r
+\r
+C. 会话层\r
+\r
+D. 应用层`,images:[],hasFigure:!1},{id:`real-concept-2009-36`,year:2009,no:36,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#36`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`交换机,协议数据单元`,stem:`以太网交换机进行转发决策时使用的 PDU 地址是（）。`,options:[`目的物理地址`,`目的 IP 地址`,`源物理地址`,`源 IP 地址`],choiceFormat:`separate`,stemHtml:`<p>以太网交换机进行转发决策时使用的 PDU 地址是（）。</p>`,optionsHtml:[`<span class="choice-text">目的物理地址</span>`,`<span class="choice-text">目的 IP 地址</span>`,`<span class="choice-text">源物理地址</span>`,`<span class="choice-text">源 IP 地址</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`36. 以太网交换机进行转发决策时使用的 PDU 地址是______。\r
+\r
+A. 目的物理地址\r
+\r
+B. 目的 IP 地址\r
+\r
+C. 源物理地址\r
+\r
+D. 源IP地址`,images:[],hasFigure:!1},{id:`real-concept-2009-40`,year:2009,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2009/#40`,sourceAnswer:`A`,sourceHtmlSha256:`a7ed8bbcd332069fae1f7813ac875a86981566b88e745777dec5cc5de64967d2`,retrieved:`2026-11-16`,tags:`FTP`,stem:`FTP 客户和服务器间传递 FTP 命令时，使用的连接是（）。`,options:[`建立在 TCP 之上的控制连接`,`建立在 TCP 之上的数据连接`,`建立在 UDP 之上的控制连接`,`建立在 UDP 之上的数据连接`],choiceFormat:`separate`,stemHtml:`<p>FTP 客户和服务器间传递 FTP 命令时，使用的连接是（）。</p>`,optionsHtml:[`<span class="choice-text">建立在 TCP 之上的控制连接</span>`,`<span class="choice-text">建立在 TCP 之上的数据连接</span>`,`<span class="choice-text">建立在 UDP 之上的控制连接</span>`,`<span class="choice-text">建立在 UDP 之上的数据连接</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2009`,alternateMarkdown:`40. FTP 客户和服务器间传递 FTP 命令时，使用的连接是______。\r
+\r
+A. 建立在TCP之上的控制连接\r
+\r
+B. 建立在TCP之上的数据连接\r
+\r
+C. 建立在 UDP 之上的控制连接\r
+\r
+D. 建立在 UDP 之上的数据连接\r
+\r
+# 二、综合应用题：第41~47题，共70分。\r
+\r
+41.（10分）带权图（权值非负，表示边连接的两顶点间的距离）的最短路径问题是找出从初始顶点到目标顶点之间的一条最短路径。假设从初始顶点到目标顶点之间存在路径，现有一种解决该问题的方法：\r
+\r
+(1) 设最短路径初始时仅包含初始顶点, 令当前顶点  $u$  为初始顶点;  \r
+(2) 选择离u最近且尚未在最短路径中的一个顶点v，加入到最短路径中，修改当前顶点u=v；  \r
+③ 重复步骤②，直到u是目标顶点时为止。\r
+\r
+请问上述方法能否求得最短路径？若该方法可行，请证明之；否则，请举例说明。\r
+\r
+42.（15分）已知一个带有表头结点的单链表，结点结构为：\r
+\r
+<table><tr><td>data</td><td>link</td></tr></table>\r
+\r
+假设该链表只给出了头指针 list。在不改变链表的前提下，请设计一个尽可能高效的算法，查找链表中倒数第  $k$  个位置上的结点(  $k$  为正整数)。若查找成功，算法输出该结点的 data 域的值，并返回 1；否则，只返回 0。要求：\r
+\r
+(1) 描述算法的基本设计思想；  \r
+(2) 描述算法的详细实现步骤；  \r
+(3) 根据设计思想和实现步骤，采用程序设计语言描述算法（使用 C、C++或 Java 语言实现），关键之处请给出简要注释。`,images:[],hasFigure:!1},{id:`real-concept-2010-33`,year:2010,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#33`,sourceAnswer:`C`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`下列选项中，不属于网络体系结构所描述的内容是（ ）。`,options:[`网络的层次`,`每一层使用的协议`,`协议的内部实现细节`,`每一层必须完成的功能`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，不属于网络体系结构所描述的内容是（ ）。</p>`,optionsHtml:[`<span class="choice-text">网络的层次</span>`,`<span class="choice-text">每一层使用的协议</span>`,`<span class="choice-text">协议的内部实现细节</span>`,`<span class="choice-text">每一层必须完成的功能</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`33. 下列选项中，不属于网络体系结构所描述的内容是________。\r
+\r
+A. 网络的层次\r
+\r
+B. 每一层使用的协议\r
+\r
+C. 协议的内部实现细节\r
+\r
+D. 每一层必须完成的功能`,images:[],hasFigure:!1},{id:`real-concept-2010-35`,year:2010,no:35,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#35`,sourceAnswer:`D`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`路由协议`,stem:`某自治系统采用 RIP 协议，若该自治系统内的路由器 R1 收到其邻居路由器 R2 的距离矢量中包含信息<net1,16>，则可能得出的结论是 ( )。`,options:[`R2 可以经过 R1 到达 net1，跳数为 17`,`R2 可以到达 net1，跳数为 16`,`R1 可以经过 R2 到达 net1，跳数为 17`,`R1 不能经过 R2 到达 net1`],choiceFormat:`separate`,stemHtml:`<p>某自治系统采用 RIP 协议，若该自治系统内的路由器 R1 收到其邻居路由器 R2 的距离矢量中包含信息&lt;net1,16&gt;，则可能得出的结论是 ( )。</p>`,optionsHtml:[`<span class="choice-text">R2 可以经过 R1 到达 net1，跳数为 17</span>`,`<span class="choice-text">R2 可以到达 net1，跳数为 16</span>`,`<span class="choice-text">R1 可以经过 R2 到达 net1，跳数为 17</span>`,`<span class="choice-text">R1 不能经过 R2 到达 net1</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`35. 某自治系统内采用 RIP 协议，若该自治系统内的路由器 R1 收到其邻居路由器 R2 的距离矢量，距离矢量中包含信息 <net1, 16>，则能得出的结论是 ______。\r
+\r
+A. R2 可以经过 R1 到达 net1, 跳数为 17  \r
+B. R2可以到达net1，跳数为16  \r
+C. R1 可以经过 R2 到达 net1, 跳数为 17  \r
+D. R1 不能经过 R2 到达 net1`,images:[],hasFigure:!1},{id:`real-concept-2010-36`,year:2010,no:36,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#36`,sourceAnswer:`C`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`ICMP`,stem:`若路由器 R 因为拥塞丢弃 IP 分组，则此时 R 可向发出该 IP 分组的源主机发送的 ICMP 报文类型是（ ）。`,options:[`路由重定向`,`目的不可达`,`源点抑制`,`超时`],choiceFormat:`separate`,stemHtml:`<p>若路由器 R 因为拥塞丢弃 IP 分组，则此时 R 可向发出该 IP 分组的源主机发送的 ICMP 报文类型是（ ）。</p>`,optionsHtml:[`<span class="choice-text">路由重定向</span>`,`<span class="choice-text">目的不可达</span>`,`<span class="choice-text">源点抑制</span>`,`<span class="choice-text">超时</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`36. 若路由器R因为拥塞丢弃IP分组，则此时R可向发出该IP分组的源主机发送的ICMP报文类型是\r
+\r
+A. 路由重定向\r
+\r
+B. 目的不可达\r
+\r
+C. 源点抑制\r
+\r
+D. 超时`,images:[],hasFigure:!1},{id:`real-concept-2010-38`,year:2010,no:38,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#38`,sourceAnswer:`D`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`网络设备`,stem:`下列网络设备中，能够抑制广播风暴的是（ ）。
+I. 中继器 II. 集线器 III. 网桥 IV. 路由器`,options:[`仅 I 和 II`,`仅 III`,`仅 III 和 IV`,`仅 IV`],choiceFormat:`separate`,stemHtml:`<p>下列网络设备中，能够抑制广播风暴的是（ ）。</p>
+<p>I. 中继器 II. 集线器 III. 网桥 IV. 路由器</p>`,optionsHtml:[`<span class="choice-text">仅 I 和 II</span>`,`<span class="choice-text">仅 III</span>`,`<span class="choice-text">仅 III 和 IV</span>`,`<span class="choice-text">仅 IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`38. 下列网络设备中，能够抑制广播风暴的是________。\r
+\r
+I中继器\r
+\r
+II 集线器\r
+\r
+III 网桥\r
+\r
+IV路由器\r
+\r
+A. 仅 I 和 II\r
+\r
+B. 仅III\r
+\r
+C. 仅III 和IV\r
+\r
+D. 仅IV`,images:[],hasFigure:!1},{id:`real-concept-2010-40`,year:2010,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2010/#40`,sourceAnswer:`A`,sourceHtmlSha256:`7489d2f143d89bd99b3e97c34ea4183d059d793d6f8ae0b8beaa4a65539c9559`,retrieved:`2026-11-16`,tags:`DNS`,stem:`如果本地域名服务器无缓存，当采用递归方法解析另一网络某主机域名时，用户主机、本地域名服务器发送的域名请求消息数分别为（ ）。`,options:[`一条、一条`,`一条、多条`,`多条、一条`,`多条、多条`],choiceFormat:`separate`,stemHtml:`<p>如果本地域名服务器无缓存，当采用递归方法解析另一网络某主机域名时，用户主机、本地域名服务器发送的域名请求消息数分别为（ ）。</p>`,optionsHtml:[`<span class="choice-text">一条、一条</span>`,`<span class="choice-text">一条、多条</span>`,`<span class="choice-text">多条、一条</span>`,`<span class="choice-text">多条、多条</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2010`,alternateMarkdown:`40. 如果本地域名服务器无缓存，当采用递归方法解析另一网络某主机域名时，用户主机、本地域名服务器发送的域名请求消息数分别为________。\r
+\r
+A. 一条、一条\r
+\r
+B. 一条、多条\r
+\r
+C. 多条、一条\r
+\r
+D. 多条、多条\r
+\r
+# 二、综合应用题：第41~47题，共70分。`,images:[],hasFigure:!1},{id:`real-concept-2011-33`,year:2011,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#33`,sourceAnswer:`A`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`TCP/IP模型`,stem:`TCP/IP 参考模型的网络层提供的是（ ）。`,options:[`无连接不可靠的数据报服务`,`无连接可靠的数据报服务`,`有连接不可靠的虚电路服务`,`有连接可靠的虚电路服务`],choiceFormat:`separate`,stemHtml:`<p>TCP/IP 参考模型的网络层提供的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">无连接不可靠的数据报服务</span>`,`<span class="choice-text">无连接可靠的数据报服务</span>`,`<span class="choice-text">有连接不可靠的虚电路服务</span>`,`<span class="choice-text">有连接可靠的虚电路服务</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`33. TCP/IP参考模型的网络层提供的是\r
+\r
+A. 无连接不可靠的数据报服务\r
+\r
+B. 无连接可靠的数据报服务\r
+\r
+C. 有连接不可靠的虚电路服务\r
+\r
+D. 有连接可靠的虚电路服务\r
+\r
+解答：A。TCP/IP的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。此外考察IP首部，如果是面向连接的，则应有用于建立连接的字段，但是没有；如果提供可靠的服务，则至少应有序号和校验和两个字段，但是IP分组头中也没有（IP首部中只是首部校验和）。因此网络层提供的无连接不可靠的数据服务。有连接可靠的服务由传输层的TCP提供。`,images:[],hasFigure:!1},{id:`real-concept-2011-36`,year:2011,no:36,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2011/#36`,sourceAnswer:`D`,sourceHtmlSha256:`9684b5b98f61f37695bde7385ebf86a52f1db9f1c30d1d75835f594e0cb08796`,retrieved:`2026-11-16`,tags:`介质访问控制`,stem:`下列选项中，对正确接收到的数据帧进行确认的 MAC 协议是（ ）。`,options:[`CSMA`,`CDMA`,`CSMA/CD`,`CSMA/CA`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，对正确接收到的数据帧进行确认的 MAC 协议是（ ）。</p>`,optionsHtml:[`<span class="choice-text">CSMA</span>`,`<span class="choice-text">CDMA</span>`,`<span class="choice-text">CSMA/CD</span>`,`<span class="choice-text">CSMA/CA</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2011`,alternateMarkdown:`36. 下列选项中，对正确接收到的数据帧进行确认的MAC协议是\r
+\r
+A. CSMA\r
+\r
+B. CDMA\r
+\r
+C. CSMA/CD\r
+\r
+D. CSMA/CA\r
+\r
+解答：D。可以用排除法。首先CDMA即码分多址，是物理层的东西；CSMA/CD即带冲突检测的载波监听多路访问，这个应该比较熟悉，接收方并不需要确认；CSMA，既然CSMA/CD是其超集，CSMA/CD没有的东西，CSMA自然也没有。于是排除法选D。CSMA/CA是无线局域网标准802.11中的协议。CSMA/CA利用ACK信号来避免冲突的发生，也就是说，只有当客户端收到\r
+\r
+网络上返回的ACK信号后才确认送出的数据已经正确到达目的地址。`,images:[],hasFigure:!1},{id:`real-concept-2012-33`,year:2012,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#33`,sourceAnswer:`B`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`TCP/IP模型,ICMP`,stem:`在 TCP/IP\xA0体系结构中，直接为 ICMP 提供服务的协议是（ ）。`,options:[`PPP`,`IP`,`UDP`,`TCP`],choiceFormat:`separate`,stemHtml:`<p>在 TCP/IP\xA0体系结构中，直接为 ICMP 提供服务的协议是（ ）。</p>`,optionsHtml:[`<span class="choice-text">PPP</span>`,`<span class="choice-text">IP</span>`,`<span class="choice-text">UDP</span>`,`<span class="choice-text">TCP</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`33. 在TCP/IP体系结构中，直接为ICMP提供服务的协议是\r
+\r
+A. PPP\r
+\r
+B. IP\r
+\r
+C. UDP\r
+\r
+D. TCP`,images:[],hasFigure:!1},{id:`real-concept-2012-34`,year:2012,no:34,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#34`,sourceAnswer:`C`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`物理层接口特性`,stem:`在物理层接口特性中，用于描述完成每种功能的事件发生顺序的是（ ）。`,options:[`机械特性`,`功能特性`,`过程特性`,`电气特性`],choiceFormat:`separate`,stemHtml:`<p>在物理层接口特性中，用于描述完成每种功能的事件发生顺序的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">机械特性</span>`,`<span class="choice-text">功能特性</span>`,`<span class="choice-text">过程特性</span>`,`<span class="choice-text">电气特性</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`34. 在物理层接口特性中，用于描述完成每种功能的事件发生顺序的是________。\r
+\r
+A. 机械特性\r
+\r
+B. 功能特性\r
+\r
+C. 过程特性\r
+\r
+D. 电气特性`,images:[],hasFigure:!1},{id:`real-concept-2012-35`,year:2012,no:35,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#35`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`以太网`,stem:`以太网的 MAC 协议提供的是（ ）。`,options:[`无连接不可靠服务`,`无连接可靠服务`,`有连接不可靠服务`,`有连接可靠服务`],choiceFormat:`separate`,stemHtml:`<p>以太网的 MAC 协议提供的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">无连接不可靠服务</span>`,`<span class="choice-text">无连接可靠服务</span>`,`<span class="choice-text">有连接不可靠服务</span>`,`<span class="choice-text">有连接可靠服务</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`35. 以太网的 MAC 协议提供的是\r
+\r
+A. 无连接不可靠服务\r
+\r
+B. 无连接可靠服务\r
+\r
+C. 有连接不可靠服务\r
+\r
+D. 有连接可靠服务`,images:[],hasFigure:!1},{id:`real-concept-2012-37`,year:2012,no:37,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#37`,sourceAnswer:`C`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`路由器`,stem:`下列关于 IP 路由器功能的描述中，正确的是（ ）。
+I. 运行路由协议，设置路由表
+II. 监测到拥塞时，合理丢弃 IP 分组
+III. 对收到的 IP 分组头进行差错校验，确保传输的 IP 分组不丢失
+IV. 根据收到的 IP 分组的目的 IP 地址，将其转发到合适的输出线路上`,options:[`仅 III、IV`,`仅 I、II、III`,`仅 I、II、IV`,`I、II、III、IV`],choiceFormat:`separate`,stemHtml:`<p>下列关于 IP 路由器功能的描述中，正确的是（ ）。</p>
+<p>I. 运行路由协议，设置路由表</p>
+<p>II. 监测到拥塞时，合理丢弃 IP 分组</p>
+<p>III. 对收到的 IP 分组头进行差错校验，确保传输的 IP 分组不丢失</p>
+<p>IV. 根据收到的 IP 分组的目的 IP 地址，将其转发到合适的输出线路上</p>`,optionsHtml:[`<span class="choice-text">仅 III、IV</span>`,`<span class="choice-text">仅 I、II、III</span>`,`<span class="choice-text">仅 I、II、IV</span>`,`<span class="choice-text">I、II、III、IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`37. 下列关于 IP 路由器功能的描述中，正确的是________。\r
+\r
+I．运行路由协议，设备路由表\r
+\r
+II. 监测到拥塞时，合理丢弃IP分组\r
+\r
+III. 对收到的 IP 分组头进行差错校验，确保传输的 IP 分组不丢失\r
+\r
+IV. 根据收到的 IP 分组的目的 IP 地址，将其转发到合适的输出线路上\r
+\r
+A. 仅III、IV\r
+\r
+B. 仅 I、II、III\r
+\r
+C. 仅 I、II、IV\r
+\r
+D. I、II、III、IV`,images:[],hasFigure:!1},{id:`real-concept-2012-38`,year:2012,no:38,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2012/#38`,sourceAnswer:`A`,sourceHtmlSha256:`c2201d927f71c5bbe6336ebff3f31980f9b3db4321976dcce9bf567e09bd36b6`,retrieved:`2026-11-16`,tags:`ARP`,stem:`ARP 协议的功能是（ ）。`,options:[`根据 IP 地址查询 MAC 地址`,`根据 MAC 地址查询 IP 地址`,`根据域名查询\xA0IP 地址`,`根据 IP 地址查询域名`],choiceFormat:`separate`,stemHtml:`<p>ARP 协议的功能是（ ）。</p>`,optionsHtml:[`<span class="choice-text">根据 IP 地址查询 MAC 地址</span>`,`<span class="choice-text">根据 MAC 地址查询 IP 地址</span>`,`<span class="choice-text">根据域名查询\xA0IP 地址</span>`,`<span class="choice-text">根据 IP 地址查询域名</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2012`,alternateMarkdown:`38. ARP协议的功能是\r
+\r
+A. 根据 IP 地址查询 MAC 地址\r
+\r
+B. 根据 MAC 地址查询 IP 地址\r
+\r
+C. 根据域名查询 IP 地址\r
+\r
+D. 根据 IP 地址查询域名`,images:[],hasFigure:!1},{id:`real-concept-2013-33`,year:2013,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#33`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`在 OSI 参考模型中，下列功能需由应用层的相邻层实现的是（ ）。`,options:[`对话管理`,`数据格式转换`,`路由选择`,`可靠数据传输`],choiceFormat:`separate`,stemHtml:`<p>在 OSI 参考模型中，下列功能需由应用层的相邻层实现的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">对话管理</span>`,`<span class="choice-text">数据格式转换</span>`,`<span class="choice-text">路由选择</span>`,`<span class="choice-text">可靠数据传输</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`33. 在 OSI 参考模型中，下列功能需由应用层的相邻层实现的是
+
+A. 对话管理
+
+B. 数据格式转换
+
+C. 路由选择
+
+D. 可靠数据传输`,images:[],hasFigure:!1},{id:`real-concept-2013-36`,year:2013,no:36,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#36`,sourceAnswer:`B`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`介质访问控制`,stem:`下列介质访问控制方法中，可能发生冲突的是（ ）。`,options:[`CDMA`,`CSMA`,`TDMA`,`FDMA`],choiceFormat:`separate`,stemHtml:`<p>下列介质访问控制方法中，可能发生冲突的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">CDMA</span>`,`<span class="choice-text">CSMA</span>`,`<span class="choice-text">TDMA</span>`,`<span class="choice-text">FDMA</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`36. 下列介质访问控制方法中，可能发生冲突的是
+
+A. CDMA
+
+B. CSMA
+
+C. TDMA
+
+D. FDMA`,images:[],hasFigure:!1},{id:`real-concept-2013-40`,year:2013,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2013/#40`,sourceAnswer:`A`,sourceHtmlSha256:`3bbbc1c30414a92cbf230fc6f09bdf3742307fe4613d9844bdfb5873f16314b0`,retrieved:`2026-11-16`,tags:`电子邮件`,stem:`下列关于 SMTP 协议的叙述中，正确的是（ ）。
+I. 只支持传输 7 比特 ASCII 码内容
+II. 支持在邮件服务器之间发送邮件
+III. 支持从用户代理向邮件服务器发送邮件
+IV. 支持从邮件服务器向用户代理发送邮件`,options:[`仅 I、II 和 III`,`仅 I、II 和 IV`,`仅 I、III 和 IV`,`仅 II、III 和 IV`],choiceFormat:`separate`,stemHtml:`<p>下列关于 SMTP 协议的叙述中，正确的是（ ）。</p>
+<p>I. 只支持传输 7 比特 ASCII 码内容</p>
+<p>II. 支持在邮件服务器之间发送邮件</p>
+<p>III. 支持从用户代理向邮件服务器发送邮件</p>
+<p>IV. 支持从邮件服务器向用户代理发送邮件</p>`,optionsHtml:[`<span class="choice-text">仅 I、II 和 III</span>`,`<span class="choice-text">仅 I、II 和 IV</span>`,`<span class="choice-text">仅 I、III 和 IV</span>`,`<span class="choice-text">仅 II、III 和 IV</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2013`,alternateMarkdown:`40. 下列关于 SMTP 协议的叙述中，正确的是
+
+I. 只支持传输 7 比特 ASC II 码内容  
+II. 支持在邮件服务器之间发送邮件  
+III. 支持从用户代理向邮件服务器发送邮件  
+IV. 支持从邮件服务器向用户代理发送邮件
+
+A. 仅 I、II 和 III
+
+B. 仅 I、II 和 IV
+
+C. 仅 I、III 和 IV
+
+D. 仅 II、III 和 IV
+
+# 二、综合应用题：41~47 小题，共 70 分。
+
+41.（13分）已知一个整数序列  $A = (a_{0}, a_{1}, \\dots, a_{n - 1})$  ，其中  $0 \\leq a_{i} < n (0 \\leq i < n)$  。若存在  $a_{p1} = a_{p2} = \\dots = a_{pm} = x$  且  $m > n / 2 (0 \\leq p_k < n, 1 \\leq k \\leq m)$  ，则称  $x$  为  $A$  的主元素。例如  $A = (0, 5, 5, 3, 5, 7, 5, 5)$ ，侧5为主元素；又如  $A = (0, 5, 5, 3, 5, 1, 5, 7)$ ，则  $A$  中没有主元素。假设  $A$  中的  $n$  个元素保存在一个一维数组中，请设计一个尽可能高效的算法，找出  $A$  的主元素。若存在主元素，则输出该元素；否则输出-1。要求：
+
+(1) 给出算法的基本设计思想。  
+(2) 根据设计思想, 采用 C 或  $\\mathrm{C}++$  或 Java 语言描述算法, 关键之处给出注释。  
+(3) 说明你所设计算法的时间复杂度和空间复杂度。
+
+42.（10分）设包含4个数据元素的集合  $S = \\{ "do", "for", "repeat", "while" \\}$ ，各元素的查找概率依次为：  $p1 = 0.35$ ，  $p2 = 0.15$ ，  $p3 = 0.15$ ，  $p4 = 0.35$  。将  $S$  保存在一个长度为4的顺序表中，采用折半查找法，查找成功时的平均查找长度为2.2。请回答：
+
+(1) 若采用顺序存储结构保存  $S$ , 且要求平均查找长度更短, 则元素应如何排列? 应使用何种查找方法? 查找成功时的平均查找长度是多少?  
+(2) 若采用链式存储结构保存  $S$ , 且要求平均查找长度更短, 则元素应如何排列? 应使用何种查找方法? 查找成功时的平均查找长度是多少?
+
+43.（9分）某32位计算机，CPU主频为  $800\\mathrm{MHz}$ ，Cache命中时的CPI为4，Cache块大小为32字节；主存采用8体交叉存储方式，每个体的存储字长为32位、存储周期为  $40~\\mathrm{ns}$ ；存储器总线宽度为32位，总线时钟频率为  $200\\mathrm{MHz}$ ，支持突发传送总线事务。每次读突发传送总线事务的过程包括：送首地址和命令、存储器准备数据、传送数据。每次突发传送32字节，传送地址或32位数据均需要一个总线时钟周期。请回答下列问题，要求给出理由或计算过程。
+
+(1) CPU 和总线的时钟周期各为多少? 总线的带宽 (即最大数据传输率) 为多少?  
+(2) Cache 缺失时, 需要用几个读突发传送总线事务来完成一个主存块的读取?  
+(3) 存储器总线完成一次读突发传送总线事务所需的时间是多少?  
+(4) 若程序 BP 执行过程中, 共执行了 100 条指令, 平均每条指令需进行 1.2 次访存, Cache 缺失率为  $5\\%$ , 不考虑替换等开销, 则 BP 的 CPU 执行时间是多少?`,images:[],hasFigure:!1},{id:`real-concept-2014-33`,year:2014,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#33`,sourceAnswer:`C`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`在 OSI 参考模型中，直接为会话层提供服务的是（ ）。`,options:[`应用层`,`表示层`,`传输层`,`网络层`],choiceFormat:`separate`,stemHtml:`<p>在 OSI 参考模型中，直接为会话层提供服务的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">应用层</span>`,`<span class="choice-text">表示层</span>`,`<span class="choice-text">传输层</span>`,`<span class="choice-text">网络层</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`33. 在 OSI 参考模型中，直接为会话层提供服务的是________。
+
+A. 应用层
+
+B. 表示层
+
+C. 传输层
+
+D. 网络层`,images:[],hasFigure:!1},{id:`real-concept-2014-35`,year:2014,no:35,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#35`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`香农定理,通信指标`,stem:`下列因素中，不会影响信道数据传输速率的是（ ）。`,options:[`信噪比`,`频率宽带`,`调制速度`,`信号传播速度`],choiceFormat:`separate`,stemHtml:`<p>下列因素中，不会影响信道数据传输速率的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">信噪比</span>`,`<span class="choice-text">频率宽带</span>`,`<span class="choice-text">调制速度</span>`,`<span class="choice-text">信号传播速度</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`35. 下列因素中，不会影响信道数据传输速率的是________。
+
+A. 信噪比
+
+B. 频率宽带
+
+C. 调制速率
+
+D. 信号传播速度`,images:[],hasFigure:!1},{id:`real-concept-2014-39`,year:2014,no:39,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#39`,sourceAnswer:`B`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`UDP`,stem:`下列关于 UDP 协议的叙述中，正确的是（ ）。
+I. 提供无连接服务
+II. 提供复用/分用服务
+III. 通过差错校验，保障可靠数据传输`,options:[`仅 I`,`仅 I、II`,`仅 II、III`,`I、II、III`],choiceFormat:`separate`,stemHtml:`<p>下列关于 UDP 协议的叙述中，正确的是（ ）。</p>
+<p>I. 提供无连接服务</p>
+<p>II. 提供复用/分用服务</p>
+<p>III. 通过差错校验，保障可靠数据传输</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">I、II、III</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`39. 下列关于 UDP 协议的叙述中，正确的是____。
+
+I. 提供无连接服务  
+II. 提供复用/分用服务  
+III. 通过差错校验，保障可靠数据传输
+
+A. 仅 I
+
+B. 仅 I、II
+
+C. 仅 II、III
+
+D. I、II、III`,images:[],hasFigure:!1},{id:`real-concept-2014-40`,year:2014,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2014/#40`,sourceAnswer:`D`,sourceHtmlSha256:`671528eb6fdb978c970250b5f15cff15dc53cbc972d9aa6d8051861ba3207f7a`,retrieved:`2026-11-16`,tags:`HTTP`,stem:`使用浏览器访问某大学 Web 网站主页时，不可能使用到的协议是（ ）。`,options:[`PPP`,`ARP`,`UDP`,`SMTP`],choiceFormat:`separate`,stemHtml:`<p>使用浏览器访问某大学 Web 网站主页时，不可能使用到的协议是（ ）。</p>`,optionsHtml:[`<span class="choice-text">PPP</span>`,`<span class="choice-text">ARP</span>`,`<span class="choice-text">UDP</span>`,`<span class="choice-text">SMTP</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2014`,alternateMarkdown:`40. 使用浏览器访问某大学 Web 网站主页时，不可能使用到的协议是____。
+
+A. PPP
+
+B. ARP
+
+C. UDP
+
+D. SMTP
+
+# 二、综合应用题：41—47小题，共70分。
+
+41.(13分)二叉树的带权路径长度(WPL)是二叉树中所有叶结点的带权路径长度之和。给定一棵二叉树T，采用二叉链表存储，结点结构为：
+
+<table><tr><td>left</td><td>weight</td><td>right</td></tr></table>
+
+其中叶结点的 weight 域保存该结点的非负权值。设 root 为指向 T 的根结点的指针，请设计求 T 的 WPL 的算法，要求：
+
+1）给出算法的基本设计思想；  
+2）使用C或  $\\mathbf{C} + +$  语言，给出二叉树结点的数据类型定义；  
+3）根据设计思想，采用C或  $\\mathbf{C} + +$  语言描述算法，关键之处给出注释。`,images:[],hasFigure:!1},{id:`real-concept-2015-33`,year:2015,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#33`,sourceAnswer:`D`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`电子邮件`,stem:`通过 POP3 协议接收邮件时，使用的传输层服务类型是（ ）。`,options:[`无连接不可靠的数据传输服务`,`无连接可靠的数据传输服务`,`有连接不可靠的数据传输服务`,`有连接可靠的数据传输服务`],choiceFormat:`separate`,stemHtml:`<p>通过 POP3 协议接收邮件时，使用的传输层服务类型是（ ）。</p>`,optionsHtml:[`<span class="choice-text">无连接不可靠的数据传输服务</span>`,`<span class="choice-text">无连接可靠的数据传输服务</span>`,`<span class="choice-text">有连接不可靠的数据传输服务</span>`,`<span class="choice-text">有连接可靠的数据传输服务</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`33. 通过POP3协议接收邮件时，使用的传输层服务类型是
+
+A. 无连接不可靠的数据传输服务  
+B. 无连接可靠的数据传输服务  
+C. 有连接不可靠的数据传输服务  
+D. 有链接可靠的数据传输服务`,images:[],hasFigure:!1},{id:`real-concept-2015-36`,year:2015,no:36,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#36`,sourceAnswer:`B`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`CSMA/CD`,stem:`下列关于 CSMA/CD 协议的叙述中，错误的是（ ）。`,options:[`边发送数据帧，边检测是否发生冲突`,`适用于无线网络，以实现无线链路共享`,`需要根据网络跨距和数据传输速率限定最小帧长`,`当信号传播延迟趋近 0 时，信道利用率趋近 100％`],choiceFormat:`separate`,stemHtml:`<p>下列关于 CSMA/CD 协议的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">边发送数据帧，边检测是否发生冲突</span>`,`<span class="choice-text">适用于无线网络，以实现无线链路共享</span>`,`<span class="choice-text">需要根据网络跨距和数据传输速率限定最小帧长</span>`,`<span class="choice-text">当信号传播延迟趋近 0 时，信道利用率趋近 100％</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`36. 下列关于 CSMA/CD 协议的叙述中，错误的是________。
+
+A. 边发送数据帧，边检测是否发生冲突  
+B. 适用于无线网络, 以实现无线链路共享  
+C. 需要根据网络跨距和数据传输速率限定最小帧长  
+D. 当信号传播延迟趋近 0 时, 信道利用率趋近  $100\\%$`,images:[],hasFigure:!1},{id:`real-concept-2015-37`,year:2015,no:37,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#37`,sourceAnswer:`A`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`交换机`,stem:`下列关于交换机的叙述中，正确的是（ ）。`,options:[`以太网交换机本质上是一种多端口网桥`,`通过交换机互连的一组工作站构成一个冲突域`,`交换机每个端口所连网络构成一个独立的广播域`,`以太网交换机可实现采用不同网络层协议的网络互联`],choiceFormat:`separate`,stemHtml:`<p>下列关于交换机的叙述中，正确的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">以太网交换机本质上是一种多端口网桥</span>`,`<span class="choice-text">通过交换机互连的一组工作站构成一个冲突域</span>`,`<span class="choice-text">交换机每个端口所连网络构成一个独立的广播域</span>`,`<span class="choice-text">以太网交换机可实现采用不同网络层协议的网络互联</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`37. 下列关于交换机的叙述中，正确的是
+
+A. 以太网交换机本质上是一种多端口网桥  
+B. 通过交换机互连的一组工作站构成一个冲突域  
+C. 交换机每个端口所连网络构成一个独立的广播域  
+D. 以太网交换机可实现采用不同网络层协议的网络互联`,images:[],hasFigure:!1},{id:`real-concept-2015-40`,year:2015,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2015/#40`,sourceAnswer:`C`,sourceHtmlSha256:`9548e9176a693da50645d3f10a574ea3f4d0bcad4b587b1ecd5da3d0aad1cf41`,retrieved:`2026-11-16`,tags:`HTTP`,stem:`某浏览器发出的 HTTP 请求报文如下（ ）。
+GET /index .html HTTP/1.1
+Host: www.test.edu.cn
+Connection: close
+Cookie: 123456
+下列叙述中，错误的是`,options:[`该浏览器请求浏览 index.html`,`index.html 存放在\xA0www.test.edu.cn\xA0上`,`该浏览器请求使用持续连接`,`该浏览器曾经浏览过\xA0www.test.edu.cn`],choiceFormat:`separate`,stemHtml:`<p>某浏览器发出的 HTTP 请求报文如下（ ）。</p>
+<pre><code>GET /index .html HTTP/1.1
+Host: www.test.edu.cn
+Connection: close
+Cookie: 123456
+</code></pre>
+<p>下列叙述中，错误的是</p>`,optionsHtml:[`<span class="choice-text">该浏览器请求浏览 index.html</span>`,`<span class="choice-text">index.html 存放在\xA0www.test.edu.cn\xA0上</span>`,`<span class="choice-text">该浏览器请求使用持续连接</span>`,`<span class="choice-text">该浏览器曾经浏览过\xA0www.test.edu.cn</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2015`,alternateMarkdown:`40. 某浏览器发出的 HTTP 请求报文如下：
+
+GET /index.html HTTP/1.1
+
+Host: www.test.edu.cn
+
+Connection: Close
+
+Cookie: 123456
+
+下列叙述中，错误的是
+
+A. 该浏览器请求浏览 index.html  
+B. Index.html 存放在 www.test.edu.cn 上  
+C. 该浏览器请求使用持续连接  
+D. 该浏览器曾经浏览过 www.test.edu.cn
+
+# 二、综合应用题：第  $41 \\sim 47$  小题，共70分。
+
+41.（15分）用单链表保存  $\\mathfrak{m}$  个整数，结点的结构为：[data][link]，且  $|data| \\leqslant n$  （ $n$  为正整数）。现要求设计一个时间复杂度尽可能高效的算法，对于链表中 data 的绝对值相等的结点，仅保留第一次出现的结点而删除其余绝对值相等的结点。例如，若给定的单链表 head 如下：
+
+![](https://408.foreverlink.love/images/b885eb8ac3332a0c04c9fa5532904e79.jpg)
+
+则删除结点后的head为：
+
+![](https://408.foreverlink.love/images/9d0ae324488b1da886eabda7008fb17b.jpg)
+
+要求：
+
+1）给出算法的基本设计思想。  
+2）使用C或  $\\mathbf{C} + +$  语言，给出单链表结点的数据类型定义。  
+3）根据设计思想，采用C或  $\\mathrm{C + + }$  语言描述算法，关键之处给出注释。  
+4）说明你所设计算法的时间复杂度和空间复杂度。  
+42.（8分）已知含有5个顶点的图G如下图所示。
+
+![](https://408.foreverlink.love/images/a565a5cd55c3703679abf57573ee2d3f.jpg)
+
+请回答下列问题：
+
+1）写出图G的邻接矩阵A（行、列下标从0开始）。  
+2）求  $\\mathbf{A}^2$  ，矩阵  $\\mathbf{A}^2$  中位于0行3列元素值的含义是什么？  
+3）若已知具有  $n$  （ $n \\geq 2$ ）个顶点的图的邻接矩阵为  $B$ ，则  $B^m$  （ $2 \\leq m \\leq n$ ）中非零元素的含义是什么？  
+43.（13分）某16位计算机的主存按字节编码，存取单位为16位；采用16位定长指令字格式；CPU采用单总线结构，主要部分如下图所示。图中R0～R3为通用寄存器；T为暂存器；SR为移位寄存器，可实现直送（mov）、左移一位（left）和右移一位（right）3种操作，控制信号为SRop，SR的输出由信号SRout控制；ALU可实现直送A（mova）、A加B（add）、A减B（sub）、A与B（and）、A或B（or）、非A（not）、A加1（inc）7种操作，控制信号为ALUop。
+
+![](https://408.foreverlink.love/images/8316b0ebd5c6e1bba07b81c99d2f58a5.jpg)
+
+请回答下列问题。
+
+1）图中哪些寄存器是程序员可见的？为何要设置暂存器T？  
+2）控制信号ALUop和SRop的位数至少各是多少？  
+3）控制信号SRout所控制部件的名称或作用是什么？  
+4）端点①～⑨中，哪些端点须连接到控制部件的输出端？  
+5）为完善单总线数据通路，需要在端点①～⑨中相应的端点之间添加必要的连线。写出连线的起点和终点，以正确表示数据的流动方向。  
+6）为什么二路选择器MUX的一个输入端是2？
+
+44.（10分）题43中描述的计算机，其部分指令执行过程的控制信号如下图所示。
+
+![](https://408.foreverlink.love/images/73feb7f713ab9f0e76123dd9de342c71.jpg)  
+题图a 部分指令控制信号
+
+该机指令格式如下图所示，支持寄存器直接和寄存器间接两种寻址方式，寻址方式位分别为0和1，通用寄存器  $\\mathrm{R0}\\sim \\mathrm{R3}$  的编号分别为0、1、2和3。
+
+![](https://408.foreverlink.love/images/12dbf8ebb7239da15a5157661567a09c.jpg)  
+题图b 指令格式
+
+请回答下列问题。
+
+1）该机的指令系统最多可定义多少条指令？  
+2）假定inc、shl和sub指令的操作码分别为01H、02H和03H，则以下指令对应的机器代码各是什么？
+
+$①$  inc R1  $\\mathrm{R}1 + 1\\to \\mathrm{R}1$  
+$②$  shl R2,R1 ；  $(\\mathrm{R}1) <   <   1\\to \\mathrm{R}2$  
+$③$  sub R3,(R1),R2 ；  $(\\mathrm{(R1)) - (R2)\\to R3}$
+
+3）假设寄存器X的输入和输出控制信号分别为Xin和Xout，其值为1表示有效，为0表示无效（例如，PCout=1表示PC内容送总线)；存储器控制信号为MEMop，用于控制存储器的读(read)和写(write)操作。写出题图a中标号①～⑧处的控制信号或控制信号的取值。  
+4）指令“sub R1,R3,(R2)”和“inc R1”的执行阶段至少各需要多少个时钟周期？  
+45.（9分）有A、B两人通过信箱进行辩论，每个人都从自己的信箱中取得对方的问题。将答案和向对方提出的新问题组成一个邮件放入对方的邮箱中。假设A的信箱最多放M个邮件，B的信箱最多放N个邮件。初始时A的信箱中有x个邮件  $(0 < x < M)$ ，B的信箱中有y个  $(0 < y < N)$ 。辩论者每取出一个邮件，邮件数减1。A和B两人的操作过程描述如下：
+
+CoBegin
+
+<table><tr><td>A{
+while(TRUE){
+从A的信箱中取出一个邮件;
+回答问题并提出一个新问题;
+将新邮件放入B的信箱;
+} 
+}</td><td>B{
+while(TRUE){
+从B的信箱中取出一个邮件;
+回答问题并提出一个新问题;
+将新邮件放入A的信箱;
+} 
+}</td></tr></table>
+
+# CoEnd
+
+当信箱不为空时，辩论者才能从信箱中取邮件，否则等待。当信箱不满时，辩论者才能将新邮件放入信箱，否则等待。请添加必要的信号量和P、V（或wait、signal）操作，以实现上述过程的同步。要求写出完整过程，并说明信号量的含义和初值。
+
+46.（6分）某计算机系统按字节编址，采用二级页表的分页存储管理方式，虚拟地址格式如下所示：
+
+<table><tr><td>10位</td><td>10位</td><td>12位</td></tr><tr><td>页目录号</td><td>页表索引</td><td>页内偏移量</td></tr></table>
+
+请回答下列问题。
+
+1）页和页框的大小各为多少字节？进程的虚拟地址空间大小为多少页？  
+2) 假定页目录项和页表项均占 4 个字节, 则进程的页目录和页表共占多少页? 要求写出计算过程。  
+3）若某指令周期内访问的虚拟地址为01000000H和01112048H，则进行地址转换时共访问多少个二级页表？要求说明理由。  
+47.（9分）某网络拓扑如图所示，其中路由器内网接口、DHCP服务器、WWW服务器与主机1均采用静态IP地址配置，相关地址信息见图中标注；主机2～主机N通过DHCP服务器动态获取IP地址等配置信息。
+
+![](https://408.foreverlink.love/images/26a14292d9bf3e84b0ee98db1721a958.jpg)
+
+请回答下列问题。
+
+1）DHCP服务器可为主机  $2\\sim$  主机N动态分配IP地址的最大范围是什么？主机2使用DHCP协议获取IP地址的过程中，发送的封装DHCPDiscover  
+2）若主机2的ARP表为空，则该主机访问Internet时，发出的第一个以太网帧的目的MAC地址是什么？封装主机2发往Internet的IP分组的以太网帧的目的MAC地址是什么？  
+3）若主机1的子网掩码和默认网关分别配置为255.255.255.0和111.123.15.2，则该主机是否能访问WWW服务器？是否能访问Internet？请说明理由。
+
+# 2015年计算机学科专业基础综合试题参考答案
+
+# 一、单项选择题
+
+<table><tr><td>1.</td><td>A</td><td>2.</td><td>B</td><td>3.</td><td>D</td><td>4.</td><td>D</td><td>5.</td><td>D</td><td>6.</td><td>C</td><td>7.</td><td>A</td><td>8.</td><td>C</td></tr><tr><td>9.</td><td>C</td><td>10.</td><td>C</td><td>11.</td><td>A</td><td>12.</td><td>A</td><td>13.</td><td>B</td><td>14.</td><td>D</td><td>15.</td><td>C</td><td>16.</td><td>B</td></tr><tr><td>17.</td><td>B</td><td>18.</td><td>D</td><td>19.</td><td>C</td><td>20.</td><td>B</td><td>21.</td><td>B</td><td>22.</td><td>D</td><td>23.</td><td>B</td><td>24.</td><td>C</td></tr><tr><td>25.</td><td>D</td><td>26.</td><td>B</td><td>27.</td><td>A</td><td>28.</td><td>A</td><td>29.</td><td>B</td><td>30.</td><td>C</td><td>31.</td><td>C</td><td>32.</td><td>C</td></tr><tr><td>33.</td><td>D</td><td>34.</td><td>A</td><td>35.</td><td>B</td><td>36.</td><td>B</td><td>37.</td><td>A</td><td>38.</td><td>C</td><td>39.</td><td>A</td><td>40.</td><td>C</td></tr></table>
+
+# 二、综合应用题
+
+# 41. 解答：
+
+# 1）算法的基本设计思想
+
+算法的核心思想是用空间换时间。使用辅助数组记录链表中已出现的数值，从而只需对链表进行一趟扫描。
+
+因为  $|\\mathrm{data}| \\leqslant \\mathrm{n}$ ，故辅助数组 q 的大小为  $n + 1$ ，各元素的初值均为 0。依次扫描链表中的各结点，同时检查 q[|data|] 的值，如果为 0，则保留该结点，并令 q[|data|] = 1；否则，将该结点从链表中删除。
+
+2）使用C语言描述的单链表结点的数据类型定义
+
+\`\`\`txt
+typedef struct node { int data; struct node \\*link; }NODE; typedef NODE \\*PNODE;
+\`\`\`
+
+# 3）算法实现
+
+\`\`\`c
+void func (PNODE h,int n)  
+{ PNODE p=h,r;  
+    int *q,m;  
+    q=(int *)malloc(sizeof(int)*(n+1)); //申请  $n + 1$  个位置的辅助空间  
+    for(int i=0;i<n+1;i++) //数组元素初值置0  
+        *(q+i)=0;  
+    while(p->link!=NULL)  
+{ m=p->link->data>0? p->link->data:-p->link->data;  
+    if(*(q+m)=0) //判断该结点的data是否已出现过  
+    { *(q+m)=1; //首次出现  
+        p=p->link; //保留  
+    }  
+    else //重复出现  
+    { r=p->link; //删除  
+        p->link=r->link  
+        free(r);  
+}  
+}
+\`\`\`
+
+【评分说明】若考生设计的算法满足题目的功能要求且正确，则酌情给分。
+
+4）参考答案所给算法的时间复杂度为  $O(m)$ ，空间复杂度为  $O(n)$ 。
+
+【评分说明】若考生所估计的时间复杂度和空间复杂度与考生实现的算法一致，可给分。`,images:[],hasFigure:!1},{id:`real-concept-2017-36`,year:2017,no:36,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#36`,sourceAnswer:`A`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`网络号和主机号`,stem:`下列 IP 地址中，只能作为 IP 分组的源 IP 地址但不能作为目的 IP 地址的是（ ）。`,options:[`0.0.0.0`,`127.0.0.1`,`200.10.10.3`,`255.255.255.255`],choiceFormat:`separate`,stemHtml:`<p>下列 IP 地址中，只能作为 IP 分组的源 IP 地址但不能作为目的 IP 地址的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">0.0.0.0</span>`,`<span class="choice-text">127.0.0.1</span>`,`<span class="choice-text">200.10.10.3</span>`,`<span class="choice-text">255.255.255.255</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`36. 下列 IP 地址中, 只能作为 IP 分组的源 IP 地址但不能作为目的 IP 地址的是
+
+A. 0.0.0.0
+
+B. 127.0.0.1
+
+C. 200.10.10.3
+
+D. 255.255.255.255`,images:[],hasFigure:!1},{id:`real-concept-2017-37`,year:2017,no:37,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#37`,sourceAnswer:`D`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`路由协议`,stem:`直接封装 RIP、OSPF、BGP 报文的协议分别是（ ）。`,options:[`TCP、UDP、IP`,`TCP、IP、UDP`,`UDP、TCP、IP`,`UDP、IP、TCP`],choiceFormat:`separate`,stemHtml:`<p>直接封装 RIP、OSPF、BGP 报文的协议分别是（ ）。</p>`,optionsHtml:[`<span class="choice-text">TCP、UDP、IP</span>`,`<span class="choice-text">TCP、IP、UDP</span>`,`<span class="choice-text">UDP、TCP、IP</span>`,`<span class="choice-text">UDP、IP、TCP</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`37. 直接封装RIP、OSPF、BGP报文的协议分别是
+
+A. TCP、UDP、IP
+
+B. TCP、IP、UDP
+
+C. UDP、TCP、IP
+
+D. UDP、IP、TCP`,images:[],hasFigure:!1},{id:`real-concept-2017-40`,year:2017,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2017/#40`,sourceAnswer:`C`,sourceHtmlSha256:`c217396202686565be6fd166bf7cbb1adca9cba384cc35cd1595ec23aa38674a`,retrieved:`2026-11-16`,tags:`FTP`,stem:`下列关于 FTP 协议的叙述中，错误的是（ ）。`,options:[`数据连接在每次数据传输完毕后就关闭`,`控制连接在整个会话期间保持打开状态`,`服务器与客户端的 TCP 20 端口建立数据连接`,`客户端与服务器的 TCP 21 端口建立控制连接`],choiceFormat:`separate`,stemHtml:`<p>下列关于 FTP 协议的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">数据连接在每次数据传输完毕后就关闭</span>`,`<span class="choice-text">控制连接在整个会话期间保持打开状态</span>`,`<span class="choice-text">服务器与客户端的 TCP 20 端口建立数据连接</span>`,`<span class="choice-text">客户端与服务器的 TCP 21 端口建立控制连接</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2017`,alternateMarkdown:`40. 下列关于 FTP 协议的叙述中, 错误的是
+
+A. 数据连接在每次数据传输完毕后就关闭  
+B. 控制连接在整个会话期间保持打开状态  
+C. 服务器与客户端的 TCP20 端口建立数据连接  
+D. 客户端与服务器的 TCP21 端口建立控制连接
+
+# 二、综合应用题：第  $41\\sim 47$  小题，共70分。`,images:[],hasFigure:!1},{id:`real-concept-2018-33`,year:2018,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#33`,sourceAnswer:`B`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`网络协议`,stem:`下列 TCP/IP 应用层协议中，可以使用传输层无连接服务的是（ ）。`,options:[`FTP`,`DNS`,`SMTP`,`HTTP`],choiceFormat:`separate`,stemHtml:`<p>下列 TCP/IP 应用层协议中，可以使用传输层无连接服务的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">FTP</span>`,`<span class="choice-text">DNS</span>`,`<span class="choice-text">SMTP</span>`,`<span class="choice-text">HTTP</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`33. 下列 TCP/IP 应用层协议中，可以使用传输层无连接服务的是________。
+
+A. FTP
+
+B.DNS
+
+C. SMTP
+
+D. HTTP`,images:[],hasFigure:!1},{id:`real-concept-2018-34`,year:2018,no:34,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#34`,sourceAnswer:`C`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`物理层接口特性`,stem:`下列选项中，不属于物理层接口规范定义范畴的是（）。`,options:[`接口形状`,`引脚功能`,`物理地址`,`信号电平`],choiceFormat:`separate`,stemHtml:`<p>下列选项中，不属于物理层接口规范定义范畴的是（）。 </p>`,optionsHtml:[`<span class="choice-text">接口形状</span>`,`<span class="choice-text">引脚功能</span>`,`<span class="choice-text">物理地址</span>`,`<span class="choice-text">信号电平</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`34. 下列选项中，不属于物理层接口规范定义范畴的是________。
+
+A. 接口形状
+
+B. 引脚功能
+
+C. 物理地址
+
+D. 信号电平
+
+35.IEEE802.11无线局域网的MAC协议CSMA/CA进行信道预约的方法是
+
+A. 发送确认帧
+
+B. 采用二进制指数退避
+
+C. 使用多个 MAC 地址
+
+D. 交换RTS与CTS帧`,images:[],hasFigure:!1},{id:`real-concept-2018-35`,year:2018,no:35,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#35`,sourceAnswer:`D`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`CSMA/CA`,stem:`IEEE 802.11 无线局域网的 MAC 协议 CSMA/CA 进行信道预约的方法是（ ）。`,options:[`发送确认帧`,`采用二进制指数退避`,`使用多个 MAC 地址`,`交换 RTS 与 CTS 帧`],choiceFormat:`separate`,stemHtml:`<p>IEEE 802.11 无线局域网的 MAC 协议 CSMA/CA 进行信道预约的方法是（ ）。</p>`,optionsHtml:[`<span class="choice-text">发送确认帧</span>`,`<span class="choice-text">采用二进制指数退避</span>`,`<span class="choice-text">使用多个 MAC 地址</span>`,`<span class="choice-text">交换 RTS 与 CTS 帧</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2018-39`,year:2018,no:39,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#39`,sourceAnswer:`B`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`UDP`,stem:`UDP 协议实现分用 (demultiplexing) 时所依据的头部字段是（ ）。`,options:[`源端口号`,`目的端口号`,`长度`,`校验和`],choiceFormat:`separate`,stemHtml:`<p>UDP 协议实现分用 (demultiplexing) 时所依据的头部字段是（ ）。</p>`,optionsHtml:[`<span class="choice-text">源端口号</span>`,`<span class="choice-text">目的端口号</span>`,`<span class="choice-text">长度</span>`,`<span class="choice-text">校验和</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`39. UDP协议实现分用(demultiplexing)时所依据的头部字段是
+
+A. 源端口号
+
+B. 目的端口号
+
+C. 长度
+
+D. 校验和`,images:[],hasFigure:!1},{id:`real-concept-2018-40`,year:2018,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2018/#40`,sourceAnswer:`D`,sourceHtmlSha256:`a9c7d14937642356f7503b117f4f15faf42b4f4224cc176d4cbcd12feb09d29b`,retrieved:`2026-11-16`,tags:`电子邮件`,stem:`无需转换即可由 SMTP 协议直接传输的内容是（ ）。`,options:[`JPEG 图形`,`MPEG 视频`,`EXE 文件`,`ASCII 文本`],choiceFormat:`separate`,stemHtml:`<p>无需转换即可由 SMTP 协议直接传输的内容是（ ）。</p>`,optionsHtml:[`<span class="choice-text">JPEG 图形</span>`,`<span class="choice-text">MPEG 视频</span>`,`<span class="choice-text">EXE 文件</span>`,`<span class="choice-text">ASCII 文本</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2018`,alternateMarkdown:`40. 无需转换即可由SMTP协议直接传输的内容是
+
+A.JPEG图像
+
+B.MPEG视频
+
+C.EXE文件
+
+D. ASCII 文本
+
+# 二、综合应用题：第  $41\\sim 47$  小题，共70分。
+
+41.(13分)给定一个含  $\\mathsf{n}(\\mathsf{n}\\geq 1)$  个整数的数组，请设计一个在时间上尽可能高效的算法，找出数组中未出现的最小正整数。例如,数组{-5,3,2,3}中未出现的最小正整数是1；数组{1,2,3}中未出现的最小正整数是4。要求：
+
+（1）给出算法的基本设计思想。  
+（2）根据设计思想，采用C或  $\\mathbf{C} + +$  语言描述算法，关键之处给出注释。  
+（3）说明你所设计算法的时间复杂度和空间复杂度。`,images:[],hasFigure:!1},{id:`real-concept-2019-33`,year:2019,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#33`,sourceAnswer:`C`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`OSI 参考模型的第 5 层（自下而上）完成的主要功能是（ ）`,options:[`差错控制`,`路由选择`,`会话管理`,`数据表示转换`],choiceFormat:`separate`,stemHtml:`<p>OSI 参考模型的第 5 层（自下而上）完成的主要功能是（ ）</p>`,optionsHtml:[`<span class="choice-text">差错控制</span>`,`<span class="choice-text">路由选择</span>`,`<span class="choice-text">会话管理</span>`,`<span class="choice-text">数据表示转换</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`33. OSI参考模型的第5层（自下而上）完成的主要功能是
+
+A. 差错控制
+
+B. 路由选择
+
+C. 会话管理
+
+D. 数据表示转换`,images:[],hasFigure:!1},{id:`real-concept-2019-34`,year:2019,no:34,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#34`,sourceAnswer:`A`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`传输介质`,stem:`100BaseT 快速以太网使用的导向传输介质是（ ）。`,options:[`双绞线`,`单模光纤`,`多模光纤`,`同轴电缆`],choiceFormat:`separate`,stemHtml:`<p>100BaseT 快速以太网使用的导向传输介质是（ ）。</p>`,optionsHtml:[`<span class="choice-text">双绞线</span>`,`<span class="choice-text">单模光纤</span>`,`<span class="choice-text">多模光纤</span>`,`<span class="choice-text">同轴电缆</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`34. 100BaseT 快速以太网使用的导向传输介质是
+
+A. 双绞线
+
+B. 单模光纤
+
+C. 多模光纤
+
+D. 同轴电缆`,images:[],hasFigure:!1},{id:`real-concept-2019-40`,year:2019,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2019/#40`,sourceAnswer:`B`,sourceHtmlSha256:`190a326c4eff8a1a7e88d18321c463a1222cd5eefc9a2ff8088da5503e285dba`,retrieved:`2026-11-16`,tags:`网络应用模型`,stem:`下列关于网络应用模型的叙述中，错误的是（ ）。`,options:[`在 P2P 模型中，结点之间具有对等关系`,`在客户/服务器 (C/S) 模型中，客户与客户之间可以直接通信`,`在 C/S 模型中，主动发起通信的是客户，被动通信的是服务器`,`在向多用户分发一个文件时，P2P 模型通常比 CIS 模型所需时间短`],choiceFormat:`separate`,stemHtml:`<p>下列关于网络应用模型的叙述中，错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">在 P2P 模型中，结点之间具有对等关系</span>`,`<span class="choice-text">在客户/服务器 (C/S) 模型中，客户与客户之间可以直接通信</span>`,`<span class="choice-text">在 C/S 模型中，主动发起通信的是客户，被动通信的是服务器</span>`,`<span class="choice-text">在向多用户分发一个文件时，P2P 模型通常比 CIS 模型所需时间短</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2019`,alternateMarkdown:`40. 下列关于网络应用模型的叙述中，错误的是________。
+
+A. 在 P2P 模型中，结点之间具有对等关系  
+B. 在客户/服务器（C/S）模型中，客户与客户之间可以直接通信  
+C. 在 C/S 模型中, 主动发起通信的是客户, 被动通信的是服务器  
+D. 在向多用户分发一个文件时, P2P 模型通常比 C/S 模型所需的时间短
+
+# 二、综合应用题（第  $41\\sim 47$  小题，共70分）
+
+41.（13分）设线性表  $L = (a_{1}, a_{2}, a_{3}, \\dots, a_{n - 2}, a_{n - 1}, a_{n})$  采用带头结点的单链表保存，链表中的结点定义如下：
+
+typedef struct node
+
+\`\`\`c
+int data; struct node\\*next;   
+}NODE;
+\`\`\`
+
+请设计一个空间复杂度为  $O(1)$  且时间上尽可能高效的算法，重新排列  $L$  中的各结点，得到线性表  $L^{\\prime} = (a_{1},a_{n},a_{2},a_{n - 1},a_{3},a_{n - 2},\\dots)$  。要求：
+
+（1）给出算法的基本设计思想。  
+（2）根据设计思想，采用C或  $\\mathrm{C + + }$  语言描述算法，关键之处给出注释。  
+（3）说明你所设计的算法的时间复杂度。
+
+42.（10分）请设计一个队列，要求满足：①初始时队列为空；②入队时，允许增加队列占用空间；③出队后，出队元素所占用的空间可重复使用，即整个队列所占用的空间只增不减；④入队操作和出队操作的时间复杂度始终保持为  $O(1)$  。请回答下列问题：
+
+（1）该队列是应选择链式存储结构，还是应选择顺序存储结构？  
+（2）画出队列的初始状态，并给出判断队空和队满的条件。  
+（3）画出第一个元素入队后的队列状态。  
+（4）给出入队操作和出队操作的基本过程。
+
+43.（8分）有  $n$  （ $n \\geq 3$ ）位哲学家围坐在一张圆桌边，每位哲学家交替地就餐和思考。在圆桌中心有  $m$  （ $m \\geq 1$ ）个碗，每两位哲学家之间有一根筷子。每位哲学家必须取到一个碗和两侧的筷子后，才能就餐，进餐完毕，将碗和筷子放回原位，并继续思考。为使尽可能多的哲学家同时就餐，且防止出现死锁现象，请使用信号量的 P、V 操作 [wait()、signal() 操作] 描述上述过程中的互斥与同步，并说明所用信号量及初值的含义。`,images:[],hasFigure:!1},{id:`real-concept-2020-34`,year:2020,no:34,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2020/#34`,sourceAnswer:`B`,sourceHtmlSha256:`f16e2437013094439c2075740353d2dec9b055cbc1a0ca29003c977b16848a0f`,retrieved:`2026-11-16`,tags:`数据报和虚电路`,stem:`下列关于虚电路网络的叙述中错误的是（ ）。`,options:[`可以确保数据分组传输顺序；`,`需要为每条虚电路预分配带宽；`,`建立虚电路时需要进行路由选择；`,`依据虚电路号（VCID）进行数据分组 转发。`],choiceFormat:`separate`,stemHtml:`<p>下列关于虚电路网络的叙述中错误的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">可以确保数据分组传输顺序；</span>`,`<span class="choice-text">需要为每条虚电路预分配带宽；</span>`,`<span class="choice-text">建立虚电路时需要进行路由选择；</span>`,`<span class="choice-text">依据虚电路号（VCID）进行数据分组 转发。</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2020`,alternateMarkdown:`34. 下列关于虚电路网络的叙述中错误的是：
+
+A、可以确保数据分组传输顺序  
+B、需要为每条虚电路预分配带宽  
+C、建立虚电路时需要进行路由选择  
+D、依据虚电路号（VCID）进行数据分组转发`,images:[],hasFigure:!1},{id:`real-concept-2021-33`,year:2021,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#33`,sourceAnswer:`B`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`在 TCP/IP 参考模型中，由传输层相邻的下一层实现的主要功能是（ ）。`,options:[`对话管理`,`路由选择`,`端到端报文段传输`,`结点到结点流量控制`],choiceFormat:`separate`,stemHtml:`<p>在 TCP/IP 参考模型中，由传输层相邻的下一层实现的主要功能是（ ）。\xA0</p>`,optionsHtml:[`<span class="choice-text">对话管理</span>`,`<span class="choice-text">路由选择</span>`,`<span class="choice-text">端到端报文段传输</span>`,`<span class="choice-text">结点到结点流量控制</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`33. 在TCP/IP参考模型中，由传输层相邻的下一层实现的主要功能是
+
+A. 对话管理
+
+B. 路由选择
+
+C. 端到端报文段传输
+
+D. 结点到结点流量控制`,images:[],hasFigure:!1},{id:`real-concept-2021-38`,year:2021,no:38,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2021/#38`,sourceAnswer:`B`,sourceHtmlSha256:`25173ad72e97f1568685bd9f251c7d6df4c9990fc2ba5ced9d2efc63c8167f5f`,retrieved:`2026-11-16`,tags:`TCP四次挥手`,stem:`若客户首先向服务器发送 FIN 段请求断开 TCP 连接，则当客户收到服务器发送的 FIN 段并向服务器发送了 ACK 段后，客户的 TCP 状态转换为（ ）。`,options:[`CLOSE_WAIT`,`TIME_WAIT`,`FIN_WAIT_1`,`FIN_WAIT_2`],choiceFormat:`separate`,stemHtml:`<p>若客户首先向服务器发送 FIN 段请求断开 TCP 连接，则当客户收到服务器发送的 FIN 段并向服务器发送了 ACK 段后，客户的 TCP 状态转换为（ ）。</p>`,optionsHtml:[`<span class="choice-text">CLOSE_WAIT</span>`,`<span class="choice-text">TIME_WAIT</span>`,`<span class="choice-text">FIN_WAIT_1</span>`,`<span class="choice-text">FIN_WAIT_2</span>`],alternateSourceUrl:`https://408.foreverlink.love/raw/2021`,alternateMarkdown:`38. 若客户首先向服务器发送 FIN 段请求断开 TCP 连接, 则当客户收到服务器发送的 FIN 段并向服务器发送了 ACK 段后, 客户的 TCP 状态转换为
+
+A. CLOSE_WAIT
+
+B. TIME_WAIT
+
+C. FIN_WAIT_1
+
+D. FIN_WAIT_2`,images:[],hasFigure:!1},{id:`real-concept-2022-33`,year:2022,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#33`,sourceAnswer:`B`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`OSI模型`,stem:`在 ISO/OSI 参考模型中，实现两个相邻结点间流量控制功能的是（ ）。`,options:[`物理层`,`数据链路层`,`网络层`,`传输层`],choiceFormat:`separate`,stemHtml:`<p>在 ISO/OSI 参考模型中，实现两个相邻结点间流量控制功能的是（ ）。</p>`,optionsHtml:[`<span class="choice-text">物理层</span>`,`<span class="choice-text">数据链路层</span>`,`<span class="choice-text">网络层</span>`,`<span class="choice-text">传输层</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2022-37`,year:2022,no:37,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2022/#37`,sourceAnswer:`B`,sourceHtmlSha256:`ab64823d7392892b1a95d711b48375e942253298837e8cbbe88c573abb0a6e65`,retrieved:`2026-11-16`,tags:`软件定义网络`,stem:`在 SDN 网络体系结构中，SDN 控制器向数据平面的 SDN 交换机下发流表时所使用的接口是（ ）。`,options:[`东向接口`,`南向接口`,`西向接口`,`北向接口`],choiceFormat:`separate`,stemHtml:`<p>在 SDN 网络体系结构中，SDN 控制器向数据平面的 SDN 交换机下发流表时所使用的接口是（ ）。</p>`,optionsHtml:[`<span class="choice-text">东向接口</span>`,`<span class="choice-text">南向接口</span>`,`<span class="choice-text">西向接口</span>`,`<span class="choice-text">北向接口</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-35`,year:2023,no:35,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#35`,sourceAnswer:`B`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`ARQ协议,信道利用率`,stem:`假设通过同一信道，数据链路层分别采用停等协议、GBN 协议和 SR 协议（发送窗口和接收窗口相等）传输数据，三个协议数据帧长相同，忽略确认帧长度，帧序号位数为 3 比特。若对应三个协议的发送方最大信道利用率分别是 U1、U2 和 U3，则 U1、U2 和 U3 满足的关系是（ ）`,options:[`U1 ≤ U2 ≤ U3`,`U1 ≤ U3 ≤ U2`,`U2 ≤ U3 ≤ U1`,`U3 ≤ U2 ≤ U1`],choiceFormat:`separate`,stemHtml:`<p>假设通过同一信道，数据链路层分别采用停等协议、GBN 协议和 SR 协议（发送窗口和接收窗口相等）传输数据，三个协议数据帧长相同，忽略确认帧长度，帧序号位数为 3 比特。若对应三个协议的发送方最大信道利用率分别是 U1、U2 和 U3，则 U1、U2 和 U3 满足的关系是（ ）</p>`,optionsHtml:[`<span class="choice-text">U1 ≤ U2 ≤ U3</span>`,`<span class="choice-text">U1 ≤ U3 ≤ U2</span>`,`<span class="choice-text">U2 ≤ U3 ≤ U1</span>`,`<span class="choice-text">U3 ≤ U2 ≤ U1</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2023-40`,year:2023,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2023/#40`,sourceAnswer:`D`,sourceHtmlSha256:`1205f4b7f1557aee4d5e2ba83bc354ffb84f51f49f31af06850d5e8f17eed92a`,retrieved:`2026-11-16`,tags:`IPv6`,stem:`下列关于 ipv6 和 ipv4 的叙述中，正确的是（ ）
+I. ipv6 地址空间是 ipv4 地址空间的 96 倍
+II. ipv4 和 ipv6 的基本首部的长度均可变
+III.ipv4 向 ipv6 过渡可以采用双协议栈和隧道技术
+IV. ipv6 首部的 Hop-Limit 等价于 ipv4 首部的 TTL 字段`,options:[`仅 I、II`,`仅 I、IV`,`仅 II、III`,`仅 III、IV`],choiceFormat:`separate`,stemHtml:`<p>下列关于 ipv6 和 ipv4 的叙述中，正确的是（ ）</p>
+<p>I. ipv6 地址空间是 ipv4 地址空间的 96 倍</p>
+<p>II. ipv4 和 ipv6 的基本首部的长度均可变</p>
+<p>III.ipv4 向 ipv6 过渡可以采用双协议栈和隧道技术</p>
+<p>IV. ipv6 首部的 Hop-Limit 等价于 ipv4 首部的 TTL 字段</p>`,optionsHtml:[`<span class="choice-text">仅 I、II</span>`,`<span class="choice-text">仅 I、IV</span>`,`<span class="choice-text">仅 II、III</span>`,`<span class="choice-text">仅 III、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2024-34`,year:2024,no:34,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2024/#34`,sourceAnswer:`C`,sourceHtmlSha256:`ef9894cc8561c591558cb5c2e23117f6afa92c1c233d6a4ef0e8f56023c01150`,retrieved:`2026-11-16`,tags:`调制方法`,stem:`在下列二进制数字调制方法中，需要 2 个不同频率载波的是（）。`,options:[`ASK`,`PSK`,`FSK`,`DPSK`],choiceFormat:`separate`,stemHtml:`<p>在下列二进制数字调制方法中，需要 2 个不同频率载波的是（）。</p>`,optionsHtml:[`<span class="choice-text">ASK</span>`,`<span class="choice-text">PSK</span>`,`<span class="choice-text">FSK</span>`,`<span class="choice-text">DPSK</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-37`,year:2025,no:37,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#37`,sourceAnswer:`B`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`NAT`,stem:`假设路由器实现 NAT 功能，内网中主机 H 的 IP 地址为 192.168.1.5/24。若 H 运行某应用向 internet 发送一个 UDP 报文段，则路由器在转发封装该 UDP 报文段的 IP 数据报的过程中，UDP 报文的首部字段会被修改的是（ ）。
+I 源端口号
+II 目的端口号
+III 总长度
+IV 校验和`,options:[`仅 I、III`,`仅 I、IV`,`仅 lI、III`,`仅 II、IV`],choiceFormat:`separate`,stemHtml:`<p>假设路由器实现 NAT 功能，内网中主机 H 的 IP 地址为 192.168.1.5/24。若 H 运行某应用向 internet 发送一个 UDP 报文段，则路由器在转发封装该 UDP 报文段的 IP 数据报的过程中，UDP 报文的首部字段会被修改的是（ ）。</p>
+<p>I 源端口号</p>
+<p>II 目的端口号</p>
+<p>III 总长度</p>
+<p>IV 校验和</p>`,optionsHtml:[`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 I、IV</span>`,`<span class="choice-text">仅 lI、III</span>`,`<span class="choice-text">仅 II、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2025-40`,year:2025,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2025/#40`,sourceAnswer:`A`,sourceHtmlSha256:`9b8bbefe5c218a4a87b718002d36eb92e81b7929936e83a5263f7490a1679afb`,retrieved:`2026-11-16`,tags:`电子邮件`,stem:`关于 POP3，正确的是（ ）。
+I 支持用户代理从邮件服务器读取邮件
+II 支持用户代理向邮件服务器发送邮件
+III 支持邮件服务器之间发送与接收邮件
+IV 支持一条 TCP 连接收取多封邮件`,options:[`I、IV`,`II、III`,`I、II、III`,`I、III、IV`],choiceFormat:`separate`,stemHtml:`<p>关于 POP3，正确的是（ ）。</p>
+<p>I 支持用户代理从邮件服务器读取邮件</p>
+<p>II 支持用户代理向邮件服务器发送邮件</p>
+<p>III 支持邮件服务器之间发送与接收邮件</p>
+<p>IV 支持一条 TCP 连接收取多封邮件</p>`,optionsHtml:[`<span class="choice-text">I、IV</span>`,`<span class="choice-text">II、III</span>`,`<span class="choice-text">I、II、III</span>`,`<span class="choice-text">I、III、IV</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-33`,year:2026,no:33,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#33`,sourceAnswer:`B`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`OSI模型,网络协议`,stem:`下列关于分层网络体系结构的叙述中，错误的是（ ）`,options:[`每层都有明确的功能边界`,`层次越多效率越高`,`有利于各层技术独立演化`,`上层无需关心下层的具体实现细节`],choiceFormat:`separate`,stemHtml:`<p>下列关于分层网络体系结构的叙述中，错误的是（ ）</p>`,optionsHtml:[`<span class="choice-text">每层都有明确的功能边界</span>`,`<span class="choice-text">层次越多效率越高</span>`,`<span class="choice-text">有利于各层技术独立演化</span>`,`<span class="choice-text">上层无需关心下层的具体实现细节</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-38`,year:2026,no:38,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#38`,sourceAnswer:`A`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`路由协议`,stem:`下列路由协议中，能将一个自治系统划分为多个区域的内部网关协议是（ ）
+I. OSPF II. RIP III. BGP`,options:[`仅 I`,`仅 II`,`仅 I、III`,`仅 II、III`],choiceFormat:`separate`,stemHtml:`<p>下列路由协议中，能将一个自治系统划分为多个区域的内部网关协议是（ ）</p>
+<p>I. OSPF<br/>II. RIP<br/>III. BGP</p>`,optionsHtml:[`<span class="choice-text">仅 I</span>`,`<span class="choice-text">仅 II</span>`,`<span class="choice-text">仅 I、III</span>`,`<span class="choice-text">仅 II、III</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1},{id:`real-concept-2026-40`,year:2026,no:40,subject:`cn`,sourceUrl:`https://csgraduates.com/study_methods/408quiz/2026/#40`,sourceAnswer:`D`,sourceHtmlSha256:`82150a49011bfcc6c036f59ff689ac7fececf530500cc2f1d5ce2863e4d4d8be`,retrieved:`2026-11-16`,tags:`HTTP`,stem:`下列叙述中不属于 cookie 的技术典型用途的是（）`,options:[`用户跟踪`,`个性化推荐`,`构建虚拟购物车`,`缩短 web 对象的响应时间`],choiceFormat:`separate`,stemHtml:`<p>下列叙述中不属于 cookie 的技术典型用途的是（）</p>`,optionsHtml:[`<span class="choice-text">用户跟踪</span>`,`<span class="choice-text">个性化推荐</span>`,`<span class="choice-text">构建虚拟购物车</span>`,`<span class="choice-text">缩短 web 对象的响应时间</span>`],alternateSourceUrl:null,alternateMarkdown:null,images:[],hasFigure:!1}],fC={"real-2009-23":{title:`单处理机系统中的并行与并发`,steps:`先把两个词分开：**并行**要求同一时刻确有两个物理部件各自工作；**并发**只要求一个时间区间内交替推进，宏观上像同时。本题的判据就是“这一对活动是否占有彼此独立的硬件”。
+
+**Ⅰ 进程与进程：不能并行。** 系统只有一台处理机，同一时刻只能有一个进程占用 CPU，另一个只能等它让出（时间片用完、阻塞、结束）。两个进程之间是并发，不是并行。
+
+**Ⅱ 处理机与设备：可以并行。** CPU 执行指令的同时，设备控制器可以独立驱动外设搬运数据，二者是不同的物理部件。
+
+**Ⅲ 处理机与通道：可以并行。** 通道是独立于 CPU 的 I/O 处理机，有自己的指令系统；CPU 启动通道后，通道自行执行通道程序完成数据传送，CPU 可以继续算题。
+
+**Ⅳ 设备与设备：可以并行。** 不同设备各有自己的控制器，彼此独立，可以同时工作。
+
+所以能真正并行的只有 Ⅱ、Ⅲ、Ⅳ。
+
+**答案：D。**`,knowledge:`**并行**指同一时刻多个部件同时工作，必须有多个可独立工作的硬件资源；**并发**指同一时间间隔内多道程序交替执行，单 CPU 即可实现。判题时先数“有几个能独立工作的部件”：凡是都要抢同一台 CPU 的（进程与进程、线程与线程）只能并发；分属 CPU、设备、通道的就能并行。
+
+典型出题方式：给出若干“XX 与 XX”的配对让选可并行项（本题）；或反向设陷阱，如“多任务操作系统一定具有并行性”“实现并发一定需要多 CPU”“多道批处理系统在单处理机上实现了进程的并行”——这些说法都错。还要记住通道是独立的 I/O 处理机，不属于 CPU 的一部分，它与 CPU 并行正是通道技术存在的意义。`,related:[{year:2018,no:23,why:`同考并发与并行的界限：2018 年题用“需要运行在多 CPU 平台上”这一错误陈述否掉Ⅲ，说明单 CPU 也能并发；本题则逐对判断单处理机中哪两件活动能同时工作，需要把 CPU 与设备、通道分开看。`}]},"mock-1-23":{title:`操作系统各发展阶段的特征`,steps:`逐条核对每个阶段的核心特征。
+
+**A 单道批处理与脱机 I/O：成立。** 单道批处理内存中只驻留一道作业，CPU 必须等慢速外设。早期的做法是用卫星机把作业从纸带、卡片预先搬到磁带（脱机输入），主机只与较快的磁带交互，CPU 等待慢速设备的时间因此减少。
+
+**B 多道批处理：成立。** 多道批处理的核心就是在内存中同时驻留多道作业，CPU 与 I/O、作业与作业交替推进，从而提高 CPU 利用率与吞吐量。
+
+**C 分时系统：成立。** 分时系统把 CPU 时间切成时间片，轮流分配给各终端用户，用户感觉独占机器，交互性由此增强。
+
+**D 硬实时系统：错误。** 硬实时的定义就是所有关键任务必须在截止时间前完成，一旦超时即视为系统失败（可能造成灾难性后果）。允许偶尔超时而不影响正确性的，是**软实时**系统。
+
+题目问“错误的是”，只有 D 站不住。
+
+**答案：D。**`,knowledge:`发展主线：手工操作 → 单道批处理（脱机 I/O、顺序执行、CPU 利用率低、无交互）→ 多道批处理（并发、吞吐高、仍无交互）→ 分时（时间片、交互、响应及时）→ 实时（硬实时/软实时，强调确定性与截止期）。三条记忆锚点：批处理追求**吞吐量**，分时追求**响应与公平**，实时追求**时限**。
+
+典型出题方式：把某一阶段的特征安到另一阶段头上，如“分时系统采用脱机 I/O”“批处理系统允许多用户直接交互”“多道批处理的主要目的是缩短单个作业的周转时间”（实为提高 CPU 利用率与吞吐量，单个作业的周转时间反而可能变长）。硬实时与软实时的区别几乎每年都以“允许偶尔超时”这种表述出现，看到“偶尔超过截止时间”就要立刻对应到软实时。`,related:[{year:2016,no:23,why:`同考发展阶段特征的真假判断：2016 年题否掉“批处理系统允许多个用户与计算机直接交互”，并确认中断技术使 I/O 与 CPU 并行；本题则否掉“硬实时允许偶尔超时”。一个考批处理一次成批、无交互的特点，一个考硬实时的截止期刚性。`}]},"real-2010-23":{title:`操作系统向应用程序提供的接口`,steps:`题干的关键限定是“操作系统**提供给应用程序**的接口”，即应用能直接调用、由内核兑现服务的入口。逐一检验四个候选。
+
+**A 系统调用：符合。** 它是内核在用户态与内核态之间开出的唯一编程入口，应用通过陷入（trap）指令进入内核请求服务，如 read、write、fork。
+
+**B 中断：不符合。** 中断是硬件或外部事件打断 CPU、使其转去处理的机制，属于“事件通知与响应”机制，应用并不能把它当作服务接口来调用。
+
+**C 库函数：不符合。** 库函数由语言运行库（如 libc）提供，纯用户态实现的那部分根本不进内核；只有内部封装了系统调用的库函数才会间接用到操作系统接口，它本身不是操作系统提供的接口。
+
+**D 原语：不符合。** 原语是内核内部不可中断的基本操作（如 P、V 操作、关中断），供内核自身实现同步与互斥，不直接暴露给应用程序。
+
+**答案：A。**`,knowledge:`操作系统对外有两类接口：**命令接口**（联机命令、脱机作业控制，给人用）与**程序接口**（系统调用，给程序用）。系统调用与库函数的关系是高频考点：库函数可能封装系统调用（printf 最终走 write），也可能完全不涉及内核（strlen）；系统调用则一定通过陷入指令进入内核态执行。
+
+典型出题方式：“操作系统提供给应用程序的接口”（答系统调用）；“系统调用与库函数的关系”（库函数可封装系统调用，但不是所有库函数都如此）；“不同操作系统是否提供统一的系统调用接口”（不统一，可移植性靠库函数/标准 API 这一层）。另一个常见陷阱是把“中断”当接口——中断是机制，不是应用可调用的服务入口。`,related:[{year:2019,no:25,why:`同考系统调用的定位：2019 年题从“不同操作系统提供统一的系统调用接口”这一错误陈述切入，确认系统调用是内核为应用提供服务的接口；本题则要从系统调用、中断、库函数、原语中挑出真正的应用接口。一个考接口是否统一，一个考接口的归属层次。`}]},"real-2013-28":{title:`哪些操作会把进程从用户态带进内核态`,steps:`判据只有一条：这个操作是否必须由内核完成，也就是是否会产生**异常**或**陷入**。
+
+**Ⅰ 整数除以零：会切换。** 除零由运算部件在指令执行中检测到，作为内部异常上报，CPU 转入内核态由操作系统处理；否则进程无法继续。
+
+**Ⅱ sin() 函数调用：不切换。** 数学库函数在参数正常时完全在用户态用浮点指令或软件算法算完，不产生陷入，也不需要内核介入。（前提：题面没有给出非法实参等会触发异常的异常情形。）
+
+**Ⅲ read 系统调用：会切换。** read 是系统调用，编译后是一条陷入指令，CPU 进入内核态由内核完成文件读取，返回时再回到用户态。
+
+因此只有 Ⅰ、Ⅲ 会导致用户态到内核态的切换。
+
+**答案：B（仅Ⅰ、Ⅲ）。**`,knowledge:`用户态进入内核态只有三个入口：**中断**（外部事件，如时钟、I/O 完成）、**异常**（内部事件，如除零、缺页、越界、非法指令）、**陷入**（trap，程序主动发起的系统调用）。判断“某操作是否切换”就看它落不落在这三类里。
+
+典型出题方式：给一组操作判断“会导致用户态→内核态的有哪些”（本题）；或反向问“不可能在用户态发生的事件”（如进程切换）；或问“只能在核心态执行的指令”（关中断、I/O 指令、修改页表基址寄存器等）。两个易错点：一是把所有库函数都当成要陷入内核，二是把“事件发生的位置”与“处理时的状态”混同——缺页、外部中断都发生在用户态，只是处理时已在内核态。`,related:[{year:2012,no:23,why:`同考用户态与内核态的边界：2012 年题问“不可能在用户态发生的事件”（进程切换），本题问“哪些操作会引发用户态→内核态”。两者共用一条判据——是否必须动用内核特权；边界在于 2012 年题中的系统调用、外部中断、缺页都是“在用户态发生、在内核态处理”，不能因为处理在内核态就说事件不在用户态发生。`}]},"real-2012-24":{title:`中断与子程序调用保存现场的差别`,steps:`先看两种控制转移对“恢复现场”的要求差在哪里。
+
+**子程序调用（call/ret）：** 由 call 指令完成，硬件只需把返回地址（PC 的当前值）压栈，返回时弹回 PC。调用发生在确定的指令位置，前后是同一条指令流、同样的机器状态，条件码、中断允许位都可以继续沿用，不需要额外保存。
+
+**中断：** 中断是异步的，CPU 在执行任意两条指令之间被打断，中断返回后必须恢复到“被打断那一刻”的完整执行环境。因此中断隐指令除了保存断点 PC，还必须保存**程序状态字 PSW**（含条件码、中断允许位、CPU 模式位等）；否则返回后条件转移的判断依据、开/关中断状态全会错乱。
+
+**通用数据寄存器、通用地址寄存器：** 两者都可能需要保存，但都不构成“一定”的差别——子程序调用也可以按调用约定自行保存，中断服务程序则按需保存（这一部分通常由操作系统用指令完成，而不是由中断隐指令完成）。
+
+**答案：B（程序状态字寄存器）。**`,knowledge:`中断隐指令（由硬件自动完成）：关中断、保存断点 PC 与 PSW、按中断号查中断向量转入服务程序；**通用寄存器由中断服务程序用指令保存**。子程序调用只保存返回地址，参数与寄存器保护由编译器的调用约定处理。
+
+典型出题方式：“中断处理一定会保存而子程序调用不需要保存的是什么”（PSW）；“处理外部中断时应由操作系统保存的是什么”（通用寄存器）；“中断隐指令完成哪些操作”（关中断、保存 PC 与 PSW）。三种问法其实是在切分同一套现场保存的分工，记住“硬件保存 PC+PSW，软件保存通用寄存器”就不会串。`,related:[{year:2015,no:23,why:`正好补上本题的另一半：2015 年题问处理外部中断时“应由操作系统保存”的内容（通用寄存器），本题问“中断一定保存而子程序调用不必保存”的内容（PSW）。合起来就是完整分工——中断隐指令由硬件保存 PC 与 PSW，通用寄存器留给中断服务程序按需保存。`}]},"real-2023-23":{title:`微内核与宏内核的特征对比`,steps:`先摆出微内核的结构：只把最基本的功能留在内核（进程与线程管理、低级存储管理、中断与陷入处理、进程间通信），文件系统、设备驱动、网络协议等以**服务器进程**的形式放到用户态，彼此靠消息传递协作。再逐条对照。
+
+**Ⅰ 较好的性能：不成立。** 每次服务请求都要走“用户态→内核态→目标服务器→再回来”，模式切换与消息复制次数远多于宏内核中一次函数调用，性能通常更差。
+
+**Ⅱ 较高的可靠性：成立。** 一个服务器进程崩溃只影响该服务，内核很小、不易被拖垮；宏内核里一个驱动出错可能直接整机崩溃。
+
+**Ⅲ 较高的安全性：成立。** 服务运行在用户态、受内核的权限检查约束，内核暴露的接口少，攻击面更小。
+
+**Ⅳ 较强的可扩展性：成立。** 新增一种服务只需增加一个用户态服务器，不必修改、重新编译内核。
+
+所以微内核具有的是 Ⅱ、Ⅲ、Ⅳ。
+
+**答案：D。**`,knowledge:`**宏内核**（单体内核）：所有核心功能放在一个大内核里，模块间直接函数调用，效率高，但耦合紧，一处出错影响全局，扩展需改内核。**微内核**：内核最小化，服务外移为用户态进程，靠消息传递通信；换来可靠性、安全性、可扩展性与可移植性，代价是性能与通信开销。
+
+典型出题方式：列举“性能好/可靠性高/安全性高/可扩展性强”让选微内核具有的特征——性能项一定排除；或问“微内核中服务之间采用什么方式通信”（消息传递）；或问“微内核保留在内核中的功能有哪些”（进程通信、低级调度、中断处理）。判断口诀：微内核用性能换可靠、安全、可扩展。`,related:[]},"mock-8-23":{title:`JVM 与操作系统各自负责什么`,steps:`四条陈述都在问同一件事：**操作系统这一层的抽象与 JVM 这一层的抽象，各自管到哪里为止**。逐条定位。
+
+**Ⅰ 操作系统作为扩充机器：正确。** 操作系统屏蔽中断、设备、磁盘块等硬件细节，向上提供进程、虚拟地址空间、文件等抽象，这就是“操作系统是一台扩充机器（虚拟机）”的含义。
+
+**Ⅱ JVM 的位置：正确。** JVM 是装在操作系统之上的普通用户态程序，它翻译出的本机指令、申请的内存、发起的 I/O 都要经过操作系统，资源仍由操作系统分配和管理。
+
+**Ⅲ JVM 的工作方式：正确。** JVM 为字节码提供执行环境，既可以逐条解释执行，也可以用 JIT 把热点字节码编译成本机机器码后执行，两者都是 JVM 的实现手段。
+
+**Ⅳ JVM 取代页表：错误。** JVM 虚拟的是语言级运行环境（栈式虚拟机、类加载、垃圾回收），它没有也无法取代 MMU 与页表；Java 进程的代码和数据仍使用操作系统分配的虚拟地址，每次访存的地址转换依旧由该进程的页表配合 MMU 完成，JVM 自己申请内存还要通过操作系统的内存映射接口。
+
+所以正确的是 Ⅰ、Ⅱ、Ⅲ。
+
+**答案：D（仅Ⅰ、Ⅱ、Ⅲ）。**`,knowledge:`本题是典型的层次题：分清**操作系统层**（进程、虚拟地址空间、文件、页表、MMU）与**语言虚拟机层**（字节码、解释器、JIT、垃圾回收）。判断原则一句话：这个动作最终要不要碰硬件？要碰，就仍归操作系统管。JVM 内部的线程调度只是把 Java 线程映射到内核线程，真正获得处理机、发生切换、响应时钟中断的仍是操作系统。
+
+典型出题方式：给出含“JVM 使 Java 程序不再需要操作系统……”的选项一律判错；或问“操作系统向上层提供的抽象有哪些”（进程、虚拟地址空间、文件）；或问“JVM 解释执行与 JIT 编译的关系”（两种方式并存，不是互斥）。看到“不再需要操作系统”“取代页表/MMU”这类绝对化表述，基本可以直接判错。`,related:[{year:2011,no:24,why:`同考“某个软件处在上层还是内核”的层次判断：2011 年题把命令解释程序判为用户态程序，本题把 JVM 判为受操作系统管理的用户态进程。边界在于 2011 年题只区分用户态与内核态，本题还要再区分“语言虚拟机”与“操作系统”两层抽象，Ⅳ 的页表正是这一层区分的考点。`}]},"real-2021-46":{title:`多阶段引导与制作启动盘的步骤`,steps:`**（1）引导顺序：ROM 中的引导程序 → 磁盘引导程序 → 分区引导程序 → 操作系统的初始化程序。**
+
+打开电源后 CPU 从固定地址取指，先执行 ROM（BIOS/UEFI）中的引导程序：它完成自检与硬件初始化，按启动顺序读入启动盘的第一个扇区（主引导记录 MBR），把控制权交给其中的磁盘引导程序。磁盘引导程序查分区表、选定要引导的活动分区，读入该分区第一个扇区的分区引导程序。分区引导程序再把该分区中的操作系统内核及其初始化程序装入内存，转交控制权，由初始化程序建立内核数据结构、启动第一个进程。这是一条“控制权逐级下传”的链条，顺序不能颠倒：ROM 在最前，操作系统初始化在最后。
+
+**（2）制作启动盘的顺序：磁盘的物理格式化 → 对磁盘进行分区 → 逻辑格式化 → 操作系统的安装。**
+
+逻辑是“先把盘做成可用的盘，再往里装系统”。物理格式化（低级格式化）在盘上划分磁道、扇区，建立磁盘的物理结构，并标记坏道；分区把磁盘划分为若干分区并写入分区表；逻辑格式化（高级格式化）在每个分区上建立文件系统，包括引导块、超级块、空闲空间管理结构和根目录；最后安装操作系统，把内核、引导程序等写入相应位置。反过来做不通：没有分区就无处建立文件系统，没有文件系统就无法存放安装文件。
+
+**（3）扇区划分在物理格式化（低级格式化）中完成；文件系统的根目录在逻辑格式化（高级格式化）中建立。**
+
+理由：扇区是磁盘的物理地址单位，属于介质本身的物理结构；根目录是文件系统的一个组成部分，而文件系统正是逻辑格式化建立起来的。
+
+**答案：（1）ROM 引导程序 → 磁盘引导程序 → 分区引导程序 → 操作系统初始化程序；（2）物理格式化 → 分区 → 逻辑格式化 → 安装操作系统；（3）扇区划分在物理格式化，根目录建立在逻辑格式化。**`,knowledge:`两条主线必须背熟。
+
+**引导链**：ROM 引导程序 → 磁盘引导程序（MBR，磁盘第一个扇区，含磁盘引导程序与分区表）→ 分区引导程序（每个分区的第一个扇区）→ 操作系统初始化程序。
+
+**制作启动盘**：物理格式化 → 分区 → 逻辑格式化 → 安装操作系统。
+
+两种格式化的区别是选择题的常客：物理格式化（低级格式化）划分扇区、建立磁道与扇区结构、标记坏道；逻辑格式化（高级格式化）建立文件系统结构（引导块、超级块、根目录、空闲空间管理）。
+
+典型出题方式：把上述步骤打乱让排序；问“MBR 中包含什么”（磁盘引导程序与分区表）；问“操作系统启动之前键盘中断由谁处理”（ROM 中的引导程序/BIOS，而不是操作系统）；问“扇区划分与根目录建立分别属于哪一步”。这里最容易错的不是顺序本身，而是把“逻辑格式化”与“安装操作系统”的先后弄反——文件系统要先建好，安装程序才有地方写文件。`,related:[{year:2013,no:25,why:`同属“把某个具体动作归到正确的阶段/层次”：2013 年题把计算柱面号、磁头号、扇区号判给设备驱动程序，本题第（3）问把扇区划分判给物理格式化、根目录建立判给逻辑格式化。边界在于前者是磁盘 I/O 请求在内核软件层次间的分工，后者是制作启动盘四个操作阶段的分工，判据都是“这个动作依赖谁建立起来的结构”。`}]}},pC={"real-2014-26":{title:`I/O 完成后的进程状态处置`,steps:`先还原进程发起读磁盘前后的状态链：进程执行读操作时，若数据不在内存，会主动让出 CPU，由执行态转为阻塞态（等待 I/O），并被挂到该设备的等待队列；CPU 转去运行其他进程。
+
+磁盘传输完成后，磁盘控制器向 CPU 发中断。中断处理程序根据中断信息找到等待该 I/O 的进程，把它的 PCB 状态从阻塞态改为就绪态，再插入就绪队列。这里只完成「唤醒」，并不等于立刻分配 CPU；何时真正运行仍由调度程序决定。
+
+逐项看：A 修改状态为就绪态，是唤醒阻塞进程的必做动作；B 降低优先级不是 I/O 完成的必然处理；C 用户内存空间在进程创建/装入时已经分配，不会因一次读完成而重新分配；D 时间片大小由调度策略决定，也不会因 I/O 完成而增加。
+
+**答案：A（修改进程状态为就绪态）。**`,knowledge:`进程状态转换是本章的基础：执行态因等待 I/O、申请资源、执行 P 操作等转为阻塞态；阻塞态在等待的事件发生后被唤醒，转为就绪态；就绪态被调度后转为执行态；时间片用完则由执行态转回就绪态。I/O 完成中断的处理属于「唤醒」，只负责把 PCB 放入就绪队列，不负责选中运行。典型考法是把「唤醒」「调度」「抢占」混在一起，问某事件后操作系统必做什么；也可能给出状态图让判断事件方向。注意前提：这里指进程因同步 I/O 而阻塞；若是异步 I/O 或 I/O 多路复用，进程未必处于阻塞态。`,related:[{year:2019,no:24,why:`该题同样以 I/O 结束为唤醒事件，还并列考查退出临界区与时间片用完；本题只聚焦 I/O 完成后 PCB 状态应如何改。`}]},"real-2024-28":{title:`线程间可共享资源的判定`,steps:`先抓住线程的资源归属：线程是进程内的执行实体，同一进程的多个线程共享该进程的地址空间和大部分内核资源，但每个线程要有自己独立的执行现场。
+
+逐项判断。Ⅰ 进程 P 的地址空间：代码段、全局数据、堆等都在同一地址空间内，Ta、Tb 与 T 共享，正确。Ⅱ 线程 T 的栈：每个线程有独立的栈和栈指针，Ta、Tb 创建后使用各自的栈；T 的栈属于 T 私有，不能算三者共享资源（除非程序显式传指针去访问，那是越界使用，不是线程模型的共享语义），错误。Ⅲ fd：文件描述符表属于进程，T 打开文件后得到的 fd 对同进程的 Ta、Tb 都可见，且指向同一个打开文件描述（共享文件偏移等），正确。
+
+所以共享的是Ⅰ、Ⅲ。
+
+**答案：B（仅Ⅰ、Ⅲ）。**`,knowledge:`进程是资源分配的基本单位，线程是 CPU 调度的基本单位。同进程线程共享：地址空间（代码、全局数据、堆）、打开文件描述符表、当前工作目录、信号处理方式等；线程私有：线程 ID、寄存器现场（PC、SP、通用寄存器）、栈、线程局部存储、调度优先级/信号屏蔽字等。典型考法是列出若干资源让选「共享/不共享」，或用 fork 与 pthread_create 对比。易错点是 fd 与打开文件描述：同进程线程共享 fd 表，但若各自独立 open，则得到不同的打开文件描述；另外「共享地址空间」不等于「共享每个线程的栈」。`,related:[{year:2011,no:25,why:`该题问多线程进程中「不能共享」的资源，正确项正是某线程的栈指针；本题反向问可共享项，并把 fd 与地址空间并列。`}]},"real-2019-23":{title:`用户级与内核级线程的实现差异`,steps:`先按「谁看得见线程」区分两类线程。内核级线程由内核直接管理，内核为每个线程建立 TCB，线程的创建、撤销、切换和调度都在内核完成；用户级线程由用户空间的线程库实现，内核只看见一个进程，看不到进程内的多个线程。
+
+逐项核对。A 说内核级线程的调度由操作系统完成，正确。B 说操作系统为每个用户级线程建立线程控制块，错误：用户级线程的 TCB 由线程库维护，操作系统只有该进程的 PCB，不感知这些线程。C 说用户级线程切换比内核级线程切换效率高，正确：用户级切换在用户态完成，不需要陷入内核、切换内核栈和走内核调度器。D 说用户级线程可以在不支持内核级线程的操作系统上实现，正确：线程库可以完全建立在进程抽象之上。
+
+题目问「错误」的，因此选 B。
+
+**答案：B。**`,knowledge:`用户级线程与内核级线程的核心区别在实现层次：ULT 的线程管理全在用户库，切换快、可移植，但一个线程阻塞系统调用可能阻塞整个进程，且不能真正利用多核并行；KLT 由内核调度，能并行、单个阻塞不影响其他线程，但切换要进内核、开销大。典型考法：判断 TCB 由谁建立、切换是否需要内核、能否在多机上并行、阻塞系统调用的影响。易错点是把「用户级线程切换不需要内核」误推广为「用户级线程的任何操作都不需要内核」。`,related:[{year:2012,no:31,why:`该题辨析进程与线程谁是资源分配/调度单位，并涉及用户级线程切换是否需要内核；本题进一步追问用户级线程的 TCB 由谁维护。`}]},"real-2014-31":{title:`管道通信的基本特性辨析`,steps:`先明确 408 语境下 pipe 的模型：管道是内核维护的一个有限字节流缓冲区，通常有一对读写端，数据按写入顺序读出，本质上是一种单向通信机制。
+
+逐项核对。A 说一个管道可实现双向数据传输，错误：普通 pipe 是单向的，双向通信要两条管道（或用 socketpair 一类双向机制）。B 说容量仅受磁盘容量限制，错误：管道容量由内核缓冲区大小决定，数据并不落盘，写满后写进程会被阻塞。C 说读操作和写操作都可能被阻塞，正确：管道为空时读进程阻塞等待数据；管道满时写进程阻塞等待空位；只有对端关闭或采用非阻塞方式时才例外。D 说一个管道只能有一个读进程或一个写进程，错误：多个进程可以持有同一管道的读端/写端，只是读操作会竞争数据、写操作可能交错，POSIX 仅对不超过 PIPE_BUF 的写保证原子性。
+
+**答案：C。**`,knowledge:`管道是进程间通信的经典机制：单向、字节流、内核缓冲区、读写两端通过文件描述符访问，常配合 fork 继承给子进程。阻塞规则是重点：空读阻塞、满写阻塞；所有写端关闭后读端读到 EOF；读端全部关闭后写端收到 SIGPIPE。典型考法：判断管道是否双向、容量由谁决定、读写何时阻塞、多个进程能否同时操作。注意区分管道与消息队列（有消息边界）、共享内存（无内核中转、需用户同步）。`,related:[]},"mock-5-25":{title:`三级处理机调度的职责划分`,steps:`处理机调度按「把谁从哪个队列挑到哪种资源上」分三级。高级调度又叫作业调度，从外存后备队列挑作业调入内存并创建进程，决定多道程度，主要用于批处理系统，运行频率最低。中级调度又叫内存调度/对换调度，把暂时不能运行的进程换出到外存挂起，腾出内存，条件具备时再换回，目的是提高内存利用率和吞吐量。低级调度又叫进程调度，从就绪队列挑进程分配 CPU，是最基本、频率最高的调度。
+
+逐项看：A 错在「主要用于分时系统」，高级调度主要面向批处理；分时系统的核心是低级调度按时间片轮转。B 错，低级调度频率最高，高级调度频率最低。C 对，中级调度正是通过挂起/对换提高内存利用率。D 错，动态优先级会在运行中随等待时间、已用 CPU 时间等调整；创建时确定且不变的是静态优先级。
+
+**答案：C。**`,knowledge:`三级调度是选择题常客：高级调度面向作业（外存→内存），中级调度面向挂起进程（内存↔外存），低级调度面向进程（就绪→CPU）；频率由高到低为低级、中级、高级。中级调度换出的是整个进程，页面置换换出的是页，两者不要混淆。典型考法：给一句职责描述判断属于哪级调度，或比较频率、适用系统。动态优先级与静态优先级的区别只在「运行中是否变化」，看到「创建时确定、不再改变」即可判为静态。`,related:[{year:2017,no:27,why:`该题讨论时间片轮转这一低级调度算法的实现细节；本题讨论三级调度各管什么，时间片只是低级调度的一种具体策略。`}]},"real-2009-24":{title:`调度算法对等待与执行时间的权衡`,steps:`高响应比优先的核心是响应比：$R=(W+S)/S=1+W/S$，其中 W 是等待时间，S 是要求服务（执行）时间。R 同时随 W 增大而增大、随 S 增大而减小，因此既照顾等待久的进程，又偏向短进程。
+
+逐项看：A 时间片轮转只看时间片和到达顺序，不考虑进程执行时间；B 短进程优先只看执行时间，等待久的进程可能饥饿；C 先来先服务只看到达/等待顺序，不考虑执行时间；D 高响应比优先同时把等待时间和执行时间放进公式，正确。
+
+**答案：D。**`,knowledge:`调度算法的评价指标包括周转时间、带权周转时间、等待时间、响应时间。HRRN 用响应比把「等待时间」和「服务时间」综合起来，既缓解 SJF 的长作业饥饿，又比 FCFS 更照顾短作业；代价是每次调度要计算响应比。典型考法：问哪种算法综合考虑等待与执行、哪种不会饥饿、给定到达/服务时间计算响应比或调度顺序。易错点：把 HRRN 与「最高优先级」混为一谈，或误以为它一定抢占。`,related:[{year:2011,no:23,why:`该题问「满足短任务优先且不会饥饿」的算法，答案同样是高响应比优先；本题从响应比公式解释它为何同时考虑等待与执行时间。`}]},"real-2020-26":{title:`多级反馈队列的设计参数`,steps:`多级反馈队列不是单一队列，而是一组按优先级排列的就绪队列。设计时要先确定分成几级，即就绪队列的数量（Ⅰ）；各级队列的优先级如何排列，通常高优先级队列时间片短（Ⅱ）；每个队列内部采用什么调度算法，例如高优先级用时间片轮转、最低级用 FCFS（Ⅲ）；进程在队列之间如何迁移，例如时间片用完降级、I/O 完成或等待过久升级（Ⅳ）。
+
+这四项共同决定 MLFQ 的行为：队列数量影响分级粒度，优先级影响谁先被选中，队列内算法影响同级进程的公平性，迁移条件影响对交互型和 CPU 密集型进程的适应能力。四项都需要考虑。
+
+**答案：D（Ⅰ、Ⅱ、Ⅲ和Ⅳ）。**`,knowledge:`多级反馈队列把就绪队列分成多级，高优先级队列时间片短、优先调度；进程用完时间片就降级，因 I/O 阻塞或等待过久则可升级，从而兼顾响应时间、吞吐量和防止饥饿。设计要素包括队列数量、各级优先级、各级时间片、队列内调度算法、迁移/升级规则。典型考法：问哪些因素与 MLFQ 有关，或给定参数模拟调度顺序。易错点是把「多级队列」与「多级反馈队列」混淆：前者进程固定在某队列，后者允许在队列间迁移。`,related:[{year:2017,no:27,why:`该题讨论时间片轮转中时间片长短对切换开销和进程状态的影响；时间片正是 MLFQ 每级队列的关键参数，但本题范围扩大到队列数量、优先级和迁移规则。`}]},"mock-1-24":{title:`有界缓冲区中 P 操作的次序`,steps:"先写出标准的生产者—消费者信号量：`mutex=1` 保护缓冲区，`empty=n` 表示空位数，`full=0` 表示产品数。\n\n生产者的正确顺序是：先 `P(empty)` 申请空位，再 `P(mutex)` 进入临界区，放入产品后 `V(mutex)`、`V(full)`。消费者对称：先 `P(full)` 申请产品，再 `P(mutex)`，取出后 `V(mutex)`、`V(empty)`。\n\n为什么不能反过来？设缓冲区已满，生产者先执行 `P(mutex)` 拿到锁，再执行 `P(empty)` 时因无空位而阻塞；此时它占着 mutex 睡眠，消费者无法进入临界区取走产品、也就无法执行 `V(empty)`，双方永久等待。缓冲区为空时消费者先拿 mutex 再等 `full`，同理死锁。\n\nD 说 P 操作原子所以顺序可任意交换，错误：单个 P 不可被打断，不等于两个 P 的先后次序等价。\n\n**答案：C。**",knowledge:"生产者—消费者是信号量最核心的模型：资源信号量（empty/full）表示可用资源数，互斥信号量 mutex 保护临界区。通用规则是「先 P 资源信号量，再 P 互斥信号量」；临界区内不能因为等待资源而长期持有 mutex。典型考法：判断 P 操作顺序、问反序为何死锁、增加多生产者/多消费者或一次操作多个产品。注意 V 操作顺序通常先 `V(mutex)` 释放临界区，再 `V` 对方资源信号量；即使交换一般也不造成死锁，但可能多一次无效唤醒。",related:[{year:2010,no:25,why:`该题用信号量当前值判断可用资源数和等待进程数；本题则要求设计信号量初值并安排 P 操作顺序，二者都围绕信号量语义但考查角度不同。`}]},"real-2018-28":{title:`管程条件变量 wait 的语义`,steps:"条件变量不是信号量，它没有计数值，也不表示资源数量；它只是管程内的一条等待队列，用来让进程在某个条件不成立时等待。\n\n进程执行 `x.wait()` 时，前提是它已进入管程、持有管程锁。该操作做三件事：释放管程锁，使其他进程能进入管程；把当前进程阻塞；把它插入条件变量 x 的等待队列。之后它要等到另一个进程执行 `x.signal()` 把它唤醒，并且重新获得管程锁后才能从 wait 返回。\n\n逐项看：A 说实现对 x 的互斥访问，错误，互斥由管程锁保证；B 说唤醒一个在 x 上阻塞的进程，错误，那是 `signal()` 的作用；C 说根据 x 的值判断是否阻塞，错误，条件变量没有值可判断；D 说阻塞该进程并插入 x 的阻塞队列，正确。\n\n**答案：D。**\n\n说明：Hoare 与 Mesa 语义的区别在 `signal()` 之后谁先运行，不影响 `wait()` 必然阻塞并入队这一结论；408 按教材的管程语义作答即可。",knowledge:"管程把共享变量和操作封装在一起，任一时刻只允许一个进程在管程内执行，互斥由编译器/运行时自动保证；条件变量用于在管程内部实现同步，提供 wait/signal（或 await/signal）。`wait` 释放管程锁并阻塞入队，`signal` 唤醒一个等待者（无等待者时不起作用），条件变量本身没有值。典型考法：区分信号量 P/V 与条件变量 wait/signal、判断 wait 是否释放锁、signal 的语义、Hoare/Mesa 差别。易错点是把条件变量当计数器，或以为 wait 只阻塞不释放锁。",related:[{year:2016,no:32,why:`该题判断管程的整体特性（是否只能实现互斥、是否由语言支持等）；本题聚焦管程内条件变量 wait 的具体动作，二者是管程机制的不同层次。`}]},"mock-3-24":{title:`死锁预防措施与必要条件的对应`,steps:`死锁的四个必要条件是互斥、请求并保持、不可剥夺、循环等待。预防就是静态地破坏其中至少一个条件。
+
+逐项对照。Ⅰ 进程运行前一次性申请所需全部资源：运行中不再「持有一些、再请求另一些」，破坏请求并保持。Ⅱ 申请新资源前先释放已占有的资源，随后重新申请：同样消除「一边持有、一边等待」，破坏请求并保持。Ⅲ 要求按资源编号递增顺序申请：使资源等待关系不能成环，破坏循环等待。Ⅳ 允许系统强制剥夺已占有资源：破坏不可剥夺。
+
+题目只问破坏「请求并保持」的措施，因此是Ⅰ、Ⅱ。
+
+**答案：C（Ⅰ、Ⅱ）。**`,knowledge:`死锁预防从四个必要条件入手：互斥（如 SPOOLing 把独占设备虚拟成共享）、请求并保持（一次性申请全部资源，或申请前释放已持有资源）、不可剥夺（允许剥夺/回滚）、循环等待（资源有序分配）。典型考法：给出措施判断破坏了哪个条件，或问哪些措施能预防死锁。易错点：把「资源有序分配」误归到请求并保持，把「剥夺」误归到循环等待；另外预防措施往往牺牲并发度和资源利用率，题目可能顺带考查副作用。`,related:[{year:2019,no:30,why:`该题综合判断剥夺、预防、银行家算法与死锁阻塞进程数等叙述；本题只做「措施—必要条件」的精确对应，范围更窄。`}]},"real-2013-32":{title:`银行家算法与安全状态的性质`,steps:`先区分三个概念：安全状态、不安全状态、死锁。安全状态是指存在一个安全序列，按该序列分配资源，每个进程都能依次拿到所需资源并完成；因此安全状态一定不会已经死锁。不安全状态是指找不到安全序列，但它只说明「继续分配可能进入死锁」，并不等于当前已经死锁。
+
+逐项看：A 说银行家算法可以预防死锁，错误，它属于死锁避免（动态检查），不是预防（静态破坏必要条件）。B 说系统处于安全状态时一定无死锁进程，正确。C 说不安全状态一定会出现死锁进程，错误，不安全只是可能死锁。D 说银行家算法破坏了「请求和保持」条件，错误，它不改变进程的请求方式，只是在分配前做安全性检查。
+
+**答案：B。**
+
+前提：安全性判断假设每个进程事先声明最大资源需求，且获得资源后最终会释放；若这些前提不成立，安全序列的保证也就不成立。`,knowledge:`银行家算法是死锁避免的代表：每个进程预先声明最大需求 Max，系统维护 Available、Allocation、Need，每次请求先试分配，再运行安全性算法找安全序列；找不到就拒绝或推迟。安全状态与死锁的关系是高频考点：安全 ⇒ 无死锁，死锁 ⇒ 不安全，不安全 ⇏ 死锁。典型考法：判断叙述正误、计算安全序列、判断某请求能否分配。易错点是把「避免」说成「预防」，或把「不安全」直接等同于「死锁」。`,related:[{year:2015,no:26,why:`该题对比死锁避免系统 S1 与死锁检测系统 S2 的信息需求和分配行为；本题聚焦银行家算法本身的性质及安全/不安全状态的含义。`}]},"real-2015-26":{title:`死锁避免与死锁检测的对比`,steps:`S1 采用死锁避免，典型代表是银行家算法：每次分配前先判断分配后系统是否仍处于安全状态，只有安全才真正分配。为此它必须知道每个进程的最大资源需求，以及当前分配和可用资源，所以Ⅱ中「S1 需要资源总量信息」正确。
+
+Ⅰ说 S1 会限制用户申请资源的顺序，错误：限制申请顺序（如按编号递增）属于死锁预防中的资源有序分配法；死锁避免并不规定请求顺序，只是在每次请求时检查安全性。
+
+S2 采用死锁检测：系统先按请求分配资源，再通过资源分配图/等待图等算法检测是否已出现死锁。它不需要预先知道各进程的最大需求，只需当前的分配、请求和可用资源，所以Ⅱ中「S2 不需要总量信息」正确。
+
+Ⅲ说 S1 不会给可能导致死锁的进程分配资源，而 S2 会，正确：避免策略在可能进入不安全状态时就拒绝/推迟分配；检测策略则先分配，事后再发现死锁。
+
+因此正确的是Ⅱ、Ⅲ。
+
+**答案：B（仅Ⅱ、Ⅲ）。**`,knowledge:`死锁处理策略分四类：预防（静态破坏四个必要条件）、避免（动态检查安全状态，如银行家算法）、检测（允许分配，定期/按需检测死锁）、解除（撤销进程、剥夺资源、回滚）。避免需要最大需求信息且每次分配都做安全性检查，开销大但不会进入死锁；检测不需要最大需求，允许死锁暂时发生，检测到后再解除。典型考法：比较两类方法的信息需求、分配时机、开销和是否限制请求顺序。易错点：把「避免」与「预防」混同，或认为检测能保证系统不发生死锁。`,related:[{year:2019,no:30,why:`该题综合考查剥夺、预防、银行家算法与死锁阻塞进程数的叙述；本题把范围收窄到「避免 vs 检测」的信息需求和分配时机。`}]},"real-2022-46":{title:`双线程操作的信号量同步设计`,steps:`**依赖关系。** 先把约束画成依赖关系。T1 内部顺序是 A→E→F，T2 内部顺序是 B→C→D；跨线程的约束有两条：C 必须在 A 完成后执行（A→C），E 必须在 C 完成后执行（C→E）。其余约束 B→C、C→D、E→F 都在同一线程内，程序顺序已经保证。
+
+依赖图可以写成：
+
+\`\`\`text
+A ──┐
+    ├──→ C ──→ D
+B ──┘         └──→ E ──→ F
+\`\`\`
+
+**跨线程必要性。** 跨线程的先后关系不会被程序顺序自动保证：操作系统可以任意调度 T1、T2，若没有同步，T2 可能在 A 之前执行 C，T1 也可能在 C 之前执行 E。因此每条跨线程边需要一个信号量；同线程边不需要。同一进程的线程虽然共享地址空间，但共享内存只保证数据可见，不保证执行次序，不能靠「同进程」替代信号量。
+
+**完整伪代码。** 以下用 wait/signal 表示 P/V：
+
+\`\`\`c
+semaphore AC = 0;   /* 表示 A 已完成 */
+semaphore CE = 0;   /* 表示 C 已完成 */
+
+void T1() {
+    A;
+    signal(AC);     /* 通知 T2：A 已完成 */
+    wait(CE);       /* 等待 T2 完成 C */
+    E;
+    F;
+}
+
+void T2() {
+    B;
+    wait(AC);       /* 等待 T1 完成 A */
+    C;
+    signal(CE);     /* 通知 T1：C 已完成 */
+    D;
+}
+
+void main() {
+    create_thread(T1);
+    create_thread(T2);
+}
+\`\`\`
+
+**信号量作用与初值。** \`AC\` 表示「A 已完成」，初值为 0，T1 在 A 后 signal、T2 在 C 前 wait；\`CE\` 表示「C 已完成」，初值为 0，T2 在 C 后 signal、T1 在 E 前 wait。初值必须为 0，因为开始时两个事件都还没发生，先执行 wait 的线程应被阻塞，直到对方 signal。
+
+**为什么不能只用一个信号量？** 若 AC 和 CE 合并为一个初值 0 的信号量，T1 在 A 后 signal 后，可能自己先执行 wait 把这个信号消费掉，T2 再 wait 时就阻塞，C 反而无法在 A 后执行，约束被破坏；两个方向、两个事件必须各用一个信号量。
+
+**答案：设置 \`AC=0\`、\`CE=0\`；T1 执行 \`A; signal(AC); wait(CE); E; F;\`，T2 执行 \`B; wait(AC); C; signal(CE); D;\`。**
+
+补充：若把 A、B、C、D、E、F 分别放到六个线程，则每条依赖边都要配一个信号量；本题利用同线程程序顺序，只需为两条跨线程边设信号量。这是「按依赖边设计、同线程边可省」的通用方法。`,knowledge:`信号量同步的通用做法：把每个「必须先发生」的约束看成一条有向边，在边的起点后 signal、终点前 wait，信号量初值为 0。若多个前驱汇合到一个操作，每个前驱边一个信号量；若一条边在同一线程内，程序顺序已保证，可省略。信号量只表达事件是否发生，不表达数据；计数信号量可用于多个同类资源，本题每事件只发生一次，用 0/1 二值信号量即可。典型考法：给前驱图写 P/V 代码、说明信号量初值、判断能否合并信号量、分析死锁/并发度。易错点：把 signal 放在 wait 前导致自己消费自己的信号、漏掉汇合边、给同线程边多加信号量。`,related:[{year:2020,no:45,why:`同样从操作的先后约束设计初值为 0 的信号量；2020 年第 45 题有两组前驱汇合，本题预先给出线程分工，可由线程内顺序保证的边不需要另设信号量。`}]}},mC={"mock-6-29":{title:`程序链接方式的判定`,steps:`先按"链接发生在什么时候、模块什么时候进入内存"把几种方式排开。静态链接在程序运行前就由链接器把所有目标模块和库合并成一个完整的可执行文件，运行时不再链接；装入时动态链接是在程序装入内存的过程中边装入边链接，模块仍随程序一起被装入；运行时动态链接则把装入和链接都推迟到运行中真正调用该模块时。
+
+题干的限定有两层：一是"仅当用户触发特定功能（如渲染）时"，说明模块在被调用前不进入内存；二是"将该功能对应的模块装入内存并完成链接"，说明装入与链接同时发生在运行期间。静态链接和装入时动态链接都会在运行前或装入阶段把模块带进内存，只有运行时动态链接满足按需装入。
+
+"编译时动态链接"并非常规分类，动态链接本身就不在编译阶段完成，可排除；内存有限正是采用运行时动态链接的典型动机——未被调用的功能模块根本不占内存。
+
+**所以选 D（运行时动态链接）。**`,knowledge:`程序的链接按时刻分为静态链接、装入时动态链接、运行时动态链接。静态链接生成完整可执行文件，运行时不再链接；装入时动态链接在装入阶段边装入边链接，模块仍全部进入内存；运行时动态链接只在模块被调用时才装入并链接，可显著减少同时驻留的模块数。典型出题方式是给一个"仅在被调用时才装入"的场景判断链接方式，或混淆"动态"与"运行时"，用装入时动态链接作干扰项。`,related:[]},"mock-7-28":{title:`可变分区中紧凑技术的作用`,steps:`可变分区按作业实际需求划分分区，作业反复装入、撤销后，内存中会留下许多分散的小空闲区。这些空闲区总量也许够，但单块都不够大，新作业仍装不下，这就是外部碎片。
+
+紧凑（compaction）把已在内存中的作业向内存一端移动，使分散的空闲区连成一块大的连续空闲区，从而提高内存利用率、让更大的作业有机会装入。它减少的是外部碎片，不是内部碎片，也不能消除碎片——碎片总量仍不足时作业照样装不下。
+
+再看代价与干扰项：紧凑要移动正在运行的作业，必须依靠动态重定位等支持，移动和地址转换的开销会增加，而不是加快内存访问；它不改变进程调度，也不涉及分页，因而不会减少进程切换时间或降低缺页中断率。
+
+**所以选 A（减少外部碎片）。**`,knowledge:`固定分区产生内部碎片，可变分区产生外部碎片。紧凑（移动技术）把已分配区向一端移动，使空闲区合并，针对的是外部碎片，收益是提高内存利用率，代价是需要动态重定位、移动期间系统开销增大。常见出题方式是问紧凑的首要优点，并用"加快地址转换""减少缺页""减少进程切换"等与内存分配无关的说法作干扰项。`,related:[{year:2019,no:32,why:`同在可变分区语境下讨论外部碎片；该题比较哪种分配算法更容易留下碎片，本题讨论紧凑技术针对的碎片类型及其代价边界。`}]},"real-2016-28":{title:`段式地址转换的检查顺序`,steps:`段式地址转换先按段号查段表项，再做三类检查：段号是否超出段表范围、段内地址是否小于段长、本次访问是否符合该段的权限。
+
+题中段号为 2，段表恰有 0、1、2 三项，段号合法；该段状态为"在内存"，起始地址 4000，权限为读写，因此不存在段缺失或越权问题。剩下的关键检查是段长：段 2 的段长为 300，而段内地址为 400，400≥300，已超出该段范围。
+
+一旦段内地址越界，转换立即终止并产生越界异常，不会再去计算 4000+400=4400。4400 正是把"段起始地址+段内地址"机械相加得到的干扰项；只有段内地址小于 300 时，才应得到 4400。
+
+**所以选 D（越界异常）。**`,knowledge:`段表项通常包含段长、内存起始地址（基址）、权限和状态。地址转换的顺序是：段号合法→段内地址小于段长→权限允许→物理地址=基址+段内地址；任一项不满足分别产生越界、越权等异常，状态为不在内存则产生段缺失。与页式不同，段式必须显式检查段内地址是否越界。常见出题方式是给段表求物理地址或判断异常类型，陷阱是跳过段长检查直接相加，以及把权限不符与越界混淆。`,related:[{year:2019,no:28,why:`都以段表项为判断依据；该题考共享段表中段号与段表项的共享方式，本题考段长、权限、状态在地址转换中的检查顺序。`}]},"real-2012-25":{title:`虚拟存储器实现基础与容量`,steps:`虚拟存储的核心是"部分装入、请求调入、置换"，这要求一个进程的虚拟空间可以分散地映射到不连续的物理页框或段中：用到哪页才调入哪页，内存不够时把暂时不用的页换出。连续分配要求整个进程占一块连续内存，既不能按页/段部分装入，也无法把离散的虚拟页映射到任意页框，因此虚拟存储只能建立在非连续分配（分页、分段、段页式）之上，A 错、B 对。
+
+容量方面，虚拟地址空间的可寻址上限由 CPU 的地址位数（逻辑地址空间大小）决定；实际能容纳的数据来自内存与外存的共同支持，而不是只由内存或只由外存决定。"只受外存限制"忽略了内存这一层，"只受内存限制"则否认了换入换出，C、D 都错。
+
+**所以选 B。**`,knowledge:`虚拟存储建立在局部性原理上，通过请求分页/请求分段实现部分装入与按需调页，因此必须采用非连续分配。虚拟地址空间的上限由地址结构（地址位数）决定，实际容量来自内存与外存之和，不能说只受其中一方限制。典型出题方式是辨析"虚拟存储只能基于非连续分配""容量只受内存/外存限制"等说法，或与覆盖、交换技术比较适用范围。`,related:[{year:2025,no:27,why:`都涉及虚拟存储对页框的依赖；该题由指令系统的寻址方式确定进程最少需要的页框数，本题辨析虚拟存储的实现基础与容量上限。`}]},"real-2014-32":{title:`多级页表的优点`,steps:`多级页表把一张大页表再分页，形成页目录→各级页表→页面的层次。这样每张页表本身可以离散地存放在不连续的页框里，不必为整张页表预留一大片连续内存；而且未用到的地址区间对应的下级页表可以不建立，从而节省页表空间。这正是多级页表的主要优点，D 对。
+
+逐项排除：A 错，每多一级就多一次访存，地址变换只会变慢，通常靠 TLB 缓解；B 错，多级页表不改变缺页处理逻辑，页表本身也可能缺页，不能减少缺页中断；C 错，页表项仍需存放页框号和标志位，字节数由物理页框号宽度等决定，不因分级而变小。
+
+**所以选 D（减少页表所占的连续内存空间）。**`,knowledge:`多级页表用"页表分页、离散存放、按需建立下级页表"解决大页表要求连续内存的问题，空间收益明显，代价是地址转换访存次数增加。常见出题方式是问多级页表的优点/缺点，设置"加快地址变换""减少缺页""减小页表项"等干扰项；也可能结合 TLB、页表级数与页表大小的计算，注意区分页表项大小与页表占用空间。`,related:[{year:2026,no:29,why:`都考多级页表的收益与代价；该题判断多级页表能否降低平均访存时间（不能，需靠 TLB 与页表缓冲），本题判断其节省连续内存的优点。`}]},"mock-2-28":{title:`请求分页页表项字段的作用`,steps:`请求分页的页表项除了页框号，还要回答四个问题。状态位（存在位）回答"该页现在在不在内存"，缺页时靠它触发异常，Ⅰ 对。访问字段（访问位）记录页面近期是否被访问，供 LRU、Clock 等置换算法挑选淘汰页，Ⅱ 对。修改位（脏位）记录页面调入后有没有被写过，换出时据此决定是否写回外存，Ⅲ 对。外存地址字段记录该页在磁盘或交换区中的位置，缺页时按它把页调入，Ⅳ 对。
+
+这些字段不能互相替代：访问位服务于"选谁换出"，修改位服务于"换出时写不写回"，状态位服务于"在不在内存"，外存地址服务于"从哪里调入"。
+
+四条都正确，**所以选 D（Ⅰ、Ⅱ、Ⅲ、Ⅳ）。**`,knowledge:`请求分页页表项的常见字段有：页框号（物理位置）、状态位/存在位（是否在内存）、访问位（供置换算法参考）、修改位/脏位（决定换出是否写回）、外存地址（调入时的磁盘位置）。典型出题方式是把字段与用途配对，或结合改进型 Clock 用（访问位，修改位）决定淘汰次序；易错点是把修改位误解为"是否已调入"，或认为访问位只用于统计而不参与置换。`,related:[{year:2021,no:28,why:`都依赖页表项的存在位、访问位、修改位；该题用这些位完成改进型 Clock 下的地址变换，本题辨析各字段的职责。`}]},"real-2023-30":{title:`共享页的页号与页框号关系`,steps:`进程 R、S 各有独立的虚拟地址空间，页号是虚拟地址的一部分，只在本进程内有意义；同一份共享数据放在各自虚拟空间的什么位置可以不同，因此 p1 与 p2 不一定相等。
+
+共享的实质是"同一份物理内容只存一份"。既然 data 只有一份，它必须落在同一个物理页框里，R、S 的页表项都指向这个页框，所以 f1 与 f2 一定相等。若 f1≠f2，两个页框各存一份副本，那就成了复制而不是共享，双方的修改也不再互相可见。
+
+**所以选 C（p1 和 p2 不一定相等，f1 和 f2 一定相等）。**`,knowledge:`虚拟地址空间是每进程私有的，页号属于虚拟地址；物理页框是全局唯一的，共享意味着多个页表项指向同一页框。因此共享页的虚拟页号可以不同，物理页框号必须相同。典型出题方式是给两进程共享同一数据/文件，判断页号与页框号是否相等；也可能与共享段表（段号可不同、段表项共享）或写时复制（写后页框才分离）结合，注意题干是否声明只读共享。`,related:[{year:2026,no:30,why:`都是共享页的虚拟地址与物理地址关系；该题是内存映射文件的两个页表项，本题是两进程共享数据页的页号与页框号。`}]},"real-2022-29":{title:`缺页异常处理的组成`,steps:`缺页异常说明页 b 不在内存，处理程序必须把它变成可访问：先在页表中建立页 b 的页号与所分配页框号的对应关系（B），再从外存把页 b 读入该页框（C），最后把页表项的存在位置 1（D）。这三步是"把页调入并让地址转换成功"的必要组成。
+
+只有"淘汰内存中的页"不是必然的：如果系统还有空闲页框，直接分配一个空页框装入页 b 即可，根本不需要置换；只有没有空闲页框时，才按置换算法选一页淘汰，脏页还要先写回。因此 A 是"不一定包含"的操作。
+
+**所以选 A（淘汰内存中的页）。**`,knowledge:`缺页处理的一般流程是：地址转换发现存在位为 0→产生缺页异常→检查访问合法性→有空闲页框则分配，否则选页置换（脏页写回）→从外存读入所需页→修改页表项（页框号、存在位、访问位）→重新执行被中断的指令。典型出题方式分"可能执行""一定执行""不一定执行"三类，注意分配页框与淘汰页的区别：有空闲页框时只分配、不淘汰；也要把缺页与越界访问区分开。`,related:[{year:2011,no:28,why:`都问缺页处理中会执行哪些操作；该题用"可能"涵盖修改页表、磁盘 I/O 与分配页框，本题问哪一种操作不一定包含。`}]},"real-2014-30":{title:`Belady 异常与算法性质`,steps:`Belady 异常指分配的页框增多，缺页次数反而增加。它是否出现，取决于置换算法是否具有栈性质：把 n 个页框时的驻留页集合记为 S(n)，若对任意访问序列都有 S(n)⊆S(n+1)，则多给页框不可能把原本命中的访问变成缺页，缺页次数单调不增。
+
+LRU 按最近使用时间淘汰，OPT 按未来最远使用淘汰，二者都满足上述栈性质，不会出现 Belady 异常，Ⅰ、Ⅲ 排除。FIFO 只按进入内存的先后淘汰，与访问的历史和未来无关，驻留集合不满足包含关系；经典访问串 1,2,3,4,1,2,5,1,2,3,4,5 中，3 个页框缺页 9 次，4 个页框反而缺页 10 次，Ⅱ 符合。
+
+**所以选 A（仅Ⅱ）。**`,knowledge:`Belady 异常是"页框数增加、缺页次数反增"的反常现象，只会出现在不满足栈性质的算法中；FIFO 是典型代表，LRU 和 OPT 属于栈算法，不会出现。典型出题方式是给出 LRU/OPT/FIFO 组合判断谁能出现 Belady，或给访问串分别按不同页框数模拟比较缺页次数；注意它与抖动（页框长期不足导致频繁换入换出）不是同一概念。`,related:[{year:2015,no:27,why:`都考 LRU 的行为；该题要求在给定访问序列下按 LRU 选出被淘汰页，本题判断 LRU 等栈算法不会出现 Belady 异常。`}]},"real-2015-30":{title:`页面分配与置换策略的组合`,steps:`两种策略要分开看：分配策略决定每个进程"能占几个页框"，置换策略决定缺页时"从哪个范围挑牺牲页"。
+
+固定分配给每个进程分配固定的页框数，运行期间不增不减；全局置换则允许在全体进程的页框范围内选牺牲页。二者合在一起会矛盾：进程 A 缺页时可能淘汰进程 B 的页，B 的驻留页框数因此减少，A 的并不增加，固定分配的名额被打破，系统也无法再按固定份额管理驻留集。因此"固定分配+全局置换"不能组合，C 符合题意。
+
+其余组合都自洽：可变分配+全局置换让进程按缺页情况调整份额；可变分配+局部置换在本进程范围内置换并动态调整份额；固定分配+局部置换只在本进程的固定名额内置换，是最常见的组合。
+
+**所以选 C（固定分配，全局置换）。**`,knowledge:`页面分配策略有固定分配与可变分配，置换策略有局部置换与全局置换，两两组合共四种，其中固定分配+全局置换不成立，因为全局置换会改变进程实际占有的页框数，与"固定"矛盾。固定分配+局部置换按进程固定份额在本进程内选页；可变分配+局部置换根据缺页率增减份额；可变分配+全局置换在全体页框中选页并按需调份额。典型出题方式是判断不能组合的策略，或给定策略模拟缺页次数。`,related:[{year:2025,no:26,why:`都涉及固定分配与局部置换；该题在该策略下模拟 LRU 统计缺页次数，本题判断固定分配为何不能与全局置换组合。`}]},"real-2011-29":{title:`抖动时可采取的措施`,steps:`抖动是进程的驻留页框太少、刚换出的页很快又被访问，系统把大部分时间耗在换入换出上，缺页率极高而 CPU 利用率反而很低。根因是并发度太高、每个进程分到的页框不足，所以有效措施要能降低并发度或增加每进程可用的页框。
+
+Ⅰ 撤销部分进程：减少同时运行的进程数，把页框释放给剩下的进程，直接缓解页框不足，有效。Ⅱ 增加磁盘交换区容量：交换区只是换出页的存放场所，扩大它并不会增加物理内存页框，也不会降低缺页率，无效。Ⅲ 提高用户进程优先级：只改变调度顺序，不增加页框，甚至可能让更多进程争抢内存，无效。
+
+**所以选 A（仅Ⅰ）。**`,knowledge:`抖动源于进程数过多而页框不足，表现为高缺页率、低 CPU 利用率、磁盘频繁换入换出。缓解措施包括撤销或挂起部分进程以降低多道程度、增加物理内存、采用局部置换或工作集模型按需分配页框；而扩大交换区、提高优先级、单纯加快磁盘都不能增加可用页框，因而不是有效措施。典型出题方式是列若干措施判断哪些有效，并与 Belady 异常、缺页率影响因素区分。`,related:[{year:2016,no:29,why:`都与抖动/工作集机制相关；该题按窗口计算工作集，本题判断抖动时哪些措施能真正增加可用页框。`}]}},hC={"mock-2-30":{title:`文件逻辑结构的四条描述辨析`,steps:`### 先抓住逻辑结构与物理结构的区别
+
+文件的逻辑结构是用户看到的记录组织方式，物理结构才是磁盘上的块组织方式。题目四条都在逻辑结构层面判断。
+
+### 逐项判断
+
+- **A 错。** 记录式文件可以是定长记录，也可以是变长记录；只有定长记录才能用“起始地址 + 记录号 × 记录长度”直接定位任意记录，变长记录不能这样算。把记录式文件一概说成定长记录，并据此说一定能直接访问，不成立。
+- **B 错。** 流式文件是字节序列，用户可以按字节偏移定位，因此可以随机访问；顺序访问只是常见用法，不是“无法随机访问”。
+- **C 对。** 索引顺序文件按记录键排序，并另外建立索引表；既能顺序扫描，也能通过索引较快定位，代价是需要额外存储索引表。
+- **D 错。** 顺序文件是逻辑上按顺序组织的文件，物理上可以用连续、链接或索引方式存放；不连续存放并不妨碍按逻辑顺序访问。
+
+**答案：C。**`,knowledge:`### 机制
+
+逻辑结构回答“用户怎样组织记录”，常见有顺序文件、索引文件、索引顺序文件、流式文件和记录式文件。顺序文件按记录顺序存放；索引文件为记录或记录组建索引；索引顺序文件把两者结合，索引表只指向若干代表记录或记录组。流式文件把文件看成字节流，记录式文件把文件看成记录的集合，记录可定长也可变长。
+
+### 典型出题方式
+
+- 给出四条关于流式、记录式、顺序、索引顺序文件的描述，判断哪条正确。
+- 把“顺序文件”与“连续分配”混在一起，考逻辑结构与物理结构的区分。
+- 用“定长记录可直接访问、变长记录不能直接计算地址”设置陷阱。
+
+### 易错点
+
+不要因为“顺序文件”四个字就认为磁盘上必须连续；也不要把“记录式文件”一律当成定长记录。判断直接访问时，先问记录是否定长、是否有索引。`,related:[{year:2020,no:24,why:`同样围绕随机访问与变长文件选择组织方式；2020 问磁盘物理分配（索引分配），本题问用户视角的逻辑结构，顺序文件的逻辑顺序不等于物理连续。`}]},"real-2009-28":{title:`文件物理结构与随机访问、扩展需求`,steps:`### 先把三个要求拆开
+
+题目要同时满足两点：能随机访问任意数据块；文件增大时容易扩展。逐种结构比较。
+
+- **连续结构**：由起始块号和块数可直接算出第 i 块地址，随机访问最好；但文件增长时必须有一段足够大的连续空闲区，否则要整体搬移，扩展不方便，且会产生外部碎片。
+- **链式结构**：每个块里存下一块的指针，扩展时只需找空闲块挂到链尾，扩展容易；但要找第 i 块必须从头沿指针走 i 步，不能随机访问。定长块也不能直接算出位置，因为块在磁盘上不连续。
+- **索引结构**：索引块集中存放各数据块的块号；找第 i 块先读索引块再读数据块，可以随机访问；扩展时只需把新块号填入索引表，容易扩展。代价是需要额外的索引空间，并多一次索引块访问。
+
+**答案：B（索引结构）。**`,knowledge:`### 机制
+
+文件物理结构解决“文件的数据块在磁盘上怎样放”。连续分配用起始块号加偏移定位；链接分配用块内指针串成链；索引分配用索引块保存块号表。三者的随机访问代价不同：连续约 1 次磁盘访问，索引约 2 次（索引块加数据块，索引块可能已缓存），链接最坏要沿链读 i 次。
+
+### 典型出题方式
+
+- 问“既适合随机访问又便于文件扩展”的结构。
+- 比较三种结构在顺序访问、随机访问、增长、外部碎片上的差异。
+- 结合索引结点地址项计算最大文件长度或访问某个逻辑块所需的磁盘 I/O 次数。
+
+### 易错点
+
+“链式结构且块定长”仍然不能直接算出第 i 块地址，因为块与块之间不连续；不要把逻辑上的顺序访问与物理上的连续存放混为一谈。`,related:[{year:2013,no:24,why:`同样比较连续、链式、索引三种物理结构；2013 的只读视频播放更看重连续存放的局部性，2009 额外要求易于扩展，所以索引结构更合适。`}]},"mock-4-29":{title:`硬链接与符号链接的性质辨析`,steps:`### 先画目录项与索引结点的关系
+
+硬链接是“再加一个目录项，指向同一个索引结点”；符号链接是“新建一个独立文件，文件内容是目标路径名”。抓住这一点逐项判断。
+
+- **A 错。** 硬链接不复制文件内容，只增加一个指向同一 inode 的目录项，并把该 inode 的链接计数加一。
+- **B 错。** 符号链接是独立文件，有自己的 inode；与原文件共享 inode 的是硬链接。
+- **C 对。** 硬链接靠 inode 号指向文件，而 inode 号只在单个文件系统内唯一，所以硬链接不能跨文件系统创建。
+- **D 错。** 删除符号链接只删除这个链接文件本身；原文件仍在，只要路径还能找到就仍可访问。若原文件先被删除，符号链接才会变成悬空链接。
+
+**答案：C。**`,knowledge:`### 机制
+
+硬链接：多个目录项共享同一 inode，inode 中维护链接计数；删除一个目录项只把计数减一，计数为 0 才真正释放文件数据。硬链接不能跨文件系统，通常也不能指向目录。符号链接：单独分配 inode 和数据块，内容是目标路径；可以跨文件系统，目标删除后成为悬空链接。
+
+### 典型出题方式
+
+- 判断硬链接是否复制内容、是否共享 inode、能否跨文件系统。
+- 给定创建软链接、硬链接、删除原文件的顺序，计算链接计数或判断文件是否仍可访问。
+- 结合目录项、inode、链接计数考删除操作的完整流程。
+
+### 易错点
+
+“删除符号链接”不等于“删除原文件”；“硬链接”也不等于“复制文件”。看到 inode 时先问：这是目录项、inode 本身，还是 inode 中的链接计数。`,related:[{year:2009,no:31,why:`同样考硬链接与符号链接的 inode 和引用计数：2009 要算创建软、硬链接再删除原文件后的计数，本题判断跨文件系统与删除软链接的后果，前者算数、后者辨性质。`}]},"real-2014-29":{title:`首次打开文件时内核完成的动作`,steps:`### 把 open 与 read 的职责分开
+
+首次打开文件时，内核要按路径名找到文件、把它的控制信息调入内存并建立打开表项；真正读数据是 read 的事。
+
+- **A 错。** open 不把文件内容读到内存；只有 read（或 mmap 等）才涉及数据块。
+- **B 对。** open 按路径名逐级检索目录，找到目录项后把该文件的 FCB（采用索引结点时即 inode）读入内存；若不在内存则从磁盘调入，然后建立系统打开文件表项和进程的用户打开文件表项，返回文件描述符。
+- **C 错。** 读写权限是文件属性，open 只检查权限，不会因为打开而修改它；修改权限是 chmod 一类操作。
+- **D 错。** 数据缓冲区首指针是 read 等数据传送操作才涉及的运行信息；open 返回的是文件描述符，不是数据缓冲区指针。
+
+**答案：B。**`,knowledge:`### 机制
+
+教材模型把 open 描述为：按名检索目录，找到 FCB，把 FCB 调入内存，在系统打开文件表中建立或共享表项，在进程的用户打开文件表中建立表项，返回文件描述符。文件内容不在 open 阶段读入；打开后读写位置等运行状态由打开表项维护。
+
+### 教材打开文件表模型与现实实现的差异
+
+教材常把 FCB 当成一个整体，open 就是“把 FCB 读入内存”。现实系统（如 Linux）把文件名与属性分开：目录项保存“名字到 inode 号”的映射，inode 缓存保存文件属性和磁盘块位置；open 解析路径后取得 inode，创建一个打开文件描述（file object），进程 fd 表指向它。也就是说，现实不是整块复制 FCB，而是缓存 inode 并新建打开实例；但“open 只建立访问路径与表项、不读文件数据”这一考试结论不变。
+
+### 典型出题方式
+
+- 问首次 open 时操作系统做什么，选项混入“读文件内容”“修改权限”“返回缓冲区指针”。
+- 区分 open、read、close 各自负责的元数据和数据动作。
+- 结合系统打开文件表、用户打开文件表、文件描述符考表项关系。`,related:[{year:2023,no:31,why:`同属 open/close 生命周期与打开文件表：2023 问 close 时释放的是内存 inode（不是磁盘链接计数），本题问首次 open 只调入 FCB 而不读文件内容，二者都考元数据与表项而非数据读取。`}]},"real-2020-23":{title:`多进程共享同一文件的表项关系`,steps:`### 先区分两张表
+
+教材模型里，系统打开文件表按“被打开的文件”建表项，保存文件属性、打开计数等；每个进程另有用户打开文件表，保存本进程的文件描述符、读写位置和指向系统表项的指针。
+
+- **A 错。** 多个进程可以同时以读或写方式打开同一文件；操作系统不会因为共享就只允许读。若要互斥写，需要进程自己加锁或使用文件锁。
+- **B 对。** 系统打开文件表中，同一个文件只需一个表项来保存其属性；多个进程共享该表项，通过引用计数管理。
+- **C 错。** 各进程的用户打开文件表项并不相同：文件描述符、读写位置、打开方式等可以不同，尤其是读写指针通常各自独立。
+- **D 错。** 进程关闭文件时只把系统表项的引用计数减一；计数变为 0 时才删除表项，否则其他进程还要用。
+
+**答案：B。**`,knowledge:`### 机制
+
+两级打开文件表是本题的核心：系统表项面向文件，进程间可共享；用户表项面向进程，记录 fd 和本次打开的读写位置。关闭操作只减少引用计数，最后一个关闭者才释放系统表项。多个进程各自 open 同一文件时，读写位置通常互不影响；fork 或 dup 继承同一个打开实例时才共享偏移。
+
+### 教材打开文件表模型与现实实现的差异
+
+教材说“系统打开文件表仅一个表项包含 F 的属性”。现实中 Linux 用 inode 缓存保存文件属性，同一文件在内存中确实只有一份 inode；但每次 open 会创建一个打开文件描述（struct file），其中保存本次打开的偏移、标志和引用计数，多个打开文件描述可以指向同一 inode。因此“属性只有一份”对应 inode，“偏移是否共享”要看是否共享同一个打开文件描述：fork 或 dup 共享，独立 open 不共享。考试按教材的系统表与用户表模型选 B，同时要知道现实实现把“属性”和“每次打开的状态”拆开了。
+
+### 典型出题方式
+
+- 判断多进程共享文件时能否写、系统表项是否唯一、用户表项是否相同、关闭时是否立即删除表项。
+- 结合硬链接、fork、dup 问读写指针是否共享。
+- 给打开和关闭顺序，问引用计数和表项何时释放。`,related:[{year:2017,no:31,why:`同样考系统打开文件表与用户打开文件表：2017 用硬链接 f1、f2 被两个进程打开，问读写指针是否相同、是否共享内存索引结点、fd 是否各指向用户表项；本题用同一文件 F 的多进程共享，判断表项数量与关闭行为。`}]},"mock-5-29":{title:`文件长度字段的修改条件`,steps:`### 盯住“长度字段”而不是“是否写了文件”
+
+文件长度保存在 FCB（索引结点实现时即 inode）中。只有改变文件内容规模的操作才会改它。
+
+- **A 错。** 以只读方式打开文件，只是把 FCB 调入内存、建立打开表项并设置读写位置；磁盘上的 FCB 及长度字段不变。
+- **B 错。** 读一个数据块只改变读写位置指针，文件内容、占用块数和长度都不变。
+- **C 错。** 覆盖写文件中已有的一个字节，题目已明确“不改变文件长度”；数据内容可能变、修改时间可能变，但长度字段不变。
+- **D 对。** 在文件末尾追加一个字节，文件长度加 1，必须更新 FCB 的长度字段；如果原来最后一个块已满，还要分配新块并更新索引或块指针。
+
+**答案：D。**`,knowledge:`### 机制
+
+FCB 或 inode 中的长度字段记录文件字节数。追加写、截断、插入、删除会改变长度；覆盖写、读、打开、关闭通常不改变长度。追加可能同时改变“占用块数”和索引信息，但题目问的是长度字段，核心判断是文件规模是否变化。
+
+### 教材模型与现实实现的差异
+
+教材说 open 把 FCB 调入内存；现实中 inode 在内存缓存，追加写更新 inode 的 i_size，覆盖写只改数据块内容。无论哪种实现，长度字段都是元数据，不是读写位置指针；打开文件时建立的偏移量变化不等于文件长度变化。
+
+### 典型出题方式
+
+- 给出打开、读、覆盖写、追加写等操作，问哪一个必然修改 FCB 的长度字段。
+- 把“修改 FCB”与“修改长度字段”混在一起：写操作可能更新修改时间，但不一定改长度。
+- 结合文件中间插入，问是否改变长度以及要搬移多少数据。`,related:[{year:2012,no:28,why:`同样区分 open、read 等操作对文件状态的影响：2012 的 read 只改读写位置并可能阻塞，本题只有末尾追加改变 FCB 长度字段，两者都要求把“数据传送”和“文件规模变化”分开。`}]},"real-2024-26":{title:`空闲空间管理结构的空间开销`,steps:`### 先看每种结构要记多少项
+
+题目问“占用外存空间大小与当前空闲块数量无关”。逐种看空间由什么决定：
+
+- **位示图（位图）**：每个磁盘块用 1 位表示空闲或占用，位数等于磁盘总块数，大小约为总块数除以 8；无论当前空多少块，位图都要覆盖所有块，因此与空闲块数量无关。
+- **空闲表**：为每一段连续空闲区建一个表项，表项数随空闲区数量和碎片程度变化；空闲块越少，通常表越小。
+- **成组链接**：把空闲块分组，每组用少量单元记录下一组的位置和本组块号；组数随空闲块总数变化。
+- **空闲链表**：每个空闲块或每个空闲区作为一个结点串起来，结点数随空闲块数量变化。
+
+**答案：A（位示图）。**`,knowledge:`### 机制
+
+空闲空间管理要记录哪些块可用。位图用固定长度的位串覆盖整个磁盘，空间只由总块数决定；空闲表、空闲链表、成组链接都按“当前空闲块或空闲区”组织，空间随空闲数量变化。位图的主要优点是查找连续空闲块方便、状态位可直接计算；缺点是位图本身可能较大。
+
+### 典型出题方式
+
+- 问哪种结构的空间开销与当前空闲块数量无关。
+- 给磁盘容量、块大小，计算位图大小（总块数除以 8）。
+- 比较位图、空闲表、空闲链表、成组链接在分配、回收和查找连续块上的效率。
+
+### 易错点
+
+位图大小由“总块数”决定，不是由“空闲块数”决定；不要把位图与空闲表混为一谈。文件分配表 FAT 的表项数也由总簇数决定，但本题选项没有 FAT，不要自行扩大选项。`,related:[{year:2019,no:26,why:`同样考空闲磁盘块管理结构：2019 问哪些结构可用于管理空闲块（位图、空闲链、FAT，索引结点不行），2024 进一步问哪种结构的空间开销与空闲块数量无关，前者辨可用性、后者比空间开销。`}]},"real-2025-28":{title:`虚拟文件系统的定位`,steps:`### 抓住“统一接口”而不是“虚拟内存”
+
+VFS 是内核中的文件系统抽象层，让上层用同一组系统调用访问不同文件系统。逐项判断：
+
+- **A 错。** VFS 不是“运行在虚拟内存里的文件系统”；虚拟内存是内存管理概念，VFS 是文件系统接口的抽象层。
+- **B 错。** VFS 的主要目的不是加速访问，而是屏蔽不同文件系统的差异、提供统一接口；抽象层本身甚至可能带来少量开销。
+- **C 对。** VFS 定义统一的文件操作接口（如 open、read、write、close）和统一的对象模型，使 ext4、FAT、NFS 等不同文件系统都能接入。
+- **D 错。** VFS 既能访问本地文件系统，也能访问网络文件系统（如 NFS、CIFS），还能接入伪文件系统。
+
+**答案：C。**`,knowledge:`### 机制
+
+VFS（虚拟文件系统）位于系统调用与具体文件系统之间，向上提供统一的文件操作接口，向下通过各文件系统的实现完成实际读写。它通常用超级块、inode、目录项、打开文件等对象来描述文件系统，并通过挂载把不同文件系统接入同一目录树。
+
+### 典型出题方式
+
+- 问 VFS 的作用，选项混入“运行在虚拟内存”“加快访问速度”“只能访问本地文件系统”。
+- 区分 VFS 抽象层与具体文件系统（ext4、FAT、NFS）。
+- 结合挂载、路径解析、统一系统调用考 VFS 的位置。
+
+### 易错点
+
+VFS 不是一种具体的磁盘文件系统，也不是虚拟内存的一部分；它的核心价值是“同一接口访问多种文件系统”，不是性能优化。`,related:[]},"real-2011-46":{title:`一次性写入文件系统的数据块组织与 FCB 存放`,steps:`### （1）为什么选连续结构
+
+题目给出两个关键条件：文件数据一次性写入，已写入的文件不可修改；可以多次创建新文件。
+
+- **连续结构**：创建文件时一次性分配一段连续磁盘块，FCB 记录起始块号和块数。顺序读性能好，随机访问也能由“起始块号 + 逻辑块号”直接算出物理块号，寻道次数少。连续结构最大的缺点是不易扩展、可能产生外部碎片；但文件写入后不再修改，不需要在原文件上增长，扩展问题不再出现。外部碎片仍可能存在，但题目只要求选更合适的组织方式，连续结构在访问速度上优势明显。
+- **链式结构**：扩展容易，但只能沿指针顺序找块，随机访问差；对一次性写入、之后频繁读取的文件不合适。
+- **索引结构**：能随机访问、也便于扩展，但每次访问要先读索引块，额外占索引空间；在文件不可修改、希望访问路径尽量短的前提下，不如连续结构直接。
+
+因此选**连续结构**。为定位数据块，FCB 中至少要有**起始块号**和**块数**（或起始块号与结束块号）；若文件长度按字节记录，还需要文件字节长度，核心是“起点 + 长度或块数”。
+
+### （2）FCB 集中存放更好
+
+把 FCB 集中放在专门的区域，文件数据也集中存放。按文件名查找时，先读目录或 FCB 区域就能得到文件属性与数据块位置，磁头移动和磁盘 I/O 次数较少。若把 FCB 与对应文件的数据块连续放在一起，FCB 会随文件分散在磁盘各处，查找不同文件时要跳到不同数据区，反而增加寻道。本题还是一级目录，目录本身是一张线性表，FCB 集中后按名扫描目录即可。
+
+**答案：**（1）连续结构；FCB 记录起始块号和块数（或起始块号、结束块号，必要时再记字节长度）。（2）FCB 集中存储更好，可减少磁头移动和磁盘 I/O 访问次数。`,knowledge:`### 机制
+
+这道题把“文件物理结构”和“FCB 的存放位置”放在一起考。连续分配适合一次性写入、之后只读的文件：创建时确定大小，之后不需要扩展；随机访问可由起始块号和块号直接计算。FCB 集中存放则让按名查找只访问元数据区，避免在数据区之间来回寻道。
+
+### 教材模型与现实实现的差异
+
+教材常把 FCB 当成包含文件名、属性、物理位置的整体。现实中通常把目录项（文件名到 inode 号）与 inode 分开：目录项放在目录文件的数据块中，inode 集中放在 inode 表（如 ext2、ext3、ext4 按块组集中存放）；查找时先读目录块，再读对应 inode，打开后 inode 进入内存缓存。这和本题“FCB 集中存放”的思路一致，但要知道现实不是把文件名和全部属性塞在一个连续 FCB 里。
+
+### 典型出题方式
+
+- 给“文件一次写入、不可修改”等条件，问连续、链式、索引哪种合适，并追问 FCB 字段。
+- 问 FCB 集中存放还是随数据存放，理由通常落在寻道和 I/O 次数。
+- 结合目录检索，问查找一个文件需要访问哪些磁盘块。
+
+### 前提与变式
+
+本题答案依赖“文件一次性写入、之后不可修改”这一前提。若文件允许增长或反复插入，连续结构的扩展缺点就会出现，此时索引结构更合适；判断时要先看文件大小是否固定。`,related:[{year:2009,no:28,why:`同样比较连续、链式、索引三种物理结构；2009 在“可扩展”的前提下选索引，2011 的文件一次性写入、不可修改，连续结构的扩展缺点消失，于是转向连续结构并追问 FCB 字段。`}]}},gC={"mock-1-32":{title:`I/O 控制方式的 CPU 参与与总线占用`,steps:`先抓住三种方式的共同目标：把设备中的一块数据送到主存，差别在于**谁等待、谁搬数据、谁占总线**。
+
+- **Ⅰ 程序查询**：CPU 反复读设备状态寄存器，设备就绪后还要由 CPU 用 load/store 指令把数据从控制器读到主存，因此既忙等又参与传送，正确。
+- **Ⅱ 中断方式**：CPU 发出 I/O 命令后可以转去执行其他进程，但发出请求的进程要等数据到达才能继续，通常进入阻塞态；“CPU 能执行别的进程”不等于“请求进程不被阻塞”，错误。
+- **Ⅲ DMA**：CPU 只需初始化 DMA 控制器（主存起始地址、传送字节数、方向）并启动，之后由 DMA 控制器接管设备与主存之间的成块传送，正确。
+- **Ⅳ DMA 与总线**：DMA 控制器要访问主存，必须成为总线主设备、占用系统总线；它与 CPU 争用总线（周期挪用），会拖慢 CPU 访存，错误。
+
+综上，正确的是Ⅰ、Ⅲ，对应 **B**。`,knowledge:`四种 I/O 控制方式可按 CPU 介入程度排成一条线：程序查询（全程忙等并搬运）→ 中断（只在就绪和传送时介入，请求进程仍然阻塞）→ DMA（只初始化与处理完成中断，数据块由控制器搬）→ 通道（执行通道程序，CPU 只在开始和结束时介入）。判断时分别问三件事：CPU 是否忙等、CPU 是否亲自搬数据、传送是否占用系统总线。
+
+常见出题方式是四条陈述选组合，或用“CPU 利用率/进程状态”设混淆项。高频陷阱是把“CPU 不必等待”偷换成“进程不会阻塞”，以及认为 DMA 不占总线。`,related:[{year:2017,no:32,why:`同考 DMA 的启动与完成流程：2017 年题排列“初始化→传送→中断→中断服务”的时序，本题判断 DMA 由谁控制传送、是否占系统总线；边界是前者考操作顺序，后者考 CPU 参与程度与总线争用。`}]},"real-2012-26":{title:`I/O 软件层次的自顶向下顺序`,steps:`这四层按“离用户由近到远、离硬件由远到近”排列，上层依赖下层提供的接口。
+
+- 最上层是**用户级 I/O 软件**：库函数、SPOOLing 之类，面向用户程序。
+- 其下是**设备无关软件**：提供统一命名、缓冲、保护、分配，并把逻辑设备映射到物理设备；这一层不关心具体设备寄存器。
+- 再往下是**设备驱动程序**：针对具体设备编程控制器寄存器、启动 I/O、处理设备相关细节。
+- 最底层是**中断处理程序**：直接与硬件交互，保存现场、识别中断源、完成最紧急的底层处理；驱动程序等待的 I/O 完成信号正来自它，所以它不可能排在驱动程序之上。
+
+因此顺序为“用户级 I/O 软件 → 设备无关软件 → 设备驱动程序 → 中断处理程序”，对应 **A**。`,knowledge:`四层 I/O 软件的分工可用“抽象程度”记忆：越往上越通用、越往下越设备相关。设备无关层负责“对上层统一”，驱动层负责“对硬件具体”，中断层负责“对事件最紧急”。
+
+典型考法：给出四层要求排序；或问某件事由哪一层完成，例如把逻辑地址换算成柱面号、磁头号、扇区号属于设备驱动程序（2013 年第 25 题）。陷阱是把中断处理放到驱动之上，误以为“先处理中断再驱动设备”。`,related:[{year:2011,no:26,why:`同考 I/O 请求自上而下的处理次序：2011 年题把四层具体化为“用户程序→系统调用处理程序→设备驱动程序→中断处理程序”，本题要求给四类软件排序；边界是前者考一次请求的调用链，后者考 I/O 子系统的静态层次。`}]},"real-2022-32":{title:`设备驱动程序的职责边界`,steps:`逐条核对驱动程序的定义：它是**设备相关**的软件，向上提供统一接口，向下按具体控制器和 I/O 控制方式操作硬件。
+
+- **A“与 I/O 控制方式无关”**：驱动程序必须知道设备采用程序查询、中断、DMA 还是通道，才能正确设置寄存器、启动传送并处理完成事件，因此该说法错误。
+- **B 初始化设备**：打开设备、复位、设置工作参数通常由驱动程序完成，正确。
+- **C 执行驱动时可能阻塞**：驱动发出 I/O 后若需等待设备完成，进程可以进入阻塞态，让出 CPU，正确。
+- **D 读/写由驱动控制**：把上层的 read/write 请求翻译成设备命令并启动传送，正是驱动的核心职责，正确。
+
+题目问“不正确”，答案是 **A**。`,knowledge:`驱动程序位于设备无关软件与中断处理之间：它把抽象的“读/写”翻译成设备寄存器操作，负责设备初始化、启动 I/O、处理中断后的完成工作；它依赖具体硬件，也依赖该硬件采用的 I/O 控制方式。
+
+常见考法有两种：一是像本题用“与 I/O 控制方式无关”这类绝对化表述设错；二是问“驱动程序是否属于内核、是否可阻塞、是否直接控制设备”。判断原则：设备相关、按硬件定制、向上接口统一，但内部实现不独立于控制方式。`,related:[{year:2026,no:31,why:`同考设备驱动程序的定位：2026 年题从“硬件与操作系统的接口、按硬件定制、统一接口”正面描述，本题用“与 I/O 控制方式无关”设错；边界是前者考职责辨识，后者考一条绝对化陈述的正误。`}]},"real-2024-31":{title:`键盘中断后的数据落点`,steps:`把一次键盘输入拆成两段：**中断服务例程**只做最紧急的底层搬运，**系统调用/终端驱动**再把数据交给用户。
+
+- 键盘控制器收到按键后，把扫描码放入自己的数据寄存器并发出中断。
+- CPU 响应中断，进入键盘中断服务例程；例程从控制器的数据寄存器读走数据，放入**内核中的终端输入缓冲区（内核缓冲区）**，并唤醒等待输入的进程。
+- 之后用户进程执行 read 等系统调用，内核才把数据从内核缓冲区复制到**用户缓冲区**。
+
+因此中断服务例程执行结束时，数据不在用户缓冲区（尚未复制），也不留在通用寄存器或控制器数据寄存器中（已被取走），而在内核缓冲区，对应 **C**。`,knowledge:`输入路径的层次是：设备控制器 → 中断服务例程 → 内核缓冲区 → 系统调用复制 → 用户缓冲区。中断处理程序处在最底层，只负责把数据取入内核并做最少的状态处理；协议解析、格式转换和交付用户属于更高层。
+
+典型考法：问“中断服务程序结束时数据在哪里”“鼠标中断完成了哪一步”。高频陷阱是把“内核缓冲区”与“用户缓冲区”混同，或以为中断程序直接把数据送到用户空间。`,related:[{year:2026,no:32,why:`同考中断处理程序把设备数据取到何处：2026 年题问鼠标中断完成哪一步，本题问键盘中断结束时数据存放位置；边界是前者考中断与后续协议解析、用户缓冲的分工，后者直接定位内核缓冲区。`}]},"real-2020-30":{title:`设备独立性的含义与实现`,steps:`设备独立性（设备无关性）指应用程序用**逻辑设备名**访问设备，由操作系统在逻辑设备与物理设备之间做映射；换一台同类物理设备，程序不必改。
+
+- **A 用文件名访问物理设备**：在 Unix 类系统中设备被抽象成特殊文件，用户可通过文件路径打开设备，这正是设备抽象的一种表现，正确。
+- **B 用逻辑设备名访问**：这是设备独立性的核心，正确。
+- **C 建立逻辑设备与物理设备的映射**：系统通过逻辑设备表（LUT）完成映射，正确。
+- **D 更换物理设备后必须修改应用程序**：恰好与设备独立性的目的相反；只要逻辑设备名和接口不变，应用程序无需修改，错误。
+
+题目问“错误”，答案是 **D**。`,knowledge:`设备独立性解决“程序与具体物理设备解耦”：用户面向逻辑设备名编程，操作系统维护逻辑设备表，把逻辑名映射到物理设备及其驱动程序入口。它还带来设备分配的灵活性：同一逻辑名可对应不同物理设备。
+
+常见考法：判断“换设备是否要改程序”“是否使用逻辑设备名”“是否需要映射表”。陷阱是把“设备独立”误解为“不需要物理设备”或“直接用物理设备号编程”。`,related:[{year:2023,no:32,why:`同考设备分配中的逻辑设备与物理设备映射：2023 年题把映射列为设备分配要考虑的因素，本题考设备独立性带来的效果；边界是前者考分配因素，后者考更换设备是否需改程序。`}]},"real-2015-28":{title:`磁盘缓冲区的作用`,steps:`先明确缓冲区在 I/O 路径中的位置：它在内存中，位于设备与用户进程之间，用来**平滑速度差、合并或缓存访问**。
+
+- **A 减少磁盘 I/O 次数**：把多次小写合并成一次写、把刚读过的块留在缓冲区供复用、提前读入后续块，都能减少实际访问磁盘的次数，正确。
+- **B 减少平均寻道时间**：寻道时间由磁头移动决定，靠磁盘调度算法优化；缓冲区不改变磁头运动，错误。
+- **C 提高磁盘数据可靠性**：可靠性靠校验、冗余（如 RAID）和错误恢复，缓冲区不是冗余机制，错误。
+- **D 实现设备无关性**：设备无关性由逻辑设备名与逻辑设备表实现，属于设备无关软件层的命名/映射功能，错误。
+
+因此主要目的是减少磁盘 I/O 次数，对应 **A**。`,knowledge:`缓冲区与缓存常被一起讨论：缓冲区强调“暂存、平滑生产者与消费者速度差”，磁盘缓冲区把磁盘块暂存在内存，配合提前读、延迟写、合并写来减少物理 I/O 次数；它改善的是有效访问次数和等待，不直接改变磁盘的寻道时间、旋转延迟，也不提供可靠性或设备无关性。
+
+典型考法：问设置缓冲区的目的；或给单缓冲/双缓冲的读入、传送、分析时间算总时间。前者考功能定位，后者考流水重叠，不要混为一谈。`,related:[{year:2018,no:31,why:`同考磁盘缓冲相关优化：2018 年题把提前读、延迟写、磁盘高速缓存列为提高文件访问速度的措施，本题问设置磁盘缓冲区的首要目的；边界是前者判断措施集合，后者区分“减少 I/O 次数”与寻道时间、可靠性、设备无关性。`}]},"real-2016-31":{title:`SPOOLing 的组成与职责`,steps:`SPOOLing 用“外存井 + 内存缓冲 + 预输入/缓输出程序”把独占设备改造成多个作业可共享的虚拟设备。逐条看：
+
+- **A 需要外存支持**：输入井、输出井都建在磁盘等外存上，正确。
+- **B 需要多道程序设计支持**：只有多个作业并发，才需要把输入提前存入井中、把输出暂存后统一输出，正确。
+- **C 可让多个作业共享一台独占设备**：例如多个进程的打印请求先写入输出井，再由系统依次送打印机，逻辑上共享，正确。
+- **D 由用户作业控制设备与输入/输出井之间的传送**：井与设备之间的实际传送由系统的预输入程序、缓输出程序控制，用户作业只与逻辑设备/井交互，错误。
+
+题目问“错误”，答案是 **D**。`,knowledge:`SPOOLing（Simultaneous Peripheral Operations On-Line）的四个要点：外存输入井/输出井、内存缓冲区、预输入程序、缓输出程序；它把独占设备虚拟成共享设备，因此需要多道程序设计支持。用户看到的是逻辑设备，真正的设备调度由系统完成。
+
+常见考法：判断 SPOOLing 是否需要外存/多道程序、能否共享独占设备、谁控制井与设备之间的传送。陷阱是把“用户把数据写入输出井”误当成“用户直接控制井到设备的传送”。`,related:[]},"mock-6-32":{title:`磁盘调度中的饥饿`,steps:`先区分两个概念：**饥饿**是某请求长期得不到服务；**磁臂黏着**是磁头反复服务同一区域、忽略其他磁道。题目明确“不考虑磁臂黏着”，只比较各算法对远处请求的公平性。
+
+- **A FCFS**：严格按到达顺序服务，先到的请求一定先完成，不会饥饿。
+- **B SSTF**：每次选离当前磁头最近的请求；只要新请求不断落在磁头附近，远处请求可能被无限推迟，导致饥饿。
+- **C SCAN**：磁头单向扫到端点再折返，每个请求最多等一次完整扫描，不会无限等待。
+- **D C-SCAN**：单向循环扫描，回程不服务，等待时间更均匀，同样不会饥饿。
+
+因此可能饥饿的是 **B（SSTF）**。`,knowledge:`磁盘调度算法围绕寻道时间与公平性权衡：FCFS 最公平但寻道可能很大；SSTF 每次最短寻道，吞吐好但可能饿死远处请求；SCAN（电梯）单向扫到头再折返，避免饥饿；C-SCAN 只在一个方向服务，回程快速返回，等待更均匀。
+
+常见考法：给请求序列算访问顺序或磁头移动距离；或问哪种算法会导致饥饿/磁臂黏着。注意题干限定：考虑“磁臂黏着”时 SSTF、SCAN 都可能被点名；不考虑黏着、只问饥饿时，SSTF 仍是典型答案。`,related:[{year:2018,no:30,why:`同考 SSTF 的公平性：2018 年题问哪种算法不会导致磁臂黏着（FCFS），本题在“不考虑磁臂黏着”的前提下问哪种算法会饥饿；边界是“黏着”与“饥饿”不是同一个概念，且本题排除了黏着这一因素。`}]},"mock-8-32":{title:`RAID 的能力边界`,steps:`RAID 用多块磁盘组成阵列，核心手段是**条带化、镜像、校验**，目标是性能、可靠性和容量管理。逐条看：
+
+- **A 让多个磁盘并行工作**：条带化把数据分散到多块盘，可并行读写，能做到。
+- **B 加快数据输入输出速度**：并行访问与条带化提高吞吐，能做到。
+- **C 提高存储器可靠性**：镜像（RAID 1）或校验（RAID 5/6）能容忍部分磁盘故障，能做到。
+- **D 提高单个磁盘的容量**：RAID 组合的是多块物理磁盘，不会改变任何一块单盘的物理容量；它提高的是阵列的逻辑容量/可用容量，不是“单个磁盘的容量”，做不到。
+
+因此选 **D**。`,knowledge:`RAID 的常见级别：RAID 0 条带化，性能和容量利用率高但无冗余；RAID 1 镜像，可靠性高但容量利用率低；RAID 5 分布式奇偶校验，兼顾容量与单盘容错；RAID 6 双校验，可容忍双盘故障；RAID 10 先镜像再条带，性能与可靠性兼顾。
+
+常见考法：问 RAID 能否提高速度/可靠性/容量，或比较不同级别的容错能力与空间利用率。关键措辞是“单个磁盘的容量”——RAID 只能聚合多盘，不能改变单盘物理规格。`,related:[]}},_C={"real-2009-23":`先给每项标注使用的硬件：是争用同一个 CPU，还是两个硬件部件能同时工作？`,"mock-1-23":`按‘允许多道还是单道、是否强调交互、是否容许错过截止时间’三条线辨认系统类型。`,"real-2010-23":`先问接口的调用者和提供者是谁；应用能调用的库函数不一定属于操作系统接口。`,"real-2013-28":`逐项追踪控制权：普通函数调用是否仍在用户态？异常和系统调用分别怎样把控制权交给内核？`,"real-2012-24":`先划掉两种机制都要保存的返回地址，再找中断必须恢复、普通调用却不必保存的处理器状态。`,"real-2023-23":`以文件服务放进内核还是独立运行作对比：隔离变强，但跨越保护边界增加了通信开销。`,"mock-8-23":`在黑板上分三层写‘Java 程序 → JVM → 操作系统’，逐项判断到底是哪一层执行字节码、管理硬件资源或维护页表。`,"real-2021-46":`用两条时间线分开讲：第一条是开机时谁交棒给谁，第二条是制作启动盘时先准备哪一层存储结构。`,"real-2014-26":`磁盘完成意味着等待事件已经发生，不意味着该进程马上取得 CPU；先画‘阻塞→就绪’，再问是否需要调度。`,"real-2024-28":`区分‘由进程统一持有’与‘属于某个线程的执行现场’；再说明同一地址空间可寻址，不等于线程共享同一个运行栈。`,"real-2019-23":`先问哪个调度器看得见这个线程。只在用户库中存在的线程，不会自动在内核里得到逐线程的控制块。`,"real-2014-31":`让学生分别模拟对空管道读、对写满的管道写，再用这两个场景判断阻塞选项。`,"mock-5-25":`按‘后备作业进内存、进程挂起或换回、就绪进程拿 CPU’三个动作划分调度层级。`,"real-2009-24":`不必算响应比，写出‘等待时间／服务时间＋1’，就能同时看见题干要求的两个量。`,"real-2020-26":`把队列画成几层并让一个进程走一遍：要事先确定站点数量、站点次序、站内规则和跨站规则。`,"mock-1-24":`先做反例：缓冲区满时，若生产者抱着锁等空位，能够腾空位的消费者还能进来吗？`,"real-2018-28":`把条件变量和信号量分开。问的是已经决定执行 wait 后会发生什么，不是程序怎样检查共享条件。`,"mock-3-24":`只盯住‘已经占有旧资源时又请求新资源’；编号约束限制循环等待，剥夺限制不可剥夺，不要混成同一个条件。`,"real-2013-32":`用三个集合判选项：安全、暂时无死锁但不安全、已经死锁；能找到安全序列只保证第一种。`,"real-2015-26":`让学生分别站在‘批准申请前’和‘申请已经分配后’看系统；避免靠未来最大需求，检测靠当前请求。`,"real-2022-46":`先圈跨线程箭头：A→C、C→E。其余箭头由线程内部书写顺序保证，不需要再占一个信号量。`,"mock-6-29":`抓住题干里‘用户触发该功能时才完成链接’，比较的是链接发生时点，不只是代码何时读入内存。`,"mock-7-28":`画相邻三个区间‘空闲—占用—空闲’；移动占用区后两个空洞才可能并在一起。`,"real-2016-28":`查段表不等于立刻做基址加法：先从段 2 取段长，把偏移和 300 比较，再决定是否可以形成物理地址。`,"real-2012-25":`分开回答实现前提与容量上限，再逐一检查选项中三个绝对化的‘只’字。`,"real-2014-32":`想象大段虚拟地址没有使用：可以不分配对应的下级页表，也不必把所有页表挤进一块连续内存。`,"mock-2-28":`按四项逐个核对：是否驻留、近期访问如何、入内存后有没有写过、缺页时到外存哪里取。`,"real-2023-30":`画两张页表，各取一项指向同一个物理页框；表项所在的位置可以不同，箭头终点才必须相同。`,"real-2022-29":`先构造一个反例：若手里已有空闲页框，合法缺页能否不驱逐任何旧页就处理完？`,"real-2014-30":`用‘页框增加后旧驻留集是否始终包含在新驻留集中’区分 FIFO 与具有栈性质的策略。`,"real-2015-30":`固定、可变问‘分几个’，局部、全局问‘从哪里换’；看哪对组合会破坏教材定义下的固定配额。`,"real-2011-29":`先确定瓶颈是进程的工作集放不下，而不是交换区太小或某进程优先级太低。`,"mock-2-30":`按两层拆选项：用户看见记录还是字节，与磁盘上是否连续摆放不是一回事。`,"real-2009-28":`两个要求缺一不可：支持直接定位随机块，还能增加数据块而不搬走已有文件。`,"mock-4-29":`把硬链接看作目录项指向已有 inode，把软链接看作一个独立文件记录目标路径。`,"real-2014-29":`先区分打开和读取：要建立后续操作所需的文件元数据，不需要把整个数据区读进来。`,"real-2020-23":`先画教材的系统级表项，再画两个进程各自的打开文件表；别把共享属性和个人偏移混成一份。`,"mock-5-29":`比较写入位置和旧 EOF；覆盖既有字节与在旧 EOF 后新增字节，对长度字段的影响不同。`,"real-2024-26":`把磁盘编号固定下来，想象删掉一个文件：只翻转原有位、不改变账本总长度的是哪种方案？`,"real-2025-28":`VFS 的‘虚拟’指统一抽象接口，不是‘把文件系统放进虚存’；先区分接口层与具体实现。`,"real-2011-46":`题眼是‘一次写入，以后不改’。先选块组织，再问为了定位数据和为了快速找文件，各需怎样组织元数据。`,"mock-1-32":`把‘谁等待’和‘谁搬数据’分成两栏。CPU 可以去运行别的进程，不代表发出读请求的进程不会阻塞。`,"real-2012-26":`从应用提出请求一路向硬件走；顺序不是中断真正发生的时间轴，而是软件层次从上向下的排列。`,"real-2022-32":`拿一次读盘做边界测试：谁发具体命令，谁处理设备状态，谁负责向应用提供统一接口？`,"real-2024-31":`沿字符的路径看中断例程结束这一时刻：控制器里刚到，内核例程已取，用户进程还未必被唤醒并运行。`,"real-2020-30":`假想换一台兼容设备，只改名字到物理设备的映射，检查哪个选项却声称应用程序必须跟着改。`,"real-2015-28":`同一磁盘块的后一次访问若命中内存中的副本，少掉的是一次磁盘 I/O，不是把某次寻道距离缩短了。`,"real-2016-31":`画‘设备—输入／输出井—作业’，问谁组织实际设备传输；不要让应用作业直接控制独占设备。`,"mock-6-32":`把很远的请求放在队列里，再让磁头附近持续到达新请求，找出会一再偏爱近邻的策略。`,"mock-8-32":`先区分阵列作为整体的容量、带宽和冗余，与每块物理硬盘自身的容量。`},vC={...fC,...pC,...mC,...hC,...gC},yC=_C,bC=new Map([...dC.filter(e=>e.subject===`os`).map(e=>[e.id.replace(`real-concept-`,`real-`),e]),...[...lC.written,...lC.illustrated,...uC].map(e=>[e.id,e])]),xC=(e,t)=>`https://csgraduates.com/study_methods/408quiz/${e}/#${t}`,SC=`2026-11-21`,CC=0,wC={id:`os-workbook-20261121`,title:`操作系统概念题练习册 · 逐题解析`,date:SC,catalog:`topic`,summary:`与打印练习册同序，共 50 题。按操作系统五章逐题讲解推理过程、易混考点及可核实的同类真题。`,materials:lC.chapters.flatMap(({title:e,ids:t})=>t.map(t=>{let n=bC.get(t),r=vC[t],i=yC[t];if(!n||!r||!i)throw Error(`操作系统练习册缺少题面或解析：${t}`);let a=n.volume===void 0?`真题`:`模拟题`,o=n.volume===void 0?`${n.year} 年 408 计算机学科专业基础综合第 ${n.no} 题`:`2027 里昂 408 模拟卷（${`一二三四五六七八`[n.volume-1]}）第 ${n.number} 题，整卷扫描 PDF 第 ${n.pdfPages?.join(`、`)} 页（含封面）`,s=(n.stemHtml?.includes(`source-table`)?n.stemHtml:n.stem.replace(/\n/g,`
+
+`))+(t===`real-2022-46`?`
+
+![题 46 图：操作之间的先后约束](os-workbook/2022-q46.svg)`:``),c=n.options?.map((e,t)=>`- **${`ABCD`[t]}.** ${e}`).join(`
+`)??``,l=r.related.map(({year:e,no:t,why:n})=>`- [${e} 年 408 第 ${t} 题（整卷转录）](${xC(e,t)})：${n}`).join(`
+`)||`在已核对的历年 408 试卷中，未查到能可靠对应本题具体考点的真题。`;return{id:`os-workbook-${t}`,title:`${String(++CC).padStart(2,`0`)} · ${r.title}`,type:`题目`,date:SC,chapter:e,tags:[e,a,n.options?`单项选择`:`书写题`],summary:`${a} · ${o}`,source:`${a} · ${o}。题面与打印练习册一致；解析独立推导。`,content:[s,c,n.sourceUrl?`[查看${n.year} 年整卷转录](${n.sourceUrl})`:``].filter(Boolean).join(`
+
+`),solution:{answer:`**课堂切入点：**${i}\n\n${r.steps}`,explanation:r.knowledge,extension:l}}}))},TC=[`题目`,`知识点`],EC=[{id:`forest-to-binary-min-height`,questionNumber:4,title:`森林转换为二叉树：最小高度如何判断？`,type:`题目`,date:`2026-09-29`,chapter:`树与二叉树 · 森林转换`,tags:[`森林与二叉树转换`,`左孩子右兄弟`,`树的高度`],summary:`5 棵树分别有 2、3、4、5、7 个结点。树的次序可任意安排，如何判断转换后二叉树的最小高度？`,source:`用户提供的题目截图，标注为“2026 · 第4题 · 2分”；未独立核验原始试卷出处。解析为本站推导，并非引用官方答案。`,content:String.raw`森林 $F$ 中有 5 棵树，其结点个数分别为 2、3、4、5、7，森林中树的次序可以任意，问 $F$ 对应的二叉树最小高度为多少？
 
 - **A．** 5
 - **B．** 6
@@ -21218,7 +25103,7 @@ int main(void) {
 - 以为代码段一定是私有的：只读可共享，fork 后父子通常共享代码段，写时复制主要作用在数据页上。
 - 以为「数据段装的是所有变量」：局部变量在栈，动态分配在堆。
 - 以为页表在进程的地址空间里：每个进程一套页表，但页表本身放在内核中，由 PCB 的存储管理信息指向。
-- 把「进程切换」与「线程切换」等同：前者要换页表/地址空间，后者不换。`}],dC=[{id:`wangdao-mock1-major-41`,questionNumber:41,title:`邻接矩阵的强连通分量、顶点度数与最小生成树`,type:`题目`,date:`2026-09-30`,chapter:`图 · 邻接矩阵 / 连通性 / 最小生成树`,tags:[`邻接矩阵`,`强连通分量`,`出度与入度`,`最小生成树`,`Prim`,`Kruskal`],summary:`给一个 5 阶邻接矩阵，三问：强连通分量个数、读一段 C 函数的功能并求返回值、无向图最小生成树的算法选择与权值。`,source:`用户提供的截图，页脚为「408 模拟 · 26 王道 8 套卷」（含公众号水印）；截图未附官方答案，本页结论均由本站独立复算：强连通分量用可达矩阵、函数返回值按 C 代码逐项模拟、最小生成树用 Prüfer 序列穷举 125 棵生成树验证。`,content:String.raw`## 二、综合应用题
+- 把「进程切换」与「线程切换」等同：前者要换页表/地址空间，后者不换。`}],DC=[{id:`wangdao-mock1-major-41`,questionNumber:41,title:`邻接矩阵的强连通分量、顶点度数与最小生成树`,type:`题目`,date:`2026-09-30`,chapter:`图 · 邻接矩阵 / 连通性 / 最小生成树`,tags:[`邻接矩阵`,`强连通分量`,`出度与入度`,`最小生成树`,`Prim`,`Kruskal`],summary:`给一个 5 阶邻接矩阵，三问：强连通分量个数、读一段 C 函数的功能并求返回值、无向图最小生成树的算法选择与权值。`,source:`用户提供的截图，页脚为「408 模拟 · 26 王道 8 套卷」（含公众号水印）；截图未附官方答案，本页结论均由本站独立复算：强连通分量用可达矩阵、函数返回值按 C 代码逐项模拟、最小生成树用 Prüfer 序列穷举 125 棵生成树验证。`,content:String.raw`## 二、综合应用题
 
 (41)（10 分）某有向图 $G$ 的邻接矩阵如下所示，顶点从 0 开始编号，回答下列问题。
 
@@ -21649,7 +25534,7 @@ $$
 
 ### 3. 下次遇到同类题怎么办
 
-混合页大小题先做**目录判型→选地址划分→检查有效位→转换／异常处理**。页框基址、表项位置与最终数据位置是三个不同地址，置换也不能跨大小直接挪用页框。`}}],fC=[{id:`wangdao-mock2-major-01`,questionNumber:1,title:`二叉树递归求高度的时间复杂度`,type:`题目`,date:`2026-09-30`,chapter:`树 · 二叉树遍历与复杂度`,tags:[`二叉树`,`递归`,`时间复杂度`,`树高`],summary:`分析递归计算二叉树高度的 maxFunc：判断每个结点的访问次数，并区分时间复杂度与递归栈空间复杂度。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
+混合页大小题先做**目录判型→选地址划分→检查有效位→转换／异常处理**。页框基址、表项位置与最终数据位置是三个不同地址，置换也不能跨大小直接挪用页框。`}}],OC=[{id:`wangdao-mock2-major-01`,questionNumber:1,title:`二叉树递归求高度的时间复杂度`,type:`题目`,date:`2026-09-30`,chapter:`树 · 二叉树遍历与复杂度`,tags:[`二叉树`,`递归`,`时间复杂度`,`树高`],summary:`分析递归计算二叉树高度的 maxFunc：判断每个结点的访问次数，并区分时间复杂度与递归栈空间复杂度。`,source:`题目来自用户提供的「408 模拟 · 26 王道 8 套卷」照片；截图未显示答案，故本题答案为本站推导。`,content:String.raw`## 一、单项选择题
 
 (01) 设二叉树共有 $n$ 个结点，则下列程序段的时间复杂度是（ ）。
 
@@ -22475,7 +26360,7 @@ C 是本题教材层面的概念性描述：符号链以路径名做间接引用
 
 **问：** 把置换策略从 LRU 换成 FIFO，会影响正确性吗？
 
-**答：** 在两种策略都正确处理脏块写回、访问一致性和必要同步的前提下，改换淘汰策略主要改变命中率及写回时机，不应改变正常运行时读取到的逻辑内容。淘汰脏块前必须保留或写回其修改；不能用「最终会写回」替代这一要求。`}}],pC=[{id:`io-interrupt-dma-bus-clock`,questionNumber:44,title:`中断与 DMA 的请求次数和 I/O 总线时钟`,type:`题目`,date:`2026-10-01`,chapter:`输入/输出系统 · 中断与 DMA`,tags:[`中断方式`,`DMA`,`周期窃取`,`I/O 总线`,`访存次数`],summary:`由主频、CPI 与 Cache 命中率求每秒访主存次数，再由字符设备中断与块设备 DMA 的传输率求每秒请求次数和 I/O 总线时钟下限。`,source:`学生提供的试卷照片（第 6 页，第 44 题），图上未显示答案；解析为本站推导。K/M 按十进制（1KB=1000B、1MB=10^6 B）取值，与 2009 年 408 真题官方解法同一口径；1024 进制下的结果见解析与追问。`,content:String.raw`（44）某计算机主频为 200MHz，CPI 为 5，存储器总线宽度为 32 位。准备连接一个数据传输率为 20KB/s 的字符设备，及 1 个数据传输率为 1MB/s 的块设备；字符设备采用中断方式 I/O，块设备采用 DMA 方式 I/O，DMA 传送方式为周期窃取方式，每次 DMA 传送数据块大小为 4000B。请回答：
+**答：** 在两种策略都正确处理脏块写回、访问一致性和必要同步的前提下，改换淘汰策略主要改变命中率及写回时机，不应改变正常运行时读取到的逻辑内容。淘汰脏块前必须保留或写回其修改；不能用「最终会写回」替代这一要求。`}}],kC=[{id:`io-interrupt-dma-bus-clock`,questionNumber:44,title:`中断与 DMA 的请求次数和 I/O 总线时钟`,type:`题目`,date:`2026-10-01`,chapter:`输入/输出系统 · 中断与 DMA`,tags:[`中断方式`,`DMA`,`周期窃取`,`I/O 总线`,`访存次数`],summary:`由主频、CPI 与 Cache 命中率求每秒访主存次数，再由字符设备中断与块设备 DMA 的传输率求每秒请求次数和 I/O 总线时钟下限。`,source:`学生提供的试卷照片（第 6 页，第 44 题），图上未显示答案；解析为本站推导。K/M 按十进制（1KB=1000B、1MB=10^6 B）取值，与 2009 年 408 真题官方解法同一口径；1024 进制下的结果见解析与追问。`,content:String.raw`（44）某计算机主频为 200MHz，CPI 为 5，存储器总线宽度为 32 位。准备连接一个数据传输率为 20KB/s 的字符设备，及 1 个数据传输率为 1MB/s 的块设备；字符设备采用中断方式 I/O，块设备采用 DMA 方式 I/O，DMA 传送方式为周期窃取方式，每次 DMA 传送数据块大小为 4000B。请回答：
 
 1）若 CPU 平均每条指令访存 1.2 次，Cache 命中率为 0.98，则 CPU 平均每秒访问主存次数是多少？
 
@@ -22592,7 +26477,7 @@ $$
 
 ### 3. 下次遇到同类题怎么办
 
-虚存题按**地址到页号→初始驻留→逐次更新→时间模型**走。题给“一次交换”的耗时按其定义使用，替换策略变化时重新分析淘汰对象。`}}],mC=[{id:`mock-exam-1-ds-q01`,questionNumber:1,title:`循环队列 tag 判空与判满`,type:`题目`,date:`2026-10-02`,chapter:`栈、队列和数组 · 循环队列`,tags:[`循环队列`,`队空队满判定`,`tag 标记法`],summary:`循环队列用 tag 区分队空与队满，给 MAXSIZE、front、rear、tag 求元素个数。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站独立推导并由脚本枚举复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（1）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设循环队列的存储结构如下，其中 $front$ 指向队头元素，$rear$ 指向下一个可插入位置；$tag=0$ 表示最近一次对队列的操作是删除，$tag=1$ 表示最近一次操作是插入。当 $front=rear$ 时，由 $tag$ 区分队空与队满。若 $MAXSIZE=24$，$front=7$，$rear=19$，$tag=1$，则队列中的元素个数为（　）。
+虚存题按**地址到页号→初始驻留→逐次更新→时间模型**走。题给“一次交换”的耗时按其定义使用，替换策略变化时重新分析淘汰对象。`}}],AC=[{id:`mock-exam-1-ds-q01`,questionNumber:1,title:`循环队列 tag 判空与判满`,type:`题目`,date:`2026-10-02`,chapter:`栈、队列和数组 · 循环队列`,tags:[`循环队列`,`队空队满判定`,`tag 标记法`],summary:`循环队列用 tag 区分队空与队满，给 MAXSIZE、front、rear、tag 求元素个数。`,source:`用户提供的扫描件 docs/book/一.pdf（模拟试题一）第 1 页；卷面未印参考答案，解析为本站独立推导并由脚本枚举复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（1）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设循环队列的存储结构如下，其中 $front$ 指向队头元素，$rear$ 指向下一个可插入位置；$tag=0$ 表示最近一次对队列的操作是删除，$tag=1$ 表示最近一次操作是插入。当 $front=rear$ 时，由 $tag$ 区分队空与队满。若 $MAXSIZE=24$，$front=7$，$rear=19$，$tag=1$，则队列中的元素个数为（　）。
 
 - A．11
 - B．12
@@ -24095,7 +27980,7 @@ D() { consumer(fullD); }
 
 ### 3. 下次遇到同类题怎么办
 
-**先比较源 IP 与目的 IP 是否同网段**，再决定下一跳是目的主机还是默认网关；凡是跨网段，发送方 ARP 的永远是网关接口的 MAC，而能与对端直接 ARP 的永远是「与对端同网段的那个路由器接口」。`}}],hC=[{id:`mock-exam-2-ds-q01`,questionNumber:1,title:`循环累加平方和的时间复杂度`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 算法的时间复杂度分析`,tags:[`时间复杂度`,`循环次数估计`,`平方和求和`],summary:`给定一个累加平方和、返回首个使累加和超过 n 的 i 的函数，判断其时间复杂度量级。`,source:`2027 年 408 模拟试题（二）第 1 题，扫描版试卷（无文字层）。原卷未印参考答案，本页答案由本地独立推导并用脚本实跑验证，非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（2）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设 $n$ 为正整数，且不考虑整数溢出，函数 findMinI 的时间复杂度为（　）。
+**先比较源 IP 与目的 IP 是否同网段**，再决定下一跳是目的主机还是默认网关；凡是跨网段，发送方 ARP 的永远是网关接口的 MAC，而能与对端直接 ARP 的永远是「与对端同网段的那个路由器接口」。`}}],jC=[{id:`mock-exam-2-ds-q01`,questionNumber:1,title:`循环累加平方和的时间复杂度`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 算法的时间复杂度分析`,tags:[`时间复杂度`,`循环次数估计`,`平方和求和`],summary:`给定一个累加平方和、返回首个使累加和超过 n 的 i 的函数，判断其时间复杂度量级。`,source:`2027 年 408 模拟试题（二）第 1 题，扫描版试卷（无文字层）。原卷未印参考答案，本页答案由本地独立推导并用脚本实跑验证，非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（2）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`设 $n$ 为正整数，且不考虑整数溢出，函数 findMinI 的时间复杂度为（　）。
 
 ~~~c
 int findMinI(int n) {
@@ -25301,7 +29186,7 @@ $$
 
 **先确定下一跳和出接口，再套"换 MAC 不换 IP"模板，最后判断是否需要 ARP。** 判断 ARP 对象时只盯"本链路的下一跳"，不要被最终目的地址带偏。`,extension:String.raw`**问：** 若 R 的 ARP 表中已有 172.16.0.2 的条目，R 转发该帧时是否还会发送 ARP 请求？为什么？
 
-**答：** 不会。ARP 表已有 172.16.0.2 到 00-22-22-22-22-02 的映射，R 可直接用该 MAC 封装并转发，无需广播请求；只有表项缺失或过期时才发 ARP 请求。`}}],gC=[{id:`mock-exam-3-ds-q01`,questionNumber:1,title:`线性结构的存储方式`,type:`题目`,date:`2026-10-02`,chapter:`栈和队列 · 存储结构`,tags:[`循环队列`,`共享栈`,`静态链表`,`十字链表`],summary:`循环队列、共享栈、静态链表、稀疏矩阵十字链表四种存储方式的叙述，找出错误的一项。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（3）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`下列关于线性结构存储方式的叙述中，错误的是（　）。
+**答：** 不会。ARP 表已有 172.16.0.2 到 00-22-22-22-22-02 的映射，R 可直接用该 MAC 封装并转发，无需广播请求；只有表项缺失或过期时才发 ARP 请求。`}}],MC=[{id:`mock-exam-3-ds-q01`,questionNumber:1,title:`线性结构的存储方式`,type:`题目`,date:`2026-10-02`,chapter:`栈和队列 · 存储结构`,tags:[`循环队列`,`共享栈`,`静态链表`,`十字链表`],summary:`循环队列、共享栈、静态链表、稀疏矩阵十字链表四种存储方式的叙述，找出错误的一项。`,source:`原卷《计算机学科专业基础模拟试题（三）》扫描件第 1 页（第 1 页共 11 页）；卷内未印参考答案，本题答案由本站独立推导并以脚本模拟复核，非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（3）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`下列关于线性结构存储方式的叙述中，错误的是（　）。
 
 - **A．** 循环队列采用“牺牲一个存储单元”法时，front=rear 表示队满
 - **B．** 共享栈的两个栈顶指针分别为 top1 和 top2，且分别从数组两端向中间增长时，top1+1=top2 表示栈满
@@ -26807,7 +30692,7 @@ RouterA 删除该路由前的主要收敛过程：C 泛洪 Type 1 → B 收到�
 
 ### 3. 下次遇到同类题怎么办
 
-先分区、再定角色（内部路由器/ABR/ASBR）、后判 LSA 作用范围，最后才做开销累加与收敛分析；避免把“区域内泛洪”和“跨区通告”的 LSA 类型弄混。`}}],_C=[{id:`mock-exam-4-ds-q01`,questionNumber:1,title:`数据结构应用特性判断`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 数据结构与算法的应用`,tags:[`栈与函数调用`,`BFS队列`,`哈希表装填因子`,`线索二叉树`],summary:`判断关于栈、BFS 队列、哈希表装填因子与线索二叉树的四条应用特性陈述中，哪些正确。`,source:`题目来自用户提供的「模拟试题（四）」扫描件（数据结构第 1～11 题）；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（4）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`以下关于数据结构应用特性的描述中，正确的是（　）。
+先分区、再定角色（内部路由器/ABR/ASBR）、后判 LSA 作用范围，最后才做开销累加与收敛分析；避免把“区域内泛洪”和“跨区通告”的 LSA 类型弄混。`}}],NC=[{id:`mock-exam-4-ds-q01`,questionNumber:1,title:`数据结构应用特性判断`,type:`题目`,date:`2026-10-02`,chapter:`绪论 · 数据结构与算法的应用`,tags:[`栈与函数调用`,`BFS队列`,`哈希表装填因子`,`线索二叉树`],summary:`判断关于栈、BFS 队列、哈希表装填因子与线索二叉树的四条应用特性陈述中，哪些正确。`,source:`题目来自用户提供的「模拟试题（四）」扫描件（数据结构第 1～11 题）；原卷未印参考答案，以下答案与解析为本站独立推导，并非引用官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（4）解析」（第 1 页答案总表与逐题解析）；本站答案已逐题核对一致。`,content:String.raw`以下关于数据结构应用特性的描述中，正确的是（　）。
 
 - Ⅰ．在操作系统函数调用机制中，栈用于实现函数递归调用时局部变量、返回地址等信息的顺序存取与管理，遵循后进先出原则
 - Ⅱ．BFS执行过程中，队列用于保存已经被发现、但其邻接点尚未全部检查的顶点，使顶点按发现的先后次序接受扩展，从而实现逐层遍历
@@ -28227,7 +32112,7 @@ $$
 2. 用总长 −40 得数据长度，再解读数据开头的 "HTTP/1.1" 印证这是 B→A 的响应。
 3. 明确"谁是发送方"：源端口 80 = 服务器 B，目的端口 = 客户端 A。
 4. 序号题统一用"SYN 占 1 个序号"把起点对齐到 1，再算累计字节。
-5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],vC=[{id:`mock-exam-5-ds-q01`,questionNumber:1,title:`邻接表存储与操作的时间空间分析`,type:`题目`,date:`2026-10-11`,chapter:`图 · 图的存储结构`,tags:[`邻接表`,`空间复杂度`,`出边表`,`有向图操作`],summary:`稀疏有向图用邻接表存储，判断关于空间复杂度与枚举、判边、删边时间的四个说法。`,source:`用户提供的扫描件 docs/book/5.pdf（lion模拟卷5）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（5）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`某三维场景包含 $n$ 个对象，对象之间的“依赖”关系构成有向图 $G=(V,E)$，其中 $|E|=e$，且 $e\ll n^2$。现采用邻接表存储该图：顶点表采用顺序存储，每个顶点的出边表采用无序单链表，且不设置其他辅助索引。设顶点 $v$ 的出度为 $d^+(v)$，下列说法正确的是（　）。
+5. 拥塞窗口题先问"收到几个新确认"，慢开始每个新确认 +1 MSS；超时则 ssthresh 减半、cwnd 回 1。`}}],PC=[{id:`mock-exam-5-ds-q01`,questionNumber:1,title:`邻接表存储与操作的时间空间分析`,type:`题目`,date:`2026-10-11`,chapter:`图 · 图的存储结构`,tags:[`邻接表`,`空间复杂度`,`出边表`,`有向图操作`],summary:`稀疏有向图用邻接表存储，判断关于空间复杂度与枚举、判边、删边时间的四个说法。`,source:`用户提供的扫描件 docs/book/5.pdf（lion模拟卷5）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（5）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`某三维场景包含 $n$ 个对象，对象之间的“依赖”关系构成有向图 $G=(V,E)$，其中 $|E|=e$，且 $e\ll n^2$。现采用邻接表存储该图：顶点表采用顺序存储，每个顶点的出边表采用无序单链表，且不设置其他辅助索引。设顶点 $v$ 的出度为 $d^+(v)$，下列说法正确的是（　）。
 
 - A．存储该图所需的空间复杂度为 $O(n^2)$
 - B．枚举顶点 $v$ 直接依赖的全部对象所需的时间复杂度为 $O(d^+(v))$
@@ -30045,7 +33930,7 @@ $$
 
 ### 3. 下次遇到同类题怎么办
 
-**一律先画「事件—状态」两列表格，逐行填 ack、cwnd、在途数据，再回答任何小问。** 判阶段看 cwnd 与 ssthresh 的大小关系；判重复确认只看「确认号有没有前进」；判重传类型看「是 3 个重复确认触发（快重传，cwnd 不打回 1）还是超时触发（cwnd 打回 1）」。最后回答「还能发多少」时，永远记得同时受拥塞窗口与接收方通告窗口两个约束。`}}],yC=[{id:`mock-exam-6-ds-q01`,questionNumber:1,title:`斐波那契递归与迭代的时空复杂度`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 算法与复杂度分析`,tags:[`时间复杂度`,`空间复杂度`,`递归与迭代`,`备忘录法`],summary:`对比斐波那契的递归、循环与备忘录实现，判断关于时空复杂度的错误描述。`,source:`用户提供的扫描件 docs/book/6.pdf（lion模拟卷6）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（6）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`以下两段代码分别采用递归和循环方式计算斐波那契数。设 $n\ge 2$，两段代码分别独立运行，忽略整数溢出。关于这两段代码的描述，错误的是（　）。
+**一律先画「事件—状态」两列表格，逐行填 ack、cwnd、在途数据，再回答任何小问。** 判阶段看 cwnd 与 ssthresh 的大小关系；判重复确认只看「确认号有没有前进」；判重传类型看「是 3 个重复确认触发（快重传，cwnd 不打回 1）还是超时触发（cwnd 打回 1）」。最后回答「还能发多少」时，永远记得同时受拥塞窗口与接收方通告窗口两个约束。`}}],FC=[{id:`mock-exam-6-ds-q01`,questionNumber:1,title:`斐波那契递归与迭代的时空复杂度`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 算法与复杂度分析`,tags:[`时间复杂度`,`空间复杂度`,`递归与迭代`,`备忘录法`],summary:`对比斐波那契的递归、循环与备忘录实现，判断关于时空复杂度的错误描述。`,source:`用户提供的扫描件 docs/book/6.pdf（lion模拟卷6）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（6）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`以下两段代码分别采用递归和循环方式计算斐波那契数。设 $n\ge 2$，两段代码分别独立运行，忽略整数溢出。关于这两段代码的描述，错误的是（　）。
 
 ~~~c
 // 递归实现
@@ -31934,7 +35819,7 @@ $$T=0.4+0.2+0.1+0.049152=0.749152\ \mathrm{s}\approx 0.749\ \mathrm{s}.$$
 
 ### 3. 下次遇到同类题怎么办
 
-**把大题拆成小题、小题各自成段，每段算完立刻写结论。** 见到 TCP 首部十六进制就按字节切分并对照首部图；见到「RTT $+$ 传输时间」就把两者分清、只加一次；见到 cwnd 变化就先写「当前是慢开始还是拥塞避免，是否刚发生超时/快重传」，再按规则推进。`}}],bC=[{id:`mock-exam-7-ds-q01`,questionNumber:1,title:`最大优先队列的数据结构选型`,type:`题目`,date:`2026-10-11`,chapter:`栈、队列和数组 · 优先队列`,tags:[`优先队列`,`最大堆`,`建堆时间复杂度`,`插入删除复杂度`],summary:`要求建队 O(n)、插入与删除最大元素最坏 O(log n)，选出最合适的数据结构。`,source:`用户提供的扫描件 docs/book/7.pdf（lion模拟卷7）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（7）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`将一个含 $n$ 个关键字的无序序列建立为最大优先队列，之后需要频繁执行插入元素和删除最大关键字元素的操作。若要求建队时间为 $O(n)$，且插入和删除最大关键字元素的最坏时间复杂度均为 $O(\log n)$，则最适合采用（　）。
+**把大题拆成小题、小题各自成段，每段算完立刻写结论。** 见到 TCP 首部十六进制就按字节切分并对照首部图；见到「RTT $+$ 传输时间」就把两者分清、只加一次；见到 cwnd 变化就先写「当前是慢开始还是拥塞避免，是否刚发生超时/快重传」，再按规则推进。`}}],IC=[{id:`mock-exam-7-ds-q01`,questionNumber:1,title:`最大优先队列的数据结构选型`,type:`题目`,date:`2026-10-11`,chapter:`栈、队列和数组 · 优先队列`,tags:[`优先队列`,`最大堆`,`建堆时间复杂度`,`插入删除复杂度`],summary:`要求建队 O(n)、插入与删除最大元素最坏 O(log n)，选出最合适的数据结构。`,source:`用户提供的扫描件 docs/book/7.pdf（lion模拟卷7）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（7）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`将一个含 $n$ 个关键字的无序序列建立为最大优先队列，之后需要频繁执行插入元素和删除最大关键字元素的操作。若要求建队时间为 $O(n)$，且插入和删除最大关键字元素的最坏时间复杂度均为 $O(\log n)$，则最适合采用（　）。
 
 - A．无序顺序表
 - B．有序顺序表
@@ -33909,7 +37794,7 @@ PPP 的链路建立与使用分阶段进行（物理层链路接通之后）：
 - 见到点到点链路先想到 /30，并牢记"网络地址一定是块起始地址"。
 - 聚合路由先列出全部子网，再用"能覆盖它们的最长前缀"试算，并检查是否越界覆盖了别人的地址。
 - ARP 问题先画完整转发路径，逐段判断链路类型（PPP / 以太网）。
-- PPP 问题记死三段式：LCP（链路层）→ 认证（可选）→ NCP（网络层），缺哪一段就断在哪一层。`}}],xC=[{id:`mock-exam-8-ds-q01`,questionNumber:1,title:`数据结构与算法基本概念辨析`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 数据结构与算法`,tags:[`逻辑结构`,`存储结构`,`空间复杂度`,`时间复杂度`],summary:`四条关于数据结构与算法的说法，选出正确的一项。`,source:`用户提供的扫描件 docs/book/八.pdf（lion模拟卷8）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（8）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`下列关于数据结构与算法的说法中，正确的是（　）。
+- PPP 问题记死三段式：LCP（链路层）→ 认证（可选）→ NCP（网络层），缺哪一段就断在哪一层。`}}],LC=[{id:`mock-exam-8-ds-q01`,questionNumber:1,title:`数据结构与算法基本概念辨析`,type:`题目`,date:`2026-10-11`,chapter:`绪论 · 数据结构与算法`,tags:[`逻辑结构`,`存储结构`,`空间复杂度`,`时间复杂度`],summary:`四条关于数据结构与算法的说法，选出正确的一项。`,source:`用户提供的扫描件 docs/book/八.pdf（lion模拟卷8）第 1 页（扫描件 PDF 第 2 页）；原卷未印参考答案，答案为本站独立推导并经脚本复核，并非官方答案。官方答案见 docs/book/官方答案/ 中「2027里昂408模拟卷试题（8）解析」第 1 页答案总表与逐题解析；本站单选答案已与该答案表逐题核对一致。`,content:String.raw`下列关于数据结构与算法的说法中，正确的是（　）。
 
 - A．数据的逻辑结构描述数据元素之间的逻辑关系，与具体存储实现无关
 - B．一种逻辑结构只能采用一种存储结构实现
@@ -36090,7 +39975,7 @@ $$
 - **VLSM**：口诀「需求 = 主机 + 接口，取最小 $2^h-2$，块首必对齐」。
 - **NAPT**：口诀「只改源、目的不动，回程反查定唯一」。
 - **分片**：口诀「上限 = ⌊(MTU−首部)/8⌋×8，偏移 = 字节偏移 ÷8，末片 MF=0」。
-`}}],SC=[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
+`}}],RC=[{id:`rare-rbt-principles`,title:`红黑树的五条性质与高度界：NIL、黑高怎么算`,type:`知识点`,date:`2026-10-06`,chapter:`查找 · 红黑树`,tags:[`红黑树`,`黑高`,`NIL与实叶`,`高度界与证明`,`合法性判定`],summary:`红黑树的五条性质、NIL 与实叶的区别、黑高 bh 的约定，以及 n≥2^b−1 与 h≤2b≤2log₂(n+1) 的证明思路、判题审查顺序和结点颜色数的常见误区。`,source:`知识点整理：MIT 6.046J Lecture 10（性质、高度界与 2-3-4 合并）及 UPenn CIS 552 RedBlack（性质与样例）。正文数字示例由本站独立编制，文献链接见末尾。`,content:String.raw`## 五条性质
 
 红黑树是一棵二叉搜索树，每个实结点额外记录红或黑的颜色（理论上只需 1 bit，实际内存占用由实现决定），并满足：
 
@@ -38138,7 +42023,7 @@ Kruskal 从五个单点开始，按顺序检查边。两端不在同一集合时
 
 ### 3. 下次遇到同类题怎么办
 
-区分原图边、生成树边、双亲指针三类关系；到 n−1 条提前结束。静态删边可重建，在线增量与在线全动态问题不要混用结论。`}}],CC=[{id:`graph-20261016-topo-kp`,title:`拓扑排序：AOV 网、Kahn 入度法、唯一性判据与矩阵上三角`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 拓扑排序`,tags:[`拓扑排序`,`AOV网`,`入度`,`零入度缓冲区`,`DAG`,`拓扑序唯一性`,`邻接矩阵上三角`,`复杂度`],summary:`掌握 AOV 网、Kahn 入度更新、DAG 判环、拓扑序唯一性与计数、矩阵重排，以及普通队列和最小堆的复杂度差异。`,source:`本站原创 408 风格知识点整理（不是历年真题，也不是任何官方答案）；本组题目、答案与代码均由本站独立编写；答案已用独立 Python 脚本穷举全排列复核，综合题的 C 程序已用 TinyCC 0.9.27 win64 实际编译运行（编译返回码 0），并与穷举参考解逐图比对。基础知识依据 Princeton《Algorithms》4th ed. 在线教材 4.1 无向图 https://algs4.cs.princeton.edu/41graph/ 与 4.2 有向图 https://algs4.cs.princeton.edu/42digraph/`,content:String.raw`## AOV 网与拓扑序列
+区分原图边、生成树边、双亲指针三类关系；到 n−1 条提前结束。静态删边可重建，在线增量与在线全动态问题不要混用结论。`}}],zC=[{id:`graph-20261016-topo-kp`,title:`拓扑排序：AOV 网、Kahn 入度法、唯一性判据与矩阵上三角`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 拓扑排序`,tags:[`拓扑排序`,`AOV网`,`入度`,`零入度缓冲区`,`DAG`,`拓扑序唯一性`,`邻接矩阵上三角`,`复杂度`],summary:`掌握 AOV 网、Kahn 入度更新、DAG 判环、拓扑序唯一性与计数、矩阵重排，以及普通队列和最小堆的复杂度差异。`,source:`本站原创 408 风格知识点整理（不是历年真题，也不是任何官方答案）；本组题目、答案与代码均由本站独立编写；答案已用独立 Python 脚本穷举全排列复核，综合题的 C 程序已用 TinyCC 0.9.27 win64 实际编译运行（编译返回码 0），并与穷举参考解逐图比对。基础知识依据 Princeton《Algorithms》4th ed. 在线教材 4.1 无向图 https://algs4.cs.princeton.edu/41graph/ 与 4.2 有向图 https://algs4.cs.princeton.edu/42digraph/`,content:String.raw`## AOV 网与拓扑序列
 
 - **AOV 网**（Activity On Vertex）：顶点表示活动，有向边 $u \to v$ 表示 u 是 v 的直接前驱，也就是 u 完成后 v 才能开始。
 - **拓扑序列**：把图中全部 $n$ 个顶点排成 $v_1, v_2, \dots, v_n$，使每条边 $(u,v)$ 都满足 u 排在 v 前面。顶点在序列中只出现一次。
@@ -38726,7 +42611,7 @@ DFS 逆后序（对每个未访问顶点 DFS，后序压栈、最后整体逆序
 
 ### 3. 下次遇到同类题
 
-凡是"多状态输出"的算法题，先问一句"这些状态可以同时为真吗？它们的先后层次是什么？"，把优先级最高的判据放在最前面，再写代码。本例的最高优先级就是有环。`}}],wC=[{id:`graph-20261016-bfs-basics`,title:`BFS 队列机制与最短路径：FIFO、入队即标记、dist 与统计口径`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 广度优先搜索`,tags:[`BFS`,`FIFO队列`,`入队即标记`,`dist距离`,`层次性质`,`BFS生成树`,`邻接表复杂度`,`非连通图与不可达`,`无权图与等权图`],summary:`掌握 FIFO、入队标记、层次距离、生成森林、存储结构复杂度，以及无权最短路径与路径条数的区别。`,source:`本站原创 408 风格知识点整理，非历年真题、非官方答案；结论与示例由本站独立程序模拟复核，本页代码片段已用 tcc 实际编译运行验证。基础结论对照 Princeton《Algorithms》在线讲义 4.1 Undirected Graphs https://algs4.cs.princeton.edu/41graph/ 与 4.2 Directed Graphs https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、算法骨架与队列不变式
+凡是"多状态输出"的算法题，先问一句"这些状态可以同时为真吗？它们的先后层次是什么？"，把优先级最高的判据放在最前面，再写代码。本例的最高优先级就是有环。`}}],BC=[{id:`graph-20261016-bfs-basics`,title:`BFS 队列机制与最短路径：FIFO、入队即标记、dist 与统计口径`,type:`知识点`,date:`2026-10-16`,chapter:`图 · 广度优先搜索`,tags:[`BFS`,`FIFO队列`,`入队即标记`,`dist距离`,`层次性质`,`BFS生成树`,`邻接表复杂度`,`非连通图与不可达`,`无权图与等权图`],summary:`掌握 FIFO、入队标记、层次距离、生成森林、存储结构复杂度，以及无权最短路径与路径条数的区别。`,source:`本站原创 408 风格知识点整理，非历年真题、非官方答案；结论与示例由本站独立程序模拟复核，本页代码片段已用 tcc 实际编译运行验证。基础结论对照 Princeton《Algorithms》在线讲义 4.1 Undirected Graphs https://algs4.cs.princeton.edu/41graph/ 与 4.2 Directed Graphs https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、算法骨架与队列不变式
 
 BFS 从源点出发，按“距离源点的边数”由近及远逐层访问顶点，只需要一个**先进先出（FIFO）队列**：每次取出队头顶点，把它尚未发现的邻接点依次放到队尾。三条不变式：
 
@@ -39219,7 +43104,7 @@ Q3  dist 与 cnt 全部一致 ? True 不一致顶点: []
 
 ### 3. 下次遇到同类题
 
-先确定计数口径（是否允许中途重复经过顶点、条数是否取模），再套 BFS 的两个数组。凡是要“数条数”的题，都要在第一次发现与再次发现之间划清界线：**距离只在第一次写，条数在每一次等长时加**。`}}],TC=[{id:`graph-20261016-dfs-kp`,title:`深度优先搜索：递归栈、发现与完成时间、生成森林与回边`,type:`知识点`,date:`2026-10-16`,chapter:`数据结构 · 图 · 深度优先搜索`,tags:[`深度优先搜索`,`递归栈`,`发现时间与完成时间`,`生成森林`,`回边`,`逆后序`],summary:`掌握递归栈、发现与完成次序、生成森林，以及无向图父边和有向图灰点判环的区别。`,source:`本站原创知识点整理，配套三道原创 408 风格练习；结论由本站独立推导并用自建 Python 复核脚本从零实跑核验（递归与显式栈逐项对拍、暴力可达性判环、Kahn 判环、3000 组随机小图）。非历年真题、非官方答案。参考 Princeton《Algorithms》第 4 版 §4.1 https://algs4.cs.princeton.edu/41graph/ 与 §4.2 https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、一次 DFS 访问做了什么
+先确定计数口径（是否允许中途重复经过顶点、条数是否取模），再套 BFS 的两个数组。凡是要“数条数”的题，都要在第一次发现与再次发现之间划清界线：**距离只在第一次写，条数在每一次等长时加**。`}}],VC=[{id:`graph-20261016-dfs-kp`,title:`深度优先搜索：递归栈、发现与完成时间、生成森林与回边`,type:`知识点`,date:`2026-10-16`,chapter:`数据结构 · 图 · 深度优先搜索`,tags:[`深度优先搜索`,`递归栈`,`发现时间与完成时间`,`生成森林`,`回边`,`逆后序`],summary:`掌握递归栈、发现与完成次序、生成森林，以及无向图父边和有向图灰点判环的区别。`,source:`本站原创知识点整理，配套三道原创 408 风格练习；结论由本站独立推导并用自建 Python 复核脚本从零实跑核验（递归与显式栈逐项对拍、暴力可达性判环、Kahn 判环、3000 组随机小图）。非历年真题、非官方答案。参考 Princeton《Algorithms》第 4 版 §4.1 https://algs4.cs.princeton.edu/41graph/ 与 §4.2 https://algs4.cs.princeton.edu/42digraph/ 。`,content:String.raw`## 一、一次 DFS 访问做了什么
 
 从顶点 $u$ 出发，先"发现"它，再依次检查它的每个邻接点 $v$：若 $v$ 没被访问过，就立刻递归进入 $v$；等 $v$ 整棵子树处理完，再回到 $u$ 检查下一个邻接点。$u$ 的邻接点全部检查完毕，$u$ 本身才算"完成"。
 
@@ -39720,7 +43605,7 @@ Python 侧的随机对拍：
 
 ### 3. 下次遇到同类题怎么办
 
-记住三步：**三色 + 帧（顶点、边下标）→ 灰点判环 → 无环时完成序倒序输出**。自查三点：栈帧信息是否完整、判环条件是否只认灰点、外层是否扫过所有顶点。`}}],EC=`2026-11-19`,DC=[[eC,`lingyi-1-os-q46`,`零壹一模`,`奇偶交替输出`,`让两个进程合作，依次输出从 1 到 2n 的整数。`],[vC,`mock-exam-5-os-q45`,`里昂模拟卷五`,`协作清点围棋子`,`分别取黑子、白子并计数，最后由第三个进程汇总。`],[yC,`mock-exam-6-os-q46`,`里昂模拟卷六`,`表达式并行计算`,`画出运算前驱关系，确定最大并行度并写出并发计算过程。`],[YS,`ace-6-os-q45`,`Ace 模拟卷六`,`轮船载客`,`船坐满后开航，下空后返程；为船和乘客写出同步过程。`],[tC,`turing-oct-os-q45`,`图领 10 月模考`,`环形缓冲池`,`环形缓冲池头插尾取，并发更新共享指针。`],[_C,`mock-exam-4-os-q45`,`里昂模拟卷四`,`缓冲区合并与优先取用`,`分别处理独立缓冲区、合并缓冲区和优先取货三种要求。`],[mC,`mock-exam-1-os-q46`,`里昂模拟卷一`,`单缓冲区发送消息`,`缓冲区内的每条消息，三个接收者都必须恰好读取一次。`],[nC,`wangdao-gufen2-os-q46`,`王道估分卷 2`,`一生产者与两消费者`,`两个消费者可并发复制同一条数据，复制完成前禁止覆盖。`],[qS,`ace-1-os-q45`,`Ace 模拟卷一`,`刷题班文件袋`,`文件袋取空后由老师一次补满，学生再继续取题。`],[dC,`wangdao-mock1-major-45`,`王道 8 套卷（原题截图标注）`,`仓库累计产量差`,`两个生产者和一个销售者共用仓库，累计产量差有限。`],[KS,`linghuchong-os-q45`,`令狐冲国庆大联考`,`买一赠一`,`两类商品分别入库、成对出库，仓库容量和推车都有限制。`],[aC,`jingcheng-exam-5-os-q46`,`竟成模拟卷五`,`SPOOLing 打印`,`确定打印操作顺序，再处理输出井与请求队列的同步。`],[rC,`wangdao-gufen-os-q46`,`王道估分卷`,`共享报告查阅与更新`,`实现读者优先，并判断更新进程是否可能一直等待。`],[oC,`jingcheng-exam-6-os-q45`,`竟成模拟卷六`,`文件读写`,`共享文件每写一次，下一次写之前至少要有一次读取。`],[JS,`ace-2-os-q45`,`Ace 模拟卷二`,`课程表协同编辑`,`为查询、插入、删除三个类别设计并发访问规则。`],[ZS,`ace-4-os-q45`,`Ace 模拟卷四`,`两类问题并发处理`,`同类最多同时处理两个，异类不能同时处理。`],[hC,`mock-exam-2-os-q45`,`里昂模拟卷二`,`门诊挂号与就诊`,`病人互斥挂号后候诊，等得最久的人优先分配医生。`],[XS,`ace-5-os-q45`,`Ace 模拟卷五`,`自习室座位`,`遇到满座时，必须等当时在座的十名学生离开后才能再次尝试。`],[sC,`jingcheng-exam-7-os-q46`,`竟成模拟卷七`,`记录型信号量原语`,`写出 P、V 原语，并说明信号量值的取值范围与含义。`],[QS,`ace-3-os-q46`,`Ace 模拟卷三`,`答疑系统纠错`,`找出给定老师进程的三处错误，再补写问题进程。`],[gC,`mock-exam-3-os-q45`,`里昂模拟卷三`,`管程与 AND 信号量`,`补全生产者—消费者代码，比较原子申请与两次独立等待。`]].map(([e,t,n,r,i],a)=>{let o=e.find(e=>e.id===t);if(o?.type!==`题目`||!o.questionNumber||!o.solution)throw Error(`PV 专题题卡缺少题号或解析：${t}`);let s=`${String(a+1).padStart(2,`0`)} · ${n}`;return{label:`${s} 第 ${o.questionNumber} 题`,originalId:t,material:{...o,id:`pv-${t}`,title:`${s} · ${r}`,summary:i,date:EC,tags:[...new Set([`PV 专题`,...o.tags])]}}}),OC={id:`pv-mock-20261119`,title:`PV 大题专题 · 模拟卷逐题解析`,date:EC,catalog:`topic`,summary:`先看课堂总览，再按顺序讲 ${DC.length} 道题：从前驱关系、缓冲区与配额，到读者写者、分批放行及信号量原语。`,materials:[{id:`pv-mock-class-overview`,title:`课堂总览 · PV 大题怎么写、哪里得分`,type:`知识点`,date:EC,chapter:`操作系统 · 进程同步与互斥`,tags:[`PV 专题`,`答题步骤`],summary:`从题意画出等待关系，写清信号量初值、各进程伪代码与边界检查。`,content:String.raw`### 一、先翻译题意，再写 P、V
+记住三步：**三色 + 帧（顶点、边下标）→ 灰点判环 → 无环时完成序倒序输出**。自查三点：栈帧信息是否完整、判环条件是否只认灰点、外层是否扫过所有顶点。`}}],HC=`2026-11-19`,UC=[[eC,`lingyi-1-os-q46`,`零壹一模`,`奇偶交替输出`,`让两个进程合作，依次输出从 1 到 2n 的整数。`],[PC,`mock-exam-5-os-q45`,`里昂模拟卷五`,`协作清点围棋子`,`分别取黑子、白子并计数，最后由第三个进程汇总。`],[FC,`mock-exam-6-os-q46`,`里昂模拟卷六`,`表达式并行计算`,`画出运算前驱关系，确定最大并行度并写出并发计算过程。`],[YS,`ace-6-os-q45`,`Ace 模拟卷六`,`轮船载客`,`船坐满后开航，下空后返程；为船和乘客写出同步过程。`],[tC,`turing-oct-os-q45`,`图领 10 月模考`,`环形缓冲池`,`环形缓冲池头插尾取，并发更新共享指针。`],[NC,`mock-exam-4-os-q45`,`里昂模拟卷四`,`缓冲区合并与优先取用`,`分别处理独立缓冲区、合并缓冲区和优先取货三种要求。`],[AC,`mock-exam-1-os-q46`,`里昂模拟卷一`,`单缓冲区发送消息`,`缓冲区内的每条消息，三个接收者都必须恰好读取一次。`],[nC,`wangdao-gufen2-os-q46`,`王道估分卷 2`,`一生产者与两消费者`,`两个消费者可并发复制同一条数据，复制完成前禁止覆盖。`],[qS,`ace-1-os-q45`,`Ace 模拟卷一`,`刷题班文件袋`,`文件袋取空后由老师一次补满，学生再继续取题。`],[DC,`wangdao-mock1-major-45`,`王道 8 套卷（原题截图标注）`,`仓库累计产量差`,`两个生产者和一个销售者共用仓库，累计产量差有限。`],[KS,`linghuchong-os-q45`,`令狐冲国庆大联考`,`买一赠一`,`两类商品分别入库、成对出库，仓库容量和推车都有限制。`],[aC,`jingcheng-exam-5-os-q46`,`竟成模拟卷五`,`SPOOLing 打印`,`确定打印操作顺序，再处理输出井与请求队列的同步。`],[rC,`wangdao-gufen-os-q46`,`王道估分卷`,`共享报告查阅与更新`,`实现读者优先，并判断更新进程是否可能一直等待。`],[oC,`jingcheng-exam-6-os-q45`,`竟成模拟卷六`,`文件读写`,`共享文件每写一次，下一次写之前至少要有一次读取。`],[JS,`ace-2-os-q45`,`Ace 模拟卷二`,`课程表协同编辑`,`为查询、插入、删除三个类别设计并发访问规则。`],[ZS,`ace-4-os-q45`,`Ace 模拟卷四`,`两类问题并发处理`,`同类最多同时处理两个，异类不能同时处理。`],[jC,`mock-exam-2-os-q45`,`里昂模拟卷二`,`门诊挂号与就诊`,`病人互斥挂号后候诊，等得最久的人优先分配医生。`],[XS,`ace-5-os-q45`,`Ace 模拟卷五`,`自习室座位`,`遇到满座时，必须等当时在座的十名学生离开后才能再次尝试。`],[sC,`jingcheng-exam-7-os-q46`,`竟成模拟卷七`,`记录型信号量原语`,`写出 P、V 原语，并说明信号量值的取值范围与含义。`],[QS,`ace-3-os-q46`,`Ace 模拟卷三`,`答疑系统纠错`,`找出给定老师进程的三处错误，再补写问题进程。`],[MC,`mock-exam-3-os-q45`,`里昂模拟卷三`,`管程与 AND 信号量`,`补全生产者—消费者代码，比较原子申请与两次独立等待。`]].map(([e,t,n,r,i],a)=>{let o=e.find(e=>e.id===t);if(o?.type!==`题目`||!o.questionNumber||!o.solution)throw Error(`PV 专题题卡缺少题号或解析：${t}`);let s=`${String(a+1).padStart(2,`0`)} · ${n}`;return{label:`${s} 第 ${o.questionNumber} 题`,originalId:t,material:{...o,id:`pv-${t}`,title:`${s} · ${r}`,summary:i,date:HC,tags:[...new Set([`PV 专题`,...o.tags])]}}}),WC={id:`pv-mock-20261119`,title:`PV 大题专题 · 模拟卷逐题解析`,date:HC,catalog:`topic`,summary:`先看课堂总览，再按顺序讲 ${UC.length} 道题：从前驱关系、缓冲区与配额，到读者写者、分批放行及信号量原语。`,materials:[{id:`pv-mock-class-overview`,title:`课堂总览 · PV 大题怎么写、哪里得分`,type:`知识点`,date:HC,chapter:`操作系统 · 进程同步与互斥`,tags:[`PV 专题`,`答题步骤`],summary:`从题意画出等待关系，写清信号量初值、各进程伪代码与边界检查。`,content:String.raw`### 一、先翻译题意，再写 P、V
 
 1. **列进程和共享资源。** 谁在循环？哪些读写不能重叠？对同一临界资源设互斥信号量，通常初值为 1。
 2. **圈出“必须等到”。** 谁等、等什么、谁在何时通知？事件尚未发生时，通知信号量初值通常为 0；若数的是资源，初值取一开始可用的数量。
@@ -39744,7 +43629,7 @@ Python 侧的随机对拍：
 - **特殊要求单独写：** 每人都要读一次，就给每个接收者单独通知；必须等全员完成，就明确由谁发最后一次通知；FIFO 或优先唤醒不能只靠 CPU 调度来保证。
 - **最后跑三个边界：** 从空开始谁先走？资源满了谁能释放？被唤醒的人晚一点运行，通知会不会被别人拿走？具体分值以原题为准。
 
-**串讲顺序：** 先讲第 01–04 题的先后关系，再讲第 05–12 题的缓冲区与配额，最后用第 13–21 题练互斥变体、分批放行和纠错。`},...DC.map(({material:e})=>e)]},kC=new Map(DC.map(({material:e,originalId:t})=>[e.id,t]));function AC(e){return kC.get(e)??e}var jC=[OC,{id:`real-concepts-20261116`,title:`历年真题概念题 · 四科 PDF`,date:`2026-11-16`,catalog:`review`,summary:`从 2009–2026 年真题中筛选文字概念辨析题，按四科和年份整理；各科提供无答案学生版及含独立解析的教师版，保留原题号与题源。`,materials:GS},{id:`jingcheng-exam-5`,title:`竟成模拟卷5`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:5},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:aC},{id:`jingcheng-exam-6`,title:`竟成模拟卷6`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:6},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:oC},{id:`jingcheng-exam-7`,title:`竟成模拟卷7`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:7},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:sC},{id:`jingcheng-exam-8`,title:`竟成模拟卷8`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:8},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:cC},{id:`network-mcq-20261024`,title:`计网选择题精讲 · 2009–2025 真题 15 题`,date:`2026-10-24`,catalog:`topic`,summary:`按数据链路层、网络层、传输层、应用层选出的 15 道历年选择题难题，每题给完整推导、易错点、同类迁移与基础知识；另附模拟卷计网选择题索引。学生用的讲义 PDF 只含题面，解析在本页。`,materials:iC},{id:`assembly-major-20261023`,title:`汇编语言大题专题 · 机器级代码与指令编码`,date:`2026-10-23`,catalog:`topic`,summary:`2009–2026 组成原理综合题中，以汇编指令与机器级代码为主体的 6 道真题（2010、2014、2017、2019、2023、2024），逐题给机器码换算、相对寻址、大小端与标志位推导；另附 7 道模拟卷指令类大题导航。`,materials:zS},{id:`wangdao-gufen-20261115`,title:`王道估分卷 · 2027 模拟`,date:`2026-11-15`,catalog:{series:`wangdao`,order:1},summary:`王道 408 报考估分卷：40 道单选 + 7 道综合，含答案与解析。`,materials:rC},{id:`wangdao-gufen2-20261115`,title:`王道估分卷2 · 2027 模拟`,date:`2026-11-15`,catalog:{series:`wangdao`,order:2},summary:`王道 408 估分卷 2：40 道单选 + 7 道综合，含答案与解析。`,materials:nC},{id:`turing-oct-20261115`,title:`图领 10 月模考 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:3},summary:`图领计算机 10 月 408 模考：40 道单选 + 7 道综合。`,materials:tC},{id:`lingyi-1-20261115`,title:`零壹一模 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:1},summary:`零壹计算机考研 27 408 一模：40 道单选 + 7 道综合。`,materials:eC},{id:`lingyi-2-20261115`,title:`零壹二模 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:2},summary:`零壹计算机考研 27 408 二模：40 道单选 + 7 道综合。`,materials:$S},{id:`ace-2-20261115`,title:`Ace 模拟卷二 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:2},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:JS},{id:`ace-3-20261115`,title:`Ace 模拟卷三 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:3},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:QS},{id:`ace-4-20261115`,title:`Ace 模拟卷四 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:4},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:ZS},{id:`ace-5-20261115`,title:`Ace 模拟卷五 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:5},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:XS},{id:`ace-6-20261115`,title:`Ace 模拟卷六 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:6},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:YS},{id:`ace-1-20261115`,title:`Ace 模拟卷一 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:1},summary:`Ace 模拟试卷（一）：40 道单选 + 7 道综合。`,materials:qS},{id:`linghuchong-national-20261115`,title:`令狐冲国庆大联考 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:4},summary:`令狐冲国庆大联考 408 模拟卷：40 道单选 + 7 道综合。`,materials:KS},{id:`mindmap-20261115`,title:`四科思维导图 · 总复习`,date:`2026-11-15`,catalog:`review`,summary:`四科各一张总图，97 个知识点逐点配例题图片；支持页内放大、查看解析后返回原知识点，另附含例题的 A4 PDF。`,materials:US},{id:`zhenti-picks-20261115`,title:`真题风格题精选 · 12 套 2027 模拟卷`,date:`2026-11-15`,catalog:`review`,summary:`从王道两套、图领、零壹两套、Ace 六套、令狐冲共 12 套模拟卷里逐卷挑出最像 408 真题的题，按四个科目整理；每道题点进去就是原题页，含答案与解析。`,materials:HS},{id:`cache-vm-20261112`,title:`Cache 与虚存做题本 · 真题与模拟题`,date:`2026-11-12`,catalog:`topic`,summary:`收录 3 道 408 真题（2023 数组缺页与 Cache 命中率、2011 页表到 Cache 的完整转换、2024 页表项定位）与 17 道模拟卷 Cache/虚存大题，覆盖地址划分、组相联、缺页与置换；每题配原卷图、答案与逐问思路。`,materials:VS},{id:`io-major-20261109`,title:`I/O 大题专题 · 真题与模拟题`,date:`2026-11-09`,catalog:`topic`,summary:`收录 3 道 408 真题（2009 中断与 DMA 开销、2016 异步串行与中断、2018 查询/中断/DMA 判定）与 9 道模拟卷 I/O 大题，覆盖程序查询、中断、DMA、缓冲与 SPOOLing；每题配完整题面、答案与推导。`,materials:BS},{id:`ds-application-major-20261021`,title:`数据结构应用大题专题 · 2009–2026 真题与模拟`,date:`2026-10-21`,catalog:`topic`,summary:`逐年核对 2009–2026 数据结构两道综合题：纳入 18 道大题（手算、画结构、性质分析，含 2022 第 42 题这一边界题），排除 17 道要求写算法代码的大题；另附 7 道模拟应用大题导航。每题配完整题面、逐问详解、基础知识与 SVG 图解。`,materials:RS},{id:`graph-traversal-topology-20261016`,title:`图专题 · BFS、DFS 与拓扑排序`,date:`2026-10-16`,catalog:`topic`,summary:`3 张知识点卡、6 道原创单选与 3 道综合算法题；覆盖遍历模拟、最短路径、生成森林、判环、拓扑序计数与唯一性，附完整解析和程序复核。`,materials:[...wC,...TC,...CC]},{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-09`,catalog:`rare`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:SC},{id:`mock-exam-5`,title:`里昂模拟卷 5`,date:`2026-10-11`,catalog:{series:`lion`,order:5},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:vC},{id:`mock-exam-6`,title:`里昂模拟卷 6`,date:`2026-10-11`,catalog:{series:`lion`,order:6},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:yC},{id:`mock-exam-7`,title:`里昂模拟卷 7`,date:`2026-10-11`,catalog:{series:`lion`,order:7},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:bC},{id:`mock-exam-8`,title:`里昂模拟卷 8`,date:`2026-10-11`,catalog:{series:`lion`,order:8},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:xC},{id:`mock-exam-1`,title:`里昂模拟卷 1`,date:`2026-10-07`,catalog:{series:`lion`,order:1},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:mC},{id:`mock-exam-2`,title:`里昂模拟卷 2`,date:`2026-10-07`,catalog:{series:`lion`,order:2},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:hC},{id:`mock-exam-3`,title:`里昂模拟卷 3`,date:`2026-10-07`,catalog:{series:`lion`,order:3},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:gC},{id:`mock-exam-4`,title:`里昂模拟卷 4`,date:`2026-10-07`,catalog:{series:`lion`,order:4},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:_C},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:pC},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套 · 第 1–32 题`,date:`2026-09-30`,catalog:{series:`wangdao`,order:4},materials:fC},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套 · 综合题`,date:`2026-09-30`,catalog:{series:`wangdao`,order:3},materials:dC},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,catalog:`review`,materials:uC}],MC={"ds-real-2009-41":String.raw`### 最短路径问题
+**串讲顺序：** 先讲第 01–04 题的先后关系，再讲第 05–12 题的缓冲区与配额，最后用第 13–21 题练互斥变体、分批放行和纠错。`},...UC.map(({material:e})=>e)]},GC=new Map(UC.map(({material:e,originalId:t})=>[e.id,t]));function KC(e){return GC.get(e)??e}var qC=[wC,WC,{id:`real-concepts-20261116`,title:`历年真题概念题 · 四科 PDF`,date:`2026-11-16`,catalog:`review`,summary:`从 2009–2026 年真题中筛选文字概念辨析题，按四科和年份整理；各科提供无答案学生版及含独立解析的教师版，保留原题号与题源。`,materials:GS},{id:`jingcheng-exam-5`,title:`竟成模拟卷5`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:5},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:aC},{id:`jingcheng-exam-6`,title:`竟成模拟卷6`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:6},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:oC},{id:`jingcheng-exam-7`,title:`竟成模拟卷7`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:7},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:sC},{id:`jingcheng-exam-8`,title:`竟成模拟卷8`,date:`2026-10-26`,catalog:{series:`jingcheng`,order:8},summary:`第 1～47 题完整题面、逐题解析与基础知识；依据用户提供的试题册核对题面，并对照解析册独立推导。`,materials:cC},{id:`network-mcq-20261024`,title:`计网选择题精讲 · 2009–2025 真题 15 题`,date:`2026-10-24`,catalog:`topic`,summary:`按数据链路层、网络层、传输层、应用层选出的 15 道历年选择题难题，每题给完整推导、易错点、同类迁移与基础知识；另附模拟卷计网选择题索引。学生用的讲义 PDF 只含题面，解析在本页。`,materials:iC},{id:`assembly-major-20261023`,title:`汇编语言大题专题 · 机器级代码与指令编码`,date:`2026-10-23`,catalog:`topic`,summary:`2009–2026 组成原理综合题中，以汇编指令与机器级代码为主体的 6 道真题（2010、2014、2017、2019、2023、2024），逐题给机器码换算、相对寻址、大小端与标志位推导；另附 7 道模拟卷指令类大题导航。`,materials:zS},{id:`wangdao-gufen-20261115`,title:`王道估分卷 · 2027 模拟`,date:`2026-11-15`,catalog:{series:`wangdao`,order:1},summary:`王道 408 报考估分卷：40 道单选 + 7 道综合，含答案与解析。`,materials:rC},{id:`wangdao-gufen2-20261115`,title:`王道估分卷2 · 2027 模拟`,date:`2026-11-15`,catalog:{series:`wangdao`,order:2},summary:`王道 408 估分卷 2：40 道单选 + 7 道综合，含答案与解析。`,materials:nC},{id:`turing-oct-20261115`,title:`图领 10 月模考 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:3},summary:`图领计算机 10 月 408 模考：40 道单选 + 7 道综合。`,materials:tC},{id:`lingyi-1-20261115`,title:`零壹一模 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:1},summary:`零壹计算机考研 27 408 一模：40 道单选 + 7 道综合。`,materials:eC},{id:`lingyi-2-20261115`,title:`零壹二模 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:2},summary:`零壹计算机考研 27 408 二模：40 道单选 + 7 道综合。`,materials:$S},{id:`ace-2-20261115`,title:`Ace 模拟卷二 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:2},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:JS},{id:`ace-3-20261115`,title:`Ace 模拟卷三 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:3},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:QS},{id:`ace-4-20261115`,title:`Ace 模拟卷四 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:4},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:ZS},{id:`ace-5-20261115`,title:`Ace 模拟卷五 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:5},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:XS},{id:`ace-6-20261115`,title:`Ace 模拟卷六 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:6},summary:`Ace 模拟卷：40 道单选 + 7 道综合，含答案与解析。`,materials:YS},{id:`ace-1-20261115`,title:`Ace 模拟卷一 · 2027`,date:`2026-11-15`,catalog:{series:`ace`,order:1},summary:`Ace 模拟试卷（一）：40 道单选 + 7 道综合。`,materials:qS},{id:`linghuchong-national-20261115`,title:`令狐冲国庆大联考 · 2027`,date:`2026-11-15`,catalog:{series:`other`,order:4},summary:`令狐冲国庆大联考 408 模拟卷：40 道单选 + 7 道综合。`,materials:KS},{id:`mindmap-20261115`,title:`四科思维导图 · 总复习`,date:`2026-11-15`,catalog:`review`,summary:`四科各一张总图，97 个知识点逐点配例题图片；支持页内放大、查看解析后返回原知识点，另附含例题的 A4 PDF。`,materials:US},{id:`zhenti-picks-20261115`,title:`真题风格题精选 · 12 套 2027 模拟卷`,date:`2026-11-15`,catalog:`review`,summary:`从王道两套、图领、零壹两套、Ace 六套、令狐冲共 12 套模拟卷里逐卷挑出最像 408 真题的题，按四个科目整理；每道题点进去就是原题页，含答案与解析。`,materials:HS},{id:`cache-vm-20261112`,title:`Cache 与虚存做题本 · 真题与模拟题`,date:`2026-11-12`,catalog:`topic`,summary:`收录 3 道 408 真题（2023 数组缺页与 Cache 命中率、2011 页表到 Cache 的完整转换、2024 页表项定位）与 17 道模拟卷 Cache/虚存大题，覆盖地址划分、组相联、缺页与置换；每题配原卷图、答案与逐问思路。`,materials:VS},{id:`io-major-20261109`,title:`I/O 大题专题 · 真题与模拟题`,date:`2026-11-09`,catalog:`topic`,summary:`收录 3 道 408 真题（2009 中断与 DMA 开销、2016 异步串行与中断、2018 查询/中断/DMA 判定）与 9 道模拟卷 I/O 大题，覆盖程序查询、中断、DMA、缓冲与 SPOOLing；每题配完整题面、答案与推导。`,materials:BS},{id:`ds-application-major-20261021`,title:`数据结构应用大题专题 · 2009–2026 真题与模拟`,date:`2026-10-21`,catalog:`topic`,summary:`逐年核对 2009–2026 数据结构两道综合题：纳入 18 道大题（手算、画结构、性质分析，含 2022 第 42 题这一边界题），排除 17 道要求写算法代码的大题；另附 7 道模拟应用大题导航。每题配完整题面、逐问详解、基础知识与 SVG 图解。`,materials:RS},{id:`graph-traversal-topology-20261016`,title:`图专题 · BFS、DFS 与拓扑排序`,date:`2026-10-16`,catalog:`topic`,summary:`3 张知识点卡、6 道原创单选与 3 道综合算法题；覆盖遍历模拟、最短路径、生成森林、判环、拓扑序计数与唯一性，附完整解析和程序复核。`,materials:[...BC,...VC,...zC]},{id:`rare-topics`,title:`冷门知识专区`,date:`2026-10-09`,catalog:`rare`,summary:`收录用户提供的冷门考点，并扩展相近知识点、适用条件、易混区别与带完整答案的例题讲解；真实题源和改编例题分别标注。`,materials:RC},{id:`mock-exam-5`,title:`里昂模拟卷 5`,date:`2026-10-11`,catalog:{series:`lion`,order:5},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:PC},{id:`mock-exam-6`,title:`里昂模拟卷 6`,date:`2026-10-11`,catalog:{series:`lion`,order:6},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:FC},{id:`mock-exam-7`,title:`里昂模拟卷 7`,date:`2026-10-11`,catalog:{series:`lion`,order:7},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:IC},{id:`mock-exam-8`,title:`里昂模拟卷 8`,date:`2026-10-11`,catalog:{series:`lion`,order:8},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。原卷未印参考答案，已独立推导与复核。`,materials:LC},{id:`mock-exam-1`,title:`里昂模拟卷 1`,date:`2026-10-07`,catalog:{series:`lion`,order:1},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:AC},{id:`mock-exam-2`,title:`里昂模拟卷 2`,date:`2026-10-07`,catalog:{series:`lion`,order:2},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:jC},{id:`mock-exam-3`,title:`里昂模拟卷 3`,date:`2026-10-07`,catalog:{series:`lion`,order:3},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:MC},{id:`mock-exam-4`,title:`里昂模拟卷 4`,date:`2026-10-07`,catalog:{series:`lion`,order:4},summary:`数据结构第 1～11、41～42 题；计算机组成原理第 12～22、43～44 题；操作系统第 23～32、45～46 题；计算机网络第 33～40、47 题。共 47 题，原卷未印参考答案，已独立推导与复核。`,materials:NC},{id:`virtual-memory-10-2`,title:`10.2 虚拟存储和IO`,date:`2026-10-01`,materials:kC},{id:`wangdao-mock-set-2-major`,title:`王道模拟题第二套 · 第 1–32 题`,date:`2026-09-30`,catalog:{series:`wangdao`,order:4},materials:OC},{id:`wangdao-mock-set-1-major`,title:`王道模拟题第一套 · 综合题`,date:`2026-09-30`,catalog:{series:`wangdao`,order:3},materials:DC},{id:`real-exam-2026-analysis`,title:`26真题分析`,date:`2026-09-30`,catalog:`review`,materials:EC}],JC={"ds-real-2009-41":String.raw`### 最短路径问题
 
 带权图 $G=(V,E)$，边权 $w(u,v)\ge 0$ 表示两点间距离。最短路径是使路径上边权之和最小的路径。注意“路径”在算法语境里通常指简单路径（顶点不重复），但在带权最短路中，非负权保证最优解一定可以取成简单路径，因为绕环只会增加长度。
 
@@ -40150,7 +44035,7 @@ $k$ 为常数时写 $O(n)$ 时间、$O(1)$ 空间。建堆 $O(k)$，之后每个
 
 - 全排序：$O(n\log n)$，比较次数多一个数量级；
 - 扫描 $k$ 趟：$O(kn)$，$k=10$ 时约 $10n$ 次比较；
-- 快速选择 / BFPRT：平均 / 最坏 $O(n)$，但要打乱数组、需递归栈，且必须能随机访问全部数据。`},NC={"net-real-2009-37":String.raw`### CSMA/CD 的争用期与最小帧长
+- 快速选择 / BFPRT：平均 / 最坏 $O(n)$，但要打乱数组、需递归栈，且必须能随机访问全部数据。`},YC={"net-real-2009-37":String.raw`### CSMA/CD 的争用期与最小帧长
 
 发送方必须在「最远端的碰撞信号传回来」之前仍在发送，才能检测到碰撞。因此一帧的发送时间不能短于往返传播时延：
 
@@ -40269,7 +44154,7 @@ $$RTT_{total} = 2 \times N_{objects}$$
 
 真题用于校准命题口径：条件写全、只有一个正确答案、计算量可控。模拟卷常把两个考点拼在一起，条件藏在括号里，适合查漏。
 
-做题顺序：先用真题确认公式，再用模拟卷练手速。`},PC={"asm-2010-43":String.raw`### 指令格式与字段宽度
+做题顺序：先用真题确认公式，再用模拟卷练手速。`},XC={"asm-2010-43":String.raw`### 指令格式与字段宽度
 
 定长指令字把一条指令切成若干字段，每个字段的位数决定它的表示能力：操作码 4 位 ⇒ 最多 16 条指令；寄存器号 3 位 ⇒ 最多 8 个寄存器；寻址方式 3 位 ⇒ 最多 8 种方式。
 
@@ -40399,7 +44284,7 @@ RISC 型 32 位指令按位段切分，例如 「slli」：funct7(31～25)、sha
 
 ### 32 位截断
 
-两数相加产生的第 33 位被丢弃，结果只保留低 32 位；这是补码运算的自然结果，不是错误。`},FC={"jingcheng-exam-5-ds-q01":String.raw`### 指针修改的三个接口
+两数相加产生的第 33 位被丢弃，结果只保留低 32 位；这是补码运算的自然结果，不是错误。`},ZC={"jingcheng-exam-5-ds-q01":String.raw`### 指针修改的三个接口
 单链表只能沿 next 向后访问。交换相邻结点必须同时修复前驱的 next、两结点的 next，不能仅交换某一条边。先保存 q、r，再断链，可避免丢失后继。
 
 头结点不存有效元素，使第一对与后续结点采用相同代码。while 中先判断 p->next 非空，再访问其 next，利用短路求值保证安全。`,"jingcheng-exam-5-ds-q02":String.raw`### 环形数组与预留空位
@@ -40541,7 +44426,7 @@ SPOOLing用磁盘缓冲把独占设备请求转为排队服务。empty计数盘�
 关键生命周期：盘块从分配到打印完成一直占用；请求表从入队到出队占用。wait必须先满足资源条件再进入短临界区，慢速写文件和打印不能长期持有全局表锁。`,"jingcheng-exam-5-cn-q47":String.raw`### 地址、VLAN与封装的三个层次
 IP目的标识最终网络层接收者；以太网目的MAC标识当前二层链路接收者，路由时重新封装。交换机按VLAN划分广播域，跨交换机Trunk可插入4B的802.1Q标签。
 
-基础设施无线站发向分布式系统时ToDS=1，地址1=AP/BSSID、地址2=源站、地址3=最终目的。首次DHCP通常使用0.0.0.0→255.255.255.255的广播；广播域内接入的同VLAN服务器可直接收到。`},IC={"jingcheng-exam-6-ds-q01":String.raw`### 链式存储中 O(1) 的前提
+基础设施无线站发向分布式系统时ToDS=1，地址1=AP/BSSID、地址2=源站、地址3=最终目的。首次DHCP通常使用0.0.0.0→255.255.255.255的广播；广播域内接入的同VLAN服务器可直接收到。`},QC={"jingcheng-exam-6-ds-q01":String.raw`### 链式存储中 O(1) 的前提
 
 单链表只保存后继指针，删除某结点通常要取得其前驱，尾插也要找到尾结点。只给头指针时，定位最坏为 $O(n)$；取得相邻结点以后，真正的指针修改仅为 $O(1)$。
 
@@ -40757,7 +44642,7 @@ TCP 序号按字节计，SYN、FIN 各消耗一个序号，纯 ACK 不消耗。�
 
 主动关闭方收到对端 FIN 后回最后 ACK，进入 TIME_WAIT，等待 2MSL。若对端把 ACK 与 FIN 合并且立即返回，从首个 FIN 到本端开始 TIME_WAIT 最短为 1RTT，合计 $RTT+2MSL$，不是无条件 2RTT+2MSL。
 
-NAT 改写网络层地址，TCP 字节序号逻辑不变；边缘转换需要既有映射，本题已建立 Web 连接隐含这一前提。MSS 只限制每段数据量，不改变累计应用数据的序号总增量。`},LC={"jingcheng-exam-7-ds-q01":String.raw`### 时间复杂度必须对各轮实际工作求和
+NAT 改写网络层地址，TCP 字节序号逻辑不变；边缘转换需要既有映射，本题已建立 Web 连接隐含这一前提。MSS 只限制每段数据量，不改变累计应用数据的序号总增量。`},$C={"jingcheng-exam-7-ds-q01":String.raw`### 时间复杂度必须对各轮实际工作求和
 
 $O(g(n))$ 表示存在常数c、n₀，使n≥n₀时 $T(n)\le c g(n)$；$\Theta(g(n))$ 还需要同阶下界。循环次数不能只看嵌套层数，外层值变化很稀疏时，内层工作量应逐项相加。
 
@@ -41179,7 +45064,7 @@ CSMA/CA通过载波侦听、帧间间隔、随机退避与ACK降低冲突并确�
 
 发送时延为长度bit除以bit/s。数据帧结束、SIFS结束、ACK结束是三个独立时间点。其他站点要等ACK后再等DIFS，才能继续竞争；不能在数据帧刚结束时就立刻开始倒数。
 
-多个站点同时“产生发送请求”不等于同时发射射频信号。若DIFS尚未完成时听到别站开始发送，应延迟争用，而不是先假定发生碰撞。题目问数据帧完成时不包含随后的ACK。`},RC={"jingcheng-exam-8-ds-q01":String.raw`### 树高递归与工作量
+多个站点同时“产生发送请求”不等于同时发射射频信号。若DIFS尚未完成时听到别站开始发送，应延迟争用，而不是先假定发生碰撞。题目问数据帧完成时不包含随后的ACK。`},ew={"jingcheng-exam-8-ds-q01":String.raw`### 树高递归与工作量
 二叉树高度（按结点层数）定义：空树高度0，非空树 $h(T)=1+\max(h(T_L),h(T_R))$。最大值运算必须先算出两棵子树的结果，并不是只沿最长路径走。
 
 设左子树nL个结点、右子树nR个结点，则 $T(n)=T(n_L)+T(n_R)+O(1)$，且 $n_L+n_R=n-1$。每个结点只归属一个子问题，故总时间 $\Theta(n)$；不能把两次递归机械写成 $2T(n-1)$。
@@ -41433,7 +45318,7 @@ DHCP通过Discover、Offer、Request、ACK租赁地址，客户端UDP68、服务
 交换机只从入帧的源MAC和入端口学习，广播帧的源也可学习；不从目的地址反推出设备端口。跨子网先ARP网关，远端服务器MAC不会穿透路由器来到本地二层域。
 
 ### NAT观察位置
-向外请求把私网源IP改为网关外网IP，返回分组在外网侧目的为该公网IP；查NAT映射后，内网侧目的恢复主机私网IP。第47题给定212.10.10.1只能据NAT题意回答网关外侧回包，不能编造H的租约具体地址。`},zC=String.raw`### 循环队列与指针约定
+向外请求把私网源IP改为网关外网IP，返回分组在外网侧目的为该公网IP；查NAT映射后，内网侧目的恢复主机私网IP。第47题给定212.10.10.1只能据NAT题意回答网关外侧回包，不能编造H的租约具体地址。`},tw=String.raw`### 循环队列与指针约定
 
 循环队列把长度为 $N$ 的数组首尾相接。**这里约定 front 指向队头元素，rear 指向下一次入队的写入位置**；若题目采用别的指针含义，公式也要重新推导。下标范围为 $0$ 至 $N-1$，推进一步都要对 $N$ 取模。
 
@@ -41502,7 +45387,7 @@ $$
 f_{\text{new}}=(f+1)\bmod N.
 $$
 
-**预留空位法的容量是 $N-1$；count 和 tag 法的容量是 $N$。三种方案的判满条件不能互相套用。**`,BC=String.raw`### 栈与后进先出
+**预留空位法的容量是 $N-1$；count 和 tag 法的容量是 $N$。三种方案的判满条件不能互相套用。**`,nw=String.raw`### 栈与后进先出
 
 栈只允许在一端（栈顶）插入和删除，后进先出（LIFO）。它描述的是访问顺序，与是否连续存储无关。
 
@@ -41641,7 +45526,7 @@ $$
 
 处理完第一个 \* 时栈为 6 5 40，栈顶是 40、次栈顶是 5；最终结果为 **288**，选 B。
 
-**减号与除号的次序**：先出栈的是右操作数。若栈顶为 2、次栈顶为 6，遇到 / 必须算 $6/2=3$ 而不是 $2/6$；− 同理。本例只有加法与乘法，不受影响，但同源题型常在这里设错。`,VC=String.raw`### 三种遍历序列
+**减号与除号的次序**：先出栈的是右操作数。若栈顶为 2、次栈顶为 6，遇到 / 必须算 $6/2=3$ 而不是 $2/6$；− 同理。本例只有加法与乘法，不受影响，但同源题型常在这里设错。`,rw=String.raw`### 三种遍历序列
 
 - 前序：根、左、右，序列首元素是根；
 - 中序：左、根、右；
@@ -41675,7 +45560,7 @@ $$
 
 ### 核对方法
 
-每轮切分都检查两段包含的元素**多重集合（multiset）相同**——关键字可能重复，只比较集合会把数量不同也当成相等；重建后再遍历一次，确认序列吻合。`,HC=String.raw`### 构造哈夫曼树
+每轮切分都检查两段包含的元素**多重集合（multiset）相同**——关键字可能重复，只比较集合会把数量不同也当成相等；重建后再遍历一次，确认序列吻合。`,iw=String.raw`### 构造哈夫曼树
 
 - 每次取出权值最小的两棵树合并，新结点权值为两棵子树权值之和；
 - n 个叶子需要合并 n-1 次，得到 n-1 个内部结点。
@@ -41703,7 +45588,7 @@ $$
 
 ### 与判定树的关系
 
-哈夫曼树是带权路径长度最小的二叉树，也用在判定问题里。**这里的"最优判定树"指叶子不必按关键字有序排列的二叉判定情形**，也就是只要求加权路径长度最小；普通查找判定树还要求保持关键字有序，不能把哈夫曼树的结论直接套到那种有序判定树上。`,UC=String.raw`### 朴素匹配的不足
+哈夫曼树是带权路径长度最小的二叉树，也用在判定问题里。**这里的"最优判定树"指叶子不必按关键字有序排列的二叉判定情形**，也就是只要求加权路径长度最小；普通查找判定树还要求保持关键字有序，不能把哈夫曼树的结论直接套到那种有序判定树上。`,aw=String.raw`### 朴素匹配的不足
 
 模式串在失配后若整体只右移一位，会丢弃已经匹配过的信息。KMP 利用"已匹配部分的最长相等真前后缀"，一次跳过若干位置。
 
@@ -41728,7 +45613,7 @@ $$
 ### 边界
 
 - 前缀与后缀必须"真"（不能取整个串），否则会得到错误的最长长度；
-- nextval 是进一步优化：当 T[j] 与 T[next[j]] 相同时可继续压缩回退位置。`,WC=String.raw`### 邻接矩阵
+- nextval 是进一步优化：当 T[j] 与 T[next[j]] 相同时可继续压缩回退位置。`,ow=String.raw`### 邻接矩阵
 
 - 用 n 乘 n 数组 A，A[i][j] 表示边或弧 (i,j)（带权时存权值，0 或无穷表示无边）；
 - 空间 O(n^2)，与边数无关；
@@ -41754,7 +45639,7 @@ $$
 
 - 稀疏图且主要操作是查邻边、出边：选邻接表；
 - 稠密图或需要 O(1) 判断两点是否相邻：选邻接矩阵；
-- **十字链表对应有向图、邻接多重表对应无向图，不能对调**；顺序表本身没有出边语义。`,GC=String.raw`### 术语
+- **十字链表对应有向图、邻接多重表对应无向图，不能对调**；顺序表本身没有出边语义。`,sw=String.raw`### 术语
 
 AOE 网是带权有向图：顶点表示事件，有向边表示活动，边权表示活动持续时间。入度为 0 的顶点是源点（工程开始），出度为 0 的顶点是汇点（工程结束）。
 
@@ -41808,7 +45693,7 @@ $$
 
 ### 常见误区
 
-不要用"事件的最迟减最早"代替一条活动的余量；活动余量要分别取起点的事件最早时间和终点的事件最迟时间再减去边权。`,KC=String.raw`### 二叉搜索树（BST）
+不要用"事件的最迟减最早"代替一条活动的余量；活动余量要分别取起点的事件最早时间和终点的事件最迟时间再减去边权。`,cw=String.raw`### 二叉搜索树（BST）
 
 左子树所有关键字小于根、右子树所有关键字大于根；中序遍历得到递增序列。查找、插入、删除的时间与树高成正比：**平均 O(log n) 需要"输入随机或树形随机"的假设**；插入有序序列会退化成单链，最坏 O(n)。结点只需数据域和左右指针。
 
@@ -41835,7 +45720,7 @@ $$
 - 三者中序遍历都有序，但只有 AVL 与红黑树保证高度 O(log n)；
 - AVL 与红黑树平衡条件不同：AVL 更严格（高度差不超过 1），红黑树是近似平衡；
 - 两者最坏查找都是 O(log n)，只是常数因子不同，**不能断言红黑树查询一定优于 AVL**；
-- 一棵合法的红黑树不一定是 AVL 树。`,qC=String.raw`### 先区分搜索顺序与颜色约束
+- 一棵合法的红黑树不一定是 AVL 树。`,lw=String.raw`### 先区分搜索顺序与颜色约束
 
 红黑树首先是**二叉搜索树（BST）**：任一结点的左子树关键字都小于它，右子树关键字都大于它。只检查相邻父子大小不够；检查整棵树的中序序列是否严格递增，是另一种等价办法。本专题约定关键字互异。
 
@@ -41863,7 +45748,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 
 ### 数颜色不要混入 NIL
 
-设 B、R 分别为黑、红实结点数。每个红实结点都有唯一的黑父结点，而一个黑父最多带两个红孩子，所以 R≤2B；**不能反推 R≤B**。NIL 不计入 n、B、R。`,JC=String.raw`### 修复的对象
+设 B、R 分别为黑、红实结点数。每个红实结点都有唯一的黑父结点，而一个黑父最多带两个红孩子，所以 R≤2B；**不能反推 R≤B**。NIL 不计入 n、B、R。`,uw=String.raw`### 修复的对象
 
 旋转保留 BST 中序顺序，只调整局部父子关系。新结点通常先按 BST 插入并标红，以免直接增加某条路径的黑高；若产生红父红子，再修复。以下采用一般红黑树的 CLRS 风格自底向上算法，不是左倾红黑树的另一套规则。
 
@@ -41892,7 +45777,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 3. **兄弟黑、近侄红、远侄黑**：近侄染黑、兄弟染红，转兄弟，把它化成情况 4；不能漏掉下一步。
 4. **兄弟黑、远侄红**：兄弟取父原颜色，父和远侄染黑，向 x 的反方向转父，缺黑消除。
 
-按上述标准算法一次删除至多 3 次旋转，情况 2 的变色却可能多次上移。**常数次旋转不意味着一次删除只需常数时间**；查找、后继定位和修复的最坏总时间仍为 O(log n)。`,YC=String.raw`### 开放定址法
+按上述标准算法一次删除至多 3 次旋转，情况 2 的变色却可能多次上移。**常数次旋转不意味着一次删除只需常数时间**；查找、后继定位和修复的最坏总时间仍为 O(log n)。`,dw=String.raw`### 开放定址法
 
 发生冲突时按一个探测序列在表内寻找下一个空槽。表长记 m，装填因子=已存关键字数除以 m。
 
@@ -41918,7 +45803,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 
 ### 逻辑删除（DELETED）
 
-**逻辑删除的槽不是空槽**：查找成功或失败遇到它都要继续往后探测，只有遇到从未使用过的空槽才停。因此删除标记会拉长失败查找长度，也影响成功查找的探测次数。表末尾要绕回表头继续数。`,XC=String.raw`### 稳定性的含义与判定
+**逻辑删除的槽不是空槽**：查找成功或失败遇到它都要继续往后探测，只有遇到从未使用过的空槽才停。因此删除标记会拉长失败查找长度，也影响成功查找的探测次数。表末尾要绕回表头继续数。`,fw=String.raw`### 稳定性的含义与判定
 
 排序前后，关键字相等的记录如果相对次序保持不变，则算法稳定；否则不稳定。判定方法：给相等关键字加不同标记，按该算法模拟一趟或若干趟，观察标记是否被交换跨越。
 
@@ -41942,7 +45827,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 - **从优先级最低的关键字开始，逐趟排到优先级最高的关键字，且每趟都用稳定排序**；
 - 稳定排序会保留上一趟已经排好的次序，处理更高优先级关键字时，相等记录内部仍是上一趟的结果，于是整体等价于一次多关键字比较；
 - 若某趟算法本身不稳定，可以改用在语义上稳定的等价实现，使该趟不破坏已排好的次序；直接"比较时同时带上全部关键字"做一次排序，也是另一种正确做法；
-- 升序或降序只改变每趟内部的比较方向，不改变关键字的先后处理次序。`,ZC=String.raw`### 堆的定义
+- 升序或降序只改变每趟内部的比较方向，不改变关键字的先后处理次序。`,pw=String.raw`### 堆的定义
 
 大根堆中每个结点不小于其孩子，小根堆反之。逻辑结构是完全二叉树，通常顺序存储；按下标从 1 起算时，结点 i 的孩子是 2i 与 2i+1，父结点是 i 除以 2 下取整。
 
@@ -41964,7 +45849,7 @@ AVL 要求每个结点左右子树的高度差至多 1；红黑树只约束红�
 
 从 m 个元素中选相关度最高的 n 个（n 远小于 m）：维护一个大小为 n 的小根堆，堆顶是当前入选者里最小的。顺序扫描每个元素，比堆顶大就替换堆顶并调整，否则丢弃。总代价 O(m log(n+1))（n=1 时也退化为 O(m)，与一次线性扫描同阶）。
 
-堆顶恰好是"当前候选中最差的"，所以能 O(1) 判断是否需要替换；若取最小的 n 个则改用大根堆。若最终还要求有序输出，需要另外对 n 个候选排序。`,QC=String.raw`### 从循环轮数到数量级
+堆顶恰好是"当前候选中最差的"，所以能 O(1) 判断是否需要替换；若取最小的 n 个则改用大根堆。若最终还要求有序输出，需要另外对 n 个候选排序。`,mw=String.raw`### 从循环轮数到数量级
 
 一层循环不等于线性。若循环的累计量随变量变化，应求"累计量达到输入规模时需要多少轮"，而不是数语句条数。
 
@@ -41987,7 +45872,7 @@ $$
 
 ### 边界处理
 
-常数系数、低阶项、循环内常数次操作都不改变渐近阶；只保留主导项。判断数量级时把循环次数写成关于 n 的式子，再取主导项。`,$C=String.raw`### 结点的度与树的度
+常数系数、低阶项、循环内常数次操作都不改变渐近阶；只保留主导项。判断数量级时把循环次数写成关于 n 的式子，再取主导项。`,hw=String.raw`### 结点的度与树的度
 
 结点的度等于它的孩子（子树）个数；树的度等于所有结点度的最大值。n 个结点的树必有 n-1 条边（除根外每个结点对应一条边），边数也等于各结点度数之和。
 
@@ -42004,7 +45889,7 @@ $$
 - **正则（严格）m 叉树**：只要求每个内部结点（非叶结点）恰有 m 个孩子，对叶子深度没有要求；
 - **满 m 叉树**：在教材约定里要求更严，除了每个内部结点恰有 m 个孩子，还要求所有叶子在同一层（等价于每层都排满）。
 
-因此"每个非叶结点都恰有 m 个孩子"只是正则 m 叉树，并不等同于满 m 叉树；只有再满足叶子同层才是满 m 叉树。二叉树中不存在度大于 2 的结点。`,ew=String.raw`### 定义与平衡因子
+因此"每个非叶结点都恰有 m 个孩子"只是正则 m 叉树，并不等同于满 m 叉树；只有再满足叶子同层才是满 m 叉树。二叉树中不存在度大于 2 的结点。`,gw=String.raw`### 定义与平衡因子
 
 AVL 树任意结点左右子树高度差不超过 1。平衡因子常定义为左子树高减右子树高，取值范围负一、零、正一；**有些教材用相反定义，按题面约定**。
 
@@ -42031,7 +45916,7 @@ $$
 
 ### 判断是否平衡
 
-一次后序遍历即可：空树高度 0、视为平衡；非空结点高度取左右子树高度的较大者加一，平衡当且仅当左右都平衡且高度差绝对值不超过 1。每个结点只处理一次，时间 O(n)，递归栈空间 O(h)。`,tw=String.raw`### 矩阵元素的含义
+一次后序遍历即可：空树高度 0、视为平衡；非空结点高度取左右子树高度的较大者加一，平衡当且仅当左右都平衡且高度差绝对值不超过 1。每个结点只处理一次，时间 O(n)，递归栈空间 O(h)。`,_w=String.raw`### 矩阵元素的含义
 
 A[i][j] 取 1（或权值）表示有弧 i 到 j，取 0（或无穷）表示无边。带权图把权值直接存入矩阵。
 
@@ -42060,7 +45945,7 @@ $$
 
 ### 稠密图的最小生成树选择
 
-完全图 K 有 n(n-1)/2 条边，邻接矩阵是满的。稠密图上**邻接矩阵实现的 Prim** 是 O(n^2)、与边数无关，通常优于 Kruskal 的 O(E log E)。但这不是算法的绝对优劣：堆优化的 Prim 复杂度为 O(E log V)，在稀疏图上同样适用；Kruskal 的长处在于稀疏图和对边排序的直观。`,nw=String.raw`### 前提
+完全图 K 有 n(n-1)/2 条边，邻接矩阵是满的。稠密图上**邻接矩阵实现的 Prim** 是 O(n^2)、与边数无关，通常优于 Kruskal 的 O(E log E)。但这不是算法的绝对优劣：堆优化的 Prim 复杂度为 O(E log V)，在稀疏图上同样适用；Kruskal 的长处在于稀疏图和对边排序的直观。`,vw=String.raw`### 前提
 
 顺序存储且按关键字有序，能随机访问任一元素。
 
@@ -42087,7 +45972,7 @@ $$
 
 ### 平均查找长度
 
-等概率成功时，把所有结点层数求和再除以结点数。`,rw=String.raw`### 外部排序框架
+等概率成功时，把所有结点层数求和再除以结点数。`,yw=String.raw`### 外部排序框架
 
 内存装不下全部记录时，先产生若干初始归并段，再反复做 k 路归并。
 
@@ -42110,7 +45995,7 @@ $$
 - 用于 k 路归并中反复选取当前最小元素。它是一棵完全二叉树：k 个归并段的当前元素放在叶结点，内部结点记录每次比较中的**败者**（胜者继续向上），另设结点保存最终胜者即全局最小。
 - 某段输出元素、换入下一个元素后，只需从对应叶结点沿路径重赛，比较次数不超过树高，即 O(log k)，就能拿到新的全局最小。
 - 朴素做法每输出一个元素要在 k 个元素之间完整比较，是 O(k)；败者树把这一步降到 O(log k)。
-- **败者树节省的是比较时间，辅助空间仍是 O(k)**，并不降为 O(1)。`,iw=String.raw`### 逻辑结构与存储结构
+- **败者树节省的是比较时间，辅助空间仍是 O(k)**，并不降为 O(1)。`,bw=String.raw`### 逻辑结构与存储结构
 
 逻辑结构（线性、树、图）描述数据元素之间的关系；同一逻辑结构可以有多种存储实现。**"线性结构"不等于"连续存储"**，链式存储也不只用于线性结构。
 
@@ -42131,7 +46016,7 @@ $$
 
 ### 判断题做法
 
-先看数据元素之间的逻辑关系，再看采用哪种物理存储；名字里带"顺序"的未必连续，带"链"的也未必与线性结构绑定。`,aw=String.raw`### 栈与函数调用
+先看数据元素之间的逻辑关系，再看采用哪种物理存储；名字里带"顺序"的未必连续，带"链"的也未必与线性结构绑定。`,xw=String.raw`### 栈与函数调用
 
 函数（含递归）调用时用栈保存返回地址、参数和局部变量。返回次序与调用次序相反，正符合后进先出。
 
@@ -42163,7 +46048,7 @@ $$
 
 ### 线索二叉树的遍历
 
-线索指向前驱或后继，找后继不需递归栈，也不需要访问标记数组，可沿线索顺序遍历。`,ow=String.raw`### 空指针域的数量
+线索指向前驱或后继，找后继不需递归栈，也不需要访问标记数组，可沿线索顺序遍历。`,Sw=String.raw`### 空指针域的数量
 
 对非空二叉树（n≥1），n 个结点共有 2n 个孩子指针域，其中非空指针恰好对应 n-1 条父子边，所以空指针域为
 
@@ -42187,7 +46072,7 @@ $$
 
 ### 遍历方法
 
-从中序最左结点出发，反复取中序后继即可遍历全树。找后继：若右标志是线索，右指针就是后继；否则后继是右子树中最左的结点。找前驱对称。`,sw=String.raw`### 生成树与生成森林
+从中序最左结点出发，反复取中序后继即可遍历全树。找后继：若右标志是线索，右指针就是后继；否则后继是右子树中最左的结点。找前驱对称。`,Cw=String.raw`### 生成树与生成森林
 
 连通图的生成树包含全部 n 个顶点和 n-1 条边，是极小的连通子图。非连通图的生成森林是各连通分量生成树之并；设共 n 个顶点、k 个连通分量，边数为
 
@@ -42207,7 +46092,7 @@ $$
 
 ### 辨析
 
-**Kruskal 按边扩展并且必须判环；Prim 按顶点扩展，每次看割边。** 两者都是贪心算法，都能得到最小生成树。最小生成树的总权值总是唯一确定的数值，但树的形态可能不唯一；所有边权互异是 MST 唯一的充分条件，不是必要条件。非连通图只能得到最小生成森林。`,cw=String.raw`### Dijkstra：单源最短路径
+**Kruskal 按边扩展并且必须判环；Prim 按顶点扩展，每次看割边。** 两者都是贪心算法，都能得到最小生成树。最小生成树的总权值总是唯一确定的数值，但树的形态可能不唯一；所有边权互异是 MST 唯一的充分条件，不是必要条件。非连通图只能得到最小生成森林。`,ww=String.raw`### Dijkstra：单源最短路径
 
 维护暂定距离，每轮从尚未确定的顶点中取出距离最小者并标记确定，再用它的出边松弛：
 
@@ -42237,7 +46122,7 @@ $$
 
 ### 选用
 
-单源、非负权用 Dijkstra；全源、可能有负权（无负环）用 Floyd。`,lw=String.raw`### 稀疏矩阵与压缩存储
+单源、非负权用 Dijkstra；全源、可能有负权（无负环）用 Floyd。`,Tw=String.raw`### 稀疏矩阵与压缩存储
 
 非零元很少时按原矩阵存储浪费大量空间，需要压缩。稀疏指的是非零元数量少，与矩阵是否对称无关。
 
@@ -42251,7 +46136,7 @@ $$
 
 ### 选择依据
 
-只需顺序保存、按行遍历时用三元组表；需要沿行或列整体遍历、或频繁动态插入删除时用十字链表。十字链表**不提供按坐标 O(1) 的随机访问**，取某个元素 A[i][j] 仍要沿链查找。`,uw=String.raw`### 树、森林转二叉树（左孩子右兄弟）
+只需顺序保存、按行遍历时用三元组表；需要沿行或列整体遍历、或频繁动态插入删除时用十字链表。十字链表**不提供按坐标 O(1) 的随机访问**，取某个元素 A[i][j] 仍要沿链查找。`,Ew=String.raw`### 树、森林转二叉树（左孩子右兄弟）
 
 - 每个结点：左孩子指向它的第一个孩子，右孩子指向它的下一个兄弟；
 - 森林转换时，第 k 棵树的根成为第 k-1 棵树根的右孩子；
@@ -42287,7 +46172,7 @@ $$
 
 ### 求最小高度的思路
 
-先证下界，再构造达到下界的安排。下界不只看层数：若最后一棵树的结点数大于 1，它的根下面至少还要有一层孩子。`,dw=String.raw`### 存储结构
+先证下界，再构造达到下界的安排。下界不只看层数：若最后一棵树的结点数大于 1，它的根下面至少还要有一层孩子。`,Dw=String.raw`### 存储结构
 
 并查集用双亲表示法的森林实现：数组 parent 的下标表示元素，值表示父结点的下标，根指向自身（也可把根的值存成集合大小的相反数，便于按大小合并）。
 
@@ -42304,7 +46189,7 @@ $$
 
 ### 能力边界
 
-并查集**只高效支持合并与"是否同属一类"的查询，不支持高效删除或分裂**，也不记录元素之间的路径长度。Find 返回的是代表元，不是集合元素个数；用负的集合大小作为根的值只是一种存储技巧。`,fw=String.raw`### 定义（m 阶 B 树）
+并查集**只高效支持合并与"是否同属一类"的查询，不支持高效删除或分裂**，也不记录元素之间的路径长度。Find 返回的是代表元，不是集合元素个数；用负的集合大小作为根的值只是一种存储技巧。`,Ow=String.raw`### 定义（m 阶 B 树）
 
 以下按**非空、m≥3** 的模型讨论。
 
@@ -42328,7 +46213,7 @@ $$
 
 根的特殊处理：若根变成 0 个关键字、但还有唯一一个孩子，就用这个孩子作为新的根，树高减 1；若根本来就是唯一的叶结点、删除后为空，则整棵树变成空树。
 
-借位时向左还是向右兄弟借，属于实现细节，**B 树的定义并没有强制优先向左兄弟借**。`,pw=String.raw`### 划分过程
+借位时向左还是向右兄弟借，属于实现细节，**B 树的定义并没有强制优先向左兄弟借**。`,kw=String.raw`### 划分过程
 
 取一个枢轴，一趟划分把子表分成小于枢轴与大于枢轴的两段。双向交替扫描的常见做法：右指针左移找第一个小于枢轴的元素，把它移到左端空位；左指针右移找第一个大于枢轴的元素，移到右端空位；重复直到两指针相遇，最后把枢轴放入相遇位置。相等元素的归属按题给方案。
 
@@ -42357,7 +46242,7 @@ $$
 
 ### 变体提醒
 
-三路划分、双枢轴等会改变相等元素的处理方式，稳定性与具体划分结果随之变化，必须按题目给出的划分方案模拟。`,mw=String.raw`### 二路归并
+三路划分、双枢轴等会改变相等元素的处理方式，稳定性与具体划分结果随之变化，必须按题目给出的划分方案模拟。`,Aw=String.raw`### 二路归并
 
 把两个有序段合并成一个有序段：反复比较两段当前首元素，取较小者输出，代价与两段长度之和成正比。
 
@@ -42373,7 +46258,7 @@ $$
 
 ### 性质
 
-时间 O(n log n)，与初始序列无关；空间 O(n)；**稳定**（合并时相等元素取前一段的，保持相对次序）。`,hw=String.raw`### 递归求高度
+时间 O(n log n)，与初始序列无关；空间 O(n)；**稳定**（合并时相等元素取前一段的，保持相对次序）。`,jw=String.raw`### 递归求高度
 
 空树高度为 0；非空树高度为左右子树高度的较大者加一：
 
@@ -42397,7 +46282,7 @@ $$
 
 每个结点只处理一次，时间 O(n)、空间 O(h)。
 
-**如果先写一个求高度的函数，再对每个结点分别调用它检查，最坏会重复遍历后代，复杂度退化到 O(n^2)**，单链时最明显。`,gw=String.raw`### 基本性质
+**如果先写一个求高度的函数，再对每个结点分别调用它检查，最坏会重复遍历后代，复杂度退化到 O(n^2)**，单链时最明显。`,Mw=String.raw`### 基本性质
 
 - 第 i 层最多有 2 的 i-1 次方个结点（根为第 1 层）；
 - 高度为 h 的二叉树最多有 2 的 h 次方减 1 个结点，最少有 h 个结点（单链）；
@@ -42437,7 +46322,7 @@ $$
 
 ### 高度与层数约定
 
-有的题目根在第 1 层、高度等于最大层数，有的按边数计高度，两者相差 1，做题前先确认。`,_w=String.raw`### 定义
+有的题目根在第 1 层、高度等于最大层数，有的按边数计高度，两者相差 1，做题前先确认。`,Nw=String.raw`### 定义
 
 左子树所有关键字小于根、右子树所有关键字大于根（是否允许相等按题面）。**中序遍历得到递增序列**，这是 BST 最重要的性质。
 
@@ -42460,7 +46345,7 @@ $$
 
 ### 与中序线索树的联系
 
-中序线索树把空的左、右指针改指向前驱、后继。从中序最左结点出发反复取后继，可以遍历全树；**线索只是改变了空指针的指向，不改变 BST 的有序性，也不自动带来平衡**，查找仍然与树高有关。`,vw=String.raw`### 拓扑排序与有向环
+中序线索树把空的左、右指针改指向前驱、后继。从中序最左结点出发反复取后继，可以遍历全树；**线索只是改变了空指针的指向，不改变 BST 的有序性，也不自动带来平衡**，查找仍然与树高有关。`,Pw=String.raw`### 拓扑排序与有向环
 
 拓扑排序每轮找一个入度为 0 的顶点删除，并把它出发的边删掉。存在有向环时无法删除全部顶点，**有环有向图不存在拓扑序列**。判断方法是拓扑排序输出的顶点数少于 n，或深度优先搜索中遇到回边。
 
@@ -42478,7 +46363,7 @@ $$
 
 ### 把字符串问题改写为路径问题
 
-字符串长度等于走过的边数，单顶点路径对应空串。判断一个字符串是否可能由某条路径拼出，可逐字符推进"当前可达顶点集合"，比凭图形直觉找路更可靠。端点、能否重复经过顶点都要按题面定义处理。`,yw=String.raw`### 基本思想
+字符串长度等于走过的边数，单顶点路径对应空串。判断一个字符串是否可能由某条路径拼出，可逐字符推进"当前可达顶点集合"，比凭图形直觉找路更可靠。端点、能否重复经过顶点都要按题面定义处理。`,Fw=String.raw`### 基本思想
 
 从第 2 个元素起，把当前元素插入到前面已经排好序的部分中，始终维持前缀有序。
 
@@ -42504,7 +46389,7 @@ $$
 
 ### 相关变体
 
-用折半查找确定插入位置得到折半插入排序，比较次数降到 O(n log n) 量级，但元素移动次数不变，整体仍是 O(n^2)。`,bw=String.raw`### 一、程序语言与翻译
+用折半查找确定插入位置得到折半插入排序，比较次数降到 O(n log n) 量级，但元素移动次数不变，整体仍是 O(n^2)。`,Iw=String.raw`### 一、程序语言与翻译
 - 机器语言：二进制机器指令序列，是 CPU 唯一能直接执行的语言，与具体机器绑定。
 - 汇编语言：用助记符和符号地址书写，与具体机器结构（指令集、可用寄存器、寻址方式）密切相关，须经汇编程序翻译成机器码；普通汇编语句一般一条对应一条机器指令，宏指令汇编时展开为多条机器指令，伪指令只用于指示汇编程序（定义数据、设定段），不产生机器指令。
 - 高级语言：与机器结构关系较松，但编译得到的目标代码仍依赖目标体系结构，CPU 不能直接执行源程序。
@@ -42521,7 +46406,7 @@ $$
 - 机器字长：CPU 一次能直接处理的二进制位数，通常由通用寄存器位数与 ALU 位数决定。
 - **机器字长不等于总线宽度**：CPU 外部数据总线宽度可能小于机器字长（8088 内部 16 位、外部数据总线 8 位）；机器字长也**不等于**指令字长、存储字长。
 - 存储字长：一次读写的位数；可编址单元宽度由编址方式决定——按字节编址时一个可编址单元是 8 位，与机器字长无关。
-- 术语口径按题面：题面说“主存单元”时要分清指可编址单元还是一次读写宽度，不能自动替换成机器字长。`,xw=String.raw`### 一、CPU 执行时间的三要素
+- 术语口径按题面：题面说“主存单元”时要分清指可编址单元还是一次读写宽度，不能自动替换成机器字长。`,Lw=String.raw`### 一、CPU 执行时间的三要素
 $$
 T_{CPU}=\text{指令数}\times CPI\times \text{时钟周期}=\frac{\text{指令数}\times CPI}{\text{主频}}
 $$
@@ -42541,7 +46426,7 @@ n\ge \frac{p}{D},\qquad D=\frac{1}{S_0}-(1-p)
 $$
 **$D\le 0$ 时不存在有限线程数能达到目标**（$D=0$ 对应只能渐近逼近的极限；例如 p=0.8、S0=6 时 D<0，6 倍不可达）；p=0 时 S 恒为 1，目标 S0≤1 可达，否则不可达。
 - **线程数必须是整数，要用不等式边界核对，不能对近似小数随意取整；n=16 与 n=15 的结果可能刚好跨越目标加速比。**
-- 适用前提：问题规模固定、串行比例不变、忽略通信与调度开销。边界：p=0 时 S≡1；p=1 时 S=n（理想线性）。`,Sw=String.raw`### 一、补码表示与定长运算
+- 适用前提：问题规模固定、串行比例不变、忽略通信与调度开销。边界：p=0 时 S≡1；p=1 时 S=n（理想线性）。`,Rw=String.raw`### 一、补码表示与定长运算
 - n 位补码范围 −2^(n−1) ~ 2^(n−1)−1；负数补码 = 2^n − x 的绝对值；最高位为 1 时真值 = 编码 − 2^n。
 - 加减统一用加法器：$[x-y]_{\text{补}}=[x]_{\text{补}}+[-y]_{\text{补}}$，$[-y]_{\text{补}}$ 由 $[y]_{\text{补}}$ 连同符号位取反加 1 得到。
 - 拆字节：高字节 = 编码右移 8 位，低字节 = 编码与 0FFH 相与。
@@ -42560,7 +46445,7 @@ $$
 ### 四、结构体对齐
 - 每个成员的起始偏移必须是其对齐值（通常为自身长度）的整数倍，编译器插入填充字节；结构体总大小补齐为最大对齐值的整数倍。
 - **成员内某字节的地址 = 成员起始偏移 + 该字节在字段内的序号**，不要把对齐空隙当成字段数据。
-- 对齐浪费空间，但使成员按边界对齐、一次访存即可取出，提高访问速度。`,Cw=String.raw`### 一、编码布局与真值公式
+- 对齐浪费空间，但使成员按边界对齐、一次访存即可取出，提高访问速度。`,zw=String.raw`### 一、编码布局与真值公式
 单精度 32 位 = 1 位符号 S + 8 位阶码 E + 23 位尾数 M；双精度 = 1 + 11 + 52。按 E 的取值分四类：
 - 规格化数（1≤E≤254）：隐含位为 1，
 $$
@@ -42584,7 +46469,7 @@ $$
 
 ### 三、规格化操作
 - 尾数左移消去前导 0（小数点右移）时必须同步减小阶码，才能保持数值不变；反之右移要增加阶码。
-- 解码流程：拆 S/E/M → 定类型 → 按对应公式求真值；阶码字段全 0 与非规格化、全 1 与特殊值要一起看。`,ww=String.raw`### 一、十进制到二进制的转换与舍入
+- 解码流程：拆 S/E/M → 定类型 → 按对应公式求真值；阶码字段全 0 与非规格化、全 1 与特殊值要一起看。`,Bw=String.raw`### 一、十进制到二进制的转换与舍入
 步骤：
 1. 把十进制数写成二进制规格化形式，形如 1.f × 2^E（整数部分与小数部分分别转换）。
 2. 阶码字段 = E + bias（单精度 bias=127）。
@@ -42604,7 +46489,7 @@ $$
 - 单精度有效数含隐含位共 24 位（编号 0~23），对阶时保留两位附加位（G、R），其后信息由粘着位概括。以大阶数的 ULP 为单位，小阶数第 i 位右移 $\lvert\Delta E\rvert$ 后落到位置 $i+\lvert\Delta E\rvert$。
 - **单精度、就近取偶舍入下，同号相加时，$\lvert\Delta E\rvert\ge 25$ 可直接取大阶数；$\lvert\Delta E\rvert=25$ 时小阶数的最高有效位落在 R 位，$\lvert\Delta E\rvert>25$ 时才落在 R 位之后。** $\lvert\Delta E\rvert=24$ 时最高位可能落到 G 位，余数可达半个 ULP 或更大，仍可能改变大阶数。
 - **对减法或异号相加不能无条件套用 25**：大数绝对值恰为 2 的幂时，其下方浮点间距减半，阶差 25 仍可能改变结果（单精度下 $1-1.5\times 2^{-25}$ 的精确值 $1-3\times 2^{-26}$ 更靠近前驱 $1-2^{-24}$，正确舍入结果是前驱而非 1）。若要求覆盖一般有限规格化数的加减，统一充分界限为 $\lvert\Delta E\rvert\ge 26$。
-- 边界：本题所用教材口径是“就近舍入 + 两位附加位”的单精度简化约定，其界限 25 属该口径；尾数位宽、舍入方式或是否只讨论同号相加不同时，须按上面的条件重新推导。`,Tw=String.raw`### 一、半导体存储器的分类与性质
+- 边界：本题所用教材口径是“就近舍入 + 两位附加位”的单精度简化约定，其界限 25 属该口径；尾数位宽、舍入方式或是否只讨论同号相加不同时，须按上面的条件重新推导。`,Vw=String.raw`### 一、半导体存储器的分类与性质
 - DRAM：用电容电荷存信息，会漏电，需要周期性刷新；破坏性读出，读出后要重写；随机存取，行、列地址分两次送入（引脚复用）。
 - SRAM：触发器存储，速度快、集成度低、不需刷新，多用作 Cache。
 - ROM/FLASH：非易失，断电保持数据；**FLASH 属 EEPROM 一类，可电擦写、可重写，并非无法更新存储单元**；写入前以块为单位擦除、以页为单位读写，每块擦写次数有限。
@@ -42626,7 +46511,7 @@ $$
 - 闪存块有擦除次数上限，磨损均衡使各块擦除次数尽量平均，避免少数块先失效。
 - 动态磨损均衡：写入时在空闲块中优先选择擦除次数较少的块。
 - 静态磨损均衡：还会主动迁移长期不变的冷数据，释放年轻块承担写入，使各块擦除次数更均衡。
-- **两者针对的都是写与擦除（擦除次数才是寿命限制），与读无关；区别在于是否搬移冷数据，而不是读写分工。**`,Ew=String.raw`### 一、存储芯片扩展
+- **两者针对的都是写与擦除（擦除次数才是寿命限制），与读无关；区别在于是否搬移冷数据，而不是读写分工。**`,Hw=String.raw`### 一、存储芯片扩展
 - 位扩展：多片并联，地址线共用、数据线分别接不同数据位，增加数据位宽（字数不变）；片数 = 目标位宽 / 单片位宽。
 - 字扩展：多片分用不同地址范围，增加字数，需要片选译码。
 - 总容量 = 字数 × 位宽，所需芯片数 = 目标容量 / 单片容量；**先按字数判断是否需要字扩展、再按位宽判断位扩展，若单片字数已等于模块字数则只需位扩展。**
@@ -42645,7 +46530,7 @@ $$
 T=(N-1)\,t+d
 $$
 - 约束：t 不能小于“单模块访问周期 / 模块数”，否则模块来不及完成上一次访问。
-- **每次访问传输的位数由数据总线宽度和模块数据位宽决定；总线宽度与模块数不是同一回事。**`,Dw=String.raw`### 一、三种映射方式
+- **每次访问传输的位数由数据总线宽度和模块数据位宽决定；总线宽度与模块数不是同一回事。**`,Uw=String.raw`### 一、三种映射方式
 - 直接映射：每个主存块只能映射到唯一 Cache 行；行号 = 块号 mod 行数。
 - 全相联：主存块可放入任意一行，查找需比较全部标记。
 - k 路组相联：先由 组号 = 块号 mod 组数 定位到唯一一组，再在该组的 k 个行中任选；**“可进入任意一组的任意块”是全相联的说法，组相联只能进对应那一组。**
@@ -42674,7 +46559,7 @@ $$
 - 脏位（修改位）：写回法需要 1 位，替换时据此决定是否写回主存；写直达法不需要。
 - 替换算法状态：如 LRU 需要为组内 k 个块记录新旧次序。**LRU 状态位数依实现而定，不能把“每行 log2 k 位”当成所有 LRU 的最小信息量**：按组内全序（k! 种顺序）至少需 log2(k!) 位；按两两新旧关系实现需 k(k−1)/2 位；题面若直接给出“每行若干位 LRU 计数域”，则按该实现的口径计数。
 - 数据位 = 块大小（按字节计）× 8。
-- 行总位数 = 数据位 + 标记位 + 有效位 +（写回时）脏位 + 替换状态位。`,Ow=String.raw`### 一、平均访存时间 AMAT
+- 行总位数 = 数据位 + 标记位 + 有效位 +（写回时）脏位 + 替换状态位。`,Ww=String.raw`### 一、平均访存时间 AMAT
 设命中率为 h、缺失率为 1−h、Cache 访问时间 t_c、主存访问时间 t_m，**两种访问组织公式不同，不能混用**：
 - 串行（先查 Cache，未命中再访存）：
 $$
@@ -42696,7 +46581,7 @@ $$
 - 强制缺失（首次访问）、容量缺失（工作集超过容量）、冲突缺失（映射冲突，多块竞争同一行或同组）。
 - **提高关联度主要减轻冲突缺失，不能消除强制缺失与容量缺失。**
 - 直接映射与组相联都可能发生“刚被替换出的块马上又被访问”：冲突块交替访问且超过每组可容纳块数时，缺失率可达 100%。
-- 块大小的影响：块增大可减少强制缺失，但传输代价与冲突、容量缺失可能上升，需要综合权衡。`,kw=String.raw`### 一、局部性原理
+- 块大小的影响：块增大可减少强制缺失，但传输代价与冲突、容量缺失可能上升，需要综合权衡。`,Gw=String.raw`### 一、局部性原理
 - 时间局部性：刚被访问的信息很快会被再次访问（循环变量、循环体）。
 - 空间局部性：某地址被访问后，其相邻地址很快会被访问（按行扫描数组）。
 - **按行优先存放的二维数组，按行扫描时相邻两次访问地址连续，空间局部性好；每个元素只访问一次的遍历，时间局部性差；保存在寄存器中并被循环反复读写的变量（下标、累加和）时间局部性好。**
@@ -42721,7 +46606,7 @@ $$
 $$
 \text{目标地址}=(\text{转移指令地址}+\text{指令字节数})+\text{偏移}
 $$
-再用目标地址反推位移：偏移 = 目标 − 基准，基准是“取指结束后的 PC”，按题面确定。`,Aw=String.raw`### 一、页式虚拟存储器的地址转换
+再用目标地址反推位移：偏移 = 目标 − 基准，基准是“取指结束后的 PC”，按题面确定。`,Kw=String.raw`### 一、页式虚拟存储器的地址转换
 - 虚拟地址 = 虚页号 VPN ∥ 页内偏移；物理地址 = 物理页号 PPN ∥ 页内偏移（页内偏移不变）。
 - 页大小 P = 2^d 时页内偏移 d 位，虚拟页数 = 虚拟地址空间大小 / P。
 - 页表项含物理页号与有效位，另有修改位、访问位等辅助字段；**有效位为 0 表示该页不在内存**，访问会触发缺页。
@@ -42743,7 +46628,7 @@ $$
 ### 四、页大小变化的影响
 - 页越大 → 页数（页表项数）越少 → 页表占用内存越少。
 - 页是分配单位，页越大，进程最后一页平均浪费的空间越大，内部碎片增大；分页系统不产生外部碎片。
-- **不能只凭“页更大”就断言整体性能更好**：缺页传输代价与访问局部性也会随页大小与访问模式变化。`,jw=String.raw`### 一、映射方式的适用范围
+- **不能只凭“页更大”就断言整体性能更好**：缺页传输代价与访问局部性也会随页大小与访问模式变化。`,qw=String.raw`### 一、映射方式的适用范围
 - 二路组相联中，主存块先由 组号 = 块号 mod 组数 定位到唯一一组，只能落在该组的两个行之一；**“可映射到任意一组的任意块”是全相联的描述。**
 - 直接映射则是每个块只有唯一行。关联度提高只减轻冲突缺失。
 
@@ -42756,7 +46641,7 @@ $$
 
 ### 四、结构体对齐
 - 插入填充字节会浪费内存，但成员按边界对齐后，一次访存即可取出，提高 CPU 访问速度。
-- **判据：先分清叙述说的是映射规则、页表组织、地址转换还是数据布局，再逐项核对，避免把“任意一组”与“某一组的任意块”混为一谈。**`,Mw=String.raw`### 一、指令字长与操作码
+- **判据：先分清叙述说的是映射规则、页表组织、地址转换还是数据布局，再逐项核对，避免把“任意一组”与“某一组的任意块”混为一谈。**`,Jw=String.raw`### 一、指令字长与操作码
 - 指令字长指一条指令的位数；机器字长是 CPU 一次处理的位数，**两者无必然相等或整数倍关系**；定长指令字与变长指令字都是常见设计。
 - 操作码与地址字段共享指令字长：
 $$
@@ -42777,7 +46662,7 @@ $$
 
 ### 四、移位操作
 - 算术右移空出的高位补符号位，保持负数语义；逻辑右移补 0；算术左移、逻辑左移都低位补 0。
-- 右移对应整除 2^k（对负数向下取整）；**算完之后再按定长补码求真值与溢出。**`,Nw=String.raw`### 一、常见寻址方式与有效地址
+- 右移对应整除 2^k（对负数向下取整）；**算完之后再按定长补码求真值与溢出。**`,Yw=String.raw`### 一、常见寻址方式与有效地址
 - 立即寻址：操作数 = 形式地址 A（指令中直接给出）。
 - 寄存器寻址：操作数 = (Rn)；直接寻址：EA = A。
 - 寄存器间接寻址：EA = (Rn)；变址寻址：EA = (IX) + A（IX 可变、A 不变）。
@@ -42797,7 +46682,7 @@ $$
 ### 三、数组元素地址
 - 一维数组：元素地址 = 基址 + 下标 × 元素字节数，故 下标 = (地址 − 基址) / 元素字节数。
 - 二维数组按行优先：线性偏移 = (i × 列数 + j) × 元素字节数。
-- 若地址差不是元素大小的整数倍，说明地址指向元素内部或首址不是元素边界，需要检查。`,Pw=String.raw`### 一、时间并行与空间并行
+- 若地址差不是元素大小的整数倍，说明地址指向元素内部或首址不是元素边界，需要检查。`,Xw=String.raw`### 一、时间并行与空间并行
 - 时间并行：同一套硬件在时间上重叠使用，典型是流水线；各子过程由不同功能部件承担、在时间上有序重叠。
 - 空间并行：重复设置资源让多个部件同时工作，典型是超标量（同一时刻发射多条指令）和增加处理器个数。
 - **判据：用“不同阶段是否重叠执行”判断流水线，用“每周期能发射几条指令”判断超标量。有重叠不自动意味着每周期能发射多条指令。**
@@ -42812,7 +46697,7 @@ $$
 ### 三、多处理器系统
 - 多处理器系统的常见所指是共享存储多处理器（SMP）：主存属于单一地址空间，必须解决共享存储的同步互斥问题。
 - **共享同一地址空间不等于访问时间一致**：UMA 各处理器访问时间一致；NUMA 也共享地址空间，但访问本地内存通常快于访问远程内存。
-- 增加处理器个数主要提高吞吐率或并行任务能力，未并行化的单个程序不会自动变快。`,Fw=String.raw`### 一、流水线基本指标
+- 增加处理器个数主要提高吞吐率或并行任务能力，未并行化的单个程序不会自动变快。`,Zw=String.raw`### 一、流水线基本指标
 - 时钟周期由最慢的流水段决定：T = max(各段时延)（是否另加锁存器开销按题面），**不能用平均时延或最快段**。
 - k 段流水线执行 n 条指令的理想周期数为 k + (n−1)；忽略启动与排空时常用 n 近似。
 $$
@@ -42831,7 +46716,7 @@ $$
 - 总周期 = 理想周期数 + 预测失败次数 × 罚时；预测失败次数 = 分支条数 × (1−准确率)。
 - **先把“失败次数”与“每次罚时”分开算再相乘，不要把分支比例直接当成预测错误率。**
 - 各种“气泡”（结构冒险、控制冒险、缺页等待）都按“每条指令平均分摊”累加到 CPI 上；若流水线 CPI 基线不是 1，用题给基线加额外项。
-- 按期望（平均值）计算时用次数 × 概率，不必穷举所有实际路径，但要说明采用的是期望口径。`,Iw=String.raw`### 一、冒险的分类
+- 按期望（平均值）计算时用次数 × 概率，不必穷举所有实际路径，但要说明采用的是期望口径。`,Qw=String.raw`### 一、冒险的分类
 - 结构冒险：硬件资源冲突，同一部件被多条指令争用（如取指与访存抢存储器）。
 - 数据冒险：RAW（写后读，真相关，必须处理）、WAR（读后写，反相关）、WAW（写后写，输出相关）；后两者主要在乱序执行中出现。
 - 控制冒险：分支、跳转等在取指阶段还不能确定下一条指令地址时产生。
@@ -42851,7 +46736,7 @@ $$
 - 多条相关链同时存在时取所有约束中最紧的一个；**不能靠交换指令顺序消除依赖**（程序语义不允许）。
 - **控制冒险只由会改变 PC 的转移类指令引起**；ADD、LW 等之间的相关属数据冒险，不计入控制冒险条数。
 - 分支结果与目标地址确定得越早，需要冲刷的指令越少；延迟槽、静态/动态预测、提前计算目标地址都能减少损失。
-- 是否算作冒险与“实际是否需要停顿”是两件事：后者还取决于转发通路、读取与写回所处的流水段。`,Lw=String.raw`### 一、CPU 的组成划分
+- 是否算作冒险与“实际是否需要停顿”是两件事：后者还取决于转发通路、读取与写回所处的流水段。`,$w=String.raw`### 一、CPU 的组成划分
 - CPU = 运算器 + 控制器。
 - 运算器：ALU、累加器、通用寄存器、程序状态字 PSW 等。
 - 控制器：程序计数器 PC、指令寄存器 IR、指令译码器 ID、微操作信号发生器、时序系统等。
@@ -42877,7 +46762,7 @@ $$
 - **以下 PC 更新规则仅针对“单周期取指部件、PC 只保存指令字地址”的模型**（32 位指令按 4 字节对齐时 PC 只存高 30 位，实际指令地址 = 字地址拼接两位 00）：顺序执行时 字地址 +1；分支成立时 字地址 +1+符号扩展位移；跳转由 PC 高位与目标字段拼接形成目标地址（伪直接寻址）。
 - **该单周期模型每周期完成一条指令、无需停顿，因此 PC 每周期都要更新，不另设写使能信号。** 这些结论随模型改变：若 PC 保存完整字节地址，4 字节定长指令的顺序下一条地址是 PC+4；多周期或流水线中因停顿需要保持 PC 时，才需要保持控制或写使能。
 - 符号扩展把短立即数按符号位扩展到位宽一致的位数，使位移可正可负。
-- 跳转范围：目标字段 26 位且 4 字节对齐时覆盖 2^28 字节，共 2^26 条指令。`,Rw=String.raw`### 一、微程序控制的基本概念
+- 跳转范围：目标字段 26 位且 4 字节对齐时覆盖 2^28 字节，共 2^26 条指令。`,eT=String.raw`### 一、微程序控制的基本概念
 - 微命令：控制器发出、控制部件执行一个微操作的控制信号。
 - 微指令：一个节拍内发出的若干微命令，加上后继地址等控制信息。
 - 微程序：完成一条机器指令的一组微指令序列，存放在控制存储器 CM 中。
@@ -42900,7 +46785,7 @@ $$
 \lceil \log_2 N\rceil
 $$
 - 增量法（顺序执行，靠计数器）、计数器法等其他方式按题面编码形式分别计算。
-- **微指令长度 = 操作控制字段 + 下址字段 + 判别测试字段（题面给出才计）**，各字段分开算再相加，不要互相混算。`,zw=String.raw`### 一、总线的分类与结构
+- **微指令长度 = 操作控制字段 + 下址字段 + 判别测试字段（题面给出才计）**，各字段分开算再相加，不要互相混算。`,tT=String.raw`### 一、总线的分类与结构
 - 按连接对象分：片内总线、系统总线（数据总线、地址总线、控制总线）、通信总线。
 - 单总线结构：一条系统总线连接 CPU、主存和所有 I/O 设备，**同一时刻只能有一对设备传送数据**，主存与外设共享该总线。
 - 多总线结构：另设存储总线、局部总线、I/O 总线等，主存可经专用高速总线访问。
@@ -42917,7 +46802,7 @@ $$
 - 非分离事务：主设备发出请求后一直占用总线，直到从设备准备好并完成数据传送。
 - **分离事务：把一次事务拆成“请求”和“回答”两段，中间释放总线**，让其他主设备在从设备准备数据期间使用总线。
 - 突发（猝发）传送：一次给出起始地址和突发控制信息，随后连续传送多个数据拍，后续地址按约定递增或按指定模式生成，从而减少逐拍传送地址的开销。
-- **判据：定时方式解决“何时采样数据”，事务方式解决“一次总线能干什么”；两者不要混为一谈。**`,Bw=String.raw`### 一、I/O 编址方式
+- **判据：定时方式解决“何时采样数据”，事务方式解决“一次总线能干什么”；两者不要混为一谈。**`,nT=String.raw`### 一、I/O 编址方式
 - 统一编址（存储器映射 I/O）：I/O 端口与主存共用同一地址空间，用普通访存指令访问，**不需要专用 I/O 指令**；代价是占用（减少）主存地址空间，接口需与内存统一译码、译码逻辑相对复杂。
 - 独立编址：I/O 与主存各有独立地址空间，**必须用专用 I/O 指令**，接口只译码端口地址并结合读写控制信号，不占用主存地址空间、译码较简单。
 - **判据：先看 I/O 寄存器是否占用统一地址空间，再看访问它用哪类指令。** 编址方式不直接决定外设速度，也不能由它推出是否采用中断。
@@ -42935,7 +46820,7 @@ $$
 $$
 f_{总线}\ge \frac{\sum \text{各设备字节率}}{\text{每个总线周期字节数}}\times \text{每个总线周期的时钟数}
 $$
-- **单位口径（1KB 取 1000B 还是 1024B、读写是否各占一个总线周期）会改变结果，按题面声明并在答案中注明。**`,Vw=String.raw`### 一、中断的类型与控制位
+- **单位口径（1KB 取 1000B 还是 1024B、读写是否各占一个总线周期）会改变结果，按题面声明并在答案中注明。**`,rT=String.raw`### 一、中断的类型与控制位
 - 按来源分：内部异常（故障、自陷、终止）与外部中断；外部中断又分可屏蔽中断（INTR）与不可屏蔽中断（NMI）。
 - 中断请求由设备通过中断请求信号提出，记录在中断请求触发器中。
 - **开中断与关中断设置的是中断允许触发器（x86 的 IF 位）**：置位允许响应可屏蔽中断、清零屏蔽之。它不是中断请求寄存器、屏蔽寄存器，也不是向量寄存器。
@@ -42955,7 +46840,7 @@ $$
 - 中断向量是中断服务程序的入口地址；**中断向量表按中断类型号集中存放各入口地址**，CPU 以类型号作索引取入口地址（表项内容是入口地址，类型号只是索引）。
 - 多重中断（中断嵌套）标准顺序：关中断 → 保护现场 → 设置中断屏蔽字 → 开中断 → 执行服务程序 → 关中断 → 恢复现场与屏蔽字 → 开中断 → 中断返回。
 - 中断屏蔽字按中断源控制哪些请求可被屏蔽，用于实现嵌套优先级；优先级本身由优先级排队电路或优先级寄存器决定。
-- **中断响应造成的动作（硬件）与中断服务程序的软件动作要分开叙述。**`,Hw=String.raw`### 一、DMA 工作过程
+- **中断响应造成的动作（硬件）与中断服务程序的软件动作要分开叙述。**`,iT=String.raw`### 一、DMA 工作过程
 - 传送前 CPU 初始化 DMA 控制器：把主存起始地址写入主存地址寄存器，把传送字数写入传送长度计数器，并设置传送方向、设备地址等。
 - 传送期间 DMA 控制器接管总线，直接在主存与设备之间搬数据。
 - **DMA 请求走“总线请求 / 总线响应”握手，与 CPU 是否开中断无关**；开中断只影响可屏蔽中断的响应。
@@ -42975,7 +46860,7 @@ $$
 对应计数器初值 = N − 1。
 - 每次传送后主存地址增加“每次传送字节数”；**必须保证所有字节地址不越界、不回绕，故要用末地址反推最大字数。**
 - 数据量 = 传送个数 × 每次传送的位数。
-- 边界：若题面把计数器初值直接定义为传送个数，或按“计满回绕溢出”终止，公式随之调整，按题面口径计算。`,Uw=String.raw`### 操作系统的发展与基本特征
+- 边界：若题面把计数器初值直接定义为传送个数，或按“计满回绕溢出”终止，公式随之调整，按题面口径计算。`,aT=String.raw`### 操作系统的发展与基本特征
 
 - **单道批处理**：内存中只驻留一道作业，CPU 等待慢速 I/O 时闲置；采用**脱机 I/O**——外围机先把数据输入到磁带、磁盘，主机再从该设备读入，使主机计算与外围机 I/O 并行，减少 CPU 等待并提高吞吐量。
 - **多道批处理**：内存中同时驻留多道作业，CPU 与 I/O、作业与作业并发执行。
@@ -42996,7 +46881,7 @@ $$
 - **空间复用**：把存储空间划分给多个进程或多个逻辑空间同时使用，例如把内存分区给多道程序驻留。**但"内存中同时驻留多个进程"只是多道并发，本身不等于虚拟内存**；虚拟内存要求只装入程序的一部分、其余按需从辅存调入，是逻辑地址空间可大于物理内存的机制，依赖请求调页、对换等内外存结合的机制。
 - 虚拟技术提供的是逻辑视图，并不改变物理资源的实际总量。
 
-判据：把"资源在同一时刻被多个使用者共同占用"与"系统提供了小于物理资源规模也成立的功能"分开看；判断虚拟内存要看是否存在按需调页或内外存交换。`,Ww=String.raw`### 用户态、内核态与特权指令
+判据：把"资源在同一时刻被多个使用者共同占用"与"系统提供了小于物理资源规模也成立的功能"分开看；判断虚拟内存要看是否存在按需调页或内外存交换。`,oT=String.raw`### 用户态、内核态与特权指令
 
 CPU 用程序状态字（PSW）中的模式位区分用户态与内核态。
 
@@ -43020,7 +46905,7 @@ CPU 用程序状态字（PSW）中的模式位区分用户态与内核态。
 
 内核模式执行的是涉及特权指令或核心资源的操作。把可执行文件装入内存并启动进程（分配内存、建立页表与地址映射、创建进程、设置入口）属于此类。
 
-编译程序、链接程序、命令解释程序（shell）本身都是用户态程序；**shell 只是解析命令并代为发起 fork、exec 等系统调用，不等于 shell 自身在内核态执行**。`,Gw=String.raw`### 进程的基本状态与转换
+编译程序、链接程序、命令解释程序（shell）本身都是用户态程序；**shell 只是解析命令并代为发起 fork、exec 等系统调用，不等于 shell 自身在内核态执行**。`,sT=String.raw`### 进程的基本状态与转换
 
 以下结论的适用范围是**标准三态模型**（就绪、运行、阻塞）且不引入挂起、实时抢占等额外机制的情况。
 
@@ -43037,14 +46922,14 @@ CPU 用程序状态字（PSW）中的模式位区分用户态与内核态。
 在就绪、阻塞之外引入挂起（静止）状态，形成就绪挂起、阻塞挂起，可用两个维度描述：活动性（在内存还是在外存）与就绪性（就绪还是阻塞）。
 
 - **只有涉及内存与辅存之间调出、调入的转换才发生内外存数据交换**，典型如就绪到就绪挂起（换出）、就绪挂起到就绪（换入）。
-- 运行到就绪、运行到阻塞、就绪到运行只改变 CPU 归属或等待条件，进程始终在内存中，不引起内外存交换。`,Kw=String.raw`### 进程的创建与父子进程的共享关系
+- 运行到就绪、运行到阻塞、就绪到运行只改变 CPU 归属或等待条件，进程始终在内存中，不引起内外存交换。`,cT=String.raw`### 进程的创建与父子进程的共享关系
 
 fork 之后子进程获得父进程地址空间的一份逻辑副本；现代 UNIX 采用**写时复制**（COW）：只有某一方写入时才真正复制页，在此之前物理页可被父子共享。
 
 - **共享**：子进程复制父进程的打开文件描述符表，指向**同一系统打开文件表项**，从而共享文件偏移量等状态；只读的代码段（正文段）通常也被父子进程共享。
 - **不共享**：进程的执行上下文（通用寄存器、PC、PSW、栈、内核栈）各自独立，否则无法被独立调度；栈空间与可写数据也各自独立。
 
-判据：区分"进程自己地址空间中的对象"与"继承后仍指向同一内核对象"的资源。父子进程变量初值相同只说明复制发生，并不表示普通内存被直接共享。`,qw=String.raw`### 进程通信方式与共享内存
+判据：区分"进程自己地址空间中的对象"与"继承后仍指向同一内核对象"的资源。父子进程变量初值相同只说明复制发生，并不表示普通内存被直接共享。`,lT=String.raw`### 进程通信方式与共享内存
 
 常见通信方式有共享内存、管道、消息队列、信号量等。
 
@@ -43056,7 +46941,7 @@ fork 之后子进程获得父进程地址空间的一份逻辑副本；现代 UN
 
 共享内存只提供"共同可见的存储"，**不提供互斥，也不限制并发**。多个进程对同一区域做"读—改—写"会产生竞态；某一方的写何时被另一方观察到，还取决于同步与内存可见性约定（加锁、内存栅栏等），**共享物理页本身并不保证任意写都立刻、有序地对其他进程可见**。
 
-判据：把数据传输方式与访问同步协议分开分析；内核不代替程序做同步，共享地址也不会自动防止竞态。`,Jw=String.raw`### 线程与进程
+判据：把数据传输方式与访问同步协议分开分析；内核不代替程序做同步，共享地址也不会自动防止竞态。`,uT=String.raw`### 线程与进程
 
 线程是 CPU 调度的基本单位，进程是资源分配的基本单位；同一进程内的线程共享地址空间、代码段和打开文件等资源，但各有自己的栈、寄存器和线程控制块。
 
@@ -43070,7 +46955,7 @@ fork 之后子进程获得父进程地址空间的一份逻辑副本；现代 UN
 多线程的价值在于把可并行的工作分开执行，或让多个任务在等待与处理期间交错推进。典型场景：矩阵乘法等可分割计算、Web 服务器并发处理请求、GUI 调试程序把输入、计算和跟踪分开处理。
 
 - 键盘输入来自单一设备，是**单一事件流**，为每个正在运行的应用各配一个驱动线程既无必要也不能让键盘事件并行产生，**不是多线程的特长**，还会带来调度与管理开销。
-- 多线程不自动消除同步开销；能否真正并行还取决于硬件核数与线程到处理机的映射。`,Yw=String.raw`### 调度性能指标
+- 多线程不自动消除同步开销；能否真正并行还取决于硬件核数与线程到处理机的映射。`,dT=String.raw`### 调度性能指标
 
 设进程从提交到完成的全部时间单位为同一量纲。
 
@@ -43095,7 +46980,7 @@ $$
 - 在"一批作业同时到达、服务时间已知、非抢占、忽略调度开销"的前提下，SJF 使该批作业的平均等待时间和平均周转时间最小。
 - 局限：**SJF 要求服务时间已知或能被估计**，抢不到 CPU 的长作业可能长期得不到服务（饥饿）；**高响应比优先（HRRN）能缓解饥饿**，兼顾长短作业。
 
-判据：先分清优化目标（平均等待/平均周转），再讨论算法优劣；长作业的公平性问题不能与平均时间最优混为一谈。`,Xw=String.raw`### 时间片轮转（RR）
+判据：先分清优化目标（平均等待/平均周转），再讨论算法优劣；长作业的公平性问题不能与平均时间最优混为一谈。`,fT=String.raw`### 时间片轮转（RR）
 
 就绪进程按 FIFO 排队，每个进程一次占用一个时间片 q，用完未完成则回到队尾。
 
@@ -43117,7 +47002,7 @@ $$
 $$
 
 - 被抢占进程的处理（回到原队列队首并保留本轮剩余时间片，或重新计时）必须按题给规则执行；同一时刻多个事件并发时也按题给优先级处理。
-- 增加一个紧急进程时，它按题给优先级插入并立即抢占，其余进程的相对顺序通常整体后移，但要按各自剩余时间片逐个重排。`,Zw=String.raw`### 语句的数据依赖与前驱图
+- 增加一个紧急进程时，它按题给优先级插入并立即抢占，其余进程的相对顺序通常整体后移，但要按各自剩余时间片逐个重排。`,pT=String.raw`### 语句的数据依赖与前驱图
 
 把每条语句抽象为**读集合**与**写集合**，只有存在冲突时才必须规定先后次序。
 
@@ -43128,7 +47013,7 @@ $$
 
 前驱图用来表示必须保持的偏序关系；**题目没有要求"最简"时，前驱图不必去掉可由传递性推出的冗余边**，只要求它所规定的次序满足所有依赖即可。
 
-判据：先逐句列出读、写集合，再连接存在冲突的依赖边。若题目给出多条合法拓扑序，只说明这些语句之间**没有强制的先后**，并不表示它们一定能全部并行（还受处理机、资源等条件限制）。`,Qw=String.raw`### 信号量与 P、V 操作
+判据：先逐句列出读、写集合，再连接存在冲突的依赖边。若题目给出多条合法拓扑序，只说明这些语句之间**没有强制的先后**，并不表示它们一定能全部并行（还受处理机、资源等条件限制）。`,mT=String.raw`### 信号量与 P、V 操作
 
 信号量是含整数值与等待队列的同步原语。
 
@@ -43157,7 +47042,7 @@ $$
 
 ### 用计数信号量表达资源与先后
 
-计数信号量的值可以表示"空闲医生数"一类资源数量；用信号量描述先后关系时，把事件图上的每一条等待依赖配一个初值为 0 的通知信号量，阻塞前先释放互斥锁，避免持锁等待后续事件。`,$w=String.raw`### 单缓冲区广播给多个消费者：通知必须每人一份
+计数信号量的值可以表示"空闲医生数"一类资源数量；用信号量描述先后关系时，把事件图上的每一条等待依赖配一个初值为 0 的通知信号量，阻塞前先释放互斥锁，避免持锁等待后续事件。`,hT=String.raw`### 单缓冲区广播给多个消费者：通知必须每人一份
 
 当一条消息必须被 k 个消费者各读一次时，**不能只用一个共享的计数信号量**：若 full 初值为 k，任一消费者都可能连续 k 次 P(full) 成功，把同一条消息读走多次，其他消费者一次也读不到。
 
@@ -43165,7 +47050,7 @@ $$
 - "缓冲区何时可被覆盖"由一个只有等所有消费者读完才成立的同步信号控制，例如用受 mutex 保护的共享计数记录尚未读取的人数，减到 0 的那名消费者执行 V(empty)。
 - 缓冲区互斥用 mutex；数据读写与计数在临界区内，生产与后续处理放在临界区外。
 
-判据：把"可写条件"与"哪个消费者可读"分别用信号量表达；逐一检查通知错发、同一消息被重复取走、消息被提前覆盖三种错误。`,eT=String.raw`### 合并缓冲区：信号量重新设置
+判据：把"可写条件"与"哪个消费者可读"分别用信号量表达；逐一检查通知错发、同一消息被重复取走、消息被提前覆盖三种错误。`,gT=String.raw`### 合并缓冲区：信号量重新设置
 
 两个独立缓冲区合并为一个共享缓冲区后，容量与产品不再按来源区分。
 
@@ -43182,7 +47067,7 @@ $$
 - 所有计数与缓冲区操作由同一 mutex 保护，产品数量改由共享计数管理，full 不再单独承担消费者排队；
 - 统一分配规则在锁内执行：只要有未预留产品和等待者，优先选择目标消费者，将其等待计数减 1、预留名额加 1，再 V 对应的私有信号量；消费者先释放 mutex 再去等待私有通知。
 
-判据：改变 CPU 优先级只影响谁先运行，不改变被唤醒者；要控制"谁先拿到产品"，需要私有通知与预留机制。`,tT=String.raw`### 管程与条件变量
+判据：改变 CPU 优先级只影响谁先运行，不改变被唤醒者；要控制"谁先拿到产品"，需要私有通知与预留机制。`,_T=String.raw`### 管程与条件变量
 
 管程把共享数据与操作封装在一起，**同一时刻只允许一个进程在管程内活动**（互斥由语言或运行时保证），管程内部的同步靠条件变量。
 
@@ -43198,7 +47083,7 @@ Swait(a,b) 是原子操作：**仅当 a、b 均大于 0 时，才同时将二者
 - 生产者：Swait(empty, mutex)，写入后 Ssignal(mutex, full)；
 - 消费者：Swait(full, mutex)，取出后 Ssignal(mutex, empty)。
 - **AND 信号量不等于两个普通 wait 依次执行**：两次独立 wait 之间不原子，可能在获得一个信号量后被阻塞而"部分占用资源"；AND 语义是"全得或全不得"。
-- 注意边界：普通 P 操作只要所有进程**统一申请顺序**（都先申请 empty/full，再申请 mutex），同样能正确解决生产者—消费者问题而不死锁；两者真正的区别只在原子性与是否可能部分占用，不能据此断言任何普通 P 顺序都必然死锁。`,nT=String.raw`### 用信号量表达累计产量的额度约束
+- 注意边界：普通 P 操作只要所有进程**统一申请顺序**（都先申请 empty/full，再申请 mutex），同样能正确解决生产者—消费者问题而不死锁；两者真正的区别只在原子性与是否可能部分占用，不能据此断言任何普通 P 顺序都必然死锁。`,vT=String.raw`### 用信号量表达累计产量的额度约束
 
 当约束的对象是两个生产者的**累计产量之差**，而不是仓库中各类产品的存量时，建模方法不同。
 
@@ -43241,7 +47126,7 @@ C:  while (1) {
     }
 ~~~
 
-判据：**不能用裸信号量的当前值直接等同于产量差**——当某进程已取得许可但尚未完成生产，或已在等待队列中阻塞时，信号量值与静态的产量差并不相等；正确论证要沿"许可如何流转"追踪累计产量。额度在每个生产事件上更新，生产动作放在 P(mutex) 之前，临界区只含实际的入库或出库。`,rT=String.raw`### 死锁的必要条件与预防
+判据：**不能用裸信号量的当前值直接等同于产量差**——当某进程已取得许可但尚未完成生产，或已在等待队列中阻塞时，信号量值与静态的产量差并不相等；正确论证要沿"许可如何流转"追踪累计产量。额度在每个生产事件上更新，生产动作放在 P(mutex) 之前，临界区只含实际的入库或出库。`,yT=String.raw`### 死锁的必要条件与预防
 
 死锁四个必要条件：**互斥、请求并保持、不可剥夺、循环等待**；破坏其中任一条件即可预防死锁。
 
@@ -43269,7 +47154,7 @@ $$
 R\ge n\times(m-1)+1
 $$
 
-时**一定不会发生死锁**；资源总数低于该下界时只是**可能**死锁，并非必然。`,iT=String.raw`### 动态分区分配算法
+时**一定不会发生死锁**；资源总数低于该下界时只是**可能**死锁，并非必然。`,bT=String.raw`### 动态分区分配算法
 
 分区分配按空闲分区链（或表）的查找策略区分：
 
@@ -43284,7 +47169,7 @@ $$
 
 - 判断算法要同时看**查找起点**与**最终选中的分区**：起点必须是题目给定位置的只有循环首次适应；按容量从小到大查找的是最佳适应，从大到小的是最坏适应。
 - 连续多次申请时，每分配一次就要更新空闲表，后续申请在**当前的**空闲分区上继续判断，不能用初始表重复计算。
-- 剩余空闲分区 = 未被触及的分区 + 被切分后剩下的尾部；注意切分后起始地址随分配位置变化，不能沿用原分区起始地址。`,aT=String.raw`### 伙伴算法
+- 剩余空闲分区 = 未被触及的分区 + 被切分后剩下的尾部；注意切分后起始地址随分配位置变化，不能沿用原分区起始地址。`,xT=String.raw`### 伙伴算法
 
 把内存按 2 的幂次划分成块，块大小为 2 的 k 次方个单位，**块的起始地址按块大小对齐**。
 
@@ -43293,7 +47178,7 @@ $$
 - **回收**：释放时若伙伴空闲就立即合并，并继续向上检查更高一阶的伙伴，直到伙伴被占用或已到最大块。
 - **内部碎片** = 实际获得块大小 − 请求大小；统计"已分配块的内部碎片总量"时只累加当前已分配的块。
 
-判据：**空闲总量足够不代表能分配成功**，还必须存在一个满足请求大小的连续空闲块。`,oT=String.raw`### 分页地址变换
+判据：**空闲总量足够不代表能分配成功**，还必须存在一个满足请求大小的连续空闲块。`,ST=String.raw`### 分页地址变换
 
 按字节编址时，页面大小为 2 的 p 次方字节，页内偏移占 p 位：
 
@@ -43318,7 +47203,7 @@ $$
 - **修改位（脏位）**：指示页面调入后是否被修改，决定换出时是否写回外存；
 - **外存地址**：记录页面在外存中的位置，缺页时按它调入。
 
-判据：**缺页发生的直接依据是状态位为 0，而不是访问跨过了页边界**。一次访问落在不同的页，只说明这次访问的对象在另一页；该页是否缺页，仍取决于它是否已在内存。把字段与它要回答的问题对应起来，存在位答"是否在内存"，修改位答"换出是否写回"，访问位答"淘汰谁"。`,sT=String.raw`### 多级页表
+判据：**缺页发生的直接依据是状态位为 0，而不是访问跨过了页边界**。一次访问落在不同的页，只说明这次访问的对象在另一页；该页是否缺页，仍取决于它是否已在内存。把字段与它要回答的问题对应起来，存在位答"是否在内存"，修改位答"换出是否写回"，访问位答"淘汰谁"。`,CT=String.raw`### 多级页表
 
 把虚拟页号再分成若干级索引，两级页表的逻辑地址形如
 
@@ -43350,7 +47235,7 @@ $$
 当页表项（如页目录项）中的大页标志位置 1 时，该表项**直接指向一个大页框，绕过下级页表**，地址的低若干位直接作为大页内偏移。此时地址转换所需访存次数减少，页内偏移位数相应增加。
 
 - **按页面类型分别用独立队列做 FIFO 是题目给出的策略**，便于按各自队列的装入时刻淘汰；它不是说任何系统都绝对不能让不同大小的页进入统一置换，实际系统可以把它们放在同一框架下管理。
-- 更新表项时按其所在表的基址与索引定位：页目录项地址 = 页目录基址 + 目录号 × 页目录项大小。`,cT=String.raw`### 常用页面置换算法
+- 更新表项时按其所在表的基址与索引定位：页目录项地址 = 页目录基址 + 目录号 × 页目录项大小。`,wT=String.raw`### 常用页面置换算法
 
 - **OPT（最佳置换）**：淘汰未来最长时间不再被访问的页，缺页数是**理想下界（最少）**，但不需预知未来，实际不可实现，只作比较基准；
 - **FIFO**：淘汰最早调入内存的页，**命中时不改变装入顺序**，实现简单但不考虑使用情况；
@@ -43379,7 +47264,7 @@ $$
 
 p 为缺页率。
 
-判据：**时间单位必须统一**，ns 与 ms 相差 10 的 6 次方倍；缺页服务时间通常远大于访存时间，平均访问时间往往由它主导。`,lT=String.raw`### 数组访问的页号序列
+判据：**时间单位必须统一**，ns 与 ms 相差 10 的 6 次方倍；缺页服务时间通常远大于访存时间，平均访问时间往往由它主导。`,TT=String.raw`### 数组访问的页号序列
 
 下面的元素下标公式在**数组首元素页对齐**、且**每页恰好存放 P 个完整元素**时成立：按行优先存放的 m×n 二维数组，从 0 编号时元素 (i,j) 的线性下标为 i×n+j，页号为
 
@@ -43408,7 +47293,7 @@ $$
 
 - 页框数 = 可用物理内存 ÷ 页大小；
 - 把普通访存、缺页服务与缺页后的重试分别列出：命中按访存时间计，缺页按题给的磁盘交换时间计，最后求和或按缺页率加权；
-- 对"每页只被访问一次、跨越大量页的顺序访问"，每次访问都可能缺页，总时间由缺页服务主导；具体页数与时间按题给的页大小与页框数计算。`,uT=String.raw`### 局部性原理与虚拟存储
+- 对"每页只被访问一次、跨越大量页的顺序访问"，每次访问都可能缺页，总时间由缺页服务主导；具体页数与时间按题给的页大小与页框数计算。`,ET=String.raw`### 局部性原理与虚拟存储
 
 局部性原理：程序在一段时间内往往只访问其地址空间的一部分。
 
@@ -43431,7 +47316,7 @@ $$
 - **可变分配全局置换**：块数可变；缺页时先看系统有无空闲物理块，有就直接分配给该进程（块数增加），无则从**整个系统所有进程**的页面中选一页换出，可能换出其他进程的页；
 - **可变分配局部置换**：块数可变，但只在本进程内置换，并按缺页率调整块数。
 
-判据：先看置换候选来自本进程还是全系统，再看块数是否可变；被锁定页、共享页等限制按题设处理。`,dT=String.raw`### 先区分两类“链接”
+判据：先看置换候选来自本进程还是全系统，再看块数是否可变；被锁定页、共享页等限制按题设处理。`,DT=String.raw`### 先区分两类“链接”
 
 **成组链接法管理文件系统尚未分配的空闲盘块**；文件的链接分配、FAT、索引分配解决的是“一个文件已经占用了哪些盘块、如何找到它们”。两者回答的问题不同，不能因为名字里都有“链接”就混用。
 
@@ -43488,7 +47373,7 @@ $$
 
 第一轮只有 $C-1$ 个真实块能与终止标记一起留在内存，第 $C$ 次回收写出；以后每 $C$ 次回收写出一次。随后把这 $F$ 个块全部分配出去，会读回这 $W$ 份组记录。**这个单向批处理计数不能直接套给任意交替分配与回收序列**：在满栈边界反复回收、又立即申请组长块，可以每轮都发生一次写出和一次读入。
 
-核对状态时只沿**当前内存栈可达的组链**数非零块号，不能把已经消费的旧记录再算一次。每次成功分配使真实空闲块总数减 1，每次合法回收使它加 1；换组本身不会凭空增加盘块。`,fT=String.raw`### 先把块数、位数和字节数分开
+核对状态时只沿**当前内存栈可达的组链**数非零块号，不能把已经消费的旧记录再算一次。每次成功分配使真实空闲块总数减 1，每次合法回收使它加 1；换组本身不会凭空增加盘块。`,OT=String.raw`### 先把块数、位数和字节数分开
 
 磁盘或卷的容量为 $D$ 字节，盘块大小为 $B$ 字节。若题设恰好整除，盘块总数为
 
@@ -43530,7 +47415,7 @@ $$
 - **计数法**：对连续空闲区间保存“起始块号、连续块数”；只有真正相邻的块才能合并成一个记录。
 - **FAT 等文件物理分配结构**：描述文件所占块的链接或映射。某些结构也记录空闲状态，但它与本专题的成组空闲栈不是同一种算法。
 
-若块号和长度字段各占 $a$ 字节，$F$ 个空闲块逐个列真实地址需要 $Fa$ 字节；若恰好组成 $r$ 个连续区间，计数法的成对字段需要 $2ra$ 字节。**这里只比较真实空闲块地址与区间字段**，不含计数头、终止标记、组间链接、对齐及盘块填充等开销，不是完整实现的内存或磁盘占用量。字段开销更小的条件是 $F>2r$，即平均区间长度大于 2。**成组链接法中的“组”是地址记录的打包，计数法中的“区间”才是物理连续性**。`,pT=String.raw`### 文件的逻辑结构与访问方式
+若块号和长度字段各占 $a$ 字节，$F$ 个空闲块逐个列真实地址需要 $Fa$ 字节；若恰好组成 $r$ 个连续区间，计数法的成对字段需要 $2ra$ 字节。**这里只比较真实空闲块地址与区间字段**，不含计数头、终止标记、组间链接、对齐及盘块填充等开销，不是完整实现的内存或磁盘占用量。字段开销更小的条件是 $F>2r$，即平均区间长度大于 2。**成组链接法中的“组”是地址记录的打包，计数法中的“区间”才是物理连续性**。`,kT=String.raw`### 文件的逻辑结构与访问方式
 
 逻辑结构是面向用户的组织形式。
 
@@ -43546,7 +47431,7 @@ $$
 - **目录结构**：单级、两级、多级（树形）。多级目录中不同目录下可存在同名文件，用路径名唯一标识，**解决了文件命名冲突**；
 - **打开文件**：读写文件前必须先打开，把文件信息读入内存的打开文件表；修改文件内容同样需要先打开。
 
-判据：分开文件内容、文件元数据、打开状态与目录组织四层对象；题目混用逻辑结构与物理结构的名词时逐项纠正。`,mT=String.raw`### 文件的物理结构
+判据：分开文件内容、文件元数据、打开状态与目录组织四层对象；题目混用逻辑结构与物理结构的名词时逐项纠正。`,AT=String.raw`### 文件的物理结构
 
 - **连续分配**：文件占用一段连续磁盘块，支持顺序与随机访问、速度快。典型的基本方案需要在建立文件时确定初始空间或预估文件大小；**文件增长时若紧邻的后续块已被占用，可能需要搬迁整个文件**（具体是否搬迁取决于实现与当时是否能为文件重新分配连续区）。
 - **隐式链接分配**：每块末尾保存下一块指针，块可散布在磁盘任意位置；增长时申请新块接到链尾，不移动已有数据块；只能顺序访问，且指针占用块内空间。
@@ -43576,7 +47461,7 @@ $$
 - **索引块内部若有头部、校验字段等题给保留空间，要先从索引块大小中扣除**；不能整除时向下取整，剩余不足一项的字节被浪费。
 - 最大可寻址数据块数 = 直接地址项数 + 各间接地址项的可覆盖块数（一级间接为 1 个索引块的地址数，二级间接为地址数的平方，依此类推）；
 - 最大文件长度 = 可寻址数据块数 × 数据块大小，**索引块本身不计入文件数据**；
-- 记录成组时每块可存记录数按题设给出的可用容量计算，已另行预留指针空间的不再重复扣减。`,hT=String.raw`### 硬链接与符号链接
+- 记录成组时每块可存记录数按题设给出的可用容量计算，已另行预留指针空间的不再重复扣减。`,jT=String.raw`### 硬链接与符号链接
 
 - **硬链接**：多个目录项指向同一索引结点（inode），建立硬链接只让该 inode 的**链接计数加 1，不复制文件内容**；inode 号只在单个文件系统内唯一，所以**硬链接不能跨文件系统**；**POSIX 中只有当链接计数为 0 且没有进程仍打开该文件时，文件才真正被回收**。新增内容写在同一 inode 下，后续追加的部分同样被共享。
 - **符号链接（软链接）**：是一个独立的新文件，有自己的 inode，内容是**目标路径名字符串**，自身链接计数从 1 开始；删除符号链接只是删掉这个路径名引用，**原文件本体仍在，可正常访问**。**短路径名通常直接内嵌在 inode 中，因此符号链接不一定额外占用数据块**。
@@ -43590,7 +47475,7 @@ $$
 
 **POSIX 现实**：符号链接的内容只作字符串处理，内核在本地命名空间做路径名解析；要指向另一台机器上的文件，需要 NFS、SMB 之类的网络文件服务把远端目录挂载为本地可解析路径，**符号链接不会因为写了远程地址就自动跨机取值**。考试按教材口径作答，理解时注意这一区别。
 
-判据：讨论磁盘空间、删除行为与引用计数时，区分目录项、链接自身与目标文件三者的生命周期。`,gT=String.raw`### I/O 软件的层次结构
+判据：讨论磁盘空间、删除行为与引用计数时，区分目录项、链接自身与目标文件三者的生命周期。`,MT=String.raw`### I/O 软件的层次结构
 
 按教材的抽象层次，自下而上为：硬件、中断处理程序、设备驱动程序、设备独立性软件、用户层 I/O 软件。
 
@@ -43605,7 +47490,7 @@ $$
 
 操作系统隐藏硬件实现细节，向上提供抽象模型。以磁盘为例，一个数据块的物理位置由柱面（磁道）号、盘面（磁头）号、扇区号共同确定，这三者是**被抽象掉的硬件细节**；文件系统把磁盘数据组织成文件，用户用**文件路径名**定位数据，路径名是抽象后提供给用户的逻辑描述方式，不是被抽象掉的对象。
 
-判据：区分文件系统的逻辑块位置、设备接口给出的地址与磁盘内部的几何位置；若题目给出柱面、磁头、扇区参数，则按该模型推导，不自行替换为另一种接口。`,_T=String.raw`### 三种 I/O 控制方式
+判据：区分文件系统的逻辑块位置、设备接口给出的地址与磁盘内部的几何位置；若题目给出柱面、磁头、扇区参数，则按该模型推导，不自行替换为另一种接口。`,NT=String.raw`### 三种 I/O 控制方式
 
 - **程序直接控制（查询）**：CPU 反复读设备状态寄存器直到设备就绪，再由 CPU 亲自把数据在设备控制器与主存之间搬运，**CPU 全程被占用**；
 - **中断控制方式**：CPU 发出 I/O 请求后可执行其他进程，设备完成时用中断通知，再由 CPU（中断服务程序）搬运数据，省掉等待但搬运仍由 CPU 参与；
@@ -43621,7 +47506,7 @@ $$
 - 中断控制方式：调用者发起请求后挂起等待，设备中断通知后由内核唤醒到就绪态，**阻塞**；
 - DMA 方式：数据传送由 DMA 控制器完成，但发起本次 I/O 的用户进程仍要等整块数据传完（在等待队列挂起），**阻塞**。
 
-判据：**中断、DMA 减少的是 CPU 的忙等，不等于调用进程不阻塞**；控制机制（查询、中断、DMA）与调用语义（阻塞、非阻塞）是两回事，采用中断或 DMA 不自动保证用户进程不阻塞。`,vT=String.raw`### 缓冲技术
+判据：**中断、DMA 减少的是 CPU 的忙等，不等于调用进程不阻塞**；控制机制（查询、中断、DMA）与调用语义（阻塞、非阻塞）是两回事，采用中断或 DMA 不自动保证用户进程不阻塞。`,PT=String.raw`### 缓冲技术
 
 缓冲在低速设备与高速 CPU 之间设置中间存储，缓解速度不匹配、减少中断频率、提高设备与 CPU 的并行度。
 
@@ -43640,7 +47525,7 @@ $$
 - 当 t_cpu 大于 t_in 时 CPU 侧是瓶颈，max 取 t_cpu，末块仍需完整的 t_cpu；
 - 公式已包含首块启动与末块排空。
 
-判据：画出设备输入、传送到用户工作区、CPU 处理各阶段的时间线，标出缓冲区何时释放，再数可重叠区间；所有时间用同一单位，并检查题设给出的阶段是否都能并行。`,yT=String.raw`### 磁盘访问时间与调度目标
+判据：画出设备输入、传送到用户工作区、CPU 处理各阶段的时间线，标出缓冲区何时释放，再数可重叠区间；所有时间用同一单位，并检查题设给出的阶段是否都能并行。`,FT=String.raw`### 磁盘访问时间与调度目标
 
 磁盘访问时间由寻道时间（磁头移到目标磁道）、旋转延迟（目标扇区转到磁头下）和传输时间组成；调度算法通过改变服务顺序减少寻道距离。
 
@@ -43649,7 +47534,7 @@ $$
 - **SCAN（电梯算法）**：磁头沿一个方向移动并服务沿途请求，到端点折返，**不会饥饿**，但对刚被扫描过、等待折返一端的磁道不利。
 - **C-SCAN**：只沿一个方向服务，到端点后直接快速返回起点、返回途中不服务，再重新同向扫描，消除 SCAN 对两端磁道的不公平，使各磁道等待时间更均匀。
 
-判据：画出磁道位置与当前移动方向，按算法规则排列请求，总移动距离沿执行序列相邻位置求和。FCFS 看到达顺序，SSTF 看当前位置距离，SCAN 类还要看方向与端点规则（端点是否服务按题设）。`,bT=String.raw`### 磁盘高速缓存与提高磁盘 I/O 速度的途径
+判据：画出磁道位置与当前移动方向，按算法规则排列请求，总移动距离沿执行序列相邻位置求和。FCFS 看到达顺序，SSTF 看当前位置距离，SCAN 类还要看方向与端点规则（端点是否服务按题设）。`,IT=String.raw`### 磁盘高速缓存与提高磁盘 I/O 速度的途径
 
 - **磁盘高速缓存（Disk Cache）**：在**内存**中为磁盘盘块设置缓冲区，保存某些盘块的副本；访问时先查缓存，命中则省去启动磁盘的操作。设计时需考虑数据如何交付给请求进程、采用什么置换策略、已修改的盘块何时写回磁盘。注意它位于内存，不要与磁盘控制器内部的缓存混为一谈。
 - **预读与延迟写**：预读提前把后续可能用到的盘块读入缓存；延迟写把修改暂留缓存、合并后再写回，减少实际磁盘写次数。
@@ -43657,7 +47542,7 @@ $$
 - **优化文件物理块分布**：减少寻道与旋转延迟。
 - **逻辑分区**：把物理盘划分为多个管理范围。**单纯做逻辑分区通常不改变文件的物理块分布，因而不保证提高 I/O 性能**；不过分区会影响磁盘空间的分配与管理方式，不能笼统断言分区对任何负载都毫无影响，只是它本身不是"提高 I/O 性能"的手段。
 
-判据：区分减少请求次数、减少寻道、缩短传输等待等不同的优化位置；缓存不保证所有请求命中，也不意味着每次修改都已持久化；只增加缓冲数量并不在所有工作负载下都保证更快。`,xT=String.raw`### 分层模型
+判据：区分减少请求次数、减少寻道、缩短传输等待等不同的优化位置；缓存不保证所有请求命中，也不意味着每次修改都已持久化；只增加缓冲数量并不在所有工作负载下都保证更快。`,LT=String.raw`### 分层模型
 
 **OSI 七层自下而上为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层；TCP/IP 体系通常概括为四层：网络接口层、网际层（IP 层）、传输层、应用层。**
 
@@ -43681,7 +47566,7 @@ $$
 
 - **差错控制与帧同步属于数据链路层，不属于物理层。**
 - **路由选择属于网络层；端到端的可靠传输、流量控制、拥塞控制属于传输层。**
-- 不同层次都可以做流量控制，但对象不同：数据链路层控制相邻结点之间，传输层控制端到端进程之间。`,ST=String.raw`### 基本概念
+- 不同层次都可以做流量控制，但对象不同：数据链路层控制相邻结点之间，传输层控制端到端进程之间。`,RT=String.raw`### 基本概念
 
 - 码元：承载信息的基本信号单位，一个码元可携带 1 位或多位比特。
 - 数据率、波特率与每码元比特数 $n$ 的关系：
@@ -43706,7 +47591,7 @@ $$
 - 要求自同步、可容忍带宽加倍 → 曼彻斯特或差分曼彻斯特；若题目强调普通双极性 RZ（0 也是脉冲），则 RZ 也能自同步。
 - 环境噪声大、可能接线使电平整体翻转 → 差分曼彻斯特。
 - 传统 10 Mbit/s 以太网（10BASE-5/2/T）→ 曼彻斯特编码。
-- **判断“每个码元中点是否跳变”时，必须分别检查 0、1 两类码元；只看到名称含“归零”不能想当然。**`,CT=String.raw`### 比特差错的类型
+- **判断“每个码元中点是否跳变”时，必须分别检查 0、1 两类码元；只看到名称含“归零”不能想当然。**`,zT=String.raw`### 比特差错的类型
 
 - **随机差错**：由信道热噪声引起，错误位在时间上独立、分散。
 - **突发差错**：由外部干扰等引起，一段连续比特内出现多个错误。
@@ -43738,7 +47623,7 @@ $$
 
 自动重传请求 ARQ 分为停止-等待、后退 N 帧、选择重传三种，靠确认、超时重传与序号实现可靠传输。
 
-**关于“绝对可靠”的判断：在检错码、信道与重试时间都理想的前提下，ARQ 可提供可靠传输；但检错码可能漏检、信道持续故障、重试次数与等待时间受限时数据仍可能无法送达，因此不能说“绝对可靠”。**`,wT=String.raw`### 停止等待协议
+**关于“绝对可靠”的判断：在检错码、信道与重试时间都理想的前提下，ARQ 可提供可靠传输；但检错码可能漏检、信道持续故障、重试次数与等待时间受限时数据仍可能无法送达，因此不能说“绝对可靠”。**`,BT=String.raw`### 停止等待协议
 
 发送方每发一帧就等待确认，收到确认才发下一帧。一个成功周期为
 
@@ -43775,7 +47660,7 @@ $$
 
 其中 $RTT=2t_p$（忽略确认帧时延）。取满足上式的最小整数即最小窗口，再用 SR 或 GBN 的序号约束定位数。
 
-**易混：GBN 的窗口上限是 $2^{n}-1$，SR 等窗时是 $2^{n-1}$，两者不能混用。**`,TT=String.raw`### CSMA/CD 与最小帧长
+**易混：GBN 的窗口上限是 $2^{n}-1$，SR 等窗时是 $2^{n-1}$，两者不能混用。**`,VT=String.raw`### CSMA/CD 与最小帧长
 
 CSMA/CD 用于共享式（半双工）以太网：先听后发、边发边听、冲突停发、随机退避。**全双工链路不存在冲突，不运行 CSMA/CD。**
 
@@ -43801,7 +47686,7 @@ $$
 
 ### VLAN
 
-VLAN 在二层把一台交换机（或互联的交换机群）在逻辑上划分为多个广播域，每个 VLAN 内的广播帧不会串到其他 VLAN；VLAN 之间通信需要三层设备。**判断广播域个数，先看是否划分 VLAN。**`,ET=String.raw`### 码分多址 CDMA
+VLAN 在二层把一台交换机（或互联的交换机群）在逻辑上划分为多个广播域，每个 VLAN 内的广播帧不会串到其他 VLAN；VLAN 之间通信需要三层设备。**判断广播域个数，先看是否划分 VLAN。**`,HT=String.raw`### 码分多址 CDMA
 
 每站分配一个长度为 $n$ 的码片序列，各分量取 $+1$ 或 $-1$。规格化内积定义为
 
@@ -43820,7 +47705,7 @@ $$
 
 **判断一个候选码片能不能分配给某组，只需把它与每个已分配码片逐位相乘求和（等价于判断规格化内积）：只要有一项非 0 就不正交、不可用。** 若某站码片全为 $+1$，与它正交等价于候选序列各位之和为 0。
 
-**注意：严格“两两正交”是题目采用的理想模型。真实 CDMA 使用异步伪随机码，互相关只能做到很低、未必严格为零，接收时存在多址干扰；做题仍按“内积为 0”判正交。**`,DT=String.raw`### IPv4 地址与掩码
+**注意：严格“两两正交”是题目采用的理想模型。真实 CDMA 使用异步伪随机码，互相关只能做到很低、未必严格为零，接收时存在多址干扰；做题仍按“内积为 0”判正交。**`,UT=String.raw`### IPv4 地址与掩码
 
 IPv4 地址 32 位，分为网络号与主机号。子网掩码中 1 对应网络位、0 对应主机位，前缀长度 $/p$ 表示前 $p$ 位是网络位。
 
@@ -43855,7 +47740,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 - **0.0.0.0**：本网络本主机，用于源地址未知时（如 DHCP 发现）。
 - **私有地址**：10.0.0.0/8、172.16.0.0/12、192.168.0.0/16，全局不唯一，**不能在公网直接路由**，通常经 NAT 后才能访问公网。
 
-**易错：直连的两台设备若配了不同前缀长度，某地址是否在“本网段”要按发送方自己的掩码判断；若双方按各自掩码都认为对方落在本网段内，仍可直接通信。结论要落到具体掩码与路由，不可一概而论。**`,OT=String.raw`### 基本特性
+**易错：直连的两台设备若配了不同前缀长度，某地址是否在“本网段”要按发送方自己的掩码判断；若双方按各自掩码都认为对方落在本网段内，仍可直接通信。结论要落到具体掩码与路由，不可一概而论。**`,WT=String.raw`### 基本特性
 
 - 地址长度 **128 位**，基本首部长度**固定 40 字节**；可选信息放到扩展首部，用“下一个首部”字段串联，扩展首部不改变基本首部长度。
 - IPv4 的首部校验和、选项字段在 IPv6 中被取消或改造。
@@ -43876,7 +47761,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 
 - **双栈**：设备同时运行 IPv4 与 IPv6 协议栈。
 - **隧道**：把 IPv6 数据报整体作为 IPv4 数据报的载荷，穿过只支持 IPv4 的网络，在隧道两端还原。
-- 也可用协议转换等方式过渡。`,kT=String.raw`### ARP 地址解析
+- 也可用协议转换等方式过渡。`,GT=String.raw`### ARP 地址解析
 
 作用：把同一链路（同一广播域）上的 IP 地址解析为 MAC 地址。
 
@@ -43896,7 +47781,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 
 - **MAC 地址逐跳更换**：每经过一条链路，帧的源 MAC 换成出接口 MAC，目的 MAC 换成下一跳 MAC。
 - **IP 地址端到端不变**：路由器只按目的 IP 转发，不改写源、目的 IP（除 NAT 等特殊情况）。
-- 需要发送分组而 ARP 缓存中没有下一跳的表项时，就对**下一跳 IP**发 ARP 请求，而不是对最终目的 IP。`,AT=String.raw`### NAT 与 NAPT
+- 需要发送分组而 ARP 缓存中没有下一跳的表项时，就对**下一跳 IP**发 ARP 请求，而不是对最终目的 IP。`,KT=String.raw`### NAT 与 NAPT
 
 - **NAT**：在私网与公网边界上转换 IP 地址，使多台私网主机可共享少量公网地址。
 - **NAPT（网络地址端口转换）**：在转换 IP 地址的同时转换传输层端口号，用“公网 IP 加端口”区分不同私网主机。
@@ -43915,7 +47800,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 ### 与普通路由器的区别
 
 - 普通路由器转发时至少要把 TTL 减 1 并重算 IP 首部校验和，不能说“不改任何字段”。
-- **选择下一跳路由依据目的 IP（网络前缀），而端口映射属于地址转换，不是选路的依据；NAPT 的映射表是“私网地址加端口 ↔ 公网地址加端口”的转换关系，与路由选路是两回事。**`,jT=String.raw`### RIP
+- **选择下一跳路由依据目的 IP（网络前缀），而端口映射属于地址转换，不是选路的依据；NAPT 的映射表是“私网地址加端口 ↔ 公网地址加端口”的转换关系，与路由选路是两回事。**`,qT=String.raw`### RIP
 
 - **距离向量算法**，基于 Bellman-Ford，只与相邻路由器交换自己的整张路由表。
 - 度量是**跳数**，**最大有效跳数为 15，16 表示不可达**，因此只适合小型网络。
@@ -43946,7 +47831,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 3. ABR 在骨干区（或其他区域）把对应的 **Type 3 Summary-LSA 置为 MaxAge 并重新泛洪**，即撤销通告。
 4. 其他区域的路由器收到 Type 3 更新后更新链路状态数据库，重算**区域间**路由并删除该路由。
 
-**要点：Type 1、Type 2 这类描述区内拓扑的 LSA 发生变化，才会牵动区内 SPF 重算；Type 3 是跨区摘要，逻辑上只需重算区域间路由，不必重跑骨干区内部的 Dijkstra。**`,MT=String.raw`### TCP 首部关键字段
+**要点：Type 1、Type 2 这类描述区内拓扑的 LSA 发生变化，才会牵动区内 SPF 重算；Type 3 是跨区摘要，逻辑上只需重算区域间路由，不必重跑骨干区内部的 Dijkstra。**`,JT=String.raw`### TCP 首部关键字段
 
 - 源端口、目的端口：各 16 位。
 - 序号：32 位，本报文段数据首字节的序号。
@@ -43976,7 +47861,7 @@ CIDR 用前缀长度表示地址块，如 192.168.1.0/24；多个连续小前缀
 
 已知 IPv4 分组与 TCP 首部时：应用层数据长度 $=$ IP 总长度 $-$ IP 首部长度 $-$ TCP 首部长度（TCP 首部长度等于数据偏移字段乘 4，可含选项，不总是 20B）。
 
-**确认号减 1 是“已按序收到的最后一个字节的序号”，不是已收字节数。** 要得到字节数，须取“最后序号 $-$ 初始序号”，并按 32 位模回绕处理；初始序号连同 SYN 占用的 1 个序号要一并扣除。`,NT=String.raw`### 基本量
+**确认号减 1 是“已按序收到的最后一个字节的序号”，不是已收字节数。** 要得到字节数，须取“最后序号 $-$ 初始序号”，并按 32 位模回绕处理；初始序号连同 SYN 占用的 1 个序号要一并扣除。`,YT=String.raw`### 基本量
 
 - 拥塞窗口 cwnd 与接收窗口 rwnd 共同决定发送窗口：
 
@@ -44000,7 +47885,7 @@ $$
 ### 题型的两个提醒
 
 - 408 题常按“理想逐 RTT 窗口模型”统计：每 RTT 发送量为当前 cwnd，然后按所处阶段更新 cwnd；把超时与快恢复当作拥塞周期边界，分别数清慢开始段与拥塞避免段的 RTT 数，最后乘 RTT 得时间。
-- **实际 RTO 由 RTT 的测量与安全边距共同决定，不能由理想化的固定 RTT 直接推断墙钟时间；理想模型只给出“理想往返、无额外排队”下的下限。**`,PT=String.raw`### 域名系统与服务器层次
+- **实际 RTO 由 RTT 的测量与安全边距共同决定，不能由理想化的固定 RTT 直接推断墙钟时间；理想模型只给出“理想往返、无额外排队”下的下限。**`,XT=String.raw`### 域名系统与服务器层次
 
 域名自右向左分级：根、顶级域、权限域名。DNS 服务器分为根域名服务器、顶级域名服务器、权限域名服务器，以及主机配置的本地域名服务器。
 
@@ -44025,7 +47910,7 @@ $$
 
 - 只有当 **DNS 服务器与目标 Web 服务器都在其他网段、且 ARP 与 DNS 缓存均为空**时，才表现为“先 ARP 默认网关（供 DNS 报文出去）→ DNS → 再处理 Web 服务器”。
 - 更一般地：每一跳只解析**该跳的下一跳** MAC——DNS 报文解析 DNS 服务器一侧的下一跳，HTTP 报文解析 Web 服务器一侧的下一跳。
-- 若 ARP 缓存或 DNS 缓存命中，就无需再次 ARP 或再次解析域名。`,FT=String.raw`### 报文格式（HTTP/1.x）
+- 若 ARP 缓存或 DNS 缓存命中，就无需再次 ARP 或再次解析域名。`,ZT=String.raw`### 报文格式（HTTP/1.x）
 
 - 请求报文：请求行（方法、请求目标、版本）＋首部行＋空行＋实体。
 - 响应报文：状态行（版本、状态码、短语）＋首部行＋空行＋实体。
@@ -44044,7 +47929,7 @@ $$
 - **Connection: close**：服务器发完本响应后关闭 TCP 连接，该连接不再用于后续请求。
 - **HTTP/1.1 默认持久连接**，不发送 keep-alive 首部也可在同一 TCP 连接上复用；HTTP/1.0 需显式 keep-alive 才能复用。
 
-**易错：看到 Content-Length 先问它描述的是“本报文实体”还是“整个资源”；描述整个资源的是 Content-Range 斜杠后的数字。**`,IT=String.raw`### 端口分类
+**易错：看到 Content-Length 先问它描述的是“本报文实体”还是“整个资源”；描述整个资源的是 Content-Range 斜杠后的数字。**`,QT=String.raw`### 端口分类
 
 - 熟知端口：0 至 1023，分配给常用服务。
 - 登记端口：1024 至 49151。
@@ -44067,7 +47952,7 @@ $$
 FTP 使用两条连接，控制连接固定 21 端口，**控制连接永远由客户端主动发起**。两种模式的区别只在数据连接由谁发起：
 
 - **主动模式（PORT）**：客户端用 PORT 命令告知自己的数据端口，服务器从自己的 20 端口**主动**连接客户端指定端口。
-- **被动模式（PASV）**：服务器打开一个临时端口并回给客户端，**等待客户端主动**连上该端口建立数据连接，适合客户端在防火墙或 NAT 之后的情形。`,LT=String.raw`### 作用与端口
+- **被动模式（PASV）**：服务器打开一个临时端口并回给客户端，**等待客户端主动**连上该端口建立数据连接，适合客户端在防火墙或 NAT 之后的情形。`,$T=String.raw`### 作用与端口
 
 DHCP 为主机动态分配 IP 地址、子网掩码、默认网关、DNS 服务器等配置。**服务器使用 UDP 67，客户端使用 UDP 68**，早期交互多采用广播。
 
@@ -44081,7 +47966,7 @@ DHCP 为主机动态分配 IP 地址、子网掩码、默认网关、DNS 服务�
 - 一个广播域内可部署多台 DHCP 服务器，客户端只选定一个；续租阶段可单播。
 - **客户端首次申请不需要预先知道 DHCP 服务器的 IP 地址**，靠广播发现。
 - **DHCP 支持地址保留（静态绑定）**，把某 MAC 与固定 IP 绑定，使指定主机总是获得同一地址。
-- 跨网段时可由 DHCP 中继代理转发请求。`,RT=String.raw`![以当前顶点 B 为例，切换边走字段](rare-adjacency-multilist/field-switch.svg)
+- 跨网段时可由 DHCP 中继代理转发请求。`,eE=String.raw`![以当前顶点 B 为例，切换边走字段](rare-adjacency-multilist/field-switch.svg)
 
 ### 真题怎么考（2024 年第 4 题）
 
@@ -44116,7 +48001,7 @@ ivex 与 ilink 必须配套，jvex 与 jlink 必须配套，不能交叉。两�
 
 ### 删除一条边
 
-先把它从**两端**的顶点链上摘掉：沿每条链找到它的前驱边结点，改前驱对应方向的指针域；若它本身就是链首，则改该顶点的 firstedge。两条链都摘干净，最后才释放这个边结点——顺序反了会留下悬空指针。边结点里没有前驱字段，仅有目标边地址时仍需沿链查找前驱；最坏为 O(deg(u)+deg(v))。已知两端前驱时，修改指针本身是 O(1)。`,zT=String.raw`![顶点结点与弧结点的字段布局](rare-orthogonal-list/ol-records.svg)
+先把它从**两端**的顶点链上摘掉：沿每条链找到它的前驱边结点，改前驱对应方向的指针域；若它本身就是链首，则改该顶点的 firstedge。两条链都摘干净，最后才释放这个边结点——顺序反了会留下悬空指针。边结点里没有前驱字段，仅有目标边地址时仍需沿链查找前驱；最坏为 O(deg(u)+deg(v))。已知两端前驱时，修改指针本身是 O(1)。`,tE=String.raw`![顶点结点与弧结点的字段布局](rare-orthogonal-list/ol-records.svg)
 
 **先分清两个词：** 图里的箭头是**弧**（有向边），记录里的箭头是**指针**（存的是地址）。弧的方向写进结点里，指针只负责把同类结点串成链。
 
@@ -44132,13 +48017,13 @@ ivex 与 ilink 必须配套，jvex 与 jlink 必须配套，不能交叉。两�
 
 **两条核对原则：** 出度之和 = 入度之和 = 弧数；链上的先后顺序由插入历史决定，图本身不规定。
 
-**头插一条新弧**要写 4 处：新结点的 hlink、tlink 先取两条旧链首，再把两个顶点入口改成新结点。顺序不能颠倒：先改入口再取旧值，读回的是新结点自己，旧链首从此丢失。`,BT=String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
+**头插一条新弧**要写 4 处：新结点的 hlink、tlink 先取两条旧链首，再把两个顶点入口改成新结点。顺序不能颠倒：先改入口再取旧值，读回的是新结点自己，旧链首从此丢失。`,nE=String.raw`![按E与F判定五类单精度位模式](rare-ieee754-special/classification.svg)
 
-**规格数：** $(-1)^s2^{E-127}(1+F/2^{23})$。**非规格数：** $(-1)^s2^{-126}(F/2^{23})$，其中 F 是 23 位字段的无符号整数值；最小正非规格数为 $2^{-149}$。`,VT=String.raw`![从进位线区分CF借位与OF溢出](rare-comparison-flags/carry.svg)
+**规格数：** $(-1)^s2^{E-127}(1+F/2^{23})$。**非规格数：** $(-1)^s2^{-126}(F/2^{23})$，其中 F 是 23 位字段的无符号整数值；最小正非规格数为 $2^{-149}$。`,rE=String.raw`![从进位线区分CF借位与OF溢出](rare-comparison-flags/carry.svg)
 
 **对象是同宽 a−b。** CF 服务无符号解释；SF 与 OF 一起服务补码解释；ZF 管相等。
 
-设输入符号位为 $s_a,s_b$，截断差值符号位为 $s_r$：$OF=(s_a\oplus s_b)\land(s_a\oplus s_r)$。因此有符号小于用 $SF\oplus OF$，不是只用 OF。`,HT=String.raw`### 单链表的改链与删除
+设输入符号位为 $s_a,s_b$，截断差值符号位为 $s_r$：$OF=(s_a\oplus s_b)\land(s_a\oplus s_r)$。因此有符号小于用 $SF\oplus OF$，不是只用 OF。`,iE=String.raw`### 单链表的改链与删除
 
 next 只能向后走；改 next 前先保存原后继。删除非首结点时，先令前驱跳过待删结点，再释放它。释放后不能再访问其字段。头结点被删时，头指针必须相应改变。
 
@@ -44146,7 +48031,7 @@ next 只能向后走；改 next 前先保存原后继。删除非首结点时，
 
 “右侧存在更大值”可用右侧最大值判定：当前值严格小于右侧最大值才删除；相等保留。原地逆置把从右到左变为沿 next 前进，维护一个最大值即可；再逆置恢复原相对次序。
 
-迭代逆置用固定个数的指针，额外空间 O(1)；递归向尾部深入需要 O(n) 调用栈。结点由 new 分配时用 delete，malloc 分配时用 free。`,UT=String.raw`### 带头结点的双向链表
+迭代逆置用固定个数的指针，额外空间 O(1)；递归向尾部深入需要 O(n) 调用栈。结点由 new 分配时用 delete，malloc 分配时用 free。`,aE=String.raw`### 带头结点的双向链表
 
 头结点 L 不存数据，L->next 指向首个数据结点。每个数据结点有 next 与 prior，插入时必须同时修正正向和反向链接；原后继不存在时，不能访问它的 prior。
 
@@ -44158,7 +48043,7 @@ next 只能向后走；改 next 前先保存原后继。删除非首结点时，
 
 ### 按题给代码计数
 
-只算 pre->next->data <= p->data 的求值；成功后移与失败停止的比较都计入，判空不计入。最好和最坏情况依赖扫描起点、方向与停止条件：本题每轮 pre=L，递增输入要扫描整个有序前缀；不能直接套从有序段末端向前扫描的数组版结论。`,WT=String.raw`### 换乘次数与边数
+只算 pre->next->data <= p->data 的求值；成功后移与失败停止的比较都计入，判空不计入。最好和最坏情况依赖扫描起点、方向与停止条件：本题每轮 pre=L，递增输入要扫描整个有序前缀；不能直接套从有序段末端向前扫描的数组版结论。`,oE=String.raw`### 换乘次数与边数
 
 从起点到终点每经过一个中间顶点换乘一次，h 条边对应 h−1 次换乘。换乘上限 r 次，就限制最多 r+1 条边；这不是无约束最短路，也不是最小化换乘次数。
 
@@ -44168,7 +48053,7 @@ d[k][v] 表示至多 k 条边到 v 的最小权和。转移既保留上一层的
 
 ### 无边与整数范围
 
-矩阵 INF 只表示那一对顶点没有直达边，不是所有有限路径和的上界。不可达用独立标记；非负 int 边的多边权和可超过 int，需要宽类型累加。若最小合法结果超出题定返回类型，不能用 -1 冒充不可达。`,GT=String.raw`### 保留原数组下标
+矩阵 INF 只表示那一对顶点没有直达边，不是所有有限路径和的上界。不可达用独立标记；非负 int 边的多边权和可超过 int，需要宽类型累加。若最小合法结果超出题定返回类型，不能用 -1 冒充不可达。`,sE=String.raw`### 保留原数组下标
 
 排序原数组会改变元素位置。若必须保持原数组，辅助数组 idx 可存原下标，再按 a[idx[i]] 的值排序；原数组只读，查到后返回 idx[mid]，不是 mid 或元素值。
 
@@ -44178,7 +48063,7 @@ d[k][v] 表示至多 k 条边到 v 的最小权和。转移既保留上一层的
 
 ### 一次预处理，多次查询
 
-选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,KT=String.raw`### 对称矩阵的压缩存储
+选择有确定最坏 O(n log n) 的排序，如堆排序。索引占 O(n) 空间；二分每次 O(log n)，除已有索引外只需 O(1) 局部空间。预处理只做一次，同一份索引服务多次查询；若原数组的关键字改变，需要更新或重建索引。`,cE=String.raw`### 对称矩阵的压缩存储
 
 $n$ 阶对称矩阵满足 $A[i][j]=A[j][i]$，只需存下三角（含主对角线）的 $n(n+1)/2$ 个元素，另一半由对称性还原。压缩的依据是**元素值成对重复**，与「非零元很少」的稀疏矩阵是两回事。
 
@@ -44213,7 +48098,7 @@ $$
 - 只存上三角并按行优先（1 起下标）：$k(i,j)=\dfrac{(i-1)(2n-i+2)}{2}+(j-i)$；
 - 按下三角列优先（1 起下标）：$k(i,j)=\dfrac{j(j-1)}{2}+(i-1)$。
 
-**判据：先定三件事——①存下三角还是上三角、②行优先还是列优先、③下标从 0 还是从 1——三者都确定后再代公式。** $i<j$ 时必须先交换行列；选项里常见的错误公式往往只差最后的行内偏移。`,qT=String.raw`### 深度优先遍历的规则
+**判据：先定三件事——①存下三角还是上三角、②行优先还是列优先、③下标从 0 还是从 1——三者都确定后再代公式。** $i<j$ 时必须先交换行列；选项里常见的错误公式往往只差最后的行内偏移。`,lE=String.raw`### 深度优先遍历的规则
 
 从起点出发，先访问起点并做访问标记；随后依次查看当前顶点的每个邻接点，遇到尚未访问的邻接点就立刻深入递归，直到当前顶点的邻接点全部访问过，再回溯到最近一个仍有未访问邻接点的祖先。
 
@@ -44235,7 +48120,7 @@ $$
 
 ### 与广度优先遍历的区别
 
-广度优先遍历用队列逐层扩展，序列中相邻两项通常属于同一层或相邻两层；深度优先遍历用栈（递归）深入到底再回溯，序列中相邻两项在图上往往相隔很远，但它们在递归栈中始终处于同一条路径上。`,JT=String.raw`### 问题的实质
+广度优先遍历用队列逐层扩展，序列中相邻两项通常属于同一层或相邻两层；深度优先遍历用栈（递归）深入到底再回溯，序列中相邻两项在图上往往相隔很远，但它们在递归栈中始终处于同一条路径上。`,uE=String.raw`### 问题的实质
 
 给定结点个数 $n$，高度能否唯一确定，等价于问："形状是否由 $n$ 唯一确定？" 只有形状固定了，高度才算得出来。
 
@@ -44262,7 +48147,7 @@ $$h=\lfloor\log_2 n\rfloor+1$$
 
 给定 $n$ 时，只有满二叉树与完全二叉树的高度能确定；哈夫曼树与二叉排序树只能给出高度的取值范围（从接近平衡的形状到单链）。
 
-判据：问自己"给定 $n$，树的形状唯一吗"。受结点数严格约束的（满、完全）唯一；由权值或插入次序决定的（哈夫曼、二叉排序）不唯一。**不要把"完全二叉树高度确定"的结论顺手套到哈夫曼树或二叉排序树上。**`,YT=String.raw`### 从快速排序到快速选择
+判据：问自己"给定 $n$，树的形状唯一吗"。受结点数严格约束的（满、完全）唯一；由权值或插入次序决定的（哈夫曼、二叉排序）不唯一。**不要把"完全二叉树高度确定"的结论顺手套到哈夫曼树或二叉排序树上。**`,dE=String.raw`### 从快速排序到快速选择
 
 求第 $k$ 大（或第 $k$ 小）的快速选择复用快速排序的划分：一趟划分之后枢轴归位，**它的下标本身就说明了它的名次**。
 
@@ -44292,7 +48177,7 @@ $$\text{平均 } O(nL),\qquad \text{最坏 } O(n^{2}L).$$
 
 ### 与直接排序的取舍
 
-先排序再取下标 $k-1$ 也正确，但要用自定义比较函数，时间约 $O(nL\log n)$，比快速选择慢。题目若明确"算法可以修改数组"，指向的就是原地划分的快速选择。`,XT=String.raw`### 一、低位交叉编址的最大带宽
+先排序再取下标 $k-1$ 也正确，但要用自定义比较函数，时间约 $O(nL\log n)$，比快速选择慢。题目若明确"算法可以修改数组"，指向的就是原地划分的快速选择。`,fE=String.raw`### 一、低位交叉编址的最大带宽
 
 低位交叉编址把连续的地址按模块号交替分配到各存储模块，控制器按固定节拍轮流启动各模块，使多次访问在时间上重叠。进入稳态后，每经过一个总线传输周期就向总线送出一个数据字。
 
@@ -44322,7 +48207,7 @@ $$B=\frac{W}{t_{bus}},\qquad \text{可完全流水的条件}\quad m\times t_{bus
 - **向后兼容**：旧机器上的软件能在新机器上运行（新机器兼容旧的软件），这是换代时必须保证的方向；
 - **向前兼容**：新机器上的软件能在旧机器上运行，一般不要求。
 
-判据：机器换代首先要保证已有软件继续可用，因此向后兼容比向前兼容重要，不要把两个方向写反。`,ZT=String.raw`### 一、片内 Cache 与片外 Cache
+判据：机器换代首先要保证已有软件继续可用，因此向后兼容比向前兼容重要，不要把两个方向写反。`,pE=String.raw`### 一、片内 Cache 与片外 Cache
 
 Cache 按位置分片内（与 CPU 同一芯片）与片外。片内 Cache 与 CPU 同频工作、访问延迟小；片外 Cache 容量可以更大但延迟高。**"所有 CPU 都包含片内 Cache"这类绝对化说法不成立**：早期机器的 Cache 位于主板或 CPU 之外的芯片中，现代 CPU 才普遍把一级 Cache 做进片内。
 
@@ -44342,7 +48227,7 @@ Cache 按位置分片内（与 CPU 同一芯片）与片外。片内 Cache 与 C
 - **写直达（写直通，Write Through）**：写命中时同时修改 Cache 与主存，主存始终是最新数据，实现简单；代价是每次写都要访存，通常配合写缓冲；
 - **写回（Write Back）**：只修改 Cache 并置该行的修改位（脏位），该行被替换出去时才写回主存，访存次数少；代价是需要修改位，替换时要判断是否写回。
 
-**判据："数据修改只写入 Cache、不写入主存"是写回（配合修改位）的说法，不是写直达。** 写未命中时是否把该块调入 Cache（写分配与非写分配）是另一个独立维度，与写直达、写回不是同一件事。`,QT=String.raw`### 一、两种实现
+**判据："数据修改只写入 Cache、不写入主存"是写回（配合修改位）的说法，不是写直达。** 写未命中时是否把该块调入 Cache（写分配与非写分配）是另一个独立维度，与写直达、写回不是同一件事。`,mE=String.raw`### 一、两种实现
 
 - **寄存器堆栈（硬堆栈）**：用一组寄存器串接成栈，进出栈时数据在寄存器之间移动，速度最快，但寄存器数量有限，**容量小**；
 - **存储器堆栈（软堆栈）**：在主存中划出一段区域作栈，**栈顶由堆栈指针 SP 指示**，进出栈只改写 SP 与栈顶单元，**栈内其余数据不移动**。容量大，但每次访问都要访存，速度慢。
@@ -44367,7 +48252,7 @@ $$SP_{\text{new}}=SP-C;$$
 
 ### 四、可见性与容量
 
-寄存器堆栈随 CPU 内部寄存器数量受限，通常只保存很少的嵌套层次；存储器堆栈的深度只受内存容量限制，是子程序调用、保存现场与表达式求值的主要实现方式。`,$T=String.raw`### 一、多道批处理的时间账
+寄存器堆栈随 CPU 内部寄存器数量受限，通常只保存很少的嵌套层次；存储器堆栈的深度只受内存容量限制，是子程序调用、保存现场与表达式求值的主要实现方式。`,hE=String.raw`### 一、多道批处理的时间账
 
 多道批处理把多道作业同时驻留内存，使**处理机计算与 I/O 并行**：某作业做 I/O 时，处理机可以运行另一作业。收益来自这种重叠，而不是让两道计算同时进行——只有一台处理机时，各作业的计算阶段必须排队。
 
@@ -44394,7 +48279,7 @@ $$C=\sum_{i=1}^{k}c_i .$$
 - 把"I/O 与处理机可以并行"误解成"两道计算可以并行"，于是算出小于 $C$ 的结果；
 - 忘记最早到达的作业在 $0$ 时刻就要投入处理机，误以为可以等另一作业到达后统一安排，使处理机白白空转；
 - 只比较两道作业的 I/O 总时间来判断重叠程度，而忽略处理机才是决定完成时刻的瓶颈资源；
-- 若只有一台 I/O 设备，两道作业的 I/O 阶段也不能同时进行，此时要把它当作需要排队的第二个资源重新画时间线。`,eE=String.raw`### 三级调度
+- 若只有一台 I/O 设备，两道作业的 I/O 阶段也不能同时进行，此时要把它当作需要排队的第二个资源重新画时间线。`,gE=String.raw`### 三级调度
 
 - **高级调度（作业调度、长程调度）**：从外存的后备队列中挑选作业调入内存并建立进程，决定多道程度。**它主要用于批处理系统**；分时与实时系统一般不设高级调度。
 - **中级调度（内存调度、中程调度）**：把暂时不能运行的进程（如长期等待 I/O 的进程）调至外存挂起，条件具备时再换回内存。目的是**提高内存利用率与系统吞吐量**。
@@ -44418,7 +48303,7 @@ $$C=\sum_{i=1}^{k}c_i .$$
 
 ### 易混点
 
-中级调度是**进程级**的内外存对换（把整个进程换出、换入），与虚拟存储中**页级**的页面置换不是一回事；不要把中级调度当成页面置换。`,tE=String.raw`### 一、为什么需要重定位
+中级调度是**进程级**的内外存对换（把整个进程换出、换入），与虚拟存储中**页级**的页面置换不是一回事；不要把中级调度当成页面置换。`,_E=String.raw`### 一、为什么需要重定位
 
 程序中的地址是相对其自身起始位置而言的**逻辑地址（相对地址）**；装入内存后程序实际占用的起点是**物理地址**。把逻辑地址换算成物理地址的过程叫重定位，换算所用的基准值放在**重定位寄存器**中：
 
@@ -44446,7 +48331,7 @@ $$10000+5000=15000;$$
 - 静态：装入时由软件改写指令中的地址，改写后地址变了，程序不能移动；
 - 动态：运行时由硬件加基准值，指令不变，程序可以移动。
 
-**"运行时加基准"不等于"运行时修改指令"**，这是最常见的混淆点。"指令的操作数变成 15000"是静态重定位的结果，不是动态重定位。重定位寄存器由操作系统在调度该进程时装入，进程切换时必须更新。`,nE=String.raw`### 一、分页与碎片
+**"运行时加基准"不等于"运行时修改指令"**，这是最常见的混淆点。"指令的操作数变成 15000"是静态重定位的结果，不是动态重定位。重定位寄存器由操作系统在调度该进程时装入，进程切换时必须更新。`,vE=String.raw`### 一、分页与碎片
 
 分页把逻辑地址空间与物理内存都划分成大小相等的页与页框，**页的大小由机器决定，对用户透明**。
 
@@ -44470,7 +48355,7 @@ $$10000+5000=15000;$$
 
 ### 四、虚拟地址空间与物理地址空间
 
-**两者没有必然的大小关系。** 虚拟地址空间的大小由地址位数与操作系统约定决定，物理地址空间的大小由实际内存容量决定。虚拟空间可以大于物理空间（请求分页、交换），也可以小于或等于物理空间。见到"虚拟地址空间总是大于物理地址空间"这类绝对化表述即可判错。`,rE=String.raw`### 一、定义
+**两者没有必然的大小关系。** 虚拟地址空间的大小由地址位数与操作系统约定决定，物理地址空间的大小由实际内存容量决定。虚拟空间可以大于物理空间（请求分页、交换），也可以小于或等于物理空间。见到"虚拟地址空间总是大于物理地址空间"这类绝对化表述即可判错。`,yE=String.raw`### 一、定义
 
 进程在时刻 $t$ 的**工作集** $W(t,\Delta)$ 是指**从 $t$ 往前数 $\Delta$ 个时间单位（或 $\Delta$ 次访问）内，进程实际访问过的那些页面的集合**。
 
@@ -44493,7 +48378,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 四、与置换状态的区别
 
-有的置换算法也用窗口 $\Delta$ 判断页面的"年龄"（例如工作集算法、WSClock），但计算工作集本身只需要"窗口内出现过的页面"这一条定义，不要把它与 FIFO 的装入次序、LRU 的最近使用次序混为一谈。`,iE=String.raw`### 一、通道是什么
+有的置换算法也用窗口 $\Delta$ 判断页面的"年龄"（例如工作集算法、WSClock），但计算工作集本身只需要"窗口内出现过的页面"这一条定义，不要把它与 FIFO 的装入次序、LRU 的最近使用次序混为一谈。`,bE=String.raw`### 一、通道是什么
 
 通道（I/O 处理机）是一种**有限功能的处理机**，有自己的一套通道指令（通道程序）。它接受 CPU 的委托，独立控制一台或多台外围设备与主存之间的数据传送，把 CPU 从繁琐的 I/O 控制中解脱出来。
 
@@ -44514,7 +48399,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 四、判据
 
-问三件事：谁发起、谁搬运、谁善后。凡是要求某一级部件"完全脱离上一级自行发起"的说法都不成立；凡是"两级并行工作"的说法在通道方式下通常成立。另外不要把通道与设备控制器混为一谈：通道是比控制器更高级的 I/O 处理机，控制器只负责驱动具体设备。`,aE=String.raw`### 一、两种服务
+问三件事：谁发起、谁搬运、谁善后。凡是要求某一级部件"完全脱离上一级自行发起"的说法都不成立；凡是"两级并行工作"的说法在通道方式下通常成立。另外不要把通道与设备控制器混为一谈：通道是比控制器更高级的 I/O 处理机，控制器只负责驱动具体设备。`,xE=String.raw`### 一、两种服务
 
 - **虚电路服务**：通信前必须先建立一条逻辑连接（虚电路），路径上的每台路由器都要为这条连接保存状态（表项）；分组沿同一条路径按序到达，通信结束后拆除连接。它是**面向连接**的服务。
 - **数据报服务**：每个分组独立选路，路由器不保存连接状态；同一报文的不同分组可能走不同路径、到达次序可能颠倒，也可能丢失。它是**无连接、尽力而为**的服务。
@@ -44534,7 +48419,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 四、互联网为什么采用数据报
 
-虚电路要在路径上保存状态，链路或结点故障时经过它的所有虚电路都要重新建立，故障影响面大；数据报中每个分组独立选路，某结点故障时其余分组可以绕行，网络的可扩展性与健壮性更好。可靠性可以交给端系统（TCP）实现——"网络层尽力而为、传输层保证可靠"正是这一分工。虚电路在有明确服务质量与资源预留需求的场合（如 ATM、MPLS 的某些用法）中仍有价值。`,oE=String.raw`### 一、导向传输介质
+虚电路要在路径上保存状态，链路或结点故障时经过它的所有虚电路都要重新建立，故障影响面大；数据报中每个分组独立选路，某结点故障时其余分组可以绕行，网络的可扩展性与健壮性更好。可靠性可以交给端系统（TCP）实现——"网络层尽力而为、传输层保证可靠"正是这一分工。虚电路在有明确服务质量与资源预留需求的场合（如 ATM、MPLS 的某些用法）中仍有价值。`,SE=String.raw`### 一、导向传输介质
 
 - **双绞线**：两根绝缘铜线绞合以抵消部分干扰。**非屏蔽双绞线（UTP）**没有屏蔽层，抗电磁干扰能力最弱，但便宜、端接简单，多用于接入段；**屏蔽双绞线（STP）**增加了屏蔽层，抗干扰能力有改善，但屏蔽层必须良好接地才有效，而且**传输的仍是电信号**，强电磁场中仍会感应出干扰电压。
 - **同轴电缆**：铜芯外裹金属屏蔽层，抗干扰能力优于双绞线，但仍靠电信号传输，强电磁干扰下无法保证信号不受影响。
@@ -44551,7 +48436,7 @@ $$W(t,\Delta)=\{\text{窗口内访问过的页号}\}.$$
 
 ### 三、成本与施工的现实取舍
 
-双绞线便宜、端接简单，还能在同一条线上同时传数据与供电（如给无线接入点、摄像头供电）；光纤两端需要光模块与激光器，端接要熔接或研磨。因此常见做法是"光纤到楼、双绞线入户到桌面"：主干、长距离与强干扰环境用光纤，末端几十米、成本敏感的接入段用双绞线；只有干扰极强的工业现场、变电站等场合才全段使用光纤。`,sE=String.raw`### 一、PPP 的组成与功能
+双绞线便宜、端接简单，还能在同一条线上同时传数据与供电（如给无线接入点、摄像头供电）；光纤两端需要光模块与激光器，端接要熔接或研磨。因此常见做法是"光纤到楼、双绞线入户到桌面"：主干、长距离与强干扰环境用光纤，末端几十米、成本敏感的接入段用双绞线；只有干扰极强的工业现场、变电站等场合才全段使用光纤。`,CE=String.raw`### 一、PPP 的组成与功能
 
 点对点协议 PPP 用于两个结点之间的**点对点链路**，由三部分组成：
 
@@ -44573,7 +48458,7 @@ PPP 既可运行在**同步链路**（如 SDH、SONET）上，也可运行在**�
 
 ### 四、与 HDLC 的区别
 
-HDLC 面向比特、有滑动窗口与序号，可提供可靠传输；PPP 不可靠、无序号无确认。两者都把 FCS 放在帧尾，但只有前者做重传。`,cE=String.raw`### 一、算法：16 位字的二进制反码求和
+HDLC 面向比特、有滑动窗口与序号，可提供可靠传输；PPP 不可靠、无序号无确认。两者都把 FCS 放在帧尾，但只有前者做重传。`,wE=String.raw`### 一、算法：16 位字的二进制反码求和
 
 IP 与 UDP（以及 TCP）的检验和都用同一套算法：
 
@@ -44600,7 +48485,7 @@ IP 与 UDP（以及 TCP）的检验和都用同一套算法：
 - IPv4 中 **UDP 的检验和是可选的**：字段置 0 表示发送方未计算，接收方跳过校验；为区分"不校验"与"算出来恰好为 0"，协议规定计算结果为 0 时发送方把它写成全 1；
 - IP 首部检验和必须计算，校验失败即丢弃该分组；
 - UDP 校验失败也丢弃（TCP 校验失败则丢弃并且不予确认）；
-- IPv6 取消了 IP 首部检验和，把差错检测交给链路层与传输层。`,lE=String.raw`### 调用次数与递归深度是两回事
+- IPv6 取消了 IP 首部检验和，把差错检测交给链路层与传输层。`,TE=String.raw`### 调用次数与递归深度是两回事
 
 递归写法的"时间复杂度"看**总调用次数**，"额外空间复杂度"看**递归栈的最大深度**，两条线不能互相替代。
 
@@ -44633,7 +48518,7 @@ $$
 
 ### 判据
 
-把"时间"和"空间"两条线分开核对：数调用次数得时间，数递归链深度得栈空间，数缓存条目得记忆化的空间；迭代写法则数循环次数与所用变量个数。任何把两条线混起来的描述（例如"深度 $O(n)$ 所以时间 $O(n)$"）都判为错误。`,uE=String.raw`### 栈与队列的典型应用
+把"时间"和"空间"两条线分开核对：数调用次数得时间，数递归链深度得栈空间，数缓存条目得记忆化的空间；迭代写法则数循环次数与所用变量个数。任何把两条线混起来的描述（例如"深度 $O(n)$ 所以时间 $O(n)$"）都判为错误。`,EE=String.raw`### 栈与队列的典型应用
 
 - **栈**（后进先出）：函数递归调用（保存返回地址与局部变量）、表达式括号匹配、中缀转后缀与后缀表达式求值、深度优先搜索的显式实现；
 - **队列**（先进先出）：二叉树的层序遍历、图的广度优先遍历、进程调度中的先来先服务与时间片轮转、打印缓冲。
@@ -44650,7 +48535,7 @@ $$
 
 链队列由动态结点构成、没有固定容量，**本就不会出现假溢出**。它必须同时维护队头指针和队尾指针，目的是让入队、出队都保持 $O(1)$，不是为了"避免假溢出"。
 
-**判据：分清三条线——栈/队列说的是访问顺序，双端队列说的是允许操作的两端，"假溢出"只与顺序存储的下标位置有关，链式结构不存在该问题。把链队列的指针维护说成"为避免假溢出"即错。`,dE=String.raw`### 完全图的边数
+**判据：分清三条线——栈/队列说的是访问顺序，双端队列说的是允许操作的两端，"假溢出"只与顺序存储的下标位置有关，链式结构不存在该问题。把链队列的指针维护说成"为避免假溢出"即错。`,DE=String.raw`### 完全图的边数
 
 - 无向完全图任意两顶点之间都有一条边，边数为组合数
 
@@ -44679,7 +48564,7 @@ $$
 - 邻接矩阵无论边有多少都开 $n$ 乘 $n$ 的数组，空间 $O(n^{2})$，**与边数无关**；
 - 邻接表空间 $O(n+E)$，适合稀疏图。
 
-**判据：完全图数边用组合数（无向还要除以 2）；有向图的度必须分开数入度、出度；生成树"含全部顶点、$n-1$ 条边"，不是原图所有边；邻接矩阵空间只由顶点数决定，写成 $O(n+E)$ 即错。`,fE=String.raw`### 分块查找（索引顺序查找）
+**判据：完全图数边用组合数（无向还要除以 2）；有向图的度必须分开数入度、出度；生成树"含全部顶点、$n-1$ 条边"，不是原图所有边；邻接矩阵空间只由顶点数决定，写成 $O(n+E)$ 即错。`,OE=String.raw`### 分块查找（索引顺序查找）
 
 把有序或分块有序的表分成若干块，另建索引表，每项存放该块的**最大关键字**与该块首地址。索引表中各块的最大关键字仍必须递增有序；块内可以无序。
 
@@ -44704,7 +48589,7 @@ $$
 
 ### 适用条件
 
-索引表必须按块的最大关键字有序；块数 $b$ 与块长 $s$ 的取值影响 ASL，块长与块数相近（约 $\sqrt{n}$）时较优。**判据：先按题面确认索引表与块内各自用顺序还是折半，再按每块实际元素个数加权，不能把块数直接当成块长。`,pE=String.raw`### 直接插入排序的第一趟
+索引表必须按块的最大关键字有序；块数 $b$ 与块长 $s$ 的取值影响 ASL，块长与块数相近（约 $\sqrt{n}$）时较优。**判据：先按题面确认索引表与块内各自用顺序还是折半，再按每块实际元素个数加权，不能把块数直接当成块长。`,kE=String.raw`### 直接插入排序的第一趟
 
 从第 2 个元素起，把当前元素插入到前面已排好序的前缀中，前缀始终有序。**第一趟只处理第 2 个元素**：把它与前一个元素比较并插入正确位置。
 
@@ -44725,7 +48610,7 @@ $$
 
 ### 判据
 
-**先把"分组"画出来再排序**：同一组内元素的下标相差 $d$，排序只在组内发生交换，不跨组。直接插入排序的第一趟只动前两个元素；希尔排序的第一趟动的是每一组自第二个元素起往后的同组元素。写下"分组—组内有序—回填"三步就不容易把两组结果拼错位。`,mE=String.raw`### 层序遍历与队列
+**先把"分组"画出来再排序**：同一组内元素的下标相差 $d$，排序只在组内发生交换，不跨组。直接插入排序的第一趟只动前两个元素；希尔排序的第一趟动的是每一组自第二个元素起往后的同组元素。写下"分组—组内有序—回填"三步就不容易把两组结果拼错位。`,AE=String.raw`### 层序遍历与队列
 
 二叉树层序遍历借助一个队列：根入队，然后每轮取队头结点访问，并把它的非空左、右孩子依次入队。队列天然把结点按层排好——队里总是"本层剩余结点"后面跟着"下一层已入队的结点"。
 
@@ -44747,7 +48632,7 @@ $$
 
 每个结点入队、出队各一次，时间 $O(n)$；队列最坏同时存放最宽一层的全部结点，空间 $O(n)$（若用深度优先的递归改写，额外空间为树高 $O(h)$，最坏仍是 $O(n)$）。
 
-**判据：先判空返回 0，再"按层冻结长度"——每轮用 cnt 锁定本层，出队 cnt 次并顺手入队非空孩子，用 cnt 更新最大值。凡把两个非空结点之间的空位置算进宽度、或把下一层结点混进本轮计数的写法都错。`,hE=String.raw`### 虚拟存储器与局部性
+**判据：先判空返回 0，再"按层冻结长度"——每轮用 cnt 锁定本层，出队 cnt 次并顺手入队非空孩子，用 cnt 更新最大值。凡把两个非空结点之间的空位置算进宽度、或把下一层结点混进本轮计数的写法都错。`,jE=String.raw`### 虚拟存储器与局部性
 
 虚拟存储器建立在局部性原理之上：程序在一段时间内只访问地址空间的一部分，因此可以只装入当前用到的页，其余按需从辅存调入，使逻辑地址空间可以大于物理内存。时间局部性指刚访问过的指令或数据很快会被再次访问，空间局部性指被访问的地址集中在邻近区域。
 
@@ -44763,7 +48648,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 
 主存与 Cache 之间以**块（行）为单位**交换数据。块越大，一次调入覆盖的相邻数据越多，可减少强制缺失；但块太大时块数变少，冲突缺失与容量缺失上升，传输代价也增大，**块大小会显著影响命中率**，需要综合权衡。
 
-**判据：逐条核对每句话的主体——局部性问的是访问模式，DRAM 刷新问的是以行为单位的周期性操作，SRAM/Cache 问的是器件特性，块大小问的是缺失率。不能把某一层的结论套到另一层。`,gE=String.raw`### 数值数据与逻辑数据在形式上没有差别
+**判据：逐条核对每句话的主体——局部性问的是访问模式，DRAM 刷新问的是以行为单位的周期性操作，SRAM/Cache 问的是器件特性，块大小问的是缺失率。不能把某一层的结论套到另一层。`,ME=String.raw`### 数值数据与逻辑数据在形式上没有差别
 
 同一串二进制位既可以解释为数值，也可以解释为逻辑数据，其位模式完全相同：
 
@@ -44774,7 +48659,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 
 计算机**不靠专门的标识位、也不靠分开存放或不同的运算器**来区分二者，而是由**指令的操作码**决定本指令按算术规律还是按位运算处理这串位：同一个加法器既能做算术加、也能做按位逻辑运算，由控制器按操作码发出的控制信号决定。
 
-**判据：数据本身不带类型标签，类型由"谁在用它、用什么指令用它"决定。凡声称用标识位、分开的寄存器或专用运算器来区分数值与逻辑数据的说法都不成立。`,_E=String.raw`### CISC 与 RISC 的指令特点
+**判据：数据本身不带类型标签，类型由"谁在用它、用什么指令用它"决定。凡声称用标识位、分开的寄存器或专用运算器来区分数值与逻辑数据的说法都不成立。`,NE=String.raw`### CISC 与 RISC 的指令特点
 
 - **CISC（复杂指令集）**：指令数量多、功能复杂，指令长度可以不等、格式规整性差，寻址方式多，一条指令可以完成较复杂的操作，甚至直接访存。
 - **RISC（精简指令集）**：指令数量少、格式规整、长度较固定，寻址方式少，采用 **Load/Store 结构**——只有取数、存数指令访问主存，运算指令只在寄存器之间进行；指令大多在一个时钟周期内完成，便于流水线。
@@ -44785,7 +48670,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 
 **但二者没有强制对应关系**：CISC 也可以用硬布线实现，RISC 也可以用微程序实现，只是从设计难度与速度考虑各有偏好。凡说"必须"的都不成立。
 
-**判据：RISC 的特征落在"指令规整、长度固定、寻址方式少、Load/Store"；CISC 落在"指令多而复杂、长度可变"；控制器实现方式只是通常偏好，不是定义，不能用它去否定某个特征。`,vE=String.raw`### 操作系统的四种基本结构
+**判据：RISC 的特征落在"指令规整、长度固定、寻址方式少、Load/Store"；CISC 落在"指令多而复杂、长度可变"；控制器实现方式只是通常偏好，不是定义，不能用它去否定某个特征。`,PE=String.raw`### 操作系统的四种基本结构
 
 - **分层结构**：把系统功能划分为若干层，**每层只依赖相邻下层提供的服务**，自下而上逐层抽象；结构清晰、便于验证，但层次划分困难、层间调用影响效率。
 - **模块化结构**：把功能拆成若干模块，模块之间通过接口调用，**支持按需动态加载与卸载模块**，灵活性好。
@@ -44798,7 +48683,7 @@ SRAM 用触发器存储，速度比 DRAM 快、集成度低、不需刷新，多
 - 模块化强调"可按需动态加载模块"，不是要求全部静态链接；
 - 分层强调"逐层单向依赖下层"。
 
-把"大部分服务放在用户空间"说成宏内核、或把"文件系统"算作微内核内核之内的功能，都是错的。`,yE=String.raw`### 缺页异常的识别
+把"大部分服务放在用户空间"说成宏内核、或把"文件系统"算作微内核内核之内的功能，都是错的。`,FE=String.raw`### 缺页异常的识别
 
 进程访问的页面不在内存（页表项状态位为 0）时，硬件产生缺页异常。缺页属于**内部异常（故障）**，在一条指令的执行过程中被检测到。
 
@@ -44819,7 +48704,7 @@ $$
 \text{恢复地址}=\text{引发缺页指令的地址}.
 $$
 
-**判据：缺页是"指令未完成"，所以断点回退到原指令；这与外部中断（在指令边界发生、返回的是下一条指令）不同。把断点改成"下一条指令"即错。`,bE=String.raw`### 程序的链接
+**判据：缺页是"指令未完成"，所以断点回退到原指令；这与外部中断（在指令边界发生、返回的是下一条指令）不同。把断点改成"下一条指令"即错。`,IE=String.raw`### 程序的链接
 
 把若干目标模块与库函数装配成完整程序的过程叫链接，按链接发生的时间分为三种：
 
@@ -44829,7 +48714,7 @@ $$
 
 ### 判据
 
-三者的区别在"什么时候链接、什么时候装入"：静态链接在运行前；装入时动态链接在装入阶段、把全部模块装入并链接；运行时动态链接把装入与链接**推迟到模块第一次被调用**。题面强调"仅当用户触发某功能时才装入并链接该模块"，对应的是**运行时动态链接**，而不是装入时动态链接——后者在装入阶段就会把模块装进来。`,xE=String.raw`### 文件系统的层次结构
+三者的区别在"什么时候链接、什么时候装入"：静态链接在运行前；装入时动态链接在装入阶段、把全部模块装入并链接；运行时动态链接把装入与链接**推迟到模块第一次被调用**。题面强调"仅当用户触发某功能时才装入并链接该模块"，对应的是**运行时动态链接**，而不是装入时动态链接——后者在装入阶段就会把模块装进来。`,LE=String.raw`### 文件系统的层次结构
 
 文件系统自上而下（或自下而上）可划分成若干层，靠近硬件的一端更接近 I/O 与盘块。**由近硬件到远硬件的顺序**为：
 
@@ -44841,7 +48726,7 @@ $$
 
 ### 判据
 
-越靠近硬件的一端越"物理"（设备、盘块、具体 I/O 命令），越远离硬件的一端越"逻辑"（文件名、目录、权限）。做题时按"谁直接与设备打交道"排序：设备排在最前，逻辑文件系统排在最后。`,SE=String.raw`### 目录项与文件控制块
+越靠近硬件的一端越"物理"（设备、盘块、具体 I/O 命令），越远离硬件的一端越"逻辑"（文件名、目录、权限）。做题时按"谁直接与设备打交道"排序：设备排在最前，逻辑文件系统排在最后。`,RE=String.raw`### 目录项与文件控制块
 
 文件控制块记录文件的全部说明与控制信息（文件名、物理位置、大小、权限、时间等），**不含文件内容**。目录由若干目录项组成，目录项与文件控制块的关系有两种实现：
 
@@ -44872,7 +48757,7 @@ $$
 
 ### 判据
 
-**把"读到目录项"和"读到文件控制块"当成两件事**：没有索引结点时目录项里就含文件控制块，平均次数只算目录检索；有索引结点时目录项只给编号，必须再加一次读索引结点的开销。先算一个盘块能放多少个目录项，再算总盘块数。`,CE=String.raw`### 位示图的位号与块号
+**把"读到目录项"和"读到文件控制块"当成两件事**：没有索引结点时目录项里就含文件控制块，平均次数只算目录检索；有索引结点时目录项只给编号，必须再加一次读索引结点的开销。先算一个盘块能放多少个目录项，再算总盘块数。`,zE=String.raw`### 位示图的位号与块号
 
 位示图用 1 位记录一个物理块的空闲情况，0 与 1 的含义按题面约定（常见是 0 空闲、1 已分配）。位号按**行优先**（从上到下、每行从左到右）依次对应物理块 0、1、2、…。若每行 $L$ 位，第 $r$ 行第 $c$ 列（均从 0 计）对应
 
@@ -44910,7 +48795,7 @@ $$
 
 例如 64MB 内存、4KB 页：$64\times1024\times1024/(4\times1024)=16384$ 块，位示图 $16384/8=2048\text{B}=2\text{KB}$。
 
-**判据：先把"位号 → 块号"的行优先换算写清楚，再按题给策略取块；校验方法是看取出的空闲块个数是否等于所需页数，并把最后一页的装入量与页大小相减核对碎片。`,wE=String.raw`### 时延带宽积
+**判据：先把"位号 → 块号"的行优先换算写清楚，再按题给策略取块；校验方法是看取出的空闲块个数是否等于所需页数，并把最后一页的装入量与页大小相减核对碎片。`,BE=String.raw`### 时延带宽积
 
 时延带宽积是"传播时延乘带宽"，表示链路上"正在飞行"的比特数，即链路能容纳的比特总量：
 
@@ -44932,7 +48817,7 @@ RTT 是从发送方发出数据到收到确认所经历的全部时间，**包�
 
 丢包率是分组在传输中丢失的比例，主要来源是路由器缓冲区溢出与传输差错。丢包率高通常说明网络拥塞，**但丢包率为 0 不等于没有拥塞**：排队时延可能已经很大，只是缓冲区尚未溢出；拥塞也可以表现为时延增大而非丢包。
 
-**判据：时延带宽积问"链路能装多少比特"，RTT 必须包含往返两段，利用率与时延同向变化，丢包率只是拥塞的一种表现而不是充要条件。`,TE=String.raw`### 物理层接口的四大特性
+**判据：时延带宽积问"链路能装多少比特"，RTT 必须包含往返两段，利用率与时延同向变化，丢包率只是拥塞的一种表现而不是充要条件。`,VE=String.raw`### 物理层接口的四大特性
 
 物理层接口标准从四个方面规定接口：
 
@@ -44948,7 +48833,7 @@ RTT 是从发送方发出数据到收到确认所经历的全部时间，**包�
 - 看到"某电平表示什么含义"归于功能特性；
 - 看到"先后顺序、时序"归于过程特性。
 
-四者中只有机械特性描述看得见摸得着的物理外形；凡涉及电压、含义、时序的都归入另外三项。`,EE=String.raw`### 使用场景
+四者中只有机械特性描述看得见摸得着的物理外形；凡涉及电压、含义、时序的都归入另外三项。`,HE=String.raw`### 使用场景
 
 CSMA/CA（冲突避免）用于 IEEE 802.11 无线局域网。无线环境难以像有线网那样"边发边听"检测冲突，因此改用**避免**而不是检测：先监听信道，空闲时再按规则等待一个帧间间隔后发送。
 
@@ -44974,7 +48859,7 @@ CSMA/CA（冲突避免）用于 IEEE 802.11 无线局域网。无线环境难以
 
 隐藏终端指两个站点彼此听不到、却同时向同一接收方发送而冲突。RTS/CTS 机制先由发送方向接收方发 RTS，接收方回 CTS，听到 CTS 的其他站点据此推迟发送，从而缓解隐藏终端问题；代价是增加握手开销与时延。
 
-**判据：IEEE 802.11 中 SIFS 短、DIFS 长；退避计时器"忙则冻结、闲则续减"；RTS/CTS 解决隐藏终端但增加开销。`,DE=String.raw`### 移动 IP 的基本角色
+**判据：IEEE 802.11 中 SIFS 短、DIFS 长；退避计时器"忙则冻结、闲则续减"；RTS/CTS 解决隐藏终端但增加开销。`,UE=String.raw`### 移动 IP 的基本角色
 
 移动 IP 让移动站在改变接入网络时仍能用**永久地址（归属地址）**被访问，涉及：
 
@@ -44990,7 +48875,7 @@ CSMA/CA（冲突避免）用于 IEEE 802.11 无线局域网。无线环境难以
 
 移动站发送时，在最基本的"三角路由"下可以以永久地址为源地址把分组交给外地代理转发给通信者，**不必先绕回归属代理**。只有当外地网络实施入口过滤、源地址不属于本网的分组会被丢弃时，才需要启用**反向隧道**：把报文先隧道送回归属代理，再由归属代理以永久地址为源转发。**反向隧道不是默认行为，题目未声明启用时，不能认为移动站发往通信者的分组必须先经过归属代理。**
 
-**判据：入方向"先到归属网络、由归属代理隧道转给外地代理"；出方向默认直接交给外地代理转发，只有启用反向隧道才绕回归属代理；内层源地址始终是永久地址。**`,OE=String.raw`### 优先队列与堆的复杂度
+**判据：入方向"先到归属网络、由归属代理隧道转给外地代理"；出方向默认直接交给外地代理转发，只有启用反向隧道才绕回归属代理；内层源地址始终是永久地址。**`,WE=String.raw`### 优先队列与堆的复杂度
 
 优先队列是「插入元素」与「取出最值」两种基本操作的抽象数据类型：最大优先队列每次取出最大关键字，最小优先队列取出最小关键字。它不规定实现方式，选型只看各项操作的时间要求。
 
@@ -45013,7 +48898,7 @@ $$
 - 平衡二叉排序树：查找、插入、删除都是 O(log n)，但把 n 个关键字逐个插入建树是 O(n log n)，做不到 O(n) 建队。
 - 只有堆同时满足**建队 O(n)** 与**插入、删除最值最坏 O(log n)**。
 
-判据：把「建队」「插入」「删除最值」三项要求分开核对，再取交集；只盯住其中一项就会把只满足部分要求的结构选进来。`,kE=String.raw`### 双端队列与受限形式
+判据：把「建队」「插入」「删除最值」三项要求分开核对，再取交集；只盯住其中一项就会把只满足部分要求的结构选进来。`,GE=String.raw`### 双端队列与受限形式
 
 双端队列允许在两端插入和删除。加上限制后就退化为更常见的结构：
 
@@ -45034,7 +48919,7 @@ $$
 
 栈的合法输出序列数是卡特兰数；双端队列的输出序列集合包含栈的输出序列，队列只得一种。两端插入、只从一端删除的形式介于两者之间，**不能直接套卡特兰数**，必须按限制逐项模拟枚举。
 
-判据：把「哪端可插入、哪端可删除」先写清，再逐元素模拟；用「序列是否看起来单调」之类的直觉代替模拟最容易漏掉合法或错认非法。`,AE=String.raw`### 二叉排序树的构造
+判据：把「哪端可插入、哪端可删除」先写清，再逐元素模拟；用「序列是否看起来单调」之类的直觉代替模拟最容易漏掉合法或错认非法。`,KE=String.raw`### 二叉排序树的构造
 
 按给定顺序把关键字逐个插入初始为空的二叉排序树：小于当前结点走左孩子，大于走右孩子，新结点总作为叶结点插入。**插入顺序不同则树形不同，平均查找长度也不同**，必须严格按题给顺序建树。
 
@@ -45060,7 +48945,7 @@ $$
 
 平衡二叉树与红黑树把树高控制在 O(log n)，ASL 为 O(log n)；插入有序序列会退化成单链，树高 n，成功 ASL 退化为 (n+1)/2 量级，失败仅有 n 个外部结点位置。折半查找的判定树与平衡二叉排序树同形，两者的 ASL 一致。
 
-判据：先按题给顺序画出树、标出每个关键字的层数再求和除以 n；建完树后用中序序列是否递增复核树形，比重新数一遍更可靠。`,jE=String.raw`### 有符号整型的转换：截断与扩展
+判据：先按题给顺序画出树、标出每个关键字的层数再求和除以 n；建完树后用中序序列是否递增复核树形，比重新数一遍更可靠。`,qE=String.raw`### 有符号整型的转换：截断与扩展
 
 定长补码的整型转换分两拍：**先按目标位数截断或扩展位模式，再按目标类型的符号性解释真值**。
 
@@ -45087,7 +48972,7 @@ $$
 
 以 32 位 int、16 位 short 为例：65535 的 32 位机器数是 0000FFFFH；截断为 16 位得 FFFFH，按有符号 16 位解释为 −1；符号扩展回 32 位得 FFFFFFFFH，真值仍为 −1。
 
-判据：**截断只看低位、扩展只看符号位**。不要把「数值超出目标类型范围」当成未定义行为而放弃按位推导——这类题只要求截断后复现补码；也不要在符号扩展时把高位补 0。`,ME=String.raw`### 磁盘存取时间的组成
+判据：**截断只看低位、扩展只看符号位**。不要把「数值超出目标类型范围」当成未定义行为而放弃按位推导——这类题只要求截断后复现补码；也不要在符号扩展时把高位补 0。`,JE=String.raw`### 磁盘存取时间的组成
 
 读或写一次数据的时间由三部分相加：
 
@@ -45126,7 +49011,7 @@ $$
 - 随机读多个块：每块都要重新计入寻道与旋转延迟；
 - 盘面数、磁道数这类参数只决定容量，**不进入存取时间公式**。
 
-判据：先把转速换算成「一圈多少毫秒」，再取半圈，最后加传输时间。最常见的错法是把整圈当成平均旋转延迟，或对连续文件重复计寻道。`,NE=String.raw`### Cache 的写策略
+判据：先把转速换算成「一圈多少毫秒」，再取半圈，最后加传输时间。最常见的错法是把整圈当成平均旋转延迟，或对连续文件重复计寻道。`,YE=String.raw`### Cache 的写策略
 
 写命中与写不命中各有两种策略，组合后共四种方案。
 
@@ -45150,7 +49035,7 @@ $$
 
 写回法需要 1 位脏位（修改位），写直达法不需要；替换时按脏位决定是否把该行写回主存。行总位数等于数据位加标记位加有效位，写回时再加脏位与替换状态位。
 
-判据：先判「写命中还是写不命中」，再判「写回还是写直达」，最后看是否写分配；把每一步「是否访存、是否调入块、是否置脏位」写出来，避免把写回法的写未命中漏计成缺失或把它误当写直达。`,PE=String.raw`### RISC 与 CISC 的设计取向
+判据：先判「写命中还是写不命中」，再判「写回还是写直达」，最后看是否写分配；把每一步「是否访存、是否调入块、是否置脏位」写出来，避免把写回法的写未命中漏计成缺失或把它误当写直达。`,XE=String.raw`### RISC 与 CISC 的设计取向
 
 CISC（复杂指令集）追求用一条指令完成较复杂的功能：指令数量多、长度不固定、寻址方式多、各条指令执行周期数差异大，实现上多用微程序控制器。
 
@@ -45170,7 +49055,7 @@ RISC（精简指令集）的典型特征：
 - **RISC 完成同样功能所需的指令条数通常比 CISC 多**（程序更长），不能反过来说 RISC 程序更短；
 - RISC 每条指令更简单，平均 CPI 更接近 1，配合流水线获得高性能，而不是靠单条指令的功能复杂。
 
-判据：逐条问「这属于哪一种设计取舍」；把「指令少」理解成「程序短」是最常见的概念错位。`,FE=String.raw`### 单周期数据通路的时钟周期
+判据：逐条问「这属于哪一种设计取舍」；把「指令少」理解成「程序短」是最常见的概念错位。`,ZE=String.raw`### 单周期数据通路的时钟周期
 
 单周期 CPU 在一个时钟周期内完成一条指令，**时钟周期必须能容纳最慢的那类指令**：
 
@@ -45198,7 +49083,7 @@ $$
 - 寄存器堆的写延迟是否计入按题面：写回阶段只需保证数据在下一个时钟上升沿前就绪时，常不计入这条路径；
 - **时钟周期由最长路径决定，不能用平均延迟、也不能用最快的那条指令。**
 
-判据：为每类指令画一条串行链、分别求和、取最大值；核对时重点检查是否漏掉「多一次数据存储器访问」以及是否把取指重复计入。`,IE=String.raw`### 操作系统向用户提供的接口
+判据：为每类指令画一条串行链、分别求和、取最大值；核对时重点检查是否漏掉「多一次数据存储器访问」以及是否把取指重复计入。`,QE=String.raw`### 操作系统向用户提供的接口
 
 操作系统通过接口把服务提供给使用者。判断某项是否算接口的标准是：**这一步是否进入操作系统、是否跨越用户态与内核态去请求服务**。
 
@@ -45212,7 +49097,7 @@ $$
 - 不封装系统调用的库函数（纯计算、字符串处理）同样不构成操作系统接口；
 - 系统调用本身就是操作系统提供的接口，不能把它当成「操作系统的内部实现」而排除在外。
 
-判据：逐项问「这一步会不会交给操作系统去做」；答案为否就排除。命令接口与图形接口面向用户，系统调用接口面向程序，三者都属于操作系统对外提供的接口。`,LE=String.raw`### 读者-写者问题
+判据：逐项问「这一步会不会交给操作系统去做」；答案为否就排除。命令接口与图形接口面向用户，系统调用接口面向程序，三者都属于操作系统对外提供的接口。`,$E=String.raw`### 读者-写者问题
 
 多个进程共享一份数据：读者只读、写者只写。约束是**写者与任何其他进程互斥**（写者独占），**读者之间可以同时访问**。读者与写者的优先次序由题给方案决定，方案不同则信号量设置不同。
 
@@ -45230,7 +49115,7 @@ $$
 - 等待队列为 FIFO 时，先到的请求先被唤醒，能避免某类进程长期得不到服务；队列不保证 FIFO 时，单靠信号量的 P、V 顺序不能保证公平；
 - 只保读者优先的方案里，读者不断到达会让写者饥饿；加入写者优先锁后，写者一到达就能挡住后来的读者。
 
-判据：把每个信号量「谁 P、谁 V、保护什么」列成一张对应表，再看题目问的量对应表中哪一项。`,RE=String.raw`### 连续分配中的两类碎片
+判据：把每个信号量「谁 P、谁 V、保护什么」列成一张对应表，再看题目问的量对应表中哪一项。`,eD=String.raw`### 连续分配中的两类碎片
 
 - **内部碎片**：分配给进程的分区大于其请求，分区内部未被使用的部分。固定分区与分页的最后一页都会产生内部碎片。
 - **外部碎片**：可变分区在反复分配与回收后，内存中出现大量彼此分散的小空闲区，**总容量足够却凑不出一块足够大的连续空间**给新作业。
@@ -45247,7 +49132,7 @@ $$
 
 分页把内存划分成固定大小的页框，进程按页离散装入，**不产生外部碎片**，只有最后一页的内部碎片；分段与可变分区一样会产生外部碎片，可用紧凑缓解，也可用离散分配从根本上避免。
 
-判据：先分清内、外碎片的成因（分配单位大于需求对应内部碎片，空闲区分散对应外部碎片），再由成因挑选对策；凡是「移动已用内存块、把空闲区合并」的技术，目标都指向外部碎片。`,zE=String.raw`### 日志与崩溃一致性
+判据：先分清内、外碎片的成因（分配单位大于需求对应内部碎片，空闲区分散对应外部碎片），再由成因挑选对策；凡是「移动已用内存块、把空闲区合并」的技术，目标都指向外部碎片。`,tD=String.raw`### 日志与崩溃一致性
 
 文件系统的一次元数据修改往往要写多个块（位图、索引结点、目录项等），中途掉电会留下**部分更新**的不一致状态。日志（write-ahead log）的做法是：**先把即将执行的修改作为日志记录写入磁盘并提交，再真正把元数据写回最终位置**；崩溃后按日志回放，未提交的记录直接丢弃。
 
@@ -45265,7 +49150,7 @@ $$
 2. 再把**元数据日志记录**写入日志，并写入**提交记录**；
 3. 最后把日志中的元数据写回它们在磁盘上的最终位置（检查点），这一步可与后续操作重叠。
 
-判据：记住两条依赖——**日志记录必须先于对应元数据落盘，数据块必须先于元数据日志的提交落盘**；把「数据、日志提交、元数据落盘」排成顺序再与选项逐项比对，顺序颠倒或把数据块放到提交之后的都不满足一致性。`,BE=String.raw`### 目录的本质
+判据：记住两条依赖——**日志记录必须先于对应元数据落盘，数据块必须先于元数据日志的提交落盘**；把「数据、日志提交、元数据落盘」排成顺序再与选项逐项比对，顺序颠倒或把数据块放到提交之后的都不满足一致性。`,nD=String.raw`### 目录的本质
 
 **目录在实现上就是一种文件**：它的内容是一系列**目录项**（例如「文件名加索引结点号」），占用盘块存放，访问方式与普通文件一致，即按文件名查目录项。UNIX/Linux 正是把目录作为一种文件类型；目录项本身不含文件内容。
 
@@ -45289,7 +49174,7 @@ $$
 
 一个目录能容纳的目录项数受**目录项长度与目录所占盘块数**限制：已分配的盘块装满且不允许扩展时，目录项数就有上限，并非只受磁盘容量限制。
 
-判据：把「目录就是内容为目录项的文件」作为基本认识；凡把「磁盘容量」当作唯一限制的选项，都要用索引结构与目录项长度去反驳。`,VE=String.raw`### 设备管理涉及的数据结构
+判据：把「目录就是内容为目录项的文件」作为基本认识；凡把「磁盘容量」当作唯一限制的选项，都要用索引结构与目录项长度去反驳。`,rD=String.raw`### 设备管理涉及的数据结构
 
 设备分配是「为某个进程分配一台设备」，既要查系统的设备资源表，又要把结果登记到进程身上，还要沿控制器、通道逐级检查，因此会涉及以下几种数据结构。
 
@@ -45303,7 +49188,7 @@ $$
 
 SDT 找设备 → DCT 看设备状态 → COCT 看控制器是否空闲 → CHCT 看通道是否空闲 → 结果记入进程的 PCB。链条上任一环节被用到，就说明该数据结构被涉及。
 
-判据：逐级问「这一步要不要查表、要不要登记」；设备是分配给进程的，分配结果必须落到 PCB，不能只记在设备表里。`,HE=String.raw`### 调制与载波的三要素
+判据：逐级问「这一步要不要查表、要不要登记」；设备是分配给进程的，分配结果必须落到 PCB，不能只记在设备表里。`,iD=String.raw`### 调制与载波的三要素
 
 调制用基带信号改变载波的参量，而载波只有三个参量可调：**振幅、频率、相位**。按「改变了哪一个参量」即可给调制方式归类。
 
@@ -45326,7 +49211,7 @@ $$
 
 同样的带宽下提高 M 可以换取更高的数据率，但星座点更密集、点间距离更小，抵抗噪声的能力下降，对信噪比的要求提高，这是折中而不是无代价的收益。
 
-判据：题目出现「同时调整振幅与相位」「一个码元携带多个比特」「星座图」等措辞即可锁定 QAM；只看数据率高低而不问「改变了哪个参量」容易误选 PSK 或 AM。`,UE=String.raw`### PPP 的帧格式
+判据：题目出现「同时调整振幅与相位」「一个码元携带多个比特」「星座图」等措辞即可锁定 QAM；只看数据率高低而不问「改变了哪个参量」容易误选 PSK 或 AM。`,aD=String.raw`### PPP 的帧格式
 
 PPP 用于点对点链路，帧以标志字段 7E（01111110）作帧定界符，首尾各一个；地址字段固定为 FF、控制字段固定为 03；信息字段长度可变，末尾是校验字段。
 
@@ -45352,7 +49237,7 @@ $$
 
 同步链路按比特填充（零比特填充）：信息流中每出现 5 个连续 1 就插入一个 0，接收端把每 5 个连续 1 之后的 0 删去，以保证不会出现与标志字段相同的比特模式。这与字节填充是两套规则，不能混用。
 
-判据：**先剥掉帧首尾的 7E，再逐字节扫描**；遇到 7D 就与后一个字节成对还原。最容易错的是漏掉「7D 自身也要被转义」以及对整串数据统一异或。`,WE=String.raw`### 软件定义网络的基本思想
+判据：**先剥掉帧首尾的 7E，再逐字节扫描**；遇到 7D 就与后一个字节成对还原。最容易错的是漏掉「7D 自身也要被转义」以及对整串数据统一异或。`,oD=String.raw`### 软件定义网络的基本思想
 
 SDN 把传统路由器的**控制平面与数据平面分离**：
 
@@ -45372,7 +49257,7 @@ SDN 把传统路由器的**控制平面与数据平面分离**：
 - 「每台路由器独立运行分布式路由协议、自行维护路由表」是传统网络的模式，不是 SDN；
 - 控制器逻辑上集中，物理上可以做成分层或多副本以提高可靠性，这不改变其集中控制的本质。
 
-判据：先看转发决策由谁做出——设备自己算就是传统网络，由集中控制器下发流表就是 SDN。`,GE=String.raw`### UDP 的特性
+判据：先看转发决策由谁做出——设备自己算就是传统网络，由集中控制器下发流表就是 SDN。`,sD=String.raw`### UDP 的特性
 
 - **无连接**：发送数据前不需要建立连接，省去约一个往返时延的建连开销，也不维护连接状态；
 - **不可靠**：没有确认、重传与按序交付机制，报文可能丢失、重复或乱序；
@@ -45393,7 +49278,7 @@ SDN 把传统路由器的**控制平面与数据平面分离**：
 
 音视频与在线游戏能容忍少量丢包，但要求低时延、低抖动。TCP 的重传会引入额外时延，拥塞控制在大丢包时大幅降速，反而放大抖动；UDP 无连接、首部小、不做重传与拥塞控制，正好匹配这一类需求。
 
-判据：逐项反问「这是 UDP 的特征还是 TCP 的特征」，凡把「可靠传输」「拥塞控制」写到 UDP 头上的选项都是错的；需要低时延又要有可靠性与拥塞控制时，可在 UDP 之上由应用层补足（如 QUIC）。`,KE=String.raw`### 连接释放的状态转换
+判据：逐项反问「这是 UDP 的特征还是 TCP 的特征」，凡把「可靠传输」「拥塞控制」写到 UDP 头上的选项都是错的；需要低时延又要有可靠性与拥塞控制时，可在 UDP 之上由应用层补足（如 QUIC）。`,cD=String.raw`### 连接释放的状态转换
 
 TCP 释放连接通常需要四个报文段（FIN 与 ACK 分开发送）。约定：**FIN 占 1 个序号，纯 ACK 不占序号**。主动关闭方与被动关闭方的状态路径不同。
 
@@ -45411,7 +49296,7 @@ TCP 释放连接通常需要四个报文段（FIN 与 ACK 分开发送）。约�
 - **被动关闭方**：收到 FIN 后回 ACK，进入 CLOSE-WAIT（半关闭状态，仍可继续发送数据）；需要关闭时发送 FIN，进入 LAST-ACK，收到对方 ACK 后进入 CLOSED。
 - **CLOSE-WAIT 与 LAST-ACK 只出现在被动关闭方**；FIN-WAIT-1、FIN-WAIT-2、CLOSING、TIME-WAIT 只出现在主动关闭方（同时关闭是例外）。
 
-判据：先分清自己是主动关闭方还是被动关闭方，再看收到的报文段是否确认己方 FIN、是否置了 FIN，按上述情形查下一状态；用排除法时记住 CLOSE-WAIT、LAST-ACK 属于被动方，可先排除。`,qE=String.raw`### 逻辑结构与存储结构的关系
+判据：先分清自己是主动关闭方还是被动关闭方，再看收到的报文段是否确认己方 FIN、是否置了 FIN，按上述情形查下一状态；用排除法时记住 CLOSE-WAIT、LAST-ACK 属于被动方，可先排除。`,lD=String.raw`### 逻辑结构与存储结构的关系
 
 ### 一、逻辑结构与存储结构是一对多的关系
 
@@ -45447,7 +49332,7 @@ $$
 
 ### 四、四项辨析汇总
 
-"逻辑结构描述元素之间的逻辑关系、与具体存储实现无关"正确；"一种逻辑结构只能有一种存储结构"错误；"额外空间必须包含输入数据"错误；"$O(n^2)$ 表示恰好执行 $n^2$ 次"错误。`,JE=String.raw`### 有向无环图与公共子表达式
+"逻辑结构描述元素之间的逻辑关系、与具体存储实现无关"正确；"一种逻辑结构只能有一种存储结构"错误；"额外空间必须包含输入数据"错误；"$O(n^2)$ 表示恰好执行 $n^2$ 次"错误。`,uD=String.raw`### 有向无环图与公共子表达式
 
 ### 一、DAG 与表达式树的区别
 
@@ -45482,7 +49367,7 @@ $$
 
 - 操作数输出名字、算符输出算符，拼成的串就是该 DAG 的一种后缀（逆波兰）写法；
 - 用表达式树做后序会得到含重复片段的串，两者不一致是正常的，DAG 的结果串更短；
-- 核对时先画出结点及共享关系，标清每个结点的左右孩子，再按"左、右、根"逐层写出；被共享的结点第二次出现的位置不输出任何字符。`,YE=String.raw`### 置换选择排序与初始归并段
+- 核对时先画出结点及共享关系，标清每个结点的左右孩子，再按"左、右、根"逐层写出；被共享的结点第二次出现的位置不输出任何字符。`,dD=String.raw`### 置换选择排序与初始归并段
 
 ### 一、要解决的问题
 
@@ -45518,7 +49403,7 @@ $$
 
 - 阈值比较是"不小于"还是"大于"按题面规定：相等记录归入当前段还是下一段会改变段数；
 - 每段结束时工作区里通常还压着 w 条"小于阈值"的记录，它们直接成为下一段的初始内容，不再重新读入；
-- 与后续的 k 路归并、败者树是两件事：置换选择排序只负责生成初始归并段。`,XE=String.raw`### 周期串与最小重复次数
+- 与后续的 k 路归并、败者树是两件事：置换选择排序只负责生成初始归并段。`,fD=String.raw`### 周期串与最小重复次数
 
 ### 一、朴素子串匹配的代价
 
@@ -45572,7 +49457,7 @@ $$
 - 时间：外层 n 个起点、内层最多 m 次比较，为 $O(nm)$，失配提前退出只会更快；
 - 额外空间 $O(1)$：只用若干整型变量，不必真的拼出 $a^{k}$ 与 $a^{k+1}$；
 - 若先拼出 $a^{k}$、$a^{k+1}$ 再做两次子串匹配，时间同为 $O(nm)$，但要多花 $O(m)$ 的空间；
-- 边界：取模的模数是 n 而不是 m；b 含有 a 中不出现的字符时无可行起点，应返回 $-1$。`,ZE=String.raw`### 磁盘记录的存放顺序与处理时间
+- 边界：取模的模数是 n 而不是 m；b 含有 a 中不出现的字符时无可行起点，应返回 $-1$。`,pD=String.raw`### 磁盘记录的存放顺序与处理时间
 
 ### 一、为什么"顺序存放"可能很慢
 
@@ -45599,7 +49484,7 @@ $$
 - 先算处理一条记录的时间相当于多少块（$t_{proc}/T_{rev}\times s$），据此决定每条记录后面要隔开几块；
 - 题目给若干候选存放顺序时逐个模拟：从当前块读出、处理、再看下一条记录在若干块之后，累加各自的等待时间；
 - 比较的是**按逻辑顺序处理完全部记录的总时间**，含读入时间、处理时间与旋转等待，取最小者；
-- 变量口径：转速为 r 转/分时 $T_{rev}=60/r$ 秒，每块旋转时间为 $T_{rev}/s$。`,QE=String.raw`### 双端口存储器与读写冲突
+- 变量口径：转速为 r 转/分时 $T_{rev}=60/r$ 秒，每块旋转时间为 $T_{rev}/s$。`,mD=String.raw`### 双端口存储器与读写冲突
 
 ### 一、结构特点
 
@@ -45623,7 +49508,7 @@ $$
 
 ### 四、判据
 
-题目给出若干访问组合时，逐项检查"地址是否相同"与"是否含写操作"，两项都成立才判为冲突；地址不同时必须判为不冲突，不能不加区分地一律判冲突。`,$E=String.raw`### Flynn 分类：指令流与数据流
+题目给出若干访问组合时，逐项检查"地址是否相同"与"是否含写操作"，两项都成立才判为冲突；地址不同时必须判为不冲突，不能不加区分地一律判冲突。`,hD=String.raw`### Flynn 分类：指令流与数据流
 
 ### 一、两个维度
 
@@ -45649,7 +49534,7 @@ $$
 
 - 流水线、超标量属于单处理器**内部**的并行（时间并行、指令级并行），不改变"一条指令流"这一事实，仍在 SISD 范畴；
 - 多核不是 MISD：MISD 是"多条指令流共享一条数据流"，而多核中每个核心各有自己的指令流与数据流；
-- 共享同一地址空间（SMP、UMA、NUMA）说的是存储与访存模型，不改变 Flynn 的分类结论。`,eD=String.raw`### 内部异常与外部中断的分类
+- 共享同一地址空间（SMP、UMA、NUMA）说的是存储与访存模型，不改变 Flynn 的分类结论。`,gD=String.raw`### 内部异常与外部中断的分类
 
 ### 一、按来源分两大类
 
@@ -45668,7 +49553,7 @@ $$
 
 - 故障与自陷由当前指令引起，同步发生；外部中断在**一条指令执行结束后**才可能被响应，与具体执行的是哪条指令无关；
 - 故障处理程序返回后可重执行引起异常的指令，自陷处理程序返回后从下一条指令继续；
-- 中断向量表的表项是中断服务程序的入口地址，中断类型号只是查表的索引。`,tD=String.raw`### 一般浮点数格式与规格化
+- 中断向量表的表项是中断服务程序的入口地址，中断类型号只是查表的索引。`,_D=String.raw`### 一般浮点数格式与规格化
 
 ### 一、格式的组成
 
@@ -45708,7 +49593,7 @@ $$
 3. **规格化**：结果尾数前导零过多时左规（阶码减一），尾数绝对值不小于 1 时右规（阶码加一）；
 4. **溢出判断**：阶码超出可表示范围即上溢；阶码小于最小可表示真值则下溢，按下溢规则处理。
 
-判据：先对阶再运算，最后一定要回到规格化形式，再判阶码是否越界——只做尾数运算而不判阶码会漏掉上溢。`,nD=String.raw`### TLB、页表与 Cache 的地址转换
+判据：先对阶再运算，最后一定要回到规格化形式，再判阶码是否越界——只做尾数运算而不判阶码会漏掉上溢。`,vD=String.raw`### TLB、页表与 Cache 的地址转换
 
 ### 一、虚拟地址与物理地址的字段
 
@@ -45755,7 +49640,7 @@ $$
 
 - 地址转换（虚到实）在访问 Cache 之前完成；用物理地址访存时按物理地址划分字段，不能用虚页号算 Cache 组号；
 - 数位宽的顺序是：先定页内偏移，再定组索引，最后用总位数减出标记位数；
-- 两处都要检查有效位：TLB 项有效才给出物理页框号，Cache 行有效才算命中。`,rD=String.raw`### 磁盘的物理格式化与逻辑格式化
+- 两处都要检查有效位：TLB 项有效才给出物理页框号，Cache 行有效才算命中。`,yD=String.raw`### 磁盘的物理格式化与逻辑格式化
 
 ### 一、物理格式化（低级格式化）
 
@@ -45779,7 +49664,7 @@ $$
 
 - "建立文件系统根目录""初始化磁盘空闲空间管理的数据结构""建立管理已分配空间的数据结构"都是**逻辑格式化**的工作；
 - 只有"初始化扇区的数据结构（扇区头尾与校验信息）"属于**物理格式化**；
-- 两者顺序固定：先物理格式化、再逻辑格式化；同一磁盘可以重做逻辑格式化而不必重做物理格式化。`,iD=String.raw`### 假脱机（SPOOLing）技术
+- 两者顺序固定：先物理格式化、再逻辑格式化；同一磁盘可以重做逻辑格式化而不必重做物理格式化。`,bD=String.raw`### 假脱机（SPOOLing）技术
 
 ### 一、组成
 
@@ -45802,7 +49687,7 @@ SPOOLing 在磁盘上开辟**输入井与输出井**，用磁盘缓冲区把低�
 - SPOOLing 本身**不提高 I/O 设备的物理传输速度**，只是把等待时间与其他活动重叠；
 - SPOOLing 的实现依赖**多道程序**与磁盘，单道批处理系统无法使用它。
 
-判据：把"共享设备、虚拟设备、并行"与"提高内存利用率、提高设备传输速率"分开，后者不是它的特点。`,aD=String.raw`### 磁盘阵列（RAID）
+判据：把"共享设备、虚拟设备、并行"与"提高内存利用率、提高设备传输速率"分开，后者不是它的特点。`,xD=String.raw`### 磁盘阵列（RAID）
 
 ### 一、RAID 能做什么
 
@@ -45824,7 +49709,7 @@ RAID 把多个独立的物理磁盘组合成一个逻辑磁盘，对外提供统
 - RAID1：镜像，可靠性高、空间利用率约 50%；
 - RAID5：分布式奇偶校验，兼顾速度、容量与可靠性。
 
-判据：区分"并行访问提高速度"与"冗余提高可靠性"两件事，再看选项谈的是容量、速度还是可靠性；提高单个磁盘容量这一类说法一定错。`,oD=String.raw`### 死锁检测与解除
+判据：区分"并行访问提高速度"与"冗余提高可靠性"两件事，再看选项谈的是容量、速度还是可靠性；提高单个磁盘容量这一类说法一定错。`,SD=String.raw`### 死锁检测与解除
 
 ### 一、数据结构
 
@@ -45864,7 +49749,7 @@ $$
 
 常用方法：**终止（撤销）进程**、**剥夺资源**、**回退（按检查点回滚）**。
 
-求"至少增加多少资源才能解除死锁"时：对某类资源逐个增加 1 个单位并重做检测，直到出现能全部完成的序列为止，取所需的最小增量。增加资源后必须**整表重算**，不能只看原先卡住的那一个进程。`,sD=String.raw`### 整批预留空间为什么需要额外的信号量
+求"至少增加多少资源才能解除死锁"时：对某类资源逐个增加 1 个单位并重做检测，直到出现能全部完成的序列为止，取所需的最小增量。增加资源后必须**整表重算**，不能只看原先卡住的那一个进程。`,CD=String.raw`### 整批预留空间为什么需要额外的信号量
 
 ### 一、问题
 
@@ -45891,7 +49776,7 @@ $$
 
 - P、V 各自是原语，但**多个 P 操作连写不构成一个原子动作**，需要额外互斥才能整体化；
 - 临界区内不得因等待资源而持锁睡眠：原有 mutex 只保护缓冲区读写与指针，不能兼任"预留"的互斥；
-- 若题面把"整批空间"当作一个资源单位（例如以批为单位的额度信号量），所需个数可能减少，须按题面给定的资源划分判断。`,cD=String.raw`### 磁盘存取时间与单/双缓冲
+- 若题面把"整批空间"当作一个资源单位（例如以批为单位的额度信号量），所需个数可能减少，须按题面给定的资源划分判断。`,wD=String.raw`### 磁盘存取时间与单/双缓冲
 
 ### 一、平均存取时间
 
@@ -45934,7 +49819,7 @@ $$
 - **双缓冲**下磁盘可在前一块进行"校验＋发送"的同时读入下一块，两个阶段重叠，故中间块取 $\max(t_{in},t_{cpu})$ 作为节拍；
 - 公式已含首块启动（$t_{in}$）与末块排空（$t_{cpu}$）；$t_{in}$ 明显大于 $t_{cpu}$ 时磁盘是瓶颈，反之 CPU 侧是瓶颈。
 
-判据：先算清每个阶段的单块时间，再画时间线数可重叠区间；所有时间用同一单位，注意转速与每道扇区数的换算。`,lD=String.raw`### 分组交换的传送时间
+判据：先算清每个阶段的单块时间，再画时间线数可重叠区间；所有时间用同一单位，注意转速与每道扇区数的换算。`,TD=String.raw`### 分组交换的传送时间
 
 ### 一、两个基本时延
 
@@ -45971,7 +49856,7 @@ $$
 
 ### 四、判据
 
-先算分组数（注意扣除分组头），再算单段的发送时延与传播时延，最后按"首分组走完全程、其余分组依次跟上"写总时间；传播时延是**每段各一次**，不要按分组数相乘，也不要把传播时延漏掉。`,uD=String.raw`### 奈氏准则与香农公式
+先算分组数（注意扣除分组头），再算单段的发送时延与传播时延，最后按"首分组走完全程、其余分组依次跟上"写总时间；传播时延是**每段各一次**，不要按分组数相乘，也不要把传播时延漏掉。`,ED=String.raw`### 奈氏准则与香农公式
 
 ### 一、码元、波特率与数据率
 
@@ -46015,7 +49900,7 @@ $$
 
 - 题给"带宽 W"时用奈氏公式或香农公式；
 - 题给"最高码元速率 B"与"振幅等级数 V"时，直接用 $R_b=B\log_2 V$，**不必再乘 2**；
-- 等级数与每码元比特数的换算：$V=2^{n}$，如 16 个等级对应每码元 4 位比特。`,dD=String.raw`### CSMA/CD 的退避时延
+- 等级数与每码元比特数的换算：$V=2^{n}$，如 16 个等级对应每码元 4 位比特。`,DD=String.raw`### CSMA/CD 的退避时延
 
 ### 一、争用期与时隙
 
@@ -46051,7 +49936,7 @@ $$
 
 - 第 1 次冲突时集合是 $\{0,1\}$，第 2 次是 $\{0,1,2,3\}$，依此类推；
 - 题给"退避时隙为 512 比特时间"时，先按数据率把 512 比特换算成时间，再乘题给的随机数 r；
-- 比特时间是"发送 1 比特所需的时间"，等于 $1/R$，不要把它与传播时延混为一谈。`,fD=String.raw`### IEEE 802.11 的 BSS 与 AP
+- 比特时间是"发送 1 比特所需的时间"，等于 $1/R$，不要把它与传播时延混为一谈。`,OD=String.raw`### IEEE 802.11 的 BSS 与 AP
 
 ### 一、基本术语
 
@@ -46078,7 +49963,7 @@ $$
 
 - 有 AP 的 BSS 内通信必须经 AP 中继，不能直发；
 - AP 的转发是**单播**给目的站点，不是广播；
-- 无线帧有多个地址字段（收地址、发地址、源地址、目的地址），经 AP 转发时源地址与目的地址仍是原始站点的地址，只有收地址与发地址逐段改变。`,pD=String.raw`### ICMP 报文与差错报告
+- 无线帧有多个地址字段（收地址、发地址、源地址、目的地址），经 AP 转发时源地址与目的地址仍是原始站点的地址，只有收地址与发地址逐段改变。`,kD=String.raw`### ICMP 报文与差错报告
 
 ### 一、定位与封装
 
@@ -46105,7 +49990,7 @@ ICMP 差错报告报文的目的 IP 地址通常是**引发该差错的那个数
 - **回送请求与回答**：用于测试两台主机之间的连通性（ping 使用它）；
 - 时间戳请求与回答、路由器询问与通告等。
 
-判据：先分清"差错报告"与"询问"两类，再逐条核对差错报告的触发条件与被禁止发送的情形。`,mD=String.raw`### VLSM 划分子网与 IPv4 分片
+判据：先分清"差错报告"与"询问"两类，再逐条核对差错报告的触发条件与被禁止发送的情形。`,AD=String.raw`### VLSM 划分子网与 IPv4 分片
 
 ### 一、VLSM 的基本做法
 
@@ -46152,7 +50037,7 @@ $$
 
 ### 四、判据
 
-VLSM 的关键是"够用即取最小 h、按需求从大到小排"，分片的关键是"片偏移除以 8、看清 MF 标志与新总长度"；两处都不能沿用等长子网划分或整包大小的直觉。`,hD=String.raw`### 一、BFS 走的是什么
+VLSM 的关键是"够用即取最小 h、按需求从大到小排"，分片的关键是"片偏移除以 8、看清 MF 标志与新总长度"；两处都不能沿用等长子网划分或整包大小的直觉。`,jD=String.raw`### 一、BFS 走的是什么
 
 广度优先搜索（BFS）从源点出发，按“距源点的边数”由近及远逐层访问顶点。它只需要一个**先进先出（FIFO）队列**：每次取队头顶点 $u$，把 $u$ 的、**尚未被发现**的邻接点依次放到队尾。
 
@@ -46208,7 +50093,7 @@ $$
 
 ### 六、还要记住的两点
 
-**自环与重边**不改变最短边数距离。无权图的自环不能增加最短路径条数；重边是否分别计为不同路径，要按题目约定。遍历序列仍以实际邻接表的扫描次序为准，边数统计也须明确重边口径。**队列空判据**是 front 与 rear 相等，不能拿 dist 或标记数组当判据。`,gD=String.raw`### DFS 的递归模型（本组三题共用）
+**自环与重边**不改变最短边数距离。无权图的自环不能增加最短路径条数；重边是否分别计为不同路径，要按题目约定。遍历序列仍以实际邻接表的扫描次序为准，边数统计也须明确重边口径。**队列空判据**是 front 与 rear 相等，不能拿 dist 或标记数组当判据。`,MD=String.raw`### DFS 的递归模型（本组三题共用）
 
 访问 $u$ 时按邻接表次序检查每个邻接点 $v$：$v$ 未访问就立即递归进入，$v$ 的子树处理完再回来检查下一个邻接点；$u$ 的邻接点全部检查完，$u$ 才算完成。三种颜色刻画进度：白 = 未发现，灰 = 已发现且邻接点未检查完（处在搜索路径上），黑 = 邻接点已全部检查完。
 
@@ -46254,7 +50139,7 @@ $$
 ### 参考
 
 - Princeton, *Algorithms, 4th Edition*, §4.1 Undirected Graphs：[algs4.cs.princeton.edu/41graph](https://algs4.cs.princeton.edu/41graph/)
-- Princeton, *Algorithms, 4th Edition*, §4.2 Directed Graphs：[algs4.cs.princeton.edu/42digraph](https://algs4.cs.princeton.edu/42digraph/)`,_D=String.raw`## 这一组三题共用的基础
+- Princeton, *Algorithms, 4th Edition*, §4.2 Directed Graphs：[algs4.cs.princeton.edu/42digraph](https://algs4.cs.princeton.edu/42digraph/)`,ND=String.raw`## 这一组三题共用的基础
 
 **1. 有向图的四个基本量。** 入度 indeg(v) = 指向 v 的边数；出度 = v 指出去的边数；重边按条数计，自环 $u\to u$ 同时算 1 入度 1 出度。路径是顶点序列，环是首尾重合的路径。可达关系沿有向边单向传播。
 
@@ -46273,8 +50158,8 @@ $$
 **8. 计数口径。** 拓扑序的个数 = 满足全部边约束的顶点排列个数（线性扩展数），顶点按编号区分，同一排列只数一次，与算法执行过程无关；上界是 $n!$。n 很小时可以直接穷举 $n!$ 个排列来核对。
 
 **9. 复杂度。** 邻接表 + 队列/栈：$O(V+E)$ 时间（建表与统计入度 $O(V+E)$，顶点各进出缓冲区一次，边各扫描一次）；辅助空间 $O(V)$，含邻接表共 $O(V+E)$。邻接矩阵：$O(V^2)$。缓冲区换成小根堆每次取最小编号：$O(E + V\log V)$，辅助空间 $O(V)$。DFS 逆后序也能求出拓扑序，但默认不带环检测，需额外维护"当前递归栈中"标记来发现回边。
-`,vD={...WS,...MC,...NC,...PC,...FC,...IC,...LC,...RC,"graph-20261016-bfs-order":hD,"graph-20261016-bfs-distance":hD,"graph-20261016-bfs-count":hD,"graph-20261016-dfs-q01":gD,"graph-20261016-dfs-q02":gD,"graph-20261016-dfs-q03":gD,"graph-20261016-topo-q1":_D,"graph-20261016-topo-q2":_D,"graph-20261016-topo-q3":_D,"mock-exam-1-ds-q01":zC,"mock-exam-1-ds-q02":BC,"mock-exam-1-ds-q03":VC,"mock-exam-1-ds-q04":HC,"mock-exam-1-ds-q05":UC,"mock-exam-1-ds-q06":WC,"mock-exam-1-ds-q07":GC,"mock-exam-1-ds-q08":KC,"mock-exam-1-ds-q09":YC,"mock-exam-1-ds-q10":XC,"mock-exam-1-ds-q11":ZC,"mock-exam-1-co-q12":bw,"mock-exam-1-co-q13":Sw,"mock-exam-1-co-q14":Cw,"mock-exam-1-co-q15":Tw,"mock-exam-1-co-q16":Dw,"mock-exam-1-co-q17":Ow,"mock-exam-1-co-q18":Mw,"mock-exam-1-co-q19":Nw,"mock-exam-1-co-q20":Rw,"mock-exam-1-co-q21":Pw,"mock-exam-1-co-q22":Bw,"mock-exam-1-os-q23":Uw,"mock-exam-1-os-q24":Qw,"mock-exam-1-os-q25":qw,"mock-exam-1-os-q26":Yw,"mock-exam-1-os-q27":sT,"mock-exam-1-os-q28":oT,"mock-exam-1-os-q29":hT,"mock-exam-1-os-q30":mT,"mock-exam-1-os-q31":yT,"mock-exam-1-os-q32":_T,"mock-exam-1-cn-q33":xT,"mock-exam-1-cn-q34":ST,"mock-exam-1-cn-q35":wT,"mock-exam-1-cn-q36":DT,"mock-exam-1-cn-q37":jT,"mock-exam-1-cn-q38":TT,"mock-exam-1-cn-q39":NT,"mock-exam-1-cn-q40":PT,"mock-exam-1-co-q43":kw,"mock-exam-1-co-q44":Iw,"mock-exam-1-os-q45":cT,"mock-exam-1-os-q46":$w,"mock-exam-1-cn-q47":kT,"mock-exam-2-ds-q01":QC,"mock-exam-2-ds-q02":BC,"mock-exam-2-ds-q03":$C,"mock-exam-2-ds-q04":ew,"mock-exam-2-ds-q05":WC,"mock-exam-2-ds-q06":tw,"mock-exam-2-ds-q07":YC,"mock-exam-2-ds-q08":HC,"mock-exam-2-ds-q09":pw,"mock-exam-2-ds-q10":nw,"mock-exam-2-ds-q11":rw,"mock-exam-2-co-q12":bw,"mock-exam-2-co-q13":Sw,"mock-exam-2-co-q14":Sw,"mock-exam-2-co-q15":Tw,"mock-exam-2-co-q16":Dw,"mock-exam-2-co-q17":Aw,"mock-exam-2-co-q18":Nw,"mock-exam-2-co-q19":Fw,"mock-exam-2-co-q20":zw,"mock-exam-2-co-q21":Hw,"mock-exam-2-co-q22":Vw,"mock-exam-2-os-q23":Uw,"mock-exam-2-os-q24":Jw,"mock-exam-2-os-q25":Gw,"mock-exam-2-os-q26":iT,"mock-exam-2-os-q27":uT,"mock-exam-2-os-q28":oT,"mock-exam-2-os-q29":bT,"mock-exam-2-os-q30":pT,"mock-exam-2-os-q31":mT,"mock-exam-2-os-q32":gT,"mock-exam-2-cn-q33":xT,"mock-exam-2-cn-q34":CT,"mock-exam-2-cn-q35":TT,"mock-exam-2-cn-q36":DT,"mock-exam-2-cn-q37":OT,"mock-exam-2-cn-q38":MT,"mock-exam-2-cn-q39":NT,"mock-exam-2-cn-q40":IT,"mock-exam-2-co-q43":Bw,"mock-exam-2-co-q44":Lw,"mock-exam-2-os-q45":Qw,"mock-exam-2-os-q46":aT,"mock-exam-2-cn-q47":kT,"mock-exam-3-ds-q01":iw,"mock-exam-3-ds-q02":aw,"mock-exam-3-ds-q03":ow,"mock-exam-3-ds-q04":VC,"mock-exam-3-ds-q05":sw,"mock-exam-3-ds-q06":cw,"mock-exam-3-ds-q07":sw,"mock-exam-3-ds-q08":ew,"mock-exam-3-ds-q09":rw,"mock-exam-3-ds-q10":XC,"mock-exam-3-ds-q11":ZC,"mock-exam-3-co-q12":Cw,"mock-exam-3-co-q13":jw,"mock-exam-3-co-q14":Aw,"mock-exam-3-co-q15":kw,"mock-exam-3-co-q16":Pw,"mock-exam-3-co-q17":Nw,"mock-exam-3-co-q18":Lw,"mock-exam-3-co-q19":Iw,"mock-exam-3-co-q20":Vw,"mock-exam-3-co-q21":Hw,"mock-exam-3-co-q22":zw,"mock-exam-3-os-q23":Ww,"mock-exam-3-os-q24":rT,"mock-exam-3-os-q25":rT,"mock-exam-3-os-q26":Kw,"mock-exam-3-os-q27":cT,"mock-exam-3-os-q28":uT,"mock-exam-3-os-q29":vT,"mock-exam-3-os-q30":gT,"mock-exam-3-os-q31":uT,"mock-exam-3-os-q32":mT,"mock-exam-3-cn-q33":TT,"mock-exam-3-cn-q34":wT,"mock-exam-3-cn-q35":TT,"mock-exam-3-cn-q36":OT,"mock-exam-3-cn-q37":DT,"mock-exam-3-cn-q38":MT,"mock-exam-3-cn-q39":PT,"mock-exam-3-cn-q40":FT,"mock-exam-3-co-q43":kw,"mock-exam-3-co-q44":Ew,"mock-exam-3-os-q45":tT,"mock-exam-3-os-q46":lT,"mock-exam-3-cn-q47":jT,"mock-exam-4-ds-q01":aw,"mock-exam-4-ds-q02":lw,"mock-exam-4-ds-q03":ow,"mock-exam-4-ds-q04":uw,"mock-exam-4-ds-q05":dw,"mock-exam-4-ds-q06":cw,"mock-exam-4-ds-q07":fw,"mock-exam-4-ds-q08":ew,"mock-exam-4-ds-q09":YC,"mock-exam-4-ds-q10":pw,"mock-exam-4-ds-q11":mw,"mock-exam-4-co-q12":xw,"mock-exam-4-co-q13":Cw,"mock-exam-4-co-q14":Sw,"mock-exam-4-co-q15":Tw,"mock-exam-4-co-q16":Aw,"mock-exam-4-co-q17":Tw,"mock-exam-4-co-q18":Rw,"mock-exam-4-co-q19":Nw,"mock-exam-4-co-q20":Fw,"mock-exam-4-co-q21":Hw,"mock-exam-4-co-q22":Vw,"mock-exam-4-os-q23":Uw,"mock-exam-4-os-q24":qw,"mock-exam-4-os-q25":Yw,"mock-exam-4-os-q26":iT,"mock-exam-4-os-q27":rT,"mock-exam-4-os-q28":sT,"mock-exam-4-os-q29":hT,"mock-exam-4-os-q30":pT,"mock-exam-4-os-q31":mT,"mock-exam-4-os-q32":gT,"mock-exam-4-cn-q33":ST,"mock-exam-4-cn-q34":CT,"mock-exam-4-cn-q35":ET,"mock-exam-4-cn-q36":AT,"mock-exam-4-cn-q37":OT,"mock-exam-4-cn-q38":IT,"mock-exam-4-cn-q39":LT,"mock-exam-4-cn-q40":PT,"mock-exam-4-co-q43":Mw,"mock-exam-4-co-q44":Lw,"mock-exam-4-os-q45":eT,"mock-exam-4-os-q46":Xw,"mock-exam-4-cn-q47":MT,"io-interrupt-dma-bus-clock":Bw,"vm-lru-array-page-faults":lT,"wangdao-mock2-major-01":hw,"wangdao-mock2-major-02":VC,"wangdao-mock2-major-03":gw,"wangdao-mock2-major-04":gw,"wangdao-mock2-major-05":_w,"wangdao-mock2-major-06":vw,"wangdao-mock2-major-07":GC,"wangdao-mock2-major-08":KC,"wangdao-mock2-major-09":fw,"wangdao-mock2-major-10":pw,"wangdao-mock2-major-11":ZC,"wangdao-mock2-major-12":xw,"wangdao-mock2-major-13":Sw,"wangdao-mock2-major-14":ww,"wangdao-mock2-major-15":Ew,"wangdao-mock2-major-16":Ew,"wangdao-mock2-major-17":Ow,"wangdao-mock2-major-18":Mw,"wangdao-mock2-major-19":Iw,"wangdao-mock2-major-20":Pw,"wangdao-mock2-major-21":zw,"wangdao-mock2-major-22":Vw,"wangdao-mock2-major-23":Ww,"wangdao-mock2-major-24":Ww,"wangdao-mock2-major-25":Gw,"wangdao-mock2-major-26":Jw,"wangdao-mock2-major-27":Xw,"wangdao-mock2-major-28":Zw,"wangdao-mock2-major-29":lT,"wangdao-mock2-major-30":hT,"wangdao-mock2-major-31":_T,"wangdao-mock2-major-32":bT,"wangdao-mock1-major-41":tw,"wangdao-mock1-major-42":hw,"wangdao-mock1-major-43":kw,"wangdao-mock1-major-44":Lw,"wangdao-mock1-major-45":nT,"wangdao-mock1-major-46":sT,"forest-to-binary-min-height":uw,"directed-graph-path-strings":vw,"insertion-sort-comparison-counts":yw,"system-hierarchy-levels":bw,"float32-12-1-rounding":ww,"isa-specified-things":bw,"kernel-mode-operations":Ww,"rare-rbt-validity":qC,"rare-rbt-black-height":qC,"rare-rbt-insertion":JC,"rare-rbt-deletion":JC,"rare-rbt-recolor-cost":JC,"rare-grouped-allocation":dT,"rare-grouped-release":dT,"rare-grouped-empty":dT,"rare-grouped-batch-io":dT,"rare-grouped-capacity":fT,"rare-adjacency-multilist-trace":RT,"rare-orthogonal-list-trace":zT,"rare-ieee754-special-decode":BT,"rare-comparison-flags-trace":VT,"mock-exam-1-ds-q41":dw,"mock-exam-1-ds-q42":HT,"mock-exam-2-ds-q41":sw,"mock-exam-2-ds-q42":UT,"mock-exam-3-ds-q41":WT,"mock-exam-3-ds-q42":rw,"mock-exam-4-ds-q41":cw,"mock-exam-4-ds-q42":GT,"rare-union-find-parent-trace":dw,"rare-union-find-rank-height":dw,"rare-union-find-kruskal":dw,"mock-exam-5-ds-q01":WC,"mock-exam-5-ds-q02":iw,"mock-exam-5-ds-q03":BC,"mock-exam-5-ds-q04":VC,"mock-exam-5-ds-q05":qT,"mock-exam-5-ds-q06":vw,"mock-exam-5-ds-q07":cw,"mock-exam-5-ds-q08":fw,"mock-exam-5-ds-q09":JT,"mock-exam-5-ds-q10":YC,"mock-exam-5-ds-q11":XC,"mock-exam-5-co-q12":XT,"mock-exam-5-co-q13":Cw,"mock-exam-5-co-q14":Sw,"mock-exam-5-co-q15":ZT,"mock-exam-5-co-q16":sT,"mock-exam-5-co-q17":Lw,"mock-exam-5-co-q18":QT,"mock-exam-5-co-q19":VT,"mock-exam-5-co-q20":Rw,"mock-exam-5-co-q21":Hw,"mock-exam-5-co-q22":Bw,"mock-exam-5-os-q23":$T,"mock-exam-5-os-q24":qw,"mock-exam-5-os-q25":eE,"mock-exam-5-os-q26":tE,"mock-exam-5-os-q27":nE,"mock-exam-5-os-q28":rE,"mock-exam-5-os-q29":pT,"mock-exam-5-os-q30":fT,"mock-exam-5-os-q31":yT,"mock-exam-5-os-q32":iE,"mock-exam-5-cn-q33":aE,"mock-exam-5-cn-q34":oE,"mock-exam-5-cn-q35":sE,"mock-exam-5-cn-q36":DT,"mock-exam-5-cn-q37":kT,"mock-exam-5-cn-q38":TT,"mock-exam-5-cn-q39":cE,"mock-exam-5-cn-q40":LT,"mock-exam-5-ds-q41":YT,"mock-exam-5-ds-q42":ow,"mock-exam-5-co-q43":Dw,"mock-exam-5-co-q44":Fw,"mock-exam-5-os-q45":Qw,"mock-exam-5-os-q46":mT,"mock-exam-5-cn-q47":NT,"mock-exam-6-ds-q01":lE,"mock-exam-6-ds-q02":KT,"mock-exam-6-ds-q03":uE,"mock-exam-6-ds-q04":ow,"mock-exam-6-ds-q05":gw,"mock-exam-6-ds-q06":dE,"mock-exam-6-ds-q07":cw,"mock-exam-6-ds-q08":sw,"mock-exam-6-ds-q09":fE,"mock-exam-6-ds-q10":XC,"mock-exam-6-ds-q11":pE,"mock-exam-6-co-q12":xw,"mock-exam-6-co-q13":Cw,"mock-exam-6-co-q14":Ow,"mock-exam-6-co-q15":hE,"mock-exam-6-co-q16":Aw,"mock-exam-6-co-q17":Nw,"mock-exam-6-co-q18":gE,"mock-exam-6-co-q19":_E,"mock-exam-6-co-q20":Iw,"mock-exam-6-co-q21":Rw,"mock-exam-6-co-q22":Vw,"mock-exam-6-os-q23":vE,"mock-exam-6-os-q24":Yw,"mock-exam-6-os-q25":Gw,"mock-exam-6-os-q26":rT,"mock-exam-6-os-q27":yE,"mock-exam-6-os-q28":sT,"mock-exam-6-os-q29":bE,"mock-exam-6-os-q30":xE,"mock-exam-6-os-q31":SE,"mock-exam-6-os-q32":yT,"mock-exam-6-cn-q33":wE,"mock-exam-6-cn-q34":TE,"mock-exam-6-cn-q35":CT,"mock-exam-6-cn-q36":EE,"mock-exam-6-cn-q37":CT,"mock-exam-6-cn-q38":jT,"mock-exam-6-cn-q39":DT,"mock-exam-6-cn-q40":DE,"mock-exam-6-ds-q41":mE,"mock-exam-6-ds-q42":YC,"mock-exam-6-co-q43":Bw,"mock-exam-6-co-q44":Lw,"mock-exam-6-os-q45":CE,"mock-exam-6-os-q46":Qw,"mock-exam-6-cn-q47":MT,"mock-exam-7-ds-q01":OE,"mock-exam-7-ds-q02":iw,"mock-exam-7-ds-q03":KT,"mock-exam-7-ds-q04":kE,"mock-exam-7-ds-q05":HC,"mock-exam-7-ds-q06":$C,"mock-exam-7-ds-q07":UC,"mock-exam-7-ds-q08":sw,"mock-exam-7-ds-q09":AE,"mock-exam-7-ds-q10":rw,"mock-exam-7-ds-q11":nw,"mock-exam-7-co-q12":jE,"mock-exam-7-co-q13":kw,"mock-exam-7-co-q14":ME,"mock-exam-7-co-q15":NE,"mock-exam-7-co-q16":PE,"mock-exam-7-co-q17":Mw,"mock-exam-7-co-q18":Fw,"mock-exam-7-co-q19":FE,"mock-exam-7-co-q20":Iw,"mock-exam-7-co-q21":zw,"mock-exam-7-co-q22":Mw,"mock-exam-7-os-q23":IE,"mock-exam-7-os-q24":rT,"mock-exam-7-os-q25":Yw,"mock-exam-7-os-q26":LE,"mock-exam-7-os-q27":cT,"mock-exam-7-os-q28":RE,"mock-exam-7-os-q29":zE,"mock-exam-7-os-q30":BE,"mock-exam-7-os-q31":VE,"mock-exam-7-os-q32":Bw,"mock-exam-7-cn-q33":HE,"mock-exam-7-cn-q34":UE,"mock-exam-7-cn-q35":wT,"mock-exam-7-cn-q36":WE,"mock-exam-7-cn-q37":jT,"mock-exam-7-cn-q38":GE,"mock-exam-7-cn-q39":IT,"mock-exam-7-cn-q40":KE,"mock-exam-7-ds-q41":pw,"mock-exam-7-ds-q42":GC,"mock-exam-7-co-q43":Rw,"mock-exam-7-co-q44":Nw,"mock-exam-7-os-q45":mT,"mock-exam-7-os-q46":oT,"mock-exam-7-cn-q47":DT,"mock-exam-8-ds-q01":qE,"mock-exam-8-ds-q02":UT,"mock-exam-8-ds-q03":JE,"mock-exam-8-ds-q04":VC,"mock-exam-8-ds-q05":qC,"mock-exam-8-ds-q06":tw,"mock-exam-8-ds-q07":sw,"mock-exam-8-ds-q08":nw,"mock-exam-8-ds-q09":fw,"mock-exam-8-ds-q10":pw,"mock-exam-8-ds-q11":YE,"mock-exam-8-co-q12":Sw,"mock-exam-8-co-q13":ZE,"mock-exam-8-co-q14":Ew,"mock-exam-8-co-q15":kw,"mock-exam-8-co-q16":Ow,"mock-exam-8-co-q17":Ew,"mock-exam-8-co-q18":Sw,"mock-exam-8-co-q19":QE,"mock-exam-8-co-q20":$E,"mock-exam-8-co-q21":zw,"mock-exam-8-co-q22":eD,"mock-exam-8-os-q23":Uw,"mock-exam-8-os-q24":Kw,"mock-exam-8-os-q25":Gw,"mock-exam-8-os-q26":sD,"mock-exam-8-os-q27":iT,"mock-exam-8-os-q28":dT,"mock-exam-8-os-q29":rD,"mock-exam-8-os-q30":pT,"mock-exam-8-os-q31":iD,"mock-exam-8-os-q32":aD,"mock-exam-8-cn-q33":lD,"mock-exam-8-cn-q34":uD,"mock-exam-8-cn-q35":dD,"mock-exam-8-cn-q36":fD,"mock-exam-8-cn-q37":pD,"mock-exam-8-cn-q38":AT,"mock-exam-8-cn-q39":NT,"mock-exam-8-cn-q40":FT,"mock-exam-8-ds-q41":XE,"mock-exam-8-ds-q42":ZC,"mock-exam-8-co-q43":tD,"mock-exam-8-co-q44":nD,"mock-exam-8-os-q45":oD,"mock-exam-8-os-q46":cD,"mock-exam-8-cn-q47":mD},yD={"jingcheng-exam-5-co-q44":`每次先用虚地址查 TLB，再用物理地址查 Cache。两种命中分开计数；只有换出脏块才写回。`,"jingcheng-exam-8-co-q43":`先把两个数组换算成主存块，再看它们能否同时驻留。第（4）问的随机替换不能按 LRU 算。`,"jingcheng-exam-8-co-q44":`按「虚页号 → 页框号 → 物理地址 → Cache」走一遍。页表项无效时，先处理缺页。`,"mock-exam-5-co-q43":`先数 Cache 行和组。所有访问都落在同一组后，只需维护这组的四个标记。`,"mock-exam-8-co-q44":`页内偏移随地址翻译原样保留；块内偏移从物理地址的最低几位再取。`,"wangdao-mock1-major-43":`每问重新算「块号 → 行或组」。冲突消失后，再数每块首次访问的缺失。`,"mock-exam-1-co-q43":`先确认两个数组同页，再算首地址相差多少个 Cache 块。每读一个元素就紧接着写一个。`,"mock-exam-3-co-q43":`转移偏移用取指后的 PC；数据 Cache 只跟踪循环中的数据地址，不计取指。`,"jingcheng-exam-6-os-q46":`三种置换算法都从同一张原始页表开始。各自找出牺牲页，再复用它的页框。`,"jingcheng-exam-7-os-q45":`从给出的物理地址倒推用了哪个页框，再查原来是谁占这个页框。`,"jingcheng-exam-8-os-q46":`位示图决定可用页框，FIFO 决定换掉哪一页。命中不改变装入顺序。`,"mock-exam-6-os-q45":`先将作业大小除以页大小并向上取整，确定要找几个空位；位示图大小则按全内存算。`,"mock-exam-7-os-q46":`先拆成页号与偏移。算访存次数时，把读页表与最后一次取数据分开。`,"mock-exam-1-os-q45":`先列页号并逐次更新 LRU。缺页和不缺页各算一套时间，最后按比例加权。`,"mock-exam-3-os-q46":`先写一行或一列的页号序列，再判断下一轮访问时前一轮的页还在不在。`,"vm-lru-array-page-faults":`先写出循环结束时的驻留页。随机置换一问只看语句 3 会不会淘汰语句 4 要用的页。`,"wangdao-mock1-major-46":`从页目录判断页大小：4KB 页继续查二级页表；4MB 页直接用目录项，保留低 22 位偏移。`},bD;function xD(){return bD||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{bD=void 0,t(n.error)},n.onblocked=()=>{r=!0,bD=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),bD=void 0},e(t)}}),bD}async function SD(e,t){let n=await xD();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function CD(e){return SD(`readonly`,t=>t.index(`materialId`).getAll(e))}async function wD(e){e.length&&await SD(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function TD(e){await SD(`readwrite`,t=>t.delete(e))}var ED={ds:`数据结构`,co:`计算机组成原理`,os:`操作系统`,cn:`计算机网络`,rare:`冷门专区`,other:`单题收录`},DD=[`ds`,`co`,`os`,`cn`,`rare`,`other`],OD=/^\s*(?:[（(]\s*[一二三四五六七八九十]+\s*[)）]|[一二三四五六七八九十]+\s*[、.．]|\d+\s*[、.．)])\s*/;function kD(e){for(let t of e.split(`
-`)){let e=t.trim();if(!e)continue;let n=(/^#{1,6}\s+(\S.*)$/.exec(e)?.[1]??e.replace(/^[*_>]+/,``).trim()).replace(OD,``).replace(/[：:]\s*$/,``).trim();if(n)return n.length>48?`${n.slice(0,47)}…`:n}return`未命名知识点`}function AD(e,t){let n=/-(ds|co|os|cn)-q\d+$/.exec(e);return n?.[1]?n[1]:t===`rare-topics`?`rare`:`other`}var jD=new Map;for(let e of jC)for(let t of e.materials)t.type===`题目`&&jD.set(t.id,{id:t.id,title:t.title,lessonId:e.id,lessonTitle:e.title,chapter:t.chapter,subject:AD(t.id,e.id),questionNumber:t.questionNumber});var MD=[...jD.values()],ND=new Map;for(let[e,t]of Object.entries(vD)){let n=ND.get(t);n?n.push(e):ND.set(t,[e])}var PD=[...ND].map(([e,t])=>{let n=[...t].sort(),r=[...new Set(n.map(e=>jD.get(e)?.subject??`other`))].sort((e,t)=>DD.indexOf(e)-DD.indexOf(t));return{key:n[0],label:kD(e),body:e,questionIds:n,subjects:r}}).sort((e,t)=>e.key.localeCompare(t.key));function FD(e,t){let n=new Map(t.map(e=>[e.id,e])),r=[...e].sort((e,t)=>{let n=DD.indexOf(e.subjects[0])-DD.indexOf(t.subjects[0]);return n===0?e.label.localeCompare(t.label,`zh-CN`):n}),i=e=>{let t=new Map(e.map((e,t)=>[e.key,t])),r=new Map;for(let i of e)for(let e of i.questionIds){if(!n.has(e))continue;let a=r.get(e);a?a.push(t.get(i.key)):r.set(e,[t.get(i.key)])}return[...n.values()].sort((t,n)=>{let i=r.get(t.id)??[e.length],a=r.get(n.id)??[e.length],o=i.reduce((e,t)=>e+t,0)/i.length-a.reduce((e,t)=>e+t,0)/a.length;return o===0?t.id.localeCompare(n.id):o})},a=i(r);for(let e=0;e<2;e+=1){let e=new Map(a.map((e,t)=>[e.id,t])),t=new Map;for(let n of r){let r=n.questionIds.filter(t=>e.has(t)).map(t=>e.get(t));t.set(n.key,r.length?r.reduce((e,t)=>e+t,0)/r.length:a.length)}r=[...r].sort((e,n)=>{let r=DD.indexOf(e.subjects[0])-DD.indexOf(n.subjects[0]);return r===0?t.get(e.key)-t.get(n.key):r}),a=i(r)}let o=new Set(a.map(e=>e.id)),s=r.flatMap(e=>e.questionIds.filter(e=>o.has(e)).map(t=>({from:e,to:n.get(t)})));return{knowledge:r,questions:a,edges:s}}var ID=296,LD=336,RD=168,zD=16,BD=24,VD=32,HD=11,UD=62,WD=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function GD(e,t){let n=(e.match(WD)??[]).length;return n*t+(e.length-n)*t*.56}function KD(e,t,n){if(GD(e,n)<=t)return e;let r=e.length;for(;r>1&&GD(`${e.slice(0,r)}…`,n)>t;)--r;return`${e.slice(0,r)}…`}var qD=e=>zD+e*VD+BD/2,JD=[`all`,`ds`,`co`,`os`,`cn`,`rare`,`other`],YD={all:MD.length};for(let e of MD)YD[e.subject]=(YD[e.subject]??0)+1;var XD=PD.filter(e=>e.questionIds.length>1).length;function ZD({hrefFor:e}){let[t,n]=(0,S.useState)(`all`),[r,i]=(0,S.useState)(``),[a,o]=(0,S.useState)(!0),[s,c]=(0,S.useState)(null),[l,u]=(0,S.useState)(null);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)).get(`p`);c(e&&PD.some(t=>t.key===e)?e:null)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]);let d=l??s,{layout:f,counts:p,truncated:m}=(0,S.useMemo)(()=>{let e=r.trim().toLowerCase(),n=new Set;if(e){for(let t of PD)if(t.label.toLowerCase().includes(e))for(let e of t.questionIds)n.add(e)}let i=MD.filter(r=>(t===`all`||r.subject===t)&&(!e||n.has(r.id)||`${r.title} ${r.chapter} ${r.lessonTitle}`.toLowerCase().includes(e))),o=new Set(i.map(e=>e.id)),s=new Map,c=PD.filter(e=>{let t=e.questionIds.reduce((e,t)=>e+ +!!o.has(t),0);return s.set(e.key,t),t>0&&(!a||t>1)}),l=new Set;for(let e of c)for(let t of e.questionIds)o.has(t)&&l.add(t);let u=FD(c,i.filter(e=>l.has(e.id)));return{layout:u,counts:s,truncated:PD.length>u.knowledge.length||MD.length>u.questions.length}},[t,r,a]),h=new Map(f.knowledge.map((e,t)=>[e.key,t])),g=new Map(f.questions.map((e,t)=>[e.id,t])),_=d==null?null:h.has(d)?`knowledge`:`question`,v=new Set,y=new Set;for(let e of f.edges)_===`knowledge`&&e.from.key===d?y.add(e.to.id):_===`question`&&e.to.id===d&&v.add(e.from.key);let b=(e,t)=>_===`knowledge`?e===d:t===d,x=e=>!!d&&!(_===`knowledge`?e.key===d:v.has(e.key)),ee=e=>!!d&&!(_===`question`?e.id===d:y.has(e.id)),te=zD*2+ID+RD+LD,ne=zD*2+Math.max(f.knowledge.length,f.questions.length)*VD,re=zD+ID+RD;return(0,O.jsxs)(`section`,{className:`mb-6 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`知识点关联图`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-end justify-between gap-4`,children:[(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`知识点关联图`}),(0,O.jsx)(`p`,{className:`mt-2 max-w-2xl text-sm leading-7 text-muted-foreground`,children:`左列是题下的「基础知识」块，右列是复用同一块的题目，连线表示这道题确实挂了这条知识点。一条线跨到多个题目，就是反复被考的位置。`})]}),(0,O.jsxs)(`output`,{className:`text-sm text-muted-foreground`,children:[f.knowledge.length,` 个知识点 · `,f.questions.length,` 道题 ·`,` `,f.edges.length,` 条连线`]})]}),(0,O.jsx)(`div`,{className:`mt-5 flex flex-wrap gap-2`,"aria-label":`按科目筛选`,children:JD.map(e=>(0,O.jsxs)(`button`,{className:`filter-chip ${t===e?`active`:``}`,"aria-pressed":t===e,onClick:()=>n(e),children:[e===`all`?`全部科目`:ED[e],(0,O.jsx)(`span`,{className:`ml-2 text-xs text-muted-foreground`,children:YD[e]??0})]},e))}),(0,O.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-3`,children:[(0,O.jsxs)(`div`,{className:`relative min-w-64 flex-1`,children:[(0,O.jsx)(he,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,O.jsx)(`input`,{className:`search-input`,"aria-label":`搜索知识点或题目`,placeholder:`搜索知识点或题目…`,value:r,onChange:e=>i(e.target.value)})]}),(0,O.jsx)(`button`,{className:`filter-chip ${a?`active`:``}`,"aria-pressed":a,onClick:()=>o(!a),children:a?`只看被多题共用`:`显示全部（含 ${PD.length-XD} 个单题知识点）`}),s&&(0,O.jsx)(`a`,{className:`filter-chip`,href:`#view=graph`,children:`取消锁定`})]}),f.knowledge.length===0?(0,O.jsx)(`p`,{className:`mt-6 rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground`,children:`没有符合条件的知识点。换个科目或关键词，或放开「只看被多题共用」。`}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsx)(`div`,{className:`mt-5 max-h-[70vh] overflow-auto rounded-xl border border-border bg-background`,children:(0,O.jsxs)(`svg`,{width:te,height:ne,viewBox:`0 0 ${te} ${ne}`,"aria-label":`知识点关联图：${f.knowledge.length} 个知识点关联 ${f.questions.length} 道题`,children:[(0,O.jsx)(`g`,{fill:`none`,children:f.edges.map(e=>{let t=b(e.from.key,e.to.id),n=qD(h.get(e.from.key)),r=qD(g.get(e.to.id));return(0,O.jsx)(`path`,{d:`M ${zD+ID} ${n} C ${zD+ID+UD} ${n}, ${re-UD} ${r}, ${re} ${r}`,stroke:t&&d?`var(--primary)`:`var(--muted-foreground)`,strokeWidth:t&&d?1.8:1.1,style:{opacity:d?t?.85:.06:.2}},`${e.from.key}:${e.to.id}`)})}),(0,O.jsx)(`g`,{children:f.knowledge.map((e,t)=>{let n=_===`knowledge`&&d===e.key;return(0,O.jsxs)(`a`,{href:`#view=graph&p=${encodeURIComponent(e.key)}`,onMouseEnter:()=>u(e.key),onMouseLeave:()=>u(null),onFocus:()=>u(e.key),onBlur:()=>u(null),"aria-current":s===e.key?`true`:void 0,style:{cursor:`pointer`,opacity:x(e)?.35:1},children:[(0,O.jsx)(`title`,{children:`${e.label} · ${p.get(e.key)??0} 道题`}),(0,O.jsx)(`rect`,{x:zD,y:qD(t)-BD/2,width:ID,height:BD,rx:7,style:{fill:n?`var(--primary)`:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:n?1.6:.9}}),(0,O.jsx)(`text`,{x:zD+10,y:qD(t)+4,fontSize:HD,style:{fill:n?`var(--primary-foreground)`:`var(--accent-foreground)`},children:KD(e.label,ID-20,HD)}),(0,O.jsx)(`text`,{x:zD+ID+8,y:qD(t)+4,fontSize:HD-1,style:{fill:`var(--muted-foreground)`},children:p.get(e.key)??0})]},e.key)})}),(0,O.jsx)(`g`,{children:f.questions.map((t,n)=>{let r=_===`question`&&d===t.id,i=t.questionNumber===void 0?``:`第 ${t.questionNumber} 题 · `;return(0,O.jsxs)(`a`,{href:e(t.lessonId,t.id),onMouseEnter:()=>u(t.id),onMouseLeave:()=>u(null),style:{cursor:`pointer`,opacity:ee(t)?.35:1},children:[(0,O.jsx)(`title`,{children:`${t.lessonTitle} · ${i}${t.title}`}),(0,O.jsx)(`rect`,{x:re,y:qD(n)-BD/2,width:LD,height:BD,rx:7,style:{fill:r?`var(--primary)`:`var(--secondary)`,stroke:r?`var(--primary)`:`var(--border)`,strokeWidth:r?1.6:.9}}),(0,O.jsx)(`text`,{x:re+10,y:qD(n)+4,fontSize:HD,style:{fill:r?`var(--primary-foreground)`:`var(--foreground)`},children:KD(`${i}${t.title}`,LD-20,HD)})]},t.id)})})]})}),(0,O.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`悬停任一节点高亮它的连线；点左侧知识点可锁定并生成可分享的链接，点右侧题目直接跳到该题。`,m&&` 当前筛选隐藏了其余节点。`,a&&` 已隐藏 ${PD.length-XD} 个只服务单道题的知识点。`]})]})]})}function QD({topics:e,label:t=`交互讲解`}){let[n,r]=(0,S.useState)(0),i=e[n];return(0,O.jsxs)(`section`,{className:`mt-6 rounded-xl border border-border bg-secondary/30 p-4 sm:p-5`,"aria-label":t,children:[(0,O.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsx)(`h2`,{className:`text-sm font-semibold text-primary`,children:t}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`点开每一问，按步骤走一遍`})]}),(0,O.jsx)(`div`,{className:`mb-4 flex flex-wrap gap-2`,role:`tablist`,"aria-label":`题目小问`,children:e.map((e,t)=>(0,O.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":t===n,onClick:()=>r(t),className:`rounded-lg border px-3 py-1.5 text-sm `+(t===n?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:e.label},e.id))}),(0,O.jsx)(`div`,{role:`tabpanel`,"aria-label":i.label,children:i.content})]})}function $D({steps:e,unit:t=`步`,ariaLabel:n}){let[r,i]=(0,S.useState)(0),a=e[r];return(0,O.jsxs)(`div`,{"aria-label":n,children:[a.visual&&(0,O.jsx)(`div`,{className:`mb-3`,children:a.visual}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:a.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:a.detail})]}),(0,O.jsxs)(`div`,{className:`mt-3 flex items-center justify-between gap-2`,children:[(0,O.jsxs)(`button`,{type:`button`,onClick:()=>i(Math.max(0,r-1)),disabled:r===0,className:`action-button disabled:opacity-40`,children:[(0,O.jsx)(ce,{size:16}),`上一步`]}),(0,O.jsxs)(`span`,{className:`text-sm tabular-nums text-muted-foreground`,children:[`第 `,r+1,` / `,e.length,` `,t]}),(0,O.jsxs)(`button`,{type:`button`,onClick:()=>i(Math.min(e.length-1,r+1)),disabled:r===e.length-1,className:`action-button disabled:opacity-40`,children:[`下一步`,(0,O.jsx)(le,{size:16})]})]})]})}function eO({fields:e,caption:t}){let[n,r]=(0,S.useState)(0);return(0,O.jsxs)(`div`,{children:[t&&(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:t}),(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,role:`group`,"aria-label":`地址字段`,children:e.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,"aria-pressed":t===n,onClick:()=>r(t),className:`min-w-0 flex-1 rounded-lg border p-3 text-left `+(t===n?`border-primary bg-accent`:`border-border bg-card hover:bg-accent/50`),children:[(0,O.jsx)(`span`,{className:`block font-mono text-lg font-semibold tracking-wider`,children:e.bits}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:e.name})]},e.name))}),(0,O.jsx)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:e[n].detail})]})}function $({label:e,value:t,hint:n}){return(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:e}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-lg tabular-nums`,children:t}),n&&(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n})]})}var tO=[{op:`初始状态`,parent:[1,2,3,4,5,6,7,8,9],detail:`9 个单元素集合，每个结点都是根，高度都是 1。`},{op:`Union(1,2)`,parent:[2,2,3,4,5,6,7,8,9],detail:`同高 1，编号大的 2 当根，高度变 2。`},{op:`Union(3,4)`,parent:[2,2,4,4,5,6,7,8,9],detail:`同高 1，4 当根，高度变 2。`},{op:`Union(5,6)`,parent:[2,2,4,4,6,6,7,8,9],detail:`同高 1，6 当根，高度变 2。`},{op:`Union(7,8)`,parent:[2,2,4,4,6,6,8,8,9],detail:`同高 1，8 当根，高度变 2。`},{op:`Union(2,4)`,parent:[2,4,4,4,6,6,8,8,9],detail:`两树同高 2，4 当根，高度变 3。`},{op:`Union(8,9)`,parent:[2,4,4,4,6,6,8,8,8],detail:`9 高 1，矮树挂到高树根 8，高度仍是 2。`},{op:`Union(6,8)`,parent:[2,4,4,4,6,8,8,8,8],detail:`两树同高 2，8 当根，高度变 3。`},{op:`Find(5)`,parent:[2,4,4,4,6,8,8,8,8],path:[5,6,8],detail:`5→6→8 返回 8；U1 不压缩，双亲一个也不改。`},{op:`Union(4,8)`,parent:[2,4,4,8,6,8,8,8,8],detail:`两树同高 3，8 当根，高度变 4，只剩一棵树。`},{op:`Find(1)`,parent:[2,4,4,8,6,8,8,8,8],path:[1,2,4,8],detail:`1→2→4→8 返回 8；最长路径 8→4→2→1 共四层。`}],nO=[{op:`初始状态`,parent:[1,2,3,4,5,6,7,8,9],detail:`9 个单元素集合，每个集合大小都是 1。`},{op:`Union(1,2)`,parent:[2,2,3,4,5,6,7,8,9],detail:`大小相同，编号大的 2 当根，集合大小变 2。`},{op:`Union(3,4)`,parent:[2,2,4,4,5,6,7,8,9],detail:`大小相同，4 当根，集合大小变 2。`},{op:`Union(5,6)`,parent:[2,2,4,4,6,6,7,8,9],detail:`大小相同，6 当根，集合大小变 2。`},{op:`Union(7,8)`,parent:[2,2,4,4,6,6,8,8,9],detail:`大小相同，8 当根，集合大小变 2。`},{op:`Union(2,4)`,parent:[2,4,4,4,6,6,8,8,9],detail:`两集合各 2 个结点，4 当根，集合大小变 4。`},{op:`Union(8,9)`,parent:[2,4,4,4,6,6,8,8,8],detail:`9 的集合只有 1 个结点，挂到根 8，大小变 3。`},{op:`Union(6,8)`,parent:[2,4,4,4,6,8,8,8,8],detail:`6 的集合 2 个 < 8 的集合 3 个，6 挂到 8，大小变 5。`},{op:`Find(5)`,parent:[2,4,4,4,8,8,8,8,8],path:[5,6,8],detail:`5→6→8 返回 8；压缩后 5、6 直接指向 8，7、9 不动。`},{op:`Union(4,8)`,parent:[2,4,4,8,8,8,8,8,8],detail:`4 的集合 4 个 < 8 的 5 个，4 挂到 8，大小变 9；孩子不搬。`},{op:`Find(1)`,parent:[8,8,4,8,8,8,8,8,8],path:[1,2,4,8],detail:`1→2→4→8 返回 8；压缩 1、2、4，3 不在路径上仍指 4。`}];function rO(e,t){return e.flatMap((e,n)=>n+1!==e&&e===t?[n+1]:[])}function iO(e,t){let n=rO(e,t);return 1+(n.length?Math.max(...n.map(t=>iO(e,t))):0)}function aO({id:e,parent:t,path:n}){let r=rO(t,e);return(0,O.jsxs)(`li`,{children:[(0,O.jsx)(`span`,{className:`inline-flex h-7 min-w-7 items-center justify-center rounded-md border px-1.5 font-mono text-sm `+(n.includes(e)?`border-primary bg-primary text-primary-foreground`:`border-border bg-card`),children:e}),r.length>0&&(0,O.jsx)(`ul`,{className:`ml-3.5 border-l border-border pl-3`,children:r.map(e=>(0,O.jsx)(aO,{id:e,parent:t,path:n},e))})]})}function oO({parent:e,path:t=[],metric:n}){let r=e.flatMap((e,t)=>e===t+1?[t+1]:[]),i=t=>e.reduce((n,r,i)=>{let a=i+1;for(;e[a-1]!==a;)a=e[a-1];return a===t?n+1:n},0);return(0,O.jsx)(`div`,{className:`flex flex-wrap items-start gap-5 rounded-lg border border-border bg-card p-3`,children:r.map(r=>(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`ul`,{children:(0,O.jsx)(aO,{id:r,parent:e,path:t})}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n===`height`?`高度 ${iO(e,r)}`:`大小 ${i(r)} · 高 ${iO(e,r)}`})]},r))})}function sO({parent:e,caption:t}){return(0,O.jsxs)(`div`,{className:`mt-2`,children:[(0,O.jsx)(`p`,{className:`mb-1 text-xs text-muted-foreground`,children:t}),(0,O.jsx)(`div`,{className:`grid grid-cols-9 gap-1 text-center text-xs`,children:e.map((e,t)=>(0,O.jsxs)(`div`,{className:`rounded border border-border bg-card py-1`,children:[(0,O.jsx)(`span`,{className:`block text-muted-foreground`,children:t+1}),(0,O.jsx)(`span`,{className:`block font-mono font-semibold`,children:e})]},t))})]})}function cO(e,t){return e.map(e=>({title:e.op,detail:e.detail,visual:(0,O.jsxs)(`div`,{children:[e.path&&(0,O.jsxs)(`p`,{className:`mb-2 font-mono text-sm`,children:[`查找路径：`,e.path.join(` → `),`，返回 `,e.path[e.path.length-1]]}),(0,O.jsx)(oO,{parent:e.parent,path:e.path,metric:t}),(0,O.jsx)(sO,{parent:e.parent,caption:`双亲数组（根指向自己）`})]})}))}function lO(){return(0,O.jsx)(QD,{topics:[{id:`u1`,label:`① 按高度合并 U1`,content:(0,O.jsx)($D,{steps:cO(tO,`height`)})},{id:`u2`,label:`② 按大小合并 U2`,content:(0,O.jsx)($D,{steps:cO(nO,`size`)})},{id:`result`,label:`③ 结论对照`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`U1 最终根`,value:`8`,hint:`高度 4，8→4→2→1`}),(0,O.jsx)($,{label:`U2 最终根`,value:`8`,hint:`仍有 8→4→3 三层`}),(0,O.jsx)($,{label:`Find(5)`,value:`5→6→8`,hint:`返回 8`}),(0,O.jsx)($,{label:`Find(1)`,value:`1→2→4→8`,hint:`返回 8`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`U1：`}),`只按高度合并，Find 不压缩，最后是一棵高 4 的树。`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`U2：`}),`按集合大小合并，每次 Find 立即压缩；压缩只改访问过的路径，结点 3 仍指向 4。`]})]}),(0,O.jsx)(sO,{parent:[2,4,4,8,6,8,8,8,8],caption:`U1 最终双亲数组`}),(0,O.jsx)(sO,{parent:[8,8,4,8,8,8,8,8,8],caption:`U2 最终双亲数组`})]})}]})}var uO=[{title:`首结点 8 必保留`,detail:`逆置后首结点是原尾结点，右侧没有结点，suffixMax 记为 8。`,list:[8,3,13,2,5],max:8,verdict:`保留 8`},{title:`3 < 8，删除 3`,detail:`右侧最大值 8 严格大于 3，摘链删除；suffixMax 不变。`,list:[8,3,13,2,5],drop:1,max:8,verdict:`删除 3`},{title:`13 ≥ 8，保留 13`,detail:`13 不小于 suffixMax，保留并更新 suffixMax = 13。`,list:[8,13,2,5],max:13,verdict:`保留 13`},{title:`2 < 13，删除 2`,detail:`2 的右侧最大值是 13，严格大于 2，删除。`,list:[8,13,2,5],drop:2,max:13,verdict:`删除 2`},{title:`5 < 13，删除 5`,detail:`5 的右侧最大值是 13，删除；扫描结束。`,list:[8,13,5],drop:2,max:13,verdict:`删除 5`},{title:`筛除完成：8→13`,detail:`保留下来的结点都满足右侧没有更大值，等待再逆置。`,list:[8,13],max:13,verdict:`扫描结束`}];function dO({list:e,drop:t}){return(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2 rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`head →`}),e.map((n,r)=>(0,O.jsxs)(`span`,{className:`flex items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-2 font-mono `+(t===r?`border-destructive bg-destructive/10 text-destructive line-through`:`border-border bg-secondary/40`),children:n}),r<e.length-1&&(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`→`})]},r)),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`→ ∧`})]})}function fO(){return(0,O.jsx)(QD,{topics:[{id:`reverse`,label:`① 先逆置`,content:(0,O.jsx)($D,{steps:[{title:`原链表 5→2→13→3→8`,detail:`每个结点是否删除，只看它右侧的最大值，而不是紧邻的 next。`,visual:(0,O.jsx)(dO,{list:[5,2,13,3,8]})},{title:`逆置后 8→3→13→2→5`,detail:`原来的右侧变成已经扫描过的一侧，一个 suffixMax 就能代表右侧最大值。`,visual:(0,O.jsx)(dO,{list:[8,3,13,2,5]})}]})},{id:`scan`,label:`② 维护最大值并删除`,content:(0,O.jsx)($D,{steps:uO.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(dO,{list:e.list,drop:e.drop}),(0,O.jsxs)(`div`,{className:`mt-2 grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`suffixMax（已扫描最大值）`,value:e.max}),(0,O.jsx)($,{label:`本步判定`,value:e.verdict,hint:`严格小于才删除，相等保留`})]})]})}))})},{id:`back`,label:`③ 再逆置`,content:(0,O.jsx)($D,{steps:[{title:`把 8→13 逆置`,detail:`筛除时链表是反的，最后再逆置一次，恢复保留结点的原相对次序。`,visual:(0,O.jsx)(dO,{list:[8,13]})},{title:`结果 13→8`,detail:`13 右侧没有更大值，8 右侧有 13，所以只保留这两个。`,visual:(0,O.jsx)(dO,{list:[13,8]})}]})},{id:`cost`,label:`④ 复杂度`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`时间复杂度`,value:`Θ(n)`,hint:`两次逆置 + 一次筛除`}),(0,O.jsx)($,{label:`额外空间`,value:`O(1)`,hint:`几个指针和一个整数`}),(0,O.jsx)($,{label:`相等值`,value:`保留`,hint:`只删严格小于`}),(0,O.jsx)($,{label:`题例结果`,value:`13→8`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`关键：`}),`删除 3 后前驱不前进，从 prev->next 继续；先摘链再释放，避免访问已释放结点。`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`边界：`}),`严格递减链表原样保留，严格递增链表只留尾结点。`]})]})]})}]})}var pO=[[0,0,4,null,null],[0,0,3,7,null],[4,3,0,1,6],[null,7,1,0,2],[null,null,6,2,0]],mO=[0,1,2,3,4],hO=[{visited:[0],lowcost:[0,0,4,null,null],pick:null,sum:0,title:`初始：S = {0}`,detail:`lowcost[j] 直接抄 Edge[0][j]，visited[0] = 1。顶点 1 的候选边权已经是 0。`},{visited:[0,1],lowcost:[0,0,3,7,null],pick:{v:1,via:0,w:0},sum:0,title:`第 1 轮：选 0–1，权 0`,detail:`0 权边也是合法边权：归属只看 visited，lowcost 只存候选边权，两者不能合并。`},{visited:[0,1,2],lowcost:[0,0,3,1,6],pick:{v:2,via:1,w:3},sum:3,title:`第 2 轮：选 1–2，权 3`,detail:`用 Edge[2][*] 松弛：lowcost[3] 由 7 降到 1，lowcost[4] 记为 6。`},{visited:[0,1,2,3],lowcost:[0,0,3,1,2],pick:{v:3,via:2,w:1},sum:4,title:`第 3 轮：选 2–3，权 1`,detail:`lowcost[4] 由 6 降到 2，走 3–4 比 2–4 便宜。`},{visited:[0,1,2,3,4],lowcost:[0,0,3,1,2],pick:{v:4,via:3,w:2},sum:6,title:`第 4 轮：选 3–4，权 2`,detail:`5 个顶点全部并入，返回 6。选出的边：0–1(0)、1–2(3)、2–3(1)、3–4(2)。`}];function gO({visited:e,pick:t}){return(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`mx-auto border-collapse text-center text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`p-1 font-medium`,children:`i \\ j`}),mO.map(t=>(0,O.jsxs)(`th`,{className:`p-1 font-medium `+(e.includes(t)?`text-primary`:``),children:[`j=`,t]},t))]})}),(0,O.jsx)(`tbody`,{children:pO.map((n,r)=>(0,O.jsxs)(`tr`,{children:[(0,O.jsxs)(`th`,{className:`p-1 text-xs font-medium `+(e.includes(r)?`text-primary`:`text-muted-foreground`),children:[`i=`,r]}),n.map((n,i)=>{let a=t!==null&&(t.via===r&&t.v===i||t.v===r&&t.via===i),o=e.includes(r)&&e.includes(i);return(0,O.jsx)(`td`,{className:`border p-1.5 font-mono tabular-nums `+(a?`border-primary bg-primary/15 font-semibold`:o?`border-border bg-secondary/50`:`border-border/60 text-muted-foreground`),children:n===null?`∞`:n},i)})]},r))})]})})}function _O({round:e}){return(0,O.jsx)(`div`,{className:`grid grid-cols-5 gap-2`,children:e.lowcost.map((t,n)=>{let r=e.visited.includes(n);return(0,O.jsxs)(`div`,{className:`rounded-lg border border-border p-2 text-center `+(r?`bg-secondary/50`:`bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-xs text-muted-foreground`,children:[`lowcost[`,n,`]`]}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-lg tabular-nums `+(r?`text-muted-foreground`:``),children:r?`—`:t===null?`∞`:t}),(0,O.jsx)(`span`,{className:`mt-0.5 block text-[11px] text-muted-foreground`,children:r?`已并入`:`候选`})]},n)})})}var vO=[[`visited 与 lowcost 分开`,`题面允许 0 权边，不能用权值是否为 0 代替“是否在 S 中”。`],[`比较用严格 <`,`min 初值为 INT_MAX，写成 <= 会把“无边”哨兵当成候选边。`],[`松弛直取边权`,`lowcost[j] = Edge[k][j]，不是 lowcost[k] + Edge[k][j]（那是 Dijkstra）。`],[`先处理 n <= 1`,`单顶点没有生成树边，直接返回 0。`]];function yO(){let[e,t]=(0,S.useState)(0),n=hO[e];return(0,O.jsx)(QD,{topics:[{id:`matrix`,label:`① 邻接矩阵`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`对角线为 0，∞ 表示 INT_MAX（无边），其余为边权；矩阵对称。`}),(0,O.jsx)(gO,{visited:[],pick:null}),(0,O.jsx)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[[`零权边`,`Edge[0][1] = 0 是真实边权。若用 lowcost[j] == 0 判断“已在 S 中”，这条边会被漏选。`],[`INT_MAX 哨兵`,`它只表示“无边”，不是边权；选最小边必须用严格小于，否则会把哨兵选进来。`]].map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block text-xs text-muted-foreground`,children:e}),t]},e))})]})},{id:`prim`,label:`② Prim 逐轮`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(gO,{visited:n.visited,pick:n.pick}),(0,O.jsx)(`div`,{className:`mt-3`,children:(0,O.jsx)(_O,{round:n})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`本轮选中边`,value:n.pick?`${n.pick.via}–${n.pick.v}`:`—`,hint:`跨切割最小边`}),(0,O.jsx)($,{label:`边权`,value:n.pick?n.pick.w:`—`}),(0,O.jsx)($,{label:`累计 sum`,value:n.sum}),(0,O.jsx)($,{label:`已并入 |S|`,value:`${n.visited.length} / 5`})]}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:n.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:n.detail})]}),(0,O.jsxs)(`div`,{className:`mt-3 flex items-center justify-between gap-2`,children:[(0,O.jsxs)(`button`,{type:`button`,onClick:()=>t(Math.max(0,e-1)),disabled:e===0,className:`action-button disabled:opacity-40`,children:[(0,O.jsx)(ce,{size:16}),`上一步`]}),(0,O.jsxs)(`span`,{className:`text-sm tabular-nums text-muted-foreground`,children:[`第 `,e+1,` / `,hO.length,` 步`]}),(0,O.jsxs)(`button`,{type:`button`,onClick:()=>t(Math.min(hO.length-1,e+1)),disabled:e===hO.length-1,className:`action-button disabled:opacity-40`,children:[`下一步`,(0,O.jsx)(le,{size:16})]})]})]})},{id:`code`,label:`③ 代码要点`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:vO.map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{className:`block text-sm`,children:e}),(0,O.jsx)(`span`,{className:`mt-1 block text-sm leading-6 text-muted-foreground`,children:t})]},e))}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`时间复杂度`,value:`O(n²)`,hint:`每轮两次 O(n) 扫描`}),(0,O.jsx)($,{label:`空间复杂度`,value:`O(n)`,hint:`visited + lowcost`}),(0,O.jsx)($,{label:`外层轮数`,value:`n − 1`,hint:`每次并入一个顶点`}),(0,O.jsx)($,{label:`示例返回`,value:`6`,hint:`0+3+1+2`})]})]})}]})}var bO=[{code:`p->next = pre->next;`,why:`先把插入位置的原后继 s 存进 p->next。必须最先做：空 3 会覆盖 pre->next，晚取就丢了 s。`},{code:`pre->next->prior = p;`,why:`插在中间时原后继 s 存在，把它的前驱改成 p。插到表尾时 pre->next 为空，外面已有 if 判断。`},{code:`pre->next = p;`,why:`把 p 接到 pre 之后，正向链变成 pre → p → s。`},{code:`p->prior = pre;`,why:`补反向链。p 一定有前驱（至少是头结点 L），所以这一条不用判空。`}],xO=[{ins:5,checks:`2≤5 ✓，pre->next 为空停`,count:1,sorted:`{2,5}`},{ins:3,checks:`2≤3 ✓，5≤3 ✗`,count:2,sorted:`{2,3,5}`},{ins:5,checks:`2≤5 ✓，3≤5 ✓，5≤5 ✓，到表尾停`,count:3,sorted:`{2,3,5,5}`},{ins:1,checks:`2≤1 ✗`,count:1,sorted:`{1,2,3,5,5}`},{ins:4,checks:`1≤4 ✓，2≤4 ✓，3≤4 ✓，5≤4 ✗`,count:4,sorted:`{1,2,3,4,5,5}`}],SO=xO.reduce((e,t)=>e+t.count,0),CO=[{title:`空 1：先存旧后继`,detail:`pre 后面原本是 s。把 s 记进 p->next，此刻 pre->next 还没动。`,fwd:`pre → s`,back:`pre ← s`,third:[`p->next`,`s`,`旧后继已保存`]},{title:`空 2：原后继的前驱改指 p`,detail:`只有插在中间才执行。s 为空（插到表尾）就跳过，否则会解引用空指针。`,fwd:`pre → s`,back:`pre ← p ← s`,third:[`条件`,`pre->next ≠ NULL`,`插到表尾时不做`]},{title:`空 3：正向接上 p`,detail:`pre->next 由 s 改成 p，正向链完整：pre → p → s。`,fwd:`pre → p → s`,back:`pre ← p ← s`,third:[`p->next`,`s`,``]},{title:`空 4：补 p 的前驱`,detail:`反向链最后一段接上，四条指针全部接正；p 的前驱至少是头结点，无需判空。`,fwd:`pre → p → s`,back:`pre ← p ← s`,third:[`p->prior`,`pre`,`一定有前驱`]}];function wO({index:e,open:t,onOpen:n}){return(0,O.jsx)(`button`,{type:`button`,onClick:n,"aria-pressed":t,className:`rounded border px-2 py-0.5 font-mono text-xs sm:text-sm `+(t?`border-primary bg-primary/10 text-primary`:`border-dashed border-primary/60 bg-card hover:bg-accent`),children:t?bO[e].code:`________ ${e+1}`})}function TO(){let[e,t]=(0,S.useState)([]),[n,r]=(0,S.useState)(null),i=e=>{t(t=>t.includes(e)?t:[...t,e]),r(e)};return(0,O.jsx)(QD,{topics:[{id:`code`,label:`① 补全四个空`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 font-mono text-xs leading-8 sm:text-sm`,children:[(0,O.jsx)(`div`,{children:`void sort(DiLinkList L) {`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`DiLNode *p, *pre, *q;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`p = L->next->next;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`L->next->next = NULL;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`while (p != NULL) {`}),(0,O.jsx)(`div`,{className:`pl-8`,children:`q = p->next;`}),(0,O.jsx)(`div`,{className:`pl-8`,children:`pre = L;`}),(0,O.jsx)(`div`,{className:`pl-8`,children:`while (pre->next != NULL && pre->next->data <= p->data)`}),(0,O.jsx)(`div`,{className:`pl-12`,children:`pre = pre->next;`}),(0,O.jsxs)(`div`,{className:`pl-8`,children:[(0,O.jsx)(wO,{index:0,open:e.includes(0),onOpen:()=>i(0)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 1`})]}),(0,O.jsx)(`div`,{className:`pl-8`,children:`if (pre->next != NULL)`}),(0,O.jsxs)(`div`,{className:`pl-12`,children:[(0,O.jsx)(wO,{index:1,open:e.includes(1),onOpen:()=>i(1)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 2`})]}),(0,O.jsxs)(`div`,{className:`pl-8`,children:[(0,O.jsx)(wO,{index:2,open:e.includes(2),onOpen:()=>i(2)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 3`})]}),(0,O.jsxs)(`div`,{className:`pl-8`,children:[(0,O.jsx)(wO,{index:3,open:e.includes(3),onOpen:()=>i(3)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 4`})]}),(0,O.jsx)(`div`,{className:`pl-8`,children:`p = q;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`}`}),(0,O.jsx)(`div`,{children:`}`})]}),(0,O.jsx)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-4 text-sm leading-7`,children:n===null?(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`点任意一个空：先想这行改的是哪条链，再看答案。`}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsx)(`strong`,{className:`block font-mono text-primary`,children:bO[n].code}),(0,O.jsx)(`span`,{className:`mt-2 block text-muted-foreground`,children:bO[n].why})]})})]})},{id:`chain`,label:`② 指针怎么接`,content:(0,O.jsx)($D,{steps:CO.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`正向链`,value:e.fwd}),(0,O.jsx)($,{label:`反向链`,value:e.back}),(0,O.jsx)($,{label:e.third[0],value:e.third[1],hint:e.third[2]||void 0})]})}))})},{id:`count`,label:`③ 比较次数`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:[`初始序列 `,`{2,5,3,5,1,4}`,`；只统计 `,`pre->next->data <= p->data`,` 的求值，判空不算。`]}),(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[520px] text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`轮次`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`待插入`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`比较过程`}),(0,O.jsx)(`th`,{className:`px-3 py-2 text-right font-medium`,children:`次数`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`有序段`})]})}),(0,O.jsxs)(`tbody`,{children:[xO.map((e,t)=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono tabular-nums text-muted-foreground`,children:t+1}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono tabular-nums`,children:e.ins}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs`,children:e.checks}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-right font-mono font-semibold tabular-nums`,children:e.count}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs text-muted-foreground`,children:e.sorted})]},t)),(0,O.jsxs)(`tr`,{className:`border-t-2 border-border bg-secondary/40`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-semibold`,colSpan:3,children:`合计`}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-right font-mono text-base font-semibold tabular-nums`,children:SO}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-xs text-muted-foreground`,children:`1+2+3+1+4`})]})]})]})}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`第二个 5 遇到相等的 5 仍然后移（条件用 <=），所以插到先出现的 5 之后，排序稳定。`})]})},{id:`cases`,label:`④ 最好最坏`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`严格递增`,value:`n(n−1)/2`,hint:`每轮扫到表尾`}),(0,O.jsx)($,{label:`严格递减`,value:`n − 1`,hint:`每轮第一次就比较失败`}),(0,O.jsx)($,{label:`时间复杂度`,value:`O(n²)`,hint:`比较次数与 n² 同阶`}),(0,O.jsx)($,{label:`稳定性`,value:`稳定`,hint:`相等时继续后移`})]}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:[`本题代码每轮令 pre = L 从头扫描，递增输入要一路走到尾部，`,(0,O.jsx)(`span`,{className:`font-mono`,children:` 0+1+…+(n−1) = n(n−1)/2 `}),`次，是 Θ(n²)；数组版插入排序从有序段末端向前比较，递增输入只需 n−1 次。差别来自扫描方向，不是双向链表做不到。`]})]})}]})}var EO=1/0,DO=5,OO=[[0,1,0],[1,2,0],[2,3,0],[3,4,0],[0,4,5]];function kO(){let e=Array.from({length:DO},(e,t)=>t===0?0:EO),t=[];for(let n=1;n<=3;n+=1){let n=e.slice(),r=[];for(let[t,i,a]of OO){if(e[t]===EO)continue;let o=e[t]+a;o<n[i]&&(r.push({from:t,to:i,w:a,cand:o,before:n[i]}),n[i]=o)}t.push({prev:e,cur:n,relax:r}),e=n}return t}var AO=kO(),jO=e=>e===EO?`∞`:String(e);function MO({label:e,values:t,changed:n}){return(0,O.jsxs)(`div`,{className:`flex items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-12 shrink-0 font-mono text-xs text-muted-foreground`,children:e}),(0,O.jsx)(`div`,{className:`flex flex-1 gap-1.5`,children:t.map((e,t)=>(0,O.jsxs)(`div`,{className:`flex-1 rounded-lg border p-1.5 text-center `+(n.includes(t)?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-[10px] text-muted-foreground`,children:[`v`,t]}),(0,O.jsx)(`strong`,{className:`block font-mono text-sm tabular-nums`,children:jO(e)})]},t))})]})}function NO(){let[e,t]=(0,S.useState)(0),n=AO[e],r=n.relax.map(e=>e.to),i=n.cur.filter(e=>e!==EO).length;return(0,O.jsx)(QD,{topics:[{id:`state`,label:`① 状态定义`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`换乘上限`,value:`2 次`,hint:`中间顶点 ≤2 个`}),(0,O.jsx)($,{label:`边数上限`,value:`3 条`,hint:`换乘次数 + 1`}),(0,O.jsx)($,{label:`递推轮数`,value:`3 轮`,hint:`k = 1, 2, 3`}),(0,O.jsx)($,{label:`答案`,value:`d₃[t]`,hint:`不可达返回 −1`})]}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 font-mono text-xs leading-6 sm:text-sm`,children:[`d₀[s] = 0，d₀[v] = ∞（v ≠ s）`,(0,O.jsx)(`br`,{}),`d_k[v] = min( d_{k−1}[v], min{ d_{k−1}[i] + w(i,v) } )`]}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:`第一项 d_{k−1}[v] 表示本轮不用新边，所以 d_k 是「至多 k 条边」，不是「恰好 k 条边」。`})]})},{id:`rounds`,label:`② 逐轮松弛`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`反例图：0→1→2→3→4 每条边权 0，另有直达边 0→4 权 5；求 0 到 4 至多 3 条边的最小总等待`}),(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q41-round`,children:[(0,O.jsx)(`span`,{children:`拖动查看每一轮`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`第 `,e+1,` / 3 轮`]})]}),(0,O.jsx)(`input`,{id:`q41-round`,type:`range`,min:0,max:2,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`space-y-2`,children:[(0,O.jsx)(MO,{label:`prev`,values:n.prev,changed:[]}),(0,O.jsx)(MO,{label:`cur`,values:n.cur,changed:r})]}),(0,O.jsxs)(`ul`,{className:`mt-3 space-y-1.5`,children:[n.relax.length===0&&(0,O.jsx)(`li`,{className:`text-sm text-muted-foreground`,children:`本轮没有更短的候选，cur 与 prev 完全相同。`}),n.relax.map(e=>(0,O.jsxs)(`li`,{className:`rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs`,children:[e.from,` → `,e.to,`：prev[`,e.from,`] `,jO(n.prev[e.from]),` + `,e.w,` = `,e.cand,`，cur[`,e.to,`] 由 `,jO(e.before),` 降为 `,e.cand]},`${e.from}-${e.to}`))]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`轮次 k`,value:e+1}),(0,O.jsx)($,{label:`本轮松弛`,value:`${n.relax.length} 条边`}),(0,O.jsx)($,{label:`可达顶点`,value:`${i} / 5`}),(0,O.jsx)($,{label:`d_k[4]`,value:jO(n.cur[4])})]}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`每轮只从 prev 加一条边：0→1、0→4 在第 1 轮松弛，1→2 要等第 2 轮，2→3 要等第 3 轮。`})]})},{id:`answer`,label:`③ 答案与复杂度`,content:(0,O.jsx)($D,{steps:[{title:`三轮后 d₃[4] = 5`,detail:`0→1→2→3→4 那条 0 权链要 4 条边，三轮只到 3 条边；合法方案只剩直达边 0→4，权 5。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`无约束最短路`,value:`0`,hint:`用了 4 条边，非法`}),(0,O.jsx)($,{label:`至多 3 条边`,value:`5`,hint:`0→4 直达`}),(0,O.jsx)($,{label:`d₃[4]`,value:`5`,hint:`三轮结束`}),(0,O.jsx)($,{label:`不可达`,value:`−1`,hint:`d₃[t] 仍为 ∞`})]})},{title:`单数组就地松弛会多走边`,detail:`同一轮里 0→1、1→2、2→3、3→4 会连锁更新，一轮就走完 4 条边，d[4] 被错算成 0。`},{title:`「至多」不是「恰好」`,detail:`0→2 权 2、2→3 权 1、0→3 权 9：至多 3 条边的最优是 3（只用 2 条边），只算恰好 3 条边会漏掉。`},{title:`复杂度`,detail:`每轮检查全部 n² 个有序顶点对，共 3 轮；额外空间只有 prev、cur 两个长度为 n 的数组。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`时间`,value:`O(3n²) = O(n²)`}),(0,O.jsx)($,{label:`额外空间`,value:`O(n)`})]})}]})}]})}var PO=1e3,FO=20,IO=PO/FO,LO=5,RO=IO/LO,zO=IO*2,BO=LO-1,VO=IO*2,HO=zO+VO*2,UO=[{label:`初始`,groups:[`1`,`2`,`3`,`4`,`5`,`6`,`7`,`8`,`9`,`10`],passes:0,io:zO},{label:`第 1 趟后`,groups:[`1–4`,`5–8`,`9–10`],passes:1,io:zO+VO},{label:`第 2 趟后`,groups:[`1–3`],passes:2,io:HO}];function WO(){let[e,t]=(0,S.useState)(0),[n,r]=(0,S.useState)(!1),i=UO[e],a=n?[5,4,9,2]:[5,1,9,2];return(0,O.jsx)(QD,{topics:[{id:`runs`,label:`① 初始归并段`,content:(0,O.jsx)($D,{steps:[{title:`1000 条记录 ÷ 20 条/块 = 50 个数据块`,detail:`记录数除以每块能存的记录数，得到文件占用的磁盘块数。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`记录数`,value:PO}),(0,O.jsx)($,{label:`每块记录数`,value:FO}),(0,O.jsx)($,{label:`数据块数`,value:`${IO} 块`})]})},{title:`50 块 ÷ 5 块/段 = 10 个初始归并段`,detail:`内存一次装 5 块，排好序写出就是一段，所以段数等于数据块数除以 5。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`内存工作区`,value:`${LO} 块`}),(0,O.jsx)($,{label:`初始归并段`,value:`${RO} 个`})]})},{title:`生成阶段要 100 次块 I/O`,detail:`50 块读进内存、排好再写回磁盘，读 50 次加写 50 次，共 100 次。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`读`,value:`50 块`}),(0,O.jsx)($,{label:`写`,value:`50 块`}),(0,O.jsx)($,{label:`合计`,value:`100 次`,hint:`块 I/O`})]})}]})},{id:`passes`,label:`② 路数与趟数`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:[`内存 5 块 = k 个输入缓冲 + 1 个输出缓冲，故 k + 1 ≤ 5，最大归并路数 k = `,BO]}),(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q42-stage`,children:[(0,O.jsx)(`span`,{children:`拖动查看归并推进`}),(0,O.jsx)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:i.label})]}),(0,O.jsx)(`input`,{id:`q42-stage`,type:`range`,min:0,max:2,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsx)(`div`,{className:`space-y-2`,children:UO.map((t,n)=>(0,O.jsxs)(`div`,{className:`flex items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-16 shrink-0 text-xs text-muted-foreground`,children:t.label}),(0,O.jsx)(`div`,{className:`flex flex-1 flex-wrap gap-1`,children:t.groups.map(t=>(0,O.jsx)(`span`,{className:`rounded border px-1.5 py-0.5 font-mono text-[11px] `+(n===e?`border-primary bg-accent`:`border-border bg-card text-muted-foreground`),children:t},t))}),(0,O.jsxs)(`span`,{className:`shrink-0 font-mono text-xs tabular-nums`,children:[t.groups.length,` 段`]})]},t.label))}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`段数按 ⌈段数 / 4⌉ 收拢：10 → ⌈10/4⌉ = 3 → ⌈3/4⌉ = 1，共 2 趟归并。`}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`最大归并路数`,value:`k = ${BO}`}),(0,O.jsx)($,{label:`已完成趟数`,value:`${i.passes} 趟`}),(0,O.jsx)($,{label:`每趟块 I/O`,value:`${VO} 次`,hint:`50 读 + 50 写`}),(0,O.jsx)($,{label:`累计块 I/O`,value:`${i.io} 次`})]}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:[`总块 I/O = 100（生成）+ 2 × 100（两趟归并）= `,HO,` 次。`]})]})},{id:`loser`,label:`③ 败者树`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`固定 4 个叶结点，内部结点记「败者」段号，冠军另外保存；不足 4 路用 +∞ 虚拟段补足`}),(0,O.jsxs)(`div`,{className:`space-y-2 text-center`,children:[(0,O.jsxs)(`div`,{className:`mx-auto w-44 rounded-lg border border-primary bg-accent px-2 py-1`,children:[(0,O.jsx)(`span`,{className:`block text-[10px] text-muted-foreground`,children:`根：败者`}),(0,O.jsx)(`strong`,{className:`font-mono tabular-nums`,children:n?`4`:`2`})]}),(0,O.jsx)(`div`,{className:`mx-auto grid w-full max-w-sm grid-cols-2 gap-2`,children:[{v:`5`,d:`左子树`},{v:`9`,d:`右子树`}].map(e=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card px-2 py-1`,children:[(0,O.jsxs)(`span`,{className:`block text-[10px] text-muted-foreground`,children:[e.d,`：败者`]}),(0,O.jsx)(`strong`,{className:`font-mono tabular-nums`,children:e.v})]},e.d))}),(0,O.jsx)(`div`,{className:`grid grid-cols-4 gap-2`,children:a.map((e,t)=>(0,O.jsxs)(`div`,{className:`rounded-lg border p-2 `+(t===1?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-[10px] text-muted-foreground`,children:[`段`,t+1,` 队首`]}),(0,O.jsx)(`strong`,{className:`block font-mono tabular-nums`,children:e})]},t))})]}),(0,O.jsxs)(`div`,{className:`mt-3 flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsx)(`button`,{type:`button`,onClick:()=>r(!n),className:`action-button`,children:n?`还原到调整前`:`输出 1，段②补入 4`}),(0,O.jsxs)(`span`,{className:`font-mono text-sm tabular-nums`,children:[`冠军 = `,n?2:1]})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`叶结点`,value:`4 个`,hint:`含虚拟段`}),(0,O.jsx)($,{label:`树高`,value:`⌈log₂4⌉ = 2`}),(0,O.jsx)($,{label:`建树比较`,value:`k − 1 = 3 次`}),(0,O.jsx)($,{label:`每次调整`,value:`2 次`,hint:`叶到根两层`})]}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`输出 1 后从该段补入 4：4 与左子树的败者 5 比较胜出上浮，再与根的败者 2 比较，2 成为新冠军——只比 2 次，不必重比四个队首。`})]})}]})}var GO=1024e3,KO=32,qO=GO/KO,JO=qO+2048/KO;function YO(){let[e,t]=(0,S.useState)(0),n=qO+Math.floor(e/2),r=JO+Math.floor(e/2),i=n%64==r%64,a=e%2==0,o=8*(e+1),s=8*Math.ceil((e+1)/2);return(0,O.jsx)(QD,{topics:[{id:`page`,label:`① 是否同页`,content:(0,O.jsx)($D,{steps:[{title:`每个数组占 2KB`,detail:`128 × 4 个 int × 4B = 2048B。a 的虚拟地址范围是 0x80490000～0x804907FF。`,visual:(0,O.jsx)($,{label:`数组 a 大小`,value:`2048 B = 2 KB`,hint:`128 行 × 4 列 × 4 字节`})},{title:`b 紧接在 a 后面`,detail:`b 从 0x80490800 开始，到 0x80490FFF 结束。两个数组首尾相接，中间没有空隙。`,visual:(0,O.jsx)($,{label:`数组 b 虚拟地址范围`,value:`0x80490800 ～ 0x80490FFF`})},{title:`整段落在同一个 4KB 页内`,detail:`页大小 4KB = 0x1000，页按 0x1000 对齐。0x80490000～0x80490FFF 正好是一个页，所以 a、b 同页。`,visual:(0,O.jsx)($,{label:`结论`,value:`同页`,hint:`0x80490000 是 0x1000 的整数倍，页内偏移 0～0xFFF`})}]})},{id:`fields`,label:`② 地址字段`,content:(0,O.jsx)(eO,{caption:`32 位物理地址，Cache 数据区 2KB、块 32B、直接映射`,fields:[{name:`标记 Tag`,bits:`21 位`,detail:`块内偏移 5 位 + 行号 6 位 = 11 位，剩下 32 − 11 = 21 位作标记。`},{name:`行号 Index`,bits:`6 位`,detail:`行数 = 2KB ÷ 32B = 64 行，log₂64 = 6 位，直接映射时行号就是块号对 64 取余。`},{name:`块内偏移 Offset`,bits:`5 位`,detail:`块大小 32B，log₂32 = 5 位，用来在块内定位具体字节。`}]})},{id:`blocks`,label:`③ 块号`,content:(0,O.jsx)($D,{steps:[{title:`a[0][0] 的物理地址`,detail:`虚拟地址 0x80490000 对应的物理地址是 0x000fa000，直接除以块大小 32 得到块号。`,visual:(0,O.jsx)($,{label:`a[0][0] 块号`,value:`32000`,hint:`0x000fa000 ÷ 32 = 1024000 ÷ 32`})},{title:`一行只有 16B，占半个块`,detail:`a[2][0] 相对首地址偏移 2 × 4 × 4B = 32B，正好跨过一个整块，所以块号加 1。`,visual:(0,O.jsx)($,{label:`a[2][0] 块号`,value:`32001`,hint:`0x000fa020 ÷ 32`})},{title:`为什么 a[0] 和 a[1] 同块`,detail:`一行 4 个 int 共 16B，两块才能装下 32B 的块，所以第 0、1 行共用第 32000 块，第 2、3 行共用第 32001 块。`,visual:(0,O.jsx)($,{label:`a[0][·] 与 a[1][·]`,value:`同属第 32000 块`,hint:`16B + 16B = 32B 恰好一块`})}]})},{id:`miss`,label:`④ 缺失率`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q43-row`,children:[(0,O.jsx)(`span`,{children:`拖动查看第 i 轮循环（0～127）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`i = `,e]})]}),(0,O.jsx)(`input`,{id:`q43-row`,type:`range`,min:`0`,max:`127`,step:`1`,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-3`,children:[(0,O.jsx)($,{label:`a 的块号`,value:n}),(0,O.jsx)($,{label:`b 的块号`,value:r}),(0,O.jsx)($,{label:`同一 Cache 行`,value:i?`是`:`否`,hint:`块号对 64 取余相同`}),(0,O.jsx)($,{label:`2 路组号`,value:n%32,hint:`块号对 32 取余`}),(0,O.jsx)($,{label:`本轮 2 路`,value:a?`缺失`:`命中`,hint:a?`换到新块，两条路都空`:`与上一轮同一对块，已在路中`}),(0,O.jsx)($,{label:`本轮直接映射`,value:`缺失`,hint:`两块抢同一行，每次访问都换出`})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`直接映射`}),`读 a、写 b 交替进行，两块抢同一行，每次都把对方换出。`,(0,O.jsxs)(`span`,{className:`mt-1 block font-mono tabular-nums`,children:[`累计缺失 `,o,` / `,8*(e+1),` 次`]})]}),(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`2 路组相联（LRU）`}),`两块可以同时驻留在同一组的两条路里，只有换到新块时才缺。`,(0,O.jsxs)(`span`,{className:`mt-1 block font-mono tabular-nums`,children:[`累计缺失 `,s,` / `,8*(e+1),` 次`]})]})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`每轮 4 个元素、每个元素读 a 写 b 共 2 次访问，所以每轮 8 次。`}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`直接映射：`}),`1024 / 1024 = `,(0,O.jsx)(`strong`,{children:`100%`}),`。`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`2 路组相联：`}),`只有 i 为偶数的 64 轮各缺 2 次，128 / 1024 = `,(0,O.jsx)(`strong`,{children:`12.5%`}),`。`]})]})]})}]})}var XO=[`IF`,`ID`,`EX`,`MEM`,`WB`],ZO=15,QO=[{text:`add  $t4, $t1, $t0`,fetch:1,detail:`写 $t4；读 $t1（a 首址）、$t0（字节偏移）。`},{text:`nop`,fetch:2,detail:`占位，等 $t4 在第 5 周期写回。`},{text:`nop`,fetch:3,detail:`占位。`},{text:`nop`,fetch:4,detail:`占位。`},{text:`lw   $t5, 0($t4)`,fetch:5,detail:`用 $t4 作访存地址，写 $t5。ID 在第 6 周期，晚于写回。`},{text:`add  $t7, $t2, $t0`,fetch:6,detail:`写 $t7；读 $t2（b 首址）、$t0。`},{text:`nop`,fetch:7,detail:`占位，等 $t7 在第 10 周期写回。`},{text:`nop`,fetch:8,detail:`占位。`},{text:`nop`,fetch:9,detail:`占位。`},{text:`sw   $t5, 0($t7)`,fetch:10,detail:`读 $t5 作数据、$t7 作地址；ID 在第 11 周期。`},{text:`addi $t0, $t0, 4`,fetch:11,detail:`写 $t0，供下一轮迭代使用。`}],$O={"0:5":!0,"4:6":!0,"5:10":!0,"9:11":!0};function ek(e,t){let n=t-e.fetch;return n>=0&&n<XO.length?XO[n]:``}function tk(){let[e,t]=(0,S.useState)(0);return(0,O.jsx)(QD,{topics:[{id:`regs`,label:`① 寄存器角色`,content:(0,O.jsx)($D,{steps:[{title:`$t1 存 a 的首地址`,detail:`add $t4,$t1,$t0 把基址与偏移相加，得到 a[i][j] 的地址。`,visual:(0,O.jsx)($,{label:`基址寄存器`,value:`$t1 = &a[0][0]`})},{title:`$t2 存 b 的首地址`,detail:`第三条指令用 $t2 加同一个偏移，所以两数组元素下标一一对应。`,visual:(0,O.jsx)($,{label:`基址寄存器`,value:`$t2 = &b[0][0]`})},{title:`$t0 存字节偏移`,detail:`一个 int 占 4 字节，行优先存放，每轮加 4 指向下一个元素。`,visual:(0,O.jsx)($,{label:`偏移量`,value:`$t0 = 4×(4i+j)`,hint:`addi $t0,$t0,4 推进一轮`})}]})},{id:`raw`,label:`② RAW 相关`,content:(0,O.jsx)($D,{steps:[{title:`1 → 2：$t4`,detail:`add 写 $t4，lw 立刻拿 $t4 当访存地址，必须先写后读。`,visual:(0,O.jsx)($,{label:`相关`,value:`1 → 2`,hint:`寄存器 $t4`})},{title:`2 → 4：$t5`,detail:`lw 把 M[EA] 读进 $t5，sw 把 $t5 当待存数据写出。`,visual:(0,O.jsx)($,{label:`相关`,value:`2 → 4`,hint:`寄存器 $t5`})},{title:`3 → 4：$t7`,detail:`add 写 $t7，sw 用 $t7 算存储地址 EA，这是最晚的一条约束。`,visual:(0,O.jsx)($,{label:`相关`,value:`3 → 4`,hint:`寄存器 $t7`})},{title:`$t0 不算 RAW`,detail:`指令 5 写 $t0，而 1、3 读 $t0 在它之前，是 WAR；跨迭代的 RAW 不在本题范围。`,visual:(0,O.jsx)($,{label:`涉及 $t0`,value:`WAR（反相关）`,hint:`题目只考虑本次迭代内的 RAW`})}]})},{id:`nop`,label:`③ nop 与时间线`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`mb-2 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,O.jsx)(`span`,{children:`点指令名看说明；深色格是「生产者 WB」与「消费者 ID」这对冲突点`}),(0,O.jsx)(`span`,{className:`font-mono`,children:`共 6 个 nop`})]}),(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[680px] border-collapse text-xs`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`p-1 text-left font-medium text-muted-foreground`,children:`指令`}),Array.from({length:ZO},(e,t)=>(0,O.jsx)(`th`,{className:`p-1 font-mono font-medium text-muted-foreground`,children:t+1},t))]})}),(0,O.jsx)(`tbody`,{children:QO.map((n,r)=>(0,O.jsxs)(`tr`,{className:r===e?`bg-accent/60`:``,children:[(0,O.jsx)(`td`,{className:`whitespace-nowrap p-1 font-mono`,children:(0,O.jsx)(`button`,{type:`button`,onClick:()=>t(r),className:`rounded px-1 text-left hover:underline`,children:n.text})}),Array.from({length:ZO},(e,t)=>{let i=ek(n,t+1),a=$O[`${r}:${t+1}`];return(0,O.jsx)(`td`,{className:`border border-border/60 p-1 text-center font-mono `+(a?`bg-primary font-semibold text-primary-foreground`:i?`bg-card`:``),children:i},t)})]},r))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`font-mono`,children:QO[e].text}),(0,O.jsx)(`p`,{className:`mt-1 text-muted-foreground`,children:QO[e].detail})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`1 后插 nop`,value:`3`,hint:`$t4 第 5 周期才写回`}),(0,O.jsx)($,{label:`2 后插 nop`,value:`0`,hint:`已被后面的等待覆盖`}),(0,O.jsx)($,{label:`3 后插 nop`,value:`3`,hint:`$t7 第 10 周期才写回`}),(0,O.jsx)($,{label:`nop 总数`,value:`6`,hint:`最少值`})]})]})}]})}var nk=4096,rk=[30001,4086,4100,8200,3012,12600,2023,17e3,8201,12601],ik=rk.map(e=>Math.floor(e/nk)),ak=[[7],[7,0],[7,0,1],[0,1,2],[1,2,0],[2,0,3],[2,3,0],[3,0,4],[0,4,2],[4,2,3]],ok=[null,null,null,7,null,1,null,2,3,0],sk=[!1,!1,!1,!1,!0,!1,!0,!1,!1,!1],ck=.2*120,lk=.8*220,uk=20000232;function dk(){let[e,t]=(0,S.useState)(0),n=ak[e],r=sk.slice(0,e+1).filter(e=>!e).length;return(0,O.jsx)(QD,{topics:[{id:`pages`,label:`① 页号序列`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`页大小 4KB = 4096B，页号 = ⌊逻辑地址 ÷ 4096⌋`}),(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[420px] border-collapse text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`次序`}),(0,O.jsx)(`th`,{className:`p-1 text-right font-medium`,children:`逻辑地址`}),(0,O.jsx)(`th`,{className:`p-1 text-right font-medium`,children:`÷ 4096`}),(0,O.jsx)(`th`,{className:`p-1 text-right font-medium`,children:`页号`})]})}),(0,O.jsx)(`tbody`,{children:rk.map((e,t)=>(0,O.jsxs)(`tr`,{className:`border-t border-border/60`,children:[(0,O.jsx)(`td`,{className:`p-1 font-mono tabular-nums text-muted-foreground`,children:t+1}),(0,O.jsx)(`td`,{className:`p-1 text-right font-mono tabular-nums`,children:e}),(0,O.jsx)(`td`,{className:`p-1 text-right font-mono tabular-nums text-muted-foreground`,children:(e/nk).toFixed(3)}),(0,O.jsx)(`td`,{className:`p-1 text-right font-mono font-semibold tabular-nums`,children:ik[t]})]},e))})]})}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 font-mono text-sm leading-6`,children:`7, 0, 1, 2, 0, 3, 0, 4, 2, 3`})]})},{id:`lru`,label:`② LRU 置换`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q45-step`,children:[(0,O.jsx)(`span`,{children:`拖动查看每次访问后的页框`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`第 `,e+1,` / 10 次`]})]}),(0,O.jsx)(`input`,{id:`q45-step`,type:`range`,min:0,max:9,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsx)(`div`,{className:`grid grid-cols-3 gap-2`,children:[0,1,2].map(t=>{let r=n[t];return(0,O.jsxs)(`div`,{className:`rounded-lg border p-3 text-center `+(r===ik[e]?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-xs text-muted-foreground`,children:[`页框 `,t+1]}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-2xl tabular-nums`,children:r??`—`}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:r===void 0?`空`:t<n.length-1?`较久未用`:`最近使用`})]},t)})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`本次页号`,value:ik[e]}),(0,O.jsx)($,{label:`结果`,value:sk[e]?`命中`:`缺页`,hint:ok[e]===null?void 0:`淘汰页 ${ok[e]}`}),(0,O.jsx)($,{label:`累计缺页`,value:`${r} / ${e+1}`}),(0,O.jsx)($,{label:`缺页率`,value:`${Math.round(r/(e+1)*100)}%`})]}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`命中也要更新次序：第 5 次访问页 0，它立刻变成「最近使用」，所以第 6 次淘汰的是页 1。`})]})},{id:`time`,label:`③ 平均访问时间`,content:(0,O.jsx)($D,{steps:[{title:`不缺页：按 20% 命中率加权`,detail:`命中 20+100，未命中再查一次页表 20+100+100，加权得 200ns。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`TLB 命中 20%`,value:`120 ns`}),(0,O.jsx)($,{label:`TLB 未命中 80%`,value:`220 ns`}),(0,O.jsx)($,{label:`加权`,value:`200 ns`,hint:`${ck} + ${lk}`})]})},{title:`缺页：25ms 之外还有两段`,detail:`发现缺页前 TLB+页表 120ns；处理完重执行且 TLB 命中，再 120ns。`,visual:(0,O.jsx)($,{label:`单次缺页总耗时`,value:`25 000 240 ns`,hint:`120 + 25ms + 120`})},{title:`按 8:2 加权`,detail:`10 次里 8 次缺页、2 次不缺页，缺页项几乎独占结果。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`0.8 × 缺页`,value:`20 000 192 ns`}),(0,O.jsx)($,{label:`0.2 × 不缺页`,value:`40 ns`})]})},{title:`平均访问时间`,detail:`缺页处理时间以 ms 计，普通访存以 ns 计，后者对结果几乎没有影响。`,visual:(0,O.jsx)($,{label:`平均访问时间`,value:`${(uk/1e6).toFixed(6)} ms`,hint:`≈ 20.00ms；缺页 8 次、缺页率 80%`})}]})}]})}var fk={empty:1,mutex:1,fullB:0,fullC:0,fullD:0,count:0},pk=[{title:`初始状态`,detail:`empty=1 表示缓冲区空、首条消息可直接写；三个通知量都为 0。`,s:fk},{title:`A：P(empty)`,detail:`申请写入资格，empty 变 0。若三人还没读完上一条，A 就阻塞在这里。`,s:{...fk,empty:0}},{title:`A：P(mutex) → 写入 → V(mutex)`,detail:`临界区内写缓冲区并把 count 置 3，表示这条消息待三人读取。`,s:{...fk,empty:0,count:3}},{title:`A：V(fullB) V(fullC) V(fullD)`,detail:`分别通知三个消费者，每人一个私有信号量，各只能读一次。`,s:{empty:0,mutex:1,fullB:1,fullC:1,fullD:1,count:3}},{title:`B：P(fullB) → 读 → count=2`,detail:`B 取走自己那份通知，临界区内读取并登记完成，不是最后一个读者。`,s:{empty:0,mutex:1,fullB:0,fullC:1,fullD:1,count:2}},{title:`C：P(fullC) → 读 → count=1`,detail:`C 同理。此时只剩 D 未读，A 仍被 empty=0 挡在写入之前。`,s:{empty:0,mutex:1,fullB:0,fullC:0,fullD:1,count:1}},{title:`D：P(fullD) → 读 → count=0 → V(empty)`,detail:`count 减到 0 说明三人读完，由最后这名读者归还可写资格。`,s:{empty:1,mutex:1,fullB:0,fullC:0,fullD:0,count:0}},{title:`A：写第二条消息`,detail:`empty 已为 1，P(empty) 通过，A 覆盖缓冲区并把 count 重新置 3。`,s:{empty:0,mutex:1,fullB:0,fullC:0,fullD:0,count:3}}];function mk({s:e}){return(0,O.jsx)(`div`,{className:`grid grid-cols-3 gap-2 sm:grid-cols-6`,children:[[`empty`,e.empty],[`mutex`,e.mutex],[`fullB`,e.fullB],[`fullC`,e.fullC],[`fullD`,e.fullD],[`count`,e.count]].map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border p-2 text-center `+(t>0?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsx)(`span`,{className:`block font-mono text-xs text-muted-foreground`,children:e}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-xl tabular-nums`,children:t})]},e))})}function hk(){return(0,O.jsx)(QD,{topics:[{id:`sem`,label:`① 信号量定义`,content:(0,O.jsx)(`div`,{className:`space-y-2 text-sm leading-6`,children:[[`mutex = 1`,`缓冲区互斥：任何进程读写缓冲区前都要 P，读完 V。`],[`empty = 1`,`缓冲区可写：初值 1，首条消息直接写；由最后一名读者 V。`],[`fullB = fullC = fullD = 0`,`每人一个私有通知，保证同一条消息对每人恰好可见一次。`],[`count = 0`,`当前消息尚未读取的人数，A 每写一条置 3，受 mutex 保护。`]].map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{className:`block font-mono`,children:e}),(0,O.jsx)(`span`,{className:`mt-1 block text-muted-foreground`,children:t})]},e))})},{id:`why`,label:`② 为什么不能只用一个 full`,content:(0,O.jsx)($D,{steps:[{title:`若设 full = 3`,detail:`A 写一条消息后 V(full) 三次，看起来「有三份可读」。`,visual:(0,O.jsx)($,{label:`错误设计`,value:`full = 3`,hint:`三个消费者共享一个计数`})},{title:`B 连续 P(full) 三次都成功`,detail:`信号量不认人，B 会把同一条消息读三遍。`,visual:(0,O.jsx)($,{label:`后果`,value:`B 读 3 次`,hint:`同一条消息被重复消费`})},{title:`C、D 一次也读不到`,detail:`计数被 B 抽干，C、D 永久阻塞，消息内容也早已被覆盖。`,visual:(0,O.jsx)($,{label:`后果`,value:`C、D 饿死`,hint:`违反「每人恰好一次」`})}]})},{id:`trace`,label:`③ 事件推演`,content:(0,O.jsx)($D,{steps:pk.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsx)(mk,{s:e.s})}))})},{id:`code`,label:`④ 伪代码`,content:(0,O.jsx)(`pre`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 text-xs leading-6`,children:`semaphore mutex=1, empty=1, fullB=0, fullC=0, fullD=0;
+`,PD={...WS,...JC,...YC,...XC,...ZC,...QC,...$C,...ew,"graph-20261016-bfs-order":jD,"graph-20261016-bfs-distance":jD,"graph-20261016-bfs-count":jD,"graph-20261016-dfs-q01":MD,"graph-20261016-dfs-q02":MD,"graph-20261016-dfs-q03":MD,"graph-20261016-topo-q1":ND,"graph-20261016-topo-q2":ND,"graph-20261016-topo-q3":ND,"mock-exam-1-ds-q01":tw,"mock-exam-1-ds-q02":nw,"mock-exam-1-ds-q03":rw,"mock-exam-1-ds-q04":iw,"mock-exam-1-ds-q05":aw,"mock-exam-1-ds-q06":ow,"mock-exam-1-ds-q07":sw,"mock-exam-1-ds-q08":cw,"mock-exam-1-ds-q09":dw,"mock-exam-1-ds-q10":fw,"mock-exam-1-ds-q11":pw,"mock-exam-1-co-q12":Iw,"mock-exam-1-co-q13":Rw,"mock-exam-1-co-q14":zw,"mock-exam-1-co-q15":Vw,"mock-exam-1-co-q16":Uw,"mock-exam-1-co-q17":Ww,"mock-exam-1-co-q18":Jw,"mock-exam-1-co-q19":Yw,"mock-exam-1-co-q20":eT,"mock-exam-1-co-q21":Xw,"mock-exam-1-co-q22":nT,"mock-exam-1-os-q23":aT,"mock-exam-1-os-q24":mT,"mock-exam-1-os-q25":lT,"mock-exam-1-os-q26":dT,"mock-exam-1-os-q27":CT,"mock-exam-1-os-q28":ST,"mock-exam-1-os-q29":jT,"mock-exam-1-os-q30":AT,"mock-exam-1-os-q31":FT,"mock-exam-1-os-q32":NT,"mock-exam-1-cn-q33":LT,"mock-exam-1-cn-q34":RT,"mock-exam-1-cn-q35":BT,"mock-exam-1-cn-q36":UT,"mock-exam-1-cn-q37":qT,"mock-exam-1-cn-q38":VT,"mock-exam-1-cn-q39":YT,"mock-exam-1-cn-q40":XT,"mock-exam-1-co-q43":Gw,"mock-exam-1-co-q44":Qw,"mock-exam-1-os-q45":wT,"mock-exam-1-os-q46":hT,"mock-exam-1-cn-q47":GT,"mock-exam-2-ds-q01":mw,"mock-exam-2-ds-q02":nw,"mock-exam-2-ds-q03":hw,"mock-exam-2-ds-q04":gw,"mock-exam-2-ds-q05":ow,"mock-exam-2-ds-q06":_w,"mock-exam-2-ds-q07":dw,"mock-exam-2-ds-q08":iw,"mock-exam-2-ds-q09":kw,"mock-exam-2-ds-q10":vw,"mock-exam-2-ds-q11":yw,"mock-exam-2-co-q12":Iw,"mock-exam-2-co-q13":Rw,"mock-exam-2-co-q14":Rw,"mock-exam-2-co-q15":Vw,"mock-exam-2-co-q16":Uw,"mock-exam-2-co-q17":Kw,"mock-exam-2-co-q18":Yw,"mock-exam-2-co-q19":Zw,"mock-exam-2-co-q20":tT,"mock-exam-2-co-q21":iT,"mock-exam-2-co-q22":rT,"mock-exam-2-os-q23":aT,"mock-exam-2-os-q24":uT,"mock-exam-2-os-q25":sT,"mock-exam-2-os-q26":bT,"mock-exam-2-os-q27":ET,"mock-exam-2-os-q28":ST,"mock-exam-2-os-q29":IT,"mock-exam-2-os-q30":kT,"mock-exam-2-os-q31":AT,"mock-exam-2-os-q32":MT,"mock-exam-2-cn-q33":LT,"mock-exam-2-cn-q34":zT,"mock-exam-2-cn-q35":VT,"mock-exam-2-cn-q36":UT,"mock-exam-2-cn-q37":WT,"mock-exam-2-cn-q38":JT,"mock-exam-2-cn-q39":YT,"mock-exam-2-cn-q40":QT,"mock-exam-2-co-q43":nT,"mock-exam-2-co-q44":$w,"mock-exam-2-os-q45":mT,"mock-exam-2-os-q46":xT,"mock-exam-2-cn-q47":GT,"mock-exam-3-ds-q01":bw,"mock-exam-3-ds-q02":xw,"mock-exam-3-ds-q03":Sw,"mock-exam-3-ds-q04":rw,"mock-exam-3-ds-q05":Cw,"mock-exam-3-ds-q06":ww,"mock-exam-3-ds-q07":Cw,"mock-exam-3-ds-q08":gw,"mock-exam-3-ds-q09":yw,"mock-exam-3-ds-q10":fw,"mock-exam-3-ds-q11":pw,"mock-exam-3-co-q12":zw,"mock-exam-3-co-q13":qw,"mock-exam-3-co-q14":Kw,"mock-exam-3-co-q15":Gw,"mock-exam-3-co-q16":Xw,"mock-exam-3-co-q17":Yw,"mock-exam-3-co-q18":$w,"mock-exam-3-co-q19":Qw,"mock-exam-3-co-q20":rT,"mock-exam-3-co-q21":iT,"mock-exam-3-co-q22":tT,"mock-exam-3-os-q23":oT,"mock-exam-3-os-q24":yT,"mock-exam-3-os-q25":yT,"mock-exam-3-os-q26":cT,"mock-exam-3-os-q27":wT,"mock-exam-3-os-q28":ET,"mock-exam-3-os-q29":PT,"mock-exam-3-os-q30":MT,"mock-exam-3-os-q31":ET,"mock-exam-3-os-q32":AT,"mock-exam-3-cn-q33":VT,"mock-exam-3-cn-q34":BT,"mock-exam-3-cn-q35":VT,"mock-exam-3-cn-q36":WT,"mock-exam-3-cn-q37":UT,"mock-exam-3-cn-q38":JT,"mock-exam-3-cn-q39":XT,"mock-exam-3-cn-q40":ZT,"mock-exam-3-co-q43":Gw,"mock-exam-3-co-q44":Hw,"mock-exam-3-os-q45":_T,"mock-exam-3-os-q46":TT,"mock-exam-3-cn-q47":qT,"mock-exam-4-ds-q01":xw,"mock-exam-4-ds-q02":Tw,"mock-exam-4-ds-q03":Sw,"mock-exam-4-ds-q04":Ew,"mock-exam-4-ds-q05":Dw,"mock-exam-4-ds-q06":ww,"mock-exam-4-ds-q07":Ow,"mock-exam-4-ds-q08":gw,"mock-exam-4-ds-q09":dw,"mock-exam-4-ds-q10":kw,"mock-exam-4-ds-q11":Aw,"mock-exam-4-co-q12":Lw,"mock-exam-4-co-q13":zw,"mock-exam-4-co-q14":Rw,"mock-exam-4-co-q15":Vw,"mock-exam-4-co-q16":Kw,"mock-exam-4-co-q17":Vw,"mock-exam-4-co-q18":eT,"mock-exam-4-co-q19":Yw,"mock-exam-4-co-q20":Zw,"mock-exam-4-co-q21":iT,"mock-exam-4-co-q22":rT,"mock-exam-4-os-q23":aT,"mock-exam-4-os-q24":lT,"mock-exam-4-os-q25":dT,"mock-exam-4-os-q26":bT,"mock-exam-4-os-q27":yT,"mock-exam-4-os-q28":CT,"mock-exam-4-os-q29":jT,"mock-exam-4-os-q30":kT,"mock-exam-4-os-q31":AT,"mock-exam-4-os-q32":MT,"mock-exam-4-cn-q33":RT,"mock-exam-4-cn-q34":zT,"mock-exam-4-cn-q35":HT,"mock-exam-4-cn-q36":KT,"mock-exam-4-cn-q37":WT,"mock-exam-4-cn-q38":QT,"mock-exam-4-cn-q39":$T,"mock-exam-4-cn-q40":XT,"mock-exam-4-co-q43":Jw,"mock-exam-4-co-q44":$w,"mock-exam-4-os-q45":gT,"mock-exam-4-os-q46":fT,"mock-exam-4-cn-q47":JT,"io-interrupt-dma-bus-clock":nT,"vm-lru-array-page-faults":TT,"wangdao-mock2-major-01":jw,"wangdao-mock2-major-02":rw,"wangdao-mock2-major-03":Mw,"wangdao-mock2-major-04":Mw,"wangdao-mock2-major-05":Nw,"wangdao-mock2-major-06":Pw,"wangdao-mock2-major-07":sw,"wangdao-mock2-major-08":cw,"wangdao-mock2-major-09":Ow,"wangdao-mock2-major-10":kw,"wangdao-mock2-major-11":pw,"wangdao-mock2-major-12":Lw,"wangdao-mock2-major-13":Rw,"wangdao-mock2-major-14":Bw,"wangdao-mock2-major-15":Hw,"wangdao-mock2-major-16":Hw,"wangdao-mock2-major-17":Ww,"wangdao-mock2-major-18":Jw,"wangdao-mock2-major-19":Qw,"wangdao-mock2-major-20":Xw,"wangdao-mock2-major-21":tT,"wangdao-mock2-major-22":rT,"wangdao-mock2-major-23":oT,"wangdao-mock2-major-24":oT,"wangdao-mock2-major-25":sT,"wangdao-mock2-major-26":uT,"wangdao-mock2-major-27":fT,"wangdao-mock2-major-28":pT,"wangdao-mock2-major-29":TT,"wangdao-mock2-major-30":jT,"wangdao-mock2-major-31":NT,"wangdao-mock2-major-32":IT,"wangdao-mock1-major-41":_w,"wangdao-mock1-major-42":jw,"wangdao-mock1-major-43":Gw,"wangdao-mock1-major-44":$w,"wangdao-mock1-major-45":vT,"wangdao-mock1-major-46":CT,"forest-to-binary-min-height":Ew,"directed-graph-path-strings":Pw,"insertion-sort-comparison-counts":Fw,"system-hierarchy-levels":Iw,"float32-12-1-rounding":Bw,"isa-specified-things":Iw,"kernel-mode-operations":oT,"rare-rbt-validity":lw,"rare-rbt-black-height":lw,"rare-rbt-insertion":uw,"rare-rbt-deletion":uw,"rare-rbt-recolor-cost":uw,"rare-grouped-allocation":DT,"rare-grouped-release":DT,"rare-grouped-empty":DT,"rare-grouped-batch-io":DT,"rare-grouped-capacity":OT,"rare-adjacency-multilist-trace":eE,"rare-orthogonal-list-trace":tE,"rare-ieee754-special-decode":nE,"rare-comparison-flags-trace":rE,"mock-exam-1-ds-q41":Dw,"mock-exam-1-ds-q42":iE,"mock-exam-2-ds-q41":Cw,"mock-exam-2-ds-q42":aE,"mock-exam-3-ds-q41":oE,"mock-exam-3-ds-q42":yw,"mock-exam-4-ds-q41":ww,"mock-exam-4-ds-q42":sE,"rare-union-find-parent-trace":Dw,"rare-union-find-rank-height":Dw,"rare-union-find-kruskal":Dw,"mock-exam-5-ds-q01":ow,"mock-exam-5-ds-q02":bw,"mock-exam-5-ds-q03":nw,"mock-exam-5-ds-q04":rw,"mock-exam-5-ds-q05":lE,"mock-exam-5-ds-q06":Pw,"mock-exam-5-ds-q07":ww,"mock-exam-5-ds-q08":Ow,"mock-exam-5-ds-q09":uE,"mock-exam-5-ds-q10":dw,"mock-exam-5-ds-q11":fw,"mock-exam-5-co-q12":fE,"mock-exam-5-co-q13":zw,"mock-exam-5-co-q14":Rw,"mock-exam-5-co-q15":pE,"mock-exam-5-co-q16":CT,"mock-exam-5-co-q17":$w,"mock-exam-5-co-q18":mE,"mock-exam-5-co-q19":rE,"mock-exam-5-co-q20":eT,"mock-exam-5-co-q21":iT,"mock-exam-5-co-q22":nT,"mock-exam-5-os-q23":hE,"mock-exam-5-os-q24":lT,"mock-exam-5-os-q25":gE,"mock-exam-5-os-q26":_E,"mock-exam-5-os-q27":vE,"mock-exam-5-os-q28":yE,"mock-exam-5-os-q29":kT,"mock-exam-5-os-q30":OT,"mock-exam-5-os-q31":FT,"mock-exam-5-os-q32":bE,"mock-exam-5-cn-q33":xE,"mock-exam-5-cn-q34":SE,"mock-exam-5-cn-q35":CE,"mock-exam-5-cn-q36":UT,"mock-exam-5-cn-q37":GT,"mock-exam-5-cn-q38":VT,"mock-exam-5-cn-q39":wE,"mock-exam-5-cn-q40":$T,"mock-exam-5-ds-q41":dE,"mock-exam-5-ds-q42":Sw,"mock-exam-5-co-q43":Uw,"mock-exam-5-co-q44":Zw,"mock-exam-5-os-q45":mT,"mock-exam-5-os-q46":AT,"mock-exam-5-cn-q47":YT,"mock-exam-6-ds-q01":TE,"mock-exam-6-ds-q02":cE,"mock-exam-6-ds-q03":EE,"mock-exam-6-ds-q04":Sw,"mock-exam-6-ds-q05":Mw,"mock-exam-6-ds-q06":DE,"mock-exam-6-ds-q07":ww,"mock-exam-6-ds-q08":Cw,"mock-exam-6-ds-q09":OE,"mock-exam-6-ds-q10":fw,"mock-exam-6-ds-q11":kE,"mock-exam-6-co-q12":Lw,"mock-exam-6-co-q13":zw,"mock-exam-6-co-q14":Ww,"mock-exam-6-co-q15":jE,"mock-exam-6-co-q16":Kw,"mock-exam-6-co-q17":Yw,"mock-exam-6-co-q18":ME,"mock-exam-6-co-q19":NE,"mock-exam-6-co-q20":Qw,"mock-exam-6-co-q21":eT,"mock-exam-6-co-q22":rT,"mock-exam-6-os-q23":PE,"mock-exam-6-os-q24":dT,"mock-exam-6-os-q25":sT,"mock-exam-6-os-q26":yT,"mock-exam-6-os-q27":FE,"mock-exam-6-os-q28":CT,"mock-exam-6-os-q29":IE,"mock-exam-6-os-q30":LE,"mock-exam-6-os-q31":RE,"mock-exam-6-os-q32":FT,"mock-exam-6-cn-q33":BE,"mock-exam-6-cn-q34":VE,"mock-exam-6-cn-q35":zT,"mock-exam-6-cn-q36":HE,"mock-exam-6-cn-q37":zT,"mock-exam-6-cn-q38":qT,"mock-exam-6-cn-q39":UT,"mock-exam-6-cn-q40":UE,"mock-exam-6-ds-q41":AE,"mock-exam-6-ds-q42":dw,"mock-exam-6-co-q43":nT,"mock-exam-6-co-q44":$w,"mock-exam-6-os-q45":zE,"mock-exam-6-os-q46":mT,"mock-exam-6-cn-q47":JT,"mock-exam-7-ds-q01":WE,"mock-exam-7-ds-q02":bw,"mock-exam-7-ds-q03":cE,"mock-exam-7-ds-q04":GE,"mock-exam-7-ds-q05":iw,"mock-exam-7-ds-q06":hw,"mock-exam-7-ds-q07":aw,"mock-exam-7-ds-q08":Cw,"mock-exam-7-ds-q09":KE,"mock-exam-7-ds-q10":yw,"mock-exam-7-ds-q11":vw,"mock-exam-7-co-q12":qE,"mock-exam-7-co-q13":Gw,"mock-exam-7-co-q14":JE,"mock-exam-7-co-q15":YE,"mock-exam-7-co-q16":XE,"mock-exam-7-co-q17":Jw,"mock-exam-7-co-q18":Zw,"mock-exam-7-co-q19":ZE,"mock-exam-7-co-q20":Qw,"mock-exam-7-co-q21":tT,"mock-exam-7-co-q22":Jw,"mock-exam-7-os-q23":QE,"mock-exam-7-os-q24":yT,"mock-exam-7-os-q25":dT,"mock-exam-7-os-q26":$E,"mock-exam-7-os-q27":wT,"mock-exam-7-os-q28":eD,"mock-exam-7-os-q29":tD,"mock-exam-7-os-q30":nD,"mock-exam-7-os-q31":rD,"mock-exam-7-os-q32":nT,"mock-exam-7-cn-q33":iD,"mock-exam-7-cn-q34":aD,"mock-exam-7-cn-q35":BT,"mock-exam-7-cn-q36":oD,"mock-exam-7-cn-q37":qT,"mock-exam-7-cn-q38":sD,"mock-exam-7-cn-q39":QT,"mock-exam-7-cn-q40":cD,"mock-exam-7-ds-q41":kw,"mock-exam-7-ds-q42":sw,"mock-exam-7-co-q43":eT,"mock-exam-7-co-q44":Yw,"mock-exam-7-os-q45":AT,"mock-exam-7-os-q46":ST,"mock-exam-7-cn-q47":UT,"mock-exam-8-ds-q01":lD,"mock-exam-8-ds-q02":aE,"mock-exam-8-ds-q03":uD,"mock-exam-8-ds-q04":rw,"mock-exam-8-ds-q05":lw,"mock-exam-8-ds-q06":_w,"mock-exam-8-ds-q07":Cw,"mock-exam-8-ds-q08":vw,"mock-exam-8-ds-q09":Ow,"mock-exam-8-ds-q10":kw,"mock-exam-8-ds-q11":dD,"mock-exam-8-co-q12":Rw,"mock-exam-8-co-q13":pD,"mock-exam-8-co-q14":Hw,"mock-exam-8-co-q15":Gw,"mock-exam-8-co-q16":Ww,"mock-exam-8-co-q17":Hw,"mock-exam-8-co-q18":Rw,"mock-exam-8-co-q19":mD,"mock-exam-8-co-q20":hD,"mock-exam-8-co-q21":tT,"mock-exam-8-co-q22":gD,"mock-exam-8-os-q23":aT,"mock-exam-8-os-q24":cT,"mock-exam-8-os-q25":sT,"mock-exam-8-os-q26":CD,"mock-exam-8-os-q27":bT,"mock-exam-8-os-q28":DT,"mock-exam-8-os-q29":yD,"mock-exam-8-os-q30":kT,"mock-exam-8-os-q31":bD,"mock-exam-8-os-q32":xD,"mock-exam-8-cn-q33":TD,"mock-exam-8-cn-q34":ED,"mock-exam-8-cn-q35":DD,"mock-exam-8-cn-q36":OD,"mock-exam-8-cn-q37":kD,"mock-exam-8-cn-q38":KT,"mock-exam-8-cn-q39":YT,"mock-exam-8-cn-q40":ZT,"mock-exam-8-ds-q41":fD,"mock-exam-8-ds-q42":pw,"mock-exam-8-co-q43":_D,"mock-exam-8-co-q44":vD,"mock-exam-8-os-q45":SD,"mock-exam-8-os-q46":wD,"mock-exam-8-cn-q47":AD},FD={"jingcheng-exam-5-co-q44":`每次先用虚地址查 TLB，再用物理地址查 Cache。两种命中分开计数；只有换出脏块才写回。`,"jingcheng-exam-8-co-q43":`先把两个数组换算成主存块，再看它们能否同时驻留。第（4）问的随机替换不能按 LRU 算。`,"jingcheng-exam-8-co-q44":`按「虚页号 → 页框号 → 物理地址 → Cache」走一遍。页表项无效时，先处理缺页。`,"mock-exam-5-co-q43":`先数 Cache 行和组。所有访问都落在同一组后，只需维护这组的四个标记。`,"mock-exam-8-co-q44":`页内偏移随地址翻译原样保留；块内偏移从物理地址的最低几位再取。`,"wangdao-mock1-major-43":`每问重新算「块号 → 行或组」。冲突消失后，再数每块首次访问的缺失。`,"mock-exam-1-co-q43":`先确认两个数组同页，再算首地址相差多少个 Cache 块。每读一个元素就紧接着写一个。`,"mock-exam-3-co-q43":`转移偏移用取指后的 PC；数据 Cache 只跟踪循环中的数据地址，不计取指。`,"jingcheng-exam-6-os-q46":`三种置换算法都从同一张原始页表开始。各自找出牺牲页，再复用它的页框。`,"jingcheng-exam-7-os-q45":`从给出的物理地址倒推用了哪个页框，再查原来是谁占这个页框。`,"jingcheng-exam-8-os-q46":`位示图决定可用页框，FIFO 决定换掉哪一页。命中不改变装入顺序。`,"mock-exam-6-os-q45":`先将作业大小除以页大小并向上取整，确定要找几个空位；位示图大小则按全内存算。`,"mock-exam-7-os-q46":`先拆成页号与偏移。算访存次数时，把读页表与最后一次取数据分开。`,"mock-exam-1-os-q45":`先列页号并逐次更新 LRU。缺页和不缺页各算一套时间，最后按比例加权。`,"mock-exam-3-os-q46":`先写一行或一列的页号序列，再判断下一轮访问时前一轮的页还在不在。`,"vm-lru-array-page-faults":`先写出循环结束时的驻留页。随机置换一问只看语句 3 会不会淘汰语句 4 要用的页。`,"wangdao-mock1-major-46":`从页目录判断页大小：4KB 页继续查二级页表；4MB 页直接用目录项，保留低 22 位偏移。`},ID;function LD(){return ID||=new Promise((e,t)=>{let n=indexedDB.open(`course-notebook-images`,1),r=!1;n.onupgradeneeded=()=>{n.result.createObjectStore(`images`,{keyPath:`id`}).createIndex(`materialId`,`materialId`)},n.onerror=()=>{ID=void 0,t(n.error)},n.onblocked=()=>{r=!0,ID=void 0,t(Error(`图片存储被其他页面占用，请关闭其他讲义标签页后刷新。`))},n.onsuccess=()=>{let t=n.result;if(r){t.close();return}t.onversionchange=()=>{t.close(),ID=void 0},e(t)}}),ID}async function RD(e,t){let n=await LD();return new Promise((r,i)=>{let a=n.transaction(`images`,e);a.onabort=()=>i(a.error||Error(`图片存储操作失败。`));try{let e=t(a.objectStore(`images`));a.oncomplete=()=>r(e.result)}catch(e){a.abort(),i(e)}})}function zD(e){return RD(`readonly`,t=>t.index(`materialId`).getAll(e))}async function BD(e){e.length&&await RD(`readwrite`,t=>{for(let n=0;n<e.length-1;n++)t.add(e[n]);return t.add(e[e.length-1])})}async function VD(e){await RD(`readwrite`,t=>t.delete(e))}var HD={ds:`数据结构`,co:`计算机组成原理`,os:`操作系统`,cn:`计算机网络`,rare:`冷门专区`,other:`单题收录`},UD=[`ds`,`co`,`os`,`cn`,`rare`,`other`],WD=/^\s*(?:[（(]\s*[一二三四五六七八九十]+\s*[)）]|[一二三四五六七八九十]+\s*[、.．]|\d+\s*[、.．)])\s*/;function GD(e){for(let t of e.split(`
+`)){let e=t.trim();if(!e)continue;let n=(/^#{1,6}\s+(\S.*)$/.exec(e)?.[1]??e.replace(/^[*_>]+/,``).trim()).replace(WD,``).replace(/[：:]\s*$/,``).trim();if(n)return n.length>48?`${n.slice(0,47)}…`:n}return`未命名知识点`}function KD(e,t){let n=/-(ds|co|os|cn)-q\d+$/.exec(e);return n?.[1]?n[1]:t===`rare-topics`?`rare`:`other`}var qD=new Map;for(let e of qC)for(let t of e.materials)t.type===`题目`&&qD.set(t.id,{id:t.id,title:t.title,lessonId:e.id,lessonTitle:e.title,chapter:t.chapter,subject:KD(t.id,e.id),questionNumber:t.questionNumber});var JD=[...qD.values()],YD=new Map;for(let[e,t]of Object.entries(PD)){let n=YD.get(t);n?n.push(e):YD.set(t,[e])}var XD=[...YD].map(([e,t])=>{let n=[...t].sort(),r=[...new Set(n.map(e=>qD.get(e)?.subject??`other`))].sort((e,t)=>UD.indexOf(e)-UD.indexOf(t));return{key:n[0],label:GD(e),body:e,questionIds:n,subjects:r}}).sort((e,t)=>e.key.localeCompare(t.key));function ZD(e,t){let n=new Map(t.map(e=>[e.id,e])),r=[...e].sort((e,t)=>{let n=UD.indexOf(e.subjects[0])-UD.indexOf(t.subjects[0]);return n===0?e.label.localeCompare(t.label,`zh-CN`):n}),i=e=>{let t=new Map(e.map((e,t)=>[e.key,t])),r=new Map;for(let i of e)for(let e of i.questionIds){if(!n.has(e))continue;let a=r.get(e);a?a.push(t.get(i.key)):r.set(e,[t.get(i.key)])}return[...n.values()].sort((t,n)=>{let i=r.get(t.id)??[e.length],a=r.get(n.id)??[e.length],o=i.reduce((e,t)=>e+t,0)/i.length-a.reduce((e,t)=>e+t,0)/a.length;return o===0?t.id.localeCompare(n.id):o})},a=i(r);for(let e=0;e<2;e+=1){let e=new Map(a.map((e,t)=>[e.id,t])),t=new Map;for(let n of r){let r=n.questionIds.filter(t=>e.has(t)).map(t=>e.get(t));t.set(n.key,r.length?r.reduce((e,t)=>e+t,0)/r.length:a.length)}r=[...r].sort((e,n)=>{let r=UD.indexOf(e.subjects[0])-UD.indexOf(n.subjects[0]);return r===0?t.get(e.key)-t.get(n.key):r}),a=i(r)}let o=new Set(a.map(e=>e.id)),s=r.flatMap(e=>e.questionIds.filter(e=>o.has(e)).map(t=>({from:e,to:n.get(t)})));return{knowledge:r,questions:a,edges:s}}var QD=296,$D=336,eO=168,tO=16,nO=24,rO=32,iO=11,aO=62,oO=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function sO(e,t){let n=(e.match(oO)??[]).length;return n*t+(e.length-n)*t*.56}function cO(e,t,n){if(sO(e,n)<=t)return e;let r=e.length;for(;r>1&&sO(`${e.slice(0,r)}…`,n)>t;)--r;return`${e.slice(0,r)}…`}var lO=e=>tO+e*rO+nO/2,uO=[`all`,`ds`,`co`,`os`,`cn`,`rare`,`other`],dO={all:JD.length};for(let e of JD)dO[e.subject]=(dO[e.subject]??0)+1;var fO=XD.filter(e=>e.questionIds.length>1).length;function pO({hrefFor:e}){let[t,n]=(0,S.useState)(`all`),[r,i]=(0,S.useState)(``),[a,o]=(0,S.useState)(!0),[s,c]=(0,S.useState)(null),[l,u]=(0,S.useState)(null);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)).get(`p`);c(e&&XD.some(t=>t.key===e)?e:null)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]);let d=l??s,{layout:f,counts:p,truncated:m}=(0,S.useMemo)(()=>{let e=r.trim().toLowerCase(),n=new Set;if(e){for(let t of XD)if(t.label.toLowerCase().includes(e))for(let e of t.questionIds)n.add(e)}let i=JD.filter(r=>(t===`all`||r.subject===t)&&(!e||n.has(r.id)||`${r.title} ${r.chapter} ${r.lessonTitle}`.toLowerCase().includes(e))),o=new Set(i.map(e=>e.id)),s=new Map,c=XD.filter(e=>{let t=e.questionIds.reduce((e,t)=>e+ +!!o.has(t),0);return s.set(e.key,t),t>0&&(!a||t>1)}),l=new Set;for(let e of c)for(let t of e.questionIds)o.has(t)&&l.add(t);let u=ZD(c,i.filter(e=>l.has(e.id)));return{layout:u,counts:s,truncated:XD.length>u.knowledge.length||JD.length>u.questions.length}},[t,r,a]),h=new Map(f.knowledge.map((e,t)=>[e.key,t])),g=new Map(f.questions.map((e,t)=>[e.id,t])),_=d==null?null:h.has(d)?`knowledge`:`question`,v=new Set,y=new Set;for(let e of f.edges)_===`knowledge`&&e.from.key===d?y.add(e.to.id):_===`question`&&e.to.id===d&&v.add(e.from.key);let b=(e,t)=>_===`knowledge`?e===d:t===d,x=e=>!!d&&!(_===`knowledge`?e.key===d:v.has(e.key)),ee=e=>!!d&&!(_===`question`?e.id===d:y.has(e.id)),te=tO*2+QD+eO+$D,ne=tO*2+Math.max(f.knowledge.length,f.questions.length)*rO,re=tO+QD+eO;return(0,O.jsxs)(`section`,{className:`mb-6 rounded-2xl border border-border bg-card p-5 sm:p-6`,"aria-label":`知识点关联图`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-end justify-between gap-4`,children:[(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`h2`,{className:`font-display text-2xl font-semibold`,children:`知识点关联图`}),(0,O.jsx)(`p`,{className:`mt-2 max-w-2xl text-sm leading-7 text-muted-foreground`,children:`左列是题下的「基础知识」块，右列是复用同一块的题目，连线表示这道题确实挂了这条知识点。一条线跨到多个题目，就是反复被考的位置。`})]}),(0,O.jsxs)(`output`,{className:`text-sm text-muted-foreground`,children:[f.knowledge.length,` 个知识点 · `,f.questions.length,` 道题 ·`,` `,f.edges.length,` 条连线`]})]}),(0,O.jsx)(`div`,{className:`mt-5 flex flex-wrap gap-2`,"aria-label":`按科目筛选`,children:uO.map(e=>(0,O.jsxs)(`button`,{className:`filter-chip ${t===e?`active`:``}`,"aria-pressed":t===e,onClick:()=>n(e),children:[e===`all`?`全部科目`:HD[e],(0,O.jsx)(`span`,{className:`ml-2 text-xs text-muted-foreground`,children:dO[e]??0})]},e))}),(0,O.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-3`,children:[(0,O.jsxs)(`div`,{className:`relative min-w-64 flex-1`,children:[(0,O.jsx)(he,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,O.jsx)(`input`,{className:`search-input`,"aria-label":`搜索知识点或题目`,placeholder:`搜索知识点或题目…`,value:r,onChange:e=>i(e.target.value)})]}),(0,O.jsx)(`button`,{className:`filter-chip ${a?`active`:``}`,"aria-pressed":a,onClick:()=>o(!a),children:a?`只看被多题共用`:`显示全部（含 ${XD.length-fO} 个单题知识点）`}),s&&(0,O.jsx)(`a`,{className:`filter-chip`,href:`#view=graph`,children:`取消锁定`})]}),f.knowledge.length===0?(0,O.jsx)(`p`,{className:`mt-6 rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground`,children:`没有符合条件的知识点。换个科目或关键词，或放开「只看被多题共用」。`}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsx)(`div`,{className:`mt-5 max-h-[70vh] overflow-auto rounded-xl border border-border bg-background`,children:(0,O.jsxs)(`svg`,{width:te,height:ne,viewBox:`0 0 ${te} ${ne}`,"aria-label":`知识点关联图：${f.knowledge.length} 个知识点关联 ${f.questions.length} 道题`,children:[(0,O.jsx)(`g`,{fill:`none`,children:f.edges.map(e=>{let t=b(e.from.key,e.to.id),n=lO(h.get(e.from.key)),r=lO(g.get(e.to.id));return(0,O.jsx)(`path`,{d:`M ${tO+QD} ${n} C ${tO+QD+aO} ${n}, ${re-aO} ${r}, ${re} ${r}`,stroke:t&&d?`var(--primary)`:`var(--muted-foreground)`,strokeWidth:t&&d?1.8:1.1,style:{opacity:d?t?.85:.06:.2}},`${e.from.key}:${e.to.id}`)})}),(0,O.jsx)(`g`,{children:f.knowledge.map((e,t)=>{let n=_===`knowledge`&&d===e.key;return(0,O.jsxs)(`a`,{href:`#view=graph&p=${encodeURIComponent(e.key)}`,onMouseEnter:()=>u(e.key),onMouseLeave:()=>u(null),onFocus:()=>u(e.key),onBlur:()=>u(null),"aria-current":s===e.key?`true`:void 0,style:{cursor:`pointer`,opacity:x(e)?.35:1},children:[(0,O.jsx)(`title`,{children:`${e.label} · ${p.get(e.key)??0} 道题`}),(0,O.jsx)(`rect`,{x:tO,y:lO(t)-nO/2,width:QD,height:nO,rx:7,style:{fill:n?`var(--primary)`:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:n?1.6:.9}}),(0,O.jsx)(`text`,{x:tO+10,y:lO(t)+4,fontSize:iO,style:{fill:n?`var(--primary-foreground)`:`var(--accent-foreground)`},children:cO(e.label,QD-20,iO)}),(0,O.jsx)(`text`,{x:tO+QD+8,y:lO(t)+4,fontSize:iO-1,style:{fill:`var(--muted-foreground)`},children:p.get(e.key)??0})]},e.key)})}),(0,O.jsx)(`g`,{children:f.questions.map((t,n)=>{let r=_===`question`&&d===t.id,i=t.questionNumber===void 0?``:`第 ${t.questionNumber} 题 · `;return(0,O.jsxs)(`a`,{href:e(t.lessonId,t.id),onMouseEnter:()=>u(t.id),onMouseLeave:()=>u(null),style:{cursor:`pointer`,opacity:ee(t)?.35:1},children:[(0,O.jsx)(`title`,{children:`${t.lessonTitle} · ${i}${t.title}`}),(0,O.jsx)(`rect`,{x:re,y:lO(n)-nO/2,width:$D,height:nO,rx:7,style:{fill:r?`var(--primary)`:`var(--secondary)`,stroke:r?`var(--primary)`:`var(--border)`,strokeWidth:r?1.6:.9}}),(0,O.jsx)(`text`,{x:re+10,y:lO(n)+4,fontSize:iO,style:{fill:r?`var(--primary-foreground)`:`var(--foreground)`},children:cO(`${i}${t.title}`,$D-20,iO)})]},t.id)})})]})}),(0,O.jsxs)(`p`,{className:`mt-3 text-xs leading-6 text-muted-foreground`,children:[`悬停任一节点高亮它的连线；点左侧知识点可锁定并生成可分享的链接，点右侧题目直接跳到该题。`,m&&` 当前筛选隐藏了其余节点。`,a&&` 已隐藏 ${XD.length-fO} 个只服务单道题的知识点。`]})]})]})}function mO({topics:e,label:t=`交互讲解`}){let[n,r]=(0,S.useState)(0),i=e[n];return(0,O.jsxs)(`section`,{className:`mt-6 rounded-xl border border-border bg-secondary/30 p-4 sm:p-5`,"aria-label":t,children:[(0,O.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsx)(`h2`,{className:`text-sm font-semibold text-primary`,children:t}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`点开每一问，按步骤走一遍`})]}),(0,O.jsx)(`div`,{className:`mb-4 flex flex-wrap gap-2`,role:`tablist`,"aria-label":`题目小问`,children:e.map((e,t)=>(0,O.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":t===n,onClick:()=>r(t),className:`rounded-lg border px-3 py-1.5 text-sm `+(t===n?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:e.label},e.id))}),(0,O.jsx)(`div`,{role:`tabpanel`,"aria-label":i.label,children:i.content})]})}function hO({steps:e,unit:t=`步`,ariaLabel:n}){let[r,i]=(0,S.useState)(0),a=e[r];return(0,O.jsxs)(`div`,{"aria-label":n,children:[a.visual&&(0,O.jsx)(`div`,{className:`mb-3`,children:a.visual}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:a.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:a.detail})]}),(0,O.jsxs)(`div`,{className:`mt-3 flex items-center justify-between gap-2`,children:[(0,O.jsxs)(`button`,{type:`button`,onClick:()=>i(Math.max(0,r-1)),disabled:r===0,className:`action-button disabled:opacity-40`,children:[(0,O.jsx)(ce,{size:16}),`上一步`]}),(0,O.jsxs)(`span`,{className:`text-sm tabular-nums text-muted-foreground`,children:[`第 `,r+1,` / `,e.length,` `,t]}),(0,O.jsxs)(`button`,{type:`button`,onClick:()=>i(Math.min(e.length-1,r+1)),disabled:r===e.length-1,className:`action-button disabled:opacity-40`,children:[`下一步`,(0,O.jsx)(le,{size:16})]})]})]})}function gO({fields:e,caption:t}){let[n,r]=(0,S.useState)(0);return(0,O.jsxs)(`div`,{children:[t&&(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:t}),(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,role:`group`,"aria-label":`地址字段`,children:e.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,"aria-pressed":t===n,onClick:()=>r(t),className:`min-w-0 flex-1 rounded-lg border p-3 text-left `+(t===n?`border-primary bg-accent`:`border-border bg-card hover:bg-accent/50`),children:[(0,O.jsx)(`span`,{className:`block font-mono text-lg font-semibold tracking-wider`,children:e.bits}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:e.name})]},e.name))}),(0,O.jsx)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:e[n].detail})]})}function $({label:e,value:t,hint:n}){return(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:e}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-lg tabular-nums`,children:t}),n&&(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n})]})}var _O=[{op:`初始状态`,parent:[1,2,3,4,5,6,7,8,9],detail:`9 个单元素集合，每个结点都是根，高度都是 1。`},{op:`Union(1,2)`,parent:[2,2,3,4,5,6,7,8,9],detail:`同高 1，编号大的 2 当根，高度变 2。`},{op:`Union(3,4)`,parent:[2,2,4,4,5,6,7,8,9],detail:`同高 1，4 当根，高度变 2。`},{op:`Union(5,6)`,parent:[2,2,4,4,6,6,7,8,9],detail:`同高 1，6 当根，高度变 2。`},{op:`Union(7,8)`,parent:[2,2,4,4,6,6,8,8,9],detail:`同高 1，8 当根，高度变 2。`},{op:`Union(2,4)`,parent:[2,4,4,4,6,6,8,8,9],detail:`两树同高 2，4 当根，高度变 3。`},{op:`Union(8,9)`,parent:[2,4,4,4,6,6,8,8,8],detail:`9 高 1，矮树挂到高树根 8，高度仍是 2。`},{op:`Union(6,8)`,parent:[2,4,4,4,6,8,8,8,8],detail:`两树同高 2，8 当根，高度变 3。`},{op:`Find(5)`,parent:[2,4,4,4,6,8,8,8,8],path:[5,6,8],detail:`5→6→8 返回 8；U1 不压缩，双亲一个也不改。`},{op:`Union(4,8)`,parent:[2,4,4,8,6,8,8,8,8],detail:`两树同高 3，8 当根，高度变 4，只剩一棵树。`},{op:`Find(1)`,parent:[2,4,4,8,6,8,8,8,8],path:[1,2,4,8],detail:`1→2→4→8 返回 8；最长路径 8→4→2→1 共四层。`}],vO=[{op:`初始状态`,parent:[1,2,3,4,5,6,7,8,9],detail:`9 个单元素集合，每个集合大小都是 1。`},{op:`Union(1,2)`,parent:[2,2,3,4,5,6,7,8,9],detail:`大小相同，编号大的 2 当根，集合大小变 2。`},{op:`Union(3,4)`,parent:[2,2,4,4,5,6,7,8,9],detail:`大小相同，4 当根，集合大小变 2。`},{op:`Union(5,6)`,parent:[2,2,4,4,6,6,7,8,9],detail:`大小相同，6 当根，集合大小变 2。`},{op:`Union(7,8)`,parent:[2,2,4,4,6,6,8,8,9],detail:`大小相同，8 当根，集合大小变 2。`},{op:`Union(2,4)`,parent:[2,4,4,4,6,6,8,8,9],detail:`两集合各 2 个结点，4 当根，集合大小变 4。`},{op:`Union(8,9)`,parent:[2,4,4,4,6,6,8,8,8],detail:`9 的集合只有 1 个结点，挂到根 8，大小变 3。`},{op:`Union(6,8)`,parent:[2,4,4,4,6,8,8,8,8],detail:`6 的集合 2 个 < 8 的集合 3 个，6 挂到 8，大小变 5。`},{op:`Find(5)`,parent:[2,4,4,4,8,8,8,8,8],path:[5,6,8],detail:`5→6→8 返回 8；压缩后 5、6 直接指向 8，7、9 不动。`},{op:`Union(4,8)`,parent:[2,4,4,8,8,8,8,8,8],detail:`4 的集合 4 个 < 8 的 5 个，4 挂到 8，大小变 9；孩子不搬。`},{op:`Find(1)`,parent:[8,8,4,8,8,8,8,8,8],path:[1,2,4,8],detail:`1→2→4→8 返回 8；压缩 1、2、4，3 不在路径上仍指 4。`}];function yO(e,t){return e.flatMap((e,n)=>n+1!==e&&e===t?[n+1]:[])}function bO(e,t){let n=yO(e,t);return 1+(n.length?Math.max(...n.map(t=>bO(e,t))):0)}function xO({id:e,parent:t,path:n}){let r=yO(t,e);return(0,O.jsxs)(`li`,{children:[(0,O.jsx)(`span`,{className:`inline-flex h-7 min-w-7 items-center justify-center rounded-md border px-1.5 font-mono text-sm `+(n.includes(e)?`border-primary bg-primary text-primary-foreground`:`border-border bg-card`),children:e}),r.length>0&&(0,O.jsx)(`ul`,{className:`ml-3.5 border-l border-border pl-3`,children:r.map(e=>(0,O.jsx)(xO,{id:e,parent:t,path:n},e))})]})}function SO({parent:e,path:t=[],metric:n}){let r=e.flatMap((e,t)=>e===t+1?[t+1]:[]),i=t=>e.reduce((n,r,i)=>{let a=i+1;for(;e[a-1]!==a;)a=e[a-1];return a===t?n+1:n},0);return(0,O.jsx)(`div`,{className:`flex flex-wrap items-start gap-5 rounded-lg border border-border bg-card p-3`,children:r.map(r=>(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`ul`,{children:(0,O.jsx)(xO,{id:r,parent:e,path:t})}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:n===`height`?`高度 ${bO(e,r)}`:`大小 ${i(r)} · 高 ${bO(e,r)}`})]},r))})}function CO({parent:e,caption:t}){return(0,O.jsxs)(`div`,{className:`mt-2`,children:[(0,O.jsx)(`p`,{className:`mb-1 text-xs text-muted-foreground`,children:t}),(0,O.jsx)(`div`,{className:`grid grid-cols-9 gap-1 text-center text-xs`,children:e.map((e,t)=>(0,O.jsxs)(`div`,{className:`rounded border border-border bg-card py-1`,children:[(0,O.jsx)(`span`,{className:`block text-muted-foreground`,children:t+1}),(0,O.jsx)(`span`,{className:`block font-mono font-semibold`,children:e})]},t))})]})}function wO(e,t){return e.map(e=>({title:e.op,detail:e.detail,visual:(0,O.jsxs)(`div`,{children:[e.path&&(0,O.jsxs)(`p`,{className:`mb-2 font-mono text-sm`,children:[`查找路径：`,e.path.join(` → `),`，返回 `,e.path[e.path.length-1]]}),(0,O.jsx)(SO,{parent:e.parent,path:e.path,metric:t}),(0,O.jsx)(CO,{parent:e.parent,caption:`双亲数组（根指向自己）`})]})}))}function TO(){return(0,O.jsx)(mO,{topics:[{id:`u1`,label:`① 按高度合并 U1`,content:(0,O.jsx)(hO,{steps:wO(_O,`height`)})},{id:`u2`,label:`② 按大小合并 U2`,content:(0,O.jsx)(hO,{steps:wO(vO,`size`)})},{id:`result`,label:`③ 结论对照`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`U1 最终根`,value:`8`,hint:`高度 4，8→4→2→1`}),(0,O.jsx)($,{label:`U2 最终根`,value:`8`,hint:`仍有 8→4→3 三层`}),(0,O.jsx)($,{label:`Find(5)`,value:`5→6→8`,hint:`返回 8`}),(0,O.jsx)($,{label:`Find(1)`,value:`1→2→4→8`,hint:`返回 8`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`U1：`}),`只按高度合并，Find 不压缩，最后是一棵高 4 的树。`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`U2：`}),`按集合大小合并，每次 Find 立即压缩；压缩只改访问过的路径，结点 3 仍指向 4。`]})]}),(0,O.jsx)(CO,{parent:[2,4,4,8,6,8,8,8,8],caption:`U1 最终双亲数组`}),(0,O.jsx)(CO,{parent:[8,8,4,8,8,8,8,8,8],caption:`U2 最终双亲数组`})]})}]})}var EO=[{title:`首结点 8 必保留`,detail:`逆置后首结点是原尾结点，右侧没有结点，suffixMax 记为 8。`,list:[8,3,13,2,5],max:8,verdict:`保留 8`},{title:`3 < 8，删除 3`,detail:`右侧最大值 8 严格大于 3，摘链删除；suffixMax 不变。`,list:[8,3,13,2,5],drop:1,max:8,verdict:`删除 3`},{title:`13 ≥ 8，保留 13`,detail:`13 不小于 suffixMax，保留并更新 suffixMax = 13。`,list:[8,13,2,5],max:13,verdict:`保留 13`},{title:`2 < 13，删除 2`,detail:`2 的右侧最大值是 13，严格大于 2，删除。`,list:[8,13,2,5],drop:2,max:13,verdict:`删除 2`},{title:`5 < 13，删除 5`,detail:`5 的右侧最大值是 13，删除；扫描结束。`,list:[8,13,5],drop:2,max:13,verdict:`删除 5`},{title:`筛除完成：8→13`,detail:`保留下来的结点都满足右侧没有更大值，等待再逆置。`,list:[8,13],max:13,verdict:`扫描结束`}];function DO({list:e,drop:t}){return(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2 rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`head →`}),e.map((n,r)=>(0,O.jsxs)(`span`,{className:`flex items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-2 font-mono `+(t===r?`border-destructive bg-destructive/10 text-destructive line-through`:`border-border bg-secondary/40`),children:n}),r<e.length-1&&(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`→`})]},r)),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`→ ∧`})]})}function OO(){return(0,O.jsx)(mO,{topics:[{id:`reverse`,label:`① 先逆置`,content:(0,O.jsx)(hO,{steps:[{title:`原链表 5→2→13→3→8`,detail:`每个结点是否删除，只看它右侧的最大值，而不是紧邻的 next。`,visual:(0,O.jsx)(DO,{list:[5,2,13,3,8]})},{title:`逆置后 8→3→13→2→5`,detail:`原来的右侧变成已经扫描过的一侧，一个 suffixMax 就能代表右侧最大值。`,visual:(0,O.jsx)(DO,{list:[8,3,13,2,5]})}]})},{id:`scan`,label:`② 维护最大值并删除`,content:(0,O.jsx)(hO,{steps:EO.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(DO,{list:e.list,drop:e.drop}),(0,O.jsxs)(`div`,{className:`mt-2 grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`suffixMax（已扫描最大值）`,value:e.max}),(0,O.jsx)($,{label:`本步判定`,value:e.verdict,hint:`严格小于才删除，相等保留`})]})]})}))})},{id:`back`,label:`③ 再逆置`,content:(0,O.jsx)(hO,{steps:[{title:`把 8→13 逆置`,detail:`筛除时链表是反的，最后再逆置一次，恢复保留结点的原相对次序。`,visual:(0,O.jsx)(DO,{list:[8,13]})},{title:`结果 13→8`,detail:`13 右侧没有更大值，8 右侧有 13，所以只保留这两个。`,visual:(0,O.jsx)(DO,{list:[13,8]})}]})},{id:`cost`,label:`④ 复杂度`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`时间复杂度`,value:`Θ(n)`,hint:`两次逆置 + 一次筛除`}),(0,O.jsx)($,{label:`额外空间`,value:`O(1)`,hint:`几个指针和一个整数`}),(0,O.jsx)($,{label:`相等值`,value:`保留`,hint:`只删严格小于`}),(0,O.jsx)($,{label:`题例结果`,value:`13→8`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`关键：`}),`删除 3 后前驱不前进，从 prev->next 继续；先摘链再释放，避免访问已释放结点。`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`边界：`}),`严格递减链表原样保留，严格递增链表只留尾结点。`]})]})]})}]})}var kO=[[0,0,4,null,null],[0,0,3,7,null],[4,3,0,1,6],[null,7,1,0,2],[null,null,6,2,0]],AO=[0,1,2,3,4],jO=[{visited:[0],lowcost:[0,0,4,null,null],pick:null,sum:0,title:`初始：S = {0}`,detail:`lowcost[j] 直接抄 Edge[0][j]，visited[0] = 1。顶点 1 的候选边权已经是 0。`},{visited:[0,1],lowcost:[0,0,3,7,null],pick:{v:1,via:0,w:0},sum:0,title:`第 1 轮：选 0–1，权 0`,detail:`0 权边也是合法边权：归属只看 visited，lowcost 只存候选边权，两者不能合并。`},{visited:[0,1,2],lowcost:[0,0,3,1,6],pick:{v:2,via:1,w:3},sum:3,title:`第 2 轮：选 1–2，权 3`,detail:`用 Edge[2][*] 松弛：lowcost[3] 由 7 降到 1，lowcost[4] 记为 6。`},{visited:[0,1,2,3],lowcost:[0,0,3,1,2],pick:{v:3,via:2,w:1},sum:4,title:`第 3 轮：选 2–3，权 1`,detail:`lowcost[4] 由 6 降到 2，走 3–4 比 2–4 便宜。`},{visited:[0,1,2,3,4],lowcost:[0,0,3,1,2],pick:{v:4,via:3,w:2},sum:6,title:`第 4 轮：选 3–4，权 2`,detail:`5 个顶点全部并入，返回 6。选出的边：0–1(0)、1–2(3)、2–3(1)、3–4(2)。`}];function MO({visited:e,pick:t}){return(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`mx-auto border-collapse text-center text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`p-1 font-medium`,children:`i \\ j`}),AO.map(t=>(0,O.jsxs)(`th`,{className:`p-1 font-medium `+(e.includes(t)?`text-primary`:``),children:[`j=`,t]},t))]})}),(0,O.jsx)(`tbody`,{children:kO.map((n,r)=>(0,O.jsxs)(`tr`,{children:[(0,O.jsxs)(`th`,{className:`p-1 text-xs font-medium `+(e.includes(r)?`text-primary`:`text-muted-foreground`),children:[`i=`,r]}),n.map((n,i)=>{let a=t!==null&&(t.via===r&&t.v===i||t.v===r&&t.via===i),o=e.includes(r)&&e.includes(i);return(0,O.jsx)(`td`,{className:`border p-1.5 font-mono tabular-nums `+(a?`border-primary bg-primary/15 font-semibold`:o?`border-border bg-secondary/50`:`border-border/60 text-muted-foreground`),children:n===null?`∞`:n},i)})]},r))})]})})}function NO({round:e}){return(0,O.jsx)(`div`,{className:`grid grid-cols-5 gap-2`,children:e.lowcost.map((t,n)=>{let r=e.visited.includes(n);return(0,O.jsxs)(`div`,{className:`rounded-lg border border-border p-2 text-center `+(r?`bg-secondary/50`:`bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-xs text-muted-foreground`,children:[`lowcost[`,n,`]`]}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-lg tabular-nums `+(r?`text-muted-foreground`:``),children:r?`—`:t===null?`∞`:t}),(0,O.jsx)(`span`,{className:`mt-0.5 block text-[11px] text-muted-foreground`,children:r?`已并入`:`候选`})]},n)})})}var PO=[[`visited 与 lowcost 分开`,`题面允许 0 权边，不能用权值是否为 0 代替“是否在 S 中”。`],[`比较用严格 <`,`min 初值为 INT_MAX，写成 <= 会把“无边”哨兵当成候选边。`],[`松弛直取边权`,`lowcost[j] = Edge[k][j]，不是 lowcost[k] + Edge[k][j]（那是 Dijkstra）。`],[`先处理 n <= 1`,`单顶点没有生成树边，直接返回 0。`]];function FO(){let[e,t]=(0,S.useState)(0),n=jO[e];return(0,O.jsx)(mO,{topics:[{id:`matrix`,label:`① 邻接矩阵`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`对角线为 0，∞ 表示 INT_MAX（无边），其余为边权；矩阵对称。`}),(0,O.jsx)(MO,{visited:[],pick:null}),(0,O.jsx)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[[`零权边`,`Edge[0][1] = 0 是真实边权。若用 lowcost[j] == 0 判断“已在 S 中”，这条边会被漏选。`],[`INT_MAX 哨兵`,`它只表示“无边”，不是边权；选最小边必须用严格小于，否则会把哨兵选进来。`]].map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block text-xs text-muted-foreground`,children:e}),t]},e))})]})},{id:`prim`,label:`② Prim 逐轮`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(MO,{visited:n.visited,pick:n.pick}),(0,O.jsx)(`div`,{className:`mt-3`,children:(0,O.jsx)(NO,{round:n})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`本轮选中边`,value:n.pick?`${n.pick.via}–${n.pick.v}`:`—`,hint:`跨切割最小边`}),(0,O.jsx)($,{label:`边权`,value:n.pick?n.pick.w:`—`}),(0,O.jsx)($,{label:`累计 sum`,value:n.sum}),(0,O.jsx)($,{label:`已并入 |S|`,value:`${n.visited.length} / 5`})]}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:n.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:n.detail})]}),(0,O.jsxs)(`div`,{className:`mt-3 flex items-center justify-between gap-2`,children:[(0,O.jsxs)(`button`,{type:`button`,onClick:()=>t(Math.max(0,e-1)),disabled:e===0,className:`action-button disabled:opacity-40`,children:[(0,O.jsx)(ce,{size:16}),`上一步`]}),(0,O.jsxs)(`span`,{className:`text-sm tabular-nums text-muted-foreground`,children:[`第 `,e+1,` / `,jO.length,` 步`]}),(0,O.jsxs)(`button`,{type:`button`,onClick:()=>t(Math.min(jO.length-1,e+1)),disabled:e===jO.length-1,className:`action-button disabled:opacity-40`,children:[`下一步`,(0,O.jsx)(le,{size:16})]})]})]})},{id:`code`,label:`③ 代码要点`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:PO.map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{className:`block text-sm`,children:e}),(0,O.jsx)(`span`,{className:`mt-1 block text-sm leading-6 text-muted-foreground`,children:t})]},e))}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`时间复杂度`,value:`O(n²)`,hint:`每轮两次 O(n) 扫描`}),(0,O.jsx)($,{label:`空间复杂度`,value:`O(n)`,hint:`visited + lowcost`}),(0,O.jsx)($,{label:`外层轮数`,value:`n − 1`,hint:`每次并入一个顶点`}),(0,O.jsx)($,{label:`示例返回`,value:`6`,hint:`0+3+1+2`})]})]})}]})}var IO=[{code:`p->next = pre->next;`,why:`先把插入位置的原后继 s 存进 p->next。必须最先做：空 3 会覆盖 pre->next，晚取就丢了 s。`},{code:`pre->next->prior = p;`,why:`插在中间时原后继 s 存在，把它的前驱改成 p。插到表尾时 pre->next 为空，外面已有 if 判断。`},{code:`pre->next = p;`,why:`把 p 接到 pre 之后，正向链变成 pre → p → s。`},{code:`p->prior = pre;`,why:`补反向链。p 一定有前驱（至少是头结点 L），所以这一条不用判空。`}],LO=[{ins:5,checks:`2≤5 ✓，pre->next 为空停`,count:1,sorted:`{2,5}`},{ins:3,checks:`2≤3 ✓，5≤3 ✗`,count:2,sorted:`{2,3,5}`},{ins:5,checks:`2≤5 ✓，3≤5 ✓，5≤5 ✓，到表尾停`,count:3,sorted:`{2,3,5,5}`},{ins:1,checks:`2≤1 ✗`,count:1,sorted:`{1,2,3,5,5}`},{ins:4,checks:`1≤4 ✓，2≤4 ✓，3≤4 ✓，5≤4 ✗`,count:4,sorted:`{1,2,3,4,5,5}`}],RO=LO.reduce((e,t)=>e+t.count,0),zO=[{title:`空 1：先存旧后继`,detail:`pre 后面原本是 s。把 s 记进 p->next，此刻 pre->next 还没动。`,fwd:`pre → s`,back:`pre ← s`,third:[`p->next`,`s`,`旧后继已保存`]},{title:`空 2：原后继的前驱改指 p`,detail:`只有插在中间才执行。s 为空（插到表尾）就跳过，否则会解引用空指针。`,fwd:`pre → s`,back:`pre ← p ← s`,third:[`条件`,`pre->next ≠ NULL`,`插到表尾时不做`]},{title:`空 3：正向接上 p`,detail:`pre->next 由 s 改成 p，正向链完整：pre → p → s。`,fwd:`pre → p → s`,back:`pre ← p ← s`,third:[`p->next`,`s`,``]},{title:`空 4：补 p 的前驱`,detail:`反向链最后一段接上，四条指针全部接正；p 的前驱至少是头结点，无需判空。`,fwd:`pre → p → s`,back:`pre ← p ← s`,third:[`p->prior`,`pre`,`一定有前驱`]}];function BO({index:e,open:t,onOpen:n}){return(0,O.jsx)(`button`,{type:`button`,onClick:n,"aria-pressed":t,className:`rounded border px-2 py-0.5 font-mono text-xs sm:text-sm `+(t?`border-primary bg-primary/10 text-primary`:`border-dashed border-primary/60 bg-card hover:bg-accent`),children:t?IO[e].code:`________ ${e+1}`})}function VO(){let[e,t]=(0,S.useState)([]),[n,r]=(0,S.useState)(null),i=e=>{t(t=>t.includes(e)?t:[...t,e]),r(e)};return(0,O.jsx)(mO,{topics:[{id:`code`,label:`① 补全四个空`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 font-mono text-xs leading-8 sm:text-sm`,children:[(0,O.jsx)(`div`,{children:`void sort(DiLinkList L) {`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`DiLNode *p, *pre, *q;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`p = L->next->next;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`L->next->next = NULL;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`while (p != NULL) {`}),(0,O.jsx)(`div`,{className:`pl-8`,children:`q = p->next;`}),(0,O.jsx)(`div`,{className:`pl-8`,children:`pre = L;`}),(0,O.jsx)(`div`,{className:`pl-8`,children:`while (pre->next != NULL && pre->next->data <= p->data)`}),(0,O.jsx)(`div`,{className:`pl-12`,children:`pre = pre->next;`}),(0,O.jsxs)(`div`,{className:`pl-8`,children:[(0,O.jsx)(BO,{index:0,open:e.includes(0),onOpen:()=>i(0)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 1`})]}),(0,O.jsx)(`div`,{className:`pl-8`,children:`if (pre->next != NULL)`}),(0,O.jsxs)(`div`,{className:`pl-12`,children:[(0,O.jsx)(BO,{index:1,open:e.includes(1),onOpen:()=>i(1)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 2`})]}),(0,O.jsxs)(`div`,{className:`pl-8`,children:[(0,O.jsx)(BO,{index:2,open:e.includes(2),onOpen:()=>i(2)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 3`})]}),(0,O.jsxs)(`div`,{className:`pl-8`,children:[(0,O.jsx)(BO,{index:3,open:e.includes(3),onOpen:()=>i(3)}),(0,O.jsx)(`span`,{className:`ml-2 text-muted-foreground`,children:`// 4`})]}),(0,O.jsx)(`div`,{className:`pl-8`,children:`p = q;`}),(0,O.jsx)(`div`,{className:`pl-4`,children:`}`}),(0,O.jsx)(`div`,{children:`}`})]}),(0,O.jsx)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-4 text-sm leading-7`,children:n===null?(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`点任意一个空：先想这行改的是哪条链，再看答案。`}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsx)(`strong`,{className:`block font-mono text-primary`,children:IO[n].code}),(0,O.jsx)(`span`,{className:`mt-2 block text-muted-foreground`,children:IO[n].why})]})})]})},{id:`chain`,label:`② 指针怎么接`,content:(0,O.jsx)(hO,{steps:zO.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`正向链`,value:e.fwd}),(0,O.jsx)($,{label:`反向链`,value:e.back}),(0,O.jsx)($,{label:e.third[0],value:e.third[1],hint:e.third[2]||void 0})]})}))})},{id:`count`,label:`③ 比较次数`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:[`初始序列 `,`{2,5,3,5,1,4}`,`；只统计 `,`pre->next->data <= p->data`,` 的求值，判空不算。`]}),(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[520px] text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`轮次`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`待插入`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`比较过程`}),(0,O.jsx)(`th`,{className:`px-3 py-2 text-right font-medium`,children:`次数`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`有序段`})]})}),(0,O.jsxs)(`tbody`,{children:[LO.map((e,t)=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono tabular-nums text-muted-foreground`,children:t+1}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono tabular-nums`,children:e.ins}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs`,children:e.checks}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-right font-mono font-semibold tabular-nums`,children:e.count}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs text-muted-foreground`,children:e.sorted})]},t)),(0,O.jsxs)(`tr`,{className:`border-t-2 border-border bg-secondary/40`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-semibold`,colSpan:3,children:`合计`}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-right font-mono text-base font-semibold tabular-nums`,children:RO}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-xs text-muted-foreground`,children:`1+2+3+1+4`})]})]})]})}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`第二个 5 遇到相等的 5 仍然后移（条件用 <=），所以插到先出现的 5 之后，排序稳定。`})]})},{id:`cases`,label:`④ 最好最坏`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`严格递增`,value:`n(n−1)/2`,hint:`每轮扫到表尾`}),(0,O.jsx)($,{label:`严格递减`,value:`n − 1`,hint:`每轮第一次就比较失败`}),(0,O.jsx)($,{label:`时间复杂度`,value:`O(n²)`,hint:`比较次数与 n² 同阶`}),(0,O.jsx)($,{label:`稳定性`,value:`稳定`,hint:`相等时继续后移`})]}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:[`本题代码每轮令 pre = L 从头扫描，递增输入要一路走到尾部，`,(0,O.jsx)(`span`,{className:`font-mono`,children:` 0+1+…+(n−1) = n(n−1)/2 `}),`次，是 Θ(n²)；数组版插入排序从有序段末端向前比较，递增输入只需 n−1 次。差别来自扫描方向，不是双向链表做不到。`]})]})}]})}var HO=1/0,UO=5,WO=[[0,1,0],[1,2,0],[2,3,0],[3,4,0],[0,4,5]];function GO(){let e=Array.from({length:UO},(e,t)=>t===0?0:HO),t=[];for(let n=1;n<=3;n+=1){let n=e.slice(),r=[];for(let[t,i,a]of WO){if(e[t]===HO)continue;let o=e[t]+a;o<n[i]&&(r.push({from:t,to:i,w:a,cand:o,before:n[i]}),n[i]=o)}t.push({prev:e,cur:n,relax:r}),e=n}return t}var KO=GO(),qO=e=>e===HO?`∞`:String(e);function JO({label:e,values:t,changed:n}){return(0,O.jsxs)(`div`,{className:`flex items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-12 shrink-0 font-mono text-xs text-muted-foreground`,children:e}),(0,O.jsx)(`div`,{className:`flex flex-1 gap-1.5`,children:t.map((e,t)=>(0,O.jsxs)(`div`,{className:`flex-1 rounded-lg border p-1.5 text-center `+(n.includes(t)?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-[10px] text-muted-foreground`,children:[`v`,t]}),(0,O.jsx)(`strong`,{className:`block font-mono text-sm tabular-nums`,children:qO(e)})]},t))})]})}function YO(){let[e,t]=(0,S.useState)(0),n=KO[e],r=n.relax.map(e=>e.to),i=n.cur.filter(e=>e!==HO).length;return(0,O.jsx)(mO,{topics:[{id:`state`,label:`① 状态定义`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`换乘上限`,value:`2 次`,hint:`中间顶点 ≤2 个`}),(0,O.jsx)($,{label:`边数上限`,value:`3 条`,hint:`换乘次数 + 1`}),(0,O.jsx)($,{label:`递推轮数`,value:`3 轮`,hint:`k = 1, 2, 3`}),(0,O.jsx)($,{label:`答案`,value:`d₃[t]`,hint:`不可达返回 −1`})]}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 font-mono text-xs leading-6 sm:text-sm`,children:[`d₀[s] = 0，d₀[v] = ∞（v ≠ s）`,(0,O.jsx)(`br`,{}),`d_k[v] = min( d_{k−1}[v], min{ d_{k−1}[i] + w(i,v) } )`]}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:`第一项 d_{k−1}[v] 表示本轮不用新边，所以 d_k 是「至多 k 条边」，不是「恰好 k 条边」。`})]})},{id:`rounds`,label:`② 逐轮松弛`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`反例图：0→1→2→3→4 每条边权 0，另有直达边 0→4 权 5；求 0 到 4 至多 3 条边的最小总等待`}),(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q41-round`,children:[(0,O.jsx)(`span`,{children:`拖动查看每一轮`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`第 `,e+1,` / 3 轮`]})]}),(0,O.jsx)(`input`,{id:`q41-round`,type:`range`,min:0,max:2,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`space-y-2`,children:[(0,O.jsx)(JO,{label:`prev`,values:n.prev,changed:[]}),(0,O.jsx)(JO,{label:`cur`,values:n.cur,changed:r})]}),(0,O.jsxs)(`ul`,{className:`mt-3 space-y-1.5`,children:[n.relax.length===0&&(0,O.jsx)(`li`,{className:`text-sm text-muted-foreground`,children:`本轮没有更短的候选，cur 与 prev 完全相同。`}),n.relax.map(e=>(0,O.jsxs)(`li`,{className:`rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs`,children:[e.from,` → `,e.to,`：prev[`,e.from,`] `,qO(n.prev[e.from]),` + `,e.w,` = `,e.cand,`，cur[`,e.to,`] 由 `,qO(e.before),` 降为 `,e.cand]},`${e.from}-${e.to}`))]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`轮次 k`,value:e+1}),(0,O.jsx)($,{label:`本轮松弛`,value:`${n.relax.length} 条边`}),(0,O.jsx)($,{label:`可达顶点`,value:`${i} / 5`}),(0,O.jsx)($,{label:`d_k[4]`,value:qO(n.cur[4])})]}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`每轮只从 prev 加一条边：0→1、0→4 在第 1 轮松弛，1→2 要等第 2 轮，2→3 要等第 3 轮。`})]})},{id:`answer`,label:`③ 答案与复杂度`,content:(0,O.jsx)(hO,{steps:[{title:`三轮后 d₃[4] = 5`,detail:`0→1→2→3→4 那条 0 权链要 4 条边，三轮只到 3 条边；合法方案只剩直达边 0→4，权 5。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`无约束最短路`,value:`0`,hint:`用了 4 条边，非法`}),(0,O.jsx)($,{label:`至多 3 条边`,value:`5`,hint:`0→4 直达`}),(0,O.jsx)($,{label:`d₃[4]`,value:`5`,hint:`三轮结束`}),(0,O.jsx)($,{label:`不可达`,value:`−1`,hint:`d₃[t] 仍为 ∞`})]})},{title:`单数组就地松弛会多走边`,detail:`同一轮里 0→1、1→2、2→3、3→4 会连锁更新，一轮就走完 4 条边，d[4] 被错算成 0。`},{title:`「至多」不是「恰好」`,detail:`0→2 权 2、2→3 权 1、0→3 权 9：至多 3 条边的最优是 3（只用 2 条边），只算恰好 3 条边会漏掉。`},{title:`复杂度`,detail:`每轮检查全部 n² 个有序顶点对，共 3 轮；额外空间只有 prev、cur 两个长度为 n 的数组。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`时间`,value:`O(3n²) = O(n²)`}),(0,O.jsx)($,{label:`额外空间`,value:`O(n)`})]})}]})}]})}var XO=1e3,ZO=20,QO=XO/ZO,$O=5,ek=QO/$O,tk=QO*2,nk=$O-1,rk=QO*2,ik=tk+rk*2,ak=[{label:`初始`,groups:[`1`,`2`,`3`,`4`,`5`,`6`,`7`,`8`,`9`,`10`],passes:0,io:tk},{label:`第 1 趟后`,groups:[`1–4`,`5–8`,`9–10`],passes:1,io:tk+rk},{label:`第 2 趟后`,groups:[`1–3`],passes:2,io:ik}];function ok(){let[e,t]=(0,S.useState)(0),[n,r]=(0,S.useState)(!1),i=ak[e],a=n?[5,4,9,2]:[5,1,9,2];return(0,O.jsx)(mO,{topics:[{id:`runs`,label:`① 初始归并段`,content:(0,O.jsx)(hO,{steps:[{title:`1000 条记录 ÷ 20 条/块 = 50 个数据块`,detail:`记录数除以每块能存的记录数，得到文件占用的磁盘块数。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`记录数`,value:XO}),(0,O.jsx)($,{label:`每块记录数`,value:ZO}),(0,O.jsx)($,{label:`数据块数`,value:`${QO} 块`})]})},{title:`50 块 ÷ 5 块/段 = 10 个初始归并段`,detail:`内存一次装 5 块，排好序写出就是一段，所以段数等于数据块数除以 5。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`内存工作区`,value:`${$O} 块`}),(0,O.jsx)($,{label:`初始归并段`,value:`${ek} 个`})]})},{title:`生成阶段要 100 次块 I/O`,detail:`50 块读进内存、排好再写回磁盘，读 50 次加写 50 次，共 100 次。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`读`,value:`50 块`}),(0,O.jsx)($,{label:`写`,value:`50 块`}),(0,O.jsx)($,{label:`合计`,value:`100 次`,hint:`块 I/O`})]})}]})},{id:`passes`,label:`② 路数与趟数`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:[`内存 5 块 = k 个输入缓冲 + 1 个输出缓冲，故 k + 1 ≤ 5，最大归并路数 k = `,nk]}),(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q42-stage`,children:[(0,O.jsx)(`span`,{children:`拖动查看归并推进`}),(0,O.jsx)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:i.label})]}),(0,O.jsx)(`input`,{id:`q42-stage`,type:`range`,min:0,max:2,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsx)(`div`,{className:`space-y-2`,children:ak.map((t,n)=>(0,O.jsxs)(`div`,{className:`flex items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-16 shrink-0 text-xs text-muted-foreground`,children:t.label}),(0,O.jsx)(`div`,{className:`flex flex-1 flex-wrap gap-1`,children:t.groups.map(t=>(0,O.jsx)(`span`,{className:`rounded border px-1.5 py-0.5 font-mono text-[11px] `+(n===e?`border-primary bg-accent`:`border-border bg-card text-muted-foreground`),children:t},t))}),(0,O.jsxs)(`span`,{className:`shrink-0 font-mono text-xs tabular-nums`,children:[t.groups.length,` 段`]})]},t.label))}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`段数按 ⌈段数 / 4⌉ 收拢：10 → ⌈10/4⌉ = 3 → ⌈3/4⌉ = 1，共 2 趟归并。`}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`最大归并路数`,value:`k = ${nk}`}),(0,O.jsx)($,{label:`已完成趟数`,value:`${i.passes} 趟`}),(0,O.jsx)($,{label:`每趟块 I/O`,value:`${rk} 次`,hint:`50 读 + 50 写`}),(0,O.jsx)($,{label:`累计块 I/O`,value:`${i.io} 次`})]}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:[`总块 I/O = 100（生成）+ 2 × 100（两趟归并）= `,ik,` 次。`]})]})},{id:`loser`,label:`③ 败者树`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`固定 4 个叶结点，内部结点记「败者」段号，冠军另外保存；不足 4 路用 +∞ 虚拟段补足`}),(0,O.jsxs)(`div`,{className:`space-y-2 text-center`,children:[(0,O.jsxs)(`div`,{className:`mx-auto w-44 rounded-lg border border-primary bg-accent px-2 py-1`,children:[(0,O.jsx)(`span`,{className:`block text-[10px] text-muted-foreground`,children:`根：败者`}),(0,O.jsx)(`strong`,{className:`font-mono tabular-nums`,children:n?`4`:`2`})]}),(0,O.jsx)(`div`,{className:`mx-auto grid w-full max-w-sm grid-cols-2 gap-2`,children:[{v:`5`,d:`左子树`},{v:`9`,d:`右子树`}].map(e=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card px-2 py-1`,children:[(0,O.jsxs)(`span`,{className:`block text-[10px] text-muted-foreground`,children:[e.d,`：败者`]}),(0,O.jsx)(`strong`,{className:`font-mono tabular-nums`,children:e.v})]},e.d))}),(0,O.jsx)(`div`,{className:`grid grid-cols-4 gap-2`,children:a.map((e,t)=>(0,O.jsxs)(`div`,{className:`rounded-lg border p-2 `+(t===1?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-[10px] text-muted-foreground`,children:[`段`,t+1,` 队首`]}),(0,O.jsx)(`strong`,{className:`block font-mono tabular-nums`,children:e})]},t))})]}),(0,O.jsxs)(`div`,{className:`mt-3 flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsx)(`button`,{type:`button`,onClick:()=>r(!n),className:`action-button`,children:n?`还原到调整前`:`输出 1，段②补入 4`}),(0,O.jsxs)(`span`,{className:`font-mono text-sm tabular-nums`,children:[`冠军 = `,n?2:1]})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`叶结点`,value:`4 个`,hint:`含虚拟段`}),(0,O.jsx)($,{label:`树高`,value:`⌈log₂4⌉ = 2`}),(0,O.jsx)($,{label:`建树比较`,value:`k − 1 = 3 次`}),(0,O.jsx)($,{label:`每次调整`,value:`2 次`,hint:`叶到根两层`})]}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`输出 1 后从该段补入 4：4 与左子树的败者 5 比较胜出上浮，再与根的败者 2 比较，2 成为新冠军——只比 2 次，不必重比四个队首。`})]})}]})}var sk=1024e3,ck=32,lk=sk/ck,uk=lk+2048/ck;function dk(){let[e,t]=(0,S.useState)(0),n=lk+Math.floor(e/2),r=uk+Math.floor(e/2),i=n%64==r%64,a=e%2==0,o=8*(e+1),s=8*Math.ceil((e+1)/2);return(0,O.jsx)(mO,{topics:[{id:`page`,label:`① 是否同页`,content:(0,O.jsx)(hO,{steps:[{title:`每个数组占 2KB`,detail:`128 × 4 个 int × 4B = 2048B。a 的虚拟地址范围是 0x80490000～0x804907FF。`,visual:(0,O.jsx)($,{label:`数组 a 大小`,value:`2048 B = 2 KB`,hint:`128 行 × 4 列 × 4 字节`})},{title:`b 紧接在 a 后面`,detail:`b 从 0x80490800 开始，到 0x80490FFF 结束。两个数组首尾相接，中间没有空隙。`,visual:(0,O.jsx)($,{label:`数组 b 虚拟地址范围`,value:`0x80490800 ～ 0x80490FFF`})},{title:`整段落在同一个 4KB 页内`,detail:`页大小 4KB = 0x1000，页按 0x1000 对齐。0x80490000～0x80490FFF 正好是一个页，所以 a、b 同页。`,visual:(0,O.jsx)($,{label:`结论`,value:`同页`,hint:`0x80490000 是 0x1000 的整数倍，页内偏移 0～0xFFF`})}]})},{id:`fields`,label:`② 地址字段`,content:(0,O.jsx)(gO,{caption:`32 位物理地址，Cache 数据区 2KB、块 32B、直接映射`,fields:[{name:`标记 Tag`,bits:`21 位`,detail:`块内偏移 5 位 + 行号 6 位 = 11 位，剩下 32 − 11 = 21 位作标记。`},{name:`行号 Index`,bits:`6 位`,detail:`行数 = 2KB ÷ 32B = 64 行，log₂64 = 6 位，直接映射时行号就是块号对 64 取余。`},{name:`块内偏移 Offset`,bits:`5 位`,detail:`块大小 32B，log₂32 = 5 位，用来在块内定位具体字节。`}]})},{id:`blocks`,label:`③ 块号`,content:(0,O.jsx)(hO,{steps:[{title:`a[0][0] 的物理地址`,detail:`虚拟地址 0x80490000 对应的物理地址是 0x000fa000，直接除以块大小 32 得到块号。`,visual:(0,O.jsx)($,{label:`a[0][0] 块号`,value:`32000`,hint:`0x000fa000 ÷ 32 = 1024000 ÷ 32`})},{title:`一行只有 16B，占半个块`,detail:`a[2][0] 相对首地址偏移 2 × 4 × 4B = 32B，正好跨过一个整块，所以块号加 1。`,visual:(0,O.jsx)($,{label:`a[2][0] 块号`,value:`32001`,hint:`0x000fa020 ÷ 32`})},{title:`为什么 a[0] 和 a[1] 同块`,detail:`一行 4 个 int 共 16B，两块才能装下 32B 的块，所以第 0、1 行共用第 32000 块，第 2、3 行共用第 32001 块。`,visual:(0,O.jsx)($,{label:`a[0][·] 与 a[1][·]`,value:`同属第 32000 块`,hint:`16B + 16B = 32B 恰好一块`})}]})},{id:`miss`,label:`④ 缺失率`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q43-row`,children:[(0,O.jsx)(`span`,{children:`拖动查看第 i 轮循环（0～127）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`i = `,e]})]}),(0,O.jsx)(`input`,{id:`q43-row`,type:`range`,min:`0`,max:`127`,step:`1`,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-3`,children:[(0,O.jsx)($,{label:`a 的块号`,value:n}),(0,O.jsx)($,{label:`b 的块号`,value:r}),(0,O.jsx)($,{label:`同一 Cache 行`,value:i?`是`:`否`,hint:`块号对 64 取余相同`}),(0,O.jsx)($,{label:`2 路组号`,value:n%32,hint:`块号对 32 取余`}),(0,O.jsx)($,{label:`本轮 2 路`,value:a?`缺失`:`命中`,hint:a?`换到新块，两条路都空`:`与上一轮同一对块，已在路中`}),(0,O.jsx)($,{label:`本轮直接映射`,value:`缺失`,hint:`两块抢同一行，每次访问都换出`})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`直接映射`}),`读 a、写 b 交替进行，两块抢同一行，每次都把对方换出。`,(0,O.jsxs)(`span`,{className:`mt-1 block font-mono tabular-nums`,children:[`累计缺失 `,o,` / `,8*(e+1),` 次`]})]}),(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`2 路组相联（LRU）`}),`两块可以同时驻留在同一组的两条路里，只有换到新块时才缺。`,(0,O.jsxs)(`span`,{className:`mt-1 block font-mono tabular-nums`,children:[`累计缺失 `,s,` / `,8*(e+1),` 次`]})]})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`每轮 4 个元素、每个元素读 a 写 b 共 2 次访问，所以每轮 8 次。`}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`直接映射：`}),`1024 / 1024 = `,(0,O.jsx)(`strong`,{children:`100%`}),`。`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`2 路组相联：`}),`只有 i 为偶数的 64 轮各缺 2 次，128 / 1024 = `,(0,O.jsx)(`strong`,{children:`12.5%`}),`。`]})]})]})}]})}var fk=[`IF`,`ID`,`EX`,`MEM`,`WB`],pk=15,mk=[{text:`add  $t4, $t1, $t0`,fetch:1,detail:`写 $t4；读 $t1（a 首址）、$t0（字节偏移）。`},{text:`nop`,fetch:2,detail:`占位，等 $t4 在第 5 周期写回。`},{text:`nop`,fetch:3,detail:`占位。`},{text:`nop`,fetch:4,detail:`占位。`},{text:`lw   $t5, 0($t4)`,fetch:5,detail:`用 $t4 作访存地址，写 $t5。ID 在第 6 周期，晚于写回。`},{text:`add  $t7, $t2, $t0`,fetch:6,detail:`写 $t7；读 $t2（b 首址）、$t0。`},{text:`nop`,fetch:7,detail:`占位，等 $t7 在第 10 周期写回。`},{text:`nop`,fetch:8,detail:`占位。`},{text:`nop`,fetch:9,detail:`占位。`},{text:`sw   $t5, 0($t7)`,fetch:10,detail:`读 $t5 作数据、$t7 作地址；ID 在第 11 周期。`},{text:`addi $t0, $t0, 4`,fetch:11,detail:`写 $t0，供下一轮迭代使用。`}],hk={"0:5":!0,"4:6":!0,"5:10":!0,"9:11":!0};function gk(e,t){let n=t-e.fetch;return n>=0&&n<fk.length?fk[n]:``}function _k(){let[e,t]=(0,S.useState)(0);return(0,O.jsx)(mO,{topics:[{id:`regs`,label:`① 寄存器角色`,content:(0,O.jsx)(hO,{steps:[{title:`$t1 存 a 的首地址`,detail:`add $t4,$t1,$t0 把基址与偏移相加，得到 a[i][j] 的地址。`,visual:(0,O.jsx)($,{label:`基址寄存器`,value:`$t1 = &a[0][0]`})},{title:`$t2 存 b 的首地址`,detail:`第三条指令用 $t2 加同一个偏移，所以两数组元素下标一一对应。`,visual:(0,O.jsx)($,{label:`基址寄存器`,value:`$t2 = &b[0][0]`})},{title:`$t0 存字节偏移`,detail:`一个 int 占 4 字节，行优先存放，每轮加 4 指向下一个元素。`,visual:(0,O.jsx)($,{label:`偏移量`,value:`$t0 = 4×(4i+j)`,hint:`addi $t0,$t0,4 推进一轮`})}]})},{id:`raw`,label:`② RAW 相关`,content:(0,O.jsx)(hO,{steps:[{title:`1 → 2：$t4`,detail:`add 写 $t4，lw 立刻拿 $t4 当访存地址，必须先写后读。`,visual:(0,O.jsx)($,{label:`相关`,value:`1 → 2`,hint:`寄存器 $t4`})},{title:`2 → 4：$t5`,detail:`lw 把 M[EA] 读进 $t5，sw 把 $t5 当待存数据写出。`,visual:(0,O.jsx)($,{label:`相关`,value:`2 → 4`,hint:`寄存器 $t5`})},{title:`3 → 4：$t7`,detail:`add 写 $t7，sw 用 $t7 算存储地址 EA，这是最晚的一条约束。`,visual:(0,O.jsx)($,{label:`相关`,value:`3 → 4`,hint:`寄存器 $t7`})},{title:`$t0 不算 RAW`,detail:`指令 5 写 $t0，而 1、3 读 $t0 在它之前，是 WAR；跨迭代的 RAW 不在本题范围。`,visual:(0,O.jsx)($,{label:`涉及 $t0`,value:`WAR（反相关）`,hint:`题目只考虑本次迭代内的 RAW`})}]})},{id:`nop`,label:`③ nop 与时间线`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`mb-2 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,O.jsx)(`span`,{children:`点指令名看说明；深色格是「生产者 WB」与「消费者 ID」这对冲突点`}),(0,O.jsx)(`span`,{className:`font-mono`,children:`共 6 个 nop`})]}),(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[680px] border-collapse text-xs`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`p-1 text-left font-medium text-muted-foreground`,children:`指令`}),Array.from({length:pk},(e,t)=>(0,O.jsx)(`th`,{className:`p-1 font-mono font-medium text-muted-foreground`,children:t+1},t))]})}),(0,O.jsx)(`tbody`,{children:mk.map((n,r)=>(0,O.jsxs)(`tr`,{className:r===e?`bg-accent/60`:``,children:[(0,O.jsx)(`td`,{className:`whitespace-nowrap p-1 font-mono`,children:(0,O.jsx)(`button`,{type:`button`,onClick:()=>t(r),className:`rounded px-1 text-left hover:underline`,children:n.text})}),Array.from({length:pk},(e,t)=>{let i=gk(n,t+1),a=hk[`${r}:${t+1}`];return(0,O.jsx)(`td`,{className:`border border-border/60 p-1 text-center font-mono `+(a?`bg-primary font-semibold text-primary-foreground`:i?`bg-card`:``),children:i},t)})]},r))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`font-mono`,children:mk[e].text}),(0,O.jsx)(`p`,{className:`mt-1 text-muted-foreground`,children:mk[e].detail})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`1 后插 nop`,value:`3`,hint:`$t4 第 5 周期才写回`}),(0,O.jsx)($,{label:`2 后插 nop`,value:`0`,hint:`已被后面的等待覆盖`}),(0,O.jsx)($,{label:`3 后插 nop`,value:`3`,hint:`$t7 第 10 周期才写回`}),(0,O.jsx)($,{label:`nop 总数`,value:`6`,hint:`最少值`})]})]})}]})}var vk=4096,yk=[30001,4086,4100,8200,3012,12600,2023,17e3,8201,12601],bk=yk.map(e=>Math.floor(e/vk)),xk=[[7],[7,0],[7,0,1],[0,1,2],[1,2,0],[2,0,3],[2,3,0],[3,0,4],[0,4,2],[4,2,3]],Sk=[null,null,null,7,null,1,null,2,3,0],Ck=[!1,!1,!1,!1,!0,!1,!0,!1,!1,!1],wk=.2*120,Tk=.8*220,Ek=20000232;function Dk(){let[e,t]=(0,S.useState)(0),n=xk[e],r=Ck.slice(0,e+1).filter(e=>!e).length;return(0,O.jsx)(mO,{topics:[{id:`pages`,label:`① 页号序列`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`页大小 4KB = 4096B，页号 = ⌊逻辑地址 ÷ 4096⌋`}),(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[420px] border-collapse text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`次序`}),(0,O.jsx)(`th`,{className:`p-1 text-right font-medium`,children:`逻辑地址`}),(0,O.jsx)(`th`,{className:`p-1 text-right font-medium`,children:`÷ 4096`}),(0,O.jsx)(`th`,{className:`p-1 text-right font-medium`,children:`页号`})]})}),(0,O.jsx)(`tbody`,{children:yk.map((e,t)=>(0,O.jsxs)(`tr`,{className:`border-t border-border/60`,children:[(0,O.jsx)(`td`,{className:`p-1 font-mono tabular-nums text-muted-foreground`,children:t+1}),(0,O.jsx)(`td`,{className:`p-1 text-right font-mono tabular-nums`,children:e}),(0,O.jsx)(`td`,{className:`p-1 text-right font-mono tabular-nums text-muted-foreground`,children:(e/vk).toFixed(3)}),(0,O.jsx)(`td`,{className:`p-1 text-right font-mono font-semibold tabular-nums`,children:bk[t]})]},e))})]})}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 font-mono text-sm leading-6`,children:`7, 0, 1, 2, 0, 3, 0, 4, 2, 3`})]})},{id:`lru`,label:`② LRU 置换`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q45-step`,children:[(0,O.jsx)(`span`,{children:`拖动查看每次访问后的页框`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`第 `,e+1,` / 10 次`]})]}),(0,O.jsx)(`input`,{id:`q45-step`,type:`range`,min:0,max:9,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsx)(`div`,{className:`grid grid-cols-3 gap-2`,children:[0,1,2].map(t=>{let r=n[t];return(0,O.jsxs)(`div`,{className:`rounded-lg border p-3 text-center `+(r===bk[e]?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsxs)(`span`,{className:`block text-xs text-muted-foreground`,children:[`页框 `,t+1]}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-2xl tabular-nums`,children:r??`—`}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:r===void 0?`空`:t<n.length-1?`较久未用`:`最近使用`})]},t)})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`本次页号`,value:bk[e]}),(0,O.jsx)($,{label:`结果`,value:Ck[e]?`命中`:`缺页`,hint:Sk[e]===null?void 0:`淘汰页 ${Sk[e]}`}),(0,O.jsx)($,{label:`累计缺页`,value:`${r} / ${e+1}`}),(0,O.jsx)($,{label:`缺页率`,value:`${Math.round(r/(e+1)*100)}%`})]}),(0,O.jsx)(`p`,{className:`mt-3 text-sm leading-6 text-muted-foreground`,children:`命中也要更新次序：第 5 次访问页 0，它立刻变成「最近使用」，所以第 6 次淘汰的是页 1。`})]})},{id:`time`,label:`③ 平均访问时间`,content:(0,O.jsx)(hO,{steps:[{title:`不缺页：按 20% 命中率加权`,detail:`命中 20+100，未命中再查一次页表 20+100+100，加权得 200ns。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`TLB 命中 20%`,value:`120 ns`}),(0,O.jsx)($,{label:`TLB 未命中 80%`,value:`220 ns`}),(0,O.jsx)($,{label:`加权`,value:`200 ns`,hint:`${wk} + ${Tk}`})]})},{title:`缺页：25ms 之外还有两段`,detail:`发现缺页前 TLB+页表 120ns；处理完重执行且 TLB 命中，再 120ns。`,visual:(0,O.jsx)($,{label:`单次缺页总耗时`,value:`25 000 240 ns`,hint:`120 + 25ms + 120`})},{title:`按 8:2 加权`,detail:`10 次里 8 次缺页、2 次不缺页，缺页项几乎独占结果。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`0.8 × 缺页`,value:`20 000 192 ns`}),(0,O.jsx)($,{label:`0.2 × 不缺页`,value:`40 ns`})]})},{title:`平均访问时间`,detail:`缺页处理时间以 ms 计，普通访存以 ns 计，后者对结果几乎没有影响。`,visual:(0,O.jsx)($,{label:`平均访问时间`,value:`${(Ek/1e6).toFixed(6)} ms`,hint:`≈ 20.00ms；缺页 8 次、缺页率 80%`})}]})}]})}var Ok={empty:1,mutex:1,fullB:0,fullC:0,fullD:0,count:0},kk=[{title:`初始状态`,detail:`empty=1 表示缓冲区空、首条消息可直接写；三个通知量都为 0。`,s:Ok},{title:`A：P(empty)`,detail:`申请写入资格，empty 变 0。若三人还没读完上一条，A 就阻塞在这里。`,s:{...Ok,empty:0}},{title:`A：P(mutex) → 写入 → V(mutex)`,detail:`临界区内写缓冲区并把 count 置 3，表示这条消息待三人读取。`,s:{...Ok,empty:0,count:3}},{title:`A：V(fullB) V(fullC) V(fullD)`,detail:`分别通知三个消费者，每人一个私有信号量，各只能读一次。`,s:{empty:0,mutex:1,fullB:1,fullC:1,fullD:1,count:3}},{title:`B：P(fullB) → 读 → count=2`,detail:`B 取走自己那份通知，临界区内读取并登记完成，不是最后一个读者。`,s:{empty:0,mutex:1,fullB:0,fullC:1,fullD:1,count:2}},{title:`C：P(fullC) → 读 → count=1`,detail:`C 同理。此时只剩 D 未读，A 仍被 empty=0 挡在写入之前。`,s:{empty:0,mutex:1,fullB:0,fullC:0,fullD:1,count:1}},{title:`D：P(fullD) → 读 → count=0 → V(empty)`,detail:`count 减到 0 说明三人读完，由最后这名读者归还可写资格。`,s:{empty:1,mutex:1,fullB:0,fullC:0,fullD:0,count:0}},{title:`A：写第二条消息`,detail:`empty 已为 1，P(empty) 通过，A 覆盖缓冲区并把 count 重新置 3。`,s:{empty:0,mutex:1,fullB:0,fullC:0,fullD:0,count:3}}];function Ak({s:e}){return(0,O.jsx)(`div`,{className:`grid grid-cols-3 gap-2 sm:grid-cols-6`,children:[[`empty`,e.empty],[`mutex`,e.mutex],[`fullB`,e.fullB],[`fullC`,e.fullC],[`fullD`,e.fullD],[`count`,e.count]].map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border p-2 text-center `+(t>0?`border-primary bg-accent`:`border-border bg-card`),children:[(0,O.jsx)(`span`,{className:`block font-mono text-xs text-muted-foreground`,children:e}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-xl tabular-nums`,children:t})]},e))})}function jk(){return(0,O.jsx)(mO,{topics:[{id:`sem`,label:`① 信号量定义`,content:(0,O.jsx)(`div`,{className:`space-y-2 text-sm leading-6`,children:[[`mutex = 1`,`缓冲区互斥：任何进程读写缓冲区前都要 P，读完 V。`],[`empty = 1`,`缓冲区可写：初值 1，首条消息直接写；由最后一名读者 V。`],[`fullB = fullC = fullD = 0`,`每人一个私有通知，保证同一条消息对每人恰好可见一次。`],[`count = 0`,`当前消息尚未读取的人数，A 每写一条置 3，受 mutex 保护。`]].map(([e,t])=>(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{className:`block font-mono`,children:e}),(0,O.jsx)(`span`,{className:`mt-1 block text-muted-foreground`,children:t})]},e))})},{id:`why`,label:`② 为什么不能只用一个 full`,content:(0,O.jsx)(hO,{steps:[{title:`若设 full = 3`,detail:`A 写一条消息后 V(full) 三次，看起来「有三份可读」。`,visual:(0,O.jsx)($,{label:`错误设计`,value:`full = 3`,hint:`三个消费者共享一个计数`})},{title:`B 连续 P(full) 三次都成功`,detail:`信号量不认人，B 会把同一条消息读三遍。`,visual:(0,O.jsx)($,{label:`后果`,value:`B 读 3 次`,hint:`同一条消息被重复消费`})},{title:`C、D 一次也读不到`,detail:`计数被 B 抽干，C、D 永久阻塞，消息内容也早已被覆盖。`,visual:(0,O.jsx)($,{label:`后果`,value:`C、D 饿死`,hint:`违反「每人恰好一次」`})}]})},{id:`trace`,label:`③ 事件推演`,content:(0,O.jsx)(hO,{steps:kk.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsx)(Ak,{s:e.s})}))})},{id:`code`,label:`④ 伪代码`,content:(0,O.jsx)(`pre`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 text-xs leading-6`,children:`semaphore mutex=1, empty=1, fullB=0, fullC=0, fullD=0;
 int count = 0;                    /* 受 mutex 保护 */
 
 A() { while (1) {
@@ -46291,21 +50176,21 @@ consumer(ready) { while (1) {
     处理消息;
 } }
 
-B(){ consumer(fullB); }  C(){ consumer(fullC); }  D(){ consumer(fullD); }`})}]})}var gk=`72-56-7F-2B-09-35`,_k=`86-23-D7-FA-20-0B`,vk=`FF-FF-FF-FF-FF-FF`;function yk({dst:e,src:t,ip:n,note:r}){return(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 font-mono text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`目的 MAC `}),(0,O.jsx)(`strong`,{children:e})]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`源 MAC　 `}),t]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`IP 头部　`}),n]}),(0,O.jsx)(`p`,{className:`mt-1 font-sans text-xs text-muted-foreground`,children:r})]})}function bk(){return(0,O.jsx)(QD,{topics:[{id:`same`,label:`① 同网段三问`,content:(0,O.jsx)($D,{steps:[{title:`ARP 请求：只能广播`,detail:`7.23 不知道 7.14 的 MAC，目的 MAC 填全 1；查询的 IP 是 192.168.7.14。`,visual:(0,O.jsx)(yk,{dst:vk,src:gk,ip:`谁是 192.168.7.14？`,note:`广播帧，交换机 S1 向本广播域内所有端口泛洪`})},{title:`ARP 响应：单播回请求方`,detail:`只有 192.168.7.14 认领该 IP，于是单播回应，目的 MAC 是 7.23 的地址。`,visual:(0,O.jsx)(yk,{dst:gk,src:_k,ip:`192.168.7.14 的 MAC 是 86-23-D7-FA-20-0B`,note:`响应帧是单播，不广播`})},{title:`数据帧：下一跳就是目的主机`,detail:`二者同处 192.168.7.0/24，目的 MAC 直接填 7.14，经交换机转发，不经路由器。`,visual:(0,O.jsx)(yk,{dst:_k,src:gk,ip:`192.168.7.23 → 192.168.7.14`,note:`同网段，默认网关不参与`})}]})},{id:`cross`,label:`② 跨网段`,content:(0,O.jsx)($D,{steps:[{title:`先判网段：不同`,detail:`7.88 在 192.168.7.0/24，8.13 在 192.168.8.0/24，属于两个广播域。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`源`,value:`192.168.7.88`,hint:`左侧局域网`}),(0,O.jsx)($,{label:`目的`,value:`192.168.8.13`,hint:`右侧局域网`})]})},{title:`不能直接 ARP 到 8.13`,detail:`ARP 请求是广播帧，路由器不转发广播，所以它问不到另一个网段的主机。`,visual:(0,O.jsx)($,{label:`结论`,value:`不能`,hint:`ARP 广播被 R1 挡住`})},{title:`它应 ARP 默认网关 R12`,detail:`跨网段时下一跳是网关，7.88 需要的是 R1 在本局域网接口 R12 的 MAC。`,visual:(0,O.jsx)($,{label:`7.88 要解析`,value:`R12 的 MAC`,hint:`同处 192.168.7.0/24`})},{title:`能直接 ARP 8.13 的是 R11`,detail:`R11 与 8.13 同处 192.168.8.0/24，只有它在这个广播域里发得出 ARP 请求。`,visual:(0,O.jsx)($,{label:`可解析 8.13 的接口`,value:`R11`,hint:`R1 右侧接口`})}]})},{id:`hops`,label:`③ 逐跳帧头`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`IP 地址端到端不变，MAC 地址每跳改写`}),(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[520px] border-collapse text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`跳`}),(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`源 MAC`}),(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`目的 MAC`}),(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`IP 分组`})]})}),(0,O.jsxs)(`tbody`,{children:[(0,O.jsxs)(`tr`,{className:`border-t border-border/60`,children:[(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`1`}),(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`7.88 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono font-semibold`,children:`R12 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono text-xs`,children:`7.88 → 8.13`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border/60`,children:[(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`2`}),(0,O.jsx)(`td`,{className:`p-1 font-mono font-semibold`,children:`R11 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`8.13 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono text-xs`,children:`7.88 → 8.13`})]})]})]})}),(0,O.jsxs)(`div`,{className:`mt-3 space-y-2 text-sm leading-6`,children:[(0,O.jsxs)(`p`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{children:`R1 收到帧后：`}),`剥去二层帧头、查路由表，发现 192.168.8.0/24 直连在 R11 上。`]}),(0,O.jsxs)(`p`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{children:`从 R11 重新封装：`}),`源 MAC 换成 R11，目的 MAC 换成 8.13；若缓存里没有就先在右侧广播 ARP。`]}),(0,O.jsxs)(`p`,{className:`rounded-lg bg-accent/70 p-3`,children:[(0,O.jsx)(`strong`,{children:`记住：`}),`交换机只在本广播域内二层转发，跨网段必须经路由器。`]})]})]})}]})}var xk=5e8,Sk=400,Ck=[{id:`mouse`,name:`鼠标`,queries:50,basis:`题给最低频率 50 次/s`,cpuTime:`40 μs`},{id:`floppy`,name:`软盘`,queries:5e4,basis:`0.1MB/s ÷ 2B = 5×10⁴ 次/s`,cpuTime:`40 ms`},{id:`disk`,name:`硬盘`,queries:5e5,basis:`8MB/s ÷ 16B = 5×10⁵ 次/s`,cpuTime:`0.4 s`}],wk=[{id:`poll`,name:`程序查询`,device:`鼠标`,cost:`0.004%`,cpu:`CPU 反复查接口状态，一直忙等`,why:`开销可忽略，忙等代价很小`},{id:`int`,name:`中断`,device:`软盘`,cost:`4%`,cpu:`设备就绪时打断 CPU，平时 CPU 干别的`,why:`4% 已不可忽略，不宜忙等`},{id:`dma`,name:`DMA`,device:`硬盘`,cost:`40%`,cpu:`DMA 控制器成块搬运，每块结束才中断一次`,why:`40% 太高，必须把搬运交给 DMA`}];function Tk(e){let t=e*Sk/xk*100;return t<.01?`${t.toFixed(3)}%`:`${t.toFixed(0)}%`}function Ek(){let[e,t]=(0,S.useState)(`mouse`),[n,r]=(0,S.useState)(`poll`),i=Ck.find(t=>t.id===e)??Ck[0],a=wk.find(e=>e.id===n)??wk[0];return(0,O.jsx)(QD,{topics:[{id:`cost`,label:`① 一次查询`,content:(0,O.jsx)($D,{steps:[{title:`主频 500MHz，一个周期 2ns`,detail:`周期 = 1 ÷ 5×10⁸ s = 2ns。所有开销都要先换算成秒。`,visual:(0,O.jsx)($,{label:`时钟周期`,value:`2 ns`,hint:`1 / 500MHz`})},{title:`一次查询 400 个周期`,detail:`进入查询程序、访问接口、返回，一共 400 周期 = 800ns。`,visual:(0,O.jsx)($,{label:`一次查询耗时`,value:`800 ns`,hint:`400 × 2ns`})},{title:`开销 = 每秒查几次 × 800ns`,detail:`先求每秒查询次数，再乘每次耗时，得到每秒被轮询占用的 CPU 时间。`,visual:(0,O.jsx)($,{label:`计算口径`,value:`次数/s × 800ns`,hint:`结果除以 1s 即为占用百分比`})}]})},{id:`devices`,label:`② 三设备开销`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:Ck.map(n=>(0,O.jsx)(`button`,{type:`button`,"aria-pressed":n.id===e,onClick:()=>t(n.id),className:`rounded-lg border px-3 py-1.5 text-sm `+(n.id===e?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:n.name},n.id))}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`每次查询`,value:`800 ns`,hint:`400 周期`}),(0,O.jsx)($,{label:`每秒查询次数`,value:i.queries.toLocaleString(`en-US`),hint:i.basis}),(0,O.jsx)($,{label:`每秒 CPU 时间`,value:i.cpuTime,hint:`次数 × 800ns`}),(0,O.jsx)($,{label:`CPU 占用`,value:Tk(i.queries),hint:`占 1 秒的比例`})]}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:`查询频率 = 设备数据率 ÷ 每次查询可传字节数，不是数据率本身。`})]})},{id:`modes`,label:`③ 选方式`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:wk.map(e=>(0,O.jsx)(`button`,{type:`button`,"aria-pressed":e.id===n,onClick:()=>r(e.id),className:`rounded-lg border px-3 py-1.5 text-sm `+(e.id===n?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:e.name},e.id))}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)($,{label:`本题对应设备`,value:a.device}),(0,O.jsx)($,{label:`该设备轮询开销`,value:a.cost,hint:`程序查询方式下的 CPU 占用`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`CPU 做什么`}),a.cpu,(0,O.jsxs)(`span`,{className:`mt-1 block text-muted-foreground`,children:[`理由：`,a.why]})]}),(0,O.jsx)(`div`,{className:`mt-3 space-y-2`,children:Ck.map(e=>{let t=e.queries*Sk/xk*100;return(0,O.jsxs)(`div`,{className:`flex items-center gap-2 text-xs`,children:[(0,O.jsx)(`span`,{className:`w-10 shrink-0`,children:e.name}),(0,O.jsx)(`span`,{className:`h-2 flex-1 overflow-hidden rounded-full bg-card`,children:(0,O.jsx)(`span`,{className:`block h-full rounded-full bg-primary`,style:{width:`${Math.max(2,t/40*100)}%`}})}),(0,O.jsx)(`span`,{className:`w-14 shrink-0 text-right font-mono tabular-nums`,children:Tk(e.queries)})]},e.id)})})]})}]})}var Dk=[{id:`registers`,label:`① Y 与 Z`},{id:`decode`,label:`② 指令译码`},{id:`shift`,label:`③ 左移乘 8`},{id:`cycles`,label:`④ 六周期`}],Ok=[{title:`第 1 步：一个操作数先进入 Y`,detail:`单总线一次只能传送一个数。先让 MDR 经总线把访存得到的操作数送入 Y，Y 就能稳定保存 ALU 的第一个输入。`,parts:[`MDR`,`Y`],edges:[`MDR-BUS`,`BUS-Y`]},{title:`第 2 步：另一个操作数经总线参与运算`,detail:`R3 把另一个操作数送上总线，ALU 同时读取总线和 Y；运算结果在这一拍锁存到 Z。`,parts:[`R3`,`Y`,`ALU`,`Z`],edges:[`R3-BUS`,`BUS-ALU`,`Y-ALU`,`ALU-Z`]},{title:`第 3 步：Z 再把结果写回 R3`,detail:`因为 ALU 的结果先暂存在 Z，下一拍才能通过总线写回 R3。Y 与 Z 都不是通用寄存器。`,parts:[`Z`,`R3`],edges:[`Z-BUS`,`BUS-R3`]}],kk=[{title:`第 1 拍：R2 → MAR`,detail:`R2 存的是地址，不是要相加的数据。先经单总线把地址送给 MAR，主存才知道要访问哪里。`,parts:[`R2`,`MAR`],edges:[`R2-BUS`,`BUS-MAR`]},{title:`第 2 拍：主存读操作第 1 拍`,detail:`MAR 指定地址，主存开始读取 M[R2]。题目规定一次读访存共需 2 拍，此时不能并行做其他微操作。`,parts:[`MAR`,`M`],edges:[`MAR-M`]},{title:`第 3 拍：主存读操作第 2 拍，数据 → MDR`,detail:`主存读操作完成，取出的操作数锁存到 MDR。注意：MDR 还不是 ALU 的输入寄存器 Y。`,parts:[`M`,`MDR`],edges:[`M-MDR`]},{title:`第 4 拍：MDR → Y`,detail:`通过单总线，将 MDR 中的数据送入 Y，为下一拍 ALU 加法准备第一个操作数。`,parts:[`MDR`,`Y`],edges:[`MDR-BUS`,`BUS-Y`]},{title:`第 5 拍：R3 经总线与 Y 相加 → Z`,detail:`R3 在总线上提供第二个输入；ALU 计算 Y + R3，并在同一拍把结果锁存到 Z。不能在这一拍直接写回 R3。`,parts:[`R3`,`Y`,`ALU`,`Z`],edges:[`R3-BUS`,`BUS-ALU`,`Y-ALU`,`ALU-Z`]},{title:`第 6 拍：Z → R3`,detail:`Z 中保存的求和结果通过总线写回 R3，指令执行完成。总共 1 + 2 + 1 + 1 + 1 = 6 拍。`,parts:[`Z`,`R3`],edges:[`Z-BUS`,`BUS-R3`]}],Ak=[{id:`M`,label:`主存`,sub:`Memory`,x:14,y:114,w:112,h:48},{id:`MAR`,label:`MAR`,sub:`地址寄存器`,x:159,y:43,w:92,h:47},{id:`MDR`,label:`MDR`,sub:`数据寄存器`,x:159,y:112,w:92,h:47},{id:`Y`,label:`Y`,sub:`输入暂存`,x:159,y:212,w:92,h:47},{id:`ALU`,label:`ALU`,sub:`算术逻辑单元`,x:159,y:278,w:92,h:47},{id:`Z`,label:`Z`,sub:`结果暂存`,x:159,y:344,w:92,h:47},{id:`R2`,label:`R2`,sub:`地址来源`,x:386,y:43,w:92,h:47},{id:`R3`,label:`R3`,sub:`加数 / 目的`,x:386,y:112,w:92,h:47}],jk=[{id:`R2-BUS`,d:`M386 67 H330`},{id:`BUS-MAR`,d:`M330 67 H251`},{id:`MAR-M`,d:`M159 67 H138 V128 H126`},{id:`M-MDR`,d:`M126 146 H159`},{id:`MDR-BUS`,d:`M251 138 H330`},{id:`BUS-Y`,d:`M330 236 H251`},{id:`R3-BUS`,d:`M386 138 H330`},{id:`BUS-ALU`,d:`M330 300 H251`},{id:`Y-ALU`,d:`M205 259 V278`},{id:`ALU-Z`,d:`M205 325 V344`},{id:`Z-BUS`,d:`M251 368 H330`},{id:`BUS-R3`,d:`M330 171 H365 V148 H386`}];function Mk({frame:e}){let t=e.edges.some(e=>e.includes(`BUS`));return(0,O.jsxs)(`div`,{className:`rounded-xl border border-border bg-card p-2 sm:p-3`,children:[(0,O.jsxs)(`svg`,{viewBox:`0 0 500 412`,role:`img`,"aria-label":`单总线结构示意图，暖色高亮当前微操作涉及的部件与连接线`,className:`mx-auto block h-auto w-full max-w-[570px]`,children:[(0,O.jsxs)(`defs`,{children:[(0,O.jsx)(`marker`,{id:`q44-arrow`,viewBox:`0 0 8 8`,refX:`7`,refY:`4`,markerWidth:`6`,markerHeight:`6`,orient:`auto-start-reverse`,children:(0,O.jsx)(`path`,{d:`M0 0 L8 4 L0 8 Z`,fill:`var(--muted-foreground)`})}),(0,O.jsx)(`marker`,{id:`q44-active-arrow`,viewBox:`0 0 8 8`,refX:`7`,refY:`4`,markerWidth:`6`,markerHeight:`6`,orient:`auto-start-reverse`,children:(0,O.jsx)(`path`,{d:`M0 0 L8 4 L0 8 Z`,fill:`var(--warm-accent)`})})]}),(0,O.jsx)(`path`,{d:`M330 25 V395`,stroke:t?`var(--warm-accent)`:`var(--border)`,strokeWidth:t?5:3,strokeLinecap:`round`,fill:`none`}),(0,O.jsx)(`text`,{x:`344`,y:`27`,fontSize:`13`,fill:`var(--muted-foreground)`,children:`单总线`}),jk.map(t=>{let n=e.edges.includes(t.id);return(0,O.jsx)(`path`,{d:t.d,fill:`none`,stroke:n?`var(--warm-accent)`:`var(--border)`,strokeWidth:n?3.2:1.5,strokeLinejoin:`round`,markerEnd:n?`url(#q44-active-arrow)`:`url(#q44-arrow)`},t.id)}),Ak.map(t=>{let n=e.parts.includes(t.id);return(0,O.jsxs)(`g`,{children:[(0,O.jsx)(`rect`,{x:t.x,y:t.y,width:t.w,height:t.h,rx:`8`,fill:n?`var(--accent)`:`var(--card)`,stroke:n?`var(--warm-accent)`:`var(--border)`,strokeWidth:n?2.5:1.4}),(0,O.jsx)(`text`,{x:t.x+t.w/2,y:t.y+20,fontSize:`16`,textAnchor:`middle`,fontWeight:n?700:500,fill:`var(--foreground)`,children:t.label}),(0,O.jsx)(`text`,{x:t.x+t.w/2,y:t.y+37,fontSize:`10.5`,textAnchor:`middle`,fill:`var(--muted-foreground)`,children:t.sub})]},t.id)})]}),(0,O.jsx)(`p`,{className:`mt-2 text-center text-xs leading-5 text-muted-foreground`,children:`简化数据流示意（以原题图为准）；暖色表示当前步骤，灰色为其他通路。`})]})}function Nk({index:e,count:t,onChange:n,unit:r=`步`}){return(0,O.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center justify-between gap-3`,children:[(0,O.jsxs)(`button`,{type:`button`,className:`inline-flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-40`,disabled:e===0,onClick:()=>n(e-1),children:[(0,O.jsx)(ce,{size:16}),` 上一`,r]}),(0,O.jsxs)(`span`,{className:`text-sm tabular-nums text-muted-foreground`,children:[e+1,` / `,t,` `,r]}),(0,O.jsxs)(`button`,{type:`button`,className:`inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-sm text-primary-foreground hover:opacity-90`,onClick:()=>n(e===t-1?0:e+1),children:[e===t-1?(0,O.jsx)(me,{size:16}):null,e===t-1?`重新演示`:`下一`+r,e===t-1?null:(0,O.jsx)(le,{size:16})]})]})}var Pk=[{name:`OP2 · 操作码`,bits:`1010`,detail:`高 4 位是 1010，对应 STORE（写存储器），不是 LOAD（1001）。`},{name:`Rs/Rd · 寄存器号`,bits:`10`,detail:`二进制 10 = 十进制 2，所以选中 R2。STORE 使用源寄存器 Rs。`},{name:`保留位`,bits:`00`,detail:`格式 2 第一个字节的低 2 位固定为 00，不表示寄存器或地址。`},{name:`第二字节 · 绝对地址`,bits:`00100011`,detail:`第二字节 23H 是存储器地址：M[23H]，不是立即数 23H。`}],Fk=[{code:`LOAD  R0, [23H]`,title:`从内存取出 y`,detail:`R0 ← M[23H]，此时内存尚未改变。`},{code:`MOV   R1, #3`,title:`把移位位数 3 放入 R1`,detail:`#3 是立即数，不是地址为 3 的存储单元。`},{code:`SAL   R0, R1`,title:`左移 3 位相当于乘 8`,detail:`R0 ← R0 << 3。题目已说明不考虑溢出。`},{code:`STORE R0, [23H]`,title:`写回变量 y`,detail:`M[23H] ← R0，完成 y=y*8。`}];function Ik(e){return e.toString(2).padStart(8,`0`)}function Lk(){let[e,t]=(0,S.useState)(`registers`),[n,r]=(0,S.useState)(0),[i,a]=(0,S.useState)(0),[o,s]=(0,S.useState)(5),[c,l]=(0,S.useState)(0),[u,d]=(0,S.useState)(0),f=o*8,p=c===3?f:o,m=c>=2?f:o,h=c>=1?`3`:`—`,g=e===`cycles`?kk[u]:Ok[n];return(0,O.jsxs)(`section`,{"aria-label":`第44题交互式图解`,className:`min-w-0 overflow-hidden rounded-xl border border-border bg-secondary/30`,children:[(0,O.jsxs)(`div`,{className:`border-b border-border px-4 py-4 sm:px-5`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-baseline justify-between gap-2`,children:[(0,O.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`交互式图解 · 单总线与指令执行`}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`里昂第二套 · 第 44 题`})]}),(0,O.jsx)(`p`,{className:`mt-1 text-sm leading-6 text-muted-foreground`,children:`点击切换四个小问；可以逐步观察寄存器、机器码与时钟周期的变化。`})]}),(0,O.jsx)(`div`,{role:`tablist`,"aria-label":`第44题的四个小问`,className:`grid grid-cols-2 gap-2 border-b border-border p-3 sm:grid-cols-4`,children:Dk.map(n=>(0,O.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":e===n.id,onClick:()=>t(n.id),className:`min-h-11 rounded-lg border px-2 py-2 text-center text-sm font-medium transition-colors `+(e===n.id?`border-primary bg-primary text-primary-foreground`:`border-border bg-card text-foreground hover:bg-accent`),children:n.label},n.id))}),(0,O.jsxs)(`div`,{role:`tabpanel`,className:`p-4 sm:p-5`,children:[e===`registers`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsx)(`div`,{className:`mb-3 flex flex-wrap gap-2`,children:Ok.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,onClick:()=>r(t),"aria-pressed":t===n,className:`rounded-full border px-3 py-1.5 text-xs `+(t===n?`border-primary bg-accent text-foreground font-semibold`:`border-border text-muted-foreground`),children:[`步骤 `,t+1]},e.title))}),(0,O.jsx)(Mk,{frame:g}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:g.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:g.detail})]}),(0,O.jsx)(Nk,{index:n,count:Ok.length,onChange:r})]}),e===`decode`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`p`,{className:`mb-3 text-sm leading-6 text-muted-foreground`,children:[`机器码 `,(0,O.jsx)(`strong`,{className:`text-foreground`,children:`A8H 23H`}),`；点选不同的位段，看看它们分别代表什么。`]}),(0,O.jsx)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-4`,children:Pk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,onClick:()=>a(t),"aria-pressed":i===t,className:`min-w-0 rounded-lg border p-3 text-left `+(t===i?`border-primary bg-accent`:`border-border bg-card hover:bg-accent/50`),children:[(0,O.jsx)(`span`,{className:`block font-mono text-lg font-semibold tracking-wider`,children:e.bits}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:e.name})]},e.name))}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-4 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:Pk[i].name}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7`,children:Pk[i].detail})]}),(0,O.jsxs)(`div`,{className:`mt-4 rounded-lg bg-accent/70 p-4 text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`译码结果：`}),(0,O.jsx)(`code`,{children:`STORE R2, [23H]`})]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`功能：`}),`M[23H] ← (R2)`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`寻址：`}),`R2 为寄存器直接寻址；[23H] 为直接寻址。`]})]})]}),e===`shift`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q44-y-value`,children:[(0,O.jsx)(`span`,{children:`试着修改初始 y 的值（0～31，避免 8 位溢出）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`y = `,o]})]}),(0,O.jsx)(`input`,{id:`q44-y-value`,type:`range`,min:`0`,max:`31`,step:`1`,value:o,onChange:e=>s(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:`原始 y · 8 位二进制`}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-xl tracking-wider tabular-nums`,children:Ik(o)})]}),(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:`左移 3 位 · y × 8`}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-xl tracking-wider tabular-nums`,children:Ik(f)})]})]}),(0,O.jsx)(`div`,{className:`mt-4 space-y-2`,children:Fk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,onClick:()=>l(t),"aria-pressed":c===t,className:`flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-left `+(t===c?`border-primary bg-accent`:`border-border bg-card hover:bg-accent/50`),children:[(0,O.jsx)(`span`,{className:`grid size-7 shrink-0 place-items-center rounded-full border border-border text-xs`,children:t+1}),(0,O.jsx)(`span`,{className:`min-w-0 font-mono text-[13px] sm:text-sm`,children:e.code})]},e.code))}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:Fk[c].title}),(0,O.jsx)(`p`,{className:`mt-1 text-sm leading-6 text-muted-foreground`,children:Fk[c].detail}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-3 gap-2 text-center text-xs sm:text-sm`,children:[(0,O.jsxs)(`div`,{className:`rounded-md bg-secondary p-2`,children:[`R0`,(0,O.jsx)(`br`,{}),(0,O.jsx)(`strong`,{children:m})]}),(0,O.jsxs)(`div`,{className:`rounded-md bg-secondary p-2`,children:[`R1`,(0,O.jsx)(`br`,{}),(0,O.jsx)(`strong`,{children:h})]}),(0,O.jsxs)(`div`,{className:`rounded-md bg-secondary p-2`,children:[`M[23H]`,(0,O.jsx)(`br`,{}),(0,O.jsx)(`strong`,{children:p})]})]})]}),(0,O.jsx)(Nk,{index:c,count:Fk.length,onChange:l,unit:`条`})]}),e===`cycles`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`p`,{className:`mb-3 text-sm leading-6 text-muted-foreground`,children:[`执行 `,(0,O.jsx)(`code`,{children:`R3 ← (R3) + M[R2]`}),`。取指、译码已完成；访存占两拍且不与其他操作重叠。`]}),(0,O.jsx)(`div`,{className:`mb-4 grid grid-cols-3 gap-2 sm:grid-cols-6`,role:`group`,"aria-label":`选择时钟周期`,children:kk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,"aria-pressed":u===t,onClick:()=>d(t),className:`rounded-lg border px-2 py-2 text-center text-sm tabular-nums `+(u===t?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:[`第 `,t+1,` 拍`]},e.title))}),(0,O.jsx)(Mk,{frame:g}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-4 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:g.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:g.detail})]}),(0,O.jsx)(`div`,{className:`mt-3 text-sm font-semibold`,children:`最少 6 个时钟周期：1（送 MAR）+ 2（访存）+ 1（送 Y）+ 1（ALU → Z）+ 1（写回）`}),(0,O.jsx)(Nk,{index:u,count:kk.length,onChange:d,unit:`拍`})]})]})]})}var Rk=[{name:`mutex`,role:`挂号机互斥`,init:`1`,who:`病人 P，病人 V`},{name:`idle`,role:`空闲医生名额`,init:`n`,who:`病人 P，医生 V`},{name:`patient`,role:`已挂号待诊疗的病人`,init:`0`,who:`医生 P，病人 V`}],zk=String.raw`Patient() {
+B(){ consumer(fullB); }  C(){ consumer(fullC); }  D(){ consumer(fullD); }`})}]})}var Mk=`72-56-7F-2B-09-35`,Nk=`86-23-D7-FA-20-0B`,Pk=`FF-FF-FF-FF-FF-FF`;function Fk({dst:e,src:t,ip:n,note:r}){return(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 font-mono text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`目的 MAC `}),(0,O.jsx)(`strong`,{children:e})]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`源 MAC　 `}),t]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`IP 头部　`}),n]}),(0,O.jsx)(`p`,{className:`mt-1 font-sans text-xs text-muted-foreground`,children:r})]})}function Ik(){return(0,O.jsx)(mO,{topics:[{id:`same`,label:`① 同网段三问`,content:(0,O.jsx)(hO,{steps:[{title:`ARP 请求：只能广播`,detail:`7.23 不知道 7.14 的 MAC，目的 MAC 填全 1；查询的 IP 是 192.168.7.14。`,visual:(0,O.jsx)(Fk,{dst:Pk,src:Mk,ip:`谁是 192.168.7.14？`,note:`广播帧，交换机 S1 向本广播域内所有端口泛洪`})},{title:`ARP 响应：单播回请求方`,detail:`只有 192.168.7.14 认领该 IP，于是单播回应，目的 MAC 是 7.23 的地址。`,visual:(0,O.jsx)(Fk,{dst:Mk,src:Nk,ip:`192.168.7.14 的 MAC 是 86-23-D7-FA-20-0B`,note:`响应帧是单播，不广播`})},{title:`数据帧：下一跳就是目的主机`,detail:`二者同处 192.168.7.0/24，目的 MAC 直接填 7.14，经交换机转发，不经路由器。`,visual:(0,O.jsx)(Fk,{dst:Nk,src:Mk,ip:`192.168.7.23 → 192.168.7.14`,note:`同网段，默认网关不参与`})}]})},{id:`cross`,label:`② 跨网段`,content:(0,O.jsx)(hO,{steps:[{title:`先判网段：不同`,detail:`7.88 在 192.168.7.0/24，8.13 在 192.168.8.0/24，属于两个广播域。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2`,children:[(0,O.jsx)($,{label:`源`,value:`192.168.7.88`,hint:`左侧局域网`}),(0,O.jsx)($,{label:`目的`,value:`192.168.8.13`,hint:`右侧局域网`})]})},{title:`不能直接 ARP 到 8.13`,detail:`ARP 请求是广播帧，路由器不转发广播，所以它问不到另一个网段的主机。`,visual:(0,O.jsx)($,{label:`结论`,value:`不能`,hint:`ARP 广播被 R1 挡住`})},{title:`它应 ARP 默认网关 R12`,detail:`跨网段时下一跳是网关，7.88 需要的是 R1 在本局域网接口 R12 的 MAC。`,visual:(0,O.jsx)($,{label:`7.88 要解析`,value:`R12 的 MAC`,hint:`同处 192.168.7.0/24`})},{title:`能直接 ARP 8.13 的是 R11`,detail:`R11 与 8.13 同处 192.168.8.0/24，只有它在这个广播域里发得出 ARP 请求。`,visual:(0,O.jsx)($,{label:`可解析 8.13 的接口`,value:`R11`,hint:`R1 右侧接口`})}]})},{id:`hops`,label:`③ 逐跳帧头`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`IP 地址端到端不变，MAC 地址每跳改写`}),(0,O.jsx)(`div`,{className:`overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full min-w-[520px] border-collapse text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`跳`}),(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`源 MAC`}),(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`目的 MAC`}),(0,O.jsx)(`th`,{className:`p-1 text-left font-medium`,children:`IP 分组`})]})}),(0,O.jsxs)(`tbody`,{children:[(0,O.jsxs)(`tr`,{className:`border-t border-border/60`,children:[(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`1`}),(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`7.88 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono font-semibold`,children:`R12 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono text-xs`,children:`7.88 → 8.13`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border/60`,children:[(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`2`}),(0,O.jsx)(`td`,{className:`p-1 font-mono font-semibold`,children:`R11 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono`,children:`8.13 的 MAC`}),(0,O.jsx)(`td`,{className:`p-1 font-mono text-xs`,children:`7.88 → 8.13`})]})]})]})}),(0,O.jsxs)(`div`,{className:`mt-3 space-y-2 text-sm leading-6`,children:[(0,O.jsxs)(`p`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{children:`R1 收到帧后：`}),`剥去二层帧头、查路由表，发现 192.168.8.0/24 直连在 R11 上。`]}),(0,O.jsxs)(`p`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`strong`,{children:`从 R11 重新封装：`}),`源 MAC 换成 R11，目的 MAC 换成 8.13；若缓存里没有就先在右侧广播 ARP。`]}),(0,O.jsxs)(`p`,{className:`rounded-lg bg-accent/70 p-3`,children:[(0,O.jsx)(`strong`,{children:`记住：`}),`交换机只在本广播域内二层转发，跨网段必须经路由器。`]})]})]})}]})}var Lk=5e8,Rk=400,zk=[{id:`mouse`,name:`鼠标`,queries:50,basis:`题给最低频率 50 次/s`,cpuTime:`40 μs`},{id:`floppy`,name:`软盘`,queries:5e4,basis:`0.1MB/s ÷ 2B = 5×10⁴ 次/s`,cpuTime:`40 ms`},{id:`disk`,name:`硬盘`,queries:5e5,basis:`8MB/s ÷ 16B = 5×10⁵ 次/s`,cpuTime:`0.4 s`}],Bk=[{id:`poll`,name:`程序查询`,device:`鼠标`,cost:`0.004%`,cpu:`CPU 反复查接口状态，一直忙等`,why:`开销可忽略，忙等代价很小`},{id:`int`,name:`中断`,device:`软盘`,cost:`4%`,cpu:`设备就绪时打断 CPU，平时 CPU 干别的`,why:`4% 已不可忽略，不宜忙等`},{id:`dma`,name:`DMA`,device:`硬盘`,cost:`40%`,cpu:`DMA 控制器成块搬运，每块结束才中断一次`,why:`40% 太高，必须把搬运交给 DMA`}];function Vk(e){let t=e*Rk/Lk*100;return t<.01?`${t.toFixed(3)}%`:`${t.toFixed(0)}%`}function Hk(){let[e,t]=(0,S.useState)(`mouse`),[n,r]=(0,S.useState)(`poll`),i=zk.find(t=>t.id===e)??zk[0],a=Bk.find(e=>e.id===n)??Bk[0];return(0,O.jsx)(mO,{topics:[{id:`cost`,label:`① 一次查询`,content:(0,O.jsx)(hO,{steps:[{title:`主频 500MHz，一个周期 2ns`,detail:`周期 = 1 ÷ 5×10⁸ s = 2ns。所有开销都要先换算成秒。`,visual:(0,O.jsx)($,{label:`时钟周期`,value:`2 ns`,hint:`1 / 500MHz`})},{title:`一次查询 400 个周期`,detail:`进入查询程序、访问接口、返回，一共 400 周期 = 800ns。`,visual:(0,O.jsx)($,{label:`一次查询耗时`,value:`800 ns`,hint:`400 × 2ns`})},{title:`开销 = 每秒查几次 × 800ns`,detail:`先求每秒查询次数，再乘每次耗时，得到每秒被轮询占用的 CPU 时间。`,visual:(0,O.jsx)($,{label:`计算口径`,value:`次数/s × 800ns`,hint:`结果除以 1s 即为占用百分比`})}]})},{id:`devices`,label:`② 三设备开销`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:zk.map(n=>(0,O.jsx)(`button`,{type:`button`,"aria-pressed":n.id===e,onClick:()=>t(n.id),className:`rounded-lg border px-3 py-1.5 text-sm `+(n.id===e?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:n.name},n.id))}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`每次查询`,value:`800 ns`,hint:`400 周期`}),(0,O.jsx)($,{label:`每秒查询次数`,value:i.queries.toLocaleString(`en-US`),hint:i.basis}),(0,O.jsx)($,{label:`每秒 CPU 时间`,value:i.cpuTime,hint:`次数 × 800ns`}),(0,O.jsx)($,{label:`CPU 占用`,value:Vk(i.queries),hint:`占 1 秒的比例`})]}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:`查询频率 = 设备数据率 ÷ 每次查询可传字节数，不是数据率本身。`})]})},{id:`modes`,label:`③ 选方式`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:Bk.map(e=>(0,O.jsx)(`button`,{type:`button`,"aria-pressed":e.id===n,onClick:()=>r(e.id),className:`rounded-lg border px-3 py-1.5 text-sm `+(e.id===n?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:e.name},e.id))}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)($,{label:`本题对应设备`,value:a.device}),(0,O.jsx)($,{label:`该设备轮询开销`,value:a.cost,hint:`程序查询方式下的 CPU 占用`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`CPU 做什么`}),a.cpu,(0,O.jsxs)(`span`,{className:`mt-1 block text-muted-foreground`,children:[`理由：`,a.why]})]}),(0,O.jsx)(`div`,{className:`mt-3 space-y-2`,children:zk.map(e=>{let t=e.queries*Rk/Lk*100;return(0,O.jsxs)(`div`,{className:`flex items-center gap-2 text-xs`,children:[(0,O.jsx)(`span`,{className:`w-10 shrink-0`,children:e.name}),(0,O.jsx)(`span`,{className:`h-2 flex-1 overflow-hidden rounded-full bg-card`,children:(0,O.jsx)(`span`,{className:`block h-full rounded-full bg-primary`,style:{width:`${Math.max(2,t/40*100)}%`}})}),(0,O.jsx)(`span`,{className:`w-14 shrink-0 text-right font-mono tabular-nums`,children:Vk(e.queries)})]},e.id)})})]})}]})}var Uk=[{id:`registers`,label:`① Y 与 Z`},{id:`decode`,label:`② 指令译码`},{id:`shift`,label:`③ 左移乘 8`},{id:`cycles`,label:`④ 六周期`}],Wk=[{title:`第 1 步：一个操作数先进入 Y`,detail:`单总线一次只能传送一个数。先让 MDR 经总线把访存得到的操作数送入 Y，Y 就能稳定保存 ALU 的第一个输入。`,parts:[`MDR`,`Y`],edges:[`MDR-BUS`,`BUS-Y`]},{title:`第 2 步：另一个操作数经总线参与运算`,detail:`R3 把另一个操作数送上总线，ALU 同时读取总线和 Y；运算结果在这一拍锁存到 Z。`,parts:[`R3`,`Y`,`ALU`,`Z`],edges:[`R3-BUS`,`BUS-ALU`,`Y-ALU`,`ALU-Z`]},{title:`第 3 步：Z 再把结果写回 R3`,detail:`因为 ALU 的结果先暂存在 Z，下一拍才能通过总线写回 R3。Y 与 Z 都不是通用寄存器。`,parts:[`Z`,`R3`],edges:[`Z-BUS`,`BUS-R3`]}],Gk=[{title:`第 1 拍：R2 → MAR`,detail:`R2 存的是地址，不是要相加的数据。先经单总线把地址送给 MAR，主存才知道要访问哪里。`,parts:[`R2`,`MAR`],edges:[`R2-BUS`,`BUS-MAR`]},{title:`第 2 拍：主存读操作第 1 拍`,detail:`MAR 指定地址，主存开始读取 M[R2]。题目规定一次读访存共需 2 拍，此时不能并行做其他微操作。`,parts:[`MAR`,`M`],edges:[`MAR-M`]},{title:`第 3 拍：主存读操作第 2 拍，数据 → MDR`,detail:`主存读操作完成，取出的操作数锁存到 MDR。注意：MDR 还不是 ALU 的输入寄存器 Y。`,parts:[`M`,`MDR`],edges:[`M-MDR`]},{title:`第 4 拍：MDR → Y`,detail:`通过单总线，将 MDR 中的数据送入 Y，为下一拍 ALU 加法准备第一个操作数。`,parts:[`MDR`,`Y`],edges:[`MDR-BUS`,`BUS-Y`]},{title:`第 5 拍：R3 经总线与 Y 相加 → Z`,detail:`R3 在总线上提供第二个输入；ALU 计算 Y + R3，并在同一拍把结果锁存到 Z。不能在这一拍直接写回 R3。`,parts:[`R3`,`Y`,`ALU`,`Z`],edges:[`R3-BUS`,`BUS-ALU`,`Y-ALU`,`ALU-Z`]},{title:`第 6 拍：Z → R3`,detail:`Z 中保存的求和结果通过总线写回 R3，指令执行完成。总共 1 + 2 + 1 + 1 + 1 = 6 拍。`,parts:[`Z`,`R3`],edges:[`Z-BUS`,`BUS-R3`]}],Kk=[{id:`M`,label:`主存`,sub:`Memory`,x:14,y:114,w:112,h:48},{id:`MAR`,label:`MAR`,sub:`地址寄存器`,x:159,y:43,w:92,h:47},{id:`MDR`,label:`MDR`,sub:`数据寄存器`,x:159,y:112,w:92,h:47},{id:`Y`,label:`Y`,sub:`输入暂存`,x:159,y:212,w:92,h:47},{id:`ALU`,label:`ALU`,sub:`算术逻辑单元`,x:159,y:278,w:92,h:47},{id:`Z`,label:`Z`,sub:`结果暂存`,x:159,y:344,w:92,h:47},{id:`R2`,label:`R2`,sub:`地址来源`,x:386,y:43,w:92,h:47},{id:`R3`,label:`R3`,sub:`加数 / 目的`,x:386,y:112,w:92,h:47}],qk=[{id:`R2-BUS`,d:`M386 67 H330`},{id:`BUS-MAR`,d:`M330 67 H251`},{id:`MAR-M`,d:`M159 67 H138 V128 H126`},{id:`M-MDR`,d:`M126 146 H159`},{id:`MDR-BUS`,d:`M251 138 H330`},{id:`BUS-Y`,d:`M330 236 H251`},{id:`R3-BUS`,d:`M386 138 H330`},{id:`BUS-ALU`,d:`M330 300 H251`},{id:`Y-ALU`,d:`M205 259 V278`},{id:`ALU-Z`,d:`M205 325 V344`},{id:`Z-BUS`,d:`M251 368 H330`},{id:`BUS-R3`,d:`M330 171 H365 V148 H386`}];function Jk({frame:e}){let t=e.edges.some(e=>e.includes(`BUS`));return(0,O.jsxs)(`div`,{className:`rounded-xl border border-border bg-card p-2 sm:p-3`,children:[(0,O.jsxs)(`svg`,{viewBox:`0 0 500 412`,role:`img`,"aria-label":`单总线结构示意图，暖色高亮当前微操作涉及的部件与连接线`,className:`mx-auto block h-auto w-full max-w-[570px]`,children:[(0,O.jsxs)(`defs`,{children:[(0,O.jsx)(`marker`,{id:`q44-arrow`,viewBox:`0 0 8 8`,refX:`7`,refY:`4`,markerWidth:`6`,markerHeight:`6`,orient:`auto-start-reverse`,children:(0,O.jsx)(`path`,{d:`M0 0 L8 4 L0 8 Z`,fill:`var(--muted-foreground)`})}),(0,O.jsx)(`marker`,{id:`q44-active-arrow`,viewBox:`0 0 8 8`,refX:`7`,refY:`4`,markerWidth:`6`,markerHeight:`6`,orient:`auto-start-reverse`,children:(0,O.jsx)(`path`,{d:`M0 0 L8 4 L0 8 Z`,fill:`var(--warm-accent)`})})]}),(0,O.jsx)(`path`,{d:`M330 25 V395`,stroke:t?`var(--warm-accent)`:`var(--border)`,strokeWidth:t?5:3,strokeLinecap:`round`,fill:`none`}),(0,O.jsx)(`text`,{x:`344`,y:`27`,fontSize:`13`,fill:`var(--muted-foreground)`,children:`单总线`}),qk.map(t=>{let n=e.edges.includes(t.id);return(0,O.jsx)(`path`,{d:t.d,fill:`none`,stroke:n?`var(--warm-accent)`:`var(--border)`,strokeWidth:n?3.2:1.5,strokeLinejoin:`round`,markerEnd:n?`url(#q44-active-arrow)`:`url(#q44-arrow)`},t.id)}),Kk.map(t=>{let n=e.parts.includes(t.id);return(0,O.jsxs)(`g`,{children:[(0,O.jsx)(`rect`,{x:t.x,y:t.y,width:t.w,height:t.h,rx:`8`,fill:n?`var(--accent)`:`var(--card)`,stroke:n?`var(--warm-accent)`:`var(--border)`,strokeWidth:n?2.5:1.4}),(0,O.jsx)(`text`,{x:t.x+t.w/2,y:t.y+20,fontSize:`16`,textAnchor:`middle`,fontWeight:n?700:500,fill:`var(--foreground)`,children:t.label}),(0,O.jsx)(`text`,{x:t.x+t.w/2,y:t.y+37,fontSize:`10.5`,textAnchor:`middle`,fill:`var(--muted-foreground)`,children:t.sub})]},t.id)})]}),(0,O.jsx)(`p`,{className:`mt-2 text-center text-xs leading-5 text-muted-foreground`,children:`简化数据流示意（以原题图为准）；暖色表示当前步骤，灰色为其他通路。`})]})}function Yk({index:e,count:t,onChange:n,unit:r=`步`}){return(0,O.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center justify-between gap-3`,children:[(0,O.jsxs)(`button`,{type:`button`,className:`inline-flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-40`,disabled:e===0,onClick:()=>n(e-1),children:[(0,O.jsx)(ce,{size:16}),` 上一`,r]}),(0,O.jsxs)(`span`,{className:`text-sm tabular-nums text-muted-foreground`,children:[e+1,` / `,t,` `,r]}),(0,O.jsxs)(`button`,{type:`button`,className:`inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-2 text-sm text-primary-foreground hover:opacity-90`,onClick:()=>n(e===t-1?0:e+1),children:[e===t-1?(0,O.jsx)(me,{size:16}):null,e===t-1?`重新演示`:`下一`+r,e===t-1?null:(0,O.jsx)(le,{size:16})]})]})}var Xk=[{name:`OP2 · 操作码`,bits:`1010`,detail:`高 4 位是 1010，对应 STORE（写存储器），不是 LOAD（1001）。`},{name:`Rs/Rd · 寄存器号`,bits:`10`,detail:`二进制 10 = 十进制 2，所以选中 R2。STORE 使用源寄存器 Rs。`},{name:`保留位`,bits:`00`,detail:`格式 2 第一个字节的低 2 位固定为 00，不表示寄存器或地址。`},{name:`第二字节 · 绝对地址`,bits:`00100011`,detail:`第二字节 23H 是存储器地址：M[23H]，不是立即数 23H。`}],Zk=[{code:`LOAD  R0, [23H]`,title:`从内存取出 y`,detail:`R0 ← M[23H]，此时内存尚未改变。`},{code:`MOV   R1, #3`,title:`把移位位数 3 放入 R1`,detail:`#3 是立即数，不是地址为 3 的存储单元。`},{code:`SAL   R0, R1`,title:`左移 3 位相当于乘 8`,detail:`R0 ← R0 << 3。题目已说明不考虑溢出。`},{code:`STORE R0, [23H]`,title:`写回变量 y`,detail:`M[23H] ← R0，完成 y=y*8。`}];function Qk(e){return e.toString(2).padStart(8,`0`)}function $k(){let[e,t]=(0,S.useState)(`registers`),[n,r]=(0,S.useState)(0),[i,a]=(0,S.useState)(0),[o,s]=(0,S.useState)(5),[c,l]=(0,S.useState)(0),[u,d]=(0,S.useState)(0),f=o*8,p=c===3?f:o,m=c>=2?f:o,h=c>=1?`3`:`—`,g=e===`cycles`?Gk[u]:Wk[n];return(0,O.jsxs)(`section`,{"aria-label":`第44题交互式图解`,className:`min-w-0 overflow-hidden rounded-xl border border-border bg-secondary/30`,children:[(0,O.jsxs)(`div`,{className:`border-b border-border px-4 py-4 sm:px-5`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-baseline justify-between gap-2`,children:[(0,O.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`交互式图解 · 单总线与指令执行`}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`里昂第二套 · 第 44 题`})]}),(0,O.jsx)(`p`,{className:`mt-1 text-sm leading-6 text-muted-foreground`,children:`点击切换四个小问；可以逐步观察寄存器、机器码与时钟周期的变化。`})]}),(0,O.jsx)(`div`,{role:`tablist`,"aria-label":`第44题的四个小问`,className:`grid grid-cols-2 gap-2 border-b border-border p-3 sm:grid-cols-4`,children:Uk.map(n=>(0,O.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":e===n.id,onClick:()=>t(n.id),className:`min-h-11 rounded-lg border px-2 py-2 text-center text-sm font-medium transition-colors `+(e===n.id?`border-primary bg-primary text-primary-foreground`:`border-border bg-card text-foreground hover:bg-accent`),children:n.label},n.id))}),(0,O.jsxs)(`div`,{role:`tabpanel`,className:`p-4 sm:p-5`,children:[e===`registers`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsx)(`div`,{className:`mb-3 flex flex-wrap gap-2`,children:Wk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,onClick:()=>r(t),"aria-pressed":t===n,className:`rounded-full border px-3 py-1.5 text-xs `+(t===n?`border-primary bg-accent text-foreground font-semibold`:`border-border text-muted-foreground`),children:[`步骤 `,t+1]},e.title))}),(0,O.jsx)(Jk,{frame:g}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:g.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:g.detail})]}),(0,O.jsx)(Yk,{index:n,count:Wk.length,onChange:r})]}),e===`decode`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`p`,{className:`mb-3 text-sm leading-6 text-muted-foreground`,children:[`机器码 `,(0,O.jsx)(`strong`,{className:`text-foreground`,children:`A8H 23H`}),`；点选不同的位段，看看它们分别代表什么。`]}),(0,O.jsx)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-4`,children:Xk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,onClick:()=>a(t),"aria-pressed":i===t,className:`min-w-0 rounded-lg border p-3 text-left `+(t===i?`border-primary bg-accent`:`border-border bg-card hover:bg-accent/50`),children:[(0,O.jsx)(`span`,{className:`block font-mono text-lg font-semibold tracking-wider`,children:e.bits}),(0,O.jsx)(`span`,{className:`mt-1 block text-xs text-muted-foreground`,children:e.name})]},e.name))}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-4 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:Xk[i].name}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7`,children:Xk[i].detail})]}),(0,O.jsxs)(`div`,{className:`mt-4 rounded-lg bg-accent/70 p-4 text-sm leading-7`,children:[(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`译码结果：`}),(0,O.jsx)(`code`,{children:`STORE R2, [23H]`})]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`功能：`}),`M[23H] ← (R2)`]}),(0,O.jsxs)(`p`,{children:[(0,O.jsx)(`strong`,{children:`寻址：`}),`R2 为寄存器直接寻址；[23H] 为直接寻址。`]})]})]}),e===`shift`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q44-y-value`,children:[(0,O.jsx)(`span`,{children:`试着修改初始 y 的值（0～31，避免 8 位溢出）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`y = `,o]})]}),(0,O.jsx)(`input`,{id:`q44-y-value`,type:`range`,min:`0`,max:`31`,step:`1`,value:o,onChange:e=>s(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:`原始 y · 8 位二进制`}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-xl tracking-wider tabular-nums`,children:Qk(o)})]}),(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:`左移 3 位 · y × 8`}),(0,O.jsx)(`strong`,{className:`mt-1 block font-mono text-xl tracking-wider tabular-nums`,children:Qk(f)})]})]}),(0,O.jsx)(`div`,{className:`mt-4 space-y-2`,children:Zk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,onClick:()=>l(t),"aria-pressed":c===t,className:`flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-left `+(t===c?`border-primary bg-accent`:`border-border bg-card hover:bg-accent/50`),children:[(0,O.jsx)(`span`,{className:`grid size-7 shrink-0 place-items-center rounded-full border border-border text-xs`,children:t+1}),(0,O.jsx)(`span`,{className:`min-w-0 font-mono text-[13px] sm:text-sm`,children:e.code})]},e.code))}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-3 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:Zk[c].title}),(0,O.jsx)(`p`,{className:`mt-1 text-sm leading-6 text-muted-foreground`,children:Zk[c].detail}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-3 gap-2 text-center text-xs sm:text-sm`,children:[(0,O.jsxs)(`div`,{className:`rounded-md bg-secondary p-2`,children:[`R0`,(0,O.jsx)(`br`,{}),(0,O.jsx)(`strong`,{children:m})]}),(0,O.jsxs)(`div`,{className:`rounded-md bg-secondary p-2`,children:[`R1`,(0,O.jsx)(`br`,{}),(0,O.jsx)(`strong`,{children:h})]}),(0,O.jsxs)(`div`,{className:`rounded-md bg-secondary p-2`,children:[`M[23H]`,(0,O.jsx)(`br`,{}),(0,O.jsx)(`strong`,{children:p})]})]})]}),(0,O.jsx)(Yk,{index:c,count:Zk.length,onChange:l,unit:`条`})]}),e===`cycles`&&(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`p`,{className:`mb-3 text-sm leading-6 text-muted-foreground`,children:[`执行 `,(0,O.jsx)(`code`,{children:`R3 ← (R3) + M[R2]`}),`。取指、译码已完成；访存占两拍且不与其他操作重叠。`]}),(0,O.jsx)(`div`,{className:`mb-4 grid grid-cols-3 gap-2 sm:grid-cols-6`,role:`group`,"aria-label":`选择时钟周期`,children:Gk.map((e,t)=>(0,O.jsxs)(`button`,{type:`button`,"aria-pressed":u===t,onClick:()=>d(t),className:`rounded-lg border px-2 py-2 text-center text-sm tabular-nums `+(u===t?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:[`第 `,t+1,` 拍`]},e.title))}),(0,O.jsx)(Jk,{frame:g}),(0,O.jsxs)(`div`,{"aria-live":`polite`,className:`mt-4 rounded-lg border border-border bg-card p-4`,children:[(0,O.jsx)(`h3`,{className:`font-semibold`,children:g.title}),(0,O.jsx)(`p`,{className:`mt-2 text-sm leading-7 text-muted-foreground`,children:g.detail})]}),(0,O.jsx)(`div`,{className:`mt-3 text-sm font-semibold`,children:`最少 6 个时钟周期：1（送 MAR）+ 2（访存）+ 1（送 Y）+ 1（ALU → Z）+ 1（写回）`}),(0,O.jsx)(Yk,{index:u,count:Gk.length,onChange:d,unit:`拍`})]})]})]})}var eA=[{name:`mutex`,role:`挂号机互斥`,init:`1`,who:`病人 P，病人 V`},{name:`idle`,role:`空闲医生名额`,init:`n`,who:`病人 P，医生 V`},{name:`patient`,role:`已挂号待诊疗的病人`,init:`0`,who:`医生 P，病人 V`}],tA=String.raw`Patient() {
   P(mutex);               // 互斥使用挂号机
   使用挂号机完成挂号;
   V(mutex);               // 先释放挂号机
   P(idle);                // 等空闲医生, 全忙则排队
   V(patient);             // 通知医生: 病人已就绪
   ReceiveTreatment();     // 接受诊疗
-}`,Bk=String.raw`Doctor() {
+}`,nA=String.raw`Doctor() {
   while (true) {
     P(patient);           // 等待一名已挂号的病人
     ProvideTreatment();   // 诊疗, 返回即本次结束
     V(idle);              // 结束后才归还空闲名额
   }
-}`;function Vk({mutex:e,idle:t,patient:n,queue:r}){return(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`mutex 挂号机`,value:e,hint:`初值 1`}),(0,O.jsx)($,{label:`idle 空闲医生`,value:t,hint:`初值 n`}),(0,O.jsx)($,{label:`patient 待诊疗`,value:n,hint:`初值 0`}),(0,O.jsx)($,{label:`idle 等待队列`,value:r,hint:`FIFO，等待最久者优先`})]})}function Hk(){return(0,O.jsx)(QD,{topics:[{id:`sem`,label:`① 三个信号量`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`信号量`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`管什么`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`初值`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`谁 P / 谁 V`})]})}),(0,O.jsx)(`tbody`,{children:Rk.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.name}),(0,O.jsx)(`td`,{className:`px-3 py-2`,children:e.role}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono tabular-nums`,children:e.init}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-muted-foreground`,children:e.who})]},e.name))})]})}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:[`三类条件各用一个信号量：`,(0,O.jsx)(`strong`,{children:`互斥`}),`（挂号机）、`,(0,O.jsx)(`strong`,{children:`资源名额`}),`（空闲医生）、`,(0,O.jsx)(`strong`,{children:`到达通知`}),`（病人已就绪）。idle 初值是 n 而不是 1。`]})]})},{id:`code`,label:`② 伪代码`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)(`pre`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 font-mono text-xs leading-6`,children:zk}),(0,O.jsx)(`pre`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 font-mono text-xs leading-6`,children:Bk})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`① 先 V(mutex) 再 P(idle)：不能占着挂号机等医生。`}),(0,O.jsx)(`p`,{children:`② 医生在 ProvideTreatment() 返回后才 V(idle)：否则同一医生被重复计入空闲。`}),(0,O.jsx)(`p`,{children:`③ 病人 P(idle) 成功后才 V(patient)：每次唤醒恰有一名病人配对。`})]})]})},{id:`trace`,label:`③ 时序演示`,content:(0,O.jsx)($D,{unit:`事件`,steps:[{title:`初始状态（以 n=2 演示）`,detail:`挂号机空闲，2 名医生都空闲，还没有病人挂号。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:2,patient:0,queue:`空`})},{title:`病人 P1 挂号`,detail:`P(mutex) 使 1→0，独占挂号机；挂完 V(mutex) 使 0→1，立刻放锁。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:2,patient:0,queue:`空`})},{title:`P1 等医生`,detail:`P(idle) 使 2→1，占用一个空闲医生名额，不阻塞。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:1,patient:0,queue:`空`})},{title:`P1 通知医生`,detail:`V(patient) 使 0→1，表示有一名已挂号病人就绪。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:1,patient:1,queue:`空`})},{title:`医生 D1 接诊 P1`,detail:`P(patient) 使 1→0，取出这名病人并配对诊疗。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:1,patient:0,queue:`空`})},{title:`P2 挂号后等医生`,detail:`先 mutex 1→0→1 挂完号，再 P(idle) 使 1→0，此刻医生全忙。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:0,patient:0,queue:`空`})},{title:`P2 通知医生`,detail:`V(patient) 使 0→1，D2 可以被唤醒。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:0,patient:1,queue:`空`})},{title:`医生 D2 接诊 P2`,detail:`P(patient) 使 1→0，两台诊疗同时进行。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:0,patient:0,queue:`空`})},{title:`P3 挂号后等医生：阻塞`,detail:`挂完号 P(idle) 使 0→−1，无空闲医生，P3 进入 idle 的 FIFO 队列。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:-1,patient:0,queue:`P3`})},{title:`D1 诊疗结束`,detail:`ProvideTreatment() 返回后 V(idle) 使 −1→0，唤醒等待最久的 P3。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:0,patient:0,queue:`空`})},{title:`P3 通知医生`,detail:`V(patient) 使 0→1，P3 已就绪，等医生配对。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:0,patient:1,queue:`空`})},{title:`D1 接诊 P3 后归还名额`,detail:`P(patient) 使 1→0；诊疗结束 V(idle) 使 0→1，D1 重新空闲。`,visual:(0,O.jsx)(Vk,{mutex:1,idle:1,patient:0,queue:`空`})}]})}]})}var Uk=512;function Wk({segments:e}){return(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`flex h-16 w-full overflow-hidden rounded-lg border border-border`,children:e.map(e=>(0,O.jsxs)(`div`,{className:`flex min-w-0 flex-col items-center justify-center border-r border-border px-1 text-center text-[11px] last:border-r-0 `+(e.kind===`used`?`bg-primary/15`:e.kind===`free`?`bg-card`:`bg-accent`),style:{width:`${e.size/Uk*100}%`},children:[(0,O.jsx)(`span`,{className:`truncate font-semibold`,children:e.label}),(0,O.jsxs)(`span`,{className:`font-mono tabular-nums text-muted-foreground`,children:[e.size,`K@`,e.start]})]},`${e.start}-${e.size}`))}),(0,O.jsxs)(`div`,{className:`mt-1 flex justify-between text-[11px] text-muted-foreground`,children:[(0,O.jsx)(`span`,{children:`0KB`}),(0,O.jsx)(`span`,{children:`512KB`})]})]})}var Gk={start:0,size:128,label:`A`,kind:`used`},Kk={start:128,size:32,label:`B`,kind:`used`},qk={start:256,size:128,label:`C`,kind:`used`},Jk={start:192,size:64,label:`D`,kind:`used`},Yk=[{title:`① A 申请 70KB → 128KB@0`,detail:`70KB 向上取整 128KB。512KB 二分到 128KB，取最低地址那块。`,segments:[Gk,{start:128,size:128,label:`空闲`,kind:`free`},{start:256,size:256,label:`空闲`,kind:`free`}]},{title:`② B 申请 20KB → 32KB@128`,detail:`取整 32KB，128KB@128 连分两次，取低地址半块；32KB@160 成空闲伙伴。`,segments:[Gk,Kk,{start:160,size:32,label:`空闲`,kind:`free`},{start:192,size:64,label:`空闲`,kind:`free`},{start:256,size:256,label:`空闲`,kind:`free`}]},{title:`③ C 申请 100KB → 128KB@256`,detail:`取整 128KB，256KB@256 二分，取低地址半块 128KB@256。`,segments:[Gk,Kk,{start:160,size:32,label:`空闲`,kind:`free`},{start:192,size:64,label:`空闲`,kind:`free`},qk,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`④ D 申请 60KB → 64KB@192`,detail:`取整 64KB，正好有 64KB@192，直接分配，不再分裂。`,segments:[Gk,Kk,{start:160,size:32,label:`空闲`,kind:`free`},Jk,qk,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑤ 释放 B：32K@128 + 32K@160 合并`,detail:`伙伴 32KB@160 空闲，合并成 64KB@128；其伙伴 64KB@192 被 D 占用，停止。`,segments:[Gk,{start:128,size:64,label:`空闲`,kind:`new`},Jk,qk,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑥ 释放 A 后申请 E 200KB：失败`,detail:`A 的伙伴被 C 占用不合并；空闲共 320KB，但最大连续块仅 128KB，凑不出 256KB。`,segments:[{start:0,size:128,label:`空闲`,kind:`new`},{start:128,size:64,label:`空闲`,kind:`free`},Jk,qk,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑦ 释放 D：连做两次合并`,detail:`64K@192 与伙伴 64K@128 合成 128K@128，再与伙伴 128K@0 合成 256K@0。`,segments:[{start:0,size:256,label:`空闲`,kind:`new`},qk,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑧ 再次申请 E 200KB：成功`,detail:`E 取整 256KB，正好用上 256KB@0；分配后只剩 128KB@384。`,segments:[{start:0,size:256,label:`E`,kind:`new`},qk,{start:384,size:128,label:`空闲`,kind:`free`}]}],Xk=[{block:`A`,request:70,got:128,waste:58},{block:`B`,request:20,got:32,waste:12},{block:`C`,request:100,got:128,waste:28},{block:`D`,request:60,got:64,waste:4}];function Zk(){return(0,O.jsx)(QD,{topics:[{id:`rule`,label:`① 三条规则`,content:(0,O.jsx)($D,{steps:[{title:`请求大小向上取到 2 的幂`,detail:`70KB 要 128KB，20KB 要 32KB，60KB 要 64KB。这一步错，地址全错。`,visual:(0,O.jsx)($,{label:`70KB 实际占用`,value:`128 KB`,hint:`128 = 2⁷`})},{title:`不够大就二分，取低地址半块`,detail:`512→256→128 逐级二分，分配块总是落在低地址那一半。`,visual:(0,O.jsx)($,{label:`分裂方向`,value:`低地址半块`,hint:`剩余伙伴留在高地址`})},{title:`回收只与同阶真正伙伴合并`,detail:`地址相邻不等于伙伴。合并成功后还要继续向上检查一阶。`,visual:(0,O.jsx)($,{label:`合并条件`,value:`同阶 + 同源伙伴`,hint:`伙伴空闲才合并`})}]})},{id:`trace`,label:`② 分配与回收`,content:(0,O.jsx)($D,{unit:`步`,steps:Yk.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsx)(Wk,{segments:e.segments})}))})},{id:`frag`,label:`③ 内部碎片`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`块`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`请求`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`实得`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`碎片`})]})}),(0,O.jsxs)(`tbody`,{children:[Xk.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.block}),(0,O.jsxs)(`td`,{className:`px-3 py-2 tabular-nums`,children:[e.request,` KB`]}),(0,O.jsxs)(`td`,{className:`px-3 py-2 tabular-nums`,children:[e.got,` KB`]}),(0,O.jsxs)(`td`,{className:`px-3 py-2 font-mono tabular-nums`,children:[e.waste,` KB`]})]},e.block)),(0,O.jsxs)(`tr`,{className:`border-t border-border bg-secondary/40`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-semibold`,colSpan:3,children:`A、B、C、D 合计`}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono font-semibold tabular-nums`,children:`102 KB`})]})]})]})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)($,{label:`A～D 均已分配`,value:`102 KB`,hint:`58 + 12 + 28 + 4`}),(0,O.jsx)($,{label:`E 第二次申请成功后`,value:`84 KB`,hint:`E 56 + C 28`})]}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:`内部碎片 = 实得块大小 − 请求大小，只算已分配块，空闲块不计。`})]})}]})}var Qk=[{prefix:`10.0.0.0/24`,next:`直接交付`,port:`eth0`,hit:`否`},{prefix:`192.168.1.0/24`,next:`直接交付`,port:`eth1`,hit:`否`},{prefix:`172.16.0.0/30`,next:`直接交付`,port:`eth2`,hit:`否`},{prefix:`203.0.113.0/24`,next:`172.16.0.2`,port:`eth2`,hit:`命中·最长`},{prefix:`Default`,next:`172.16.0.2`,port:`eth2`,hit:`命中·最短`}],$k=[{field:`源 MAC`,before:`00-10-10-10-10-20`,after:`00-CC-CC-CC-CC-01`,changed:!0,why:`换成出接口 eth2 的 MAC`},{field:`目的 MAC`,before:`00-AA-AA-AA-AA-01`,after:`00-22-22-22-22-02`,changed:!0,why:`换成下一跳 172.16.0.2 的 MAC`},{field:`源 IP`,before:`10.0.0.20`,after:`10.0.0.20`,changed:!1,why:`端到端地址，路由器不改写`},{field:`目的 IP`,before:`203.0.113.8`,after:`203.0.113.8`,changed:!1,why:`端到端地址，逐跳转发不变`}];function eA(){return(0,O.jsx)(QD,{topics:[{id:`lookup`,label:`① 查表`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`目的 IP 203.0.113.8，逐条比对转发表`}),(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`目的网络`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`下一跳`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`接口`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`匹配`})]})}),(0,O.jsx)(`tbody`,{children:Qk.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border `+(e.hit===`命中·最长`?`bg-accent`:``),children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.prefix}),(0,O.jsx)(`td`,{className:`px-3 py-2`,children:e.next}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.port}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-muted-foreground`,children:e.hit})]},e.prefix))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3`,children:[(0,O.jsx)($,{label:`命中表项`,value:`203.0.113.0/24`}),(0,O.jsx)($,{label:`下一跳 IP`,value:`172.16.0.2`}),(0,O.jsx)($,{label:`输出接口`,value:`eth2`})]}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:`Default 也能匹配，但 /24 前缀更长，最长前缀匹配优先。`})]})},{id:`frame`,label:`② 重新封装`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`字段`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`入帧`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`出帧`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`是否改变`})]})}),(0,O.jsx)(`tbody`,{children:$k.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2`,children:e.field}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs`,children:e.before}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs font-semibold`,children:e.after}),(0,O.jsx)(`td`,{className:`px-3 py-2 `+(e.changed?`text-primary`:`text-muted-foreground`),children:e.changed?`变`:`不变`})]},e.field))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`MAC 为什么变`}),`链路层地址只在一条链路上有效，每跨一跳都要重新封装。`]}),(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`IP 为什么不变`}),`IP 标识端到端的两台主机，路由器只按目的 IP 转发。`]})]})]})},{id:`arp`,label:`③ ARP 解析`,content:(0,O.jsx)($D,{steps:[{title:`发帧前要先知道下一跳的 MAC`,detail:`出接口 eth2，下一跳 172.16.0.2，目的 MAC 一栏还空着。`,visual:(0,O.jsx)($,{label:`待解析的 IP`,value:`172.16.0.2`,hint:`下一跳，不是最终主机`})},{title:`查 ARP 表：没有这一项`,detail:`表中只剩 10.0.0.20 一项，172.16.0.2 已删除，无法直接填目的 MAC。`,visual:(0,O.jsx)($,{label:`ARP 表`,value:`缺 172.16.0.2`,hint:`需要广播询问`})},{title:`广播 ARP 请求`,detail:`在 eth2 上广播“谁是 172.16.0.2”，收到者按目标 IP 决定是否应答。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)($,{label:`查询的目标 IP`,value:`172.16.0.2`}),(0,O.jsx)($,{label:`以太网目的 MAC`,value:`FF-FF-FF-FF-FF-FF`,hint:`广播地址`})]})},{title:`为什么不问 203.0.113.8`,detail:`它不在 R 的直连链路上，只能经下一跳到达；ARP 只在本链路工作，MAC 不能跨网寻址。`,visual:(0,O.jsx)($,{label:`203.0.113.8`,value:`非直连`,hint:`经 172.16.0.2 才能到达`})}]})}]})}var tA=Array.from({length:10},(e,t)=>{let n=2+t,r=n>>1;return{addr:n,label:`${n.toString(16).toUpperCase().padStart(2,`0`)}H`,block:r,group:r%2,miss:n%2==0}}),nA=tA.filter(e=>e.miss).length;function rA(){let[e,t]=(0,S.useState)(0),n=tA[e];return(0,O.jsx)(QD,{topics:[{id:`format`,label:`① 指令格式`,content:(0,O.jsx)(eO,{caption:`每条指令 2 字节：第 1 字节放操作码与寄存器，第 2 字节放立即数 / 地址 / 位移`,fields:[{name:`操作码 Op`,bits:`4 位`,detail:`第 1 字节高 4 位，决定这条指令做什么。`},{name:`源寻址方式`,bits:`2 位`,detail:`第 1 字节第 5～6 位，决定第 2 字节按哪种方式解释。`},{name:`目的寄存器`,bits:`2 位`,detail:`第 1 字节低 2 位，取值 0～3 依次对应 R0～R3。`},{name:`Imm / Addr / Disp`,bits:`8 位`,detail:`第 2 字节：立即数、绝对地址或 8 位补码位移，看寻址方式而定。`}]})},{id:`offset`,label:`② 偏移量`,content:(0,O.jsx)($D,{steps:[{title:`每条指令占 2 字节`,detail:`程序从 00H 装入，地址按 2B 递增：LOOP 在 06H，JNZ 在 0CH，HALT 在 0EH。`,visual:(0,O.jsx)($,{label:`JNZ LOOP 所在地址`,value:`0CH`,hint:`00H/02H/04H 三条 MOV，06H 是 LOOP`})},{title:`基准是取指结束后的 PC`,detail:`相对寻址以转移指令取指完成时的 PC 为基准，JNZ 占 2B，所以基准是 0CH + 2 = 0EH。`,visual:(0,O.jsx)($,{label:`基准 PC`,value:`0EH`,hint:`不是取指前的 0CH`})},{title:`目标地址减基准`,detail:`目标 06H，基准 0EH，位移 = 06H − 0EH = −8，单位是字节。`,visual:(0,O.jsx)($,{label:`位移（十进制）`,value:`−8`,hint:`06H − 0EH`})},{title:`写成 8 位补码`,detail:`−8 的 8 位补码是 11111000B，即 F8H，这就是第二字节的内容。`,visual:(0,O.jsx)($,{label:`8 位偏移量`,value:`11111000B`,hint:`= F8H = −8`})}]})},{id:`addressing`,label:`③ 寻址方式`,content:(0,O.jsx)($D,{steps:[{title:`看方括号里的形式`,detail:`[R2+2] 表示“寄存器内容加位移”，有效地址 EA = (R2) + 2。`,visual:(0,O.jsx)($,{label:`有效地址`,value:`EA = (R2) + 2`,hint:`R2 是变址寄存器，2 是位移量`})},{title:`被访问的是主存单元`,detail:`算出 EA 后还要读主存 M[EA]，不是取 R2 本身，所以源操作数在存储器里。`,visual:(0,O.jsx)($,{label:`源操作数`,value:`M[(R2) + 2]`})},{title:`结论：变址寻址`,detail:`以变址寄存器的内容为基准加位移形成地址，属于变址寻址；位移量由第 2 字节给出。`,visual:(0,O.jsx)($,{label:`寻址方式`,value:`变址寻址`,hint:`基准在寄存器里，随程序改变`})}]})},{id:`cache`,label:`④ Cache 访问`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q43-step`,children:[(0,O.jsx)(`span`,{children:`拖动查看第几次数据访问（共 10 次）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`第 `,e+1,` 次`]})]}),(0,O.jsx)(`input`,{id:`q43-step`,type:`range`,min:0,max:9,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`访问地址`,value:n.label}),(0,O.jsx)($,{label:`块号`,value:n.block,hint:`地址 ÷ 2`}),(0,O.jsx)($,{label:`组号`,value:n.group,hint:`块号 mod 2`}),(0,O.jsx)($,{label:`结果`,value:n.miss?`缺失 M`:`命中 H`,hint:n.miss?`块首字节，块还不在 Cache`:`同块第 2 字节，刚调入`})]}),(0,O.jsx)(`div`,{className:`mt-3 overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-left text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`次`}),(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`地址`}),(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`块号`}),(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`组号`}),(0,O.jsx)(`th`,{className:`py-1`,children:`结果`})]})}),(0,O.jsx)(`tbody`,{className:`font-mono tabular-nums`,children:tA.map((t,n)=>(0,O.jsxs)(`tr`,{className:n===e?`bg-accent`:``,children:[(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:n+1}),(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:t.label}),(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:t.block}),(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:t.group}),(0,O.jsx)(`td`,{className:`py-1`,children:t.miss?`缺失`:`命中`})]},t.addr))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`Cache 8B、块 2B → 4 块；2 路组相联 → 2 组，每组 2 块。`}),(0,O.jsx)(`p`,{children:`10 次地址 02H～0BH，同一块被连续访问 2 次：第 1 次缺、第 2 次命中。`}),(0,O.jsxs)(`p`,{children:[`缺失 `,nA,` 次、命中 `,10-nA,` 次，命中率 = `,(0,O.jsx)(`strong`,{children:`50%`}),`。`]})]})]})},{id:`time`,label:`⑤ 总时间`,content:(0,O.jsx)($D,{steps:[{title:`命中一次 10ns`,detail:`命中直接读 Cache，只花 10ns，共 5 次。`,visual:(0,O.jsx)($,{label:`命中开销`,value:`5 × 10 = 50 ns`})},{title:`缺失先查后调`,detail:`缺失先花 10ns 查 Cache，再花 100ns 从主存调块，单次 110ns，共 5 次。`,visual:(0,O.jsx)($,{label:`缺失开销`,value:`5 × 110 = 550 ns`,hint:`10ns 查询 + 100ns 调块`})},{title:`两者相加`,detail:`550 + 50 = 600ns。查表那 10ns 已含在 110ns 内，不能重复加。`,visual:(0,O.jsx)($,{label:`总访存时间`,value:`600 ns`,hint:`5 × 110 + 5 × 10`})}]})}]})}var iA=128,aA=40,oA=50;function sA(){let[e,t]=(0,S.useState)(0),n=aA*e;return(0,O.jsx)(QD,{topics:[{id:`chips`,label:`① 芯片数`,content:(0,O.jsx)($D,{steps:[{title:`先比字数，再比位数`,detail:`模块 256K×32 位，芯片 256K×4 位。字数都是 256K，相同，不需要字扩展。`,visual:(0,O.jsx)($,{label:`字数对比`,value:`256K = 256K`,hint:`单片字数已够，不用串联扩容`})},{title:`位数从 4 扩到 32`,detail:`32 ÷ 4 = 8，一个模块要 8 片并联，每片出 4 位，拼成 32 位。`,visual:(0,O.jsx)($,{label:`每模块芯片数`,value:`8 片`,hint:`32 位 ÷ 4 位/片`})},{title:`两个模块共 16 片`,detail:`8 × 2 = 16 片。单个模块内部只是位扩展：地址线共用，数据线分开。`,visual:(0,O.jsx)($,{label:`总芯片数`,value:`16 片`,hint:`扩展方式：位扩展`})}]})},{id:`bus`,label:`② 数据总线`,content:(0,O.jsx)($D,{steps:[{title:`两个模块共用一条总线`,detail:`题面写明共用 32 位数据总线，总线宽度就是 32 位。`,visual:(0,O.jsx)($,{label:`数据总线宽度`,value:`32 位`,hint:`共用，不是各 32 位再拼成 64 位`})},{title:`一次访问传一个字`,detail:`每次只选中一个模块，把它的 32 位字送上总线，所以单次传输 32 位。`,visual:(0,O.jsx)($,{label:`每次传输`,value:`32 位`,hint:`= 1 个 32 位字`})}]})},{id:`timing`,label:`③ 总时间`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q44-word`,children:[(0,O.jsx)(`span`,{children:`拖动查看第 k 次访问（0～127）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`k = `,e]})]}),(0,O.jsx)(`input`,{id:`q44-word`,type:`range`,min:0,max:iA-1,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-3`,children:[(0,O.jsx)($,{label:`访问模块`,value:`模块 ${e%2}`,hint:`字按 0、1、0、1 交替存放`}),(0,O.jsx)($,{label:`启动时刻`,value:`${n} ns`,hint:`每 40ns 启动一次`}),(0,O.jsx)($,{label:`数据就绪`,value:`${n+oA} ns`,hint:`启动后 50ns 出数据`})]}),(0,O.jsx)(`div`,{className:`mt-3 space-y-1 rounded-lg border border-border bg-card p-3`,children:[0,1,2,3,4,5].map(e=>(0,O.jsxs)(`div`,{className:`flex items-center gap-2 text-xs`,children:[(0,O.jsxs)(`span`,{className:`w-12 shrink-0 font-mono tabular-nums`,children:[`k=`,e]}),(0,O.jsxs)(`span`,{className:`w-12 shrink-0 text-muted-foreground`,children:[`M`,e%2]}),(0,O.jsx)(`span`,{className:`relative h-3 flex-1 rounded bg-secondary`,children:(0,O.jsx)(`span`,{className:`absolute inset-y-0 rounded bg-primary/70`,style:{left:`${e*aA/260*100}%`,width:`${oA/260*100}%`}})}),(0,O.jsxs)(`span`,{className:`w-16 shrink-0 text-right font-mono tabular-nums`,children:[e*aA,`ns`]})]},e))}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`流水启动：第 k 次在 40k 就绪，前一次的数据还没回来，下一次就已经发出。`}),(0,O.jsx)(`p`,{children:`最后一个字 k = 127 在 40 × 127 = 5080ns 启动，再等 50ns 就绪。`}),(0,O.jsx)(`p`,{children:(0,O.jsx)(`strong`,{children:`T = 40 × (128 − 1) + 50 = 5130ns。`})})]})]})},{id:`check`,label:`④ 为什么能流水`,content:(0,O.jsx)($D,{steps:[{title:`同一模块的间隔是 80ns`,detail:`模块 0 在 0、80、160ns 被启动，间隔正好等于 80ns 访问周期，不会冲突。`,visual:(0,O.jsx)($,{label:`同模块启动间隔`,value:`2 × 40 = 80 ns`,hint:`= 访问周期，刚好够用`})},{title:`不同模块交替顶上`,detail:`0ns 启模块 0，40ns 启模块 1，两次启动错开，总线每 40ns 就有一个字。`,visual:(0,O.jsx)($,{label:`总线节拍`,value:`40 ns / 字`})},{title:`不要乘 128 次延迟`,detail:`128 × 50 或 128 × 40 + 50 都错，前者没流水，后者多算了最后一次的启动间隔。`,visual:(0,O.jsx)($,{label:`正确总时间`,value:`5130 ns`,hint:`常见错答：5170ns、6400ns`})}]})}]})}var cA=`rounded-lg border border-border bg-card p-3 font-mono text-xs leading-6`;function lA(){return(0,O.jsx)(QD,{topics:[{id:`monitor`,label:`① 管程填空`,content:(0,O.jsx)($D,{steps:[{title:`① 满了就等“不满”`,detail:`count == N 表示缓冲池已满，put 不能写，必须 cwait(notFull) 释放管程去排队。`,visual:(0,O.jsxs)(`div`,{className:cA,children:[`if (count == N) `,(0,O.jsx)(`span`,{className:`text-primary`,children:`cwait(notFull);`})]})},{title:`② 放完通知“不空”`,detail:`写入并 count++ 后池里有了产品，csignal(notEmpty) 唤醒等产品的消费者。`,visual:(0,O.jsxs)(`div`,{className:cA,children:[`count++; `,(0,O.jsx)(`span`,{className:`text-primary`,children:`csignal(notEmpty);`})]})},{title:`③ 空了就等“不空”`,detail:`count == 0 表示没有产品可取，get 必须 cwait(notEmpty) 让出管程。`,visual:(0,O.jsxs)(`div`,{className:cA,children:[`if (count == 0) `,(0,O.jsx)(`span`,{className:`text-primary`,children:`cwait(notEmpty);`})]})},{title:`④ 取完通知“不满”`,detail:`取出并 count-- 后空出一个位置，csignal(notFull) 唤醒等空位的生产者。`,visual:(0,O.jsxs)(`div`,{className:cA,children:[`count--; `,(0,O.jsx)(`span`,{className:`text-primary`,children:`csignal(notFull);`})]})},{title:`为什么用 if 而不是 while`,detail:`题面是 Hoare 语义：csignal 立即把管程交给被唤醒者，条件必然成立，重检是多余的。`,visual:(0,O.jsx)($,{label:`管程语义`,value:`Hoare`,hint:`唤醒即移交，被唤醒者马上执行`})}]})},{id:`and`,label:`② AND 信号量`,content:(0,O.jsx)($D,{steps:[{title:`生产者先一次申请两样`,detail:`Swait(empty, mutex)：要空位也要互斥，两个都大于 0 才一起减 1。`,visual:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:cA,children:`Swait(empty, mutex);`}),(0,O.jsxs)(`div`,{className:`mt-2 grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`empty`,value:`N → N−1`}),(0,O.jsx)($,{label:`mutex`,value:`1 → 0`}),(0,O.jsx)($,{label:`full`,value:`不变`})]})]})},{title:`放完一次释放两样`,detail:`Ssignal(mutex, full)：退出临界区，同时把产品数加 1。`,visual:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:cA,children:`Ssignal(mutex, full);`}),(0,O.jsxs)(`div`,{className:`mt-2 grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`mutex`,value:`0 → 1`}),(0,O.jsx)($,{label:`full`,value:`+1`}),(0,O.jsx)($,{label:`empty`,value:`不变`})]})]})},{title:`消费者对称地反过来`,detail:`Swait(full, mutex) 取产品并进临界区，Ssignal(mutex, empty) 退出并还回空位。`,visual:(0,O.jsx)(`div`,{className:cA,children:`Swait(full, mutex); … Ssignal(mutex, empty);`})},{title:`顺序：资源在前，互斥在后`,detail:`AND 语义下两者同时获得，不会出现“拿着 mutex 干等 empty”；这样写只是便于对照普通 P 操作。`,visual:(0,O.jsx)($,{label:`生产者 / 消费者`,value:`empty,mutex / full,mutex`,hint:`申请与释放成对出现`})}]})},{id:`why`,label:`③ 为何不能拆开`,content:(0,O.jsx)($D,{steps:[{title:`两次普通 wait 之间有缝`,detail:`先 wait(a) 成功、再 wait(b) 阻塞时，进程已经占着 a 不放手，别的进程也拿不到 a。`,visual:(0,O.jsx)($,{label:`状态`,value:`部分占用`,hint:`持有一个资源，等另一个`})},{title:`AND 是全得或全不得`,detail:`两个都大于 0 才一起减 1；否则阻塞且不改任何信号量，等待时不持有资源。`,visual:(0,O.jsx)($,{label:`Swait 语义`,value:`原子地同时获取`,hint:`要么全拿到，要么一个都不拿`})},{title:`但别说过头`,detail:`统一申请顺序的普通 P 操作也能正确同步；差别只在原子性，不能说普通 wait 必然死锁。`,visual:(0,O.jsx)($,{label:`结论`,value:`语义不等价`,hint:`不是“必然死锁”`})}]})}]})}function uA(){let[e,t]=(0,S.useState)(`row`),[n,r]=(0,S.useState)(200),[i,a]=(0,S.useState)(2),[o,s]=(0,S.useState)(`rowMajor`),c=(0,S.useMemo)(()=>{let t=[],r=[],a=[],s=0;for(let c=0;c<100;c++)for(let l=0;l<100;l++){let u=e===`row`?c:l,d=e===`row`?l:c,f=o===`rowMajor`?100*u+d:100*d+u,p=Math.floor(f/n);if(t.push(p),a.includes(p)){r.push(!1);continue}s+=1,r.push(!0),a.length===i&&a.shift(),a.push(p)}return{pages:t,marks:r,misses:s}},[e,n,i,o]),l=(e,t,n)=>(0,O.jsx)(`button`,{type:`button`,onClick:n,"aria-pressed":t,className:`rounded-lg border px-3 py-1.5 text-sm `+(t?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:e});return(0,O.jsx)(QD,{topics:[{id:`sim`,label:`① 数缺页`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`space-y-2 text-sm`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`扫描方式`}),l(`行扫描（程序1）`,e===`row`,()=>t(`row`)),l(`列扫描（程序2）`,e===`col`,()=>t(`col`))]}),(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`每页整数`}),l(`200 个`,n===200,()=>r(200)),l(`100 个`,n===100,()=>r(100))]}),(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`页框数`}),l(`2 个`,i===2,()=>a(2)),l(`4 个`,i===4,()=>a(4))]}),(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`存放方式`}),l(`行优先`,o===`rowMajor`,()=>s(`rowMajor`)),l(`列优先`,o===`colMajor`,()=>s(`colMajor`))]})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`缺页次数`,value:c.misses,hint:`FIFO 模拟`}),(0,O.jsx)($,{label:`总访问`,value:`10000`,hint:`100 × 100 个整数`}),(0,O.jsx)($,{label:`缺页率`,value:`${(c.misses/100).toFixed(2)}%`,hint:`缺页 ÷ 10000`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`前 16 次访问的页号与结果`}),(0,O.jsx)(`div`,{className:`flex flex-wrap gap-1 font-mono text-xs`,children:c.pages.slice(0,16).map((e,t)=>(0,O.jsxs)(`span`,{className:`rounded px-1.5 py-0.5 `+(c.marks[t]?`bg-primary text-primary-foreground`:`bg-secondary`),children:[e,c.marks[t]?` M`:` H`]},t))})]})]})},{id:`table`,label:`② 五种情形`,content:(0,O.jsxs)(`div`,{className:`overflow-x-auto`,children:[(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-left text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`py-1 pr-3`,children:`情形`}),(0,O.jsx)(`th`,{className:`py-1 pr-3`,children:`程序1（行）`}),(0,O.jsx)(`th`,{className:`py-1`,children:`程序2（列）`})]})}),(0,O.jsxs)(`tbody`,{className:`tabular-nums`,children:[(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`每页 200 个整数，2 页框`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`50`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`5000`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`每页 100 个整数，2 页框`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`100`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`10000`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`每页 200 个整数，4 页框（程序2）`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`—`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`5000`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`改为列优先存放，按行扫描`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`5000`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`—`})]})]})]}),(0,O.jsx)(`p`,{className:`mt-3 text-xs text-muted-foreground`,children:`用上面的开关复现任意一行，数字与答案表一致。`})]})},{id:`why`,label:`③ 为什么`,content:(0,O.jsx)($D,{steps:[{title:`行扫描吃到了空间局部性`,detail:`按行访问的方向和行优先存放一致，相邻访问落在相邻地址，一页里的 200 个元素一次调入全用上。`,visual:(0,O.jsx)($,{label:`局部性`,value:`空间局部性`,hint:`地址相邻，不是时间上的重复`})},{title:`列扫描每进一页就缺一次`,detail:`固定列 j 时地址是 100i + j，i 每加 2 才跨一页，页序 0,0,1,1,…，每页只缺一次但列间不复用。`,visual:(0,O.jsx)($,{label:`每列缺页`,value:`50 次`,hint:`100 列 × 50 = 5000`})},{title:`页框加到 4 也不省`,detail:`列访问时活跃页只有相邻 2 页，且每页在本列用完不再回来，多出的页框装的是以后才用的页。`,visual:(0,O.jsx)($,{label:`4 页框结果`,value:`仍 5000 次`,hint:`工作集只有 2 页`})},{title:`换存放顺序就换角色`,detail:`列优先存放后地址是 100j + i，按行扫描的页序变成 0,0,1,1,…，缺页升到 5000 次。`,visual:(0,O.jsx)($,{label:`列优先 + 行扫描`,value:`5000 次`,hint:`与原来程序2 的情形相同`})}]})}]})}function dA(){return(0,O.jsx)(QD,{topics:[{id:`abr`,label:`① 谁是 ABR`,content:(0,O.jsx)($D,{steps:[{title:`先把每条链路标上区域`,detail:`A–B 链路和 192.168.1.0/24 在 Area 0；B–C 链路和 10.0.0.0/24 在 Area 1。`,visual:(0,O.jsx)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-xs`,children:(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center justify-center gap-1`,children:[(0,O.jsx)(`span`,{className:`rounded border border-border px-2 py-1`,children:`192.168.1.0/24`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`—`}),(0,O.jsx)(`span`,{className:`rounded bg-primary px-2 py-1 text-primary-foreground`,children:`RouterA`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`— Area 0 —`}),(0,O.jsx)(`span`,{className:`rounded bg-primary px-2 py-1 text-primary-foreground`,children:`RouterB`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`— Area 1 —`}),(0,O.jsx)(`span`,{className:`rounded bg-primary px-2 py-1 text-primary-foreground`,children:`RouterC`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`—`}),(0,O.jsx)(`span`,{className:`rounded border border-border px-2 py-1`,children:`10.0.0.0/24`})]})})},{title:`ABR 要同时跨两个区域`,detail:`RouterB 左边接口在 Area 0、右边接口在 Area 1，是唯一跨区域的路由器。`,visual:(0,O.jsx)($,{label:`跨区域的路由器`,value:`RouterB`,hint:`两个接口分属不同区域`})},{title:`A 和 C 各只有一个区域`,detail:`它们都有两个接口，但一个连本地网络、一个连互联链路，都在同一个区域里，是区域内路由器。`,visual:(0,O.jsx)($,{label:`结论`,value:`RouterB 是 ABR`,hint:`还要求有一个接口在骨干区 Area 0`})}]})},{id:`cost`,label:`② 路径与开销`,content:(0,O.jsx)($D,{steps:[{title:`A 到 B 一段`,detail:`RouterA 到 RouterB 的链路开销 10。`,visual:(0,O.jsx)($,{label:`累计开销`,value:`10`,hint:`A → B`})},{title:`B 到 C 再加一段`,detail:`RouterB 到 RouterC 的链路开销 10，累计 20。`,visual:(0,O.jsx)($,{label:`累计开销`,value:`20`,hint:`A → B → C`})},{title:`别忘了最后一段`,detail:`RouterC 到 10.0.0.0/24 的接口也算一段链路，再加 10。`,visual:(0,O.jsx)($,{label:`累计开销`,value:`30`,hint:`最容易漏的就是这一段`})},{title:`路径写成完整链条`,detail:`RouterA → RouterB → RouterC → 10.0.0.0/24，开销 10 + 10 + 10 = 30。`,visual:(0,O.jsx)($,{label:`OSPF 开销`,value:`30`,hint:`三段链路逐段累加`})}]})},{id:`converge`,label:`③ 故障收敛`,content:(0,O.jsx)($D,{steps:[{title:`C 发现接口故障`,detail:`RouterC 连 10.0.0.0/24 的接口 down，它要重写自己的链路状态描述。`,visual:(0,O.jsx)($,{label:`故障点`,value:`C 的接口`,hint:`B–C 链路仍然正常`})},{title:`C 在 Area 1 泛洪 Router-LSA`,detail:`描述自身链路的是 Type 1 Router-LSA，只在本区域内泛洪，新版本里不再有到该网络的链路。`,visual:(0,O.jsx)($,{label:`C 发出`,value:`Type 1 Router-LSA`,hint:`作用范围：Area 1`})},{title:`B 在 Area 1 重算 SPF`,detail:`ABR 收到新 LSA 后重跑区域内最短路径树，发现到 10.0.0.0/24 已无路径。`,visual:(0,O.jsx)($,{label:`B 的动作`,value:`重算 SPF → 判不可达`})},{title:`B 向 Area 0 撤销 Type 3`,detail:`跨区通告网络用的是 Network Summary LSA（Type 3），撤销就是把对应 LSA 置 MaxAge 再泛洪。`,visual:(0,O.jsx)($,{label:`B 发出`,value:`Type 3 置 MaxAge`,hint:`作用范围：Area 0`})},{title:`A 更新 LSDB 并删路由`,detail:`A 收到 Type 3 更新，重算区域间路由后删除该条目；Area 0 拓扑没变，不用重跑区域内 Dijkstra。`,visual:(0,O.jsx)($,{label:`A 的结果`,value:`删除 10.0.0.0/24`,hint:`无需重跑区域内 SPF`})}]})},{id:`algo`,label:`④ 算法与封装`,content:(0,O.jsx)($D,{steps:[{title:`最短路径用 Dijkstra`,detail:`OSPF 是链路状态协议，每台路由器用 SPF（Dijkstra）以自己为根算最短路径树。`,visual:(0,O.jsx)($,{label:`路由算法`,value:`Dijkstra / SPF`})},{title:`报文直接封装在 IP 里`,detail:`OSPF 不经过 TCP/UDP，直接装进 IP 分组，IP 首部协议号字段填 89。`,visual:(0,O.jsx)($,{label:`封装`,value:`IP 分组`,hint:`协议号 89，没有传输层`})}]})}]})}var fA={"mock-exam-1-ds-q41":lO,"mock-exam-1-ds-q42":fO,"mock-exam-1-co-q43":YO,"mock-exam-1-co-q44":tk,"mock-exam-1-os-q45":dk,"mock-exam-1-os-q46":hk,"mock-exam-1-cn-q47":bk,"mock-exam-2-ds-q41":yO,"mock-exam-2-ds-q42":TO,"mock-exam-2-co-q43":Ek,"mock-exam-2-co-q44":Lk,"mock-exam-2-os-q45":Hk,"mock-exam-2-os-q46":Zk,"mock-exam-2-cn-q47":eA,"mock-exam-3-ds-q41":NO,"mock-exam-3-ds-q42":WO,"mock-exam-3-co-q43":rA,"mock-exam-3-co-q44":sA,"mock-exam-3-os-q45":lA,"mock-exam-3-os-q46":uA,"mock-exam-3-cn-q47":dA},pA=h();function mA({src:e,alt:t}){let[n,r]=(0,S.useState)(!1),i=(0,S.useRef)(null),a=(0,S.useRef)(null);return(0,S.useEffect)(()=>{if(!n)return;let e=i.current,t=a.current,r=document.body.style.overflow;return document.body.style.overflow=`hidden`,e?.showModal(),()=>{e?.close(),document.body.style.overflow=r,t?.focus({preventScroll:!0})}},[n]),(0,O.jsxs)(`span`,{className:`inline-block min-w-0 max-w-full align-top`,children:[(0,O.jsx)(`button`,{ref:a,type:`button`,className:`block max-w-full cursor-zoom-in rounded-lg`,"aria-label":`放大图片：${t}`,onClick:()=>r(!0),children:(0,O.jsx)(`img`,{src:e,alt:t,loading:`lazy`,decoding:`async`,className:`block h-auto max-w-full rounded-lg border border-border bg-white`})}),n&&(0,pA.createPortal)((0,O.jsx)(`dialog`,{ref:i,"aria-label":`原图：${t}`,className:`fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-background p-0 text-foreground backdrop:bg-black/80`,onCancel:e=>{e.preventDefault(),r(!1)},children:(0,O.jsxs)(`div`,{className:`flex h-full min-h-0 flex-col`,children:[(0,O.jsxs)(`div`,{className:`flex shrink-0 items-center justify-between gap-3 border-b border-border p-4`,children:[(0,O.jsxs)(`span`,{className:`min-w-0 text-sm`,children:[(0,O.jsx)(`strong`,{className:`block truncate`,children:t}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`原尺寸查看，可横向或纵向滚动`})]}),(0,O.jsxs)(`button`,{type:`button`,className:`action-button shrink-0`,"aria-label":`关闭图片`,onClick:()=>r(!1),children:[(0,O.jsx)(_e,{size:18}),`关闭`]})]}),(0,O.jsx)(`div`,{className:`min-h-0 flex-1 overflow-auto overscroll-contain p-4`,"aria-label":`原图滚动区域`,children:(0,O.jsx)(`img`,{src:e,alt:t,className:`mx-auto block h-auto max-w-none bg-white`})})]})}),document.body)]})}var hA=`/courses/`,gA={题目:oe,知识点:de},_A=jC.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),vA=new Map(jC.map(e=>[e.id,e])),yA=(e,t)=>t.date.localeCompare(e.date),bA=[{id:`topic`,title:`专题讲义`},{id:`review`,title:`真题与复习`},{id:`class`,title:`日常备课`},{id:`rare`,title:`冷门考点`}].map(({id:e,title:t})=>({id:e,title:t,lessons:jC.filter(t=>(t.catalog??`class`)===e).sort(yA)})).filter(e=>e.lessons.length),xA=[{id:`lion`,title:`里昂`},{id:`ace`,title:`Ace`},{id:`jingcheng`,title:`竟成`},{id:`wangdao`,title:`王道`},{id:`other`,title:`零壹、图领与令狐冲`}].map(({id:e,title:t})=>({title:t,lessons:jC.flatMap(t=>typeof t.catalog==`object`&&t.catalog.series===e?[{lesson:t,order:t.catalog.order}]:[]).sort((e,t)=>e.order-t.order).map(({lesson:e})=>e)})).filter(e=>e.lessons.length),SA=xA.reduce((e,t)=>e+t.lessons.length,0);function CA(e,t){let n=new URLSearchParams;return e!==`all`&&n.set(`lesson`,e),t&&n.set(`material`,t),`#${n}`}function wA(e){return e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&!e.defaultPrevented}function TA(e,t){if(!t)return;let n=e?vA.get(e):void 0;if(n){let e=n.materials.find(e=>e.id===t);if(e)return{lesson:n,material:e}}return _A.find(({material:e})=>e.id===t)}function EA(){return(0,O.jsxs)(`div`,{className:`grid gap-8`,children:[(0,O.jsx)(`nav`,{className:`flex flex-wrap gap-2`,"aria-label":`跳到目录分组`,children:(SA?[...bA,{id:`mock`,title:`模拟卷`}]:bA).map(({id:e,title:t})=>(0,O.jsx)(`button`,{type:`button`,className:`filter-chip`,onClick:()=>{let t=document.getElementById(`catalog-${e}`);t?.focus({preventScroll:!0}),t?.scrollIntoView({block:`start`})},children:t},e))}),bA.map(({id:e,title:t,lessons:n})=>(0,O.jsxs)(`section`,{"aria-label":t,children:[(0,O.jsxs)(`h2`,{id:`catalog-${e}`,tabIndex:-1,className:`mb-3 flex scroll-mt-36 items-baseline gap-3 font-display text-xl font-semibold sm:scroll-mt-24`,children:[t,(0,O.jsxs)(`span`,{className:`text-xs font-normal text-muted-foreground`,children:[n.length,` 组`]})]}),(0,O.jsx)(`ul`,{className:`grid gap-3 sm:grid-cols-2`,children:n.map(e=>(0,O.jsx)(`li`,{className:`min-w-0`,children:(0,O.jsxs)(`a`,{href:CA(e.id),className:`group block h-full rounded-xl border border-border bg-card px-4 py-3 hover:border-primary focus-visible:outline-primary`,children:[(0,O.jsx)(`h3`,{className:`break-words font-semibold group-hover:text-primary`,children:e.title}),e.summary&&(0,O.jsx)(`p`,{className:`mt-1 line-clamp-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),(0,O.jsxs)(`p`,{className:`mt-2 flex flex-wrap gap-x-3 text-xs text-muted-foreground`,children:[(0,O.jsx)(`time`,{dateTime:e.date,children:e.date}),(0,O.jsxs)(`span`,{children:[e.materials.length,` 条内容`]})]})]})},e.id))})]},e)),SA>0&&(0,O.jsxs)(`section`,{"aria-label":`模拟卷`,children:[(0,O.jsxs)(`h2`,{id:`catalog-mock`,tabIndex:-1,className:`mb-3 flex scroll-mt-36 items-baseline gap-3 font-display text-xl font-semibold sm:scroll-mt-24`,children:[`模拟卷`,(0,O.jsxs)(`span`,{className:`text-xs font-normal text-muted-foreground`,children:[SA,` 份`]})]}),(0,O.jsx)(`div`,{className:`grid items-start gap-3 sm:grid-cols-2`,children:xA.map(e=>(0,O.jsxs)(`details`,{className:`group rounded-xl border border-border bg-card`,children:[(0,O.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center gap-3 rounded-xl px-4 py-3 font-semibold hover:text-primary [&::-webkit-details-marker]:hidden`,children:[(0,O.jsx)(se,{size:16,className:`shrink-0 -rotate-90 group-open:rotate-0`,"aria-hidden":`true`}),e.title,(0,O.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[e.lessons.length,` 份`]})]}),(0,O.jsx)(`ul`,{className:`border-t border-border p-2`,children:e.lessons.map(e=>(0,O.jsx)(`li`,{children:(0,O.jsxs)(`a`,{href:CA(e.id),className:`flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm hover:bg-secondary`,children:[(0,O.jsx)(`span`,{children:e.title}),(0,O.jsxs)(`span`,{className:`shrink-0 text-xs text-muted-foreground`,children:[e.materials.length,` 条`]})]})},e.id))})]},e.title))})]})]})}function DA(e,t){return e===`rare-topics`?[{type:`知识点`,title:`知识点讲解`,items:t.filter(e=>e.type===`知识点`)},{type:`题目`,title:`配套题目`,items:t.filter(e=>e.type===`题目`)}].filter(e=>e.items.length>0):[{type:`全部`,title:null,items:t}]}var OA=28,kA=64,AA=26,jA=16,MA=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function NA(e){let t=(e.match(MA)??[]).length;return(e.length-t)*7.4+t*13+18}function PA(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
-`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function FA({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=PA(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>NA(e.label))),s=o+AA,c=i*s-AA+jA*2,l=(a+1)*kA+jA*2-(kA-OA),u=e=>({x:jA+o/2+e.column*s,y:jA+e.depth*kA+OA/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,O.jsxs)(`figure`,{className:`my-4`,children:[(0,O.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,O.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
-`).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,O.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,O.jsx)(`path`,{d:`M ${e.x} ${e.y+OA/2} C ${e.x} ${e.y+OA/2+18}, ${t.x} ${t.y-OA/2-18}, ${t.x} ${t.y-OA/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,O.jsxs)(`g`,{children:[(0,O.jsx)(`rect`,{x:n-o/2,y:r-OA/2,width:o,height:OA,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,O.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,O.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function IA({children:e,allowHtml:t=!1,compact:n=!1}){return(0,O.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere] ${n?`reading-prose-compact`:``}`,children:(0,O.jsx)(ls,{remarkPlugins:[Ip,zg],rehypePlugins:t?[IS,R_]:[R_],urlTransform:e=>{let t=ps(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${hA}${t}`:t},components:{img:({alt:e,src:t,...n})=>t?.startsWith(`${hA}mindmaps/`)?(0,O.jsx)(mA,{src:t,alt:e??``}):(0,O.jsx)(`img`,{...n,src:t,alt:e??``,loading:`lazy`,decoding:`async`,className:`h-auto max-w-full rounded-lg border border-border`}),pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,S.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,O.jsx)(FA,{source:n,kind:r})}return(0,O.jsx)(`pre`,{children:e})}},children:e})})}var LA={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function RA({image:e}){let t=(0,S.useRef)(null),n=(0,S.useRef)(null),[r,i]=(0,S.useState)(null);return(0,S.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,S.useEffect)(()=>{if(!r)return;let e=t.current,a=document.body.style.overflow;document.body.style.overflow=`hidden`,n.current?.focus();let o=e=>{e.key===`Escape`&&i(null)};return window.addEventListener(`keydown`,o),()=>{window.removeEventListener(`keydown`,o),document.body.style.overflow=a,e?.focus()}},[r]),(0,O.jsxs)(`figure`,{className:`min-w-0`,children:[(0,O.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&i(t.src)}}),(0,O.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name}),r&&(0,O.jsx)(`dialog`,{open:!0,"aria-modal":`true`,"aria-label":`原图：${e.name}`,className:`fixed inset-0 z-50 m-0 flex h-full max-h-none w-full max-w-none items-center justify-center border-0 bg-black/85 p-0 text-white`,children:(0,O.jsxs)(`button`,{ref:n,type:`button`,className:`absolute inset-0 flex h-full w-full select-none items-center justify-center p-4 sm:p-8`,"aria-label":`关闭原图：${e.name}`,onClick:()=>i(null),children:[(0,O.jsx)(`img`,{src:r,alt:e.name,className:`max-h-full max-w-full object-contain`}),(0,O.jsx)(`span`,{"aria-hidden":`true`,className:`pointer-events-none absolute right-4 top-4 rounded-full bg-black/60 p-2 text-white`,children:(0,O.jsx)(_e,{className:`h-5 w-5`})}),(0,O.jsx)(`span`,{"aria-hidden":`true`,className:`pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-white/80`,children:`点击任意处或按 Esc 关闭`})]})})]})}function zA({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,S.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,S.useState)(!1),[o,s]=(0,S.useState)([]),[c,l]=(0,S.useState)(!1),[u,d]=(0,S.useState)(`正在读取补充图片…`),f=(0,S.useRef)(null);(0,S.useEffect)(()=>{let t=!0;return CD(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>LA[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await wD(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await TD(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,O.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,O.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,O.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,O.jsxs)(`section`,{className:`mt-4 min-w-0 rounded-xl border border-border bg-background/40 p-3`,"aria-label":`补充图片`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsxs)(`h3`,{className:`text-sm font-semibold`,children:[`补充图片`,o.length>0?` · ${o.length} 张`:``]}),!i&&(0,O.jsx)(`input`,{ref:f,type:`file`,accept:Object.keys(LA).join(`,`),multiple:!0,className:`hidden`,"aria-label":`选择补充图片`,onChange:e=>{let t=Array.from(e.target.files||[]);e.target.value=``,p(t)}})]}),!i&&(0,O.jsxs)(`button`,{type:`button`,className:`mt-3 flex w-full flex-col items-center gap-1 rounded-lg border border-dashed border-primary/50 bg-card px-3 py-4 text-center text-sm hover:border-primary hover:bg-primary/5 disabled:cursor-not-allowed disabled:opacity-50`,disabled:!c,onClick:()=>f.current?.click(),onDragOver:e=>{c&&e.dataTransfer.types.includes(`Files`)&&e.preventDefault()},onDrop:e=>{e.preventDefault(),p(Array.from(e.dataTransfer.files))},children:[(0,O.jsx)(`span`,{className:`font-semibold text-primary`,children:`选择图片或拖放到这里`}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`也可在补充区域粘贴截图 · 支持多张`})]}),o.length>0&&(0,O.jsx)(`div`,{className:`mt-3 space-y-3`,children:o.map(e=>(0,O.jsxs)(`div`,{className:`min-w-0 rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(RA,{image:e}),!i&&(0,O.jsx)(`button`,{type:`button`,className:`action-button mt-2`,"aria-label":`移除图片：${e.name}`,onClick:()=>{window.confirm(`确定移除图片「${e.name}」？此操作无法撤销。`)&&m(e)},children:`移除图片`})]},e.id))}),(0,O.jsxs)(`output`,{"aria-live":`polite`,className:`mt-2 block text-xs leading-5 text-muted-foreground`,children:[u,o.length>0?` · 点击图片查看原图`:``]})]}),(0,O.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,O.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,O.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,O.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,O.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,O.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 overflow-hidden rounded-xl border border-border bg-background/40 p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,O.jsx)(IA,{compact:!0,children:n.content}):(0,O.jsx)(`div`,{className:`whitespace-pre-wrap text-[13.5px] leading-[1.8] [overflow-wrap:anywhere]`,children:n.content}):(0,O.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,O.jsxs)(`div`,{className:`mt-4`,children:[(0,O.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,O.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
+}`;function rA({mutex:e,idle:t,patient:n,queue:r}){return(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`mutex 挂号机`,value:e,hint:`初值 1`}),(0,O.jsx)($,{label:`idle 空闲医生`,value:t,hint:`初值 n`}),(0,O.jsx)($,{label:`patient 待诊疗`,value:n,hint:`初值 0`}),(0,O.jsx)($,{label:`idle 等待队列`,value:r,hint:`FIFO，等待最久者优先`})]})}function iA(){return(0,O.jsx)(mO,{topics:[{id:`sem`,label:`① 三个信号量`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`信号量`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`管什么`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`初值`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`谁 P / 谁 V`})]})}),(0,O.jsx)(`tbody`,{children:eA.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.name}),(0,O.jsx)(`td`,{className:`px-3 py-2`,children:e.role}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono tabular-nums`,children:e.init}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-muted-foreground`,children:e.who})]},e.name))})]})}),(0,O.jsxs)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:[`三类条件各用一个信号量：`,(0,O.jsx)(`strong`,{children:`互斥`}),`（挂号机）、`,(0,O.jsx)(`strong`,{children:`资源名额`}),`（空闲医生）、`,(0,O.jsx)(`strong`,{children:`到达通知`}),`（病人已就绪）。idle 初值是 n 而不是 1。`]})]})},{id:`code`,label:`② 伪代码`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)(`pre`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 font-mono text-xs leading-6`,children:tA}),(0,O.jsx)(`pre`,{className:`overflow-x-auto rounded-lg border border-border bg-card p-3 font-mono text-xs leading-6`,children:nA})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`① 先 V(mutex) 再 P(idle)：不能占着挂号机等医生。`}),(0,O.jsx)(`p`,{children:`② 医生在 ProvideTreatment() 返回后才 V(idle)：否则同一医生被重复计入空闲。`}),(0,O.jsx)(`p`,{children:`③ 病人 P(idle) 成功后才 V(patient)：每次唤醒恰有一名病人配对。`})]})]})},{id:`trace`,label:`③ 时序演示`,content:(0,O.jsx)(hO,{unit:`事件`,steps:[{title:`初始状态（以 n=2 演示）`,detail:`挂号机空闲，2 名医生都空闲，还没有病人挂号。`,visual:(0,O.jsx)(rA,{mutex:1,idle:2,patient:0,queue:`空`})},{title:`病人 P1 挂号`,detail:`P(mutex) 使 1→0，独占挂号机；挂完 V(mutex) 使 0→1，立刻放锁。`,visual:(0,O.jsx)(rA,{mutex:1,idle:2,patient:0,queue:`空`})},{title:`P1 等医生`,detail:`P(idle) 使 2→1，占用一个空闲医生名额，不阻塞。`,visual:(0,O.jsx)(rA,{mutex:1,idle:1,patient:0,queue:`空`})},{title:`P1 通知医生`,detail:`V(patient) 使 0→1，表示有一名已挂号病人就绪。`,visual:(0,O.jsx)(rA,{mutex:1,idle:1,patient:1,queue:`空`})},{title:`医生 D1 接诊 P1`,detail:`P(patient) 使 1→0，取出这名病人并配对诊疗。`,visual:(0,O.jsx)(rA,{mutex:1,idle:1,patient:0,queue:`空`})},{title:`P2 挂号后等医生`,detail:`先 mutex 1→0→1 挂完号，再 P(idle) 使 1→0，此刻医生全忙。`,visual:(0,O.jsx)(rA,{mutex:1,idle:0,patient:0,queue:`空`})},{title:`P2 通知医生`,detail:`V(patient) 使 0→1，D2 可以被唤醒。`,visual:(0,O.jsx)(rA,{mutex:1,idle:0,patient:1,queue:`空`})},{title:`医生 D2 接诊 P2`,detail:`P(patient) 使 1→0，两台诊疗同时进行。`,visual:(0,O.jsx)(rA,{mutex:1,idle:0,patient:0,queue:`空`})},{title:`P3 挂号后等医生：阻塞`,detail:`挂完号 P(idle) 使 0→−1，无空闲医生，P3 进入 idle 的 FIFO 队列。`,visual:(0,O.jsx)(rA,{mutex:1,idle:-1,patient:0,queue:`P3`})},{title:`D1 诊疗结束`,detail:`ProvideTreatment() 返回后 V(idle) 使 −1→0，唤醒等待最久的 P3。`,visual:(0,O.jsx)(rA,{mutex:1,idle:0,patient:0,queue:`空`})},{title:`P3 通知医生`,detail:`V(patient) 使 0→1，P3 已就绪，等医生配对。`,visual:(0,O.jsx)(rA,{mutex:1,idle:0,patient:1,queue:`空`})},{title:`D1 接诊 P3 后归还名额`,detail:`P(patient) 使 1→0；诊疗结束 V(idle) 使 0→1，D1 重新空闲。`,visual:(0,O.jsx)(rA,{mutex:1,idle:1,patient:0,queue:`空`})}]})}]})}var aA=512;function oA({segments:e}){return(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`flex h-16 w-full overflow-hidden rounded-lg border border-border`,children:e.map(e=>(0,O.jsxs)(`div`,{className:`flex min-w-0 flex-col items-center justify-center border-r border-border px-1 text-center text-[11px] last:border-r-0 `+(e.kind===`used`?`bg-primary/15`:e.kind===`free`?`bg-card`:`bg-accent`),style:{width:`${e.size/aA*100}%`},children:[(0,O.jsx)(`span`,{className:`truncate font-semibold`,children:e.label}),(0,O.jsxs)(`span`,{className:`font-mono tabular-nums text-muted-foreground`,children:[e.size,`K@`,e.start]})]},`${e.start}-${e.size}`))}),(0,O.jsxs)(`div`,{className:`mt-1 flex justify-between text-[11px] text-muted-foreground`,children:[(0,O.jsx)(`span`,{children:`0KB`}),(0,O.jsx)(`span`,{children:`512KB`})]})]})}var sA={start:0,size:128,label:`A`,kind:`used`},cA={start:128,size:32,label:`B`,kind:`used`},lA={start:256,size:128,label:`C`,kind:`used`},uA={start:192,size:64,label:`D`,kind:`used`},dA=[{title:`① A 申请 70KB → 128KB@0`,detail:`70KB 向上取整 128KB。512KB 二分到 128KB，取最低地址那块。`,segments:[sA,{start:128,size:128,label:`空闲`,kind:`free`},{start:256,size:256,label:`空闲`,kind:`free`}]},{title:`② B 申请 20KB → 32KB@128`,detail:`取整 32KB，128KB@128 连分两次，取低地址半块；32KB@160 成空闲伙伴。`,segments:[sA,cA,{start:160,size:32,label:`空闲`,kind:`free`},{start:192,size:64,label:`空闲`,kind:`free`},{start:256,size:256,label:`空闲`,kind:`free`}]},{title:`③ C 申请 100KB → 128KB@256`,detail:`取整 128KB，256KB@256 二分，取低地址半块 128KB@256。`,segments:[sA,cA,{start:160,size:32,label:`空闲`,kind:`free`},{start:192,size:64,label:`空闲`,kind:`free`},lA,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`④ D 申请 60KB → 64KB@192`,detail:`取整 64KB，正好有 64KB@192，直接分配，不再分裂。`,segments:[sA,cA,{start:160,size:32,label:`空闲`,kind:`free`},uA,lA,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑤ 释放 B：32K@128 + 32K@160 合并`,detail:`伙伴 32KB@160 空闲，合并成 64KB@128；其伙伴 64KB@192 被 D 占用，停止。`,segments:[sA,{start:128,size:64,label:`空闲`,kind:`new`},uA,lA,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑥ 释放 A 后申请 E 200KB：失败`,detail:`A 的伙伴被 C 占用不合并；空闲共 320KB，但最大连续块仅 128KB，凑不出 256KB。`,segments:[{start:0,size:128,label:`空闲`,kind:`new`},{start:128,size:64,label:`空闲`,kind:`free`},uA,lA,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑦ 释放 D：连做两次合并`,detail:`64K@192 与伙伴 64K@128 合成 128K@128，再与伙伴 128K@0 合成 256K@0。`,segments:[{start:0,size:256,label:`空闲`,kind:`new`},lA,{start:384,size:128,label:`空闲`,kind:`free`}]},{title:`⑧ 再次申请 E 200KB：成功`,detail:`E 取整 256KB，正好用上 256KB@0；分配后只剩 128KB@384。`,segments:[{start:0,size:256,label:`E`,kind:`new`},lA,{start:384,size:128,label:`空闲`,kind:`free`}]}],fA=[{block:`A`,request:70,got:128,waste:58},{block:`B`,request:20,got:32,waste:12},{block:`C`,request:100,got:128,waste:28},{block:`D`,request:60,got:64,waste:4}];function pA(){return(0,O.jsx)(mO,{topics:[{id:`rule`,label:`① 三条规则`,content:(0,O.jsx)(hO,{steps:[{title:`请求大小向上取到 2 的幂`,detail:`70KB 要 128KB，20KB 要 32KB，60KB 要 64KB。这一步错，地址全错。`,visual:(0,O.jsx)($,{label:`70KB 实际占用`,value:`128 KB`,hint:`128 = 2⁷`})},{title:`不够大就二分，取低地址半块`,detail:`512→256→128 逐级二分，分配块总是落在低地址那一半。`,visual:(0,O.jsx)($,{label:`分裂方向`,value:`低地址半块`,hint:`剩余伙伴留在高地址`})},{title:`回收只与同阶真正伙伴合并`,detail:`地址相邻不等于伙伴。合并成功后还要继续向上检查一阶。`,visual:(0,O.jsx)($,{label:`合并条件`,value:`同阶 + 同源伙伴`,hint:`伙伴空闲才合并`})}]})},{id:`trace`,label:`② 分配与回收`,content:(0,O.jsx)(hO,{unit:`步`,steps:dA.map(e=>({title:e.title,detail:e.detail,visual:(0,O.jsx)(oA,{segments:e.segments})}))})},{id:`frag`,label:`③ 内部碎片`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`块`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`请求`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`实得`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`碎片`})]})}),(0,O.jsxs)(`tbody`,{children:[fA.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.block}),(0,O.jsxs)(`td`,{className:`px-3 py-2 tabular-nums`,children:[e.request,` KB`]}),(0,O.jsxs)(`td`,{className:`px-3 py-2 tabular-nums`,children:[e.got,` KB`]}),(0,O.jsxs)(`td`,{className:`px-3 py-2 font-mono tabular-nums`,children:[e.waste,` KB`]})]},e.block)),(0,O.jsxs)(`tr`,{className:`border-t border-border bg-secondary/40`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-semibold`,colSpan:3,children:`A、B、C、D 合计`}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono font-semibold tabular-nums`,children:`102 KB`})]})]})]})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)($,{label:`A～D 均已分配`,value:`102 KB`,hint:`58 + 12 + 28 + 4`}),(0,O.jsx)($,{label:`E 第二次申请成功后`,value:`84 KB`,hint:`E 56 + C 28`})]}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:`内部碎片 = 实得块大小 − 请求大小，只算已分配块，空闲块不计。`})]})}]})}var mA=[{prefix:`10.0.0.0/24`,next:`直接交付`,port:`eth0`,hit:`否`},{prefix:`192.168.1.0/24`,next:`直接交付`,port:`eth1`,hit:`否`},{prefix:`172.16.0.0/30`,next:`直接交付`,port:`eth2`,hit:`否`},{prefix:`203.0.113.0/24`,next:`172.16.0.2`,port:`eth2`,hit:`命中·最长`},{prefix:`Default`,next:`172.16.0.2`,port:`eth2`,hit:`命中·最短`}],hA=[{field:`源 MAC`,before:`00-10-10-10-10-20`,after:`00-CC-CC-CC-CC-01`,changed:!0,why:`换成出接口 eth2 的 MAC`},{field:`目的 MAC`,before:`00-AA-AA-AA-AA-01`,after:`00-22-22-22-22-02`,changed:!0,why:`换成下一跳 172.16.0.2 的 MAC`},{field:`源 IP`,before:`10.0.0.20`,after:`10.0.0.20`,changed:!1,why:`端到端地址，路由器不改写`},{field:`目的 IP`,before:`203.0.113.8`,after:`203.0.113.8`,changed:!1,why:`端到端地址，逐跳转发不变`}];function gA(){return(0,O.jsx)(mO,{topics:[{id:`lookup`,label:`① 查表`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`目的 IP 203.0.113.8，逐条比对转发表`}),(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`目的网络`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`下一跳`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`接口`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`匹配`})]})}),(0,O.jsx)(`tbody`,{children:mA.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border `+(e.hit===`命中·最长`?`bg-accent`:``),children:[(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.prefix}),(0,O.jsx)(`td`,{className:`px-3 py-2`,children:e.next}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono`,children:e.port}),(0,O.jsx)(`td`,{className:`px-3 py-2 text-muted-foreground`,children:e.hit})]},e.prefix))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3`,children:[(0,O.jsx)($,{label:`命中表项`,value:`203.0.113.0/24`}),(0,O.jsx)($,{label:`下一跳 IP`,value:`172.16.0.2`}),(0,O.jsx)($,{label:`输出接口`,value:`eth2`})]}),(0,O.jsx)(`p`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-6`,children:`Default 也能匹配，但 /24 前缀更长，最长前缀匹配优先。`})]})},{id:`frame`,label:`② 重新封装`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:`overflow-x-auto rounded-lg border border-border bg-card`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{className:`bg-secondary/60 text-left text-xs text-muted-foreground`,children:(0,O.jsxs)(`tr`,{children:[(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`字段`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`入帧`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`出帧`}),(0,O.jsx)(`th`,{className:`px-3 py-2 font-medium`,children:`是否改变`})]})}),(0,O.jsx)(`tbody`,{children:hA.map(e=>(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`px-3 py-2`,children:e.field}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs`,children:e.before}),(0,O.jsx)(`td`,{className:`px-3 py-2 font-mono text-xs font-semibold`,children:e.after}),(0,O.jsx)(`td`,{className:`px-3 py-2 `+(e.changed?`text-primary`:`text-muted-foreground`),children:e.changed?`变`:`不变`})]},e.field))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`MAC 为什么变`}),`链路层地址只在一条链路上有效，每跨一跳都要重新封装。`]}),(0,O.jsxs)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-sm leading-6`,children:[(0,O.jsx)(`strong`,{className:`block`,children:`IP 为什么不变`}),`IP 标识端到端的两台主机，路由器只按目的 IP 转发。`]})]})]})},{id:`arp`,label:`③ ARP 解析`,content:(0,O.jsx)(hO,{steps:[{title:`发帧前要先知道下一跳的 MAC`,detail:`出接口 eth2，下一跳 172.16.0.2，目的 MAC 一栏还空着。`,visual:(0,O.jsx)($,{label:`待解析的 IP`,value:`172.16.0.2`,hint:`下一跳，不是最终主机`})},{title:`查 ARP 表：没有这一项`,detail:`表中只剩 10.0.0.20 一项，172.16.0.2 已删除，无法直接填目的 MAC。`,visual:(0,O.jsx)($,{label:`ARP 表`,value:`缺 172.16.0.2`,hint:`需要广播询问`})},{title:`广播 ARP 请求`,detail:`在 eth2 上广播“谁是 172.16.0.2”，收到者按目标 IP 决定是否应答。`,visual:(0,O.jsxs)(`div`,{className:`grid grid-cols-1 gap-2 sm:grid-cols-2`,children:[(0,O.jsx)($,{label:`查询的目标 IP`,value:`172.16.0.2`}),(0,O.jsx)($,{label:`以太网目的 MAC`,value:`FF-FF-FF-FF-FF-FF`,hint:`广播地址`})]})},{title:`为什么不问 203.0.113.8`,detail:`它不在 R 的直连链路上，只能经下一跳到达；ARP 只在本链路工作，MAC 不能跨网寻址。`,visual:(0,O.jsx)($,{label:`203.0.113.8`,value:`非直连`,hint:`经 172.16.0.2 才能到达`})}]})}]})}var _A=Array.from({length:10},(e,t)=>{let n=2+t,r=n>>1;return{addr:n,label:`${n.toString(16).toUpperCase().padStart(2,`0`)}H`,block:r,group:r%2,miss:n%2==0}}),vA=_A.filter(e=>e.miss).length;function yA(){let[e,t]=(0,S.useState)(0),n=_A[e];return(0,O.jsx)(mO,{topics:[{id:`format`,label:`① 指令格式`,content:(0,O.jsx)(gO,{caption:`每条指令 2 字节：第 1 字节放操作码与寄存器，第 2 字节放立即数 / 地址 / 位移`,fields:[{name:`操作码 Op`,bits:`4 位`,detail:`第 1 字节高 4 位，决定这条指令做什么。`},{name:`源寻址方式`,bits:`2 位`,detail:`第 1 字节第 5～6 位，决定第 2 字节按哪种方式解释。`},{name:`目的寄存器`,bits:`2 位`,detail:`第 1 字节低 2 位，取值 0～3 依次对应 R0～R3。`},{name:`Imm / Addr / Disp`,bits:`8 位`,detail:`第 2 字节：立即数、绝对地址或 8 位补码位移，看寻址方式而定。`}]})},{id:`offset`,label:`② 偏移量`,content:(0,O.jsx)(hO,{steps:[{title:`每条指令占 2 字节`,detail:`程序从 00H 装入，地址按 2B 递增：LOOP 在 06H，JNZ 在 0CH，HALT 在 0EH。`,visual:(0,O.jsx)($,{label:`JNZ LOOP 所在地址`,value:`0CH`,hint:`00H/02H/04H 三条 MOV，06H 是 LOOP`})},{title:`基准是取指结束后的 PC`,detail:`相对寻址以转移指令取指完成时的 PC 为基准，JNZ 占 2B，所以基准是 0CH + 2 = 0EH。`,visual:(0,O.jsx)($,{label:`基准 PC`,value:`0EH`,hint:`不是取指前的 0CH`})},{title:`目标地址减基准`,detail:`目标 06H，基准 0EH，位移 = 06H − 0EH = −8，单位是字节。`,visual:(0,O.jsx)($,{label:`位移（十进制）`,value:`−8`,hint:`06H − 0EH`})},{title:`写成 8 位补码`,detail:`−8 的 8 位补码是 11111000B，即 F8H，这就是第二字节的内容。`,visual:(0,O.jsx)($,{label:`8 位偏移量`,value:`11111000B`,hint:`= F8H = −8`})}]})},{id:`addressing`,label:`③ 寻址方式`,content:(0,O.jsx)(hO,{steps:[{title:`看方括号里的形式`,detail:`[R2+2] 表示“寄存器内容加位移”，有效地址 EA = (R2) + 2。`,visual:(0,O.jsx)($,{label:`有效地址`,value:`EA = (R2) + 2`,hint:`R2 是变址寄存器，2 是位移量`})},{title:`被访问的是主存单元`,detail:`算出 EA 后还要读主存 M[EA]，不是取 R2 本身，所以源操作数在存储器里。`,visual:(0,O.jsx)($,{label:`源操作数`,value:`M[(R2) + 2]`})},{title:`结论：变址寻址`,detail:`以变址寄存器的内容为基准加位移形成地址，属于变址寻址；位移量由第 2 字节给出。`,visual:(0,O.jsx)($,{label:`寻址方式`,value:`变址寻址`,hint:`基准在寄存器里，随程序改变`})}]})},{id:`cache`,label:`④ Cache 访问`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q43-step`,children:[(0,O.jsx)(`span`,{children:`拖动查看第几次数据访问（共 10 次）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`第 `,e+1,` 次`]})]}),(0,O.jsx)(`input`,{id:`q43-step`,type:`range`,min:0,max:9,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-4`,children:[(0,O.jsx)($,{label:`访问地址`,value:n.label}),(0,O.jsx)($,{label:`块号`,value:n.block,hint:`地址 ÷ 2`}),(0,O.jsx)($,{label:`组号`,value:n.group,hint:`块号 mod 2`}),(0,O.jsx)($,{label:`结果`,value:n.miss?`缺失 M`:`命中 H`,hint:n.miss?`块首字节，块还不在 Cache`:`同块第 2 字节，刚调入`})]}),(0,O.jsx)(`div`,{className:`mt-3 overflow-x-auto`,children:(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-left text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`次`}),(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`地址`}),(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`块号`}),(0,O.jsx)(`th`,{className:`py-1 pr-2`,children:`组号`}),(0,O.jsx)(`th`,{className:`py-1`,children:`结果`})]})}),(0,O.jsx)(`tbody`,{className:`font-mono tabular-nums`,children:_A.map((t,n)=>(0,O.jsxs)(`tr`,{className:n===e?`bg-accent`:``,children:[(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:n+1}),(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:t.label}),(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:t.block}),(0,O.jsx)(`td`,{className:`py-1 pr-2`,children:t.group}),(0,O.jsx)(`td`,{className:`py-1`,children:t.miss?`缺失`:`命中`})]},t.addr))})]})}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`Cache 8B、块 2B → 4 块；2 路组相联 → 2 组，每组 2 块。`}),(0,O.jsx)(`p`,{children:`10 次地址 02H～0BH，同一块被连续访问 2 次：第 1 次缺、第 2 次命中。`}),(0,O.jsxs)(`p`,{children:[`缺失 `,vA,` 次、命中 `,10-vA,` 次，命中率 = `,(0,O.jsx)(`strong`,{children:`50%`}),`。`]})]})]})},{id:`time`,label:`⑤ 总时间`,content:(0,O.jsx)(hO,{steps:[{title:`命中一次 10ns`,detail:`命中直接读 Cache，只花 10ns，共 5 次。`,visual:(0,O.jsx)($,{label:`命中开销`,value:`5 × 10 = 50 ns`})},{title:`缺失先查后调`,detail:`缺失先花 10ns 查 Cache，再花 100ns 从主存调块，单次 110ns，共 5 次。`,visual:(0,O.jsx)($,{label:`缺失开销`,value:`5 × 110 = 550 ns`,hint:`10ns 查询 + 100ns 调块`})},{title:`两者相加`,detail:`550 + 50 = 600ns。查表那 10ns 已含在 110ns 内，不能重复加。`,visual:(0,O.jsx)($,{label:`总访存时间`,value:`600 ns`,hint:`5 × 110 + 5 × 10`})}]})}]})}var bA=128,xA=40,SA=50;function CA(){let[e,t]=(0,S.useState)(0),n=xA*e;return(0,O.jsx)(mO,{topics:[{id:`chips`,label:`① 芯片数`,content:(0,O.jsx)(hO,{steps:[{title:`先比字数，再比位数`,detail:`模块 256K×32 位，芯片 256K×4 位。字数都是 256K，相同，不需要字扩展。`,visual:(0,O.jsx)($,{label:`字数对比`,value:`256K = 256K`,hint:`单片字数已够，不用串联扩容`})},{title:`位数从 4 扩到 32`,detail:`32 ÷ 4 = 8，一个模块要 8 片并联，每片出 4 位，拼成 32 位。`,visual:(0,O.jsx)($,{label:`每模块芯片数`,value:`8 片`,hint:`32 位 ÷ 4 位/片`})},{title:`两个模块共 16 片`,detail:`8 × 2 = 16 片。单个模块内部只是位扩展：地址线共用，数据线分开。`,visual:(0,O.jsx)($,{label:`总芯片数`,value:`16 片`,hint:`扩展方式：位扩展`})}]})},{id:`bus`,label:`② 数据总线`,content:(0,O.jsx)(hO,{steps:[{title:`两个模块共用一条总线`,detail:`题面写明共用 32 位数据总线，总线宽度就是 32 位。`,visual:(0,O.jsx)($,{label:`数据总线宽度`,value:`32 位`,hint:`共用，不是各 32 位再拼成 64 位`})},{title:`一次访问传一个字`,detail:`每次只选中一个模块，把它的 32 位字送上总线，所以单次传输 32 位。`,visual:(0,O.jsx)($,{label:`每次传输`,value:`32 位`,hint:`= 1 个 32 位字`})}]})},{id:`timing`,label:`③ 总时间`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`label`,{className:`flex flex-wrap items-center justify-between gap-2 text-sm font-medium`,htmlFor:`q44-word`,children:[(0,O.jsx)(`span`,{children:`拖动查看第 k 次访问（0～127）`}),(0,O.jsxs)(`span`,{className:`rounded-lg bg-card px-3 py-1 font-mono tabular-nums`,children:[`k = `,e]})]}),(0,O.jsx)(`input`,{id:`q44-word`,type:`range`,min:0,max:bA-1,step:1,value:e,onChange:e=>t(Number(e.currentTarget.value)),className:`my-3 w-full accent-primary`}),(0,O.jsxs)(`div`,{className:`grid grid-cols-2 gap-2 sm:grid-cols-3`,children:[(0,O.jsx)($,{label:`访问模块`,value:`模块 ${e%2}`,hint:`字按 0、1、0、1 交替存放`}),(0,O.jsx)($,{label:`启动时刻`,value:`${n} ns`,hint:`每 40ns 启动一次`}),(0,O.jsx)($,{label:`数据就绪`,value:`${n+SA} ns`,hint:`启动后 50ns 出数据`})]}),(0,O.jsx)(`div`,{className:`mt-3 space-y-1 rounded-lg border border-border bg-card p-3`,children:[0,1,2,3,4,5].map(e=>(0,O.jsxs)(`div`,{className:`flex items-center gap-2 text-xs`,children:[(0,O.jsxs)(`span`,{className:`w-12 shrink-0 font-mono tabular-nums`,children:[`k=`,e]}),(0,O.jsxs)(`span`,{className:`w-12 shrink-0 text-muted-foreground`,children:[`M`,e%2]}),(0,O.jsx)(`span`,{className:`relative h-3 flex-1 rounded bg-secondary`,children:(0,O.jsx)(`span`,{className:`absolute inset-y-0 rounded bg-primary/70`,style:{left:`${e*xA/260*100}%`,width:`${SA/260*100}%`}})}),(0,O.jsxs)(`span`,{className:`w-16 shrink-0 text-right font-mono tabular-nums`,children:[e*xA,`ns`]})]},e))}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg bg-accent/70 p-3 text-sm leading-7`,children:[(0,O.jsx)(`p`,{children:`流水启动：第 k 次在 40k 就绪，前一次的数据还没回来，下一次就已经发出。`}),(0,O.jsx)(`p`,{children:`最后一个字 k = 127 在 40 × 127 = 5080ns 启动，再等 50ns 就绪。`}),(0,O.jsx)(`p`,{children:(0,O.jsx)(`strong`,{children:`T = 40 × (128 − 1) + 50 = 5130ns。`})})]})]})},{id:`check`,label:`④ 为什么能流水`,content:(0,O.jsx)(hO,{steps:[{title:`同一模块的间隔是 80ns`,detail:`模块 0 在 0、80、160ns 被启动，间隔正好等于 80ns 访问周期，不会冲突。`,visual:(0,O.jsx)($,{label:`同模块启动间隔`,value:`2 × 40 = 80 ns`,hint:`= 访问周期，刚好够用`})},{title:`不同模块交替顶上`,detail:`0ns 启模块 0，40ns 启模块 1，两次启动错开，总线每 40ns 就有一个字。`,visual:(0,O.jsx)($,{label:`总线节拍`,value:`40 ns / 字`})},{title:`不要乘 128 次延迟`,detail:`128 × 50 或 128 × 40 + 50 都错，前者没流水，后者多算了最后一次的启动间隔。`,visual:(0,O.jsx)($,{label:`正确总时间`,value:`5130 ns`,hint:`常见错答：5170ns、6400ns`})}]})}]})}var wA=`rounded-lg border border-border bg-card p-3 font-mono text-xs leading-6`;function TA(){return(0,O.jsx)(mO,{topics:[{id:`monitor`,label:`① 管程填空`,content:(0,O.jsx)(hO,{steps:[{title:`① 满了就等“不满”`,detail:`count == N 表示缓冲池已满，put 不能写，必须 cwait(notFull) 释放管程去排队。`,visual:(0,O.jsxs)(`div`,{className:wA,children:[`if (count == N) `,(0,O.jsx)(`span`,{className:`text-primary`,children:`cwait(notFull);`})]})},{title:`② 放完通知“不空”`,detail:`写入并 count++ 后池里有了产品，csignal(notEmpty) 唤醒等产品的消费者。`,visual:(0,O.jsxs)(`div`,{className:wA,children:[`count++; `,(0,O.jsx)(`span`,{className:`text-primary`,children:`csignal(notEmpty);`})]})},{title:`③ 空了就等“不空”`,detail:`count == 0 表示没有产品可取，get 必须 cwait(notEmpty) 让出管程。`,visual:(0,O.jsxs)(`div`,{className:wA,children:[`if (count == 0) `,(0,O.jsx)(`span`,{className:`text-primary`,children:`cwait(notEmpty);`})]})},{title:`④ 取完通知“不满”`,detail:`取出并 count-- 后空出一个位置，csignal(notFull) 唤醒等空位的生产者。`,visual:(0,O.jsxs)(`div`,{className:wA,children:[`count--; `,(0,O.jsx)(`span`,{className:`text-primary`,children:`csignal(notFull);`})]})},{title:`为什么用 if 而不是 while`,detail:`题面是 Hoare 语义：csignal 立即把管程交给被唤醒者，条件必然成立，重检是多余的。`,visual:(0,O.jsx)($,{label:`管程语义`,value:`Hoare`,hint:`唤醒即移交，被唤醒者马上执行`})}]})},{id:`and`,label:`② AND 信号量`,content:(0,O.jsx)(hO,{steps:[{title:`生产者先一次申请两样`,detail:`Swait(empty, mutex)：要空位也要互斥，两个都大于 0 才一起减 1。`,visual:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:wA,children:`Swait(empty, mutex);`}),(0,O.jsxs)(`div`,{className:`mt-2 grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`empty`,value:`N → N−1`}),(0,O.jsx)($,{label:`mutex`,value:`1 → 0`}),(0,O.jsx)($,{label:`full`,value:`不变`})]})]})},{title:`放完一次释放两样`,detail:`Ssignal(mutex, full)：退出临界区，同时把产品数加 1。`,visual:(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`div`,{className:wA,children:`Ssignal(mutex, full);`}),(0,O.jsxs)(`div`,{className:`mt-2 grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`mutex`,value:`0 → 1`}),(0,O.jsx)($,{label:`full`,value:`+1`}),(0,O.jsx)($,{label:`empty`,value:`不变`})]})]})},{title:`消费者对称地反过来`,detail:`Swait(full, mutex) 取产品并进临界区，Ssignal(mutex, empty) 退出并还回空位。`,visual:(0,O.jsx)(`div`,{className:wA,children:`Swait(full, mutex); … Ssignal(mutex, empty);`})},{title:`顺序：资源在前，互斥在后`,detail:`AND 语义下两者同时获得，不会出现“拿着 mutex 干等 empty”；这样写只是便于对照普通 P 操作。`,visual:(0,O.jsx)($,{label:`生产者 / 消费者`,value:`empty,mutex / full,mutex`,hint:`申请与释放成对出现`})}]})},{id:`why`,label:`③ 为何不能拆开`,content:(0,O.jsx)(hO,{steps:[{title:`两次普通 wait 之间有缝`,detail:`先 wait(a) 成功、再 wait(b) 阻塞时，进程已经占着 a 不放手，别的进程也拿不到 a。`,visual:(0,O.jsx)($,{label:`状态`,value:`部分占用`,hint:`持有一个资源，等另一个`})},{title:`AND 是全得或全不得`,detail:`两个都大于 0 才一起减 1；否则阻塞且不改任何信号量，等待时不持有资源。`,visual:(0,O.jsx)($,{label:`Swait 语义`,value:`原子地同时获取`,hint:`要么全拿到，要么一个都不拿`})},{title:`但别说过头`,detail:`统一申请顺序的普通 P 操作也能正确同步；差别只在原子性，不能说普通 wait 必然死锁。`,visual:(0,O.jsx)($,{label:`结论`,value:`语义不等价`,hint:`不是“必然死锁”`})}]})}]})}function EA(){let[e,t]=(0,S.useState)(`row`),[n,r]=(0,S.useState)(200),[i,a]=(0,S.useState)(2),[o,s]=(0,S.useState)(`rowMajor`),c=(0,S.useMemo)(()=>{let t=[],r=[],a=[],s=0;for(let c=0;c<100;c++)for(let l=0;l<100;l++){let u=e===`row`?c:l,d=e===`row`?l:c,f=o===`rowMajor`?100*u+d:100*d+u,p=Math.floor(f/n);if(t.push(p),a.includes(p)){r.push(!1);continue}s+=1,r.push(!0),a.length===i&&a.shift(),a.push(p)}return{pages:t,marks:r,misses:s}},[e,n,i,o]),l=(e,t,n)=>(0,O.jsx)(`button`,{type:`button`,onClick:n,"aria-pressed":t,className:`rounded-lg border px-3 py-1.5 text-sm `+(t?`border-primary bg-primary text-primary-foreground`:`border-border bg-card hover:bg-accent`),children:e});return(0,O.jsx)(mO,{topics:[{id:`sim`,label:`① 数缺页`,content:(0,O.jsxs)(`div`,{children:[(0,O.jsxs)(`div`,{className:`space-y-2 text-sm`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`扫描方式`}),l(`行扫描（程序1）`,e===`row`,()=>t(`row`)),l(`列扫描（程序2）`,e===`col`,()=>t(`col`))]}),(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`每页整数`}),l(`200 个`,n===200,()=>r(200)),l(`100 个`,n===100,()=>r(100))]}),(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`页框数`}),l(`2 个`,i===2,()=>a(2)),l(`4 个`,i===4,()=>a(4))]}),(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`w-20 shrink-0 text-xs text-muted-foreground`,children:`存放方式`}),l(`行优先`,o===`rowMajor`,()=>s(`rowMajor`)),l(`列优先`,o===`colMajor`,()=>s(`colMajor`))]})]}),(0,O.jsxs)(`div`,{className:`mt-3 grid grid-cols-3 gap-2`,children:[(0,O.jsx)($,{label:`缺页次数`,value:c.misses,hint:`FIFO 模拟`}),(0,O.jsx)($,{label:`总访问`,value:`10000`,hint:`100 × 100 个整数`}),(0,O.jsx)($,{label:`缺页率`,value:`${(c.misses/100).toFixed(2)}%`,hint:`缺页 ÷ 10000`})]}),(0,O.jsxs)(`div`,{className:`mt-3 rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(`p`,{className:`mb-2 text-xs text-muted-foreground`,children:`前 16 次访问的页号与结果`}),(0,O.jsx)(`div`,{className:`flex flex-wrap gap-1 font-mono text-xs`,children:c.pages.slice(0,16).map((e,t)=>(0,O.jsxs)(`span`,{className:`rounded px-1.5 py-0.5 `+(c.marks[t]?`bg-primary text-primary-foreground`:`bg-secondary`),children:[e,c.marks[t]?` M`:` H`]},t))})]})]})},{id:`table`,label:`② 五种情形`,content:(0,O.jsxs)(`div`,{className:`overflow-x-auto`,children:[(0,O.jsxs)(`table`,{className:`w-full text-sm`,children:[(0,O.jsx)(`thead`,{children:(0,O.jsxs)(`tr`,{className:`text-left text-xs text-muted-foreground`,children:[(0,O.jsx)(`th`,{className:`py-1 pr-3`,children:`情形`}),(0,O.jsx)(`th`,{className:`py-1 pr-3`,children:`程序1（行）`}),(0,O.jsx)(`th`,{className:`py-1`,children:`程序2（列）`})]})}),(0,O.jsxs)(`tbody`,{className:`tabular-nums`,children:[(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`每页 200 个整数，2 页框`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`50`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`5000`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`每页 100 个整数，2 页框`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`100`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`10000`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`每页 200 个整数，4 页框（程序2）`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`—`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`5000`})]}),(0,O.jsxs)(`tr`,{className:`border-t border-border`,children:[(0,O.jsx)(`td`,{className:`py-2 pr-3`,children:`改为列优先存放，按行扫描`}),(0,O.jsx)(`td`,{className:`py-2 pr-3 font-mono`,children:`5000`}),(0,O.jsx)(`td`,{className:`py-2 font-mono`,children:`—`})]})]})]}),(0,O.jsx)(`p`,{className:`mt-3 text-xs text-muted-foreground`,children:`用上面的开关复现任意一行，数字与答案表一致。`})]})},{id:`why`,label:`③ 为什么`,content:(0,O.jsx)(hO,{steps:[{title:`行扫描吃到了空间局部性`,detail:`按行访问的方向和行优先存放一致，相邻访问落在相邻地址，一页里的 200 个元素一次调入全用上。`,visual:(0,O.jsx)($,{label:`局部性`,value:`空间局部性`,hint:`地址相邻，不是时间上的重复`})},{title:`列扫描每进一页就缺一次`,detail:`固定列 j 时地址是 100i + j，i 每加 2 才跨一页，页序 0,0,1,1,…，每页只缺一次但列间不复用。`,visual:(0,O.jsx)($,{label:`每列缺页`,value:`50 次`,hint:`100 列 × 50 = 5000`})},{title:`页框加到 4 也不省`,detail:`列访问时活跃页只有相邻 2 页，且每页在本列用完不再回来，多出的页框装的是以后才用的页。`,visual:(0,O.jsx)($,{label:`4 页框结果`,value:`仍 5000 次`,hint:`工作集只有 2 页`})},{title:`换存放顺序就换角色`,detail:`列优先存放后地址是 100j + i，按行扫描的页序变成 0,0,1,1,…，缺页升到 5000 次。`,visual:(0,O.jsx)($,{label:`列优先 + 行扫描`,value:`5000 次`,hint:`与原来程序2 的情形相同`})}]})}]})}function DA(){return(0,O.jsx)(mO,{topics:[{id:`abr`,label:`① 谁是 ABR`,content:(0,O.jsx)(hO,{steps:[{title:`先把每条链路标上区域`,detail:`A–B 链路和 192.168.1.0/24 在 Area 0；B–C 链路和 10.0.0.0/24 在 Area 1。`,visual:(0,O.jsx)(`div`,{className:`rounded-lg border border-border bg-card p-3 text-xs`,children:(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center justify-center gap-1`,children:[(0,O.jsx)(`span`,{className:`rounded border border-border px-2 py-1`,children:`192.168.1.0/24`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`—`}),(0,O.jsx)(`span`,{className:`rounded bg-primary px-2 py-1 text-primary-foreground`,children:`RouterA`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`— Area 0 —`}),(0,O.jsx)(`span`,{className:`rounded bg-primary px-2 py-1 text-primary-foreground`,children:`RouterB`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`— Area 1 —`}),(0,O.jsx)(`span`,{className:`rounded bg-primary px-2 py-1 text-primary-foreground`,children:`RouterC`}),(0,O.jsx)(`span`,{className:`text-muted-foreground`,children:`—`}),(0,O.jsx)(`span`,{className:`rounded border border-border px-2 py-1`,children:`10.0.0.0/24`})]})})},{title:`ABR 要同时跨两个区域`,detail:`RouterB 左边接口在 Area 0、右边接口在 Area 1，是唯一跨区域的路由器。`,visual:(0,O.jsx)($,{label:`跨区域的路由器`,value:`RouterB`,hint:`两个接口分属不同区域`})},{title:`A 和 C 各只有一个区域`,detail:`它们都有两个接口，但一个连本地网络、一个连互联链路，都在同一个区域里，是区域内路由器。`,visual:(0,O.jsx)($,{label:`结论`,value:`RouterB 是 ABR`,hint:`还要求有一个接口在骨干区 Area 0`})}]})},{id:`cost`,label:`② 路径与开销`,content:(0,O.jsx)(hO,{steps:[{title:`A 到 B 一段`,detail:`RouterA 到 RouterB 的链路开销 10。`,visual:(0,O.jsx)($,{label:`累计开销`,value:`10`,hint:`A → B`})},{title:`B 到 C 再加一段`,detail:`RouterB 到 RouterC 的链路开销 10，累计 20。`,visual:(0,O.jsx)($,{label:`累计开销`,value:`20`,hint:`A → B → C`})},{title:`别忘了最后一段`,detail:`RouterC 到 10.0.0.0/24 的接口也算一段链路，再加 10。`,visual:(0,O.jsx)($,{label:`累计开销`,value:`30`,hint:`最容易漏的就是这一段`})},{title:`路径写成完整链条`,detail:`RouterA → RouterB → RouterC → 10.0.0.0/24，开销 10 + 10 + 10 = 30。`,visual:(0,O.jsx)($,{label:`OSPF 开销`,value:`30`,hint:`三段链路逐段累加`})}]})},{id:`converge`,label:`③ 故障收敛`,content:(0,O.jsx)(hO,{steps:[{title:`C 发现接口故障`,detail:`RouterC 连 10.0.0.0/24 的接口 down，它要重写自己的链路状态描述。`,visual:(0,O.jsx)($,{label:`故障点`,value:`C 的接口`,hint:`B–C 链路仍然正常`})},{title:`C 在 Area 1 泛洪 Router-LSA`,detail:`描述自身链路的是 Type 1 Router-LSA，只在本区域内泛洪，新版本里不再有到该网络的链路。`,visual:(0,O.jsx)($,{label:`C 发出`,value:`Type 1 Router-LSA`,hint:`作用范围：Area 1`})},{title:`B 在 Area 1 重算 SPF`,detail:`ABR 收到新 LSA 后重跑区域内最短路径树，发现到 10.0.0.0/24 已无路径。`,visual:(0,O.jsx)($,{label:`B 的动作`,value:`重算 SPF → 判不可达`})},{title:`B 向 Area 0 撤销 Type 3`,detail:`跨区通告网络用的是 Network Summary LSA（Type 3），撤销就是把对应 LSA 置 MaxAge 再泛洪。`,visual:(0,O.jsx)($,{label:`B 发出`,value:`Type 3 置 MaxAge`,hint:`作用范围：Area 0`})},{title:`A 更新 LSDB 并删路由`,detail:`A 收到 Type 3 更新，重算区域间路由后删除该条目；Area 0 拓扑没变，不用重跑区域内 Dijkstra。`,visual:(0,O.jsx)($,{label:`A 的结果`,value:`删除 10.0.0.0/24`,hint:`无需重跑区域内 SPF`})}]})},{id:`algo`,label:`④ 算法与封装`,content:(0,O.jsx)(hO,{steps:[{title:`最短路径用 Dijkstra`,detail:`OSPF 是链路状态协议，每台路由器用 SPF（Dijkstra）以自己为根算最短路径树。`,visual:(0,O.jsx)($,{label:`路由算法`,value:`Dijkstra / SPF`})},{title:`报文直接封装在 IP 里`,detail:`OSPF 不经过 TCP/UDP，直接装进 IP 分组，IP 首部协议号字段填 89。`,visual:(0,O.jsx)($,{label:`封装`,value:`IP 分组`,hint:`协议号 89，没有传输层`})}]})}]})}var OA={"mock-exam-1-ds-q41":TO,"mock-exam-1-ds-q42":OO,"mock-exam-1-co-q43":dk,"mock-exam-1-co-q44":_k,"mock-exam-1-os-q45":Dk,"mock-exam-1-os-q46":jk,"mock-exam-1-cn-q47":Ik,"mock-exam-2-ds-q41":FO,"mock-exam-2-ds-q42":VO,"mock-exam-2-co-q43":Hk,"mock-exam-2-co-q44":$k,"mock-exam-2-os-q45":iA,"mock-exam-2-os-q46":pA,"mock-exam-2-cn-q47":gA,"mock-exam-3-ds-q41":YO,"mock-exam-3-ds-q42":ok,"mock-exam-3-co-q43":yA,"mock-exam-3-co-q44":CA,"mock-exam-3-os-q45":TA,"mock-exam-3-os-q46":EA,"mock-exam-3-cn-q47":DA},kA=h();function AA({src:e,alt:t}){let[n,r]=(0,S.useState)(!1),i=(0,S.useRef)(null),a=(0,S.useRef)(null);return(0,S.useEffect)(()=>{if(!n)return;let e=i.current,t=a.current,r=document.body.style.overflow;return document.body.style.overflow=`hidden`,e?.showModal(),()=>{e?.close(),document.body.style.overflow=r,t?.focus({preventScroll:!0})}},[n]),(0,O.jsxs)(`span`,{className:`inline-block min-w-0 max-w-full align-top`,children:[(0,O.jsx)(`button`,{ref:a,type:`button`,className:`block max-w-full cursor-zoom-in rounded-lg`,"aria-label":`放大图片：${t}`,onClick:()=>r(!0),children:(0,O.jsx)(`img`,{src:e,alt:t,loading:`lazy`,decoding:`async`,className:`block h-auto max-w-full rounded-lg border border-border bg-white`})}),n&&(0,kA.createPortal)((0,O.jsx)(`dialog`,{ref:i,"aria-label":`原图：${t}`,className:`fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none border-0 bg-background p-0 text-foreground backdrop:bg-black/80`,onCancel:e=>{e.preventDefault(),r(!1)},children:(0,O.jsxs)(`div`,{className:`flex h-full min-h-0 flex-col`,children:[(0,O.jsxs)(`div`,{className:`flex shrink-0 items-center justify-between gap-3 border-b border-border p-4`,children:[(0,O.jsxs)(`span`,{className:`min-w-0 text-sm`,children:[(0,O.jsx)(`strong`,{className:`block truncate`,children:t}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`原尺寸查看，可横向或纵向滚动`})]}),(0,O.jsxs)(`button`,{type:`button`,className:`action-button shrink-0`,"aria-label":`关闭图片`,onClick:()=>r(!1),children:[(0,O.jsx)(_e,{size:18}),`关闭`]})]}),(0,O.jsx)(`div`,{className:`min-h-0 flex-1 overflow-auto overscroll-contain p-4`,"aria-label":`原图滚动区域`,children:(0,O.jsx)(`img`,{src:e,alt:t,className:`mx-auto block h-auto max-w-none bg-white`})})]})}),document.body)]})}var jA=`/courses/`,MA={题目:oe,知识点:de},NA=qC.flatMap(e=>e.materials.map(t=>({material:t,lesson:e}))),PA=new Map(qC.map(e=>[e.id,e])),FA=(e,t)=>t.date.localeCompare(e.date),IA=[{id:`topic`,title:`专题讲义`},{id:`review`,title:`真题与复习`},{id:`class`,title:`日常备课`},{id:`rare`,title:`冷门考点`}].map(({id:e,title:t})=>({id:e,title:t,lessons:qC.filter(t=>(t.catalog??`class`)===e).sort(FA)})).filter(e=>e.lessons.length),LA=[{id:`lion`,title:`里昂`},{id:`ace`,title:`Ace`},{id:`jingcheng`,title:`竟成`},{id:`wangdao`,title:`王道`},{id:`other`,title:`零壹、图领与令狐冲`}].map(({id:e,title:t})=>({title:t,lessons:qC.flatMap(t=>typeof t.catalog==`object`&&t.catalog.series===e?[{lesson:t,order:t.catalog.order}]:[]).sort((e,t)=>e.order-t.order).map(({lesson:e})=>e)})).filter(e=>e.lessons.length),RA=LA.reduce((e,t)=>e+t.lessons.length,0);function zA(e,t){let n=new URLSearchParams;return e!==`all`&&n.set(`lesson`,e),t&&n.set(`material`,t),`#${n}`}function BA(e){return e.button===0&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey&&!e.defaultPrevented}function VA(e,t){if(!t)return;let n=e?PA.get(e):void 0;if(n){let e=n.materials.find(e=>e.id===t);if(e)return{lesson:n,material:e}}return NA.find(({material:e})=>e.id===t)}function HA(){return(0,O.jsxs)(`div`,{className:`grid gap-8`,children:[(0,O.jsx)(`nav`,{className:`flex flex-wrap gap-2`,"aria-label":`跳到目录分组`,children:(RA?[...IA,{id:`mock`,title:`模拟卷`}]:IA).map(({id:e,title:t})=>(0,O.jsx)(`button`,{type:`button`,className:`filter-chip`,onClick:()=>{let t=document.getElementById(`catalog-${e}`);t?.focus({preventScroll:!0}),t?.scrollIntoView({block:`start`})},children:t},e))}),IA.map(({id:e,title:t,lessons:n})=>(0,O.jsxs)(`section`,{"aria-label":t,children:[(0,O.jsxs)(`h2`,{id:`catalog-${e}`,tabIndex:-1,className:`mb-3 flex scroll-mt-36 items-baseline gap-3 font-display text-xl font-semibold sm:scroll-mt-24`,children:[t,(0,O.jsxs)(`span`,{className:`text-xs font-normal text-muted-foreground`,children:[n.length,` 组`]})]}),(0,O.jsx)(`ul`,{className:`grid gap-3 sm:grid-cols-2`,children:n.map(e=>(0,O.jsx)(`li`,{className:`min-w-0`,children:(0,O.jsxs)(`a`,{href:zA(e.id),className:`group block h-full rounded-xl border border-border bg-card px-4 py-3 hover:border-primary focus-visible:outline-primary`,children:[(0,O.jsx)(`h3`,{className:`break-words font-semibold group-hover:text-primary`,children:e.title}),e.summary&&(0,O.jsx)(`p`,{className:`mt-1 line-clamp-2 text-sm leading-6 text-muted-foreground`,children:e.summary}),(0,O.jsxs)(`p`,{className:`mt-2 flex flex-wrap gap-x-3 text-xs text-muted-foreground`,children:[(0,O.jsx)(`time`,{dateTime:e.date,children:e.date}),(0,O.jsxs)(`span`,{children:[e.materials.length,` 条内容`]})]})]})},e.id))})]},e)),RA>0&&(0,O.jsxs)(`section`,{"aria-label":`模拟卷`,children:[(0,O.jsxs)(`h2`,{id:`catalog-mock`,tabIndex:-1,className:`mb-3 flex scroll-mt-36 items-baseline gap-3 font-display text-xl font-semibold sm:scroll-mt-24`,children:[`模拟卷`,(0,O.jsxs)(`span`,{className:`text-xs font-normal text-muted-foreground`,children:[RA,` 份`]})]}),(0,O.jsx)(`div`,{className:`grid items-start gap-3 sm:grid-cols-2`,children:LA.map(e=>(0,O.jsxs)(`details`,{className:`group rounded-xl border border-border bg-card`,children:[(0,O.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center gap-3 rounded-xl px-4 py-3 font-semibold hover:text-primary [&::-webkit-details-marker]:hidden`,children:[(0,O.jsx)(se,{size:16,className:`shrink-0 -rotate-90 group-open:rotate-0`,"aria-hidden":`true`}),e.title,(0,O.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[e.lessons.length,` 份`]})]}),(0,O.jsx)(`ul`,{className:`border-t border-border p-2`,children:e.lessons.map(e=>(0,O.jsx)(`li`,{children:(0,O.jsxs)(`a`,{href:zA(e.id),className:`flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm hover:bg-secondary`,children:[(0,O.jsx)(`span`,{children:e.title}),(0,O.jsxs)(`span`,{className:`shrink-0 text-xs text-muted-foreground`,children:[e.materials.length,` 条`]})]})},e.id))})]},e.title))})]})]})}function UA(e,t){return e===`rare-topics`?[{type:`知识点`,title:`知识点讲解`,items:t.filter(e=>e.type===`知识点`)},{type:`题目`,title:`配套题目`,items:t.filter(e=>e.type===`题目`)}].filter(e=>e.items.length>0):[{type:`全部`,title:null,items:t}]}var WA=28,GA=64,KA=26,qA=16,JA=/[\u2E80-\u9FFF\uFF00-\uFFEF]/g;function YA(e){let t=(e.match(JA)??[]).length;return(e.length-t)*7.4+t*13+18}function XA(e,t){let n=[],r=[];for(let i of e.replace(/\t/g,`  `).split(`
+`)){let e=i.trim();if(!e)continue;let a=i.length-i.trimStart().length,o=/^(L|R)\s*[:：]\s*(.*)$/.exec(e);if(t===`binary`&&!o&&r.length)continue;let s={label:(t===`binary`?o?.[2]??e:e).trim(),children:[],column:0,depth:0};for(;r.length&&r[r.length-1].indent>=a;)r.pop();let c=r[r.length-1];c?t===`binary`?o?.[1].toUpperCase()===`R`?c.node.right=s:c.node.left=s:c.node.children.push(s):n.push(s),r.push({indent:a,node:s})}let i=e=>t===`binary`?[e.left,e.right].filter(e=>!!e):e.children,a=0,o=0;function s(e,n){e.depth=n,o=Math.max(o,n);let r=i(e);if(t===`binary`){e.left&&s(e.left,n+1),e.column=a++,e.right&&s(e.right,n+1);return}if(r.length===0)e.column=a++;else{for(let e of r)s(e,n+1);e.column=(r[0].column+r[r.length-1].column)/2}}for(let e of n)s(e,0);let c=[];return(function e(t){for(let n of t)c.push(n),e(i(n))})(n),{nodes:c,childrenOf:i,columns:Math.max(a,1),maxDepth:o}}function ZA({source:e,kind:t}){let{nodes:n,childrenOf:r,columns:i,maxDepth:a}=XA(e,t);if(n.length===0)return null;let o=Math.max(...n.map(e=>YA(e.label))),s=o+KA,c=i*s-KA+qA*2,l=(a+1)*GA+qA*2-(GA-WA),u=e=>({x:qA+o/2+e.column*s,y:qA+e.depth*GA+WA/2}),d=n.flatMap(e=>r(e).map(t=>({from:u(e),to:u(t)})));return(0,O.jsxs)(`figure`,{className:`my-4`,children:[(0,O.jsx)(`section`,{className:`max-w-full overflow-x-auto`,"aria-label":`树形图横向滚动区域`,children:(0,O.jsxs)(`svg`,{viewBox:`0 0 ${c} ${l}`,"aria-label":`树形图：${e.trim().split(`
+`).map(e=>e.trim()).join(`，`)}`,style:{width:c,height:`auto`,maxWidth:`none`},className:`mx-auto block`,children:[(0,O.jsx)(`g`,{style:{stroke:`var(--muted-foreground)`,strokeWidth:1.4,fill:`none`,opacity:.8},children:d.map(({from:e,to:t},n)=>(0,O.jsx)(`path`,{d:`M ${e.x} ${e.y+WA/2} C ${e.x} ${e.y+WA/2+18}, ${t.x} ${t.y-WA/2-18}, ${t.x} ${t.y-WA/2}`},n))}),n.map((e,t)=>{let{x:n,y:r}=u(e);return(0,O.jsxs)(`g`,{children:[(0,O.jsx)(`rect`,{x:n-o/2,y:r-WA/2,width:o,height:WA,rx:7,style:{fill:`var(--accent)`,stroke:`var(--primary)`,strokeWidth:1}}),(0,O.jsx)(`text`,{x:n,y:r,textAnchor:`middle`,dominantBaseline:`central`,fontSize:13,style:{fill:`var(--foreground)`},children:e.label})]},t)})]})}),(0,O.jsxs)(`figcaption`,{className:`mt-2 text-center text-xs text-muted-foreground`,children:[t===`binary`&&`左下为左孩子，右下为右孩子；`,`宽图可左右滑动`]})]})}function QA({children:e,allowHtml:t=!1,compact:n=!1}){return(0,O.jsx)(`div`,{className:`reading-prose [overflow-wrap:anywhere] ${n?`reading-prose-compact`:``}`,children:(0,O.jsx)(ls,{remarkPlugins:[Ip,zg],rehypePlugins:t?[IS,R_]:[R_],urlTransform:e=>{let t=ps(e);return t&&!/^(?:[a-z]+:|\/|#)/i.test(t)?`${jA}${t}`:t},components:{img:({alt:e,src:t,...n})=>t?.startsWith(`${jA}mindmaps/`)?(0,O.jsx)(AA,{src:t,alt:e??``}):(0,O.jsx)(`img`,{...n,src:t,alt:e??``,loading:`lazy`,decoding:`async`,className:`h-auto max-w-full rounded-lg border border-border`}),pre:({children:e})=>{let t=Array.isArray(e)?e[0]:e;if((0,S.isValidElement)(t)){let{className:e,children:n}=t.props,r=e?.includes(`language-binary`)?`binary`:e?.includes(`language-tree`)?`tree`:null;if(r&&typeof n==`string`)return(0,O.jsx)(ZA,{source:n,kind:r})}return(0,O.jsx)(`pre`,{children:e})}},children:e})})}var $A={"image/png":!0,"image/jpeg":!0,"image/webp":!0,"image/gif":!0,"image/avif":!0,"image/bmp":!0,"image/x-ms-bmp":!0};function ej({image:e}){let t=(0,S.useRef)(null),n=(0,S.useRef)(null),[r,i]=(0,S.useState)(null);return(0,S.useEffect)(()=>{let n=t.current;if(!n)return;let r=URL.createObjectURL(e.blob),i=new Image;return i.alt=e.name,i.className=`block h-auto max-w-full rounded-lg border border-border`,i.src=r,n.appendChild(i),()=>{i.remove(),URL.revokeObjectURL(r)}},[e.blob,e.name]),(0,S.useEffect)(()=>{if(!r)return;let e=t.current,a=document.body.style.overflow;document.body.style.overflow=`hidden`,n.current?.focus();let o=e=>{e.key===`Escape`&&i(null)};return window.addEventListener(`keydown`,o),()=>{window.removeEventListener(`keydown`,o),document.body.style.overflow=a,e?.focus()}},[r]),(0,O.jsxs)(`figure`,{className:`min-w-0`,children:[(0,O.jsx)(`button`,{ref:t,type:`button`,className:`block max-w-full cursor-zoom-in`,title:`查看补充图片原图`,"aria-label":`查看原图：${e.name}`,onClick:e=>{let t=e.currentTarget.querySelector(`img`);t&&i(t.src)}}),(0,O.jsx)(`figcaption`,{className:`mt-2 break-words text-xs text-muted-foreground`,children:e.name}),r&&(0,O.jsx)(`dialog`,{open:!0,"aria-modal":`true`,"aria-label":`原图：${e.name}`,className:`fixed inset-0 z-50 m-0 flex h-full max-h-none w-full max-w-none items-center justify-center border-0 bg-black/85 p-0 text-white`,children:(0,O.jsxs)(`button`,{ref:n,type:`button`,className:`absolute inset-0 flex h-full w-full select-none items-center justify-center p-4 sm:p-8`,"aria-label":`关闭原图：${e.name}`,onClick:()=>i(null),children:[(0,O.jsx)(`img`,{src:r,alt:e.name,className:`max-h-full max-w-full object-contain`}),(0,O.jsx)(`span`,{"aria-hidden":`true`,className:`pointer-events-none absolute right-4 top-4 rounded-full bg-black/60 p-2 text-white`,children:(0,O.jsx)(_e,{className:`h-5 w-5`})}),(0,O.jsx)(`span`,{"aria-hidden":`true`,className:`pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-white/80`,children:`点击任意处或按 Esc 关闭`})]})})]})}function tj({materialId:e}){let t=`course-notebook-supplement:${e}`,[n,r]=(0,S.useState)(()=>{let e={content:``,format:`markdown`};try{let n=localStorage.getItem(t);if(!n)return{...e,status:`输入后自动保存`};let r=JSON.parse(n);return typeof r!=`object`||!r||!(`content`in r)||typeof r.content!=`string`||!(`format`in r)||r.format!==`markdown`&&r.format!==`text`?{...e,status:`已存内容格式异常，暂未覆盖；重新输入会替换原内容。`}:{content:r.content,format:r.format,status:`已读取本地补充`}}catch{return{...e,status:`无法读取本地补充；离开前请复制内容备份。`}}}),[i,a]=(0,S.useState)(!1),[o,s]=(0,S.useState)([]),[c,l]=(0,S.useState)(!1),[u,d]=(0,S.useState)(`正在读取补充图片…`),f=(0,S.useRef)(null);(0,S.useEffect)(()=>{let t=!0;return zD(e).then(e=>{t&&(s(e.sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),l(!0),d(e.length?`已读取本地图片`:`可粘贴截图或选择图片，支持多张。`))}).catch(()=>{t&&d(`无法读取图片存储；请刷新页面或检查浏览器存储权限，文字补充不受影响。`)}),()=>{t=!1}},[e]);async function p(t){if(!c){d(`图片存储尚未就绪，请稍后或刷新页面。`);return}if(!t.length)return;if(t.some(e=>$A[e.type]!==!0)){d(`未添加图片；请选择 PNG、JPEG、WebP、GIF、AVIF 或 BMP 图片。`);return}let n=Date.now(),r=t.map((t,r)=>({id:crypto.randomUUID(),materialId:e,name:t.name||`粘贴的截图`,createdAt:n+r/1e3,blob:t}));d(`正在保存图片…`);try{await BD(r),s(e=>[...e,...r].sort((e,t)=>e.createdAt-t.createdAt||e.id.localeCompare(t.id))),d(`已保存 ${r.length} 张图片到当前浏览器`)}catch{d(`图片保存失败，未添加；请保留原图并检查浏览器存储空间或权限。`)}}async function m(e){try{await VD(e.id),s(t=>t.filter(t=>t.id!==e.id)),d(`已移除补充图片`)}catch{d(`移除失败，图片仍保留；请检查浏览器存储权限。`)}}function h(e){let n=`已保存到当前浏览器`;try{localStorage.setItem(t,JSON.stringify(e))}catch{n=`保存失败；离开前请复制内容备份。`}r({...e,status:n})}return(0,O.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-5 xl:sticky xl:top-24 xl:max-h-[calc(100dvh-7rem)] xl:overflow-y-auto`,"aria-label":`我的补充`,onPaste:e=>{let t=Array.from(e.clipboardData.items).filter(e=>e.kind===`file`&&e.type.startsWith(`image/`)).map(e=>e.getAsFile()).filter(e=>e!==null);t.length&&(e.preventDefault(),p(t))},children:[(0,O.jsx)(`h2`,{className:`text-base font-semibold text-primary`,children:`我的补充`}),(0,O.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:`每道题 / 知识点单独保存，仅在当前浏览器可见，不公开、不同步。清除浏览器数据会丢失。`}),(0,O.jsxs)(`section`,{className:`mt-4 min-w-0 rounded-xl border border-border bg-background/40 p-3`,"aria-label":`补充图片`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsxs)(`h3`,{className:`text-sm font-semibold`,children:[`补充图片`,o.length>0?` · ${o.length} 张`:``]}),!i&&(0,O.jsx)(`input`,{ref:f,type:`file`,accept:Object.keys($A).join(`,`),multiple:!0,className:`hidden`,"aria-label":`选择补充图片`,onChange:e=>{let t=Array.from(e.target.files||[]);e.target.value=``,p(t)}})]}),!i&&(0,O.jsxs)(`button`,{type:`button`,className:`mt-3 flex w-full flex-col items-center gap-1 rounded-lg border border-dashed border-primary/50 bg-card px-3 py-4 text-center text-sm hover:border-primary hover:bg-primary/5 disabled:cursor-not-allowed disabled:opacity-50`,disabled:!c,onClick:()=>f.current?.click(),onDragOver:e=>{c&&e.dataTransfer.types.includes(`Files`)&&e.preventDefault()},onDrop:e=>{e.preventDefault(),p(Array.from(e.dataTransfer.files))},children:[(0,O.jsx)(`span`,{className:`font-semibold text-primary`,children:`选择图片或拖放到这里`}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`也可在补充区域粘贴截图 · 支持多张`})]}),o.length>0&&(0,O.jsx)(`div`,{className:`mt-3 space-y-3`,children:o.map(e=>(0,O.jsxs)(`div`,{className:`min-w-0 rounded-lg border border-border bg-card p-3`,children:[(0,O.jsx)(ej,{image:e}),!i&&(0,O.jsx)(`button`,{type:`button`,className:`action-button mt-2`,"aria-label":`移除图片：${e.name}`,onClick:()=>{window.confirm(`确定移除图片「${e.name}」？此操作无法撤销。`)&&m(e)},children:`移除图片`})]},e.id))}),(0,O.jsxs)(`output`,{"aria-live":`polite`,className:`mt-2 block text-xs leading-5 text-muted-foreground`,children:[u,o.length>0?` · 点击图片查看原图`:``]})]}),(0,O.jsxs)(`div`,{className:`mt-4 flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`label`,{htmlFor:`course-supplement-format`,className:`text-sm`,children:`格式`}),(0,O.jsxs)(`select`,{id:`course-supplement-format`,className:`min-w-0 rounded-lg border border-border bg-background px-2 py-2 text-sm`,value:n.format,onChange:e=>h({content:n.content,format:e.target.value}),children:[(0,O.jsx)(`option`,{value:`markdown`,children:`Markdown`}),(0,O.jsx)(`option`,{value:`text`,children:`普通文字`})]}),(0,O.jsx)(`button`,{className:`action-button ml-auto`,"aria-pressed":i,onClick:()=>a(!i),children:i?`继续编辑`:`预览补充`})]}),i?(0,O.jsx)(`section`,{className:`mt-4 min-h-64 min-w-0 overflow-hidden rounded-xl border border-border bg-background/40 p-4`,"aria-label":`补充预览`,children:n.content?n.format===`markdown`?(0,O.jsx)(QA,{compact:!0,children:n.content}):(0,O.jsx)(`div`,{className:`whitespace-pre-wrap text-[13.5px] leading-[1.8] [overflow-wrap:anywhere]`,children:n.content}):(0,O.jsx)(`p`,{className:`text-sm text-muted-foreground`,children:`还没有补充内容，点击「继续编辑」开始记录。`})}):(0,O.jsxs)(`div`,{className:`mt-4`,children:[(0,O.jsx)(`label`,{htmlFor:`course-supplement-content`,className:`mb-2 block text-sm font-medium`,children:`补充内容`}),(0,O.jsx)(`textarea`,{id:`course-supplement-content`,className:`block min-h-64 w-full resize-y rounded-xl border border-border bg-background p-3 text-sm leading-7 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20`,value:n.content,placeholder:n.format===`markdown`?`支持标题、列表、加粗、表格和数学公式，例如：
 ## 课堂提醒
-- **重点**：先判断适用条件`:`直接输入补充内容，保留换行；不会解析 Markdown 符号。`,onChange:e=>h({content:e.target.value,format:n.format})}),(0,O.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:n.format===`markdown`?`点击预览查看排版；公式可用 $…$ 或独占一行的 $$。`:`普通文字按原样展示，包括 *、# 等符号。`})]}),(0,O.jsx)(`output`,{className:`mt-3 block text-[13px] leading-6 text-muted-foreground`,children:n.status})]})}function BA(){let[e,t]=(0,S.useState)(`all`),[n,r]=(0,S.useState)(`全部`),[i,a]=(0,S.useState)(``),[o,s]=(0,S.useState)(``),[c,l]=(0,S.useState)(null),[u,d]=(0,S.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,S.useRef)(null),p=(0,S.useRef)(null),m=(0,S.useRef)(null),[h,g]=(0,S.useState)(!1),[_,v]=(0,S.useState)(!1),[y,b]=(0,S.useState)(null),[x,ee]=(0,S.useState)(null),te=(0,S.useRef)(null),[ne,re]=(0,S.useState)(!1);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)),n=e.get(`lesson`),r=e.get(`material`),i=TA(n,r);t(i?.lesson.id??(n&&vA.has(n)?n:`all`)),l(i?.material.id??null),v(!r&&e.get(`view`)===`graph`);let a=e.get(`from`),o=e.get(`fromMaterial`),s=_A.find(({lesson:e,material:t})=>e.id===a&&t.id===o);b(s?{lesson:s.lesson.id,material:s.material.id,topic:e.get(`fromTopic`),label:s.lesson.id===`mindmap-20261115`?`返回导图`:`返回精选`}:null),ee(e.get(`topic`)),g(!1)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]);let C=TA(e,c),w=vA.get(e),ce=C?.material.title??w?.title;(0,S.useEffect)(()=>{document.title=ce?`${ce} · 408 备课讲义`:`408 备课讲义 · 凯鑫的个人博客`},[ce]),(0,S.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,S.useEffect)(()=>{if(c){f.current?.focus({preventScroll:!0});let e=x?f.current?.querySelector(`details[id="${CSS.escape(x)}"]`):null;e&&(e.open=!0),(e??f.current)?.scrollIntoView({block:`start`})}},[e,c,x]),(0,S.useEffect)(()=>{let e=p.current,t=m.current;if(!e||!t||!e.clientHeight)return;let n=e.getBoundingClientRect(),r=t.getBoundingClientRect();r.top<n.top?e.scrollTop+=r.top-n.top:r.bottom>n.bottom&&(e.scrollTop+=r.bottom-n.bottom)},[e,c,h]);let le=w!==void 0,de=o.trim().toLocaleLowerCase(),me=!!(de||i||n!==`全部`),_e=!le&&!me,ve=C||_||_e?[]:(w?[w]:jC).map(e=>({lesson:e,items:e.materials.filter(t=>(n===`全部`||t.type===n)&&(!de||[e.title,e.id,t.title,t.chapter,t.summary,t.content,...t.tags].join(` `).toLocaleLowerCase().includes(de)))})).filter(({items:e})=>e.length>0).sort((e,t)=>yA(e.lesson,t.lesson)),ye=ve.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),be=ve.map(({lesson:e,items:t})=>({lesson:e,items:i?t.filter(e=>e.tags.includes(i)):t})).filter(({items:e})=>e.length>0),xe=be.reduce((e,t)=>e+t.items.length,0),Se=w?.materials.length===0,Ce=C?.material.type===`题目`?vD[AC(C.material.id)]:void 0,we=C?fA[C.material.id]:void 0,Te=C?.lesson.id===`cache-vm-20261112`?yD[C.material.id]:void 0,Ee=C?DA(C.lesson.id,C.lesson.materials):[],De=Ee.find(e=>e.type===`全部`||e.type===C?.material.type)?.items??[],Oe=C?De.findIndex(e=>e.id===C.material.id):-1,ke=De[Oe-1],Ae=De[Oe+1],je=C?.material.type===`题目`?`题`:`张`;function Me(){r(`全部`),a(``),s(``)}function Ne(e,t){let n=gA[t.type];return(0,O.jsxs)(`a`,{href:CA(e.id,t.id),className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,children:[(0,O.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground`,children:[(0,O.jsx)(n,{size:15}),(0,O.jsx)(`span`,{className:`text-primary`,children:t.type}),(0,O.jsxs)(`span`,{children:[`· `,t.chapter]})]}),t.type===`题目`&&t.questionNumber!==void 0&&(0,O.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,t.questionNumber,` 题`]}),(0,O.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:t.title}),(0,O.jsx)(`p`,{className:`mt-2 text-[15px] leading-7 text-muted-foreground`,children:t.summary}),t.tags.length>0&&(0,O.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[t.tags.slice(0,2).map(e=>(0,O.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-[12.5px] text-muted-foreground`,children:e},e)),t.tags.length>2&&(0,O.jsxs)(`span`,{className:`py-1 text-[12.5px] text-muted-foreground`,children:[`+`,t.tags.length-2]})]})]},t.id)}return(0,O.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,O.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,O.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-5xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsxs)(`a`,{href:`https://cathy47.party/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,O.jsx)(ie,{size:16}),`返回博客`]}),le&&!_&&(0,O.jsxs)(`a`,{href:CA(`all`),onClick:e=>{wA(e)&&Me()},className:`inline-flex items-center gap-1.5 px-2 py-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,O.jsx)(oe,{size:16}),`讲义目录`]}),!C&&(0,O.jsxs)(`a`,{className:`action-button`,href:_?CA(e):`#view=graph`,"aria-current":_?`page`:void 0,children:[(0,O.jsx)(pe,{}),_?`返回讲义列表`:`知识点关联图`]}),C&&y&&(0,O.jsxs)(`a`,{className:`action-button`,href:`${CA(y.lesson,y.material)}${y.topic?`&topic=${encodeURIComponent(y.topic)}`:``}`,children:[(0,O.jsx)(ie,{}),y.label]}),C&&(0,O.jsxs)(`a`,{className:`action-button`,href:CA(e),children:[(0,O.jsx)(ie,{}),`返回讲义列表`]}),C&&(0,O.jsxs)(`nav`,{className:`flex items-center gap-2`,"aria-label":`讲义切换`,children:[ke?(0,O.jsxs)(`a`,{className:`action-button`,href:CA(e,ke.id),title:`上一${je}：${ke.title}`,children:[(0,O.jsx)(ie,{}),`上一`,je]}):(0,O.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课第一${je}`,children:[(0,O.jsx)(ie,{}),`上一`,je]}),Ae?(0,O.jsxs)(`a`,{className:`action-button`,href:CA(e,Ae.id),title:`下一${je}：${Ae.title}`,children:[`下一`,je,(0,O.jsx)(ae,{})]}):(0,O.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课最后一${je}`,children:[`下一`,je,(0,O.jsx)(ae,{})]})]})]}),(0,O.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,O.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,O.jsx)(T,{size:19}),`408 备课讲义`]}),(0,O.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,O.jsx)(ge,{}):(0,O.jsx)(fe,{})})]})]})}),(0,O.jsxs)(`main`,{className:`mx-auto px-5 py-8 sm:px-8 sm:py-10 ${C||_?`max-w-[1600px]`:`max-w-5xl`}`,children:[!C&&!_&&(0,O.jsxs)(`section`,{className:`mb-6`,"aria-labelledby":`lesson-heading`,children:[(0,O.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold sm:text-4xl`,children:w?.title??`讲义目录`}),w?(0,O.jsxs)(`p`,{className:`mt-2 text-sm text-muted-foreground`,children:[(0,O.jsx)(`time`,{dateTime:w.date,children:w.date}),` · `,w.materials.length,` 条内容`]}):(0,O.jsxs)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:[`共 `,jC.length,` 组。按用途浏览讲义，或直接搜索题目与考点。`]}),w?.summary&&(0,O.jsx)(`p`,{className:`mt-2 max-w-[54em] text-sm leading-6 text-muted-foreground`,children:w.summary})]}),(0,O.jsxs)(`div`,{className:C?`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`:``,children:[C&&(0,O.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 lg:flex lg:max-h-[calc(100dvh-7rem)] lg:flex-col`,"aria-label":`当前课次目录`,children:[(0,O.jsx)(`h2`,{className:`px-2 text-sm font-semibold text-primary`,children:C.lesson.title}),(0,O.jsxs)(`p`,{className:`mt-2 px-2 text-[13px] leading-6 text-muted-foreground`,children:[C.lesson.id===`rare-topics`?`分区目录`:`本课题目目录`,` · `,C.lesson.materials.length,` 条内容`]}),(0,O.jsx)(`div`,{className:`lg:hidden`,children:(0,O.jsxs)(`button`,{className:`action-button mt-3 w-full justify-between`,"aria-expanded":h,"aria-controls":`current-lesson-materials`,onClick:()=>g(!h),children:[h?`收起`:`展开`,C.lesson.id===`rare-topics`?`分区目录`:`题目目录`,(0,O.jsx)(se,{size:16,className:h?`rotate-180`:``})]})}),(0,O.jsx)(`nav`,{id:`current-lesson-materials`,ref:p,className:`mt-3 max-h-64 overflow-y-auto overscroll-contain lg:max-h-none lg:min-h-0 lg:flex-1 ${h?``:`hidden lg:block`}`,"aria-label":C.lesson.id===`rare-topics`?`冷门专区分区目录`:`本课题目`,children:Ee.map(t=>(0,O.jsxs)(`div`,{className:t.title?`mt-4 first:mt-0`:void 0,children:[t.title&&(0,O.jsxs)(`h3`,{className:`mb-2 flex items-center justify-between px-3 text-xs font-semibold text-primary`,children:[t.title,(0,O.jsxs)(`span`,{className:`font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),t.items.map((t,n)=>(0,O.jsxs)(`a`,{href:CA(e,t.id),ref:t.id===c?m:void 0,"aria-current":t.id===c?`page`:void 0,onClick:e=>{wA(e)&&g(!1)},className:`mb-1 block w-full rounded-xl px-3 py-3 text-left ${t.id===c?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:t.type===`题目`&&t.questionNumber!==void 0?`第 ${t.questionNumber} 题`:t.type===`知识点`?`知识点 · 第 ${n+1} 张`:`题目 · 第 ${n+1} 张`}),(0,O.jsx)(`span`,{className:`mt-1 block break-words text-sm leading-6`,children:t.title})]},t.id))]},t.type))})]}),(0,O.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:_?(0,O.jsx)(ZD,{hrefFor:CA}):C?(0,O.jsxs)(`div`,{className:`grid items-start justify-center gap-6 xl:grid-cols-[minmax(0,760px)_320px]`,children:[(0,O.jsxs)(`article`,{ref:f,tabIndex:-1,className:`min-w-0 scroll-mt-44 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-32 sm:p-8 lg:scroll-mt-24`,children:[(0,O.jsx)(`p`,{className:`mb-6 text-xs text-muted-foreground`,children:C.lesson.id===`rare-topics`?`${C.material.type}第 ${Oe+1} / ${De.length} ${je}`:`本课第 ${Oe+1} / ${De.length} 张`}),(0,O.jsxs)(`p`,{className:`text-xs text-primary`,children:[C.lesson.title,` · `,C.material.chapter,` · `,C.material.type]}),(0,O.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[C.material.type===`题目`&&C.material.questionNumber!==void 0&&(0,O.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,C.material.questionNumber,` 题 ·`]}),C.material.title]}),(0,O.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:C.material.tags.map(e=>(0,O.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-[12.5px] text-muted-foreground`,children:e},e))}),C.material.source&&(0,O.jsxs)(`details`,{className:`mt-3 text-[13px] leading-6 text-muted-foreground`,"aria-label":`题目来源`,children:[(0,O.jsx)(`summary`,{className:`cursor-pointer`,children:`来源与资料说明`}),(0,O.jsx)(`p`,{className:`mt-2`,children:C.material.source})]}),(0,O.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":C.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,O.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:C.material.type===`题目`?`题目`:`知识点讲解`}),C.material.id.startsWith(`mindmap-`)&&(0,O.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center gap-3`,children:[(0,O.jsx)(`button`,{type:`button`,className:`action-button`,"aria-pressed":ne,onClick:()=>{let e=!ne;te.current?.querySelectorAll(`details.mindmap-topic, details.mindmap-solution`).forEach(t=>{t.open=e}),re(e)},children:ne?`收起全部解析`:`展开全部解析`}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`展开后可直接在题下阅读答案与解析，不必跳转`})]}),(0,O.jsx)(`div`,{ref:te,children:(0,O.jsx)(IA,{allowHtml:C.material.type===`知识点`,children:C.material.content})})]}),C.material.attachments&&C.material.attachments.length>0&&(0,O.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:C.material.attachments.map(e=>(0,O.jsxs)(`a`,{className:`action-button max-w-full`,href:`${hA}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,O.jsx)(ue,{}),(0,O.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),C.material.type===`题目`&&(C.material.solution?(0,O.jsxs)(`details`,{open:!0,className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,O.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,O.jsxs)(`span`,{children:[`答案与解析`,(0,O.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,O.jsx)(se,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,O.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[Te&&(0,O.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,O.jsx)(`h2`,{className:`mb-2 text-sm font-semibold text-primary`,children:`解题入口`}),(0,O.jsx)(`p`,{className:`text-sm leading-7`,children:Te})]}),(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,O.jsx)(IA,{children:C.material.solution.answer})]}),we&&(0,O.jsx)(we,{}),C.material.solution.teachingFramework&&(0,O.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`讲题框架`}),(0,O.jsx)(IA,{children:C.material.solution.teachingFramework})]}),(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题步骤`}),(0,O.jsx)(IA,{children:C.material.solution.explanation})]}),C.material.solution.pitfalls&&(0,O.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错提醒`}),(0,O.jsx)(IA,{children:C.material.solution.pitfalls})]}),C.material.solution.extension&&(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,O.jsx)(IA,{children:C.material.solution.extension})]})]})]}):(0,O.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`})),Ce&&(0,O.jsxs)(`section`,{className:`mt-8 min-w-0 rounded-xl border border-border bg-secondary/40 p-5 sm:p-6`,"aria-label":`基础知识`,children:[(0,O.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsx)(`h2`,{className:`text-lg font-semibold text-primary`,children:`基础知识`}),(0,O.jsxs)(`a`,{className:`action-button`,href:`#view=graph`,title:`在关联图里看这条知识块还挂在哪些题下`,children:[(0,O.jsx)(pe,{}),`看关联图`]})]}),(0,O.jsx)(IA,{allowHtml:!0,children:Ce})]})]},`${C.lesson.id}:${C.material.id}`),(0,O.jsx)(zA,{materialId:C.material.id},`supplement:${C.material.id}`)]}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,O.jsxs)(`div`,{className:`relative`,children:[(0,O.jsx)(he,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,O.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:le?`搜索本课题目、知识点或标签…`:`搜索全部讲义：课次名、题目或考点…`,value:o,onChange:e=>{s(e.target.value),a(``)}})]}),!_e&&(0,O.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...lC].map(e=>(0,O.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),ye.length>0&&(0,O.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,O.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,O.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,O.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,O.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),le&&ye.flatMap(e=>e.tags).map(e=>(0,O.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!le&&ye.map(e=>(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,O.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n),window.history.replaceState(null,``,CA(e.lesson.id))},children:n},n))})]},e.lesson.id))]})]})]}),_e?(0,O.jsx)(EA,{}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,O.jsx)(`output`,{children:me?`找到 ${xe} 条内容`:`按备课顺序排列`}),me&&(0,O.jsx)(`button`,{className:`filter-chip`,onClick:Me,children:`清除筛选`})]}),be.length===0?(0,O.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,O.jsx)(`h2`,{className:`text-lg font-semibold`,children:Se?`本课暂无内容`:`没有找到匹配的内容`}),!Se&&(0,O.jsx)(`p`,{className:`mt-3 text-sm text-muted-foreground`,children:`换个关键词，或清除筛选后再试。`})]}):(0,O.jsx)(`div`,{className:`grid gap-6`,children:be.map(({lesson:e,items:t})=>{let n=DA(e.id,t);return(0,O.jsxs)(`section`,{"aria-label":e.title,children:[!le&&(0,O.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,O.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:(0,O.jsx)(`a`,{href:CA(e.id),className:`hover:text-primary`,children:e.title})}),(0,O.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[t.length,` 条`]})]}),(0,O.jsx)(`div`,{className:`grid items-start gap-5 ${n.length>1?`xl:grid-cols-2`:``}`,children:n.map(t=>{if(t.type===`全部`)return(0,O.jsx)(`div`,{className:`grid gap-3 md:grid-cols-2`,children:t.items.map(t=>Ne(e,t))},t.type);let n=gA[t.type];return(0,O.jsxs)(`section`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4`,"aria-label":t.title,children:[(0,O.jsxs)(`h3`,{className:`mb-4 flex flex-wrap items-center gap-2 text-sm font-semibold text-primary`,children:[(0,O.jsx)(n,{size:17}),t.title,(0,O.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),(0,O.jsx)(`div`,{className:`grid gap-3`,children:t.items.map(t=>Ne(e,t))})]},t.type)})})]},e.id)})})]})]})})]})]})]})}(0,LS.createRoot)(document.getElementById(`root`)).render((0,O.jsx)(S.StrictMode,{children:(0,O.jsx)(BA,{})}));
+- **重点**：先判断适用条件`:`直接输入补充内容，保留换行；不会解析 Markdown 符号。`,onChange:e=>h({content:e.target.value,format:n.format})}),(0,O.jsx)(`p`,{className:`mt-2 text-[13px] leading-6 text-muted-foreground`,children:n.format===`markdown`?`点击预览查看排版；公式可用 $…$ 或独占一行的 $$。`:`普通文字按原样展示，包括 *、# 等符号。`})]}),(0,O.jsx)(`output`,{className:`mt-3 block text-[13px] leading-6 text-muted-foreground`,children:n.status})]})}function nj(){let[e,t]=(0,S.useState)(`all`),[n,r]=(0,S.useState)(`全部`),[i,a]=(0,S.useState)(``),[o,s]=(0,S.useState)(``),[c,l]=(0,S.useState)(null),[u,d]=(0,S.useState)(()=>typeof window<`u`&&localStorage.getItem(`course-notebook-dark`)===`true`),f=(0,S.useRef)(null),p=(0,S.useRef)(null),m=(0,S.useRef)(null),[h,g]=(0,S.useState)(!1),[_,v]=(0,S.useState)(!1),[y,b]=(0,S.useState)(null),[x,ee]=(0,S.useState)(null),te=(0,S.useRef)(null),[ne,re]=(0,S.useState)(!1);(0,S.useEffect)(()=>{function e(){let e=new URLSearchParams(window.location.hash.slice(1)),n=e.get(`lesson`),r=e.get(`material`),i=VA(n,r);t(i?.lesson.id??(n&&PA.has(n)?n:`all`)),l(i?.material.id??null),v(!r&&e.get(`view`)===`graph`);let a=e.get(`from`),o=e.get(`fromMaterial`),s=NA.find(({lesson:e,material:t})=>e.id===a&&t.id===o);b(s?{lesson:s.lesson.id,material:s.material.id,topic:e.get(`fromTopic`),label:s.lesson.id===`mindmap-20261115`?`返回导图`:`返回精选`}:null),ee(e.get(`topic`)),g(!1)}return e(),window.addEventListener(`hashchange`,e),()=>window.removeEventListener(`hashchange`,e)},[]);let C=VA(e,c),w=PA.get(e),ce=C?.material.title??w?.title;(0,S.useEffect)(()=>{document.title=ce?`${ce} · 408 备课讲义`:`408 备课讲义 · 凯鑫的个人博客`},[ce]),(0,S.useEffect)(()=>{document.documentElement.classList.toggle(`dark`,u)},[u]),(0,S.useEffect)(()=>{if(c){f.current?.focus({preventScroll:!0});let e=x?f.current?.querySelector(`details[id="${CSS.escape(x)}"]`):null;e&&(e.open=!0),(e??f.current)?.scrollIntoView({block:`start`})}},[e,c,x]),(0,S.useEffect)(()=>{let e=p.current,t=m.current;if(!e||!t||!e.clientHeight)return;let n=e.getBoundingClientRect(),r=t.getBoundingClientRect();r.top<n.top?e.scrollTop+=r.top-n.top:r.bottom>n.bottom&&(e.scrollTop+=r.bottom-n.bottom)},[e,c,h]);let le=w!==void 0,de=o.trim().toLocaleLowerCase(),me=!!(de||i||n!==`全部`),_e=!le&&!me,ve=C||_||_e?[]:(w?[w]:qC).map(e=>({lesson:e,items:e.materials.filter(t=>(n===`全部`||t.type===n)&&(!de||[e.title,e.id,t.title,t.chapter,t.summary,t.content,...t.tags].join(` `).toLocaleLowerCase().includes(de)))})).filter(({items:e})=>e.length>0).sort((e,t)=>FA(e.lesson,t.lesson)),ye=ve.map(({lesson:e,items:t})=>({lesson:e,tags:[...new Set(t.flatMap(e=>e.tags))].sort((e,t)=>e.localeCompare(t,`zh-CN`))})).filter(e=>e.tags.length>0),be=ve.map(({lesson:e,items:t})=>({lesson:e,items:i?t.filter(e=>e.tags.includes(i)):t})).filter(({items:e})=>e.length>0),xe=be.reduce((e,t)=>e+t.items.length,0),Se=w?.materials.length===0,Ce=C?.material.type===`题目`?PD[KC(C.material.id)]:void 0,we=C?OA[C.material.id]:void 0,Te=C?.lesson.id===`cache-vm-20261112`?FD[C.material.id]:void 0,Ee=C?.lesson.id===`os-workbook-20261121`,De=C?UA(C.lesson.id,C.lesson.materials):[],Oe=De.find(e=>e.type===`全部`||e.type===C?.material.type)?.items??[],ke=C?Oe.findIndex(e=>e.id===C.material.id):-1,Ae=Oe[ke-1],je=Oe[ke+1],Me=C?.material.type===`题目`?`题`:`张`;function Ne(){r(`全部`),a(``),s(``)}function Pe(e,t){let n=MA[t.type];return(0,O.jsxs)(`a`,{href:zA(e.id,t.id),className:`group rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-primary`,children:[(0,O.jsxs)(`span`,{className:`flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground`,children:[(0,O.jsx)(n,{size:15}),(0,O.jsx)(`span`,{className:`text-primary`,children:t.type}),(0,O.jsxs)(`span`,{children:[`· `,t.chapter]})]}),t.type===`题目`&&t.questionNumber!==void 0&&(0,O.jsxs)(`span`,{className:`mt-3 inline-block rounded-md bg-accent px-2 py-1 text-sm font-semibold text-primary`,children:[`第 `,t.questionNumber,` 题`]}),(0,O.jsx)(`h3`,{className:`mt-3 break-words text-lg font-semibold group-hover:text-primary`,children:t.title}),(0,O.jsx)(`p`,{className:`mt-2 text-[15px] leading-7 text-muted-foreground`,children:t.summary}),t.tags.length>0&&(0,O.jsxs)(`span`,{className:`mt-3 flex flex-wrap gap-2`,children:[t.tags.slice(0,2).map(e=>(0,O.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-[12.5px] text-muted-foreground`,children:e},e)),t.tags.length>2&&(0,O.jsxs)(`span`,{className:`py-1 text-[12.5px] text-muted-foreground`,children:[`+`,t.tags.length-2]})]})]},t.id)}return(0,O.jsxs)(`div`,{className:`min-h-screen bg-background text-foreground`,children:[(0,O.jsx)(`header`,{className:`sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur-xl`,children:(0,O.jsxs)(`div`,{className:`mx-auto flex min-h-16 max-w-5xl flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsxs)(`a`,{href:`https://cathy47.party/`,className:`inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,O.jsx)(ie,{size:16}),`返回博客`]}),le&&!_&&(0,O.jsxs)(`a`,{href:zA(`all`),onClick:e=>{BA(e)&&Ne()},className:`inline-flex items-center gap-1.5 px-2 py-2 text-sm text-muted-foreground hover:text-primary`,children:[(0,O.jsx)(oe,{size:16}),`讲义目录`]}),!C&&(0,O.jsxs)(`a`,{className:`action-button`,href:_?zA(e):`#view=graph`,"aria-current":_?`page`:void 0,children:[(0,O.jsx)(pe,{}),_?`返回讲义列表`:`知识点关联图`]}),C&&y&&(0,O.jsxs)(`a`,{className:`action-button`,href:`${zA(y.lesson,y.material)}${y.topic?`&topic=${encodeURIComponent(y.topic)}`:``}`,children:[(0,O.jsx)(ie,{}),y.label]}),C&&(0,O.jsxs)(`a`,{className:`action-button`,href:zA(e),children:[(0,O.jsx)(ie,{}),`返回讲义列表`]}),C&&(0,O.jsxs)(`nav`,{className:`flex items-center gap-2`,"aria-label":`讲义切换`,children:[Ae?(0,O.jsxs)(`a`,{className:`action-button`,href:zA(e,Ae.id),title:`上一${Me}：${Ae.title}`,children:[(0,O.jsx)(ie,{}),`上一`,Me]}):(0,O.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课第一${Me}`,children:[(0,O.jsx)(ie,{}),`上一`,Me]}),je?(0,O.jsxs)(`a`,{className:`action-button`,href:zA(e,je.id),title:`下一${Me}：${je.title}`,children:[`下一`,Me,(0,O.jsx)(ae,{})]}):(0,O.jsxs)(`button`,{className:`action-button cursor-not-allowed opacity-50`,disabled:!0,title:`已是本课最后一${Me}`,children:[`下一`,Me,(0,O.jsx)(ae,{})]})]})]}),(0,O.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,O.jsxs)(`span`,{className:`flex items-center gap-2 text-sm font-semibold text-primary`,children:[(0,O.jsx)(T,{size:19}),`408 备课讲义`]}),(0,O.jsx)(`button`,{className:`icon-button`,"aria-label":u?`切换浅色主题`:`切换深色主题`,onClick:()=>{let e=!u;d(e),localStorage.setItem(`course-notebook-dark`,String(e))},children:u?(0,O.jsx)(ge,{}):(0,O.jsx)(fe,{})})]})]})}),(0,O.jsxs)(`main`,{className:`mx-auto px-5 py-8 sm:px-8 sm:py-10 ${C||_?`max-w-[1600px]`:`max-w-5xl`}`,children:[!C&&!_&&(0,O.jsxs)(`section`,{className:`mb-6`,"aria-labelledby":`lesson-heading`,children:[(0,O.jsx)(`h1`,{id:`lesson-heading`,className:`font-display text-3xl font-semibold sm:text-4xl`,children:w?.title??`讲义目录`}),w?(0,O.jsxs)(`p`,{className:`mt-2 text-sm text-muted-foreground`,children:[(0,O.jsx)(`time`,{dateTime:w.date,children:w.date}),` · `,w.materials.length,` 条内容`]}):(0,O.jsxs)(`p`,{className:`mt-2 text-sm leading-6 text-muted-foreground`,children:[`共 `,qC.length,` 组。按用途浏览讲义，或直接搜索题目与考点。`]}),w?.summary&&(0,O.jsx)(`p`,{className:`mt-2 max-w-[54em] text-sm leading-6 text-muted-foreground`,children:w.summary})]}),(0,O.jsxs)(`div`,{className:C?`grid items-start gap-6 lg:grid-cols-[230px_minmax(0,1fr)]`:``,children:[C&&(0,O.jsxs)(`aside`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4 lg:sticky lg:top-24 lg:flex lg:max-h-[calc(100dvh-7rem)] lg:flex-col`,"aria-label":`当前课次目录`,children:[(0,O.jsx)(`h2`,{className:`px-2 text-sm font-semibold text-primary`,children:C.lesson.title}),(0,O.jsxs)(`p`,{className:`mt-2 px-2 text-[13px] leading-6 text-muted-foreground`,children:[C.lesson.id===`rare-topics`?`分区目录`:`本课题目目录`,` · `,C.lesson.materials.length,` 条内容`]}),(0,O.jsx)(`div`,{className:`lg:hidden`,children:(0,O.jsxs)(`button`,{className:`action-button mt-3 w-full justify-between`,"aria-expanded":h,"aria-controls":`current-lesson-materials`,onClick:()=>g(!h),children:[h?`收起`:`展开`,C.lesson.id===`rare-topics`?`分区目录`:`题目目录`,(0,O.jsx)(se,{size:16,className:h?`rotate-180`:``})]})}),(0,O.jsx)(`nav`,{id:`current-lesson-materials`,ref:p,className:`mt-3 max-h-64 overflow-y-auto overscroll-contain lg:max-h-none lg:min-h-0 lg:flex-1 ${h?``:`hidden lg:block`}`,"aria-label":C.lesson.id===`rare-topics`?`冷门专区分区目录`:`本课题目`,children:De.map(t=>(0,O.jsxs)(`div`,{className:t.title?`mt-4 first:mt-0`:void 0,children:[t.title&&(0,O.jsxs)(`h3`,{className:`mb-2 flex items-center justify-between px-3 text-xs font-semibold text-primary`,children:[t.title,(0,O.jsxs)(`span`,{className:`font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),t.items.map((t,n)=>(0,O.jsxs)(`a`,{href:zA(e,t.id),ref:t.id===c?m:void 0,"aria-current":t.id===c?`page`:void 0,onClick:e=>{BA(e)&&g(!1)},className:`mb-1 block w-full rounded-xl px-3 py-3 text-left ${t.id===c?`bg-accent font-semibold text-primary`:`hover:bg-secondary`}`,children:[(0,O.jsx)(`span`,{className:`block text-xs text-muted-foreground`,children:t.type===`题目`&&t.questionNumber!==void 0?`第 ${t.questionNumber} 题`:t.type===`知识点`?`知识点 · 第 ${n+1} 张`:`题目 · 第 ${n+1} 张`}),(0,O.jsx)(`span`,{className:`mt-1 block break-words text-sm leading-6`,children:t.title})]},t.id))]},t.type))})]}),(0,O.jsx)(`section`,{className:`min-w-0`,"aria-label":`讲义内容`,children:_?(0,O.jsx)(pO,{hrefFor:zA}):C?(0,O.jsxs)(`div`,{className:`grid items-start justify-center gap-6 xl:grid-cols-[minmax(0,760px)_320px]`,children:[(0,O.jsxs)(`article`,{ref:f,tabIndex:-1,className:`min-w-0 scroll-mt-44 rounded-2xl border border-border bg-card p-5 outline-none sm:scroll-mt-32 sm:p-8 lg:scroll-mt-24`,children:[(0,O.jsx)(`p`,{className:`mb-6 text-xs text-muted-foreground`,children:C.lesson.id===`rare-topics`?`${C.material.type}第 ${ke+1} / ${Oe.length} ${Me}`:`本课第 ${ke+1} / ${Oe.length} 张`}),(0,O.jsxs)(`p`,{className:`text-xs text-primary`,children:[C.lesson.title,` · `,C.material.chapter,` · `,C.material.type]}),(0,O.jsxs)(`h1`,{className:`font-display mt-3 break-words text-2xl font-semibold sm:text-3xl`,children:[C.material.type===`题目`&&C.material.questionNumber!==void 0&&(0,O.jsxs)(`span`,{className:`mr-2 text-primary`,children:[`第 `,C.material.questionNumber,` 题 ·`]}),C.material.title]}),(0,O.jsx)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:C.material.tags.map(e=>(0,O.jsx)(`span`,{className:`rounded-md bg-secondary px-2 py-1 text-[12.5px] text-muted-foreground`,children:e},e))}),C.material.source&&(0,O.jsxs)(`details`,{className:`mt-3 text-[13px] leading-6 text-muted-foreground`,"aria-label":`题目来源`,children:[(0,O.jsx)(`summary`,{className:`cursor-pointer`,children:`来源与资料说明`}),(0,O.jsx)(`p`,{className:`mt-2`,children:C.material.source})]}),(0,O.jsxs)(`section`,{className:`mt-6 border-t border-border pt-6`,"aria-label":C.material.type===`题目`?`题目内容`:`知识点内容`,children:[(0,O.jsx)(`h2`,{className:`mb-4 text-sm font-semibold text-primary`,children:C.material.type===`题目`?`题目`:`知识点讲解`}),C.material.id.startsWith(`mindmap-`)&&(0,O.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center gap-3`,children:[(0,O.jsx)(`button`,{type:`button`,className:`action-button`,"aria-pressed":ne,onClick:()=>{let e=!ne;te.current?.querySelectorAll(`details.mindmap-topic, details.mindmap-solution`).forEach(t=>{t.open=e}),re(e)},children:ne?`收起全部解析`:`展开全部解析`}),(0,O.jsx)(`span`,{className:`text-xs text-muted-foreground`,children:`展开后可直接在题下阅读答案与解析，不必跳转`})]}),(0,O.jsx)(`div`,{ref:te,children:(0,O.jsx)(QA,{allowHtml:C.material.type===`知识点`||Ee,children:C.material.content})})]}),C.material.attachments&&C.material.attachments.length>0&&(0,O.jsx)(`nav`,{className:`my-5 flex flex-wrap gap-2`,"aria-label":`原始资料`,children:C.material.attachments.map(e=>(0,O.jsxs)(`a`,{className:`action-button max-w-full`,href:`${jA}${e.path}`,target:`_blank`,rel:`noreferrer`,children:[(0,O.jsx)(ue,{}),(0,O.jsx)(`span`,{className:`truncate`,children:e.name})]},e.path))}),C.material.type===`题目`&&(C.material.solution?(0,O.jsxs)(`details`,{open:!0,className:`group mt-8 rounded-xl border border-border`,"aria-label":`答案与解析`,children:[(0,O.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-accent/50 px-5 py-4 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden`,children:[(0,O.jsxs)(`span`,{children:[`答案与解析`,(0,O.jsx)(`span`,{className:`ml-2 text-xs font-normal text-muted-foreground`,children:`点击展开 / 收起`})]}),(0,O.jsx)(se,{size:18,className:`shrink-0 transition-transform group-open:rotate-180`})]}),(0,O.jsxs)(`div`,{className:`space-y-6 p-5 sm:p-6`,children:[Te&&(0,O.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,O.jsx)(`h2`,{className:`mb-2 text-sm font-semibold text-primary`,children:`解题入口`}),(0,O.jsx)(`p`,{className:`text-sm leading-7`,children:Te})]}),Ee?(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题过程与答案`}),(0,O.jsx)(QA,{children:C.material.solution.answer})]}),(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`知识点与考点`}),(0,O.jsx)(QA,{children:C.material.solution.explanation})]}),(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`同类真题`}),(0,O.jsx)(QA,{children:C.material.solution.extension??``})]})]}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`参考答案`}),(0,O.jsx)(QA,{children:C.material.solution.answer})]}),we&&(0,O.jsx)(we,{}),C.material.solution.teachingFramework&&(0,O.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`讲题框架`}),(0,O.jsx)(QA,{children:C.material.solution.teachingFramework})]}),(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`解题步骤`}),(0,O.jsx)(QA,{children:C.material.solution.explanation})]}),C.material.solution.pitfalls&&(0,O.jsxs)(`section`,{className:`rounded-xl bg-secondary/60 p-4`,children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold`,children:`易错提醒`}),(0,O.jsx)(QA,{children:C.material.solution.pitfalls})]}),C.material.solution.extension&&(0,O.jsxs)(`section`,{children:[(0,O.jsx)(`h2`,{className:`mb-3 text-sm font-semibold text-primary`,children:`追问与变式`}),(0,O.jsx)(QA,{children:C.material.solution.extension})]})]})]})]}):(0,O.jsx)(`p`,{className:`mt-8 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground`,children:`这道题的答案尚未整理，核对后补充解析。`})),Ce&&(0,O.jsxs)(`section`,{className:`mt-8 min-w-0 rounded-xl border border-border bg-secondary/40 p-5 sm:p-6`,"aria-label":`基础知识`,children:[(0,O.jsxs)(`div`,{className:`mb-4 flex flex-wrap items-center justify-between gap-2`,children:[(0,O.jsx)(`h2`,{className:`text-lg font-semibold text-primary`,children:`基础知识`}),(0,O.jsxs)(`a`,{className:`action-button`,href:`#view=graph`,title:`在关联图里看这条知识块还挂在哪些题下`,children:[(0,O.jsx)(pe,{}),`看关联图`]})]}),(0,O.jsx)(QA,{allowHtml:!0,children:Ce})]})]},`${C.lesson.id}:${C.material.id}`),(0,O.jsx)(tj,{materialId:C.material.id},`supplement:${C.material.id}`)]}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`div`,{className:`mb-5 rounded-2xl border border-border bg-card p-4`,children:[(0,O.jsxs)(`div`,{className:`relative`,children:[(0,O.jsx)(he,{className:`absolute left-3 top-3 text-muted-foreground`,size:16}),(0,O.jsx)(`input`,{className:`search-input`,"aria-label":`搜索讲义`,placeholder:le?`搜索本课题目、知识点或标签…`:`搜索全部讲义：课次名、题目或考点…`,value:o,onChange:e=>{s(e.target.value),a(``)}})]}),!_e&&(0,O.jsx)(`div`,{className:`mt-4 flex flex-wrap gap-2`,"aria-label":`内容类型`,children:[`全部`,...TC].map(e=>(0,O.jsx)(`button`,{className:`filter-chip ${n===e?`active`:``}`,"aria-pressed":n===e,onClick:()=>{r(e),a(``)},children:e},e))}),ye.length>0&&(0,O.jsxs)(`details`,{className:`mt-4 border-t border-border pt-4`,"aria-label":`知识点标签`,children:[(0,O.jsxs)(`summary`,{className:`cursor-pointer text-sm font-semibold text-muted-foreground`,children:[`按知识点筛选`,i?` · 当前：${i}`:` · 展开标签`]}),i&&(0,O.jsxs)(`button`,{className:`filter-chip mt-3`,onClick:()=>a(``),children:[`清除标签：`,i]}),(0,O.jsxs)(`div`,{className:`mt-3 space-y-3`,children:[(0,O.jsxs)(`div`,{className:`flex flex-wrap items-center gap-2`,children:[(0,O.jsx)(`span`,{className:`mr-1 text-xs text-muted-foreground`,children:`标签`}),(0,O.jsx)(`button`,{className:`filter-chip ${i?``:`active`}`,"aria-pressed":!i,onClick:()=>a(``),children:`不限`}),le&&ye.flatMap(e=>e.tags).map(e=>(0,O.jsx)(`button`,{className:`filter-chip ${i===e?`active`:``}`,"aria-pressed":i===e,onClick:()=>a(e),children:e},e))]}),!le&&ye.map(e=>(0,O.jsxs)(`div`,{children:[(0,O.jsx)(`p`,{className:`mb-1.5 text-[11px] text-muted-foreground`,children:e.lesson.title}),(0,O.jsx)(`div`,{className:`flex flex-wrap gap-2`,children:e.tags.map(n=>(0,O.jsx)(`button`,{className:`filter-chip ${i===n?`active`:``}`,"aria-pressed":i===n,onClick:()=>{t(e.lesson.id),a(n),window.history.replaceState(null,``,zA(e.lesson.id))},children:n},n))})]},e.lesson.id))]})]})]}),_e?(0,O.jsx)(HA,{}):(0,O.jsxs)(O.Fragment,{children:[(0,O.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground`,children:[(0,O.jsx)(`output`,{children:me?`找到 ${xe} 条内容`:`按备课顺序排列`}),me&&(0,O.jsx)(`button`,{className:`filter-chip`,onClick:Ne,children:`清除筛选`})]}),be.length===0?(0,O.jsxs)(`div`,{className:`rounded-2xl border border-border bg-card p-10 text-center`,children:[(0,O.jsx)(`h2`,{className:`text-lg font-semibold`,children:Se?`本课暂无内容`:`没有找到匹配的内容`}),!Se&&(0,O.jsx)(`p`,{className:`mt-3 text-sm text-muted-foreground`,children:`换个关键词，或清除筛选后再试。`})]}):(0,O.jsx)(`div`,{className:`grid gap-6`,children:be.map(({lesson:e,items:t})=>{if(e.id===`os-workbook-20261121`){let n=[...new Set(t.map(e=>e.chapter))];return(0,O.jsxs)(`section`,{"aria-label":e.title,className:`grid gap-6`,children:[(0,O.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:(0,O.jsx)(`a`,{href:zA(e.id),children:e.title})}),n.map(n=>(0,O.jsxs)(`section`,{"aria-label":n,children:[(0,O.jsx)(`h3`,{className:`mb-3 border-b border-border pb-2 text-sm font-semibold text-primary`,children:n}),(0,O.jsx)(`div`,{className:`grid gap-3 md:grid-cols-2`,children:t.filter(e=>e.chapter===n).map(t=>Pe(e,t))})]},n))]},e.id)}let n=UA(e.id,t);return(0,O.jsxs)(`section`,{"aria-label":e.title,children:[!le&&(0,O.jsxs)(`div`,{className:`mb-3 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2`,children:[(0,O.jsx)(`h2`,{className:`font-display text-lg font-semibold`,children:(0,O.jsx)(`a`,{href:zA(e.id),className:`hover:text-primary`,children:e.title})}),(0,O.jsxs)(`span`,{className:`text-xs text-muted-foreground`,children:[t.length,` 条`]})]}),(0,O.jsx)(`div`,{className:`grid items-start gap-5 ${n.length>1?`xl:grid-cols-2`:``}`,children:n.map(t=>{if(t.type===`全部`)return(0,O.jsx)(`div`,{className:`grid gap-3 md:grid-cols-2`,children:t.items.map(t=>Pe(e,t))},t.type);let n=MA[t.type];return(0,O.jsxs)(`section`,{className:`min-w-0 rounded-2xl border border-border bg-card p-4`,"aria-label":t.title,children:[(0,O.jsxs)(`h3`,{className:`mb-4 flex flex-wrap items-center gap-2 text-sm font-semibold text-primary`,children:[(0,O.jsx)(n,{size:17}),t.title,(0,O.jsxs)(`span`,{className:`ml-auto text-xs font-normal text-muted-foreground`,children:[t.items.length,` `,t.type===`题目`?`道`:`张`]})]}),(0,O.jsx)(`div`,{className:`grid gap-3`,children:t.items.map(t=>Pe(e,t))})]},t.type)})})]},e.id)})})]})]})})]})]})]})}(0,LS.createRoot)(document.getElementById(`root`)).render((0,O.jsx)(S.StrictMode,{children:(0,O.jsx)(nj,{})}));
