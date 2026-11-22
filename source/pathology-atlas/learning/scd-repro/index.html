@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCD 复现报告：CT 部分</title>
+<meta name="description" content="Steerable Conditional Diffusion（Barbano 等，IEEE TMI 2025）的论文讲解与 CT 部分复现结果。">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=pilcrow-rounded@400,500,700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --surface-2: #2a2a2a;
+  --ink: #ffffff;
+  --muted: #a3a3a3;
+  --accent: #dafa9c;
+  --accent-ink: #0f0f0f;
+  --paper: #ffffff;
+  --paper-ink: #0f0f0f;
+  --paper-muted: #575757;
+  --paper-step: #efefef;
+  --mid: #8f8f8f;
+  --tint-1: #2c3a12;
+  --tint-2: #475d1e;
+  --tint-3: #6f8f33;
+  --tint-4: #a9cc62;
+  --tint-5: #dafa9c;
+
+  --font: "Pilcrow Rounded", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --step-small: 0.875rem;
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --step-head: clamp(2rem, 1.3rem + 3vw, 4rem);
+  --step-display: clamp(3rem, 1.2rem + 5.6vw, 6.25rem);
+
+  --margin: clamp(1rem, 2.2vw, 2rem);
+  --gutter: clamp(1rem, 2vw, 2rem);
+  --section: clamp(6rem, 12vw, 12rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-ui: 240ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: var(--step-body); line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3, h4, p, figure, blockquote, ul, ol, dl, dd { margin: 0; }
+ul[class], ol[class] { padding: 0; list-style: none; }
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+:target { scroll-margin-top: 5rem; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.paper :focus-visible { outline-color: var(--paper-ink); }
+h1, h2, h3, h4 { font-weight: 700; text-wrap: balance; }
+p { max-width: 62ch; text-wrap: pretty; }
+p + p { margin-top: 0.9em; }
+.nums { font-variant-numeric: tabular-nums; }
+.wrap { padding-inline: var(--margin); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+.paper { background: var(--paper); color: var(--paper-ink); }
+.head { font-size: var(--step-head); line-height: 1.08; letter-spacing: -0.02em; }
+.lead { font-size: var(--step-lead); line-height: 1.45; }
+.small { font-size: var(--step-small); line-height: 1.5; }
+.soft { color: var(--muted); }
+.paper .soft { color: var(--paper-muted); }
+code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.9em; overflow-wrap: anywhere; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* the one motif: an ellipse, the training domain that SCD has to unlearn */
+.oval { border-radius: 50%; overflow: clip; background: #000; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 3.6rem; padding: 0 2.4rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: var(--step-body); font-weight: 700; text-decoration: none; white-space: nowrap; transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease, color var(--t-hover) ease; }
+.button:active { transform: scale(0.96); }
+@media (hover: hover) and (pointer: fine) { .button:hover { background: var(--ink); color: var(--bg); } }
+.link { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.22em; text-decoration-thickness: 0.08em; transition: text-decoration-color var(--t-hover) ease; }
+@media (hover: hover) and (pointer: fine) { .link:hover { text-decoration-color: currentColor; } }
+
+/* ---------- header ---------- */
+.bar { position: sticky; top: 0; z-index: 20; background: var(--bg); }
+.bar__in { display: flex; align-items: center; gap: var(--gutter); min-height: 4.25rem; }
+.mark { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 700; text-decoration: none; }
+.mark i { width: 1.6rem; height: 1rem; border-radius: 50%; background: var(--accent); display: block; }
+.bar nav { margin-left: auto; display: flex; gap: clamp(1rem, 2vw, 2rem); }
+.bar nav a { text-decoration: none; }
+.bar .button { min-height: 2.9rem; padding: 0 1.6rem; }
+@media (max-width: 60em) { .bar nav { display: none; } .bar .button { margin-left: auto; } }
+body.is-embed .bar { display: none; }
+body.is-embed .hero { min-height: 100svh; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; overflow: clip; min-height: calc(100svh - 4.25rem); display: grid; align-items: center; padding-block: clamp(3rem, 6vw, 5rem); }
+.hero__blob { position: absolute; z-index: 0; width: 60vw; height: 126svh; right: -15vw; top: -13svh; border-radius: 50%; background: var(--accent); }
+.hero__in { position: relative; z-index: 1; align-items: center; row-gap: 2.5rem; }
+.hero__text { grid-column: 1 / span 7; }
+.hero h1 { font-size: var(--step-display); line-height: 1.04; letter-spacing: -0.03em; }
+.hero h1 .line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.hero h1 [data-line] { display: block; }
+.hero__lead { margin-top: 2.25rem; max-width: 21em; }
+.hero__tally { margin-top: 2.25rem; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; max-width: 34em; }
+.hero__tally div { display: flex; align-items: baseline; gap: 0.5rem; }
+.hero__tally dt { order: 2; }
+.hero__tally dd { font-size: var(--step-lead); font-weight: 700; color: var(--accent); }
+.hero__act { margin-top: 2.5rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.hero__meta { color: var(--muted); max-width: 30ch; }
+.hero__pic { grid-column: 8 / span 5; justify-self: center; width: min(100%, 520px); position: relative; }
+.fade { position: relative; aspect-ratio: 1; border-radius: 50%; overflow: clip; background: #000; }
+.fade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1600ms ease; }
+.fade img.is-on { opacity: 1; }
+.hero__cap { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); padding: 0.55rem 1.8rem; border-radius: 50%; background: var(--bg); color: var(--ink); text-align: center; white-space: nowrap; font-size: var(--step-small); line-height: 1.35; }
+.hero__cap b { display: block; font-size: var(--step-body); }
+@media (max-width: 60em) {
+  .hero { min-height: 0; }
+  .hero__blob { width: 150vw; height: 96vw; right: -40vw; top: -18vw; }
+  .hero__pic { grid-column: 1 / -1; grid-row: 1; width: min(80vw, 420px); }
+  .hero__text { grid-column: 1 / -1; }
+}
+
+/* ---------- statement ---------- */
+.statement { padding-block: clamp(6rem, 18svh, 11rem); }
+.statement p { max-width: 22em; margin-inline: auto; text-align: center; font-size: var(--step-lead); line-height: 1.5; font-weight: 500; }
+.thumb { display: inline-block; width: 1.5em; height: 1em; vertical-align: -0.14em; margin-inline: 0.14em; border-radius: 50%; overflow: clip; background: #000; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 40em) { .statement p { text-align: left; } }
+
+/* ---------- paper: problem ---------- */
+.problem { padding-block: var(--section); }
+.problem__text { grid-column: 1 / span 6; }
+.problem__text h2 { margin-bottom: 2.5rem; }
+.points { margin-top: 2.5rem; display: grid; gap: 1.4rem; }
+.points li { display: grid; grid-template-columns: 1.6rem 1fr; gap: 1rem; align-items: start; }
+.points li::before { content: ""; width: 1.6rem; height: 1rem; margin-top: 0.38em; border-radius: 50%; background: var(--paper-ink); }
+.points b { display: block; }
+.problem__fig { grid-column: 8 / span 5; align-self: center; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pair figure { text-align: center; }
+.pair .oval { aspect-ratio: 3 / 4; }
+.pair img { width: 100%; height: 100%; object-fit: cover; }
+.pair figcaption { margin-top: 0.8rem; font-weight: 700; }
+.problem__fig > p { margin-top: 1.6rem; }
+@media (max-width: 60em) { .problem__text, .problem__fig { grid-column: 1 / -1; } .problem__fig { margin-top: 3.5rem; } }
+
+/* ---------- method accordion + sampling clip ---------- */
+.method { padding-block: 0 var(--section); }
+.method__intro { align-items: end; margin-bottom: 4rem; }
+.method__intro h2 { grid-column: 1 / span 5; }
+.method__intro p { grid-column: 7 / span 6; }
+.acc { display: flex; height: 560px; }
+.stage { position: relative; flex: 0.42 1 0; min-width: 0; overflow: clip; transition: flex-grow 700ms var(--ease-in-out); }
+.stage.is-open { flex-grow: 2.6; }
+.stage:nth-child(1) { background: var(--tint-1); color: #fff; }
+.stage:nth-child(2) { background: var(--tint-2); color: #fff; }
+.stage:nth-child(3) { background: var(--tint-3); color: #0f0f0f; }
+.stage:nth-child(4) { background: var(--tint-4); color: #0f0f0f; }
+.stage:nth-child(5) { background: var(--tint-5); color: #0f0f0f; }
+.stage__btn { position: absolute; inset: 0; width: 100%; text-align: left; }
+.stage__name { position: absolute; left: 1.5rem; bottom: 1.5rem; font-size: var(--step-body); font-weight: 700; white-space: nowrap; transform-origin: left bottom; transform: rotate(-90deg) translate(0, 1.4rem); transition: transform 500ms var(--ease-out); }
+.stage.is-open .stage__name { transform: none; top: 1.75rem; bottom: auto; font-size: var(--step-lead); }
+.stage__body { position: absolute; left: 1.75rem; right: 1.75rem; bottom: 1.75rem; max-width: 40ch; opacity: 0; transform: translateY(12px); transition: opacity 300ms ease, transform 500ms var(--ease-out); pointer-events: none; }
+.stage.is-open .stage__body { opacity: 1; transform: none; transition-delay: 260ms; pointer-events: auto; }
+.stage__body .eq { font-weight: 700; margin-top: 0.9rem; }
+.clip { margin-top: clamp(4rem, 8vw, 7rem); align-items: center; }
+.clip__video { grid-column: 1 / span 8; }
+.clip__video video { width: 100%; height: auto; background: #0f0f0f; }
+.clip__labels { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; font-weight: 700; }
+.clip__text { grid-column: 9 / span 4; }
+.clip__text h3 { font-size: var(--step-lead); line-height: 1.2; margin-bottom: 1.25rem; }
+@media (max-width: 60em) {
+  .method__intro h2, .method__intro p { grid-column: 1 / -1; }
+  .method__intro p { margin-top: 1.5rem; }
+  .acc { flex-direction: column; height: auto; }
+  .stage { flex: none; min-height: 64px; }
+  .stage__btn { position: relative; inset: auto; display: block; min-height: 64px; }
+  .stage__name, .stage.is-open .stage__name { position: static; display: block; transform: none; padding: 1.1rem 1.25rem; font-size: var(--step-body); }
+  .stage__body { position: static; display: none; padding: 0 1.25rem 1.5rem; opacity: 1; transform: none; }
+  .stage.is-open .stage__body { display: block; }
+  .clip__video, .clip__text { grid-column: 1 / -1; }
+  .clip__text { margin-top: 2rem; }
+}
+
+/* ---------- claims: stepped tiles ---------- */
+.claims { padding-block: 0 var(--section); }
+.tiles { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 8px; align-items: start; }
+.tile { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 1.75rem; }
+.tile b { font-size: var(--step-head); line-height: 1; letter-spacing: -0.02em; }
+.tile span { display: block; max-width: 30ch; }
+.tile--a { grid-column: 1 / span 6; height: 64vh; min-height: 420px; background: var(--accent); color: var(--accent-ink); border-top-right-radius: 50% 22%; }
+.tile--a b { font-size: var(--step-display); }
+.tile--b { grid-column: 7 / span 3; margin-top: 14vh; height: 44vh; min-height: 300px; background: var(--paper-ink); color: var(--paper); }
+.tile--c { grid-column: 10 / span 3; margin-top: 24vh; height: 34vh; min-height: 280px; background: var(--mid); color: var(--paper-ink); }
+.claims h2 { grid-column: 7 / span 6; grid-row: 1; align-self: start; font-size: var(--step-lead); line-height: 1.2; }
+.claims__table { margin-top: 5rem; }
+@media (max-width: 60em) {
+  .tiles { row-gap: 8px; }
+  .claims h2 { grid-column: 1 / -1; grid-row: auto; margin-bottom: 1.5rem; }
+  .tile--a { grid-column: 1 / -1; height: auto; min-height: 56vw; }
+  .tile--b { grid-column: 1 / span 6; margin-top: 0; height: auto; min-height: 220px; }
+  .tile--c { grid-column: 7 / span 6; margin-top: 32px; height: auto; min-height: 220px; }
+  .tile { padding: 1.25rem; }
+  .tile--b b, .tile--c b { font-size: var(--step-lead); }
+}
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: var(--step-small); }
+caption { text-align: left; font-weight: 700; font-size: var(--step-lead); padding-bottom: 1.25rem; }
+th, td { text-align: right; padding: 0.85rem 1rem; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-weight: 500; vertical-align: bottom; background: var(--paper-step); }
+tbody tr:nth-child(even) { background: #f7f7f7; }
+td.hi { font-weight: 700; }
+.verdict { display: inline-block; padding: 0.2rem 0.9rem; border-radius: 50%; font-weight: 700; }
+.v-ok { background: var(--accent); color: var(--accent-ink); }
+.v-no { background: var(--paper-ink); color: var(--paper); }
+.v-flip { background: var(--mid); color: var(--paper-ink); }
+.notes { margin-top: 1.5rem; }
+@media (max-width: 48em) {
+  table, tbody, tr, th, td { display: block; }
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  caption { display: block; width: auto; }
+  tbody tr { padding: 1rem; margin-bottom: 8px; background: var(--paper-step); }
+  tbody tr:nth-child(even) { background: var(--paper-step); }
+  tbody th { font-size: var(--step-body); padding: 0 0 0.6rem; white-space: normal; }
+  tbody td { display: flex; justify-content: space-between; gap: 1rem; padding: 0.3rem 0; text-align: right; white-space: normal; }
+  tbody td::before { content: attr(data-l); text-align: left; color: var(--paper-muted); font-weight: 400; }
+}
+
+/* ---------- setup list ---------- */
+.setup { padding-block: var(--section); }
+.setup h2 { margin-bottom: 1rem; }
+.cat { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin: 5rem 0 2.5rem; }
+.cat h3 { font-size: var(--step-lead); line-height: 1.2; }
+.cat span { color: var(--muted); }
+.menu { display: grid; grid-template-columns: 1fr 1fr; column-gap: 4rem; row-gap: 2.25rem; }
+.item { display: grid; grid-template-columns: 64px 1fr; gap: 1.25rem; align-items: start; }
+.item .oval { width: 64px; height: 44px; margin-top: 0.2rem; }
+.item .oval img { width: 100%; height: 100%; object-fit: cover; }
+.item .dot { width: 64px; height: 44px; border-radius: 50%; background: var(--accent); margin-top: 0.2rem; }
+.item .dot--soft { background: var(--surface-2); }
+.item h4 { font-size: var(--step-body); display: flex; justify-content: space-between; gap: 1rem; }
+.item h4 em { font-style: normal; color: var(--accent); white-space: nowrap; }
+.item p { margin-top: 0.35rem; max-width: 44ch; }
+@media (max-width: 60em) { .menu { grid-template-columns: 1fr; } .item { grid-template-columns: 52px 1fr; } .item .oval, .item .dot { width: 52px; height: 36px; } }
+
+/* ---------- results: plate + tabs ---------- */
+.results { padding-block: var(--section); }
+.results__head { margin-bottom: 3.5rem; align-items: end; }
+.results__head h2 { grid-column: 1 / span 6; }
+.results__head p { grid-column: 7 / span 6; }
+.show { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); min-height: 88svh; background: var(--paper-step); padding: clamp(1.25rem, 3vw, 2.5rem); }
+.plate { align-self: center; justify-self: center; width: min(100%, 640px); }
+.cmp { position: relative; aspect-ratio: 1; background: #000; overflow: clip; touch-action: pan-y; }
+.cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.cmp .cmp__left { clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
+.cmp__handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 0; pointer-events: none; }
+.cmp__handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: -2px; width: 4px; background: var(--accent); }
+.cmp__handle::after { content: ""; position: absolute; top: 50%; left: -30px; width: 60px; height: 40px; margin-top: -20px; border-radius: 50%; background: var(--accent); }
+.cmp__tag { position: absolute; bottom: 1rem; padding: 0.3rem 1rem; border-radius: 50%; background: var(--bg); color: var(--ink); font-weight: 700; font-size: var(--step-small); pointer-events: none; }
+.cmp__tag--l { left: 1rem; } .cmp__tag--r { right: 1rem; background: var(--accent); color: var(--accent-ink); }
+.cmp input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.plate__foot { margin-top: 1rem; display: flex; justify-content: space-between; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.toggle { min-height: 2.9rem; padding: 0 1.5rem; border-radius: 50%; background: var(--paper); font-weight: 700; transition: background-color var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+.toggle[aria-pressed=true] { background: var(--paper-ink); color: var(--paper); }
+.toggle:active { transform: scale(0.96); }
+.side { display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; padding: clamp(0.5rem, 2vw, 1.5rem); }
+.tabs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.tabs button { color: var(--paper-muted); font-weight: 500; padding: 0.3rem 0; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.35em; text-decoration-thickness: 0.12em; transition: color var(--t-hover) ease, text-decoration-color var(--t-hover) ease; }
+.tabs button[aria-selected=true] { color: var(--paper-ink); font-weight: 700; text-decoration-color: currentColor; }
+@media (hover: hover) and (pointer: fine) { .tabs button:hover { color: var(--paper-ink); } }
+.side h3 { font-size: var(--step-lead); line-height: 1.2; }
+.side__desc { margin-top: 1.25rem; max-width: 36ch; }
+.cells { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cell { padding: 1.4rem 1.5rem; min-height: 9rem; display: flex; flex-direction: column; justify-content: space-between; }
+.cell b { font-size: var(--step-head); line-height: 1; letter-spacing: -0.02em; }
+.cell--ours { background: var(--paper-ink); color: var(--paper); }
+.cell--paper { background: var(--accent); color: var(--accent-ink); }
+.side__note { margin-top: 0.8rem; }
+@media (max-width: 60em) {
+  .results__head h2, .results__head p { grid-column: 1 / -1; }
+  .results__head p { margin-top: 1.25rem; }
+  .show { grid-template-columns: 1fr; min-height: 0; }
+}
+.tablesec { margin-top: var(--section); }
+.chartblock { margin-top: var(--section); align-items: start; }
+.chartblock__text { grid-column: 1 / span 4; }
+.chartblock__text h3, .walnut__text h3 { font-size: var(--step-lead); line-height: 1.2; margin-bottom: 1.25rem; }
+.chartblock__fig { grid-column: 6 / span 7; }
+.legend { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 0.5rem; }
+.legend i { width: 1.6rem; height: 1rem; border-radius: 50%; display: inline-block; }
+.walnut { margin-top: var(--section); align-items: center; }
+.walnut__pics { grid-column: 1 / span 7; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+.walnut__pics figure { text-align: center; }
+.walnut__pics .oval { aspect-ratio: 3 / 4; }
+.walnut__pics img { width: 100%; height: 100%; object-fit: cover; }
+.walnut__pics figcaption { margin-top: 0.7rem; font-weight: 700; }
+.walnut__pics figcaption span { display: block; font-weight: 400; font-size: var(--step-small); }
+.walnut__text { grid-column: 9 / span 4; }
+@media (max-width: 60em) { .chartblock__text, .chartblock__fig, .walnut__pics, .walnut__text { grid-column: 1 / -1; } .chartblock__fig, .walnut__text { margin-top: 2.5rem; } .walnut__pics { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- tuning board ---------- */
+.tuning { padding-block: var(--section); }
+.board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.board > * { min-height: 15rem; padding: 1.6rem; background: var(--surface); display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+.board .board__head { grid-column: span 2; background: var(--accent); color: var(--accent-ink); border-top-left-radius: 50% 30%; }
+.board .board__head h2 { font-size: var(--step-head); line-height: 1.08; }
+.board b { font-size: var(--step-lead); line-height: 1.2; }
+.board p { max-width: 40ch; }
+@media (max-width: 60em) { .board { grid-template-columns: 1fr 1fr; } .board .board__head { grid-column: 1 / -1; } .board > * { min-height: 12rem; padding: 1.2rem; } }
+@media (max-width: 30em) { .board { grid-template-columns: 1fr; } }
+
+/* ---------- diagnosis faq ---------- */
+.diag { padding-block: var(--section); }
+.diag__head { grid-column: 1 / span 4; }
+.diag__head > div { position: sticky; top: 6rem; }
+.diag__head h2 { font-size: var(--step-head); line-height: 1.08; }
+.diag__head p { margin-top: 1.5rem; }
+.diag__head .pair { margin-top: 2.5rem; }
+.diag__list { grid-column: 5 / span 8; display: grid; gap: 8px; align-content: start; }
+details { background: var(--paper-step); transition: background-color var(--t-ui) ease; }
+details[open] { background: var(--accent); color: var(--accent-ink); }
+summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; padding: 1rem 1.5rem; font-weight: 700; }
+summary::-webkit-details-marker { display: none; }
+.pm { position: relative; flex: none; width: 16px; height: 16px; }
+.pm::before, .pm::after { content: ""; position: absolute; left: 0; top: 6.5px; width: 16px; height: 3px; background: currentColor; transition: transform var(--t-ui) var(--ease-out); }
+.pm::after { transform: rotate(90deg); }
+details[open] .pm::after { transform: rotate(0deg); }
+.ans { padding: 0 1.5rem 1.6rem; max-width: 60ch; }
+.ans p + p { margin-top: 0.7em; }
+.ans ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+@media (max-width: 60em) { .diag__head, .diag__list { grid-column: 1 / -1; } .diag__head > div { position: static; } .diag__list { margin-top: 2.5rem; } summary { min-height: 4rem; padding: 0.9rem 1.25rem; } .ans { padding: 0 1.25rem 1.25rem; } }
+
+/* ---------- cta band ---------- */
+.cta { display: block; position: relative; min-height: max(60svh, calc(min(26vw, 24rem) * 0.82 + 20rem)); background: var(--accent); color: var(--accent-ink); text-decoration: none; border-top-left-radius: 50% 14%; border-top-right-radius: 50% 14%; overflow: clip; transition: background-color 120ms ease, color 120ms ease; }
+.cta:hover, .cta:focus-visible { background: var(--paper-ink); color: var(--accent); }
+.cta__note { position: absolute; left: var(--margin); top: clamp(4rem, 9svh, 6rem); max-width: 30ch; font-size: var(--step-lead); line-height: 1.35; }
+.cta__arrow { position: absolute; right: var(--margin); top: clamp(4rem, 9svh, 6rem); width: 48px; height: 48px; }
+.cta__word { position: absolute; left: var(--margin); right: var(--margin); bottom: 24px; font-size: clamp(7rem, 26vw, 24rem); line-height: 0.82; font-weight: 700; letter-spacing: -0.04em; }
+@media (max-width: 40em) { .cta { min-height: max(52svh, calc(7rem * 0.82 + 20rem)); } .cta__note { max-width: 18ch; } .cta__arrow { width: 32px; height: 32px; } }
+
+/* ---------- footer ---------- */
+.foot { padding-block: 5rem 2.5rem; }
+.foot__mark { height: 34svh; min-height: 200px; }
+.foot__mark svg { width: 100%; height: 100%; }
+.foot__cols { margin-top: 3.5rem; row-gap: 2rem; }
+.foot__cols > div { grid-column: span 3; }
+.foot__cols h3 { font-size: var(--step-body); margin-bottom: 0.75rem; }
+.foot__cols ul { display: grid; gap: 0.45rem; font-size: var(--step-small); list-style: none; padding: 0; margin: 0; }
+.foot__last { margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: var(--step-small); }
+.foot__last .button { min-height: 2.9rem; padding: 0 1.5rem; }
+@media (max-width: 60em) { .foot__cols > div { grid-column: span 6; } .foot__mark { height: 22svh; } }
+
+/* ---------- motion (content stays visible without JavaScript or with reduced motion) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero [data-line] { transform: translateY(105%); animation: line-up 850ms var(--ease-expo) forwards; animation-delay: calc(100ms + var(--i) * 90ms); }
+  .js .hero [data-load] { opacity: 0; transform: translateY(14px); animation: rise 520ms var(--ease-out) forwards; animation-delay: var(--d); }
+  .js .hero__blob { transform: translateX(10%) scale(0.94); animation: blob-in 1200ms var(--ease-expo) 60ms forwards; }
+  .js .hero__pic { opacity: 0; transform: scale(0.95); animation: pic-in 1000ms var(--ease-expo) 200ms forwards; }
+  .js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-expo); transition-delay: calc(var(--i, 0) * 80ms); }
+  .js [data-reveal].is-in { opacity: 1; transform: none; }
+  .js [data-open] { clip-path: ellipse(40% 40% at 50% 50%); transition: clip-path 900ms var(--ease-in-out); transition-delay: calc(var(--i, 0) * 80ms); }
+  .js [data-open].is-in { clip-path: ellipse(75% 75% at 50% 50%); }
+  .js [data-open] img { transform: scale(1.08); transition: transform 1300ms var(--ease-soft); transition-delay: calc(var(--i, 0) * 80ms); }
+  .js [data-open].is-in img { transform: none; }
+  .walnut__pics .oval img, .pair .oval img { transition: transform 600ms var(--ease-soft); }
+  @media (hover: hover) and (pointer: fine) { .walnut__pics figure:hover img, .pair figure:hover img { transform: scale(1.06); } }
+  .hero__blob.is-drifting { animation: drift 14s var(--ease-soft) infinite alternate; }
+}
+@keyframes line-up { to { transform: none; } }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@keyframes blob-in { to { transform: none; } }
+@keyframes pic-in { to { opacity: 1; transform: none; } }
+@keyframes drift { from { transform: none; } to { transform: scale(1.03) translate(-1%, 1%); } }
+</style>
+</head>
+<body>
+
+<header class="bar wrap">
+  <div class="bar__in">
+    <a class="mark" href="#top"><i></i>SCD 复现</a>
+    <nav aria-label="页面导航">
+      <a class="link" href="#paper">论文讲解</a>
+      <a class="link" href="#method">方法</a>
+      <a class="link" href="#results">结果</a>
+      <a class="link" href="#diagnosis">诊断</a>
+      <a class="link" href="#setup">复现设置</a>
+      <a class="link" href="../../?domain=mri&amp;paper=31-scd" target="_top">精读地图</a>
+    </nav>
+    <a class="button" href="#results">看结果</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero wrap" aria-labelledby="title">
+  <div class="hero__blob" aria-hidden="true"></div>
+  <div class="grid hero__in">
+    <div class="hero__text">
+      <h1 id="title"><span class="line"><span data-line style="--i:0">SCD 的 CT 部分</span></span><span class="line"><span data-line style="--i:1">复现了一半</span></span></h1>
+      <p class="lead hero__lead" data-load style="--d:420ms">官方代码按论文协议调参后，四个可复现设置里两个与论文一致；论文主打的“椭圆先验重建腹部 CT”没有复现，SCD 反而比 DDS 低 0.9 dB。</p>
+      <dl class="hero__tally nums" data-load style="--d:520ms">
+        <div><dt>个设置复现</dt><dd>2</dd></div>
+        <div><dt>个方向相反</dt><dd>1</dd></div>
+        <div><dt>个没复现</dt><dd>1</dd></div>
+        <div><dt>个表 Ⅰ 设置缺代码或数据</dt><dd>3</dd></div>
+      </dl>
+      <div class="hero__act" data-load style="--d:600ms">
+        <a class="button" href="#results">拖动比较 DDS 与 SCD</a>
+        <p class="small hero__meta">论文：Barbano、Denker、Chung 等，IEEE TMI 2025。复现：2026 年 11 月 21 日，全部为自跑结果。</p>
+      </div>
+    </div>
+    <figure class="hero__pic">
+      <div class="fade" id="fade">
+        <img class="is-on" src="assets/walnut_gt.png" width="512" height="512" alt="核桃 µCT 切片的真值图" fetchpriority="high" data-cap="真值" data-num="核桃 µCT，60 个角度">
+        <img src="assets/walnut_dps.png" width="512" height="512" alt="DPS 重建的核桃，可以看到重叠的椭圆伪影" data-cap="DPS 23.70 dB" data-num="满是椭圆伪影">
+        <img src="assets/walnut_dds.png" width="512" height="512" alt="DDS 重建的核桃，中央残留椭圆边缘" data-cap="DDS 26.80 dB" data-num="中央残留椭圆边缘">
+        <img src="assets/walnut_scd.png" width="512" height="512" alt="SCD 重建的核桃，最干净" data-cap="SCD 28.23 dB" data-num="椭圆伪影基本消失">
+      </div>
+      <figcaption class="hero__cap" aria-live="polite"><b id="capTop">真值</b><span id="capSub">核桃 µCT，60 个角度</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="statement wrap" aria-label="一句话说明论文">
+  <p data-reveal>用 <span class="thumb"><img src="assets/thumb_ellipses.png" width="256" height="256" alt="椭圆仿真训练图"></span> 椭圆训练的模型重建 <span class="thumb"><img src="assets/thumb_aapm.png" width="256" height="256" alt="AAPM 腹部 CT 切片"></span> 腹部 CT，会画进训练集特有的东西；SCD 只用这一次的 <span class="thumb"><img src="assets/thumb_sinogram.png" width="256" height="256" alt="60 个角度的投影数据"></span> 测量，边采样边微调模型。</p>
+</section>
+
+<div class="paper">
+
+<section class="problem wrap" id="paper" aria-labelledby="h-paper">
+  <div class="grid">
+    <div class="problem__text">
+      <h2 class="head" id="h-paper" data-reveal>训练域之外会发生什么</h2>
+      <p data-reveal style="--i:1">扩散模型做 CT、MRI 重建时，先验来自训练集。测试图像一旦来自别的分布，条件采样（DPS、DDS）仍能让结果大体符合测量，但测量约束不到的部分，模型会用训练集里的形状去填。论文把这叫作“只在训练集中存在的特征”。</p>
+      <p data-reveal style="--i:2">已有的补救办法要么需要目标域的干净图像来微调，要么需要大量不同协议的测量来从头训练。SCD 的定位是：只用当前这一次测量 y，在重建的同时把模型调过去。</p>
+      <ul class="points" data-reveal style="--i:3">
+        <li><div><b>单次测量、自监督。</b>适配目标是让模型的去噪估计经过数据一致性之后，与测量吻合：最小化 ‖A·x̂′₀ − y‖²。</div></li>
+        <li><div><b>LoRA 残差通路。</b>每个卷积层加一条低秩分支，只训练约 0.5–2.5% 的参数；初始为零，关掉就回到原模型。</div></li>
+        <li><div><b>噪声项仍用原网络。</b>DDIM 更新里的确定性噪声由未适配的网络给出，避免它作为多噪声级去噪器“变味”。</div></li>
+        <li><div><b>可选 TV 正则、可跳步适配。</b>每隔 k 步才适配一次，k 越大越接近 DDS。</div></li>
+      </ul>
+    </div>
+    <figure class="problem__fig">
+      <div class="pair">
+        <figure><div class="oval" data-open><img src="assets/aapm2ellipses_dds.png" width="512" height="512" alt="AAPM 先验用 DDS 重建椭圆体模，底部出现 AAPM 扫描床的弧线" loading="lazy"></div><figcaption>DDS</figcaption></figure>
+        <figure><div class="oval" data-open style="--i:1"><img src="assets/aapm2ellipses_scd.png" width="512" height="512" alt="同一测量用 SCD 重建，扫描床弧线消失" loading="lazy"></div><figcaption>SCD</figcaption></figure>
+      </div>
+      <p data-reveal>自跑结果。用腹部 CT（AAPM）训练的模型重建椭圆体模：DDS 在底部画出了 AAPM 训练图里扫描床的弧线，SCD 把它去掉了。这正是论文说的“训练集特有特征”。</p>
+    </figure>
+  </div>
+</section>
+
+<section class="method wrap" id="method" aria-labelledby="h-method">
+  <div class="grid method__intro">
+    <h2 class="head" id="h-method" data-reveal>一步采样里发生什么</h2>
+    <p data-reveal style="--i:1">SCD 建在 DDS 之上。每一个采样步都按下面五个阶段走一遍，前三步是 DDS 本来就有的，第四步是 SCD 新加的。点一个阶段展开它，每段先给比方，再给准确说法。</p>
+  </div>
+  <div class="acc" id="acc" data-reveal>
+    <div class="stage is-open">
+      <button class="stage__btn" aria-expanded="true" aria-controls="st1"><span class="stage__name">扩散先验</span></button>
+      <div class="stage__body" id="st1"><p>比方：一个只见过训练集的画家，学会了把满屏雪花一点点擦成一张图。</p><p>准确说：网络 ε(x_t, t; θ*) 预测每个噪声级别下的噪声，它学到的“图像该长什么样”就是先验。</p></div>
+    </div>
+    <div class="stage">
+      <button class="stage__btn" aria-expanded="false" aria-controls="st2"><span class="stage__name">偷看答案</span></button>
+      <div class="stage__body" id="st2"><p>比方：擦到一半，让画家先说出最终的图大概是什么样。</p><p>准确说：Tweedie 估计给出当前对干净图的最佳猜测。</p><p class="eq">x̂₀ = (x_t − √(1−ᾱ_t)·ε) / √ᾱ_t</p></div>
+    </div>
+    <div class="stage">
+      <button class="stage__btn" aria-expanded="false" aria-controls="st3"><span class="stage__name">CG 校正（DDS）</span></button>
+      <div class="stage__body" id="st3"><p>比方：在碗里找碗底，共轭梯度每一步换一个不破坏前面进展的方向，几步就到底。</p><p>准确说：求一张既靠近 x̂₀、又满足 A·x ≈ y 的图。只在图像上修正，不对网络求导，DDS 单张约 6 秒。</p><p class="eq">(I + γAᵀA)·x = x̂₀ + γAᵀy</p></div>
+    </div>
+    <div class="stage">
+      <button class="stage__btn" aria-expanded="false" aria-controls="st4"><span class="stage__name">LoRA 适配（SCD）</span></button>
+      <div class="stage__body" id="st4"><p>比方：不重新培训画家，只在他手边贴几张便利贴；画出来对不上影子，就改便利贴。</p><p>准确说：每层加低秩分支 W + α·BCᵀ，每步用 Adam 更新 K 次，目标是 ‖A·x̂′₀(Δθ) − y‖²（可加 TV）。换一张图就重置。</p></div>
+    </div>
+    <div class="stage">
+      <button class="stage__btn" aria-expanded="false" aria-controls="st5"><span class="stage__name">走下一步</span></button>
+      <div class="stage__body" id="st5"><p>比方：拿着改好的答案，往下走一级台阶。</p><p>准确说：DDIM 更新用适配后网络得到的 x̂′₀，噪声项仍用原网络的 ε。SCD 单张约 48 秒，是 DDS 的 8 倍。</p><p class="eq">x_{t−1} = √ᾱ_{t−1}·x̂′₀ + 噪声项 + 随机项</p></div>
+    </div>
+  </div>
+
+  <div class="grid clip">
+    <figure class="clip__video" data-reveal>
+      <video src="assets/sampling.mp4" poster="assets/sampling_poster.png" width="792" height="384" muted loop playsinline autoplay preload="metadata" aria-label="DDS 与 SCD 从噪声到核桃的采样过程"></video>
+      <figcaption class="clip__labels nums"><span>DDS，最后 26.80 dB</span><span>SCD，最后 27.16 dB</span></figcaption>
+    </figure>
+    <div class="clip__text">
+      <h3 data-reveal>从雪花到核桃</h3>
+      <p data-reveal style="--i:1">两边是同一次测量、同一个椭圆先验，从同一片噪声出发；每一帧是该步网络给出的去噪估计 x̂₀。DDS 每步只做数据一致性校正，SCD 每隔 5 步还把模型微调 18 次。</p>
+      <p class="small soft" data-reveal style="--i:2">自跑。官方采样器原样运行，只包装模型调用来记录中间结果；参数为 README 示例与代码默认值。</p>
+    </div>
+  </div>
+</section>
+
+<section class="claims wrap" id="claims" aria-labelledby="h-claims">
+  <div class="tiles">
+    <h2 id="h-claims" data-reveal>论文声称的增益，SCD 相对 DDS</h2>
+    <div class="tile tile--a" data-reveal><b class="nums">+3.16 dB</b><span>椭圆先验重建 AAPM 腹部 CT（论文表 Ⅰ）。论文的主打例子，也是本次没有复现的那一个。</span></div>
+    <div class="tile tile--b" data-reveal style="--i:1"><b class="nums">+2.30 dB</b><span>AAPM 先验重建椭圆体模（表 Ⅰ）。本次复现为 +1.85 dB。</span></div>
+    <div class="tile tile--c" data-reveal style="--i:2"><b class="nums">+0.84 dB</b><span>多线圈 MRI，大脑先验重建膝关节（表 Ⅱ）。仓库没有 MRI 代码。</span></div>
+  </div>
+
+  <div class="claims__table" data-reveal>
+    <table>
+      <caption>论文报告的 PSNR（dB），60 个角度、1% 噪声</caption>
+      <thead><tr><th scope="col">训练域 → 测试域</th><th scope="col">RED-diff</th><th scope="col">DDS</th><th scope="col">SCD</th><th scope="col">SCD − DDS</th><th scope="col">本次能否复现</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">AAPM → AAPM</th><td data-l="RED-diff">38.37</td><td data-l="DDS">39.55</td><td data-l="SCD" class="hi">39.73</td><td data-l="SCD − DDS">+0.18</td><td data-l="本次能否复现">能</td></tr>
+        <tr><th scope="row">AAPM → LoDoPaB</th><td data-l="RED-diff">31.09</td><td data-l="DDS">31.20</td><td data-l="SCD" class="hi">34.21</td><td data-l="SCD − DDS">+3.01</td><td data-l="本次能否复现">缺数据接口</td></tr>
+        <tr><th scope="row">AAPM → Ellipses</th><td data-l="RED-diff">32.67</td><td data-l="DDS">33.11</td><td data-l="SCD" class="hi">35.41</td><td data-l="SCD − DDS">+2.30</td><td data-l="本次能否复现">能</td></tr>
+        <tr><th scope="row">Ellipses → Ellipses</th><td data-l="RED-diff">35.51</td><td data-l="DDS" class="hi">36.91</td><td data-l="SCD">36.02</td><td data-l="SCD − DDS">−0.89</td><td data-l="本次能否复现">能</td></tr>
+        <tr><th scope="row">Ellipses → AAPM</th><td data-l="RED-diff">29.75</td><td data-l="DDS">30.82</td><td data-l="SCD" class="hi">33.98</td><td data-l="SCD − DDS">+3.16</td><td data-l="本次能否复现">能</td></tr>
+        <tr><th scope="row">Ellipses → LoDoPaB</th><td data-l="RED-diff">31.25</td><td data-l="DDS">31.80</td><td data-l="SCD" class="hi">33.42</td><td data-l="SCD − DDS">+1.62</td><td data-l="本次能否复现">缺数据接口</td></tr>
+        <tr><th scope="row">BrainWeb → AAPM</th><td data-l="RED-diff">32.24</td><td data-l="DDS">29.83</td><td data-l="SCD" class="hi">34.58</td><td data-l="SCD − DDS">+4.75</td><td data-l="本次能否复现">缺模型和数据</td></tr>
+        <tr><th scope="row">MRI 大脑 → 膝（表 Ⅱ）</th><td data-l="RED-diff">28.92</td><td data-l="DDS">29.47</td><td data-l="SCD" class="hi">30.31</td><td data-l="SCD − DDS">+0.84</td><td data-l="本次能否复现">没有 MRI 代码</td></tr>
+        <tr><th scope="row">核桃 µCT，真实测量（图 3）</th><td data-l="RED-diff">24.17</td><td data-l="DDS">24.00</td><td data-l="SCD" class="hi">26.68</td><td data-l="SCD − DDS">+2.68</td><td data-l="本次能否复现">只能仿真测量</td></tr>
+      </tbody>
+    </table>
+    <p class="notes small soft">MRI 一行取自表 Ⅱ，那张表另有 DDNM 一列（26.98）；核桃一行取自图 3，另有 DPS 22.07、DIP+TV 26.67（按最佳早停，偏乐观）。论文称超参在 10 张验证图上按 PSNR 调出，但表 Ⅰ 各任务的具体超参没有公开。</p>
+  </div>
+</section>
+
+</div>
+
+<section class="setup wrap" id="setup" aria-labelledby="h-setup">
+  <h2 class="head" id="h-setup" data-reveal>复现是怎么做的</h2>
+  <p data-reveal style="--i:1">只调用官方脚本，不改一行代码；按论文的协议，先在 10 张验证图上调参，再在测试集上评估。</p>
+
+  <div class="cat"><h3 data-reveal>用到的东西</h3><span data-reveal>6 项</span></div>
+  <ul class="menu">
+    <li class="item" data-reveal><span class="dot" aria-hidden="true"></span><div><h4>官方代码 <em>53b74a6</em></h4><p><code>alexdenker/SteerableConditionalDiffusion</code>，最新提交“remove dependence on ODL”。</p></div></li>
+    <li class="item" data-reveal style="--i:1"><span class="oval"><img src="assets/thumb_ellipses.png" width="256" height="256" alt="椭圆仿真图" loading="lazy"></span><div><h4>Ellipses 先验 <em>1.50 GB</em></h4><p>README 的 Google Drive 链接，经 gpu04 代理下载。</p></div></li>
+    <li class="item" data-reveal style="--i:2"><span class="oval"><img src="assets/thumb_aapm.png" width="256" height="256" alt="AAPM 腹部切片" loading="lazy"></span><div><h4>AAPM 先验与 L067 <em>448 张</em></h4><p>README 的 Dropbox 包与 DDIP3D 的包同为 6.37 GB，直接复用已下载的那份。同源属于推断。</p></div></li>
+    <li class="item" data-reveal style="--i:3"><span class="oval"><img src="assets/thumb_sinogram.png" width="256" height="256" alt="60 个角度的投影数据" loading="lazy"></span><div><h4>测量模拟 <em>60 角 · 1%</em></h4><p>平行束、60 个角度、1% 相对高斯噪声，与论文第 V 节一致。</p></div></li>
+    <li class="item" data-reveal style="--i:4"><span class="dot dot--soft" aria-hidden="true"></span><div><h4>数据划分 <em>10 / 56 / 100</em></h4><p>AAPM 验证 10 张、测试 56 张，Ellipses 测试 100 张，与论文第 IV 节完全一致。</p></div></li>
+    <li class="item" data-reveal style="--i:5"><span class="dot" aria-hidden="true"></span><div><h4>调参协议 <em>按 PSNR</em></h4><p>DDS 扫 γ、CG 步数、eta；SCD 扫学习率与适配调度，沿用 DDS 的最优数据一致性设置。</p></div></li>
+  </ul>
+
+  <div class="cat"><h3 data-reveal>代码与论文的出入</h3><span data-reveal>6 处</span></div>
+  <ul class="menu">
+    <li class="item" data-reveal><span class="dot dot--soft" aria-hidden="true"></span><div><h4>只有 CT <em>缺 3 个设置</em></h4><p>没有 LoDoPaB、BrainWeb 的数据接口，也没有 MRI 代码。</p></div></li>
+    <li class="item" data-reveal style="--i:1"><span class="dot dot--soft" aria-hidden="true"></span><div><h4>算子换了 <em>ODL → torch</em></h4><p>论文用 ODL；代码改成 torch 实现的 Radon，没有归一化。</p></div></li>
+    <li class="item" data-reveal style="--i:2"><span class="dot dot--soft" aria-hidden="true"></span><div><h4>步数写死 <em>100 / 50</em></h4><p>代码里 SCD 100 步、DDS 50 步；论文写的是 SCD 50 步、DDS 100 步。</p></div></li>
+    <li class="item" data-reveal style="--i:3"><span class="dot dot--soft" aria-hidden="true"></span><div><h4>参数名写反 <em>K ↔ r</em></h4><p>代码里 K 是每步适配次数，r 是 LoRA 秩；README 的说明正好相反。</p></div></li>
+    <li class="item" data-reveal style="--i:4"><span class="oval"><img src="assets/walnut_gt.png" width="512" height="512" alt="核桃切片" loading="lazy"></span><div><h4>核桃是仿真 <em>非真实测量</em></h4><p>代码从一张真值图仿真测量；论文图 3 用真实扫描数据、128 个探测器像素。</p></div></li>
+    <li class="item" data-reveal style="--i:5"><span class="dot dot--soft" aria-hidden="true"></span><div><h4>种子固定 <em>seed 5</em></h4><p>脚本写死随机种子，每个设置只能跑一次；超参也只公开了核桃示例。</p></div></li>
+  </ul>
+</section>
+
+<div class="paper">
+<section class="results wrap" id="results" aria-labelledby="h-results">
+  <div class="grid results__head">
+    <h2 class="head" id="h-results" data-reveal>四个设置的测试结果</h2>
+    <p data-reveal style="--i:1">选一个设置，拖动中间的分割线，左边是 DDS，右边是 SCD。每个设置显示的那张测试图，是增益最接近全集平均的一张。</p>
+  </div>
+
+  <div class="show" data-reveal>
+    <div class="plate">
+      <div class="cmp" id="cmp" style="--pos:50%">
+        <img id="imgR" src="assets/aapm2ellipses_scd.png" width="512" height="512" alt="SCD 重建">
+        <img id="imgL" class="cmp__left" src="assets/aapm2ellipses_dds.png" width="512" height="512" alt="DDS 重建">
+        <div class="cmp__handle" aria-hidden="true"></div>
+        <span class="cmp__tag cmp__tag--l" id="tagL">DDS</span>
+        <span class="cmp__tag cmp__tag--r">SCD</span>
+        <label class="sr-only" for="pos">分割线位置</label>
+        <input type="range" id="pos" min="0" max="100" value="50">
+      </div>
+      <div class="plate__foot">
+        <button class="toggle" id="gtToggle" aria-pressed="false">左侧换成真值</button>
+        <span class="small nums" id="imgNums">这张：DDS 33.18 · SCD 35.03 dB</span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="tabs" role="tablist" aria-label="选择设置">
+        <button role="tab" aria-selected="true" data-k="aapm2ellipses">AAPM → Ellipses</button>
+        <button role="tab" aria-selected="false" data-k="ellipses2aapm" tabindex="-1">Ellipses → AAPM</button>
+        <button role="tab" aria-selected="false" data-k="ellipses2ellipses" tabindex="-1">Ellipses → Ellipses</button>
+        <button role="tab" aria-selected="false" data-k="aapm2aapm" tabindex="-1">AAPM → AAPM</button>
+      </div>
+      <div aria-live="polite">
+        <h3 id="sTitle">复现了，幅度略小</h3>
+        <p class="side__desc" id="sDesc">AAPM 先验重建椭圆体模。DDS 把训练集里扫描床的弧线画了进来，SCD 去掉了它；100 张测试图里 SCD 全部更好。</p>
+      </div>
+      <div>
+        <div class="cells nums">
+          <div class="cell cell--ours"><b id="cOurs">+1.85</b><span>自跑 SCD − DDS（dB）</span></div>
+          <div class="cell cell--paper"><b id="cPaper">+2.30</b><span>论文 SCD − DDS（dB）</span></div>
+        </div>
+        <p class="small side__note nums" id="sNote">测试集 100 张 · 配对差 ±0.03（标准误）· SCD 更好 100/100</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tablesec" data-reveal>
+    <table>
+      <caption>测试集 PSNR / SSIM，调参后（自跑）与论文对照</caption>
+      <thead><tr><th scope="col">训练域 → 测试域</th><th scope="col">自跑 DDS</th><th scope="col">自跑 SCD</th><th scope="col">配对差 SCD − DDS</th><th scope="col">SCD 更好</th><th scope="col">论文 DDS</th><th scope="col">论文 SCD</th><th scope="col">判断</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">AAPM → AAPM（56 张）</th><td data-l="自跑 DDS">39.81 / 0.951</td><td data-l="自跑 SCD">39.73 / 0.951</td><td data-l="配对差">−0.09 ± 0.04</td><td data-l="SCD 更好">14 / 56</td><td data-l="论文 DDS">39.55 / 0.951</td><td data-l="论文 SCD">39.73 / 0.952</td><td data-l="判断"><span class="verdict v-ok">复现</span></td></tr>
+        <tr><th scope="row">AAPM → Ellipses（100 张）</th><td data-l="自跑 DDS">32.46 / 0.808</td><td data-l="自跑 SCD" class="hi">34.31 / 0.919</td><td data-l="配对差" class="hi">+1.85 ± 0.03</td><td data-l="SCD 更好">100 / 100</td><td data-l="论文 DDS">33.11 / 0.787</td><td data-l="论文 SCD">35.41 / 0.954</td><td data-l="判断"><span class="verdict v-ok">复现</span></td></tr>
+        <tr><th scope="row">Ellipses → Ellipses（100 张）</th><td data-l="自跑 DDS">35.32 / 0.952</td><td data-l="自跑 SCD" class="hi">36.37 / 0.962</td><td data-l="配对差">+1.05 ± 0.02</td><td data-l="SCD 更好">100 / 100</td><td data-l="论文 DDS">36.91 / 0.972</td><td data-l="论文 SCD">36.02 / 0.968</td><td data-l="判断"><span class="verdict v-flip">方向相反</span></td></tr>
+        <tr><th scope="row">Ellipses → AAPM（56 张）</th><td data-l="自跑 DDS" class="hi">31.30 / 0.814</td><td data-l="自跑 SCD">30.39 / 0.778</td><td data-l="配对差" class="hi">−0.90 ± 0.13</td><td data-l="SCD 更好">5 / 56</td><td data-l="论文 DDS">30.82 / 0.847</td><td data-l="论文 SCD">33.98 / 0.883</td><td data-l="判断"><span class="verdict v-no">未复现</span></td></tr>
+      </tbody>
+    </table>
+    <p class="notes small soft">“±”为配对差的标准误。随机种子由脚本固定，每个设置跑一次。用 README 和代码默认参数时，四个设置的 SCD 只有 29.21–33.78 dB，比论文低 3–7 dB；上表是按论文协议调参之后的结果。</p>
+  </div>
+
+  <div class="grid chartblock">
+    <div class="chartblock__text">
+      <h3 data-reveal>增益对照</h3>
+      <p data-reveal style="--i:1">每组两根条：上面是自跑的 SCD − DDS，下面是论文的。两个 AAPM 先验的设置与论文同向；椭圆先验的两个设置都和论文不一致，其中 Ellipses → AAPM 差了 4 dB。</p>
+      <div class="legend small" data-reveal style="--i:2"><span><i style="background:#0f0f0f"></i>自跑</span><span><i style="background:#a9cc62"></i>论文</span></div>
+    </div>
+    <figure class="chartblock__fig" data-reveal style="--i:1">
+      <svg viewBox="0 0 720 430" role="img" aria-labelledby="chartTitle">
+        <title id="chartTitle">SCD 相对 DDS 的 PSNR 增益，自跑与论文对照</title>
+        <g font-size="16" fill="#0f0f0f" font-family="Pilcrow Rounded, PingFang SC, sans-serif">
+          <rect x="359" y="10" width="2" height="392" fill="#0f0f0f"/>
+          <g fill="#575757" font-size="14" text-anchor="middle"><text x="270" y="424">−1</text><text x="360" y="424">0 dB</text><text x="450" y="424">+1</text><text x="540" y="424">+2</text><text x="630" y="424">+3</text></g>
+          <text x="0" y="40" font-weight="700">AAPM → AAPM</text>
+          <rect x="352" y="52" width="8" height="22" fill="#0f0f0f"/><text x="344" y="69" text-anchor="end">−0.09</text>
+          <rect x="360" y="78" width="16" height="22" fill="#a9cc62"/><text x="384" y="95">+0.18</text>
+          <text x="0" y="140" font-weight="700">AAPM → Ellipses</text>
+          <rect x="360" y="152" width="167" height="22" fill="#0f0f0f"/><text x="535" y="169">+1.85</text>
+          <rect x="360" y="178" width="207" height="22" fill="#a9cc62"/><text x="575" y="195">+2.30</text>
+          <text x="0" y="240" font-weight="700">Ellipses → Ellipses</text>
+          <rect x="360" y="252" width="95" height="22" fill="#0f0f0f"/><text x="463" y="269">+1.05</text>
+          <rect x="280" y="278" width="80" height="22" fill="#a9cc62"/><text x="272" y="295" text-anchor="end">−0.89</text>
+          <text x="0" y="340" font-weight="700">Ellipses → AAPM</text>
+          <rect x="279" y="352" width="81" height="22" fill="#0f0f0f"/><text x="271" y="369" text-anchor="end">−0.90</text>
+          <rect x="360" y="378" width="284" height="22" fill="#a9cc62"/><text x="652" y="395">+3.16</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+
+  <div class="grid walnut">
+    <div class="walnut__pics">
+      <figure><div class="oval" data-open><img src="assets/walnut_gt.png" width="512" height="512" alt="核桃真值" loading="lazy"></div><figcaption>真值<span>测量来源</span></figcaption></figure>
+      <figure><div class="oval" data-open style="--i:1"><img src="assets/walnut_dps.png" width="512" height="512" alt="DPS 重建的核桃" loading="lazy"></div><figcaption>DPS<span class="nums">23.70，论文 22.07</span></figcaption></figure>
+      <figure><div class="oval" data-open style="--i:2"><img src="assets/walnut_dds.png" width="512" height="512" alt="DDS 重建的核桃" loading="lazy"></div><figcaption>DDS<span class="nums">26.80，论文 24.00</span></figcaption></figure>
+      <figure><div class="oval" data-open style="--i:3"><img src="assets/walnut_scd.png" width="512" height="512" alt="SCD 重建的核桃" loading="lazy"></div><figcaption>SCD<span class="nums">28.23，论文 26.68</span></figcaption></figure>
+    </div>
+    <div class="walnut__text">
+      <h3 data-reveal>核桃：排序一致</h3>
+      <p data-reveal style="--i:1">用 README 里的原命令跑核桃，SCD &gt; DDS &gt; DPS，和论文图 3 一样；DPS 满是重叠的椭圆，DDS 中央还残留椭圆边缘，SCD 最干净。SCD 比 DDS 高 1.42 dB，论文是 2.68 dB。</p>
+      <p data-reveal style="--i:2">绝对数值不可比：代码用仿真测量，论文用真实扫描数据。SCD 在这张图上随机性很大：同样的设置共跑了三次（官方脚本一次，录制采样过程两次），得到 28.23、27.16、22.35 dB；DDS 两次都是 26.80。</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="tuning wrap" id="tuning" aria-labelledby="h-tuning">
+  <div class="board">
+    <div class="board__head" data-reveal><h2 id="h-tuning">调参前后差在哪</h2><p>直接用 README 和代码默认值，所有设置都比论文低 3–7 dB（测试集 DDS 25.67–32.40，SCD 29.21–33.78）。下面是调参时找到的关键因素。</p></div>
+    <div data-reveal style="--i:1"><b>eta 0.2 → 1.0</b><p>代码默认 0.2。AAPM → AAPM 验证集上，DDS 从 32.19 升到 39.68 dB，与论文 39.55 对上。</p></div>
+    <div data-reveal style="--i:2"><b>γ ≥ 1 不起作用</b><p>torch 版 Radon 没有归一化，γ·AᵀA 远大于单位阵，γ 取 1、10、100 结果一样。</p></div>
+    <div data-reveal style="--i:3"><b>CG 步数要多</b><p>椭圆相关设置最优为 7–10 步，AAPM → AAPM 只要 2 步；再多反而变差。</p></div>
+    <div data-reveal style="--i:4"><b>TV 大 11 倍</b><p>README 的 alphatv=1e-3 下，TV 项 2.70，数据项的噪声底线只有 0.25；梯度范数差 11–45 倍。</p></div>
+    <div data-reveal style="--i:5"><b>学习率 3e-4</b><p>SCD 三个设置最优是 lr 3e-4、每 5 步适配 18 次；AAPM → AAPM 是 1e-4。</p></div>
+    <div data-reveal style="--i:6"><b>两种调度相近</b><p>每 5 步 18 次与每步 4 次（接近论文）在验证集上最多差 0.13 dB。</p></div>
+  </div>
+</section>
+
+<div class="paper">
+<section class="diag wrap" id="diagnosis" aria-labelledby="h-diag">
+  <div class="grid">
+    <div class="diag__head">
+      <div>
+        <h2 id="h-diag" data-reveal>主打例子为何没复现</h2>
+        <p data-reveal style="--i:1">椭圆先验重建 AAPM 腹部 CT：论文 +3.16 dB，自跑 −0.90 dB。逐项排查如下。</p>
+        <div class="pair" data-reveal style="--i:2">
+          <figure><div class="oval" style="aspect-ratio:3/4"><img src="assets/ellipses2aapm_dds.png" width="512" height="512" alt="椭圆先验 DDS 重建的腹部 CT" loading="lazy"></div><figcaption class="nums">DDS 31.69</figcaption></figure>
+          <figure><div class="oval" style="aspect-ratio:3/4"><img src="assets/ellipses2aapm_scd.png" width="512" height="512" alt="椭圆先验 SCD 重建的腹部 CT，纹理更噪" loading="lazy"></div><figcaption class="nums">SCD 30.79</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="diag__list">
+      <details name="diag" open data-reveal>
+        <summary>结果到底差多少？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>测试集 56 张：DDS 31.30 dB，SCD 30.39 dB，配对差 −0.90 ± 0.13，只有 5 张 SCD 更好。论文是 DDS 30.82、SCD 33.98。DDS 这一侧和论文只差 0.5 dB，问题出在 SCD 的增益上。</p></div>
+      </details>
+      <details name="diag" data-reveal style="--i:1">
+        <summary>是 TV 正则太强吗？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>README 设置下 TV 项确实压过数据项：t=500 时 TV 约 2.6、数据项约 0.48。但把 alphatv 降到 1e-5 或 1e-6，验证集只有 30.74–30.81 dB，仍低于 DDS 的 31.22。TV 不是主因。</p></div>
+      </details>
+      <details name="diag" data-reveal style="--i:2">
+        <summary>是适配根本没起作用吗？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>不是。用官方模块测 LoRA 梯度：t=900 时数据项梯度最大值 3.9；Adam 走一步，x̂₀ 平均改变 3.5×10⁻²，与 TV 项同一量级。适配在动，只是没有往好的方向动。</p></div>
+      </details>
+      <details name="diag" data-reveal style="--i:3">
+        <summary>换学习率和调度呢？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>验证集上一共试了 12 组：学习率 1e-4、3e-4、1e-3，调度“每 5 步 18 次”和“每步 4 次”，TV 三档。最好 31.03 dB，没有一组超过 DDS。</p></div>
+      </details>
+      <details name="diag" data-reveal style="--i:4">
+        <summary>图像上看是什么样？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>调好参数的 DDS 已经看不到明显的椭圆伪影；SCD 没有被过度平滑，但软组织纹理更噪，底部边缘出现少量条纹。左侧是测试集里增益最接近平均的一张。</p></div>
+      </details>
+      <details name="diag" data-reveal style="--i:5">
+        <summary>可能的原因是什么？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>以下都是推断，没有验证：</p><ul><li>论文用 ODL 算子，代码改成了未归一化的 torch Radon；</li><li>论文 SCD 用 50 步，代码写死 100 步；</li><li>表 Ⅰ 各任务的超参没有公开；</li><li>论文数字可能来自更早的代码版本。</li></ul></div>
+      </details>
+      <details name="diag" data-reveal style="--i:6">
+        <summary>接下来可以怎么做？<span class="pm" aria-hidden="true"></span></summary>
+        <div class="ans"><p>最直接的是向作者要表 Ⅰ 的超参和当时的代码版本。也可以自己把步数和算子改回论文的设定再试，但那就不再是“原样复现”，要单独标注。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+</div>
+
+<a class="cta" href="mailto:?subject=Question%20on%20SCD%20(TMI%202025)%3A%20Table%20I%20hyper-parameters%20for%20Ellipses%E2%86%92AAPM&body=Dear%20authors%2C%0A%0AI%20am%20reproducing%20the%20sparse-view%20CT%20part%20of%20%22Steerable%20Conditional%20Diffusion%20for%20Out-of-Distribution%20Adaptation%20in%20Medical%20Image%20Reconstruction%22%20with%20the%20public%20repository%20(commit%2053b74a6).%20After%20tuning%20on%20the%2010%20validation%20slices%20as%20described%20in%20the%20paper%2C%20AAPM%E2%86%92AAPM%20and%20AAPM%E2%86%92Ellipses%20match%20Table%20I%20closely%2C%20but%20for%20Ellipses%E2%86%92AAPM%20I%20obtain%20DDS%2031.30%20dB%20and%20SCD%2030.39%20dB%20on%20the%2056%20test%20slices%20(paper%3A%2030.82%20%2F%2033.98).%0A%0ACould%20you%20share%20the%20hyper-parameters%20used%20for%20Table%20I%20(lr%2C%20LoRA%20rank%2C%20adaptation%20steps%2C%20gamma%2C%20CG%20iterations%2C%20eta%2C%20alpha_TV%2C%20number%20of%20sampling%20steps)%20and%20whether%20the%20results%20were%20produced%20with%20the%20earlier%20ODL-based%20operator%3F%0A%0AThank%20you%20very%20much.%0A" aria-label="写信给作者：打开一封写好的英文邮件草稿">
+  <span class="cta__note">向作者要 Ellipses → AAPM 的超参和当时的代码版本。点这里打开写好的英文邮件草稿，收件人未填。</span>
+  <svg class="cta__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 36 L36 12 M16 12 H36 V32" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span class="cta__word">写信</span>
+</a>
+
+</main>
+
+<footer class="foot wrap">
+  <div class="foot__mark" aria-hidden="true">
+    <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax meet">
+      <ellipse cx="150" cy="190" rx="150" ry="110" fill="#dafa9c"/>
+      <ellipse cx="410" cy="215" rx="104" ry="85" fill="#ffffff"/>
+      <ellipse cx="600" cy="150" rx="82" ry="150" fill="#dafa9c"/>
+      <ellipse cx="790" cy="235" rx="104" ry="65" fill="#8f8f8f"/>
+      <ellipse cx="1030" cy="170" rx="170" ry="130" fill="#ffffff"/>
+      <text x="1030" y="192" text-anchor="middle" font-size="64" font-weight="700" fill="#0f0f0f" font-family="Pilcrow Rounded, PingFang SC, sans-serif">SCD</text>
+    </svg>
+  </div>
+  <div class="grid foot__cols">
+    <div><h3>论文</h3><ul><li><a class="link" href="https://arxiv.org/abs/2308.14409">arXiv 2308.14409</a></li><li>IEEE TMI 2025</li><li>Barbano, Denker, Chung 等</li></ul></div>
+    <div><h3>代码</h3><ul><li><a class="link" href="https://github.com/alexdenker/SteerableConditionalDiffusion">GitHub 仓库</a></li><li>提交 53b74a6，未改动</li><li>MIT 许可</li></ul></div>
+    <div><h3>gpu04 上的记录</h3><ul><li><code>/data1/kxchen/scdrepro/RECORD.md</code></li><li><code>logs/orchestrate.log</code></li><li><code>orchestrate.py</code>、<code>grad_probe.py</code></li></ul></div>
+    <div><h3>本站</h3><ul><li><a class="link" href="../../?domain=mri&amp;paper=31-scd" target="_top">回到论文精读地图</a></li><li><a class="link" href="../dds-story.html" target="_top">DDS 精读</a></li><li>本页图片与视频均为自跑输出；论文数字摘自表 Ⅰ、表 Ⅱ、图 3</li></ul></div>
+  </div>
+  <div class="foot__last"><span>2026 年 11 月 21 日 · 复现结果未经作者确认</span><a class="button" href="#top">回到顶部</a></div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // reveal once; never leaves content hidden
+  const targets = document.querySelectorAll('[data-reveal],[data-open]');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    targets.forEach((el) => io.observe(el));
+    addEventListener('load', () => setTimeout(() => targets.forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('is-in'); }), 2500));
+  } else targets.forEach((el) => el.classList.add('is-in'));
+
+  // signature: slow crossfade of the walnut reconstructions
+  const imgs = [...document.querySelectorAll('#fade img')];
+  const capTop = document.getElementById('capTop'), capSub = document.getElementById('capSub');
+  let k = 0, timer = null;
+  const step = () => { imgs[k].classList.remove('is-on'); k = (k + 1) % imgs.length; imgs[k].classList.add('is-on'); capTop.textContent = imgs[k].dataset.cap; capSub.textContent = imgs[k].dataset.num; };
+  const start = () => { if (!reduce && !timer) timer = setInterval(step, 5200); };
+  const stop = () => { clearInterval(timer); timer = null; };
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  start();
+  if (!reduce) setTimeout(() => document.querySelector('.hero__blob').classList.add('is-drifting'), 1400);
+
+  // sampling clip: no autoplay under reduced motion
+  const vid = document.querySelector('.clip video');
+  if (reduce && vid) { vid.removeAttribute('autoplay'); vid.pause(); vid.controls = true; }
+
+  // method accordion
+  const stages = [...document.querySelectorAll('.stage')];
+  stages.forEach((s) => s.querySelector('.stage__btn').addEventListener('click', () => {
+    stages.forEach((o) => { o.classList.toggle('is-open', o === s); o.querySelector('.stage__btn').setAttribute('aria-expanded', o === s ? 'true' : 'false'); });
+  }));
+
+  // the live thing: DDS vs SCD on a real test image of each setting
+  const D = {
+    aapm2ellipses: { title: '复现了，幅度略小', desc: 'AAPM 先验重建椭圆体模。DDS 把训练集里扫描床的弧线画了进来，SCD 去掉了它；100 张测试图里 SCD 全部更好。', ours: '+1.85', paper: '+2.30', note: '测试集 100 张 · 配对差 ±0.03（标准误）· SCD 更好 100/100', img: 'DDS 33.18 · SCD 35.03' },
+    ellipses2aapm: { title: '主打例子，没有复现', desc: '椭圆先验重建腹部 CT。调好参数的 DDS 已无明显椭圆伪影，SCD 纹理更噪、底部有条纹；56 张里只有 5 张 SCD 更好。', ours: '−0.90', paper: '+3.16', note: '测试集 56 张 · 配对差 ±0.13（标准误）· SCD 更好 5/56', img: 'DDS 31.69 · SCD 30.79' },
+    ellipses2ellipses: { title: '同域，方向和论文相反', desc: '椭圆先验重建椭圆体模。论文里 SCD 略差于 DDS，自跑 SCD 反而在 100 张上全部更好。', ours: '+1.05', paper: '−0.89', note: '测试集 100 张 · 配对差 ±0.02（标准误）· SCD 更好 100/100', img: 'DDS 34.50 · SCD 35.55' },
+    aapm2aapm: { title: '同域，与论文一致', desc: 'AAPM 先验重建 AAPM。SCD 39.73 dB 与论文完全相同，和 DDS 基本持平；同域下适配几乎没有可改进的空间。', ours: '−0.09', paper: '+0.18', note: '测试集 56 张 · 配对差 ±0.04（标准误）· SCD 更好 14/56', img: 'DDS 39.52 · SCD 39.44' }
+  };
+  const cmp = document.getElementById('cmp'), pos = document.getElementById('pos');
+  const imgL = document.getElementById('imgL'), imgR = document.getElementById('imgR'), tagL = document.getElementById('tagL');
+  const gt = document.getElementById('gtToggle');
+  let cur = 'aapm2ellipses';
+  const setLeft = () => { const g = gt.getAttribute('aria-pressed') === 'true'; imgL.src = `assets/${cur}_${g ? 'gt' : 'dds'}.png`; imgL.alt = g ? '真值' : 'DDS 重建'; tagL.textContent = g ? '真值' : 'DDS'; };
+  pos.addEventListener('input', () => cmp.style.setProperty('--pos', pos.value + '%'));
+  gt.addEventListener('click', () => { gt.setAttribute('aria-pressed', gt.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); setLeft(); });
+  const tabs = [...document.querySelectorAll('.tabs button')];
+  const select = (b) => {
+    cur = b.dataset.k; const d = D[cur];
+    tabs.forEach((o) => { const on = o === b; o.setAttribute('aria-selected', on ? 'true' : 'false'); o.tabIndex = on ? 0 : -1; });
+    imgR.src = `assets/${cur}_scd.png`; setLeft();
+    document.getElementById('sTitle').textContent = d.title;
+    document.getElementById('sDesc').textContent = d.desc;
+    document.getElementById('cOurs').textContent = d.ours;
+    document.getElementById('cPaper').textContent = d.paper;
+    document.getElementById('sNote').textContent = d.note;
+    document.getElementById('imgNums').textContent = '这张：' + d.img + ' dB';
+  };
+  tabs.forEach((b) => b.addEventListener('click', () => select(b)));
+  document.querySelector('.tabs').addEventListener('keydown', (e) => {
+    const i = tabs.indexOf(document.activeElement); if (i < 0) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); select(n); }
+  });
+})();
+</script>
+</body>
+</html>
