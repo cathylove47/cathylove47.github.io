@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Noise Trajectory Search 推理走查｜同一 latent，只换噪声轨迹，分类器得分 0.43→1.0</title><meta name="description" content="Noise Trajectory Search（NeurIPS 2025）EDM backend 走查：同一 latent / 同一 ImageNet 类别，naive 与 ε-greedy 的 final classifier score 分别为 0.432 与 0.998（3 个 seed）。">
+<link rel="stylesheet" href="dds-story.css"><style>
+:root{--border:var(--line);--accent:var(--green)}.paper-main{min-width:0}code{overflow-wrap:anywhere;word-break:break-word}.table-wrap{overflow:auto;max-width:100%}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{font-weight:600}.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--soft);border:1px solid var(--border);border-radius:6px;padding:16px;overflow:auto}.paper-figure{margin:26px 0}.paper-figure img{display:block;width:100%;height:auto;background:white;border:1px solid var(--border);border-radius:6px}.paper-figure figcaption{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}.checklist li{margin-bottom:10px}
+</style></head><body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../?domain=diffusion&amp;paper=43-noise-trajectory-search" target="_top">论文精读地图 / 扩散与测试时适配</a><div class="toplinks"><a href="../?domain=diffusion&amp;paper=43-noise-trajectory-search" target="_top">精读页</a><a href="#verdict">结论</a><a href="#results">结果</a><a href="#examples">样例</a><a href="#limits">局限</a></div></div></header>
+<div class="paper-doc"><aside class="paper-sidebar" aria-label="阅读目录"><p class="side-eyebrow">NOISE TRAJECTORY SEARCH · 推理走查</p><nav><a href="#verdict"><b>00</b>一句话结论</a><a href="#ran"><b>01</b>跑了什么</a><a href="#env"><b>02</b>环境与改动</a><a href="#results"><b>03</b>结果</a><a href="#examples"><b>04</b>样例</a><a href="#limits"><b>05</b>没跑的部分</a><a href="#files"><b>06</b>文件位置</a><a href="#sources"><b>07</b>来源</a></nav><div class="sidebar-foot">推理走查 · 2026-11-23<br>服务器 gpu04 · 代码 @ e2c8f29<br>产物 /data1/kxchen/infer-repro/noise-trajectory-search</div></aside>
+<main class="paper-main">
+
+<section class="opening" id="verdict"><p class="eyebrow">INFERENCE WALKTHROUGH / NOT A REPRODUCTION</p><h1>同一张噪声，<br><em>只换轨迹。</em></h1><p class="opening-deck">用作者代码与 EDM ImageNet-64 条件模型，固定同一 latent、同一 ImageNet 类别（207 golden retriever），分别用 naive 采样与论文的 ε-greedy 噪声轨迹搜索跑 3 个 seed。分类器奖励从 <strong>0.432</strong>（0.17–0.65）升到 <strong>0.998</strong>（0.9975–0.9989），两张图逐像素 PSNR 只有 6.6–9.3 dB。方向与论文一致，幅度更大；只是 1 张图/类×3 seed 的小样本，不是论文指标。</p><div class="publication"><span class="highlight">只跑推理</span><span>EDM backend · ImageNet-64 · class 207 · 3 seeds</span></div></section>
+
+<section class="chapter" id="ran"><div class="chapter-heading"><span class="chapter-number">01</span><h2>跑了什么</h2></div><div class="narrative"><p>只跑 EDM backend（<code>--backend edm --scorer imagenet</code>，18 步随机 EDM 采样器）。对比 <code>naive</code> 与 <code>eps_greedy</code>：每步 N=4 个候选、K=20 次局部搜索、ε=0.4、λ=0.15，与论文 Table 1 的超参一致，全部用 <code>main.py</code> 默认值。seed 0/1/2，每 seed 生成 1 张 64×64 图，打印脚本自己的 final average classifier score。</p><p>SD backend 没跑：需要 HF stable-diffusion-v1-5 全套权重（数 GB），且与 EDM 结论重复。</p></div></section>
+
+<section class="chapter" id="env"><div class="chapter-heading"><span class="chapter-number">02</span><h2>环境与改动</h2></div><div class="narrative"><p>独立 conda env（python 3.9.23）。与 <code>environment.yml</code> 的偏差：原文件钉 python&lt;3.10 + pytorch 1.12.1，但 torch 1.12 的 CUDA 11.3 轮子不支持 sm_89（4090），换成 <strong>torch 2.1.2+cu118</strong>、torchvision 0.16.2；<code>transformers</code> 4.57 与 torch 2.1.2 不兼容（缺 <code>_pytree.register_pytree_node</code>），降到 4.44.2。numpy 1.26.4。</p><p>权重：EDM <code>edm-imagenet-64x64-cond-adm.pkl</code>（1.18 GB）+ OpenAI <code>64x64_classifier.pt</code>（261 MB），都从官方 CDN 下到本目录，用 <code>--network_pkl</code> 指向本地 pkl，并把 <code>HOME</code> 指到论文目录让分类器缓存落在 <code>./.cache</code>。</p><p>代码改动 3 处，均为可复现性/环境必需：<code>edm/main.py:13</code> 的无条件 <code>CUDA_VISIBLE_DEVICES="0"</code> 改 <code>setdefault</code>（否则抢卡）；在抽 latent/类别<strong>之前</strong> <code>torch.manual_seed</code>（原代码 seed 太晚，naive 与 ε-greedy 会拿到不同类别，无法对比）；新增 <code>--class_label</code> 与 <code>--network_pkl</code>。算法超参未改。</p></div></section>
+
+<section class="chapter" id="results"><div class="chapter-heading"><span class="chapter-number">03</span><h2>结果</h2></div><div class="table-wrap"><table><thead><tr><th>seed</th><th>naive（分类器得分）</th><th>ε-greedy（N=4, K=20）</th></tr></thead><tbody>
+<tr><td>0</td><td>0.6487</td><td>0.9975</td></tr>
+<tr><td>1</td><td>0.4775</td><td>0.9989</td></tr>
+<tr><td>2</td><td>0.1700</td><td>0.9978</td></tr>
+<tr><td><strong>均值</strong></td><td><strong>0.432</strong></td><td><strong>0.998</strong></td></tr>
+</tbody></table></div><div class="narrative"><p>同一 latent、同一类别下，两种方法的像素 PSNR 只有 9.26 / 9.11 / 6.58 dB——差异确实来自噪声轨迹，而不是初始噪声或类别。耗时：naive 18 步约 1.5 s（11–14 步/s）；ε-greedy 每步 7–9 s、18 步约 150 s（每步 20 次局部搜索 × 4 候选 ≈ 80 次网络评估）。GPU 1（24 GB，共享）上逐进程采样峰值 2018 MiB，与 naive 同量级。</p><p>naive 的 seed 间波动（0.17–0.65）复现了论文「单次采样的噪声实现强烈影响质量」的动机；ε-greedy 全部挤在 0.998 附近，说明搜索几乎把每个 latent 都推到了分类器的高分区。论文 Table 1 的 naive/ε-greedy 是 0.3778/0.9885（36 张图平均），本走查的单张数值落在同一区间。</p></div></section>
+
+<section class="chapter" id="examples"><div class="chapter-heading"><span class="chapter-number">04</span><h2>样例</h2></div><figure class="paper-figure"><img src="infer-assets/nts-montage.jpg" alt="六张金毛犬图：左列 naive，右列 ε-greedy，每行一个 seed" loading="lazy"><figcaption>左列 naive，右列 ε-greedy，每行一个 seed（4× 放大）。同 latent 下 naive 的构图与颜色更随机，ε-greedy 的毛发/姿态更「标准」、颜色更饱和。目检 6 张都确实是 golden retriever，但 naive 的 seed 2 明显更差（得分 0.17）。</figcaption></figure></section>
+
+<section class="chapter" id="limits"><div class="chapter-heading"><span class="chapter-number">05</span><h2>没跑的部分与局限</h2></div><div class="narrative"><ul class="checklist"><li><strong>样本量极小</strong>：1 张图/类 × 3 seed，只能看方向，不能当作论文的类平均/FID 指标。</li><li><strong>奖励与评测同源</strong>：用分类器概率当奖励又用它评测，只能说明「搜到了分类器喜欢的方向」。</li><li><strong>SD backend 未跑</strong>：CLIP/brightness/compressibility 奖励、文生图与 SDXL+ImageReward 都没验证。</li><li><strong>基线不全</strong>：只跑 naive 与 eps_greedy，MCTS / beam / zero-order / rejection 未跑，无法复现论文的对比表。</li><li><strong>环境偏离</strong>：torch 从 1.12.1 换到 2.1.2，数值可能与论文略有差异（超参未动）。</li></ul></div></section>
+
+<section class="chapter" id="files"><div class="chapter-heading"><span class="chapter-number">06</span><h2>文件位置</h2></div><div class="code-box">cd /data1/kxchen/infer-repro/noise-trajectory-search/code
+export HOME=/data1/kxchen/infer-repro/noise-trajectory-search
+CUDA_VISIBLE_DEVICES=1 ../env/bin/python -u main.py --backend edm --scorer imagenet \
+  --method {naive|eps_greedy} --class_label 207 --seed {0,1,2} \
+  --network_pkl ../ckpt/edm-imagenet-64x64-cond-adm.pkl --output ../out/{name}.png</div><div class="table-wrap"><table><thead><tr><th>路径</th><th>内容</th></tr></thead><tbody><tr><td><code>/data1/kxchen/infer-repro/noise-trajectory-search</code></td><td>代码（官方 @ e2c8f29）+ <code>env/</code> + <code>ckpt/</code></td></tr><tr><td><code>out/naive_c207_s{0,1,2}.png</code>, <code>out/epsgreedy_c207_s{0,1,2}.png</code></td><td>6 张生成图</td></tr><tr><td><code>out/montage_naive_vs_epsgreedy.png</code></td><td>本页样例的原始拼图</td></tr><tr><td><code>logs/{naive,epsgreedy,seeds}.log</code>, <code>logs/run_*.sh</code></td><td>三组日志与复跑脚本</td></tr><tr><td><code>RECORD.md</code></td><td>完整记录与坑位</td></tr></tbody></table></div></section>
+
+<section class="chapter" id="sources"><h2>来源</h2><ol><li><a href="https://arxiv.org/abs/2506.03164">Noise Trajectory Search 论文（arXiv:2506.03164，NeurIPS 2025）</a>与<a href="https://github.com/rvignav/diffusion-tts">官方仓库</a>。</li><li>权重：<a href="https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/">EDM ImageNet-64 条件模型（NVIDIA CDN）</a>、OpenAI ADM 64×64 分类器。</li><li>本页数字来自服务器日志中脚本打印的 final average classifier score 与逐张 PSNR 计算；<code>RECORD.md</code> 是原始记录。全部为小样本走查，不等同论文指标。</li></ol></section>
+
+</main></div>
+<footer class="page-footer"><span>Noise Trajectory Search 推理走查 · 2026-11-23</span><span>产物：/data1/kxchen/infer-repro/noise-trajectory-search</span></footer>
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('is-embed');
+</script>
+</body></html>

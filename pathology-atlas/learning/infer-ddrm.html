@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DDRM 推理走查｜20 步、6 张 OOD 图，两种线性退化</title><meta name="description" content="用 DDRM 官方实现与 ADM 无条件 ImageNet 权重，在 6 张 256×256 分布外自然图上做 4× 超分与均匀去模糊，20 步。SR 24.49 dB、去模糊 38.24 dB。小样本推理走查，不等同论文指标。">
+<link rel="stylesheet" href="dds-story.css"><style>
+:root{--border:var(--line);--accent:var(--green)}.paper-main{min-width:0}code{overflow-wrap:anywhere;word-break:break-word}.table-wrap{overflow:auto;max-width:100%}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{font-weight:600}.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--soft);border:1px solid var(--border);border-radius:6px;padding:16px;overflow-wrap:anywhere}.paper-figure{margin:26px 0}.paper-figure img{display:block;width:100%;height:auto;background:white;border:1px solid var(--border);border-radius:6px}.paper-figure figcaption{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+</style></head><body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../?domain=diffusion&amp;paper=29-ddrm" target="_top">论文精读地图 / 扩散阅读室</a><div class="toplinks"><a href="../?domain=diffusion&amp;paper=29-ddrm" target="_top">精读页</a><a href="#verdict">结论</a><a href="#results">结果</a><a href="#examples">样例</a><a href="#limits">局限</a></div></div></header>
+<div class="paper-doc"><aside class="paper-sidebar" aria-label="阅读目录"><p class="side-eyebrow">DDRM · 推理走查</p><nav><a href="#verdict"><b>00</b>一句话结论</a><a href="#ran"><b>01</b>跑了什么</a><a href="#env"><b>02</b>环境与改动</a><a href="#results"><b>03</b>结果</a><a href="#examples"><b>04</b>样例</a><a href="#limits"><b>05</b>没跑的部分</a><a href="#files"><b>06</b>文件位置</a><a href="#sources"><b>07</b>来源</a></nav><div class="sidebar-foot">推理走查 · 2026-11-22<br>服务器 gpu04 · 上游 32b6b3c<br>产物 /data1/kxchen/infer-repro/ddrm</div></aside>
+<main class="paper-main">
+
+<section class="opening" id="verdict"><p class="eyebrow">INFERENCE WALKTHROUGH / NOT A REPRODUCTION</p><h1>20 步跑通，<br><em>数字只说明管线是对的。</em></h1><p class="opening-deck">用作者仓库与 OpenAI ADM 无条件 ImageNet 权重，在 README 指定的 6 张 256×256 分布外自然图上跑两个线性任务：4× 平均池化超分（σ₀=0.05）与 3×3 均匀核去模糊（σ₀=0）。20 步、η=0.85、η_B=1。SR 六张平均 <strong>24.49 dB</strong>，去模糊 <strong>38.24 dB</strong>。没有跑 ImageNet 1k 验证集，也没有算 FID/KID/LPIPS，所以与论文 Table 1/2 不可比。</p><div class="publication"><span class="highlight">只跑推理</span><span>2 个任务 × 6 张图 × 20 步</span><span>无 FID</span></div><div class="paper-identity"><div><strong>论文</strong>Denoising Diffusion Restoration Models（arXiv:2201.11793，NeurIPS 2022）</div><div><strong>代码</strong>github.com/bahjat-kawar/ddrm @ 32b6b3c</div></div></section>
+
+<section class="chapter" id="ran"><div class="chapter-heading"><span class="chapter-number">01</span><h2>跑了什么</h2></div><div class="narrative"><p>目标只有一个：确认「SVD 谱域扩散 + 三情形逐分量更新」这条管线在真实权重上能跑出像样的图，并记录每一步的输入输出。数据用 README 指定的演示图集（<code>jiamings/ddrm-exp-datasets</code> 的 <code>ood/0/orig_0..5.png</code>，6 张 256×256 RGB），而不是 ImageNet 验证集——后者要下完整 val 集，超出本次流量约束。</p><p>两个任务都按论文的任务定义构造：4× 平均池化超分（加 σ₀=0.05 测量噪声）、3×3 均匀核去模糊（无噪）。采样步数 20，与论文主表一致；<code>eta=0.85</code>、<code>etaB=1</code> 取 README 默认与附录 E 的实践值。</p></div></section>
+
+<section class="chapter" id="env"><div class="chapter-heading"><span class="chapter-number">02</span><h2>环境与改动</h2></div><div class="narrative"><p>官方 <code>environment.yml</code> 是 Python 3.9 + PyTorch 1.10.1 + cu113，在 4090 上不稳，换成 Python 3.10 + <strong>torch 2.1.2+cu118</strong> + torchvision 0.16.2 + numpy 1.24.4；只装了运行必需的 numpy/scipy/pyyaml/tensorboard/pillow/tqdm。权重是 openaipublic 的 <code>256x256_diffusion_uncond.pt</code>（2.1 GB），按代码期望的 <code>data/exp/logs/imagenet/</code> 布局软链进去。</p><p><strong>代码改动只有一处</strong>：新增 <code>configs/imagenet_256_ood.yml</code>，它是 <code>imagenet_256.yml</code> 的副本，只改数据源三行（<code>subset_1k: False</code>、<code>out_of_dist: True</code>、<code>num_workers: 8</code>），因为 README 的 OOD 分支要配 out-of-dist 数据目录，而默认 config 写死了 1k 清单。算法、采样、超参一行未动。</p></div></section>
+
+<section class="chapter" id="results"><div class="chapter-heading"><span class="chapter-number">03</span><h2>结果</h2></div><div class="table-wrap"><table><thead><tr><th>任务</th><th>步数</th><th>σ₀</th><th>平均 PSNR（6 张）</th><th>输出目录</th></tr></thead><tbody><tr><td>4× 平均池化超分</td><td>20</td><td>0.05</td><td><strong>24.49 dB</strong></td><td><code>data/exp/image_samples/sr4_sigma_0.05/</code></td></tr><tr><td>3×3 均匀核去模糊</td><td>20</td><td>0.0</td><td><strong>38.24 dB</strong></td><td><code>data/exp/image_samples/deblur_uni_sigma_0.0/</code></td></tr></tbody></table></div><div class="narrative"><p>每个任务目录都保存 <code>orig_i.png</code>（原图）、<code>y0_i.png</code>（退化观测）、<code>i_-1.png</code>（复原）。6 张一批、20 步，单卡 24 GB 上约 7 s/任务（含加载），显存远未吃满。</p><p><strong>这只是小样本推理走查（6 张，非论文 1k 张 ImageNet val），数值不等同论文指标。</strong>它只能说明：退化观测被正确构造、复原结果向原图收敛、管线没有数值问题。定性上 SR×4 恢复了轮廓与部分纹理，去模糊几乎与原图无差别（38 dB 量级），与「均匀去模糊病态性低」的预期一致。</p></div></section>
+
+<section class="chapter" id="examples"><div class="chapter-heading"><span class="chapter-number">04</span><h2>样例</h2></div><figure class="paper-figure"><img src="infer-assets/ddrm-1.jpg" alt="三行分别为 3 张图；每行从左到右为原图、4 倍平均池化后的观测、DDRM 20 步复原" loading="lazy"><figcaption>三行是 6 张演示图中的前 3 张；每行从左到右：原图 / 4× 平均池化观测（σ=0.05 噪声）/ DDRM 20 步复原。SR 结果轮廓正确、面部与建筑结构可辨认，与论文图 1 的趋势一致；分辨率的损失是任务本身的上限。</figcaption></figure></section>
+
+<section class="chapter" id="limits"><div class="chapter-heading"><span class="chapter-number">05</span><h2>没跑的部分与局限</h2></div><ol class="checklist"><li><strong>没有全量评测</strong>：未跑 ImageNet 1k 验证集，未算 FID/KID/LPIPS（缺 inception 统计与全量数据），因此不能与 Table 1/2 的任何数字对照。</li><li><strong>没有 CelebA-HQ 分支</strong>：需另下 <code>celeba_hq.ckpt</code>，不在本次范围。</li><li><strong>只覆盖两种线性算子</strong>：修复、上色、bicubic 超分未跑。</li><li><strong>超参未调</strong>：η=0.85、η_B=1 是 README/附录默认，没有做 η 网格搜索。</li><li><strong>样本是 OOD 图</strong>：这 6 张图用于检验「ImageNet 模型在分布外仍可用」，不是评测集。</li></ol></section>
+
+<section class="chapter" id="files"><div class="chapter-heading"><span class="chapter-number">06</span><h2>文件位置</h2></div><div class="code-box">cd /data1/kxchen/infer-repro/ddrm/code
+
+# 4x 超分，sigma_0=0.05，20 步
+../env/bin/python main.py --ni --config imagenet_256_ood.yml --doc imagenet_ood \
+  --timesteps 20 --eta 0.85 --etaB 1 --deg sr4 --sigma_0 0.05 -i sr4_sigma_0.05 \
+  --exp /data1/kxchen/infer-repro/ddrm/data/exp
+
+# 3x3 均匀核去模糊，sigma_0=0.0，20 步
+../env/bin/python main.py --ni --config imagenet_256_ood.yml --doc imagenet_ood \
+  --timesteps 20 --eta 0.85 --etaB 1 --deg deblur_uni --sigma_0 0.0 -i deblur_uni_sigma_0.0 \
+  --exp /data1/kxchen/infer-repro/ddrm/data/exp</div><div class="table-wrap"><table><thead><tr><th>路径</th><th>内容</th></tr></thead><tbody><tr><td><code>/data1/kxchen/infer-repro/ddrm/code</code></td><td>官方仓库 @ 32b6b3c，+ 一个 OOD config 副本</td></tr><tr><td><code>.../ddrm/data/exp/image_samples/</code></td><td>两个任务的输出（原图 / 观测 / 复原）</td></tr><tr><td><code>.../ddrm/logs/</code></td><td><code>sr4.log</code>、<code>deblur_uni.log</code></td></tr><tr><td><code>.../ddrm/RECORD.md</code></td><td>实验记录与数字出处</td></tr></tbody></table></div></section>
+
+<section class="chapter" id="sources"><h2>来源</h2><ol><li><a href="https://arxiv.org/abs/2201.11793">论文（arXiv:2201.11793）</a>与<a href="https://github.com/bahjat-kawar/ddrm">官方仓库</a>。</li><li>权重：OpenAI guided-diffusion 的 <code>256x256_diffusion_uncond.pt</code>（openaipublic jul-2021，ADM 无条件 ImageNet 256）。</li><li>本页数字来自服务器端脚本自算的 6 张平均 PSNR（<code>logs/*.log</code>），未手工改写；样例图由三个输出目录的 PNG 直接拼接。</li></ol></section>
+
+</main></div>
+<footer class="page-footer"><span>DDRM 推理走查 · 2026-11-22</span><span>产物：/data1/kxchen/infer-repro/ddrm</span></footer>
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('is-embed');
+</script>
+</body></html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>3DD-TTA 推理走查｜冻结分类器，只把腐蚀点云拉回源域</title><meta name="description" content="3DD-TTA（WACV 2025）官方权重推理走查：background 腐蚀 demo 跑通，ModelNet40-c 15 种腐蚀全量重跑 mean 63.03（README 66.1），10/15 种差距 ≤1.5 pp。">
+<link rel="stylesheet" href="dds-story.css"><style>
+:root{--border:var(--line);--accent:var(--green)}.paper-main{min-width:0}code{overflow-wrap:anywhere;word-break:break-word}.table-wrap{overflow:auto;max-width:100%}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{font-weight:600}.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--soft);border:1px solid var(--border);border-radius:6px;padding:16px;overflow:auto}.paper-figure{margin:26px 0}.paper-figure img{display:block;width:100%;height:auto;background:white;border:1px solid var(--border);border-radius:6px}.paper-figure figcaption{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}.checklist li{margin-bottom:10px}
+</style></head><body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../?domain=diffusion&amp;paper=41-3dd-tta" target="_top">论文精读地图 / 扩散与测试时适配</a><div class="toplinks"><a href="../?domain=diffusion&amp;paper=41-3dd-tta" target="_top">精读页</a><a href="#verdict">结论</a><a href="#results">结果</a><a href="#examples">样例</a><a href="#limits">局限</a></div></div></header>
+<div class="paper-doc"><aside class="paper-sidebar" aria-label="阅读目录"><p class="side-eyebrow">3DD-TTA · 推理走查</p><nav><a href="#verdict"><b>00</b>一句话结论</a><a href="#ran"><b>01</b>跑了什么</a><a href="#env"><b>02</b>环境与改动</a><a href="#results"><b>03</b>结果</a><a href="#examples"><b>04</b>样例</a><a href="#limits"><b>05</b>没跑的部分</a><a href="#files"><b>06</b>文件位置</a><a href="#sources"><b>07</b>来源</a></nav><div class="sidebar-foot">推理走查 · 2026-11-23<br>服务器 gpu04 · 代码 @ 官方仓库<br>产物 /data1/kxchen/infer-repro/3dd-tta</div></aside>
+<main class="paper-main">
+
+<section class="opening" id="verdict"><p class="eyebrow">INFERENCE WALKTHROUGH / NOT A REPRODUCTION</p><h1>去噪能救噪声腐蚀，<br><em>救不了旋转。</em></h1><p class="opening-deck">用作者发布的 LION 扩散先验与 Point-MAE 分类器，先跑通 background 腐蚀的单样本 demo，再把 ModelNet40-c 的 15 种腐蚀<strong>全量 2468 个样本</strong>跑完。Mean <strong>63.03</strong>，仓库 README 列 66.1（论文 Table 2 为 65.7）。10/15 种与 README 差距 ≤1.5 pp；lidar、impulse、density、cutout 偏低 5–12 pp，background 反而高 10 pp。没有训练、没有复算论文的 ShapeNet-c/ScanObjectNN-c，本页不声称复现。</p><div class="publication"><span class="highlight">只跑推理</span><span>官方权重 · 单机 · 全量 ModelNet40-c</span></div></section>
+
+<section class="chapter" id="ran"><div class="chapter-heading"><span class="chapter-number">01</span><h2>跑了什么</h2></div><div class="narrative"><p><strong>定性 demo</strong>：<code>demo_3dd_tta.py</code>，background 腐蚀，sample 11，35 个去噪步（该腐蚀需要更多步），输出腐蚀输入与适配后的两段 GIF。<strong>定量</strong>：<code>main_3dd_tta.py</code>，ModelNet40-c 全部 15 种腐蚀，batch 16，每种 2468 个样本（2428/2468，无抽样），15 种分 3 张卡并行。对照值是仓库 README 的 3DD-TTA 列（66.1）与 Point-MAE 源分类器列（57.6）。</p><p>跑的是「作者权重 + 仓库代码」的推理链路，含数据加载、腐蚀输入构造、LION 编码/去噪/解码、Point-MAE 分类与准确率统计；不训练、不调超参，去噪步数按 README（多数 5 步，background 35 步）。</p></div></section>
+
+<section class="chapter" id="env"><div class="chapter-heading"><span class="chapter-number">02</span><h2>环境与改动</h2></div><div class="narrative"><p>python 3.8、torch 2.0.1+cu118。机器 <code>/usr/local/cuda</code> 只有 11.4（不支持 sm_89），所以单独放了一套 CUDA 11.8 工具链（<code>cudaenv</code>），运行期固定 <code>CUDA_HOME</code>、<code>CPATH</code>、<code>LD_LIBRARY_PATH</code> 与 <code>TORCH_CUDA_ARCH_LIST=8.9</code>。依赖侧把 <code>diffusers</code> 钉在 0.19.3、<code>huggingface_hub</code> 钉在 0.16.4（新版 hub 与 0.19 不兼容），<code>wandb==0.15.12</code>、<code>setuptools&lt;70</code>。</p><p>为跑通做的改动只有三类，均不涉及算法：(1) 两个 CUDA 扩展的 arch 从 8.6 改 8.9；(2) 新增 <code>code/extensions/__init__.py</code>，并把 <code>models_mate/Point_MAE.py:13</code> 里被仓库注释掉的 <code>from extensions.chamfer_dist import ChamferDistanceL1, ChamferDistanceL2</code> 恢复（否则构建分类器必然 <code>NameError</code>）；(3) <code>main_3dd_tta.py</code> 新增 <code>--corruptions</code> 与 <code>--num_samples</code> 便于分组跑。另外加了 <code>run_eval.sh</code> 固定环境变量后转发参数。</p><p>扩展状态：<code>chamfer3D</code>、<code>pointnet2_ops_lib</code>、<code>knn_cuda</code>（官方 404，改用社区 fork）编译成功；<code>extensions/emd</code> 能编译但 import 报未定义符号（与 torch 2.0 的 API 不匹配），走查路径不用 EMD，仅记录。</p></div></section>
+
+<section class="chapter" id="results"><div class="chapter-heading"><span class="chapter-number">03</span><h2>结果</h2></div><div class="table-wrap"><table><thead><tr><th>corruption</th><th>本次</th><th>README 3DD-TTA</th><th>README Point-MAE</th></tr></thead><tbody>
+<tr><td>uniform</td><td>76.6</td><td>77.5</td><td>62.4</td></tr>
+<tr><td>gaussian</td><td>73.6</td><td>79.1</td><td>57.0</td></tr>
+<tr><td>background</td><td><strong>59.9</strong></td><td>49.9</td><td>32.0</td></tr>
+<tr><td>impulse</td><td>68.9</td><td>80.3</td><td>58.8</td></tr>
+<tr><td>upsampling</td><td>81.5</td><td>81.8</td><td>72.1</td></tr>
+<tr><td>distortion_rbf</td><td>62.3</td><td>63.8</td><td>61.4</td></tr>
+<tr><td>distortion_rbf_inv</td><td>64.3</td><td>66.9</td><td>64.2</td></tr>
+<tr><td>density</td><td>71.4</td><td>78.5</td><td>75.1</td></tr>
+<tr><td>density_inc</td><td>84.7</td><td>84.7</td><td>80.8</td></tr>
+<tr><td>shear</td><td>65.6</td><td>63.7</td><td>67.6</td></tr>
+<tr><td>rotation</td><td>33.0</td><td>33.4</td><td>31.3</td></tr>
+<tr><td>cutout</td><td>69.8</td><td>74.7</td><td>70.4</td></tr>
+<tr><td>distortion</td><td>64.6</td><td>65.2</td><td>64.8</td></tr>
+<tr><td>occlusion</td><td>39.5</td><td>39.9</td><td>36.2</td></tr>
+<tr><td>lidar</td><td>29.9</td><td>42.2</td><td>29.1</td></tr>
+<tr><td><strong>Mean</strong></td><td><strong>63.03</strong></td><td><strong>66.1</strong></td><td>57.6</td></tr>
+</tbody></table></div><div class="narrative"><p>7 种（uniform、upsampling、density_inc、shear、rotation、distortion、occlusion）与 README 基本一致；background 高 10 pp。偏低最明显的是 <strong>lidar（−12.3）</strong>、<strong>impulse（−11.4）</strong>、<strong>density（−7.1）</strong>、<strong>cutout（−4.9）</strong>，gaussian 低 5.5 pp。这些差距不像随机波动。为排除抽样噪声，另跑 16 张 impulse 小样本，得 68.75%，与全量 68.88% 一致。</p><p>背景：README 的 Mean 66.1 与论文 Table 2 的 65.7 本身不一致；本页按 README 列对照。未做的排查包括 lidar/impulse 是否需要额外的 FPS/上采样细节，以及 background 的步数是否应高于 README 的 35。整体<strong>不是论文指标的严格复现</strong>。</p></div></section>
+
+<section class="chapter" id="examples"><div class="chapter-heading"><span class="chapter-number">04</span><h2>样例</h2></div><figure class="paper-figure"><img src="infer-assets/3dd-tta-1.jpg" alt="左：background 腐蚀的输入点云；右：3DD-TTA 适配后重建的点云" loading="lazy"><figcaption>background 腐蚀（sample 11，35 个去噪步）的模型输出：左为腐蚀输入，右为 3DD-TTA 适配并解码后的点云。两图取自同一段动画 GIF 的最后一帧（动画本身展示逐步去噪过程）；画面里的白色线框与坐标轴是 matplotlib 的参考网格，不属于点云。适配后机身上的离散杂点减少、主体更紧凑——这类「离群点 + 背景噪声」正是 SCD 选择性距离要处理的场景。</figcaption></figure></section>
+
+<section class="chapter" id="limits"><div class="chapter-heading"><span class="chapter-number">05</span><h2>没跑的部分与局限</h2></div><div class="narrative"><ul class="checklist"><li><strong>只跑 ModelNet40-c</strong>：ShapeNet-c（同源）与 ScanObjectNN-c（真实扫描）未跑，论文 Table 1/3 的数字没有对照。</li><li><strong>不是严格复现</strong>：mean 63.03 vs README 66.1，4 种腐蚀差距 &gt;4 pp，原因未定；没有做论文 Table 4 的逐步耗时测量。</li><li><strong>只跑分类</strong>：没有分割、检测或跨腐蚀顺序的在线序列实验。</li><li><strong>单机单卡组</strong>：15 种腐蚀分 3 张卡并行，batch=16，显存与吞吐未系统记录。</li><li><strong>EMD 扩展不可用</strong>：编译通过但 import 失败，不影响本走查路径，但若后续要跑依赖 EMD 的基线需另修。</li></ul></div></section>
+
+<section class="chapter" id="files"><div class="chapter-heading"><span class="chapter-number">06</span><h2>文件位置</h2></div><div class="code-box"># 定性 demo（background, sample 11, 35 步）
+python -u demo_3dd_tta.py --diff_ckpt=.../epoch_10999_iters_2100999.pt \
+  --denoising_step=35 --dataset_root=.../modelnet40_c --corruption=background --sample_id=11
+
+# 定量（15 种腐蚀，分 3 组并行；此处示意一组）
+bash run_eval.sh --batch_size=16 --corruptions=impulse</div><div class="table-wrap"><table><thead><tr><th>路径</th><th>内容</th></tr></thead><tbody><tr><td><code>/data1/kxchen/infer-repro/3dd-tta</code></td><td>代码（官方仓库）+ <code>env/</code> + <code>cudaenv/</code> + 数据/权重链接</td></tr><tr><td><code>.../code/outputs/qualitative/</code></td><td>demo 的两段 GIF（腐蚀输入 / 适配后）</td></tr><tr><td><code>.../code/outputs/quantitative/results.txt</code></td><td>15 种腐蚀的准确率汇总</td></tr><tr><td><code>.../logs/eval_g0.log, eval_g2.log, eval_g3.log</code></td><td>三组并行的评测日志</td></tr><tr><td><code>.../RECORD.md</code></td><td>完整记录与坑位</td></tr></tbody></table></div></section>
+
+<section class="chapter" id="sources"><h2>来源</h2><ol><li><a href="https://arxiv.org/abs/2411.14495">3DD-TTA 论文（arXiv:2411.14495，WACV 2025）</a>与<a href="https://github.com/hamidreza-dastmalchi/3DD-TTA">官方仓库</a>。</li><li>权重：<a href="https://huggingface.co/xiaohui2022/lion_ckpt">LION（HF xiaohui2022/lion_ckpt）</a>、Point-MAE（作者 Google Drive）。数据：<a href="https://zenodo.org/records/6017834">ModelNet40-c（Zenodo 6017834）</a>。</li><li>本页数字全部来自服务器端 <code>results.txt</code> 与 <code>logs/</code>；<code>RECORD.md</code> 是原始记录。所有结果为小样本/单机走查，不等同论文指标。</li></ol></section>
+
+</main></div>
+<footer class="page-footer"><span>3DD-TTA 推理走查 · 2026-11-23</span><span>产物：/data1/kxchen/infer-repro/3dd-tta</span></footer>
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('is-embed');
+</script>
+</body></html>
