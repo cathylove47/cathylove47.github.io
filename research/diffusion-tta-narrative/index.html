@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#efece4">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从分布偏移、score、流形与零空间讲起，梳理扩散模型 TTA、推理期扩展、逆问题测量适配三条主线的论文叙事，附术语词典、交互图解与精读路线。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扩散模型与测试时 &#x2F; 测量时适配：2023–2026 顶会叙事指南">
+<meta property="og:url" content="https://cathy47.party/research/diffusion-tta-narrative/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="从分布偏移、score、流形与零空间讲起，梳理扩散模型 TTA、推理期扩展、逆问题测量适配三条主线的论文叙事，附术语词典、交互图解与精读路线。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-22T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-23T04:29:08.353Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="MRI 重建">
+<meta property="article:tag" content="扩散模型">
+<meta property="article:tag" content="测试时适配">
+<meta property="article:tag" content="逆问题">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathy47.party","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#81582c","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/pathology-atlas/" target="_self">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>论文精读</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/courses/" target="_self">
+                <i class="iconfont icon-book-fill"></i>
+                <span>备课讲义</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-22 20:00" pubdate>
+          2026年11月22日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          82 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" href="dtta.css">
+<div class="dtta">
+<div class="dtta-badges"><span class="dtta-badge">CVPR / NeurIPS / ICLR 2023–2026</span><span class="dtta-badge teal">零基础 · 直觉优先</span><span class="dtta-badge purple">扩散模型 · TTA · 逆问题</span><span class="dtta-badge amber">论文叙事拆解</span></div>
+<p>刚接触扩散模型（diffusion / score-based model）或测试时适配（test-time adaptation, TTA）时，顶会论文里的 <code>manifold</code>、<code>null-space</code>、<code>score</code>、<code>flow map</code>、<code>NFE</code> 很容易把人绕晕。这篇笔记从直觉讲起，再把 2023–2026 年的相关论文按三条叙事主线串起来：作者立了什么靶子、怎么挑上一代的毛病、故事怎么讲圆。</p>
+<div class="dtta-callout amber">
+<p class="dtta-callout-title">阅读说明</p>
+<p>论文的会议与年份已在 2026-11-22 对照会议论文集、OpenReview 与 arXiv 核对。各论文的“叙事”是我的归纳，不是作者原话。</p>
+</div>
+<h2 id="0-先分清：测试时适配-vs-测量时适配">0 先分清：测试时适配 vs 测量时适配</h2>
+<p>中文里常说的“测试时适配”或“测量时适配”，在扩散模型文献里对应两个相关、但出发点不同的场景。先分清楚，读论文就不会串台。</p>
+<div class="dtta-grid">
+<div class="dtta-card">
+<p class="dtta-card-title">场景一：测试时适配（Test-Time Adaptation, TTA）</p>
+<p><strong>一句话：</strong>模型训完上线后，遇到了<strong>和训练集分布不同的测试数据</strong>（晴天训练的模型遇到暴雨和雾，A 医院训练的模型拿到 B 医院的数据），又不能回去重训，只能在测试那一刻调整输入或模型。</p>
+<p class="dtta-note">典型任务：分类 / 分割抗损坏、3D 点云适配、多模态大模型推理适配、生成模型推理期对齐。</p>
+</div>
+<div class="dtta-card">
+<p class="dtta-card-title">场景二：逆问题里的测量时适配（Measurement / Inverse Problem）</p>
+<p><strong>一句话：</strong>在 MRI 欠采样重建、CT、去模糊等任务里，测试时拿到的不是清晰图像 <code>x</code>，而是经过物理测量过程 <code>A</code> 得到的残缺观测 <code>y = A(x) + n</code>。预训练扩散模型充当先验，在测量阶段把 <code>x</code> 反推出来；如果<strong>测量设备、加速倍率（如 R=12）、噪声或线圈灵敏度变了</strong>，就需要在测量时做适配。</p>
+<p class="dtta-note">典型任务：Score-MRI / CS-MRI、CT 重建、盲去模糊、未知退化的图像 / 视频复原。</p>
+</div>
+</div>
+<div class="dtta-callout teal">
+<p class="dtta-callout-title">为什么这两个方向在 2024–2026 年越来越合流？</p>
+<p>两者解决的是同一件事：<strong>训练已经结束（权重冻结或只能轻量微调），测试阶段来了新观测、新条件或新分布，怎样多花一点推理算力，把扩散模型里的知识调动出来？</strong> 所以“噪声空间优化”“解耦退火”“最优控制”这些方法在两边都能看到。</p>
+</div>
+<h2 id="1-零基础必修的-4-个直觉">1 零基础必修的 4 个直觉</h2>
+<h3 id="1-1-为什么模型一到测试环境就容易崩？（分布偏移）">1.1 为什么模型一到测试环境就容易崩？（分布偏移）</h3>
+<p>深度学习模型像一个只刷过某一套模拟题的学生：</p>
+<ul>
+<li><strong>源域（source domain）</strong>：训练时见过的分布，比如干净的 ImageNet 图片、某台西门子 3T 扫描仪的 MRI。</li>
+<li><strong>目标域（target domain）</strong>：测试时真正遇到的数据，比如雨雪模糊图、另一台参数不同的飞利浦 MRI、没见过的欠采样模式。</li>
+<li><strong>传统 TTA 怎么救场</strong>：以 <code>TENT</code> 为代表，测试时一边预测一边更新部分权重（BN 的仿射参数），目标是让预测更自信，即熵最小化。</li>
+<li><strong>传统 TTA 的三个常见问题</strong>：
+<ol>
+<li><strong>误差累积</strong>：一开始猜错，越猜越自信，顺着错误方向更新权重，最后模型坍塌。</li>
+<li><strong>灾难性遗忘</strong>：更新久了，把源域学到的能力丢掉。</li>
+<li><strong>依赖 batch</strong>：很多方法要凑一批测试图重算 BN 均值方差，但现实中常常一次只来一张图，或连续来几十张同类图（类别不平衡），这时方法直接失效。</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-2-扩散模型在学什么？（只讲直觉）">1.2 扩散模型在学什么？（只讲直觉）</h3>
+<p>可以把扩散模型想象成一位练到极熟的文物修复师：</p>
+<div class="dtta-grid">
+<div class="dtta-card">
+<p class="dtta-card-title">训练：故意破坏，学会还原</p>
+<p>给修复师看大量清晰图（比如脑部 MRI），一点点往上加高斯噪声（<strong>前向加噪</strong>），直到变成一团雪花点。</p>
+<p>修复师反复练习一件事：<strong>给定任意带噪图 x<sub>t</sub>，往哪个方向走一小步，它会更像一张真实的图？</strong>这个“指路箭头”就是 <strong>score function（得分函数）</strong>。</p>
+</div>
+<div class="dtta-card">
+<p class="dtta-card-title">采样：从雪花走回真图</p>
+<p>推理时从纯噪声出发，反复问网络“下一步往哪走”。网络每前向一次，记为 <strong>1 次 NFE</strong>（number of function evaluations）。</p>
+<p>走几十到几千步，噪声逐步收敛成清晰图，这就是<strong>反向去噪</strong>。早期 SDE 求解器很费步数，Score-MRI 默认就要数千次 NFE。</p>
+</div>
+</div>
+<div class="dtta-math">
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">∇</mi><msub><mi>x</mi><mi>t</mi></msub></msub><mi>log</mi><mo>⁡</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mtext>  </mtext><mo>≈</mo><mtext>  </mtext><msub><mi>s</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo separator="true">,</mo><mtext> </mtext><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\nabla_{x_t}\log p_t(x_t)\;\approx\;s_\theta(x_t,\,t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2963em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></eqn></section><p class="dtta-cap">左边是对数概率密度的梯度（score）。把“像真实图像的程度”想成一座山，这个箭头总指向上坡方向；神经网络 s<sub>θ</sub> 学到的，就是覆盖整个空间、随噪声水平 t 变化的一张“登山指南针”。</p>
+</div>
+<h3 id="1-3-三个高频词：流形、测量算子、零空间">1.3 三个高频词：流形、测量算子、零空间</h3>
+<ul>
+<li><strong>数据流形（data manifold）</strong>：像素随意组合有无穷多种可能，绝大多数是乱码；真正像人脸、像脑部 MRI 切片的图像，只占高维空间里一块很薄的区域，近似一张低维曲面。扩散模型做的事，就是把落在曲面外的点拉回曲面。</li>
+<li><strong>测量算子（measurement operator）<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq></strong>：真实图像是 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></eq>，仪器测到的是 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>A</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">y = A(x) + n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></eq>。在加速 MRI 里，<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq> 是“乘线圈灵敏度 → 傅里叶变换 → 只保留部分 k-space 行（欠采样 mask）”，<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></eq> 是采集噪声，<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></eq> 是机器实际给出的欠采样 k-space。</li>
+<li><strong>零空间（null space）</strong>：<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq> 丢了大量信息（12 倍加速丢掉约 11/12 的 k-space），所以有无穷多张图经过 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq> 后得到同一个 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></eq>。那些被 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq> 吃掉、在 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></eq> 里看不出差别的成分，就是 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq> 的零空间。</li>
+</ul>
+<div class="dtta-callout">
+<p><strong>分工：测量 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></eq> 负责“看得见的部分”（值域一致），扩散先验负责“看不见的部分”（在零空间里补出符合真实分布的内容）</strong>。这也是幻觉的来源：零空间越大，先验能“编”的空间就越大。</p>
+</div>
+<h3 id="1-4-交互图解：先验与测量的拉扯">1.4 交互图解：先验与测量的拉扯</h3>
+<p>在扩散后验采样里，每一步都有两股力：扩散先验把样本往真实数据流形上拉（像真的），测量约束把样本往 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>A</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=A(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq> 上拉（符合观测）。拖动滑块看不同引导强度下样本落在哪里：</p>
+<div class="dtta-demo">
+<div class="dtta-demo-figure">
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="数据流形、测量约束与引导强度示意图">
+<defs>
+<pattern id="dtta-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" class="dtta-svg-grid" stroke-width="1"/></pattern>
+<marker id="dtta-arrow-prior" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" class="dtta-svg-prior-fill"/></marker>
+<marker id="dtta-arrow-meas" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" class="dtta-svg-meas-fill"/></marker>
+<marker id="dtta-arrow-sol" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" class="dtta-svg-sol-fill"/></marker>
+</defs>
+<rect width="760" height="280" rx="10" fill="url(#dtta-grid)"/>
+<path d="M 70 230 C 180 60, 420 50, 670 205" fill="none" class="dtta-svg-prior" stroke-width="18" stroke-opacity="0.16" stroke-linecap="round"/>
+<path d="M 70 230 C 180 60, 420 50, 670 205" fill="none" class="dtta-svg-prior" stroke-width="3" stroke-dasharray="6,4"/>
+<text x="85" y="195" class="dtta-svg-prior-fill" font-size="13" font-weight="700">真实数据流形</text>
+<text x="85" y="213" class="dtta-svg-muted" font-size="11.5">（自然、无伪影的图像）</text>
+<line x1="170" y1="260" x2="620" y2="35" class="dtta-svg-meas" stroke-width="3"/>
+<text x="495" y="52" class="dtta-svg-meas-fill" font-size="13" font-weight="700">测量一致集合 y = A(x)</text>
+<text x="495" y="69" class="dtta-svg-muted" font-size="11.5">（符合观测，但含大量零空间解）</text>
+<circle cx="430" cy="130" r="9" class="dtta-svg-sol-fill"/>
+<circle cx="430" cy="130" r="16" fill="none" class="dtta-svg-sol" stroke-width="2" stroke-dasharray="3,3"/>
+<text x="450" y="128" class="dtta-svg-sol-fill" font-size="13" font-weight="700">理想解 x*</text>
+<text x="450" y="145" class="dtta-svg-muted" font-size="11.5">既真实，又符合测量</text>
+<circle cx="240" cy="70" r="6" class="dtta-svg-cur-fill"/>
+<text x="155" y="55" class="dtta-svg-cur-fill" font-size="12.5" font-weight="700">当前中间态 x_t</text>
+<line x1="240" y1="70" x2="265" y2="128" class="dtta-svg-prior" stroke-width="2.5" marker-end="url(#dtta-arrow-prior)"/>
+<line id="dtta-vec-meas" x1="240" y1="70" x2="330" y2="142" class="dtta-svg-meas" stroke-width="2.5" marker-end="url(#dtta-arrow-meas)"/>
+<path id="dtta-traj" d="M 240 70 Q 335 120 430 130" fill="none" class="dtta-svg-sol" stroke-width="3" marker-end="url(#dtta-arrow-sol)"/>
+<circle id="dtta-dot" cx="430" cy="130" r="7" class="dtta-svg-res-fill"/>
+<text id="dtta-dot-label" x="402" y="162" class="dtta-svg-res-fill" font-size="13" font-weight="700">最终落点</text>
+</svg>
+</div>
+<div class="dtta-demo-controls">
+<label for="dtta-slider">测量引导强度 λ = <span id="dtta-lambda">1.0</span></label>
+<input type="range" id="dtta-slider" min="0" max="20" value="10">
+<span id="dtta-status" class="dtta-badge teal">平衡：流形保真 + 测量一致</span>
+</div>
+<p id="dtta-explain" class="dtta-demo-explain">引导强度适中时，先验和测量约束协同，样本落在两者交点附近：既自然，又忠实于观测。</p>
+</div>
+<p>这张图是示意，不对应任何具体算法的真实轨迹。</p>
+<h2 id="2-高频术语词典">2 高频术语词典</h2>
+<p>读论文遇到不懂的词可以回来查。支持中英文关键词检索和按类别筛选：</p>
+<div class="dtta-gloss-controls">
+<input type="search" class="dtta-search" id="dtta-term-search" placeholder="搜索术语，例如 NFE、零空间、Flow Map、TTA" aria-label="搜索术语">
+<button type="button" class="dtta-pill active" data-cat="all">全部</button>
+<button type="button" class="dtta-pill" data-cat="diff">扩散基础</button>
+<button type="button" class="dtta-pill" data-cat="tta">测试时适配</button>
+<button type="button" class="dtta-pill" data-cat="inv">逆问题 / 测量</button>
+<button type="button" class="dtta-pill" data-cat="scale">推理期扩展</button>
+</div>
+<div class="dtta-terms" id="dtta-terms">
+<div class="dtta-term" data-cat="diff"><div class="dtta-term-head"><span class="dtta-term-name">Prior / Likelihood / Posterior</span><span class="dtta-term-tag">扩散基础</span></div><p><strong>先验 p(x)</strong>：模型积累的常识（正常大脑长什么样）；<strong>似然 p(y|x)</strong>：如果真图是 x，测出 y 的概率；<strong>后验 p(x|y)</strong>：结合常识和本次测量反推 x 的分布。三者由贝叶斯公式连起来。</p></div>
+<div class="dtta-term" data-cat="diff"><div class="dtta-term-head"><span class="dtta-term-name">Score function（得分函数）</span><span class="dtta-term-tag">扩散基础</span></div><p>写作 <code>∇<sub>x</sub> log p(x)</code>，是一个“指南针向量”：告诉你怎样微调当前像素，图像会更符合真实分布。Score-MRI 里的 score 就是它。</p></div>
+<div class="dtta-term" data-cat="diff"><div class="dtta-term-head"><span class="dtta-term-name">NFE（函数评估次数）</span><span class="dtta-term-tag">扩散基础</span></div><p>生成或重建一张图时网络前向运行的总次数。早期 SDE 采样动辄上千到数千次；ODE、flow 和蒸馏方法把它压到几十步，甚至 1–4 步。</p></div>
+<div class="dtta-term" data-cat="tta"><div class="dtta-term-head"><span class="dtta-term-name">Input-level vs Model-level TTA</span><span class="dtta-term-tag">测试时适配</span></div><p><strong>Model-level</strong>：测试时改网络权重，容易遗忘和坍塌；<strong>Input-level</strong>（扩散 TTA 的主流）：冻结下游模型，用扩散模型把偏移的测试输入“洗”回源域再送进去。</p></div>
+<div class="dtta-term" data-cat="tta"><div class="dtta-term-head"><span class="dtta-term-name">Synthetic-real gap（合成–真实鸿沟）</span><span class="dtta-term-tag">测试时适配</span></div><p>扩散模型修出来的图人眼看着真，但在深层特征里和真实训练集仍有统计差异。CVPR 2025 的 SDA 就从这一点切入。</p></div>
+<div class="dtta-term" data-cat="inv"><div class="dtta-term-head"><span class="dtta-term-name">Data consistency（数据一致性）</span><span class="dtta-term-tag">逆问题 / 测量</span></div><p>重建图 <code>x̂</code> 过一遍测量算子得到 <code>A(x̂)</code>，必须和实测 <code>y</code> 对得上。MRI 重建里，已采集的 k-space 要尽量忠实保留，不能让先验把病灶编没。</p></div>
+<div class="dtta-term" data-cat="inv"><div class="dtta-term-head"><span class="dtta-term-name">DPS（Diffusion Posterior Sampling）</span><span class="dtta-term-tag">逆问题 / 测量</span></div><p>ICLR 2023。带噪中间态 <code>x<sub>t</sub></code> 没法直接算测量误差，DPS 先用 Tweedie 公式估一张干净图 <code>x̂<sub>0</sub></code>，再沿 <code>‖y − A(x̂<sub>0</sub>)‖²</code> 的梯度往回拉。这是近似，强非线性或算子失配时容易出错。</p></div>
+<div class="dtta-term" data-cat="inv"><div class="dtta-term-head"><span class="dtta-term-name">Misspecified / blind operator（算子失配 / 盲逆问题）</span><span class="dtta-term-tag">逆问题 / 测量</span></div><p>你以为算子是 <code>A</code>，但运动、线圈灵敏度估计误差、未知模糊核让真实算子变成 <code>A′</code>。这时必须同时估计或适配算子，否则越强调数据一致，伪影越重。</p></div>
+<div class="dtta-term" data-cat="inv"><div class="dtta-term-head"><span class="dtta-term-name">Ambient diffusion（用带噪 / 残缺数据训练）</span><span class="dtta-term-tag">逆问题 / 测量</span></div><p>很多医学成像拿不到全采样干净图来训先验。Ambient diffusion 直接用欠采样或带噪的测量数据训练扩散先验；ICLR 2025 的 A-DPS 把它用到 MRI 等逆问题。</p></div>
+<div class="dtta-term" data-cat="scale"><div class="dtta-term-head"><span class="dtta-term-name">Test-time compute scaling（推理期算力扩展）</span><span class="dtta-term-tag">推理期扩展</span></div><p>受大语言模型 o1 / R1 启发：与其重训更大的模型，不如在推理时多花算力做搜索（best-of-N、树搜索、噪声轨迹优化），配合打分器（verifier）提高上限。</p></div>
+<div class="dtta-term" data-cat="scale"><div class="dtta-term-head"><span class="dtta-term-name">Reward hacking（奖励过优化）</span><span class="dtta-term-tag">推理期扩展</span></div><p>沿某个打分器（或测量梯度）拉得太猛，图像会长出讨好打分器的高频纹理和伪影：分数很高，人眼看着假。2025–2026 年很多对齐论文都在防这个。</p></div>
+<div class="dtta-term" data-cat="scale"><div class="dtta-term-head"><span class="dtta-term-name">Flow matching &amp; flow map</span><span class="dtta-term-tag">推理期扩展</span></div><p>SD3、Flux 等模型转向更直的传输路径（flow matching，学瞬时速度场）。<strong>Flow map</strong> 更进一步，直接学从时刻 <code>t</code> 跳到时刻 <code>s</code> 的映射，便于在推理期做“前瞻”引导。</p></div>
+</div>
+<p class="dtta-empty" id="dtta-terms-empty">没有匹配的术语。</p>
+<h2 id="3-三条叙事主线（2023–2026）">3 三条叙事主线（2023–2026）</h2>
+<p>读顶会论文，最值得学的不是公式，而是<strong>作者怎么立靶子 → 怎么挑上一代的刺 → 怎么把故事讲圆</strong>。下面按时间顺序拆三条主线。</p>
+<h3 id="主线-A：用扩散模型“救”下游判别模型的-TTA">主线 A：用扩散模型“救”下游判别模型的 TTA</h3>
+<div class="dtta-callout">
+<p class="dtta-callout-title">一句话叙事</p>
+<p>“测试时改权重太脆弱。我们冻结下游模型，用预训练扩散模型当<strong>输入净化器</strong>或<strong>生成式反馈老师</strong>，把域偏移消化在生成先验里。”</p>
+</div>
+<div class="dtta-timeline">
+<div class="dtta-tl">
+<div class="dtta-tl-meta"><span class="dtta-venue">CVPR 2023 · NeurIPS 2023</span><span class="dtta-paper">DDA（Diffusion-Driven Adaptation）与 Diffusion-TTA</span></div>
+<p>确立了扩散 TTA 的两种基本范式。<strong>DDA</strong> 走输入投影：给测试图加噪，再用源域扩散模型去噪，把雨雪和噪声洗掉后再分类。<strong>Diffusion-TTA</strong> 走生成式反馈：把判别器输出作为扩散模型的条件，通过最大化测试图的似然反向更新判别器。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>TENT 等权重更新式 TTA 怕小 batch、怕类别不平衡，会误差累积。</div><div><b>新意</b>单样本即插即用（DDA）；打通生成–判别闭环（Diffusion-TTA）。</div><div><b>留下的坑</b>推理慢；主要对付低层像素损坏；修出的图可能语义漂移。</div></div>
+</div>
+<div class="dtta-tl">
+<div class="dtta-tl-meta"><span class="dtta-venue">CVPR 2024</span><span class="dtta-paper">GDA: Generalized Diffusion for Robust Test-time Adaptation</span></div>
+<p>修补 DDA 只会处理噪声类损坏、遇到风格偏移容易改坏语义的短板：在反向去噪的每一步加入<strong>边际熵损失与风格 / 内容保持约束</strong>，既拉回源域，又不丢原始语义。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>DDA 面对风格、光照等非像素级偏移时会破坏判别语义。</div><div><b>新意</b>把“盲目去噪”升级为“带语义与结构约束的引导扩散”。</div><div><b>留下的坑</b>修出的图看着像源域，深层特征上仍有差距。</div></div>
+</div>
+<div class="dtta-tl">
+<div class="dtta-tl-meta"><span class="dtta-venue">CVPR 2025</span><span class="dtta-paper">SDA: Everything to the Synthetic — Diffusion-driven TTA via Synthetic-Domain Alignment</span></div>
+<p>来自清华黄高团队，是一次反向叙事：既然扩散生成的图和真实源域之间总有 <strong>synthetic-real gap</strong>，那就不再把目标图硬修回“真实源域”。先用条件扩散 + 无条件扩散生成的合成数据微调源模型，测试时再把目标域也投影到同一个<strong>合成域</strong>，两边在合成域对齐。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>前人忽略的矛盾：视觉上像源域 ≠ 特征上对齐源域。</div><div><b>新意</b>范式反转（对齐到合成域），并扩展到分割和多模态大模型评测。</div><div><b>审稿人为什么买账</b>洞察具体、改动简洁、评测覆盖现代模型。</div></div>
+</div>
+<div class="dtta-tl">
+<div class="dtta-tl-meta"><span class="dtta-venue">WACV 2025 · CVPR 2026</span><span class="dtta-paper">3DD-TTA 与 DCTTA：垂直场景扩展</span></div>
+<p>通用 2D 分类卷到头后，叙事迁向高价值场景：<strong>3DD-TTA</strong> 把“冻结下游 + 扩散净化输入”搬到 3D 点云损坏；<strong>DCTTA</strong> 面向 all-in-one 图像复原，在测试时用扩散生成器构造伪“退化–干净”样本对，做退化一致性适配。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>真实 3D 点云、医学分割、混合未知退化，用分类 TTA 的套路解决不了。</div><div><b>新意</b>扩散不只是去噪器，还是测试时的伪数据对生成器和结构先验。</div><div><b>趋势</b>只在 ImageNet-C 上刷点已经不够，要绑定复杂真实任务。</div></div>
+</div>
+</div>
+<h3 id="主线-B：给扩散模型自己做推理期扩展与对齐">主线 B：给扩散模型自己做推理期扩展与对齐</h3>
+<div class="dtta-callout purple">
+<p class="dtta-callout-title">一句话叙事</p>
+<p>“LLM 靠 test-time compute 实现了跃迁；扩散模型不能只靠加 NFE 步数。我们在测试时<strong>搜索更好的噪声轨迹、引入验证器（verifier）、用最优控制和 flow map 做推理期对齐</strong>。”</p>
+</div>
+<div class="dtta-timeline">
+<div class="dtta-tl purple">
+<div class="dtta-tl-meta"><span class="dtta-venue">CVPR 2025</span><span class="dtta-paper">Scaling Inference Time Compute for Diffusion Models</span></div>
+<p>把大语言模型的 test-time scaling 搬到视觉扩散模型（Google DeepMind、MIT、NYU；arXiv 版题为 Inference-Time Scaling for Diffusion Models beyond Scaling Denoising Steps）。先用实验说明“加 NFE 步数”收益很快饱和，再把推理期算力拆成两个新轴：<strong>搜索算法</strong>（随机搜索、零阶搜索、沿路径搜索）+ <strong>验证器</strong>（CLIP、美学模型、多模态大模型打分）。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>只加 NFE 存在明显的性能平台期。</div><div><b>新意</b>换一个更好的初始噪声，比在差的起点上多跑很多步更划算。</div><div><b>启发</b>推理期多花的算力，重点在探索，而不是重复去噪。</div></div>
+</div>
+<div class="dtta-tl purple">
+<div class="dtta-tl-meta"><span class="dtta-venue">NeurIPS 2025</span><span class="dtta-paper">Test-Time Scaling of Diffusion Models via Noise Trajectory Search 与 GenSCO</span></div>
+<p>把扩散采样写成<strong>序列决策问题</strong>：即使奖励不可微（黑盒 VLM 打分、物理仿真指标），也能通过对噪声轨迹的搜索找到高分样本，不用重训。<strong>GenSCO</strong> 则反过来，把扩散生成当作组合优化里的搜索算子，用来跳出局部最优。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>基于梯度的测试时引导要求目标可微，显存开销大，还容易过优化。</div><div><b>新意</b>用决策与搜索替代梯度反传，支持任意黑盒目标。</div><div><b>数学包装</b>把“抽随机噪声”升格为“在隐空间做序列决策”。</div></div>
+</div>
+<div class="dtta-tl purple">
+<div class="dtta-tl-meta"><span class="dtta-venue">NeurIPS 2026</span><span class="dtta-paper">FMTT: Test-time Scaling of Diffusions with Flow Maps</span></div>
+<p>故事开始追求更深的数学结构：指出直接在瞬时速度场上叠加奖励梯度只看当前一步，容易引发 reward hacking。FMTT 利用 <strong>flow map</strong> 能一步预测终点的性质，做前瞻式的轨迹倾斜，稳定接入 VLM 等奖励完成推理期对齐和编辑。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>瞬时梯度引导“近视”，看不到终局，容易偏离流形。</div><div><b>新意</b>先用 flow map 看到终点，再调整当前轨道。</div><div><b>风向</b>flow matching / flow map 与推理期控制的结合越来越多。</div></div>
+</div>
+</div>
+<h3 id="主线-C：逆问题与物理测量算子的测量时适配">主线 C：逆问题与物理测量算子的测量时适配</h3>
+<div class="dtta-callout teal">
+<p class="dtta-callout-title">一句话叙事</p>
+<p>“在 MRI、CT、去模糊等测量任务里，经典后验采样（Score-MRI、DPS）步数多、早期误差一错到底、算子稍有失配就崩。近两年的工作在回答：<strong>怎么解耦误差、怎么从带噪测量学先验、怎么在噪声空间做优化与控制，以及怎么把上千步压到实时。</strong>”</p>
+</div>
+<div class="dtta-timeline">
+<div class="dtta-tl teal">
+<div class="dtta-tl-meta"><span class="dtta-venue">2022–2023 · 背景</span><span class="dtta-paper">Score-MRI / DPS / DDRM / ΠGDM：打下地基，也埋下四个痛点</span></div>
+<p>这些工作证明：只需无监督地训一个干净图像的扩散先验，就能在测试时即插即用地处理不同加速倍率（R=4、8、12）的 MRI 重建和各类线性逆问题。</p>
+<div class="dtta-story"><div><b>痛点 1：慢</b>Score-MRI 这类 SDE 求解器默认要数千次 NFE，临床等不起。</div><div><b>痛点 2：误差锁死</b>反向去噪是强耦合链条，高噪声阶段猜错的结构，后面再怎么拉数据一致也改不回。</div><div><b>痛点 3、4：失配与缺真值</b>算子不准时出现严重伪影；很多医学场景没有全采样干净图来训先验。</div></div>
+</div>
+<div class="dtta-tl teal">
+<div class="dtta-tl-meta"><span class="dtta-venue">CVPR 2025 Oral</span><span class="dtta-paper">DAPS: Improving Diffusion Inverse Problem Solving with Decoupled Noise Annealing</span></div>
+<p>Yang Song、Anima Anandkumar 等人的工作，针对<strong>痛点 2</strong>。DAPS 提出<strong>解耦噪声退火</strong>：不在一条窄轨迹上小步推进，而是先估计干净图并在测量约束下做大步更新，再重新加噪进入下一个更低的噪声等级。相邻步之间不再强耦合，求解器可以在解空间里大幅修正早期错误，在非线性逆问题上提升明显；实验也包含多线圈压缩感知 MRI（fastMRI knee）。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>DPS 等顺序采样相邻步强耦合，一旦落入局部最优难以翻身。</div><div><b>新意</b>“解耦 + 退火重启”拓宽探索空间，尤其适合非线性测量。</div><div><b>为什么能拿 Oral</b>击中领域共性瓶颈，概率直觉干净。</div></div>
+</div>
+<div class="dtta-tl teal">
+<div class="dtta-tl-meta"><span class="dtta-venue">ICLR 2025</span><span class="dtta-paper">A-DPS: Ambient Diffusion Posterior Sampling</span></div>
+<p>针对<strong>痛点 4</strong>：很多高分辨率或动态 MRI 根本拿不到全采样真图。A-DPS 把 ambient diffusion 和后验采样结合，<strong>直接用欠采样的多线圈 k-space 数据训练扩散先验</strong>，再用于测试时重建。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>此前的扩散逆问题方法默认有大量干净图训练先验，医学上常不成立。</div><div><b>新意</b>打通“残缺数据训练 → 残缺测量推理”的闭环。</div><div><b>故事高度</b>从“怎么采样更好”上升到“前提假设本身不现实”。</div></div>
+</div>
+<div class="dtta-tl teal">
+<div class="dtta-tl-meta"><span class="dtta-venue">NeurIPS 2024 · ICLR 2026</span><span class="dtta-paper">DMPlug、Diffusion Optimal Control、噪声空间 HMC</span></div>
+<p>这批工作集中处理<strong>流形偏离、零空间伪影和未知 / 非线性算子</strong>：</p>
+<p>• 不在图像空间逐步硬投影，而是把整个去噪过程看成确定性映射 <code>x = G(z)</code>，直接<strong>优化初始噪声 z</strong>（DMPlug，NeurIPS 2024），或在噪声空间做哈密顿蒙特卡洛采样（N-HMC，ICLR 2026），让输出始终落在流形上；<br>• 或用<strong>最优控制</strong>（iLQR 思路，Solving Inverse Problems via Diffusion Optimal Control，NeurIPS 2024）重写后验采样，把任意可微的线性 / 非线性测量算子纳入统一框架；遇到盲逆问题时，在测试时联合适配算子参数或 LoRA 等轻量参数。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>图像空间逐步硬投影会打乱噪声调度，产生零空间假纹理。</div><div><b>新意</b>在噪声 / 控制空间优化，天然满足流形约束，对异常测量更鲁棒。</div><div><b>代价</b>要反向穿过整条去噪链求梯度，显存和时间开销大。</div></div>
+</div>
+<div class="dtta-tl teal">
+<div class="dtta-tl-meta"><span class="dtta-venue">ICLR 2025 · CVPR 2026</span><span class="dtta-paper">视频逆问题与实时化：Solving Video Inverse Problems Using Image Diffusion Models、InstantViR</span></div>
+<p>测试时优化越来越重，于是出现两种走向：一是把 2D 图像扩散先验用于视频测量（把时间维当 batch 维，并加时间一致性约束）；二是像 <strong>InstantViR</strong> 那样，把双向视频扩散模型的逆问题先验<strong>蒸馏成因果自回归的实时求解器</strong>。</p>
+<div class="dtta-story"><div><b>立什么靶子</b>测试时迭代优化太慢，落不了地。</div><div><b>新意</b>离线吸收扩散先验，在线摊销推理（amortized / distilled inference）。</div><div><b>规律</b>“慢而准的测试时优化”与“快而稳的蒸馏加速”交替推进。</div></div>
+</div>
+</div>
+<h2 id="4-一张表看三条主线">4 一张表看三条主线</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>主线 A：扩散救判别 TTA</th>
+<th>主线 B：扩散自身推理扩展</th>
+<th>主线 C：逆问题 / 测量适配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>测试时要解决什么</strong></td>
+<td>分类、分割、3D、多模态大模型遇到域偏移掉点</td>
+<td>生成模型不听复杂指令，画质或逻辑不够</td>
+<td>从欠采样、模糊或失配的测量 <code>y=A(x)+n</code> 重建 <code>x</code></td>
+</tr>
+<tr>
+<td><strong>测试时改什么</strong></td>
+<td>主要改<strong>输入</strong>（投影回源域 / 合成域），尽量冻结下游</td>
+<td>改<strong>初始噪声与采样轨迹</strong>，配合 verifier 挑选或引导</td>
+<td>改<strong>采样轨迹、初始噪声 z</strong>，必要时联合适配<strong>算子参数或 LoRA</strong></td>
+</tr>
+<tr>
+<td><strong>最大瓶颈</strong></td>
+<td>推理延迟、语义漂移、synthetic-real gap</td>
+<td>verifier 被 reward hacking、搜索算力开销</td>
+<td>高倍欠采样的零空间幻觉、NFE 高、算子失配与跨设备偏移</td>
+</tr>
+<tr>
+<td><strong>热门关键词</strong></td>
+<td>synthetic-domain alignment、多模态 TTA、退化一致性</td>
+<td>noise trajectory search、verifier、MDP / 搜索、flow map</td>
+<td>decoupled annealing、ambient diffusion、optimal control、蒸馏实时化</td>
+</tr>
+<tr>
+<td><strong>代表作</strong></td>
+<td>DDA、Diffusion-TTA、GDA、SDA、3DD-TTA、DCTTA</td>
+<td>Inference-time scaling、Noise Trajectory Search、GenSCO、FMTT</td>
+<td>Score-MRI、DPS、DAPS、A-DPS、DMPlug、InstantViR</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-审稿人视角：好故事怎么讲，哪些坑别踩">5 审稿人视角：好故事怎么讲，哪些坑别踩</h2>
+<p>很多人卡在“调了超参、加了个 loss、指标涨了 0.8 dB，但写不成顶会论文”。回头看上面这些论文，它们大多遵循同一个四段式结构：</p>
+<div class="dtta-grid">
+<div class="dtta-card">
+<p class="dtta-card-title">四段式叙事</p>
+<ol>
+<li><strong>揭示隐性的失效假设</strong>：不只说“前人精度不够”，而要指出前人默认了一个不现实的假设（视觉像源域就等于特征对齐；NFE 越多越好；训练时有全采样 MRI；相邻步强耦合没问题）。</li>
+<li><strong>用极简实验把现象钉死</strong>：一张 Figure 1 或 toy 实验（NFE 饱和曲线、图像空间投影 vs 噪声空间优化的流形偏离图），让审稿人立刻认同问题存在。</li>
+<li><strong>换一个视角或数学框架</strong>：把“加个技巧”写成“换个视角”，比如对齐到合成域，把采样改写成搜索、最优控制或解耦退火。</li>
+<li><strong>打通最难的评测场景</strong>：不只跑 CIFAR-C 或简单高斯去噪，要上高倍加速多线圈 MRI、跨设备算子失配、真实数据流，并给出时间 / NFE–精度权衡曲线。</li>
+</ol>
+</div>
+<div class="dtta-card">
+<p class="dtta-card-title">最常被审稿人追问的 4 点</p>
+<ul>
+<li><strong class="dtta-warn">不报推理开销（NFE / wall-clock）</strong>：扩散测试时适配天然慢。几千步只多涨 0.3 dB，审稿人会问“把基线步数加倍是不是一样”。要在<strong>同等算力预算</strong>下比较。</li>
+<li><strong class="dtta-warn">只测理想已知算子或合成小噪声</strong>：逆问题里越来越看重<strong>算子失配</strong>（真实运动、不同扫描仪、线圈灵敏度偏移、未知噪声水平）；TTA 里看重非平稳数据流和语义偏移。</li>
+<li><strong class="dtta-warn">指标好看但有幻觉</strong>：PSNR / FID 漂亮，MRI 里却可能把真实小病灶抹掉或编出假结构。必须讨论<strong>保真度与不确定性</strong>。</li>
+<li><strong class="dtta-warn">强行缝合，没有机理分析</strong>：把 A 论文的 loss 加到 B 论文的采样器上，却说不清两者为什么能解决某个具体的几何或统计矛盾。</li>
+</ul>
+</div>
+</div>
+<div class="dtta-callout amber">
+<p class="dtta-callout-title">如果你在做 MRI 重建或高 NFE 扩散逆问题，可以先问自己三个问题</p>
+<ol>
+<li><strong>效率</strong>：NFE 上千时，算力是否浪费在重复的小步震荡上？换成解耦退火、flow matching 的直线轨迹或轨迹搜索，能否用 1/20 的 NFE 达到同样效果？</li>
+<li><strong>适配</strong>：测试时换了加速倍率（R=4 → R=12）、换了欠采样 mask，甚至换了医院、部位或线圈灵敏度估计，现有方法为什么掉点？能否在测试时做轻量的<strong>算子 + 先验联合适配</strong>？</li>
+<li><strong>可信</strong>：零空间很大时，能否用多次采样给出<strong>不确定性图</strong>，防止模型自信地造出结构？</li>
+</ol>
+</div>
+<h2 id="6-四步精读路线">6 四步精读路线</h2>
+<p>不建议一上来就读满屏 SDE 的 2026 年新论文。按下面四步，大约 1–2 周能把脉络打通：</p>
+<details open>
+<summary>第 1 步（2 天）：打通“扩散 + 逆问题”的直觉</summary>
+<ul>
+<li>先不推 Itô 积分，找一篇图文教程弄懂 <strong>DDPM（预测噪声）</strong>和 <strong>score matching（预测梯度）</strong>是同一件事的两种写法。</li>
+<li>精读 <strong>DPS（ICLR 2023）</strong>的前 4 页，重点看它如何用 <code>x̂<sub>0</sub></code> 把扩散先验和 <code>y = A(x) + n</code> 拼在一起。读懂这篇，后面大部分论文的引言都能看懂。</li>
+</ul>
+</details>
+<details>
+<summary>第 2 步（2 天）：对照读一篇 TTA 经典和一篇逆问题经典</summary>
+<ul>
+<li>偏<strong>视觉 TTA</strong>：读 <strong>DDA（CVPR 2023）</strong>或 <strong>Diffusion-TTA（NeurIPS 2023）</strong>，体会扩散模型为什么能补传统 TTA 的短板。</li>
+<li>偏<strong>MRI 逆问题</strong>：读 <strong>Score-MRI（Medical Image Analysis 2022）</strong>，留意它在高加速倍率、大 NFE 和跨分布测试时暴露的瓶颈。</li>
+</ul>
+</details>
+<details>
+<summary>第 3 步（3 天）：精读各主线的代表作</summary>
+<ul>
+<li><strong>逆问题：DAPS（CVPR 2025 Oral）</strong>，看它的 Figure 1 如何直观解释“耦合误差传播 vs 解耦退火”；顺带读 <strong>A-DPS（ICLR 2025）</strong>的问题定义。</li>
+<li><strong>TTA：SDA（CVPR 2025）</strong>，学作者怎么挖出 synthetic-real gap 并反转叙事。</li>
+<li><strong>推理期扩展：Scaling Inference Time Compute for Diffusion Models（CVPR 2025）</strong>，学怎么把“采样”升格为“搜索与算力扩展”。</li>
+</ul>
+</details>
+<details>
+<summary>第 4 步（3 天）：跑一个最小实验，把概念变成手感</summary>
+<ul>
+<li>用手头的 MRI 重建或图像复原代码，画两张图：<strong>不同 NFE（如 50 / 200 / 1000）下的画质–耗时曲线</strong>；以及<strong>故意让测量算子 A 或数据分布偏一点，看伪影先从哪里长出来</strong>。</li>
+<li>亲眼看到伪影怎么出现、收益何时饱和，对这个领域的理解会比只读公式扎实得多。</li>
+</ul>
+</details>
+</div>
+<script src="dtta.js" defer></script>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" class="category-chain-item">科研笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" class="print-no-link">#扩散模型</a>
+      
+        <a href="/tags/%E6%B5%8B%E8%AF%95%E6%97%B6%E9%80%82%E9%85%8D/" class="print-no-link">#测试时适配</a>
+      
+        <a href="/tags/%E9%80%86%E9%97%AE%E9%A2%98/" class="print-no-link">#逆问题</a>
+      
+        <a href="/tags/MRI-%E9%87%8D%E5%BB%BA/" class="print-no-link">#MRI 重建</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南</div>
+      <div>https://cathy47.party/research/diffusion-tta-narrative/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
