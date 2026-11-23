@@ -27,7 +27,7 @@
 <meta property="og:description" content="从分布偏移、score、流形与零空间讲起，梳理扩散模型 TTA、推理期扩展、逆问题测量适配三条主线的论文叙事，附术语词典、交互图解与精读路线。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-22T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-23T04:29:08.353Z">
+<meta property="article:modified_time" content="2026-11-23T05:31:28.793Z">
 <meta property="article:author" content="cathy">
 <meta property="article:tag" content="MRI 重建">
 <meta property="article:tag" content="扩散模型">
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          12k 字
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          82 分钟
+          97 分钟
         
       </span>
     
@@ -327,7 +327,7 @@
 <p>刚接触扩散模型（diffusion / score-based model）或测试时适配（test-time adaptation, TTA）时，顶会论文里的 <code>manifold</code>、<code>null-space</code>、<code>score</code>、<code>flow map</code>、<code>NFE</code> 很容易把人绕晕。这篇笔记从直觉讲起，再把 2023–2026 年的相关论文按三条叙事主线串起来：作者立了什么靶子、怎么挑上一代的毛病、故事怎么讲圆。</p>
 <div class="dtta-callout amber">
 <p class="dtta-callout-title">阅读说明</p>
-<p>论文的会议与年份已在 2026-11-22 对照会议论文集、OpenReview 与 arXiv 核对。各论文的“叙事”是我的归纳，不是作者原话。</p>
+<p>论文的会议与年份已在 2026-11-22 对照会议论文集、OpenReview 与 arXiv 核对。各论文的“叙事”是我的归纳，不是作者原话。文中论文是否开源、仓库链接和权重情况见文末<a href="#7-%E5%BC%80%E6%BA%90%E4%B8%8E%E5%A4%8D%E7%8E%B0%E6%B8%85%E5%8D%95">第 7 节：开源与复现清单</a>。</p>
 </div>
 <h2 id="0-先分清：测试时适配-vs-测量时适配">0 先分清：测试时适配 vs 测量时适配</h2>
 <p>中文里常说的“测试时适配”或“测量时适配”，在扩散模型文献里对应两个相关、但出发点不同的场景。先分清楚，读论文就不会串台。</p>
@@ -641,6 +641,175 @@
 <li>亲眼看到伪影怎么出现、收益何时饱和，对这个领域的理解会比只读公式扎实得多。</li>
 </ul>
 </details>
+<h2 id="7-开源与复现清单">7 开源与复现清单</h2>
+<p>2026-11-22 逐个打开官方仓库核对过：🟢 代码 + 预训练权重，下载即可跑；🟡 只有代码，权重需要自己准备或训练；🔴 没有官方代码。</p>
+<table>
+<thead>
+<tr>
+<th>主线</th>
+<th>论文</th>
+<th>状态</th>
+<th>官方仓库</th>
+<th>复现提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>背景</td>
+<td>TENT（ICLR 2021）</td>
+<td>🟡</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/DequanWang/tent">DequanWang/tent</a></td>
+<td>作者说明只是示例代码（CIFAR-10-C），ImageNet-C 参考实现没有放出；模型用 RobustBench 的</td>
+</tr>
+<tr>
+<td>A</td>
+<td>DDA（CVPR 2023）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/shiyegao/DDA">shiyegao/DDA</a></td>
+<td><code>download_ckpt.sh</code> 下载 ADM 扩散模型和 5 个 ImageNet 分类器</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Diffusion-TTA（NeurIPS 2023）</td>
+<td>🟡</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/mihirp1998/Diffusion-TTA">mihirp1998/Diffusion-TTA</a></td>
+<td>DiT / SD 两套配置；DiT-XL、SD 权重需自己下载</td>
+</tr>
+<tr>
+<td>A</td>
+<td>GDA（CVPR 2024）</td>
+<td>🔴</td>
+<td>无</td>
+<td>只有论文里的伪代码，也没找到可靠的非官方实现</td>
+</tr>
+<tr>
+<td>A</td>
+<td>SDA（CVPR 2025）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/SHI-Labs/Diffusion-Driven-Test-Time-Adaptation-via-Synthetic-Domain-Alignment">SHI-Labs/…Synthetic-Domain-Alignment</a></td>
+<td>生成、对齐、微调、评测四段齐全；提供微调后的分类器和合成数据集</td>
+</tr>
+<tr>
+<td>A</td>
+<td>3DD-TTA（WACV 2025）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/hamidreza-dastmalchi/3DD-TTA">hamidreza-dastmalchi/3DD-TTA</a></td>
+<td>提供 PointMAE 源模型和点云扩散模型权重</td>
+</tr>
+<tr>
+<td>A</td>
+<td>DCTTA（CVPR 2026）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tonia86/DCTTA">tonia86/DCTTA</a></td>
+<td>提供 3 任务、5 任务 PromptIR 预训练权重</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Scaling Inference Time Compute（CVPR 2025）</td>
+<td>🔴</td>
+<td>无</td>
+<td>只有非官方的 <a target="_blank" rel="noopener" href="https://github.com/sayakpaul/tt-scale-flux">sayakpaul/tt-scale-flux</a>，只实现随机搜索，只支持 FLUX.1-dev</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Noise Trajectory Search（NeurIPS 2025）</td>
+<td>🟡</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/rvignav/diffusion-tts">rvignav/diffusion-tts</a></td>
+<td>EDM、SD 两套后端，6 种搜索采样器；用公开的 EDM / SD 权重</td>
+</tr>
+<tr>
+<td>B</td>
+<td>GenSCO（NeurIPS 2025）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Thinklab-SJTU/GenSCO">Thinklab-SJTU/GenSCO</a></td>
+<td>JAX 实现，提供权重与数据集</td>
+</tr>
+<tr>
+<td>B</td>
+<td>FMTT（NeurIPS 2026）</td>
+<td>🔴</td>
+<td>无</td>
+<td>官方 GitHub 组织里只有图表和网页，没有可运行代码</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Score-MRI（MedIA 2022）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/hyungjin-chung/score-MRI">hyungjin-chung/score-MRI</a></td>
+<td><code>install.sh</code> 下载 fastMRI knee 权重；单线圈、多线圈脚本齐全</td>
+</tr>
+<tr>
+<td>C</td>
+<td>DPS（ICLR 2023）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/DPS2022/diffusion-posterior-sampling">DPS2022/diffusion-posterior-sampling</a></td>
+<td>FFHQ、ImageNet 权重；超分、去模糊、补全、相位恢复配置齐全</td>
+</tr>
+<tr>
+<td>C</td>
+<td>DDRM（NeurIPS 2022）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/bahjat-kawar/ddrm">bahjat-kawar/ddrm</a></td>
+<td>用公开的 guided-diffusion 等权重，README 写了下载方式</td>
+</tr>
+<tr>
+<td>C</td>
+<td>ΠGDM（ICLR 2023）</td>
+<td>🟡</td>
+<td>无独立仓库</td>
+<td>同一作者的 <a target="_blank" rel="noopener" href="https://github.com/NVlabs/RED-diff">NVlabs/RED-diff</a> 里有 <code>algos/pgdm.py</code>（<code>algo=pgdm</code>）可用</td>
+</tr>
+<tr>
+<td>C</td>
+<td>DAPS（CVPR 2025 Oral）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhangbingliang2019/DAPS">zhangbingliang2019/DAPS</a></td>
+<td><code>download.sh</code> 下载权重、测试集和模糊核；含 LatentDAPS</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A-DPS（ICLR 2025）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/utcsilab/ambient-diffusion-mri">utcsilab/ambient-diffusion-mri</a></td>
+<td>fastMRI 数据准备 + 9 个 MRI 权重（含 R=2/4/6/8 的 ambient 模型），和 MRI 方向最贴近</td>
+</tr>
+<tr>
+<td>C</td>
+<td>DMPlug（NeurIPS 2024）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/sun-umn/DMPlug">sun-umn/DMPlug</a></td>
+<td>5 类任务入口，FFHQ、CelebA-HQ、LSUN 权重</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Diffusion Optimal Control（NeurIPS 2024）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lihenryhfl/diffusion_optimal_control">lihenryhfl/diffusion_optimal_control</a></td>
+<td>README 有环境、权重和 FFHQ 超分示例</td>
+</tr>
+<tr>
+<td>C</td>
+<td>N-HMC（ICLR 2026）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/NA-HMC/NA-HMC">NA-HMC/NA-HMC</a></td>
+<td>支持未知噪声水平 <code>--unknown_noise</code>；gdown 下载 FFHQ / ImageNet 权重</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Video Inverse Problems（ICLR 2025）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/svi-diffusion/codes">svi-diffusion/codes</a></td>
+<td>用公开 ADM 权重，提供预处理好的 DAVIS 数据</td>
+</tr>
+<tr>
+<td>C</td>
+<td>InstantViR（CVPR 2026）</td>
+<td>🟢</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ai4imaging/InstantViR">ai4imaging/InstantViR</a></td>
+<td>含蒸馏训练和 <code>minimal_inference/</code>，提供权重与预退化数据</td>
+</tr>
+</tbody>
+</table>
 </div>
 <script src="dtta.js" defer></script>
 
