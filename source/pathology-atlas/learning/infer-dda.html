@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DDA 推理走查｜100 张高斯噪声图，source 3.0% → 适配后 61.0%</title><meta name="description" content="用官方 DDA 仓库、ADM 无条件扩散模型与 ResNet-50，在 gpu04 上做 100 张 ImageNet-C gaussian_noise severity 5 的输入适配：仅原图 3.0%，仅适配图 61.0%，自集成 57.0%。小样本走查，不等同论文指标。">
+<link rel="stylesheet" href="dds-story.css"><style>
+:root{--border:var(--line);--accent:var(--green)}.paper-main{min-width:0}code{overflow-wrap:anywhere;word-break:break-word}.table-wrap{overflow:auto;max-width:100%}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{font-weight:600}.formula{border-left:3px solid var(--accent);padding:16px;background:var(--soft);overflow:auto;line-height:1.9}.paper-figure{margin:26px 0}.paper-figure img{display:block;width:100%;height:auto;background:white;border:1px solid var(--border);border-radius:6px}.paper-figure figcaption{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--soft);border:1px solid var(--border);border-radius:6px;padding:16px;overflow:auto}
+</style></head><body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../?domain=diffusion&amp;paper=38-dda" target="_top">论文精读地图 / 扩散阅读室</a><div class="toplinks"><a href="../?domain=diffusion&amp;paper=38-dda" target="_top">精读页</a><a href="#verdict">结论</a><a href="#results">结果</a><a href="#examples">样例</a><a href="#limits">局限</a></div></div></header>
+<div class="paper-doc"><aside class="paper-sidebar" aria-label="阅读目录"><p class="side-eyebrow">DDA · 推理走查</p><nav><a href="#verdict"><b>00</b>一句话结论</a><a href="#ran"><b>01</b>跑了什么</a><a href="#env"><b>02</b>环境与改动</a><a href="#results"><b>03</b>结果</a><a href="#examples"><b>04</b>样例</a><a href="#limits"><b>05</b>没跑的部分</a><a href="#commands"><b>06</b>文件位置</a><a href="#sources"><b>07</b>来源</a></nav><div class="sidebar-foot">小样本推理走查 · 2026-11-23<br>服务器 gpu04 · 上游 accf067</div></aside>
+<main class="paper-main">
+
+<section class="opening" id="verdict"><p class="eyebrow">INFERENCE RECORD / NOT A REPRODUCTION</p><h1>最难的那类损坏上，<br><em>重画一遍确实救回来。</em></h1><p class="opening-deck">100 张 ImageNet-C <code>gaussian_noise</code>（severity 5，10 类 × 10 张），ResNet-50 + ADM 无条件扩散模型，按官方 <code>image_adapt.sh</code> 的协议做输入适配。<strong>仅原图 top-1 3.0%，仅适配图 61.0%，DDA 自集成 57.0%。</strong>source 已经接近随机，集成反而被原图拖低——这是本次走查最值得记的现象。</p><div class="publication"><span class="highlight">只跑推理</span><span>100 张 · gaussian_noise / 5</span><span>ResNet-50</span></div><div class="paper-identity"><div><strong>论文</strong>Back to the Source: Diffusion-Driven Adaptation to Test-Time Corruption（CVPR 2023，arXiv:2207.03442）</div><div><strong>代码</strong>github.com/shiyegao/DDA @ accf067</div></div></section>
+
+<section class="chapter" id="ran"><div class="chapter-heading"><span class="chapter-number">01</span><h2>跑了什么</h2></div><div class="narrative"><p>两步：先用 <code>image_adapt/scripts/image_sample.py</code> 对每张测试图做「前向加噪 → 带结构引导的反向去噪」，得到适配图；再用 <code>model_adapt/test_ensemble.py</code> 跑三种集成：<code>first</code>（只看原图，等价 source-only）、<code>second</code>（只看适配图）、<code>sum</code>（两者 logits 相加，论文默认）。</p><p>适配超参照仓库脚本：D=4（低通滤波下采样倍数）、N=50（扩散步数）、scale=6（结构引导步长）、100 步 DDIM 重采样、单进程 <code>-n 1</code>。只跑 <code>gaussian_noise</code> 一个损坏的 severity 5。</p></div></section>
+
+<section class="chapter" id="env"><div class="chapter-heading"><span class="chapter-number">02</span><h2>环境与改动</h2></div><div class="narrative"><p>python 3.8、torch 2.0.1+cu118、torchvision 0.15.2+cu118、<strong>mmcv-full 1.7.2</strong>（openmmlab 的 cu118/torch2.0 预编译轮子；1.7.1 无对应轮子会走源码编译并失败）、mmcls 0.25.0、mpi4py（conda-forge）、blobfile、pyarrow、setuptools&lt;70。</p><p><strong>改动两处，均不影响 ResNet-50 路径：</strong>(1) <code>model_adapt/configs/_base_/custom_imports.py</code> 注释掉 <code>model_adapt.rednet</code>，因为 rednet → involution_cupy → <code>import cupy</code>，而 cupy 在本机 py3.8 装不上（fastrlock 需要 Cython≥3.9）；(2) 配置里 <code>imagenetc_ReCr2.py</code> 写死 <code>corruption=corruption[1]</code>（shot_noise），用 <code>--cfg-options data.test.corruption=gaussian_noise</code> 覆盖，未改文件。</p></div></section>
+
+<section class="chapter" id="results"><div class="chapter-heading"><span class="chapter-number">03</span><h2>结果</h2></div><div class="table-wrap"><table><thead><tr><th>ensemble</th><th>top-1</th><th>含义</th></tr></thead><tbody><tr><td>first</td><td><strong>3.0%</strong></td><td>仅原图（= source-only 基线）</td></tr><tr><td>second</td><td><strong>61.0%</strong></td><td>仅扩散适配后的图</td></tr><tr><td>sum</td><td><strong>57.0%</strong></td><td>DDA 自集成（论文默认）</td></tr></tbody></table></div><div class="narrative"><p>论文 Table 1 的 18.7→29.7 是 15 种损坏的平均；这里只跑最难的 <code>gaussian_noise</code>（σ=0.38），ResNet-50 原图只剩 3.0%，与 Diffusion-TTA 论文 Table 2 同一损坏的 6.3% 同量级。适配后 61% 与 SDA 论文 Table 4 里同一损坏的 DDA=59.9（ConvNeXt-B）同量级——但两者骨干与协议不同，只能当方向性一致。</p><p>耗时：100 张适配（25 个 batch × 100 步）约 11.5 分钟；三个 ensemble 各 &lt;40 秒。</p></div></section>
+
+<section class="chapter" id="examples"><div class="chapter-heading"><span class="chapter-number">04</span><h2>样例</h2></div><figure class="paper-figure"><img src="infer-assets/dda-1.jpg" alt="三行样例，每行左侧为高斯噪声损坏的原图，右侧为扩散适配后的重画结果" loading="lazy"><figcaption>三行取自三个不同类别（n01440764、n01798484、n02089867）。左列是 severity-5 高斯噪声原图，右列是 DDA 适配输出（同一随机种子）。适配图明显更平滑、结构仍然保留；噪声被抹平的同时，细纹理也被一并重画。图由服务器端 <code>dda/out/atlas/mk.py</code> 直接拼接原图与输出，未做增强。</figcaption></figure></section>
+
+<section class="chapter" id="limits"><div class="chapter-heading"><span class="chapter-number">05</span><h2>没跑的部分与局限</h2></div><ol class="checklist"><li><strong>小样本，不等同论文指标</strong>：只覆盖 1 种损坏（15 种中的 gaussian_noise）、100 张（全量 50000）、10 个类别。</li><li><strong>自集成方向反转</strong>：source 只有 3.0% 时，sum（57.0）低于 second（61.0）。论文的自集成假设原图仍有可用信息，这个假设在最强噪声下不成立；报告「DDA 优于 source」时不能把这一项算成增益。</li><li><strong>没跑完整 ImageNet-C / ImageNet-C̄</strong>：不下载 20 GB+ 的全量数据，因此没有 15 种平均与 C̄ 的结论。</li><li><strong>没跑其他骨干</strong>：Swin、ConvNeXt 均未测，无法验证「跨架构不调参」。</li><li><strong>没跑联合目标与数据流敏感性</strong>：论文 Table 3 的 TENT 崩溃对比是本篇最有信息量的实验，本次没有复现。</li><li><strong>数据是镜像的 shard0</strong>：100 张来自 HF 镜像的 12500 张分片，图像统计（std 0.269 / lapvar 0.75）与官方同一损坏的公开值（0.277 / 0.734）接近，但未与官方 tar 逐张比对。</li></ol></section>
+
+<section class="chapter" id="commands"><div class="chapter-heading"><span class="chapter-number">06</span><h2>文件位置</h2></div><div class="code-box">cd /data1/kxchen/infer-repro/dda
+
+# 1) 输入适配
+python image_adapt/scripts/image_sample.py \
+  --image_size 256 --learn_sigma --noise_schedule linear --use_fp16 \
+  --batch_size 4 --num_samples 100 --timestep_respacing 100 \
+  --model_path ckpt/256x256_diffusion_uncond.pt --base_samples data/imagenetc \
+  --D 4 --N 50 --scale 6 --corruption gaussian_noise --severity 5 \
+  --save_dir data/generated/
+
+# 2) 三种集成评测
+python model_adapt/test_ensemble.py \
+  model_adapt/configs/ensemble/resnet50_ensemble_b64_imagenet.py \
+  ckpt/resnet50_8xb32_in1k_20210831-ea4938fc.pth --metrics accuracy \
+  --ensemble {first,second,sum} \
+  --cfg-options data.test.corruption=gaussian_noise \
+                data.test.data_prefix=.../data/imagenetc \
+                data.test.data_prefix2=.../data/generated</div><div class="table-wrap"><table><thead><tr><th>路径</th><th>内容</th></tr></thead><tbody><tr><td><code>/data1/kxchen/infer-repro/dda</code></td><td>官方代码 @ accf067（<code>code/</code>）、环境（<code>env/</code>）、权重（<code>ckpt/</code>）</td></tr><tr><td><code>.../dda/data/imagenetc/gaussian_noise/5</code></td><td>100 张测试原图（224×224，10 类 × 10 张）</td></tr><tr><td><code>.../dda/data/generated/gaussian_noise/5</code></td><td>100 张扩散适配输出（256×256）</td></tr><tr><td><code>.../dda/out/atlas/repro.jpg</code></td><td>本页样例拼图（服务器生成后 scp）</td></tr><tr><td><code>.../dda/RECORD.md</code></td><td>本页数字的出处</td></tr></tbody></table></div></section>
+
+<section class="chapter" id="sources"><h2>来源</h2><ol><li><a href="https://arxiv.org/abs/2207.03442">DDA 论文（arXiv:2207.03442）</a>与<a href="https://github.com/shiyegao/DDA">官方仓库</a>。</li><li>扩散权重：guided-diffusion 的 <code>256x256_diffusion_uncond.pt</code>；分类权重：mmcls 的 ResNet-50 1k。<a href="https://github.com/SHI-Labs/Diffusion-Driven-Test-Time-Adaptation-via-Synthetic-Domain-Alignment">SDA 仓库</a>的 Table 4 被用作同一损坏上的参照值。</li><li>本页数字全部取自服务器 <code>RECORD.md</code> 与评测日志，样例图由 <code>data/generated</code> 与 <code>data/imagenetc</code> 的同名文件拼接。</li></ol></section>
+
+</main></div>
+<footer class="page-footer"><span>DDA 推理走查 · 2026-11-23</span><span>产物：/data1/kxchen/infer-repro/dda</span></footer>
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('is-embed');
+</script>
+</body></html>

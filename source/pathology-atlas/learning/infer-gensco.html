@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GenSCO 推理走查｜TSP-100 全 1280 例，gap 约 0.0005%</title><meta name="description" content="GenSCO（NeurIPS 2025）官方 JAX 实现推理走查：只跑 TSP-100 评测脚本，两次得 mean cost 7.755891 / 7.755883，gap 0.000513% / 0.000403%，整轮 38–40 s。">
+<link rel="stylesheet" href="dds-story.css"><style>
+:root{--border:var(--line);--accent:var(--green)}.paper-main{min-width:0}code{overflow-wrap:anywhere;word-break:break-word}.table-wrap{overflow:auto;max-width:100%}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{font-weight:600}.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--soft);border:1px solid var(--border);border-radius:6px;padding:16px;overflow:auto}.checklist li{margin-bottom:10px}
+</style></head><body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../?domain=diffusion&amp;paper=44-gensco" target="_top">论文精读地图 / 扩散与测试时适配</a><div class="toplinks"><a href="../?domain=diffusion&amp;paper=44-gensco" target="_top">精读页</a><a href="#verdict">结论</a><a href="#results">结果</a><a href="#limits">局限</a></div></div></header>
+<div class="paper-doc"><aside class="paper-sidebar" aria-label="阅读目录"><p class="side-eyebrow">GENSCO · 推理走查</p><nav><a href="#verdict"><b>00</b>一句话结论</a><a href="#ran"><b>01</b>跑了什么</a><a href="#env"><b>02</b>环境与改动</a><a href="#results"><b>03</b>结果</a><a href="#limits"><b>04</b>没跑的部分</a><a href="#files"><b>05</b>文件位置</a><a href="#sources"><b>06</b>来源</a></nav><div class="sidebar-foot">推理走查 · 2026-11-23<br>服务器 gpu04 · 代码 @ f1bdcef<br>产物 /data1/kxchen/infer-repro/gensco</div></aside>
+<main class="paper-main">
+
+<section class="opening" id="verdict"><p class="eyebrow">INFERENCE WALKTHROUGH / NOT A REPRODUCTION</p><h1>一条命令，<br><em>1280 个 TSP-100 实例。</em></h1><p class="opening-deck">用官方 JAX 实现和 TSP-100 检查点，完全按 <code>scripts/eval/tsp100.sh</code> 的参数跑全量 1280 个实例。两次 mean cost 为 <strong>7.755891 / 7.755883</strong>，参考最优 7.755851，gap <strong>0.000513% / 0.000403%</strong>；论文与 README 报 0.000%。整轮 38–40 s，峰值显存 4520 MiB，代码只改了 Makefile 的编译器。</p><div class="publication"><span class="highlight">只跑推理</span><span>TSP-100 · 1280 实例 · 单 seed</span></div></section>
+
+<section class="chapter" id="ran"><div class="chapter-heading"><span class="chapter-number">01</span><h2>跑了什么</h2></div><div class="narrative"><p>只跑 README 的 TSP-100 评测（<code>decoding.tsp</code>），参数与 <code>scripts/eval/tsp100.sh</code> 完全一致：<code>runs=8, cycles=10, sampling_steps=4, two_opt_steps=2, batch_size=128, threads_over_batches=2, augment_level=1</code>，随机 2-opt 步数范围 (25, 75)。数据是 1280 个 100 节点实例（<code>coords</code> + <code>opt_tours</code>，无 <code>opt_costs</code>，代码用 opt_tours 在 CPU 上算最优代价）。</p><p>TSP-500/1000、MIS、MCl、CVRP/TSPTW 与训练全部没跑；<code>--decode_intermediate</code> 没开，脚本不落盘解，只打印 cost/gap。</p></div></section>
+
+<section class="chapter" id="env"><div class="chapter-heading"><span class="chapter-number">02</span><h2>环境与改动</h2></div><div class="narrative"><p>独立 conda env（python 3.11）。按 <code>install.sh</code> 装 <code>jax[cuda12]==0.5.0</code>、flax 0.10.4、optax 0.2.4、triton 3.1.0、<code>tensorflow_cpu</code> 2.19、<code>torch==2.6.0+cpu</code>。两处偏差：(1) <code>install.sh</code> 最后把 numpy 钉到 1.26.4 会让 jaxlib 因 ml_dtypes ABI 不匹配而起不来，保留 numpy 2.1.3；(2) 机器无 <code>clang++</code>，<code>lib/Makefile</code> 的编译器换 <code>g++</code>（gcc 9.4/C++17 足够），产物 <code>lib/interface.cpython-311-x86_64-linux-gnu.so</code>。</p><p>权重/数据：<code>data/tsp100_concorde_7.75585.npz</code>（HF <code>Rick242420/MaskCO</code>，2.56 MB）、<code>ckpt/tsp100.ckpt</code>（76.5 MB，Google Drive）。运行前设 <code>XLA_PYTHON_CLIENT_PREALLOCATE=false</code>，否则 XLA 预分配整卡。算法与超参未改；<code>1280 = 5 × (128 × 2)</code> 使 <code>threads_over_batches=2</code> 的断言成立，没有改 batch。</p></div></section>
+
+<section class="chapter" id="results"><div class="chapter-heading"><span class="chapter-number">03</span><h2>结果</h2></div><div class="table-wrap"><table><thead><tr><th>次数</th><th>mean cost</th><th>opt cost</th><th>Gap</th></tr></thead><tbody>
+<tr><td>第 1 次</td><td>7.755891</td><td>7.755851</td><td>0.000513%</td></tr>
+<tr><td>第 2 次（测显存）</td><td>7.755883</td><td>7.755851</td><td>0.000403%</td></tr>
+<tr><td>论文 / README</td><td>—</td><td>—</td><td>0.000%</td></tr>
+</tbody></table></div><div class="narrative"><p>两次都在 0.0005% 量级，即 1280 个实例里极少数差 1e-5 相对量；逐 batch 打印的 cost 在 7.7499–7.7599 之间。与论文的 0.000% 属同一水平，<strong>跑通且对齐</strong>。整轮 38–40 s（5 个 batch × 2 线程，约 7 s/batch），含导入/编译共约 90 s；nvidia-smi 逐进程采样峰值 4520 MiB（XLA 预分配关闭时），batch=128 无需下调。</p><p>注意与论文 Table 1 的时间不可直接比：论文 TSP-100 报 6 s 且 8 个算子并行，本走查按脚本顺序执行、单卡共享。差距来源是硬件与并行度，不是算法。</p></div></section>
+
+<section class="chapter" id="limits"><div class="chapter-heading"><span class="chapter-number">04</span><h2>没跑的部分与局限</h2></div><div class="narrative"><ul class="checklist"><li><strong>只有一个任务</strong>：TSP-500/1000、MIS（RB/ER）、MCl（small/large）都需要各自的数据与 checkpoint（TSP-1000 数据 GB 级），未跑。</li><li><strong>单 seed、单配置</strong>：没有扫 cycles / sampling_steps，也没有重复 seed 取方差。</li><li><strong>gap 不是逐例最优证明</strong>：最优代价由 <code>opt_tours</code> 算出，0.0005% 说明接近参考解，不等于证明最优。</li><li><strong>没有图像产物</strong>：该脚本不落盘解，本页只有表格，无样例图。</li><li><strong>训练未验证</strong>：<code>scripts/train</code> 与自举重标注（GenSCO2/3）没跑。</li></ul></div></section>
+
+<section class="chapter" id="files"><div class="chapter-heading"><span class="chapter-number">05</span><h2>文件位置</h2></div><div class="code-box">cd /data1/kxchen/infer-repro/gensco/code
+export XLA_PYTHON_CLIENT_PREALLOCATE=false
+CUDA_VISIBLE_DEVICES=1 ../env/bin/python -u -m decoding.tsp \
+  --data ../data/tsp100_concorde_7.75585.npz --ckpt ../ckpt/tsp100.ckpt \
+  --sampling_steps 4 --two_opt_steps 2 --cycles 10 --runs 8 --batch_size 128 \
+  --random_two_opt_steps_range "(25, 75)" --threads_over_batches 2 --augment_level 1</div><div class="table-wrap"><table><thead><tr><th>路径</th><th>内容</th></tr></thead><tbody><tr><td><code>/data1/kxchen/infer-repro/gensco</code></td><td>代码（官方 @ f1bdcef）+ <code>env/</code> + <code>data/</code> + <code>ckpt/</code></td></tr><tr><td><code>lib/interface.cpython-311-x86_64-linux-gnu.so</code></td><td>g++ 编译的局部搜索 C++ 扩展</td></tr><tr><td><code>logs/tsp100b.log</code>, <code>logs/tsp100_vram.log</code></td><td>两次运行的 stdout（含 cost/gap 与显存采样）</td></tr><tr><td><code>logs/run_tsp100.sh</code></td><td>复跑脚本</td></tr><tr><td><code>RECORD.md</code></td><td>完整记录与坑位</td></tr></tbody></table></div></section>
+
+<section class="chapter" id="sources"><h2>来源</h2><ol><li><a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/b8e9869fa827226ff68db9290659a20c-Abstract-Conference.html">GenSCO 论文（NeurIPS 2025 proceedings）</a>与<a href="https://github.com/Thinklab-SJTU/GenSCO">官方仓库</a>。</li><li>数据：<a href="https://huggingface.co/datasets/Rick242420/MaskCO">HF Rick242420/MaskCO</a>（<code>tsp/tsp100_concorde_7.75585.npz</code>）。权重：作者 Google Drive。</li><li>本页数字来自服务器端 <code>logs/</code> 中脚本打印的 mean cost 与 gap；<code>RECORD.md</code> 是原始记录。单 seed 推理走查，不等同论文指标。</li></ol></section>
+
+</main></div>
+<footer class="page-footer"><span>GenSCO 推理走查 · 2026-11-23</span><span>产物：/data1/kxchen/infer-repro/gensco</span></footer>
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('is-embed');
+</script>
+</body></html>
