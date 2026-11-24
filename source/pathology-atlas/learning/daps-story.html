@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="结合 gpu04 实测采样轨迹图，零基础图解 CVPR 2025 Oral DAPS：为什么它能从猜错的人脸跳出来，如何先大改再重新撒雪花退火。">
+<meta name="theme-color" content="#f6f4ee">
+<title>DAPS 图解精读｜允许反悔重画的扩散采样</title>
+<link rel="stylesheet" href="dds-story.css">
+<link rel="stylesheet" href="math/katex.min.css">
+<style>
+.traj-lab {
+  background: var(--white);
+  border: 1px solid var(--line);
+  margin: 28px 0;
+  padding: 24px;
+}
+.traj-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.traj-steps {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 6px;
+  margin: 14px 0 18px;
+}
+.traj-step-btn {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+  padding: 7px 4px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  border-radius: 4px;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.traj-step-btn:hover {
+  border-color: var(--green);
+  color: var(--ink);
+}
+.traj-step-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+  font-weight: 650;
+}
+.traj-stage {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #172b2a;
+}
+.traj-stage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.traj-highlight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  left: 0;
+  border: 3px solid var(--lime);
+  box-shadow: 0 0 0 9999px rgba(17, 29, 28, 0.44);
+  pointer-events: none;
+  transition: left .18s ease;
+}
+.traj-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+.traj-legend div {
+  border-left: 3px solid var(--green);
+  background: var(--soft);
+  padding: 10px 12px;
+  line-height: 1.7;
+}
+.traj-legend strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.traj-explain {
+  margin-top: 16px;
+  border-left: 3px solid var(--green);
+  background: var(--soft);
+  padding: 16px 20px;
+}
+.traj-explain h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: var(--ink);
+}
+.traj-explain p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.traj-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.traj-figure {
+  margin: 24px 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+.traj-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.traj-figure figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.row-pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--lime);
+  margin-right: 6px;
+}
+@media (max-width: 720px) {
+  .traj-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .traj-legend { grid-template-columns: 1fr; }
+  .traj-lab { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../?domain=diffusion&amp;paper=31-daps" target="_top">
+      <span class="brand-symbol" aria-hidden="true">D</span>
+      <span>论文精读地图 / DAPS 图解</span>
+    </a>
+    <nav class="toplinks" aria-label="快捷导航">
+      <a href="../?domain=diffusion&amp;paper=31-daps" target="_top">回精读笔记</a>
+      <a href="infer-daps.html">推理走查记录</a>
+      <a href="#interactive">看真实轨迹图</a>
+      <a href="#formulas">看两张公式卡</a>
+    </nav>
+  </div>
+  <div class="progress-line" id="progress-line" aria-hidden="true"></div>
+</header>
+
+<div class="paper-doc">
+  <aside class="paper-sidebar" aria-label="内容阅读地图">
+    <p class="side-eyebrow">A VISUAL WALKTHROUGH</p>
+    <nav>
+      <a href="#thesis"><b>00</b>先用画画秒懂</a>
+      <a href="#rows"><b>01</b>三行轨迹图怎么看</a>
+      <a href="#interactive"><b>02</b>逐帧看它怎么翻盘</a>
+      <a href="#valleys"><b>03</b>什么是假山谷与颠倒</a>
+      <a href="#formulas"><b>04</b>回头看两张公式卡</a>
+      <a href="#compare"><b>05</b>和 DPS / DDS 怎么选</a>
+      <a href="#paper-mark-panel"><b>06</b>自测与阅读笔记</a>
+    </nav>
+    <div class="sidebar-foot">
+      <strong>DAPS · CVPR 2025 Oral</strong>
+      图解入门 + gpu04 实测轨迹<br>
+      零基础约 15 分钟读完
+    </div>
+  </aside>
+
+  <main class="paper-main">
+    <section class="opening" id="thesis">
+      <p class="eyebrow">PAPER STUDY · DECOUPLED ANNEALING POSTERIOR SAMPLING</p>
+      <div class="opening-grid">
+        <div>
+          <h1>允许反悔重画的<br><em>扩散采样。</em></h1>
+          <p class="opening-deck">以前的方法像被绳子拴住：一开始猜错朝向，后面每步只能改 1 毫米，只能错到底。DAPS 剪断了相邻两步的绳子——<strong>先一口气变清晰 → 对着线索大改 100 次（甚至直接换张脸）→ 再故意撒上一层轻一点的雪花，进下一轮精修</strong>。</p>
+          <div class="publication">
+            <span class="highlight">CVPR 2025 Oral</span>
+            <span>arXiv:2407.01521</span>
+            <span>含 gpu04 实测轨迹图</span>
+          </div>
+        </div>
+        <div class="cover-visual">
+          <span class="visual-tag">THE CENTRAL MOVE · 一轮只做三件事</span>
+          <svg font-family="Segoe UI, Microsoft YaHei, sans-serif" viewBox="0 0 360 235" width="360" height="235" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DAPS 一轮循环：糊图先一口气变清晰，再拿线索大改，最后撒回更轻噪声进入下一轮">
+            <defs>
+              <marker id="daps-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+                <path d="M0 0 L6 3 L0 6" fill="#dbeaa9" />
+              </marker>
+            </defs>
+            <rect x="18" y="32" width="84" height="76" fill="#223837" stroke="#59736a" />
+            <rect x="138" y="32" width="84" height="76" fill="#223837" stroke="#9cbaaf" />
+            <rect x="258" y="32" width="84" height="76" fill="#223837" stroke="#dbeaa9" />
+            <text x="60" y="66" fill="#eef3e9" text-anchor="middle" font-size="13" font-weight="600">糊图 x_t</text>
+            <text x="60" y="88" fill="#b8cfc6" text-anchor="middle" font-size="10">雪花还很重</text>
+            <text x="180" y="66" fill="#eef3e9" text-anchor="middle" font-size="13" font-weight="600">先猜清晰图</text>
+            <text x="180" y="88" fill="#b8cfc6" text-anchor="middle" font-size="10">5 步 ODE 飞过来</text>
+            <text x="300" y="66" fill="#dbeaa9" text-anchor="middle" font-size="13" font-weight="600">大胆改 100 次</text>
+            <text x="300" y="88" fill="#dbeaa9" text-anchor="middle" font-size="10">对照线索可换脸</text>
+            <line x1="106" y1="70" x2="132" y2="70" stroke="#dbeaa9" stroke-width="1.8" marker-end="url(#daps-arrow)" />
+            <line x1="226" y1="70" x2="252" y2="70" stroke="#dbeaa9" stroke-width="1.8" marker-end="url(#daps-arrow)" />
+            <path d="M300 116 V176 H60 V116" fill="none" stroke="#dbeaa9" stroke-dasharray="5 5" stroke-width="1.6" marker-end="url(#daps-arrow)" />
+            <text x="180" y="164" text-anchor="middle" fill="#eef3e9" font-size="12">故意撒一层“轻一点的雪花”</text>
+            <text x="180" y="198" text-anchor="middle" fill="#b8cfc6" font-size="11">循环 200 轮，雪花越撒越轻 → 真图长出来</text>
+          </svg>
+          <p class="cover-caption">方法示意：大改发生在“清晰图”上，不再受上一轮糊图的束缚。</p>
+        </div>
+      </div>
+      <div class="paper-identity">
+        <div>
+          <strong>Improving Diffusion Inverse Problem Solving with Decoupled Noise Annealing</strong>
+          Bingliang Zhang · Wenda Chu · Julius Berner · Chenlin Meng · Anima Anandkumar · Yang Song（Caltech / Stanford / OpenAI）
+        </div>
+        <div>
+          <a href="https://arxiv.org/abs/2407.01521" target="_blank" rel="noreferrer">arXiv 原文 ↗</a><br>
+          <a href="infer-daps.html">gpu04 走查记录 ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="rows">
+      <div class="chapter-heading">
+        <span class="chapter-number">01</span>
+        <h2>先学会看图：你的 gpu04 跑出来的三行分别在演什么？</h2>
+      </div>
+      <div class="narrative">
+        <p>把“解逆问题”想成：<strong>监控只拍到一团极模糊的影子（或只留下频谱亮度），要你把嫌疑人的清晰人脸画出来</strong>。</p>
+        <p>像 DPS 这类老方法有个死规矩——<strong>下一轮只能在上一轮的画上改 1 毫米</strong>。一旦第 1 轮雪花太重把人脸朝向猜反了，后面步子越走越小，就一辈子锁死在错的人脸里。DAPS 打破了这个规矩，你在 <code>gpu04:/data1/kxchen/infer-repro/daps/out/ffhq/*/trajectory/</code> 里保存的每张 3×10 大图，就是它每轮循环的现场录像（行顺序已从 <code>posterior_sample.py</code> 第 154 行核实）：</p>
+      </div>
+      <div class="traj-legend">
+        <div>
+          <strong><span class="row-pill">第 2 行（中间）</span>模型刚猜的清晰图 x0hat</strong>
+          不管现在雪花多厚，先让扩散模型一口气补全成一张清晰人脸——哪怕它一开始猜得完全不对（比如把小女孩猜成大叔，把宝宝猜成白胡子老爷爷）。
+        </div>
+        <div>
+          <strong><span class="row-pill">第 1 行（上面）</span>对清晰图大改 100 次 x0y</strong>
+          拿着真实物理线索（欠采样图或频谱幅度），在清晰图上大步修改、顺便加一点随机试错（Langevin）。它可以把“白胡子老爷爷”直接掰回宝宝轮廓。
+        </div>
+        <div>
+          <strong><span class="row-pill">第 3 行（下面）</span>故意撒一层轻雪花 xt</strong>
+          大改完的图虽然方向对了，但表面满是彩色糙噪；DAPS 故意再往上面撒一层比上轮更轻的高斯雪花，扔进下一列重新画清晰、修细节。
+        </div>
+      </div>
+      <div class="aside-note">
+        <strong>怎么读横轴（从左到右 10 列）</strong>：总共跑 200 轮退火，图片均匀抽取了从第 1 轮（最左，噪声极大）到第 200 轮（最右，几乎无噪）的 10 个瞬间。往右走的过程，就是“雪花越撒越轻”的过程。
+      </div>
+    </section>
+
+    <section class="chapter" id="interactive">
+      <div class="chapter-heading">
+        <span class="chapter-number">02</span>
+        <h2>点一点这 10 步，亲眼看 DAPS 怎么“换脸纠错”</h2>
+      </div>
+      <div class="narrative">
+        <p>下面放的是你在 <code>gpu04</code> 上实测跑出来的两张完整轨迹图。点击下方的 <strong>第 1–10 帧</strong> 按钮，高亮框会跟着移动到那一列，告诉你这一刻图里正在发生什么。</p>
+      </div>
+
+      <div class="traj-lab">
+        <div class="lab-heading">
+          <h3>真实轨迹逐帧观察器（gpu04 实测原图）</h3>
+          <span class="mini-label">10 个退火切片 · 3 行对照</span>
+        </div>
+
+        <div class="traj-tabs" role="group" aria-label="切换实验任务">
+          <button type="button" class="pill" data-scene="phase" aria-pressed="true">任务 A：相位恢复（连换 5 张脸跳出假坑）</button>
+          <button type="button" class="pill" data-scene="ds" aria-pressed="false">任务 B：4× 下采样（把白胡子老爷爷掰回宝宝）</button>
+        </div>
+
+        <div class="traj-steps" id="traj-steps" role="group" aria-label="选择第 1 到 10 帧"></div>
+
+        <div class="traj-stage">
+          <img id="traj-img" src="infer-assets/daps-traj-phase.jpg" alt="DAPS 相位恢复采样轨迹：3 行 10 列，展示从猜错人脸到锁定真小女孩的过程">
+          <div class="traj-highlight" id="traj-highlight" aria-hidden="true"></div>
+        </div>
+
+        <div class="traj-explain">
+          <h4 id="traj-title">第 1 帧 / 10：完全在乱猜（先猜出一位成年女性）</h4>
+          <p id="traj-desc"></p>
+        </div>
+
+        <div class="traj-nav-row">
+          <div>
+            <button type="button" class="pill" id="traj-prev">← 上一帧</button>
+            <button type="button" class="pill" id="traj-next">下一帧 →</button>
+          </div>
+          <span class="read-guide" style="margin:0" id="traj-source">来源：gpu04:/data1/kxchen/infer-repro/daps/out/ffhq/phase_retrieval/trajectory/00007_run0000.png</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="valleys">
+      <div class="chapter-heading">
+        <span class="chapter-number">03</span>
+        <h2>什么是“假山谷”？看一眼这张 180° 上下颠倒的脸</h2>
+      </div>
+      <div class="narrative">
+        <p>前面一直说“相位恢复有很多假山谷，老方法会掉进去出不来”。你自己在 <code>gpu04</code> 跑出的结果图 <strong>直接把“假山谷”画给你看了</strong>。</p>
+        <p>相位恢复丢掉了所有相位信息，只留下第 2 行那一排白十字星芒（傅里叶幅度）。在物理上，<strong>一张正着的人脸</strong>和<strong>同一张脸上下左右完全颠倒 180°</strong>，算出来的星芒幅度是<strong>一模一样</strong>的！</p>
+      </div>
+
+      <figure class="traj-figure">
+        <img src="infer-assets/daps-traj-phase-flip.jpg" alt="同一个小女孩的另一种随机种子轨迹：第 7 列之后整张脸上下颠倒并收敛" loading="lazy">
+        <figcaption><strong>同一个小女孩，换一个随机起点（run0002）的轨迹图</strong>：前 6 列它一直在试各种正着的人脸，怎么都跟星芒对不上；到第 7 列突然翻转，第 8–10 列彻底收敛成一张极其清晰的<strong>上下颠倒小女孩</strong>。它 100% 满足物理测量，只是掉进了共轭对称的“假山谷”。</figcaption>
+      </figure>
+
+      <figure class="traj-figure">
+        <img src="infer-assets/daps-2.jpg" alt="10 张 FFHQ 人脸跑 4 次相位恢复的拼图" loading="lazy">
+        <figcaption><strong>这就是为什么相位恢复要设 <code>num_runs=4</code>（跑 4 遍挑最好）</strong>：第 1 行是原图，第 2 行是只剩星芒的测量，第 3–6 行是 DAPS 跑了 4 遍的结果。看第 8 列小女孩和第 10 列眼镜男的第 5 行——整张脸都是上下颠倒的；第 7 列金发女生的第 3 行崩掉，但另外 3 遍全修得清清楚楚。</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter" id="formulas">
+      <div class="chapter-heading">
+        <span class="chapter-number">04</span>
+        <h2>看懂图以后再回头看公式，其实就这两张卡</h2>
+      </div>
+      <div class="narrative">
+        <p>现在脑子里已经装进上面三行画面的演变过程了，下面这两条公式只是把你刚才看到的画面写成数学速记。</p>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-card__label">公式卡 1 · 剪断绳子的“两步跳”（论文 Proposition 1）</div>
+        <div class="formula-card__equation formula-card__equation-rendered" data-katex="x_0 \sim p(x_0 \mid x_{t_1}, y),\qquad x_{t_2} = x_0 + \sigma_{t_2}\epsilon'"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>∼</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo>∣</mo><msub><mi>x</mi><msub><mi>t</mi><mn>1</mn></msub></msub><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="2em"/><msub><mi>x</mi><msub><mi>t</mi><mn>2</mn></msub></msub><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub><mo>+</mo><msub><mi>σ</mi><msub><mi>t</mi><mn>2</mn></msub></msub><msup><mi>ϵ</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">x_0 \sim p(x_0 \mid x_{t_1}, y),\qquad x_{t_2} = x_0 + \sigma_{t_2}\epsilon&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.052em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">ϵ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></div>
+        <div class="formula-card__equation formula-card__equation-plain" hidden>x₀ ~ p(x₀ | x_{t₁}, y),   x_{t₂} = x₀ + σ_{t₂} ε'</div>
+        <p class="formula-card__caption">对应轨迹图里的<strong>第 1 行 → 第 3 行</strong>：只要先在干净空间抓到一张兼顾测量与先验的图 <i>x</i><sub>0</sub>（第 1 行），直接给它撒上更轻的高斯雪花 <i>σ</i><sub><i>t</i>₂</sub><i>ε</i>′（第 3 行），就能精确跳到下一层噪声分布，中间无论跨多大都不受限制。</p>
+        <dl class="formula-legend">
+          <div class="formula-legend__row"><dt>x_0</dt><dd>第 1 行（<code>x0y</code>）：对照物理线索大改完的干净样本。</dd></div>
+          <div class="formula-legend__row"><dt>σ_{t₂} ε'</dt><dd>往第 1 行上面重新撒的那一层“更轻的雪花”，用来生成第 3 行（<code>xt</code>）。</dd></div>
+        </dl>
+        <div class="formula-card__intuition">一句话：为什么能跨大步？因为先跳回干净图改完，再重新加噪，完全不必顺着老路径小步挪。</div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula-card__label">公式卡 2 · 三股力量拔河的 100 步大改（论文 Eq. 7，Langevin 内循环）</div>
+        <div class="formula-card__equation formula-card__equation-rendered" data-katex="x^{(j+1)} = x^{(j)} - \eta \left(\frac{x^{(j)} - \hat{x}_0(x_t)}{r_t^2} + \frac{\nabla_x \|\mathcal{A}(x^{(j)}) - y\|_2^2}{2\beta_y^2}\right) + \sqrt{2\eta}\,\epsilon^{(j)}"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo>=</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>−</mo><mi>η</mi><mrow><mo fence="true">(</mo><mfrac><mrow><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>−</mo><msub><mover accent="true"><mi>x</mi><mo>^</mo></mover><mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><msubsup><mi>r</mi><mi>t</mi><mn>2</mn></msubsup></mfrac><mo>+</mo><mfrac><mrow><msub><mi mathvariant="normal">∇</mi><mi>x</mi></msub><mi mathvariant="normal">∥</mi><mi mathvariant="script">A</mi><mo stretchy="false">(</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo>−</mo><mi>y</mi><msubsup><mi mathvariant="normal">∥</mi><mn>2</mn><mn>2</mn></msubsup></mrow><mrow><mn>2</mn><msubsup><mi>β</mi><mi>y</mi><mn>2</mn></msubsup></mrow></mfrac><mo fence="true">)</mo></mrow><mo>+</mo><msqrt><mrow><mn>2</mn><mi>η</mi></mrow></msqrt><mtext> </mtext><msup><mi>ϵ</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">x^{(j+1)} = x^{(j)} - \eta \left(\frac{x^{(j)} - \hat{x}_0(x_t)}{r_t^2} + \frac{\nabla_x \|\mathcal{A}(x^{(j)}) - y\|_2^2}{2\beta_y^2}\right) + \sqrt{2\eta}\,\epsilon^{(j)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.938em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0213em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.6341em;vertical-align:-1.0691em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">η</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.565em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4542em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2458em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9318em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.565em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0528em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.453em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span></span></span><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∥</span><span class="mord mathcal">A</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4519em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2481em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0691em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.24em;vertical-align:-0.2811em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9589em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0359em;">η</span></span></span><span style="top:-2.9189em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg font-family="Segoe UI, Microsoft YaHei, sans-serif" xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2811em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">ϵ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span></div>
+        <div class="formula-card__equation formula-card__equation-plain" hidden>x^(j+1) = x^(j) - η * [ (x^(j) - x̂₀)/r_t² + ∇‖A(x^(j)) - y‖²/(2β_y²) ] + √(2η) ε^(j)</div>
+        <p class="formula-card__caption">这就是把<strong>第 2 行（<code>x0hat</code>）变成第 1 行（<code>x0y</code>）</strong>的那 100 步修改循环。每一步都在三股力量之间拔河，而且<strong>全程不用调用庞大的神经网络</strong>，只算便宜的物理算子。</p>
+        <dl class="formula-legend">
+          <div class="formula-legend__row"><dt>① 先验弹簧</dt><dd><code>(x - x̂₀) / r_t²</code>：别改太疯，拽着你像一张正常人脸（贴近第 2 行）。</dd></div>
+          <div class="formula-legend__row"><dt>② 测量弹簧</dt><dd><code>∇‖A(x) - y‖² / 2β_y²</code>：拽着你必须符合真实扫描仪线索（拉出第 1 行）。</dd></div>
+          <div class="formula-legend__row"><dt>③ 随机噪音</dt><dd><code>√(2η) ε</code>：故意加一点随机晃动，帮你跳出假坑、保留后验多样性。</dd></div>
+        </dl>
+        <div class="formula-card__intuition">去掉第 ③ 项就退化成普通优化（只求一个平均/MAP 点）；留着第 ③ 项，才是真正的后验采样。</div>
+      </div>
+    </section>
+
+    <section class="chapter" id="compare">
+      <div class="chapter-heading">
+        <span class="chapter-number">05</span>
+        <h2>和 DDS / DPS / DDRM 放在一起，怎么记才不会混？</h2>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <caption>四篇核心求解器一句话分工（结合你库里已完成精读）</caption>
+          <thead>
+            <tr>
+              <th>方法</th>
+              <th>怎么把测量塞进去</th>
+              <th>NFE / 速度参考</th>
+              <th>最拿手什么</th>
+              <th>最明显短板</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="../?domain=diffusion&amp;paper=29-ddrm" target="_top">DDRM</a></td>
+              <td>算子做 SVD，频谱上按噪声比抄测量</td>
+              <td>20 NFE / ~2 s</td>
+              <td>规整线性任务性价比无敌</td>
+              <td>算子必须能便宜做 SVD，多线圈 MRI/非线性直接挂</td>
+            </tr>
+            <tr>
+              <td><a href="../?domain=diffusion&amp;paper=28-dps" target="_top">DPS</a></td>
+              <td>在 x̂<sub>0</sub> 算残差，穿过网络反向求导</td>
+              <td>1000 NFE / ~35 s (A100)</td>
+              <td>通用、可微非线性都能接</td>
+              <td>反传慢、每步被上一步拴死，相位恢复仅 17.64 dB</td>
+            </tr>
+            <tr>
+              <td><a href="../?domain=mri&amp;paper=20-dds" target="_top">DDS</a></td>
+              <td>在 x̂<sub>0</sub> 跑几步 CG，再 DDIM 推进</td>
+              <td>~49 NFE</td>
+              <td>多线圈 MRI / CT 线性加速重建</td>
+              <td>依赖线性算子与局部切平面假设</td>
+            </tr>
+            <tr class="emphasis">
+              <td><strong>DAPS（本篇）</strong></td>
+              <td>5 步 ODE 飞到 x̂<sub>0</sub> → 100 步 Langevin → 撒噪退火</td>
+              <td>1000–4000 NFE / ~37 s</td>
+              <td>多峰非线性（相位恢复 30.63 dB）与 CS-MRI 31.48 dB</td>
+              <td>算力不省、非均匀去模糊输 RED-diff、超参需逐任务调</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="checklist">
+        <li>
+          <strong>1000–4000 NFE 的算力成本</strong>
+          <small>论文 Table 7（A100）：DAPS-1K 约 37 s/图（和 DPS 35 s 一档，比 DDRM 2 s 慢得多）；非线性任务常用 DAPS-4K，且像相位恢复还要多跑几遍选最优。</small>
+        </li>
+        <li>
+          <strong>并非所有非线性任务都碾压</strong>
+          <small>论文 Table 1：非均匀去模糊上 DAPS（28.29 dB）反而低于 RED-diff（30.86 dB），且相位恢复在 ImageNet 上标准差高达 ±6.92 dB。</small>
+        </li>
+        <li>
+          <strong>需要逐任务调 <i>r</i><sub><i>t</i></sub> 与 Langevin 步长</strong>
+          <small>附录 F.2 的 Table 8 为每个任务单独指定了 <i>η</i><sub>0</sub> 与缩放 <i>δ</i>，换到新任务（比如病理或新 MRI 序列）时仍需重调。</small>
+        </li>
+      </ul>
+    </section>
+
+    <section class="chapter" id="paper-mark-panel">
+      <div class="chapter-heading">
+        <span class="chapter-number">06</span>
+        <h2>合上前，用 3 个问题检查自己是不是真的懂了</h2>
+      </div>
+      <div class="quiz">
+        <details>
+          <summary>01 / 轨迹图第 2 行（中间）一开始把小女孩猜成了大叔，DAPS 为什么没像 DPS 一样错到底？</summary>
+          <p>因为每轮都在干净空间里脱离上一帧大范围运行 100 步 Langevin，不再受“只能改 1 毫米”的相邻步约束。前 4 列在不断试探并跨过假坑后，第 5 列直接跳回了小女孩，再重新撒噪退火精修。</p>
+        </details>
+        <details>
+          <summary>02 / 既然第 1 行已经是“拿线索改好的清晰图”，为什么第 3 行还要故意再撒一层雪花？</summary>
+          <p>直接改完的第 1 行虽然轮廓和测量对齐了，但表面常有彩色糙噪或不自然的局部纹理（看宝宝图第 1 列最上面就特别明显）。重新撒一层更轻的噪声扔回扩散模型再走一轮，就能把“像真实人脸”的先验细节重新洗顺。</p>
+        </details>
+        <details>
+          <summary>03 / 为什么 gpu04 跑相位恢复时，第 8 列小女孩有一遍变成了“极其清晰的上下颠倒”？</summary>
+          <p>因为只保留傅里叶幅度时，正着的人脸与 180° 颠倒的人脸在测量上完全等价（共轭对称假山谷）。DAPS 只能保证自己“对得上测量且像一张脸”，没法替你猜正反——所以实践里经常需要跑多次（num_runs=4）挑选。</p>
+        </details>
+      </div>
+
+      <div class="paper-mark-panel paper-askbar" style="margin-top:35px">
+        <h3 style="font-size:17px;margin-bottom:12px">写下你自己的 2 句判断</h3>
+        <p class="read-guide" style="margin-bottom:16px">笔记仅保存在当前浏览器本地。试着不用公式，写下“DAPS 最打动我的一点”和“我觉得它的短板”。</p>
+        <form class="paper-askbar__form" id="note-form">
+          <textarea class="paper-askbar__input" id="reading-note" placeholder="例如：看完轨迹图第 1–5 列才真正懂什么叫解耦——不用跟上一步绑定，就能从猜错的胡子大叔跳回小女孩；但代价是跑一次好久、多峰还要靠多次采样。"></textarea>
+          <button class="solid-button" type="submit">保存个人判断</button>
+        </form>
+        <div class="paper-annotation" id="saved-note" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <span>DAPS 图解故事页 · 结合 gpu04 实测轨迹</span>
+      <span><a href="../?domain=diffusion&amp;paper=31-daps" target="_top">回到论文阅读器</a> · <a href="infer-daps.html">查看完整走查记录</a></span>
+    </footer>
+  </main>
+</div>
+
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') {
+  document.body.classList.add('is-embed');
+}
+
+(function () {
+  var scenes = {
+    phase: {
+      src: 'infer-assets/daps-traj-phase.jpg',
+      alt: 'DAPS 相位恢复采样轨迹：3 行 10 列，展示从猜错人脸到锁定真小女孩的过程',
+      source: '来源：gpu04:/data1/kxchen/infer-repro/daps/out/ffhq/phase_retrieval/trajectory/00007_run0000.png',
+      steps: [
+        ['第 1 帧 / 10：雪花极大，先瞎猜了一位成年女性', '看第 2 行：模型猜出一位成年亚裔女性；第 1 行已经开始对照频谱星芒往正确边缘硬拽；第 3 行撒回非常重的雪花，代表这轮猜错了完全没关系，下一轮还能重来。'],
+        ['第 2 帧 / 10：直接换脸，跳成一位长黑发女生', '注意第 2 行已经跟第 1 帧完全不是同一个人了！传统方法做不到这种跨度，而 DAPS 因为先飞到干净空间改、再重新加噪，允许直接跳出原来的坑。'],
+        ['第 3 帧 / 10：还在试探，突然跳成中年白人大叔', '第 2 行又换成了一位大叔。这说明在当前噪声层，测量线索还允许很多不同长相的人脸来试探，先验和测量正在拉扯寻找真正对得上高频边缘的模态。'],
+        ['第 4 帧 / 10：继续翻盘，跳成留小胡子朝右看的大叔', '第 1 行里已经隐约浮现出小女孩的五官比例和左侧的头发轮廓，但第 2 行还在大叔附近徘徊——下一次重撒噪声后马上就要迎来转折。'],
+        ['第 5 帧 / 10：关键转折！第 2 行终于跳成小女孩', '盯住第 2 行第 5 列：经过前 4 帧不断跳出假坑，模型猜出来的清晰图第一次变成正对着镜头的小女孩！方向一旦找对，后面雪花变轻后就会越修越细。'],
+        ['第 6 帧 / 10：五官锁定，但背景与发丝还偏糊', '第 2 行的小女孩五官已经稳定下来，第 1 行对比第 2 行多出了更明确的眼神光和嘴角弧度，第 3 行开始能隐约看透雪花下的脸型了。'],
+        ['第 7 帧 / 10：轮廓彻底稳住，进入局部精修', '从这一列开始，第 1 行和第 2 行几乎已经长同一张脸，不再大幅换人；Langevin 内循环开始专心打磨眼睛、鼻翼和衣领的真实细节。'],
+        ['第 8 帧 / 10：第 3 行的雪花明显变轻', '撒上去的雪花（第 3 行）已经变成轻薄的颗粒感，第 1 行的皮肤质感与头发纹理开始贴近真图，红色背景衣角也对齐了。'],
+        ['第 9 帧 / 10：只剩极轻微颗粒，细节高度一致', '三行图像几乎合流：测量误差和先验自然度同时达标，第 1 行右上角的发丝和左下角衣领已经相当锐利。'],
+        ['第 10 帧 / 10：退火结束，交出最终清晰小女孩', '雪花几乎归零（σ_min=0.1），三行重合在一起。回顾第 1→5 列，你会发现能救回这张图全靠前期敢“连续换脸反悔”。']
+      ]
+    },
+    ds: {
+      src: 'infer-assets/daps-traj-ds.jpg',
+      alt: 'DAPS 4× 下采样采样轨迹：3 行 10 列，展示从白胡子老爷爷被掰回小宝宝的过程',
+      source: '来源：gpu04:/data1/kxchen/infer-repro/daps/out/ffhq/down_sampling/trajectory/00000_run0000.png',
+      steps: [
+        ['第 1 帧 / 10：一图看懂拔河！老爷爷被强行掰回宝宝', '看第 2 行（中间）：模型刚猜出一个“白胡子戴眼镜老爷爷”；看第 1 行（上面）：100 步 Langevin 拿着 4× 下采样的宝宝缩略图，硬生生把老爷爷的头型和背景青色光圈拽回了宝宝！只是第 1 行表面还很糙，所以第 3 行必须重撒雪花洗一遍。'],
+        ['第 2 帧 / 10：模型改猜一位年轻女生，第 1 行继续往宝宝拽', '因为下采样任务比相位恢复线索充分得多（每个区域的低频亮度都给了），第 1 行始终死死咬住宝宝的大轮廓不放。'],
+        ['第 3 帧 / 10：模型猜出戴眼镜少年，两股力量还在拔河', '第 2 行依然在随机人脸里游走，但第 1 行每次都把大块色块和婴儿眉眼拽回来——这就是公式里“先验弹簧”和“测量弹簧”在打架。'],
+        ['第 4 帧 / 10：第 2 行正式变成小宝宝！', '经历前 3 轮的引导，第 2 行终于明白“我要画的是个婴儿”了！不过眼神方向和嘴型还跟第 1 行不太一样，后面几轮专门修这个。'],
+        ['第 5 帧 / 10：婴儿年龄与光线基本对齐，开始修神态', '看第 1 行和第 2 行：宝宝朝左看的脸颊轮廓已经对上了，青绿色背景光晕完全锁死，只剩五官细节还在微调。'],
+        ['第 6 帧 / 10：宝宝表情完全贴合真实缩略图', '第 2 行的无条件先验已经完全被拉进宝宝的局部流形里，第 1 行不再出现刺眼的彩色噪斑。'],
+        ['第 7 帧 / 10：开始补回被 4× 下采样丢掉的高频细节', '原本 4× 下采样把睫毛、鼻孔和毛线衣纹理糊成一片；从这列起，第 1 行开始稳稳长出清晰皮肤纹理和眼睛反光。'],
+        ['第 8 帧 / 10：第 3 行的雪花轻得像一层薄雾', '看第 3 行：宝宝的眼睛和青色背景清晰可见，重撒的高斯噪声只用来最后抛光质感，不再撼动主体结构。'],
+        ['第 9 帧 / 10：接近收尾，皮肤与衣领边缘已经很锐利', '第 1 行与第 2 行肉眼几乎看不出区别，说明先验猜出来的清晰脸已经完美符合低清测量。'],
+        ['第 10 帧 / 10：退火完成，高清宝宝出图', '对比第 1 列的“白胡子老爷爷”和第 10 列的清晰宝宝，DAPS 靠“测量强行掰正 + 重撒雪花洗顺纹理”完成了从荒谬初猜到高清重建的全程。']
+      ]
+    }
+  };
+
+  var currentScene = 'phase';
+  var currentStep = 0;
+  var stepsBox = document.getElementById('traj-steps');
+  var img = document.getElementById('traj-img');
+  var highlight = document.getElementById('traj-highlight');
+  var titleEl = document.getElementById('traj-title');
+  var descEl = document.getElementById('traj-desc');
+  var sourceEl = document.getElementById('traj-source');
+  var prevBtn = document.getElementById('traj-prev');
+  var nextBtn = document.getElementById('traj-next');
+  var tabButtons = document.querySelectorAll('.traj-tabs .pill');
+
+  for (var i = 0; i < 10; i += 1) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'traj-step-btn';
+    btn.textContent = '第 ' + (i + 1) + ' 帧';
+    btn.dataset.step = String(i);
+    btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+    stepsBox.appendChild(btn);
+  }
+
+  function render() {
+    var scene = scenes[currentScene];
+    img.src = scene.src;
+    img.alt = scene.alt;
+    sourceEl.textContent = scene.source;
+    highlight.style.left = (currentStep * 10) + '%';
+    var entry = scene.steps[currentStep];
+    titleEl.textContent = entry[0];
+    descEl.textContent = entry[1];
+    prevBtn.disabled = currentStep === 0;
+    nextBtn.disabled = currentStep === 9;
+    var stepBtns = stepsBox.querySelectorAll('.traj-step-btn');
+    for (var k = 0; k < stepBtns.length; k += 1) {
+      stepBtns[k].setAttribute('aria-pressed', k === currentStep ? 'true' : 'false');
+    }
+    for (var m = 0; m < tabButtons.length; m += 1) {
+      tabButtons[m].setAttribute('aria-pressed', tabButtons[m].dataset.scene === currentScene ? 'true' : 'false');
+    }
+  }
+
+  stepsBox.addEventListener('click', function (event) {
+    var target = event.target.closest('.traj-step-btn');
+    if (!target) return;
+    currentStep = Number(target.dataset.step);
+    render();
+  });
+
+  for (var t = 0; t < tabButtons.length; t += 1) {
+    tabButtons[t].addEventListener('click', function () {
+      currentScene = this.dataset.scene;
+      currentStep = 0;
+      render();
+    });
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) { currentStep -= 1; render(); }
+  });
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < 9) { currentStep += 1; render(); }
+  });
+
+  render();
+
+  var noteKey = 'paper-atlas-daps-story-note';
+  var noteInput = document.getElementById('reading-note');
+  var savedNote = document.getElementById('saved-note');
+  var noteForm = document.getElementById('note-form');
+  try {
+    var existing = localStorage.getItem(noteKey) || '';
+    noteInput.value = existing;
+    if (existing) savedNote.textContent = existing;
+  } catch (err) { /* ignore storage restrictions */ }
+  noteForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    try {
+      localStorage.setItem(noteKey, noteInput.value);
+      savedNote.textContent = noteInput.value ? noteInput.value : '已清空本地笔记。';
+    } catch (err) {
+      savedNote.textContent = '当前浏览器不允许本地存储，笔记未保存。';
+    }
+  });
+
+  var progress = document.getElementById('progress-line');
+  var navLinks = document.querySelectorAll('.paper-sidebar nav a');
+  window.addEventListener('scroll', function () {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress && max > 0) {
+      progress.style.width = Math.min(100, Math.max(0, (window.scrollY / max) * 100)) + '%';
+    }
+    var activeHref = '#thesis';
+    for (var n = 0; n < navLinks.length; n += 1) {
+      var id = navLinks[n].getAttribute('href').slice(1);
+      var sec = document.getElementById(id);
+      if (sec && sec.getBoundingClientRect().top <= 160) activeHref = '#' + id;
+    }
+    for (var n2 = 0; n2 < navLinks.length; n2 += 1) {
+      navLinks[n2].classList.toggle('active', navLinks[n2].getAttribute('href') === activeHref);
+    }
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

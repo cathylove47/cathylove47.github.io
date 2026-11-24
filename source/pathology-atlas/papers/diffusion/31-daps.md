@@ -2,7 +2,7 @@
 
 **论文**：Improving Diffusion Inverse Problem Solving with Decoupled Noise Annealing（DAPS），Bingliang Zhang、Wenda Chu、Julius Berner、Chenlin Meng、Anima Anandkumar、Yang Song（Caltech、Stanford、OpenAI）；CVPR 2025（Oral）；arXiv:2407.01521（v1 2024-07-01，v3 2025-08-15）
 **定位**：不直接解反向 SDE，而是**递归地从测量条件下的时间边缘分布 $p(x_t \mid y)$ 采样**：先用 Langevin 从 $p(x_0 \mid x_t, y)$ 抽一个干净样本，再加回 $\sigma_t$ 噪声。相邻两步因此可以差很远，早期的大误差有机会被改掉——这正是相位恢复这类非线性任务需要的
-**精读核验**：2026-11-22 依 arXiv HTML v3 全文读过摘要、§1–5 与附录 E/F 的相关部分（Table 1–3、Table 7 的 NFE/耗时、附录 F.2 的逐任务超参），摘要与 abs 页逐字核对；录用信息（CVPR 2025 Oral）经官方仓库 README 与 CVPR 虚拟会场条目核对。官方代码 `zhangbingliang2019/DAPS` 的 commit `0b18272`、`cores/mcmc.py`、`cores/scheduler.py`、`posterior_sample.py`、`configs/task/*.yaml` 由官方 README 与本机走查记录核对。**本站做过推理走查（小样本，用作者权重，非论文指标复现）**，记录见[推理走查页](../../learning/infer-daps.html)。
+**精读核验**：2026-11-22 依 arXiv HTML v3 全文读过摘要、§1–5 与附录 E/F 的相关部分（Table 1–3、Table 7 的 NFE/耗时、附录 F.2 的逐任务超参），摘要与 abs 页逐字核对；录用信息（CVPR 2025 Oral）经官方仓库 README 与 CVPR 虚拟会场条目核对。官方代码 `zhangbingliang2019/DAPS` 的 commit `0b18272`、`cores/mcmc.py`、`cores/scheduler.py`、`posterior_sample.py`、`configs/task/*.yaml` 由官方 README 与本机走查记录核对。**本站做过推理走查（小样本，用作者权重，非论文指标复现）**，记录见[推理走查页](../../learning/infer-daps.html)，配套的实测轨迹图解入门页见[图解故事精读页](../../learning/daps-story.html)。
 
 ## 原文摘要
 
