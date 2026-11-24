@@ -2,7 +2,7 @@
 
 **论文**：Improving Diffusion Inverse Problem Solving with Decoupled Noise Annealing（DAPS），Bingliang Zhang、Wenda Chu、Julius Berner、Chenlin Meng、Anima Anandkumar、Yang Song（Caltech、Stanford、OpenAI）；CVPR 2025（Oral）；arXiv:2407.01521（v1 2024-07-01，v3 2025-08-15）
 **定位**：不直接解反向 SDE，而是**递归地从测量条件下的时间边缘分布 $p(x_t \mid y)$ 采样**：先用 Langevin 从 $p(x_0 \mid x_t, y)$ 抽一个干净样本，再加回 $\sigma_t$ 噪声。相邻两步因此可以差很远，早期的大误差有机会被改掉——这正是相位恢复这类非线性任务需要的
-**精读核验**：2026-11-22 依 arXiv HTML v3 全文读过摘要、§1–5 与附录 E/F 的相关部分（Table 1–3、Table 7 的 NFE/耗时、附录 F.2 的逐任务超参），摘要与 abs 页逐字核对；录用信息（CVPR 2025 Oral）经官方仓库 README 与 CVPR 虚拟会场条目核对。官方代码 `zhangbingliang2019/DAPS` 的 commit `0b18272`、`cores/mcmc.py`、`cores/scheduler.py`、`posterior_sample.py`、`configs/task/*.yaml` 由官方 README 与本机走查记录核对。**本站做过推理走查（小样本，用作者权重，非论文指标复现）**，记录见[推理走查页](../../learning/infer-daps.html)，配套的实测轨迹图解入门页见[图解故事精读页](../../learning/daps-story.html)。
+**精读核验**：2026-11-22 依 arXiv HTML v3 全文读过摘要、§1–5 与附录 E/F 的相关部分（Table 1–3、Table 7 的 NFE/耗时、附录 F.2 的逐任务超参），摘要与 abs 页逐字核对；录用信息（CVPR 2025 Oral）经官方仓库 README 与 CVPR 虚拟会场条目核对。官方代码 `zhangbingliang2019/DAPS` 的 commit `0b18272`、`cores/mcmc.py`、`cores/scheduler.py`、`posterior_sample.py`、`configs/task/*.yaml` 由官方 README 与本机走查记录核对。**本站复现了 CS-MRI（Table 2，96 张全量，×4/×8 均与论文吻合）**，见[CS-MRI 复现记录](../../learning/infer-daps-csmri.html)；FFHQ 只做过小样本推理走查，见[推理走查页](../../learning/infer-daps.html)；配套的实测轨迹图解入门页见[图解故事精读页](../../learning/daps-story.html)。
 
 ## 原文摘要
 
@@ -95,13 +95,20 @@ $$x^{(j+1)} = x^{(j)} - \eta \left(\frac{x^{(j)} - \hat{x}_0(x_{t_i})}{r_t^2} + 
 
 ## 5. 复现与审计重点
 
-**本站推理走查（小样本，用作者权重，非论文指标复现；完整记录见[走查页](../../learning/infer-daps.html)）**：
+**本站 CS-MRI 复现（2026-11-24，96 张全量测试集；完整记录见[复现记录页](../../learning/infer-daps-csmri.html)）**：
+
+- **实现**：DAPS 官方仓库没有 MRI 部分；按作者在 DAPS issue #18 的说明，用 `devzhk/InverseBench` @ `1db5932` 的 DAPS 实现与公开先验 `MRI-knee.pt`，问题 `multi-coil-mri-knee-lmdb`、`simulated_kspace=True`、随机掩膜，超参取 InverseBench Table 12 的 MRI Sim. 列。
+- **结果**（PSNR / SSIM / ℓ2 测量误差）：×4 **31.52 / 0.764 / 1.53**（论文 31.48 / 0.762 / 1.57）；×8 **28.99 / 0.682 / 1.25**（论文 29.01 / 0.681 / 1.28）。
+- **唯一改动**：Langevin 步长衰减 `lr_min_ratio` 从 Table 12 印的 1 改为作者 issue #21 实际配置的 0.01。按表里的 1 跑，第一个退火步就发散成 NaN，代码返回全 0 图（PSNR 15–17 dB）；幂迭代给出稳定上限约 2.3×10⁻⁶，表中步长 1.03×10⁻⁵ 超了约 4.5 倍。
+- **注意**：前 18 张偏难（29.2 dB），必须跑满 96 张；这组超参在稳定边界外，200 个退火步里有 79 步被 NaN 保护丢弃，结果对机器和精度敏感。第三列是测量误差，不是 LPIPS；原始 k 空间口径的误差会大 20–40 倍。
+
+**本站 FFHQ 推理走查（小样本，用作者权重，非论文指标复现；完整记录见[走查页](../../learning/infer-daps.html)）**：
 
 - **跑法**：官方仓库 `zhangbingliang2019/DAPS` @ `0b18272`，pixel FFHQ 分支（`posterior_sample.py +model=ffhq256ddpm +sampler=edm_daps`），权重 `ffhq_10m.pt`（358 MB）；数据用仓库自带的 10 张 demo-ffhq（不是论文的 100 张 test-ffhq）；四个任务的算子与噪声用 `configs/task/*.yaml` 的 pixel 默认值，未改超参。
 - **结果**（10 张，脚本自算）：下采样 $\times 4$ **28.83 / 0.766 / 0.194**（PSNR/SSIM/LPIPS）；高斯模糊 61/3.0 **29.02 / 0.771 / 0.183**；box 修复 **24.56 / 0.751 / 0.163**；相位恢复 **30.40 / 0.784 / 0.154**（`num_runs=4`，即 40 张里取最好）。
 - **与论文配置的偏差（重要）**：走查把所有任务都设成 `num_steps=5 / annealing=200`（相当于 DAPS-1K），而论文对非线性任务用 DAPS-4K（$10 \times 400$）；`phase_retrieval` 的 `num_runs=4` 按 README 执行，即取 4 次采样中的最好一次。因此 30.40 dB 与论文 30.63 dB 只是量级相同，不能当复现。
 - **改动**：无代码改动；只加了 `checkpoints/ffhq256.pt` 软链与 `forward_operator/motionblur/` 外部依赖目录（仅为 import 通过）。环境 PyTorch 2.3.0+cu121、diffusers 0.32.2，`regex-2024==11.6` 是 requirements 里的坏包名，按 `regex==2024.11.6` 装。
-- **没跑**：test-ffhq 100 张、LDM/SD 分支（LatentDAPS）、motion_blur、nonlinear_blur、HDR、rand inpainting、CS-MRI、FID。
+- **没跑**：test-ffhq 100 张、LDM/SD 分支（LatentDAPS）、motion_blur、nonlinear_blur、HDR、rand inpainting、FID。
 
 其余审计要点：
 

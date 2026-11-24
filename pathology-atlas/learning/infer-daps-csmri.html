@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DAPS CS-MRI 复现｜fastMRI knee 96 张切片对上论文 Table 2</title><meta name="description" content="用 InverseBench 中作者给的 DAPS-MRI 实现，在 96 张 fastMRI knee 测试切片上复现 DAPS 论文 Table 2：×4 31.52 dB / 0.764 / 1.53，×8 28.99 dB / 0.682 / 1.25。根因是 Table 12 印错的步长衰减。">
+<link rel="stylesheet" href="dds-story.css"><style>
+:root{--border:var(--line);--accent:var(--green)}.paper-main{min-width:0}code{overflow-wrap:anywhere;word-break:break-word}.table-wrap{overflow:auto;max-width:100%}table{border-collapse:collapse;width:100%}th,td{padding:12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{font-weight:600}.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;white-space:pre-wrap;background:var(--soft);border:1px solid var(--border);border-radius:6px;padding:16px;overflow-wrap:anywhere}.paper-figure{margin:26px 0}.paper-figure img{display:block;width:100%;height:auto;background:white;border:1px solid var(--border);border-radius:6px}.paper-figure figcaption{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+</style></head><body>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="../?domain=diffusion&amp;paper=31-daps" target="_top">论文精读地图 / 扩散阅读室</a><div class="toplinks"><a href="../?domain=diffusion&amp;paper=31-daps" target="_top">精读页</a><a href="infer-daps.html">FFHQ 推理走查</a><a href="#verdict">结论</a><a href="#results">结果</a><a href="#cause">根因</a></div></div></header>
+<div class="paper-doc"><aside class="paper-sidebar" aria-label="阅读目录"><p class="side-eyebrow">DAPS · CS-MRI 复现</p><nav><a href="#verdict"><b>00</b>一句话结论</a><a href="#setup"><b>01</b>实现与设置</a><a href="#results"><b>02</b>结果</a><a href="#cause"><b>03</b>为什么第一次全 0</a><a href="#ablation"><b>04</b>对照与消融</a><a href="#limits"><b>05</b>注意事项</a><a href="#files"><b>06</b>文件位置</a><a href="#sources"><b>07</b>来源</a></nav><div class="sidebar-foot">复现记录 · 2026-11-24<br>服务器 ckx · RTX 4090 48 GB<br>产物 /home/ckx/daps-repro</div></aside>
+<main class="paper-main">
+
+<section class="opening" id="verdict"><p class="eyebrow">REPRODUCTION / FULL TEST SET</p><h1>96 张膝关节切片，<br><em>×4 和 ×8 都对上了 Table 2。</em></h1><p class="opening-deck">用作者指定的 InverseBench 实现与公开先验 <code>MRI-knee.pt</code>，在全部 96 张 fastMRI knee 测试切片上跑 DAPS（模拟 k 空间，随机欠采样）：×4 <strong>31.52 dB / 0.764 / 1.53</strong>，×8 <strong>28.99 dB / 0.682 / 1.25</strong>（PSNR / SSIM / ℓ2 测量误差），论文为 31.48 / 0.762 / 1.57 与 29.01 / 0.681 / 1.28。代码零改动，只把 Langevin 步长衰减从 Table 12 印的 1 改回作者实际配置的 0.01。</p><div class="publication"><span class="highlight">全量测试集</span><span>96 张 × 2 个加速倍率</span><span>与论文差 ≤0.04 dB</span></div><div class="paper-identity"><div><strong>论文</strong>Improving Diffusion Inverse Problem Solving with Decoupled Noise Annealing（arXiv:2407.01521，CVPR 2025 Oral），Table 2</div><div><strong>代码</strong>github.com/devzhk/InverseBench @ 1db5932（DAPS 主仓库 @ 0b18272 不含 MRI）</div></div></section>
+
+<section class="chapter" id="setup"><div class="chapter-heading"><span class="chapter-number">01</span><h2>实现与设置</h2></div><div class="narrative"><p>DAPS 官方仓库（main 与 legacy 分支）没有 MRI 算子和权重。作者在 DAPS issue #18 说明 CS-MRI 用 InverseBench 的实现，超参见 InverseBench 论文 Table 12；InverseBench Table 4 的 DAPS 数值与 DAPS Table 2 逐位相同，说明是同一套实验。</p><ul><li>问题：<code>multi-coil-mri-knee-lmdb</code>，320×320，ESPIRiT 灵敏度图，随机欠采样（mask_seed 0），<code>simulated_kspace=True</code>（由 MVUE 重新生成 k 空间，无噪）。</li><li>先验：<code>MRI-knee.pt</code>（416 MB，EDM 的 DhariwalUNet，复数拆两通道，MVUE 上训练）。</li><li>数据：CaltechData 公开的测试 LMDB（96 张，2.3 GB）与验证 LMDB（6 张），无需 fastMRI 账号；未下载训练集。</li><li>DAPS 超参：退火 200 步、扩散 5 步、Langevin 100 步、步长 1.03e-5、τ 1.63e-3（Table 12 MRI Sim. 列），<strong>步长衰减 lr_min_ratio = 0.01</strong>。DAPS 论文附录没有 MRI 超参。</li><li>环境：Python 3.10、torch 2.9.0（InverseBench 要求 ≥2.9）；每张切片约 43 秒，显存峰值 0.55 GB，全集每卡约 70 分钟。</li></ul></div></section>
+
+<section class="chapter" id="results"><div class="chapter-heading"><span class="chapter-number">02</span><h2>结果</h2></div><div class="table-wrap"><table><thead><tr><th>设置</th><th>PSNR</th><th>SSIM</th><th>ℓ2 测量误差</th></tr></thead><tbody>
+<tr><td>论文 Table 2，×4</td><td>31.48</td><td>0.762</td><td>1.57</td></tr>
+<tr><td>InverseBench Table 4，×4</td><td>31.48 (1.988)</td><td>0.762 (0.089)</td><td>1.566 (0.390)</td></tr>
+<tr><td><strong>本次，×4（96 张）</strong></td><td><strong>31.52 (2.01)</strong></td><td><strong>0.764 (0.089)</strong></td><td><strong>1.53 (0.38)</strong></td></tr>
+<tr><td>论文 Table 2，×8</td><td>29.01</td><td>0.681</td><td>1.28</td></tr>
+<tr><td>InverseBench Table 4，×8</td><td>29.01 (1.712)</td><td>0.681 (0.098)</td><td>1.280 (0.301)</td></tr>
+<tr><td><strong>本次，×8（96 张）</strong></td><td><strong>28.99 (1.67)</strong></td><td><strong>0.682 (0.098)</strong></td><td><strong>1.25 (0.30)</strong></td></tr>
+</tbody></table></div><p>括号内为标准差。PSNR 在幅值图上算，data range 取 GT 最大值；SSIM 用 piq；第三列是 InverseBench evaluator 的 ‖A(x̂) − y‖（k 空间按 MVUE 99% 分位数归一化），即论文 caption 所说的 ℓ2 data consistency error，不是 LPIPS。</p></section>
+
+<section class="chapter" id="cause"><div class="chapter-heading"><span class="chapter-number">03</span><h2>为什么第一次全 0</h2></div><div class="narrative"><p>第一次照 InverseBench Table 12 设「step size decay = 1」，即 Langevin 步长不衰减，结果多数切片输出全 0：PSNR 15–17 dB 正是全 0 图的值，测量误差等于 ‖y‖。</p><p>逐步记录范数后发现，在 σ=100 的第一个退火步里 ‖x‖ 从 7.6×10¹ 涨到 5×10²⁹，第 61 次 Langevin 迭代变成 inf，<code>algo/daps.py</code> 的 NaN 保护随即返回全 0。用幂迭代测得 4× 掩膜下 λmax(AᴴA)=2.32，数据项稳定要求步长 &lt; 2τ²/λmax ≈ 2.3×10⁻⁶，而 1.03×10⁻⁵ 超了约 4.5 倍。作者在 InverseBench issue #21 贴出的实际配置用的是默认衰减 0.01，所以表里的 1 应为笔误。</p><p>改成 0.01 后，同一张验证切片从 15.48 dB 变成 34.12 dB。先验加载、数据归一化（模拟观测与 forward(GT) 一致，GT 的误差为 0）、FFT 约定、torch 2.9 数值精度都逐项排除过。</p></div></section>
+
+<section class="chapter" id="ablation"><div class="chapter-heading"><span class="chapter-number">04</span><h2>对照与消融</h2></div><div class="table-wrap"><table><thead><tr><th>配置</th><th>数据</th><th>样本</th><th>PSNR</th><th>SSIM</th><th>误差</th></tr></thead><tbody>
+<tr><td>步长 1.03e-5、τ 1.63e-3、衰减 1</td><td>模拟</td><td>验证 1 张</td><td>15.48</td><td>0.048</td><td>139.89（全 0）</td></tr>
+<tr><td>同上，衰减 0.01，×4</td><td>模拟</td><td>验证 1 张</td><td>34.12</td><td>0.831</td><td>1.757</td></tr>
+<tr><td>同上，衰减 0.01，×8</td><td>模拟</td><td>验证 1 张</td><td>31.59</td><td>0.752</td><td>1.400</td></tr>
+<tr><td>步长 1.52e-5、τ 4.77e-3（issue 里的验证命令）</td><td>原始 k 空间</td><td>验证 1 张</td><td>31.55</td><td>0.765</td><td>31.64</td></tr>
+<tr><td>步长 1.52e-5、τ 4.77e-3</td><td>模拟</td><td>测试 16 张</td><td>28.17</td><td>0.563</td><td>6.39</td></tr>
+<tr><td>步长 1e-6、τ 1.63e-3（满足稳定条件）</td><td>模拟</td><td>测试 1 张</td><td>27.04</td><td>0.418</td><td>7.72</td></tr>
+<tr><td>步长 1.52e-5、τ 4.77e-3</td><td>原始 k 空间</td><td>测试 19 张</td><td>27.36</td><td>0.557</td><td>53.42</td></tr>
+</tbody></table></div><p>测量误差一列把论文口径锁定为模拟 k 空间：原始 k 空间的误差在 30–70，比论文大 20–40 倍。表中其他步长组合都比论文那组差。</p></section>
+
+<section class="chapter" id="limits"><div class="chapter-heading"><span class="chapter-number">05</span><h2>注意事项</h2></div><ul><li><strong>要跑满 96 张</strong>：前 18 张偏难，平均只有 29.2 dB，只看子集会误判成复现不出。InverseBench 论文写 94 张，作者在 issue #18 确认是笔误。</li><li><strong>这组超参处在稳定边界外</strong>：200 个退火步中有 79 步的 Langevin 结果被 NaN 保护丢弃（最后一次在第 102 步），剩下 97 步足以得到论文结果。换机器或数值精度可能再次发散。</li><li>只做了模拟 k 空间的 CS-MRI；FFHQ 8 个任务的全量评测没做，FFHQ 的小样本走查见 <a href="infer-daps.html">另一页</a>。</li></ul></section>
+
+<section class="chapter" id="files"><div class="chapter-heading"><span class="chapter-number">06</span><h2>文件位置</h2></div><div class="code-box">服务器 ckx：/home/ckx/daps-repro
+RECORD.md                         完整记录（命令、证据、消融）
+run_mri_daps.sh                   最终配置；./run_mri_daps.sh 4 daps_sim4x
+out/mri/DAPS/daps_sim4x|8x/       96 张结果与 log
+out/mri/DAPS/*_invalid_ratio1/    衰减 = 1 的失败输出，留作对照
+diag/                             逐步范数诊断（不改仓库代码）</div></section>
+
+<section class="chapter" id="sources"><h2>来源</h2><ol><li><a href="https://arxiv.org/abs/2407.01521">DAPS 论文（arXiv:2407.01521）</a> Table 2；<a href="https://github.com/zhangbingliang2019/DAPS/issues/18">DAPS issue #18</a>。</li><li><a href="https://github.com/devzhk/InverseBench">InverseBench</a> 论文 Table 4、Table 12 与 issue #21；权重来自其 GitHub release，数据来自 CaltechData。</li><li>本页数字取自服务器 RECORD.md 与 evaluator 输出，未手工改写。</li></ol></section>
+<footer class="page-footer"><span>DAPS CS-MRI 复现 · 2026-11-24</span><span>产物：/home/ckx/daps-repro</span></footer>
+</main></div>
+<script>
+'use strict';
+if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('is-embed');
+</script>
+</body></html>
