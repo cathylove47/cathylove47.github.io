@@ -8,6 +8,12 @@ var subtitle = page.subtitle || page.title
 <div id="banner" class="banner" <%- theme.banner && theme.banner.parallax && 'parallax=true' %>
      style="background: url('<%- url_for(banner_img) %>') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
+    <% if (is_post()) { %>
+      <a class="post-back" href="<%= url_for('/') %>"
+         onclick="if (document.referrer.indexOf(location.origin + '/') === 0 && history.length > 1) { history.back(); return false; }">
+        <i class="iconfont icon-arrowleft"></i> 返回
+      </a>
+    <% } %>
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, <%= parseFloat(banner_mask_alpha) %>)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
