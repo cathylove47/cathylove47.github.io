@@ -1,0 +1,249 @@
+/* WP 全文精读：进度、目录高亮、英文总开关、原图入口、原生放大对话框。 */
+/* Weak Diffusion Priors 全文精读：沿用 dds-story.css 的纸感配色与排版变量，只补长文/图表/双语所需结构。 */
+.wp-body { background: var(--paper); }
+.wp-body ::selection { background: var(--lime); color: var(--ink); }
+.wp-body a { text-decoration-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.wp-brand-note { color: var(--muted); font-weight: 500; }
+
+.wp-skip { position: fixed; left: 12px; top: -60px; z-index: 90; padding: 8px 14px; background: var(--ink); color: var(--white); border-radius: 4px; }
+.wp-skip:focus { top: 12px; }
+
+.wp-shell { display: grid; grid-template-columns: 196px minmax(0, 760px) 120px; gap: 56px; max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; align-items: start; }
+.wp-toc { position: sticky; top: 84px; max-height: calc(100vh - 110px); overflow: auto; padding: 30px 12px 20px 0; border-right: 1px solid var(--line); font-size: 13px; scrollbar-width: thin; }
+.wp-toc-title { margin: 2px 0 14px; font-family: var(--serif); font-size: 20px; font-weight: 700; }
+.wp-toc-group { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-top: 1px solid var(--line); }
+.wp-toc-group strong { margin-bottom: 4px; color: var(--muted); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.wp-toc-group a { padding: 4px 8px; border-radius: 3px; color: var(--ink); text-decoration: none; }
+.wp-toc-group a:hover { background: var(--soft); color: var(--green); }
+.wp-toc-group a.is-active { background: var(--lime); font-weight: 650; }
+.wp-toc-actions { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+
+.wp-main { min-width: 0; padding-bottom: 40px; }
+.wp-hero { padding: 48px 0 34px; border-bottom: 1px solid var(--line); }
+.wp-hero h1 { margin: 10px 0 10px; font-family: var(--serif); font-size: clamp(32px, 5vw, 50px); line-height: 1.18; letter-spacing: -.02em; }
+.wp-hero__en { margin: 0 0 14px; color: var(--muted); font-size: 15px; letter-spacing: .01em; }
+.wp-hero__authors { margin: 0 0 18px; font-size: 14px; }
+.wp-hero__deck { max-width: 64ch; margin: 0 0 22px; font-size: 17px; line-height: 1.85; }
+.wp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
+.wp-cta { display: inline-flex; align-items: center; min-height: 42px; padding: 9px 18px; border: 1px solid var(--green); border-radius: 4px; background: var(--green); color: var(--white); font-weight: 700; text-decoration: none; }
+.wp-cta:hover { background: #095e51; }
+.wp-cta--ghost { background: transparent; color: var(--green); }
+.wp-cta--ghost:hover { background: var(--soft); }
+.wp-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; margin: 0 0 20px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.wp-facts div { min-width: 0; }
+.wp-facts dt { color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.wp-facts dd { margin: 2px 0 0; font-size: 13px; }
+.wp-provenance { max-width: 78ch; color: var(--muted); font-size: 12px; line-height: 1.75; }
+.wp-provenance a { color: var(--green); }
+
+.wp-prereq, .wp-index { padding: 46px 0 14px; border-bottom: 1px solid var(--line); }
+.wp-lead { max-width: 72ch; color: var(--ink); font-size: 15px; }
+.wp-derivation { padding-left: 22px; }
+.wp-derivation li { margin: 8px 0; }
+
+.wp-box { margin: 16px 0; border: 1px solid var(--line); border-radius: 5px; background: var(--white); }
+.wp-box > summary { padding: 13px 16px; cursor: pointer; font-weight: 650; }
+.wp-box[open] > summary { border-bottom: 1px solid var(--line); }
+.wp-box > *:not(summary) { margin-left: 16px; margin-right: 16px; }
+.wp-box > ol, .wp-box > ul { padding-left: 34px; }
+.wp-box > *:last-child { margin-bottom: 16px; }
+.wp-caution { padding-left: 12px; border-left: 3px solid var(--coral); color: var(--muted); font-size: 13px; }
+.wp-glossary { display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr); gap: 8px 18px; margin: 16px 0; font-size: 13px; }
+.wp-glossary dt { font-weight: 700; }
+.wp-glossary dd { margin: 0; color: #3d4d4a; }
+.wp-mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.wp-mini-table th, .wp-mini-table td { padding: 7px 9px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+
+.wp-paper { padding-top: 10px; }
+.wp-unit { position: relative; scroll-margin-top: 92px; }
+.wp-p { padding: 11px 0; border-bottom: 1px dotted color-mix(in srgb, var(--line) 65%, transparent); }
+.wp-zh { margin: 0; font-size: 16.5px; line-height: 1.95; }
+.wp-zh strong { font-weight: 700; }
+.wp-heading { padding: 34px 0 6px; scroll-margin-top: 88px; }
+.wp-heading h2, .wp-heading h3, .wp-heading h4 { margin: 0; font-family: var(--serif); line-height: 1.3; scroll-margin-top: 90px; }
+.wp-heading h2 { font-size: 29px; }
+.wp-heading h3 { font-size: 23px; }
+.wp-heading h4 { font-size: 18px; color: #263a37; }
+.wp-heading--2 { margin-top: 16px; border-top: 2px solid var(--ink); }
+.wp-heading .wp-en { margin-top: 8px; }
+.wp-anchor { display: block; position: relative; top: -92px; visibility: hidden; }
+
+.wp-en { margin-top: 6px; border-left: 2px solid var(--line); }
+.wp-en > summary { padding: 3px 0 3px 12px; color: var(--muted); font-size: 11px; letter-spacing: .06em; cursor: pointer; list-style: none; }
+.wp-en > summary::-webkit-details-marker { display: none; }
+.wp-en > summary::before { content: "EN · "; color: var(--green); font-weight: 700; }
+.wp-en__body { padding: 6px 0 9px 12px; color: #4b5a57; font-family: Georgia, "Times New Roman", serif; font-size: 14px; line-height: 1.75; }
+.wp-en__body p { margin: 0 0 6px; }
+body.show-en .wp-en { display: block; }
+
+.wp-note { margin: 10px 0 4px; border: 1px solid color-mix(in srgb, var(--green) 26%, var(--line)); border-radius: 4px; background: color-mix(in srgb, var(--lime) 18%, var(--white)); }
+.wp-note > summary { padding: 9px 12px; color: #22554a; font-size: 13px; font-weight: 650; cursor: pointer; }
+.wp-note__body { padding: 0 14px 12px; font-size: 14px; line-height: 1.85; }
+.wp-note__body p { margin: 0 0 8px; }
+
+.wp-equation { margin: 20px 0; scroll-margin-top: 92px; }
+.wp-equation .formula-card { margin: 0; }
+.formula-card__note { margin: 10px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); color: #3c4f4b; font-size: 14px; }
+.wp-equation .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+
+.wp-figure, .wp-table, .wp-algorithm { margin: 26px 0 30px; padding: 18px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); scroll-margin-top: 90px; }
+.wp-figure__head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 12px; }
+.wp-figure__head h3 { margin: 0; font-family: var(--serif); font-size: 20px; line-height: 1.4; }
+.wp-float-no { flex: none; padding: 2px 7px; border-radius: 3px; background: var(--ink); color: var(--white); font-size: 10px; letter-spacing: .08em; }
+.wp-figure__media { display: flex; justify-content: center; padding: 10px; border-radius: 4px; background: var(--soft); }
+.wp-figure__media img { display: block; width: auto; max-width: 100%; height: auto; cursor: zoom-in; }
+.wp-figure__tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+.wp-chip { display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--white); color: var(--ink); font-size: 12px; font-weight: 600; text-decoration: none; }
+.wp-chip:hover { border-color: var(--green); color: var(--green); }
+.wp-chip--link { margin-left: auto; }
+.wp-figure figcaption, .wp-table figcaption, .wp-algorithm figcaption { color: #2e403d; font-size: 13.5px; line-height: 1.8; }
+.wp-table figcaption, .wp-algorithm figcaption { display: flex; gap: 10px; align-items: baseline; margin-bottom: 12px; font-weight: 600; }
+.wp-caption-text { flex: 1; min-width: 0; }
+.wp-caption-text .katex { font-size: 1em; }
+.wp-comment { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.8; }
+.wp-comment h4 { margin: 14px 0 5px; color: var(--green); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.wp-comment__label { margin: 0 0 8px !important; color: var(--coral); font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.wp-comment h4:first-child { margin-top: 0; }
+.wp-comment ol, .wp-comment ul { margin: 0; padding-left: 22px; }
+.wp-comment p { margin: 8px 0; }
+.wp-comment p b { display: inline-block; margin-right: 8px; color: var(--coral); font-size: 11px; letter-spacing: .08em; }
+.wp-labels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.wp-labels li { display: grid; grid-template-columns: minmax(120px, 42%) minmax(0, 1fr); gap: 10px; padding: 4px 0; border-bottom: 1px dotted var(--line); }
+.wp-labels .wp-label-en { color: var(--muted); font-size: 11.5px; word-break: break-word; }
+.wp-labels li > span:last-child { font-size: 13px; }
+.wp-figure--gallery .wp-figure__media { background: #fff; }
+
+.wp-table__grid + .wp-table__grid { margin-top: 20px; }
+.wp-table__grid h4 { margin: 0 0 8px; font-size: 13px; }
+.wp-table__scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; }
+.wp-table__scroll table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.wp-table__scroll th, .wp-table__scroll td { padding: 7px 9px; border-bottom: 1px solid var(--line); border-right: 1px solid color-mix(in srgb, var(--line) 55%, transparent); text-align: left; vertical-align: top; }
+.wp-table__scroll thead th { position: sticky; top: 0; z-index: 1; background: var(--soft); font-size: 11px; letter-spacing: .02em; }
+.wp-table__scroll tbody tr:last-child td { border-bottom: 0; }
+.wp-table__scroll tr:has(> td:only-child) td { background: color-mix(in srgb, var(--lime) 16%, var(--white)); font-weight: 700; }
+.wp-table__scroll td:first-child { position: sticky; left: 0; z-index: 2; background: var(--white); font-weight: 600; }
+.wp-table__scroll thead th:first-child { position: sticky; left: 0; z-index: 3; background: var(--soft); }
+.wp-table__scroll tr:has(> td:only-child) td:first-child { background: color-mix(in srgb, var(--lime) 22%, var(--white)); }
+
+.wp-code { overflow: auto; margin: 0; padding: 16px; border-radius: 4px; background: #172b2a; color: #e9eee7; font: 12.5px/1.75 "Cascadia Code", Consolas, monospace; }
+.wp-code code { font: inherit; white-space: pre; }
+
+.wp-index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; }
+.wp-index-grid h3 { margin: 0 0 8px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.wp-index-list { margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.wp-index-list li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; padding: 6px 0; border-bottom: 1px dotted var(--line); }
+.wp-index-list a { color: var(--green); font-weight: 700; text-decoration: none; }
+
+.wp-footnotes { padding-left: 0; list-style: none; }
+.wp-footnotes li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-bottom: 1px dotted var(--line); font-size: 14px; }
+.wp-fn-no { color: var(--muted); font-variant-numeric: tabular-nums; }
+.wp-fn-ref { margin-left: 2px; }
+.wp-fn-ref a, .wp-fn-back { color: var(--green); font-size: .82em; text-decoration: none; }
+.wp-fn-ref a:hover, .wp-fn-back:hover { text-decoration: underline; }
+.wp-footnotes li:target { background: color-mix(in srgb, var(--lime) 35%, transparent); }
+.wp-references { padding-left: 0; list-style: none; font-size: 13px; }
+.wp-references li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px dotted var(--line); scroll-margin-top: 92px; }
+.wp-references li:target { background: color-mix(in srgb, var(--lime) 35%, transparent); }
+.wp-ref-num { color: var(--muted); font-variant-numeric: tabular-nums; }
+.wp-references p { margin: 0; }
+.wp-ref-zh { margin-top: 3px !important; color: var(--muted); }
+a.cite { color: var(--green); font-size: .86em; text-decoration: none; }
+a.xref { color: var(--green); text-underline-offset: 3px; }
+
+.wp-zoom { width: min(96vw, 1400px); max-height: 94vh; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); color: var(--ink); }
+.wp-zoom::backdrop { background: rgba(10, 24, 22, .78); }
+.wp-zoom__bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 13px; }
+.wp-zoom__actions { display: flex; gap: 8px; flex: none; }
+.wp-zoom__viewport { overflow: auto; max-height: 78vh; border: 1px solid var(--line); border-radius: 4px; background: #eef1ec; overscroll-behavior: contain; }
+.wp-zoom img { display: block; width: auto; height: auto; max-width: none; max-height: none; }
+.wp-zoom.is-fit img { max-width: 100%; max-height: 78vh; }
+.wp-zoom > a { display: inline-block; margin-top: 8px; color: var(--green); font-size: 12px; }
+
+@media (max-width: 1080px) {
+  .wp-shell { grid-template-columns: 180px minmax(0, 1fr); gap: 30px; padding: 0 24px 60px; }
+  .wp-toc { font-size: 12px; }
+}
+@media (max-width: 860px) {
+  .wp-shell { display: block; padding: 0 18px 48px; }
+  .wp-toc { position: sticky; top: 0; z-index: 40; display: flex; gap: 6px; align-items: center; max-height: none; margin: 0 -18px; padding: 8px 18px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(8px); }
+  .wp-toc-title, .wp-toc .side-eyebrow, .wp-toc-group strong { display: none; }
+  .wp-toc-group { flex: none; flex-direction: row; gap: 4px; padding: 0; border: 0; }
+  .wp-toc-group a { flex: none; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; }
+  .wp-toc-actions { flex-direction: row; flex: none; padding: 0 0 0 6px; border: 0; }
+  .wp-toc-actions .wp-chip { display: none; }
+  .wp-toc-actions #toggle-en { display: inline-flex; }
+  .wp-hero { padding-top: 28px; }
+  .wp-hero h1 { font-size: 31px; }
+  .wp-facts { grid-template-columns: 1fr; }
+  .wp-zh { font-size: 16px; }
+  .wp-labels li { grid-template-columns: 1fr; gap: 2px; }
+  .wp-figure, .wp-table, .wp-algorithm { margin-left: -8px; margin-right: -8px; padding: 12px; border-radius: 4px; }
+  .wp-glossary { grid-template-columns: 1fr; gap: 2px; }
+  .wp-glossary dd { margin-bottom: 8px; }
+  .wp-references li { grid-template-columns: 34px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 打印：展开所有翻译与讲解，不隐藏附录；去掉交互控件。 */
+@media print {
+  :root { --paper: #fff; --white: #fff; }
+  @page { margin: 16mm 14mm; }
+  body.wp-body { background: #fff; }
+  .topbar, .wp-toc, .wp-skip, .wp-figure__tools, .wp-zoom, .wp-cta { display: none !important; }
+  .wp-shell { display: block; max-width: none; padding: 0; }
+  .wp-main { padding: 0; }
+  .wp-hero { padding-top: 0; }
+  details > summary { display: none !important; }
+  details > *:not(summary) { display: block !important; }
+  .wp-note, .wp-box, .wp-figure, .wp-table, .wp-algorithm { break-inside: avoid; }
+  .wp-p, .wp-unit { break-inside: avoid; }
+  .wp-table__scroll { overflow: visible; }
+  .wp-table__scroll table { min-width: 0; font-size: 9.5px; }
+  .wp-table__scroll td:first-child { position: static; }
+  .wp-code { background: #f2f2f2; color: #111; }
+  a.cite, a.xref { color: inherit; }
+  .wp-en__body { color: #333; }
+}
+
+/* Weak Diffusion Priors 专用：多面板图、宽表与来源说明。 */
+.wp-figure__media { flex-wrap: wrap; gap: 14px; }
+.wp-figure__media:has(img + img) img { max-width: calc(50% - 8px); }
+.wp-table__grid + .wp-table__grid { margin-top: 18px; }
+.wp-table__grid h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: .04em; color: var(--muted); }
+.wp-table__scroll table.wp-table--mri { min-width: 1080px; }
+.wp-table__scroll table.wp-table--mri th, .wp-table__scroll table.wp-table--mri td { padding: 6px 7px; font-size: 11.5px; white-space: nowrap; }
+.wp-table__scroll table.wp-table--mri thead th { text-align: center; }
+.wp-table__scroll table.wp-table--mri td:nth-child(n+4) { text-align: right; }
+.wp-table__source { margin: 12px 0 0; color: var(--muted); font-size: 11.5px; line-height: 1.7; }
+.wp-figure__head h3 { font-size: 17px; }
+.wp-figure figcaption { display: block; }
+
+/* 公式卡：论文里的长公式在 760px 正文列里仍要完整可读，缩放并允许横向滚动。 */
+.wp-equation .formula-card { padding: 16px 18px 12px; margin: 18px 0; }
+.wp-equation .formula-card__equation { font-size: 15px; padding: 12px 0 6px; scrollbar-width: thin; }
+.wp-equation .katex { font-size: 1em; }
+.wp-equation .katex-display { margin: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 4px; }
+
+/* 定理、证明与行内展示公式。 */
+.wp-theorem, .wp-proof, .wp-remark { margin: 24px 0; padding: 16px 18px; border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 5px; background: var(--white); scroll-margin-top: 92px; }
+.wp-remark { border-left-color: var(--muted); }
+.wp-proof { border-left-color: var(--coral); }
+.wp-theorem__label { margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+.wp-remark .wp-theorem__label { color: var(--muted); }
+.wp-proof .wp-theorem__label { color: var(--coral); }
+.wp-theorem__body { font-size: 15.5px; line-height: 1.9; }
+.wp-theorem__body p { margin: 0 0 10px; }
+.wp-theorem__body ol, .wp-theorem__body ul { margin: 8px 0; padding-left: 22px; }
+.wp-theorem__body li { margin: 5px 0; }
+.wp-eqinline { margin: 14px 0; padding: 10px 12px; overflow-x: auto; border-radius: 4px; background: var(--soft); text-align: center; }
+.wp-eqinline .katex-display { margin: 0; }
+.wp-figure__media--stack { flex-direction: column; align-items: center; }
+.wp-figure__media--stack img { max-width: 100% !important; }
+.wp-index-list span { color: #2e403d; }
+.wp-index-list li { grid-template-columns: 66px minmax(0, 1fr); }
+.wp-table__scroll table { min-width: 620px; }
+@media (max-width: 620px) { .wp-eqinline { font-size: 13px; } }
+.wp-table__scroll table.wp-table--wide { min-width: 0; font-size: 10.5px; }
+.wp-table__scroll table.wp-table--wide th, .wp-table__scroll table.wp-table--wide td { padding: 4px 5px; }
+.wp-equation { overflow-x: auto; }
+.wp-equation .formula-card__equation { overflow-x: auto; }
