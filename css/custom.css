@@ -206,12 +206,15 @@ body { background-color: var(--paper); color: var(--ink); }
 /* 门厅之后接文章列表时留出间距 */
 .welcome + .index-card { margin-top: 12px; }
 
-/* 文章页返回按钮 */
+/* 文章页返回按钮：头图左上角、导航栏正下方 */
 .post-back {
+  position: absolute;
+  top: calc(56px + 1rem);
+  left: max(1rem, calc((100vw - 1140px) / 2 + 15px));
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 1.2rem;
   padding: 4px 12px 4px 8px;
   border: 1px solid var(--paper-line);
   border-radius: 999px;

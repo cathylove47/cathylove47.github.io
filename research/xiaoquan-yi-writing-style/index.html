@@ -216,6 +216,12 @@
 <div id="banner" class="banner" parallax=true
      style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
+    
+      <a class="post-back" href="/"
+         onclick="if (document.referrer.indexOf(location.origin + '/') === 0 && history.length > 1) { history.back(); return false; }">
+        <i class="iconfont icon-arrowleft"></i> 返回
+      </a>
+    
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
@@ -291,10 +297,6 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <a class="post-back" href="/"
-               onclick="if (document.referrer.indexOf(location.origin + '/') === 0 && history.length > 1) { history.back(); return false; }">
-              <i class="iconfont icon-arrowleft"></i> 返回
-            </a>
             <h1 id="seo-header">读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方</h1>
             
             
