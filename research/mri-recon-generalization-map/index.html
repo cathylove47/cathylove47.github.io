@@ -1,0 +1,1109 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#efece4">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="把 MRI 重建在分布偏移下的研究分成五块：失效与度量、训练期泛化、测试时适配、扩散先验失配、2025–2026 前沿，逐块列代表论文、已覆盖与未充分检验的问题，以及三处还空着的交叉点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MRI 重建的泛化问题：2019–2026 文献地图">
+<meta property="og:url" content="https://cathy47.party/research/mri-recon-generalization-map/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="把 MRI 重建在分布偏移下的研究分成五块：失效与度量、训练期泛化、测试时适配、扩散先验失配、2025–2026 前沿，逐块列代表论文、已覆盖与未充分检验的问题，以及三处还空着的交叉点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-26T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-26T14:02:15.033Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="MRI 重建">
+<meta property="article:tag" content="分布偏移">
+<meta property="article:tag" content="扩散模型">
+<meta property="article:tag" content="文献综述">
+<meta property="article:tag" content="测试时适配">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MRI 重建的泛化问题：2019–2026 文献地图 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathy47.party","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#81582c","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/pathology-atlas/" target="_self">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>论文精读</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/courses/" target="_self">
+                <i class="iconfont icon-book-fill"></i>
+                <span>备课讲义</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MRI 重建的泛化问题：2019–2026 文献地图</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-26 12:00" pubdate>
+          2026年11月26日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MRI 重建的泛化问题：2019–2026 文献地图</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MRI 重建模型换一家医院、换一个部位、换一种采样，常常就不灵了。这篇把相关论文按「怎么失败 → 训练时怎么防 → 测试时怎么补 → 生成式先验错了怎么办」分成五块，每块只列最值得读的论文，最后给出几处还没人做的交叉点。</p>
+<p>检索时间截至 2026-11-26，共筛过约 240 篇。论文信息都对照过 arXiv、会议或期刊页面。只在检索摘要里见到、没读到原文的数字，文中标为「未核实」。</p>
+<span id="more"></span>
+<h2 id="一张表看全局">一张表看全局</h2>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>核心做法</th>
+<th>现状</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>失效与度量</td>
+<td>研究模型在偏移、扰动下坏在哪里，用什么指标看出来</td>
+<td>对抗不稳定性研究很多；自然偏移下的病灶丢失只有零星报告</td>
+</tr>
+<tr>
+<td>训练期泛化</td>
+<td>训练一个模型，测试时不再调整</td>
+<td>多篇大规模研究结论一致：<strong>训练数据越多样越稳</strong></td>
+</tr>
+<tr>
+<td>测试时适配</td>
+<td>每个扫描用自己的测量再调一次模型</td>
+<td>能补回大部分 PSNR/SSIM 差距，但早停和超参是共同短板</td>
+</tr>
+<tr>
+<td>扩散先验失配</td>
+<td>先验和测量算子解耦，换先验或适配先验</td>
+<td>跨采样方式的鲁棒性有证据，跨解剖、跨对比度的证据多为定性</td>
+</tr>
+<tr>
+<td>评估</td>
+<td>用什么判断「泛化成功」</td>
+<td>几乎只看 PSNR/SSIM；病灶级评估都在同分布下做</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-模型在偏移下怎么失效">1. 模型在偏移下怎么失效</h2>
+<p><strong>对抗扰动不等于自然偏移，两者常被混着谈。</strong></p>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>出处</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1902.05300">On instabilities of deep learning in image reconstruction</a></td>
+<td>PNAS 2020</td>
+<td>微小扰动就能让重建出现明显伪影，引发「深度重建是否不稳定」的争论</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v139/darestani21a.html">Measuring Robustness in Deep Learning Based Compressive Sensing</a></td>
+<td>ICML 2021</td>
+<td>对比网络与 TV/CS：两者都受扰动影响，网络在分布偏移下掉得更多</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2011.04268">Solving Inverse Problems With Deep Neural Networks – Robustness Included?</a></td>
+<td>TPAMI 2023</td>
+<td>结论相反：精心训练的网络对扰动并不比经典方法更脆</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.16983">On Instabilities of Unsupervised Denoising Diffusion Models in MRI Reconstruction</a></td>
+<td>MICCAI 2024</td>
+<td>把不稳定性分析推广到扩散先验</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PSNR/SSIM 看不出的局部失败：</strong></p>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>出处</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.06318">Results of the 2020 fastMRI Challenge</a></td>
+<td>TMI 2021</td>
+<td>8× 下出现假血管、病灶被抹平，放射科评分和 SSIM 排名不一致</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9745443/">Exploring the Acceleration Limits of VarNet Brain MRI</a></td>
+<td>Radiology: AI 2022</td>
+<td>高加速下小病灶消失，全局指标仍然很好</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.00646">On Hallucinations in Tomographic Image Reconstruction</a></td>
+<td>TMI 2021</td>
+<td>用零空间给幻觉下定义，但需要参考图</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41597-022-01255-z">fastMRI+</a></td>
+<td>Scientific Data 2022</td>
+<td>给 fastMRI 膝、脑加病灶框，是病灶级评估的基础数据</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.00670">Mind the Detail</a></td>
+<td>MICCAI 2025</td>
+<td>用检测器当「读片人」，看重建是否保住临床相关细节</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.11043">InverseBench</a></td>
+<td>ICLR 2025</td>
+<td>扩散先验换采样方向只掉 0.48 dB，端到端网络掉 9.58 dB；但先验训练与测试同为膝关节</td>
+</tr>
+</tbody>
+</table>
+<p><strong>系统性的跨分布研究和挑战赛：</strong></p>
+<table>
+<thead>
+<tr>
+<th>论文 / 赛事</th>
+<th>出处</th>
+<th>覆盖的偏移</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://doi.org/10.1002/mrm.27355">Assessment of the generalization of learned image reconstruction</a></td>
+<td>MRM 2019</td>
+<td>对比度、信噪比、采样</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9060447/">Implicit data crimes</a></td>
+<td>PNAS 2022</td>
+<td>提醒：公开数据的预处理会伪造出「偏移」或「泛化」</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://doi.org/10.3389/fnins.2022.919186">Multi-Coil MRI Reconstruction Challenge (Calgary–Campinas)</a></td>
+<td>Front. Neurosci. 2022</td>
+<td>线圈数（12→32 通道）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v235/lin24h.html">Robustness of Deep Learning for Accelerated MRI: Benefits of Diverse Training Data</a></td>
+<td>ICML 2024</td>
+<td>解剖、对比度、扫描仪；结论是多样数据最有效</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.13822">Improving Deep Learning for Accelerated MRI With Data Filtering</a></td>
+<td>NeurIPS 2025 D&amp;B</td>
+<td>18 个数据源、48 个测试集</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11762">MosaicMRI</a></td>
+<td>NeurIPS 2026</td>
+<td>骨肌多部位原始数据，含 0.55 T 零样本</td>
+</tr>
+<tr>
+<td>CMRxRecon <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.03971">2024</a> / <a target="_blank" rel="noopener" href="https://cmrxrecon.github.io/2025/Tasks.html">2025</a></td>
+<td>MICCAI 挑战赛</td>
+<td>2024：未见模态、采样；2025：未见中心、厂商、病种、5 T、儿科</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-训练期泛化：一个模型通吃">2. 训练期泛化：一个模型通吃</h2>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>出处</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9565_ECCV_2024_paper.php">PromptMR+</a></td>
+<td>ECCV 2024</td>
+<td>提示式展开网络，赢下 CMRxRecon2024 两条赛道</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.17137">SDUM</a></td>
+<td>ECCV 2026</td>
+<td>一个 18 级展开模型覆盖 CMRxRecon2025 全部赛道</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.14947">MRAugment</a></td>
+<td>ICML 2021</td>
+<td>物理一致的数据增强，小数据和偏移下都有效</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.18572">UEPS</a></td>
+<td>arXiv 2026</td>
+<td>指出线圈灵敏度图估计是跨域瓶颈，去掉显式估计后 OOD 平均 +2.21 dB</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2611.15758">SIM</a></td>
+<td>arXiv 2026-11</td>
+<td>用自然图像物理仿真训练，13 个 OOD 数据集零样本；单团队预印本，未见代码</td>
+</tr>
+<tr>
+<td>Hashmi 等 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.22557">CVPRW 2026</a>、<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2610.08109">ECCVW 2026</a></td>
+<td>2026</td>
+<td>冻结的自然图像编码器做心脏重建，域内不一定更好，跨域更稳</td>
+</tr>
+</tbody>
+</table>
+<p>这一块的共识很清楚：<strong>规模和多样性最重要</strong>。几处没人做的地方：</p>
+<ul>
+<li>同一冻结模型分别对「新扫描仪」「新采样族」「新倍率」做受控拆分。</li>
+<li>训练于一种线圈阵列、测试于另一种。</li>
+<li>用病灶指标衡量泛化。</li>
+</ul>
+<h2 id="3-测试时适配：每个扫描自己调">3. 测试时适配：每个扫描自己调</h2>
+<p>驱动适配的信号只有三类：</p>
+<ol>
+<li><strong>数据一致性</strong>：适配后的重建要和采到的 k 空间吻合，如 AdaDiff、SCD、DDIP。</li>
+<li><strong>留出 k 空间</strong>：把采到的 k 空间分出一部分不参与训练，用来验证，如 SSDU、ZS-SSL、Darestani TTT、BiasRecon。</li>
+<li><strong>SURE</strong>：一种不需要真值的误差无偏估计，如 SMRD、MetaCS。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>出处</th>
+<th>信号</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.07737">ZS-SSL</a></td>
+<td>ICLR 2022</td>
+<td>留出 20% k 空间早停</td>
+<td>单次划分看不到拐点，需要 10 次；最后把留出部分放回重建，事后检验不再独立</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v162/darestani22a.html">Test-Time Training Can Close the Natural Distribution Shift Gap</a></td>
+<td>ICML 2022</td>
+<td>留出 k 空间</td>
+<td>四种偏移下补回 87–99% 的 SSIM 差距；每片 1–13 分钟；纯监督模型做 TTT 几乎无效</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.05876">AdaDiff</a></td>
+<td>MedIA 2023</td>
+<td>数据一致性</td>
+<td>推理时按扫描微调扩散先验</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.01799">SMRD</a></td>
+<td>MICCAI 2023</td>
+<td>SURE</td>
+<td>用 SURE 自动选扩散重建的超参</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2407.10641">DDIP</a></td>
+<td>ECCV 2024</td>
+<td>数据一致性</td>
+<td>3D 共享 LoRA；附录承认部分设置不如不适配，且会遗忘源域</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.14409">SCD</a></td>
+<td>TMI 2025</td>
+<td>数据一致性</td>
+<td>边采样边 LoRA；MRI 脑→膝 29.47→30.31 dB；超参在有真值的验证集上调</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.20815">D2SA</a></td>
+<td>NeurIPS 2025</td>
+<td>自监督</td>
+<td>同一病人的切片共享适配；只评估 10–20 个受试者</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13466">BiasRecon</a></td>
+<td>MICCAI 2026</td>
+<td>留出 k 空间 + SURE</td>
+<td>不到 100 个可调参数，比 DDS 高 1.2–2.1 dB</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.13007">Accelerating Stroke MRI with Diffusion Models</a></td>
+<td>MRM 2026</td>
+<td>有监督微调</td>
+<td>大规模预训练后用 20 例 FLAIR 微调；适度微调最好</td>
+</tr>
+</tbody>
+</table>
+<p><strong>共同短板</strong>：</p>
+<ul>
+<li><strong>早停和超参不是真正免参考</strong>：要么在有真值的集合上调，要么固定步数。</li>
+<li><strong>没有在线持续适配</strong>：DDIP、D2SA 都把「跨扫描持续适配并度量遗忘」列为未来工作。</li>
+<li><strong>没有病灶级评估</strong>：一篇 2026 年的系统综述统计到，自监督重建的读者研究为零（预印本）。</li>
+</ul>
+<h2 id="4-扩散先验失配">4. 扩散先验失配</h2>
+<p>扩散先验的卖点是「先验只管图像长什么样，测量算子推理时再接」，所以换采样方式、换倍率天然稳健。换解剖、换对比度时先验本身就错了，这时会发生什么？</p>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>出处</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.01368">Robust Compressed Sensing MRI with Deep Generative Priors</a></td>
+<td>NeurIPS 2021</td>
+<td>跨采样稳健；跨解剖只有一例半月板撕裂</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2110.05243">Score-based diffusion models for accelerated MRI</a></td>
+<td>MedIA 2022</td>
+<td>OOD 结果是定性图</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2111.08005">Solving Inverse Problems in Medical Imaging with Score-Based Generative Models</a></td>
+<td>ICLR 2022</td>
+<td>只换测量过程，不换解剖、对比度</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2410.13746">Theory on Score-Mismatched Diffusion Models</a>、<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.17042">DPnP</a></td>
+<td>arXiv / NeurIPS 2024</td>
+<td>先验失配的理论分析，没有 MRI 实验</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.08728">A-DPS</a></td>
+<td>ICLR 2025</td>
+<td>只用欠采样 k 空间训练先验（Ambient）；没有在偏移下与全采样先验对比</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2501.07376">Bigger Isn’t Always Better</a></td>
+<td>IJCV 2026</td>
+<td>小感受野先验、自然图像先验在跨域时更稳</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.21531">PaDIS-MRI</a></td>
+<td>ML4H 2025</td>
+<td>patch 先验，T2 脑训练后测 T1 和膝关节，比整图先验高约 2 dB</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.11482">Unsupervised Detection of Distribution Shift in Inverse Problems</a></td>
+<td>arXiv 2025</td>
+<td>只用欠采样测量估计训练、测试分布的 KL</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.31596">KLIP</a></td>
+<td>CVPR 2026</td>
+<td>局部偏移检测，只做了 CT 和人脸</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2405.18527">Task-Driven UQ via Conformal Prediction</a></td>
+<td>ECCV 2024</td>
+<td>任务级共形校准，但没在偏移下检验</td>
+</tr>
+</tbody>
+</table>
+<p>注意：同一个脑→膝设定，SCD 和 DDIP 报告的 DDS 基线就差约 1.1 dB（29.47 vs 28.36），<strong>跨论文数字不能直接比</strong>。</p>
+<h2 id="5-2025–2026-前沿的三个问题">5. 2025–2026 前沿的三个问题</h2>
+<p><strong>适配 + 蒸馏（又快又能换域）</strong>：</p>
+<ul>
+<li>没查到同时做「源域先验 → 目标域适配 → 蒸馏成一步或少步」的论文。</li>
+<li>只覆盖一半的近邻有：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.08142">SSDM-MRI</a>（TMI 2026，蒸馏不适配）、Stroke-MRI（适配不蒸馏）、BiasRecon（适配不蒸馏）、<a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v315/akoda26a.html">C-MORE</a>（MIDL 2026，一致性蒸馏，零样本跨解剖）。</li>
+</ul>
+<p><strong>先验偏移下的病灶保真</strong>：没有系统研究。最近的是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.02428">SA-RDM-DC</a>：膝关节，fastMRI+ 病灶保真，但不是扩散先验。</li>
+<li><a target="_blank" rel="noopener" href="https://papers.miccai.org/miccai-2026-sat/UNSURE2026_019.html">UNSURE 2026 的病理级不确定性研究</a>：只在同分布下。</li>
+</ul>
+<p><strong>用留出 k 空间决定「要不要适配」</strong>：没查到。部件是分散的：</p>
+<ul>
+<li>ZS-SSL、Darestani：留出早停，但对象不是扩散先验。</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.09880">ZADS</a>（CAMSAP 2025）：只调保真权重。</li>
+<li>Shoushtari：只做偏移检测。</li>
+<li>BiasRecon：有信号，没有门控。</li>
+</ul>
+<h2 id="还空着的交叉点">还空着的交叉点</h2>
+<p>以下是对上面文献的归纳，不是任何一篇论文的结论。</p>
+<ol>
+<li><strong>偏移 × 病灶</strong>：病灶级评估都在同分布下做，偏移研究又只看 PSNR/SSIM。把「先验失配程度」当自变量、「病灶对比度保持 / 淡化 / 编造率」当因变量的受控实验还没有。</li>
+<li><strong>免参考的适配决策</strong>：留出 k 空间、SURE、测量域偏移检测都已存在，但没有被组合成「是否适配、何时停」的决策，也没人系统比较它们和用真值挑出的最优检查点（oracle）差多少。这里有一个根本限制：留出 k 空间只能验证已采到的频率，对从未采样的频率没有约束，所以它和病灶保真是否相关要先实测。</li>
+<li><strong>选择与评估分离</strong>：多数 TTA 论文用同一份留出数据既做早停又做事后检验。拆成两份互斥子集，结论会不会变，没人测过。</li>
+<li><strong>持续适配与遗忘</strong>：扫描一张接一张来，适配状态是保留还是重置，回到源域时掉多少？</li>
+<li><strong>线圈灵敏度图偏移下的 TTA</strong>：几乎所有 TTA 方法都假设 ESPIRiT 估计的灵敏度图是对的。</li>
+</ol>
+<h2 id="常用数据集">常用数据集</h2>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>可用于的偏移</th>
+<th>下游标注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1811.08839">fastMRI</a> + <a target="_blank" rel="noopener" href="https://github.com/microsoft/fastmri-plus">fastMRI+</a></td>
+<td>脑↔膝、对比度、厂商（2020 Transfer 赛道）</td>
+<td>病灶框</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/StanfordMIMI/skm-tea">SKM-TEA</a></td>
+<td>膝关节协议</td>
+<td>分割、T2 定量</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41597-023-02181-4">M4Raw</a></td>
+<td>0.3 T 低场</td>
+<td>无病理</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://doi.org/10.3389/fnins.2022.919186">Calgary–Campinas</a></td>
+<td>线圈数</td>
+<td>无</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/CmrxRecon/CMRxRecon2025">CMRxRecon 2024/2025</a></td>
+<td>模态、采样、中心、厂商、场强、病种</td>
+<td>2025 有多病种</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://brain-development.org/ixi-dataset/">IXI</a></td>
+<td>跨站点脑</td>
+<td>只有幅值图，没有原始 k 空间，需说明仿真测量模型</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>完整证据卡（每篇论文的偏移类型、适配信号、数字与核实状态）留在本地笔记里，引用前以原文为准。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" class="category-chain-item">科研笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" class="print-no-link">#扩散模型</a>
+      
+        <a href="/tags/%E6%B5%8B%E8%AF%95%E6%97%B6%E9%80%82%E9%85%8D/" class="print-no-link">#测试时适配</a>
+      
+        <a href="/tags/MRI-%E9%87%8D%E5%BB%BA/" class="print-no-link">#MRI 重建</a>
+      
+        <a href="/tags/%E5%88%86%E5%B8%83%E5%81%8F%E7%A7%BB/" class="print-no-link">#分布偏移</a>
+      
+        <a href="/tags/%E6%96%87%E7%8C%AE%E7%BB%BC%E8%BF%B0/" class="print-no-link">#文献综述</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MRI 重建的泛化问题：2019–2026 文献地图</div>
+      <div>https://cathy47.party/research/mri-recon-generalization-map/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/research/diffusion-tta-narrative/" title="扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南">
+                        <span class="hidden-mobile">扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
