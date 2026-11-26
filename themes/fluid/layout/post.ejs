@@ -14,6 +14,10 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
+            <a class="post-back" href="<%= url_for('/') %>"
+               onclick="if (document.referrer.indexOf(location.origin + '/') === 0 && history.length > 1) { history.back(); return false; }">
+              <i class="iconfont icon-arrowleft"></i> 返回
+            </a>
             <h1 id="seo-header"><%= page.subtitle || page.title %></h1>
             <% if (theme.post.updated.enable && theme.post.updated && compare_date(page.date, page.updated)) { %>
               <p id="updated-time" class="note note-<%= theme.post.updated.note_class || 'info' %>" style="<%= theme.post.updated.relative ? 'display: none' : '' %>">

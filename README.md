@@ -59,7 +59,7 @@ npm run onekey
 
 `npm run onekey` 会把生成结果发布到同一 GitHub 仓库的 `main` 分支。
 
-两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。博客导航在 `_config.fluid.yml` 中分别配置「论文精读」和「备课讲义」。讲义页不依赖论文阅读器，不共享其主题存储；两个栏目顶部均有「返回博客」按钮，直接回到 `/` 首页。
+两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。「论文精读」和「备课讲义」不放在顶部导航，入口卡片位于首页第一页（`themes/fluid/layout/index.ejs`），文章列表排在其后。讲义页不依赖论文阅读器，不共享其主题存储；两个栏目顶部均有「返回博客」按钮，直接回到 `/` 首页。文章页正文顶部有「返回」按钮：从本站进入时回到上一页，直接打开时回到首页。
 
 「备课讲义」栏目定位为 408 备课讲义：按课次分组，每准备一次课就是一个分组，便于复用与续讲；题目答案与解析默认折叠。内容和渲染源码保存在 `paper-reading-atlas/` 子模块。新增资料后单独构建：
 
