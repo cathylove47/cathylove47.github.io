@@ -37,6 +37,35 @@
   
   
   <entry>
+    <title>读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方</title>
+    <link href="/research/xiaoquan-yi-writing-style/"/>
+    <url>/research/xiaoquan-yi-writing-style/</url>
+    
+    <content type="html"><![CDATA[<p>这篇是<strong>读后笔记</strong>，不是论文精读：不讲方法细节，只看他怎么组织一篇论文。</p><h2 id="他是谁，读了哪些">他是谁，读了哪些</h2><ul><li>OpenReview 主页：<a href="https://openreview.net/profile?id=~Xiaoquan_Yi1">~Xiaoquan_Yi1</a>，华中科技大学计算机学院博士生（2022 级，本科武汉理工），共 13 篇 publication。</li><li>一作的 5 篇都在 <strong>LLM 生成内容检测</strong>：ChatbotID（NeurIPS 2025）、UMPIRE（ACL 2026）、IED（IJCAI 2026）、VERITAS（NeurIPS 2026）以及它的前身 SAFD（ICLR 2026 投稿，已撤稿）。</li><li>其余是联邦学习和 Agent 综述的合作论文（FedProG、C²-AFCL、pFedDKS、FedBiF、COMST 综述）。</li><li>我只拆了前 5 篇一作论文。合作论文只下载了 PDF，没有分析。</li><li>请求时我没有在 OpenReview 上找到&quot;auto research&quot;相关的内容；如果你指的是另一个人，请告诉我。</li></ul><h2 id="他的套路：先找规律，再做方法">他的套路：先找规律，再做方法</h2><p>每篇都遵循同一个顺序：</p><ol><li><strong>找一个能被统计验证的现象。</strong> 这个现象是论文的发动机，方法只是把它变成特征或损失。<ul><li>ChatbotID：人与人对话里情感影响是双向的，人与机器人对话是非对称的。</li><li>UMPIRE：人给图配文字时会补充图里没有的信息，LLM 倾向于描述图里已有的内容。</li><li>IED：人写的文本信息熵高于 LLM 生成的文本。</li><li>VERITAS：现有检测器遇到风格改写后准确率最多下降 16.45%。</li></ul></li><li><strong>用一张图或一张表在正文里先证明这个现象</strong>（Motivation 单独成节）。<ul><li>UMPIRE 的表 1 给出具体数字：LLM 文本中&quot;提到图中物体&quot;的比例是 89.3%，人类只有 28.4%。</li></ul></li><li><strong>方法部分每个模块对应一个损失项</strong>，最后合成总目标函数。</li><li><strong>实验按固定顺序铺开</strong>：主表 → 换 backbone → 消融 → 按条件分层 → 跨域泛化 → 复杂度。</li></ol><h2 id="摘要的写法">摘要的写法</h2><p>固定五步，每篇几乎一样：</p><ol><li>背景：LLM 变强，所以需要检测。</li><li>缺口：现有方法只看静态特征或需要模型内部信息。</li><li>发现：“We identify / reveal …”，一句话说出规律。</li><li>方法：起一个好记的名字（UMPIRE、IED、ChatbotID），说它怎么利用这个规律。</li><li>结果：用一个数字收尾，如 15.92%、5.38%、10.81%。</li></ol><h2 id="引言和相关工作">引言和相关工作</h2><ul><li>引言第二段把已有方法分成 2–3 类，每类写一个 “However”。<ul><li>需要模型内部信息，黑盒不能用。</li><li>只用统计特征，被改写一下就失效。</li><li>监督分类器只看静态文本，忽略交互或跨模态的行为。</li></ul></li><li>引言结尾给固定的三条贡献：<ul><li>第一条写发现，带 “to our knowledge, the first”。</li><li>第二条写方法，同样带 “first”。</li><li>第三条写实验：多数据集、多种 LLM、up to X%。</li></ul></li><li>Related Work 按方法类别分小节，每类先说做了什么，再用一两句指出局限，并和本文区分。</li><li>偶尔借用背景理论给发现撑腰：Communication Accommodation Theory、Principle of Least Effort、Granger 因果检验。</li></ul><h2 id="一个值得注意的细节：同一篇论文改名再投">一个值得注意的细节：同一篇论文改名再投</h2><p>SAFD（ICLR 2026 投稿）和 VERITAS（NeurIPS 2026）的摘要几乎逐句相同，都有&quot;up to 16.45%&quot;和&quot;两个局限&quot;的表述；NeurIPS 版加了合作者并改了方法名和章节标题（例如 4.1 Simulating Style-Based Adversarial Attacks、4.2 Performance Degradation Under Style-Shifts、5 The VERITAS Framework）。<br>这说明被撤稿后，把核心发现和叙事保留，重新包装名字和实验再投，是一条可行路线。这是我对两个版本摘要对比后的判断，不是作者说明。</p><h2 id="语言习惯">语言习惯</h2><ul><li>动词偏正式、偏夸张：remarkable、innovative、synergistically、hyper-realistic。</li><li>常用短语：extensive experiments、significantly outperforms、to the best of our knowledge。</li><li>句子偏长，从句多。</li><li>缺点：<code>first</code> 用得太多，审稿人容易抓；摘要和贡献里的说法也有重复。</li></ul><h2 id="我可以借鉴什么">我可以借鉴什么</h2><ul><li>先找出一个能画成图或表的<strong>经验规律</strong>，让方法服务于它。</li><li>引言按&quot;分类 + However&quot;逐类指出现有方法的问题，贡献固定写三条。</li><li>摘要用一个具体数字收尾。</li><li>实验章节按固定顺序，并加上跨域泛化和复杂度对比。</li><li>每个方法模块对应一个损失项，最后合成总目标函数，读者容易跟随。</li><li>要避免：新颖性断言太多；表格和图的说明写得太长。</li></ul><h2 id="论文列表">论文列表</h2><table><thead><tr><th>论文</th><th>Venue</th><th>备注</th></tr></thead><tbody><tr><td>ChatbotID</td><td>NeurIPS 2025 poster</td><td>一作，已读</td></tr><tr><td>UMPIRE</td><td>ACL 2026 long</td><td>一作，已读</td></tr><tr><td>Information Entropy for LLM-generated Text Detection (IED)</td><td>IJCAI 2026</td><td>一作，已读</td></tr><tr><td>VERITAS</td><td>NeurIPS 2026 poster</td><td>一作，已读</td></tr><tr><td>SAFD</td><td>ICLR 2026 撤稿投稿</td><td>一作，已读，是 VERITAS 前身</td></tr><tr><td>Cross-task Calibration for Asynchronous FCL / C²-AFCL</td><td>ICML 2026 / ICLR 2026 投稿</td><td>合作，未分析</td></tr><tr><td>FedProG、pFedDKS、FedBiF、COMST 综述</td><td>NeurIPS 2026 / WWW 2026 / arXiv / IEEE COMST</td><td>合作，未分析</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>科研笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>论文写作</tag>
+      
+      <tag>写作风格</tag>
+      
+      <tag>LLM 生成文本检测</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南</title>
     <link href="/research/diffusion-tta-narrative/"/>
     <url>/research/diffusion-tta-narrative/</url>

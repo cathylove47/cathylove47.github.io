@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#efece4">
+  <meta name="author" content="cathy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从 OpenReview 上 Xiaoquan Yi（HUST 博士生）的一作论文里，拆出一套&quot;先发现规律、再做方法&quot;的写作模板，供自己写论文时借鉴。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方">
+<meta property="og:url" content="https://cathy47.party/research/xiaoquan-yi-writing-style/index.html">
+<meta property="og:site_name" content="cathy">
+<meta property="og:description" content="从 OpenReview 上 Xiaoquan Yi（HUST 博士生）的一作论文里，拆出一套&quot;先发现规律、再做方法&quot;的写作模板，供自己写论文时借鉴。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-25T16:30:00.000Z">
+<meta property="article:modified_time" content="2026-11-26T14:06:36.129Z">
+<meta property="article:author" content="cathy">
+<meta property="article:tag" content="LLM 生成文本检测">
+<meta property="article:tag" content="写作风格">
+<meta property="article:tag" content="论文写作">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方 - cathy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cathy47.party","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#81582c","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凯鑫的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/pathology-atlas/" target="_self">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>论文精读</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/courses/" target="_self">
+                <i class="iconfont icon-book-fill"></i>
+                <span>备课讲义</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-26 00:30" pubdate>
+          2026年11月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这篇是<strong>读后笔记</strong>，不是论文精读：不讲方法细节，只看他怎么组织一篇论文。</p>
+<h2 id="他是谁，读了哪些">他是谁，读了哪些</h2>
+<ul>
+<li>OpenReview 主页：<a target="_blank" rel="noopener" href="https://openreview.net/profile?id=~Xiaoquan_Yi1">~Xiaoquan_Yi1</a>，华中科技大学计算机学院博士生（2022 级，本科武汉理工），共 13 篇 publication。</li>
+<li>一作的 5 篇都在 <strong>LLM 生成内容检测</strong>：ChatbotID（NeurIPS 2025）、UMPIRE（ACL 2026）、IED（IJCAI 2026）、VERITAS（NeurIPS 2026）以及它的前身 SAFD（ICLR 2026 投稿，已撤稿）。</li>
+<li>其余是联邦学习和 Agent 综述的合作论文（FedProG、C²-AFCL、pFedDKS、FedBiF、COMST 综述）。</li>
+<li>我只拆了前 5 篇一作论文。合作论文只下载了 PDF，没有分析。</li>
+<li>请求时我没有在 OpenReview 上找到&quot;auto research&quot;相关的内容；如果你指的是另一个人，请告诉我。</li>
+</ul>
+<h2 id="他的套路：先找规律，再做方法">他的套路：先找规律，再做方法</h2>
+<p>每篇都遵循同一个顺序：</p>
+<ol>
+<li><strong>找一个能被统计验证的现象。</strong> 这个现象是论文的发动机，方法只是把它变成特征或损失。
+<ul>
+<li>ChatbotID：人与人对话里情感影响是双向的，人与机器人对话是非对称的。</li>
+<li>UMPIRE：人给图配文字时会补充图里没有的信息，LLM 倾向于描述图里已有的内容。</li>
+<li>IED：人写的文本信息熵高于 LLM 生成的文本。</li>
+<li>VERITAS：现有检测器遇到风格改写后准确率最多下降 16.45%。</li>
+</ul>
+</li>
+<li><strong>用一张图或一张表在正文里先证明这个现象</strong>（Motivation 单独成节）。
+<ul>
+<li>UMPIRE 的表 1 给出具体数字：LLM 文本中&quot;提到图中物体&quot;的比例是 89.3%，人类只有 28.4%。</li>
+</ul>
+</li>
+<li><strong>方法部分每个模块对应一个损失项</strong>，最后合成总目标函数。</li>
+<li><strong>实验按固定顺序铺开</strong>：主表 → 换 backbone → 消融 → 按条件分层 → 跨域泛化 → 复杂度。</li>
+</ol>
+<h2 id="摘要的写法">摘要的写法</h2>
+<p>固定五步，每篇几乎一样：</p>
+<ol>
+<li>背景：LLM 变强，所以需要检测。</li>
+<li>缺口：现有方法只看静态特征或需要模型内部信息。</li>
+<li>发现：“We identify / reveal …”，一句话说出规律。</li>
+<li>方法：起一个好记的名字（UMPIRE、IED、ChatbotID），说它怎么利用这个规律。</li>
+<li>结果：用一个数字收尾，如 15.92%、5.38%、10.81%。</li>
+</ol>
+<h2 id="引言和相关工作">引言和相关工作</h2>
+<ul>
+<li>引言第二段把已有方法分成 2–3 类，每类写一个 “However”。
+<ul>
+<li>需要模型内部信息，黑盒不能用。</li>
+<li>只用统计特征，被改写一下就失效。</li>
+<li>监督分类器只看静态文本，忽略交互或跨模态的行为。</li>
+</ul>
+</li>
+<li>引言结尾给固定的三条贡献：
+<ul>
+<li>第一条写发现，带 “to our knowledge, the first”。</li>
+<li>第二条写方法，同样带 “first”。</li>
+<li>第三条写实验：多数据集、多种 LLM、up to X%。</li>
+</ul>
+</li>
+<li>Related Work 按方法类别分小节，每类先说做了什么，再用一两句指出局限，并和本文区分。</li>
+<li>偶尔借用背景理论给发现撑腰：Communication Accommodation Theory、Principle of Least Effort、Granger 因果检验。</li>
+</ul>
+<h2 id="一个值得注意的细节：同一篇论文改名再投">一个值得注意的细节：同一篇论文改名再投</h2>
+<p>SAFD（ICLR 2026 投稿）和 VERITAS（NeurIPS 2026）的摘要几乎逐句相同，都有&quot;up to 16.45%&quot;和&quot;两个局限&quot;的表述；NeurIPS 版加了合作者并改了方法名和章节标题（例如 4.1 Simulating Style-Based Adversarial Attacks、4.2 Performance Degradation Under Style-Shifts、5 The VERITAS Framework）。<br>
+这说明被撤稿后，把核心发现和叙事保留，重新包装名字和实验再投，是一条可行路线。这是我对两个版本摘要对比后的判断，不是作者说明。</p>
+<h2 id="语言习惯">语言习惯</h2>
+<ul>
+<li>动词偏正式、偏夸张：remarkable、innovative、synergistically、hyper-realistic。</li>
+<li>常用短语：extensive experiments、significantly outperforms、to the best of our knowledge。</li>
+<li>句子偏长，从句多。</li>
+<li>缺点：<code>first</code> 用得太多，审稿人容易抓；摘要和贡献里的说法也有重复。</li>
+</ul>
+<h2 id="我可以借鉴什么">我可以借鉴什么</h2>
+<ul>
+<li>先找出一个能画成图或表的<strong>经验规律</strong>，让方法服务于它。</li>
+<li>引言按&quot;分类 + However&quot;逐类指出现有方法的问题，贡献固定写三条。</li>
+<li>摘要用一个具体数字收尾。</li>
+<li>实验章节按固定顺序，并加上跨域泛化和复杂度对比。</li>
+<li>每个方法模块对应一个损失项，最后合成总目标函数，读者容易跟随。</li>
+<li>要避免：新颖性断言太多；表格和图的说明写得太长。</li>
+</ul>
+<h2 id="论文列表">论文列表</h2>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>Venue</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatbotID</td>
+<td>NeurIPS 2025 poster</td>
+<td>一作，已读</td>
+</tr>
+<tr>
+<td>UMPIRE</td>
+<td>ACL 2026 long</td>
+<td>一作，已读</td>
+</tr>
+<tr>
+<td>Information Entropy for LLM-generated Text Detection (IED)</td>
+<td>IJCAI 2026</td>
+<td>一作，已读</td>
+</tr>
+<tr>
+<td>VERITAS</td>
+<td>NeurIPS 2026 poster</td>
+<td>一作，已读</td>
+</tr>
+<tr>
+<td>SAFD</td>
+<td>ICLR 2026 撤稿投稿</td>
+<td>一作，已读，是 VERITAS 前身</td>
+</tr>
+<tr>
+<td>Cross-task Calibration for Asynchronous FCL / C²-AFCL</td>
+<td>ICML 2026 / ICLR 2026 投稿</td>
+<td>合作，未分析</td>
+</tr>
+<tr>
+<td>FedProG、pFedDKS、FedBiF、COMST 综述</td>
+<td>NeurIPS 2026 / WWW 2026 / arXiv / IEEE COMST</td>
+<td>合作，未分析</td>
+</tr>
+</tbody>
+</table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" class="category-chain-item">科研笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/" class="print-no-link">#论文写作</a>
+      
+        <a href="/tags/%E5%86%99%E4%BD%9C%E9%A3%8E%E6%A0%BC/" class="print-no-link">#写作风格</a>
+      
+        <a href="/tags/LLM-%E7%94%9F%E6%88%90%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/" class="print-no-link">#LLM 生成文本检测</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>读 Xiaoquan Yi 的论文：他的写作套路与可借鉴的地方</div>
+      <div>https://cathy47.party/research/xiaoquan-yi-writing-style/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>cathy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/research/mri-recon-generalization-map/" title="MRI 重建的泛化问题：2019–2026 文献地图">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MRI 重建的泛化问题：2019–2026 文献地图</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/research/diffusion-tta-narrative/" title="扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南">
+                        <span class="hidden-mobile">扩散模型与测试时 / 测量时适配：2023–2026 顶会叙事指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>© cathy</span> <i class="iconfont icon-love"></i> <a href="https://github.com/cathylove47" target="_blank" rel="nofollow noopener"><span>GitHub</span></a> <span> · Powered by </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <span> & </span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
