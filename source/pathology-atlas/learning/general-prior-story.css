@@ -1,0 +1,248 @@
+@charset "UTF-8";
+/* ADPS 全文精读：沿用 dds-story.css 的纸感配色与排版变量，只补长文/图表/双语所需结构。 */
+.adps-body { background: var(--paper); }
+.adps-body ::selection { background: var(--lime); color: var(--ink); }
+.adps-body a { text-decoration-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.adps-brand-note { color: var(--muted); font-weight: 500; }
+
+.adps-skip { position: fixed; left: 12px; top: -60px; z-index: 90; padding: 8px 14px; background: var(--ink); color: var(--white); border-radius: 4px; }
+.adps-skip:focus { top: 12px; }
+
+.adps-shell { display: grid; grid-template-columns: 196px minmax(0, 760px) 120px; gap: 56px; max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; align-items: start; }
+.adps-toc { position: sticky; top: 84px; max-height: calc(100vh - 110px); overflow: auto; padding: 30px 12px 20px 0; border-right: 1px solid var(--line); font-size: 13px; scrollbar-width: thin; }
+.adps-toc-title { margin: 2px 0 14px; font-family: var(--serif); font-size: 20px; font-weight: 700; }
+.adps-toc-group { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-top: 1px solid var(--line); }
+.adps-toc-group strong { margin-bottom: 4px; color: var(--muted); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.adps-toc-group a { padding: 4px 8px; border-radius: 3px; color: var(--ink); text-decoration: none; }
+.adps-toc-group a:hover { background: var(--soft); color: var(--green); }
+.adps-toc-group a.is-active { background: var(--lime); font-weight: 650; }
+.adps-toc-actions { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+
+.adps-main { min-width: 0; padding-bottom: 40px; }
+.adps-hero { padding: 48px 0 34px; border-bottom: 1px solid var(--line); }
+.adps-hero h1 { margin: 10px 0 10px; font-family: var(--serif); font-size: clamp(32px, 5vw, 50px); line-height: 1.18; letter-spacing: -.02em; }
+.adps-hero__en { margin: 0 0 14px; color: var(--muted); font-size: 15px; letter-spacing: .01em; }
+.adps-hero__authors { margin: 0 0 18px; font-size: 14px; }
+.adps-hero__deck { max-width: 64ch; margin: 0 0 22px; font-size: 17px; line-height: 1.85; }
+.adps-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
+.adps-cta { display: inline-flex; align-items: center; min-height: 42px; padding: 9px 18px; border: 1px solid var(--green); border-radius: 4px; background: var(--green); color: var(--white); font-weight: 700; text-decoration: none; }
+.adps-cta:hover { background: #095e51; }
+.adps-cta--ghost { background: transparent; color: var(--green); }
+.adps-cta--ghost:hover { background: var(--soft); }
+.adps-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; margin: 0 0 20px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.adps-facts div { min-width: 0; }
+.adps-facts dt { color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.adps-facts dd { margin: 2px 0 0; font-size: 13px; }
+.adps-provenance { max-width: 78ch; color: var(--muted); font-size: 12px; line-height: 1.75; }
+.adps-provenance a { color: var(--green); }
+
+.adps-prereq, .adps-index { padding: 46px 0 14px; border-bottom: 1px solid var(--line); }
+.adps-lead { max-width: 72ch; color: var(--ink); font-size: 15px; }
+.adps-derivation { padding-left: 22px; }
+.adps-derivation li { margin: 8px 0; }
+
+.adps-box { margin: 16px 0; border: 1px solid var(--line); border-radius: 5px; background: var(--white); }
+.adps-box > summary { padding: 13px 16px; cursor: pointer; font-weight: 650; }
+.adps-box[open] > summary { border-bottom: 1px solid var(--line); }
+.adps-box > *:not(summary) { margin-left: 16px; margin-right: 16px; }
+.adps-box > ol, .adps-box > ul { padding-left: 34px; }
+.adps-box > *:last-child { margin-bottom: 16px; }
+.adps-caution { padding-left: 12px; border-left: 3px solid var(--coral); color: var(--muted); font-size: 13px; }
+.adps-glossary { display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr); gap: 8px 18px; margin: 16px 0; font-size: 13px; }
+.adps-glossary dt { font-weight: 700; }
+.adps-glossary dd { margin: 0; color: #3d4d4a; }
+.adps-mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.adps-mini-table th, .adps-mini-table td { padding: 7px 9px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+
+.adps-paper { padding-top: 10px; }
+.adps-unit { position: relative; scroll-margin-top: 92px; }
+.adps-p { padding: 11px 0; border-bottom: 1px dotted color-mix(in srgb, var(--line) 65%, transparent); }
+.adps-zh { margin: 0; font-size: 16.5px; line-height: 1.95; }
+.adps-zh strong { font-weight: 700; }
+.adps-heading { padding: 34px 0 6px; scroll-margin-top: 88px; }
+.adps-heading h2, .adps-heading h3, .adps-heading h4 { margin: 0; font-family: var(--serif); line-height: 1.3; scroll-margin-top: 90px; }
+.adps-heading h2 { font-size: 29px; }
+.adps-heading h3 { font-size: 23px; }
+.adps-heading h4 { font-size: 18px; color: #263a37; }
+.adps-heading--2 { margin-top: 16px; border-top: 2px solid var(--ink); }
+.adps-heading .adps-en { margin-top: 8px; }
+.adps-anchor { display: block; position: relative; top: -92px; visibility: hidden; }
+
+.adps-en { margin-top: 6px; border-left: 2px solid var(--line); }
+.adps-en > summary { padding: 3px 0 3px 12px; color: var(--muted); font-size: 11px; letter-spacing: .06em; cursor: pointer; list-style: none; }
+.adps-en > summary::-webkit-details-marker { display: none; }
+.adps-en > summary::before { content: "EN · "; color: var(--green); font-weight: 700; }
+.adps-en__body { padding: 6px 0 9px 12px; color: #4b5a57; font-family: Georgia, "Times New Roman", serif; font-size: 14px; line-height: 1.75; }
+.adps-en__body p { margin: 0 0 6px; }
+body.show-en .adps-en { display: block; }
+
+.adps-note { margin: 10px 0 4px; border: 1px solid color-mix(in srgb, var(--green) 26%, var(--line)); border-radius: 4px; background: color-mix(in srgb, var(--lime) 18%, var(--white)); }
+.adps-note > summary { padding: 9px 12px; color: #22554a; font-size: 13px; font-weight: 650; cursor: pointer; }
+.adps-note__body { padding: 0 14px 12px; font-size: 14px; line-height: 1.85; }
+.adps-note__body p { margin: 0 0 8px; }
+
+.adps-equation { margin: 20px 0; scroll-margin-top: 92px; }
+.adps-equation .formula-card { margin: 0; }
+.formula-card__note { margin: 10px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); color: #3c4f4b; font-size: 14px; }
+.adps-equation .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+
+.adps-figure, .adps-table, .adps-algorithm { margin: 26px 0 30px; padding: 18px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); scroll-margin-top: 90px; }
+.adps-figure__head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 12px; }
+.adps-figure__head h3 { margin: 0; font-family: var(--serif); font-size: 20px; line-height: 1.4; }
+.adps-float-no { flex: none; padding: 2px 7px; border-radius: 3px; background: var(--ink); color: var(--white); font-size: 10px; letter-spacing: .08em; }
+.adps-figure__media { display: flex; justify-content: center; padding: 10px; border-radius: 4px; background: var(--soft); }
+.adps-figure__media img { display: block; width: auto; max-width: 100%; height: auto; cursor: zoom-in; }
+.adps-figure__tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+.adps-chip { display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--white); color: var(--ink); font-size: 12px; font-weight: 600; text-decoration: none; }
+.adps-chip:hover { border-color: var(--green); color: var(--green); }
+.adps-chip--link { margin-left: auto; }
+.adps-figure figcaption, .adps-table figcaption, .adps-algorithm figcaption { color: #2e403d; font-size: 13.5px; line-height: 1.8; }
+.adps-table figcaption, .adps-algorithm figcaption { display: flex; gap: 10px; align-items: baseline; margin-bottom: 12px; font-weight: 600; }
+.adps-caption-text { flex: 1; min-width: 0; }
+.adps-caption-text .katex { font-size: 1em; }
+.adps-comment { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.8; }
+.adps-comment h4 { margin: 14px 0 5px; color: var(--green); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.adps-comment__label { margin: 0 0 8px !important; color: var(--coral); font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.adps-comment h4:first-child { margin-top: 0; }
+.adps-comment ol, .adps-comment ul { margin: 0; padding-left: 22px; }
+.adps-comment p { margin: 8px 0; }
+.adps-comment p b { display: inline-block; margin-right: 8px; color: var(--coral); font-size: 11px; letter-spacing: .08em; }
+.adps-labels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.adps-labels li { display: grid; grid-template-columns: minmax(120px, 42%) minmax(0, 1fr); gap: 10px; padding: 4px 0; border-bottom: 1px dotted var(--line); }
+.adps-labels .adps-label-en { color: var(--muted); font-size: 11.5px; word-break: break-word; }
+.adps-labels li > span:last-child { font-size: 13px; }
+.adps-figure--gallery .adps-figure__media { background: #fff; }
+
+.adps-table__grid + .adps-table__grid { margin-top: 20px; }
+.adps-table__grid h4 { margin: 0 0 8px; font-size: 13px; }
+.adps-table__scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; }
+.adps-table__scroll table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.adps-table__scroll th, .adps-table__scroll td { padding: 7px 9px; border-bottom: 1px solid var(--line); border-right: 1px solid color-mix(in srgb, var(--line) 55%, transparent); text-align: left; vertical-align: top; }
+.adps-table__scroll thead th { position: sticky; top: 0; z-index: 1; background: var(--soft); font-size: 11px; letter-spacing: .02em; }
+.adps-table__scroll tbody tr:last-child td { border-bottom: 0; }
+.adps-table__scroll tr:has(> td:only-child) td { background: color-mix(in srgb, var(--lime) 16%, var(--white)); font-weight: 700; }
+.adps-table__scroll td:first-child { position: sticky; left: 0; z-index: 2; background: var(--white); font-weight: 600; }
+.adps-table__scroll thead th:first-child { position: sticky; left: 0; z-index: 3; background: var(--soft); }
+.adps-table__scroll tr:has(> td:only-child) td:first-child { background: color-mix(in srgb, var(--lime) 22%, var(--white)); }
+
+.adps-code { overflow: auto; margin: 0; padding: 16px; border-radius: 4px; background: #172b2a; color: #e9eee7; font: 12.5px/1.75 "Cascadia Code", Consolas, monospace; }
+.adps-code code { font: inherit; white-space: pre; }
+
+.adps-index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; }
+.adps-index-grid h3 { margin: 0 0 8px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.adps-index-list { margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.adps-index-list li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; padding: 6px 0; border-bottom: 1px dotted var(--line); }
+.adps-index-list a { color: var(--green); font-weight: 700; text-decoration: none; }
+
+.adps-footnotes { padding-left: 0; list-style: none; }
+.adps-footnotes li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-bottom: 1px dotted var(--line); font-size: 14px; }
+.adps-fn-no { color: var(--muted); font-variant-numeric: tabular-nums; }
+.adps-fn-ref { margin-left: 2px; }
+.adps-fn-ref a, .adps-fn-back { color: var(--green); font-size: .82em; text-decoration: none; }
+.adps-fn-ref a:hover, .adps-fn-back:hover { text-decoration: underline; }
+.adps-footnotes li:target { background: color-mix(in srgb, var(--lime) 35%, transparent); }
+.adps-references { padding-left: 0; list-style: none; font-size: 13px; }
+.adps-references li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px dotted var(--line); scroll-margin-top: 92px; }
+.adps-references li:target { background: color-mix(in srgb, var(--lime) 35%, transparent); }
+.adps-ref-num { color: var(--muted); font-variant-numeric: tabular-nums; }
+.adps-references p { margin: 0; }
+.adps-ref-zh { margin-top: 3px !important; color: var(--muted); }
+a.cite { color: var(--green); font-size: .86em; text-decoration: none; }
+a.xref { color: var(--green); text-underline-offset: 3px; }
+
+.adps-zoom { width: min(96vw, 1400px); max-height: 94vh; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); color: var(--ink); }
+.adps-zoom::backdrop { background: rgba(10, 24, 22, .78); }
+.adps-zoom__bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 13px; }
+.adps-zoom__actions { display: flex; gap: 8px; flex: none; }
+.adps-zoom__viewport { overflow: auto; max-height: 78vh; border: 1px solid var(--line); border-radius: 4px; background: #eef1ec; overscroll-behavior: contain; }
+.adps-zoom img { display: block; width: auto; height: auto; max-width: none; max-height: none; }
+.adps-zoom.is-fit img { max-width: 100%; max-height: 78vh; }
+.adps-zoom > a { display: inline-block; margin-top: 8px; color: var(--green); font-size: 12px; }
+
+@media (max-width: 1080px) {
+  .adps-shell { grid-template-columns: 180px minmax(0, 1fr); gap: 30px; padding: 0 24px 60px; }
+  .adps-toc { font-size: 12px; }
+}
+@media (max-width: 860px) {
+  .adps-shell { display: block; padding: 0 18px 48px; }
+  .adps-toc { position: sticky; top: 0; z-index: 40; display: flex; gap: 6px; align-items: center; max-height: none; margin: 0 -18px; padding: 8px 18px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(8px); }
+  .adps-toc-title, .adps-toc .side-eyebrow, .adps-toc-group strong { display: none; }
+  .adps-toc-group { flex: none; flex-direction: row; gap: 4px; padding: 0; border: 0; }
+  .adps-toc-group a { flex: none; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; }
+  .adps-toc-actions { flex-direction: row; flex: none; padding: 0 0 0 6px; border: 0; }
+  .adps-toc-actions .adps-chip { display: none; }
+  .adps-toc-actions #toggle-en { display: inline-flex; }
+  .adps-hero { padding-top: 28px; }
+  .adps-hero h1 { font-size: 31px; }
+  .adps-facts { grid-template-columns: 1fr; }
+  .adps-zh { font-size: 16px; }
+  .adps-labels li { grid-template-columns: 1fr; gap: 2px; }
+  .adps-figure, .adps-table, .adps-algorithm { margin-left: -8px; margin-right: -8px; padding: 12px; border-radius: 4px; }
+  .adps-glossary { grid-template-columns: 1fr; gap: 2px; }
+  .adps-glossary dd { margin-bottom: 8px; }
+  .adps-references li { grid-template-columns: 34px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 打印：展开所有翻译与讲解，不隐藏附录；去掉交互控件。 */
+@media print {
+  :root { --paper: #fff; --white: #fff; }
+  @page { margin: 16mm 14mm; }
+  body.adps-body { background: #fff; }
+  .topbar, .adps-toc, .adps-skip, .adps-figure__tools, .adps-zoom, .adps-cta { display: none !important; }
+  .adps-shell { display: block; max-width: none; padding: 0; }
+  .adps-main { padding: 0; }
+  .adps-hero { padding-top: 0; }
+  details > summary { display: none !important; }
+  details > *:not(summary) { display: block !important; }
+  .adps-note, .adps-box, .adps-figure, .adps-table, .adps-algorithm { break-inside: avoid; }
+  .adps-p, .adps-unit { break-inside: avoid; }
+  .adps-table__scroll { overflow: visible; }
+  .adps-table__scroll table { min-width: 0; font-size: 9.5px; }
+  .adps-table__scroll td:first-child { position: static; }
+  .adps-code { background: #f2f2f2; color: #111; }
+  a.cite, a.xref { color: inherit; }
+  .adps-en__body { color: #333; }
+}
+
+/* ADPS 专用：多面板图、宽表与来源说明。 */
+.adps-figure__media { flex-wrap: wrap; gap: 14px; }
+.adps-figure__media:has(img + img) img { max-width: calc(50% - 8px); }
+.adps-table__grid + .adps-table__grid { margin-top: 18px; }
+.adps-table__grid h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: .04em; color: var(--muted); }
+.adps-table__scroll table.adps-table--mri { min-width: 1080px; }
+.adps-table__scroll table.adps-table--mri th, .adps-table__scroll table.adps-table--mri td { padding: 6px 7px; font-size: 11.5px; white-space: nowrap; }
+.adps-table__scroll table.adps-table--mri thead th { text-align: center; }
+.adps-table__scroll table.adps-table--mri td:nth-child(n+4) { text-align: right; }
+.adps-table__source { margin: 12px 0 0; color: var(--muted); font-size: 11.5px; line-height: 1.7; }
+.adps-figure__head h3 { font-size: 17px; }
+.adps-figure figcaption { display: block; }
+
+/* 公式卡：论文里的长公式在 760px 正文列里仍要完整可读，缩放并允许横向滚动。 */
+.adps-equation .formula-card { padding: 16px 18px 12px; margin: 18px 0; }
+.adps-equation .formula-card__equation { font-size: 15px; padding: 12px 0 6px; scrollbar-width: thin; }
+.adps-equation .katex { font-size: 1em; }
+.adps-equation .katex-display { margin: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 4px; }
+
+/* 通用先验页专用：宽表按「PSNR / SSIM」双值单元格排版，允许换行而不是整页横向溢出。 */
+.adps-table__scroll table.adps-table--mri { min-width: 1180px; font-size: 11px; }
+.adps-table__scroll table.adps-table--mri th,
+.adps-table__scroll table.adps-table--mri td { white-space: normal; min-width: 72px; padding: 5px 5px; vertical-align: top; }
+.adps-table__scroll table.adps-table--mri td:nth-child(-n+3) { text-align: left; white-space: nowrap; }
+.adps-table__scroll table.adps-table--mri thead th { text-align: center; }
+.adps-table__scroll table:not(.adps-table--mri) th,
+.adps-table__scroll table:not(.adps-table--mri) td { white-space: normal; }
+.adps-algorithm .adps-mini-table { min-width: 720px; }
+.adps-mini-table td { white-space: normal; vertical-align: top; }
+.adps-mini-table th { white-space: nowrap; }
+.adps-glossary dt { line-height: 1.6; }
+
+
+/* 表头不竖排、算法伪代码列可换行。 */
+.adps-table__scroll table th { white-space: nowrap; }
+.adps-table__scroll table td:first-child,
+.adps-table__scroll table th:first-child { min-width: 64px; }
+.adps-algorithm .adps-mini-table { table-layout: fixed; width: 100%; min-width: 0; }
+.adps-algorithm .adps-mini-table th:nth-child(1),
+.adps-algorithm .adps-mini-table td:nth-child(1) { width: 44px; }
+.adps-algorithm .adps-mini-table td { white-space: normal; word-break: break-word; }

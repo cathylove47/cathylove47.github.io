@@ -1,0 +1,247 @@
+@charset "UTF-8";
+/* ADPS 全文精读：沿用 dds-story.css 的纸感配色与排版变量，只补长文/图表/双语所需结构。 */
+.md3d-body { background: var(--paper); }
+.md3d-body ::selection { background: var(--lime); color: var(--ink); }
+.md3d-body a { text-decoration-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.md3d-brand-note { color: var(--muted); font-weight: 500; }
+
+.md3d-skip { position: fixed; left: 12px; top: -60px; z-index: 90; padding: 8px 14px; background: var(--ink); color: var(--white); border-radius: 4px; }
+.md3d-skip:focus { top: 12px; }
+
+.md3d-shell { display: grid; grid-template-columns: 196px minmax(0, 760px) 120px; gap: 56px; max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; align-items: start; }
+.md3d-toc { position: sticky; top: 84px; max-height: calc(100vh - 110px); overflow: auto; padding: 30px 12px 20px 0; border-right: 1px solid var(--line); font-size: 13px; scrollbar-width: thin; }
+.md3d-toc-title { margin: 2px 0 14px; font-family: var(--serif); font-size: 20px; font-weight: 700; }
+.md3d-toc-group { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-top: 1px solid var(--line); }
+.md3d-toc-group strong { margin-bottom: 4px; color: var(--muted); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.md3d-toc-group a { padding: 4px 8px; border-radius: 3px; color: var(--ink); text-decoration: none; }
+.md3d-toc-group a:hover { background: var(--soft); color: var(--green); }
+.md3d-toc-group a.is-active { background: var(--lime); font-weight: 650; }
+.md3d-toc-actions { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+
+.md3d-main { min-width: 0; padding-bottom: 40px; }
+.md3d-hero { padding: 48px 0 34px; border-bottom: 1px solid var(--line); }
+.md3d-hero h1 { margin: 10px 0 10px; font-family: var(--serif); font-size: clamp(32px, 5vw, 50px); line-height: 1.18; letter-spacing: -.02em; }
+.md3d-hero__en { margin: 0 0 14px; color: var(--muted); font-size: 15px; letter-spacing: .01em; }
+.md3d-hero__authors { margin: 0 0 18px; font-size: 14px; }
+.md3d-hero__deck { max-width: 64ch; margin: 0 0 22px; font-size: 17px; line-height: 1.85; }
+.md3d-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
+.md3d-cta { display: inline-flex; align-items: center; min-height: 42px; padding: 9px 18px; border: 1px solid var(--green); border-radius: 4px; background: var(--green); color: var(--white); font-weight: 700; text-decoration: none; }
+.md3d-cta:hover { background: #095e51; }
+.md3d-cta--ghost { background: transparent; color: var(--green); }
+.md3d-cta--ghost:hover { background: var(--soft); }
+.md3d-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; margin: 0 0 20px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.md3d-facts div { min-width: 0; }
+.md3d-facts dt { color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.md3d-facts dd { margin: 2px 0 0; font-size: 13px; }
+.md3d-provenance { max-width: 78ch; color: var(--muted); font-size: 12px; line-height: 1.75; }
+.md3d-provenance a { color: var(--green); }
+
+.md3d-prereq, .md3d-index { padding: 46px 0 14px; border-bottom: 1px solid var(--line); }
+.md3d-lead { max-width: 72ch; color: var(--ink); font-size: 15px; }
+.md3d-derivation { padding-left: 22px; }
+.md3d-derivation li { margin: 8px 0; }
+
+.md3d-box { margin: 16px 0; border: 1px solid var(--line); border-radius: 5px; background: var(--white); }
+.md3d-box > summary { padding: 13px 16px; cursor: pointer; font-weight: 650; }
+.md3d-box[open] > summary { border-bottom: 1px solid var(--line); }
+.md3d-box > *:not(summary) { margin-left: 16px; margin-right: 16px; }
+.md3d-box > ol, .md3d-box > ul { padding-left: 34px; }
+.md3d-box > *:last-child { margin-bottom: 16px; }
+.md3d-caution { padding-left: 12px; border-left: 3px solid var(--coral); color: var(--muted); font-size: 13px; }
+.md3d-glossary { display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr); gap: 8px 18px; margin: 16px 0; font-size: 13px; }
+.md3d-glossary dt { font-weight: 700; }
+.md3d-glossary dd { margin: 0; color: #3d4d4a; }
+.md3d-mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.md3d-mini-table th, .md3d-mini-table td { padding: 7px 9px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+
+.md3d-paper { padding-top: 10px; }
+.md3d-unit { position: relative; scroll-margin-top: 92px; }
+.md3d-p { padding: 11px 0; border-bottom: 1px dotted color-mix(in srgb, var(--line) 65%, transparent); }
+.md3d-zh { margin: 0; font-size: 16.5px; line-height: 1.95; }
+.md3d-zh strong { font-weight: 700; }
+.md3d-heading { padding: 34px 0 6px; scroll-margin-top: 88px; }
+.md3d-heading h2, .md3d-heading h3, .md3d-heading h4 { margin: 0; font-family: var(--serif); line-height: 1.3; scroll-margin-top: 90px; }
+.md3d-heading h2 { font-size: 29px; }
+.md3d-heading h3 { font-size: 23px; }
+.md3d-heading h4 { font-size: 18px; color: #263a37; }
+.md3d-heading--2 { margin-top: 16px; border-top: 2px solid var(--ink); }
+.md3d-heading .md3d-en { margin-top: 8px; }
+.md3d-anchor { display: block; position: relative; top: -92px; visibility: hidden; }
+
+.md3d-en { margin-top: 6px; border-left: 2px solid var(--line); }
+.md3d-en > summary { padding: 3px 0 3px 12px; color: var(--muted); font-size: 11px; letter-spacing: .06em; cursor: pointer; list-style: none; }
+.md3d-en > summary::-webkit-details-marker { display: none; }
+.md3d-en > summary::before { content: "EN · "; color: var(--green); font-weight: 700; }
+.md3d-en__body { padding: 6px 0 9px 12px; color: #4b5a57; font-family: Georgia, "Times New Roman", serif; font-size: 14px; line-height: 1.75; }
+.md3d-en__body p { margin: 0 0 6px; }
+body.show-en .md3d-en { display: block; }
+
+.md3d-note { margin: 10px 0 4px; border: 1px solid color-mix(in srgb, var(--green) 26%, var(--line)); border-radius: 4px; background: color-mix(in srgb, var(--lime) 18%, var(--white)); }
+.md3d-note > summary { padding: 9px 12px; color: #22554a; font-size: 13px; font-weight: 650; cursor: pointer; }
+.md3d-note__body { padding: 0 14px 12px; font-size: 14px; line-height: 1.85; }
+.md3d-note__body p { margin: 0 0 8px; }
+
+.md3d-equation { margin: 20px 0; scroll-margin-top: 92px; }
+.md3d-equation .formula-card { margin: 0; }
+.formula-card__note { margin: 10px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); color: #3c4f4b; font-size: 14px; }
+.md3d-equation .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+
+.md3d-figure, .md3d-table, .md3d-algorithm { margin: 26px 0 30px; padding: 18px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); scroll-margin-top: 90px; }
+.md3d-figure__head { display: flex; gap: 12px; align-items: baseline; margin-bottom: 12px; }
+.md3d-figure__head h3 { margin: 0; font-family: var(--serif); font-size: 20px; line-height: 1.4; }
+.md3d-float-no { flex: none; padding: 2px 7px; border-radius: 3px; background: var(--ink); color: var(--white); font-size: 10px; letter-spacing: .08em; }
+.md3d-figure__media { display: flex; justify-content: center; padding: 10px; border-radius: 4px; background: var(--soft); }
+.md3d-figure__media img { display: block; width: auto; max-width: 100%; height: auto; cursor: zoom-in; }
+.md3d-figure__tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+.md3d-chip { display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--white); color: var(--ink); font-size: 12px; font-weight: 600; text-decoration: none; }
+.md3d-chip:hover { border-color: var(--green); color: var(--green); }
+.md3d-chip--link { margin-left: auto; }
+.md3d-figure figcaption, .md3d-table figcaption, .md3d-algorithm figcaption { color: #2e403d; font-size: 13.5px; line-height: 1.8; }
+.md3d-table figcaption, .md3d-algorithm figcaption { display: flex; gap: 10px; align-items: baseline; margin-bottom: 12px; font-weight: 600; }
+.md3d-caption-text { flex: 1; min-width: 0; }
+.md3d-caption-text .katex { font-size: 1em; }
+.md3d-comment { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.8; }
+.md3d-comment h4 { margin: 14px 0 5px; color: var(--green); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.md3d-comment__label { margin: 0 0 8px !important; color: var(--coral); font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.md3d-comment h4:first-child { margin-top: 0; }
+.md3d-comment ol, .md3d-comment ul { margin: 0; padding-left: 22px; }
+.md3d-comment p { margin: 8px 0; }
+.md3d-comment p b { display: inline-block; margin-right: 8px; color: var(--coral); font-size: 11px; letter-spacing: .08em; }
+.md3d-labels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.md3d-labels li { display: grid; grid-template-columns: minmax(120px, 42%) minmax(0, 1fr); gap: 10px; padding: 4px 0; border-bottom: 1px dotted var(--line); }
+.md3d-labels .md3d-label-en { color: var(--muted); font-size: 11.5px; word-break: break-word; }
+.md3d-labels li > span:last-child { font-size: 13px; }
+.md3d-figure--gallery .md3d-figure__media { background: #fff; }
+
+.md3d-table__grid + .md3d-table__grid { margin-top: 20px; }
+.md3d-table__grid h4 { margin: 0 0 8px; font-size: 13px; }
+.md3d-table__scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; }
+.md3d-table__scroll table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.md3d-table__scroll th, .md3d-table__scroll td { padding: 7px 9px; border-bottom: 1px solid var(--line); border-right: 1px solid color-mix(in srgb, var(--line) 55%, transparent); text-align: left; vertical-align: top; }
+.md3d-table__scroll thead th { position: sticky; top: 0; z-index: 1; background: var(--soft); font-size: 11px; letter-spacing: .02em; }
+.md3d-table__scroll tbody tr:last-child td { border-bottom: 0; }
+.md3d-table__scroll tr:has(> td:only-child) td { background: color-mix(in srgb, var(--lime) 16%, var(--white)); font-weight: 700; }
+.md3d-table__scroll td:first-child { position: sticky; left: 0; z-index: 2; background: var(--white); font-weight: 600; }
+.md3d-table__scroll thead th:first-child { position: sticky; left: 0; z-index: 3; background: var(--soft); }
+.md3d-table__scroll tr:has(> td:only-child) td:first-child { background: color-mix(in srgb, var(--lime) 22%, var(--white)); }
+
+.md3d-code { overflow: auto; margin: 0; padding: 16px; border-radius: 4px; background: #172b2a; color: #e9eee7; font: 12.5px/1.75 "Cascadia Code", Consolas, monospace; }
+.md3d-code code { font: inherit; white-space: pre; }
+
+.md3d-index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; }
+.md3d-index-grid h3 { margin: 0 0 8px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.md3d-index-list { margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.md3d-index-list li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; padding: 6px 0; border-bottom: 1px dotted var(--line); }
+.md3d-index-list a { color: var(--green); font-weight: 700; text-decoration: none; }
+
+.md3d-footnotes { padding-left: 0; list-style: none; }
+.md3d-footnotes li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-bottom: 1px dotted var(--line); font-size: 14px; }
+.md3d-fn-no { color: var(--muted); font-variant-numeric: tabular-nums; }
+.md3d-fn-ref { margin-left: 2px; }
+.md3d-fn-ref a, .md3d-fn-back { color: var(--green); font-size: .82em; text-decoration: none; }
+.md3d-fn-ref a:hover, .md3d-fn-back:hover { text-decoration: underline; }
+.md3d-footnotes li:target { background: color-mix(in srgb, var(--lime) 35%, transparent); }
+.md3d-references { padding-left: 0; list-style: none; font-size: 13px; }
+.md3d-references li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px dotted var(--line); scroll-margin-top: 92px; }
+.md3d-references li:target { background: color-mix(in srgb, var(--lime) 35%, transparent); }
+.md3d-ref-num { color: var(--muted); font-variant-numeric: tabular-nums; }
+.md3d-references p { margin: 0; }
+.md3d-ref-zh { margin-top: 3px !important; color: var(--muted); }
+a.cite { color: var(--green); font-size: .86em; text-decoration: none; }
+a.xref { color: var(--green); text-underline-offset: 3px; }
+
+.md3d-zoom { width: min(96vw, 1400px); max-height: 94vh; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); color: var(--ink); }
+.md3d-zoom::backdrop { background: rgba(10, 24, 22, .78); }
+.md3d-zoom__bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 13px; }
+.md3d-zoom__actions { display: flex; gap: 8px; flex: none; }
+.md3d-zoom__viewport { overflow: auto; max-height: 78vh; border: 1px solid var(--line); border-radius: 4px; background: #eef1ec; overscroll-behavior: contain; }
+.md3d-zoom img { display: block; width: auto; height: auto; max-width: none; max-height: none; }
+.md3d-zoom.is-fit img { max-width: 100%; max-height: 78vh; }
+.md3d-zoom > a { display: inline-block; margin-top: 8px; color: var(--green); font-size: 12px; }
+
+@media (max-width: 1080px) {
+  .md3d-shell { grid-template-columns: 180px minmax(0, 1fr); gap: 30px; padding: 0 24px 60px; }
+  .md3d-toc { font-size: 12px; }
+}
+@media (max-width: 860px) {
+  .md3d-shell { display: block; padding: 0 18px 48px; }
+  .md3d-toc { position: sticky; top: 0; z-index: 40; display: flex; gap: 6px; align-items: center; max-height: none; margin: 0 -18px; padding: 8px 18px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(8px); }
+  .md3d-toc-title, .md3d-toc .side-eyebrow, .md3d-toc-group strong { display: none; }
+  .md3d-toc-group { flex: none; flex-direction: row; gap: 4px; padding: 0; border: 0; }
+  .md3d-toc-group a { flex: none; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; }
+  .md3d-toc-actions { flex-direction: row; flex: none; padding: 0 0 0 6px; border: 0; }
+  .md3d-toc-actions .md3d-chip { display: none; }
+  .md3d-toc-actions #toggle-en { display: inline-flex; }
+  .md3d-hero { padding-top: 28px; }
+  .md3d-hero h1 { font-size: 31px; }
+  .md3d-facts { grid-template-columns: 1fr; }
+  .md3d-zh { font-size: 16px; }
+  .md3d-labels li { grid-template-columns: 1fr; gap: 2px; }
+  .md3d-figure, .md3d-table, .md3d-algorithm { margin-left: -8px; margin-right: -8px; padding: 12px; border-radius: 4px; }
+  .md3d-glossary { grid-template-columns: 1fr; gap: 2px; }
+  .md3d-glossary dd { margin-bottom: 8px; }
+  .md3d-references li { grid-template-columns: 34px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 打印：展开所有翻译与讲解，不隐藏附录；去掉交互控件。 */
+@media print {
+  :root { --paper: #fff; --white: #fff; }
+  @page { margin: 16mm 14mm; }
+  body.md3d-body { background: #fff; }
+  .topbar, .md3d-toc, .md3d-skip, .md3d-figure__tools, .md3d-zoom, .md3d-cta { display: none !important; }
+  .md3d-shell { display: block; max-width: none; padding: 0; }
+  .md3d-main { padding: 0; }
+  .md3d-hero { padding-top: 0; }
+  details > summary { display: none !important; }
+  details > *:not(summary) { display: block !important; }
+  .md3d-note, .md3d-box, .md3d-figure, .md3d-table, .md3d-algorithm { break-inside: avoid; }
+  .md3d-p, .md3d-unit { break-inside: avoid; }
+  .md3d-table__scroll { overflow: visible; }
+  .md3d-table__scroll table { min-width: 0; font-size: 9.5px; }
+  .md3d-table__scroll td:first-child { position: static; }
+  .md3d-code { background: #f2f2f2; color: #111; }
+  a.cite, a.xref { color: inherit; }
+  .md3d-en__body { color: #333; }
+}
+
+/* ADPS 专用：多面板图、宽表与来源说明。 */
+.md3d-figure__media { flex-wrap: wrap; gap: 14px; }
+.md3d-figure__media:has(img + img) img { max-width: calc(50% - 8px); }
+.md3d-table__grid + .md3d-table__grid { margin-top: 18px; }
+.md3d-table__grid h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: .04em; color: var(--muted); }
+.md3d-table__scroll table.md3d-table--mri { min-width: 1080px; }
+.md3d-table__scroll table.md3d-table--mri th, .md3d-table__scroll table.md3d-table--mri td { padding: 6px 7px; font-size: 11.5px; white-space: nowrap; }
+.md3d-table__scroll table.md3d-table--mri thead th { text-align: center; }
+.md3d-table__scroll table.md3d-table--mri td:nth-child(n+4) { text-align: right; }
+.md3d-table__source { margin: 12px 0 0; color: var(--muted); font-size: 11.5px; line-height: 1.7; }
+.md3d-figure__head h3 { font-size: 17px; }
+.md3d-figure figcaption { display: block; }
+
+/* 公式卡：论文里的长公式在 760px 正文列里仍要完整可读，缩放并允许横向滚动。 */
+.md3d-equation .formula-card { padding: 16px 18px 12px; margin: 18px 0; }
+.md3d-equation .formula-card__equation { font-size: 15px; padding: 12px 0 6px; scrollbar-width: thin; }
+.md3d-equation .katex { font-size: 1em; }
+.md3d-equation .katex-display { margin: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 4px; }
+
+/* 3D MedDiffusion 专用：行内公式用可读 HTML 写法（非 KaTeX），只做字体与上下标排版。 */
+.md3d-math { font-family: "Times New Roman", Georgia, serif; font-style: normal; white-space: nowrap; }
+.md3d-math i, .md3d-math em { font-style: italic; }
+.md3d-math b { font-weight: 700; }
+.md3d-math sub, .md3d-math sup { font-size: .72em; line-height: 0; }
+.md3d-zh .md3d-math { font-size: 1.02em; }
+/* 数值表：首列左对齐，其余列居中便于纵向比对。 */
+.md3d-table__scroll th + th, .md3d-table__scroll td + td { text-align: center; }
+.md3d-table__scroll td { font-variant-numeric: tabular-nums; }
+
+/* 窄屏：页首速查表允许折行，避免整表横向溢出。 */
+@media (max-width: 620px) {
+  .md3d-mini-table th, .md3d-mini-table td { white-space: normal; }
+  .md3d-glossary { grid-template-columns: minmax(88px, 34%) minmax(0, 1fr); gap: 8px 12px; }
+  .md3d-box > *:not(summary) { margin-left: 10px; margin-right: 10px; }
+}
+@media (max-width: 620px) {
+  .md3d-mini-table { table-layout: fixed; width: 100%; }
+  .md3d-mini-table th:first-child, .md3d-mini-table td:first-child { width: 34%; }
+  .md3d-mini-table th, .md3d-mini-table td { word-break: break-word; }
+}
