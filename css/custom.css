@@ -203,6 +203,26 @@ body { background-color: var(--paper); color: var(--ink); }
 .welcome-card p { margin: 0 0 16px; color: var(--ink-soft); font-size: 13.5px; line-height: 1.75; }
 .welcome-card__go { color: var(--accent); font-size: 13px; font-weight: 650; }
 .welcome-card:hover .welcome-card__go { color: var(--accent-warm); }
+/* 门厅之后接文章列表时留出间距 */
+.welcome + .index-card { margin-top: 12px; }
+
+/* 文章页返回按钮 */
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1.2rem;
+  padding: 4px 12px 4px 8px;
+  border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  background: var(--paper-card);
+  color: var(--ink-soft) !important;
+  font-family: var(--ui-font);
+  font-size: 13px;
+  text-decoration: none !important;
+  transition: border-color .18s ease, color .18s ease;
+}
+.post-back:hover { border-color: var(--accent); color: var(--accent-warm) !important; }
 
 /* 文章卡片：同一套纸面语法，去掉玻璃发光与流光 */
 .index-card {
@@ -234,6 +254,7 @@ html { scroll-behavior: smooth; }
 [data-user-color-scheme="dark"] .index-card { background: #252d38; border-color: #435266 !important; }
 [data-user-color-scheme="dark"] .welcome h2 { color: #ddd8cf; }
 [data-user-color-scheme="dark"] .welcome-card h3 { color: #ddd8cf; }
+[data-user-color-scheme="dark"] .post-back { background: #252d38; border-color: #435266; color: #c4bfb6 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .welcome-card, .index-card { transition: none; }
