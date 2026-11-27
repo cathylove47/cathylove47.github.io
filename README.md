@@ -1,13 +1,13 @@
 # Cathy 的 Hexo 博客
 
-博客使用 Hexo 和 Fluid 主题构建，并通过 GitHub Pages 发布到：
+博客使用 Hexo 和 Fluid 主题构建，主站部署在美国 VPS（nginx），经 Cloudflare 代理发布到：
 
-- <https://www.cathy47.online/>
+- <https://cathy47.party/>
 
 ## 分支约定
 
 - `source`：保存 Hexo 配置、主题和 Markdown 源码。
-- `main`：保存 `hexo deploy` 生成的静态网站，由 GitHub Pages 托管。
+- `main`：保存 `hexo deploy` 生成的静态网站，作为 GitHub Pages 备份。
 
 ## 本地使用
 
@@ -57,7 +57,9 @@ npm run onekey
 
 部署脚本 `bin/sync-learning-sites.sh` 分别同步两个独立栏目：论文精读使用 `paper-reading-atlas/dist/static/`，发布到 `/pathology-atlas/`；课程资料使用 `paper-reading-atlas/dist/courses/`，发布到 `/courses/`。某一栏目本地尚未构建时，继续使用博客 `main` 分支中该栏目的已有产物。
 
-`npm run onekey` 会把生成结果发布到同一 GitHub 仓库的 `main` 分支。
+`npm run onekey` 先用 rsync 把 `public/` 同步到 VPS 的 `/var/www/cathy47.party/`（经 Tailscale `root@100.70.90.39:19590`，密钥 `~/.ssh/vps_mac_ed25519`，可用 `VPS_HOST`/`VPS_PORT`/`VPS_KEY` 覆盖），同步完即生效；再把同一份产物推到 GitHub 仓库的 `main` 分支作备份。
+
+线上链路：Cloudflare DNS 中 `cathy47.party` 指向 VPS 并开启代理，`www` CNAME 到根域名；Origin Rule 把这两个主机名回源到 VPS 的 8443 端口（TCP 443 归 xray），SSL 模式为 Full。VPS 上 nginx 只监听 8443、使用自签证书，防火墙 `/etc/vps-guard.nft` 只放行 Cloudflare IP 段访问 8443。VPS 出问题时，把 DNS 改回 GitHub Pages 的四个 A 记录（185.199.108–111.153）并关闭代理即可回退。
 
 两套静态产物同时保存在 `source/pathology-atlas/` 和 `source/courses/`，由 Hexo `skip_render` 原样复制。「论文精读」和「备课讲义」不放在顶部导航，入口卡片位于首页第一页（`themes/fluid/layout/index.ejs`），文章列表排在其后。讲义页不依赖论文阅读器，不共享其主题存储；两个栏目顶部均有「返回博客」按钮，直接回到 `/` 首页。文章页正文顶部有「返回」按钮：从本站进入时回到上一页，直接打开时回到首页。
 
