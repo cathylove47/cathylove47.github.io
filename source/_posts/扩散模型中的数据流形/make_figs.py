@@ -186,4 +186,132 @@ ax.set_xlim(-1.4, 2.0); ax.set_ylim(-0.6, 1.9); ax.set_aspect("equal"); ax.set_x
 ax.legend(frameon=False, fontsize=9, loc="upper right")
 ax.set_title("示意图：逆问题里只做数据一致性投影的问题", fontsize=11)
 save(fig, "fig6-inverse-off-manifold.png")
+
+# ---------- 图 7–8：DPS 与 MPGD 在螺旋上的玩具逆问题 ----------
+# 测量只看横坐标：y = x[0] + 噪声。满足测量的集合是一条竖线，它和螺旋交于好几处，后验是多峰的。
+A = np.array([[1.0, 0.0]])
+Y_OBS, SIG_Y = 0.35, 0.05
+ct = np.linspace(0.5 * np.pi, 3.5 * np.pi, 8000)
+curve = np.stack([ct * np.cos(ct), ct * np.sin(ct)], 1) / 5            # 螺旋本身（真实流形）
+ctan = np.stack([np.cos(ct) - ct * np.sin(ct), np.sin(ct) + ct * np.cos(ct)], 1)
+ctan /= np.linalg.norm(ctan, axis=1, keepdims=True)                     # 单位切向量
+
+def denoise_cov(x, sigma):
+    """返回 E[x0|x] 和 Cov[x0|x]；去噪器的雅可比恰好是 Cov[x0|x] / σ²"""
+    d2 = ((x[:, None, :] - data[None]) ** 2).sum(-1)
+    w = np.exp(-(d2 - d2.min(1, keepdims=True)) / (2 * sigma ** 2))
+    w /= w.sum(1, keepdims=True)
+    m = w @ data
+    cov = np.einsum("bn,ni,nj->bij", w, data, data) - m[:, :, None] * m[:, None, :]
+    return m, cov
+
+def nearest(x):
+    """「完美自编码器」D(E(x))：投影到螺旋上最近的点，同时返回那里的切向量"""
+    k = ((x[:, None] - curve[None]) ** 2).sum(-1).argmin(1)
+    return curve[k], ctan[k]
+
+def grad_x0(x0):
+    """∇_{x0} ½‖A x0 − y‖²"""
+    return (x0 @ A.T - Y_OBS) @ A
+
+def dps_dir(x, sigma):
+    """DPS 的梯度：∇_{x_t} ½‖A x̂0(x_t) − y‖² = J^T A^T r，J = Cov/σ²（要「反传过去噪器」）"""
+    m, cov = denoise_cov(x, sigma)
+    return m, np.einsum("bij,bj->bi", cov, grad_x0(m)) / sigma ** 2
+
+def mpgd_ae_dir(x0):
+    """MPGD-AE：∇_{x0} L(D(E(x0)))，完美自编码器的雅可比 = 切空间投影"""
+    p, tg = nearest(x0)
+    g = grad_x0(p)
+    return (g * tg).sum(1, keepdims=True) * tg
+
+C_MPGD = 0.3
+steps = np.geomspace(3.0, 0.01, 200)
+
+def sample(method, n=400, zeta=0.03):
+    x = 3.0 * np.random.default_rng(1).standard_normal((n, 2))
+    for s0, s1 in zip(steps[:-1], steps[1:]):
+        if method == "dps":
+            m, g = dps_dir(x, s0)
+            r = np.abs(m @ A.T - Y_OBS) + 1e-12
+            x = m + s1 * (x - m) / s0 - zeta * g / r          # 先做一步无条件 DDIM，再沿 −∇_{x_t} 推
+        else:
+            m = denoise(x, s0)
+            g = grad_x0(m) if method == "mpgd" else mpgd_ae_dir(m)
+            m2 = m - C_MPGD * g                                 # 在 x̂0 上走一步
+            x = m2 + s1 * (x - m) / s0                           # 用原来的噪声方向重新加噪到 σ_{t-1}
+    return x
+
+# 真实后验：经验先验 × 似然，对训练点重新加权后重采样
+w_post = np.exp(-((data[:, 0] - Y_OBS) ** 2) / (2 * SIG_Y ** 2)); w_post /= w_post.sum()
+post = data[np.random.default_rng(2).choice(len(data), 400, p=w_post)]
+res = {"真实后验": post, "DPS，ζ = 0.01": sample("dps", zeta=0.01), "DPS，ζ = 0.1": sample("dps", zeta=0.1),
+       "MPGD（不投影）": sample("mpgd"), "MPGD-AE": sample("mpgd_ae")}
+print("DPS zeta=0.03 for text:")
+_p = sample("dps", zeta=0.03)
+_d = np.sqrt(((_p[:, None] - curve[None]) ** 2).sum(-1)).min(1); _r = np.abs(_p[:, 0] - Y_OBS)
+print("  dist median", round(np.median(_d), 4), "resid median", round(np.median(_r), 4), "resid p90", round(np.quantile(_r, 0.9), 4))
+
+# 图 7：同一个 x_t 上，三种方法的一步各做了什么
+sg = 0.25
+xt = np.array([[0.62, 0.95]])
+m, cov = denoise_cov(xt, sg)
+m = m[0]; gx0 = grad_x0(m[None])[0]
+_, g_dps = dps_dir(xt, sg); g_dps = g_dps[0]
+r = abs(m[0] - Y_OBS)
+xt_dps_base = m + (sg * 0.8) * (xt[0] - m) / sg
+xt_dps = xt_dps_base + 0.35 * (-g_dps / np.linalg.norm(g_dps))   # 只画方向，长度固定
+m_mp = m - 0.8 * gx0
+m_ae = m - 0.8 * mpgd_ae_dir(m[None])[0]
+fig, axs = plt.subplots(1, 3, figsize=(14, 5.6))
+titles = ["DPS：对 $x_t$ 求梯度，要穿过去噪器", "MPGD（不投影）：直接在 $\\hat x_0$ 上走一步", "MPGD-AE：梯度先投到流形切向"]
+for ax, tt in zip(axs, titles):
+    ax.scatter(*data.T, s=1.2, color=GREY, alpha=0.35)
+    ax.plot(*curve.T, color=ACC, lw=1.2, alpha=0.7)
+    ax.axvline(Y_OBS, color=BLUE, ls="--", lw=1.6)
+    ax.text(Y_OBS + 0.02, 0.6, "测量 $Ax=y$", color=BLUE, fontsize=10)
+    ax.scatter(*xt[0], color=INK, s=36, zorder=6); ax.text(xt[0, 0] + 0.03, xt[0, 1] - 0.08, "$x_t$", fontsize=13)
+    ax.annotate("", m, xt[0], arrowprops=dict(arrowstyle="->", color=GREY, lw=1.2, ls=":"))
+    ax.scatter(*m, color=INK, s=36, marker="s", zorder=6); ax.text(m[0] + 0.04, m[1] - 0.09, "$\\hat x_0$", fontsize=13)
+    ax.set_xlim(0.05, 1.45); ax.set_ylim(0.5, 1.65); ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
+    ax.set_title(tt, fontsize=12)
+ax = axs[0]
+vals, vecs = np.linalg.eigh(cov[0])
+ang = np.degrees(np.arctan2(vecs[1, 1], vecs[0, 1]))
+ax.add_patch(matplotlib.patches.Ellipse(m, 4 * np.sqrt(vals[1]), 4 * np.sqrt(vals[0]), angle=ang, fill=False, color=ACC, lw=1.4, ls="-."))
+ax.text(1.08, 0.62, "Cov[$x_0|x_t$] 的 2σ 椭圆", fontsize=9.5, color=ACC, ha="center")
+u = -gx0 / np.linalg.norm(gx0)
+ax.annotate("", m + 0.3 * u, m, arrowprops=dict(arrowstyle="->", color=GREY, lw=2))
+ax.text(m[0] - 0.3, m[1] + 0.05, "$-A^T r$", fontsize=11, color=GREY)
+ax.annotate("", xt_dps_base, xt[0], arrowprops=dict(arrowstyle="->", color=INK, lw=1.2))
+ax.annotate("", xt_dps, xt_dps_base, arrowprops=dict(arrowstyle="->", color=RED, lw=2))
+ax.scatter(*xt_dps, color=RED, s=36, zorder=6); ax.text(xt_dps[0] - 0.2, xt_dps[1] + 0.05, "$x_{t-1}$", fontsize=13, color=RED)
+ax.set_xlabel("黑：无条件 DDIM 一步　红：$-J^T A^T r$\n$J=\\mathrm{Cov}/\\sigma^2$ 把灰色方向掰向椭圆长轴", fontsize=10.5)
+for ax, m2, lab in [(axs[1], m_mp, "红：$\\hat x_0$ 被横着推，离开螺旋"), (axs[2], m_ae, "红：$\\hat x_0$ 沿切向（点划线）滑，贴着螺旋")]:
+    ax.annotate("", m2, m, arrowprops=dict(arrowstyle="->", color=RED, lw=2))
+    ax.scatter(*m2, color=RED, s=36, marker="s", zorder=6); ax.text(m2[0] - 0.06, m2[1] + 0.06, "$\\hat x_0'$", fontsize=13, color=RED)
+    xn = m2 + 0.8 * (xt[0] - m)
+    ax.annotate("", xn, m2, arrowprops=dict(arrowstyle="->", color=INK, lw=1.2))
+    ax.scatter(*xn, color=RED, s=36, zorder=6); ax.text(xn[0] - 0.17, xn[1] - 0.08, "$x_{t-1}$", fontsize=13, color=RED)
+    ax.set_xlabel(lab + "\n黑：沿原来的噪声方向重新加噪到 $\\sigma_{t-1}$", fontsize=10.5)
+p_, tg_ = nearest(m[None])
+axs[2].plot(*np.stack([p_[0] - 0.35 * tg_[0], p_[0] + 0.35 * tg_[0]]).T, color=INK, lw=1, ls="-.")
+save(fig, "fig7-dps-mpgd-one-step.png")
+print("fig7 xt", xt[0], "x0hat", m.round(3), "dps dir", (-g_dps / np.linalg.norm(g_dps)).round(3))
+
+# 图 8：完整采样结果
+fig, axs = plt.subplots(1, 5, figsize=(17, 3.9))
+for ax, (name, pts) in zip(axs, res.items()):
+    ax.scatter(*data.T, s=1, color=GREY, alpha=0.3)
+    ax.axvline(Y_OBS, color=BLUE, ls="--", lw=1.4)
+    ax.scatter(*pts.T, s=6, color=ACC if name == "真实后验" else RED, zorder=5)
+    dist = np.sqrt(((pts[:, None] - curve[None]) ** 2).sum(-1)).min(1)
+    resid = np.abs(pts[:, 0] - Y_OBS)
+    ax.set_title(name, fontsize=12)
+    ax.set_xlabel(f"离螺旋中位 {np.median(dist):.3f}\n|Ax - y| 中位 {np.median(resid):.3f}", fontsize=9.5)
+    ax.set_xlim(-2.4, 2.4); ax.set_ylim(-2.4, 2.4); ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
+    print(name, "dist median", round(np.median(dist), 4), "p90", round(np.quantile(dist, 0.9), 4),
+          "resid median", round(np.median(resid), 4), "p90", round(np.quantile(resid, 0.9), 4),
+          "upper(y>0) frac", round((pts[:, 1] > 0).mean(), 3))
+save(fig, "fig8-dps-mpgd-samples.png")
 print("done")
