@@ -64,6 +64,18 @@ SDUM 不是再换一个正则器，而是把「一个模型覆盖全部心脏 MR
 
 数据需要自行申请：CMRxRecon2024/2025 通过 Synapse 挑战页，fastMRI 脑通过官方申请渠道。仓库只给数据目录约定（`dataset/CMRxRecon2025/ChallengeDataTrain` 等），需用 `create_cmrxrecon_dataset.py` 生成每案例 JSON。院内 CEST 数据不公开。
 
+## 本站复现（推理 + 官方评测代码）
+
+完整记录见[复现记录页](../../learning/infer-sdum.html)。2026-11-27 用官方代码（`99be712`，未改）和发布的 base 权重（T=18）只做推理，按仓库 `run4Ranking` + `calmetric` 评测、按文件平均：
+
+| 设置 | PSNR (dB) | SSIM | NMSE |
+|---|---|---|---|
+| 论文 Table 1，Regular Task 1 | 33.179 | 0.895 | 0.014 |
+| 本站：CMRxRecon2025 TaskR1 验证集，605 个文件（官方欠采样数据与掩膜） | 33.39 | 0.896 | 0.0134 |
+| 本站：测试集随机 10 人 Cine × 9 种自生成掩膜（324 组） | 34.93 | 0.926 | 0.0095 |
+
+验证集数字与论文一致（+0.21 dB），差异可能来自榜单平均口径未公开。分模态 PSNR 从 T1w 37.96 dB 到 LGE 30.31 dB；R 从 8 到 24 各轨迹下降 2.4–6.0 dB。评测时把参考数据对齐到欠采样输入（Flow2d 转置；Center005 GE 6 个 T1w/T2w 欠采样文件末尾多出的全零层在参考里补齐）。训练、消融和规模曲线未复现。
+
 ## 建议复现路径
 
 1. 先跑 `example/`：`python scripts/inference.py -c configs/nv_raw2insights_mri_base.json -i example -o outputs/example_base`，确认权重自动下载与输出 `.mat` 形状（`val_img4ranking/`），再用 `visualize_mat.py` 出图。
